@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Models;
 using TCTEnglish.Services.Notifications;
@@ -12,6 +13,10 @@ public class NotificationService : INotificationService
     private const int TitleMaxLength = 200;
     private const int MessageMaxLength = 1000;
     private const int EventKeyMaxLength = 160;
+    private const int AnnouncementChunkSize = 500;
+    private const int AnnouncementRetentionDays = 30; // matches CleanupOldNotificationsAsync
+    private const string AnnouncementKeyPrefix = "announce:";
+    private const string DefaultSenderName = "Quản trị viên";
 
     private readonly DbflashcardContext _context;
     private readonly LearningBusinessClock _clock;
@@ -450,41 +455,267 @@ public class NotificationService : INotificationService
     public async Task<OperationResult> CreateAdminAnnouncementAsync(
         string title, string message, int adminUserId)
     {
-        if (string.IsNullOrWhiteSpace(title))
-            return OperationResult.Invalid("Tiêu đề không được để trống.");
+        // Same rules as the batch send; this overload has no form to carry a batch id, so each call is its own batch.
+        OperationResult<AdminAnnouncementOutcome> result = await SendAdminAnnouncementAsync(
+            new AdminAnnouncementRequest(title, message, null, adminUserId, Guid.NewGuid()));
+        return result;
+    }
 
-        if (string.IsNullOrWhiteSpace(message))
-            return OperationResult.Invalid("Nội dung không được để trống.");
+    public async Task<OperationResult<AdminAnnouncementOutcome>> SendAdminAnnouncementAsync(
+        AdminAnnouncementRequest request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
 
-        var activeUserIds = await _context.Users
+        var title = request.Title?.Trim() ?? string.Empty;
+        var message = request.Message?.Trim() ?? string.Empty;
+
+        if (title.Length == 0)
+            return OperationResult<AdminAnnouncementOutcome>.Invalid("Tiêu đề không được để trống.");
+        if (title.Length > TitleMaxLength)
+            return OperationResult<AdminAnnouncementOutcome>.Invalid($"Tiêu đề không được dài quá {TitleMaxLength} ký tự.");
+        if (message.Length == 0)
+            return OperationResult<AdminAnnouncementOutcome>.Invalid("Nội dung không được để trống.");
+        if (message.Length > MessageMaxLength)
+            return OperationResult<AdminAnnouncementOutcome>.Invalid($"Nội dung không được dài quá {MessageMaxLength} ký tự.");
+        if (request.BatchId == Guid.Empty)
+            return OperationResult<AdminAnnouncementOutcome>.Invalid(
+                "Phiên gửi thông báo không hợp lệ. Vui lòng tải lại trang.");
+
+        string? url = null;
+        if (!string.IsNullOrWhiteSpace(request.Url))
+        {
+            if (!NotificationLinks.IsValidLocalPath(request.Url))
+            {
+                const string linkError = "Chỉ dùng đường dẫn bắt đầu bằng / trong TCT English.";
+                return OperationResult<AdminAnnouncementOutcome>.Invalid(
+                    linkError, new Dictionary<string, string> { ["Url"] = linkError });
+            }
+
+            url = NotificationLinks.ToSafeLocal(request.Url);
+        }
+
+        var eventKey = AnnouncementKey(request.AdminUserId, request.BatchId);
+
+        // The sender's own copy is part of every send, so it tells whether this batch was already written.
+        var alreadyWritten = await _context.Notifications
             .AsNoTracking()
-            .Where(u => u.Status != UserStatus.Blocked)
+            .AnyAsync(n => n.UserId == request.AdminUserId && n.EventKey == eventKey);
+        if (alreadyWritten)
+            return await AlreadySentAsync(eventKey);
+
+        var recipientIds = await _context.Users
+            .AsNoTracking()
+            .Where(u => u.Status != UserStatus.Blocked && u.AnonymizedAt == null)
+            .OrderBy(u => u.UserId)
             .Select(u => u.UserId)
             .ToListAsync();
 
-        if (activeUserIds.Count == 0)
-            return OperationResult.Success();
+        if (recipientIds.Count == 0)
+            return OperationResult<AdminAnnouncementOutcome>.Success(new AdminAnnouncementOutcome(0, false));
 
         var now = _clock.UtcNow;
-        var notifications = activeUserIds.Select(uid => new Notification
+
+        try
         {
-            UserId = uid,
-            Type = NotificationType.AdminAnnouncement,
-            Title = title,
-            Message = message,
-            IconClass = "fas fa-bullhorn",
-            EventKey = null,
-            CreatedAt = now
+            var strategy = _context.Database.CreateExecutionStrategy();
+            await strategy.ExecuteAsync(async () =>
+            {
+                await using var transaction = await _context.Database.BeginTransactionAsync();
+
+                foreach (var chunk in recipientIds.Chunk(AnnouncementChunkSize))
+                {
+                    _context.Notifications.AddRange(chunk.Select(userId => new Notification
+                    {
+                        UserId = userId,
+                        Type = NotificationType.AdminAnnouncement,
+                        Title = title,
+                        Message = message,
+                        IconClass = "fa-solid fa-bullhorn",
+                        RelatedUrl = url,
+                        EventKey = eventKey,
+                        CreatedAt = now
+                    }));
+
+                    await _context.SaveChangesAsync();
+                    DetachAddedNotifications();
+                }
+
+                await transaction.CommitAsync();
+            });
+        }
+        catch (DbUpdateException ex) when (TCTEnglish.Services.RelationalUniqueConflict.IsUnique(ex))
+        {
+            // Another request wrote this batch first; the whole transaction was rolled back.
+            DetachAddedNotifications();
+            _logger.LogInformation(
+                "Admin {AdminUserId} announcement batch {BatchId} was already being sent; nothing new written",
+                request.AdminUserId, request.BatchId);
+            return await AlreadySentAsync(eventKey);
+        }
+        catch (DbUpdateException ex)
+        {
+            DetachAddedNotifications();
+            _logger.LogError(ex,
+                "Admin {AdminUserId} announcement batch {BatchId} failed and was rolled back",
+                request.AdminUserId, request.BatchId);
+            return OperationResult<AdminAnnouncementOutcome>.Invalid(
+                "Gửi thông báo thất bại. Chưa có thông báo nào được gửi, vui lòng thử lại.");
+        }
+
+        // The notification text is not logged; the batch id identifies the send.
+        _logger.LogInformation(
+            "Admin {AdminUserId} sent announcement batch {BatchId} to {Count} users",
+            request.AdminUserId, request.BatchId, recipientIds.Count);
+
+        return OperationResult<AdminAnnouncementOutcome>.Success(
+            new AdminAnnouncementOutcome(recipientIds.Count, false));
+    }
+
+    public async Task<AnnouncementHistoryPage> GetAnnouncementHistoryAsync(int page, int pageSize)
+    {
+        page = Math.Max(1, page);
+        pageSize = Math.Clamp(pageSize, 1, 100);
+
+        var announcements = _context.Notifications
+            .AsNoTracking()
+            .Where(n => n.Type == NotificationType.AdminAnnouncement);
+
+        // A batch is every row that shares one announce key.
+        var keyedBatches = announcements
+            .Where(n => n.EventKey != null && n.EventKey.StartsWith(AnnouncementKeyPrefix))
+            .GroupBy(n => n.EventKey!);
+
+        // Older rows have no key: one send wrote every row with the same text and the same instant.
+        var legacySends = announcements
+            .Where(n => n.EventKey == null || !n.EventKey.StartsWith(AnnouncementKeyPrefix))
+            .GroupBy(n => new { n.Title, n.Message, n.CreatedAt });
+
+        var keyedTotal = await keyedBatches.CountAsync();
+        var legacyTotal = await legacySends.CountAsync();
+        var totalCount = keyedTotal + legacyTotal;
+        var totalPages = Math.Max(1, (int)Math.Ceiling(totalCount / (double)pageSize));
+        page = Math.Min(page, totalPages);
+
+        // Keyed batches are newer than any legacy row, so they come first; the page window runs across both.
+        // Ordering is applied to the group aggregates before the projection so the database does the paging.
+        var skip = (page - 1) * pageSize;
+        var rows = new List<GroupRow>();
+        if (skip < keyedTotal)
+        {
+            rows.AddRange(await keyedBatches
+                .OrderByDescending(g => g.Min(n => n.CreatedAt))
+                .ThenBy(g => g.Key)
+                .Skip(skip)
+                .Take(pageSize)
+                .Select(g => new GroupRow(
+                    g.Key,
+                    g.Min(n => n.Title)!,
+                    g.Min(n => n.Message)!,
+                    g.Min(n => n.RelatedUrl),
+                    g.Min(n => n.CreatedAt),
+                    g.Count(),
+                    g.Count(n => n.IsRead)))
+                .ToListAsync());
+        }
+
+        var remaining = pageSize - rows.Count;
+        if (remaining > 0 && legacyTotal > 0)
+        {
+            rows.AddRange(await legacySends
+                .OrderByDescending(g => g.Key.CreatedAt)
+                .ThenBy(g => g.Key.Title)
+                .ThenBy(g => g.Key.Message)
+                .Skip(Math.Max(0, skip - keyedTotal))
+                .Take(remaining)
+                .Select(g => new GroupRow(
+                    null,
+                    g.Key.Title,
+                    g.Key.Message,
+                    g.Min(n => n.RelatedUrl),
+                    g.Key.CreatedAt,
+                    g.Count(),
+                    g.Count(n => n.IsRead)))
+                .ToListAsync());
+        }
+
+        var senderIds = rows
+            .Select(r => ParseSenderId(r.Key))
+            .Where(id => id != null)
+            .Select(id => id!.Value)
+            .Distinct()
+            .ToList();
+        var senderNames = senderIds.Count == 0
+            ? new Dictionary<int, string?>()
+            : await _context.Users
+                .AsNoTracking()
+                .Where(u => senderIds.Contains(u.UserId))
+                .ToDictionaryAsync(u => u.UserId, u => u.FullName);
+
+        var retentionCutoff = _clock.UtcNow.AddDays(-AnnouncementRetentionDays);
+        var items = rows.Select(r =>
+        {
+            var senderId = ParseSenderId(r.Key);
+            var name = senderId != null && senderNames.TryGetValue(senderId.Value, out var full)
+                       && !string.IsNullOrWhiteSpace(full)
+                ? full.Trim()
+                : DefaultSenderName;
+            var createdUtc = NotificationDisplay.AsUtc(r.CreatedAt);
+
+            return new AnnouncementHistoryEntry(
+                r.Title,
+                r.Message,
+                NotificationLinks.ToSafeLocal(r.Url),
+                createdUtc,
+                senderId,
+                name,
+                r.Recipients,
+                r.ReadCount,
+                IsLegacy: r.Key == null,
+                CopiesMayBeCleaned: createdUtc < retentionCutoff);
         }).ToList();
 
-        _context.Notifications.AddRange(notifications);
-        await _context.SaveChangesAsync();
+        return new AnnouncementHistoryPage(items, page, totalPages, totalCount);
+    }
 
-        _logger.LogInformation(
-            "Admin {AdminUserId} broadcast announcement '{Title}' to {Count} users",
-            adminUserId, title, notifications.Count);
+    private sealed record GroupRow(
+        string? Key,
+        string Title,
+        string Message,
+        string? Url,
+        DateTime CreatedAt,
+        int Recipients,
+        int ReadCount);
 
-        return OperationResult.Success();
+    private async Task<OperationResult<AdminAnnouncementOutcome>> AlreadySentAsync(string eventKey)
+    {
+        var existing = await _context.Notifications
+            .AsNoTracking()
+            .CountAsync(n => n.EventKey == eventKey);
+        return OperationResult<AdminAnnouncementOutcome>.Success(new AdminAnnouncementOutcome(existing, true));
+    }
+
+    private void DetachAddedNotifications()
+    {
+        foreach (var entry in _context.ChangeTracker.Entries<Notification>()
+                     .Where(e => e.State == EntityState.Added)
+                     .ToList())
+        {
+            entry.State = EntityState.Detached;
+        }
+    }
+
+    private static string AnnouncementKey(int adminUserId, Guid batchId)
+        => $"{AnnouncementKeyPrefix}{adminUserId}:{batchId:N}";
+
+    private static int? ParseSenderId(string? eventKey)
+    {
+        if (eventKey == null || !eventKey.StartsWith(AnnouncementKeyPrefix, StringComparison.Ordinal))
+            return null;
+
+        var parts = eventKey.Split(':');
+        return parts.Length >= 3 && int.TryParse(parts[1], NumberStyles.None, CultureInfo.InvariantCulture, out var id)
+            ? id
+            : null;
     }
 
     public async Task<int> CleanupOldNotificationsAsync(int daysToKeep = 30)

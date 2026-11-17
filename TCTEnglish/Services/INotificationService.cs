@@ -57,7 +57,17 @@ public interface INotificationService
         string eventKey);
 
     // === Admin broadcast ===
+    /// <summary>Sends to every active account with a fresh batch (not protected against a double submit).</summary>
     Task<OperationResult> CreateAdminAnnouncementAsync(string title, string message, int adminUserId);
+
+    /// <summary>
+    /// Sends one announcement batch to every account that is not blocked or anonymised, in chunks inside one
+    /// transaction. The same batch id is sent at most once.
+    /// </summary>
+    Task<OperationResult<AdminAnnouncementOutcome>> SendAdminAnnouncementAsync(AdminAnnouncementRequest request);
+
+    /// <summary>Announcements grouped by batch (legacy rows by text and send time), paged in the database.</summary>
+    Task<AnnouncementHistoryPage> GetAnnouncementHistoryAsync(int page, int pageSize);
 
     // === Cleanup ===
     Task<int> CleanupOldNotificationsAsync(int daysToKeep = 30);

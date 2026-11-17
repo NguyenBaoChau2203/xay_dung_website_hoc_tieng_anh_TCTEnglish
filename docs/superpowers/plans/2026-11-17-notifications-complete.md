@@ -665,3 +665,31 @@ Record database evidence.
 **Differences from the mockup.** None (no UI change).
 **Tests changed.** None edited; one new file.
 **Event keys of rows created.** None in the dev database (the tests use their own disposable databases).
+
+### Gate record — T4 Admin, billing and worker copy (2026-11-17) — `feat(notifications): send announcements once per batch, notify the buyer on activation and plain-Vietnamese worker copy`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | full `--no-incremental` rebuild: 0 errors, **57 warnings** (T0: 57) |
+| G2 | pass | `AdminAnnouncementTests` + `AdminAnnouncementControllerTests` (33) and `PaymentActivationNotificationTests` (7) green; `PaymentConfirmation*`, `NotificationWorker*`, `NotificationReliability*` run inside G3 |
+| G3 | pass | **2581 total = 2546 passed, 35 skipped, 0 failed** (T3: 2541 → +40 new) |
+| G4 | pass | node 405 total, 404 passed, 1 failed = the T0 speaking-catalog hash failure |
+| G5 | pass | no route or JSON contract changed; `has-pending-model-changes`: none |
+| G6 | pass | no CSS or JS; the admin view gained only two form fields (no inline style/script added); `git diff --check` clean for the committed files |
+| G7 | pass | `NotificationWorker.cs` diff = exactly the four string literals (two `Title`, two `Message`); `PaymentConfirmationService.cs` diff = two `using`s, an optional constructor parameter, the notification call and its private helper; `Program.cs` untouched (the optional parameter is resolved by the existing registration); no other forbidden file |
+| G8–G12, G14 | n/a (T8) | the admin pages get their copy/accessibility pass in T8; only two fields were added here so the form keeps working with the new controller |
+| G13 | pass | the full suite (Goals, worker, reliability, billing, IPN, admin billing) is green and unedited; the nine existing `new PaymentConfirmationService(ctx, subs, logger)` calls compile unchanged |
+| G15 | pass | announcements: blocked and anonymised accounts excluded, one batch id = one send, links outside the site rejected on the form and in the service, antiforgery 400, learner role refused; billing: the notification runs after the payment commit and every failure (exception or failed result) is swallowed and logged; **no notification was sent to anyone: all announcement tests use disposable SQLite or the test host; the dev database was not touched** |
+
+**Decisions.**
+- `SendAdminAnnouncementAsync(AdminAnnouncementRequest)` is the new entry point; the old `CreateAdminAnnouncementAsync(title, message, adminId)` delegates to it with a fresh batch id (so it also skips anonymised accounts and writes keys). Batch key `announce:{adminId}:{batchId:N}`; the sender's own row is the "already sent" probe (it uses the `(UserId, EventKey)` index); rows go in chunks of 500 inside one transaction; a unique conflict means a racing request wrote the batch and the whole transaction is rolled back (`AlreadySent`, test `Send_AConflictWithAnotherRequestsRows_RollsBackTheWholeBatch`).
+- The announcement icon is now `fa-solid fa-bullhorn`; admin accounts receive their own announcement.
+- History: keyed batches first (grouped by the key, newest first), then legacy rows grouped by `(Title, Message, CreatedAt)` — one send wrote one instant, so two sends within a minute no longer merge — paged in the database; the sender name comes from the key (`FullName`, else "Quản trị viên"); a group older than the 30-day retention is flagged `CopiesMayBeCleaned` (the original recipient count is not stored, so "còn n bản lưu" is shown for those).
+- The history query orders on the group aggregates before the projection (an `OrderBy` after the record projection is not translatable); it ran on SQLite here and is exercised against the Docker MariaDB when the admin History page is opened in T8/T10.
+- `PaymentConfirmationService` takes `INotificationService? notifications = null` (optional so the existing direct constructions in tests stay valid; DI supplies it). Message: "Gói {tên gói} có hiệu lực đến {dd/MM/yyyy}." in Vietnam time; key `premium:{OrderCode}`; link `/Billing/Order/{OrderCode}`; only the `Activated` outcome notifies (repeat, rejected-amount and lost-race outcomes do not). An admin confirmation also notifies the buyer.
+- D4 worker copy as in plan 4.2: "Chuỗi ngày học sắp mất" / "Bạn chưa học hôm nay, chuỗi {n} ngày sẽ mất nếu không học trước nửa đêm." and "Sắp nhận huy hiệu {tên}" / "Còn {n} bước nữa để mở khóa huy hiệu \"{tên}\"." No worker test asserted the old text.
+- The admin form (`Create.cshtml`) now posts a hidden `BatchId` and an optional "Liên kết" field with the plan's hint; the visual and copy pass is T8.
+
+**Differences from the mockup.** None (admin only, no mockup).
+**Tests changed.** None edited; three new files.
+**Event keys of rows created.** None in the dev database.

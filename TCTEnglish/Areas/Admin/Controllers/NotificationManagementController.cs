@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using TCTEnglish.Models;
+using TCTEnglish.Services.Notifications;
 using TCTVocabulary.Areas.Admin.ViewModels;
 using TCTVocabulary.Controllers;
 using TCTVocabulary.Models;
@@ -16,16 +15,13 @@ public class NotificationManagementController : BaseController
     private const int PageSize = 20;
 
     private readonly INotificationService _notificationService;
-    private readonly DbflashcardContext _context;
     private readonly ILogger<NotificationManagementController> _logger;
 
     public NotificationManagementController(
         INotificationService notificationService,
-        DbflashcardContext context,
         ILogger<NotificationManagementController> logger)
     {
         _notificationService = notificationService;
-        _context = context;
         _logger = logger;
     }
 
@@ -40,7 +36,7 @@ public class NotificationManagementController : BaseController
     public IActionResult Create()
     {
         ViewData["Title"] = "Gửi thông báo hệ thống";
-        return View(new CreateAnnouncementViewModel());
+        return View(new CreateAnnouncementViewModel { BatchId = Guid.NewGuid() });
     }
 
     // POST /Admin/NotificationManagement/Create
@@ -49,30 +45,46 @@ public class NotificationManagementController : BaseController
     {
         ViewData["Title"] = "Gửi thông báo hệ thống";
 
+        // The batch id is what makes a double submit harmless; a missing one gets a fresh form.
+        if (model.BatchId == Guid.Empty)
+        {
+            ModelState.Remove(nameof(CreateAnnouncementViewModel.BatchId));
+            model.BatchId = Guid.NewGuid();
+            ModelState.AddModelError(string.Empty, "Phiên gửi thông báo không hợp lệ. Vui lòng kiểm tra nội dung và gửi lại.");
+            return View(model);
+        }
+
         if (!ModelState.IsValid)
             return View(model);
 
         var adminUserId = GetCurrentUserId();
-        var result = await _notificationService.CreateAdminAnnouncementAsync(
-            model.Title, model.Message, adminUserId);
+        var result = await _notificationService.SendAdminAnnouncementAsync(
+            new AdminAnnouncementRequest(model.Title, model.Message, model.Url, adminUserId, model.BatchId));
 
-        if (result.Status != OperationStatus.Success)
+        if (!result.IsSuccess)
         {
-            ModelState.AddModelError(string.Empty,
-                result.ErrorMessage ?? "Gửi thông báo thất bại.");
+            var message = result.ErrorMessage ?? "Gửi thông báo thất bại.";
+            if (result.FieldErrors is { Count: > 0 } fields)
+            {
+                foreach (var (field, error) in fields)
+                    ModelState.AddModelError(field, error);
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, message);
+            }
+
             return View(model);
         }
 
-        // Count recipients for TempData message
-        var recipientCount = await _context.Users
-            .AsNoTracking()
-            .CountAsync(u => u.Status != UserStatus.Blocked);
-
+        var outcome = result.Value!;
         _logger.LogInformation(
-            "Admin {AdminId} sent announcement '{Title}' to {Count} users",
-            adminUserId, model.Title, recipientCount);
+            "Admin {AdminId} announcement batch {BatchId}: {Recipients} recipients, already sent: {AlreadySent}",
+            adminUserId, model.BatchId, outcome.Recipients, outcome.AlreadySent);
 
-        TempData["Success"] = $"Đã gửi thông báo tới {recipientCount} người dùng.";
+        TempData["Success"] = outcome.AlreadySent
+            ? "Thông báo này đã được gửi trước đó."
+            : $"Đã gửi thông báo tới {outcome.Recipients} người dùng.";
         return RedirectToAction(nameof(History));
     }
 
@@ -85,66 +97,24 @@ public class NotificationManagementController : BaseController
     {
         ViewData["Title"] = "Lịch sử thông báo";
 
-        page = Math.Max(1, page);
+        var history = await _notificationService.GetAnnouncementHistoryAsync(page, PageSize);
 
-        // Group AdminAnnouncement notifications by (Title, Message + minute-truncated CreatedAt)
-        // to reconstruct unique broadcast events.
-        // Strategy: get one row per "broadcast minute" per unique (Title, Message) pair.
-        var allAdminNotifs = await _context.Set<Notification>()
-            .AsNoTracking()
-            .Where(n => n.Type == NotificationType.AdminAnnouncement)
-            .Select(n => new
-            {
-                n.Title,
-                n.Message,
-                n.UserId,
-                n.CreatedAt
-            })
-            .ToListAsync();
-
-        // Group into broadcast events (same title+message within same UTC minute)
-        var grouped = allAdminNotifs
-            .GroupBy(n => new
-            {
-                n.Title,
-                n.Message,
-                MinuteBucket = new DateTime(
-                    n.CreatedAt.Year, n.CreatedAt.Month, n.CreatedAt.Day,
-                    n.CreatedAt.Hour, n.CreatedAt.Minute, 0, DateTimeKind.Utc)
-            })
-            .Select(g => new
-            {
-                g.Key.Title,
-                g.Key.Message,
-                CreatedAt = g.Key.MinuteBucket,
-                RecipientCount = g.Count()
-            })
-            .OrderByDescending(x => x.CreatedAt)
-            .ToList();
-
-        var totalPages = (int)Math.Ceiling(grouped.Count / (double)PageSize);
-
-        var pageItems = grouped
-            .Skip((page - 1) * PageSize)
-            .Take(PageSize)
-            .ToList();
-
-        var items = pageItems.Select(g => new AnnouncementItemViewModel
+        return View(new AnnouncementHistoryViewModel
         {
-            Title          = g.Title,
-            Message        = g.Message,
-            CreatedAt      = g.CreatedAt,
-            CreatedByName  = "Admin",   // simplified — sender not stored per notification
-            RecipientCount = g.RecipientCount
-        }).ToList();
-
-        var viewModel = new AnnouncementHistoryViewModel
-        {
-            Items       = items,
-            CurrentPage = page,
-            TotalPages  = Math.Max(1, totalPages)
-        };
-
-        return View(viewModel);
+            Items = history.Items.Select(item => new AnnouncementItemViewModel
+            {
+                Title = item.Title,
+                Message = item.Message,
+                CreatedAt = item.CreatedAtUtc,
+                CreatedByName = item.SenderName,
+                RecipientCount = item.Recipients,
+                ReadCount = item.ReadCount,
+                Url = item.Url,
+                IsLegacy = item.IsLegacy,
+                CopiesMayBeCleaned = item.CopiesMayBeCleaned
+            }).ToList(),
+            CurrentPage = history.Page,
+            TotalPages = history.TotalPages
+        });
     }
 }

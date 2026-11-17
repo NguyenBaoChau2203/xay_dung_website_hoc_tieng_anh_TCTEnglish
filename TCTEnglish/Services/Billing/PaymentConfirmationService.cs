@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TCTEnglish.Models;
+using TCTEnglish.Services.Notifications;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
 
 namespace TCTEnglish.Services.Billing
 {
@@ -20,15 +22,18 @@ namespace TCTEnglish.Services.Billing
         private readonly DbflashcardContext _context;
         private readonly ISubscriptionService _subscriptionService;
         private readonly ILogger<PaymentConfirmationService> _logger;
+        private readonly INotificationService? _notifications;
 
         public PaymentConfirmationService(
             DbflashcardContext context,
             ISubscriptionService subscriptionService,
-            ILogger<PaymentConfirmationService> logger)
+            ILogger<PaymentConfirmationService> logger,
+            INotificationService? notifications = null)
         {
             _context = context;
             _subscriptionService = subscriptionService;
             _logger = logger;
+            _notifications = notifications;
         }
 
         public async Task<PaymentConfirmationResult> ConfirmPaidAsync(
@@ -38,7 +43,7 @@ namespace TCTEnglish.Services.Billing
             ArgumentNullException.ThrowIfNull(c);
 
             var strategy = _context.Database.CreateExecutionStrategy();
-            return await strategy.ExecuteAsync(async () =>
+            var confirmation = await strategy.ExecuteAsync(async () =>
             {
                 _context.ChangeTracker.Clear();
 
@@ -178,8 +183,60 @@ namespace TCTEnglish.Services.Billing
                 return new PaymentConfirmationResult(PaymentConfirmationOutcome.Activated, sub.EndsAtUtc);
             });
 
-            // Buyer notification: INotificationService has no per-user create method, so none is
-            // sent (recorded in the billing plan, section 12). Adding one is out of scope.
+            // Tell the buyer once, after the payment is committed. Only the confirmation that activated
+            // Premium notifies; repeats, rejections and lost races do not. Best effort: nothing here can
+            // change the payment result.
+            if (confirmation.Outcome == PaymentConfirmationOutcome.Activated)
+            {
+                await NotifyBuyerAsync(c.OrderId, confirmation.PremiumEndsAtUtc, ct);
+            }
+
+            return confirmation;
+        }
+
+        private async Task NotifyBuyerAsync(long orderId, DateTime? premiumEndsAtUtc, CancellationToken ct)
+        {
+            if (_notifications == null)
+            {
+                return;
+            }
+
+            try
+            {
+                var order = await _context.PaymentOrders
+                    .AsNoTracking()
+                    .Where(o => o.Id == orderId)
+                    .Select(o => new { o.UserId, o.OrderCode, PlanName = o.Plan.Name })
+                    .FirstOrDefaultAsync(ct);
+                if (order == null)
+                {
+                    return;
+                }
+
+                var message = premiumEndsAtUtc is { } endsUtc
+                    ? $"Gói {order.PlanName} có hiệu lực đến {TimeZoneInfo.ConvertTimeFromUtc(NotificationDisplay.AsUtc(endsUtc), NotificationDisplay.BusinessZone):dd/MM/yyyy}."
+                    : $"Gói {order.PlanName} đã được kích hoạt.";
+
+                var result = await _notifications.CreateForUserAsync(
+                    order.UserId,
+                    NotificationType.PremiumActivated,
+                    "Premium đã được kích hoạt",
+                    message,
+                    $"/Billing/Order/{order.OrderCode}",
+                    "fa-solid fa-crown",
+                    $"premium:{order.OrderCode}");
+
+                if (!result.IsSuccess)
+                {
+                    _logger.LogWarning(
+                        "Premium activation notification was not created for order {OrderCode}: {Reason}",
+                        order.OrderCode, result.ErrorMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Premium activation notification failed for order {OrderId}", orderId);
+            }
         }
 
         private static string DescribeSource(PaymentTransitionSource source) => source switch
