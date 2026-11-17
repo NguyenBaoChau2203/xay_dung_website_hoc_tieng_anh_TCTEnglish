@@ -376,7 +376,7 @@ namespace TCTEnglish.Services.Billing
                 return;
             }
 
-            _context.PaymentEvents.Add(new PaymentEvent
+            var checkoutEvent = new PaymentEvent
             {
                 Provider = provider,
                 EventType = PaymentEventTypes.CheckoutCreated,
@@ -388,15 +388,22 @@ namespace TCTEnglish.Services.Billing
                 ProcessingMessage = "Checkout session created",
                 ReceivedAtUtc = DateTime.UtcNow,
                 ProcessedAtUtc = DateTime.UtcNow
-            });
+            };
+            _context.PaymentEvents.Add(checkoutEvent);
 
             try
             {
                 await _context.SaveChangesAsync(ct);
             }
+            catch (DbUpdateException ex) when (RelationalUniqueConflict.IsUnique(ex))
+            {
+                // Race-condition duplicate: forget the failed row so later saves do not retry it.
+                _context.Entry(checkoutEvent).State = EntityState.Detached;
+            }
             catch (DbUpdateException)
             {
-                // race-condition duplicate, safe to ignore
+                _context.Entry(checkoutEvent).State = EntityState.Detached;
+                throw;
             }
         }
 
@@ -417,7 +424,7 @@ namespace TCTEnglish.Services.Billing
                 return;
             }
 
-            _context.PaymentEvents.Add(new PaymentEvent
+            var returnEvent = new PaymentEvent
             {
                 Provider = provider,
                 EventType = PaymentEventTypes.Return,
@@ -430,15 +437,22 @@ namespace TCTEnglish.Services.Billing
                 ProcessingMessage = "Return URL visited - display only, no activation",
                 ReceivedAtUtc = DateTime.UtcNow,
                 ProcessedAtUtc = DateTime.UtcNow
-            });
+            };
+            _context.PaymentEvents.Add(returnEvent);
 
             try
             {
                 await _context.SaveChangesAsync(ct);
             }
+            catch (DbUpdateException ex) when (RelationalUniqueConflict.IsUnique(ex))
+            {
+                // Race-condition duplicate: forget the failed row so later saves do not retry it.
+                _context.Entry(returnEvent).State = EntityState.Detached;
+            }
             catch (DbUpdateException)
             {
-                // race-condition duplicate, safe to ignore
+                _context.Entry(returnEvent).State = EntityState.Detached;
+                throw;
             }
         }
     }

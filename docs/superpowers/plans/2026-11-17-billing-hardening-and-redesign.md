@@ -500,3 +500,29 @@ Record database evidence (status, subscription dates, events) without any secret
 No severity-A finding was disproved, so no design change is needed.
 
 **Orders created during checks (cumulative).** `TCT-20261117072308906-BE895D28` (B0).
+
+
+### Gate record — B1 Core (2026-11-17) — `feat(billing): add the order state machine and the single confirmation service`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | build 0 errors; no new warning (incremental build prints 0; B0 full rebuild 58) |
+| G2 | pass | area filter: 274 passed, 1 skipped, 0 failed |
+| G3 | pass | full suite 1975 total = 1940 passed, 35 skipped, 0 failed (B0 total 1867 + 108 new tests = 1975; the wall-clock writing test passed on this run) |
+| G4 | pass | node 391 total, 390 passed; only the B0 speaking-catalog hash failure |
+| G5 | pass | `git diff` empty for both signature helpers; no route, response code or provider URL touched |
+| G6 | pass | `git diff --check` clean for changed files (only the pre-existing blank line in the unstaged `appsettings.Development.json`); the 36 `bi bi-`/inline hits are in the old learner views that B7–B9 replace, none added |
+| G7 | pass | `Program.cs` diff = one DI line (`IPaymentConfirmationService`); `_Layout.cshtml` untouched |
+| G8–G14 | n/a | backend-only phase, no view, CSS or script changed |
+| G15 | pass | secrets grep over the diff empty; no signed URL; webhooks unchanged |
+| G16 | n/a for this phase | the single path now exists; the three old copies of `Status = Paid` (IPN B2, reconciliation B4, admin B10) are removed in those phases and the grep is re-run at every gate |
+
+**What changed.** `PaymentOrderStateMachine` (pure; every table cell tested), `IPaymentConfirmationService` / `PaymentConfirmationService` (outcomes Activated, AlreadyPaid, SentToManualReview, RejectedState, RejectedAmount, OrderNotFound), DI line, and the unique-conflict fixes (F6/F7): `IpnService` now uses `RelationalUniqueConflict.IsUnique`; `BillingService` checkout/return events detach the failed row and only swallow real unique conflicts.
+
+**Decisions.**
+- Concurrency without a schema change: the confirmation inserts the unique `grant:{OrderCode}` event before activating; losing the race rolls back and answers `AlreadyPaid`, so two racing confirmations (IPN + return query) cannot activate twice. Proven on SQLite (InMemory does not enforce the index).
+- The "late" rule (24 h after expiry → manual review) now applies to every provider and source except Admin.
+- Provider fields are only overwritten when the new value is non-null; `IpnPayloadJson` is only set for callbacks.
+- Buyer notification not sent (no per-user API; see B0).
+
+**Mockup differences.** none (no UI). **Owned tests changed.** none. **Orders created.** none.

@@ -685,19 +685,11 @@ namespace TCTEnglish.Services.Billing
                 await _context.SaveChangesAsync(ct);
             }
             catch (DbUpdateException ex)
-                when (IsUniqueConstraintViolation(ex))
+                when (RelationalUniqueConflict.IsUnique(ex))
             {
+                // MariaDB "Duplicate entry" (1062), SQLite and the MySQL 1022 variant all land here.
                 _context.Entry(evt).State = EntityState.Detached;
             }
-        }
-
-        private static bool IsUniqueConstraintViolation(DbUpdateException ex)
-        {
-            var inner = ex.InnerException?.Message ?? string.Empty;
-            return inner.Contains("2601", StringComparison.Ordinal)
-                || inner.Contains("2627", StringComparison.Ordinal)
-                || inner.Contains("UNIQUE constraint failed", StringComparison.OrdinalIgnoreCase)
-                || inner.Contains("unique index", StringComparison.OrdinalIgnoreCase);
         }
     }
 }
