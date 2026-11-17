@@ -796,3 +796,34 @@ Record database evidence.
 **Differences from the mockup (3).** Tile hues by token (as T5); a visible "Tải thêm" button appears when more items exist (plan 5.2 asks for it for keyboard users); on phones the panel is a sheet under the header; the header "Đánh dấu đã đọc" is hidden while nothing is unread.
 
 **Event keys / data.** No rows were created. The scripted runs marked the synthetic Standard learner's 12 notifications read several times; after every script they were set back to unread by `UPDATE … WHERE UserId = 2 AND Id IN (2, 6, 10, 15–21, 28, 34)` (12 of 12 unread at the end).
+
+### Gate record — T8 Admin copy, accessibility and responsive pass (2026-11-17) — `fix(notifications): admin history by batch with sender, read count and Vietnam time, plus form copy`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | full `--no-incremental` rebuild: 0 errors, **57 warnings** (T0: 57) |
+| G2 | pass | `AdminAnnouncementTests` + `AdminAnnouncementControllerTests`: 35 passed (two new view tests: form copy, history columns/time/legacy label) |
+| G3 | pass | **2601 total = 2566 passed, 35 skipped, 0 failed** (T7: 2599 → +2 new) |
+| G4 | pass | node 431 total, 430 passed, 1 failed = the T0 speaking-catalog hash failure; `test_owner_admin_views_sweep.cjs` (label `for` ids kept) passes |
+| G5 | pass | admin routes and posted fields unchanged (the form only gained `BatchId` and `Url` in T4); `has-pending-model-changes`: none |
+| G6 | pass | no new inline script; the preview script no longer assigns `innerHTML` (test on the rendered page); `git diff --check` clean |
+| G7 | pass | `Areas/Admin/{Controllers/NotificationManagementController.cs, ViewModels/NotificationManagementViewModel.cs, Views/NotificationManagement/{Create,History}.cshtml}` and tests only (plan 2.2 admin scope: logic, link field, copy) |
+| G8 | pass | headless Chrome, Admin account, both pages at 1440, 1366, 1024, 768, 390, 320 and 200 % zoom (640 CSS px at DPR 2): `scrollWidth == clientWidth` everywhere, 0 overflowing elements (the table scrolls inside `.table-responsive`), 0 console errors / failed requests; screenshots `admin-{create,history}-*.png` |
+| G9 | n/a | no admin mockup; layout deliberately unchanged (plan 5.3) |
+| G10 | pass | 5 scripted checks, all PASS: the form carries a batch GUID; typing updates the counters and the preview **as text** (`<b>` and `<img onerror>` typed into the fields are shown as characters, no node is created); the confirm modal opens with the typed text and the link row, focus inside; submitting an unsafe link (`//evil.example`) returns the form with "Chỉ dùng đường dẫn bắt đầu bằng / trong TCT English.", the typed values and the same batch id, and **nothing is written**; 16 form controls are reachable by Tab and each shows a focus outline or ring |
+| G11 | pass | one `h1`, section headings are `h2` (were `h6`), the history table has a hidden `caption` and `scope="col"` headers, pager links carry `aria-label` and `aria-current`, every close button has a name, decorative icons are `aria-hidden` |
+| G12 | pass | scripted contrast over the visible text of both pages (20 and 21 texts) at all seven sizes: 0 failures |
+| G13 | pass | full suite green; the bell, the page and billing activation unaffected |
+| G14 | n/a | Admin keeps its current Bootstrap look until the Admin batch (plan 1.2 D2) |
+| G15 | pass | only admins reach either page (learner refused, test); antiforgery 400 without a token; links outside the site rejected; **no announcement was sent**: the dev database holds a real account (user 4), so the only POST of the run used an unsafe link and the server rejected it; the DB has 0 announcement rows afterwards |
+
+**Provider proof for the history query.** The History page ran its grouped, aggregate-ordered, database-paged queries against the **Docker MariaDB** (the hosting provider family) with throwaway rows for synthetic accounts only: a keyed batch (3 rows, `announce:1:t8verify…0001`, sender "Local Admin", read 1 of 3, link `/Premium`, created 16:40 UTC shown as 17/11/2026 23:40) and a legacy group (2 rows without a key, 01/04/2026 10:00, "(dữ liệu cũ)", sender "Quản trị viên", read 2/2, "còn 2 bản lưu"), keyed first, as designed. The rows were removed by key afterwards (`remaining_t8 = 0`, announcements total 0).
+
+**Decisions.**
+- History columns: Tiêu đề, Nội dung (+ link), Thời gian (Vietnam time, `dd/MM/yyyy HH:mm` computed from the UTC value instead of `AddHours(7)` in the view), Người gửi, **Đã đọc** (`read/recipients`), Số người nhận (+ "còn n bản lưu" for groups older than the 30-day retention); legacy groups are labelled "(dữ liệu cũ)".
+- Form copy: "…trong chuông thông báo của người dùng", "(trừ tài khoản bị khóa hoặc đã xóa)", "Vừa xong"; the modal repeats the link.
+- The preview now writes with `textContent` (the old script built HTML from the typed text).
+
+**Not changed (Admin batch, not this plan).** Existing admin buttons use Bootstrap sizes (the full-width "Gửi thông báo" button is 38 px high, `btn-sm` buttons are smaller than 44 px); the admin preview card keeps its inline sizing styles; the admin layout still loads no jQuery (`SWEEP-ADMIN-LAYOUT-NO-JQUERY`).
+
+**Event keys of rows created.** `announce:1:t8verify0000000000000000000001` (3 rows, users 6–8) and 2 legacy rows titled "[Thử nghiệm] Dữ liệu cũ T8" (users 6–7); all five removed.

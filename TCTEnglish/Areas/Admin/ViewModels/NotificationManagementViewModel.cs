@@ -32,6 +32,7 @@ public class AnnouncementItemViewModel
     public string Title { get; set; } = string.Empty;
     public string Message { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; }               // UTC
+    public string CreatedAtText { get; set; } = string.Empty; // dd/MM/yyyy HH:mm in Vietnam time
     public string CreatedByName { get; set; } = string.Empty;
     public int RecipientCount { get; set; }
     public int ReadCount { get; set; }

@@ -106,6 +106,8 @@ public class NotificationManagementController : BaseController
                 Title = item.Title,
                 Message = item.Message,
                 CreatedAt = item.CreatedAtUtc,
+                CreatedAtText = TimeZoneInfo.ConvertTimeFromUtc(item.CreatedAtUtc, NotificationDisplay.BusinessZone)
+                    .ToString("dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture),
                 CreatedByName = item.SenderName,
                 RecipientCount = item.Recipients,
                 ReadCount = item.ReadCount,

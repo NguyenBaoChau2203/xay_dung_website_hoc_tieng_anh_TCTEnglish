@@ -532,4 +532,72 @@ public sealed class AdminAnnouncementControllerTests
         Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
         Assert.Equal(0, await AnnouncementRowsAsync(factory));
     }
+
+    [Fact]
+    public async Task TheForm_UsesPlainVietnameseCopy_ForTheBellAndHasNoMarkupBuiltFromInput()
+    {
+        var (factory, admin, _) = await StartAsync();
+        await using var _1 = factory;
+        using var __ = admin;
+
+        var html = System.Net.WebUtility.HtmlDecode(await admin.GetStringAsync(CreateUrl));
+
+        Assert.Contains("Thông báo sẽ hiện như thế này trong chuông thông báo của người dùng:", html);
+        Assert.Contains("(trừ tài khoản bị khóa hoặc đã xóa)", html);
+        Assert.DoesNotContain("dropdown của người dùng", html);
+        Assert.DoesNotContain("<h6", html);
+        Assert.DoesNotMatch("\\.innerHTML\\s*=", html);   // the preview writes text with textContent only
+        Assert.Contains("id=\"modalPreviewUrl\"", html);
+    }
+
+    [Fact]
+    public async Task History_ShowsVietnamTime_TheSender_TheReadCount_AndMarksLegacyRows()
+    {
+        var (factory, admin, _) = await StartAsync();
+        await using var _1 = factory;
+        using var __ = admin;
+        using (var scope = factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            var batch = Guid.NewGuid();
+            db.Notifications.AddRange(
+                new Notification
+                {
+                    UserId = TestDataIds.UserId, Type = NotificationType.AdminAnnouncement, Title = "KEYED-TITLE",
+                    Message = "Keyed message", RelatedUrl = "/Premium", IsRead = true,
+                    EventKey = $"announce:{TestDataIds.AdminUserId}:{batch:N}", CreatedAt = new DateTime(2026, 11, 17, 2, 30, 0, DateTimeKind.Utc)
+                },
+                new Notification
+                {
+                    UserId = TestDataIds.OutsiderUserId, Type = NotificationType.AdminAnnouncement, Title = "KEYED-TITLE",
+                    Message = "Keyed message", RelatedUrl = "/Premium", IsRead = false,
+                    EventKey = $"announce:{TestDataIds.AdminUserId}:{batch:N}", CreatedAt = new DateTime(2026, 11, 17, 2, 30, 0, DateTimeKind.Utc)
+                },
+                new Notification
+                {
+                    UserId = TestDataIds.UserId, Type = NotificationType.AdminAnnouncement, Title = "LEGACY-TITLE",
+                    Message = "Legacy message", IsRead = true, EventKey = null,
+                    CreatedAt = new DateTime(2026, 5, 1, 10, 0, 0, DateTimeKind.Utc)
+                });
+            await db.SaveChangesAsync();
+        }
+
+        var html = System.Net.WebUtility.HtmlDecode(await admin.GetStringAsync("/Admin/NotificationManagement/History"));
+
+        foreach (var column in new[] { "Tiêu đề", "Nội dung", "Thời gian", "Người gửi", "Đã đọc", "Số người nhận" })
+        {
+            Assert.Matches($"<th scope=\"col\"[^>]*>{column}</th>", html);
+        }
+
+        Assert.Contains("17/11/2026 09:30", html);          // 02:30 UTC is 09:30 in Vietnam
+        Assert.Contains("01/05/2026 17:00", html);
+        Assert.Contains("1/2", html);                         // one of two recipients has read the keyed batch
+        Assert.Contains("/Premium", html);
+        Assert.Contains("(dữ liệu cũ)", html);
+        Assert.Contains("còn 1 bản lưu", html);              // a legacy group is older than the retention period
+        Assert.Contains("Quản trị viên", html);              // legacy rows carry no sender
+        Assert.Contains("<caption class=\"visually-hidden\">", html);
+        Assert.True(html.IndexOf("KEYED-TITLE", StringComparison.Ordinal) < html.IndexOf("LEGACY-TITLE", StringComparison.Ordinal),
+            "keyed batches are listed before legacy rows");
+    }
 }
