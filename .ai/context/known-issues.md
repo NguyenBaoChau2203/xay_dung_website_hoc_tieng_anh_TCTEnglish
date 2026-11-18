@@ -104,9 +104,36 @@ proposing follow-up work so they do not optimize already-completed items.
 
 - Mở `/Goals` (từ liên kết "Xem huy hiệu" của thông báo) trong Chrome headless ghi hai lỗi console `ReferenceError: jQuery is not defined` (`jquery.validate.min.js`, `jquery.validate.unobtrusive.min.js`): `Views/Goals/Index.cshtml` include `_ValidationScriptsPartial` mà layout không nạp jQuery (cùng họ lỗi `SWEEP-ADMIN-LAYOUT-NO-JQUERY`). Trang Goals thuộc chủ khác nên **không sửa** ở đợt này; trang `/Notification` không có lỗi.
 
-### NOTIFICATIONS-ADMIN-VISUAL-BATCH — chờ đợt Admin 17/11/2026
+### NOTIFICATIONS-ADMIN-VISUAL-BATCH — đã xử lý 18/11/2026 (đợt admin-content-complete; mô tả dưới là tình trạng trước đó)
 
 - Hai trang Admin thông báo (Gửi, Lịch sử) mới sửa logic và câu chữ (quyết định D2): nút và liên kết vẫn theo cỡ Bootstrap (nút "Gửi thông báo" cao 38 px, `btn-sm` nhỏ hơn 44 px), thẻ xem trước còn style nội dòng, layout Admin chưa nạp jQuery. Làm lại giao diện Clay cùng đợt Admin.
+
+### ADMIN-CONTENT-SIDEBAR-LABELS-D1 — đề xuất cho Châu 18/11/2026
+
+- Menu Admin (`Areas/Admin/Views/Shared/_AdminLayout.cshtml`, file của Châu) vẫn ghi "Vocabulary Sets" và "Listening Lessons" trong khi mọi trang bên trong đã là tiếng Việt ("Quản lý bộ từ vựng", "Quản lý bài nghe"). Quyết định D1 = KHÔNG nên layout chưa bị sửa.
+- Đề xuất: đổi hai nhãn thành "Bộ từ vựng" và "Bài nghe" (hai dòng trong layout; cân nhắc cả "Speaking Videos", "Writing Exercises", "Reading Passages" để đồng nhất).
+
+### ADMIN-CONTENT-SEEDER-NAME-RULE — quy tắc cần biết 18/11/2026
+
+- `JsonVocabularySeeder` khớp bộ hệ thống theo (chủ sở hữu, tên, thư mục) và thẻ theo `Term` (không phân biệt hoa thường); khi bật đồng bộ lúc khởi động, thẻ không có trong tệp bị xóa. Vì vậy Admin **không đổi được tên** bộ hệ thống (bị chặn), đổi thư mục chỉ có cảnh báo, và sửa `Term` của thẻ có thể bị coi là thẻ mới ở lần đồng bộ sau.
+- Để giữ thay đổi: bấm "Tải JSON" ở trang Thẻ của bộ và gộp vào `wwwroot/data/system-vocabulary.json` (cùng định dạng: mảng thư mục → bộ → thẻ). Chưa có công cụ tự động cập nhật tệp. Bộ tạo mới ở Admin luôn thuộc tài khoản `system@tct.local`, công khai.
+
+### ADMIN-CONTENT-LEARNER-POLICY — chính sách 18/11/2026
+
+- Nội dung của học viên (bộ thẻ cá nhân, bài nghe riêng của Premium): Admin chỉ xem, đặt riêng tư / chuyển về bản nháp và xóa, không sửa (D2). "Đặt riêng tư" tắt luôn liên kết chia sẻ vì liên kết cấp quyền bất kể `Visibility`; người đã đăng ký bộ thẻ hoặc xem qua thư mục/lớp vẫn thấy bộ đó.
+- Bài nghe riêng không vào danh mục chung (`OwnerUserId == null && IsPublished`), nên cờ "xuất bản" của học viên không có tác dụng với catalog; Admin không thể xuất bản bài riêng.
+
+### ADMIN-CONTENT-PROGRAM-DI-LINES — ghi chú bàn giao 18/11/2026
+
+- `Program.cs` có thêm đúng hai dòng đăng ký `IAdminVocabularyService` và `IAdminListeningService` cạnh `IPersonalSetService` (quy tắc "không sửa Program.cs" của repo; có ủy quyền trong plan). Châu cần biết khi gộp nhánh.
+
+### ADMIN-BILLING-SECONDARY-PAGES-BOOTSTRAP — chưa chuyển hết 18/11/2026
+
+- Danh sách đơn thanh toán dùng bộ giao diện chung; năm trang phụ (Chi tiết đơn, Gói đăng ký, Người dùng Premium, Chi tiết Premium, Tình trạng cổng) giữ nguyên mọi biểu mẫu/hành động và markup Bootstrap, chỉ đổi khung, biểu tượng, chữ tiếng Việt và định dạng tiền, được tạo kiểu lại bằng CSS `.ac-billing`. Muốn đồng nhất hoàn toàn cần viết lại từng trang (khoảng 1.200 dòng biểu mẫu). Còn lại tiếng Anh có chủ ý: tên cấu hình kỹ thuật (BaseUrl, ReturnUrl, IPN, TmnCode) và dữ liệu thô của nhà cung cấp.
+
+### ADMIN-CONTENT-TEST-HOST-MEMORY — vận hành 18/11/2026
+
+- Chạy toàn bộ `dotnet test` một lần (~3.500 test) hai lần bị host dừng vì thiếu bộ nhớ trên máy 16 GB đang mở Antigravity và Docker. Chạy ổn theo hai nhóm với `-- xUnit.MaxParallelThreads=2` (nhóm lọc `Admin|PersonalSet|Vocabulary|Listening|Billing|Notification`, rồi phần còn lại) sau `dotnet build-server shutdown`.
 
 ### LANDING-SCREENSHOTS-STALE — maintenance note 16/11/2026
 
@@ -141,11 +168,15 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ### SWEEP-LISTENING-YOUTUBE-THUMB-404 — confirmed 16/11/2026
 
+- 18/11/2026: trang Admin sửa bài nghe và danh sách đã có ảnh dự phòng khi ảnh bìa lỗi; ảnh 404 vẫn do dữ liệu (video bài thử không có thật).
+
 - Triệu chứng: `/Home/Listening` có một ảnh bìa trả 404 (`img.youtube.com/vi/9F8o8eH_Hms/hqdefault.jpg`), khung ảnh vỡ.
 - Nguyên nhân: dữ liệu bài nghe trỏ tới video YouTube không còn; lỗi dữ liệu, không phải mã.
 - Hướng sửa: admin gỡ hoặc thay bài nghe đó; có thể thêm ảnh dự phòng khi ảnh lỗi (đổi giao diện, chưa làm).
 
 ### SWEEP-ADMIN-SET-SAMPLE-IMAGES-404 — confirmed 16/11/2026
+
+- 18/11/2026: trang Thẻ của Admin không còn yêu cầu ảnh nội bộ không tồn tại (hiện emoji hoặc chữ cái đầu); dữ liệu mẫu trong `system-vocabulary.json` vẫn trỏ tới ảnh thiếu và cần chủ nội dung sửa.
 
 - Triệu chứng: `/Admin/SetManagement/Cards/11` có 10 ảnh thẻ `/images/animals/*.jpg`, `/images/greetings/hello.jpg` trả 404.
 - Nguyên nhân: dữ liệu mẫu tham chiếu ảnh không có trong `wwwroot/images`; lỗi dữ liệu mẫu cục bộ.

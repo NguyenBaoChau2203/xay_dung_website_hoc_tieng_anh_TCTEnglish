@@ -1,0 +1,17 @@
+@model IReadOnlyList<AcFigure>
+<section class="ac-figures" aria-label="Số liệu chính">
+    @foreach (var figure in Model)
+    {
+        <div class="ac-figure ac-figure--@figure.Tone">
+            <span class="ac-figure-icon" aria-hidden="true"><i class="@figure.Icon"></i></span>
+            <div class="ac-figure-body">
+                <div class="ac-figure-label">@figure.Label</div>
+                <div class="ac-figure-value">@figure.Value</div>
+                @if (!string.IsNullOrWhiteSpace(figure.Hint))
+                {
+                    <div class="ac-figure-hint">@figure.Hint</div>
+                }
+            </div>
+        </div>
+    }
+</section>

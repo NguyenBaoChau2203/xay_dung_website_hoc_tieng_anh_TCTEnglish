@@ -1,5 +1,14 @@
 # PR140 — review và sửa trước khi hợp master
 
+Checkpoint bổ sung trước push: master đã tiến đến `0321a8d` (PR141 Admin content).
+Đã ghép thêm toàn bộ 70 file của master mới, giải hai xung đột phát sinh ở
+Billing Health và UI tracker. Giữ nguyên triển khai Billing Health của master
+mới và các dòng tracker Admin mới. Bộ test phần giao nhau sau lần ghép này:
+**272 pass, 1 skip / 273**; toàn bộ Node lúc này **513 pass / 513**.
+EF không có pending model change và sinh được SQL migration idempotent.
+Full-suite/30 lượt browser được ghi bên dưới thuộc checkpoint trước lần ghép
+master mới; full CI của PR phải kiểm tra head tích hợp cuối cùng.
+
 Phạm vi được chủ dự án cho phép: review PR của `hoanganh-279`, sửa lỗi/xung
 đột, commit/push vào nhánh PR hiện có, merge master và đưa workspace về master
 bằng `scripts/pull-local.ps1`. Một Codex agent thực hiện trực tiếp. Báo cáo này
@@ -83,6 +92,8 @@ phát hành được giữ nguyên. Cập nhật workflow dữ liệu cho hai lo
 - Bộ focused sau các sửa: **130 pass, 2 skip / 132**; hai HTTP test native
   validation/Archive: **2 pass**. Các lượt này có phần trùng nhau, không cộng
   thành tổng độc lập. Kết quả targeted cuối được ghi thêm sau khi kết thúc.
+- Bộ `Pr140ReadingReviewTests` cuối: **31 pass / 31**, gồm canonical/legacy
+  matching, payload null/sai dạng và bảo toàn lựa chọn sau reload.
 - MariaDB guard/upgrade/repeat/preservation/concurrency: **1 fact pass**, gồm
   nhiều assertion; EF không có pending model change tại bước kiểm tra model.
 - Node: **498 pass / 498**. Python tooling: **150 pass, 3 skip / 153**.

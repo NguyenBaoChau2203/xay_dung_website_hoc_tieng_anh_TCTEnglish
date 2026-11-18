@@ -1,135 +1,78 @@
-using System.ComponentModel.DataAnnotations;
-using TCTVocabulary.Models;
+using TCTEnglish.Services.Admin;
 
-namespace TCTVocabulary.Areas.Admin.ViewModels;
-
-public class ListeningLessonListItemViewModel
+namespace TCTVocabulary.Areas.Admin.ViewModels
 {
-    public int Id { get; set; }
-    public string Title { get; set; } = null!;
-    public string Level { get; set; } = null!;
-    public string Topic { get; set; } = null!;
-    public string? YoutubeId { get; set; }
-    public bool IsPublished { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public int TranscriptCount { get; set; }
-    public int QuizCount { get; set; }
-    public int VocabCount { get; set; }
-}
+    /// <summary>List page of listening lessons. Rows and figures come from IAdminListeningService.</summary>
+    public class ListeningIndexViewModel
+    {
+        public AdminLessonListResult List { get; set; } = new();
+        public AdminLessonFigures Figures { get; set; } = new(0, 0, 0, 0);
+        public string? Q { get; set; }
+        public string Level { get; set; } = "";
+        /// <summary>"system" (default), "learner" or "all".</summary>
+        public string Source { get; set; } = "system";
+        /// <summary>"", "published", "draft" or "incomplete".</summary>
+        public string Status { get; set; } = "";
+    }
 
-public class ListeningLessonIndexViewModel
-{
-    public List<ListeningLessonListItemViewModel> Lessons { get; set; } = new();
-    public string? SearchToken { get; set; }
-    public string? LevelFilter { get; set; }
-    public int CurrentPage { get; set; } = 1;
-    public int TotalPages { get; set; }
-}
+    /// <summary>One transcript row as typed in the form: times are text such as "1:05.5" and are parsed on the server.</summary>
+    public class TranscriptRowPost
+    {
+        public string? Speaker { get; set; }
+        public string? Text { get; set; }
+        public string? VietnameseMeaning { get; set; }
+        public string? Start { get; set; }
+        public string? End { get; set; }
+    }
 
-public class ListeningLessonCreateEditViewModel
-{
-    public int Id { get; set; }
+    /// <summary>One editable row of a tab. <see cref="Index"/> is a number, or "__i__" for the template the browser clones.</summary>
+    public sealed record RowView<T>(string Index, int Number, T Row, IReadOnlyDictionary<string, string> Errors, string ErrorPrefix)
+    {
+        public string? Error(string field) => Errors.TryGetValue($"{ErrorPrefix}[{Index}].{field}", out var message) ? message : null;
+        public bool HasError => Errors.Keys.Any(k => k.StartsWith($"{ErrorPrefix}[{Index}].", StringComparison.Ordinal));
+    }
 
-    [Required(ErrorMessage = "Tiêu đề là bắt buộc")]
-    [MaxLength(200)]
-    public string Title { get; set; } = null!;
+    public sealed record SaveBarModel(string SaveText, string DiscardUrl);
 
-    [Required(ErrorMessage = "Cấp độ là bắt buộc")]
-    [RegularExpression("^(A1|A2|B1|B2|C1|C2)$", ErrorMessage = "Cấp độ phải là A1-C2")]
-    public string Level { get; set; } = "A1";
+    public static class LessonTabs
+    {
+        public const string Info = "info";
+        public const string Transcript = "transcript";
+        public const string Quiz = "quiz";
+        public const string Vocab = "vocab";
 
-    [Required(ErrorMessage = "Chủ đề là bắt buộc")]
-    [MaxLength(100)]
-    public string Topic { get; set; } = "General";
+        public static string Normalize(string? tab) => tab is Transcript or Quiz or Vocab ? tab : Info;
+    }
 
-    [MaxLength(50)]
-    public string? YoutubeId { get; set; }
+    /// <summary>The four-tab lesson editor. Each tab saves itself; the values shown are the posted ones after an error.</summary>
+    public class LessonEditorViewModel
+    {
+        public AdminLessonEditor Editor { get; set; } = AdminLessonEditor.NewLesson();
+        public string Tab { get; set; } = LessonTabs.Info;
+        public AdminLessonInfoInput Info { get; set; } = new();
+        public List<TranscriptRowPost> Lines { get; set; } = new();
+        public List<AdminQuizInput> Questions { get; set; } = new();
+        public List<AdminVocabInput> Items { get; set; } = new();
+        public IReadOnlyDictionary<string, string> Errors { get; set; } = new Dictionary<string, string>();
+        public string? Summary { get; set; }
 
-    [MaxLength(500)]
-    public string? AudioUrl { get; set; }
+        public bool ReadOnly => Editor.IsLearnerOwned;
 
-    [MaxLength(500)]
-    public string? ThumbnailUrl { get; set; }
-
-    [MaxLength(20)]
-    public string? Duration { get; set; }
-
-    [MaxLength(100)]
-    public string? Speaker1Name { get; set; }
-
-    [MaxLength(50)]
-    public string? Speaker1Country { get; set; }
-
-    [MaxLength(100)]
-    public string? Speaker2Name { get; set; }
-
-    [MaxLength(50)]
-    public string? Speaker2Country { get; set; }
-
-    public bool IsPublished { get; set; }
-}
-
-public class ListeningTranscriptManageViewModel
-{
-    public int LessonId { get; set; }
-    public string LessonTitle { get; set; } = null!;
-    public string? YoutubeId { get; set; }
-    public List<ListeningTranscriptLineViewModel> Lines { get; set; } = new();
-}
-
-public class ListeningTranscriptLineViewModel
-{
-    public int Id { get; set; }
-    public int OrderIndex { get; set; }
-    [Required]
-    public string Speaker { get; set; } = "Speaker 1";
-    [Required]
-    public string Text { get; set; } = null!;
-    public string? VietnameseMeaning { get; set; }
-    public double? StartTime { get; set; }
-    public double? EndTime { get; set; }
-}
-
-public class ListeningQuizManageViewModel
-{
-    public int LessonId { get; set; }
-    public string LessonTitle { get; set; } = null!;
-    public List<ListeningQuizQuestionViewModel> Questions { get; set; } = new();
-}
-
-public class ListeningQuizQuestionViewModel
-{
-    public int Id { get; set; }
-    public int OrderIndex { get; set; }
-    [Required]
-    public string QuestionText { get; set; } = null!;
-    [Required]
-    public string OptionA { get; set; } = null!;
-    [Required]
-    public string OptionB { get; set; } = null!;
-    public string? OptionC { get; set; }
-    public string? OptionD { get; set; }
-    [Required]
-    [RegularExpression("^[ABCD]$")]
-    public string CorrectAnswer { get; set; } = "A";
-    public string? Explanation { get; set; }
-}
-
-public class ListeningVocabManageViewModel
-{
-    public int LessonId { get; set; }
-    public string LessonTitle { get; set; } = null!;
-    public List<ListeningVocabItemViewModel> Items { get; set; } = new();
-}
-
-public class ListeningVocabItemViewModel
-{
-    public int Id { get; set; }
-    public int OrderIndex { get; set; }
-    [Required]
-    public string Word { get; set; } = null!;
-    [Required]
-    public string Definition { get; set; } = null!;
-    public string? ExampleSentence { get; set; }
-    public string? ImageUrl { get; set; }
+        public static LessonEditorViewModel From(AdminLessonEditor editor, string tab) => new()
+        {
+            Editor = editor,
+            Tab = LessonTabs.Normalize(tab),
+            Info = editor.Info,
+            Lines = editor.Lines.Select(l => new TranscriptRowPost
+            {
+                Speaker = l.Speaker,
+                Text = l.Text,
+                VietnameseMeaning = l.VietnameseMeaning,
+                Start = AdminInputRules.FormatClock(l.StartTime),
+                End = AdminInputRules.FormatClock(l.EndTime),
+            }).ToList(),
+            Questions = editor.Questions.ToList(),
+            Items = editor.Items.ToList(),
+        };
+    }
 }

@@ -88,14 +88,22 @@ public class BillingManagementController : BaseController
         string? provider,
         string? status,
         string? q,
+        string? range,
         int page = 1)
     {
         provider = NormalizeFilter(provider);
         status = NormalizeFilter(status);
         q = NormalizeFilter(q);
+        range = range is "7" or "30" or "90" ? range : null;
 
         var query = _context.PaymentOrders
             .AsQueryable();
+
+        if (range != null)
+        {
+            var since = DateTime.UtcNow.AddDays(-int.Parse(range, System.Globalization.CultureInfo.InvariantCulture));
+            query = query.Where(o => o.CreatedAtUtc >= since);
+        }
 
         if (!string.IsNullOrWhiteSpace(provider))
         {
@@ -143,9 +151,13 @@ public class BillingManagementController : BaseController
             ProviderTransactionId = o.ProviderTransactionId
         }).ToList();
 
+        var figures = await BuildOrderFiguresAsync();
+
         return View(new AdminBillingIndexViewModel
         {
             Orders = orders,
+            Figures = figures,
+            RangeFilter = range,
             ProviderFilter = provider,
             StatusFilter = status,
             SearchQuery = q,
@@ -156,6 +168,41 @@ public class BillingManagementController : BaseController
             Providers = Providers,
             Statuses = OrderStatuses
         });
+    }
+
+    /// <summary>Figures of the list page: one query each, whatever the list filters are. Read only.</summary>
+    private async Task<AdminBillingFiguresViewModel> BuildOrderFiguresAsync()
+    {
+        var nowUtc = DateTime.UtcNow;
+        var since = nowUtc.AddDays(-30);
+
+        var revenue = await _context.PaymentOrders.AsNoTracking()
+            .Where(o => o.Status == PaymentOrderStatuses.Paid && o.PaidAtUtc != null && o.PaidAtUtc >= since)
+            .SumAsync(o => (decimal?)o.AmountVnd) ?? 0m;
+
+        var activePremium = await _context.UserSubscriptions.AsNoTracking()
+            .Where(s => s.Status == SubscriptionStatuses.Active && s.EndsAtUtc > nowUtc)
+            .Select(s => s.UserId)
+            .Distinct()
+            .CountAsync();
+
+        var pending = await _context.PaymentOrders.AsNoTracking()
+            .CountAsync(o => o.Status == PaymentOrderStatuses.Pending && o.ExpiresAtUtc > nowUtc);
+
+        var overdue = await _context.PaymentOrders.AsNoTracking()
+            .CountAsync(o => o.Status == PaymentOrderStatuses.Pending && o.ExpiresAtUtc <= nowUtc);
+
+        var manualReview = await _context.PaymentOrders.AsNoTracking()
+            .CountAsync(o => o.Status == PaymentOrderStatuses.ManualReview);
+
+        return new AdminBillingFiguresViewModel
+        {
+            RevenueLast30DaysVnd = revenue,
+            ActivePremiumUsers = activePremium,
+            PendingOrders = pending,
+            OverduePendingOrders = overdue,
+            ManualReviewOrders = manualReview
+        };
     }
 
     public async Task<IActionResult> Details(long id)

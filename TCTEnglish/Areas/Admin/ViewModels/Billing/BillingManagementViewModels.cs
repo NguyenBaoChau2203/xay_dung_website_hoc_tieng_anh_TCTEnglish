@@ -3,9 +3,24 @@ using TCTEnglish.Services.Billing;
 
 namespace TCTVocabulary.Areas.Admin.ViewModels.Billing;
 
+/// <summary>Numbers shown above the order list. They ignore the list filters.</summary>
+public class AdminBillingFiguresViewModel
+{
+    public decimal RevenueLast30DaysVnd { get; set; }
+    public int ActivePremiumUsers { get; set; }
+    /// <summary>Pending orders that can still be paid.</summary>
+    public int PendingOrders { get; set; }
+    /// <summary>Pending orders past their deadline (the cleanup action closes them).</summary>
+    public int OverduePendingOrders { get; set; }
+    public int ManualReviewOrders { get; set; }
+}
+
 public class AdminBillingIndexViewModel
 {
     public List<AdminPaymentOrderRowViewModel> Orders { get; set; } = new();
+    public AdminBillingFiguresViewModel Figures { get; set; } = new();
+    /// <summary>"7", "30", "90" or null for all time.</summary>
+    public string? RangeFilter { get; set; }
     public string? ProviderFilter { get; set; }
     public string? StatusFilter { get; set; }
     public string? SearchQuery { get; set; }

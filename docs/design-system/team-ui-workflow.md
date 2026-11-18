@@ -157,9 +157,7 @@ Màn hình cũ chưa dùng token. Khi chuyển một màn hình: thay hex/biến
 bọc `tct-theme`, dùng partial/component chung, xoá `:root` riêng của trang, cập nhật dòng ở đây
 trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mới có cùng ý nghĩa với token.
 
-Cột **Đa nền**: `Chưa audit` | `Audit xong` | `Đạt đa nền`. Trạng thái này cần bằng chứng trình duyệt; không suy ra từ việc đổi token.
-
-| Màn hình | Route / view | CSS hiện tại | Hệ token riêng đang dùng | Trạng thái | Đa nền | Chủ sở hữu |
+Cột **Đa nền**: `Chưa audit` | Màn hình | Route / view | CSS hiện tại | Hệ token riêng đang dùng | Trạng thái | Đa nền | Chủ sở hữu |
 | --- | --- | --- | --- | --- | --- | --- |
 | Dashboard | `/Home/Index` | `Dashboard.css` | `var(--tct-*)` theo phạm vi Dashboard | Đang review/tích hợp PR140 | Chưa audit | _chủ dự án gán_ |
 | Landing (trang giới thiệu công khai) | `/` và `/Home/Landing` (`Layout = null`) | `landing.css` (+ `landing.js`, `landing-core.js`) | Token riêng `--lp-*` khai báo một lần trong `.lp` (nền tối, có chủ ý: khác tông Clay sáng của nhóm; xem known-issues LANDING-DARK-THEME-D1) | Đã làm lại 16/11/2026 trên nhánh `feature/landing-night` (chưa hợp vào `master`) | Chưa audit | Trọng |
@@ -180,7 +178,11 @@ Cột **Đa nền**: `Chưa audit` | `Audit xong` | `Đạt đa nền`. Trạng 
 | Luyện tập | `/Practice`, `/Practice/{mode}`, `/Practice/HardWords` | `study-kit.css` + `practice.css` | `--tct-*` | Đã chuyển Clay 2026-11-11 (token Clay dùng chung); xem docs/superpowers/plans/2026-11-11-study-clay.md | Chưa audit | Huỳnh Phú Trọng |
 | Khung Admin, Dashboard và Users | Layout Admin + `/Admin/Dashboard`, `/Admin/UserManagement` | `admin-shell.css`, `admin-dashboard.css`, `admin-user-management.css`; giữ `account.css` cho tương thích | Token chung và CSS theo phạm vi | Đã chuyển code; xem ledger 10/11 | Chưa audit | Chau |
 | Loader đăng nhập | Overlay trong `Views/Account/Auth.cshtml` | `account-auth-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code; xem ledger 10/11 | Chưa audit | Chau |
-| Admin của các module còn lại | Class, Set, Listening, Reading, Notification, Message, Billing | CSS module hiện có + khung Admin chung | Kiểm tra theo từng module | Chưa chuyển toàn bộ nội dung module | Chưa audit | Chủ module tương ứng |
+| Admin Bộ từ vựng | `/Admin/SetManagement` (danh sách, tạo/sửa bộ hệ thống, thẻ của bộ, thêm/sửa thẻ, tải JSON) | `admin-content.css` (phạm vi `.ac-page`) + `admin-content.js` | `--tct-*`, bộ phần tử `_Ac*` dùng chung | Đã chuyển 18/11/2026; xem docs/superpowers/plans/2026-11-18-admin-content-complete.md | Chưa audit | Huỳnh Phú Trọng |
+| Admin Bài nghe | `/Admin/ListeningManagement` (danh sách, trình sửa 4 tab `Editor/{id}`) | `admin-content.css` + `admin-content.js` + `admin-listening-editor.js` | `--tct-*`, bộ phần tử `_Ac*` dùng chung | Đã chuyển 18/11/2026; xem plan 2026-11-18-admin-content-complete | Chưa audit | Huỳnh Phú Trọng |
+| Admin Thanh toán | `/Admin/BillingManagement` (danh sách đơn + 5 trang phụ) | `admin-content.css` (phạm vi `.ac-page`, `.ac-billing`) + `admin-content.js` | `--tct-*`; 5 trang phụ giữ markup Bootstrap trong `.ac-billing` | Đã chuyển 18/11/2026 (trang chính bằng bộ chung, trang phụ restyle); xem plan 2026-11-18-admin-content-complete | Chưa audit | Huỳnh Phú Trọng |
+| Admin Thông báo | `/Admin/NotificationManagement/{Create,History}` | `admin-content.css` + `admin-content.js` | `--tct-*`, bộ phần tử `_Ac*` dùng chung | Đã chuyển 18/11/2026; xem plan 2026-11-18-admin-content-complete | Chưa audit | Huỳnh Phú Trọng |
+| Admin của Class, Reading, Message | `/Admin` của lớp học, bài đọc, tin nhắn | CSS module hiện có + khung Admin chung | Kiểm tra theo từng module | Chưa chuyển toàn bộ nội dung module | Chưa audit | Chủ module tương ứng |
 
 Ledger cho AI Chat: [giao diện và logo](../feature-audits/2026-11-10-ai-chat-ui-execution-ledger.md).
 Ledger cho Admin/loader: [phạm vi và kiểm chứng](../feature-audits/2026-11-10-admin-loader-ui-execution-ledger.md).

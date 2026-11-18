@@ -1,0 +1,66 @@
+@model AcPageHeaderModel
+<header class="ac-header">
+    @if (Model.Crumbs.Count > 0)
+    {
+        <nav class="ac-crumbs" aria-label="Đường dẫn trang">
+            <ol class="ac-crumbs-list">
+                @for (var i = 0; i < Model.Crumbs.Count; i++)
+                {
+                    var crumb = Model.Crumbs[i];
+                    var last = i == Model.Crumbs.Count - 1;
+                    <li class="ac-crumb" aria-current="@(last ? "page" : null)">
+                        @if (!last && !string.IsNullOrEmpty(crumb.Url))
+                        {
+                            <a href="@crumb.Url">@crumb.Text</a>
+                        }
+                        else
+                        {
+                            <span>@crumb.Text</span>
+                        }
+                    </li>
+                }
+            </ol>
+        </nav>
+    }
+    <div class="ac-header-row">
+        <div class="ac-header-main">
+            <span class="ac-header-icon" aria-hidden="true"><i class="@Model.Icon"></i></span>
+            <div class="ac-header-text">
+                <h1 class="ac-title">
+                    <span>@Model.Title</span>
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <partial name="_AcStatusTag" model="tag" />
+                    }
+                </h1>
+                @if (!string.IsNullOrWhiteSpace(Model.Subtitle))
+                {
+                    <p class="ac-subtitle">@Model.Subtitle</p>
+                }
+            </div>
+        </div>
+        @if (Model.Actions.Count > 0)
+        {
+            <div class="ac-header-actions">
+                @foreach (var action in Model.Actions)
+                {
+                    if (action.IsPost)
+                    {
+                        <form method="post" action="@action.Url" class="ac-inline-form" data-ac-pending data-ac-confirm-message="@action.ConfirmMessage">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn ac-btn ac-btn--@action.Style" title="@(action.Title ?? action.Text)">
+                                <i class="@action.Icon" aria-hidden="true"></i><span>@action.Text</span>
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a href="@action.Url" class="btn ac-btn ac-btn--@action.Style" title="@(action.Title ?? action.Text)">
+                            <i class="@action.Icon" aria-hidden="true"></i><span>@action.Text</span>
+                        </a>
+                    }
+                }
+            </div>
+        }
+    </div>
+</header>

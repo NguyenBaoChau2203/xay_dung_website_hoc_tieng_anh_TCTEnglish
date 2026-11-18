@@ -1,0 +1,59 @@
+@using TCTEnglish.Services.Admin
+@model RowView<AdminVocabInput>
+@{
+    var i = Model.Index;
+    var row = Model.Row;
+    var word = Model.Error("Word");
+    var definition = Model.Error("Definition");
+    var example = Model.Error("ExampleSentence");
+    var image = Model.Error("ImageUrl");
+    var messages = new[] { word, definition, example, image }.Where(m => m != null).ToList();
+    var describedBy = messages.Count > 0 ? $"vocab-{i}-errors" : null;
+    var showImage = !string.IsNullOrWhiteSpace(row.ImageUrl) && image == null && AdminInputRules.IsSafeImageUrl(row.ImageUrl);
+}
+<div class="ac-row ac-row--vocab @(Model.HasError ? "ac-row--invalid" : "")" data-ac-row>
+    <div class="ac-row-head">
+        <span class="ac-tag ac-tag--primary" data-ac-row-number data-ac-number-format="Từ {n}">Từ @Model.Number</span>
+        <div class="ac-row-tools">
+            <button type="button" class="btn ac-icon-btn" data-ac-move-up data-ac-aria-template="Chuyển từ {n} lên" aria-label="Chuyển từ @Model.Number lên" title="Lên"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
+            <button type="button" class="btn ac-icon-btn" data-ac-move-down data-ac-aria-template="Chuyển từ {n} xuống" aria-label="Chuyển từ @Model.Number xuống" title="Xuống"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i></button>
+            <button type="button" class="btn ac-icon-btn ac-icon-btn--danger" data-ac-remove-row data-ac-aria-template="Xóa từ {n}" aria-label="Xóa từ @Model.Number" title="Xóa từ"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="ac-row-fields ac-row-fields--vocab">
+        <div class="ac-field">
+            <label class="ac-label" for="vocab-@i-word">Từ</label>
+            <input id="vocab-@i-word" name="items[@i].Word" value="@row.Word" class="form-control ac-control @(word != null ? "is-invalid" : "")" maxlength="@AdminListeningService.MaxVocabWordLength"
+                   aria-invalid="@(word != null ? "true" : null)" aria-describedby="@describedBy" autocomplete="off" />
+        </div>
+        <div class="ac-field">
+            <label class="ac-label" for="vocab-@i-definition">Nghĩa</label>
+            <input id="vocab-@i-definition" name="items[@i].Definition" value="@row.Definition" class="form-control ac-control @(definition != null ? "is-invalid" : "")" maxlength="@AdminListeningService.MaxVocabDefinitionLength"
+                   aria-invalid="@(definition != null ? "true" : null)" aria-describedby="@describedBy" autocomplete="off" />
+        </div>
+        <div class="ac-field">
+            <label class="ac-label" for="vocab-@i-example">Ví dụ</label>
+            <input id="vocab-@i-example" name="items[@i].ExampleSentence" value="@row.ExampleSentence" class="form-control ac-control @(example != null ? "is-invalid" : "")" maxlength="@AdminListeningService.MaxVocabExampleLength"
+                   aria-invalid="@(example != null ? "true" : null)" aria-describedby="@describedBy" autocomplete="off" />
+        </div>
+        <div class="ac-field">
+            <label class="ac-label" for="vocab-@i-image">Ảnh (https hoặc /…)</label>
+            <div class="ac-image-input">
+                <span class="ac-thumb" aria-hidden="true">
+                    <img data-ac-vocab-img alt="" loading="lazy" referrerpolicy="no-referrer" @(showImage ? "" : "hidden") src="@(showImage ? row.ImageUrl : null)" />
+                </span>
+                <input id="vocab-@i-image" name="items[@i].ImageUrl" value="@row.ImageUrl" class="form-control ac-control @(image != null ? "is-invalid" : "")" maxlength="@AdminListeningService.MaxUrlLength"
+                       placeholder="https://…" aria-invalid="@(image != null ? "true" : null)" aria-describedby="@describedBy" autocomplete="off" />
+            </div>
+        </div>
+    </div>
+    @if (messages.Count > 0)
+    {
+        <ul class="ac-row-errors" id="vocab-@i-errors" role="alert">
+            @foreach (var message in messages)
+            {
+                <li class="ac-error"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> @message</li>
+            }
+        </ul>
+    }
+</div>

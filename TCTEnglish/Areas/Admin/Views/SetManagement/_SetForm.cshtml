@@ -1,0 +1,100 @@
+@using TCTEnglish.Services.Admin
+@model SetFormViewModel
+@{
+    var isEdit = Model.SetId.HasValue;
+    string? Err(string key) => Model.Errors.TryGetValue(key, out var message) ? message : null;
+    var nameError = Err("Name");
+    var descriptionError = Err("Description");
+    var folderError = Err("FolderId");
+}
+
+<div class="ac-card ac-card-pad">
+    @if (!string.IsNullOrWhiteSpace(Model.Summary) && Model.Errors.Count > 0)
+    {
+        <div class="alert ac-alert ac-alert--danger ac-error-summary" role="alert">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <span class="ac-alert-text">@Model.Summary</span>
+        </div>
+    }
+
+    <form method="post" asp-action="@(isEdit ? "Edit" : "Create")" data-ac-pending novalidate>
+        @if (isEdit)
+        {
+            <input type="hidden" name="SetId" value="@Model.SetId" />
+        }
+        <div class="ac-form-grid">
+            <div class="ac-field ac-span-2">
+                <label class="ac-label" for="set-name">Tên bộ từ vựng <span class="ac-required" aria-hidden="true">*</span></label>
+                <input id="set-name" name="Name" value="@Model.Name" class="form-control ac-control @(nameError != null ? "is-invalid" : "")"
+                       maxlength="@AdminVocabularyService.MaxSetNameLength" data-ac-max="@AdminVocabularyService.MaxSetNameLength"
+                       readonly="@isEdit" required aria-required="true"
+                       aria-invalid="@(nameError != null ? "true" : null)" aria-describedby="@(nameError != null ? "set-name-error" : "set-name-hint")" />
+                <div class="ac-counter" data-ac-counter-for="set-name" aria-hidden="true"></div>
+                @if (nameError != null)
+                {
+                    <div class="ac-error" id="set-name-error" role="alert">@nameError</div>
+                }
+                else if (isEdit)
+                {
+                    <div class="ac-hint" id="set-name-hint"><i class="fa-solid fa-lock" aria-hidden="true"></i> Tên bộ hệ thống không đổi được: tệp dữ liệu đồng bộ theo tên. Hãy tạo bộ mới nếu cần.</div>
+                }
+                else
+                {
+                    <div class="ac-hint" id="set-name-hint">Tên hiển thị trên trang Từ vựng của học viên. Không trùng với bộ hệ thống khác.</div>
+                }
+            </div>
+
+            <div class="ac-field ac-span-2">
+                <label class="ac-label" for="set-description">Mô tả</label>
+                <textarea id="set-description" name="Description" rows="3" class="form-control ac-control @(descriptionError != null ? "is-invalid" : "")"
+                          maxlength="@AdminVocabularyService.MaxSetDescriptionLength" data-ac-max="@AdminVocabularyService.MaxSetDescriptionLength"
+                          aria-invalid="@(descriptionError != null ? "true" : null)" aria-describedby="@(descriptionError != null ? "set-description-error" : null)">@Model.Description</textarea>
+                <div class="ac-counter" data-ac-counter-for="set-description" aria-hidden="true"></div>
+                @if (descriptionError != null)
+                {
+                    <div class="ac-error" id="set-description-error" role="alert">@descriptionError</div>
+                }
+            </div>
+
+            <div class="ac-field">
+                <label class="ac-label" for="set-folder">Thư mục</label>
+                <select id="set-folder" name="FolderId" class="form-select ac-control @(folderError != null ? "is-invalid" : "")"
+                        aria-invalid="@(folderError != null ? "true" : null)" aria-describedby="@(folderError != null ? "set-folder-error" : "set-folder-hint")">
+                    <option value="">Không thuộc thư mục nào</option>
+                    @foreach (var folder in Model.Folders)
+                    {
+                        <option value="@folder.FolderId" selected="@(Model.FolderId == folder.FolderId)">@folder.Name</option>
+                    }
+                </select>
+                @if (folderError != null)
+                {
+                    <div class="ac-error" id="set-folder-error" role="alert">@folderError</div>
+                }
+                else
+                {
+                    <div class="ac-hint" id="set-folder-hint">Chỉ có thư mục của hệ thống. Thư mục là nhóm hiển thị trên trang Từ vựng.</div>
+                }
+            </div>
+
+            <div class="ac-field">
+                <span class="ac-label">Hiển thị</span>
+                <div class="ac-static-value"><i class="fa-solid fa-earth-asia" aria-hidden="true"></i> Công khai <span class="ac-hint">(bộ hệ thống luôn công khai)</span></div>
+                <div class="ac-hint">Chủ sở hữu: @(string.IsNullOrWhiteSpace(Model.OwnerName) ? "TCT English (hệ thống)" : Model.OwnerName)</div>
+            </div>
+        </div>
+
+        <div class="ac-form-actions">
+            @if (isEdit)
+            {
+                <a asp-action="Cards" asp-route-id="@Model.SetId" class="btn ac-btn ac-btn--outline">Hủy</a>
+            }
+            else
+            {
+                <a asp-action="Index" class="btn ac-btn ac-btn--outline">Hủy</a>
+            }
+            <button type="submit" class="btn ac-btn ac-btn--primary">
+                <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i><span>@(isEdit ? "Lưu thay đổi" : "Tạo bộ từ vựng")</span>
+            </button>
+        </div>
+    </form>
+</div>

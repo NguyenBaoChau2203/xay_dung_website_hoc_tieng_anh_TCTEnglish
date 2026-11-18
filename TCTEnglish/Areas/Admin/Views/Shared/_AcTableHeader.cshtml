@@ -1,0 +1,20 @@
+@model AcTableHeaderModel
+<div class="ac-table-head">
+    <h2 class="ac-card-title">
+        <i class="@Model.Icon" aria-hidden="true"></i>
+        <span>@Model.Title</span>
+        <span class="ac-count" title="@Model.Count kết quả">@Model.Count</span>
+    </h2>
+    @if (Model.Sort is { } sort)
+    {
+        <div class="ac-sort">
+            <label class="ac-sort-label" for="ac-sort-@sort.Name">@sort.Label</label>
+            <select id="ac-sort-@sort.Name" name="@sort.Name" form="@Model.SortFormId" class="form-select ac-control ac-control--sm" data-ac-autosubmit>
+                @foreach (var option in sort.Options)
+                {
+                    <option value="@option.Value" selected="@(string.Equals(option.Value, sort.Value ?? "", StringComparison.Ordinal))">@option.Text</option>
+                }
+            </select>
+        </div>
+    }
+</div>
