@@ -527,6 +527,50 @@ public sealed class ListeningRedesignRenderTests
         Assert.Contains("Nộp bài", body, StringComparison.Ordinal);
     }
 
+    // ------------------------------------------------------------------ word popover, subtitles, phone (L6-L7, plan 5.5-5.7)
+
+    [Fact]
+    public async Task Practice_LoadsTheWordScriptBeforeThePracticeScript_AndCarriesTheLookupUrls()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var student = Client(factory, StudentId, Roles.Standard);
+        var html = await HtmlAsync(student, $"/Home/Listening/Practice/{A1FullId}");
+
+        var word = html.IndexOf("/js/listening-word.js", StringComparison.Ordinal);
+        var practice = html.IndexOf("/js/listening-practice.js", StringComparison.Ordinal);
+        Assert.True(word > 0 && practice > word, "listening-word.js must load before listening-practice.js");
+
+        var config = Regex.Match(html, "<script type=\"application/json\" id=\"tlConfig\">((?s:.)*?)</script>").Groups[1].Value;
+        using var json = System.Text.Json.JsonDocument.Parse(config);
+        Assert.Equal("/api/listening/word", json.RootElement.GetProperty("urls").GetProperty("word").GetString());
+        Assert.Equal("/Account/Premium", json.RootElement.GetProperty("urls").GetProperty("premium").GetString());
+        Assert.False(json.RootElement.GetProperty("canLookupAnyWord").GetBoolean());
+
+        using var premium = Client(factory, PremiumId, Roles.Premium);
+        var premiumHtml = await HtmlAsync(premium, $"/Home/Listening/Practice/{A1FullId}");
+        var premiumConfig = Regex.Match(premiumHtml, "<script type=\"application/json\" id=\"tlConfig\">((?s:.)*?)</script>").Groups[1].Value;
+        using var premiumJson = System.Text.Json.JsonDocument.Parse(premiumConfig);
+        Assert.True(premiumJson.RootElement.GetProperty("canLookupAnyWord").GetBoolean());
+    }
+
+    [Fact]
+    public async Task Practice_SubtitleToggleAndOverlay_ExistOnlyForLessonsWithTimes_AndNeverInterceptTheVideo()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var student = Client(factory, StudentId, Roles.Standard);
+        var body = PageBody(await HtmlAsync(student, $"/Home/Listening/Practice/{A1FullId}"));
+
+        Assert.Contains("id=\"tlSubs\"", body, StringComparison.Ordinal);
+        Assert.Contains("Phụ đề: Tắt", body, StringComparison.Ordinal);
+        Assert.Contains("title=\"Phụ đề không hiện khi xem toàn màn hình.\"", body, StringComparison.Ordinal);
+        // the overlay lives inside the video frame, after the iframe
+        Assert.Matches("id=\"tlYoutube\"(?s:.)*?</iframe>\\s*<div class=\"tl-subs\" id=\"tlSubsOverlay\" hidden>", body);
+
+        // phone: a back arrow to the catalog above the single h1
+        Assert.Contains("class=\"tl-back\" href=\"/Home/Listening\"", body, StringComparison.Ordinal);
+        Assert.Single(Regex.Matches(body, "<h1"));
+    }
+
     [Fact]
     public async Task Practice_VocabTab_OffersSaveAllToSignedInUsersOnly_AndKeepsTheReviewedButton()
     {

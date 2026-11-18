@@ -371,6 +371,7 @@
         var time = player.time();
         var position = core.lineIndexAt(timed, time);
         if (position >= 0) { setActive(position); }
+        updateSubs(time);
         if (segmentEnd !== null && time >= segmentEnd) {
             segmentEnd = null;
             player.pause();
@@ -397,6 +398,7 @@
         segmentEnd = stopAtEnd ? timed[position].end : null;
         player.seek(timed[position].start);
         player.play();
+        updateSubs(timed[position].start);
         startTicking();
     }
 
@@ -450,14 +452,16 @@
     var vocabIdx = core.vocabIndex(config.vocab || []);
 
     /** A line of English as text plus one button per word; lesson-vocabulary words get a dotted underline. */
-    function renderWords(container, text) {
+    function renderWords(container, text, lineOrder) {
         container.textContent = '';
         core.markVocab(core.wordSpans(text), vocabIdx).forEach(function (span) {
             if (span.t !== 'word') { container.appendChild(document.createTextNode(span.v)); return; }
             var button = Sets.el('button', 'tl-word' + (span.vocab ? ' tl-word--vocab' : ''), span.v);
             button.type = 'button';
-            button.setAttribute('data-term', span.vocab ? span.vocab.word : span.key);
+            button.setAttribute('data-term', span.key);
             button.setAttribute('data-key', span.key);
+            if (span.vocab) { button.lessonVocab = span.vocab; }
+            if (lineOrder !== undefined) { button.setAttribute('data-line', String(lineOrder)); }
             container.appendChild(button);
         });
     }
@@ -468,12 +472,16 @@
         if (word && typeof word.open === 'function') {
             var li = button.closest('.tl-line');
             var order = li ? Number(li.getAttribute('data-i')) : -1;
-            word.open(button, { term: button.getAttribute('data-term'), key: button.getAttribute('data-key'), line: order >= 0 ? lines[order] : null });
+            if (order < 0) { order = Number(button.getAttribute('data-line')); }
+            word.open(button, { term: button.getAttribute('data-term'), key: button.getAttribute('data-key'), vocab: button.lessonVocab || null, line: order >= 0 && lines[order] ? lines[order] : null });
         }
     }
 
     if (linesList) {
-        Array.prototype.forEach.call(linesList.querySelectorAll('.tl-line__en'), function (el) { renderWords(el, el.textContent); });
+        Array.prototype.forEach.call(linesList.querySelectorAll('.tl-line__en'), function (el) {
+            var li = el.closest('.tl-line');
+            renderWords(el, el.textContent, li ? Number(li.getAttribute('data-i')) : undefined);
+        });
     }
 
     // ------------------------------------------------------------------ transcript: toggles
@@ -550,6 +558,62 @@
     if (Sets.safeStorage.get(SHOW_VI_KEY) === '1') {
         Sets.safeStorage.remove(SHOW_VI_KEY);
         if (viBtn && !viBtn.disabled) { setPressed(viBtn, true); syncVi(); }
+    }
+
+    // ------------------------------------------------------------------ subtitle overlay on the video (off | English | English + Vietnamese)
+
+    var subsBtn = byId('tlSubs');
+    var subsLabel = byId('tlSubsLabel');
+    var subsEl = byId('tlSubsOverlay');
+    var SUBS_KEY = 'tct.listening.subs.v1';
+    var SUBS_MODES = ['off', 'en', 'both'];
+    var SUBS_TEXT = { off: 'Phụ đề: Tắt', en: 'Phụ đề: Anh', both: 'Phụ đề: Anh + Việt' };
+    var subsMode = SUBS_MODES.indexOf(Sets.safeStorage.get(SUBS_KEY)) >= 0 ? Sets.safeStorage.get(SUBS_KEY) : 'off';
+    var subLines = timed.map(function (t) { var l = lines[t.index] || {}; return { start: t.start, end: t.end, text: l.text || '', vi: l.vi || '', order: t.index }; });
+    var subShown = -2;
+
+    function updateSubs(time) {
+        if (!subsEl) { return; }
+        var caption = core.activeSubtitle(subLines, time, subsMode);
+        var order = -1;
+        if (caption) {
+            var at = core.lineIndexAt(subLines, time);
+            order = at >= 0 ? subLines[at].order : -1;
+        }
+        var signature = caption ? order + '|' + subsMode : -1;
+        if (signature === subShown) { return; }
+        subShown = signature;
+        subsEl.textContent = '';
+        subsEl.hidden = !caption;
+        if (!caption) { return; }
+        var en = Sets.el('p', 'tl-subs__en');
+        en.setAttribute('lang', 'en');
+        renderWords(en, caption.en, order);
+        subsEl.appendChild(en);
+        if (caption.vi) { subsEl.appendChild(Sets.el('p', 'tl-subs__vi', caption.vi)); }
+    }
+
+    function syncSubsButton() {
+        if (!subsBtn) { return; }
+        subsBtn.setAttribute('aria-pressed', subsMode === 'off' ? 'false' : 'true');
+        if (subsLabel) { subsLabel.textContent = SUBS_TEXT[subsMode]; }
+    }
+
+    if (subsBtn) {
+        syncSubsButton();
+        subsBtn.addEventListener('click', function () {
+            subsMode = SUBS_MODES[(SUBS_MODES.indexOf(subsMode) + 1) % SUBS_MODES.length];
+            Sets.safeStorage.set(SUBS_KEY, subsMode);
+            subShown = -2;
+            syncSubsButton();
+            updateSubs(player.time());
+        });
+    }
+    if (subsEl) {
+        subsEl.addEventListener('click', function (event) {
+            var wordBtn = event.target.closest('.tl-word');
+            if (wordBtn) { openWord(wordBtn); }
+        });
     }
 
     // ------------------------------------------------------------------ transcript: mark as heard
@@ -864,7 +928,8 @@
             if (current < total - 1) { showLine(current + 1, true); } else { box.hidden = true; paintStrip(); renderSummary(); }
         }
 
-        showLine(current, true);
+        // no focus grab on the first build: arrowing through the tab row must be able to move past this tab
+        showLine(current, false);
     };
 
     // ------------------------------------------------------------------ practice mode: fill in the blanks
@@ -1256,5 +1321,6 @@
         });
     }
 
+    updateSubs(0);
     selectTab(keyFromHash() || 'transcript', { hash: false });
 }());

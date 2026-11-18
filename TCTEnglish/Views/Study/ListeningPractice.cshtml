@@ -75,6 +75,8 @@
         canUseSpeed = Model.CanUseSpeed,
         canTranslate = Model.CanTranslate,
         canUseAi = Model.CanUseAi,
+        wordSetUrl = Model.WordSetUrl,
+        canLookupAnyWord = Model.CanLookupAnyWord,
         steps = new { transcript = transcriptCount, quiz = quizCount, vocab = vocabCount },
         vocab = Model.VocabItems.Select(v => new { word = v.Word, definition = v.Definition, example = v.ExampleSentence }),
         progress = new
@@ -121,6 +123,7 @@
 
 <div class="tct-theme tct-page tl-page tl-page--practice tl-hue-@levelInfo.Hue">
     @Html.AntiForgeryToken()
+    <a class="tl-back" href="/Home/Listening"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span>Luyện nghe</span></a>
     <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
 
     <p class="tl-meta">
@@ -154,6 +157,7 @@
                         <iframe id="tlYoutube" title="@Model.Title"
                                 src="https://www.youtube.com/embed/@videoId?enablejsapi=1&amp;rel=0&amp;modestbranding=1"
                                 loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="tl-subs" id="tlSubsOverlay" hidden></div>
                     </div>
                     <p class="tl-player__notice" id="tlPlayerNotice" role="status" hidden>Không tải được trình phát YouTube. Bạn vẫn có thể đọc lời thoại và làm bài.</p>
                 }
@@ -163,6 +167,7 @@
                         <span class="tl-audio__art k-art-box" aria-hidden="true"><i class="fa-solid fa-headphones"></i></span>
                         <audio id="tlAudio" controls preload="metadata" src="@audioUrl"></audio>
                     </div>
+                    <div class="tl-subs tl-subs--panel" id="tlSubsOverlay" hidden></div>
                 }
                 else
                 {
@@ -193,7 +198,13 @@
                             <a class="tl-speed__locked k-seg__item" href="/Account/Premium" title="Đổi tốc độ là tính năng Premium" aria-label="Tốc độ 1×. Đổi tốc độ là tính năng Premium"><span>1×</span> <i class="fa-solid fa-lock" aria-hidden="true"></i></a>
                         }
                     </div>
-                    <button type="button" class="btn btn-outline-primary btn-sm tl-toggle" id="tlLoop" aria-pressed="false"><i class="fa-solid fa-repeat" aria-hidden="true"></i> Lặp câu</button>
+                    <div class="tl-options__toggles">
+                        <button type="button" class="btn btn-outline-primary btn-sm tl-toggle" id="tlLoop" aria-pressed="false"><i class="fa-solid fa-repeat" aria-hidden="true"></i> Lặp câu</button>
+                        @if (hasTimedLines)
+                        {
+                            <button type="button" class="btn btn-outline-primary btn-sm tl-toggle" id="tlSubs" aria-pressed="false" title="Phụ đề không hiện khi xem toàn màn hình."><i class="fa-regular fa-closed-captioning" aria-hidden="true"></i> <span id="tlSubsLabel">Phụ đề: Tắt</span></button>
+                        }
+                    </div>
                 </div>
             </div>
 
@@ -435,5 +446,6 @@
     <script type="application/json" id="tlConfig">@Html.Raw(configJson)</script>
     <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
     <script src="~/js/listening-core.js" asp-append-version="true"></script>
+    <script src="~/js/listening-word.js" asp-append-version="true"></script>
     <script src="~/js/listening-practice.js" asp-append-version="true"></script>
 }
