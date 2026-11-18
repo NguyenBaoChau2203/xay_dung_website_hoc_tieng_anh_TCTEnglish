@@ -1,0 +1,64 @@
+@using TCTEnglish.Services.Admin
+@model RowView<AdminQuizInput>
+@{
+    var i = Model.Index;
+    var row = Model.Row;
+    var answer = (row.CorrectAnswer ?? "").Trim();
+    var questionError = Model.Error("QuestionText");
+    var optionErrors = new Dictionary<string, string?>
+    {
+        ["A"] = Model.Error("OptionA"), ["B"] = Model.Error("OptionB"), ["C"] = Model.Error("OptionC"), ["D"] = Model.Error("OptionD"),
+    };
+    var answerError = Model.Error("CorrectAnswer");
+    var explanationError = Model.Error("Explanation");
+    var messages = new[] { questionError, optionErrors["A"], optionErrors["B"], optionErrors["C"], optionErrors["D"], answerError, explanationError }.Where(m => m != null).ToList();
+    var describedBy = messages.Count > 0 ? $"quiz-{i}-errors" : null;
+    var options = new (string Key, string? Value, bool Required)[]
+    {
+        ("A", row.OptionA, true), ("B", row.OptionB, true), ("C", row.OptionC, false), ("D", row.OptionD, false),
+    };
+}
+<div class="ac-row ac-row--quiz @(Model.HasError ? "ac-row--invalid" : "")" data-ac-row>
+    <div class="ac-row-head">
+        <span class="ac-tag ac-tag--primary" data-ac-row-number data-ac-number-format="Câu {n}">Câu @Model.Number</span>
+        <div class="ac-row-tools">
+            <button type="button" class="btn ac-icon-btn" data-ac-move-up data-ac-aria-template="Chuyển câu {n} lên" aria-label="Chuyển câu @Model.Number lên" title="Lên"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
+            <button type="button" class="btn ac-icon-btn" data-ac-move-down data-ac-aria-template="Chuyển câu {n} xuống" aria-label="Chuyển câu @Model.Number xuống" title="Xuống"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i></button>
+            <button type="button" class="btn ac-icon-btn ac-icon-btn--danger" data-ac-remove-row data-ac-aria-template="Xóa câu {n}" aria-label="Xóa câu @Model.Number" title="Xóa câu"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="ac-field">
+        <label class="ac-label" for="quiz-@i-question">Câu hỏi</label>
+        <input id="quiz-@i-question" name="questions[@i].QuestionText" value="@row.QuestionText" class="form-control ac-control @(questionError != null ? "is-invalid" : "")" maxlength="@AdminListeningService.MaxQuestionTextLength"
+               aria-invalid="@(questionError != null ? "true" : null)" aria-describedby="@describedBy" autocomplete="off" />
+    </div>
+    <div class="ac-options" role="radiogroup" aria-label="Phương án và đáp án đúng">
+        @foreach (var option in options)
+        {
+            var optionError = optionErrors[option.Key];
+            <div class="ac-option">
+                <input type="radio" class="form-check-input ac-option-radio" id="quiz-@i-radio@(option.Key)" name="questions[@i].CorrectAnswer" value="@option.Key" checked="@(answer == option.Key)"
+                       aria-label="Đáp án đúng là @option.Key" />
+                <label class="ac-option-letter" for="quiz-@i-option@(option.Key)">@option.Key</label>
+                <input id="quiz-@i-option@(option.Key)" name="questions[@i].Option@(option.Key)" value="@option.Value" class="form-control ac-control @(optionError != null ? "is-invalid" : "")"
+                       maxlength="@AdminListeningService.MaxOptionLength" placeholder="@(option.Required ? "Bắt buộc" : "(không bắt buộc)")"
+                       aria-invalid="@(optionError != null ? "true" : null)" aria-describedby="@describedBy" autocomplete="off" />
+            </div>
+        }
+    </div>
+    <p class="ac-hint">Chọn vòng tròn để đánh dấu đáp án đúng. Phương án D chỉ dùng khi đã có C.</p>
+    <div class="ac-field">
+        <label class="ac-label" for="quiz-@i-explanation">Giải thích (không bắt buộc)</label>
+        <textarea id="quiz-@i-explanation" name="questions[@i].Explanation" rows="2" class="form-control ac-control @(explanationError != null ? "is-invalid" : "")" maxlength="@AdminListeningService.MaxExplanationLength"
+                  aria-invalid="@(explanationError != null ? "true" : null)" aria-describedby="@describedBy">@row.Explanation</textarea>
+    </div>
+    @if (messages.Count > 0)
+    {
+        <ul class="ac-row-errors" id="quiz-@i-errors" role="alert">
+            @foreach (var message in messages)
+            {
+                <li class="ac-error"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> @message</li>
+            }
+        </ul>
+    }
+</div>

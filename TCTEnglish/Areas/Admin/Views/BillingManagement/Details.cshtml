@@ -1,26 +1,34 @@
 @model TCTVocabulary.Areas.Admin.ViewModels.Billing.AdminPaymentOrderDetailsViewModel
 @{
-    ViewData["Title"] = "Chi tiết thanh toán";
+    ViewData["Title"] = "Chi tiết đơn thanh toán";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
-    <div>
-        <h1 class="h4 fw-bold mb-1">
-            <i class="bi bi-receipt-cutoff text-primary me-2"></i>Chi tiết payment order
-        </h1>
-        <p class="text-muted small mb-0">@Model.OrderCode</p>
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-content.css" asp-append-version="true" />
+}
+
+<div class="ac-page ac-billing">
+<header class="ac-header">
+    <div class="ac-header-row">
+        <div class="ac-header-main">
+            <span class="ac-header-icon" aria-hidden="true"><i class="fa-solid fa-receipt"></i></span>
+            <div class="ac-header-text">
+                <h1 class="ac-title"><span>Chi tiết đơn thanh toán</span></h1>
+                <p class="ac-subtitle">@Model.OrderCode</p>
+            </div>
+        </div>
+        <div class="ac-header-actions">
+            <a asp-area="Admin" asp-controller="BillingManagement" asp-action="Index" class="btn ac-btn ac-btn--outline">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i><span>Quay lại danh sách</span>
+            </a>
+        </div>
     </div>
-    <a asp-area="Admin"
-       asp-controller="BillingManagement"
-       asp-action="Index"
-       class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left me-1"></i> Quay lại
-    </a>
-</div>
+</header>
+<partial name="_AcAlerts" />
 
 <div class="alert alert-info border-info-subtle" role="alert">
-    <i class="bi bi-info-circle me-1"></i>
+    <i class="fa-solid fa-circle-info me-1"></i>
     Hoàn tiền tự động chưa được hỗ trợ trong hệ thống quản trị.
     Nếu cần hoàn tiền, vui lòng xử lý trực tiếp trên cổng thanh toán (VNPay/MoMo),
     sau đó cập nhật ghi chú và nhật ký quản trị theo quy trình vận hành.
@@ -39,22 +47,22 @@
         <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
                 <p class="text-muted small mb-1">Số tiền</p>
-                <div class="fw-bold">@Model.AmountVnd.ToString("N0") @Model.Currency</div>
+                <div class="fw-bold">@TCTEnglish.Services.Billing.BillingTime.FormatMoney(Model.AmountVnd)</div>
             </div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-                <p class="text-muted small mb-1">Provider</p>
-                <span class="badge bg-light text-dark border">@Model.Provider</span>
+                <p class="text-muted small mb-1">Cổng</p>
+                <span class="badge bg-light text-dark border">@TCTEnglish.Services.Billing.PaymentOrderLabels.ProviderName(Model.Provider)</span>
             </div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-                <p class="text-muted small mb-1">Paid at</p>
+                <p class="text-muted small mb-1">Thanh toán lúc</p>
                 <div class="fw-medium">
                     @(Model.PaidAtUtc.HasValue ? TCTEnglish.Services.Billing.BillingTime.ToDisplay(Model.PaidAtUtc.Value) : "Chưa thanh toán")
                 </div>
@@ -67,30 +75,30 @@
     <div class="col-lg-6">
         <div class="card border-0 shadow-sm h-100">
             <div class="card-header bg-white">
-                <h2 class="h6 fw-semibold mb-0">Thông tin order</h2>
+                <h2 class="h6 fw-semibold mb-0">Thông tin đơn</h2>
             </div>
             <div class="card-body">
                 <dl class="row mb-0">
-                    <dt class="col-sm-4 text-muted">Order code</dt>
+                    <dt class="col-sm-4 text-muted">Mã đơn</dt>
                     <dd class="col-sm-8">@Model.OrderCode</dd>
 
-                    <dt class="col-sm-4 text-muted">Created</dt>
+                    <dt class="col-sm-4 text-muted">Tạo lúc</dt>
                     <dd class="col-sm-8">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(Model.CreatedAtUtc)</dd>
 
-                    <dt class="col-sm-4 text-muted">Expires</dt>
+                    <dt class="col-sm-4 text-muted">Hết hạn lúc</dt>
                     <dd class="col-sm-8">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(Model.ExpiresAtUtc)</dd>
 
-                    <dt class="col-sm-4 text-muted">Transaction</dt>
-                    <dd class="col-sm-8">@(Model.ProviderTransactionId ?? "N/A")</dd>
+                    <dt class="col-sm-4 text-muted">Mã giao dịch</dt>
+                    <dd class="col-sm-8">@(Model.ProviderTransactionId ?? "Không có")</dd>
 
-                    <dt class="col-sm-4 text-muted">Response</dt>
-                    <dd class="col-sm-8">@(Model.ProviderResponseCode ?? "N/A")</dd>
+                    <dt class="col-sm-4 text-muted">Mã phản hồi</dt>
+                    <dd class="col-sm-8">@(Model.ProviderResponseCode ?? "Không có")</dd>
 
-                    <dt class="col-sm-4 text-muted">Provider status</dt>
-                    <dd class="col-sm-8">@(Model.ProviderTransactionStatus ?? "N/A")</dd>
+                    <dt class="col-sm-4 text-muted">Trạng thái từ cổng</dt>
+                    <dd class="col-sm-8">@(Model.ProviderTransactionStatus ?? "Không có")</dd>
 
-                    <dt class="col-sm-4 text-muted">Failure</dt>
-                    <dd class="col-sm-8">@(Model.FailureMessage ?? "N/A")</dd>
+                    <dt class="col-sm-4 text-muted">Lý do thất bại</dt>
+                    <dd class="col-sm-8">@(Model.FailureMessage ?? "Không có")</dd>
                 </dl>
             </div>
         </div>
@@ -103,13 +111,13 @@
             </div>
             <div class="card-body">
                 <dl class="row mb-0">
-                    <dt class="col-sm-4 text-muted">User</dt>
+                    <dt class="col-sm-4 text-muted">Người dùng</dt>
                     <dd class="col-sm-8">
                         <div class="fw-medium">@Model.UserDisplayName</div>
                         <small class="text-muted">#@Model.UserId - @Model.UserEmail</small>
                     </dd>
 
-                    <dt class="col-sm-4 text-muted">Plan</dt>
+                    <dt class="col-sm-4 text-muted">Gói</dt>
                     <dd class="col-sm-8">
                         <div class="fw-medium">@Model.PlanName</div>
                         <small class="text-muted">@Model.PlanCode - @Model.PlanDurationDays ngày</small>
@@ -122,17 +130,17 @@
 
 <div class="card border-0 shadow-sm mt-4">
     <div class="card-header bg-white">
-        <h2 class="h6 fw-semibold mb-0">Payload callback</h2>
+        <h2 class="h6 fw-semibold mb-0">Dữ liệu callback</h2>
     </div>
     <div class="card-body">
         <div class="row g-3">
             <div class="col-lg-6">
-                <h3 class="h6">Return payload</h3>
-                <pre class="bg-light border rounded p-3 small text-break mb-0">@(Model.ReturnPayloadJson ?? "N/A")</pre>
+                <h3 class="h6">Dữ liệu trả về (Return)</h3>
+                <pre class="bg-light border rounded p-3 small text-break mb-0">@(Model.ReturnPayloadJson ?? "Không có")</pre>
             </div>
             <div class="col-lg-6">
-                <h3 class="h6">IPN payload</h3>
-                <pre class="bg-light border rounded p-3 small text-break mb-0">@(Model.IpnPayloadJson ?? "N/A")</pre>
+                <h3 class="h6">Dữ liệu IPN</h3>
+                <pre class="bg-light border rounded p-3 small text-break mb-0">@(Model.IpnPayloadJson ?? "Không có")</pre>
             </div>
         </div>
     </div>
@@ -140,7 +148,7 @@
 
 <div class="card border-0 shadow-sm mt-4">
     <div class="card-header bg-white d-flex justify-content-between align-items-center">
-        <h2 class="h6 fw-semibold mb-0">Payment events</h2>
+        <h2 class="h6 fw-semibold mb-0">Sự kiện thanh toán</h2>
         <span class="badge bg-secondary">@Model.Events.Count</span>
     </div>
     <div class="card-body p-0">
@@ -148,11 +156,11 @@
             <table class="table table-hover align-middle mb-0">
                 <thead class="table-light">
                     <tr>
-                        <th class="ps-4">Event</th>
-                        <th>Signature</th>
-                        <th>Processing</th>
-                        <th>Received</th>
-                        <th class="pe-4">Payload</th>
+                        <th class="ps-4">Sự kiện</th>
+                        <th>Chữ ký</th>
+                        <th>Xử lý</th>
+                        <th>Nhận lúc</th>
+                        <th class="pe-4">Dữ liệu</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -169,16 +177,16 @@
                         <tr>
                             <td class="ps-4">
                                 <div class="fw-semibold">@evt.EventKey</div>
-                                <small class="text-muted">@evt.Provider</small>
+                                <small class="text-muted">@TCTEnglish.Services.Billing.PaymentOrderLabels.ProviderName(evt.Provider)</small>
                             </td>
                             <td>
                                 @if (evt.SignatureValid)
                                 {
-                                    <span class="badge bg-success">Valid</span>
+                                    <span class="badge bg-success">Hợp lệ</span>
                                 }
                                 else
                                 {
-                                    <span class="badge bg-danger">Invalid</span>
+                                    <span class="badge bg-danger">Không hợp lệ</span>
                                 }
                             </td>
                             <td>
@@ -193,7 +201,7 @@
                             </td>
                             <td class="pe-4">
                                 <details>
-                                    <summary class="small text-primary">Xem payload</summary>
+                                    <summary class="small text-primary">Xem dữ liệu</summary>
                                     <pre class="bg-light border rounded p-2 small text-break mt-2 mb-0">@evt.PayloadJson</pre>
                                 </details>
                             </td>
@@ -208,7 +216,7 @@
 @* ── Audit History ───────────────────────────────────────────────────────── *@
 <div class="card border-0 shadow-sm mt-4">
     <div class="card-header bg-white d-flex justify-content-between align-items-center">
-        <h2 class="h6 fw-semibold mb-0"><i class="bi bi-shield-check me-1 text-warning"></i>Lịch sử hành động Admin</h2>
+        <h2 class="h6 fw-semibold mb-0"><i class="fa-solid fa-shield-halved me-1 text-warning"></i>Lịch sử hành động Admin</h2>
         <span class="badge bg-secondary">@Model.AuditHistory.Count</span>
     </div>
     <div class="card-body p-0">
@@ -242,7 +250,7 @@
                                 @if (!string.IsNullOrEmpty(audit.OldStatus))
                                 {
                                     <span class="text-muted">@audit.OldStatus</span>
-                                    <i class="bi bi-arrow-right mx-1"></i>
+                                    <i class="fa-solid fa-arrow-right mx-1"></i>
                                 }
                                 @if (!string.IsNullOrEmpty(audit.NewStatus))
                                 {
@@ -254,7 +262,7 @@
                                 <small class="text-muted">@audit.AdminEmail</small>
                             </td>
                             <td class="small text-muted">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(audit.CreatedAtUtc)</td>
-                            <td class="pe-4 small text-muted">@(audit.IpAddress ?? "N/A")</td>
+                            <td class="pe-4 small text-muted">@(audit.IpAddress ?? "Không có")</td>
                         </tr>
                     }
                 </tbody>
@@ -269,7 +277,7 @@
     <div class="card border-warning shadow-sm mt-4">
         <div class="card-header bg-warning-subtle py-3">
             <h2 class="h6 fw-semibold mb-0 text-warning-emphasis">
-                <i class="bi bi-exclamation-triangle-fill me-1"></i>Chuyển sang kiểm tra thủ công
+                <i class="fa-solid fa-triangle-exclamation me-1"></i>Chuyển sang kiểm tra thủ công
             </h2>
         </div>
         <div class="card-body">
@@ -288,7 +296,7 @@
                     </div>
                     <div class="col-md-3">
                         <button type="submit" class="btn btn-warning btn-sm w-100">
-                            <i class="bi bi-flag-fill me-1"></i>Chuyển kiểm tra thủ công
+                            <i class="fa-solid fa-flag me-1"></i>Chuyển kiểm tra thủ công
                         </button>
                     </div>
                 </div>
@@ -301,7 +309,7 @@ else if (Model.Status == "manual_review")
     <div class="card border-primary shadow-sm mt-4">
         <div class="card-header bg-primary-subtle py-3">
             <h2 class="h6 fw-semibold mb-0 text-primary-emphasis">
-                <i class="bi bi-check2-square me-1"></i>Xử lý đơn kiểm tra thủ công
+                <i class="fa-solid fa-square-check me-1"></i>Xử lý đơn kiểm tra thủ công
             </h2>
         </div>
         <div class="card-body">
@@ -313,7 +321,7 @@ else if (Model.Status == "manual_review")
                         <label class="form-label small fw-medium">Lý do xác nhận đã thanh toán <span class="text-danger">*</span></label>
                         <textarea name="Reason" class="form-control form-control-sm" rows="3" maxlength="1000" required></textarea>
                         <button type="submit" class="btn btn-success btn-sm mt-2">
-                            <i class="bi bi-check-circle me-1"></i>Xác nhận đã thanh toán
+                            <i class="fa-regular fa-circle-check me-1"></i>Xác nhận đã thanh toán
                         </button>
                     </form>
                 </div>
@@ -324,7 +332,7 @@ else if (Model.Status == "manual_review")
                         <label class="form-label small fw-medium">Lý do từ chối <span class="text-danger">*</span></label>
                         <textarea name="Reason" class="form-control form-control-sm" rows="3" maxlength="1000" required></textarea>
                         <button type="submit" class="btn btn-danger btn-sm mt-2">
-                            <i class="bi bi-x-circle me-1"></i>Từ chối
+                            <i class="fa-regular fa-circle-xmark me-1"></i>Từ chối
                         </button>
                     </form>
                 </div>
@@ -332,3 +340,4 @@ else if (Model.Status == "manual_review")
         </div>
     </div>
 }
+</div>

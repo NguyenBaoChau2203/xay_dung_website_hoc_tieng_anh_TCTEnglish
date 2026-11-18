@@ -18,6 +18,9 @@ public class CreateAnnouncementViewModel
 
     /// <summary>Made when the form opens; a double submit or a refresh sends the same batch again and is ignored.</summary>
     public Guid BatchId { get; set; }
+
+    /// <summary>Accounts that would receive the announcement now (not blocked, not anonymised). Shown before sending; never posted.</summary>
+    public int RecipientCount { get; set; }
 }
 
 public class AnnouncementHistoryViewModel

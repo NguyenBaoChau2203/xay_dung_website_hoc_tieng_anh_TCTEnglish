@@ -13,8 +13,8 @@ public static class AcTone
 
 public sealed record AcCrumb(string Text, string? Url = null);
 
-/// <summary>A header button or link. <see cref="Style"/> is "primary", "outline" or "danger".</summary>
-public sealed record AcAction(string Text, string Url, string Icon, string Style = "outline", string? Title = null);
+/// <summary>A header button or link. <see cref="Style"/> is "primary", "outline" or "danger". A POST action renders a form with the antiforgery token and, when <see cref="ConfirmMessage"/> is set, asks first.</summary>
+public sealed record AcAction(string Text, string Url, string Icon, string Style = "outline", string? Title = null, bool IsPost = false, string? ConfirmMessage = null);
 
 public sealed class AcPageHeaderModel
 {

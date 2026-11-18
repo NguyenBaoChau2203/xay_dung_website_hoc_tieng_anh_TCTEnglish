@@ -421,6 +421,25 @@ public sealed class AdminListeningServiceTests : IAsyncLifetime
     }
 
     [Fact]
+    public async Task L6_SaveTranscript_ReportsATimeThatIsNotANumber_OnTheRightField()
+    {
+        var lesson = await AddLessonAsync(lines: 1);
+
+        var result = await _service.SaveTranscriptAsync(lesson.Id, new[]
+        {
+            new AdminTranscriptLineInput { Text = "Bad start", StartTime = double.NaN, EndTime = 3 },
+            new AdminTranscriptLineInput { Text = "Bad end", StartTime = 4, EndTime = double.PositiveInfinity },
+        });
+
+        Assert.Equal(AdminResultStatus.Invalid, result.Status);
+        Assert.True(result.FieldErrors.ContainsKey("Lines[0].StartTime"));
+        Assert.False(result.FieldErrors.ContainsKey("Lines[0].EndTime"));
+        Assert.True(result.FieldErrors.ContainsKey("Lines[1].EndTime"));
+        Assert.False(result.FieldErrors.ContainsKey("Lines[1].StartTime"));
+        Assert.Equal(1, await _db.ListeningTranscriptLines.CountAsync(l => l.LessonId == lesson.Id));
+    }
+
+    [Fact]
     public async Task L6_SaveTranscript_AcceptsEqualStartTimesAndTheLimits()
     {
         var lesson = await AddLessonAsync();

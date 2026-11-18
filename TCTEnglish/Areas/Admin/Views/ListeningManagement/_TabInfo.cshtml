@@ -1,0 +1,176 @@
+@using TCTEnglish.Services.Admin
+@model LessonEditorViewModel
+@{
+    var editor = Model.Editor;
+    var info = Model.Info;
+    var isNew = editor.IsNew;
+    string? Err(string key) => Model.Errors.TryGetValue(key, out var message) ? message : null;
+    string Invalid(string key) => Err(key) != null ? "is-invalid" : "";
+    string? Described(string key, string? hintId = null) => Err(key) != null ? $"info-{key}-error" : hintId;
+    var level = (info.Level ?? "").Trim();
+    var youtubeKnown = AdminInputRules.TryParseYoutubeId(info.YoutubeId, out var parsedYoutube);
+    var discardUrl = isNew
+        ? Url.Action("Create", "ListeningManagement", new { area = "Admin" })!
+        : Url.Action("Editor", "ListeningManagement", new { area = "Admin", id = editor.Id, tab = LessonTabs.Info })!;
+    var saveBar = new SaveBarModel(isNew ? "Tạo bài nghe" : "Lưu thông tin", discardUrl);
+    var checklist = new (string Text, bool Done)[]
+    {
+        ("Có lời thoại", editor.HasTranscript),
+        ("Có mốc thời gian", editor.HasTimedLines),
+        ("Có quiz", editor.HasQuiz),
+        ("Có từ vựng", editor.HasVocab),
+    };
+}
+
+<div class="ac-split">
+    <form method="post" asp-action="CreateEdit" data-ac-pending data-ac-dirty novalidate>
+        <input type="hidden" name="id" value="@editor.Id" />
+        <fieldset class="ac-fieldset" disabled="@Model.ReadOnly">
+            <legend class="visually-hidden">Thông tin bài nghe</legend>
+            <div class="ac-form-grid">
+                <div class="ac-field ac-span-2">
+                    <label class="ac-label" for="info-Title">Tiêu đề <span class="ac-required" aria-hidden="true">*</span></label>
+                    <input id="info-Title" name="Title" value="@info.Title" class="form-control ac-control @Invalid("Title")" maxlength="@AdminListeningService.MaxTitleLength" data-ac-max="@AdminListeningService.MaxTitleLength"
+                           required aria-required="true" aria-invalid="@(Err("Title") != null ? "true" : null)" aria-describedby="@Described("Title")" autocomplete="off" />
+                    <div class="ac-counter" data-ac-counter-for="info-Title" aria-hidden="true"></div>
+                    @if (Err("Title") is { } titleError) { <div class="ac-error" id="info-Title-error" role="alert">@titleError</div> }
+                </div>
+
+                <div class="ac-field">
+                    <label class="ac-label" for="info-Level">Trình độ <span class="ac-required" aria-hidden="true">*</span></label>
+                    <select id="info-Level" name="Level" class="form-select ac-control @Invalid("Level")" required aria-required="true" aria-invalid="@(Err("Level") != null ? "true" : null)" aria-describedby="@Described("Level")">
+                        @foreach (var option in AdminInputRules.CefrLevels)
+                        {
+                            <option value="@option" selected="@(level == option)">@option</option>
+                        }
+                    </select>
+                    @if (Err("Level") is { } levelError) { <div class="ac-error" id="info-Level-error" role="alert">@levelError</div> }
+                </div>
+                <div class="ac-field">
+                    <label class="ac-label" for="info-Topic">Chủ đề <span class="ac-required" aria-hidden="true">*</span></label>
+                    <input id="info-Topic" name="Topic" value="@info.Topic" class="form-control ac-control @Invalid("Topic")" maxlength="@AdminListeningService.MaxTopicLength"
+                           required aria-required="true" aria-invalid="@(Err("Topic") != null ? "true" : null)" aria-describedby="@Described("Topic")" autocomplete="off" />
+                    @if (Err("Topic") is { } topicError) { <div class="ac-error" id="info-Topic-error" role="alert">@topicError</div> }
+                </div>
+
+                <div class="ac-field ac-span-2">
+                    <label class="ac-label" for="info-YoutubeId">Video YouTube (mã hoặc liên kết)</label>
+                    <div class="ac-youtube">
+                        <span class="ac-thumb ac-thumb--lg" aria-hidden="true">
+                            <img data-ac-youtube-img alt="" referrerpolicy="no-referrer" @(youtubeKnown ? "" : "hidden") src="@(youtubeKnown ? AdminInputRules.YoutubeThumbnailUrl(parsedYoutube) : null)" />
+                            <i class="fa-brands fa-youtube" data-ac-youtube-icon @(youtubeKnown ? "hidden" : "")></i>
+                        </span>
+                        <div class="ac-youtube-input">
+                            <input id="info-YoutubeId" name="YoutubeId" value="@info.YoutubeId" class="form-control ac-control @Invalid("YoutubeId")" maxlength="200" data-ac-youtube-input
+                                   placeholder="https://www.youtube.com/watch?v=… hoặc mã 11 ký tự" aria-invalid="@(Err("YoutubeId") != null ? "true" : null)"
+                                   aria-describedby="@Described("YoutubeId", "info-YoutubeId-hint")" autocomplete="off" />
+                            @if (Err("YoutubeId") is { } youtubeError)
+                            {
+                                <div class="ac-error" id="info-YoutubeId-error" role="alert">@youtubeError</div>
+                            }
+                            else
+                            {
+                                <div class="ac-hint" id="info-YoutubeId-hint" data-ac-youtube-hint>@(youtubeKnown ? "Mã video hợp lệ: " + parsedYoutube : "Dán liên kết watch, youtu.be, embed hoặc shorts; hệ thống lưu mã 11 ký tự.")</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ac-field">
+                    <label class="ac-label" for="info-Duration">Thời lượng</label>
+                    <input id="info-Duration" name="Duration" value="@info.Duration" class="form-control ac-control @Invalid("Duration")" maxlength="20" placeholder="04:12"
+                           aria-invalid="@(Err("Duration") != null ? "true" : null)" aria-describedby="@Described("Duration", "info-Duration-hint")" autocomplete="off" />
+                    @if (Err("Duration") is { } durationError)
+                    {
+                        <div class="ac-error" id="info-Duration-error" role="alert">@durationError</div>
+                    }
+                    else
+                    {
+                        <div class="ac-hint" id="info-Duration-hint">Dạng mm:ss, ví dụ 04:12. Để trống nếu nhập lời thoại từ YouTube sẽ tự điền.</div>
+                    }
+                </div>
+                <div class="ac-field">
+                    <label class="ac-label" for="info-AudioUrl">Liên kết âm thanh</label>
+                    <input id="info-AudioUrl" name="AudioUrl" value="@info.AudioUrl" class="form-control ac-control @Invalid("AudioUrl")" maxlength="@AdminListeningService.MaxUrlLength" placeholder="https://… hoặc /media/…"
+                           aria-invalid="@(Err("AudioUrl") != null ? "true" : null)" aria-describedby="@Described("AudioUrl")" autocomplete="off" />
+                    @if (Err("AudioUrl") is { } audioError) { <div class="ac-error" id="info-AudioUrl-error" role="alert">@audioError</div> }
+                </div>
+
+                <div class="ac-field ac-span-2">
+                    <label class="ac-label" for="info-ThumbnailUrl">Ảnh bìa</label>
+                    <input id="info-ThumbnailUrl" name="ThumbnailUrl" value="@info.ThumbnailUrl" class="form-control ac-control @Invalid("ThumbnailUrl")" maxlength="@AdminListeningService.MaxUrlLength"
+                           placeholder="Để trống để dùng ảnh của video YouTube" aria-invalid="@(Err("ThumbnailUrl") != null ? "true" : null)" aria-describedby="@Described("ThumbnailUrl")" autocomplete="off" />
+                    @if (Err("ThumbnailUrl") is { } thumbError) { <div class="ac-error" id="info-ThumbnailUrl-error" role="alert">@thumbError</div> }
+                </div>
+
+                <div class="ac-field">
+                    <label class="ac-label" for="info-Speaker1Name">Người nói 1</label>
+                    <input id="info-Speaker1Name" name="Speaker1Name" value="@info.Speaker1Name" class="form-control ac-control @Invalid("Speaker1Name")" maxlength="@AdminListeningService.MaxSpeakerNameLength"
+                           aria-invalid="@(Err("Speaker1Name") != null ? "true" : null)" aria-describedby="@Described("Speaker1Name")" autocomplete="off" />
+                    @if (Err("Speaker1Name") is { } s1nError) { <div class="ac-error" id="info-Speaker1Name-error" role="alert">@s1nError</div> }
+                </div>
+                <div class="ac-field">
+                    <label class="ac-label" for="info-Speaker1Country">Quốc gia người nói 1</label>
+                    <input id="info-Speaker1Country" name="Speaker1Country" value="@info.Speaker1Country" class="form-control ac-control @Invalid("Speaker1Country")" maxlength="@AdminListeningService.MaxCountryLength"
+                           aria-invalid="@(Err("Speaker1Country") != null ? "true" : null)" aria-describedby="@Described("Speaker1Country")" autocomplete="off" />
+                    @if (Err("Speaker1Country") is { } s1cError) { <div class="ac-error" id="info-Speaker1Country-error" role="alert">@s1cError</div> }
+                </div>
+                <div class="ac-field">
+                    <label class="ac-label" for="info-Speaker2Name">Người nói 2</label>
+                    <input id="info-Speaker2Name" name="Speaker2Name" value="@info.Speaker2Name" class="form-control ac-control @Invalid("Speaker2Name")" maxlength="@AdminListeningService.MaxSpeakerNameLength"
+                           aria-invalid="@(Err("Speaker2Name") != null ? "true" : null)" aria-describedby="@Described("Speaker2Name")" autocomplete="off" />
+                    @if (Err("Speaker2Name") is { } s2nError) { <div class="ac-error" id="info-Speaker2Name-error" role="alert">@s2nError</div> }
+                </div>
+                <div class="ac-field">
+                    <label class="ac-label" for="info-Speaker2Country">Quốc gia người nói 2</label>
+                    <input id="info-Speaker2Country" name="Speaker2Country" value="@info.Speaker2Country" class="form-control ac-control @Invalid("Speaker2Country")" maxlength="@AdminListeningService.MaxCountryLength"
+                           aria-invalid="@(Err("Speaker2Country") != null ? "true" : null)" aria-describedby="@Described("Speaker2Country")" autocomplete="off" />
+                    @if (Err("Speaker2Country") is { } s2cError) { <div class="ac-error" id="info-Speaker2Country-error" role="alert">@s2cError</div> }
+                </div>
+
+                @if (isNew)
+                {
+                    <div class="ac-field ac-span-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="info-PublishNow" name="PublishNow" value="true" checked="@info.PublishNow" aria-describedby="@(Err("PublishNow") != null ? "info-PublishNow-error" : "info-PublishNow-hint")" />
+                            <label class="form-check-label" for="info-PublishNow">Xuất bản ngay</label>
+                        </div>
+                        @if (Err("PublishNow") is { } publishError)
+                        {
+                            <div class="ac-error" id="info-PublishNow-error" role="alert">@publishError</div>
+                        }
+                        else
+                        {
+                            <div class="ac-hint" id="info-PublishNow-hint">Bài mới chưa có lời thoại nên chưa thể xuất bản. Hãy lưu bản nháp, thêm lời thoại rồi bấm "Xuất bản".</div>
+                        }
+                    </div>
+                }
+            </div>
+        </fieldset>
+        @if (!Model.ReadOnly)
+        {
+            <partial name="_SaveBar" model="saveBar" />
+        }
+    </form>
+
+    <aside class="ac-card ac-card-pad ac-side" aria-label="Điều kiện xuất bản">
+        <h2 class="ac-card-title"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span>Điều kiện xuất bản</span></h2>
+        @if (isNew)
+        {
+            <p class="ac-hint">Danh sách này hiện sau khi bài được lưu.</p>
+        }
+        else
+        {
+            <ul class="ac-checklist">
+                @foreach (var item in checklist)
+                {
+                    <li class="@(item.Done ? "is-done" : "is-missing")">
+                        <i class="@(item.Done ? "fa-solid fa-circle-check" : "fa-regular fa-circle")" aria-hidden="true"></i>
+                        <span>@item.Text<span class="visually-hidden">: @(item.Done ? "đã có" : "chưa có")</span></span>
+                    </li>
+                }
+            </ul>
+            <p class="ac-hint">Bắt buộc có lời thoại mới xuất bản được. Quiz, từ vựng và mốc thời gian chỉ là khuyến nghị.</p>
+        }
+    </aside>
+</div>

@@ -1,0 +1,53 @@
+@using TCTEnglish.Services.Admin
+@model LessonEditorViewModel
+@{
+    var editor = Model.Editor;
+    var errors = Model.Errors;
+    var hasYoutube = AdminInputRules.TryParseYoutubeId(Model.Info.YoutubeId, out _);
+    var savedCount = editor.Lines.Count;
+    var discardUrl = Url.Action("Editor", "ListeningManagement", new { area = "Admin", id = editor.Id, tab = LessonTabs.Transcript })!;
+    var saveBar = new SaveBarModel("Lưu lời thoại", discardUrl);
+    var blank = new RowView<TranscriptRowPost>("__i__", 0, new TranscriptRowPost(), new Dictionary<string, string>(), "Lines");
+}
+
+@if (errors.TryGetValue("Lines", out var generalError))
+{
+    <div class="alert ac-alert ac-alert--danger" role="alert"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span class="ac-alert-text">@generalError</span></div>
+}
+
+@if (!Model.ReadOnly)
+{
+    <form method="post" asp-action="ImportTranscript" asp-route-id="@editor.Id" class="ac-import" data-ac-pending data-ac-import-replace="@savedCount">
+        <input type="hidden" name="replaceExisting" value="false" data-ac-import-flag />
+        <div class="ac-import-text">
+            <strong>Nhập từ YouTube</strong>
+            <span class="ac-hint">@(hasYoutube ? "Lấy phụ đề của video và thay cho lời thoại hiện có." : "Nhập mã YouTube ở tab Thông tin trước khi dùng.")</span>
+        </div>
+        <button type="submit" class="btn ac-btn ac-btn--outline" disabled="@(!hasYoutube)"><i class="fa-brands fa-youtube" aria-hidden="true"></i><span>Nhập từ YouTube</span></button>
+    </form>
+}
+
+<form method="post" asp-action="ManageTranscript" asp-route-id="@editor.Id" data-ac-pending data-ac-dirty novalidate>
+    <fieldset class="ac-fieldset" disabled="@Model.ReadOnly">
+        <legend class="visually-hidden">Lời thoại</legend>
+        <p class="ac-hint">Thời điểm gõ dạng giây (5.5) hoặc phút:giây (1:05.5). Để trống cả hai nếu dòng chưa có mốc thời gian.</p>
+        <div data-ac-rows data-ac-prefix="lines" data-ac-row-noun="dòng" id="transcript-rows">
+            @for (var i = 0; i < Model.Lines.Count; i++)
+            {
+                <partial name="_TranscriptRow" model="@(new RowView<TranscriptRowPost>(i.ToString(), i + 1, Model.Lines[i], errors, "Lines"))" />
+            }
+        </div>
+        <p class="ac-empty-rows" data-ac-empty-rows @(Model.Lines.Count > 0 ? "hidden" : "")>@(Model.ReadOnly ? "Bài này chưa có lời thoại nào." : "Chưa có dòng lời thoại nào. Bấm \"Thêm dòng\" hoặc nhập từ YouTube.")</p>
+        <template data-ac-row-template>
+            <partial name="_TranscriptRow" model="blank" />
+        </template>
+        @if (!Model.ReadOnly)
+        {
+            <button type="button" class="btn ac-btn ac-btn--outline ac-add-row" data-ac-add-row><i class="fa-solid fa-plus" aria-hidden="true"></i><span>Thêm dòng</span></button>
+        }
+    </fieldset>
+    @if (!Model.ReadOnly)
+    {
+        <partial name="_SaveBar" model="saveBar" />
+    }
+</form>

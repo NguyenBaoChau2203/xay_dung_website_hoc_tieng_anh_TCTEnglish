@@ -1,516 +1,291 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using TCTEnglish.Services.Admin;
 using TCTVocabulary.Areas.Admin.ViewModels;
 using TCTVocabulary.Models;
-using TCTVocabulary.Services;
-using System.Text.RegularExpressions;
+using TCTVocabulary.Security;
 
 namespace TCTVocabulary.Areas.Admin.Controllers;
 
+/// <summary>
+/// Listening lessons in the admin. Rules live in <see cref="IAdminListeningService"/>: system lessons are
+/// edited through one four-tab editor, a learner's own lesson can only be viewed, unpublished and deleted.
+/// </summary>
 [Area("Admin")]
 [Authorize(Roles = Roles.Admin)]
 public class ListeningManagementController : Controller
 {
-    private static readonly Regex YoutubeIdRegex = new("^[a-zA-Z0-9_-]{11}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-    private readonly DbflashcardContext _context;
-    private readonly IYoutubeTranscriptService _transcriptService;
-    private readonly ILogger<ListeningManagementController> _logger;
+    private readonly IAdminListeningService _service;
 
-    public ListeningManagementController(
-        DbflashcardContext context,
-        IYoutubeTranscriptService transcriptService,
-        ILogger<ListeningManagementController> logger)
+    public ListeningManagementController(IAdminListeningService service)
     {
-        _context = context;
-        _transcriptService = transcriptService;
-        _logger = logger;
+        _service = service;
     }
 
     // GET: Admin/ListeningManagement
-    public async Task<IActionResult> Index(string? q, string? level, int page = 1)
+    public async Task<IActionResult> Index(string? q, string? level, string? source, string? status, int page = 1, CancellationToken ct = default)
     {
-        const int pageSize = 20;
-        var query = _context.ListeningLessons.AsNoTracking();
+        var sourceKey = source is "learner" or "all" ? source : "system";
+        var statusKey = status is "published" or "draft" or "incomplete" ? status : "";
+        var levelKey = AdminInputRules.IsCefrLevel(level) ? level! : "";
 
-        if (!string.IsNullOrWhiteSpace(q))
+        var list = await _service.ListLessonsAsync(new AdminLessonQuery(sourceKey, levelKey, statusKey, q, page), ct);
+        var figures = await _service.GetFiguresAsync(ct);
+
+        return View(new ListeningIndexViewModel
         {
-            query = query.Where(l => l.Title.Contains(q) || l.Topic.Contains(q));
-        }
-
-        if (!string.IsNullOrWhiteSpace(level) && level != "All")
-        {
-            query = query.Where(l => l.Level == level);
-        }
-
-        var totalItems = await query.CountAsync();
-        var lessons = await query
-            .OrderByDescending(l => l.CreatedAt)
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .Select(l => new ListeningLessonListItemViewModel
-            {
-                Id = l.Id,
-                Title = l.Title,
-                Level = l.Level,
-                Topic = l.Topic,
-                YoutubeId = l.YoutubeId,
-                IsPublished = l.IsPublished,
-                CreatedAt = l.CreatedAt,
-                TranscriptCount = l.TranscriptLines.Count,
-                QuizCount = l.QuizQuestions.Count,
-                VocabCount = l.VocabItems.Count
-            })
-            .ToListAsync();
-
-        var model = new ListeningLessonIndexViewModel
-        {
-            Lessons = lessons,
-            SearchToken = q,
-            LevelFilter = level,
-            CurrentPage = page,
-            TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize)
-        };
-
-        return View(model);
+            List = list,
+            Figures = figures,
+            Q = q,
+            Level = levelKey,
+            Source = sourceKey,
+            Status = statusKey,
+        });
     }
 
-    // GET: Admin/ListeningManagement/Create
+    // GET: Admin/ListeningManagement/Create  (the editor's Info tab for a new lesson)
     public IActionResult Create()
     {
-        return View("CreateEdit", new ListeningLessonCreateEditViewModel { IsPublished = true });
+        return View("Editor", LessonEditorViewModel.From(AdminLessonEditor.NewLesson(), LessonTabs.Info));
     }
 
-    // GET: Admin/ListeningManagement/Edit/5
-    public async Task<IActionResult> Edit(int id)
+    // GET: Admin/ListeningManagement/Edit/5  (old route: the editor's Info tab)
+    public IActionResult Edit(int id)
     {
-        var lesson = await _context.ListeningLessons
-            .AsNoTracking()
-            .FirstOrDefaultAsync(l => l.Id == id);
-
-        if (lesson == null) return NotFound();
-
-        var model = new ListeningLessonCreateEditViewModel
-        {
-            Id = lesson.Id,
-            Title = lesson.Title,
-            Level = lesson.Level,
-            Topic = lesson.Topic,
-            YoutubeId = lesson.YoutubeId,
-            AudioUrl = lesson.AudioUrl,
-            ThumbnailUrl = lesson.ThumbnailUrl,
-            Duration = lesson.Duration,
-            Speaker1Name = lesson.Speaker1Name,
-            Speaker1Country = lesson.Speaker1Country,
-            Speaker2Name = lesson.Speaker2Name,
-            Speaker2Country = lesson.Speaker2Country,
-            IsPublished = lesson.IsPublished
-        };
-
-        return View("CreateEdit", model);
+        return RedirectToAction(nameof(Editor), new { id, tab = LessonTabs.Info });
     }
 
-    // POST: Admin/ListeningManagement/CreateEdit
+    // GET: Admin/ListeningManagement/Editor/5?tab=info|transcript|quiz|vocab
+    public async Task<IActionResult> Editor(int id, string? tab, CancellationToken ct)
+    {
+        var editor = await _service.GetEditorAsync(id, ct);
+        if (editor == null)
+        {
+            return NotFound();
+        }
+
+        return View(LessonEditorViewModel.From(editor, LessonTabs.Normalize(tab)));
+    }
+
+    // Old routes: the three management pages are tabs of the editor now.
+    [HttpGet]
+    public IActionResult ManageTranscript(int id) => RedirectToAction(nameof(Editor), new { id, tab = LessonTabs.Transcript });
+
+    [HttpGet]
+    public IActionResult ManageQuiz(int id) => RedirectToAction(nameof(Editor), new { id, tab = LessonTabs.Quiz });
+
+    [HttpGet]
+    public IActionResult ManageVocab(int id) => RedirectToAction(nameof(Editor), new { id, tab = LessonTabs.Vocab });
+
+    // POST: Admin/ListeningManagement/CreateEdit  (Info tab; id 0 creates a draft)
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> CreateEdit(ListeningLessonCreateEditViewModel model)
+    public async Task<IActionResult> CreateEdit(int id, AdminLessonInfoInput input, CancellationToken ct)
     {
-        if (!ModelState.IsValid) return View(model);
-
-        model.YoutubeId = NormalizeYoutubeId(model.YoutubeId);
-
-        if (model.Id == 0)
+        var result = await _service.SaveInfoAsync(id > 0 ? id : null, input, ct);
+        if (result.IsSuccess)
         {
-            // Create
-            var lesson = new ListeningLesson
-            {
-                Title = model.Title.Trim(),
-                Level = model.Level,
-                Topic = model.Topic.Trim(),
-                YoutubeId = model.YoutubeId,
-                AudioUrl = model.AudioUrl,
-                ThumbnailUrl = string.IsNullOrWhiteSpace(model.ThumbnailUrl)
-                    ? (string.IsNullOrEmpty(model.YoutubeId) ? null : $"https://img.youtube.com/vi/{model.YoutubeId}/hqdefault.jpg")
-                    : model.ThumbnailUrl.Trim(),
-                Duration = model.Duration,
-                Speaker1Name = model.Speaker1Name,
-                Speaker1Country = model.Speaker1Country,
-                Speaker2Name = model.Speaker2Name,
-                Speaker2Country = model.Speaker2Country,
-                IsPublished = model.IsPublished,
-                CreatedAt = DateTime.UtcNow
-            };
-
-            _context.ListeningLessons.Add(lesson);
-            await _context.SaveChangesAsync();
-            TempData["SuccessMessage"] = "Đã tạo bài học mới thành công.";
-            return RedirectToAction(nameof(ManageTranscript), new { id = lesson.Id });
+            SetSuccess(id > 0 ? "Đã lưu thông tin." : "Đã tạo bài nghe ở dạng bản nháp. Hãy thêm lời thoại, quiz và từ vựng.", result.Warnings);
+            return RedirectToAction(nameof(Editor), new { id = result.Value, tab = id > 0 ? LessonTabs.Info : LessonTabs.Transcript });
         }
-        else
+
+        if (result.Status == AdminResultStatus.NotFound)
         {
-            // Update
-            var lesson = await _context.ListeningLessons.FirstOrDefaultAsync(l => l.Id == model.Id);
-            if (lesson == null) return NotFound();
-
-            lesson.Title = model.Title.Trim();
-            lesson.Level = model.Level;
-            lesson.Topic = model.Topic.Trim();
-            lesson.YoutubeId = model.YoutubeId;
-            lesson.AudioUrl = model.AudioUrl;
-            lesson.ThumbnailUrl = string.IsNullOrWhiteSpace(model.ThumbnailUrl)
-                ? (string.IsNullOrEmpty(model.YoutubeId) ? null : $"https://img.youtube.com/vi/{model.YoutubeId}/hqdefault.jpg")
-                : model.ThumbnailUrl.Trim();
-            lesson.Duration = model.Duration;
-            lesson.Speaker1Name = model.Speaker1Name;
-            lesson.Speaker1Country = model.Speaker1Country;
-            lesson.Speaker2Name = model.Speaker2Name;
-            lesson.Speaker2Country = model.Speaker2Country;
-            lesson.IsPublished = model.IsPublished;
-
-            await _context.SaveChangesAsync();
-            TempData["SuccessMessage"] = "Đã cập nhật bài học thành công.";
-            return RedirectToAction(nameof(Index));
+            return NotFound();
         }
-    }
 
-    // POST: Admin/ListeningManagement/Delete/5
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Delete(int id)
-    {
-        var lesson = await _context.ListeningLessons.FirstOrDefaultAsync(l => l.Id == id);
-        if (lesson == null) return NotFound();
-
-        _context.ListeningLessons.Remove(lesson);
-        await _context.SaveChangesAsync();
-
-        TempData["SuccessMessage"] = "Đã xóa bài học thành công.";
-        return RedirectToAction(nameof(Index));
-    }
-
-    // GET: Admin/ListeningManagement/ManageTranscript/5
-    public async Task<IActionResult> ManageTranscript(int id)
-    {
-        var lesson = await _context.ListeningLessons
-            .Include(l => l.TranscriptLines)
-            .AsNoTracking()
-            .FirstOrDefaultAsync(l => l.Id == id);
-
-        if (lesson == null) return NotFound();
-
-        var model = new ListeningTranscriptManageViewModel
+        if (result.Status == AdminResultStatus.Forbidden)
         {
-            LessonId = lesson.Id,
-            LessonTitle = lesson.Title,
-            YoutubeId = lesson.YoutubeId,
-            Lines = lesson.TranscriptLines
-                .OrderBy(l => l.OrderIndex)
-                .Select(l => new ListeningTranscriptLineViewModel
-                {
-                    Id = l.Id,
-                    OrderIndex = l.OrderIndex,
-                    Speaker = l.Speaker,
-                    Text = l.Text,
-                    VietnameseMeaning = l.VietnameseMeaning,
-                    StartTime = l.StartTime,
-                    EndTime = l.EndTime
-                }).ToList()
-        };
+            return ForbiddenRedirect(id, result.Message);
+        }
 
-        return View(model);
+        var model = await BuildEditorAsync(id, LessonTabs.Info, ct);
+        if (model == null)
+        {
+            return NotFound();
+        }
+
+        model.Info = input;
+        model.Errors = result.FieldErrors;
+        model.Summary = result.Message;
+        return View("Editor", model);
     }
 
     // POST: Admin/ListeningManagement/ManageTranscript/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> ManageTranscript(int id, List<ListeningTranscriptLineViewModel> lines)
+    public async Task<IActionResult> ManageTranscript(int id, List<TranscriptRowPost>? lines, CancellationToken ct)
     {
-        var lesson = await _context.ListeningLessons
-            .Include(l => l.TranscriptLines)
-            .FirstOrDefaultAsync(l => l.Id == id);
-
-        if (lesson == null) return NotFound();
-
-        _context.ListeningTranscriptLines.RemoveRange(lesson.TranscriptLines);
-        
-        if (lines != null)
-        {
-            for (int i = 0; i < lines.Count; i++)
-            {
-                var line = lines[i];
-                if (string.IsNullOrWhiteSpace(line.Text)) continue;
-
-                _context.ListeningTranscriptLines.Add(new ListeningTranscriptLine
-                {
-                    LessonId = id,
-                    OrderIndex = i + 1,
-                    Speaker = string.IsNullOrWhiteSpace(line.Speaker) ? "Speaker 1" : line.Speaker.Trim(),
-                    Text = line.Text.Trim(),
-                    VietnameseMeaning = line.VietnameseMeaning?.Trim(),
-                    StartTime = line.StartTime,
-                    EndTime = line.EndTime
-                });
-            }
-        }
-
-        await _context.SaveChangesAsync();
-        TempData["SuccessMessage"] = "Đã lưu transcript thành công.";
-        return RedirectToAction(nameof(Index));
-    }
-
-    // POST: Admin/ListeningManagement/ImportTranscript/5
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> ImportTranscript(int id)
-    {
-        var lesson = await _context.ListeningLessons.FirstOrDefaultAsync(l => l.Id == id);
-        if (lesson == null || string.IsNullOrEmpty(lesson.YoutubeId)) 
-            return BadRequest("Bài học không tồn tại hoặc không có Youtube ID");
-
-        try
-        {
-            var sentences = await _transcriptService.GetTranscriptAsync(lesson.YoutubeId);
-            if (sentences.Count == 0)
-            {
-                TempData["ErrorMessage"] = "Không thể lấy transcript từ video này.";
-                return RedirectToAction(nameof(ManageTranscript), new { id });
-            }
-
-            // Remove existing
-            var existing = _context.ListeningTranscriptLines.Where(l => l.LessonId == id);
-            _context.ListeningTranscriptLines.RemoveRange(existing);
-
-            // Detect speakers from lesson config or transcript text
-            var defaultSpeaker1 = !string.IsNullOrWhiteSpace(lesson.Speaker1Name)
-                ? lesson.Speaker1Name : "Speaker 1";
-            var defaultSpeaker2 = !string.IsNullOrWhiteSpace(lesson.Speaker2Name)
-                ? lesson.Speaker2Name : "Speaker 2";
-
-            for (int i = 0; i < sentences.Count; i++)
-            {
-                var s = sentences[i];
-                var (speaker, cleanedText) = DetectSpeaker(s.Text, defaultSpeaker1, defaultSpeaker2);
-
-                _context.ListeningTranscriptLines.Add(new ListeningTranscriptLine
-                {
-                    LessonId = id,
-                    OrderIndex = i + 1,
-                    Speaker = speaker,
-                    Text = cleanedText,
-                    StartTime = s.StartTime,
-                    EndTime = s.EndTime
-                });
-            }
-
-            // Update duration if not set
-            if (string.IsNullOrEmpty(lesson.Duration))
-            {
-                lesson.Duration = await _transcriptService.GetVideoDurationAsync(lesson.YoutubeId);
-            }
-
-            await _context.SaveChangesAsync();
-            TempData["SuccessMessage"] = $"Đã nhập thành công {sentences.Count} dòng transcript.";
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Lỗi khi import transcript cho bài học {Id}", id);
-            TempData["ErrorMessage"] = "Lỗi khi kết nối với Youtube Service: " + ex.Message;
-        }
-
-        return RedirectToAction(nameof(ManageTranscript), new { id });
-    }
-
-    /// <summary>
-    /// Detect speaker from transcript text patterns:
-    ///   "[Speaker Name]:" / "Speaker Name:" / "Name:" at start of line.
-    /// Returns (speaker, cleaned text without the speaker prefix).
-    /// </summary>
-    private static readonly Regex SpeakerPatternRegex = new(
-        @"^\s*\[?([A-Za-z][A-Za-z\s]{0,30}?)\]?\s*:\s*",
-        RegexOptions.Compiled);
-
-    private static (string Speaker, string Text) DetectSpeaker(
-        string text, string defaultSpeaker1, string defaultSpeaker2)
-    {
-        if (string.IsNullOrWhiteSpace(text))
-            return (defaultSpeaker1, text);
-
-        var match = SpeakerPatternRegex.Match(text);
-        if (match.Success)
-        {
-            var detectedName = match.Groups[1].Value.Trim();
-            var remainingText = text[match.Length..].Trim();
-
-            // Chỉ accept nếu phần còn lại không rỗng và tên hợp lý (1-4 từ)
-            var nameWords = detectedName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            if (!string.IsNullOrWhiteSpace(remainingText) && nameWords.Length <= 4)
-            {
-                return (detectedName, remainingText);
-            }
-        }
-
-        // Không detect được → trả default
-        return (defaultSpeaker1, text);
-    }
-
-    // GET: Admin/ListeningManagement/ManageQuiz/5
-    public async Task<IActionResult> ManageQuiz(int id)
-    {
-        var lesson = await _context.ListeningLessons
-            .Include(l => l.QuizQuestions)
-            .AsNoTracking()
-            .FirstOrDefaultAsync(l => l.Id == id);
-
-        if (lesson == null) return NotFound();
-
-        var model = new ListeningQuizManageViewModel
-        {
-            LessonId = lesson.Id,
-            LessonTitle = lesson.Title,
-            Questions = lesson.QuizQuestions
-                .OrderBy(q => q.OrderIndex)
-                .Select(q => new ListeningQuizQuestionViewModel
-                {
-                    Id = q.Id,
-                    OrderIndex = q.OrderIndex,
-                    QuestionText = q.QuestionText,
-                    OptionA = q.OptionA,
-                    OptionB = q.OptionB,
-                    OptionC = q.OptionC,
-                    OptionD = q.OptionD,
-                    CorrectAnswer = q.CorrectAnswer,
-                    Explanation = q.Explanation
-                }).ToList()
-        };
-
-        return View(model);
+        var rows = lines ?? new List<TranscriptRowPost>();
+        var result = await _service.SaveTranscriptAsync(id, ToLineInputs(rows), ct);
+        return await FinishAsync(result, id, LessonTabs.Transcript, "Đã lưu lời thoại.", ct, model => model.Lines = rows);
     }
 
     // POST: Admin/ListeningManagement/ManageQuiz/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> ManageQuiz(int id, List<ListeningQuizQuestionViewModel> questions)
+    public async Task<IActionResult> ManageQuiz(int id, List<AdminQuizInput>? questions, CancellationToken ct)
     {
-        var lesson = await _context.ListeningLessons
-            .Include(l => l.QuizQuestions)
-            .FirstOrDefaultAsync(l => l.Id == id);
-
-        if (lesson == null) return NotFound();
-
-        _context.ListeningQuizQuestions.RemoveRange(lesson.QuizQuestions);
-
-        if (questions != null)
-        {
-            for (int i = 0; i < questions.Count; i++)
-            {
-                var q = questions[i];
-                if (string.IsNullOrWhiteSpace(q.QuestionText)) continue;
-
-                _context.ListeningQuizQuestions.Add(new ListeningQuizQuestion
-                {
-                    LessonId = id,
-                    OrderIndex = i + 1,
-                    QuestionText = q.QuestionText.Trim(),
-                    OptionA = q.OptionA.Trim(),
-                    OptionB = q.OptionB.Trim(),
-                    OptionC = q.OptionC?.Trim(),
-                    OptionD = q.OptionD?.Trim(),
-                    CorrectAnswer = q.CorrectAnswer,
-                    Explanation = q.Explanation?.Trim()
-                });
-            }
-        }
-
-        await _context.SaveChangesAsync();
-        TempData["SuccessMessage"] = "Đã lưu bộ câu hỏi Quiz thành công.";
-        return RedirectToAction(nameof(Index));
-    }
-
-    // GET: Admin/ListeningManagement/ManageVocab/5
-    public async Task<IActionResult> ManageVocab(int id)
-    {
-        var lesson = await _context.ListeningLessons
-            .Include(l => l.VocabItems)
-            .AsNoTracking()
-            .FirstOrDefaultAsync(l => l.Id == id);
-
-        if (lesson == null) return NotFound();
-
-        var model = new ListeningVocabManageViewModel
-        {
-            LessonId = lesson.Id,
-            LessonTitle = lesson.Title,
-            Items = lesson.VocabItems
-                .OrderBy(v => v.OrderIndex)
-                .Select(v => new ListeningVocabItemViewModel
-                {
-                    Id = v.Id,
-                    OrderIndex = v.OrderIndex,
-                    Word = v.Word,
-                    Definition = v.Definition,
-                    ExampleSentence = v.ExampleSentence,
-                    ImageUrl = v.ImageUrl
-                }).ToList()
-        };
-
-        return View(model);
+        var rows = questions ?? new List<AdminQuizInput>();
+        var result = await _service.SaveQuizAsync(id, rows, ct);
+        return await FinishAsync(result, id, LessonTabs.Quiz, "Đã lưu quiz.", ct, model => model.Questions = rows);
     }
 
     // POST: Admin/ListeningManagement/ManageVocab/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> ManageVocab(int id, List<ListeningVocabItemViewModel> items)
+    public async Task<IActionResult> ManageVocab(int id, List<AdminVocabInput>? items, CancellationToken ct)
     {
-        var lesson = await _context.ListeningLessons
-            .Include(l => l.VocabItems)
-            .FirstOrDefaultAsync(l => l.Id == id);
+        var rows = items ?? new List<AdminVocabInput>();
+        var result = await _service.SaveVocabAsync(id, rows, ct);
+        return await FinishAsync(result, id, LessonTabs.Vocab, "Đã lưu từ vựng.", ct, model => model.Items = rows);
+    }
 
-        if (lesson == null) return NotFound();
-
-        _context.ListeningVocabItems.RemoveRange(lesson.VocabItems);
-
-        if (items != null)
+    // POST: Admin/ListeningManagement/ImportTranscript/5
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> ImportTranscript(int id, bool replaceExisting, CancellationToken ct)
+    {
+        var result = await _service.ImportTranscriptAsync(id, replaceExisting, ct);
+        if (result.Status == AdminResultStatus.NotFound)
         {
-            for (int i = 0; i < items.Count; i++)
-            {
-                var v = items[i];
-                if (string.IsNullOrWhiteSpace(v.Word)) continue;
-
-                _context.ListeningVocabItems.Add(new ListeningVocabItem
-                {
-                    LessonId = id,
-                    OrderIndex = i + 1,
-                    Word = v.Word.Trim(),
-                    Definition = v.Definition.Trim(),
-                    ExampleSentence = v.ExampleSentence?.Trim(),
-                    ImageUrl = v.ImageUrl?.Trim()
-                });
-            }
+            return NotFound();
         }
 
-        await _context.SaveChangesAsync();
-        TempData["SuccessMessage"] = "Đã lưu danh sách từ vựng thành công.";
+        if (result.IsSuccess)
+        {
+            TempData["SuccessMessage"] = $"Đã nhập {result.Value} dòng lời thoại từ YouTube.";
+        }
+        else
+        {
+            TempData["ErrorMessage"] = result.Message ?? AdminListeningMessages.ImportFailed;
+        }
+
+        return RedirectToAction(nameof(Editor), new { id, tab = LessonTabs.Transcript });
+    }
+
+    // POST: Admin/ListeningManagement/Publish/5
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public Task<IActionResult> Publish(int id, CancellationToken ct) => SetPublishedAsync(id, true, ct);
+
+    // POST: Admin/ListeningManagement/Unpublish/5
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public Task<IActionResult> Unpublish(int id, CancellationToken ct) => SetPublishedAsync(id, false, ct);
+
+    // POST: Admin/ListeningManagement/Delete/5 (the admin has to type the exact title)
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(int id, string? confirmName, CancellationToken ct)
+    {
+        if (!User.TryGetUserId(out var adminId))
+        {
+            return Challenge();
+        }
+
+        var result = await _service.DeleteAsync(id, confirmName, adminId, ct);
+        if (result.Status == AdminResultStatus.NotFound)
+        {
+            return NotFound();
+        }
+
+        if (result.IsSuccess)
+        {
+            TempData["SuccessMessage"] = "Đã xóa bài nghe và tiến độ học liên quan.";
+        }
+        else
+        {
+            TempData["ErrorMessage"] = result.Message ?? "Không xóa được bài nghe.";
+        }
+
         return RedirectToAction(nameof(Index));
     }
 
-    private static string? NormalizeYoutubeId(string? input)
+    // ------------------------------------------------------------------ helpers
+
+    private async Task<IActionResult> SetPublishedAsync(int id, bool published, CancellationToken ct)
     {
-        if (string.IsNullOrWhiteSpace(input)) return null;
-        var value = input.Trim();
-        if (YoutubeIdRegex.IsMatch(value)) return value;
-
-        if (Uri.TryCreate(value, UriKind.Absolute, out var uri))
+        var result = await _service.SetPublishedAsync(id, published, ct);
+        switch (result.Status)
         {
-            var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
-            var v = query["v"];
-            if (!string.IsNullOrEmpty(v) && YoutubeIdRegex.IsMatch(v)) return v;
-
-            if (uri.Host.Contains("youtu.be"))
-            {
-                var shortId = uri.AbsolutePath.Trim('/');
-                if (YoutubeIdRegex.IsMatch(shortId)) return shortId;
-            }
+            case AdminResultStatus.NotFound:
+                return NotFound();
+            case AdminResultStatus.Success:
+                SetSuccess(published ? "Đã xuất bản bài nghe." : "Đã chuyển bài nghe về bản nháp.", result.Warnings);
+                break;
+            default:
+                TempData["ErrorMessage"] = result.Message ?? "Không đổi được trạng thái xuất bản.";
+                break;
         }
-        return value; // fallback
+
+        return RedirectToAction(nameof(Editor), new { id, tab = LessonTabs.Info });
     }
+
+    /// <summary>Success redirects back to the same tab; errors show the same tab again with the typed rows and per-row messages.</summary>
+    private async Task<IActionResult> FinishAsync(AdminResult result, int id, string tab, string successMessage, CancellationToken ct, Action<LessonEditorViewModel> showPosted)
+    {
+        switch (result.Status)
+        {
+            case AdminResultStatus.Success:
+                TempData["SuccessMessage"] = successMessage;
+                return RedirectToAction(nameof(Editor), new { id, tab });
+            case AdminResultStatus.NotFound:
+                return NotFound();
+            case AdminResultStatus.Forbidden:
+                return ForbiddenRedirect(id, result.Message, tab);
+            default:
+                var model = await BuildEditorAsync(id, tab, ct);
+                if (model == null)
+                {
+                    return NotFound();
+                }
+
+                showPosted(model);
+                model.Errors = result.FieldErrors;
+                model.Summary = result.Message;
+                return View("Editor", model);
+        }
+    }
+
+    private IActionResult ForbiddenRedirect(int id, string? message, string tab = LessonTabs.Info)
+    {
+        TempData["ErrorMessage"] = message ?? AdminListeningMessages.LearnerLessonReadOnly;
+        return id > 0
+            ? RedirectToAction(nameof(Editor), new { id, tab })
+            : RedirectToAction(nameof(Index));
+    }
+
+    private async Task<LessonEditorViewModel?> BuildEditorAsync(int id, string tab, CancellationToken ct)
+    {
+        if (id <= 0)
+        {
+            return LessonEditorViewModel.From(AdminLessonEditor.NewLesson(), tab);
+        }
+
+        var editor = await _service.GetEditorAsync(id, ct);
+        return editor == null ? null : LessonEditorViewModel.From(editor, tab);
+    }
+
+    private void SetSuccess(string message, IReadOnlyList<string> warnings)
+    {
+        TempData["SuccessMessage"] = message;
+        if (warnings.Count > 0)
+        {
+            TempData["WarningMessage"] = string.Join(" ", warnings);
+        }
+    }
+
+    private static List<AdminTranscriptLineInput> ToLineInputs(IEnumerable<TranscriptRowPost> rows)
+        => rows.Select(r => new AdminTranscriptLineInput
+        {
+            Speaker = r.Speaker,
+            Text = r.Text,
+            VietnameseMeaning = r.VietnameseMeaning,
+            StartTime = ParseClock(r.Start),
+            EndTime = ParseClock(r.End),
+        }).ToList();
+
+    /// <summary>Empty stays empty; a value that is not a time becomes NaN so the service reports it on the right field.</summary>
+    private static double? ParseClock(string? text) => AdminInputRules.TryParseClock(text, out var seconds) ? seconds : double.NaN;
 }

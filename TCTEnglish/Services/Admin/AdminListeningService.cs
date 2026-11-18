@@ -436,9 +436,20 @@ public sealed partial class AdminListeningService : IAdminListeningService
 
             var start = row.StartTime;
             var end = row.EndTime;
-            if ((start.HasValue && !double.IsFinite(start.Value)) || (end.HasValue && !double.IsFinite(end.Value)))
+            var startBad = start.HasValue && !double.IsFinite(start.Value);
+            var endBad = end.HasValue && !double.IsFinite(end.Value);
+            if (startBad || endBad)
             {
-                Add("StartTime", "thời điểm không hợp lệ.");
+                // Not a number (a typo such as "1:75" is turned into NaN by the caller).
+                if (startBad)
+                {
+                    Add("StartTime", "thời điểm bắt đầu không hợp lệ. Ví dụ: 1:05.5");
+                }
+
+                if (endBad)
+                {
+                    Add("EndTime", "thời điểm kết thúc không hợp lệ. Ví dụ: 1:05.5");
+                }
             }
             else if (start.HasValue && !end.HasValue)
             {

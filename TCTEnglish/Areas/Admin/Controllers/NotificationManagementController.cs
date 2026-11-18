@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Services.Notifications;
 using TCTVocabulary.Areas.Admin.ViewModels;
 using TCTVocabulary.Controllers;
@@ -15,15 +16,25 @@ public class NotificationManagementController : BaseController
     private const int PageSize = 20;
 
     private readonly INotificationService _notificationService;
+    private readonly DbflashcardContext _context;
     private readonly ILogger<NotificationManagementController> _logger;
 
     public NotificationManagementController(
         INotificationService notificationService,
+        DbflashcardContext context,
         ILogger<NotificationManagementController> logger)
     {
         _notificationService = notificationService;
+        _context = context;
         _logger = logger;
     }
+
+    /// <summary>
+    /// How many accounts an announcement reaches right now. The same filter as the send itself
+    /// (not blocked, not anonymised), read only: it only informs the form.
+    /// </summary>
+    private async Task<int> CountRecipientsAsync()
+        => await _context.Users.AsNoTracking().CountAsync(u => u.Status != UserStatus.Blocked && u.AnonymizedAt == null);
 
     // GET /Admin/NotificationManagement
     public IActionResult Index() => RedirectToAction(nameof(Create));
@@ -33,10 +44,10 @@ public class NotificationManagementController : BaseController
     // =========================================================================
 
     // GET /Admin/NotificationManagement/Create
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
         ViewData["Title"] = "Gửi thông báo hệ thống";
-        return View(new CreateAnnouncementViewModel { BatchId = Guid.NewGuid() });
+        return View(new CreateAnnouncementViewModel { BatchId = Guid.NewGuid(), RecipientCount = await CountRecipientsAsync() });
     }
 
     // POST /Admin/NotificationManagement/Create
@@ -44,6 +55,7 @@ public class NotificationManagementController : BaseController
     public async Task<IActionResult> Create(CreateAnnouncementViewModel model)
     {
         ViewData["Title"] = "Gửi thông báo hệ thống";
+        model.RecipientCount = await CountRecipientsAsync();
 
         // The batch id is what makes a double submit harmless; a missing one gets a fresh form.
         if (model.BatchId == Guid.Empty)

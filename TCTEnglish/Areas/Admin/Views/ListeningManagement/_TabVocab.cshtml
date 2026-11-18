@@ -1,0 +1,38 @@
+@using TCTEnglish.Services.Admin
+@model LessonEditorViewModel
+@{
+    var editor = Model.Editor;
+    var errors = Model.Errors;
+    var discardUrl = Url.Action("Editor", "ListeningManagement", new { area = "Admin", id = editor.Id, tab = LessonTabs.Vocab })!;
+    var saveBar = new SaveBarModel("Lưu từ vựng", discardUrl);
+    var blank = new RowView<AdminVocabInput>("__i__", 0, new AdminVocabInput(), new Dictionary<string, string>(), "Items");
+}
+
+@if (errors.TryGetValue("Items", out var generalError))
+{
+    <div class="alert ac-alert ac-alert--danger" role="alert"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span class="ac-alert-text">@generalError</span></div>
+}
+
+<form method="post" asp-action="ManageVocab" asp-route-id="@editor.Id" data-ac-pending data-ac-dirty novalidate>
+    <fieldset class="ac-fieldset" disabled="@Model.ReadOnly">
+        <legend class="visually-hidden">Từ vựng của bài nghe</legend>
+        <div data-ac-rows data-ac-prefix="items" data-ac-row-noun="từ" id="vocab-rows">
+            @for (var i = 0; i < Model.Items.Count; i++)
+            {
+                <partial name="_VocabRow" model="@(new RowView<AdminVocabInput>(i.ToString(), i + 1, Model.Items[i], errors, "Items"))" />
+            }
+        </div>
+        <p class="ac-empty-rows" data-ac-empty-rows @(Model.Items.Count > 0 ? "hidden" : "")>@(Model.ReadOnly ? "Bài này chưa có từ vựng nào." : "Chưa có từ vựng nào. Bấm \"Thêm từ\" để bắt đầu.")</p>
+        <template data-ac-row-template>
+            <partial name="_VocabRow" model="blank" />
+        </template>
+        @if (!Model.ReadOnly)
+        {
+            <button type="button" class="btn ac-btn ac-btn--outline ac-add-row" data-ac-add-row><i class="fa-solid fa-plus" aria-hidden="true"></i><span>Thêm từ</span></button>
+        }
+    </fieldset>
+    @if (!Model.ReadOnly)
+    {
+        <partial name="_SaveBar" model="saveBar" />
+    }
+</form>

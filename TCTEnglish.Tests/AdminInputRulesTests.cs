@@ -221,4 +221,77 @@ public sealed class AdminInputRulesTests
     {
         Assert.Equal(expected, AdminInputRules.TotalPages(total, pageSize));
     }
+
+    [Theory]
+    [InlineData("5", 5.0)]
+    [InlineData("5.5", 5.5)]
+    [InlineData("0:05", 5.0)]
+    [InlineData("0:05.5", 5.5)]
+    [InlineData("1:05", 65.0)]
+    [InlineData("1:05.5", 65.5)]
+    [InlineData("62:05.25", 3725.25)]
+    [InlineData("1:02:03", 3723.0)]
+    [InlineData("1:02:03.5", 3723.5)]
+    [InlineData("  2:00  ", 120.0)]
+    [InlineData("0", 0.0)]
+    [InlineData("12.345", 12.345)]
+    public void TryParseClock_ReadsSecondsAndClockForms(string input, double expected)
+    {
+        Assert.True(AdminInputRules.TryParseClock(input, out var seconds));
+        Assert.Equal(expected, seconds!.Value, 3);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("   ")]
+    public void TryParseClock_TreatsEmptyAsNotSet(string? input)
+    {
+        Assert.True(AdminInputRules.TryParseClock(input, out var seconds));
+        Assert.Null(seconds);
+    }
+
+    [Theory]
+    [InlineData("abc")]
+    [InlineData("-1")]
+    [InlineData("1:75")]
+    [InlineData("1:5")]
+    [InlineData("1:02:75")]
+    [InlineData("1:75:03")]
+    [InlineData("1:02:03:04")]
+    [InlineData("1,5")]
+    [InlineData("1:2:3")]
+    [InlineData(":30")]
+    [InlineData("1:")]
+    [InlineData("5.1234")]
+    [InlineData("1e3")]
+    [InlineData("100000")]
+    public void TryParseClock_RejectsEverythingElse(string input)
+    {
+        Assert.False(AdminInputRules.TryParseClock(input, out var seconds));
+        Assert.Null(seconds);
+    }
+
+    [Theory]
+    [InlineData(null, "")]
+    [InlineData(0.0, "0:00.0")]
+    [InlineData(5.0, "0:05.0")]
+    [InlineData(65.5, "1:05.5")]
+    [InlineData(3725.5, "62:05.5")]
+    [InlineData(59.96, "1:00.0")]
+    public void FormatClock_ShowsMinutesSecondsAndTenths(double? seconds, string expected)
+    {
+        Assert.Equal(expected, AdminInputRules.FormatClock(seconds));
+    }
+
+    [Theory]
+    [InlineData(0.0)]
+    [InlineData(12.5)]
+    [InlineData(65.5)]
+    [InlineData(3725.5)]
+    public void FormatClock_RoundTripsThroughTryParseClock(double seconds)
+    {
+        Assert.True(AdminInputRules.TryParseClock(AdminInputRules.FormatClock(seconds), out var parsed));
+        Assert.Equal(seconds, parsed!.Value, 1);
+    }
 }

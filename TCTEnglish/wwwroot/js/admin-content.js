@@ -260,6 +260,35 @@
     });
   }
 
+  /** A plain "are you sure?" for actions that need no typed name (for example closing overdue orders). */
+  function initConfirmMessage(doc, win) {
+    qsa(doc, 'form[data-ac-confirm-message]').forEach(function (form) {
+      var message = form.getAttribute('data-ac-confirm-message');
+      if (!message) return;
+      form.addEventListener('submit', function (event) {
+        if (form.getAttribute('data-ac-confirmed') === 'true') return;
+        event.preventDefault();
+        var send = function () {
+          form.setAttribute('data-ac-confirmed', 'true');
+          form.setAttribute('data-ac-submitting', 'true');
+          form.submit();
+        };
+        if (win.Swal) {
+          win.Swal.fire({
+            text: message,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Đồng ý',
+            cancelButtonText: 'Hủy',
+            returnFocus: true
+          }).then(function (result) { if (result && result.isConfirmed) send(); });
+        } else if (win.confirm(message)) {
+          send();
+        }
+      }, true);
+    });
+  }
+
   function formFields(form) {
     return Array.prototype.slice.call(form.elements).map(function (el) {
       return { name: el.name, type: el.type, value: el.value, checked: el.checked, disabled: el.disabled };
@@ -286,6 +315,11 @@
 
       qsa(doc, '[data-ac-dirty-cancel]').forEach(function (button) {
         button.addEventListener('click', function () { form.reset(); refresh(); });
+      });
+
+      // "Hủy thay đổi" is a link back to the saved page: leaving on purpose must not trigger the leave warning.
+      qsa(doc, '[data-ac-discard]').forEach(function (link) {
+        link.addEventListener('click', function () { submitting = true; });
       });
 
       win.addEventListener('beforeunload', function (event) {
@@ -322,6 +356,9 @@
           var value = field(el.getAttribute('data-ac-bind')).trim();
           el.textContent = value || el.getAttribute('data-ac-empty') || '';
           el.classList.toggle('is-empty', !value);
+        });
+        qsa(preview, '[data-ac-show-if]').forEach(function (el) {
+          el.hidden = !field(el.getAttribute('data-ac-show-if')).trim();
         });
         qsa(preview, '[data-ac-bind-pic]').forEach(function (box) {
           var img = box.querySelector('[data-ac-pic-img]');
@@ -368,13 +405,61 @@
     });
   }
 
+  /** Arrow keys, Home and End move focus between tabs (roving tabindex); Enter follows the link as usual. */
+  function nextTabIndex(count, current, key) {
+    if (count <= 0) return -1;
+    if (key === 'ArrowRight' || key === 'ArrowDown') return (current + 1) % count;
+    if (key === 'ArrowLeft' || key === 'ArrowUp') return (current - 1 + count) % count;
+    if (key === 'Home') return 0;
+    if (key === 'End') return count - 1;
+    return -1;
+  }
+
+  function initTablists(doc) {
+    qsa(doc, '[role="tablist"]').forEach(function (list) {
+      list.addEventListener('keydown', function (event) {
+        var tabs = qsa(list, '[role="tab"]').filter(function (t) { return t.getAttribute('aria-disabled') !== 'true'; });
+        var current = tabs.indexOf(doc.activeElement);
+        if (current < 0) return;
+        var target = nextTabIndex(tabs.length, current, event.key);
+        if (target < 0) return;
+        event.preventDefault();
+        tabs.forEach(function (t, i) { t.setAttribute('tabindex', i === target ? '0' : '-1'); });
+        tabs[target].focus();
+      });
+    });
+  }
+
+  /** A button outside the form (for example in a confirmation modal) that sends it once. */
+  function initSubmitButtons(doc, win) {
+    qsa(doc, '[data-ac-submit-form]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var form = doc.getElementById(button.getAttribute('data-ac-submit-form'));
+        if (!form || button.disabled) return;
+        button.disabled = true;
+        button.setAttribute('aria-busy', 'true');
+        var modalId = button.getAttribute('data-ac-dismiss-modal');
+        var modalEl = modalId ? doc.getElementById(modalId) : null;
+        if (modalEl && win.bootstrap && win.bootstrap.Modal) {
+          var instance = win.bootstrap.Modal.getInstance(modalEl);
+          if (instance) instance.hide();
+        }
+        form.setAttribute('data-ac-submitting', 'true');
+        form.submit();
+      });
+    });
+  }
+
   function init(doc) {
     var win = doc.defaultView || (typeof window !== 'undefined' ? window : null);
     if (!win) return;
+    initTablists(doc);
     initCounters(doc);
     initAutoSubmit(doc);
     initPendingState(doc);
     initConfirmDelete(doc, win);
+    initConfirmMessage(doc, win);
+    initSubmitButtons(doc, win);
     initDirtyGuard(doc, win);
     initPreviews(doc);
     initImageFallbacks(doc);
@@ -395,6 +480,7 @@
     isDirty: isDirty,
     snapshotFields: snapshotFields,
     previewInitial: previewInitial,
+    nextTabIndex: nextTabIndex,
     init: init
   };
 });

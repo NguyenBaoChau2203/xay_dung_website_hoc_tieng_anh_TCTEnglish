@@ -228,6 +228,84 @@ public static partial class AdminInputRules
         return new TextCheck(value, value.Length > max);
     }
 
+    [GeneratedRegex(@"^\d{1,5}(\.\d{1,3})?$", RegexOptions.CultureInvariant)]
+    private static partial Regex PlainSecondsPattern();
+
+    [GeneratedRegex(@"^[0-5]\d(\.\d{1,3})?$", RegexOptions.CultureInvariant)]
+    private static partial Regex ClockSecondsPattern();
+
+    [GeneratedRegex(@"^\d{1,5}$", RegexOptions.CultureInvariant)]
+    private static partial Regex WholeNumberPattern();
+
+    [GeneratedRegex(@"^[0-5]?\d$", RegexOptions.CultureInvariant)]
+    private static partial Regex SexagesimalPattern();
+
+    /// <summary>
+    /// Reads a time typed by an admin: seconds ("5.5"), "m:ss(.s)" or "h:mm:ss(.s)". Empty means "not set" (true, null).
+    /// Anything else, including negative numbers and minutes or seconds of 60 or more after a colon, is rejected.
+    /// </summary>
+    public static bool TryParseClock(string? input, out double? seconds)
+    {
+        seconds = null;
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return true;
+        }
+
+        var parts = input.Trim().Split(':');
+        double total;
+        if (parts.Length == 1)
+        {
+            if (!PlainSecondsPattern().IsMatch(parts[0]))
+            {
+                return false;
+            }
+
+            total = double.Parse(parts[0], System.Globalization.CultureInfo.InvariantCulture);
+        }
+        else if (parts.Length is 2 or 3)
+        {
+            var last = parts[^1];
+            if (!ClockSecondsPattern().IsMatch(last))
+            {
+                return false;
+            }
+
+            var leading = parts[..^1];
+            if (!WholeNumberPattern().IsMatch(leading[0]) || (leading.Length == 2 && !SexagesimalPattern().IsMatch(leading[1])))
+            {
+                return false;
+            }
+
+            var secondsPart = double.Parse(last, System.Globalization.CultureInfo.InvariantCulture);
+            total = leading.Length == 1
+                ? int.Parse(leading[0], System.Globalization.CultureInfo.InvariantCulture) * 60 + secondsPart
+                : int.Parse(leading[0], System.Globalization.CultureInfo.InvariantCulture) * 3600
+                    + int.Parse(leading[1], System.Globalization.CultureInfo.InvariantCulture) * 60 + secondsPart;
+        }
+        else
+        {
+            return false;
+        }
+
+        seconds = total;
+        return true;
+    }
+
+    /// <summary>Seconds as "m:ss.s" (minutes are not capped), empty for null.</summary>
+    public static string FormatClock(double? seconds)
+    {
+        if (!seconds.HasValue || !double.IsFinite(seconds.Value) || seconds.Value < 0)
+        {
+            return string.Empty;
+        }
+
+        var tenths = (long)Math.Round(seconds.Value * 10, MidpointRounding.AwayFromZero);
+        var minutes = tenths / 600;
+        var rest = tenths % 600;
+        return $"{minutes}:{rest / 10:00}.{rest % 10}";
+    }
+
     public static int TotalPages(int totalItems, int pageSize)
         => totalItems <= 0 || pageSize <= 0 ? 0 : (int)Math.Ceiling(totalItems / (double)pageSize);
 

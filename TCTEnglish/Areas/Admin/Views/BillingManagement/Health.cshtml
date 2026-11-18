@@ -1,28 +1,31 @@
 @model TCTEnglish.ViewModels.Billing.PaymentHealthViewModel
 @{
-    ViewData["Title"] = "Payment Provider Health";
+    ViewData["Title"] = "Tình trạng cổng thanh toán";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
-    <div>
-        <h1 class="h4 fw-bold mb-1">
-            <i class="bi bi-heart-pulse-fill text-danger me-2"></i>Payment Provider Health
-        </h1>
-        <p class="text-muted small mb-0">
-            Trạng thái cấu hình của các cổng thanh toán và background workers.
-            <strong class="text-danger">Giá trị secret không bao giờ được hiển thị ở đây.</strong>
-        </p>
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-content.css" asp-append-version="true" />
+}
+
+<div class="ac-page ac-billing">
+<header class="ac-header">
+    <div class="ac-header-row">
+        <div class="ac-header-main">
+            <span class="ac-header-icon" aria-hidden="true"><i class="fa-solid fa-heart-pulse"></i></span>
+            <div class="ac-header-text">
+                <h1 class="ac-title"><span>Tình trạng cổng thanh toán</span></h1>
+                <p class="ac-subtitle">Trạng thái cấu hình của các cổng thanh toán và tiến trình nền. <strong class="ac-secret-note">Giá trị bí mật không bao giờ được hiển thị ở đây.</strong></p>
+            </div>
+        </div>
+        <div class="ac-header-actions">
+            <a asp-area="Admin" asp-controller="BillingManagement" asp-action="Index" class="btn ac-btn ac-btn--outline">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i><span>Quay lại</span>
+            </a>
+        </div>
     </div>
-    <div class="d-flex gap-2">
-        <a asp-area="Admin"
-           asp-controller="BillingManagement"
-           asp-action="Index"
-           class="btn btn-outline-secondary btn-sm">
-            <i class="bi bi-arrow-left me-1"></i>Quay lại
-        </a>
-    </div>
-</div>
+</header>
+<partial name="_AcAlerts" />
 
 @* ── Provider cards ────────────────────────────────────────────────────── *@
 <div class="row g-4 mb-5">
@@ -32,7 +35,7 @@
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
                     <h2 class="h6 fw-semibold mb-0">
-                        <i class="bi bi-credit-card me-1 text-primary"></i>@provider.DisplayName
+                        <i class="fa-solid fa-credit-card me-1 text-primary"></i>@provider.DisplayName
                     </h2>
                     <span class="@provider.StatusBadgeClass">@provider.Status</span>
                 </div>
@@ -40,49 +43,49 @@
                     <table class="table table-sm mb-0">
                         <tbody>
                         <tr>
-                            <td class="text-muted small">Enabled</td>
+                            <td class="text-muted small">Đã bật</td>
                             <td>
                                 @if (provider.Enabled)
                                 {
-                                    <span class="badge bg-success-subtle text-success-emphasis border border-success-subtle">true</span>
+                                    <span class="badge bg-success-subtle text-success-emphasis border border-success-subtle">Có</span>
                                 }
                                 else
                                 {
-                                    <span class="badge bg-secondary-subtle text-secondary-emphasis border">false</span>
+                                    <span class="badge bg-secondary-subtle text-secondary-emphasis border">Không</span>
                                 }
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-muted small">Configured</td>
+                            <td class="text-muted small">Đã cấu hình</td>
                             <td>
                                 @if (provider.Configured)
                                 {
-                                    <span class="badge bg-success-subtle text-success-emphasis border border-success-subtle">Yes</span>
+                                    <span class="badge bg-success-subtle text-success-emphasis border border-success-subtle">Có</span>
                                 }
                                 else
                                 {
-                                    <span class="badge bg-danger-subtle text-danger-emphasis border border-danger-subtle">No</span>
+                                    <span class="badge bg-danger-subtle text-danger-emphasis border border-danger-subtle">Không</span>
                                 }
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-muted small">BaseUrl</td>
+                            <td class="text-muted small">Địa chỉ gốc (BaseUrl)</td>
                             <td>@PresenceBadge(provider.HasBaseUrl)</td>
                         </tr>
                         <tr>
-                            <td class="text-muted small">ReturnUrl</td>
+                            <td class="text-muted small">Địa chỉ trả về (ReturnUrl)</td>
                             <td>@PresenceBadge(provider.HasReturnUrl)</td>
                         </tr>
                         <tr>
-                            <td class="text-muted small">IPN / Webhook URL</td>
+                            <td class="text-muted small">Địa chỉ IPN / Webhook</td>
                             <td>@PresenceBadge(provider.HasIpnUrl)</td>
                         </tr>
                         <tr>
-                            <td class="text-muted small">Merchant / TmnCode</td>
+                            <td class="text-muted small">Mã đơn vị bán (Merchant / TmnCode)</td>
                             <td>@PresenceBadge(provider.HasMerchantCode)</td>
                         </tr>
                         <tr>
-                            <td class="text-muted small">Secret key</td>
+                            <td class="text-muted small">Khóa bí mật</td>
                             <td>@PresenceBadge(provider.HasSecret)</td>
                         </tr>
                         </tbody>
@@ -91,14 +94,14 @@
                     @if (provider.MissingFields.Count > 0)
                     {
                         <div class="alert alert-warning py-2 px-3 mt-3 mb-0 small">
-                            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                            <i class="fa-solid fa-triangle-exclamation me-1"></i>
                             <strong>Thiếu:</strong> @string.Join(", ", provider.MissingFields)
                         </div>
                     }
                     @if (provider.Status == "Disabled")
                     {
                         <div class="alert alert-secondary py-2 px-3 mt-3 mb-0 small">
-                            <i class="bi bi-info-circle me-1"></i>Provider này chưa được kích hoạt.
+                            <i class="fa-solid fa-circle-info me-1"></i>Cổng thanh toán này chưa được kích hoạt.
                         </div>
                     }
                 </div>
@@ -111,14 +114,15 @@
 <div class="card border-0 shadow-sm">
     <div class="card-header bg-white py-3">
         <h2 class="h6 fw-semibold mb-0">
-            <i class="bi bi-gear-wide-connected me-1 text-secondary"></i>Billing Background Workers
+            <i class="fa-solid fa-gears me-1 text-secondary"></i>Tiến trình nền của thanh toán
         </h2>
     </div>
     <div class="card-body p-0">
+        <div class="table-responsive">
         <table class="table table-hover align-middle mb-0">
             <thead class="table-light">
             <tr>
-                <th class="ps-4">Worker</th>
+                <th class="ps-4">Tiến trình</th>
                 <th>Mô tả</th>
                 <th>Trạng thái</th>
             </tr>
@@ -134,6 +138,7 @@
             }
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
@@ -141,12 +146,12 @@
 <div class="card border-warning border-0 shadow-sm mt-4">
     <div class="card-header bg-warning-subtle py-3">
         <h2 class="h6 fw-semibold mb-0 text-warning-emphasis">
-            <i class="bi bi-shield-lock-fill me-1"></i>Hướng dẫn cấu hình an toàn
+            <i class="fa-solid fa-shield-halved me-1"></i>Hướng dẫn cấu hình an toàn
         </h2>
     </div>
     <div class="card-body">
         <p class="small text-muted mb-2">
-            Không bao giờ đặt secret trực tiếp vào <code>appsettings.json</code>.
+            Không bao giờ đặt khóa bí mật trực tiếp vào <code>appsettings.json</code>.
             Sử dụng một trong các phương pháp sau:
         </p>
         <ul class="small mb-2">
@@ -169,7 +174,8 @@
     static Microsoft.AspNetCore.Html.IHtmlContent PresenceBadge(bool present)
     {
         return present
-            ? new Microsoft.AspNetCore.Html.HtmlString("<span class=\"badge bg-success-subtle text-success-emphasis border border-success-subtle\">Present</span>")
-            : new Microsoft.AspNetCore.Html.HtmlString("<span class=\"badge bg-danger-subtle text-danger-emphasis border border-danger-subtle\">Missing</span>");
+            ? new Microsoft.AspNetCore.Html.HtmlString("<span class=\"badge bg-success-subtle text-success-emphasis border border-success-subtle\">Đã có</span>")
+            : new Microsoft.AspNetCore.Html.HtmlString("<span class=\"badge bg-danger-subtle text-danger-emphasis border border-danger-subtle\">Còn thiếu</span>");
     }
 }
+</div>

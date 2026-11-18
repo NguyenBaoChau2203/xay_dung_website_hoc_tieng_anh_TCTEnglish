@@ -147,6 +147,27 @@ test('previewInitial prefers the emoji, then the first letter of the term', () =
   assert.equal(A.previewInitial(null, undefined), '?');
 });
 
+test('nextTabIndex wraps around and supports Home and End', () => {
+  assert.equal(A.nextTabIndex(4, 0, 'ArrowRight'), 1);
+  assert.equal(A.nextTabIndex(4, 3, 'ArrowRight'), 0);
+  assert.equal(A.nextTabIndex(4, 0, 'ArrowLeft'), 3);
+  assert.equal(A.nextTabIndex(4, 2, 'Home'), 0);
+  assert.equal(A.nextTabIndex(4, 1, 'End'), 3);
+  assert.equal(A.nextTabIndex(4, 1, 'Enter'), -1);
+  assert.equal(A.nextTabIndex(0, 0, 'ArrowRight'), -1);
+});
+
+test('the listening editor script keeps rows contiguous without building HTML from data', () => {
+  const editorPath = path.join(__dirname, '..', '..', 'TCTEnglish', 'wwwroot', 'js', 'admin-listening-editor.js');
+  const source = fs.readFileSync(editorPath, 'utf8');
+  assert.equal(/innerHTML|outerHTML|insertAdjacentHTML|document\.write|eval\(|new Function/.test(source), false);
+  assert.match(source, /AC\.reindexName/);
+  assert.match(source, /AC\.reindexId/);
+  assert.match(source, /AC\.moveItem/);
+  // The two-phase radio fix: selections are restored after the names are rewritten.
+  assert.match(source, /radios\.forEach/);
+});
+
 test('the file never writes data with innerHTML or eval', () => {
   const source = fs.readFileSync(jsPath, 'utf8');
   assert.equal(/innerHTML|outerHTML|insertAdjacentHTML|document\.write|eval\(|new Function/.test(source), false);

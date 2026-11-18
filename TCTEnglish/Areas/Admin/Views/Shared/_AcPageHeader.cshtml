@@ -44,9 +44,21 @@
             <div class="ac-header-actions">
                 @foreach (var action in Model.Actions)
                 {
-                    <a href="@action.Url" class="btn ac-btn ac-btn--@action.Style" title="@(action.Title ?? action.Text)">
-                        <i class="@action.Icon" aria-hidden="true"></i><span>@action.Text</span>
-                    </a>
+                    if (action.IsPost)
+                    {
+                        <form method="post" action="@action.Url" class="ac-inline-form" data-ac-pending data-ac-confirm-message="@action.ConfirmMessage">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn ac-btn ac-btn--@action.Style" title="@(action.Title ?? action.Text)">
+                                <i class="@action.Icon" aria-hidden="true"></i><span>@action.Text</span>
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a href="@action.Url" class="btn ac-btn ac-btn--@action.Style" title="@(action.Title ?? action.Text)">
+                            <i class="@action.Icon" aria-hidden="true"></i><span>@action.Text</span>
+                        </a>
+                    }
                 }
             </div>
         }

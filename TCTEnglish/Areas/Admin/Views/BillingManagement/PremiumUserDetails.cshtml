@@ -1,18 +1,31 @@
-﻿@model TCTVocabulary.Areas.Admin.ViewModels.Billing.AdminPremiumUserDetailsViewModel
+@model TCTVocabulary.Areas.Admin.ViewModels.Billing.AdminPremiumUserDetailsViewModel
 @{
-    ViewData["Title"] = "Chi tiết Premium";
+    ViewData["Title"] = "Chi tiết người dùng Premium";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-    <div>
-        <h1 class="h4 fw-bold mb-1"><i class="bi bi-person-badge-fill me-2 text-primary"></i>Chi tiết người dùng Premium</h1>
-        <p class="text-muted small mb-0">Thông tin người dùng, subscription hiện tại và lịch sử thanh toán.</p>
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-content.css" asp-append-version="true" />
+}
+
+<div class="ac-page ac-billing">
+<header class="ac-header">
+    <div class="ac-header-row">
+        <div class="ac-header-main">
+            <span class="ac-header-icon" aria-hidden="true"><i class="fa-solid fa-id-badge"></i></span>
+            <div class="ac-header-text">
+                <h1 class="ac-title"><span>Chi tiết người dùng Premium</span></h1>
+                <p class="ac-subtitle">Thông tin người dùng, gói đăng ký hiện tại và lịch sử thanh toán.</p>
+            </div>
+        </div>
+        <div class="ac-header-actions">
+            <a asp-area="Admin" asp-controller="BillingManagement" asp-action="PremiumUsers" class="btn ac-btn ac-btn--outline">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i><span>Quay lại</span>
+            </a>
+        </div>
     </div>
-    <a asp-area="Admin" asp-controller="BillingManagement" asp-action="PremiumUsers" class="btn btn-outline-secondary btn-sm">
-        <i class="bi bi-arrow-left me-1"></i>Quay lại
-    </a>
-</div>
+</header>
+<partial name="_AcAlerts" />
 
 <div class="card border-0 shadow-sm mb-3">
     <div class="card-body py-3">
@@ -25,15 +38,15 @@
         <div class="mt-2 d-flex flex-wrap gap-2">
             @if (Model.RolePremiumWithoutActiveSubscription)
             {
-                <span class="badge bg-warning text-dark">Role Premium nhưng không active</span>
+                <span class="badge bg-warning text-dark">Vai trò Premium nhưng không còn hoạt động</span>
             }
             @if (Model.ActiveSubscriptionButRoleNotPremium)
             {
-                <span class="badge bg-danger">Subscription active nhưng role chưa Premium</span>
+                <span class="badge bg-danger">Gói đăng ký đang hoạt động nhưng vai trò chưa là Premium</span>
             }
             @if (Model.PaidOrderNotActivated)
             {
-                <span class="badge bg-info text-dark">Order paid chưa activate</span>
+                <span class="badge bg-info text-dark">Đơn đã thanh toán nhưng chưa kích hoạt</span>
             }
             @if (!Model.RolePremiumWithoutActiveSubscription && !Model.ActiveSubscriptionButRoleNotPremium && !Model.PaidOrderNotActivated)
             {
@@ -44,17 +57,17 @@
 </div>
 
 <div class="card border-0 shadow-sm mb-3">
-    <div class="card-header bg-white py-2"><h2 class="h6 fw-semibold mb-0">Subscription hiện tại</h2></div>
+    <div class="card-header bg-white py-2"><h2 class="h6 fw-semibold mb-0">Gói đăng ký hiện tại</h2></div>
     <div class="card-body py-3">
         @if (Model.CurrentSubscription == null)
         {
-            <p class="text-muted mb-0">Chưa có dữ liệu subscription.</p>
+            <p class="text-muted mb-0">Chưa có dữ liệu gói đăng ký.</p>
         }
         else
         {
             <div class="row g-2">
                 <div class="col-md-3"><div class="small text-muted">Gói</div><div class="fw-semibold">@Model.CurrentSubscription.PlanName</div></div>
-                <div class="col-md-3"><div class="small text-muted">Trạng thái</div><div><span class="@Model.CurrentSubscription.SubscriptionBadgeClass">@Model.CurrentSubscription.SubscriptionStatus</span></div></div>
+                <div class="col-md-3"><div class="small text-muted">Trạng thái</div><div><span class="@Model.CurrentSubscription.SubscriptionBadgeClass">@TCTEnglish.Services.Admin.AdminBillingLabels.SubscriptionStatus(Model.CurrentSubscription.SubscriptionStatus)</span></div></div>
                 <div class="col-md-3"><div class="small text-muted">Bắt đầu</div><div class="fw-semibold">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(Model.CurrentSubscription.StartsAtUtc)</div></div>
                 <div class="col-md-3"><div class="small text-muted">Kết thúc</div><div class="fw-semibold">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(Model.CurrentSubscription.EndsAtUtc)</div></div>
                 <div class="col-md-3"><div class="small text-muted">Còn lại</div><div class="fw-semibold">@(Model.CurrentSubscription.DaysRemaining?.ToString() ?? "-") ngày</div></div>
@@ -67,7 +80,7 @@
 </div>
 
 <div class="card border-0 shadow-sm mb-3">
-    <div class="card-header bg-white py-2"><h2 class="h6 fw-semibold mb-0">Lịch sử subscription</h2></div>
+    <div class="card-header bg-white py-2"><h2 class="h6 fw-semibold mb-0">Lịch sử gói đăng ký</h2></div>
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-sm table-hover align-middle mb-0">
@@ -85,14 +98,14 @@
                 <tbody>
                     @if (!Model.SubscriptionHistory.Any())
                     {
-                        <tr><td colspan="7" class="text-center text-muted py-4">Không có lịch sử subscription.</td></tr>
+                        <tr><td colspan="7" class="text-center text-muted py-4">Không có lịch sử gói đăng ký.</td></tr>
                     }
                     @foreach (var item in Model.SubscriptionHistory)
                     {
                         <tr>
                             <td class="ps-3">#@item.Id</td>
                             <td>@item.PlanName</td>
-                            <td><span class="badge bg-light text-dark border">@item.Status</span></td>
+                            <td><span class="badge bg-light text-dark border">@TCTEnglish.Services.Admin.AdminBillingLabels.SubscriptionStatus(item.Status)</span></td>
                             <td>
                                 <div class="small">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(item.StartsAtUtc)</div>
                                 <div class="small text-muted">đến @TCTEnglish.Services.Billing.BillingTime.ToDisplay(item.EndsAtUtc)</div>
@@ -109,7 +122,7 @@
 </div>
 
 <div class="card border-0 shadow-sm">
-    <div class="card-header bg-white py-2"><h2 class="h6 fw-semibold mb-0">Lịch sử Payment Order</h2></div>
+    <div class="card-header bg-white py-2"><h2 class="h6 fw-semibold mb-0">Lịch sử đơn thanh toán</h2></div>
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-sm table-hover align-middle mb-0">
@@ -127,15 +140,15 @@
                 <tbody>
                     @if (!Model.PaymentOrders.Any())
                     {
-                        <tr><td colspan="7" class="text-center text-muted py-4">Không có payment order.</td></tr>
+                        <tr><td colspan="7" class="text-center text-muted py-4">Không có đơn thanh toán.</td></tr>
                     }
                     @foreach (var item in Model.PaymentOrders)
                     {
                         <tr>
                             <td class="ps-3">@item.OrderCode</td>
                             <td>@item.Provider</td>
-                            <td class="text-end">@item.AmountVnd.ToString("N0") VND</td>
-                            <td><span class="badge bg-light text-dark border">@item.Status</span></td>
+                            <td class="text-end">@TCTEnglish.Services.Billing.BillingTime.FormatMoney(item.AmountVnd)</td>
+                            <td><span class="badge bg-light text-dark border">@TCTEnglish.Services.Billing.PaymentOrderLabels.StatusLabel(item.Status)</span></td>
                             <td>@TCTEnglish.Services.Billing.BillingTime.ToDisplay(item.CreatedAtUtc)</td>
                             <td>@TCTEnglish.Services.Billing.BillingTime.ToDisplay(item.PaidAtUtc)</td>
                             <td>
@@ -154,4 +167,5 @@
             </table>
         </div>
     </div>
+</div>
 </div>

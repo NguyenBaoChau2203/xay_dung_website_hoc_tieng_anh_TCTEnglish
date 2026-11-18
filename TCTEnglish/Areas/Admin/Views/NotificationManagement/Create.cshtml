@@ -2,192 +2,119 @@
 @{
     ViewData["Title"] = "Gửi thông báo hệ thống";
     Layout = "_AdminLayout";
+    var header = new AcPageHeaderModel
+    {
+        Icon = "fa-solid fa-bullhorn",
+        Title = "Gửi thông báo hệ thống",
+        Subtitle = "Thông báo sẽ được gửi tới tất cả người dùng đang hoạt động (trừ tài khoản bị khóa hoặc đã xóa).",
+        Actions = new[] { new AcAction("Lịch sử", Url.Action("History", "NotificationManagement", new { area = "Admin" })!, "fa-solid fa-clock-rotate-left") },
+    };
+    var count = Model.RecipientCount;
 }
 
-@* ── TempData alerts ── *@
-@if (TempData["Success"] is string successMsg)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <i class="bi bi-check-circle-fill me-2"></i>@successMsg
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
-    </div>
-}
-@if (TempData["Error"] is string errorMsg)
-{
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <i class="bi bi-exclamation-triangle-fill me-2"></i>@errorMsg
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
-    </div>
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-content.css" asp-append-version="true" />
 }
 
-<div class="d-flex align-items-center justify-content-between mb-4">
-    <div>
-        <h1 class="h4 mb-0 fw-bold">
-            <i class="fas fa-bullhorn text-primary me-2"></i>Gửi thông báo hệ thống
-        </h1>
-        <p class="text-muted small mt-1 mb-0">
-            Thông báo sẽ được gửi tới <strong>tất cả người dùng</strong> đang hoạt động (trừ tài khoản bị khóa hoặc đã xóa).
-        </p>
-    </div>
-    <a asp-action="History" class="btn btn-outline-secondary btn-sm">
-        <i class="bi bi-clock-history me-1"></i> Lịch sử
-    </a>
-</div>
+<div class="ac-page ac-announce">
+    <partial name="_AcPageHeader" model="header" />
+    <partial name="_AcAlerts" />
 
-<div class="row g-4">
-    @* ── Left: Form ── *@
-    <div class="col-lg-7">
-        <div class="card shadow-sm border-0">
-            <div class="card-header bg-white border-bottom py-3">
-                <h2 class="h6 mb-0 fw-semibold">
-                    <i class="bi bi-pencil-square me-2 text-primary" aria-hidden="true"></i>Soạn thông báo
-                </h2>
-            </div>
-            <div class="card-body p-4">
-                <form id="announcementForm" method="post" asp-action="Create" novalidate>
-                    @Html.AntiForgeryToken()
-                    <input asp-for="BatchId" type="hidden" />
-                    <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
-                    <div class="mb-4">
-                        <label asp-for="Title" for="titleInput" class="form-label fw-semibold">
-                            Tiêu đề <span class="text-danger">*</span>
-                        </label>
-                        <input asp-for="Title"
-                               id="titleInput"
-                               class="form-control"
-                               placeholder="VD: Cập nhật tính năng mới"
-                               maxlength="200"
-                               autocomplete="off" />
-                        <div class="d-flex justify-content-between mt-1">
-                            <span asp-validation-for="Title" class="text-danger small"></span>
-                            <span class="text-muted small">
-                                <span id="titleCount">0</span>/200
-                            </span>
-                        </div>
+    <div class="ac-split">
+        <div class="ac-card ac-card-pad">
+            <h2 class="ac-card-title ac-preview-title"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i><span>Soạn thông báo</span></h2>
+            <form id="announcementForm" method="post" asp-action="Create" novalidate data-ac-pending>
+                @Html.AntiForgeryToken()
+                <input asp-for="BatchId" type="hidden" />
+                <div asp-validation-summary="ModelOnly" class="ac-error ac-error-summary"></div>
+
+                <div class="ac-field">
+                    <label asp-for="Title" for="titleInput" class="ac-label">Tiêu đề <span class="ac-required" aria-hidden="true">*</span></label>
+                    <input asp-for="Title" id="titleInput" class="form-control ac-control" placeholder="VD: Cập nhật tính năng mới"
+                           maxlength="200" data-ac-max="200" autocomplete="off" />
+                    <div class="ac-field-foot">
+                        <span asp-validation-for="Title" class="ac-error"></span>
+                        <span class="ac-counter" data-ac-counter-for="titleInput" aria-hidden="true"></span>
                     </div>
-
-                    <div class="mb-4">
-                        <label asp-for="Message" for="messageInput" class="form-label fw-semibold">
-                            Nội dung <span class="text-danger">*</span>
-                        </label>
-                        <textarea asp-for="Message"
-                                  id="messageInput"
-                                  class="form-control"
-                                  rows="5"
-                                  placeholder="Nhập nội dung thông báo..."
-                                  maxlength="1000"></textarea>
-                        <div class="d-flex justify-content-between mt-1">
-                            <span asp-validation-for="Message" class="text-danger small"></span>
-                            <span class="text-muted small">
-                                <span id="messageCount">0</span>/1000
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="mb-4">
-                        <label asp-for="Url" for="urlInput" class="form-label fw-semibold">
-                            Liên kết <span class="text-muted fw-normal">(không bắt buộc)</span>
-                        </label>
-                        <input asp-for="Url"
-                               id="urlInput"
-                               class="form-control"
-                               placeholder="/Premium"
-                               maxlength="500"
-                               autocomplete="off"
-                               aria-describedby="urlHint" />
-                        <div id="urlHint" class="form-text">
-                            Đường dẫn trong TCT English, ví dụ /Premium hoặc /Vocabulary
-                        </div>
-                        <span asp-validation-for="Url" class="text-danger small"></span>
-                    </div>
-
-                    @* Confirm button — triggers Bootstrap modal *@
-                    <button type="button"
-                            class="btn btn-primary w-100"
-                            id="openConfirmBtn"
-                            data-bs-toggle="modal"
-                            data-bs-target="#confirmModal">
-                        <i class="fas fa-paper-plane me-2"></i>Gửi thông báo
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    @* ── Right: Preview ── *@
-    <div class="col-lg-5">
-        <div class="card shadow-sm border-0">
-            <div class="card-header bg-white border-bottom py-3">
-                <h2 class="h6 mb-0 fw-semibold">
-                    <i class="bi bi-eye me-2 text-secondary" aria-hidden="true"></i>Xem trước
-                </h2>
-            </div>
-            <div class="card-body p-4">
-                <p class="text-muted small mb-3">
-                    Thông báo sẽ hiện như thế này trong chuông thông báo của người dùng:
-                </p>
-
-                @* Notification preview card *@
-                <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-light border">
-                    <div class="flex-shrink-0 d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10 text-primary"
-                         style="width:42px;height:42px;">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <div class="flex-grow-1 min-w-0">
-                        <div class="fw-semibold text-truncate" id="previewTitle" style="font-size:13px;">
-                            <span class="text-secondary fst-italic">Tiêu đề thông báo</span>
-                        </div>
-                        <div class="text-muted" id="previewMessage"
-                             style="font-size:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">
-                            <span class="fst-italic">Nội dung thông báo…</span>
-                        </div>
-                        <div class="text-muted mt-1" style="font-size:11px;">Vừa xong</div>
-                    </div>
-                    <div class="flex-shrink-0 rounded-circle bg-primary"
-                         style="width:8px;height:8px;margin-top:4px;"></div>
                 </div>
 
-                <p class="text-muted small mt-3 mb-0">
-                    <i class="bi bi-info-circle me-1"></i>
-                    Thông báo sẽ gửi đến <i>tất cả người dùng</i> không bị khóa hoặc đã xóa. Không thể
-                    thu hồi sau khi gửi.
-                </p>
-            </div>
+                <div class="ac-field">
+                    <label asp-for="Message" for="messageInput" class="ac-label">Nội dung <span class="ac-required" aria-hidden="true">*</span></label>
+                    <textarea asp-for="Message" id="messageInput" class="form-control ac-control" rows="5" placeholder="Nhập nội dung thông báo..."
+                              maxlength="1000" data-ac-max="1000"></textarea>
+                    <div class="ac-field-foot">
+                        <span asp-validation-for="Message" class="ac-error"></span>
+                        <span class="ac-counter" data-ac-counter-for="messageInput" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div class="ac-field">
+                    <label asp-for="Url" for="urlInput" class="ac-label">Liên kết <span class="ac-hint-inline">(không bắt buộc)</span></label>
+                    <input asp-for="Url" id="urlInput" class="form-control ac-control" placeholder="/Premium" maxlength="500"
+                           autocomplete="off" aria-describedby="urlHint" />
+                    <div id="urlHint" class="ac-hint">Đường dẫn trong TCT English, ví dụ /Premium hoặc /Vocabulary</div>
+                    <span asp-validation-for="Url" class="ac-error"></span>
+                </div>
+
+                <div class="ac-sticky-bar">
+                    <p class="ac-sticky-text" role="status">
+                        <i class="fa-solid fa-users" aria-hidden="true"></i>
+                        Sẽ gửi tới <strong>@count.ToString("N0")</strong> tài khoản đang hoạt động
+                    </p>
+                    <button type="button" class="btn ac-btn ac-btn--primary" id="openConfirmBtn" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span>Gửi thông báo</span>
+                    </button>
+                </div>
+            </form>
         </div>
+
+        <aside class="ac-preview" aria-label="Xem trước thông báo" data-ac-preview data-ac-preview-form="announcementForm">
+            <h2 class="ac-card-title ac-preview-title"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>Xem trước</span></h2>
+            <p class="ac-hint">Thông báo sẽ hiện như thế này trong chuông thông báo của người dùng:</p>
+            <div class="ac-bell-item">
+                <span class="ac-bell-icon" aria-hidden="true"><i class="fa-solid fa-bullhorn"></i></span>
+                <div class="ac-bell-body">
+                    <div class="ac-bell-title" data-ac-bind="Title" data-ac-empty="Tiêu đề thông báo"></div>
+                    <div class="ac-bell-message" data-ac-bind="Message" data-ac-empty="Nội dung thông báo…"></div>
+                    <div class="ac-bell-meta">Vừa xong<span data-ac-show-if="Url"> · <i class="fa-solid fa-link" aria-hidden="true"></i> Có liên kết</span></div>
+                </div>
+                <span class="ac-bell-dot" aria-hidden="true"></span>
+            </div>
+            <p class="ac-hint">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                Thông báo sẽ gửi đến <i>tất cả người dùng</i> không bị khóa hoặc đã xóa. Không thể thu hồi sau khi gửi.
+            </p>
+        </aside>
     </div>
 </div>
 
-@* ── Confirm Modal ── *@
+@* Confirmation: names the number of accounts and mirrors what will be sent. *@
 <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow">
-            <div class="modal-header border-0 pb-0">
-                <h5 class="modal-title" id="confirmModalLabel">
-                    <i class="fas fa-paper-plane text-primary me-2"></i>Xác nhận gửi thông báo
-                </h5>
+        <div class="modal-content ac-modal" data-ac-preview data-ac-preview-form="announcementForm">
+            <div class="modal-header">
+                <h2 class="modal-title ac-modal-title" id="confirmModalLabel">
+                    <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Gửi thông báo tới @count.ToString("N0") tài khoản?
+                </h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
-            <div class="modal-body py-3">
-                <div class="alert alert-warning d-flex gap-2 mb-3">
-                    <i class="bi bi-exclamation-triangle-fill flex-shrink-0 mt-1"></i>
-                    <div>
-                        Thông báo này sẽ được gửi tới <strong>tất cả người dùng</strong>
-                        đang hoạt động. Hành động này <strong>không thể thu hồi</strong>.
-                    </div>
+            <div class="modal-body">
+                <div class="alert ac-alert ac-alert--warning">
+                    <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                    <div>Thông báo này sẽ được gửi tới <strong>tất cả người dùng</strong> đang hoạt động. Không thể thu hồi sau khi gửi.</div>
                 </div>
-
-                <div class="bg-light rounded-3 p-3 border">
-                    <div class="fw-semibold mb-1" id="modalPreviewTitle" style="font-size:14px;"></div>
-                    <div class="text-muted" id="modalPreviewMessage" style="font-size:13px;"></div>
-                    <div class="small mt-2" id="modalPreviewUrlRow" hidden>Liên kết: <code id="modalPreviewUrl"></code></div>
+                <div class="ac-modal-preview">
+                    <div class="ac-modal-preview-title" id="modalPreviewTitle" data-ac-bind="Title" data-ac-empty=""></div>
+                    <div class="ac-modal-preview-message" id="modalPreviewMessage" data-ac-bind="Message" data-ac-empty=""></div>
+                    <div class="ac-hint" id="modalPreviewUrlRow" data-ac-show-if="Url">Liên kết: <code id="modalPreviewUrl" data-ac-bind="Url" data-ac-empty=""></code></div>
                 </div>
             </div>
-            <div class="modal-footer border-0 pt-0">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    <i class="bi bi-x-lg me-1"></i>Huỷ
+            <div class="modal-footer">
+                <button type="button" class="btn ac-btn ac-btn--outline" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Hủy</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="confirmSendBtn">
-                    <i class="fas fa-paper-plane me-1"></i>Xác nhận gửi
+                <button type="button" class="btn ac-btn ac-btn--primary" id="confirmSendBtn" data-ac-submit-form="announcementForm" data-ac-dismiss-modal="confirmModal">
+                    <i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span>Xác nhận gửi</span>
                 </button>
             </div>
         </div>
@@ -195,64 +122,5 @@
 </div>
 
 @section Scripts {
-    <script>
-        (function () {
-            const elTitle      = document.getElementById('titleInput');
-            const elMessage    = document.getElementById('messageInput');
-            const elUrl        = document.getElementById('urlInput');
-            const elTitleCount = document.getElementById('titleCount');
-            const elMsgCount   = document.getElementById('messageCount');
-            const elPrevTitle  = document.getElementById('previewTitle');
-            const elPrevMsg    = document.getElementById('previewMessage');
-            const elModalTitle = document.getElementById('modalPreviewTitle');
-            const elModalMsg   = document.getElementById('modalPreviewMessage');
-            const elModalUrlRow = document.getElementById('modalPreviewUrlRow');
-            const elModalUrl   = document.getElementById('modalPreviewUrl');
-            const elForm       = document.getElementById('announcementForm');
-            const elConfirmBtn = document.getElementById('confirmSendBtn');
-
-            function updateCounts() {
-                elTitleCount.textContent = elTitle.value.length;
-                elMsgCount.textContent   = elMessage.value.length;
-            }
-
-            // Text goes in through textContent only (the placeholder is a node, not markup built from the input).
-            function setPreview(el, value, placeholder, placeholderClass) {
-                el.textContent = '';
-                if (value) { el.textContent = value; return; }
-                const span = document.createElement('span');
-                span.className = placeholderClass;
-                span.textContent = placeholder;
-                el.appendChild(span);
-            }
-
-            function updatePreview() {
-                const t = elTitle.value.trim();
-                const m = elMessage.value.trim();
-                const u = elUrl ? elUrl.value.trim() : '';
-                setPreview(elPrevTitle, t, 'Tiêu đề thông báo', 'text-secondary fst-italic');
-                setPreview(elPrevMsg, m, 'Nội dung thông báo…', 'fst-italic');
-                elModalTitle.textContent = t;
-                elModalMsg.textContent   = m;
-                if (elModalUrlRow && elModalUrl) {
-                    elModalUrl.textContent = u;
-                    elModalUrlRow.hidden = !u;
-                }
-            }
-
-            elTitle.addEventListener('input', function () { updateCounts(); updatePreview(); });
-            elMessage.addEventListener('input', function () { updateCounts(); updatePreview(); });
-            if (elUrl) elUrl.addEventListener('input', updatePreview);
-
-            // "Confirm Send" button inside modal actually submits the form
-            elConfirmBtn.addEventListener('click', function () {
-                bootstrap.Modal.getInstance(document.getElementById('confirmModal'))?.hide();
-                elForm.submit();
-            });
-
-            // Initialise counts from any pre-filled values
-            updateCounts();
-            updatePreview();
-        })();
-    </script>
+    <script src="~/js/admin-content.js" asp-append-version="true"></script>
 }

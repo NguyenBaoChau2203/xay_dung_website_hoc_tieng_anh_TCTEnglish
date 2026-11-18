@@ -1,6 +1,6 @@
 @{
-    var success = TempData["SuccessMessage"] as string;
-    var error = TempData["ErrorMessage"] as string;
+    var success = TempData["SuccessMessage"] as string ?? TempData["Success"] as string;
+    var error = TempData["ErrorMessage"] as string ?? TempData["Error"] as string;
     var warning = TempData["WarningMessage"] as string;
 }
 @if (!string.IsNullOrWhiteSpace(success))
