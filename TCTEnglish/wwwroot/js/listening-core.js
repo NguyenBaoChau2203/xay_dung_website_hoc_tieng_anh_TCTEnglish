@@ -325,7 +325,7 @@
     function baseForms(input) {
         var key = wordKey(input);
         var out = [];
-        function add(form) { if (form && form.length >= 2 && out.indexOf(form) < 0) out.push(form); }
+        function add(form) { if (form && form.length >= 2 && form.trim().length > 0 && out.indexOf(form) < 0) out.push(form); }
         function doubled(stem) { if (/([bdgmnprt])\1$/.test(stem)) add(stem.slice(0, -1)); }
         add(key);
         var w = key;

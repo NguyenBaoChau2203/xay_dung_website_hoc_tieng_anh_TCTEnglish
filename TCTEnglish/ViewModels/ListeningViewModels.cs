@@ -40,6 +40,9 @@ namespace TCTEnglish.ViewModels
         /// <summary>Public lessons the user started but has not finished.</summary>
         public int InProgressLessons { get; set; }
 
+        /// <summary>Average stored quiz score (0-100) of the finished public lessons; null when none has a score (and for guests).</summary>
+        public int? AverageQuizScore { get; set; }
+
         /// <summary>The usable, unfinished lesson the user opened most recently (public or own).</summary>
         public ListeningLessonCardViewModel? ContinueLesson { get; set; }
 
@@ -178,6 +181,12 @@ namespace TCTEnglish.ViewModels
         /// <summary>Premium/Admin: playback speed control.</summary>
         public bool CanUseSpeed { get; set; }
 
+        /// <summary>Premium/Admin: any word of the transcript can be looked up (everyone else gets the lesson vocabulary only).</summary>
+        public bool CanLookupAnyWord { get; set; }
+
+        /// <summary>URL of the signed-in user's "Từ vựng Luyện nghe" set when it already exists; null otherwise (opening the page never creates it).</summary>
+        public string? WordSetUrl { get; set; }
+
         private static readonly Regex VideoIdPattern = new("^[A-Za-z0-9_-]{6,20}$", RegexOptions.Compiled);
 
         /// <summary>The YouTube id when it is well formed (safe for a URL and for markup), otherwise null.</summary>
@@ -290,5 +299,8 @@ namespace TCTEnglish.ViewModels
     {
         public string Key { get; set; } = string.Empty;      // "A1", "B2" ...
         public int LessonCount { get; set; }
+
+        /// <summary>Public lessons of this level the user finished (0 for guests).</summary>
+        public int CompletedCount { get; set; }
     }
 }

@@ -76,6 +76,7 @@ test('baseForms: always starts with the word itself, is unique and has at most s
         if (w) assert.equal(forms[0], core.baseForms(w)[0]);
     });
     assert.deepEqual(core.baseForms(''), []);
+    assert.deepEqual(core.baseForms('   '), []);
     assert.deepEqual(core.baseForms(null), []);
 });
 
