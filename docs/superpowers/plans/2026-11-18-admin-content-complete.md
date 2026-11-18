@@ -757,3 +757,43 @@ Admin pages currently use Bootstrap Icons almost everywhere (counts in the main 
 - G15 pass: no `innerHTML`/`eval` in `admin-content.js` (asserted by a node test); no credentials, `.tmp/` or screenshots staged.
 - Decisions: `TryNormalizeDuration` treats an empty duration as "not set" (import fills it later) and rejects `00:00`; the delete confirmation compares the typed name exactly after trimming what the admin typed.
 - Throwaway content: none.
+
+### A2 — Vocabulary admin logic (2026-11-18)
+
+**Built (tests first).**
+- `Services/Admin/AdminVocabularyModels.cs` (DTOs, messages, `IAdminVocabularyService`) and `AdminVocabularyService.cs`; 71 unit tests in `AdminVocabularyServiceTests.cs` (SQLite in memory, real `PersonalSetService`), plus the DI test in `AdminContentPagesIntegrationTests.cs`.
+- `Program.cs`: exactly one added line, `AddScoped<IAdminVocabularyService, AdminVocabularyService>()`, next to `IPersonalSetService`.
+
+**Findings now covered by a passing test.**
+
+| # | Test (class `AdminVocabularyServiceTests`) | Outcome |
+| --- | --- | --- |
+| S1 | `S1_TheSharingRule_GrantsViewToWhoeverOwnsTheFolder…` (characterises the rule), `S1_CreateSystemSet_RejectsAFolderOfAnotherUser`, `S1_UpdateSystemSet_RejectsAFolderOfAnotherUser_AndAMissingFolder` | Fixed: the folder must belong to the set's owner |
+| S2 | `S2_CreateSystemSet_IsOwnedBySystemUser_AndPublic_AndStamped` and the name, length, duplicate and no-system-user cases | Fixed: owner = system user, `Public`, no owner dropdown |
+| S3 | `S3_Delete_GoesThroughThePersonalSetService…`, `S3_Delete_NeedsTheExactName…` | Fixed: deletion uses `IPersonalSetService.DeleteSetAsync(isAdmin: true)` in one transaction; typed name required |
+| S4 | `S4_RenamingASystemSet_IsBlocked…`, `S4_MovingASystemSetToAnotherSystemFolder_Works_WithAWarning…` | Mitigated (D3): rename blocked; a folder move warns that the seeder also matches by folder; JSON export added |
+| S5 | `S5_ListSets_ClampsAPageBelowOne`, `…ShowsTheLastPage…`, `…OnAnEmptyDatabase…` | Fixed in the service (controller switches in A3) |
+| S6 | `S6_AddCard_*` (17 invalid-input cases, limits, trimming, blank → null) | Fixed |
+| S7 | `S7_UpdateCard_ReturnsTheCardsRealSet…` | Fixed: returns the card's real set id; Emoji, UK IPA, CEFR, parts of speech, English meaning are editable |
+| S8 | `S8_ListCards_*` (paging at 50, search, topic, quality flags and filters, set summary) | Fixed in the service |
+| S9 | "No Name" is gone with the owner dropdown; every write logs admin id, set id, owner id and card count (`ILogger`) | Fixed |
+| D2 | `D2_*` | Learner sets: update and card edits `Forbidden`; "private" turns the share link off too; cannot be made public |
+
+**Decisions and deviations.**
+- **The controller switches to the service in A3, together with the views**, not in A2. The old views post `OwnerId` and use an owner dropdown that no longer exists, so an adapter would be throwaway code; keeping the old controller for one local commit keeps every page working at every commit. The "thin controller" acceptance item therefore closes in A3.
+- Making a learner set private also clears `ShareSlug`, because `SubscribeAsync(slug)` grants access whatever `Visibility` says. Subscribers and folder/class sharing are not affected (recorded for known-issues).
+- Limits chosen where the column has none (`Cards.Definition`, `Example`, `Topic` are unbounded text): Definition 1000, Example and translation 1000, Topic 100, ImageUrl 500; set description 1000.
+- Search uses `Contains`: case-insensitive on MariaDB (collation), case-sensitive on SQLite, so the unit test uses the exact case.
+- The seeder also matches cards by `Term`: renaming a term in the admin can look like a new card to the next sync (goes to known-issues with the rename rule).
+
+**Gate record — A2.**
+- G1 pass: 0 errors, 58 warnings (= A1; none from the new files).
+- G2/G3 pass: 3315 tests (3243 + 71 + 1), 0 failed, 53 skipped.
+- G4 pass: unchanged since A1 (511 node tests, the same 1 known failure; no JS touched).
+- G5 pass: learner code and contracts untouched; `has-pending-model-changes` → "No changes".
+- G6 pass: no CSS/views changed; `git diff --check` clean for the changed files.
+- G7 pass: `Program.cs` diff = 1 DI line; new files only under `Services/Admin/` and `TCTEnglish.Tests/`; `_AdminLayout.cshtml`, `Services/Billing/**`, `NotificationService.cs`, `PersonalSetService*`, the seeder and `system-vocabulary.json` untouched.
+- G8–G12 n/a (no UI change in this phase).
+- G13 pass (full suite incl. `PersonalSet*` and `Vocabulary*`).
+- G14 n/a. G15 pass: service has no I/O beyond the database, every write goes through validation, URL rule `IsSafeImageUrl`, folder ownership check (S1), no credentials in the diff.
+- Throwaway content: none.
