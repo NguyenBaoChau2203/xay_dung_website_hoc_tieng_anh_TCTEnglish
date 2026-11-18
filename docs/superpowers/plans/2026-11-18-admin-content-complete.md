@@ -826,3 +826,41 @@ Admin pages currently use Bootstrap Icons almost everywhere (counts in the main 
 - G15 pass: antiforgery required on all 7 POSTs (tested, 400 without a token); admin role on every action (403 for a standard user); the exact name is required to delete; folder ownership rule; `IsSafeImageUrl`; no HTML built from data in the new JS.
 - Tests changed: `AdminContentPagesIntegrationTests.cs` (14 tests, new this phase). No existing test edited.
 - Throwaway content: none (all writes are in the in-memory test databases; the browser checks only read, and the delete dialog was cancelled).
+
+### A4 — Listening admin logic (2026-11-18)
+
+**Built (tests first).**
+- `Services/Admin/AdminListeningModels.cs` (DTOs, Vietnamese messages, `IAdminListeningService`) and `AdminListeningService.cs`; 87 unit tests in `AdminListeningServiceTests.cs` (SQLite in memory, a fake `IYoutubeTranscriptService` that can fail, block and count calls); the host DI test now checks both admin services.
+- `Program.cs`: one more DI line, `AddScoped<IAdminListeningService, AdminListeningService>()`; the file's diff against `master` is now exactly the two registration lines.
+
+**Findings now covered by a passing test.**
+
+| # | Tests (class `AdminListeningServiceTests`) | Outcome |
+| --- | --- | --- |
+| L1 | `L1_ALearnersLesson_IsReadOnlyForAnAdmin_ButCanBeUnpublishedAndDeleted`, `L1_TheEditor_ShowsTheOwnerAndTheKindOfLesson`, `L1_ListLessons_ShowsSystemLessonsByDefault…` | Fixed: the list defaults to system lessons; a learner's lesson is read-only except unpublish and delete; the editor names the owner |
+| L2 | `L2_L3_L10_SaveInfo_RejectsBadInput…` (YouTube cases) | Fixed: only ids and watch / youtu.be / embed / shorts / nocookie links are accepted and stored as the 11-character id; anything else is an error |
+| L3 | same theory, `Level` cases | Fixed: level must be A1–C2 on the server |
+| L4 | `L4_SaveQuiz_RejectsAnUnanswerableOrOversizedQuestion…` (16 cases), `L4_TheMessageNamesTheQuestionAndTheEmptyOption`, `L4_SaveQuiz_StoresTrimmedQuestions…` | Fixed: empty A or B no longer throws; the right answer must be A–D and filled; D only after C; limits; messages like "Câu 2: đáp án đúng C đang để trống."; saves are all-or-nothing and learner progress is untouched |
+| L5 | `L5_SaveVocab_*` | Fixed: an empty definition no longer throws; limits and URL rule |
+| L6 | `L6_SaveTranscript_*` | Fixed: times both empty or `0 ≤ start < end`, starts not going backwards, per-row messages ("Dòng 3: thời điểm kết thúc phải sau thời điểm bắt đầu."), all-or-nothing, a published lesson cannot lose its last line |
+| L7 | `L7_Import_*` (9 tests) | Fixed: replacing existing lines needs `replaceExisting`; missing YouTube id and provider failures return friendly messages (the detail is only logged); a per-lesson guard answers "Đang nhập lời thoại, vui lòng chờ." to a second click and is released after success or failure |
+| L8 | `L8_*` | Fixed: publishing needs at least one line; warnings (not blocking) for no quiz, no vocabulary, YouTube lesson without timed lines; `incomplete` = no transcript or an unanswerable question |
+| L9 | `L9_Delete_*` | Fixed: the exact title is required; content and every learner's progress are removed in one transaction; the editor reports how many learners have progress (for the dialog) |
+| L10 | info theory (`AudioUrl`, `ThumbnailUrl`, `Duration`) | Fixed: URLs follow the https/local rule; duration is normalised to `mm:ss` or rejected with "Thời lượng dạng mm:ss, ví dụ 04:12." |
+| S5 (listening) | `S5_ListLessons_*` | Fixed in the service (controller switches in A5) |
+
+**Decisions and deviations.**
+- As in A3, the controller switches to the service together with the views in **A5**, so every local commit keeps all pages working. This includes the old routes `ManageTranscript`, `ManageQuiz`, `ManageVocab` redirecting (302) to the editor tabs.
+- Free-text lesson fields collapse repeated whitespace (a learner sees one line); only quiz explanations keep line breaks. Limits chosen where the column has none: line text 1000, meaning 1000, definition 1000, example 1000, explanation 1000; 2000 lines, 100 questions and 200 vocabulary items per lesson.
+- The importer stores a normalised duration (`03:07`) only when the lesson has none.
+- A duplicate YouTube id among system lessons is a warning, not an error (the catalog importer keys lessons by video id, so the admin is told).
+
+**Gate record — A4.**
+- G1 pass: 0 errors; the web project still builds with 42 warnings (full rebuild), none from the new files.
+- G2/G3 pass: 3415 tests (3328 + 87), 0 failed, 53 skipped.
+- G4 pass: no JavaScript changed; node suite unchanged from A3 (513 tests, the same 1 known failure).
+- G5 pass: learner `ListeningService` and the catalog rule (`OwnerUserId == null && IsPublished`) untouched; `has-pending-model-changes` → "No changes".
+- G6 pass: no CSS or views changed; `git diff --check` clean.
+- G7 pass: only new files under `Services/Admin/` and `TCTEnglish.Tests/`, plus the second DI line in `Program.cs`.
+- G8–G12 n/a (no UI change in this phase). G13 pass (full suite incl. `Listening*`). G14 n/a. G15 pass: every write validates server-side, learner lessons are forbidden, URL rules, provider errors never reach the admin screen.
+- Throwaway content: none.

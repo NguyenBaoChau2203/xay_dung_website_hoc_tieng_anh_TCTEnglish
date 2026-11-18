@@ -45,15 +45,15 @@ public sealed class AdminContentPagesIntegrationTests
     }
 
     [Fact]
-    public async Task TheAdminVocabularyService_IsRegisteredInTheHost()
+    public async Task TheAdminServices_AreRegisteredInTheHost()
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
 
         using var scope = factory.Services.CreateScope();
-        var service = scope.ServiceProvider.GetRequiredService<IAdminVocabularyService>();
 
-        Assert.IsType<AdminVocabularyService>(service);
+        Assert.IsType<AdminVocabularyService>(scope.ServiceProvider.GetRequiredService<IAdminVocabularyService>());
+        Assert.IsType<AdminListeningService>(scope.ServiceProvider.GetRequiredService<IAdminListeningService>());
     }
 
     [Fact]
