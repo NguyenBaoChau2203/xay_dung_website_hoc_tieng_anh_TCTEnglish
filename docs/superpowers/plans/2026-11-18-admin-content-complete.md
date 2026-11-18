@@ -658,15 +658,15 @@ Record database evidence.
 - **Language:** plan and code comments in English; UI copy in Vietnamese exactly as written here.
 
 ## 10. Definition of Done
-- [ ] S1–S9, L1–L10, P1–P3 and N1 fixed, mitigated as decided, or disproved with evidence.
-- [ ] Admin set and lesson logic lives in two tested services; controllers are thin; set deletion uses the personal-set service.
-- [ ] No folder/owner mismatch possible; system sets public and system-owned; learner content handled per D2.
-- [ ] Listening editor with four tabs, validation without crashes, publish rules, safe import.
-- [ ] The four modules share one admin style that matches the rebuilt admin pages; Vietnamese copy; Font Awesome icons; money and time formats.
-- [ ] Payments and notification admin restyled without logic changes; figures and recipient counts correct.
-- [ ] Laptop, tablet, phone, keyboard, dialogs and contrast verified.
-- [ ] No migration; `Program.cs` limited to DI lines; shared layouts untouched (unless D1); other owners' tests unedited and green.
-- [ ] Tracker, known-issues and section 12 updated.
+- [x] S1–S9, L1–L10, P1–P3 and N1 fixed, mitigated as decided, or disproved with evidence.
+- [x] Admin set and lesson logic lives in two tested services; controllers are thin; set deletion uses the personal-set service.
+- [x] No folder/owner mismatch possible; system sets public and system-owned; learner content handled per D2.
+- [x] Listening editor with four tabs, validation without crashes, publish rules, safe import.
+- [x] The four modules share one admin style that matches the rebuilt admin pages; Vietnamese copy; Font Awesome icons; money and time formats.
+- [x] Payments and notification admin restyled without logic changes; figures and recipient counts correct.
+- [x] Laptop, tablet, phone, keyboard, dialogs and contrast verified.
+- [x] No migration; `Program.cs` limited to DI lines; shared layouts untouched (unless D1); other owners' tests unedited and green.
+- [x] Tracker, known-issues and section 12 updated.
 
 ## 11. Risks
 | Risk | Mitigation |
@@ -926,3 +926,36 @@ The host stopped two attempts at the whole suite for low memory (at A3 and at A5
 - Deviation recorded: the JSON export of a system set lives inside `AdminVocabularyService.ExportSystemSetAsync` (private DTOs mirroring the file's property order) instead of a separate `SystemVocabularyExport.cs`; the other planned file names are unchanged.
 
 **Gate record — A9.** Documentation only: G1–G5 unchanged from A8 (3483 .NET tests, 514 node tests with the single A0 failure, no model change); G6 `git diff --check` clean; G7 only the four docs above and this plan; G8–G12 and G14 n/a; G13 and G15 n/a (no code). Throwaway content: none.
+
+
+### A10 — Full gate, end-to-end run and self-review (2026-11-18)
+
+**End-to-end run (plan 8.5), as the synthetic admin, through the real admin pages on the dev MariaDB, with throwaway content only.** Starting counts: 17 sets, 91 lessons, 42 notifications, 40 payment orders (order checksum `40:1054:2026-11-17 16:53:20.157153`). 35 checks, all passed:
+1. Created the system set "[Thử nghiệm] Bộ từ vựng" in a system folder (database: `Public`, owner `system@tct.local`), added three cards (one without IPA): the cards page showed "Thiếu ví dụ hoặc IPA 1" and the tag "Thiếu IPA"; "Tải JSON" downloaded `system-vocabulary-thu-nghiem-bo-tu-vung.json` with the exact folder → set → card shape; renaming the set was refused with the seeder message and the name stayed unchanged in the database.
+2. The new set is listed on `/Vocabulary/Index` for the learner side (recorded as true).
+3. Opening a learner's set for edit redirected to its read-only cards page; posting a learner's folder id for the throwaway set was rejected with "Thư mục không thuộc chủ sở hữu của bộ thẻ." and the folder stayed `NULL` (message checked on decoded HTML in a second small run that created and deleted another throwaway set).
+4. Created the draft lesson "[Thử nghiệm] Bài nghe" (database: draft, no owner, YouTube id `dQw4w9WgXcQ` parsed from a youtu.be link, duration `04:12`); publishing without a transcript was blocked; transcript rows with an end before the start were refused with "Dòng 1: …", kept the typed rows and saved nothing; after the fix 2 lines were saved; a quiz whose correct option C was empty was refused with "Câu 1: đáp án đúng C đang để trống." and saved nothing; after the fix it saved; publishing then worked and the lesson matched the learner catalog rule (`OwnerUserId IS NULL AND IsPublished`); it was unpublished again.
+5. Payments (read only): revenue 2.093.000 ₫, active Premium 5, pending 0 and manual review 0 equal the database queries; no payment order changed (same checksum afterwards).
+6. Notifications (read only): the form showed 10 accounts, equal to `Status <> Blocked AND AnonymizedAt IS NULL` in the database; the confirmation dialog named "Gửi thông báo tới 10 tài khoản?" and mirrored the typed content; it was cancelled with Escape and the notification count stayed 42. **No announcement was sent.**
+7. Deleted the throwaway lesson and set through their admin delete dialogs by typing their names (a wrong name was refused); their lines, quiz questions and cards went with them. Final counts: 17 sets, 91 lessons, 42 notifications, 0 leftover "[Thử nghiệm]" rows. Created ids: set 22, lesson 106 (a second throwaway set from the folder re-check was also removed). Screenshots are in the ignored `.tmp/admin-content/after/a10/`.
+
+**Final full gate (two groups, `xUnit.MaxParallelThreads=2`).**
+- G1 pass: 0 errors; whole-solution rebuild 56 warnings (A0 baseline 58: the old listening views carried two).
+- G2/G3 pass: 3483 tests, 0 failed, 53 skipped (group 1: 1136 total, 1130 passed, 6 skipped; group 2: 2347 total, 2300 passed, 47 skipped). New tests of this work: 3152 → 3483 (+331: 130 rules, 71 vocabulary service, 88 listening service, 42 page tests).
+- G4 pass: 514 node tests (499 at A0), 513 passed; the only failure is the A0 speaking-catalog hash test, not touched.
+- G5 pass: no learner page or contract changed; `has-pending-model-changes` → "No changes".
+- G6/G7 pass: greps clean; the diff against `master` is 70 files, all inside plan sections 2.1 and 2.2 (plus the owner's source test and the docs); `Program.cs` is exactly the two DI lines; no change in `Services/Billing/**`, `NotificationService.cs`, `PersonalSetService*`, `ListeningService`, `Models/**`, migrations, appsettings, the .csproj, `_AdminLayout.cshtml`, the shared admin CSS, `tct-learning-ui.css` or `system-vocabulary.json`.
+- G8–G15 recorded in A3, A5–A8 above and unchanged since.
+
+**Definition of Done (section 10), self-review.**
+- [x] S1–S9, L1–L10, P1–P3 and N1 fixed, mitigated as decided (S4 by D3: rename blocked, warning and JSON export) or disproved; verdicts in the A0 table, tests in A2 and A4.
+- [x] Set and lesson logic lives in two tested services; controllers are thin; set deletion uses the personal-set service.
+- [x] No folder/owner mismatch is possible; system sets are public and system-owned; learner content is view / private / delete only.
+- [x] Listening editor with four tabs, validation without crashes, publish rules, guarded import (the import against the real YouTube provider was not run on purpose).
+- [x] The four modules share one admin style, Vietnamese copy, Font Awesome icons and money and time formats; the five secondary payment pages keep Bootstrap markup restyled by `.ac-billing` (known issue recorded).
+- [x] Payments and notifications restyled without logic changes; figures and recipient counts equal the database.
+- [x] Laptop, tablet, phone, 200% zoom, keyboard, dialogs and contrast verified in headless Chrome; Safari and Firefox were not.
+- [x] No migration; `Program.cs` limited to DI lines; shared layouts untouched; one owner source test (`test_owner_admin_views_sweep.cjs`) was rewritten on purpose to the new markup and passes; other owners' tests unedited and green.
+- [x] Tracker, known issues and this section updated.
+
+**Open items for the owner.** Nothing was pushed, opened as a PR or deployed. The only uncommitted change in the checkout is the pre-existing blank line in `appsettings.Development.json` (never staged), and `Claude outputs/` (never staged).
