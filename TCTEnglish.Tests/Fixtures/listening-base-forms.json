@@ -1,0 +1,25 @@
+{
+  "_comment": "Shared fixture for the listening word-form rule. TCTEnglish/wwwroot/js/listening-core.js (baseForms) and TCTEnglish/Services/Listening/ListeningWordForms.cs (BaseForms) must both produce exactly these lists, in this order.",
+  "cases": [
+    { "input": "order", "forms": ["order"] },
+    { "input": "orders", "forms": ["orders", "order"] },
+    { "input": "boxes", "forms": ["boxes", "box", "boxe"] },
+    { "input": "cities", "forms": ["cities", "city", "citie"] },
+    { "input": "ordered", "forms": ["ordered", "order", "ordere"] },
+    { "input": "stopped", "forms": ["stopped", "stopp", "stoppe", "stop"] },
+    { "input": "liked", "forms": ["liked", "lik", "like"] },
+    { "input": "studied", "forms": ["studied", "study", "studi", "studie"] },
+    { "input": "making", "forms": ["making", "mak", "make"] },
+    { "input": "running", "forms": ["running", "runn", "runne", "run"] },
+    { "input": "anna's", "forms": ["anna's", "anna"] },
+    { "input": "Anna’s", "forms": ["anna's", "anna"] },
+    { "input": "don't", "forms": ["don't"] },
+    { "input": "dress", "forms": ["dress"] },
+    { "input": "glasses", "forms": ["glasses", "glass", "glasse"] },
+    { "input": "watches", "forms": ["watches", "watch", "watche"] },
+    { "input": "this", "forms": ["this", "thi"] },
+    { "input": "called", "forms": ["called", "call", "calle"] },
+    { "input": "going", "forms": ["going"] },
+    { "input": "playing", "forms": ["playing", "play", "playe"] }
+  ]
+}
