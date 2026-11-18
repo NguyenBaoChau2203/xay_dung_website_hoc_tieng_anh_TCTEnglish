@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.balcony-seeds",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.balcony-seeds",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Nh\u1EEFng m\u1EA7m c\u00E2y tr\u00EAn ban c\u00F4ng",
+        "Level": "beginner",
+        "ContentType": "diaries",
+        "Topic": "Tr\u1ED3ng c\u00E2y",
+        "SourceType": "original-20261114",
+        "PreviewText": "Nh\u1EADt k\u00FD quan s\u00E1t h\u1EA1t gi\u1ED1ng v\u00E0 h\u1ECDc c\u00E1ch ki\u00EAn nh\u1EABn.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.balcony-seeds.10a026aa7d2447f99cb697379f1617b0",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Two tiny green leaves appeared this morning.",
+        "NormalizedHash": "6946338f168186702277fb2d51e3b7cc399d00d81df2890d46d3ffa00d50073b"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.balcony-seeds.ec1bc63eea554808a94e260222830fd8",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.balcony-seeds.139603f857b144fb9ab5ba96e87190fb",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "T\u00F4i th\u1EA5y vui v\u00EC \u0111\u00E3 kh\u00F4ng b\u1ECF cu\u1ED9c qu\u00E1 s\u1EDBm.",
+        "EnglishMeaning": "I felt happy that I had not given up too soon.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.balcony-seeds"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.balcony-seeds.473e6240c61d49d18ec4373e9191ac83",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "T\u00F4i g\u1EA7n nh\u01B0 ngh\u0129 r\u1EB1ng nh\u1EEFng h\u1EA1t gi\u1ED1ng s\u1EBD kh\u00F4ng m\u1ECDc.",
+        "EnglishMeaning": "I almost thought the seeds would not grow.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.balcony-seeds"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.balcony-seeds.7b0abb500e424aa9bde2a6067f92fee3",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "T\u00F4i g\u1ECDi b\u1ED1 ra ban c\u00F4ng \u0111\u1EC3 c\u00F9ng nh\u00ECn ch\u00FAng.",
+        "EnglishMeaning": "I called my father to the balcony to look at them with me.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.balcony-seeds"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.balcony-seeds.99e9158a7000417287c4132d9d3a8fb8",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "M\u1EA5y ng\u00E0y \u0111\u1EA7u, t\u00F4i kh\u00F4ng nh\u00ECn th\u1EA5y \u0111i\u1EC1u g\u00EC m\u1EDBi.",
+        "EnglishMeaning": "For the first few days, I did not see anything new.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.balcony-seeds"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.balcony-seeds.9b0983c28ca745b391317fcf5c896cc7",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Tu\u1EA7n tr\u01B0\u1EDBc t\u00F4i gieo v\u00E0i h\u1EA1t \u0111\u1EADu trong m\u1ED9t chi\u1EBFc h\u1ED9p c\u0169.",
+        "EnglishMeaning": "Last week, I planted some bean seeds in an old box.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.balcony-seeds"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.balcony-seeds.bf33d2bb59ad4eeebd6d492d58a5cc85",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "M\u1ED7i s\u00E1ng t\u00F4i t\u01B0\u1EDBi m\u1ED9t \u00EDt n\u01B0\u1EDBc r\u1ED3i nh\u00ECn m\u1EB7t \u0111\u1EA5t.",
+        "EnglishMeaning": "Every morning, I added a little water and looked at the soil.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.balcony-seeds"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.balcony-seeds.ec1bc63eea554808a94e260222830fd8",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "S\u00E1ng nay hai chi\u1EBFc l\u00E1 xanh nh\u1ECF \u0111\u00E3 xu\u1EA5t hi\u1EC7n.",
+        "EnglishMeaning": "This morning, two tiny green leaves appeared.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.balcony-seeds"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.balcony-seeds.f1158bca2d544f37aaede14ba1781f34",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Vi\u1EC7c ch\u0103m c\u00E2y \u0111ang gi\u00FAp t\u00F4i h\u1ECDc c\u00E1ch ch\u1EDD \u0111\u1EE3i.",
+        "EnglishMeaning": "Looking after plants is helping me learn to wait.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.balcony-seeds"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.balcony-seeds"
+}

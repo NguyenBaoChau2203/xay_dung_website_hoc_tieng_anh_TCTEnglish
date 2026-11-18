@@ -81,6 +81,15 @@ public partial class User
 
     public DateTime? CreatedAt { get; set; }
 
+    /// <summary>Server session generation. Missing or older cookie claims are rejected.</summary>
+    public int SecurityVersion { get; set; }
+
+    /// <summary>Set only after the address is confirmed. Null is not treated as verified.</summary>
+    public DateTime? EmailVerifiedAt { get; set; }
+
+    /// <summary>Set when the account is anonymized. The row is no longer a login identity.</summary>
+    public DateTime? AnonymizedAt { get; set; }
+
 
     public virtual ICollection<Folder> Folders { get; set; } = new List<Folder>();
 
@@ -110,6 +119,7 @@ public partial class User
     public virtual ICollection<WritingAcceptedAnswer> WritingAcceptedAnswersApproved { get; set; } = new List<WritingAcceptedAnswer>();
     public virtual ICollection<WritingExercise> WritingExercises { get; set; } = new List<WritingExercise>();
     public virtual ICollection<UserSpeakingVideoCompletion> UserSpeakingVideoCompletions { get; set; } = new List<UserSpeakingVideoCompletion>();
+    public virtual ICollection<TCTEnglish.Models.UserSpeakingVideoVisit> UserSpeakingVideoVisits { get; set; } = new List<TCTEnglish.Models.UserSpeakingVideoVisit>();
     public virtual ICollection<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; } = new List<UserWritingExerciseProgress>();
     public virtual ICollection<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; } = new List<UserWritingSentenceProgress>();
     public virtual ICollection<UserReadingHistory> UserReadingHistories { get; set; } = new List<UserReadingHistory>();

@@ -1,0 +1,2838 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level B1 - CH\u1ECA TH\u00CDCH EM -",
+        "YoutubeId": "ZlQbDRE7jBU",
+        "Level": "B1",
+        "Topic": "Tr\u00F2 chuy\u1EC7n \u0026 t\u00ECnh c\u1EA3m",
+        "ThumbnailUrl": "https://img.youtube.com/vi/ZlQbDRE7jBU/hqdefault.jpg",
+        "Duration": "20:14",
+        "SourceUrl": "https://www.youtube.com/watch?v=ZlQbDRE7jBU",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.01d8544aa31c410a8f6dae604c7393ad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 998,
+        "EndTime": 1001.92,
+        "Text": "By making me your pet. [music] Don\u0027t say that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.02e0af40bba044de94c7c5a7a40853f8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 993,
+        "EndTime": 998.639,
+        "Text": "You are taking this the wrong way. I\u0027m trying to make your life easier.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.03edf982b4f24d79bd8e414760973a28",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 854,
+        "EndTime": 861.92,
+        "Text": "I am serious. I\u0027ve been thinking about this for a few weeks and I decided to just say it. I don\u0027t like playing games.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.0419807605aa46bfb2b3b0668238b9b1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 747,
+        "EndTime": 754.88,
+        "Text": "I\u0027m sorry. I really am. But I can\u0027t be the person you pay to fix that. Because you\u0027re too proud.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.045874a239404f6a9079e00e849281e9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1116,
+        "EndTime": 1123.2,
+        "Text": "I\u0027m not wanting to control you. I just want to sit across from someone at dinner and not feel completely alone. Is",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.0479d04272ae4ded8a706bd02640fd98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 765,
+        "EndTime": 770.32,
+        "Text": "So, you\u0027re saying no. I\u0027m saying no to the money. What does that mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.0518b23c022944af91c432a6e9c9d969",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1156,
+        "EndTime": 1166.88,
+        "Text": "Because I respect you too much and I respect myself too much. If I sit across from you at dinner, I want it to be because I want to be there, not because you paid my rent this month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.055b5ab16092494e85b73435df0c3512",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 446,
+        "EndTime": 449.759,
+        "Text": "Leo, wait. Just listen to me for a second.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.057e6924ee144197aafa9d97d7a74fdc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1174,
+        "EndTime": 1182.559,
+        "Text": "Because I\u0027m starving. There\u0027s a noodle cart down the street. It costs $2 a bowl. You want to eat at a street cart?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.05b30efb044d4b0e82642f18352ab171",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1197,
+        "EndTime": 1205.2,
+        "Text": "Well, today is your lucky day. The spicy soup is really good. $2? Yep. And I\u0027m not paying for yours.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.06f90138524a47d887ce1be7c4dd86e8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 76,
+        "EndTime": 83.759,
+        "Text": "Yeah, well, everyone is working hard these days. It\u0027s fine. [music] It doesn\u0027t have to be fine. It could be easy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.072f1a09164148a68885b2baa73f478c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 428,
+        "EndTime": 434.8,
+        "Text": "I am. It was a long shift. We were completely full all afternoon. [music] Have you eaten anything today?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.0a547d911ef148bc9d4245b5da8d1843",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1069,
+        "EndTime": 1074,
+        "Text": "Tired of what? Tired of guessing. Guessing what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.0bda86320dd34ed792a826659131285b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 507,
+        "EndTime": 516.24,
+        "Text": "Alina, I don\u0027t have time for that. I work 6 days a week. You wouldn\u0027t have to work here anymore. Tell me how much you need. How much do you make in a month",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.11be4ae226ad441da6d9cfbd2d620092",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 87,
+        "EndTime": 94.32,
+        "Text": "I mean, I see the car you drive, but that\u0027s your business, not mine. I want to make it your business.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.12ca9c547be54c3d9711c7df1ed0ef62",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 96,
+        "EndTime": 105.92,
+        "Text": "I want you to spend time with me outside of this cafe. I want you to go to dinner with me, travel with me on the weekends, just hang out with me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.13b90d8dd1c44c65adb5ed7b44dcb4e8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 600,
+        "EndTime": 604.88,
+        "Text": "What else should I call it? If I take your money, I have to do what you say.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.143adce7efe543b9951eec0d5691ee73",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 792,
+        "EndTime": 796.48,
+        "Text": "I haven\u0027t eaten at a street cart in 15 years.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.147a93926368421aa9f3dc8285751bff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 804,
+        "EndTime": 807.6,
+        "Text": "You\u0027re very stubborn. I know. Are you coming or not?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.147cc2888297428492a367139b9968ec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 542,
+        "EndTime": 544,
+        "Text": "You\u0027re trying to buy me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.188df437b5a04c5ebf4e88d4b1da8a98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 372,
+        "EndTime": 379.84,
+        "Text": "Because I\u0027m starving. There\u0027s a noodle cart down the street. It costs $2 a bowl. You want to eat at a street cart?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.18e71c2459fe4c29a7434105d21ce36b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 908,
+        "EndTime": 914.72,
+        "Text": "Alina, I don\u0027t have time for that. I work 6 days a week. You wouldn\u0027t have to work here anymore.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.190cea568f4f4977bf32ec01df6fd92f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 887,
+        "EndTime": 890.48,
+        "Text": "I\u0027m a very wealthy woman, Leo. [music] You know that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.19b3b721d56a4b7f83ade44e93e80e5a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 83,
+        "EndTime": 87.84,
+        "Text": "What do you mean? I\u0027m a very wealthy woman, Leo. You know that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.1a5ea6d0d3694f0a8ce760283a634828",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 770,
+        "EndTime": 773.68,
+        "Text": "Put your checkbook away. Put your car keys away. Why?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.1ae1bc8f6e8d463589a7bef829836be2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 822,
+        "EndTime": 825.04,
+        "Text": "For me? Did I mess up your order earlier?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.1e0f5a92cdef4c41b6853eeea90ec235",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 807,
+        "EndTime": 814.399,
+        "Text": "Give me a second. I need to find some cash in this bag. Take your time. I\u0027ll wait.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.1ed5d03b47a649fc8e0cdef3861ad06b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 882,
+        "EndTime": 887.44,
+        "Text": "It doesn\u0027t have to be fine. It could be easy. What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.1f38455892f143f5a3712ec4de3265ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 346,
+        "EndTime": 353.44,
+        "Text": "I\u0027m sorry. I really am. But I can\u0027t be the person you pay to fix that because you\u0027re too proud.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.20108c2c09fe48cc8d7e972ad30f4330",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 334,
+        "EndTime": 341.199,
+        "Text": "You don\u0027t understand. [music] You\u0027re 22. You have your whole life to figure things out. I\u0027ve spent my whole",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.20fa638c677842da889bd52a31e4244a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 197,
+        "EndTime": 206.48,
+        "Text": "Don\u0027t say that. What else should I call it? [music] If I take your money, I have to do what you say. If you want to go to a fancy restaurant, I have to go because",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.21f776920cdd414cbc408ef602ae30cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 233,
+        "EndTime": 233.84,
+        "Text": "[music]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.232758123224493ea82d8e84a41f5096",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 58,
+        "EndTime": 59.28,
+        "Text": "[music]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.25b8a53f6c69459ca840cdffb19c5110",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 627,
+        "EndTime": 635.2,
+        "Text": "Yes, it is. Because at the end of the day, the money in my pocket is mine. I earned it. I don\u0027t owe anyone anything.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.276ee8b1d91d43a0b06ff355362cd86e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 168,
+        "EndTime": 172.8,
+        "Text": "You told me your rent went up. You told me you might have to take a second job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.31089031752c4981823d0ee9566db5bf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 544,
+        "EndTime": 549.6,
+        "Text": "I\u0027m buying your time. It\u0027s exactly what your boss does. He pays for your time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.320a1c74d0a540e18e8e94ee76fcb4be",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 646,
+        "EndTime": 653.44,
+        "Text": "You didn\u0027t have to. I can see how you\u0027re looking at me like some old sad woman trying to buy a young guy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.329a1b5dea674125b4ba884f444783f9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 367,
+        "EndTime": 372.319,
+        "Text": "What does that mean? Put your checkbook away. Put your car keys away. Why?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.3457980e53f74c07a0ca41874819b7cb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 781,
+        "EndTime": 784.72,
+        "Text": "Only if we pay for our own bowls. You\u0027re serious?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.345b85d283b94c7697ebf1cdc6d355c5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 391,
+        "EndTime": 395.039,
+        "Text": "I haven\u0027t eaten at a street cart in 15 years.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.3504cf08a395469695ce94181ae72a7a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1186,
+        "EndTime": 1194.24,
+        "Text": "I am. I\u0027ll eat dinner with you, Elena. I like talking to you, too, but we go as equals. I\u0027m not your employee. I\u0027m just Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.3520c79995e349d9ad96a376880a15c4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 364,
+        "EndTime": 367.759,
+        "Text": "So, you\u0027re saying no? I\u0027m saying no to the money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.363b8db16bc34288a0ffcdbac1f32cf9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 706,
+        "EndTime": 714.72,
+        "Text": "It\u0027s realistic. [music] No, it\u0027s lonely. You\u0027re so used to people using you that you want to pay me just so you can control it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.38212b3d419541fda6f83c88813cd9d4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 112,
+        "EndTime": 120.079,
+        "Text": "Tell me how much you need. How much do you make in a month here? I will double [music] it, triple it. I\u0027ll pay your rent. I\u0027ll pay for your school.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.3cd41c854b2a4829870adb7a2e02cf29",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 726,
+        "EndTime": 730.88,
+        "Text": "I\u0027ve tried doing it the normal way. It doesn\u0027t work for me anymore.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.3d90c08fb6954f48b20e1f9497c3a48d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 642,
+        "EndTime": 646.48,
+        "Text": "You really think I\u0027m a terrible person, don\u0027t you? I didn\u0027t say that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.3d9503c31f154d4f804e911d3eb6f7bf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 414,
+        "EndTime": 419.12,
+        "Text": "Oh, Elena, you\u0027re still here. The cafe closed 30 minutes ago.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.3de86d8e27044cd285eda6406a248448",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 105,
+        "EndTime": 112.079,
+        "Text": "Elena, I don\u0027t have time for that. I work 6 days a week. [music] You wouldn\u0027t have to work here anymore.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.3ff0b02db8454d45877119954a3998b9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1036,
+        "EndTime": 1043.439,
+        "Text": "You\u0027re young. You think pride will pay your bills. It won\u0027t. [music] Maybe not. But it helps me sleep at night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.40dde367333b4c42a01d2b53153fd8af",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 743,
+        "EndTime": 747.76,
+        "Text": "company and now I sit in a huge house by myself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.41ecaa3dc3d54857b58c77a41d6214b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 59,
+        "EndTime": 61.44,
+        "Text": "Say what? I like you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.4257569fa5e74042a376f1f6b6047956",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 592,
+        "EndTime": 600.64,
+        "Text": "[music] You are taking this the wrong way. I\u0027m trying to make your life easier by making me your pet. Don\u0027t say that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.4467590afe494c5a86e8a282539a807e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1047,
+        "EndTime": 1054.72,
+        "Text": "You didn\u0027t have to. I can see how you\u0027re looking at me. Like some old sad woman trying to buy a young guy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.465638a87b9942d19223d930e7622a84",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1194,
+        "EndTime": 1197.76,
+        "Text": "I haven\u0027t eaten at a street cart in 15 years.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.48bf8aadc61f4230a0398b7f219538bb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 842,
+        "EndTime": 848.16,
+        "Text": "Oh, no, thank you. That\u0027s really kind of you, but I just want to go home and sleep. I have classes tomorrow morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.4999b876ff3747cb8eb354247368d2a7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1074,
+        "EndTime": 1080.88,
+        "Text": "Guessing what people want from me. You think I have a lot of friends. I have people who like my house. I have people",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.4a3fc67fbd8d4993a1282967fc7156a4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 523,
+        "EndTime": 531.36,
+        "Text": "I never joke about money. You want to pay me to hang out with you? Yes. I don\u0027t even know what to say to that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.4c30e5c0502a4d30bafa37132e3cc022",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 489,
+        "EndTime": 495.68,
+        "Text": "I mean, I see the car you drive, but that\u0027s your business, not mine. I want to make it your business.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.4ecbfb29d60c4162b8bf7b7fdf3fe5fa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 735,
+        "EndTime": 743.6,
+        "Text": "You don\u0027t understand. You\u0027re 22. You have your whole life to figure things out. I\u0027ve spent my whole life building a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.515e6416d2ee493aa904caac8d2014af",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 604,
+        "EndTime": 613.6,
+        "Text": "If you want to go to a fancy restaurant, I have to go because you paid for me. If you want to fly to Paris, I have to smile and go because you pay my rent.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.522a905290ee43efa5650e906eb8d805",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1009,
+        "EndTime": 1018,
+        "Text": "you paid for me. If you want to fly to Paris, I have to smile and go because you pay my rent. That\u0027s not a relationship, Elina. That\u0027s a job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.53b8a8d0dcc044f780df82ac60d26f18",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 773,
+        "EndTime": 781.279,
+        "Text": "Because I\u0027m starving. There\u0027s a noodle cart down the street. It costs $2 [music] a bowl. You want to eat at a street cart?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.553e56a1fe584c5b8e7643d58dd2fc8e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 353,
+        "EndTime": 364.24,
+        "Text": "Because I respect you too much and I respect myself too much. If I sit across from you at dinner, I want it to be because I want to be there, not because you paid my rent this month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.56ad0e77db84483d9307d233e4b8bd5e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 943,
+        "EndTime": 945.279,
+        "Text": "You\u0027re trying to buy me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.58395d19d6d04b0cb25002a8327162bf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1109,
+        "EndTime": 1116,
+        "Text": "No, it\u0027s lonely. You\u0027re so used to people using you that you want to pay me just so you can control it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.584e55f1a7484b7dbf70adc02174ec56",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 903,
+        "EndTime": 908.639,
+        "Text": "I want you to go to dinner with me, travel with me on the weekends, just hang out with me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.58e22fc05ee047f4871276df30e82e8a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 754,
+        "EndTime": 765.6,
+        "Text": "Because I respect you too much and I respect myself too much. If I sit across from you at dinner, I want it to be because I want to be there, not because you paid my rent this month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.5c00029eae824a88940a7f1020a108e8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 668,
+        "EndTime": 672.72,
+        "Text": "Tired of what? Tired of guessing? Guessing what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.5e239e0c6700498f9f2a911871332e79",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 723,
+        "EndTime": 726.72,
+        "Text": "It\u0027s not wrong to want that. [music] But you can\u0027t buy it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.5fce46c74f114ee9b8b407a9cc5ddf20",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 478,
+        "EndTime": 486.16,
+        "Text": "Yeah. Well, everyone is working hard these days. It\u0027s fine. [music] It doesn\u0027t have to be fine. It could be easy. What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.60129640a96a40b39a151017d785adc0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 406,
+        "EndTime": 414.96,
+        "Text": "Give me a second. I need to find some cash in this bag. Take your time. I\u0027ll wait. You\u0027re finally [music] done.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.6159549f57b045ae821815f5b1a87aa8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 120,
+        "EndTime": 122,
+        "Text": "Wait, are you joking?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.61f4211956b54dc7a6c24eaf7ebcfa0b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 624,
+        "EndTime": 627.839,
+        "Text": "rude people for a few dollars. Is that [music] dignity?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.659f9206e5af4466a0fc43ab80ad8567",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 639,
+        "EndTime": 642.16,
+        "Text": "Maybe not. But it helps me sleep at night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.6796e4fa80e240ebb11816daad95b64c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 784,
+        "EndTime": 792.959,
+        "Text": "I am. I\u0027ll eat dinner with you, Elena. I like talking to you, too, but we go as equals. I\u0027m not your employee. I\u0027m just Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.6889a00fc9094c03b4dc46da5c06bed0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 148,
+        "EndTime": 156.4,
+        "Text": "No, my boss pays me to make coffee. He pays for my skill. You are trying to buy my company. You\u0027re trying to buy a boyfriend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.6958aeac825247f49c05561adbe7ebf8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 580,
+        "EndTime": 588.88,
+        "Text": "If you cared about me, you wouldn\u0027t treat me like a product in a store. I\u0027m not doing that. Yes, you are. How much do you need?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.6ab211e14fc84698bafbabd14dfac877",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 314,
+        "EndTime": 321.84,
+        "Text": "you. I just want to sit across from someone at dinner and not feel completely alone. Is that so wrong?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.6c6499fee7014ded8de35cc5c75b8aaa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 259,
+        "EndTime": 267.199,
+        "Text": "have any man you want. Why are you offering money to a tired barista in a parking lot? Because I\u0027m tired, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.6d8a985074d246b8b273ef12c8c215f4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 679,
+        "EndTime": 687.36,
+        "Text": "who like my boat. I have men who date me because they want to borrow money for their business. Everyone wants something. [music]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.6e034f46e80349e18c84e1baf6b53289",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1092,
+        "EndTime": 1099.76,
+        "Text": "Because with this, it\u0027s honest. If I pay you, there are no secrets. We both know the rules. You get the money you need",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.7029df8f5bfe4ea0ba7c3589470aa2cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1062,
+        "EndTime": 1069.919,
+        "Text": "have any man you want. Why are you offering money to a tired barista in a parking lot? Because I\u0027m tired, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.70c1d4aaa38241c39563daf4d78faf12",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 814,
+        "EndTime": 822.32,
+        "Text": "You\u0027re finally done. Oh, Elena, you\u0027re still here. The cafe closed 30 minutes ago. I know. I was waiting for you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.70ca5fe1163c4a16b366ebbb676fb007",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 179,
+        "EndTime": 187.519,
+        "Text": "If you cared about me, you wouldn\u0027t treat me like a product in a store. I\u0027m not doing that. Yes, you are. How much do you need?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.730f100cff8448a09fcc3a07742d59eb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 574,
+        "EndTime": 577.68,
+        "Text": "I shouldn\u0027t have told you that. I was just making conversation.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.7315b302bbc6470bbd70c580ebb86f2a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 495,
+        "EndTime": 498.319,
+        "Text": "I really don\u0027t understand what you\u0027re trying to say.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.75e51a72e5904e058d190767e4a7c3e7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 914,
+        "EndTime": 922.72,
+        "Text": "Tell me how much you need. How much do you make in a month here? I will [music] double it, triple it. I\u0027ll pay your rent. I\u0027ll pay for your school.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.760ab7b3afe2475187c689f99c1abe7f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 498,
+        "EndTime": 507.36,
+        "Text": "I want you to spend time with me outside of this cafe. I want you to go to dinner with me, travel with me on the weekends, [music] just hang out with me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.77e323ac1f774d8fab53f1f699d47fcf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1001,
+        "EndTime": 1009.12,
+        "Text": "What else should I call it? If I take your money, I have to do what you [music] say. If you want to go to a fancy restaurant, I have to go because",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.782c74b0ab364cdb81685d399ed27517",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 51,
+        "EndTime": 58.95,
+        "Text": "I am serious. I\u0027ve been thinking about this for a few weeks and I decided to just say it. I don\u0027t like playing games.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.79a6b2071e8349b191e6d8d778fa8cbc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 987,
+        "EndTime": 990.16,
+        "Text": "Yes, you are. How much do you need?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.7bc87a5f37a94cc3a14a1e72db383d04",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 660,
+        "EndTime": 668.64,
+        "Text": "have any man you want. Why are you offering money to a [music] tired barista in a parking lot? Because I\u0027m tired, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.7d6528f5aead499c8b0dfd709018660b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 993,
+        "EndTime": 993.92,
+        "Text": "[music]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.7dd034a518134529bf3f6402e76aa0ec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 222,
+        "EndTime": 226.4,
+        "Text": "rude people for a few dollars. Is that dignity?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.7e0dea2f896949b09f3fc007ffdf4185",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 341,
+        "EndTime": 346.32,
+        "Text": "life building a company and now I sit in a huge house by myself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.7e55779d90514e6eaf305421f010f5e1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1206,
+        "EndTime": 1213.962449,
+        "Text": "I know. Are you coming or not? Give me a second. I need to find some cash in this bag. Take your time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.7e58147563414017bbb4965e24fb029a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 933,
+        "EndTime": 943.68,
+        "Text": "Why is it crazy? It\u0027s [music] a simple arrangement. You need money. I have a lot of money. But what [music] I don\u0027t have is time with someone I actually enjoy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.7effd67f090a4498b793e33dfbdc462a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 240,
+        "EndTime": 245.04,
+        "Text": "You really think I\u0027m a terrible person, don\u0027t you? I didn\u0027t say that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.81a5743bc6fc4e699dfde4fffde44da1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 64,
+        "EndTime": 72.32,
+        "Text": "No, you don\u0027t understand. I don\u0027t mean as a customer. I like you, Leo. I like talking to you. I like watching you",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.82f863eceda7454d90212a05e2139c9a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 697,
+        "EndTime": 706.959,
+        "Text": "you need, and I get someone to talk to who actually listens. No one is lying to anyone. That is the saddest thing I have ever heard.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.84fe19fa6fad45c3a88e6f22559ca0a1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 131,
+        "EndTime": 140.959,
+        "Text": "Why is it crazy? It\u0027s a simple arrangement. You need money. I have a lot of money. But what I don\u0027t have is time with someone I actually enjoy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.8673b05b98384a27ab21fcbfb85ace59",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 122,
+        "EndTime": 129.92,
+        "Text": "I never joke about money. [music] You want to pay me to hang out with you? Yes. I don\u0027t even know what to say to that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.86a915d9fb32417a8d8bf8e2a4d5583e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 836,
+        "EndTime": 839.6,
+        "Text": "Just a sandwich in the back room. I\u0027m going to grab something on the way home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.86bf019017d64ac696169a6be1eeca2c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 990,
+        "EndTime": 993.646,
+        "Text": "That\u0027s what you say when you buy a new purse, not when you talk to a person.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.86e2075872b0470c8d441b09a14fa34b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1025,
+        "EndTime": 1029.12,
+        "Text": "rude people for a few dollars. Is that dignity?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.87860165761a4d2b8e5f40fc1f6c3daf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 94,
+        "EndTime": 96.96,
+        "Text": "I really don\u0027t understand what you\u0027re trying to say.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.87dd85879d56425e9ca25b8c87b8c183",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 26,
+        "EndTime": 33.44,
+        "Text": "I am. It was a long shift. We were completely full all afternoon. Have you eaten anything today?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.884ff1318c92486cbb22bb18c015d61d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 245,
+        "EndTime": 252.08,
+        "Text": "You didn\u0027t have to. I can see how you\u0027re looking at me like some old sad woman trying to buy a young guy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.886046da3037412c91c2e8c97d305408",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 329,
+        "EndTime": 334.4,
+        "Text": "You just got hurt. That doesn\u0027t mean you have to give up and start buying people.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.89cf0ece85264dc783b3ac863529d00a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 965,
+        "EndTime": 975.44,
+        "Text": "Really? Because last week you looked so stressed you almost dropped a tray of glasses. [music] You told me your rent went up. You told me you might have to take a second job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.8ab1f31a553f428695558481151d023e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 278,
+        "EndTime": 289.44,
+        "Text": "who like my boat. I have men who date me because they want to borrow money for their business. Everyone wants something. [music] So, why are you doing the exact same thing to me?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.8b4faa8b3fbe473894fd0ecab2a53809",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 672,
+        "EndTime": 679.68,
+        "Text": "Guessing what people want from me. You think I have a lot of friends. I have people who like my house. I have people",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.8b6f6dcaa81042ba8c6113b747d5912d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1018,
+        "EndTime": 1025.52,
+        "Text": "And what is wrong with that? Is your life so great right now? You stand on your feet for 10 hours a day smiling at",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.8d599334ecef4bb59e1004cfd1619da6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 864,
+        "EndTime": 867.6,
+        "Text": "Oh, well, thank you. You\u0027re my favorite customer, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.8f75e1700638481d8ff664217b19de57",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 379,
+        "EndTime": 383.36,
+        "Text": "Only if we pay for our own bowls. You\u0027re serious?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.90a16464260740b4834345c1010e738c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 549,
+        "EndTime": 557.839,
+        "Text": "No, my boss pays me to make coffee. He pays for my skill. You are trying to buy my company. You\u0027re trying to buy a boyfriend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.90c90b939fe543749ed078cbb37a58e9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 39,
+        "EndTime": 45.52,
+        "Text": "Oh, no thank you. That\u0027s really kind of you, but I just want to go home and sleep. I have classes tomorrow morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.919a1e84ff994f59bafb7849f5f5bd9b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 714,
+        "EndTime": 723.2,
+        "Text": "I\u0027m not wanting to control you. I just want to sit across from someone at dinner and not feel completely alone. Is that so wrong?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.94d23293704e4533a425363bf415000e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 302,
+        "EndTime": 306.96,
+        "Text": "That is the saddest thing I\u0027ve ever heard. It\u0027s realistic.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.95ab262ccc1749f090f57cbded9fbe79",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 924,
+        "EndTime": 932.56,
+        "Text": "I never joke about money. You want to pay me to hang out with you? Yes. I don\u0027t even know what to say to that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.980cb1ef25094845b7fb0db5f3d7276f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 613,
+        "EndTime": 616.72,
+        "Text": "That\u0027s not a relationship, Elena. That\u0027s a job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.9861b79adb7642f1a4dccfee11e8a82e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1105,
+        "EndTime": 1109.6,
+        "Text": "That is the saddest thing I have ever heard. It\u0027s realistic.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.98e2506870bb4f9b848fe4a54fe87ec9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 191,
+        "EndTime": 197.92,
+        "Text": "You are taking this the wrong way. I\u0027m trying to make your life easier by making me your pet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.996578314b074db390fe1a8c3f3a6e6c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 616,
+        "EndTime": 624.24,
+        "Text": "And what is wrong with that? Is your life so great right now? You stand on your feet for 10 hours a day smiling at",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.9a1b94cb45d44d28ba40f4f2574cbb3d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 922,
+        "EndTime": 924.639,
+        "Text": "Wait, are you joking?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.9d2d8ba5e6814cfb8fd139b6a213a618",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1043,
+        "EndTime": 1047.76,
+        "Text": "You really think I\u0027m a terrible person, don\u0027t you? I didn\u0027t say that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.9e2a7448bce241e0b0428a71cdcf0287",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1029,
+        "EndTime": 1036.48,
+        "Text": "Yes, it is. Because at the end of the day, the money in my pocket is mine. I earned it. I don\u0027t owe anyone anything.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.9ebab725aab04921aaf0ad152085d7e3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 215,
+        "EndTime": 222.879,
+        "Text": "And what is wrong with that? Is your life so great right now? You stand on your feet for 10 hours a day smiling at",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.9f7e84e5ea2b44c281220b00e59d3405",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 874,
+        "EndTime": 879.279,
+        "Text": "work. And I know how hard you work just to pay for school and rent.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.9ffadc27c47e48c283cf60d795cdf54b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 19,
+        "EndTime": 22.4,
+        "Text": "For me? Did I mess up your order earlier?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.a15bfe4b1bbb4078b60125ac5bf2cbc8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 577,
+        "EndTime": 580.72,
+        "Text": "I listened. I care about what happens to you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.a1c51ff63b114990842a7300d91e3b15",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 434,
+        "EndTime": 438.319,
+        "Text": "Just a sandwich in the back room. I\u0027m going to grab something on the way home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.a244de0955184e0ba417ed3e9a4543dc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 839,
+        "EndTime": 842.24,
+        "Text": "Get in the car. I\u0027ll take you somewhere nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.a97f3b58974b420583fb8861e9b2c7a1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 22,
+        "EndTime": 26.96,
+        "Text": "No. Your coffee was perfect as always, [music] but you look exhausted, Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.adb01d52d0ce4bb3afc24dd495c2bbe4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 564,
+        "EndTime": 571.44,
+        "Text": "[music] Because last week you looked so stressed you almost dropped a tray of glasses. You told me your rent went up.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.ae1ece2c657e4b48a8a2d7cff24ef64d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 238,
+        "EndTime": 240.72,
+        "Text": "Maybe not. But it helps me sleep at night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.ae53c26cf5f84c11a49f9064065efeb3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 176,
+        "EndTime": 179.36,
+        "Text": "I listened. I care about what happens to you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.af6018abbe7647bb8c071d3dbc49d44c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 271,
+        "EndTime": 278.24,
+        "Text": "Guessing what people want from me. You think I have a lot of friends. I have people who like my house. I have people",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.af9d5943c52f4eb4b49948fdbf98df46",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 890,
+        "EndTime": 896.959,
+        "Text": "I mean, I see the car you drive, but that\u0027s your business, not mine. I want to make it your business.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.b03a96dad2204b73a4b541c1df2e796b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 402,
+        "EndTime": 406.24,
+        "Text": "You\u0027re very stubborn. I know. Are you coming or not?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.b03c2086e006463f9254a24e7e3942df",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 289,
+        "EndTime": 297.12,
+        "Text": "Because with this, it\u0027s honest. If I pay you, there are no secrets. We both know the rules. You get the money you need,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.b04f44a6a5dd4fd59c3e50b9e2e51a10",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 867,
+        "EndTime": 874.959,
+        "Text": "No, you don\u0027t understand. I don\u0027t mean as a customer. I like you, Leo. I like talking to you. I like watching you",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.b236863b29344929baf89a88be65d5a6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1171,
+        "EndTime": 1174.96,
+        "Text": "Put your checkbook away. Put your car keys away. Why?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.b53142502a274b048e90ef470e324409",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 187,
+        "EndTime": 191.2,
+        "Text": "That\u0027s what you say when you buy a new purse, not when you talk to a person.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.b65f9c5e03c2475b830d32013eeb4253",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 129,
+        "EndTime": 131.2,
+        "Text": "That\u0027s crazy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.b72c28e191a641acbec8b38f1895cb21",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 653,
+        "EndTime": 660.959,
+        "Text": "Elena, I just I don\u0027t understand why you\u0027re doing this. You are smart. You\u0027re beautiful. You\u0027re successful. You could",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.b7ee79b945cf411492b348f0e0229787",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 932,
+        "EndTime": 933.839,
+        "Text": "That\u0027s crazy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.bb8bcbb23d194aea95864f47bf80ffe6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 36,
+        "EndTime": 39.52,
+        "Text": "Get in the car. I\u0027ll take you somewhere nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.bbd3adaa182a481baf58a64f75dac07a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 473,
+        "EndTime": 478,
+        "Text": "work. And I know how hard you work just to pay for school and rent.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.bc782704d66448b899896e4472f100eb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 879,
+        "EndTime": 882.959,
+        "Text": "Yeah. Well, everyone is working hard these days. It\u0027s fine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.be2893e7f05c409c9dc73d904cf8e720",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 61,
+        "EndTime": 64.96,
+        "Text": "Oh, well, thank you. You\u0027re my favorite customer, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.be76cbfab33c428090aebd77d1c1fe34",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1099,
+        "EndTime": 1105.44,
+        "Text": "and I get someone to talk to who actually listens. No one is lying to anyone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.beb78a519dc149fa9e829b64e15efabb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 848,
+        "EndTime": 854.24,
+        "Text": "Leo, wait. Just listen to me for a second. [music] Is everything okay? You seem a little serious today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.bf47b6996f4e4a34a74806211e4a17e2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 440,
+        "EndTime": 446.88,
+        "Text": "Oh, no, thank you. That\u0027s really kind of you, but I just want to go home and sleep. I have classes tomorrow morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.c02d0d92d07949e68f9195ab9867d926",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1166,
+        "EndTime": 1171.6,
+        "Text": "So, you\u0027re saying no? I\u0027m saying no to the money. What does that mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.c063c0b7ba1c40928bca11ecc5fd70c1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 978,
+        "EndTime": 987.6,
+        "Text": "I listened. [music] I care about what happens to you. If you cared about me, you wouldn\u0027t treat me like a product in a store. I\u0027m not doing that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.c1a0bc20bfe443bfbf02912cd3e50964",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1205,
+        "EndTime": 1206.799,
+        "Text": "You\u0027re very stubborn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.c3bb726d83bc49e8b012b6ede65d2a28",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 321,
+        "EndTime": 325.28,
+        "Text": "It\u0027s not wrong to want that, but you can\u0027t buy it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.c4cbd7a8ffac46ec9cdb8c87484de5f7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1123,
+        "EndTime": 1128,
+        "Text": "that so wrong? It\u0027s not wrong to want that, but you can\u0027t buy it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.c5852e76b90b4bfaabd465c3f1429c64",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 557,
+        "EndTime": 564.616,
+        "Text": "Let\u0027s not use complicated words. I\u0027m just offering to help you. I don\u0027t need that kind of help. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.ca655ab15bae4496ada243bde361761a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 306,
+        "EndTime": 314.96,
+        "Text": "No, it\u0027s lonely. [music] You\u0027re so used to people using you that you want to pay me just so you can control it. I\u0027m not wanting to control",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.cb1ce16bfcff46e7b18dc359cee30a84",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 33,
+        "EndTime": 36.68,
+        "Text": "Just a sandwich in the back room. I\u0027m going to grab something on the way home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.cb4f593ace874a6480f809b4bb0d7bcf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 466,
+        "EndTime": 473.68,
+        "Text": "No, you don\u0027t understand. I don\u0027t mean as a customer. I like you, Leo. I like talking to you. I like watching you",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.cbdfa2af0fe140038519ec0df8b8ce26",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 462,
+        "EndTime": 466.319,
+        "Text": "Oh, well, thank you. You\u0027re my favorite customer, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.cf84bf7b93854732b3da59886fcaab8b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 531,
+        "EndTime": 532.64,
+        "Text": "That\u0027s crazy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.d2c8c6b687b3426386d58012f0d0fede",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1054,
+        "EndTime": 1062.24,
+        "Text": "Elena, I just I don\u0027t understand why you\u0027re doing this. You are smart. You\u0027re beautiful. You\u0027re successful. You could",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.d2cd3526379047d29025200c184dd594",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 252,
+        "EndTime": 259.519,
+        "Text": "Elena, I just I don\u0027t understand why you\u0027re doing this. You are smart. You\u0027re beautiful. You\u0027re successful. You could",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.d443aadf35c64537beb73ec353e2885e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1137,
+        "EndTime": 1144.88,
+        "Text": "You don\u0027t understand. You\u0027re 22. You have your whole life to figure things out. I\u0027ve spent my whole life building a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.d478de1f909a45cab2e54ba8022dddf9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 13,
+        "EndTime": 19.68,
+        "Text": "Oh, Elena, you\u0027re still here. The cafe closed 30 minutes ago. I know. I was waiting for you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.d4b3278e3cb0437a8bc1f3c62df8fa08",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 635,
+        "EndTime": 639.519,
+        "Text": "You\u0027re [music] young. You think pride will pay your bills. It won\u0027t.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.d5f8b0543bbd40ffb65639911da29f58",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1132,
+        "EndTime": 1137.12,
+        "Text": "You just got hurt. That doesn\u0027t mean you have to give up and start buying people.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.d70bb5c697094f79af62769a531916e8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1128,
+        "EndTime": 1132.16,
+        "Text": "I\u0027ve tried doing it the normal way. It doesn\u0027t work for me anymore.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.d8374f1dc21a420d9d35564013806eca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 571,
+        "EndTime": 574.24,
+        "Text": "You told me you might have to take a second job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.d945a334a7f54645a3a99e2ba9e4f4c9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 861,
+        "EndTime": 864.079,
+        "Text": "Say what? I like [music] you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.d9ebaae3a0fc47c3b81a3e8a019668a6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 796,
+        "EndTime": 804,
+        "Text": "Well, today is your lucky day. The spicy soup is really good. $2? Yep. And I\u0027m not paying for yours.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.da05ce9c636c4bcc8fe0b6c8361b736d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 449,
+        "EndTime": 460.639,
+        "Text": "Is everything okay? You seem a little serious today. I am serious. I\u0027ve been thinking about this for a [music] few weeks and I decided to just say it. I don\u0027t like playing games.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.db847a70e26d49e486ea6363a0d8a18f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 687,
+        "EndTime": 690.8,
+        "Text": "So why are you doing the exact same thing to me?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.dccddc4081c44f818b2fae577d6662de",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 825,
+        "EndTime": 829.6,
+        "Text": "No, your coffee was perfect as always, but you look exhausted, Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.dd4306b1fde04b789f7f53021d4b12f7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 419,
+        "EndTime": 428.319,
+        "Text": "I know. I was waiting for you for me. Did I mess up your order earlier? No, your coffee was perfect as [music] always, but you look exhausted, Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.df3a8824662645e3a83b68cbca3aae21",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1144,
+        "EndTime": 1148.96,
+        "Text": "company and now I sit in a huge house by myself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.df7da96978db461295962ff6381c6c79",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 36,
+        "EndTime": 36.88,
+        "Text": "[music]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e10191ab8fff455c923083dd54f90aff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 829,
+        "EndTime": 836.079,
+        "Text": "I am. It was a long shift. We were completely full all afternoon. Have you eaten anything today?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e1ffe1c773fc4741b681bbbe697d5d14",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 395,
+        "EndTime": 402.56,
+        "Text": "Well, today is your lucky day. The spicy soup is really good. $2? Yep. And I\u0027m not paying for yours.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e25d7b0c3e3645e79c07311e2895e766",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 72,
+        "EndTime": 76.56,
+        "Text": "work. And I know how hard you work just to pay for school and rent.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e35151f274a44cc994e9eb2fffbf1724",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 267,
+        "EndTime": 271.28,
+        "Text": "Tired of what? Tired of guessing? Guessing what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e39739a543ea479b902aadd5a0a35314",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 9.4,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level B1. And the topic is I like you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e4a4d8b8f3be427e899472460bfd689d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 48,
+        "EndTime": 51.6,
+        "Text": "Is everything okay? You seem a little serious today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e7127a51d22043bf8a7114299462f7bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 325,
+        "EndTime": 329.52,
+        "Text": "I\u0027ve tried doing it the normal way. It doesn\u0027t work for me anymore.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e7679467194e4c8db0a55ea67b30cfba",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 975,
+        "EndTime": 978.959,
+        "Text": "I shouldn\u0027t have told you that. I was just making conversation.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e7811bfa46d7498bb6e77427c9be387c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 945,
+        "EndTime": 950.88,
+        "Text": "I\u0027m buying your time. It\u0027s exactly what your boss does. [music] He pays for your time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e811412ecf804b0db93e5a906ad3ff1d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 460,
+        "EndTime": 462.8,
+        "Text": "Say what? I like you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e8d7dce9fad945758b6446689c2f9b7b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 383,
+        "EndTime": 391.52,
+        "Text": "I am. I\u0027ll eat dinner with you, Elena. I like talking to you, too, but we go as equals. I\u0027m not your employee. I\u0027m just Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e93c1933116846a6ab1e8b2d2e19130f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 160,
+        "EndTime": 168.239,
+        "Text": "I don\u0027t need that kind of help really because last week you looked so stressed you almost dropped a tray of glasses. [music]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e9c16a72a78543c7a86c7070b3b614af",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 233,
+        "EndTime": 238.08,
+        "Text": "You\u0027re young. You think pride will pay your bills. It won\u0027t.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.e9f5607852434f718ec5a5172656ff89",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 206,
+        "EndTime": 215.36,
+        "Text": "you paid for me. If you want to fly to Paris, I have to smile and go because you pay my rent. That\u0027s not a relationship, Elena. That\u0027s a job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.ea0a1354e5f94a38bafa4e8e4e36044a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 730,
+        "EndTime": 735.839,
+        "Text": "You just got hurt. That doesn\u0027t mean you have to give up and start buying people.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.eb04d3a5c84a41c694c10babc90d158e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 45,
+        "EndTime": 48.399,
+        "Text": "Leo, wait. Just listen to me for a second.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.ecb529f0e0b2445d9727fcd52595927e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 690,
+        "EndTime": 697.839,
+        "Text": "Because with this, it\u0027s honest. [music] If I pay you, there are no secrets. We both know the rules. You get the money",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.ee0b05c47a8e459cbbc2dff9df0558bf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 516,
+        "EndTime": 523.36,
+        "Text": "here? I will double it, triple it. I\u0027ll pay your rent. I\u0027ll pay for your school. Wait, are you joking?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.ef407cd411214709a088ebe3a57ae62e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 226,
+        "EndTime": 233.182,
+        "Text": "Yes, it is. Because at the end of the day, the money in my pocket is mine. I earned it. I don\u0027t owe anyone anything.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.f06afc20b7f04d8e8a715596154bb330",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 896,
+        "EndTime": 903.519,
+        "Text": "I really don\u0027t understand what you\u0027re trying to say. [music] I want you to spend time with me outside of this cafe.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.f0a07b0e443e4b42907dae3fecdf4516",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 532,
+        "EndTime": 542.399,
+        "Text": "Why is it crazy? It\u0027s a simple arrangement. You need money. I have a lot of money. But what I don\u0027t have is time with someone I actually enjoy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.f0e511ac02bd4ceb8f5f1c2223c408df",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 486,
+        "EndTime": 489.199,
+        "Text": "I\u0027m a very wealthy woman, Leo. You know that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.f21a997bfdb44fa5a9ab35953481b36f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 438,
+        "EndTime": 440.96,
+        "Text": "Get in the car. I\u0027ll take you somewhere nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.f2526078925b46488e7179be597942d6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 172,
+        "EndTime": 176.319,
+        "Text": "I shouldn\u0027t have told you that. I was just making conversation.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.f27af9075a0a455eb10ae02fb57d3b39",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1148,
+        "EndTime": 1156.16,
+        "Text": "I\u0027m sorry. I really am. But I can\u0027t be the person you pay to fix that because you\u0027re too proud.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.f378d7cb9347416685b632322ca69ef5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 950,
+        "EndTime": 959.04,
+        "Text": "No, my boss pays me to make coffee. He pays for my skill. You are trying to buy my company. You\u0027re trying to buy a boyfriend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.f3b94cffc1524d46b89ee7e57fe86029",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 959,
+        "EndTime": 965.519,
+        "Text": "Let\u0027s not use complicated words. I\u0027m just offering to help you. I don\u0027t need that kind of help.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.f678a1a5e19f424385018fe42b594055",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 156,
+        "EndTime": 160.879,
+        "Text": "Let\u0027s not use complicated words. [music] I\u0027m just offering to help you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.f8b24d7ef34642c8a87a82be32e9c1a4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1088,
+        "EndTime": 1092.08,
+        "Text": "So why are you doing the exact same thing to me?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.fcbbf27eeaa5477f943c445c2948a853",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 297,
+        "EndTime": 302.72,
+        "Text": "and I get someone to talk to who actually listens. No one is lying to anyone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.fda1442704984343a0ce3b7fd7531b5d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 588,
+        "EndTime": 592.126,
+        "Text": "That\u0027s what you say when you buy a new purse, not when you talk to a person.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.fe6960976cd44c45bafd83523f278c1d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 140,
+        "EndTime": 148.239,
+        "Text": "You\u0027re trying to buy me. I\u0027m buying your time. It\u0027s exactly what your boss does. He pays for your time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.fea9cef9e2474c5aaab5a97d9a559008",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1182,
+        "EndTime": 1186,
+        "Text": "Only if we pay for our own bowls. You\u0027re serious?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.fedf736d484b4dbcb04bed3aef65dde3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 9,
+        "EndTime": 13.599,
+        "Text": "Now listen carefully. You\u0027re finally done.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a.ff41d4ebd6d04b218433fd2ada0dc1c8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1080,
+        "EndTime": 1088.64,
+        "Text": "who like my boat. I have men who date me because they want to borrow money for their business. Everyone wants something.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.ac731a32da211e3629913adbff352efc095d2253a3bb5f3f74d6e0375390621a"
+}

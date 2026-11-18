@@ -1,0 +1,19 @@
+@model TCTEnglish.ViewModels.Billing.OrderSummaryViewModel
+@*
+    Rows plus the total of an order (plan 5.1 summary, plan 5.2 "Đơn hàng"). With Live = true the pricing script
+    updates the rows that carry a data-tb-field key; without JavaScript the server-rendered values stay.
+    Needs billing.css.
+*@
+<dl class="tb-summary">
+    @foreach (var row in Model.Rows)
+    {
+        <div class="tb-summary__row">
+            <dt>@row.Label</dt>
+            <dd class="@(row.Emphasis ? "tb-summary__strong" : null) @(row.Monospace ? "tb-mono" : null)" data-tb-field="@(Model.Live ? row.Key : null)">@row.Value</dd>
+        </div>
+    }
+    <div class="tb-summary__row tb-summary__row--total">
+        <dt>@Model.TotalLabel</dt>
+        <dd class="tb-summary__total" data-tb-field="@(Model.Live ? "total" : null)">@Model.TotalText</dd>
+    </div>
+</dl>

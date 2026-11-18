@@ -7,15 +7,15 @@
     <!-- NAV -->
     <div class="study-nav">
         <div class="nav-left">
-            <a asp-action="FolderDetail"
-               asp-controller="Folder"
-               asp-route-id="@(Model?.Set?.FolderId ?? 0)"
+            <a asp-action="Detail"
+               asp-controller="Set"
+               asp-route-id="@(Model?.Set?.SetId ?? 0)"
                class="btn-exit" title="Thoát">
                 <i class="fas fa-times"></i>
             </a>
         </div>
         <div class="nav-center">
-            <h3 class="set-title">@(Model?.Set?.SetName ?? "Học phần")</h3>
+            <h3 class="set-title">@(Model?.Set?.SetName ?? "Học phần")@if (Model?.IsDueReview == true) { <text> · Ôn đến hạn</text> }</h3>
             <div class="progress-wrapper">
                 <select id="studyMode" class="study-mode-select">
                     <option value="all">📚 Học từ</option>
@@ -154,8 +154,8 @@
                 <button class="btn-restart" onclick="restartStudy()">
                     <i class="fas fa-redo"></i> Học lại từ đầu
                 </button>
-                <a href="@Url.Action("FolderDetail", "Folder", new { id = Model?.Set?.FolderId ?? 0 })" class="btn-back-folder">
-                    <i class="fas fa-arrow-left"></i> Quay lại thư mục
+                <a href="@Url.Action("Detail", "Set", new { id = Model?.Set?.SetId ?? 0 })" class="btn-back-folder">
+                    <i class="fas fa-arrow-left"></i> Quay lại bộ thẻ
                 </a>
             </div>
         </div>
@@ -186,13 +186,16 @@
         <div class="word-list-header">
             <h3>Danh sách từ trong học phần</h3>
             <!-- Chỉ giữ lại một liên kết Chỉnh sửa, đã xử lý null -->
-            <a asp-action="EditSet"
-               asp-controller="Set"
-               asp-route-id="@(Model?.Set?.SetId ?? 0)"
-               class="btn-edit-list">
-                <i class="fas fa-pen"></i>
-                <span>Chỉnh sửa</span>
-            </a>
+            @if (Model?.CanEdit == true)
+            {
+                <a asp-action="Detail"
+                   asp-controller="Set"
+                   asp-route-id="@(Model?.Set?.SetId ?? 0)"
+                   class="btn-edit-list">
+                    <i class="fas fa-pen"></i>
+                    <span>Chỉnh sửa</span>
+                </a>
+            }
         </div>
         <div class="wordlist">
             @if (Model?.Cards?.Any() == true)

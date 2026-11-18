@@ -16,6 +16,22 @@ const NOTIFICATIONS_JS = path.join(
   'js',
   'notifications.js'
 );
+// The bell script uses the pure helpers of notification-core.js (loaded before it by the panel partial).
+const NOTIFICATION_CORE_JS = path.join(
+  __dirname,
+  '..',
+  '..',
+  'TCTEnglish',
+  'wwwroot',
+  'js',
+  'notification-core.js'
+);
+
+function loadNotificationCore(sandbox) {
+  vm.runInNewContext(fs.readFileSync(NOTIFICATION_CORE_JS, 'utf8'), sandbox, { filename: NOTIFICATION_CORE_JS });
+  sandbox.window.TctNotificationCore = sandbox.TctNotificationCore;
+}
+
 const NOTIFICATION_INDEX = path.join(
   __dirname,
   '..',
@@ -26,10 +42,22 @@ const NOTIFICATION_INDEX = path.join(
   'Index.cshtml'
 );
 
-function extractInlineNotificationScript(cshtml) {
-  const match = cshtml.match(/@section Scripts \{[\s\S]*?<script>([\s\S]*?)<\/script>/);
-  assert.ok(match, 'Notification Index must contain an inline script section');
-  return match[1];
+// The page script moved out of Index.cshtml into this file (plan 2026-11-17-notifications-complete, T6).
+const NOTIFICATION_PAGE_JS = path.join(
+  __dirname,
+  '..',
+  '..',
+  'TCTEnglish',
+  'wwwroot',
+  'js',
+  'notification-page.js'
+);
+
+function readNotificationPageScript() {
+  const cshtml = fs.readFileSync(NOTIFICATION_INDEX, 'utf8');
+  assert.doesNotMatch(cshtml, /<script(?![^>]*\bsrc=)/, 'Notification Index must not carry an inline script');
+  assert.match(cshtml, /notification-page\.js/, 'Notification Index must load notification-page.js');
+  return fs.readFileSync(NOTIFICATION_PAGE_JS, 'utf8');
 }
 
 function loadNotificationsModule({ markReadResponse, markAllResponse }) {
@@ -125,6 +153,7 @@ function loadNotificationsModule({ markReadResponse, markAllResponse }) {
   };
   Object.assign(sandbox, window);
 
+  loadNotificationCore(sandbox);
   const code = fs.readFileSync(NOTIFICATIONS_JS, 'utf8');
   vm.runInNewContext(code, sandbox, { filename: NOTIFICATIONS_JS });
 
@@ -202,6 +231,7 @@ test('mark-read network failure keeps unread and skips relatedUrl navigation cla
   window.window = window;
   const sandbox = { window, document, fetch: fetchImpl, console, setTimeout, clearTimeout, setInterval, clearInterval };
   Object.assign(sandbox, window);
+  loadNotificationCore(sandbox);
   vm.runInNewContext(fs.readFileSync(NOTIFICATIONS_JS, 'utf8'), sandbox, { filename: NOTIFICATIONS_JS });
 
   const api = window.TctNotifications;
@@ -278,15 +308,15 @@ test('mark-all network failure restores disabled button', async () => {
   window.window = window;
   const sandbox = { window, document, fetch: fetchImpl, console, setTimeout, clearTimeout, setInterval, clearInterval };
   Object.assign(sandbox, window);
+  loadNotificationCore(sandbox);
   vm.runInNewContext(fs.readFileSync(NOTIFICATIONS_JS, 'utf8'), sandbox, { filename: NOTIFICATIONS_JS });
 
   await window.TctNotifications.handleMarkAllClick();
   assert.equal(byId.notifMarkAllBtn.disabled, false);
 });
 
-test('Notification Index inline script must check mark-read success before clearing unread', () => {
-  const cshtml = fs.readFileSync(NOTIFICATION_INDEX, 'utf8');
-  const script = extractInlineNotificationScript(cshtml);
+test('Notification page script must check mark-read success before clearing unread', () => {
+  const script = readNotificationPageScript();
 
   // markAsRead must throw/reject when !res.ok (not fire-and-forget).
   assert.match(script, /async function markAsRead[\s\S]*if\s*\(\s*!res\.ok\s*\)/);

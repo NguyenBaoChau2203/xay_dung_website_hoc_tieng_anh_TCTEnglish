@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "listening-youtube-abf11bac22260bb82b491690f6f31d3419c502f887086962aa985b54bee09661",
+  "version": 2,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.listening.youtube.abf11bac22260bb82b491690f6f31d3419c502f887086962aa985b54bee09661",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level B2 - PHIM AI -",
+        "Level": "B2",
+        "Topic": "PHIM AI",
+        "YoutubeId": "o3K-PqvJMGU",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/o3K-PqvJMGU/hqdefault.jpg",
+        "Duration": "23:21",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": false,
+        "TranscriptSource": null
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.listening.youtube.abf11bac22260bb82b491690f6f31d3419c502f887086962aa985b54bee09661"
+}

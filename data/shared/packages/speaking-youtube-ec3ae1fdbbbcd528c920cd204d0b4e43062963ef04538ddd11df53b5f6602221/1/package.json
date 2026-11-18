@@ -1,0 +1,2292 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level B2 - \u0110\u1ED2 \u0102N V\u1EC8A H\u00C8 -",
+        "YoutubeId": "MxEmCaIW2BQ",
+        "Level": "B2",
+        "Topic": "\u0102n u\u1ED1ng",
+        "ThumbnailUrl": "https://img.youtube.com/vi/MxEmCaIW2BQ/hqdefault.jpg",
+        "Duration": "19:04",
+        "SourceUrl": "https://www.youtube.com/watch?v=MxEmCaIW2BQ",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.01656d2ebb274bff989d8f0f8dc02ead",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 744,
+        "EndTime": 752.88,
+        "Text": "What did you say it was in? Grilled pork, fresh herbs, a chili sauce that might be a little dangerous, and absolute perfection. You want a bite?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.0175bc7141b54e43bd8f9d2faddac981",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 59,
+        "EndTime": 66.08,
+        "Text": "street food culture here is crazy. You can basically eat a full meal without ever stepping inside a building.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.035f699fa07a4e15be8da4de56534bf0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 495,
+        "EndTime": 506.319,
+        "Text": "I mean, they kind of did, but isn\u0027t that a problem? I love the food, but for people walking, it\u0027s actually really dangerous. You\u0027re forced to walk in the middle of traffic.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.04bb4740cc6a4d028c6162bb6a4266b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 844,
+        "EndTime": 849.519,
+        "Text": "The sidewalks, or, you know, the lack of them. Here we go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.04d0dc68a6d849e7ac4c739047a52e10",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 310,
+        "EndTime": 320,
+        "Text": "That\u0027s the real challenge, isn\u0027t it? As a city develops, it naturally wants to look nicer, but the busy streets are what make the culture so special.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.08fdaa25342d478e9b09174d3db98657",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 620,
+        "EndTime": 624.64,
+        "Text": "Okay, wait. I actually completely agree with you on that. You do?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.0a0ce4d482154deb9f77e516e42d5e26",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 39,
+        "EndTime": 45.36,
+        "Text": "It is. It\u0027s the best part about living here. You can\u0027t get that kind of connection in a big fast food restaurant.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.0a332ad6cded4bfda56af078228e0777",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 23,
+        "EndTime": 31.119,
+        "Text": "You have a stomach of steel. I swear it\u0027s completely fine. I\u0027ve been buying from that exact lady for two years. She",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.0b24a32fc1e849d38ff8764429d086aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 770,
+        "EndTime": 774.56,
+        "Text": "Don\u0027t look at me like that. I was hungry. It\u0027s 10:00 in the morning, Liam.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.0bd6b386284e492eac991b777aeb4ce9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1052,
+        "EndTime": 1058.32,
+        "Text": "Exactly. If there\u0027s a crowd of locals waiting for a bowl of noodles, you know it\u0027s safe and good.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.0c3c6f9cfa734a85a7416aca37dcbd27",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 50,
+        "EndTime": 59.6,
+        "Text": "Honestly, I don\u0027t even think about it anymore. It\u0027s just part of the street food experience. That is definitely one way to look at it. But seriously, the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.10b950ce58b44be0a67d3af2814749cc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 933,
+        "EndTime": 937.76,
+        "Text": "Okay, the boiling soup part is a little scary if you\u0027re not paying attention.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.1271fe55fc074f50a1c84d2c397e8c28",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 592,
+        "EndTime": 596.24,
+        "Text": "Because it takes away the feeling of the city. The feeling?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.155bc9b05bbb44de8188474fe5c96875",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 568,
+        "EndTime": 572.24,
+        "Text": "Right. So, there has to be a balance, doesn\u0027t there?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.17aaa111086a4278971803741b9fa7dd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 351,
+        "EndTime": 357.36,
+        "Text": "Obviously, the plastic chairs are a famous part of the culture at this point. See, you love it. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.18cff56833b9425a99a210ca4597ae91",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1045,
+        "EndTime": 1052.32,
+        "Text": "Now that you mention it, the busiest street stalls are probably the safest ones. The food doesn\u0027t sit around for long.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.19960cd68d8f4d91b55ae0acffe60fc7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 596,
+        "EndTime": 603.36,
+        "Text": "Yes. Think about it. When you eat street food here, you\u0027re sitting on a tiny plastic chair. Your knees are practically touching your chest.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.1a3c455ec1454281bff53d15ed589c7b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 605,
+        "EndTime": 610.64,
+        "Text": "And you\u0027re surrounded by the energy of the city. It feels alive and noisy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.1b3aed06edb045308471d51d3e8584f4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 392,
+        "EndTime": 394.96,
+        "Text": "Don\u0027t look at me like that. I was hungry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.1dc58bd4ac714213bd8a650c5368ec65",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 587,
+        "EndTime": 592.24,
+        "Text": "Why wouldn\u0027t it be? It solves the sidewalk problem and the problem with cleanliness.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.1e05eacd7a8d450faa48e076e77204dc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 471,
+        "EndTime": 478.479,
+        "Text": "No, hear me out. Last night, I was trying to walk home from the gym, just a normal 10-minute walk, but I spent half",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.1edfa4fdfc1a441ea09e6dfce3e3838d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 981,
+        "EndTime": 988.399,
+        "Text": "Motorbikes are driving by everywhere and you\u0027re surrounded by the energy of the city. It feels alive and noisy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.1fcc6c91e6c14e0982950c75e12fc322",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 485,
+        "EndTime": 495.52,
+        "Text": "taken over the pavement with the little plastic chairs, dozens of them, and the tables and the cooking fire. It\u0027s like they built a whole restaurant on the sidewalk.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.203a306e4f934ac9ab2860f245b9ef5b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 647,
+        "EndTime": 656.56,
+        "Text": "Yeah. Think about it. When you eat on the street, the kitchen is completely open. You can see exactly how they handle the food. You see them cooking it right in front of you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.239d3037230d4de884a6ccffa8766e04",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 924,
+        "EndTime": 933.04,
+        "Text": "worse. Mixing people walking, motorbikes, and hot pots of boiling soup on a narrow street just feels like a disaster waiting to happen.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.239dcdb265d74d8aa2812f2a0c6c1dc6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 379,
+        "EndTime": 383.68,
+        "Text": "Well, wow. Okay, that is really good. Told you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.2492d40249bf43b4b3396278c508411d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 296,
+        "EndTime": 302,
+        "Text": "Exactly. If there\u0027s a crowd of locals waiting for a bowl of noodles, you know it\u0027s safe and good.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.2554bff1fca647f990498f8d4c07df28",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 807,
+        "EndTime": 812.399,
+        "Text": "Honestly, I don\u0027t even think about it anymore. It\u0027s just part of the street food experience.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.264f310b8e90480ab9c798d71627585e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 758,
+        "EndTime": 762.24,
+        "Text": "Well, wow. Okay, that is really good. Told you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.26f71797647d400886f4c4f322ab34c7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 269,
+        "EndTime": 278,
+        "Text": "Yeah. Think about it. When you eat on the street, the kitchen is completely open. You can see exactly how they handle the food. You see them cooking it right in front of you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.2717b38acb7f4dd4bdd0d015b0737d14",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 414,
+        "EndTime": 421.599,
+        "Text": "Okay, I admit the loyalty is kind of sweet. It is. It\u0027s the best part about living here. You can\u0027t get that kind of",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.27c6efea7e4840ec86c350760826a9dc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 892,
+        "EndTime": 901.04,
+        "Text": "Renting a real shop in the city is really expensive. For a lot of these people, that cart is their only way to make money. It pays for their kids school.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.2896c71320de41ff80d2c6113b209c6f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 213,
+        "EndTime": 217.68,
+        "Text": "Because it takes away the feeling of the city. The feeling?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.29fa6665e3d743789834d4f91df14e62",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 950,
+        "EndTime": 958.88,
+        "Text": "Maybe. I know some cities try to organize it, like Singapore, right? They moved all their street food vendors into those big food courts, big clean spaces",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.2c00a89ea85a45fc93b367c9e8b963be",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 9.48,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level B2 and the topic is street food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.2d04bbb7c5824af2a109a60553628c96",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 735,
+        "EndTime": 744.16,
+        "Text": "I never said I didn\u0027t. In fact, watching you hold that for the last 10 minutes is making me really hungry. I told you it smells amazing.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.2f9a2aa2c98542419aed6f8a15f8fe5f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 302,
+        "EndTime": 310.96,
+        "Text": "Fair enough. I guess I\u0027m just feeling unsure. I want the city to become more modern and safe to walk in, but I don\u0027t want it to lose its soul.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.31768e98047a4770a319bb91daeab638",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 958,
+        "EndTime": 965.12,
+        "Text": "with running water and rules to keep things clean. See, that sounds perfect. But is it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.31c9208ceed44f9dab5a73dc0c4e5934",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 73,
+        "EndTime": 80.4,
+        "Text": "Nowhere. And it usually tastes better than a fancy restaurant, right? So why were you judging my sandwich?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.32ea48778ebe4e72a0e62534ef25dbd7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 31,
+        "EndTime": 35.76,
+        "Text": "knows my order before I even park my motorbike. No chili, extra pate.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.36f4056de7784c00a639ac33fecf98d3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 901,
+        "EndTime": 908.24,
+        "Text": "I know. And I\u0027m not saying we should just shut them down. That would ruin the city, right? So many people sell things on the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.3a97ae73b6164b1b9c6c733609af2c3c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 367,
+        "EndTime": 375.6,
+        "Text": "Grilled pork, fresh herbs, a chili sauce that might be a little dangerous, and absolute perfection. You want a bite? I really shouldn\u0027t.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.3ca3b12cf02c44ce9a4442f33cbee062",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 421,
+        "EndTime": 424,
+        "Text": "connection in a big fast food restaurant.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.3d658a7be8b04f18bf6030275ddaf78a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 254,
+        "EndTime": 262.479,
+        "Text": "Exactly. But I still think being clean is important. You can\u0027t tell me you\u0027ve never gotten sick from a random food cart.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.3d896126081b451995735ef21e1f1c6b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 829,
+        "EndTime": 833.6,
+        "Text": "Nowhere. And it usually tastes better than a fancy restaurant.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.3fd9ee0962754d50bdc132b962ff2d9b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 603,
+        "EndTime": 605.519,
+        "Text": "Motorbikes are driving by everywhere.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.4071165be80e48e0aac76475361c2028",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 965,
+        "EndTime": 972.8,
+        "Text": "Why wouldn\u0027t it be? It solves the sidewalk problem and the problem with cleanliness because it takes away the feeling of the city.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.4152b23b1aea43d5b7048ac9df8d828d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 937,
+        "EndTime": 944.639,
+        "Text": "Exactly. I had a friend who actually got a burn on her leg because someone bumped into a vendor carrying hot soup.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.4368a8530bdc40168d977e263685f944",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1018,
+        "EndTime": 1025.52,
+        "Text": "Okay, maybe once or twice, but honestly, I\u0027ve gotten food poisoning from nice restaurants, too. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.48f6c37a3faf499c876ae81c74a2ca34",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 193,
+        "EndTime": 202.48,
+        "Text": "Maybe. I know some cities try to organize it like Singapore, right? They moved all their street food vendors into those big food courts. Big clean spaces",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.49330be4a6c247b0965feacfda9ae8b4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 365,
+        "EndTime": 367.12,
+        "Text": "What did you say it was in?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.49c783d3b1a94ec0bc4e599d2cc060d1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 88,
+        "EndTime": 93.2,
+        "Text": "The sidewalks. Or, you know, the lack of them. Here we go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.4a6f3971624a46d6920cd25f1f607f31",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 66,
+        "EndTime": 73.6,
+        "Text": "Exactly. And it\u0027ll cost you almost nothing. Where else can you get a bowl of hot noodle soup at 2:00 a.m. for like $2?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.4aa5052949e547f08551f09e3f4cb300",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 539,
+        "EndTime": 546.72,
+        "Text": "That\u0027s a fair point. But does that mean we just ignore safety? Like as the city gets busier and busier, the traffic gets",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.4d63792882a448bdaefc5da326a9c02a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 795,
+        "EndTime": 803.44,
+        "Text": "It is. It\u0027s the best part about living here. You can\u0027t get that kind of connection in a big fast food restaurant. True. Though I am still",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.50a328cd2db346e3afb2d2fd532a1a25",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 409,
+        "EndTime": 414.319,
+        "Text": "knows my order before I even park my motorbike. No chili, extra pate.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.50d9bfe588d1432c928b95872b7f0a4b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 232,
+        "EndTime": 241.68,
+        "Text": "That\u0027s part of the fun. If you take that food cart and put it inside a bright, boring food court, it\u0027s not street food anymore. It\u0027s just cheap mall food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.52c2890a652642c3a59d5ed954f95c9a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 151,
+        "EndTime": 160.8,
+        "Text": "street here. Millions of people depend on it. If you suddenly clear the sidewalks, you\u0027re not just making the streets cleaner. You\u0027re taking away how they survive.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.547afc2f8e0c46d69c056dfb0e9be3de",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 634,
+        "EndTime": 641.04,
+        "Text": "But I still think being clean is important. You can\u0027t tell me you\u0027ve never gotten sick from a random food cart.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.5560ce0f91454bd6a803f3d7f34853b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 863,
+        "EndTime": 873.279,
+        "Text": "taken over the pavement with the little plastic chairs, dozens of them, and the tables and the cooking fire. It\u0027s like they built a whole restaurant on the sidewalk.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.55acb4d546e444b196e127c16fac2f6d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1133,
+        "EndTime": 1140,
+        "Text": "Okay, fine. Just a small one. Well, wow. Okay, that is really good. Told you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.57ab7115475944e0b66bee99c0dfd79b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 35,
+        "EndTime": 39.28,
+        "Text": "Okay, I admit the loyalty is kind of sweet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.5ad56e7d539d4f9186fe4c3b3fed16c5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 424,
+        "EndTime": 429.44,
+        "Text": "True. Though I am still slightly worried about all the dust from the building work next to our cart.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.5b344a6005744c1bac9d825268b89008",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 856,
+        "EndTime": 863.68,
+        "Text": "the time walking in the actual street trying to avoid motorbikes and cars because a seafood stall had completely",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.5b7bdbc764c04a00aec2d8398beea10c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 917,
+        "EndTime": 924.48,
+        "Text": "That\u0027s a fair point, but does that mean we just ignore safety? Like, as the city gets busier and busier, the traffic gets",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.5bf29555790e47a3a5d169c1505822d6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 16,
+        "EndTime": 23.92,
+        "Text": "It\u0027s 10:00 in the morning, Liam. And you literally bought that from a cart next to a building site. That just adds to the flavor.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.5c0c45926dcf40c1ae0b28b52d9a06f2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 698,
+        "EndTime": 701.44,
+        "Text": "So, what do we do? Just accept the mess?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.5c9f0104e4424d1c96c58909451b22a7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 674,
+        "EndTime": 680.56,
+        "Text": "Exactly. If there\u0027s a crowd of locals waiting for a bowl of noodles, you know, it\u0027s safe and good.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.5e65ccbf7b7e4b34999d397a09d76041",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1034,
+        "EndTime": 1037.039,
+        "Text": "That\u0027s true. There are no hidden doors.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.5feaa8ee971a4b86a3b722019461fcdd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 667,
+        "EndTime": 674.56,
+        "Text": "home. Now that you mention it, the busiest street stalls are probably the safest ones. The food doesn\u0027t sit around for long.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.6253db2ee16b4fb9845a846bc36e5ce1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 357,
+        "EndTime": 365.6,
+        "Text": "I never said I didn\u0027t. In fact, watching you hold that for the last 10 minutes is making me really hungry. I told you it smells amazing.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.63b8db65ae42430292dfd3005a426b30",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 730,
+        "EndTime": 735.92,
+        "Text": "Obviously, the plastic chairs are a famous part of the culture at this point. See, you love it. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.63f74a5531b94c3f87d21e8d8eba27ba",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 99,
+        "EndTime": 107.36,
+        "Text": "the time walking in the actual street trying to avoid motorbikes and cars because a seafood stall had completely",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.64363c43d04246b8a55d512765fe49f4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 444,
+        "EndTime": 452.16,
+        "Text": "Exactly. And it\u0027ll cost you almost nothing. Where else can you get a bowl of hot noodle soup at 2 a.m. for like $2?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.66f6ba47303c4084a2e5dafec3041dcf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 792,
+        "EndTime": 795.68,
+        "Text": "Okay, I admit the loyalty is kind of sweet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.67436ed96be64f05879bc08ee99e4e5d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 972,
+        "EndTime": 974,
+        "Text": "The feeling.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.677dcfeecc3644eea139bcd9e54b7035",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 160,
+        "EndTime": 168.16,
+        "Text": "That\u0027s a fair point, but does that mean we just ignore safety? Like as the city gets busier and busier, the traffic gets",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.67c785c72c474772a08223f3df28b91e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 181,
+        "EndTime": 190.4,
+        "Text": "Exactly. I had a friend who actually got a burn on her leg because someone bumped into a vendor carrying hot soup. Yikes. Okay, that\u0027s bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.6a2a143837b34da7af062dbdacb83d5d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 656,
+        "EndTime": 659.279,
+        "Text": "That\u0027s true. There are no hidden doors.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.6a847ad48e144d4a98fb1375385662bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 341,
+        "EndTime": 351.44,
+        "Text": "That actually makes a lot of sense. It respects their business, but organizes it a little bit, right? And they get to keep their little plastic chairs. We can\u0027t change that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.6d7df50d41d04096b6d7d150a6357c79",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 719,
+        "EndTime": 730,
+        "Text": "walking. That actually makes a lot of sense. It respects their business but organizes it a little bit, right? And they get to keep their little plastic chairs. We can\u0027t change that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.6e0c80481f9648488c1e42964a98f782",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 762,
+        "EndTime": 770.399,
+        "Text": "But if I get a stomach ache tomorrow, I am blaming you. I accept the risk. Is that another bunme?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.70c0b8106d0243a6b8eec0a42597c117",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1089,
+        "EndTime": 1098,
+        "Text": "Yeah, give them legal space so they don\u0027t have to worry about the police chasing them away, but keep the main road safe for traffic and people walking.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.76abec51011143d2a09965f2c3adf859",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1123,
+        "EndTime": 1132,
+        "Text": "Grilled pork, fresh herbs, a chili sauce that might be a little dangerous, and absolute perfection. You want a bite? I really shouldn\u0027t.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.76c9db216d664236aeb9fc40613b4448",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 610,
+        "EndTime": 620.24,
+        "Text": "That\u0027s part of the fun. If you take that food cart and put it inside a bright, boring food court, it\u0027s not street food anymore. It\u0027s just cheap mall food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.782deaad9fdf4bbf9a9974a98696a57d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 641,
+        "EndTime": 647.76,
+        "Text": "Okay. Maybe once or twice, but honestly, I\u0027ve gotten food poisoning from nice restaurants, too. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.7fb5ddf43a5d45a9ae3ad59f4e384f5f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1086,
+        "EndTime": 1089.919,
+        "Text": "Like weekend walking streets, but for food vendors.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.850dfcfbdea041cea9155e3b20ccbeeb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 262,
+        "EndTime": 269.199,
+        "Text": "Okay, maybe once or twice. But honestly, I\u0027ve gotten food poisoning from nice restaurants, too. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.868db50b082f415299898b6169999d3c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 752,
+        "EndTime": 758.079,
+        "Text": "I really shouldn\u0027t. I\u0027ll hold it right here. Okay, fine. Just a small one.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.86c91b6560a944249c1eecf966801590",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 701,
+        "EndTime": 709.2,
+        "Text": "I think we have to find a balance. Maybe some streets are kept completely clear for walking, while other side streets are just for food carts.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.8a423c9f59ec4d2d9bd05b8d294ab3fb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 998,
+        "EndTime": 1002.399,
+        "Text": "Okay, wait. I actually completely agree with you on that. You do?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.8c4710f67a8b488199c6b09bfc76519b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 45,
+        "EndTime": 50.8,
+        "Text": "True. Though I am still slightly worried about all the dust from the building work next to our cart.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.8e02bfbabd3241c28e85313d0d6c51d6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 624,
+        "EndTime": 633.2,
+        "Text": "Yeah. As much as I complain about the mess, I hate those perfectly clean, boring food courts. The food never tastes the same.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.8e914231ad334aabbbb8a67ae63115d2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 190,
+        "EndTime": 193.68,
+        "Text": "Right. So, there has to be a balance, doesn\u0027t there?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.90ba4627c8d44641af2aa4e7ecc4f6a1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 394,
+        "EndTime": 402.479,
+        "Text": "It\u0027s 10:00 in the morning, Liam. And you literally bought that from a cart next to a building site. That just adds to the flavor.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.916eb486a5c74947a9463c1c3ce19785",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 116,
+        "EndTime": 127.759,
+        "Text": "I mean, they kind of did, but isn\u0027t that a problem? I love the food, but for people walking, it\u0027s actually really dangerous. You\u0027re forced to walk in the middle of traffic.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.9181d3e8366f4cdf879adc830e6164b1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1025,
+        "EndTime": 1034.319,
+        "Text": "Yeah. Think about it. When you eat on the street, the kitchen is completely open. You can see exactly how they handle the food. You see them cooking it right in front of you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.926eaafb4525499da79a0b46ca9900fa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 402,
+        "EndTime": 409.68,
+        "Text": "You have a stomach of steel. I swear it\u0027s completely fine. I\u0027ve been buying from that exact lady for 2 years. She",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.934963e4394848ed95e32bac79a8537d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 514,
+        "EndTime": 523.279,
+        "Text": "Renting a real shop in the city is really expensive. For a lot of these people, that cart is their only way to make money. It pays for their kids school.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.93c6b0cb16bf4169b616dbe72dc447f9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 280,
+        "EndTime": 289.28,
+        "Text": "And because they don\u0027t have big fridges on the sidewalk, they have to buy fresh food from the market every single morning. When they sell out, they go home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.959ed3c2b20249fe8b2e284056bcda35",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 202,
+        "EndTime": 208.8,
+        "Text": "with running water and rules to keep things clean. See, that sounds perfect. But is it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.98189fabf24d4cae8b3f0ce9cc0729d2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 944,
+        "EndTime": 950,
+        "Text": "Yikes. Okay, that\u0027s bad, right? So, there has to be a balance, doesn\u0027t there?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.989f245efdd544cebf8c09b4eddc07a0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 217,
+        "EndTime": 224.799,
+        "Text": "Yes. Think about it. When you eat street food here, you\u0027re sitting on a tiny plastic chair. Your knees are practically touching your chest.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.98c9f539f0ad4a30a04264fe88b5b5fd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 429,
+        "EndTime": 434.639,
+        "Text": "Honestly, I don\u0027t even think about it anymore. It\u0027s just part of the street food experience.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.99b6ed570edd4d81ac4c42d0a7df036c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 783,
+        "EndTime": 792.079,
+        "Text": "It\u0027s completely fine. I\u0027ve been buying from that exact lady for 2 years. She knows my order before I even park my motorbike. No chili, extra pate.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.9a037d69d38b488fb7294b064955baa9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 581,
+        "EndTime": 587.36,
+        "Text": "with running water and rules to keep things clean. See, that sounds perfect. But is it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.9b1ca850be8b41c3b0d3a7c649f45dff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1037,
+        "EndTime": 1045.6,
+        "Text": "And because they don\u0027t have big fridges on the sidewalk, they have to buy fresh food from the market every single morning. When they sell out, they go home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.9f5ea144a3974c67b155e99ebc6cf75c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 168,
+        "EndTime": 176.72,
+        "Text": "worse. Mixing people walking, motorbikes, and hot pots of boiling soup on a narrow street just feels like a disaster waiting to happen.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.a1a99a41a8324f88945c78a734b7498c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 812,
+        "EndTime": 822.399,
+        "Text": "That is definitely one way to look at it. But seriously, the street food culture here is crazy. You can basically eat a full meal without ever stepping inside a building.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.a1f8a061594a4dc8b47b1ce616fe07a8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 467,
+        "EndTime": 471.759,
+        "Text": "The sidewalks, or, you know, the lack of them. Here we go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.a2d92dc95faa46ab95e1dd92b29e46c0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 546,
+        "EndTime": 553.519,
+        "Text": "worse. Mixing people walking, motorbikes, and hot pots of boiling soup on a narrow street just feels like a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.a4261c17e7244381a716c32938309a7f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 241,
+        "EndTime": 246.08,
+        "Text": "Okay, wait. I actually completely agree with you on that. You do?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.a4403e569de34bc4bb96775af27e27e6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 774,
+        "EndTime": 783.12,
+        "Text": "And you literally bought that from a cart next to a building site. That just adds to the flavor. You have a stomach of steel. I swear.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.a677e181779045b7b64de61917e77dd5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1098,
+        "EndTime": 1107.679,
+        "Text": "That actually makes a lot of sense. It respects their business, but organizes it a little bit, right? And they get to keep their little plastic chairs. We can\u0027t change that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.a8891528d344450bb9be69c3784d4b9d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 633,
+        "EndTime": 634.24,
+        "Text": "Exactly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.a88f264eceea4357848404404a045679",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 289,
+        "EndTime": 296,
+        "Text": "Now that you mention it, the busiest street stalls are probably the safest ones. The food doesn\u0027t sit around for long.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.a8ac3a12f2fb4e399a5d523a630ef4bb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 689,
+        "EndTime": 698.56,
+        "Text": "That\u0027s the real challenge, isn\u0027t it? As a city develops, it naturally wants to look nicer, but the busy streets are what make the culture so special.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.aa40a0f41754402886ed20cabda3165a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 226,
+        "EndTime": 232.08,
+        "Text": "and you\u0027re surrounded by the energy of the city. It feels alive and noisy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.ab34753b013143f9833ab52706ea9174",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1132,
+        "EndTime": 1133.44,
+        "Text": "I\u0027ll hold it right here.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.ab6e299771ac4c81afa66208d3631a4b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 849,
+        "EndTime": 856.24,
+        "Text": "No, hear me out. Last night, I was trying to walk home from the gym. just a normal 10-minute walk, but I spent half",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.acec03bac67c418c8234940ef7096c8f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 144,
+        "EndTime": 151.84,
+        "Text": "I know. And I\u0027m not saying we should just shut them down. That would ruin the city, right? So many people sell things on the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.afbc2bb84a08458f833c02db11a5609c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 680,
+        "EndTime": 689.519,
+        "Text": "Fair enough. I guess I\u0027m just feeling unsure. I want the city to become more modern and safe to walk in, but I don\u0027t want it to lose its soul.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.b14d1eefd41846b7a43b889584543e06",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 434,
+        "EndTime": 444.639,
+        "Text": "That is definitely one way to look at it. But seriously, the street food culture here is crazy. You can basically eat a full meal without ever stepping inside a building.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.b21ef5c3548349aeb32b2b7d815c5a6e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 988,
+        "EndTime": 998,
+        "Text": "That\u0027s part of the fun. If you take that food cart and put it inside a bright, boring food court, it\u0027s not street food anymore. It\u0027s just cheap mall food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.b3bbd6d029f8497fafa59a5fff7b6469",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 322,
+        "EndTime": 330.639,
+        "Text": "I think we have to find a balance. Maybe some streets are kept completely clear for walking, while other side streets are just for food carts.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.b5362eef730d459d9024fab2a49c924d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 560,
+        "EndTime": 568.959,
+        "Text": "Exactly. I had a friend who actually got a burn on her leg because someone bumped into a vendor carrying hot soup. Yikes. Okay, that\u0027s bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.b62290e1e2e24c86bfbe3e68b9c513d4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 107,
+        "EndTime": 116.96,
+        "Text": "taken over the pavement with the little plastic chairs, dozens of them, and the tables and the cooking fire. It\u0027s like they built a whole restaurant on the sidewalk.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.b64d49a94ff2404e944f2b772b34d24b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 659,
+        "EndTime": 667.2,
+        "Text": "And because they don\u0027t have big fridges on the sidewalk, they have to buy fresh food from the market every single morning. When they sell out, they go",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.bb92c266dc0d4c108f13dfdde785652b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 974,
+        "EndTime": 981.199,
+        "Text": "Yes. Think about it. When you eat street food here, you\u0027re sitting on a tiny plastic chair. Your knees are practically touching your chest.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.bf0ddcd656db454cbb675c10d072f993",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 320,
+        "EndTime": 322.88,
+        "Text": "So, what do we do? Just accept the mess?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.c2bd1274aee84af8b1f4b76513f5d67b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 506,
+        "EndTime": 514.399,
+        "Text": "I get that. It is annoying when you\u0027re just trying to walk somewhere, but you have to look at the other side of it, which is where else are they supposed to go?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.c4093c16507d4f7ea995b0cc112c32ac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 803,
+        "EndTime": 807.2,
+        "Text": "slightly worried about all the dust from the building work next to our cart.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.c5798d98020e44e6b1004d257fc649f9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 127,
+        "EndTime": 135.84,
+        "Text": "I get that. It is annoying when you\u0027re just trying to walk somewhere. But you have to look at the other side of it, which is where else are they supposed to go?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.cda2c54b000d453eb9871bf737ac8d89",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 572,
+        "EndTime": 581.12,
+        "Text": "Maybe. I know some cities try to organize it like Singapore, right? They moved all their street food vendors into those big food courts, big clean spaces",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.cda4be140a174859a2bc738f1b9a7e0c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 208,
+        "EndTime": 213.68,
+        "Text": "Why wouldn\u0027t it be? It solves the sidewalk problem and the problem with cleanliness.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.cdf8aeed4f1f41afad27dedca8e8708a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 836,
+        "EndTime": 844.88,
+        "Text": "I wasn\u0027t judging the sandwich. I was judging the location, which actually brings up something I\u0027ve been thinking about a lot lately. What\u0027s that?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.d17fbde22efc4dccb3b17e5d11f6ba65",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 530,
+        "EndTime": 539.36,
+        "Text": "street here. Millions of people depend on it. If you suddenly clear the sidewalks, you\u0027re not just making the streets cleaner. You\u0027re taking away how they survive.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.d3f8c1b0609e438aa09afec3914ffc8b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1121,
+        "EndTime": 1123.44,
+        "Text": "What did you say it was in?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.d706979882564f4d98df2b1d38ce9212",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 553,
+        "EndTime": 560,
+        "Text": "disaster waiting to happen. Okay, the boiling soup part is a little scary if you\u0027re not paying attention.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.d78fe07ac310470a98b316c05380b666",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 452,
+        "EndTime": 455.84,
+        "Text": "Nowhere. And it usually tastes better than a fancy restaurant.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.da29e939b3ed40509f19563d8aa54517",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 833,
+        "EndTime": 836.72,
+        "Text": "Right. So, why were you judging my sandwich?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.de01b2121db84cde9a2a8d7687f43840",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 333,
+        "EndTime": 341.68,
+        "Text": "Yeah. Give them legal space so they don\u0027t have to worry about the police chasing them away, but keep the main road safe for traffic and people walking.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.df3afc6b974d4ac8a765ad0e9d9aa07a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 135,
+        "EndTime": 144.72,
+        "Text": "Renting a real shop in the city is really expensive. For a lot of these people, that cart is their only way to make money. It pays for their kids school.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.dfc4229cd28b4487a873911c76e1cd5b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 478,
+        "EndTime": 485.919,
+        "Text": "the time walking in the actual street, trying to avoid motorbikes and cars because a seafood stall had completely",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e1724cb5f06b418296b5278761d71b98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 709,
+        "EndTime": 712.16,
+        "Text": "Like weekend walking streets, but for food vendors.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e1ce104b6f81456abf4ecc40b9f93093",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1012,
+        "EndTime": 1018.8,
+        "Text": "But I still think being clean is important. You can\u0027t tell me you\u0027ve never gotten sick from a random food cart.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e22426dce9204383b4fd5c7d09fc3e6d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 884,
+        "EndTime": 892.16,
+        "Text": "I get that it is annoying when you\u0027re just trying to walk somewhere, but you have to look at the other side of it, which is where else are they supposed to go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e25695f60f524b15b7ad4cc4e4294fc8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 822,
+        "EndTime": 829.92,
+        "Text": "Exactly. And it\u0027ll cost you almost nothing. Where else can you get a bowl of hot noodle soup at 2 a.m. for like $2?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e2952c1a229d465aa112a2d65e44adc0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 455,
+        "EndTime": 458.96,
+        "Text": "Right. So, why were you judging my sandwich?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e2fcf0133368444faca17601ae45079c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 224,
+        "EndTime": 226.879,
+        "Text": "Motorbikes are driving by everywhere.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e30e29bbaa864c8ea6813a6cea347dc2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 9,
+        "EndTime": 14.08,
+        "Text": "Now listen carefully. Is that another bunme?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e39487e5b75749afb6ee8fdfa87fc5ee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 523,
+        "EndTime": 530.399,
+        "Text": "I know. And I\u0027m not saying we should just shut them down. That would ruin the city, right? So many people sell things on the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e5a9d6f8b46845ffb32a7e7bc6070bd5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1107,
+        "EndTime": 1113.679,
+        "Text": "Obviously, the plastic chairs are a famous part of the culture at this point. See, you love it. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e755a4e0f3c64a05aadc215373ef1233",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1002,
+        "EndTime": 1010.959,
+        "Text": "Yeah. As much as I complain about the mess, I hate those perfectly clean, boring food courts. The food never tastes the same.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e7ea02d8eded42679a983e8458634758",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1058,
+        "EndTime": 1067.28,
+        "Text": "Fair enough. I guess I\u0027m just feeling unsure. I want the city to become more modern and safe to walk in, but I don\u0027t want it to lose its soul.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e816f9825faa4e1a9da74ed7dd28f873",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 246,
+        "EndTime": 254.64,
+        "Text": "Yeah. As much as I complain about the mess, I hate those perfectly clean, boring food courts. The food never tastes the same.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e9acb8fff3c04fc2bee772d0a1c7832f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1067,
+        "EndTime": 1076.32,
+        "Text": "That\u0027s the real challenge, isn\u0027t it? As a city develops, it naturally wants to look nicer, but the busy streets are what make the culture so special.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.e9b99a4db9c8447696e3c20e274aced2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 375,
+        "EndTime": 379.52,
+        "Text": "I\u0027ll hold it right here. Okay, fine. Just a small one.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.eb6742ee362847099f04d9e4c34ee87a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1076,
+        "EndTime": 1079.2,
+        "Text": "So, what do we do? Just accept the mess?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.ef6684e54e6c4c24acfd54f245db29d6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 330,
+        "EndTime": 333.6,
+        "Text": "Like weekend walking streets, but for food vendors.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.f03b1ab860cf49daaf9a2544fe23d40d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 278,
+        "EndTime": 280.72,
+        "Text": "That\u0027s true. There are no hidden doors.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.f2d792df22534056a5c80dd3b8325935",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1140,
+        "EndTime": 1144.395465,
+        "Text": "But if I get a stomach ache tomorrow, I am blaming you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.f3e58045635c4b8d8764376e08185efc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1113,
+        "EndTime": 1121.919,
+        "Text": "I never said I didn\u0027t. In fact, watching you hold that for the last 10 minutes is making me really hungry. I told you it smells amazing.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.f42eb9bd11e847a894b87b2c73591549",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 458,
+        "EndTime": 467.12,
+        "Text": "I wasn\u0027t judging the sandwich. I was judging the location, which actually brings up something I\u0027ve been thinking about a lot lately. What\u0027s that?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.f4756f873f8f4bb7b76110bef5423030",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 14,
+        "EndTime": 16.4,
+        "Text": "Don\u0027t look at me like that. I was hungry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.f51a8024af894a8e863b2691591b6b45",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 80,
+        "EndTime": 88.56,
+        "Text": "I wasn\u0027t judging the sandwich. I was judging the location. Which actually brings up something I\u0027ve been thinking about a lot lately. What\u0027s that?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.f5680ed0a1c84b11b62436049da910f7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1010,
+        "EndTime": 1012,
+        "Text": "Exactly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.f64c33eeeac143e192283a3eac13316b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1079,
+        "EndTime": 1086.96,
+        "Text": "I think we have to find a balance. Maybe some streets are kept completely clear for walking, while other side streets are just for food carts.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.f765455a9945404db7dd41586be12d96",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 908,
+        "EndTime": 917.12,
+        "Text": "street here. Millions of people depend on it. If you suddenly clear the sidewalks, you\u0027re not just making the streets cleaner, you\u0027re taking away how they survive.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.f7d4ebbe95174891a9cfc4a99038c2ad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 873,
+        "EndTime": 884.079,
+        "Text": "I mean, they kind of did, but isn\u0027t that a problem? I love the food, but for people walking, it\u0027s actually really dangerous. You\u0027re forced to walk in the middle of traffic.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.f8d0466fbcd64ff0bce92455ce29965d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 176,
+        "EndTime": 181.44,
+        "Text": "Okay, the boiling soup part is a little scary if you\u0027re not paying attention.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.fd0e41bf4f944b948d12bc39b56ff621",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 383,
+        "EndTime": 392.639,
+        "Text": "But if I get a stomach ache tomorrow, I am blaming you. I accept the risk. Is that another bunme?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.fde3c659daa04822a8ddcc4663ba490b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 93,
+        "EndTime": 99.92,
+        "Text": "No, hear me out. Last night, I was trying to walk home from the gym. Just a normal 10-minute walk, but I spent half",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221.ffe2f078a7494ef88248c46e8960009f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 712,
+        "EndTime": 719.44,
+        "Text": "Yeah. Give them legal space so they don\u0027t have to worry about the police chasing them away. But keep the main road safe for traffic and people",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+}

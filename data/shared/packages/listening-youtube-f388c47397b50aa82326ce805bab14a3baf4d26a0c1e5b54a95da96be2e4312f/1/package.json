@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "listening-youtube-f388c47397b50aa82326ce805bab14a3baf4d26a0c1e5b54a95da96be2e4312f",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.listening.youtube.f388c47397b50aa82326ce805bab14a3baf4d26a0c1e5b54a95da96be2e4312f",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A1 - C\u0102N PH\u00D2NG -",
+        "Level": "A1",
+        "Topic": "C\u0102N PH\u00D2NG",
+        "YoutubeId": "debAxRi-jWo",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/debAxRi-jWo/hqdefault.jpg",
+        "Duration": "9:48",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": null
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.listening.youtube.f388c47397b50aa82326ce805bab14a3baf4d26a0c1e5b54a95da96be2e4312f"
+}

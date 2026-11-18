@@ -1,6 +1,8 @@
 # Start / continue / review / fix — all four clients
 
-Use the current AGENTS.md and relevant canonical tct-* skill with one agent.
+Use the current AGENTS.md and relevant canonical tct-* skill. Follow its owner
+execution policy: one agent by default; native subagents are permitted only in
+Antigravity using Gemini 3.8 Flash High under that policy.
 My task: <concrete outcome>. Mode: <investigate / review / implement / fix>.
 Scope and authority: <files/features; local by default; Git/remote stages only if granted>.
 Reuse current evidence; load only the active plan step. Use CodeGraph first for

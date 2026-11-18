@@ -16,6 +16,33 @@ namespace TCTEnglish.Tests;
 
 public sealed class AiRagPhase6UiResilienceTests
 {
+    [Theory]
+    [InlineData("{broken", true)]
+    [InlineData("{\"schemaVersion\":999}", true)]
+    [InlineData(null, false)]
+    public async Task RetainedHistory_ExplicitUnverifiedGetsCaution_ButLegacyWithoutMetadataDoesNot(string? metadata, bool caution)
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        var id = Guid.NewGuid();
+        using (var scope = factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            db.AiConversations.Add(new AiConversation { Id = id, UserId = TestDataIds.UserId,
+                Title = "Retained uncertainty", CreatedAtUtc = DateTime.UtcNow, UpdatedAtUtc = DateTime.UtcNow });
+            db.AiMessages.Add(Message(id, "previous-retained-answer", metadata));
+            await db.SaveChangesAsync();
+        }
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        using var response = await client.GetAsync($"/AI/Chat?conversationId={id}");
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        var html = System.Net.WebUtility.HtmlDecode(await response.Content.ReadAsStringAsync());
+        Assert.Contains("previous-retained-answer", html);
+        Assert.Equal(caution, html.Contains("Mình chưa kiểm tra lại được", StringComparison.Ordinal));
+        Assert.DoesNotContain("class=\"ai-chat-action\"", html);
+        Assert.DoesNotContain("ai-chat-source-list", html);
+    }
+
     [Fact]
     public void SourceLink_AllowsOnlyServerLocalRoutes()
     {
@@ -180,21 +207,13 @@ public sealed class AiRagPhase6UiResilienceTests
         var html = await page.Content.ReadAsStringAsync();
         var visible = System.Net.WebUtility.HtmlDecode(html);
         Assert.Equal(HttpStatusCode.OK, page.StatusCode);
-        Assert.Contains("data-source-key=\"card:401\"", html, StringComparison.Ordinal);
-        Assert.Contains(LearnerChatState.Answered, visible, StringComparison.Ordinal);
-        Assert.Contains(LearnerChatState.Changed, visible, StringComparison.Ordinal);
-        Assert.Contains(LearnerChatState.InsufficientEvidence, visible, StringComparison.Ordinal);
-        Assert.Contains(LearnerChatState.NeedsClarification, visible, StringComparison.Ordinal);
-        Assert.Contains(LearnerChatState.OutOfScope, visible, StringComparison.Ordinal);
-        Assert.Contains(LearnerChatState.ProviderUnavailable, visible, StringComparison.Ordinal);
+        Assert.DoesNotContain(LearnerChatState.Answered, visible, StringComparison.Ordinal);
         Assert.Contains("legacy-row-without-metadata", html, StringComparison.Ordinal);
-        Assert.Contains("&lt;img src=x onerror=alert(1)&gt;", html, StringComparison.Ordinal);
+        Assert.Contains("Nguồn đã thay đổi sau", visible, StringComparison.Ordinal);
         Assert.DoesNotContain("<img src=x onerror=alert(1)>", html, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("href=\"javascript:", html, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("ai-chat-source-link\" href=\"https://", html, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("ai-chat-source-link\" href=\"/Admin", html, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("ai-chat-source-link", html, StringComparison.Ordinal);
-        Assert.Contains("href=\"/Home/Study/301\"", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("ai-chat-action\" href=\"https://", html, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("ai-chat-action\" href=\"/Admin", html, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]

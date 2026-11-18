@@ -21,6 +21,12 @@ namespace TCTEnglish.Services.Billing
         Task<int> ExpireSubscriptionsAsync(CancellationToken ct = default);
 
         /// <summary>
+        /// The same expiry rules for a single user (called by the billing pages before they build a model).
+        /// Returns the number of subscriptions expired.
+        /// </summary>
+        Task<int> ExpireForUserAsync(int userId, CancellationToken ct = default);
+
+        /// <summary>
         /// Admin-initiated revocation of a user's active subscription.
         /// </summary>
         Task<OperationResult> RevokeAsync(int userId, string reason, CancellationToken ct = default);

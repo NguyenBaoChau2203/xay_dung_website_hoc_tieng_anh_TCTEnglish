@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Xác nhận email";
+}
+<link rel="stylesheet" href="~/css/account-ui.css" asp-append-version="true" />
+<div class="tct-theme tct-page account-ui">
+    <div class="account-surface">
+        <section class="tct-card panel">
+            <h1>Xác nhận địa chỉ email mới</h1>
+            <p class="text-secondary">Bấm nút bên dưới để đổi email đăng nhập. Mở liên kết không tự đổi email.</p>
+            <form asp-controller="Account" asp-action="ConfirmEmailChange" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="token" value="@ViewBag.Token" />
+                <input type="hidden" name="unused" value="confirm" />
+                <button type="submit" class="btn btn-primary">Xác nhận email</button>
+            </form>
+        </section>
+    </div>
+</div>

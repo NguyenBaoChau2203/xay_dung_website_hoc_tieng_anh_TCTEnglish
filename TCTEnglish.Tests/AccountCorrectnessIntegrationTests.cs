@@ -271,12 +271,12 @@ public sealed class AccountCorrectnessIntegrationTests
             TestDataIds.UserId,
             Roles.Standard);
 
-        using var response = await client.GetAsync("/Account/Settings");
+        using var response = await client.GetAsync("/Account/Profile?tab=security");
         var body = await response.Content.ReadAsStringAsync();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.DoesNotContain(">Đã kết nối</p>", body, StringComparison.Ordinal);
-        Assert.Contains("chưa xác nhận", body, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("chưa phải mật khẩu cục bộ đã kiểm chứng", WebUtility.HtmlDecode(body), StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]

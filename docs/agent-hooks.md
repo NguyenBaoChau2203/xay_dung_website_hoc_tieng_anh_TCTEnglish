@@ -22,12 +22,30 @@ Node entrypoint: [scripts/agent-tools.cjs](../scripts/agent-tools.cjs).
 Shared Python checks: [scripts/agent_lifecycle.py](../scripts/agent_lifecycle.py).
 Former PowerShell launchers remain compatibility wrappers; the native client
 definitions do not require PowerShell.
-The project sets features.hooks=true and keeps multi_agent=false.
+The Codex project sets features.hooks=true and keeps multi_agent=false.
+
+Windows Antigravity launch repair (2026-11-17): its four configured commands now
+run the existing local file directly:
+`node scripts/agent-tools.cjs hook antigravity <Event>` from the open workspace
+root. This relative file path survives checkout relocation and spaces in the
+workspace path without embedding JavaScript in a quoted `node -e` argument.
+The former command reproduced `[eval]:1`, `"const`, `Unterminated string constant`
+when Python passed it through `cmd.exe /d /s /c`; it succeeded through pwsh. This
+was a launch/quoting failure before JSON or model policy evaluation. Other client
+definitions and MCP argv definitions remain unchanged.
+
+`test_antigravity_hook_launch.py` runs the actual checked command in a relocated
+temporary checkout with spaces, through cmd.exe and pwsh, with allowed, missing,
+malformed and wrong-model metadata plus malformed stdin. The regular checker runs
+all four hosts through pwsh and Antigravity additionally through cmd.exe. Installed
+Antigravity application code is packaged; this session did not observe the live
+native transport or invoke a subagent. Reload the intended Antigravity session and
+verify its hooks run from the open workspace root. No trust records were changed.
 
 | Event | Behavior | Limit |
 | --- | --- | --- |
 | SessionStart | Supplies concise project-policy/skill pointers at startup, resume, clear, compact or fork; snapshots toolkit content. | Does not copy the transcript or entire skill catalog into context. |
-| PreToolUse | Denies direct spawn_agent/Agent/followup_task while multi_agent=false. | Does not approve other calls or rewrite shell commands; not every tool path is interceptable. |
+| PreToolUse | Denies direct delegation while multi_agent=false, except native invoke_subagent/define_subagent in Antigravity with the approved Gemini 3.8 Flash High modelName. | Ordinary allow/default handling for that pair; never auto_approve or rewritten arguments. Other hosts/models retain denial; not every tool path is interceptable. |
 | PostToolUse | After shell/apply_patch tools, validates toolkit content if changed. | Reports failures as context; does not undo edits or hide completed tool results. |
 | Stop | Checks changed tooling or reuses verification for identical content. | Surfaces failures without forcing continuation loops, committing or claiming C# tests passed. |
 
@@ -45,12 +63,25 @@ trust record, automatic index or remote server was added.
 Owner-approved CodeGraph incremental auto-sync is selected separately by the
 checkout-local policy in docs/codegraph.md; lifecycle hooks do not run CLI sync.
 
-The Node fast guard denies direct delegation before Python is installed. Other
+The Node fast guard enforces the same host/model gate before Python is installed. Other
 validation remains pending until setup/MCP bootstrap prepares the environment.
 Cursor also has a native subagentStart denial gate. Antigravity PostToolUse returns
 the required empty object; diagnostic feedback goes to stderr. Its Stop response
 allows stopping, never forces continuation. These contracts are not copied blindly
 from Codex. No hook auto-approves unrelated tool calls.
+
+Owner update (2026-11-17): AGENTS.md permits native subagents only in Antigravity
+using Gemini 3.8 Flash High. Both the Node guard and Python handler inspect the
+current top-level modelName on every call, as documented in the
+[official Antigravity hook contract](https://antigravity.google/docs/hooks/).
+The explicit accepted spellings are gemini-3.8-flash-high and Gemini 3.8 Flash High,
+ignoring case and surrounding whitespace. Missing, malformed, different or unknown
+model metadata retains denial. Tool arguments, prompts, transcripts and environment
+variables cannot grant the exception. Permission is not cached across model changes.
+Codex/Claude/Cursor gates and all native definitions remain unchanged. Reload the
+intended Antigravity session to pick up guidance; live IDE invocation/model metadata
+still needs observation, independently of local contract tests. Subagents inherit
+the task scope/authority, with integration and verification owned by the coordinator.
 
 No hook starts another model or downloads dependencies. Commands are fixed local
 scripts; tool_input is

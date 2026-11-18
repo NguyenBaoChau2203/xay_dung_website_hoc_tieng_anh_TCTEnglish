@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.plant-care",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.plant-care",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Nh\u1EDD b\u1EA1n t\u01B0\u1EDBi c\u00E2y",
+        "Level": "beginner",
+        "ContentType": "emails",
+        "Topic": "Nh\u00E0 c\u1EEDa",
+        "SourceType": "original-20261114",
+        "PreviewText": "Email nh\u1EDD ch\u0103m c\u00E2y trong m\u1ED9t chuy\u1EBFn \u0111i ng\u1EAFn.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.plant-care.1baf84092b95446aa53b94d3305e006d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Ba ch\u1EADu c\u00E2y nh\u1ECF \u0111ang \u1EDF c\u1EA1nh c\u1EEDa s\u1ED5 nh\u00E0 b\u1EBFp.",
+        "EnglishMeaning": "The three small pots are beside the kitchen window.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.plant-care"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.plant-care.2c80a578b2fa4c4f804b4c7c6415f3c6",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "B\u1EA1n c\u00F3 th\u1EC3 gi\u00FAp m\u00ECnh t\u01B0\u1EDBi c\u00E2y v\u00E0o s\u00E1ng Ch\u1EE7 nh\u1EADt kh\u00F4ng?",
+        "EnglishMeaning": "Could you help me water my plants on Sunday morning?",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.plant-care"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.plant-care.5540f04926a046c5868f3c1bd66d33e1",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "C\u1EA3m \u01A1n b\u1EA1n \u0111\u00E3 gi\u00FAp m\u00ECnh ch\u0103m s\u00F3c nh\u1EEFng ch\u1EADu c\u00E2y n\u00E0y.",
+        "EnglishMeaning": "Thank you for helping me look after these plants.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.plant-care"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.plant-care.5af3c43057e54c64915695d3178d2286",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "M\u1ED7i ch\u1EADu ch\u1EC9 c\u1EA7n m\u1ED9t c\u1ED1c n\u01B0\u1EDBc nh\u1ECF.",
+        "EnglishMeaning": "Each pot only needs one small cup of water.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.plant-care"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.plant-care.7c1bc89c7f1d4d3a8d65e80e58480705",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Xin \u0111\u1EEBng chuy\u1EC3n ch\u00FAng ra ban c\u00F4ng v\u00EC \u1EDF \u0111\u00F3 qu\u00E1 n\u00F3ng.",
+        "EnglishMeaning": "Please do not move them to the balcony because it is too hot there.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.plant-care"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.plant-care.8503a9f944c849508752ca35b39a2d4b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Ch\u00E0o Linh, cu\u1ED1i tu\u1EA7n n\u00E0y m\u00ECnh s\u1EBD \u0111i th\u0103m b\u00E0.",
+        "EnglishMeaning": "Hi Linh, I am going to visit my grandmother this weekend.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.plant-care"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.plant-care.c4fa8fd41d6346f0b8b8e867498fccb5",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "M\u1EB9 m\u00ECnh s\u1EBD \u1EDF nh\u00E0 v\u00E0 m\u1EDF c\u1EEDa cho b\u1EA1n.",
+        "EnglishMeaning": "My mother will be home to open the door for you.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.plant-care"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.plant-care.c92a89835b2544cba60b008518479efb",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "The three small pots are next to the kitchen window.",
+        "NormalizedHash": "27ae28d5c1fa0c9825c7eb16d7a9a10a30deca0c3d7f341974e5cd56e2df709c"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.plant-care.1baf84092b95446aa53b94d3305e006d",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.plant-care.d6781ef263644c78a5a8fce8ccdc3fb3",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "M\u00ECnh s\u1EBD v\u1EC1 v\u00E0o t\u1ED1i Ch\u1EE7 nh\u1EADt v\u00E0 g\u1ECDi cho b\u1EA1n.",
+        "EnglishMeaning": "I will be back on Sunday evening and call you.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.plant-care"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.plant-care"
+}

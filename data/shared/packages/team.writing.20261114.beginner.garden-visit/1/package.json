@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.garden-visit",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.garden-visit",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Chuy\u1EBFn th\u0103m v\u01B0\u1EDDn rau",
+        "Level": "beginner",
+        "ContentType": "reports",
+        "Topic": "Tham quan",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E1o c\u00E1o chuy\u1EBFn tham quan gi\u1EA3 \u0111\u1ECBnh theo tr\u00ECnh t\u1EF1 v\u00E0 k\u1EBFt qu\u1EA3.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.garden-visit.1623a8d063c241efaaaf990d7d6baa05",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "B\u00E1o c\u00E1o n\u00E0y m\u00F4 t\u1EA3 chuy\u1EBFn th\u0103m v\u01B0\u1EDDn rau c\u1EE7a m\u1ED9t l\u1EDBp h\u1ECDc gi\u1EA3 \u0111\u1ECBnh.",
+        "EnglishMeaning": "This report describes a fictional class visit to a vegetable garden.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.garden-visit"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.garden-visit.1653fe1f361e42a7809b3346196cedce",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Sau \u0111\u00F3, h\u1ECDc sinh quan s\u00E1t c\u00E1ch t\u01B0\u1EDBi n\u01B0\u1EDBc v\u00E0o g\u1ED1c c\u00E2y.",
+        "EnglishMeaning": "Then the students watched how to water the plants at their roots.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.garden-visit"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.garden-visit.527deed94ad544f5a2c188609d9d0495",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "L\u1EDBp \u0111\u1EBFn khu v\u01B0\u1EDDn v\u00E0o l\u00FAc ch\u00EDn gi\u1EDD s\u00E1ng th\u1EE9 Hai.",
+        "EnglishMeaning": "The class arrived at the garden at nine on Monday morning.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.garden-visit"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.garden-visit.691087cea9284759a1212578e0fc49b1",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "C\u1EA3 l\u1EDBp r\u1EDDi v\u01B0\u1EDDn \u0111\u00FAng gi\u1EDD v\u00E0 mang r\u00E1c theo v\u1EC1.",
+        "EnglishMeaning": "The class left on time and took their rubbish with them.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.garden-visit"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.garden-visit.6962496d1afd48018733b1f4b1dfd30f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Gi\u00E1o vi\u00EAn \u0111\u1EC1 ngh\u1ECB ki\u1EC3m tra \u0111\u1ED3 d\u00F9ng tr\u01B0\u1EDBc chuy\u1EBFn \u0111i ti\u1EBFp theo.",
+        "EnglishMeaning": "The teacher suggested checking supplies before the next trip.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.garden-visit"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.garden-visit.890aeed628e84ac7afe82a0dea9b8b98",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "A gardener introduced three types of vegetables growing there.",
+        "NormalizedHash": "2cb37019439c7dc38ce22f909fd22d5c2d260e8580748d7617550683c451fed4"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.garden-visit.e4d4e8e786f24b36ab9c2d2d2d7c8d21",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.garden-visit.bfcf77ebe9ea4c0f8c23cfc49b143751",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "M\u1ED9t nh\u00F3m qu\u00EAn mang b\u00FAt n\u00EAn ph\u1EA3i m\u01B0\u1EE3n nh\u00F3m kh\u00E1c.",
+        "EnglishMeaning": "One group forgot their pens and borrowed some from another group.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.garden-visit"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.garden-visit.ce22cfc951774644ad25ae5b52986bd8",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "M\u1ED7i nh\u00F3m ghi l\u1EA1i hai \u0111i\u1EC1u m\u1EDBi h\u1ECDc \u0111\u01B0\u1EE3c trong s\u1ED5.",
+        "EnglishMeaning": "Each group recorded two things they learned in a notebook.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.garden-visit"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.garden-visit.e4d4e8e786f24b36ab9c2d2d2d7c8d21",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "M\u1ED9t ng\u01B0\u1EDDi l\u00E0m v\u01B0\u1EDDn gi\u1EDBi thi\u1EC7u ba lo\u1EA1i rau \u0111ang tr\u1ED3ng.",
+        "EnglishMeaning": "A gardener introduced three kinds of vegetables growing there.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.garden-visit"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.garden-visit"
+}

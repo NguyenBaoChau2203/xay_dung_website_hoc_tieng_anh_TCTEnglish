@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.clothes-swap",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.clothes-swap",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "T\u1ED5 ch\u1EE9c bu\u1ED5i \u0111\u1ED5i qu\u1EA7n \u00E1o",
+        "Level": "beginner",
+        "ContentType": "articles",
+        "Topic": "C\u1ED9ng \u0111\u1ED3ng",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E0i h\u01B0\u1EDBng d\u1EABn trao \u0111\u1ED5i \u0111\u1ED3 s\u1EA1ch v\u1EDBi quy t\u1EAFc r\u00F5 r\u00E0ng.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.clothes-swap.16c2de8ba2744bed9a57adf7d5a84580",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Kh\u00F4ng ai c\u1EA7n l\u1EA5y m\u1ED9t m\u00F3n \u0111\u1ED3 ch\u1EC9 v\u00EC n\u00F3 mi\u1EC5n ph\u00ED.",
+        "EnglishMeaning": "No one needs to take something just because it is free.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clothes-swap"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clothes-swap.2006067307724cd39333cd4bbfb80e54",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "C\u1EA3 nh\u00F3m n\u00EAn th\u1ED1ng nh\u1EA5t c\u00E1ch \u0111\u1ED5i \u0111\u1ED3 tr\u01B0\u1EDBc khi b\u1EAFt \u0111\u1EA7u.",
+        "EnglishMeaning": "The group should agree on how to swap before starting.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clothes-swap"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clothes-swap.2477080ae27b4bd1a41051616f4791e6",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "M\u1ED9t bu\u1ED5i \u0111\u1ED5i qu\u1EA7n \u00E1o nh\u1ECF c\u00F3 th\u1EC3 t\u1ED5 ch\u1EE9c c\u00F9ng b\u1EA1n b\u00E8.",
+        "EnglishMeaning": "You can organise a small clothes swap with friends.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clothes-swap"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clothes-swap.2fbc71739c564de39e82bcb029bb379b",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Check and wash the items before you bring them.",
+        "NormalizedHash": "ae859c9cd839fbb506efa5fb387bab5a63bb561b39cbf438266d5503856fbd5b"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.clothes-swap.54f92bf930eb4fa1b5264009fb50ac04",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clothes-swap.47fbae3048204c0aa3cdcd690cadaf07",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "M\u1ED7i ng\u01B0\u1EDDi ch\u1ECDn v\u00E0i m\u00F3n c\u00F2n t\u1ED1t nh\u01B0ng kh\u00F4ng c\u00F2n m\u1EB7c.",
+        "EnglishMeaning": "Each person chooses a few good items they no longer wear.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clothes-swap"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clothes-swap.54f92bf930eb4fa1b5264009fb50ac04",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Gi\u1EB7t s\u1EA1ch v\u00E0 ki\u1EC3m tra c\u00E1c m\u00F3n tr\u01B0\u1EDBc khi mang \u0111\u1EBFn.",
+        "EnglishMeaning": "Wash and check the items before bringing them.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clothes-swap"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clothes-swap.553307cf33554343a696532521830e74",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "M\u1ECDi ng\u01B0\u1EDDi c\u00F3 th\u1EC3 h\u1ECFi v\u1EC1 k\u00EDch c\u1EE1 v\u00E0 xem k\u1EF9 t\u1EEBng m\u00F3n.",
+        "EnglishMeaning": "Everyone can ask about sizes and look closely at each item.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clothes-swap"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clothes-swap.86feb31a235f46df82e1b6f842f94608",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "X\u1EBFp \u00E1o, qu\u1EA7n v\u00E0 kh\u0103n th\u00E0nh nh\u1EEFng nh\u00F3m ri\u00EAng tr\u00EAn b\u00E0n.",
+        "EnglishMeaning": "Put shirts, trousers and scarves in separate groups on the table.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clothes-swap"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clothes-swap.a11eb365025b4300bf15f2a458067eb6",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Nh\u1EEFng m\u00F3n ch\u01B0a \u0111\u01B0\u1EE3c ch\u1ECDn c\u00F3 th\u1EC3 \u0111\u01B0\u1EE3c gi\u1EEF l\u1EA1i cho bu\u1ED5i sau.",
+        "EnglishMeaning": "Items that are not chosen can be kept for the next swap.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clothes-swap"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.clothes-swap"
+}

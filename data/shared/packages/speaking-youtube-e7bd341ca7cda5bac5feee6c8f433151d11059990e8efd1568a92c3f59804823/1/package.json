@@ -1,0 +1,1148 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A2- XIN M\u1EB8 \u0110I CH\u01A0I-",
+        "YoutubeId": "tGvePkiUPNQ",
+        "Level": "A2",
+        "Topic": "Gia \u0111\u00ECnh \u0026 \u0111\u1EDDi s\u1ED1ng",
+        "ThumbnailUrl": "https://img.youtube.com/vi/tGvePkiUPNQ/hqdefault.jpg",
+        "Duration": "8:34",
+        "SourceUrl": "https://www.youtube.com/watch?v=tGvePkiUPNQ",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.0650b62632dd45a4b6335707f98fea8e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 12,
+        "EndTime": 18.72,
+        "Text": "Now listen carefully. Mom, can I go out tonight? Out? Where are you going?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.0925d73359574de2ac2724111406804f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 244,
+        "EndTime": 249.439,
+        "Text": "Mom, please. Just this once. The answer is still no.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.0d0aa0502ee542b79fc21c1b03d9dd96",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 419,
+        "EndTime": 425.36,
+        "Text": "More money? I already gave you 100,000 dong. Yeah, but it\u0027s not enough.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.1033c3ae013c462e8e6f058a3bfa15c5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 452,
+        "EndTime": 459.599,
+        "Text": "You bought ice cream and didn\u0027t even eat dinner. That was last time. I\u0027ve changed. Really? For one week?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.13739f4d04f74e30b09f5e0f6d899b84",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 398,
+        "EndTime": 403.759,
+        "Text": "No, Ben. 10 p.m. is too late. You can come home by 8.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.13f30b0fcd754cfcadef2accfcbcd3b8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 31,
+        "EndTime": 35.36,
+        "Text": "No, it\u0027s dark and not safe outside at night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.151036627e524c539751b4bf75f264a7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 150,
+        "EndTime": 157.44,
+        "Text": "What? But No, but you want to go out, you clean first. Fine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.1799409636a14d79be67ae095c8d3503",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 25,
+        "EndTime": 28.4,
+        "Text": "1000 p.m. That\u0027s too late, Ben.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.20978c6396b842e6b76fbd9c84a27204",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 437,
+        "EndTime": 443.84,
+        "Text": "Don\u0027t try to use my words against me, young man. Come on, Mom. Please. Just 50,000 more.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.2177db46f4f84e5ebd4674a5a9da3dba",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 252,
+        "EndTime": 259.6,
+        "Text": "More money? I already gave you a h 100,000 dong. Yeah, but it\u0027s not enough. Not enough for what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.239b937965474f838599d738fda78269",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 481,
+        "EndTime": 490.8,
+        "Text": "I know. Now, go clean your room before you go. What? But no, but you want to go out, you clean first.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.29453ccb476642519eb29a3ca1e567a8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 267,
+        "EndTime": 270.24,
+        "Text": "Mom, that\u0027s dangerous. You said it\u0027s not safe.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.2da249a85e7f4010988b89cdd6053a5c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 359,
+        "EndTime": 362.639,
+        "Text": "1000 p.m. That\u0027s too late, Ben.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.377e17dd71114609a547ceb297205657",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 309,
+        "EndTime": 311.919,
+        "Text": "And don\u0027t forget to text me where you are.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.3b80d21676c8492ea7831cf66ad3cd07",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 411,
+        "EndTime": 416.56,
+        "Text": "Mom, please. Just this once. The answer is still no.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.43838699721a4b3b83a2722d05a0e521",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 270,
+        "EndTime": 276.72,
+        "Text": "Don\u0027t try to use my words against me, young man. Come on, Mom. Please. Just 50,000 more.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.4444dd3c342d4384bd99e8059bf932c4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 387,
+        "EndTime": 396.4,
+        "Text": "That\u0027s not true. You went out last weekend, remember? But that was just for 2 hours. That\u0027s enough. I worry about you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.448a2e21cd0d4392a12d7d8b3cdbd96f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 476,
+        "EndTime": 481.28,
+        "Text": "And don\u0027t forget to text me where you are. Yes, Mom. You\u0027re the best.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.4504bdce612c4361803972816499867a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 85,
+        "EndTime": 92.479,
+        "Text": "More money? I already gave you a h 100,000 dong. Yeah, but it\u0027s not enough. Not enough for what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.46c6ad525135419b8e6717e9a6ee8c1d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 349,
+        "EndTime": 352.96,
+        "Text": "Mom, can I go out tonight? Out? Where are you going?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.47edec77a02d430fa26f22337441da66",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 69,
+        "EndTime": 76.96,
+        "Text": "8:00 p.m. That\u0027s so early. We haven\u0027t even finished eating by then. Then don\u0027t eat too slow.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.48b310b7120f4edc9251a12556c25642",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 461,
+        "EndTime": 469.759,
+        "Text": "Fine, but only 30,000 more. And you must be home by 9:00. 9? You said 8 before.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.4b4632f233ba4fd3ae757e59901383ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 503,
+        "EndTime": 513.625397,
+        "Text": "I learned from the best. You Okay. Okay. I\u0027ll be back early. Good boy. Now, hurry up.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.4cb18793961d43e2916ee80f9ed0a4a3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 425,
+        "EndTime": 434.16,
+        "Text": "Not enough for what? for food and maybe some milk tea and maybe a taxi home. You don\u0027t need a taxi. You can walk.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.4e46ce6d81c14f71b04a84dc3c0fbf55",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 362,
+        "EndTime": 365.84,
+        "Text": "Come on, Mom. Just this one time, please.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.5572d5abd96f48bcaf533ea0c38bc5e7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 35,
+        "EndTime": 38.239,
+        "Text": "But all my friends can stay out until 10:00.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.56880f898ea04f21865e923bed4c6f8a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 109,
+        "EndTime": 113.04,
+        "Text": "No, Ben. You\u0027ll just waste it on games again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.5f440e03ab524ee18a1ea2cc61bf8a93",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 212,
+        "EndTime": 220.48,
+        "Text": "You still live in my house, so you follow my rules. [sighs] Mom, you never let me do anything fun.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.61a8e9c95100442e893b6bdff7497bc7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 403,
+        "EndTime": 411.199,
+        "Text": "8:00 p.m. That\u0027s so early. We haven\u0027t even finished eating by then. Then don\u0027t eat too slow.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.68c38c37f8bc4863b211a1b4611890ca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 352,
+        "EndTime": 359.68,
+        "Text": "Just with my friends. We want to hang out and eat something. What time will you come home? Maybe around 10:00 p.m.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.7303f9800a744ffdb032fdb466e2c222",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 365,
+        "EndTime": 369.6,
+        "Text": "No, it\u0027s dark and not safe outside at night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.7866dfae699b42f8a3de78d2c25d85b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 292,
+        "EndTime": 294.8,
+        "Text": "I\u0027m serious, Mom. Please.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.7dd6d4f9331846e8a276c8a44f4cf869",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 317,
+        "EndTime": 324.56,
+        "Text": "What? But No, but you want to go out, you clean first. Fine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.8219d593c7974331a05bbbe41f89fd0f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 157,
+        "EndTime": 165.44,
+        "Text": "And remember, home by 9:00, not 1 minute late. I know. I know. 900 p.m. Sharp.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.863f44ebc81245ea8456243008366208",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 332,
+        "EndTime": 339.44,
+        "Text": "If you\u0027re late, I\u0027ll lock the door. Mom, you\u0027re so dramatic. I learned from the best. You.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.8b806777adff445a8ab2c3410e6e5297",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 172,
+        "EndTime": 179.959,
+        "Text": "Okay. Okay. I\u0027ll be back early. Good boy. Now, hurry up.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.90b2d4e46eea4ac0926efa230327cb68",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 369,
+        "EndTime": 377.36,
+        "Text": "But all my friends can stay out until 10:00. You are not all your friends. You are my son.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.92caa0d7a6944c59a12c582ba14f4044",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 120,
+        "EndTime": 127.68,
+        "Text": "That was last time. I\u0027ve changed. Really? For 1 week? I\u0027m serious, Mom. Please.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.93393417a4c74e958798132d93c6de59",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 147,
+        "EndTime": 150.72,
+        "Text": "I know. Now, go clean your room before you go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.94b188bd4df2457998e564997a5befea",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 82,
+        "EndTime": 85.68,
+        "Text": "Fine. Then can I at least get some more money?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.981817ebd8424d90b4f00773b82366ee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 491,
+        "EndTime": 499.599,
+        "Text": "And remember, home by 9, not 1 minute late. I know. I know. 9:00 p.m. sharp.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.9c4c0f21e5834e609fd23e027da5c584",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1,
+        "EndTime": 10.52,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A2. And the topic is asking mom to go out.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.9e02e226df0e44608f174d9658f6b9ee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 28,
+        "EndTime": 31.599,
+        "Text": "Come on, Mom. Just this one time, please.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.9ef7e7edb00d445c919404610b9cf0ba",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 99,
+        "EndTime": 103.119,
+        "Text": "Mom, that\u0027s dangerous. You said it\u0027s not safe.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.9fe767abecda44aea1a9f6ac1774a695",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 62,
+        "EndTime": 64.64,
+        "Text": "I\u0027ll be careful. I promise.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.9ff03af819674ee88de55fcb8fc7aef9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 324,
+        "EndTime": 332.479,
+        "Text": "And remember, home by 9:00, not 1 minute late. I know. I know. 900 p.m. sharp.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.a361ff8707b34e15a0562a6ef584bd2a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 311,
+        "EndTime": 317.84,
+        "Text": "Yes, Mom. You\u0027re the best. I know. Now go clean your room before you go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.a4a64cb3ff214aa4bea8cefe24a478bf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 259,
+        "EndTime": 267.04,
+        "Text": "For food and maybe some milk tea and maybe a taxi home. You don\u0027t need a taxi. You can walk.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.a4e5aac4a8cc4a4d85b53113438e65ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 135,
+        "EndTime": 138.959,
+        "Text": "Yes, I\u0027m being nice. Don\u0027t push your luck.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.a67dc89d4d634122ba1aa22ce332ec67",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 276,
+        "EndTime": 285.199,
+        "Text": "No, Ben. You\u0027ll just waste it on games again. What? No, I won\u0027t. Last time you said that and guess what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.a900727813b846bc81f58939950e9c90",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 434,
+        "EndTime": 437.36,
+        "Text": "Mom, that\u0027s dangerous. You said it\u0027s not safe.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.ab3f142d31484d7cbf6b3eff144e4043",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 396,
+        "EndTime": 398.88,
+        "Text": "I\u0027ll be careful. I promise.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.ac9e9661a3384cc4bb7495f4b3dccaf3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 64,
+        "EndTime": 69.52,
+        "Text": "No, Ben. 10 p.m. is too late. You can come home by 8.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.ad030bfce3fa4b20874673d10f4947bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 249,
+        "EndTime": 252.799,
+        "Text": "Fine. Then can I at least get some more money?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.af93b55156ef42a59fba9a20527a57c2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 38,
+        "EndTime": 45.76,
+        "Text": "You are not all your friends. You are my son. Mom, I\u0027m not a kid anymore.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.b2490e8d4f9e44ac965f2b2906ed41af",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 76,
+        "EndTime": 82.4,
+        "Text": "Mom, please. Just this once. The answer is still no.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.b286d22abec14a1ebf4e37937a7ebe6d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 205,
+        "EndTime": 212.879,
+        "Text": "You are not all your friends. You are my son. Mom, I\u0027m not a kid anymore.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.b6943a277ab04e04a2bc2228084af897",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 165,
+        "EndTime": 172.319,
+        "Text": "If you\u0027re late, I\u0027ll lock the door. Mom, you\u0027re so dramatic. I learned from the best. you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.b80f429f4cdb4f898f9172cbb905be46",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 459,
+        "EndTime": 461.919,
+        "Text": "I\u0027m serious, Mom. Please.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.b959347ebeb74c909280208ac714a7bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 294,
+        "EndTime": 302.639,
+        "Text": "Fine, but only 30,000 more. And you must be home by 9. 9? You said 8 before.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.baa96b26d124499baf95e7eccece4fcf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 192,
+        "EndTime": 202.48,
+        "Text": "1000 p.m. That\u0027s too late. Ben, come on. Mom, just this one time, please. No, it\u0027s dark and not safe outside at night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.bca36f1da17c4f40a8f8cd3505ba35bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 469,
+        "EndTime": 476.16,
+        "Text": "Yes, I\u0027m being nice. Don\u0027t push your luck. Okay. Okay. 900 p.m. I promise.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.bf5d85ad9bf744cca9d97b689c896a7d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 113,
+        "EndTime": 120.799,
+        "Text": "What? No, I won\u0027t. Last time you said that and guess what? You bought ice cream and didn\u0027t even eat dinner.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.bfb2ad24b6ec4819b191c20c49dedf3b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 220,
+        "EndTime": 229.28,
+        "Text": "That\u0027s not true. You went out last weekend, remember? But that was just for 2 hours. That\u0027s enough. I worry about you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.c63f2b143cb442e2b79463fd57e37b5f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 443,
+        "EndTime": 452.24,
+        "Text": "No, Ben. You\u0027ll just waste it on games again. What? No, I won\u0027t. Last time you said that and guess what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.ce2804b6194940abb471e826e0c2a6cd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 127,
+        "EndTime": 135.52,
+        "Text": "Fine, but only 30,000 more. And you must be home by 9. 9? You said 8 before.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.cef77b8f7fd142e3a4b18726c3912b74",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 377,
+        "EndTime": 380,
+        "Text": "Mom, I\u0027m not a kid anymore.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.cf32ef66de354a6faea8d27946f06220",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 380,
+        "EndTime": 387.52,
+        "Text": "You still live in my house, so you follow my rules. [sighs] Mom, you never let me do anything fun.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.d2b98f1eea314add90ba1390d392766f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 499,
+        "EndTime": 503.919,
+        "Text": "If you\u0027re late, I\u0027ll lock the door. Mom, you\u0027re so dramatic.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.d5c823f921a14019890a6c3568bda52b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 231,
+        "EndTime": 236.64,
+        "Text": "No, Ben. 1000 p.m. is too late. You can come home by 8.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.dd53e096d4f743ba8b273a6a04c80c4c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 302,
+        "EndTime": 309.039,
+        "Text": "Yes, I\u0027m being nice. Don\u0027t push your luck. Okay. Okay. 900 p.m. I promise.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.dff557b0460348f68efa574f22130a32",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 339,
+        "EndTime": 347.08,
+        "Text": "Okay. Okay. I\u0027ll be back early. Good boy. Now, hurry up.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.e3a9b29bd43d4af98a14b9c82628cc85",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 229,
+        "EndTime": 231.76,
+        "Text": "I\u0027ll be careful. I promise.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.e449c4d661ae48a697561cff05d182dd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 92,
+        "EndTime": 99.92,
+        "Text": "For food and maybe some milk tea and maybe a taxi home. You don\u0027t need a taxi. You can walk.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.e7ed4e3f80a14f1daa628692e53fb592",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 185,
+        "EndTime": 192.56,
+        "Text": "Just with my friends. We want to hang out and eat something. What time will you come home? Maybe around 10:00 p.m.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.e95bf8eb155843e2834ed1243f819d86",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 236,
+        "EndTime": 244.08,
+        "Text": "8:00 p.m. That\u0027s so early. We haven\u0027t even finished eating by then. Then don\u0027t eat too slow.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.ea1240787e0e4bf48a2a77afad5c9851",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 285,
+        "EndTime": 292.479,
+        "Text": "You bought ice cream and didn\u0027t even eat dinner. That was last time. I\u0027ve changed. Really? For one week?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.ec8abba8a1e44c59ab9dcce9576dd1eb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 416,
+        "EndTime": 419.919,
+        "Text": "Fine. [snorts] Then can I at least get some more money?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.ee69efd600f24d3389f573b425dbcae1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 45,
+        "EndTime": 53.36,
+        "Text": "You still live in my house, so you follow my rules. Mom, you never let me do anything fun.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.f51219b456a84f1fb6f60efea051986d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 182,
+        "EndTime": 185.84,
+        "Text": "Mom, can I go out tonight? Out? Where are you going?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.f78471320bc54922b1d5082b5b926f89",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 18,
+        "EndTime": 25.439,
+        "Text": "Just with my friends. We want to hang out and eat something. What time will you come home? Maybe around 10:00 p.m.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.f87ddbd1abdd45568a9d7f90d9731d0e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 490,
+        "EndTime": 491.68,
+        "Text": "Fine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.fc323e30c29e4838b4e0756c8984f54d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 138,
+        "EndTime": 147.04,
+        "Text": "Okay. Okay. 900 p.m. I promise. And don\u0027t forget to text me where you are. Yes, Mom. You\u0027re the best.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.fcb11529ebb042a196f9f30d9bb5a711",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 53,
+        "EndTime": 62.16,
+        "Text": "That\u0027s not true. You went out last weekend, remember? But that was just for 2 hours. That\u0027s enough. I worry about you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.ff41fa74d03a41f880f0c68a2e11fa1d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 202,
+        "EndTime": 205.36,
+        "Text": "But all my friends can stay out until 10:00.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823.ffac278ad5a044d0a377df037410b83c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 103,
+        "EndTime": 109.6,
+        "Text": "Don\u0027t try to use my words against me, young man. Come on, Mom. Please. Just 50,000 more.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.e7bd341ca7cda5bac5feee6c8f433151d11059990e8efd1568a92c3f59804823"
+}

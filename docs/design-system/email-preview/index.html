@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCT English — Email Design System Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-canvas: #f0f3ff;
+            --surface: #ffffff;
+            --surface-muted: #f8fafc;
+            --primary: #4255ff;
+            --primary-hover: #2f3fe0;
+            --primary-soft: #eef2ff;
+            --accent-yellow: #ffcd1f;
+            --text: #111c2d;
+            --text-secondary: #444656;
+            --text-muted: #5b6578;
+            --border: #e2e8f0;
+            --border-control: #7c869b;
+            --card-border: #dbe4ff;
+            --card-shadow: 0 10px 25px rgba(66, 85, 255, 0.08), 0 4px 10px rgba(0, 0, 0, 0.03);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font); background-color: var(--bg-canvas); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+        /* Top Header */
+        .header {
+            height: 64px; background: var(--surface); border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+            box-shadow: 0 2px 8px rgba(66, 85, 255, 0.05); flex-shrink: 0; z-index: 10;
+        }
+        .header-brand { display: flex; align-items: center; gap: 12px; }
+        .brand-badge {
+            background: var(--primary-soft); color: var(--primary); font-weight: 800;
+            font-size: 15px; padding: 4px 10px; border-radius: 8px; border: 1px solid var(--card-border);
+            letter-spacing: -0.3px;
+        }
+        .brand-title { font-size: 16px; font-weight: 700; color: var(--text); }
+        .brand-subtitle { font-size: 13px; color: var(--text-muted); }
+
+        .toolbar { display: flex; align-items: center; gap: 16px; }
+        .btn-group { display: inline-flex; background: var(--bg-canvas); padding: 3px; border-radius: 10px; border: 1px solid var(--border); }
+        .btn-toggle {
+            background: transparent; border: none; padding: 6px 14px; font-size: 13px; font-weight: 600;
+            color: var(--text-secondary); border-radius: 7px; cursor: pointer; transition: all 0.15s ease;
+        }
+        .btn-toggle:hover { color: var(--text); }
+        .btn-toggle.active { background: var(--surface); color: var(--primary); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06); }
+
+        /* Workspace Grid */
+        .workspace { display: flex; flex: 1; overflow: hidden; }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 320px; background: var(--surface); border-right: 1px solid var(--border);
+            overflow-y: auto; padding: 16px 12px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;
+        }
+        .nav-group-title {
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
+            color: var(--text-muted); padding: 6px 12px 4px 12px;
+        }
+        .nav-item {
+            display: flex; flex-direction: column; gap: 3px; padding: 10px 14px; border-radius: 10px;
+            color: var(--text); text-decoration: none; font-size: 14px; font-weight: 500;
+            transition: all 0.15s ease; cursor: pointer; border: 1px solid transparent;
+        }
+        .nav-item:hover { background: var(--bg-canvas); }
+        .nav-item.active {
+            background: var(--primary-soft); color: var(--primary); font-weight: 600;
+            border-color: var(--card-border);
+        }
+        .nav-item-meta { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+        .nav-item.active .nav-item-meta { color: var(--primary); opacity: 0.85; }
+
+        /* Preview Canvas */
+        .canvas-area {
+            flex: 1; display: flex; flex-direction: column; background: #e5e9f5;
+            overflow-y: auto; align-items: center; padding: 24px 16px; position: relative;
+        }
+
+        .preview-wrapper {
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 600px; max-width: 100%; display: flex; flex-direction: column; gap: 16px;
+        }
+        .preview-wrapper.mode-desktop { width: 600px; }
+        .preview-wrapper.mode-mobile { width: 375px; }
+        .preview-wrapper.mode-fluid { width: 100%; max-width: 800px; }
+
+        .preview-frame-container {
+            background: var(--surface); border-radius: 16px; overflow: hidden;
+            box-shadow: 0 12px 36px rgba(17, 28, 45, 0.12); border: 1px solid rgba(66, 85, 255, 0.1);
+        }
+        .iframe-window { width: 100%; height: 740px; border: none; display: block; background: #f0f3ff; }
+
+        /* Raw Text / Code View */
+        .text-view-container {
+            display: none; background: #0f172a; color: #f8fafc; border-radius: 16px;
+            padding: 20px; font-family: var(--mono); font-size: 13px; line-height: 1.6;
+            overflow: auto; max-height: 740px; white-space: pre-wrap; word-break: break-word;
+            border: 1px solid #334155; box-shadow: 0 12px 36px rgba(17, 28, 45, 0.15);
+        }
+
+        /* Metadata Card */
+        .meta-card {
+            background: var(--surface); border-radius: 14px; border: 1px solid var(--border);
+            padding: 16px 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;
+        }
+        .meta-col { display: flex; flex-direction: column; gap: 4px; }
+        .meta-label { font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-muted); letter-spacing: 0.5px; }
+        .meta-val { font-size: 13px; font-weight: 600; color: var(--text); word-break: break-word; }
+
+        /* Dark mode simulator */
+        .simulate-dark .iframe-window { filter: invert(0.92) hue-rotate(180deg); }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-brand">
+            <span class="brand-badge">TCT</span>
+            <div>
+                <div class="brand-title">Email Design System Gallery</div>
+                <div class="brand-subtitle">Hệ thống email chuẩn Claymorphism cho TCT English</div>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <!-- Viewport toggle -->
+            <div class="btn-group">
+                <button type="button" class="btn-toggle active" onclick="setViewport('desktop', this)">Desktop (600px)</button>
+                <button type="button" class="btn-toggle" onclick="setViewport('mobile', this)">Mobile (375px)</button>
+                <button type="button" class="btn-toggle" onclick="setViewport('fluid', this)">Toàn màn hình</button>
+            </div>
+
+            <!-- View mode toggle -->
+            <div class="btn-group">
+                <button type="button" class="btn-toggle active" onclick="setViewMode('preview', this)">Giao diện Email</button>
+                <button type="button" class="btn-toggle" onclick="setViewMode('plaintext', this)">Bản Text thuần</button>
+                <button type="button" class="btn-toggle" onclick="setViewMode('source', this)">Mã nguồn HTML</button>
+            </div>
+
+            <!-- Dark mode simulation toggle -->
+            <div class="btn-group">
+                <button type="button" class="btn-toggle" id="darkModeToggle" onclick="toggleDarkMode(this)">Mô phỏng Dark Mode</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="workspace">
+        <aside class="sidebar" id="navSidebar">
+
+            <div class="nav-group-title">Bảo mật & Xác thực tài khoản</div>
+            <div class="nav-item active" data-key="password-reset" onclick="selectFixture('password-reset', this)">
+                <span>Đặt lại mật khẩu (Tiêu chuẩn)</span>
+                <span class="nav-item-meta">Bảo mật tài khoản &bull; 15 phút</span>
+            </div>
+            <div class="nav-item" data-key="password-reset-long" onclick="selectFixture('password-reset-long', this)">
+                <span>Đặt lại mật khẩu (URL & Token dài)</span>
+                <span class="nav-item-meta">Bảo mật tài khoản &bull; 15 phút</span>
+            </div>
+            <div class="nav-item" data-key="verify-email" onclick="selectFixture('verify-email', this)">
+                <span>Xác minh email tài khoản</span>
+                <span class="nav-item-meta">Xác minh danh tính &bull; 10 phút</span>
+            </div>
+            <div class="nav-item" data-key="email-change" onclick="selectFixture('email-change', this)">
+                <span>Xác nhận địa chỉ email mới</span>
+                <span class="nav-item-meta">Đổi thông tin đăng nhập &bull; 30 phút</span>
+            </div>
+            <div class="nav-group-title">Mã xác thực nhạy cảm</div>
+            <div class="nav-item" data-key="reauth-proof" onclick="selectFixture('reauth-proof', this)">
+                <span>Mã xác thực bảo mật (Reauth)</span>
+                <span class="nav-item-meta">Xác thực danh tính &bull; 10 phút</span>
+            </div>
+            <div class="nav-item" data-key="first-password-proof" onclick="selectFixture('first-password-proof', this)">
+                <span>Thiết lập mật khẩu đầu tiên</span>
+                <span class="nav-item-meta">Tài khoản Social Login &bull; 10 phút</span>
+            </div>
+            <div class="nav-item" data-key="deletion-proof" onclick="selectFixture('deletion-proof', this)">
+                <span>Xác nhận yêu cầu xóa tài khoản</span>
+                <span class="nav-item-meta">Thao tác nguy hiểm &bull; 10 phút</span>
+            </div>
+            <div class="nav-item" data-key="weekly-unsubscribe" onclick="selectFixture('weekly-unsubscribe', this)">
+                <span>Quản lý hủy đăng ký email tuần</span>
+                <span class="nav-item-meta">Tùy chọn thông báo &bull; 14 ngày</span>
+            </div>
+            <div class="nav-group-title">Trạng thái tài khoản</div>
+            <div class="nav-item" data-key="account-blocked-finite" onclick="selectFixture('account-blocked-finite', this)">
+                <span>Thông báo khóa tài khoản (Có thời hạn)</span>
+                <span class="nav-item-meta">Trạng thái tài khoản &bull; Thời hạn hiển thị chuẩn UTC</span>
+            </div>
+            <div class="nav-item" data-key="account-blocked-permanent" onclick="selectFixture('account-blocked-permanent', this)">
+                <span>Thông báo khóa tài khoản (Vĩnh viễn)</span>
+                <span class="nav-item-meta">Trạng thái tài khoản &bull; Vĩnh viễn</span>
+            </div>
+            <div class="nav-item" data-key="account-unlocked-auto" onclick="selectFixture('account-unlocked-auto', this)">
+                <span>Tài khoản mở khóa (Tự động hết hạn khóa)</span>
+                <span class="nav-item-meta">Trạng thái tài khoản &bull; Không áp dụng</span>
+            </div>
+            <div class="nav-item" data-key="account-unlocked-manual" onclick="selectFixture('account-unlocked-manual', this)">
+                <span>Tài khoản mở khóa (Quản trị viên)</span>
+                <span class="nav-item-meta">Trạng thái tài khoản &bull; Không áp dụng</span>
+            </div>
+            <div class="nav-group-title">Hỗ trợ & Học tập hàng tuần</div>
+            <div class="nav-item" data-key="support-contact" onclick="selectFixture('support-contact', this)">
+                <span>Tin nhắn liên hệ hỗ trợ (Tiêu chuẩn)</span>
+                <span class="nav-item-meta">Hỗ trợ người dùng &bull; Không áp dụng</span>
+            </div>
+            <div class="nav-item" data-key="support-contact-edge" onclick="selectFixture('support-contact-edge', this)">
+                <span>Tin nhắn liên hệ hỗ trợ (Ký tự đặc biệt & XSS)</span>
+                <span class="nav-item-meta">Hỗ trợ người dùng &bull; Không áp dụng</span>
+            </div>
+            <div class="nav-item" data-key="weekly-summary-active" onclick="selectFixture('weekly-summary-active', this)">
+                <span>Tổng kết tuần học (Có hoạt động tích cực)</span>
+                <span class="nav-item-meta">Học tập hàng tuần &bull; Gửi định kỳ thứ Hai hàng tuần</span>
+            </div>
+            <div class="nav-item" data-key="weekly-summary-empty" onclick="selectFixture('weekly-summary-empty', this)">
+                <span>Tổng kết tuần học (Không có hoạt động)</span>
+                <span class="nav-item-meta">Học tập hàng tuần &bull; Gửi định kỳ thứ Hai hàng tuần</span>
+            </div>
+        </aside>
+
+        <main class="canvas-area" id="canvasArea">
+            <div class="preview-wrapper mode-desktop" id="previewWrapper">
+
+                <!-- Metadata Card -->
+                <div class="meta-card">
+                    <div class="meta-col">
+                        <span class="meta-label">Tiêu đề email (Subject)</span>
+                        <span class="meta-val" id="metaSubject">-</span>
+                    </div>
+                    <div class="meta-col">
+                        <span class="meta-label">Thời gian hiệu lực (TTL)</span>
+                        <span class="meta-val" id="metaTtl">-</span>
+                    </div>
+                    <div class="meta-col">
+                        <span class="meta-label">Phân loại & Nguyên tắc bảo mật</span>
+                        <span class="meta-val" id="metaInvariant">-</span>
+                    </div>
+                </div>
+
+                <!-- Preview Frame -->
+                <div class="preview-frame-container" id="frameContainer">
+                    <iframe class="iframe-window" id="previewIframe" src="password-reset.html" title="Email Preview"></iframe>
+                </div>
+
+                <!-- Text / Source Container -->
+                <div class="text-view-container" id="textViewContainer"></div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const fixtures = {
+"password-reset": { title: "Đặt lại mật khẩu (Tiêu chuẩn)", subject: "Đặt lại mật khẩu - TCT English", ttl: "15 phút", invariant: "Hiển thị nút CTA và liên kết phụ; không tiết lộ mật khẩu cũ hay khẳng định đã đặt lại.", htmlFile: "password-reset.html", txtFile: "password-reset.txt" },
+            "password-reset-long": { title: "Đặt lại mật khẩu (URL & Token dài)", subject: "Đặt lại mật khẩu - TCT English", ttl: "15 phút", invariant: "Kiểm tra xuống dòng tự động cho URL và Token dài (word-break), không làm tràn layout 375px.", htmlFile: "password-reset-long.html", txtFile: "password-reset-long.txt" },
+            "verify-email": { title: "Xác minh email tài khoản", subject: "Xác minh email tài khoản - TCT English", ttl: "10 phút", invariant: "Mã opaque 64 ký tự hex đầy đủ, không cắt ngắn; không tuyên bố đã xác minh xong.", htmlFile: "verify-email.html", txtFile: "verify-email.txt" },
+            "email-change": { title: "Xác nhận địa chỉ email mới", subject: "Xác nhận email mới - TCT English", ttl: "30 phút", invariant: "Khẳng định rõ email cũ vẫn giữ hiệu lực cho đến khi liên kết được bấm xác nhận.", htmlFile: "email-change.html", txtFile: "email-change.txt" },
+            "reauth-proof": { title: "Mã xác thực bảo mật (Reauth)", subject: "Mã xác nhận tài khoản - TCT English", ttl: "10 phút", invariant: "Mục đích xác thực lại danh tính trước khi đổi cài đặt nhạy cảm.", htmlFile: "reauth-proof.html", txtFile: "reauth-proof.txt" },
+            "first-password-proof": { title: "Thiết lập mật khẩu đầu tiên", subject: "Mã xác nhận tài khoản - TCT English", ttl: "10 phút", invariant: "Dành riêng cho tài khoản Google/Facebook đăng ký chưa có mật khẩu cục bộ.", htmlFile: "first-password-proof.html", txtFile: "first-password-proof.txt" },
+            "deletion-proof": { title: "Xác nhận yêu cầu xóa tài khoản", subject: "Mã xác nhận xóa tài khoản - TCT English", ttl: "10 phút", invariant: "Cảnh báo rõ tài khoản CHƯA bị xóa; chỉ thực hiện khi nhập mã xác nhận.", htmlFile: "deletion-proof.html", txtFile: "deletion-proof.txt" },
+            "weekly-unsubscribe": { title: "Quản lý hủy đăng ký email tuần", subject: "Quản lý tùy chọn email tuần - TCT English", ttl: "14 ngày", invariant: "Mở trang cài đặt để xác nhận, không tự động hủy đăng ký khi chỉ mở xem thư.", htmlFile: "weekly-unsubscribe.html", txtFile: "weekly-unsubscribe.txt" },
+            "account-blocked-finite": { title: "Thông báo khóa tài khoản (Có thời hạn)", subject: "Tài khoản của bạn đã bị khóa - TCT English", ttl: "Thời hạn hiển thị chuẩn UTC", invariant: "Giữ nguyên định dạng giờ UTC và thông báo khiếu nại qua email hỗ trợ.", htmlFile: "account-blocked-finite.html", txtFile: "account-blocked-finite.txt" },
+            "account-blocked-permanent": { title: "Thông báo khóa tài khoản (Vĩnh viễn)", subject: "Tài khoản của bạn đã bị khóa - TCT English", ttl: "Vĩnh viễn", invariant: "Hiển thị trạng thái Vĩnh viễn và lý do được mã hóa HTML an toàn.", htmlFile: "account-blocked-permanent.html", txtFile: "account-blocked-permanent.txt" },
+            "account-unlocked-auto": { title: "Tài khoản mở khóa (Tự động hết hạn khóa)", subject: "Tài khoản của bạn đã được mở khóa - TCT English", ttl: "Không áp dụng", invariant: "Thông báo mở khóa tự động; không bịa liên kết đăng nhập giả định.", htmlFile: "account-unlocked-auto.html", txtFile: "account-unlocked-auto.txt" },
+            "account-unlocked-manual": { title: "Tài khoản mở khóa (Quản trị viên)", subject: "Tài khoản của bạn đã được mở khóa - TCT English", ttl: "Không áp dụng", invariant: "Mở khóa thủ công bởi quản trị viên kèm nút đăng nhập xác thực.", htmlFile: "account-unlocked-manual.html", txtFile: "account-unlocked-manual.txt" },
+            "support-contact": { title: "Tin nhắn liên hệ hỗ trợ (Tiêu chuẩn)", subject: "[Liên hệ] Hỏi về gói học từ vựng IELTS", ttl: "Không áp dụng", invariant: "Giữ ngắt dòng tin nhắn; hiển thị IP và trình duyệt của người gửi.", htmlFile: "support-contact.html", txtFile: "support-contact.txt" },
+            "support-contact-edge": { title: "Tin nhắn liên hệ hỗ trợ (Ký tự đặc biệt & XSS)", subject: "[Liên hệ] Cảnh báo bảo mật <script>alert('pwn')</script>", ttl: "Không áp dụng", invariant: "Mọi thẻ HTML và ký tự đặc biệt đều được escape an toàn; không phá vỡ email.", htmlFile: "support-contact-edge.html", txtFile: "support-contact-edge.txt" },
+            "weekly-summary-active": { title: "Tổng kết tuần học (Có hoạt động tích cực)", subject: "Tổng kết tuần học TCT English", ttl: "Gửi định kỳ thứ Hai hàng tuần", invariant: "Tính theo giờ Việt Nam; số ngày và thời lượng chính xác; có liên kết cài đặt.", htmlFile: "weekly-summary-active.html", txtFile: "weekly-summary-active.txt" },
+            "weekly-summary-empty": { title: "Tổng kết tuần học (Không có hoạt động)", subject: "Tổng kết tuần học TCT English", ttl: "Gửi định kỳ thứ Hai hàng tuần", invariant: "Trạng thái yên tĩnh, lời nhắn động viên; không bịa đặt số liệu hay XP giả.", htmlFile: "weekly-summary-empty.html", txtFile: "weekly-summary-empty.txt" }
+        };
+
+        let currentKey = 'password-reset';
+        let currentMode = 'preview';
+
+        function updateMeta(key) {
+            const f = fixtures[key];
+            if (!f) return;
+            document.getElementById('metaSubject').textContent = f.subject;
+            document.getElementById('metaTtl').textContent = f.ttl;
+            document.getElementById('metaInvariant').textContent = f.invariant;
+        }
+
+        function selectFixture(key, element) {
+            currentKey = key;
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            if (element) element.classList.add('active');
+            updateMeta(key);
+            loadContent();
+        }
+
+        function setViewport(mode, btn) {
+            const wrap = document.getElementById('previewWrapper');
+            wrap.className = 'preview-wrapper mode-' + mode;
+            btn.parentElement.querySelectorAll('.btn-toggle').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function setViewMode(mode, btn) {
+            currentMode = mode;
+            btn.parentElement.querySelectorAll('.btn-toggle').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadContent();
+        }
+
+        function toggleDarkMode(btn) {
+            const canvas = document.getElementById('canvasArea');
+            canvas.classList.toggle('simulate-dark');
+            btn.classList.toggle('active');
+        }
+
+        async function loadContent() {
+            const f = fixtures[currentKey];
+            const iframe = document.getElementById('previewIframe');
+            const frameContainer = document.getElementById('frameContainer');
+            const textContainer = document.getElementById('textViewContainer');
+
+            if (currentMode === 'preview') {
+                frameContainer.style.display = 'block';
+                textContainer.style.display = 'none';
+                iframe.src = f.htmlFile;
+            } else if (currentMode === 'plaintext') {
+                frameContainer.style.display = 'none';
+                textContainer.style.display = 'block';
+                try {
+                    const resp = await fetch(f.txtFile);
+                    textContainer.textContent = await resp.text();
+                } catch (e) {
+                    textContainer.textContent = 'Đang tải bản text thuần cho ' + f.title + '...';
+                }
+            } else if (currentMode === 'source') {
+                frameContainer.style.display = 'none';
+                textContainer.style.display = 'block';
+                try {
+                    const resp = await fetch(f.htmlFile);
+                    textContainer.textContent = await resp.text();
+                } catch (e) {
+                    textContainer.textContent = 'Đang tải mã nguồn HTML...';
+                }
+            }
+        }
+
+        // Initialize with default
+        updateMeta('password-reset');
+    </script>
+</body>
+</html>

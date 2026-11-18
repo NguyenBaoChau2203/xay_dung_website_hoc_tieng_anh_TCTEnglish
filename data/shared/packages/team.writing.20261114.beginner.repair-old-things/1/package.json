@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.repair-old-things",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.repair-old-things",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Gi\u1EEF l\u1EA1i \u0111\u1ED3 d\u00F9ng c\u00F2n t\u1ED1t",
+        "Level": "beginner",
+        "ContentType": "essays",
+        "Topic": "Ti\u00EAu d\u00F9ng",
+        "SourceType": "original-20261114",
+        "PreviewText": "\u0110o\u1EA1n lu\u1EADn v\u1EC1 s\u1EEDa \u0111\u1ED3 v\u1EDBi v\u00ED d\u1EE5 g\u1EA7n g\u0169i v\u00E0 gi\u1EDBi h\u1EA1n an to\u00E0n.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.repair-old-things.0bcd84ff904a487d8a1d1d981a451ba3",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Tuy nhi\u00EAn, kh\u00F4ng ph\u1EA3i \u0111\u1ED3 v\u1EADt n\u00E0o c\u0169ng c\u00F3 th\u1EC3 t\u1EF1 s\u1EEDa \u1EDF nh\u00E0.",
+        "EnglishMeaning": "However, not everything can be repaired at home.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.repair-old-things"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.repair-old-things.19fbe82384374e3fbffdc02952be1823",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "M\u1ED9t chi\u1EBFc t\u00FAi m\u1EA5t c\u00FAc v\u1EABn c\u00F3 th\u1EC3 d\u00F9ng \u0111\u01B0\u1EE3c.",
+        "EnglishMeaning": "A bag with a missing button can still be useful.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.repair-old-things"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.repair-old-things.383e83af2a934228abe84be0f416389c",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Ch\u1ECDn s\u1EEDa khi ph\u00F9 h\u1EE3p c\u00F3 th\u1EC3 ti\u1EBFt ki\u1EC7m ti\u1EC1n v\u00E0 gi\u1EA3m r\u00E1c.",
+        "EnglishMeaning": "Choosing repairs when suitable can save money and reduce waste.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.repair-old-things"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.repair-old-things.5669ebe6119443bbb5118123a4e805f8",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Ch\u1EC9 c\u1EA7n m\u1ED9t chi\u1EBFc c\u00FAc m\u1EDBi, ch\u00FAng ta c\u00F3 th\u1EC3 ti\u1EBFp t\u1EE5c mang n\u00F3.",
+        "EnglishMeaning": "With a new button, we can keep using it.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.repair-old-things"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.repair-old-things.623e5e6dc8e346878410d42ecc6a2f06",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "However, we cannot repair everything at home.",
+        "NormalizedHash": "a4f7765af52530412c5ff73d89b6ac0c505a63538fa0f0434b1aef3b1094db44"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.repair-old-things.0bcd84ff904a487d8a1d1d981a451ba3",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.repair-old-things.678fdd71eb684ad9b54d67935c3cd542",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Ch\u00FAng ta n\u00EAn th\u1EED s\u1EEDa nh\u1EEFng \u0111\u1ED3 d\u00F9ng \u0111\u01A1n gi\u1EA3n tr\u01B0\u1EDBc khi mua \u0111\u1ED3 m\u1EDBi.",
+        "EnglishMeaning": "We should try repairing simple things before buying new ones.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.repair-old-things"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.repair-old-things.7308fcfb5e94418791015f98801e1103",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "T\u00F4i mu\u1ED1n b\u1EAFt \u0111\u1EA7u b\u1EB1ng vi\u1EC7c kh\u00E2u l\u1EA1i chi\u1EBFc t\u00FAi c\u0169 c\u1EE7a m\u00ECnh.",
+        "EnglishMeaning": "I want to start by mending my old bag.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.repair-old-things"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.repair-old-things.8b33d1b8dda64890b3b99c13fd418dd4",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "S\u1EEDa \u0111\u1ED3 c\u0169ng gi\u00FAp ch\u00FAng ta hi\u1EC3u c\u00F4ng s\u1EE9c \u0111\u1EC3 l\u00E0m ra ch\u00FAng.",
+        "EnglishMeaning": "Repairing things also helps us understand the work needed to make them.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.repair-old-things"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.repair-old-things.ce52d3b644b74ff482ad6473dd8d9228",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "V\u1EDBi \u0111\u1ED3 \u0111i\u1EC7n, ch\u00FAng ta n\u00EAn nh\u1EDD m\u1ED9t ng\u01B0\u1EDDi c\u00F3 chuy\u00EAn m\u00F4n.",
+        "EnglishMeaning": "For electrical items, we should ask a trained person for help.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.repair-old-things"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.repair-old-things"
+}

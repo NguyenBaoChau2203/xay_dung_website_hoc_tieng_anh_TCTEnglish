@@ -55,8 +55,11 @@ phiên mới; cấu hình trong repo không chứng minh IDE đã reload/trust s
 | Antigravity | AGENTS.md, .agents/skills/tct-*; .agent/skills còn cho bản cũ | .agents/hooks.json | .agents/mcp_config.json |
 
 Các adapter chỉ trỏ về skill canonical; không duy trì các bản hướng dẫn nghiệp vụ
-khác nhau. Role trong .ai/roles được cùng một agent áp dụng inline. Quy tắc này
-áp dụng từng tác vụ; các thành viên vẫn cộng tác qua nhánh/PR bình thường.
+khác nhau. Theo cập nhật của chủ dự án ngày 17/11/2026, chỉ **Antigravity dùng
+Gemini 3.8 Flash High** được phép dùng subagent native. Codex, Claude Code, Cursor
+và mọi client/model khác vẫn dùng một agent. Role trong .ai/roles tuân theo chính
+sách thực thi tại AGENTS.md; agent điều phối chịu trách nhiệm tích hợp, review và
+xác minh. Các thành viên vẫn cộng tác qua nhánh/PR bình thường.
 Skill sẵn sàng để agent chọn theo tác vụ, không có nghĩa mọi skill được chạy ở
 mọi lượt. Phiên bản client quá cũ có thể không hỗ trợ các định dạng hiện tại.
 
@@ -67,8 +70,11 @@ CodeGraph dùng adapter read-only 1.6.2 hiện có; không chạy upstream MCP c
 tự catch-up sync khi khởi động.
 
 Hook có schema riêng cho từng client: nhận diện tên tool, session ID và output
-đều được chuyển đổi rõ ràng. Gate một agent hoạt động ngay cả khi Python chưa
-được cài. SessionStart nêu hướng dẫn setup khi cần. Hook không tải dependency;
+đều được chuyển đổi rõ ràng. Gate client/model hoạt động ngay cả khi Python chưa
+được cài: chỉ tool native invoke_subagent/define_subagent trong Antigravity có
+modelName đúng Gemini 3.8 Flash High mới được qua ngoại lệ (xem AGENTS.md và
+[chi tiết hook](agent-hooks.md)). Thiếu hoặc khác metadata model vẫn bị chặn.
+SessionStart nêu hướng dẫn setup khi cần. Hook không tải dependency;
 PostToolUse/Stop kiểm tra tooling qua Python đã cài. Antigravity PostToolUse trả
 object rỗng đúng contract; kết quả kiểm tra được ghi stderr, không giả lập khả
 năng chèn context mà host không hỗ trợ. Stop không ép agent tiếp tục vòng lặp.

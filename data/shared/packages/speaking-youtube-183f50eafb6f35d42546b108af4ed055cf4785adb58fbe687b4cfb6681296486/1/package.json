@@ -1,0 +1,3293 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "C2 Proficiency (CPE) Listening Test 20 with answers",
+        "YoutubeId": "ldCDMiSbEHw",
+        "Level": "C2",
+        "Topic": "Luy\u1EC7n thi t\u1ED5ng h\u1EE3p",
+        "ThumbnailUrl": "https://img.youtube.com/vi/ldCDMiSbEHw/hqdefault.jpg",
+        "Duration": "36:30",
+        "SourceUrl": "https://www.youtube.com/watch?v=ldCDMiSbEHw",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0045914347ff4dbc9b41f2efd811313c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1025,
+        "EndTime": 1033.36,
+        "Text": "the college was associated with the university and so after i completed the hnd i was able to go straight on to the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0259655b80ad40ca9027dac06823a35b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1717,
+        "EndTime": 1725.919,
+        "Text": "choose from the list a to h why each speaker visited the city now look at task 2.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0340142ca8794d09bb8a5ce1b11bc1c3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 834,
+        "EndTime": 841.04,
+        "Text": "we use a nearby hotel of the same standard and provide transport but it is understandable when a guest gets very",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0360d246b171480a945cef47f6cbdc62",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 89,
+        "EndTime": 95.92,
+        "Text": "connectors jump start the epidemic by virtue of the number of people they know the book provides a test that allows the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.03995dd23b66418491538156fa52e596",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1928,
+        "EndTime": 1936.32,
+        "Text": "rushing around it was all a bit much and we were all exhausted by the time we set off home again there\u0027s certainly a lot going on there",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.03e8cfed523b4ff79549303774a9612a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 557,
+        "EndTime": 567.2,
+        "Text": "encouragement as well as a pleasure that\u0027s the end of part one",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.070b1ba0b7d64b6b9a864d15c985043d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1230,
+        "EndTime": 1239.679,
+        "Text": "self-help books and tapes well i was a bit dubious myself but i decided to try it i booked a course with fiona harold a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.08735da160ee41a29d00962f803b2815",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 927,
+        "EndTime": 935.199,
+        "Text": "i decided to carry on studying and do a higher national diploma or hnd in hospitality management",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0888871379f94e9885f155318d487884",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 811,
+        "EndTime": 819.199,
+        "Text": "third year of a degree in hotel and restaurant management i completed that course fairly recently and i\u0027ve just started work as a junior",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0abcab95e4204c65a23f8130479bda2a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 228,
+        "EndTime": 237.76,
+        "Text": "why am i up here 120 meters up the side of this crag wearing a pair of close-fitting technicolor climbing trousers",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0ad4a22ccc9f4939b459b5f1d248ee69",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 841,
+        "EndTime": 848.56,
+        "Text": "irate arriving after a long journey my aim is to stay here to gain experience before i move on",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0ba4509f22694661854e11fe2dfc9c56",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1266,
+        "EndTime": 1275.679,
+        "Text": "verve she told me i had to carve out a whole new way of thinking about myself i must see myself as a magnet for money",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0ba903f8406841558fa594da07f533b6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 279,
+        "EndTime": 286,
+        "Text": "pair of borrowed rock boots which are slightly too small and a great wrinkled slab of ancient geology and a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0e8ce90d650d480c87a2d2e30aac5cff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1568,
+        "EndTime": 1576.159,
+        "Text": "with which to brainwash myself into readiness for riches she told me to repeat the following words whenever possible",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0ea0029969de4706ad0d373ea5e21ce1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1306,
+        "EndTime": 1313.12,
+        "Text": "affirmations with which to brainwash myself into readiness for riches she told me to repeat the following",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0fa01778661f408399579c0087e03f38",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1033,
+        "EndTime": 1041.199,
+        "Text": "third year of a degree in hotel and restaurant management i completed that course fairly recently and i\u0027ve just started work as a junior",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0fe50b644f214cb4b7ed740ec5449a2a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 574,
+        "EndTime": 580.48,
+        "Text": "williams talking about her career for questions 7 to 15 complete the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.0fee7b5e242249bea73f08f1f249e0cb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1552,
+        "EndTime": 1559.6,
+        "Text": "how did you react to that well it seems such a preposterous idea that i laughed out loud down the telephone",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.10408d044b7f4f73a6c0f4e11ef22026",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1174,
+        "EndTime": 1182.48,
+        "Text": "my next guest is bridget mcconville a journalist who decided to get herself a life coach bridget what made you do it and what is",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.11227f08659c418c9b53ec421dd7e3b8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1559,
+        "EndTime": 1568,
+        "Text": "but undeterred by my skepticism fiona told me to suspend my disbelief and gave me a clutch of positive affirmations",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.1186a35dcdd742748d10122f7b9b1f03",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1007,
+        "EndTime": 1016.32,
+        "Text": "management association when i started the course and i was able to request information from them their magazines often have articles of",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.132680854eb846ecab4e4423a14ce149",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2015,
+        "EndTime": 2022.32,
+        "Text": "speaker 2 i spent a couple of days there because the event ran over two days so i stayed",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.1427f0972e9a49cdadfd49106088df7b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 181,
+        "EndTime": 190.4,
+        "Text": "reader to work out whether they qualify mavens are specialists who possess the power of recommendation",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.16a8a1c4e9b740d0b3e32258095ce793",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2102,
+        "EndTime": 2110.24,
+        "Text": "talking about it so i thought it would be nice to take them there so they could see it for themselves as usual it was crawling with people",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.1708c4320a06403ca6cf4de3a6f04071",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 260,
+        "EndTime": 269.68,
+        "Text": "there is no answer to such fatuous metaphysical questions not when your climbing partner has just disappeared from view for the first time somewhere",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.17498b8b08404761ad78253137861070",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1657,
+        "EndTime": 1666.08,
+        "Text": "next session if you don\u0027t act in time your coach probably won\u0027t want to speak to you so coaching is hardly a soft option",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.17abbcf8fffb4600ad7faf22f3167730",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1649,
+        "EndTime": 1657.52,
+        "Text": "would you recommend it well coaching makes you get on and do all those things you\u0027ve put off for so long because there\u0027s the deadline of the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.18073a4f55114f8bacbd0a6dec608863",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1838,
+        "EndTime": 1845.6,
+        "Text": "and very nice it was too the event itself was pretty uninspiring it was one of those where you just get",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.181849ff7d0a44df821d310725b465a8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 785,
+        "EndTime": 794.32,
+        "Text": "management association when i started the course and i was able to request information from them their magazines often have articles of",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.181f8bb40a494edf995e994c490deda6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 135,
+        "EndTime": 142.8,
+        "Text": "his book is organized around the notion of the tipping point the moment when to put it bluntly a thing takes off and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.1a6dcfc510d441998b4b5d86f8e47c6b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 975,
+        "EndTime": 983.759,
+        "Text": "facility management advanced business and languages the work experience was very useful and i had to write a detailed report on",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.1b3113c42976403c88018bae34325e09",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 56,
+        "EndTime": 64.08,
+        "Text": "becomes widespread in a particular society for fax machines it happened in 1987",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.1cf16f5ad83343179bfa7ba10f250dad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 382,
+        "EndTime": 391.68,
+        "Text": "this is also the moment i realize with a keen pang of guilt that i completely forgot to check the small print in my life insurance where it states excluded",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.1dad0eaa7d6443308380c19cc0c05330",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2029,
+        "EndTime": 2037.36,
+        "Text": "it was one of those where you just get to sit and listen to people going on and on rather than getting involved yourself",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.1dd1bef628ff4916ad7b40e11eab4f20",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1477,
+        "EndTime": 1485.84,
+        "Text": "heart for about 40 pounds a session your personal coach will telephone you once a week and spend half an hour talking to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.1e2d485a13834515bab8a828c02d6323",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1336,
+        "EndTime": 1344.96,
+        "Text": "possible clearing space for all the goodies to come once the money started to roll in then we began trying to cure my personal",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.1e76d66c539148c5b8c3394602a3c965",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 119,
+        "EndTime": 128,
+        "Text": "problems seem criminally naive malcolm gladwell in his book the tipping",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.201cbdabc00e49db8062c85b49a7d356",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1903,
+        "EndTime": 1911.679,
+        "Text": "was a very welcoming place speaker 4 i\u0027ve been there quite a few times on",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.22f96976dc084b469fd7f1d4d71c0981",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 714,
+        "EndTime": 722.8,
+        "Text": "course and another i worked in a restaurant kitchen i\u0027d never worked in a kitchen before and it was interesting to see how one worked",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.249b8b3cd35a4b1aa50071f074e10315",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 903,
+        "EndTime": 912.079,
+        "Text": "the second placement was for four months i went to work in germany although i had studied the language at college my language skills improved",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.26b7afc19b83401392d8e9d80e0bdf57",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 991,
+        "EndTime": 998.959,
+        "Text": "perspective on things it was interesting for example i reviewed giveaways such as",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.27fbe07f99f94b9f8be892a014621af6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 638,
+        "EndTime": 645.68,
+        "Text": "i left school with an ambition to work in hotels as a manager in england or maybe abroad my local college offered a two-year",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.29650228311840cf9ca3db80725218d3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1519,
+        "EndTime": 1528.4,
+        "Text": "but what could we actually do about it fiona is a passionate advocate of self-belief and with her characteristic verve she",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.2992c0b381e9455db284806daf02333b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1585,
+        "EndTime": 1593.76,
+        "Text": "what else did she tell you well subsequent sessions were more practical first came the mandatory decluttering",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.2a942a2b2f8c4bfb88807aca814daec3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1382,
+        "EndTime": 1390.559,
+        "Text": "do and that all that stands in their way is childhood conditioning so what did you get out of it all and would you recommend it",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.2b99d0d973844ca8882d6413b638bd23",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 935,
+        "EndTime": 943.12,
+        "Text": "during the summer months between one course and another i worked in a restaurant kitchen i\u0027d never worked in a kitchen before and it was interesting to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.2bf7bfea558d4137b9e355e97955f757",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 550,
+        "EndTime": 557.2,
+        "Text": "meeting those whose equally solitary experience completes the act begone in hope of contact is a relief and an",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.2c11559ed5c74d0eac85ce324f3f7553",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 348,
+        "EndTime": 357.68,
+        "Text": "there is no answer to such fatuous metaphysical questions not when your climbing partner has just disappeared from view for the first time somewhere",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.2d34514126004c3aae569eeeca786705",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1576,
+        "EndTime": 1585.44,
+        "Text": "i bridget i\u0027m now ready to have the ideal life that i deserve doing this i found cheered me up no end",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.2d60969a20a94273b32554206cd1adab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 294,
+        "EndTime": 303.68,
+        "Text": "this is also the moment i realize with a keen pang of guilt that i completely forgot to check the small print in my life insurance where it states excluded",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.2f365bd64fac47f8bd539ae27849c694",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 456,
+        "EndTime": 463.199,
+        "Text": "them of themselves every couple of sentences yes but the main thing is that it\u0027s almost invariably a pleasure to meet readers",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.2fc924d5a8454d029dc1fb87e7662f44",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1511,
+        "EndTime": 1519.279,
+        "Text": "tackle was my deeply ambivalent relationship with money yes of course that was rooted in childhood",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.313fbec7a5404f47a08032554fd18809",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2078,
+        "EndTime": 2085.599,
+        "Text": "i didn\u0027t have long but i found out quite a bit about accommodation transport entertainment all that sort of thing",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.3180e8b466cf49beb1727f381d8ae906",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 286,
+        "EndTime": 294.56,
+        "Text": "palpitating sweat-soaked miraculously heightened sense of existence i wouldn\u0027t be anywhere else",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.3660584d25e44cc2805a4b7a3373ed11",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1016,
+        "EndTime": 1025.76,
+        "Text": "interest that students can use for assignments my other source information was caterer and hotel keeper the weekly magazine",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.3c41766380144b89bc3a7ddecbbd3e35",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1190,
+        "EndTime": 1198.48,
+        "Text": "need of change both on the work front too much to do too little time and at home ditto i wasn\u0027t miserable",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.3ed0ca0ea7234bcda8b10ec3db8d2810",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 150,
+        "EndTime": 159.2,
+        "Text": "for mobile phones 1998 ideas have their tipping points too the point is that social epidemics",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.3f80b8fcd5a2425ca95afe23f0e1ba37",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 205,
+        "EndTime": 213.84,
+        "Text": "problems seem criminally naive extract two",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.41c87ca755c64b53897855b2539e39b9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 237,
+        "EndTime": 246.159,
+        "Text": "only another 25 meters to the top only what am i trying to prove why is a man who feels dizzy near the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.43cda2c551f440c59561f70493329d97",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1681,
+        "EndTime": 1689.2,
+        "Text": "but then again it is a healthy counterbalance to the me last way of thinking i am used to thanks bridget",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.45eb9efd92b84b36ba9bd6982a226f0a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1405,
+        "EndTime": 1412.559,
+        "Text": "but for me it has provided a great boost there have been no instant miracles but things are looking up at work and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.46e3c6e543b347198013e7b5a12fa8cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1048,
+        "EndTime": 1056.08,
+        "Text": "usually the hotel is overbooked when i\u0027m on duty and so i often end up as the one who has to book out guests",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.470c414edc074986ae74f3cc57eb2f11",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2135,
+        "EndTime": 2142.64,
+        "Text": "move there that\u0027s a good question on the one hand it would be a great opportunity but a part of me found it",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.473c236c6a5f4da699f465fcf121a835",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 730,
+        "EndTime": 738.48,
+        "Text": "the two-year hnd was very interesting some students had come straight from school some from hotel and catering courses and some had got into the course",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.477c46ee3b6b4cfd8c80465a1ed851fb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1420,
+        "EndTime": 1428.159,
+        "Text": "but then again it is a healthy counterbalance to the me last way of thinking i am used to thanks bridget",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.47ff441859aa47b48dfcb6e09690d8da",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 310,
+        "EndTime": 318.68,
+        "Text": "bungee jumping and white water rafting why am i up here",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.49859d3ddf374e1e96662df08a3450bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2158,
+        "EndTime": 2165.52,
+        "Text": "take them up on it the end of part four",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.49dfe2e485cf457d8f2ee3316fa1e94e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1625,
+        "EndTime": 1634.32,
+        "Text": "coaching is up to you according to fiona most people want to get organized at home and at work make the most of their abilities and sort out",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.4ba16b8da4ea40c0b5f0a303a7da2423",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 64,
+        "EndTime": 73.2,
+        "Text": "for mobile phones 1998 ideas have their tipping points too the point is that social epidemics",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.4bfcbe0a947843c79a54e6672329abe5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 357,
+        "EndTime": 367.199,
+        "Text": "far above your head this is it the proverbial moment out on my own just me my vertigo and a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.4db5b6847ca74fddac5a8d12161416dc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 18,
+        "EndTime": 25.88,
+        "Text": "there are two questions for each extract extract one",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.4e326074501348d1bd1b4ca51e8afe4c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 580,
+        "EndTime": 588.48,
+        "Text": "sentences with a word or short phrase you now have 45 seconds in which to look",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.4efca60cbf0942a986f851e527ebb9b7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2142,
+        "EndTime": 2150.64,
+        "Text": "rather scary i\u0027ve been to the places of tourists seen the sights and really liked it but i\u0027m not used to big city",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.5016094b860d42cc85ec42b9bf535ff8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1390,
+        "EndTime": 1398,
+        "Text": "well coaching makes you get on and do all those things you\u0027ve put off for so long because there\u0027s the deadline of the next session",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.506c2047924a4f0ea7fba9c86895c868",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2052,
+        "EndTime": 2062.079,
+        "Text": "how glamorous it is speaker three i\u0027d seen it on tv quite a bit and i\u0027ve",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.5080faaa58084147a65b72aabe1da119",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 777,
+        "EndTime": 785.68,
+        "Text": "shampoos as part of the report i became a student member of the hcima the hotel and catering international",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.51672b1cb5b749c8a1b9a1014026bb50",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 253,
+        "EndTime": 260.88,
+        "Text": "after his 46th birthday dangling over a void attached to a long piece of purple pink string",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.51b64a9967b0463abc5df94db92dd1ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1328,
+        "EndTime": 1336.4,
+        "Text": "practical first came the mandatory decluttering she told me to throw out as much unnecessary jumble and rubbish as",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.525d1f7326454e2e9109164559c7e45c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 374,
+        "EndTime": 382.56,
+        "Text": "palpitating sweat-soaked miraculously heightened sense of existence i wouldn\u0027t be anywhere else",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.5348880a544f4d01827495137dad5728",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1298,
+        "EndTime": 1306.159,
+        "Text": "but undeterred by my skepticism fiona told me to suspend my disbelief and gave me a clutch of positive",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.54e99df6c4e14124a038a0d5cd3d98b5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2165,
+        "EndTime": 2172.64,
+        "Text": "there will now be a pause of five minutes for you to copy your answers onto the separate answer sheet",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.553a76145abf4118a251446126b0357d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 495,
+        "EndTime": 503.919,
+        "Text": "are in quite a comfortable position when they appear as speakers at events at literary festivals aren\u0027t they they can read from their work work",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.55a211cc7bc4448480072e49404b9de3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 826,
+        "EndTime": 834.079,
+        "Text": "usually the hotel is overbooked when i\u0027m on duty and so i often end up as the one who has to book out guests",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.56a98f5f9e894706b3d0edef1c2b3305",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1593,
+        "EndTime": 1602,
+        "Text": "she told me to throw out as much unnecessary jumble and rubbish as possible clearing space for all the goodies to come once the money started",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.5860c9a71b25471188b71d13bddb3976",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 943,
+        "EndTime": 952,
+        "Text": "see how one worked although i decided that i didn\u0027t want to be a chef the experience of seeing what goes on was invaluable",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.58b714ebf65c4c19b4d77289e321a355",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1063,
+        "EndTime": 1070.559,
+        "Text": "irate arriving after a long journey my aim is to stay here to gain experience before i move on",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.59794b5f82cb482f92ac2bdffd4b6dd2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1462,
+        "EndTime": 1470.24,
+        "Text": "get a little more from life until recently the options for someone in my situation would have been extremely limited",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.5a2b727b8ff644ee952d0da2bb5119bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 269,
+        "EndTime": 279.199,
+        "Text": "far above your head this is it the proverbial moment out on my own just me my vertigo and a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.5b7e3a7070f84db1b90394574d106c5a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1321,
+        "EndTime": 1328.48,
+        "Text": "doing this i found cheered me up no end what else did she tell you well subsequent sessions were more",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.5b842f5b95d84e93bb9401ed06591fdd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 175,
+        "EndTime": 181.92,
+        "Text": "connectors jump start the epidemic by virtue of the number of people they know the book provides a test that allows the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.5c38692ead864f3e92506208cf783360",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1366,
+        "EndTime": 1374.799,
+        "Text": "according to fiona most people want to get organized at home and at work make the most of their abilities and sort out money problems",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.5e5a9960186a4bb4aad65adeb97a05bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 699,
+        "EndTime": 707.839,
+        "Text": "i learned all about the switchboard reservations porter\u0027s desk and cashiers i decided to carry on studying and do a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.5fef7de9efe541d09b8c410388d25add",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1100,
+        "EndTime": 1107.44,
+        "Text": "a b c or d which fits best according to what you hear",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.601869080fc04b5e969814046bfb1e1c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1056,
+        "EndTime": 1063.039,
+        "Text": "we use a nearby hotel of the same standard and provide transport but it is understandable when a guest gets very",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.61d5ab38bd4147298df0bf7db0f6687e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 12,
+        "EndTime": 18.64,
+        "Text": "choose the answer a b or c which fits best according to what you hear",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.61f517342c09416684e3e9e69b972828",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 49,
+        "EndTime": 56.8,
+        "Text": "his book is organized around the notion of the tipping point the moment when to put it bluntly a thing takes off and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.62b420f0dd674243bc9cd28bf7aee10e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1987,
+        "EndTime": 1996.48,
+        "Text": "years away from it i went to a few old familiar haunts but i have to say they didn\u0027t give me any great feelings of nostalgia the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.65a6bc057c454c8fa9bb2d903e23fcdd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1641,
+        "EndTime": 1649.44,
+        "Text": "capable of doing anything they want to do and that all that stands in their way is childhood conditioning so what did you get out of it all and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.675f329ae86948f28402e9a7f8a66828",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1617,
+        "EndTime": 1625.52,
+        "Text": "too as i made up my mind to concentrate on jobs that really interested me exactly which issues you tackle during",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.688cc1f851204c60b584f0b31f339e61",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 707,
+        "EndTime": 714.959,
+        "Text": "higher national diploma or hnd in hospitality management during the summer months between one",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.690b9336787d45a99fc7aeefa8a1ad9e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 887,
+        "EndTime": 895.36,
+        "Text": "two weeks i learned all about cleaning rooms what equipment to use changing beds and more importantly about life in",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.6a08e7aed0a74ad4b3b8fa0ac94479d7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 159,
+        "EndTime": 166.319,
+        "Text": "usually take us by surprise gladwell makes sense of them by anatomizing them",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.6aa8078af6a24f47ba79af88c6463905",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1257,
+        "EndTime": 1266.32,
+        "Text": "childhood but what could we actually do about it fiona is a passionate advocate of self-belief and with her characteristic",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.6c1e314f72d9498d91ba753981153d52",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 104,
+        "EndTime": 111.92,
+        "Text": "summarize like this gladwell\u0027s dissection sounds a bit crude in fact the tipping point is a very",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.6c53abf215de47d494690f260a725788",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 691,
+        "EndTime": 699.76,
+        "Text": "most of the time i worked in the restaurant housekeeping the final work experience of five weeks was in the front office of a hotel where",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.6de037cfe0d94e80bfa10726235f8e3e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 983,
+        "EndTime": 991.68,
+        "Text": "green issues in hotels that was probably the thing i found most difficult on the course although it certainly gave me a different",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.6e57bddc2e5c4cee9bb8a7986843efeb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 968,
+        "EndTime": 975.519,
+        "Text": "resource management and operational techniques there were also some optional subjects and i took conference and leisure",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.6eefef745b4b48849e526158bb7ef573",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1996,
+        "EndTime": 2005.76,
+        "Text": "cathedral is a magnificent building for sure but the rest of it well it\u0027s not exactly pleasing on the eye it was busier than i remembered it",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.6f037b05f1e14ed49041ca6bf56fad73",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2085,
+        "EndTime": 2092.879,
+        "Text": "everyone i spoke to went out of their way to help me and i got the feeling it was a very welcoming place",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.6f7404940f1745c6965af33253d6c2b9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 588,
+        "EndTime": 592.04,
+        "Text": "at part two",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.6fd63fee8ffe496d983a1c88205a73db",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1920,
+        "EndTime": 1928.72,
+        "Text": "see it for themselves as usual it was crawling with people it\u0027s on every tourist must-see list what with them and all the locals",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.702bd11ec2cc4bff8e8d46d4dd2d4e33",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1970,
+        "EndTime": 1979.279,
+        "Text": "i\u0027m brave enough to take them up on it speaker one",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.70eb2ced64e14f0fa023e539223ba99b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 463,
+        "EndTime": 470.16,
+        "Text": "a writing life is solitary and mute and often near to that of a depressive in its conditions i cannot believe there is a writer who\u0027s",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.7110b57d1b90437e8301a56d18a7e172",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1528,
+        "EndTime": 1536.64,
+        "Text": "told me i had to carve out a whole new way of thinking about myself i must see myself as a magnet for money",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.73734f90ab924a50b8bce7254b6839f0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1979,
+        "EndTime": 1987.679,
+        "Text": "of course you can\u0027t get much of an idea of what a place is like from such a short visit but i wanted to see if it seemed any different after all these",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.738754d1364d4d7ab49b860499b2b246",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1198,
+        "EndTime": 1207.28,
+        "Text": "enough for therapy or counseling i simply wanted to get a little more from life until recently the options for someone in my situation would have been",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.74546e59fda34746b6a627a674679915",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1214,
+        "EndTime": 1222.48,
+        "Text": "the aid of the frustrated and down at heart for about 40 pounds a session your personal coach will telephone you once a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.746ba6d1b7a3480dab482e1b246044f8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1207,
+        "EndTime": 1214.64,
+        "Text": "extremely limited now however legions of life coaches are out there ready and waiting to come to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.7798e5cddb324dc0a031783aa6683546",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1817,
+        "EndTime": 1823.6,
+        "Text": "eye it was busier than i remembered it but all those concrete slabs what were the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.77b062a91d7d45979e193c616141e520",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1352,
+        "EndTime": 1359.36,
+        "Text": "month my work also came under close scrutiny too as i made up my mind to concentrate",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.78005a3ddc7d4aa1aed32e837f3addaf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 318,
+        "EndTime": 325.759,
+        "Text": "120 meters up the side of this crag wearing a pair of close technicolor climbing trousers",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.7828db9508f0435e91d4498ca920aad5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 803,
+        "EndTime": 811.36,
+        "Text": "the college was associated with the university and so after i completed the hnd i was able to go straight on to the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.78342cfab84b469ea23ee9645deabe50",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1092,
+        "EndTime": 1100.4,
+        "Text": "who consulted a life coach to improve her life for questions 16 to 20 choose the answer",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.784c27cec67d41aab4e1c9cd508b8f54",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1543,
+        "EndTime": 1552.159,
+        "Text": "why shouldn\u0027t you have an easy life an abundance of pleasure leisure and luxury and all without feeling any guilt",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.798d60a22b654b1f87e2b089a175a1f7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1485,
+        "EndTime": 1494.72,
+        "Text": "you in an effort to help you sort your life out but isn\u0027t this just another self-improvement fad like all the self-help books and tapes well i was a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.79f540c6dd394404aab7806a8c6d836a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 486,
+        "EndTime": 495.599,
+        "Text": "encouragement as well as a pleasure writers rarely admit it william but they",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.7cc1e57e0e324a24b74fae5635c849bf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 478,
+        "EndTime": 486.16,
+        "Text": "dangling there meeting those whose equally solitary experience completes the act begone in hope of contact is a relief and an",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.7d587584593e47f4a1c53711e13c7de2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 753,
+        "EndTime": 761.76,
+        "Text": "facility management advanced business and languages the work experience was very useful and i had to write a detailed report on",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.818b3547127f4e6e9e740ce7daa16a1c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1502,
+        "EndTime": 1511.279,
+        "Text": "she identified my anxieties almost immediately within half an hour of our first conversation i found myself agreeing that the first thing i had to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.826f89e2f85b48aba5625a61477d8e31",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1799,
+        "EndTime": 1808.08,
+        "Text": "seemed any different after all these years away from it i went to a few old familiar haunts but i have to say they didn\u0027t give me any",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.8305998e07954a169da03dbca7a6d3bf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2127,
+        "EndTime": 2135.76,
+        "Text": "speaker five one of the things that came up was whether i\u0027d adapt to such a different lifestyle if i was to be successful and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.84bb0cf1310a4a6d9f356a224e3ede30",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1887,
+        "EndTime": 1896.96,
+        "Text": "that as a tourist but it\u0027s totally different to make your home there i didn\u0027t have long but i found out quite a bit about accommodation transport",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.858fe1b2cd3145cebe4a2b62e6e83241",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2005,
+        "EndTime": 2013.679,
+        "Text": "but all those concrete slabs what were the designers and architects thinking",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.85cc881d5e7b475eb99b28bfd82e75bf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 535,
+        "EndTime": 543.279,
+        "Text": "and mute and often near to that of a depressive in its conditions i cannot believe there is a right who has not at times felt that his or her",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.85d28f80dc3948df9e21407129168272",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2037,
+        "EndTime": 2044.72,
+        "Text": "but in the evenings i was able to wander around quite a bit and get a reasonable impression of the place",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.8624768a5eea4bd4a68a83961df038e1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 912,
+        "EndTime": 919.36,
+        "Text": "dramatically most of the time i worked in the restaurant housekeeping the final work experience of five weeks",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.8c3d75ec58444b67834121e30a3d7be4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1936,
+        "EndTime": 1943.6,
+        "Text": "but it would take some energy to live there speaker five",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.8c735ccf6a624f3fb0f3c54a92c818ed",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 952,
+        "EndTime": 960.48,
+        "Text": "the two-year hnd was very interesting some students had come straight from school some from hotel and catering courses and some had got into the course",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.8cda1cba77614596a957a0107ef6e025",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2094,
+        "EndTime": 2102.64,
+        "Text": "speaker 4 i\u0027ve been there quite a few times on business trips and i know the place pretty well a couple of friends of mine have been",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.8d01bf49397e4595862f0183b171fd59",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1374,
+        "EndTime": 1382.24,
+        "Text": "she reckons that building up confidence is vital she really does believe that people are capable of doing anything they want to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.8d7160b0a7db438a88ae25f65e2fd1a9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1845,
+        "EndTime": 1854.24,
+        "Text": "to sit and listen to people going on and on rather than getting involved yourself but in the evenings i was able to wander",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.8f5da945f7aa4468a7857396cb6f3da2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 448,
+        "EndTime": 456.319,
+        "Text": "because of the writer\u0027s own proven involvement with that subject questions can be tougher here but writers are used to questions they ask",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.90c91c10b0254f2a892af19249d692e4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1536,
+        "EndTime": 1543.44,
+        "Text": "she said and she told me consider yourself someone to whom cash flows effortlessly",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.91c794eb878e4daeb6202fab26fb8c62",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1107,
+        "EndTime": 1113.559,
+        "Text": "you now have one minute in which to look at part three",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.922226378bac4a2a84133555d3f4b16d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1689,
+        "EndTime": 1699.12,
+        "Text": "now if you want to find out more about life coaches that\u0027s the end of part three",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.94cd22012d444cd9af91ef687616bf24",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2117,
+        "EndTime": 2126.32,
+        "Text": "we were all exhausted by the time we set off home again there\u0027s certainly a lot going on there but it would take some energy to live there",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.957961ab5844465f84fe30a02faadbf3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 398,
+        "EndTime": 407.72,
+        "Text": "bungee jumping and white water rafting extract three",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.95a75d4d1222480a8f50f0af9db6ce81",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 80,
+        "EndTime": 89.28,
+        "Text": "showing how the spread of ideas or behavior depends on types whom he christens connectors and mavens",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.962a529b873847de9117398de4b79a6d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1734,
+        "EndTime": 1745.799,
+        "Text": "while you listen you must complete both tasks you now have 45 seconds in which to look at part 4.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.98420f477e1c4746950e02b11214dc00",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 848,
+        "EndTime": 854.639,
+        "Text": "possibilities include hotels within the group or maybe abroad where i can use my languages",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.990f5e37ec0a418ea1174e32a7598a06",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2062,
+        "EndTime": 2070.639,
+        "Text": "got friends who tell me that they really like living there so when the opportunity to move there came up i decided to go and check it out find out",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.9ae28637d79f4af8831a2ee12e79f229",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 197,
+        "EndTime": 205.36,
+        "Text": "subtle piece of work coming out with ideas not necessarily his own that make conventional solutions to social",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.9b86643912424d88afb81dcf3be2122c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1634,
+        "EndTime": 1641.44,
+        "Text": "money problems she reckons that building up confidence is vital she really does believe that people are",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.9c4049d5e8c84b56b5629c6046a826d0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1896,
+        "EndTime": 1903.44,
+        "Text": "entertainment all that sort of thing everyone i spoke to went out of their way to help me and i got the feeling it",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.9cb0af327dc5443f8adb67b8523f4eac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 567,
+        "EndTime": 574.64,
+        "Text": "now turn to part two part two you will hear someone called karen",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.9d92519cf98246779dd8236c74315cc8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2022,
+        "EndTime": 2029.76,
+        "Text": "overnight in a hotel they booked for me and very nice it was too the event itself was pretty uninspiring",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.9dc23b9f143e4e8cafa195efa2512324",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 879,
+        "EndTime": 887.36,
+        "Text": "languages my first work experience was in the housekeeping department of a hotel it was hard work and i was only there for",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.9de26a31e89e43fda70ff80d51106cc4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 334,
+        "EndTime": 341.44,
+        "Text": "edges of sea cliffs and sweats with fear at the top of towers why exactly is he spending this warm afternoon the day",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.9e5c4716000542ff8d2b63adcc47d0d5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 440,
+        "EndTime": 448.08,
+        "Text": "sampling are gentle and entirely on the author\u0027s terms or they can branch out talk about something which will have some interest",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.9ea543a76b05411dbd670fc53d79355a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1182,
+        "EndTime": 1190.16,
+        "Text": "a life coach well almost not entirely well with my life nothing drastic i just felt stuck and in",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.9f0d6d26eb2e4dab938531bfe5d0574e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1950,
+        "EndTime": 1958.24,
+        "Text": "that\u0027s a good question on the one hand it would be a great opportunity but a part of me found it rather scary",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.a0b29a393e0648268fbd49a3c84635ac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 142,
+        "EndTime": 150.08,
+        "Text": "becomes widespread in a particular society for fax machines it happened in 1987",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.a0d3db70183b42fd883172c905106893",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 761,
+        "EndTime": 769.68,
+        "Text": "green issues in hotels that was probably the thing i found most difficult on the course although it certainly gave me a different",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.a0d4dd383097470ca8241bf3ef39b242",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 738,
+        "EndTime": 746.32,
+        "Text": "as a result of their age and experience we studied a range of subjects including business studies hotel management human",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.a0e8a13ed9484fcf9e34334733165e93",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1239,
+        "EndTime": 1248.559,
+        "Text": "leading british coach she identified my anxieties almost immediately within half an hour of our first conversation i found myself",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.a130037e72f841c8aa3c91fd638f6966",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1673,
+        "EndTime": 1681.679,
+        "Text": "financially money and i are definitely on better terms i still have my doubts about the me first approach",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.a16d5b2a548f423eb37ddf5c82963ac3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2150,
+        "EndTime": 2158,
+        "Text": "life and the prospect is a pretty daunting one so even if i do get the offer i don\u0027t think i\u0027m brave enough to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.a182d5f9a6b34677a7f668b659965906",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1313,
+        "EndTime": 1321.12,
+        "Text": "words whenever possible i bridget i\u0027m now ready to have the ideal life that i deserve",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.a1bd6e4a314a4331bdac8963bda57a41",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1222,
+        "EndTime": 1230.96,
+        "Text": "week and spend half an hour talking to you in an effort to help you sort your life out but isn\u0027t this just another self-improvement fad like all the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.a3e60e9077e54447bc616136d8c629f1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1854,
+        "EndTime": 1861.919,
+        "Text": "around quite a bit and get a reasonable impression of the place it must be an amazing place to live so",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.a41bf22aa9d04d4081c06093d1138a73",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1248,
+        "EndTime": 1257.12,
+        "Text": "agreeing that the first thing i had to tackle was my deeply ambivalent relationship with money yes of course that was rooted in",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.a825374595f841ba94b50ea443771146",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1958,
+        "EndTime": 1965.279,
+        "Text": "i\u0027ve been to the places of tourists seeing the sights and really liked it but i\u0027m not used to big city life and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.aab445b18091479788df661668156757",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 4,
+        "EndTime": 12,
+        "Text": "part one you will hear three different extracts for questions one to six",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.ad240f32aaee4e699959298017259b1e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 998,
+        "EndTime": 1007.68,
+        "Text": "soaps and shampoos as part of the report i became a student member of the hcima the hotel and catering international",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.b017f22c039a4a1999728e235a8a10e5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 919,
+        "EndTime": 927.44,
+        "Text": "was in the front office of a hotel where i learned all about the switchboard reservations porter\u0027s desk and cashiers",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.b163275d1a7642989e3e56eb902e72db",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1725,
+        "EndTime": 1734,
+        "Text": "for questions 26 to 30 choose each speaker\u0027s opinion of the city from the list a to h",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.b216870676574b929f981f5cb462e8e5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1398,
+        "EndTime": 1405.12,
+        "Text": "if you don\u0027t act in time your coach probably won\u0027t want to speak to you so coaching is hardly a soft option",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.b27e3ea059fe47aab0e81a133639ee9c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 95,
+        "EndTime": 104.399,
+        "Text": "reader to work out whether they qualify mavens are specialists who possess the power of recommendation",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.b2e88b17b93c41b9b14858b84df75118",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 870,
+        "EndTime": 879.279,
+        "Text": "the course involved three periods of work experience as well as modules covering hotel front office restaurant housekeeping business studies and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.b394dff4c0b34cb2979cfd1fa0931e28",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1085,
+        "EndTime": 1092.799,
+        "Text": "now turn to part three part three you will hear an interview with someone",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.b397023f531747e299719dd0dac8d201",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2070,
+        "EndTime": 2078.079,
+        "Text": "if it would suit me it\u0027s one thing to go to a place like that as a tourist but it\u0027s totally different to make your home there",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.b3e0bcb2c6d04c80b7507853bb39f67e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 128,
+        "EndTime": 135.12,
+        "Text": "point has produced a wonderfully offbeat study of that little understood phenomenon the social epidemic",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.b4ceee0938214345a129f572fce10ee5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2044,
+        "EndTime": 2052.96,
+        "Text": "it must be an amazing place to live so much going on and such a lively atmosphere no wonder people talk about",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.b512b5cd369a4f8d8052e8e24a77c211",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 503,
+        "EndTime": 511.12,
+        "Text": "already done needing no more than a light dusting on the train to be in shape for the event questions asked on the back of such a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.b7df9a4fb74b41b2809684806dd92058",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 543,
+        "EndTime": 550.64,
+        "Text": "confidence has dropped open underneath like a trapdoor and suddenly there is nothing to build on and they\u0027re left dangling there",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.bb13ca67c3fe4e59a76054b1c1f03ce4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 652,
+        "EndTime": 660.959,
+        "Text": "covering hotel front office restaurant housekeeping business studies and languages my first work experience was in the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.bb64bced88a046608b4105723f5bcf55",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1911,
+        "EndTime": 1920.08,
+        "Text": "business trips and i know the place pretty well a couple of friends of mine have been talking about it so i thought it would be nice to take them there so they could",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.bb79420a35f44f02a8a7f5a609939275",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 111,
+        "EndTime": 119.36,
+        "Text": "subtle piece of work coming out with ideas not necessarily his own that make conventional solutions to social",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.bc0a27eb3b1d458bb9628f83f38e952a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1070,
+        "EndTime": 1076.64,
+        "Text": "possibilities include hotels within the group or maybe abroad where i can use my languages",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.bc6a3befce8c4c54b1af2f2025a425cc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 40,
+        "EndTime": 49.12,
+        "Text": "malcolm gladwell in his book the tipping point has produced a wonderfully off-beat study of that little understood phenomenon the social epidemic",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.bddbbfdba2d944128dae0c5405d6df31",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 367,
+        "EndTime": 374,
+        "Text": "pair of borrowed rock boots which are slightly too small and a great wrinkled slab of ancient geology and a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.be055b3d2ea64b00a83640bd12772ff4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1823,
+        "EndTime": 1830.96,
+        "Text": "designers and architects thinking speaker 2",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.c14cd44ad07a43c29c8812167cec4540",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1454,
+        "EndTime": 1462.559,
+        "Text": "too much to do too little time and at home ditto i wasn\u0027t miserable enough for therapy or counseling i simply wanted to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.c23b87c18a9446a9935aef7cccad6993",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1666,
+        "EndTime": 1673.6,
+        "Text": "but for me it has provided a great boost there have been no instant miracles but things are looking up at work and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.c2b3e4f6f99149a8926f5be4afdcebed",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 511,
+        "EndTime": 519.039,
+        "Text": "sampling of gentle and entirely on the author\u0027s terms or they can branch out talk about something which will have some interest",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.c3785b9998e14930815ab5b74e726ad7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1871,
+        "EndTime": 1879.919,
+        "Text": "speaker three i\u0027d seen it on tv quite a bit and i\u0027ve got friends who tell me that they really like living there so when the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.c57eda45066f40c0940c78664a71c047",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 470,
+        "EndTime": 478.24,
+        "Text": "not at times felt that his or her confidence has dropped open underneath like a trap door and suddenly there is nothing to build on and they\u0027re left",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.c64b6cd711464559897d7fc4699a1d67",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1076,
+        "EndTime": 1085.2,
+        "Text": "one day i\u0027d like to be a general manager that\u0027s the end of part two",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.c6c6c86e689f46c2b6619f299fece3fa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 341,
+        "EndTime": 348.88,
+        "Text": "after his 46th birthday dangling over a void attached to a long piece of purple pink string",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.c6d434ef423e44e599d41de9d28843fc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1602,
+        "EndTime": 1609.679,
+        "Text": "to roll in then we began trying to cure my personal finance phobia i dutifully did my sums",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.c7aba95a37024e9c98b8166be10bab48",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1943,
+        "EndTime": 1950.96,
+        "Text": "one of the things that came up was whether i\u0027d adapt to such a different lifestyle if i was to be successful and move there",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.cc001277bcd645f5b5530af6eeb3c16f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 519,
+        "EndTime": 527.36,
+        "Text": "because of the writer\u0027s own proven involvement with that subject questions can be tougher here but writers are used to questions they ask",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.cc63a719bfe0452392496cdf5188e314",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 854,
+        "EndTime": 862.24,
+        "Text": "one day i\u0027d like to be a general manager i left school with an ambition to work",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.cef12f21d5b04f4d8076405d78e877fd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 303,
+        "EndTime": 310.4,
+        "Text": "risks you know the awesomely dangerous pursuits that men in their forties are so often drawn to such as sponsored",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.cfd40c26abe44049bb6e9c90ee50662b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1344,
+        "EndTime": 1352.64,
+        "Text": "finance phobia i dutifully did my sums and started saving something however small every",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.d0e0a3c556ec4ab4a367f4c023c58cc5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1041,
+        "EndTime": 1048.96,
+        "Text": "assistant manager at a london hotel i love the work there although sometimes the duty management shifts are a bit of a killer",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.d132aaa0dc2b470ba90537fda3fefd1c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 667,
+        "EndTime": 675.12,
+        "Text": "rooms what equipment to use changing beds and more importantly about life in a hotel",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.d16d8c36ce90452dbdcdc681788a5a4b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 424,
+        "EndTime": 432.88,
+        "Text": "are in quite a comfortable position when they appear as speakers at events at literary festivals aren\u0027t they they can read from their work work",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.d1a081fc2e4a48189bad92d8c3a996de",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 895,
+        "EndTime": 903.04,
+        "Text": "a hotel for the last two days i worked with a floor housekeeper planning rotors and checking rooms",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.d21800670a5f43a4b6d4553fe1ab906b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2181,
+        "EndTime": 2190.106122,
+        "Text": "finish in time you",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.d3c8c67ae5204545b1ad8a4fdb6cbef8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1708,
+        "EndTime": 1717.12,
+        "Text": "which people are talking about cities they have visited look at task one for questions 21-25",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.d3dd25eacaa24ffdbd0d9d4fca0210c9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 391,
+        "EndTime": 398.4,
+        "Text": "risks you know the awesomely dangerous pursuits that men in their forties are so often drawn to such as sponsored",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.d463634c42094f75ab8b127c82e84c9a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 190,
+        "EndTime": 197.92,
+        "Text": "summarize like this gladwell\u0027s dissection sounds a bit crude in fact the tipping point is a very",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.d47aaab9f60645cdab82a3543e52bdc1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 960,
+        "EndTime": 968.32,
+        "Text": "as a result of their age and experience we studied a range of subjects including business studies hotel management human",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.d4da4535605349339902294948f45005",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1445,
+        "EndTime": 1454.24,
+        "Text": "almost not entirely well with my life nothing drastic i just felt stuck and in need of change both on the work front",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.d751d16d31704f2290f1d65f91e9f249",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 794,
+        "EndTime": 803.76,
+        "Text": "interest that students can use for assignments my other source information was caterer and hotel keeper the weekly magazine",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.da17fdead94c4fd880747ed1b0db0bd3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 73,
+        "EndTime": 80.32,
+        "Text": "usually take us by surprise gladwell makes sense of them by anatomizing them",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.db08c382269340a797f9bda24f8ba6ee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1275,
+        "EndTime": 1282.48,
+        "Text": "she said and she told me consider yourself someone to whom cash flows effortlessly",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.db23f054853e47d08254340e355682f0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1428,
+        "EndTime": 1437.84,
+        "Text": "now if you want to find out more about life coaches my next guest is bridget mcconville a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.db7609760fcb4050a97b1b7fd233405d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 246,
+        "EndTime": 253.439,
+        "Text": "edges of sea cliffs and sweats with fear at the top of towers why exactly is he spending this warm afternoon the day",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.dd03b67278ac4257b8318476a425ff37",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 683,
+        "EndTime": 691.519,
+        "Text": "i went to work in germany although i had studied the language at college my language skills improved dramatically",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.e0aeb8ec09cb4124a7a62d0d8711d18c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 166,
+        "EndTime": 175.28,
+        "Text": "showing how the spread of ideas or behavior depends on types whom he christens connectors and mavens",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.e10e61b56fa7487abc57f3ecedda486b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1494,
+        "EndTime": 1502.559,
+        "Text": "bit dubious myself but i decided to try it i booked a course with fiona harold a leading british coach",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.e1d0eebbc2e74f889e24e258232a18ca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1808,
+        "EndTime": 1817.039,
+        "Text": "great feelings of nostalgia the cathedral is a magnificent building for sure but the rest of it well it\u0027s not exactly pleasing on the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.e1d89b9802764d7ea21141cedab5692e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1609,
+        "EndTime": 1617.6,
+        "Text": "and started saving something however small every month my work also came under close scrutiny",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.e21eb99dfbda492eb67fdc6c4a7c5a32",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1291,
+        "EndTime": 1298.64,
+        "Text": "how did you react to that well it seems such a preposterous idea that i laughed out loud down the telephone",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.e2998e1e7e124ac8928fdd192359f0b6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 769,
+        "EndTime": 777.68,
+        "Text": "perspective on things it was interesting for example i reviewed giveaways such as soaps and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.e3daa284d15b43a28bc0c03a2d7d5c14",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1437,
+        "EndTime": 1445.52,
+        "Text": "journalist who decided to get herself a life coach bridget what made you do it and what is a life coach well",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.e453f46fe23946c2b4eba01f51fcfd3d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1359,
+        "EndTime": 1366.4,
+        "Text": "on jobs that really interested me exactly which issues you tackle during coaching is up to you",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.e5f6feed4ded4ad99272489e09054975",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 819,
+        "EndTime": 826.959,
+        "Text": "assistant manager at a london hotel i love the work there although sometimes the duty management shifts are a bit of a killer",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.e69b7b9735954f48b554b8c35cf004e9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1470,
+        "EndTime": 1477.679,
+        "Text": "now however legions of life coaches are out there ready and waiting to come to the aid of the frustrated and down at",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.ec226c93823346aa99959789f4119925",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 325,
+        "EndTime": 334.16,
+        "Text": "only another 25 meters to the top only what am i trying to prove why is a man who feels dizzy near the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.ec406d1d270646b883c89456b1769748",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 660,
+        "EndTime": 667.68,
+        "Text": "housekeeping department of a hotel it was hard work and i was only there for two weeks i learned all about cleaning",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.ec555e41ce0b46fa8ff22c5e0fe9bc1c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1699,
+        "EndTime": 1708.32,
+        "Text": "now turn to part four part four consists of two tasks you will hear five short extracts in",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.ed6e004f2d1c419dbc75e19fa7504288",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 645,
+        "EndTime": 652.56,
+        "Text": "diploma in hotel administration and tourism the course involved three periods of work experience as well as modules",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.f0fb3c67c8894888afefa9d0e69ec491",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 746,
+        "EndTime": 753.519,
+        "Text": "resource management and operational techniques there were also some optional subjects and i took conference and leisure",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.f108c2a04c6c4a5b95de8e80cfaacb82",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1412,
+        "EndTime": 1420.72,
+        "Text": "financially money and i are definitely on better terms i still have my doubts about the me first approach",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.f149c1f8d3df4580aeaecb996840c0d6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 527,
+        "EndTime": 535.68,
+        "Text": "them of themselves every couple of sentences yes but the main thing is that it\u0027s almost invariably a pleasure to meet readers a writing life is solitary",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.f26510eab78442dabe0ded213fb1db43",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 722,
+        "EndTime": 730,
+        "Text": "although i decided that i didn\u0027t want to be a chef the experience of seeing what goes on was invaluable",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.f2c30366bef44aa1b0df4a9a4879721e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2172,
+        "EndTime": 2181.28,
+        "Text": "be sure to follow the numbering of all the questions i shall remind you when there is one minute left so that you are sure to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.f40a46f0130541b49e5716e9824530fa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1965,
+        "EndTime": 1970.88,
+        "Text": "the prospect is a pretty daunting one so even if i do get the offer i don\u0027t think",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.f454e30d14eb40cdbe92d889db327829",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 862,
+        "EndTime": 870.72,
+        "Text": "in hotels as a manager in england or maybe abroad my local college offered a two-year diploma in hotel administration and tourism",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.f56a7c6a99d14100aba2b8d5e1b8605d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1861,
+        "EndTime": 1870.159,
+        "Text": "much going on and such a lively atmosphere no wonder people talk about how glamorous it is",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.f588c26a34f94e8ea29415a410c23e95",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1791,
+        "EndTime": 1799.76,
+        "Text": "speaker one of course you can\u0027t get much of an idea of what a place is like from such a short visit but i wanted to see if it",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.f6851f888f334aa7aa1cd8d94c1df190",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 432,
+        "EndTime": 440.08,
+        "Text": "already done needing no more than a light dusting on the train to be in shape for the event questions asked on the back of such a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.f8e9c67c09564fa088a8b3882937629e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1282,
+        "EndTime": 1291.12,
+        "Text": "why shouldn\u0027t you have an easy life an abundance of pleasure leisure and luxury and all without feeling any guilt",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.facebac24ddf462aab399f662953d5ba",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1830,
+        "EndTime": 1838.559,
+        "Text": "i spent a couple of days there because the event ran over two days so i stayed overnight in a hotel they booked for me",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.fbfdab7b231b482c9feeb23809af216e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 2110,
+        "EndTime": 2117.28,
+        "Text": "it\u0027s on every tourist must-see list what with them and all the locals rushing around it was all a bit much and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.fd9334e916bc48b4b74bf0fd4d4d324b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 675,
+        "EndTime": 683.279,
+        "Text": "for the last two days i worked with a floor housekeeper planning rotors and checking rooms the second placement was for four months",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.fda75a6b707343f2b84b3223276f4d9a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1879,
+        "EndTime": 1887.84,
+        "Text": "opportunity to move there came up i decided to go and check it out find out if it would suit me it\u0027s one thing to go to a place like",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486.feb29c0299be47eba3e2f1ee29d0d96a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 415,
+        "EndTime": 424.56,
+        "Text": "so writers rarely admit it william but they",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.183f50eafb6f35d42546b108af4ed055cf4785adb58fbe687b4cfb6681296486"
+}

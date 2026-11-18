@@ -1,101 +1,126 @@
-﻿@model TCTVocabulary.Areas.Admin.ViewModels.SpeakingVideoCreateViewModel
+@model TCTVocabulary.Areas.Admin.ViewModels.SpeakingVideoCreateViewModel
 @{
     ViewData["Title"] = "Thêm Speaking Video";
 }
 
-<div class="container-fluid py-4">
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-speaking-video.css" asp-append-version="true" />
+}
+
+<div class="tct-theme container-fluid py-4 admin-speaking-page">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="d-flex align-items-center mb-4">
-                <a asp-action="Index" class="btn btn-link text-decoration-none text-muted p-0 me-3">
-                    <i class="fa-solid fa-arrow-left fa-lg"></i>
+            @* Header & Back Button *@
+            <div class="d-flex align-items-center mb-4 gap-3">
+                <a asp-action="Index" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+                    <i class="fa-solid fa-arrow-left me-1" aria-hidden="true"></i> Quay lại
                 </a>
-                <h2 class="mb-0 text-dark fw-bold">Thêm Video Mới</h2>
-            </div>
-
-            <div class="card border-0 shadow-sm rounded-4">
-                <div class="card-body p-4 p-md-5">
-                    <div asp-validation-summary="ModelOnly" class="text-danger alert alert-danger rounded-3" role="alert"></div>
-
-                    <form asp-action="Create" method="post" id="createVideoForm">
-                        @Html.AntiForgeryToken()
-
-                        <div class="row g-4">
-                            <div class="col-md-12">
-                                <label asp-for="YoutubeId" class="form-label fw-bold">YouTube Video ID <span class="text-danger">*</span></label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light"><i class="fa-brands fa-youtube text-danger"></i></span>
-                                    <input asp-for="YoutubeId" class="form-control" placeholder="Ví dụ: dQw4w9WgXcQ hoặc full URL" />
-                                </div>
-                                <span asp-validation-for="YoutubeId" class="text-danger"></span>
-                                <div class="form-text text-muted mt-2">
-                                    <i class="fa-solid fa-circle-info me-1"></i>
-                                    Bạn có thể nhập YouTube ID hoặc URL đầy đủ. Hệ thống sẽ tự động chuẩn hóa ID.
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <label asp-for="Title" class="form-label fw-bold">Tiêu đề bài học <span class="text-danger">*</span></label>
-                                <input asp-for="Title" class="form-control" placeholder="Nhập tiêu đề hiển thị cho học viên" />
-                                <span asp-validation-for="Title" class="text-danger"></span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label asp-for="Level" class="form-label fw-bold">Trình độ <span class="text-danger">*</span></label>
-                                <select asp-for="Level" class="form-select">
-                                    <option value="">-- Chọn trình độ --</option>
-                                    <option value="A1">A1 (Beginner)</option>
-                                    <option value="A2">A2 (Pre-Intermediate)</option>
-                                    <option value="B1">B1 (Intermediate)</option>
-                                    <option value="B2">B2 (Upper-Intermediate)</option>
-                                    <option value="C1">C1 (Advanced)</option>
-                                    <option value="C2">C2 (Proficient)</option>
-                                </select>
-                                <span asp-validation-for="Level" class="text-danger"></span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label asp-for="Topic" class="form-label fw-bold">Chủ đề</label>
-                                <input asp-for="Topic" class="form-control" placeholder="Ví dụ: Business, Daily Life, Vlogs..." />
-                                <span asp-validation-for="Topic" class="text-danger"></span>
-                            </div>
-
-                            <div class="col-md-12">
-                                <label asp-for="PlaylistId" class="form-label fw-bold">Thêm vào Playlist (Tùy chọn)</label>
-                                <select asp-for="PlaylistId" class="form-select">
-                                    <option value="0">-- Mặc định (General) --</option>
-                                    @foreach (var playlist in Model.Playlists)
-                                    {
-                                        <option value="@playlist.Id">@playlist.Name</option>
-                                    }
-                                </select>
-                                <span asp-validation-for="PlaylistId" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <hr class="my-5 opacity-10" />
-
-                        <div class="d-flex justify-content-end gap-3">
-                            <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Hủy bỏ</a>
-                            <button type="submit" class="btn btn-primary shadow-sm rounded-pill px-4" id="btnSubmit">
-                                <span class="d-none spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" id="submitSpinner"></span>
-                                <i class="fa-solid fa-cloud-arrow-down me-2" id="submitIcon"></i>
-                                <span id="submitText">Trích xuất và Lưu Video</span>
-                                <span id="submitTextLoading" class="d-none">Đang xử lý...</span>
-                            </button>
-                        </div>
-                    </form>
+                <div>
+                    <h1 class="h2 mb-0 fw-bold text-dark">Thêm Video Mới</h1>
+                    <p class="text-muted mb-0 small">Trích xuất transcript từ YouTube hoặc tự động nhận diện giọng nói</p>
                 </div>
             </div>
 
-            <div class="alert alert-info mt-4 rounded-4 shadow-sm border-0 d-flex gap-3">
-                <i class="fa-solid fa-robot fa-2x text-info"></i>
+            @* Main Form Card (Clay Surface) *@
+            <div class="admin-speaking-card p-4 p-md-5 mb-4">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4" role="alert"></div>
+
+                <form asp-action="Create" method="post" id="createVideoForm" novalidate>
+                    @Html.AntiForgeryToken()
+
+                    <div class="row g-4">
+                        @* YouTube ID / URL *@
+                        <div class="col-12">
+                            <label asp-for="YoutubeId" class="form-label fw-bold">
+                                YouTube Video ID hoặc URL <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-end-0" style="border-radius: var(--tct-clay-radius-control, 16px) 0 0 var(--tct-clay-radius-control, 16px); border-color: var(--tct-border-control, #7c869b);">
+                                    <i class="fa-brands fa-youtube text-danger fa-lg" aria-hidden="true"></i>
+                                </span>
+                                <input asp-for="YoutubeId" class="form-control border-start-0"
+                                       style="border-radius: 0 var(--tct-clay-radius-control, 16px) var(--tct-clay-radius-control, 16px) 0;"
+                                       placeholder="Ví dụ: dQw4w9WgXcQ hoặc https://youtube.com/watch?v=..."
+                                       autocomplete="off" />
+                            </div>
+                            <span asp-validation-for="YoutubeId" class="text-danger small mt-1 d-block" id="youtubeValidationSpan"></span>
+                            <div class="form-text text-muted mt-2">
+                                <i class="fa-solid fa-circle-info me-1" aria-hidden="true"></i>
+                                Bạn có thể dán link video đầy đủ (youtube.com hoặc youtu.be). Hệ thống sẽ tự động tách ID 11 ký tự.
+                            </div>
+                        </div>
+
+                        @* Title *@
+                        <div class="col-12">
+                            <label asp-for="Title" class="form-label fw-bold">
+                                Tiêu đề bài học <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Title" class="form-control" placeholder="Nhập tiêu đề hiển thị cho học viên" />
+                            <span asp-validation-for="Title" class="text-danger small mt-1 d-block"></span>
+                        </div>
+
+                        @* Level *@
+                        <div class="col-md-6">
+                            <label asp-for="Level" class="form-label fw-bold">
+                                Trình độ CEFR <span class="text-danger">*</span>
+                            </label>
+                            <select asp-for="Level" class="form-select">
+                                <option value="">-- Chọn trình độ --</option>
+                                <option value="A1">A1 (Beginner — Sơ cấp)</option>
+                                <option value="A2">A2 (Pre-Intermediate — Cơ bản)</option>
+                                <option value="B1">B1 (Intermediate — Trung cấp)</option>
+                                <option value="B2">B2 (Upper-Intermediate — Khá)</option>
+                                <option value="C1">C1 (Advanced — Cao cấp)</option>
+                                <option value="C2">C2 (Proficient — Thành thạo)</option>
+                            </select>
+                            <span asp-validation-for="Level" class="text-danger small mt-1 d-block"></span>
+                        </div>
+
+                        @* Topic *@
+                        <div class="col-md-6">
+                            <label asp-for="Topic" class="form-label fw-bold">Chủ đề</label>
+                            <input asp-for="Topic" class="form-control" placeholder="Ví dụ: Daily Life, Business, Technology..." />
+                            <span asp-validation-for="Topic" class="text-danger small mt-1 d-block"></span>
+                        </div>
+
+                        @* Playlist *@
+                        <div class="col-12">
+                            <label asp-for="PlaylistId" class="form-label fw-bold">Thêm vào Playlist (Tùy chọn)</label>
+                            <select asp-for="PlaylistId" class="form-select">
+                                <option value="0">-- Mặc định (General) --</option>
+                                @foreach (var playlist in Model.Playlists)
+                                {
+                                    <option value="@playlist.Id">@playlist.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="PlaylistId" class="text-danger small mt-1 d-block"></span>
+                        </div>
+                    </div>
+
+                    <hr class="my-4 opacity-10" />
+
+                    @* Form Actions *@
+                    <div class="d-flex justify-content-end gap-3">
+                        <a asp-action="Index" class="btn btn-outline-secondary px-4">Hủy bỏ</a>
+                        <button type="submit" class="btn btn-primary px-4 shadow-sm" id="btnSubmit">
+                            <span class="d-none spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" id="submitSpinner"></span>
+                            <i class="fa-solid fa-cloud-arrow-down me-2" id="submitIcon" aria-hidden="true"></i>
+                            <span id="submitText">Trích xuất và Lưu Video</span>
+                            <span id="submitTextLoading" class="d-none">Đang trích xuất &amp; lưu...</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            @* Automated Process Helper Alert *@
+            <div class="alert alert-info d-flex gap-3 align-items-start">
+                <i class="fa-solid fa-robot fa-2x text-info mt-1" aria-hidden="true"></i>
                 <div>
                     <h6 class="fw-bold mb-1">Quy trình tự động hóa</h6>
-                    <p class="mb-0 small">
-                        Sau khi bấm Lưu, hệ thống sẽ thử theo 2 bước:
-                        <br />1. Thử lấy Closed Captions tiếng Anh có sẵn trên YouTube.
-                        <br />2. Nếu không có, tự động tải audio và nhận dạng bằng OpenAI Speech-to-Text (cửa sổ PCM đo được).
+                    <p class="mb-0 small text-secondary">
+                        Sau khi bấm Lưu, hệ thống sẽ thực hiện theo 2 bước:
+                        <br />1. Thử trích xuất Closed Captions tiếng Anh sẵn có từ YouTube.
+                        <br />2. Nếu không có phụ đề, hệ thống sẽ tự động chuyển tiếp qua OpenAI Speech-to-Text để nhận diện giọng nói và căn chỉnh mốc thời gian.
                     </p>
                 </div>
             </div>
@@ -107,54 +132,76 @@
     <partial name="_ValidationScriptsPartial" />
 
     <script>
-        // ── YouTube ID client-side validator ──────────────────────────
-        const YOUTUBE_ID_RE = /^[a-zA-Z0-9_-]{11}$/;
-        const YOUTUBE_URL_RE = /(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        (function () {
+            'use strict';
 
-        function extractYoutubeId(input) {
-            const trimmed = input.trim();
-            if (YOUTUBE_ID_RE.test(trimmed)) return trimmed;
-            const match = trimmed.match(YOUTUBE_URL_RE);
-            return match ? match[1] : null;
-        }
+            var YOUTUBE_ID_RE = /^[a-zA-Z0-9_-]{11}$/;
+            var YOUTUBE_URL_RE = /(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
 
-        const youtubeInput = document.querySelector('[name="YoutubeId"]');
-        const youtubeError = document.createElement('span');
-        youtubeError.className = 'text-danger small mt-1 d-block';
-        youtubeInput?.parentElement?.after(youtubeError);
-
-        youtubeInput?.addEventListener('blur', function () {
-            const extracted = extractYoutubeId(this.value);
-            if (this.value.trim() && !extracted) {
-                youtubeError.textContent = 'YouTube ID không hợp lệ. Nhập ID 11 ký tự hoặc URL YouTube đầy đủ.';
-                this.classList.add('is-invalid');
-            } else {
-                youtubeError.textContent = '';
-                this.classList.remove('is-invalid');
-            }
-        });
-
-        // ── Submit handler: loading state ─────────────────────────────
-        document.getElementById('createVideoForm').addEventListener('submit', function (e) {
-            if (youtubeInput && !extractYoutubeId(youtubeInput.value)) {
-                e.preventDefault();
-                youtubeError.textContent = 'YouTube ID không hợp lệ. Nhập ID 11 ký tự hoặc URL YouTube đầy đủ.';
-                youtubeInput.classList.add('is-invalid');
-                youtubeInput.focus();
-                return;
+            function extractYoutubeId(input) {
+                var trimmed = (input || '').trim();
+                if (YOUTUBE_ID_RE.test(trimmed)) return trimmed;
+                var match = trimmed.match(YOUTUBE_URL_RE);
+                return match ? match[1] : null;
             }
 
-            const btn = document.getElementById('btnSubmit');
-            const spinner = document.getElementById('submitSpinner');
-            const icon = document.getElementById('submitIcon');
-            const textNormal = document.getElementById('submitText');
-            const textLoading = document.getElementById('submitTextLoading');
+            var form = document.getElementById('createVideoForm');
+            var youtubeInput = document.querySelector('[name="YoutubeId"]');
+            var youtubeError = document.getElementById('youtubeValidationSpan');
+            var btn = document.getElementById('btnSubmit');
+            var spinner = document.getElementById('submitSpinner');
+            var icon = document.getElementById('submitIcon');
+            var textNormal = document.getElementById('submitText');
+            var textLoading = document.getElementById('submitTextLoading');
 
-            btn.disabled = true;
-            icon.classList.add('d-none');
-            spinner.classList.remove('d-none');
-            textNormal.classList.add('d-none');
-            textLoading.classList.remove('d-none');
-        });
+            if (youtubeInput) {
+                youtubeInput.addEventListener('blur', function () {
+                    var val = this.value.trim();
+                    if (val) {
+                        var extracted = extractYoutubeId(val);
+                        if (!extracted) {
+                            if (youtubeError) youtubeError.textContent = 'YouTube ID không hợp lệ. Vui lòng nhập ID 11 ký tự hoặc URL YouTube đầy đủ.';
+                            this.classList.add('is-invalid');
+                        } else {
+                            if (youtubeError) youtubeError.textContent = '';
+                            this.classList.remove('is-invalid');
+                        }
+                    } else {
+                        if (youtubeError) youtubeError.textContent = '';
+                        this.classList.remove('is-invalid');
+                    }
+                });
+            }
+
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    if (youtubeInput) {
+                        var val = youtubeInput.value.trim();
+                        var extracted = extractYoutubeId(val);
+                        if (!val || !extracted) {
+                            e.preventDefault();
+                            if (youtubeError) youtubeError.textContent = 'YouTube ID không hợp lệ. Vui lòng nhập ID 11 ký tự hoặc URL YouTube đầy đủ.';
+                            youtubeInput.classList.add('is-invalid');
+                            youtubeInput.focus();
+                            return;
+                        }
+                    }
+
+                    // Check standard form validity
+                    if (!form.checkValidity()) {
+                        return; // Let browser/jQuery validation handle focus and messages
+                    }
+
+                    // Set loading pending state
+                    if (btn) {
+                        btn.disabled = true;
+                        if (icon) icon.classList.add('d-none');
+                        if (spinner) spinner.classList.remove('d-none');
+                        if (textNormal) textNormal.classList.add('d-none');
+                        if (textLoading) textLoading.classList.remove('d-none');
+                    }
+                });
+            }
+        })();
     </script>
 }

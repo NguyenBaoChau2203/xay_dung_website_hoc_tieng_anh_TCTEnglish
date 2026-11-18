@@ -1,0 +1,14 @@
+@model TCTEnglish.ViewModels.Billing.ReceiptViewModel
+@*
+    Receipt of a paid order: code, plan, amount, method, time (Vietnam time) and the provider's transaction code.
+    Needs billing.css.
+*@
+<dl class="tb-receipt">
+    @foreach (var row in Model.Rows)
+    {
+        <div class="tb-receipt__row">
+            <dt>@row.Label</dt>
+            <dd class="@(row.Monospace ? "tb-mono" : null)">@row.Value</dd>
+        </div>
+    }
+</dl>

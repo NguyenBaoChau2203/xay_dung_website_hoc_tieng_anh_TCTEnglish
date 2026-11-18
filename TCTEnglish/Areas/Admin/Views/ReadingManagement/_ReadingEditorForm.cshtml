@@ -31,12 +31,12 @@
         <div class="row g-3">
             <div class="col-md-8">
                 <label class="form-label" asp-for="Title">Tiêu đề</label>
-                <input asp-for="Title" class="form-control" placeholder="Nhập tiêu đề bài đọc" />
+                <input asp-for="Title" class="form-control" placeholder="Nhập tiêu đề bài đọc" required />
                 <span asp-validation-for="Title" class="text-danger small"></span>
             </div>
             <div class="col-md-4">
                 <label class="form-label" asp-for="Level">Trình độ (CEFR)</label>
-                <select asp-for="Level" class="form-select">
+                <select asp-for="Level" class="form-select" required>
                     @foreach (var level in CefrLevels.All)
                     {
                         <option value="@level">@level</option>
@@ -62,7 +62,7 @@
             <div class="col-12">
                 <label class="form-label" asp-for="Content">Nội dung bài đọc</label>
                 <textarea asp-for="Content" class="form-control admin-reading-passage-input" rows="10"
-                          placeholder="Mỗi đoạn cách nhau bằng một dòng trống"></textarea>
+                          placeholder="Mỗi đoạn cách nhau bằng một dòng trống" required></textarea>
                 <div class="form-text">Các đoạn cách nhau bằng dòng trống sẽ được tách thành paragraph khi lưu.</div>
                 <span asp-validation-for="Content" class="text-danger small"></span>
             </div>

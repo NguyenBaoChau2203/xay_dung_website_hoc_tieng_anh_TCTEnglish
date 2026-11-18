@@ -20,7 +20,10 @@ public static partial class SharedDataFormat
     public static readonly JsonSerializerOptions Json = new(JsonSerializerDefaults.Web)
     {
         WriteIndented = true, UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
-        PropertyNameCaseInsensitive = false
+        PropertyNameCaseInsensitive = false,
+        // New releases must hash identical UTF-8 bytes on Windows and Linux.
+        // Legacy package reads/digests remain byte-based and are never rewritten.
+        NewLine = "\n"
     };
     [GeneratedRegex("^[a-z0-9][a-z0-9._-]{2,119}$", RegexOptions.CultureInvariant)] private static partial Regex PackageIdPattern();
     [GeneratedRegex("^[a-z0-9][a-z0-9._:-]{2,159}$", RegexOptions.CultureInvariant)] private static partial Regex KeyPattern();
@@ -89,10 +92,11 @@ public static partial class SharedDataFormat
             {
                 AssertKey(row.Key);
                 var spec = SharedDataRegistry.Get(row.Kind);
-                if (!keys.Add(row.Key) || row.Values == null || row.References == null || !spec.Fields.Order().SequenceEqual(row.Values.Keys.Order()) ||
-                    !spec.References.Select(x => x.Property).Concat(spec.Owners).Order().SequenceEqual(row.References.Keys.Order()))
+                if (!keys.Add(row.Key) || row.Values == null || row.References == null || !spec.Fields.All(row.Values.ContainsKey) || row.Values.Keys.Except(spec.AllFields).Any() ||
+                    !spec.References.Where(x => !x.AllowMissing).Select(x => x.Property).Concat(spec.Owners).All(row.References.ContainsKey) ||
+                    row.References.Keys.Except(spec.References.Select(x => x.Property).Concat(spec.Owners)).Any())
                     throw new SharedDataException($"Invalid fields/references or duplicate stable key: {row.Key}.");
-                foreach (var field in spec.Fields)
+                foreach (var field in row.Values.Keys)
                 {
                     var property = spec.Property(field);
                     try { _ = row.Values[field].Deserialize(property.PropertyType, Json); }
@@ -108,7 +112,7 @@ public static partial class SharedDataFormat
                 }
                 foreach (var reference in spec.References)
                 {
-                    var key = row.References[reference.Property];
+                    var key = row.References.GetValueOrDefault(reference.Property);
                     if (key == null && !reference.Optional) throw new SharedDataException("Required content reference missing.");
                     if (key != null) AssertKey(key);
                 }
@@ -156,7 +160,7 @@ public static partial class SharedDataFormat
             }
             foreach (var row in next.Package.Records)
             foreach (var reference in SharedDataRegistry.Get(row.Kind).References)
-                if (row.References[reference.Property] is { } key && (!identities.TryGetValue(key, out var parent) || parent.Kind != reference.Kind)) throw new SharedDataException("Missing/wrong-kind stable reference or package dependency.");
+                if (row.References.GetValueOrDefault(reference.Property) is { } key && (!identities.TryGetValue(key, out var parent) || parent.Kind != reference.Kind)) throw new SharedDataException("Missing/wrong-kind stable reference or package dependency.");
             foreach (var key in next.Package.DeleteKeys)
             {
                 if (!identities.TryGetValue(key, out var owner) || owner.Package != next.Package.Id || SharedDataRegistry.Roots.Contains(owner.Kind)) throw new SharedDataException("Deletion must address an owned child record, never an aggregate root.");

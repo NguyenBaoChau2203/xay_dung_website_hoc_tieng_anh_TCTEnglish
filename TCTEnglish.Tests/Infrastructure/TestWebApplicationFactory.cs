@@ -74,7 +74,8 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
                 .Where(descriptor => descriptor.ServiceType == typeof(IHostedService)
                     && (descriptor.ImplementationType == typeof(AutoUnlockWorker)
                         || descriptor.ImplementationType == typeof(SpeakingImportWorker)
-                        || descriptor.ImplementationType == typeof(NotificationWorker)))
+                        || descriptor.ImplementationType == typeof(NotificationWorker)
+                        || descriptor.ImplementationType == typeof(TCTEnglish.Services.Notifications.OutboundReminderWorker)))
                 .ToList();
 
             foreach (var descriptor in hostedServiceDescriptors)
@@ -120,6 +121,13 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
             // Ordinary tests must not hit OpenAI audio even when the host has OPENAI_API_KEY.
             services.RemoveAll<IOpenAiSpeechCredentialResolver>();
             services.AddSingleton<IOpenAiSpeechCredentialResolver>(new BlockedOpenAiSpeechCredentialResolver());
+
+            // Development User Secrets may now contain a working SMTP account.
+            // Ordinary HTTP/service tests must never deliver through that account.
+            // Tests needing success explicitly replace this seam with a fake in
+            // their configureTestServices callback below.
+            services.RemoveAll<TCTVocabulary.Services.ISmtpMailTransport>();
+            services.AddSingleton<TCTVocabulary.Services.ISmtpMailTransport, BlockedTestSmtpMailTransport>();
 
             _configureTestServices?.Invoke(services);
         });
@@ -450,5 +458,15 @@ internal sealed class BlockedOpenAiSpeechCredentialResolver : IOpenAiSpeechCrede
     {
         credentials = default!;
         return false;
+    }
+}
+
+internal sealed class BlockedTestSmtpMailTransport : TCTVocabulary.Services.ISmtpMailTransport
+{
+    public Task SendAsync(string host, int port, string username, string password,
+        System.Net.Mail.MailMessage message, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        throw new InvalidOperationException("Ordinary test host blocks real SMTP delivery.");
     }
 }

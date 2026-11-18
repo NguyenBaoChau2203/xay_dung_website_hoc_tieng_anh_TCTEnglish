@@ -1,5 +1,6 @@
 @model IEnumerable<TCTEnglish.ViewModels.ReadingListViewModel>
 @{
+    ViewData["Title"] = "Thư viện Reading";
     var items = Model?.ToList() ?? new List<TCTEnglish.ViewModels.ReadingListViewModel>();
     var topics = items
         .Select(x => (x.Topic ?? string.Empty).Trim())

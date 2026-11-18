@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.advanced.articles.04",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.advanced.articles.04",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Tr\u1ED3ng c\u00E2y trong s\u00E2n thu\u00EA chung",
+        "Level": "advanced",
+        "ContentType": "articles",
+        "Topic": "Kh\u00F4ng gian s\u1ED1ng",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E0i vi\u1EBFt h\u01B0\u1EDBng d\u1EABn m\u1ED9t nh\u00F3m c\u01B0 d\u00E2n l\u1EADp k\u1EBF ho\u1EA1ch c\u00E2y xanh c\u00F3 s\u1EF1 \u0111\u1ED3ng thu\u1EADn, ph\u00E2n c\u00F4ng ch\u0103m s\u00F3c v\u00E0 \u0111i\u1EC1u ki\u1EC7n th\u1EED nghi\u1EC7m r\u00F5 r\u00E0ng.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.1c9f92dea3c34a9fb4055f5c04f32a3f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "Trong th\u1EDDi gian th\u1EED, h\u00E3y h\u1ECFi c\u1EA3 ng\u01B0\u1EDDi kh\u00F4ng tham gia tr\u1ED3ng c\u00E2y xem b\u1ED1 tr\u00ED m\u1EDBi c\u00F3 g\u00E2y tr\u1EDF ng\u1EA1i hay phi\u1EC1n to\u00E1i kh\u00F4ng.",
+        "EnglishMeaning": "During the trial, ask people who are not involved in gardening whether the arrangement creates obstacles or inconveniences in their everyday use.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.articles.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.35dd4df724394106a067f7d17e17c2f8",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Qu\u1EF9 chung c\u0169ng c\u1EA7n c\u00F3 gi\u1EDBi h\u1EA1n v\u00E0 ng\u01B0\u1EDDi ghi ch\u00E9p \u0111\u1EC3 m\u1ED9t kho\u1EA3n mua nh\u1ECF kh\u00F4ng tr\u1EDF th\u00E0nh ngu\u1ED3n b\u1EA5t \u0111\u1ED3ng k\u00E9o d\u00E0i.",
+        "EnglishMeaning": "A shared budget needs a limit and a record keeper so that a minor purchase does not become a lasting source of disagreement.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.articles.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.444fc47102474df1b9276bc849381490",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Tr\u01B0\u1EDBc khi mua ch\u1EADu, c\u01B0 d\u00E2n n\u00EAn ki\u1EC3m tra quy\u1EC1n s\u1EED d\u1EE5ng kh\u00F4ng gian v\u00E0 h\u1ECFi nh\u1EEFng ng\u01B0\u1EDDi th\u01B0\u1EDDng \u0111i qua \u0111\u00F3 c\u1EA7n gi\u1EEF l\u1ED1i n\u00E0o th\u00F4ng tho\u00E1ng.",
+        "EnglishMeaning": "Before buying containers, residents should check permission to use the space and ask regular users which routes need to remain unobstructed.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.articles.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.506cba40049d41d884d46323de63bf4b",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "A successful small project allows for adjustment, including moving or removing a container that turns out to be unsuitable for its position.",
+        "NormalizedHash": "0e1f9cd440325cdb980b950cf49f65ef80b619d9ff69033d06f1e753ff1884e1"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.advanced.articles.04.d3643bd5a06a4f5bb35dc51db3fd745f",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.5cffc02c597248e0a4086c1168b10a84",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "M\u1ED9t g\u00F3c \u00EDt \u0111\u01B0\u1EE3c ch\u00FA \u00FD c\u00F3 th\u1EC3 v\u1EABn l\u00E0 n\u01A1i quay xe ho\u1EB7c l\u1ED1i ti\u1EBFp c\u1EADn thi\u1EBFt y\u1EBFu \u0111\u1ED1i v\u1EDBi h\u00E0ng x\u00F3m.",
+        "EnglishMeaning": "An apparently neglected corner may still provide a turning space or an essential access route for someone who lives in the building.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.articles.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.8326c60e58e44e62beebdf5b616a623d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Ti\u1EBFp theo, ghi nh\u1EADn \u00E1nh s\u00E1ng v\u00E0 ngu\u1ED3n n\u01B0\u1EDBc th\u1EF1c t\u1EBF, r\u1ED3i xin l\u1EDDi khuy\u00EAn ph\u00F9 h\u1EE3p tr\u01B0\u1EDBc khi ch\u1ECDn c\u00E2y.",
+        "EnglishMeaning": "Next, note the actual light conditions and available water supply, then seek locally appropriate advice before choosing which plants to purchase.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.articles.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.99401921fc5a48779b24ac6a997d6369",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "L\u1ECBch ch\u0103m s\u00F3c c\u1EA7n n\u00EAu ng\u01B0\u1EDDi thay th\u1EBF khi m\u1ED9t t\u00ECnh nguy\u1EC7n vi\u00EAn \u0111i v\u1EAFng, ch\u1EE9 kh\u00F4ng m\u1EB7c nhi\u00EAn giao vi\u1EC7c cho ng\u01B0\u1EDDi s\u1ED1ng g\u1EA7n nh\u1EA5t.",
+        "EnglishMeaning": "The care schedule should name a substitute when a volunteer is away, rather than silently transferring responsibility to whoever lives nearest the courtyard.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.articles.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.9b0be87851bf4b13a4d1319421029daf",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "C\u00E1c lo\u1EA1i c\u00E2y kh\u00E1c nhau c\u1EA7n c\u00E1ch ch\u0103m s\u00F3c kh\u00E1c nhau, n\u00EAn nh\u00E3n h\u01B0\u1EDBng d\u1EABn c\u1EE5 th\u1EC3 h\u1EEFu \u00EDch h\u01A1n m\u1ED9t l\u1EDDi nh\u1EAFc t\u01B0\u1EDBi n\u01B0\u1EDBc chung chung.",
+        "EnglishMeaning": "Different plants need different care, so clear instructions for each container are more useful than a general reminder to water everything regularly.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.articles.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.9c932a20a130409e86dd2a4eaffb2f24",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "V\u00EC v\u1EADy, h\u00E3y b\u1EAFt \u0111\u1EA7u t\u1EEB m\u1ED9t s\u01A1 \u0111\u1ED3 c\u00F3 k\u00EDch th\u01B0\u1EDBc thay v\u00EC ch\u1EC9 trao \u0111\u1ED5i nh\u1EEFng b\u1EE9c \u1EA3nh khu v\u01B0\u1EDDn l\u00FD t\u01B0\u1EDFng.",
+        "EnglishMeaning": "Start with a measured plan, therefore, rather than relying entirely on photographs of ideal gardens that may not fit the available space.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.articles.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.a8f21e89891448048fa08b435d5cd270",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "Khu v\u01B0\u1EDDn chung \u0111\u00E1ng qu\u00FD khi n\u00F3 b\u1ED5 sung cho \u0111\u1EDDi s\u1ED1ng c\u1EE7a c\u1EA3 t\u00F2a nh\u00E0, thay v\u00EC ch\u1EC9 th\u1EC3 hi\u1EC7n s\u1EDF th\u00EDch c\u1EE7a nh\u00F3m kh\u1EDFi x\u01B0\u1EDBng.",
+        "EnglishMeaning": "A shared garden is valuable when it complements life across the building, rather than simply displaying the preferences of the group that initiated it.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.articles.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.d3643bd5a06a4f5bb35dc51db3fd745f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "M\u1ED9t d\u1EF1 \u00E1n nh\u1ECF th\u00E0nh c\u00F4ng c\u1EA7n ch\u1EEBa ch\u1ED7 cho s\u1EF1 \u0111i\u1EC1u ch\u1EC9nh, k\u1EC3 c\u1EA3 vi\u1EC7c di chuy\u1EC3n ho\u1EB7c b\u1ECF m\u1ED9t ch\u1EADu kh\u00F4ng ph\u00F9 h\u1EE3p.",
+        "EnglishMeaning": "A successful small project leaves room for adjustment, including moving or removing a container that turns out to be unsuitable for its position.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.articles.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.e1c107bf25004fc2984dc0c30434f075",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "M\u1ED9t s\u00E2n chung c\u00F3 th\u00EAm c\u00E2y c\u00F3 th\u1EC3 h\u1EA5p d\u1EABn tr\u00EAn b\u1EA3n v\u1EBD, nh\u01B0ng k\u1EBF ho\u1EA1ch ch\u1EC9 b\u1EC1n khi vi\u1EC7c ch\u0103m s\u00F3c c\u0169ng \u0111\u01B0\u1EE3c thi\u1EBFt k\u1EBF.",
+        "EnglishMeaning": "A shared courtyard filled with plants may look appealing on a sketch, but the plan lasts only if maintenance is designed as well.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.articles.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.articles.04.ece91891b5914f8aba80804e31bbc521",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "B\u1EA1n c\u00F3 th\u1EC3 th\u1EED v\u00E0i ch\u1EADu trong m\u1ED9t m\u00F9a tr\u01B0\u1EDBc khi cam k\u1EBFt thay \u0111\u1ED5i to\u00E0n b\u1ED9 s\u00E2n v\u00E0 l\u1EAFp c\u00E1c c\u1EA5u tr\u00FAc c\u1ED1 \u0111\u1ECBnh.",
+        "EnglishMeaning": "Try a few containers for one season before committing to a complete redesign of the courtyard or installing structures that are difficult to move.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.articles.04"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.advanced.articles.04"
+}

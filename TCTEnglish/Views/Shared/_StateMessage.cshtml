@@ -34,6 +34,10 @@
     };
 }
 <div class="tct-state @modifier tct-state--mascot" role="@role" aria-busy="@(kind == StateMessageKind.Loading ? "true" : null)">
+    @if (kind == StateMessageKind.Loading)
+    {
+        <span class="spinner-border spinner-border-sm mb-2" aria-hidden="true"></span>
+    }
     <img class="tct-state__mascot"
          src="@mascotSrc"
          asp-append-version="true"

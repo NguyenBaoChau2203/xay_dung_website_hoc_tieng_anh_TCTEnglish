@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "listening-youtube-0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85",
+  "version": 2,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.listening.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A2 - MONEY",
+        "Level": "A2",
+        "Topic": "MONEY",
+        "YoutubeId": "JcXs_EMYakY",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/JcXs_EMYakY/hqdefault.jpg",
+        "Duration": "7:55",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": false,
+        "TranscriptSource": null
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.listening.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+}

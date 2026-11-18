@@ -298,7 +298,7 @@
                         payload?.conversationId,
                         payload?.conversationTitle || draftConversationTitle);
                     const appended = appendMessage(elChatWindow, 'assistant', payload.text || '', elScrollToBottomBtn);
-                    attachGrounding(appended?.contentElement?.parentElement, payload.grounding);
+                    attachGrounding(appended?.contentElement?.parentElement, payload.grounding, payload.usage);
                 } else if (currentConversationId) {
                     touchConversationHistory(
                         historyElements,
@@ -316,11 +316,11 @@
                 setUiState('done', elForm, elSendBtn, elStopBtn, elTyping, false);
             } catch (error) {
                 setUiState('error', elForm, elSendBtn, elStopBtn, elTyping, false);
-                const learnerMessage = describeSendError(error);
                 restoreDraftIfEmpty(elInput, runtime.pendingDraft);
-                showStatus(elStatus, learnerMessage, { allowRetry: true });
+                const described = describeSendError(error);
+                showStatus(elStatus, described.message, { allowRetry: described.allowRetry });
                 removeTrailingTransportNotice(elChatWindow);
-                const notice = appendMessage(elChatWindow, 'system', learnerMessage, elScrollToBottomBtn);
+                const notice = appendMessage(elChatWindow, 'system', described.message, elScrollToBottomBtn);
                 if (notice?.containerElement) {
                     notice.containerElement.setAttribute('data-answer-state', 'temporary_unavailability');
                 }
@@ -364,7 +364,7 @@
                 runtime.hubAvailable = false;
                 if (runtime.isStreaming) {
                     finalizeStreaming(runtime);
-                    resolveStreamCompletion(runtime, false, { message: 'Kết nối bị gián đoạn. Hãy kiểm tra lịch sử trước khi gửi lại.', shouldFallback: false });
+                    resolveStreamCompletion(runtime, false, { message: 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.', shouldFallback: false });
                 }
 
                 showStatus(elStatus, 'Kết nối realtime đang gián đoạn. Hãy kiểm tra lịch sử trước khi gửi lại.');
@@ -377,7 +377,7 @@
                 runtime.hubAvailable = false;
                 if (runtime.isStreaming) {
                     finalizeStreaming(runtime);
-                    resolveStreamCompletion(runtime, false, { message: 'Kết nối đã ngắt. Hãy kiểm tra lịch sử trước khi gửi lại.', shouldFallback: false });
+                    resolveStreamCompletion(runtime, false, { message: 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.', shouldFallback: false });
                 }
                 showStatus(elStatus, 'Realtime đã ngắt kết nối. Hệ thống sẽ dùng AJAX.');
             }
@@ -398,7 +398,7 @@
             }
         } catch {
             runtime.hubAvailable = false;
-            showStatus(elStatus, 'Không thể khởi tạo realtime. Hệ thống sẽ dùng AJAX.');
+            showStatus(elStatus, 'Mình chưa kết nối được chế độ trả lời trực tiếp. Bạn vẫn có thể gửi câu hỏi tại đây.');
         }
     }
 
@@ -512,7 +512,7 @@
                 row.classList.remove('d-none');
                 row.setAttribute('data-accepted', 'true');
             }
-            attachGrounding(runtime.streamMessageElement.parentElement || runtime.streamMessageElement.parentNode, payload?.grounding);
+            attachGrounding(runtime.streamMessageElement.parentElement || runtime.streamMessageElement.parentNode, payload?.grounding, payload?.usage);
             finalizeStreaming(runtime);
             resolveStreamCompletion(runtime, true);
         });
@@ -601,7 +601,7 @@
 
                 finalizeStreaming(runtime);
                 resolveStreamCompletion(runtime, false, {
-                    message: 'Kết nối bị gián đoạn sau khi gửi. Hãy kiểm tra lịch sử trước khi gửi lại.',
+                    message: 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.',
                     shouldFallback: false
                 });
             });
@@ -698,8 +698,12 @@
                 continue;
             }
 
-            const errorPayloadMessage = await tryGetErrorMessage(response);
-            throw new Error(errorPayloadMessage || getFriendlyErrorMessage(response.status));
+            const errorPayload = await readErrorPayload(response);
+            const error = new Error(errorPayload.message || getFriendlyErrorMessage(response.status));
+            error.status = response.status;
+            error.errorCode = errorPayload.errorCode || '';
+            error.uncertain = response.status >= 500;
+            throw error;
         }
 
         throw new Error('Xin lỗi, hệ thống AI đang bận. Vui lòng thử lại.');
@@ -794,7 +798,7 @@
             const avatarDiv = document.createElement('div');
             avatarDiv.className = 'ai-chat-avatar ai-chat-avatar-assistant';
             avatarDiv.setAttribute('aria-hidden', 'true');
-            avatarDiv.innerHTML = `<img src="${aiAvatar}" alt="AI Avatar" loading="lazy" />`;
+            avatarDiv.innerHTML = `<img src="${aiAvatar}" alt="TCT AI" loading="lazy" />`;
             container.appendChild(avatarDiv);
         }
 
@@ -833,7 +837,7 @@
         };
     }
 
-    function attachGrounding(bubble, grounding) {
+    function attachGrounding(bubble, grounding, usage) {
         if (!bubble) {
             return;
         }
@@ -855,81 +859,75 @@
             container.setAttribute('data-grounding-outcome', outcome);
         }
 
-        const label = learnerStateLabel(grounding);
-        const showNotice = (status === 'changed' || status === 'snapshot')
-            && typeof grounding.notice === 'string'
-            && grounding.notice.trim();
+        const suppliedNotice = typeof grounding.notice === 'string' ? grounding.notice.trim() : '';
+        const notice = status === 'unverified' && !suppliedNotice
+            ? 'Mình chưa kiểm tra lại được thông tin của câu trả lời này. Bạn hỏi lại mình nhé.'
+            : suppliedNotice;
+        const showNotice = (status === 'unverified' || status === 'changed' || status === 'snapshot') && notice;
         const sources = Array.isArray(grounding.sources) ? grounding.sources : [];
-        if (!label && !showNotice && sources.length === 0) {
+        const visible = sources.filter((source) => source && typeof source.sourceKey === 'string' && source.sourceKey);
+
+        let actions = [];
+        if ((outcome === 'answered' || outcome === 'needs_clarification')
+            && (status === 'current' || status === 'changed' || status === 'snapshot')) {
+            const destinations = new Set();
+            actions = visible.filter((source) => {
+                if (source.freshness !== 'current' || !isSafeNavigationRoute(source.route)) return false;
+                const key = source.route.toLowerCase();
+                if (destinations.has(key)) return false;
+                destinations.add(key);
+                return true;
+            }).slice(0, 3);
+        }
+
+        if (!showNotice && actions.length === 0) {
             return;
         }
 
         const section = document.createElement('section');
         section.className = 'ai-chat-sources';
-        section.setAttribute('aria-label', 'Nguồn và trạng thái câu trả lời');
-
-        if (label) {
-            const state = document.createElement('p');
-            state.className = 'ai-chat-state';
-            state.setAttribute('data-answer-state', outcome || status);
-            state.textContent = label;
-            section.appendChild(state);
-        }
+        section.setAttribute('aria-label', 'Gợi ý học tập');
 
         if (showNotice) {
             const note = document.createElement('p');
             note.className = 'ai-chat-source-notice';
-            note.textContent = grounding.notice;
+            note.textContent = notice;
             section.appendChild(note);
         }
 
-        const visible = sources.filter((source) => source && typeof source.sourceKey === 'string' && source.sourceKey);
-        if (visible.length > 0) {
-            const heading = document.createElement('p');
-            heading.className = 'ai-chat-source-label';
-            heading.textContent = 'Nguồn';
-            const list = document.createElement('ul');
-            list.className = 'ai-chat-source-list';
-            list.setAttribute('aria-label', 'Nguồn');
-            visible.forEach((source) => {
-                const item = document.createElement('li');
-                item.setAttribute('data-source-key', source.sourceKey);
-                item.setAttribute('data-source-freshness', typeof source.freshness === 'string' ? source.freshness : '');
-                const title = typeof source.title === 'string' && source.title.trim()
-                    ? source.title.trim()
-                    : 'Nguồn đã lưu';
-                if (isSafeCitationRoute(source.route)) {
-                    const link = document.createElement('a');
-                    link.className = 'ai-chat-source-link';
-                    link.href = source.route;
-                    link.textContent = title;
-                    item.appendChild(link);
-                } else {
-                    const span = document.createElement('span');
-                    span.className = 'ai-chat-source-title';
-                    span.textContent = title;
-                    item.appendChild(span);
-                }
-
-                if (source.freshness === 'changed' || source.freshness === 'snapshot') {
-                    const fresh = document.createElement('span');
-                    fresh.className = 'ai-chat-source-freshness';
-                    fresh.textContent = source.freshness === 'changed'
-                        ? 'Nguồn đã thay đổi sau khi trả lời'
-                        : 'Số liệu tại thời điểm trả lời';
-                    item.appendChild(fresh);
-                }
-
-                list.appendChild(item);
+        if (actions.length > 0) {
+            const navigation = document.createElement('nav');
+            navigation.className = 'ai-chat-actions';
+            navigation.setAttribute('aria-label', 'Mở trang được gợi ý');
+            actions.forEach((source) => {
+                const link = document.createElement('a');
+                link.className = 'ai-chat-action';
+                link.href = source.route;
+                link.target = '_top';
+                link.setAttribute('data-source-key', source.sourceKey);
+                const label = navigationLabel(source.route, source.title);
+                link.textContent = label;
+                const iconSpan = document.createElement('span');
+                iconSpan.className = 'ai-chat-action-icon ' + actionIconClass(source.route);
+                iconSpan.setAttribute('aria-hidden', 'true');
+                link.insertBefore(iconSpan, link.firstChild);
+                navigation.appendChild(link);
             });
-            section.appendChild(heading);
-            section.appendChild(list);
+            section.appendChild(navigation);
         }
 
         bubble.appendChild(section);
     }
 
-    function learnerStateLabel(grounding) {
+    function learnerStateLabel(grounding, usage) {
+        const model = usage && typeof usage.model === 'string' ? usage.model : '';
+        if (model === 'internal-chat-boundary' && (!grounding.outcome || grounding.outcome === 'answered')) {
+            const helper = window.TctAiAvailability;
+            return helper && typeof helper.message === 'function'
+                ? helper.message('internalChat')
+                : 'Trả lời từ dữ liệu trong hệ thống';
+        }
+
         const supplied = grounding.stateLabel;
         if (typeof supplied === 'string' && supplied.trim()) {
             return supplied.trim();
@@ -974,6 +972,42 @@
         }
 
         return path.length > 1 && path.length <= 200 && /^[A-Za-z0-9/_-]+$/.test(path);
+    }
+
+    function isSafeNavigationRoute(route) {
+        if (!isSafeCitationRoute(route)) return false;
+        const path = route.split('?')[0];
+        if (route.includes('?') && path.toLowerCase() !== '/home/writing/practice') return false;
+        // Match LearnerSourceLink.NavigationPattern; never promote a mutation
+        // endpoint just because its text resembles a local citation URL.
+        return /^\/(?:Speaking(?:\/(?:Index|Practice\/[1-9]\d*))?|Practice(?:\/(?:HardWords|learn|test|match|flashcard|quiz|typing|listening|cloze))?|Sets(?:\/[1-9]\d*)?|Goals(?:\/Index)?|Account\/(?:Profile|Settings|Login)|Premium|Billing\/History|Notification\/Index|AI\/Chat|Reading\/(?:Study|Quiz)\/[1-9]\d*|Home\/(?:Index|CreateSet|Folder|CreateClass|Class|Contact|Grammar|Privacypolicy|Termsofuse|Search|Reading(?:\/(?:Study|Quiz|Practice)\/[1-9]\d*)?|Listening(?:\/Practice\/[1-9]\d*)?|Writing(?:\/Exercises|\/Practice)?|(?:Study|QuizMode|WriteMode|MatchingMode|ClassDetail)\/[1-9]\d*))$/i.test(path);
+    }
+
+    function navigationLabel(route, title) {
+        const path = route.toLowerCase();
+        if (path.startsWith('/speaking')) return 'Mở luyện nói';
+        if (path.startsWith('/home/writing')) return 'Mở luyện viết';
+        if (path.startsWith('/home/listening')) return 'Mở luyện nghe';
+        if (path.startsWith('/home/reading') || path.startsWith('/reading/')) return 'Mở luyện đọc';
+        if (path.startsWith('/practice/hardwords')) return 'Ôn từ khó';
+        if (path.startsWith('/practice')) return 'Luyện từ vựng';
+        if (path.startsWith('/goals')) return 'Xem Goals và danh hiệu';
+        if (path.startsWith('/account/profile')) return 'Mở hồ sơ cá nhân';
+        if (path.startsWith('/account/settings')) return 'Mở cài đặt tài khoản';
+        return typeof title === 'string' && title.trim() ? 'Mở ' + title.trim() : 'Mở trang liên quan';
+    }
+
+    function actionIconClass(route) {
+        const path = typeof route === 'string' ? route.toLowerCase() : '';
+        if (path.startsWith('/speaking')) return 'fa-solid fa-microphone';
+        if (path.startsWith('/home/writing')) return 'fa-solid fa-pen';
+        if (path.startsWith('/home/listening')) return 'fa-solid fa-headphones';
+        if (path.startsWith('/home/reading') || path.startsWith('/reading/')) return 'fa-solid fa-book-open';
+        if (path.startsWith('/practice')) return 'fa-solid fa-layer-group';
+        if (path.startsWith('/goals')) return 'fa-solid fa-bullseye';
+        if (path.startsWith('/account/profile')) return 'fa-solid fa-user';
+        if (path.startsWith('/account/settings')) return 'fa-solid fa-gear';
+        return 'fa-solid fa-arrow-right';
     }
 
     function streamEventCurrent(runtime, payload, requireStreamId) {
@@ -1067,10 +1101,16 @@
             return;
         }
 
+        if (!textarea.value || !textarea.value.trim()) {
+            textarea.style.height = '36px';
+            textarea.style.overflowY = 'hidden';
+            return;
+        }
+
         textarea.style.height = 'auto';
         const maxHeight = 120;
         const newHeight = Math.min(textarea.scrollHeight, maxHeight);
-        textarea.style.height = Math.max(newHeight, 46) + 'px';
+        textarea.style.height = Math.max(newHeight, 36) + 'px';
         textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
     }
 
@@ -1136,13 +1176,40 @@
         return false;
     }
 
-    function describeSendError(error) {
-        const message = (error && error.message) || '';
-        if (!message || message === 'Failed to fetch' || message === 'NetworkError when attempting to fetch resource.' || message === 'Load failed') {
-            return 'Mạng bị gián đoạn. Bản nháp vẫn còn để bạn gửi lại.';
-        }
+    function unknownChatMessage() {
+        const helper = window.TctAiAvailability;
+        return helper && typeof helper.message === 'function'
+            ? helper.message('unknownChat')
+            : 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.';
+    }
 
-        return message;
+    function describeSendError(error) {
+        const code = error && error.errorCode ? String(error.errorCode) : '';
+        const status = error && error.status ? Number(error.status) : 0;
+        const message = (error && error.message) || '';
+        if (code === 'circuit_open') {
+            const helper = window.TctAiAvailability;
+            return {
+                message: helper && typeof helper.message === 'function' ? helper.message('outage') : 'Dịch vụ đánh giá đang gián đoạn.',
+                allowRetry: true
+            };
+        }
+        if (status === 401 || status === 403) {
+            return { message: 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.', allowRetry: false };
+        }
+        if (status === 404) {
+            return { message: 'Không tìm thấy cuộc hội thoại hoặc bạn không có quyền truy cập.', allowRetry: false };
+        }
+        if (status === 429 || code === 'rate_limited') {
+            return {
+                message: message || 'Bạn đang gửi yêu cầu quá nhanh. Vui lòng chờ một chút rồi thử lại.',
+                allowRetry: true
+            };
+        }
+        if (!message || message === 'Failed to fetch' || message === 'NetworkError when attempting to fetch resource.' || message === 'Load failed' || error?.uncertain || status >= 500) {
+            return { message: unknownChatMessage(), allowRetry: false };
+        }
+        return { message: message, allowRetry: false };
     }
 
     function removeEmptyState(elChatWindow) {
@@ -1248,7 +1315,11 @@
     function scrollToBottom(elChatWindow, smooth, scrollButton) {
         if (!elChatWindow) return;
 
-        if (smooth) {
+        const prefersReducedMotion = typeof window !== 'undefined'
+            && typeof window.matchMedia === 'function'
+            && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (smooth && !prefersReducedMotion) {
             elChatWindow.scrollTo({
                 top: elChatWindow.scrollHeight,
                 behavior: 'smooth'
@@ -1327,23 +1398,29 @@
         }
 
         if (statusCode === 503 || statusCode === 504) {
-            return 'Trợ lý tạm thời không trả lời được. Bản nháp vẫn còn để bạn gửi lại.';
+            return 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.';
         }
 
-        return 'Trợ lý tạm thời không trả lời được. Bản nháp vẫn còn để bạn gửi lại.';
+        return 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.';
     }
 
-    async function tryGetErrorMessage(response) {
-        const contentType = response.headers.get('Content-Type') || '';
-        if (!contentType.includes('application/json')) {
-            return '';
+    async function readErrorPayload(response) {
+        const headerGet = response.headers && typeof response.headers.get === 'function'
+            ? response.headers.get.bind(response.headers)
+            : null;
+        const contentType = headerGet ? (headerGet('Content-Type') || headerGet('content-type') || '') : '';
+        if (!String(contentType).includes('application/json')) {
+            return { message: '', errorCode: '' };
         }
 
         try {
             const payload = await response.json();
-            return payload?.error || '';
+            return {
+                message: payload?.error || '',
+                errorCode: payload?.errorCode || payload?.code || ''
+            };
         } catch {
-            return '';
+            return { message: '', errorCode: '' };
         }
     }
 
@@ -1788,7 +1865,7 @@
                 avatar.setAttribute('aria-hidden', 'true');
                 const img = document.createElement('img');
                 img.src = aiAvatar;
-                img.alt = 'AI Avatar';
+                img.alt = 'TCT AI';
                 img.loading = 'lazy';
                 avatar.appendChild(img);
                 row.appendChild(avatar);

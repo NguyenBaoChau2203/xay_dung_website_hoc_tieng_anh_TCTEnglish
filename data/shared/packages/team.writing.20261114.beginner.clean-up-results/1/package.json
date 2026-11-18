@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.clean-up-results",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.clean-up-results",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "K\u1EBFt qu\u1EA3 d\u1ECDn s\u00E2n chung",
+        "Level": "beginner",
+        "ContentType": "reports",
+        "Topic": "C\u1ED9ng \u0111\u1ED3ng",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E1o c\u00E1o ho\u1EA1t \u0111\u1ED9ng gi\u1EA3 \u0111\u1ECBnh v\u1EDBi k\u1EBFt qu\u1EA3 v\u00E0 \u0111\u1EC1 xu\u1EA5t c\u1EE5 th\u1EC3.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.clean-up-results.0d9895f7dbe142e2aa66656fcefb5140",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Bu\u1ED5i d\u1ECDn ti\u1EBFp theo d\u1EF1 ki\u1EBFn di\u1EC5n ra v\u00E0o \u0111\u1EA7u th\u00E1ng sau.",
+        "EnglishMeaning": "The next clean-up is planned for the start of next month.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clean-up-results"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clean-up-results.14bffcfc23d14631a7b7d54d5b150e2d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "S\u00E1u ng\u01B0\u1EDDi h\u00E0ng x\u00F3m b\u1EAFt \u0111\u1EA7u l\u00E0m vi\u1EC7c l\u00FAc t\u00E1m gi\u1EDD s\u00E1ng Ch\u1EE7 nh\u1EADt.",
+        "EnglishMeaning": "Six neighbours started work at eight on Sunday morning.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clean-up-results"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clean-up-results.1db5b31e6e22492da0c016a345c6530c",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "H\u1ECD chia th\u00E0nh hai nh\u00F3m \u0111\u1EC3 qu\u00E9t s\u00E2n v\u00E0 nh\u1EB7t r\u00E1c.",
+        "EnglishMeaning": "They formed two groups to sweep the yard and collect rubbish.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clean-up-results"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clean-up-results.465e9b1782864a0ba1bfd763c82f7a94",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Both entrances were clean after an hour.",
+        "NormalizedHash": "24aba4429e9f0680280b2d50f00664afa4ea5910ae1153026f3eaf2fb253c6a6"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.clean-up-results.91d5d3f7018f4d88a8598b58a67a8ab7",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clean-up-results.53a70148c08447bc8dfd3c16b14a3eda",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Nh\u00F3m thu gom \u0111\u01B0\u1EE3c hai t\u00FAi r\u00E1c v\u00E0 m\u1ED9t h\u1ED9p gi\u1EA5y c\u0169.",
+        "EnglishMeaning": "The group collected two bags of rubbish and a box of old paper.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clean-up-results"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clean-up-results.651e62b6598d481d8353c6fc2361d7b5",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "M\u1ECDi ng\u01B0\u1EDDi \u0111\u1EC1 ngh\u1ECB \u0111\u1EB7t th\u00EAm m\u1ED9t chi\u1EBFc ch\u1ED5i \u1EDF n\u01A1i d\u00F9ng chung.",
+        "EnglishMeaning": "Everyone suggested keeping another broom in a shared place.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clean-up-results"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clean-up-results.91d5d3f7018f4d88a8598b58a67a8ab7",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Sau m\u1ED9t gi\u1EDD, c\u1EA3 hai l\u1ED1i v\u00E0o \u0111\u1EC1u \u0111\u00E3 s\u1EA1ch.",
+        "EnglishMeaning": "After an hour, both entrances were clean.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clean-up-results"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clean-up-results.e9a87d93a6634f63ae129c26fdcf5417",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "B\u00E1o c\u00E1o n\u00E0y t\u00F3m t\u1EAFt m\u1ED9t bu\u1ED5i d\u1ECDn s\u00E2n chung trong khu nh\u00E0 gi\u1EA3 \u0111\u1ECBnh.",
+        "EnglishMeaning": "This report summarises a fictional clean-up in a shared courtyard.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clean-up-results"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.clean-up-results.fc796b57064d408a966289e5abeba2c0",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "M\u1ED9t g\u00F3c s\u00E2n v\u1EABn c\u00F3 nhi\u1EC1u l\u00E1 v\u00EC gi\u00F3 ti\u1EBFp t\u1EE5c th\u1ED5i.",
+        "EnglishMeaning": "One corner still had many leaves because the wind kept blowing.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.clean-up-results"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.clean-up-results"
+}

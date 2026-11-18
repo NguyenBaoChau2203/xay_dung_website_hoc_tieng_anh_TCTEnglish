@@ -1,0 +1,20 @@
+@model TCTVocabulary.ViewModels.SpeakingVideoViewModel
+<div class="vi-video-col" data-video-id="@Model.Id" data-title="@Model.Title.ToLowerInvariant()" data-topic="@Model.Topic" data-level="@Model.Level">
+    <a asp-controller="Speaking" asp-action="Practice" asp-route-id="@Model.Id" class="text-decoration-none d-block h-100">
+        <article class="spk-pub-card h-100">
+            <div class="spk-video-thumb">
+                <img src="@(string.IsNullOrEmpty(Model.ThumbnailUrl) ? $"https://img.youtube.com/vi/{Model.YoutubeId}/hqdefault.jpg" : Model.ThumbnailUrl)" alt="@Model.Title" class="spk-thumb-img" loading="lazy" />
+                <div class="spk-thumb-overlay"></div>
+                @if (!string.IsNullOrEmpty(Model.Duration)) { <div class="spk-thumb-duration">@Model.Duration</div> }
+                <div class="spk-thumb-badge-tl"><span class="spk-level-chip">@Model.Level</span></div>
+                <div class="spk-pub-card-play-overlay"><div class="spk-pub-card-play"><span class="material-symbols-outlined" aria-hidden="true">play_arrow</span></div></div>
+            </div>
+            <div class="spk-pub-card-body">
+                <span class="spk-pub-card-topic">@Model.Topic</span>
+                <h4 class="spk-pub-card-title">@Model.Title</h4>
+                <div class="spk-pub-card-meta"><span class="spk-pub-card-meta-item"><span class="material-symbols-outlined" aria-hidden="true">format_list_bulleted</span>@Model.SentenceCount câu</span></div>
+                <div class="spk-pub-card-footer"><span class="spk-pub-practice-btn"><span class="material-symbols-outlined" aria-hidden="true">mic</span>Luyện tập</span></div>
+            </div>
+        </article>
+    </a>
+</div>

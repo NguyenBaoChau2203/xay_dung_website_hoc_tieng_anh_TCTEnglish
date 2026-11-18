@@ -1,0 +1,454 @@
+{
+  "schemaVersion": 1,
+  "batch": "intermediate",
+  "completedAtUtc": "2026-11-14T12:27:53.382122+00:00",
+  "status": "complete-local",
+  "newLessons": 36,
+  "newSentencePairs": 432,
+  "newApprovedAlternatives": 36,
+  "cumulativeNewLessons": 72,
+  "fullProjectTargetNewLessons": 108,
+  "remainingReservedLessons": 36,
+  "publicBefore": 46,
+  "publicAfter": 82,
+  "preservedTables": 72,
+  "preservedOriginalRows": 42409,
+  "preservedPreBatchRows": 43165,
+  "preservedBeginnerLessons": 36,
+  "preservedPrivateWritingLessons": 11,
+  "preservedUnpublishedSystemLessons": 1,
+  "preservedPreBatchPackageVersions": 307,
+  "initialImportCreated": 36,
+  "localPilotRerunCreated": 0,
+  "isolatedSixFormatPilots": "passed-before-dev-import; anonymous catalog, ordered practice, variants, progress, completion and replay with cloud disabled",
+  "importRerunCreated": {
+    "lessons": 0,
+    "sentences": 0,
+    "variants": 0
+  },
+  "exportRerunNewVersions": 0,
+  "tests": {
+    "passed": 109,
+    "failed": 0,
+    "skipped": 0
+  },
+  "editorial": {
+    "lessons": 36,
+    "sentencePairs": 432,
+    "variants": 36,
+    "englishWords": 5629,
+    "minWords": 145,
+    "maxWords": 174,
+    "internalMaxSimilarity": 0.0035335689045936395,
+    "beginnerMaxSimilarity": 0.009345794392523364,
+    "internalDuplicateSentences": 0,
+    "cumulativeDuplicateSentences": 0
+  },
+  "roundtrip": {
+    "provider": "MariaDB 10.5.23",
+    "lessons": 36,
+    "sentencePairs": 432,
+    "variants": 36,
+    "repeatChangedRows": 0,
+    "completedAtUtc": "2026-11-14T12:23:21.1211001Z",
+    "syntheticLockedSystemOwnersCreated": 1
+  },
+  "sync1": {
+    "completedAtUtc": "2026-11-14T12:23:15.0097674Z",
+    "catalogSha256": "C16F04843E03B54ADDD295ECF60D75248D28229D89D319B648DC1B3B651628EF",
+    "recordOperations": 504
+  },
+  "sync2": {
+    "completedAtUtc": "2026-11-14T12:23:26.7059065Z",
+    "catalogSha256": "C16F04843E03B54ADDD295ECF60D75248D28229D89D319B648DC1B3B651628EF",
+    "recordOperations": 0
+  },
+  "canonicalValidation": {
+    "releases": 343,
+    "recordRevisions": 17400
+  },
+  "exportRecovery": {
+    "completedPackagesBeforeInterruption": 17,
+    "pendingCanonicalReleaseRecovered": 1,
+    "remainingPackagesExported": 18,
+    "publishedVersionBytesChanged": 0,
+    "cause": "Windows denied atomic catalog replacement; exact external file holder was not established; original catalog backed up and intact exporter candidate verified before rename"
+  },
+  "packages": [
+    {
+      "id": "team.writing.20261114.intermediate.emails.01",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.emails.01/1/package.json",
+      "sha256": "4e3c2b056ed51f3e02212eed48fd8a2336999e9074e57a7eeb08b9ce74efa0d6"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.emails.02",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.emails.02/1/package.json",
+      "sha256": "de282221d0ae60587027a8b9ec310e724897756f6ddcaa59e962995b57fd0399"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.emails.03",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.emails.03/1/package.json",
+      "sha256": "e25c713e6a4aab10dbd153b5ba917d458b0dc0437ea81ee09046b47fe337c246"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.emails.04",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.emails.04/1/package.json",
+      "sha256": "9b2263f9784791427db4933848b82d79a4a701de2f2a60a032cc5e130c594b72"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.emails.05",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.emails.05/1/package.json",
+      "sha256": "a6474f570bd2be68295afe20e45a4f247cd65149357e44c0f226b731c85d824f"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.emails.06",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.emails.06/1/package.json",
+      "sha256": "ca63a758f7699c8a91f3881c3e4e7d4127c67443087462cdcedeaccb058d810b"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.diaries.01",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.diaries.01/1/package.json",
+      "sha256": "6b0941b1ee773f6e943ceef7c99bf1488420b9d7b04e59ccb4c6f3fe38116f8c"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.diaries.02",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.diaries.02/1/package.json",
+      "sha256": "29263c8541692ba1430261dc981eb8f8ce6f6134914dfb601d0db0f174ee6fdf"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.diaries.03",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.diaries.03/1/package.json",
+      "sha256": "d363e948c7397576b923cb16a16fcbac534bd37424fffb31033f2318c78b1d07"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.diaries.04",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.diaries.04/1/package.json",
+      "sha256": "22149344d7d5a8f2d586af7a862f80a2a0436d43e9f1fb35a51c75d9f144e5a8"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.diaries.05",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.diaries.05/1/package.json",
+      "sha256": "a87cf3923e04cf500fc448845266cd08e6c70ba50bb08efb5c34a4401ad6e7d6"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.diaries.06",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.diaries.06/1/package.json",
+      "sha256": "80a0c83486f632a0bb7fc2def01414f1d6c79b4e54793d2dcd73698c4a360e33"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.essays.01",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.essays.01/1/package.json",
+      "sha256": "18d4d4d606f54917fba43dab2a7391f23461c7541e7f0ebd0b5db1f46cedf674"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.essays.02",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.essays.02/1/package.json",
+      "sha256": "e1b66aca1032166f6fd754d5cc71fdf0f744a0316936947c1d87c2ad699e1fb7"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.essays.03",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.essays.03/1/package.json",
+      "sha256": "233419604c736bfbf44dca1d2da490f92d1f7cf1f53054150656ebc6e144cc5c"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.essays.04",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.essays.04/1/package.json",
+      "sha256": "12736699ecd677c6506b5142edd1723946b6d3e786d47557028a29dc55cc28fb"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.essays.05",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.essays.05/1/package.json",
+      "sha256": "a364ee37e514d935852358cf95672ba7802023b238a47a7e8ccc9bc5d7f18717"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.essays.06",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.essays.06/1/package.json",
+      "sha256": "20f81da2af21ecd336d6ab33a8da45a67064481f6878be2a623b054bf7ea8c7c"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.articles.01",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.articles.01/1/package.json",
+      "sha256": "e53a4b67bd75bc06e846a2ec76c38bd534e07770366250617a64611c5b1d6cb8"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.articles.02",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.articles.02/1/package.json",
+      "sha256": "d9c25c762984133547e2fe10b92fc5fcea39cd686e514536d9d24b998f29545d"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.articles.03",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.articles.03/1/package.json",
+      "sha256": "b75dee6b7907dcf18d40e147f0b14d480b7a00d5eb096e1aaa580a6c1b4ffcb7"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.articles.04",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.articles.04/1/package.json",
+      "sha256": "7f2e4df07514d40196ae798303de4f7a470636357d25fc213fe83e35f6c2fec7"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.articles.05",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.articles.05/1/package.json",
+      "sha256": "9f7b42feccdc19886d6e9e809e3a957b5ef2241f6a109aa45f58de52f89bdd05"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.articles.06",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.articles.06/1/package.json",
+      "sha256": "35ecb6e040375c6a06f6bee645b35489c5f71c589dc7f3ae89994cfe3a31e6bd"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.stories.01",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.stories.01/1/package.json",
+      "sha256": "bea0c90c9c79b6a81e71b529c67b4c9b417d4c4f3cae00649dabae9316166eaf"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.stories.02",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.stories.02/1/package.json",
+      "sha256": "50b42f3c3a079e8130372cf05c6f7452427292aef53f676e5987bd7fc3ac788a"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.stories.03",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.stories.03/1/package.json",
+      "sha256": "3f7b3f2e84b093eb3343f970f16be951c6df9ce4c88ca1d2063f897c74ab8a92"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.stories.04",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.stories.04/1/package.json",
+      "sha256": "99acdf1c414759d4cf2e79bfd74dfa87986643bbc5193b43f05cb7797c653dac"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.stories.05",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.stories.05/1/package.json",
+      "sha256": "14e5f2e4a07343cc6d94765cc325f0f54fee268fcdc8ff64ba612f21b21ff2f0"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.stories.06",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.stories.06/1/package.json",
+      "sha256": "466c60e51749d4a2a767f6efa61015a70a891c3047493b18dc9af31f1a7ee6b6"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.reports.01",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.reports.01/1/package.json",
+      "sha256": "c1551fb38288ec9faf10b206ade5931faa989276159efcc8cfda87d056b7af9d"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.reports.02",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.reports.02/1/package.json",
+      "sha256": "3b2ce1eea1c20f528a196c179c98cf7449cfa87d175095dfc3cd26b508d9d5a4"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.reports.03",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.reports.03/1/package.json",
+      "sha256": "b8780b24d5c7a3e0edb5861da1b4ce08f831880c878aa1265294c3fde18bb271"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.reports.04",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.reports.04/1/package.json",
+      "sha256": "1ed230752705e16f42d676c24fe56e05a4ace073fd975e850996fdfb3b52b334"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.reports.05",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.reports.05/1/package.json",
+      "sha256": "d16f6dc03337a3d6e1096804709398400e99c560f9012fee6f344e14be97cb48"
+    },
+    {
+      "id": "team.writing.20261114.intermediate.reports.06",
+      "version": 1,
+      "path": "packages/team.writing.20261114.intermediate.reports.06/1/package.json",
+      "sha256": "afc056e46dbeb6bc11884c852e7182bba26502cee2a0650cb58607ad135aebc5"
+    }
+  ],
+  "contentDigests": [
+    {
+      "key": "team.writing.20261114.intermediate.emails.01",
+      "sha256": "c302acc86b3aaed5529a434f6870c5ea33dd7e0122110ef37959260cd70a39aa"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02",
+      "sha256": "3909d144bb0946b2f61c3ec9b9a54fc528eb4f55f1ab755808d346a45b638bb3"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.03",
+      "sha256": "587be3caed9281121cc8a6430e63d5dcb2f50e78a2cd4647cdf34b1e147e015b"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.04",
+      "sha256": "6656180482ddd55540d07327af43f160f2b6f1f15f6c3019050194ef08c805e0"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.05",
+      "sha256": "0f8cea7ded35a507edb3544dbcb0b9c63a879c9e452daad1ceee81926826c1af"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.06",
+      "sha256": "5db28a0f0b980f2e792d806e35dfe9a51dcf81de0d20ea95e4a43243c9892943"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.01",
+      "sha256": "cc9913d1e7c7738697f09dce8deef0f6ce0c0c031e8813e03c81369ad76b917f"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.02",
+      "sha256": "8ed5e8221a6f960e2125720e215d50f28d527429227aeb1dd844ce72a67516e9"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.03",
+      "sha256": "e6197cab35d79d9d569566e82453b0331f08f019dd46d7c2201cebbe86a394b7"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.04",
+      "sha256": "62b6f6100d32dbb96e2930424c45437e638860fe9506b3e49130a2d5e7a40a89"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05",
+      "sha256": "1b09c18e6f26caf9a1730ffa47f35b9747da1f484d121c90350a8793295e7386"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.06",
+      "sha256": "cc3e5d8fc599fd376feed21708cdab659a07b253961830674bcbd73a68334c35"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.01",
+      "sha256": "d99ae6e15a1680d2f1cde8282a5cd4f1c0efa4a5de29f0d3e756ebc76cd3f38d"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.02",
+      "sha256": "6a8b219bdf7582fff39a095d7148bcf423de664a9cabdc210eff626ad0e99b93"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.03",
+      "sha256": "f834d3c1c608c6dcbaa1ea98bd76752b3d3697c509d837aacd8d979da2f8adf0"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.04",
+      "sha256": "8cd5b030a6668fc8901210065f6d97f5c8548fc94c43316a2b69a19756b0cf09"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.05",
+      "sha256": "1004cc0cf846891e42dbaf2a3977ef32eb400b3cfde2207ba0a61dbea529e1a2"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06",
+      "sha256": "05afe631f467d025b672a3b9750abc12e5732a20c4f986a7ea4670b9f342f7cb"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01",
+      "sha256": "2a61c3af7f063e4ad02646e6b135910370d8e0fda07294d7463a56881a0f8af8"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.02",
+      "sha256": "c57240bb0ae5df00b132b7ce9308c08f49de642a2fa1342f113d9ac48d207dbd"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.03",
+      "sha256": "3c6bbb1d40aecd63dc5b6c4b99e064f9d21cd78ec60a3bedf043f675b9f7ebe0"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.04",
+      "sha256": "32b968b454a876d252f290909d263a6d11aa34fcf023f5ba2878ffb8ab694f46"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.05",
+      "sha256": "d6a1a659ed9d0357f8cba0382cf9d68b2ccf527640ba40157728e92458cb2c2b"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.06",
+      "sha256": "88ca8ecc321fed586864e97bbb1bd8c9a8f60c6bf1ef1712eaa2bd106718c50d"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01",
+      "sha256": "3a30552367707248cfdde2f718114b7a6ab61259c60e5c4d15bd914ae169676d"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02",
+      "sha256": "9da4a6f2befc2635d937e796a83741c26a5376e3bac5ee28f23dabddd240e2e4"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03",
+      "sha256": "163935d95ad6ea1d6bf582eb875e15bec03bd1ee6fe51f686fdceab847fab1c5"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.04",
+      "sha256": "85fd574097b9d4387dd2e229dfca093d33faa637873f0a3d48a7cda045872cbb"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.05",
+      "sha256": "e501e32f15e3fa6b307e52ccd14c9c8242adbfebbd8e1bd1bd50547a856e207e"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.06",
+      "sha256": "76d251de30e625ec35d1a0351910474a4168bcb8d20016d85bc1850acc751f16"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01",
+      "sha256": "166fd001f5a2b9fa2123059021d87211a0f714d95c0a2b17730f931a09e1a5a8"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.02",
+      "sha256": "017afe053c1ea6ca3d56cbe4b0633bfdc50f892bd2105c66d6680d871b89b318"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.03",
+      "sha256": "01d50212b52311a95ff9768f6b002463327b1485ef65378cc9b5d3f3a30e844f"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.04",
+      "sha256": "ac834a56a952b3bc00f5e2ab9d31e7f52678cd35cfd4b7e7af42dbf802e1f422"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.05",
+      "sha256": "96a78f7df8d11421958676a150cee7527407ae2d251cf046d97254f6a9f82506"
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.06",
+      "sha256": "11e4d7ef2ae9eff07846ef81351a1809c2513af7eb3d942bc7a0f73b67fb88e0"
+    }
+  ],
+  "limits": [
+    "Local results only; no CI, staging or production release.",
+    "No live browser/visual acceptance in this content-only batch.",
+    "Editorial QA is by the same authoring agent, not an independent teacher.",
+    "Advanced36 remains reserved for its separate owner-authorized chat."
+  ],
+  "finalArtifactRecheck": {
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "manifestValidator": "passed",
+    "diffCheck": "passed"
+  }
+}

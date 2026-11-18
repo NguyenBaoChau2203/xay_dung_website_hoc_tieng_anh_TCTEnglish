@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.book-corner",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.book-corner",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "G\u00F3c \u0111\u1ED5i s\u00E1ch cho l\u1EDBp h\u1ECDc",
+        "Level": "beginner",
+        "ContentType": "articles",
+        "Topic": "S\u00E1ch",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E0i h\u01B0\u1EDBng d\u1EABn t\u1ED5 ch\u1EE9c m\u1ED9t g\u00F3c trao \u0111\u1ED5i s\u00E1ch \u0111\u01A1n gi\u1EA3n.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.book-corner.0ee9aff9fdb94072b4fa314d7ee152ea",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "M\u1ED7i ng\u01B0\u1EDDi mang \u0111\u1EBFn m\u1ED9t cu\u1ED1n s\u00E1ch m\u00ECnh \u0111\u00E3 \u0111\u1ECDc xong.",
+        "EnglishMeaning": "Each person brings a book they have finished reading.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.book-corner"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.book-corner.379e1a7ed6b04b7b943c41407e8ce245",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "M\u1ED9t g\u00F3c \u0111\u1ED5i s\u00E1ch c\u00F3 th\u1EC3 b\u1EAFt \u0111\u1EA7u t\u1EEB m\u1ED9t chi\u1EBFc h\u1ED9p s\u1EA1ch.",
+        "EnglishMeaning": "A book exchange corner can start with a clean box.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.book-corner"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.book-corner.42836544bf5244a0a2f627936c4b710c",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "D\u00E1n m\u1ED9t t\u1EDD h\u01B0\u1EDBng d\u1EABn ng\u1EAFn b\u00EAn c\u1EA1nh chi\u1EBFc h\u1ED9p.",
+        "EnglishMeaning": "Put a short set of instructions beside the box.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.book-corner"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.book-corner.5c491238d10d4bc99d2551f7715efaed",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "S\u00E1ch c\u1EA7n c\u00F2n \u0111\u1EE7 trang v\u00E0 kh\u00F4ng b\u1ECB r\u00E1ch nhi\u1EC1u.",
+        "EnglishMeaning": "Books should have all their pages and should not be badly torn.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.book-corner"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.book-corner.6ba18e0baab54a388e20ef06adf60241",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "G\u00F3c nh\u1ECF n\u00E0y gi\u00FAp c\u1EA3 l\u1EDBp t\u00ECm \u0111\u01B0\u1EE3c nh\u1EEFng c\u00E2u chuy\u1EC7n m\u1EDBi.",
+        "EnglishMeaning": "This little corner helps the class find new stories.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.book-corner"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.book-corner.7dbd12e598ef49fba65d07ab762f47a8",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "M\u1ED7i tu\u1EA7n, m\u1ED9t b\u1EA1n ki\u1EC3m tra v\u00E0 x\u1EBFp l\u1EA1i s\u00E1ch g\u1ECDn g\u00E0ng.",
+        "EnglishMeaning": "Each week, one student checks and arranges the books neatly.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.book-corner"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.book-corner.a24fa647bd364499b321d09b092b60ea",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "\u0110\u1EB7t chi\u1EBFc h\u1ED9p \u1EDF n\u01A1i kh\u00F4 r\u00E1o m\u00E0 m\u1ECDi ng\u01B0\u1EDDi d\u1EC5 nh\u00ECn th\u1EA5y.",
+        "EnglishMeaning": "Put the box in a dry place where everyone can see it easily.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.book-corner"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.book-corner.aced86dd24494a80b4a8b1916c3d63cc",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Readers can leave one book and take another.",
+        "NormalizedHash": "9d531922e1ed19975fbb7e432ca260e61bbf936d0963a881ca25b84131ac7b71"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.book-corner.c97466a1ebdc4617b30b6c7c73eccecb",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.book-corner.c97466a1ebdc4617b30b6c7c73eccecb",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Ng\u01B0\u1EDDi \u0111\u1ECDc c\u00F3 th\u1EC3 l\u1EA5y m\u1ED9t cu\u1ED1n v\u00E0 \u0111\u1EC3 l\u1EA1i m\u1ED9t cu\u1ED1n kh\u00E1c.",
+        "EnglishMeaning": "Readers can take one book and leave another.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.book-corner"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.book-corner"
+}

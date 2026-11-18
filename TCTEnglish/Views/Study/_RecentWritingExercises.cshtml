@@ -1,0 +1,90 @@
+@model TCTEnglish.ViewModels.WritingExerciseListViewModel
+<section class="writing-recent mb-5" data-writing-recent-list data-owner-user-id="@Model.RecentOwnerUserId" aria-labelledby="writingRecentHeading">
+    <div class="writing-recent-header d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3">
+        <div class="d-flex align-items-center gap-3">
+            <div class="writing-recent-header-icon" aria-hidden="true">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <div>
+                <h2 id="writingRecentHeading" class="writing-recent-title">Luyện viết gần đây</h2>
+                <p class="writing-recent-subtitle text-muted mb-0 small">Những bài bạn vừa mở, ở mọi cấp độ và dạng bài.</p>
+            </div>
+        </div>
+        <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3 writing-recent-refresh-btn" data-recent-retry>
+            <i class="fa-solid fa-arrows-rotate me-1" aria-hidden="true"></i> Làm mới
+        </button>
+    </div>
+    <p role="status" data-recent-status class="writing-recent-status text-muted small mb-3">@(Model.RecentLoadFailed ? "Chưa tải được lịch sử. Hãy thử Làm mới." : Model.RecentExercises.Count == 0 ? "Bạn chưa mở bài luyện viết nào. Hãy chọn một bài bên dưới." : "Lịch sử đã lưu trên tài khoản. Bản nháp chưa gửi chỉ ở trình duyệt này.")</p>
+    <div class="writing-recent-grid" data-recent-cards>
+        @foreach (var item in Model.RecentExercises)
+        {
+            var levelChipClass = item.Level switch {
+                "beginner" => "writing-card-chip--basic",
+                "intermediate" => "writing-card-chip--intermediate",
+                "advanced" => "writing-card-chip--advanced",
+                _ => "writing-card-chip--default"
+            };
+            var levelIcon = item.Level switch {
+                "beginner" => "fa-solid fa-seedling",
+                "intermediate" => "fa-solid fa-layer-group",
+                "advanced" => "fa-solid fa-fire",
+                _ => "fa-solid fa-graduation-cap"
+            };
+            var typeIcon = item.ContentType switch {
+                "emails" => "fa-regular fa-envelope",
+                "diaries" => "fa-solid fa-book-bookmark",
+                "essays" => "fa-solid fa-pen-nib",
+                "articles" => "fa-regular fa-newspaper",
+                "stories" => "fa-solid fa-masks-theater",
+                "reports" => "fa-solid fa-chart-pie",
+                _ => "fa-regular fa-file-lines"
+            };
+            var isCompleted = item.StatusKey == "completed" || (item.CompletedSentenceCount > 0 && item.CompletedSentenceCount == item.SentenceCount);
+            var isStarted = !isCompleted && (item.CompletedSentenceCount > 0 || item.StatusKey == "in-progress");
+            var statusBadgeClass = isCompleted ? "bg-success-subtle text-success border-success-subtle" :
+                                   isStarted ? "bg-warning-subtle text-warning-emphasis border-warning-subtle" : "bg-light text-secondary border";
+            var statusIcon = isCompleted ? "fas fa-check-circle" : isStarted ? "fas fa-clock" : "fas fa-circle";
+
+            <article class="writing-recent-card" data-recent-exercise-id="@item.Id">
+                <div class="writing-recent-card-top">
+                    <div class="d-flex align-items-center flex-wrap gap-1">
+                        <span class="writing-card-chip @levelChipClass">
+                            <i class="@levelIcon me-1" aria-hidden="true"></i>@item.LevelTitle
+                        </span>
+                        <span class="writing-card-chip writing-card-chip--type writing-card-chip--type-@item.ContentType">
+                            <i class="@typeIcon me-1" aria-hidden="true"></i>@item.ContentTypeTitle
+                        </span>
+                    </div>
+                    @if (item.IsPrivate)
+                    {
+                        <span class="writing-card-chip writing-card-chip--private">
+                            <i class="fa-solid fa-lock me-1" aria-hidden="true"></i>Riêng tư
+                        </span>
+                    }
+                </div>
+                <h3 class="writing-recent-card-title">@item.Title</h3>
+                <div class="writing-recent-card-meta">
+                    <span class="writing-recent-meta-topic">
+                        <i class="fa-solid fa-tag me-1 text-primary" aria-hidden="true"></i>@item.Topic
+                    </span>
+                </div>
+                <div class="writing-recent-card-status d-flex align-items-center justify-content-between flex-wrap gap-1">
+                    <span class="badge rounded-pill @statusBadgeClass border px-2 py-1 writing-status-badge">
+                        <i class="@statusIcon me-1" aria-hidden="true"></i>@item.StatusLabel
+                    </span>
+                    <span class="writing-recent-progress-text text-muted small">
+                        <i class="far fa-file-lines me-1" aria-hidden="true"></i>@item.CompletedSentenceCount/@item.SentenceCount câu
+                    </span>
+                </div>
+                <div class="writing-recent-card-time small text-muted">
+                    <i class="fa-regular fa-clock me-1" aria-hidden="true"></i><span>Đã mở: </span><time datetime="@item.LastOpenedAtUtc.ToString("O")">@item.LastOpenedAtDisplay</time>
+                </div>
+                <a href="@item.PracticeUrl" class="btn btn-outline-primary btn-sm rounded-pill w-100 mt-auto writing-recent-btn">
+                    <span>@item.StartActionLabel</span>
+                    <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i>
+                    <span class="visually-hidden">: @item.Title</span>
+                </a>
+            </article>
+        }
+    </div>
+</section>

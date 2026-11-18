@@ -43,6 +43,24 @@ invalid endpoint values are redacted rather than printing URL credentials.
 
 Missing key still opens web/DB; Speaking returns NotReady clearly (no fake scores).
 
+## Learner continuity when speech is down
+
+Pronunciation practice has two choices. **Chấm tự động** keeps the existing
+server assessment and progress commit. **Tự luyện** records one PCM clip in the
+current tab, plays it back, and does not call assessment, progress, browser
+speech recognition, or store the audio. The clip is labelled **Chưa chấm tự
+động** and does not change a saved score, XP, or completion. Switching sentence,
+mode, or leaving the page stops tracks and revokes the object URL. A failed
+automatic attempt can be switched to self-practice; returning to automatic
+requires a new recording and does not upload the retained clip.
+
+A missing microphone permission stays a microphone error. NoSpeech stays
+distinct from provider downtime. Repeated transient speech failures can open a
+process-local guard for 30 seconds (Retry-After can extend it up to 120
+seconds). While open, the next request is rejected before HTTP. After cooldown,
+one user request probes. Restart clears the guard; IIS workers do not share it.
+Readiness stays the app and database, not the provider.
+
 ## Media import (FFmpeg pin)
 
 Browser mic PCM does not need FFmpeg. Admin/legacy audio fallback does:

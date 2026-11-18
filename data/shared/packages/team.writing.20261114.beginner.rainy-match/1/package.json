@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.rainy-match",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.rainy-match",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Tr\u1EADn c\u1EA7u d\u01B0\u1EDBi m\u00E1i hi\u00EAn",
+        "Level": "beginner",
+        "ContentType": "diaries",
+        "Topic": "B\u1EA1n b\u00E8",
+        "SourceType": "original-20261114",
+        "PreviewText": "Nh\u1EADt k\u00FD v\u1EC1 m\u1ED9t k\u1EBF ho\u1EA1ch thay \u0111\u1ED5i v\u00EC tr\u1EDDi m\u01B0a.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.rainy-match.2e991b113d1f442e921b32b0288d5f8d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "T\u00F4i v\u1EABn th\u1EA5y bu\u1ED5i chi\u1EC1u r\u1EA5t vui d\u00F9 kh\u00F4ng \u0111\u01B0\u1EE3c \u0111\u00E1nh c\u1EA7u.",
+        "EnglishMeaning": "I still enjoyed the afternoon even without playing badminton.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.rainy-match"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.rainy-match.2f24d23a8dc34e07ad081482231b020e",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Sau \u0111\u00F3, An mang ra m\u1ED9t b\u1ED9 c\u1EDD v\u00E0 \u00EDt b\u00E1nh.",
+        "EnglishMeaning": "Then An brought out a board game and some cakes.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.rainy-match"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.rainy-match.2f83102ed0824b038dd5fe397939bc04",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Ch\u00FAng t\u00F4i v\u1EEBa ch\u01A1i v\u1EEBa k\u1EC3 chuy\u1EC7n v\u1EC1 tu\u1EA7n h\u1ECDc v\u1EEBa qua.",
+        "EnglishMeaning": "We played and talked about our week at school.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.rainy-match"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.rainy-match.34643ebf391645a9a211d53806543e37",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Ch\u00FAng t\u00F4i \u0111\u1EE3i d\u01B0\u1EDBi m\u00E1i hi\u00EAn v\u00E0 nh\u00ECn s\u00E2n \u01B0\u1EDBt.",
+        "EnglishMeaning": "We waited under the porch roof and looked at the wet yard.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.rainy-match"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.rainy-match.54708a9bb1d44cd7aa646d3cbc6e9dc6",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Then An brought out some cakes and a board game.",
+        "NormalizedHash": "4d89c72037cf6cd3d077878906774dec7339a4a3d0eaf0a8cd2e11926962f972"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.rainy-match.2f24d23a8dc34e07ad081482231b020e",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.rainy-match.e123c56c4fb54e68b55d26265662c409",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Nh\u01B0ng tr\u1EDDi b\u1EAFt \u0111\u1EA7u m\u01B0a ngay khi ch\u00FAng t\u00F4i ra c\u1EEDa.",
+        "EnglishMeaning": "But it started to rain just as we went outside.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.rainy-match"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.rainy-match.f371458366fe461e8a594c7b22b0b2c4",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "\u0110\u00F4i khi m\u1ED9t k\u1EBF ho\u1EA1ch m\u1EDBi c\u0169ng mang l\u1EA1i nh\u1EEFng k\u1EF7 ni\u1EC7m \u0111\u1EB9p.",
+        "EnglishMeaning": "Sometimes a new plan can also bring happy memories.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.rainy-match"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.rainy-match.f3af548757dd45b3ba7c1c5443a64d17",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "T\u00F4i mang v\u1EE3t \u0111\u1EBFn nh\u00E0 b\u1EA1n An sau b\u1EEFa tr\u01B0a.",
+        "EnglishMeaning": "I brought my racket to An\u0027s house after lunch.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.rainy-match"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.rainy-match.f7b89b330c6a4b669dacc653d1dfe554",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "H\u00F4m nay ch\u00FAng t\u00F4i \u0111\u1ECBnh ch\u01A1i c\u1EA7u l\u00F4ng \u1EDF c\u00F4ng vi\u00EAn.",
+        "EnglishMeaning": "Today we planned to play badminton in the park.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.rainy-match"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.rainy-match"
+}

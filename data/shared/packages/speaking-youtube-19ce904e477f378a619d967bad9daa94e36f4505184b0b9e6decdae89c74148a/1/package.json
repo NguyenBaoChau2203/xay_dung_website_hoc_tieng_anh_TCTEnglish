@@ -1,0 +1,1538 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level B2 - K\u1EBA PH\u1EA2N B\u1ED8I -",
+        "YoutubeId": "Q1lIQnUtbfk",
+        "Level": "B2",
+        "Topic": "Vui ch\u01A1i \u0026 gi\u1EA3i tr\u00ED",
+        "ThumbnailUrl": "https://img.youtube.com/vi/Q1lIQnUtbfk/hqdefault.jpg",
+        "Duration": "13:34",
+        "SourceUrl": "https://www.youtube.com/watch?v=Q1lIQnUtbfk",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.02145e50668345c1a62b6dc938a2c62c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 414,
+        "EndTime": 419.12,
+        "Text": "Emma, is that really you? Oh, thank God. I finally found you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.0444f2a38d4b4a2aa7f340dfb562dff4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 75,
+        "EndTime": 82.159,
+        "Text": "me. All my fans hate me. I have zero dollars in my bank account. I lost everything, Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.057c5cecb92240c29ea7611c5d9bec22",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 383,
+        "EndTime": 390.639,
+        "Text": "Ethan, move away from my husband. Do not ever look for me. And don\u0027t you dare show your disgusting face in front of me",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.0807d6c9423b48af975444d477f0cbeb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 11,
+        "EndTime": 19.359,
+        "Text": "Now listen carefully. Emma, is that really you? Oh, thank God. I finally found you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.0b367321c5ae49c989b3d206bc42b64c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 655,
+        "EndTime": 662.48,
+        "Text": "you when you were starving. And now you stand here with your dirty face and your shameless mouth, asking me to serve you",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.0bfe2b51b80e4f28bc93c8e1b3d7c516",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 502,
+        "EndTime": 511.039,
+        "Text": "I will take you to buy some nice new clothes and then I will cook something really delicious for you. Okay. Really, Emma? Oh, thank God. I knew it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.0d4f45378b644ee38e18059e28aa7df2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 334,
+        "EndTime": 338.72,
+        "Text": "I\u0027m going to be his wife and we are going to build a beautiful family together.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.110464a391b64d1c9313e5e7d5d7e76b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 255,
+        "EndTime": 262.72,
+        "Text": "you when you were starving. And now you stand here with your dirty face and your shameless mouth, asking me to serve you",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.1159ae87eab145d3a40282f5c3fc9014",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 326,
+        "EndTime": 334.08,
+        "Text": "He respects me. He loves me for who I am, not for what I can sacrifice for him. Next month, we\u0027re getting married.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.13e8f0846df345078dec178a1d0c0c2b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 532,
+        "EndTime": 540.88,
+        "Text": "Wow, this is incredible. So, the great superstar is now a broken beggar. I told you, Ethan. I warned you two years ago",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.143a38dc530748d1bb7e4eab1849f4b5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 405,
+        "EndTime": 411.96,
+        "Text": "Emma, please look at me. I have nobody left. Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.15053c56a43a411ba6561ea842b37072",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 132,
+        "EndTime": 141.12,
+        "Text": "Wow, this is incredible. So, the great superstar is now a broken beggar. I told you, Ethan. I warned you two years ago",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.15be4192d6c14a7791edd90e461cd442",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 262,
+        "EndTime": 267.28,
+        "Text": "again. You are not a human being. You are a piece of trash.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.1b8a2e9d844745d2bd6cf25a54cd3336",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 102,
+        "EndTime": 111.28,
+        "Text": "I will take you to buy some nice new clothes and then I will cook something really delicious for you. Okay. Really, Emma? Oh, thank God. I knew it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.1d60069d5bd44b75b0f281da806fe4df",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 365,
+        "EndTime": 371.44,
+        "Text": "everyone hates a traitor. You threw away pure gold to chase after fake stones.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.24ba7a137a8e47d6b75a3c251061c838",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 695,
+        "EndTime": 703.279,
+        "Text": "luxury life or a big name like me. You belong to me. You cannot give your love to another man after everything we went through.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.2675f5c5bf2a4c24bd42ba8a7e96c86d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 182,
+        "EndTime": 191.84,
+        "Text": "Shut your mouth, Ethan. Just shut your dirty mouth. How can you be this shameless? Look at yourself. You are not sorry for hurting me. You are only sorry",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.26b79ecf3ef84a5baa4429450a25e8a9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1,
+        "EndTime": 9.72,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level B2 and the topic is betrayer.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.2d90c506422c432a91a21d53682b2a66",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 40,
+        "EndTime": 48.16,
+        "Text": "Help you save you? Why don\u0027t you ask your perfect girlfriend? Why don\u0027t you go to Ava\u0027s luxury penthouse downtown?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.2e268f33be6547d38b6883e1f5255a78",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 166,
+        "EndTime": 172.72,
+        "Text": "spent 8 years together, Emma. You sacrificed your youth for me. So, you cannot just abandon me when I\u0027m down.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.2ffbfdc8d930476a98756db7834349cb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 311,
+        "EndTime": 318.479,
+        "Text": "better than you. When you were rich, you treated me like garbage. But when I met Ryan, I was broken, poor, and crying",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.34400ba62b314a2fa02edf416509831e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 640,
+        "EndTime": 647.92,
+        "Text": "while you sat comfortably at home. I gave you my youth, my beauty, and my entire life. And how did you pay me",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.34ba3a56617b4a4d9cadd7c47c2c7cfc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 662,
+        "EndTime": 667.04,
+        "Text": "again. You are not a human being. You are a piece of trash.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.3684a5329d304d7ebe139398618e1bca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 738,
+        "EndTime": 746.88,
+        "Text": "No, I don\u0027t accept this. You can\u0027t marry him. You promise to stay with me forever. Emma, please, if you leave me,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.3877605db0b746859ce039965242523b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 177,
+        "EndTime": 182.64,
+        "Text": "Let\u0027s start over. I promise when I get my fame back, I will reward you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.38cb2161db214e44b3be63865c8bb305",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 19,
+        "EndTime": 28.72,
+        "Text": "Ethan, stop right there. Don\u0027t come near me. What happened to you? Why are you wearing those dirty clothes? Why do you look like a homeless person? Emma, I am",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.39c573536c2a49cf89c2b469b445a5e0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 158,
+        "EndTime": 166.16,
+        "Text": "But look, it\u0027s not all my fault. Ava trapped me. Now I realize that you are the only one who truly loved me. We",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.39dfd16b80fb4eb98b3ab63c3ab2cd4f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 783,
+        "EndTime": 790.399,
+        "Text": "Ethan, move away from my husband. Do not ever look for me. And don\u0027t you dare show your disgusting face in front of me",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.3a1d01b6b28648e189b7186c8cacf00f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 617,
+        "EndTime": 626.32,
+        "Text": "stay and someone to take care of me so I can make music again. You used to do that for me every day. Why are you acting so cold now?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.3b022ecf3e744d658f7e01411d5850f3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 676,
+        "EndTime": 682.32,
+        "Text": "This is Ryan. He is my boyfriend. No, actually he is my fiance.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.3c7bd419ce5d47faae0c6064c895893e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 440,
+        "EndTime": 447.919,
+        "Text": "Help you? Save you? Why don\u0027t you ask your perfect girlfriend? Why don\u0027t you go to Ava\u0027s luxury penthouse downtown?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.3fe0e61a60114e089ef6f7b4552459a7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 116,
+        "EndTime": 122.64,
+        "Text": "Do you honestly think I will say those things to you? Wake up, you idiot. Stop dreaming.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.3fe13f08f8fc45019fda60bdc5adef12",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 371,
+        "EndTime": 376.88,
+        "Text": "And this is your reward. You got exactly what you deserved. This is your karma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.40d7fa5e72784a97883a14090b4df801",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 200,
+        "EndTime": 207.28,
+        "Text": "clothes again. You think my 8 years of sacrifice, my broken dreams, and my bleeding heart are just a hotel where",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.410bb462ffd24b83a5d36a1488d33192",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 58,
+        "EndTime": 67.84,
+        "Text": "copyright to my music. She put her name on my songs. And when I discovered it and argued with her, she kicked me out of the house. She even created a huge",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.43d8e08f353446819aa23cced53a9cae",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 682,
+        "EndTime": 687.12,
+        "Text": "Hello, Ethan. Please step back. You are making my woman uncomfortable.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.43ef225b57f448a9a8d3ad45b3a2c871",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 589,
+        "EndTime": 597.519,
+        "Text": "sorry for hurting me. You are only sorry because you\u0027re poor and defeated. You come back here today not because you love me, but because you need a free",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.446c0535533848069074fe4103c0a84e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 563,
+        "EndTime": 570.64,
+        "Text": "one who truly loved me. We spent eight years together, Emma. You sacrificed your youth for me, so you cannot just",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.4472fa13455e451fb9b8e6580cc5f19b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 667,
+        "EndTime": 676.64,
+        "Text": "Hey, don\u0027t talk to me like that. I am still Ethan, the man you loved. Who is that guy over there? Why is he holding your hand? Who is he?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.4a1b133910ee41e3b2ef03ed80e8e7b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 419,
+        "EndTime": 427.28,
+        "Text": "Ethan, stop right there. Don\u0027t come near me. What happened to you? Why are you wearing those dirty clothes? Why do you look like a homeless person?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.53908dfcfc1d4ff38408fa201d61d1ea",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 758,
+        "EndTime": 765.68,
+        "Text": "to live in a high world, right? Go ask your rich friends to save you. Oh, I forgot. You have no friends left because",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.54f454ebedb64cb885949c30f1655ac2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 795,
+        "EndTime": 802.72,
+        "Text": "Emma, you can\u0027t be this heartless. Emma, let\u0027s go. Ryan, the trash belongs to the street. Let\u0027s go home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.5528d242b64b46a5bcb454fefc1e1a7a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 267,
+        "EndTime": 276.8,
+        "Text": "Hey, don\u0027t talk to me like that. I am still Ethan, the man you loved. Who is that guy over there? Why is he holding your hand? Who is he?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.5a44baab2bc04cc48477b48e2e244562",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 303,
+        "EndTime": 311.199,
+        "Text": "Look at your pathetic face, Ethan. Even when you\u0027re a beggar, you still think you\u0027re a king. Ryan is a thousand times",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.5c49a2f6d2474a5fa49bfd6feade4e62",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 287,
+        "EndTime": 295.36,
+        "Text": "Fiance? Are you crazy, Emma? Are you going to marry this ordinary guy? He\u0027s just a regular worker. He doesn\u0027t have a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.5dd98dd2434b48bfa768e1cfee68f38e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 703,
+        "EndTime": 710.959,
+        "Text": "Look at your pathetic face, Ethan. Even when you\u0027re a beggar, you still think you\u0027re a king. Ryan is a thousand times",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.5ef6eba98c1145c7b614e60f01b13988",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 687,
+        "EndTime": 695.12,
+        "Text": "Fiance? Are you crazy, Emma? Are you going to marry this ordinary guy? He\u0027s just a regular worker. He doesn\u0027t have a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.5f075bc0c68641dcb19fcea715c2364b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 82,
+        "EndTime": 91.04,
+        "Text": "Oh, wow. So that is what happened. Oh my god, poor Ethan. You really suffered so much, didn\u0027t you? It\u0027s okay, Ethan.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.611640e71f3141569197914ccd7d6c97",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 36,
+        "EndTime": 40.64,
+        "Text": "have to help me, Emma. You are the only one who can save me right now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.61685ba0cb6443d398c827009bb3429d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 497,
+        "EndTime": 502.56,
+        "Text": "I always knew you still loved me in your heart. Come on, let\u0027s go home together.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.64cac42c34334745817ae020e2abaaca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 91,
+        "EndTime": 98.079,
+        "Text": "Don\u0027t cry. Don\u0027t worry. I still love you. You know, I have been waiting for you to come back to me every single day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.65a42149be7e4d5fa5046445e5f0ade6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 647,
+        "EndTime": 655.36,
+        "Text": "back? You walked out of that door with a big smile, calling me a lowclass embarrassment. You bit the hand that fed",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.665ab3cf637746859bd1b45cc2586e02",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 226,
+        "EndTime": 233.44,
+        "Text": "Dramatic? You call my pain dramatic? You ungrateful, disgusting dog. For 8 years,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.6c0c66ab60344bc99ec246b97811dfeb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 481,
+        "EndTime": 490.8,
+        "Text": "Oh wow. So that is what happened. Oh my god. Poor Ethan. You really suffered so much, didn\u0027t you? It\u0027s okay, Ethan.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.77cbef9fd09e475fa098914fa5ad881d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 463,
+        "EndTime": 472.479,
+        "Text": "and argued with her, she kicked me out of the house. She even created a huge fake scandal on the internet, telling everyone that I abused her. Now my",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.7979da7542254c6aa8fb1f1116882847",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 555,
+        "EndTime": 563.92,
+        "Text": "I know. I know. I was wrong. Okay, but look, it\u0027s not all my fault. Ava trapped me. Now I realize that you are the only",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.798984b522cf4eec826da4398422a1e3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 98,
+        "EndTime": 102.799,
+        "Text": "I always knew you still loved me in your heart. Come on, let\u0027s go home together.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.7ab5329f317b45878d0787abf47097c6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 50,
+        "EndTime": 58.64,
+        "Text": "Don\u0027t mention that evil woman. Ava is a monster. She fooled me, Emma. After I moved in, she slowly stole all the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.7cf01c4da71945a7bbb1f2456c42b931",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 570,
+        "EndTime": 578.64,
+        "Text": "abandon me when I\u0027m down. You are a kind girl. You cannot be this cruel to me. Let\u0027s forget the past. Let\u0027s start over.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.7e80072e1ff246418404c031daeb4f24",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 455,
+        "EndTime": 463.199,
+        "Text": "moved in, she slowly stole all the copyright to my music. She put her name on my songs. And when I discovered it",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.7ee79153874741888f4b16a63a77e275",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 191,
+        "EndTime": 200,
+        "Text": "because you\u0027re poor and defeated. You come back here today not because you love me, but because you need a free maid to feed you and wash your dirty",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.800b0a900bba4ff1aef0be7911144734",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 390,
+        "EndTime": 395.28,
+        "Text": "ever again. If you come near me or Ryan again, I will call the police.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.80e4e7605a6f474d88c6b62066a0f00e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 358,
+        "EndTime": 365.919,
+        "Text": "to live in a high world, right? Go ask your rich friends to save you. Oh, I forgot. You have no friends left because",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.89fb288d392742e7a5481f2726da5c65",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 207,
+        "EndTime": 209.92,
+        "Text": "you can check in and check out whenever you want.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.8a5493d9089346f8a0c4367ef3bd2c40",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 804,
+        "EndTime": 811.72,
+        "Text": "Emma, please look at me. I have nobody left. Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.8a7d6a8ff2d74e2994bced7d0104df5c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 710,
+        "EndTime": 718.24,
+        "Text": "better than you. When you were rich, you treated me like garbage. But when I met Ryan, I was broken, poor, and crying",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.8b18d20c68a34f87853b4c3cde8c3c80",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 241,
+        "EndTime": 248.159,
+        "Text": "while you sat comfortably at home. I gave you my youth, my beauty, and my entire life. And how did you pay me",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.8cd326ca1f08446e8d7b6540ef7e8ed5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 771,
+        "EndTime": 776.72,
+        "Text": "And this is your reward. You got exactly what you deserved. This is your karma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.8ef03d215ab74188988fc05440037d1a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 209,
+        "EndTime": 218,
+        "Text": "Emma, don\u0027t be so dramatic. I said I was sorry. What else do you want? I\u0027m a talented artist. I just need a place to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.96352d6d86d04ebaa0aea303a62b14d3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 402,
+        "EndTime": 405.039,
+        "Text": "Yes, my princess. Let\u0027s go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.9728fdd6b31043e09af91ede4582214f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 802,
+        "EndTime": 804.8,
+        "Text": "Yes, my princess. Let\u0027s go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.99d7620099d149dca23cd38de28b835b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 490,
+        "EndTime": 497.919,
+        "Text": "Don\u0027t cry. Don\u0027t worry. I still love you. You know, I have been waiting for you to come back to me every single day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.9e689a4f3c7b414b99c8b3d2f852aa1f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 790,
+        "EndTime": 795.04,
+        "Text": "ever again. If you come near me or Ryan again, I will call the police.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.a238d8c7325d430dad5d59923bf5dccb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 67,
+        "EndTime": 75.52,
+        "Text": "fake scandal on the internet, telling everyone that I abused her. Now my career is dead. No company wants to hire",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.a8cb7578b8a94bd194e920b59e9d43b7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 48,
+        "EndTime": 50.239,
+        "Text": "You chose her world, remember?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.b1212e8a3de043adbf32ef4d670dcf5d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 282,
+        "EndTime": 287.36,
+        "Text": "Hello, Ethan. Please step back. You are making my woman uncomfortable.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.b301a269539c4b65bb0e467c024ecb56",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 233,
+        "EndTime": 241.12,
+        "Text": "I worked three jobs until my hands bled to buy your guitar strings, to pay your rent, and to feed your stupid mouth",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.b6b8361d455f41a499fedf2f22bca98c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 522,
+        "EndTime": 532,
+        "Text": "What? Emma, what are you saying? Please don\u0027t play me like that. Don\u0027t joke around. I really love you, and I know you love me, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.b89ff10ad96e4a06ad6c45ca75ecdb19",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 376,
+        "EndTime": 383.52,
+        "Text": "Emma, please don\u0027t leave me alone in the dark. Emma, take your dirty hands off my life.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.ba34685fc2fa43cd9da3010b832f7ce3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 318,
+        "EndTime": 326.479,
+        "Text": "every day. He didn\u0027t care about my status. He held my hand. He listened to my pain. And he rebuilt my broken heart.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.bd1d1d5f3c034abea056939b5aeb89f5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 28,
+        "EndTime": 36.559,
+        "Text": "in a terrible situation. I have been looking for you for weeks. I have no place to go, no money, and no food. You",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.be62b1f5e6974302b898507e19602147",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 633,
+        "EndTime": 640.88,
+        "Text": "I worked three jobs until my hands bled to buy your guitar strings, to pay your rent, and to feed your stupid mouth",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.be74f5ea327249198618ab5cb3677061",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 338,
+        "EndTime": 347.12,
+        "Text": "No, I don\u0027t accept this. You can\u0027t marry him. You promise to stay with me forever. Emma, please. If you leave me,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.be994fbfa37f4c009307414da03490ef",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 435,
+        "EndTime": 440.4,
+        "Text": "food. You have to help me, Emma. You are the only one who can save me right now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.bf0d06c6c0dc45558d1c24c8f2e31633",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 472,
+        "EndTime": 481.919,
+        "Text": "career is dead. No company wants to hire me. All my fans hate me. I have zero dollars in my bank account. I lost everything, Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.c11d6f20c05040a888186a2cc0c1147a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 604,
+        "EndTime": 609.76,
+        "Text": "bleeding heart are just a hotel where you can check in and check out whenever you want.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.c3751e54bf2f4a40a8b7000abb9e682e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 427,
+        "EndTime": 435.199,
+        "Text": "Emma, I am in a terrible situation. I have been looking for you for weeks. I have no place to go, no money, and no",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.c3fe6950742b4d149ddb7b934ebacb9b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 626,
+        "EndTime": 633.2,
+        "Text": "Dramatic? You call my pain dramatic? You ungrateful, disgusting dog. For 8 years,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.c4e963aeee924e03a0cf0e8cc26428a7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 248,
+        "EndTime": 255.599,
+        "Text": "back? You walked out of that door with a big smile, calling me a lowclass embarrassment. You bit the hand that fed",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.c532f4df7cf449de890c20021f71ae28",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 447,
+        "EndTime": 455.84,
+        "Text": "You chose her world, remember? Don\u0027t mention that evil woman. Ava is a monster. She fooled me, Emma. After I",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.ca57264e69e14fe180a74fdce6145805",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 150,
+        "EndTime": 158.48,
+        "Text": "You said I was just an ordinary worker and you felt embarrassed to walk next to me. I know. I know. I was wrong. Okay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.caa1d981e6724392b748c5c82e98ba57",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 218,
+        "EndTime": 226.56,
+        "Text": "stay and someone to take care of me so I can make music again. You used to do that for me every day. Why are you acting so cold now?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.cce1fd8a52134f30ad977466d8b858b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 295,
+        "EndTime": 303.44,
+        "Text": "luxury life or a big name like me. You belong to me. You cannot give your love to another man after everything we went through.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.cf803ec1aecc4fbfabad8b480435b065",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 276,
+        "EndTime": 282.479,
+        "Text": "This is Ryan. He is my boyfriend. No, actually he is my fiance.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.d2ab69a218c2426db089fe5c30b92fbf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 540,
+        "EndTime": 550.24,
+        "Text": "that Ava only loved your success. You didn\u0027t believe me. You threw a check at my face and told me that love must be between people of the same social class.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.d6f59e9d19074865b3c6dec6954d7850",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 141,
+        "EndTime": 150.48,
+        "Text": "that Ava only loved your success. You didn\u0027t believe me. You threw a check at my face and told me that love must be between people of the same social class.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.d7efc2bf8a9e495ea3e9d95e6fa2e4f5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 351,
+        "EndTime": 358.96,
+        "Text": "Then go die on the street, Ethan. I don\u0027t care anymore. Your tears mean absolutely nothing to me now. You wanted",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.d860489b7c0c4391957d539e5aa132af",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 751,
+        "EndTime": 758.72,
+        "Text": "Then go die on the street, Ethan. I don\u0027t care anymore. Your tears mean absolutely nothing to me now. You wanted",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.db5ac7256d404453900f94422827175c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 718,
+        "EndTime": 726.24,
+        "Text": "every day. He didn\u0027t care about my status. He held my hand. He listened to my pain. And he rebuilt my broken heart.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.dba8c95d19ae416e847943ec357cccbc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 347,
+        "EndTime": 351.6,
+        "Text": "I will die on the street. Look at my tears. I\u0027m begging you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.e2fd51c94fff40d4938bad8a224b2a5a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 582,
+        "EndTime": 589.12,
+        "Text": "Shut your mouth, Ethan. Just shut your dirty mouth. How can you be this shameless? Look at yourself. You are not",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.e3b11b5699614e09955ac58c7606e151",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 172,
+        "EndTime": 177.519,
+        "Text": "You are a kind girl. You cannot be this cruel to me. Let\u0027s forget the past.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.e40afc59d7594d20bd6b183621589e70",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 395,
+        "EndTime": 402.88,
+        "Text": "Emma, you can\u0027t be this heartless. Emma, let\u0027s go, Ryan. The trash belongs to the street. Let\u0027s go home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.e6a8375288064dcdb01405ea7234268c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 765,
+        "EndTime": 771.2,
+        "Text": "everyone hates a traitor. You threw away pure gold to chase after fake stones.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.e817aeae7c7348c6ac58778a79150178",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 776,
+        "EndTime": 783.36,
+        "Text": "Emma, please don\u0027t leave me alone in the dark. Emma, take your dirty hands off my life.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.eb0a4035f2884f66a603c11d2c192a05",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 111,
+        "EndTime": 116.799,
+        "Text": "I knew you would never abandon me. You are the best girl in the world. Let\u0027s go home now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.ebb89c0266504a5494c403ef88151a2a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 511,
+        "EndTime": 516.56,
+        "Text": "I knew you would never abandon me. You are the best girl in the world. Let\u0027s go home now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.eef0d19423e24779b8ba3724420308c0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 726,
+        "EndTime": 733.839,
+        "Text": "He respects me. He loves me for who I am, not for what I can sacrifice for him. Next month, we\u0027re getting married.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.f2a460de07cc40b6949a6a9bd6116e99",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 550,
+        "EndTime": 555.36,
+        "Text": "You said I was just an ordinary worker and you felt embarrassed to walk next to me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.f4f197f334a54a41acfe987033f52c90",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 733,
+        "EndTime": 738.48,
+        "Text": "I\u0027m going to be his wife, and we are going to build a beautiful family together.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.f7a01940fe3e4ddb88f6e699fe6f3a29",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 746,
+        "EndTime": 751.44,
+        "Text": "I will die on the street. Look at my tears. I\u0027m begging you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.f81aa97828444c2289da1a413c0f842c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 516,
+        "EndTime": 522.399,
+        "Text": "Do you honestly think I will say those things to you? Wake up, you idiot. Stop dreaming.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.fe086d32cff4487f955ddd6bc7bb3ffd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 597,
+        "EndTime": 604.72,
+        "Text": "maid to feed you and wash your dirty clothes again. You think my 8 years of sacrifice, my broken dreams, and my",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.fe146143a34d4e848edad54f9b62d0d8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 122,
+        "EndTime": 132.239,
+        "Text": "What? Emma, what are you saying? Please don\u0027t play me like that. Don\u0027t joke around. I really love you and I know you love me, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.ff02c84f1e5043a8b01637d32de542ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 578,
+        "EndTime": 582.399,
+        "Text": "I promise when I get my fame back, I will reward you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a.ffddd4f1810d41a18d2edb75a97eeeae",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 609,
+        "EndTime": 617.76,
+        "Text": "Emma, don\u0027t be so dramatic. I said I was sorry. What else do you want? I\u0027m a talented artist. I just need a place to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.19ce904e477f378a619d967bad9daa94e36f4505184b0b9e6decdae89c74148a"
+}

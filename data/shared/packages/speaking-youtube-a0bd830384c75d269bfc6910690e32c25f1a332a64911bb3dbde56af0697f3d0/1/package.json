@@ -1,0 +1,1252 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A2 - C\u1EECA H\u00C0NG TI\u1EC6N L\u1EE2I",
+        "YoutubeId": "RU7TUBGpF0g",
+        "Level": "A2",
+        "Topic": "Mua s\u1EAFm \u0026 t\u00E0i ch\u00EDnh",
+        "ThumbnailUrl": "https://img.youtube.com/vi/RU7TUBGpF0g/hqdefault.jpg",
+        "Duration": "12:50",
+        "SourceUrl": "https://www.youtube.com/watch?v=RU7TUBGpF0g",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.00be0de046fb44b69dbce047e00f005a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 16,
+        "EndTime": 24.56,
+        "Text": "Stores like Circle K, Ministop, and GS25 are small lights in the busy city life.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.02ee4ad4470e4043be4b3d6e0767be48",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 248,
+        "EndTime": 257.48,
+        "Text": "to subscribe to our channel for more A2 English listening practice videos. See you next time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.03f41514306a48a89ee282db59e717bb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 700,
+        "EndTime": 708.56,
+        "Text": "They ate cup noodles and watched the street lights. It was simple, but her heart felt full.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.05389d1e1eca4f99aa90190881c1622e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 235,
+        "EndTime": 241.92,
+        "Text": "feel less alone and create warm memories. Honest Story shows how small",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.0aa03f2bf06647aa9708bf377551f721",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 445,
+        "EndTime": 453.599,
+        "Text": "They ate cup noodles and watched the street lights. It was simple, but her heart felt full.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.0de547c48a504b4e807cada393be4d3f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 124,
+        "EndTime": 132.08,
+        "Text": "Anna says, \u0022These places gave me a new family.\u0022 In Vietnam, convenience stores like",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.122b45d9e12a4df6b3fff077280ccf69",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 401,
+        "EndTime": 405.28,
+        "Text": "GS25 offers Korean snacks and drinks.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.134004e5f5ca4da7878fb71f0df65bd1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 570,
+        "EndTime": 580,
+        "Text": "She could not sleep, so she walked the streets. One night, she saw the red light of Circle K. It was open, warm,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.1513c96a8f944e658de585295a2edc87",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 514,
+        "EndTime": 525.92,
+        "Text": "Hello everyone. Welcome to this A2 English listening practice video. Today I want to tell you a touching story about convenience stores in Vietnam.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.17e2ea8afcd0418a87e3d45ab32ee763",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 365,
+        "EndTime": 379.44,
+        "Text": "Jerry said, \u0022These stores are like home when you are far away. They became friends. Now they meet at GS25 for Kimop and tea. They laugh and share stories.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.1cf179deedc0472f89c348777af9a489",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 688,
+        "EndTime": 700.399,
+        "Text": "They were a bridge to happiness. She remembers her first Christmas in the city. She felt homesick, but Jerry invited her to GS25.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.2002a0b2df60439796f9061455f53e32",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 580,
+        "EndTime": 586.399,
+        "Text": "and full of life. Anna went inside. The worker smiled and said, \u0022What can I get",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.2b775128a09e4bae869e0b0b6c92fbda",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 139,
+        "EndTime": 146.319,
+        "Text": "sandwiches and coffee. Minitop has Japanese treats like hot rice balls.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.2e8a40fb306543f8bbd0eb41a029e492",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 355,
+        "EndTime": 365.28,
+        "Text": "One day, she met a boy named Jerry at Minitop. He was eating ice cream and studying. They talked about school.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.2e8c74d07fb141698c459d2cadc68270",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 595,
+        "EndTime": 604.32,
+        "Text": "From that night, convenience stores became Anna\u0027s friends. Circle K was near her school. She went there after classes",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.31d57c9c321643fa8a86c06db9e97795",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 305,
+        "EndTime": 315.6,
+        "Text": "She lived in a tiny room alone, far from her family in the countryside. At night, she felt sad and missed home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.344423603e8842eeb9556d7f64814784",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 668,
+        "EndTime": 675.68,
+        "Text": "Families get milk for kids. During rain, people run inside for umbrellas. Prices",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.384a5eefa1cf416c91e8d43878bf1ce7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 315,
+        "EndTime": 325.12,
+        "Text": "She could not sleep, so she walked the streets. One night, she saw the red light of Circle K. It was open, warm,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.3991c8fcd2c34e869b824a508059f7a0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 496,
+        "EndTime": 503.599,
+        "Text": "places can change lives. Have you had a special moment at a store? Don\u0027t forget",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.3bdb44ea08964552b6a2ba7ab2230934",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 288,
+        "EndTime": 294.479,
+        "Text": "alone. Let me share a story about my friend Lan and how these stores changed",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.3d568459ec2447aa8996b83ce867ed1f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 405,
+        "EndTime": 414.72,
+        "Text": "They are open 24 hours, so workers grab food after late shifts. Students buy water before exams. Families get milk",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.4a63f70c8b17496b934b6eb679685434",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 634,
+        "EndTime": 641.92,
+        "Text": "Anna says, \u0022These places gave me a new family.\u0022 In Vietnam, convenience stores like",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.4b5f477cbe854d6985eb64ba016c0e15",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 116,
+        "EndTime": 124.56,
+        "Text": "friends. Now they meet at GS25 for Kimop and tea. They laugh and share stories.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.51d6596ea5ce4dc18dca89a27c395190",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 658,
+        "EndTime": 665.6,
+        "Text": "and drinks. They are open 24 hours, so workers grab food after late shifts.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.5255094549ec4eee8af2c49852947a06",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 85,
+        "EndTime": 94.479,
+        "Text": "From that night, convenience stores became Anna\u0027s friends. Circle K was near her school. She went there after classes",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.528a19b2332d47edb0631cfb6db6d808",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 525,
+        "EndTime": 534.399,
+        "Text": "Stores like Circle K, Minitop, and GS25 are small lights in the busy city life.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.536eccb180c9445aa05b05b2c42d5f3e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 4,
+        "EndTime": 16.08,
+        "Text": "Hello everyone. Welcome to this A2 English listening practice video. Today I want to tell you a touching story about convenience stores in Vietnam.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.5b9d945a335349328db6e336c70a4e5d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 60,
+        "EndTime": 70.159,
+        "Text": "She could not sleep, so she walked the streets. One night, she saw the red light of Circle K. It was open, warm,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.5c44e91c7f6944629c847cf54e517126",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 708,
+        "EndTime": 712.079,
+        "Text": "Now Anna works part-time at Circle K.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.5d5a9a6a06ac4cf2928945e30b7efb6c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 675,
+        "EndTime": 685.12,
+        "Text": "are fair, but snacks are not always healthy. Still, they save time in fast city life.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.659410b0801644d98579b6b92999b284",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 325,
+        "EndTime": 331.52,
+        "Text": "and full of life. Anna went inside. The worker smiled and said, \u0022What can I get",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.677a7223055046e49f0223dd80fc267c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 216,
+        "EndTime": 227.599,
+        "Text": "streets, they are quiet spots for dreams and connections. They remind us that even in a big city, kindness waits around the corner.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.67ad6d126a314a09a8e37a94c670893b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 414,
+        "EndTime": 422,
+        "Text": "for kids. During rain, people run inside for umbrellas. Prices are fair, but",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.6bf82e5803014e8780c1fb2bb2063308",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 190,
+        "EndTime": 198.72,
+        "Text": "They ate cup noodles and watched the street lights. It was simple, but her heart felt full.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.6bff6e16f0a04abcaaeb145fad74e8d7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 610,
+        "EndTime": 620.16,
+        "Text": "One day, she met a boy named Jerry at Minitop. He was eating ice cream and studying. They talked about school.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.6d87950f7d5c4ccfadac254bc692bab7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 94,
+        "EndTime": 100.72,
+        "Text": "to eat yogurt or read books. The bright lights made her forget loneliness.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.6f6988f4f749495793fb3db34aa00b28",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 457,
+        "EndTime": 465.12,
+        "Text": "She smiles at lonely customers just like the worker did for her. It feels good to give back.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.72f7ffb0053241b4b4048a1c914f64e2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 227,
+        "EndTime": 235.92,
+        "Text": "In conclusion, Circle K, Minitop, and GS25 are more than shops. They help people",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.762daa3bc112422cb2bc289b561513db",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 560,
+        "EndTime": 570.48,
+        "Text": "She lived in a tiny room alone, far from her family in the countryside. At night, she felt sad and missed home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.7ab80debb47e40d898f5dc771e50f08c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 39,
+        "EndTime": 50.96,
+        "Text": "her heart. Anna moved to Ho Chi Min City 2 years ago. She was 20 and started university. The city felt big and cold.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.7b52e3c0f1254e5288743c39fb207554",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 167,
+        "EndTime": 175.28,
+        "Text": "snacks are not always healthy. Still, they save time in fast city life.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.7be78f39759c454a9bc31018a6c1f37c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 331,
+        "EndTime": 340.72,
+        "Text": "you?\u0022 She bought a hot coffee and a sandwich. For the first time, she felt safe.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.7bf95a4ee8cc40479b095a4760b43dd5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 720,
+        "EndTime": 726.72,
+        "Text": "Convenience stores are small, but they hold big emotions. In Vietnam\u0027s noisy",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.7d668909651f4d6fb98dd9d1cb4f377a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 490,
+        "EndTime": 496.879,
+        "Text": "feel less alone and create warm memories. Honest story shows how small",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.86390939c9d746f49977c2b4be987e62",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 33,
+        "EndTime": 39.52,
+        "Text": "alone. Let me share a story about my friend Lan and how these stores changed",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.87359d64aa3e43e38a4e098c24adcb86",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 340,
+        "EndTime": 349.44,
+        "Text": "From that night, convenience stores became Anna\u0027s friends. Circle K was near her school. She went there after classes",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.89712a8590ef4b6e8b067f8672d1810e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 202,
+        "EndTime": 210.239,
+        "Text": "She smiles at lonely customers just like the worker did for her. It feels good to give back.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.8d52217462d94a33af4cc6ca67f239de",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 549,
+        "EndTime": 560.8,
+        "Text": "her heart. Anna moved to Ho Chi Min City 2 years ago. She was 20 and started university. The city felt big and cold.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.8f8bc89e0d4a45c1b229cd69a0d3f20a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 50,
+        "EndTime": 60.64,
+        "Text": "She lived in a tiny room alone, far from her family in the countryside. At night, she felt sad and missed home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.905f936901154e3cabc1fcd27b8f09ec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 210,
+        "EndTime": 216.959,
+        "Text": "Convenience stores are small, but they hold big emotions. In Vietnam\u0027s noisy",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.94084c51b9dc4e9896a56070a23dcaa4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 712,
+        "EndTime": 720.079,
+        "Text": "She smiles at lonely customers just like the worker did for her. It feels good to give back.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.9576ab071b6f448db11bdc9239e64a31",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 604,
+        "EndTime": 610.56,
+        "Text": "to eat yogurt or read books. The bright lights made her forget loneliness.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.982df373c25b4758998f36dc6a24270d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 433,
+        "EndTime": 445.44,
+        "Text": "They were a bridge to happiness. She remembers her first Christmas in the city. She felt homesick, but Jerry invited her to GS25.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.988ff27bc14f4f98a19d58c1627f9d27",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 294,
+        "EndTime": 305.919,
+        "Text": "her heart. Anna moved to Ho Chi Min City 2 years ago. She was 20 and started university. The city felt big and cold.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.9c78769a10f3477a9c333481ccc93dee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 465,
+        "EndTime": 471.84,
+        "Text": "Convenience stores are small, but they hold big emotions. In Vietnam\u0027s noisy",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.9cf9bb84562e4717a845ad5a56ed2df3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 110,
+        "EndTime": 116,
+        "Text": "Jerry said, \u0022These stores are like home when you are far away. They became",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.a5b0069598f2451bae9f55777e51c8fe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 146,
+        "EndTime": 150.319,
+        "Text": "GS25 offers Korean snacks and drinks.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.a8942a3c51c945ca916dea2cad14243c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 471,
+        "EndTime": 482.56,
+        "Text": "streets, they are quiet spots for dreams and connections. They remind us that even in a big city, kindness waits around the corner.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.a8cca6dbf26f47d796539fadb960d947",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 76,
+        "EndTime": 85.84,
+        "Text": "you?\u0022 She bought a hot coffee and a sandwich. For the first time, she felt safe.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.a9450648dd3a4cf58bf30920743b131b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 543,
+        "EndTime": 549.36,
+        "Text": "alone. Let me share a story about my friend Lan and how these stores changed",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.ad6b378ce8444a8d9000e8f132353d0f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 100,
+        "EndTime": 110.32,
+        "Text": "One day, she met a boy named Jerry at Minitop. He was eating ice cream and studying. They talked about school.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.aeef706751f24edc93c5d45456ce02fe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 70,
+        "EndTime": 76.56,
+        "Text": "and full of life. Anna went inside. The worker smiled and said, \u0022What can I get",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.b1e3d43af3c248789cef35ccfb9c036e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 349,
+        "EndTime": 355.68,
+        "Text": "to eat yogurt or read books. The bright lights made her forget loneliness.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.b2c7c9b09bbf468db3b647fd023e2d18",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 430,
+        "EndTime": 433.84,
+        "Text": "These stores bring meaning for Anna.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.bc10159783df49dd997d2d7dd61a3696",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 175,
+        "EndTime": 178.879,
+        "Text": "These stores bring meaning for Anna.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.bc1a70226763490da289faf7885b43f8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 394,
+        "EndTime": 401.199,
+        "Text": "sandwiches and coffee. Minitop has Japanese treats like hot rice balls.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.bc433587ccef400eb84192d88774ece7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 665,
+        "EndTime": 668.32,
+        "Text": "Students buy water before exams.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.c126ef218bdd43f9a7b3535d5b273d73",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 386,
+        "EndTime": 394.4,
+        "Text": "Circle K, Minitop, and GS25 are everywhere. Circle K sells",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.c31db0cad50c42cb94351c7cf187cd49",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 685,
+        "EndTime": 688.72,
+        "Text": "These stores bring meaning for Anna.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.c343788d974f48b9aace271087f05fdd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 159,
+        "EndTime": 167.04,
+        "Text": "for kids. During rain, people run inside for umbrellas. Prices are fair, but",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.c34f7589397349f6a089bffe688ed7aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 482,
+        "EndTime": 490.879,
+        "Text": "In conclusion, Circle K, Ministop, and GS25 are more than shops. They help people",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.c837e83117ae4a739a937bec02631f29",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 178,
+        "EndTime": 190.56,
+        "Text": "They were a bridge to happiness. She remembers her first Christmas in the city. She felt homesick, but Jerry invited her to GS25.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.c85bb3275b384196b55517d56512a999",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 279,
+        "EndTime": 288.16,
+        "Text": "They\u0027re open all night and sell quick food. But they do more. They bring comfort and small joys when you feel",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.ca44af942b9b49509390ca8eb688fca5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 132,
+        "EndTime": 139.52,
+        "Text": "Circle K, Ministop, and GS25 are everywhere. Circle K sells",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.caeafedc4f37462baf29c997caf6917e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 379,
+        "EndTime": 386.96,
+        "Text": "Anna says, \u0022These places gave me a new family.\u0022 In Vietnam, convenience stores like",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.d1f120a2f87446d984fdf1f013e6d482",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 586,
+        "EndTime": 595.68,
+        "Text": "you?\u0022 She bought a hot coffee and a sandwich. For the first time, she felt safe.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.d2c4240e6e7744c2b18ffa4a3c8a6a4c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 651,
+        "EndTime": 658.88,
+        "Text": "Minitop has Japanese treats like hot rice balls. GS25 offers Korean snacks",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.d4cacecbe3da49748f021fe9a86edccc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 453,
+        "EndTime": 457.199,
+        "Text": "Now Anna works part-time at Circle K.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.d5d44bf6b70b46e0b37a2804f1c0bae2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 737,
+        "EndTime": 745.76,
+        "Text": "In conclusion, Circle K, Ministop, and GS25 are more than shops. They help people",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.e0ad10f398dd4750a9f43416a31ab93e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 503,
+        "EndTime": 512.44,
+        "Text": "to subscribe to our channel for more A2 English listening practice videos. See you next time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.e21f55f2d44f4f3f98fab30ba927575e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 198,
+        "EndTime": 202.239,
+        "Text": "Now Anna works part-time at Circle K.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.e53895a9e3154bc88a7929046b268488",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 259,
+        "EndTime": 270.96,
+        "Text": "Hello everyone. Welcome to this A2 English listening practice video. Today I want to tell you a touching story about convenience stores in Vietnam.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.e6c1df7252f442b6838c5114478b12a7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 270,
+        "EndTime": 279.52,
+        "Text": "Stores like Circle K, Minitop, and GS25 are small lights in the busy city life.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.eaae3d9dc9cd48c68e5179ad850e59aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 758,
+        "EndTime": 767.32,
+        "Text": "to subscribe to our channel for more A2 English listening practice videos. See you next time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.eb0ec55600d64a9f9fdcf41307cc3441",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 24,
+        "EndTime": 33.28,
+        "Text": "They\u0027re open all night and sell quick food. But they do more. They bring comfort and small joys when you feel",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.eb2909d256e84800ba845e06778f49df",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 150,
+        "EndTime": 159.84,
+        "Text": "They are open 24 hours, so workers grab food after late shifts. Students buy water before exams. Families get milk",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.f041fe3584f44eaeb0d79dd0f3371ad4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 422,
+        "EndTime": 430.16,
+        "Text": "snacks are not always healthy. Still, they save time in fast city life.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.f2476ba3eb9c4b57a6bac22cfa32c099",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 620,
+        "EndTime": 634.399,
+        "Text": "Jerry said, \u0022These stores are like home when you are far away. They became friends. Now they meet at GS25 for Kimop and tea. They laugh and share stories.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.f2e02628cd1c4d329f1e5e1422820b01",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 534,
+        "EndTime": 543.12,
+        "Text": "They\u0027re open all night and sell quick food. But they do more. They bring comfort and small joys when you feel",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.f5d3d600c0bb4fb5a15a32643605265c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 751,
+        "EndTime": 758.48,
+        "Text": "places can change lives. Have you had a special moment at a store? Don\u0027t forget",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.f839d1d5f1d04b5681350df42424d037",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 745,
+        "EndTime": 751.76,
+        "Text": "feel less alone and create warm memories. Honest Story shows how small",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.f8c1bd43a2794c358b352bbc2160bd09",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 241,
+        "EndTime": 248.72,
+        "Text": "places can change lives. Have you had a special moment at a store? Don\u0027t forget",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.f961db63fde5469988d7bc3d226a2065",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 641,
+        "EndTime": 651.36,
+        "Text": "Circle K, Ministop, and GS25 are everywhere. Circle K sells sandwiches and coffee.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0.fff463cd1d4546ae9e6dda72df8565a8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 726,
+        "EndTime": 737.44,
+        "Text": "streets, they are quiet spots for dreams and connections. They remind us that even in a big city, kindness waits around the corner.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.a0bd830384c75d269bfc6910690e32c25f1a332a64911bb3dbde56af0697f3d0"
+}

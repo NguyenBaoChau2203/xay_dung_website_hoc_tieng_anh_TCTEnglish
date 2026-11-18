@@ -26,4 +26,5 @@ public class SpeakingVideo
     public User? OwnerUser { get; set; }
     public ICollection<SpeakingSentence> SpeakingSentences { get; set; } = new List<SpeakingSentence>();
     public ICollection<UserSpeakingVideoCompletion> UserSpeakingVideoCompletions { get; set; } = new List<UserSpeakingVideoCompletion>();
+    public ICollection<TCTEnglish.Models.UserSpeakingVideoVisit> UserSpeakingVideoVisits { get; set; } = new List<TCTEnglish.Models.UserSpeakingVideoVisit>();
 }

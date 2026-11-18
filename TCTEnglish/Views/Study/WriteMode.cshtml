@@ -6,7 +6,7 @@
 <div class="write-mode-container">
     <!-- Header với thanh tiến độ và nút quay lại -->
     <div class="write-header">
-        <a asp-action="Study" asp-route-id="@Model.Set.SetId" class="btn-back" title="Quay lại">
+        <a asp-action="Detail" asp-controller="Set" asp-route-id="@Model.Set.SetId" class="btn-back" title="Quay lại bộ thẻ">
             <i class="fas fa-arrow-left"></i>
         </a>
         <div class="header-content">
@@ -625,7 +625,7 @@
 </style>
 
 @section Scripts {
-<script src="~/js/time-tracker.js" data-feature="Writing" defer></script>
+<script src="~/js/time-tracker.js" data-feature="WriteMode" data-mode="WriteMode" defer></script>
     <script>
         // Dữ liệu gốc từ server
         const originalCards = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(

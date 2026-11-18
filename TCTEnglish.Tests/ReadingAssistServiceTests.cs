@@ -89,7 +89,8 @@ public sealed class ReadingAssistServiceTests
 
         Assert.False(result.Success);
         Assert.Equal("not_configured", result.ErrorCode);
-        Assert.Contains("set-local-ai-key.ps1", result.ErrorMessage ?? "", StringComparison.Ordinal);
+        Assert.Contains("từ vựng có sẵn", result.ErrorMessage ?? "", StringComparison.Ordinal);
+        Assert.DoesNotContain(".ps1", result.ErrorMessage ?? "", StringComparison.Ordinal);
         ai.Verify(a => a.GenerateReplyAsync(
             It.IsAny<int>(),
             It.IsAny<IReadOnlyList<AiContextMessage>>(),

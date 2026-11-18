@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TCTEnglish.Services.Sets;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
 using TCTVocabulary.ViewModels;
 
 namespace TCTVocabulary.Controllers
@@ -11,24 +13,21 @@ namespace TCTVocabulary.Controllers
     public class FolderController : BaseController
     {
         private readonly DbflashcardContext _context;
+        private readonly IPersonalSetService _personalSets;
 
-        public FolderController(DbflashcardContext context)
+        public FolderController(DbflashcardContext context, IPersonalSetService personalSets)
         {
             _context = context;
+            _personalSets = personalSets;
         }
 
         [Authorize]
         [HttpGet("Folder")]
         [ActionName("Folder")]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            if (!TryGetCurrentUserId(out var currentUserId))
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            var vm = await BuildFolderPageViewModelAsync(currentUserId);
-            return View("Folder", vm);
+            // Folders now live inside "Bộ thẻ của tôi"; every old link to the list lands there.
+            return RedirectToAction("Index", "Set");
         }
 
         [Authorize]
@@ -54,27 +53,20 @@ namespace TCTVocabulary.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateFolder(string folderName)
         {
-            if (string.IsNullOrWhiteSpace(folderName))
-            {
-                return RedirectToAction("Folder", "Folder");
-            }
-
             if (!TryGetCurrentUserId(out var userId))
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var folder = new Folder
+            // Same rules as the new /Sets dialog (trim, 1-100 characters, unique per owner); the folder page lives under /Sets.
+            var result = await _personalSets.CreateFolderAsync(userId, folderName);
+            if (result.Status == OperationStatus.Success)
             {
-                FolderName = folderName.Trim(),
-                UserId = userId,
-                ParentFolderId = null
-            };
+                return RedirectToAction("FolderPage", "Set", new { id = result.Value });
+            }
 
-            _context.Folders.Add(folder);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(FolderDetail), "Folder", new { id = folder.FolderId });
+            TempData["SetError"] = result.ErrorMessage ?? "Không tạo được thư mục.";
+            return RedirectToAction("Index", "Set");
         }
 
         [Authorize]
@@ -223,6 +215,16 @@ namespace TCTVocabulary.Controllers
                 .ToListAsync();
 
             var isOwner = folder.UserId == userId;
+
+            // Managers see every set; everyone else only sees sets they may view (private sets stay private;
+            // saved folders and class folders keep showing all their sets).
+            if (!(isOwner || IsAdminUser()) && sets.Count > 0)
+            {
+                var visible = await _personalSets.GetViewableSetIdsAsync(
+                    sets.Select(s => s.SetId).ToList(), userId, IsAdminUser());
+                sets = sets.Where(s => visible.Contains(s.SetId)).ToList();
+            }
+
             var isSaved = await _context.SavedFolders
                 .AsNoTracking()
                 .AnyAsync(sf => sf.UserId == userId && sf.FolderId == folderId);

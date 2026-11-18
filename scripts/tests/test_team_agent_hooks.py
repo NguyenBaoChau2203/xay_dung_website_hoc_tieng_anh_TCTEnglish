@@ -11,10 +11,12 @@ class TeamHookTests(unittest.TestCase):
     def test_antigravity_payload_uses_camel_case_without_reading_arguments(self):
         event = hooks.normalize_event("antigravity", "PreToolUse", {
             "conversationId": "a", "toolCall": {"name": "invoke_subagent", "args": {"SECRET": "never copy"}},
+            "modelName": "gemini-3.8-flash-high",
             "transcriptPath": "must not open",
         })
         self.assertEqual("a", event["session_id"])
         self.assertEqual("invoke_subagent", event["tool_name"])
+        self.assertEqual("gemini-3.8-flash-high", event["model_name"])
         self.assertNotIn("SECRET", str(event))
         self.assertNotIn("transcript", str(event))
 

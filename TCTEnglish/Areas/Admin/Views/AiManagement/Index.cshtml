@@ -7,6 +7,7 @@
     var trainingError     = TempData["TrainingError"]  as string;
 }
 
+<div class="tct-theme admin-ai-management-page">
 @* ===== PAGE HEADER ===== *@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
@@ -258,6 +259,12 @@
         dataset tại <code>Services/AI/Internal/Data/</code>.
     </div>
 </div>
+
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-ai-management.css" asp-append-version="true" />
+}
 
 @section Scripts {
 <script>

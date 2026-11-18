@@ -46,13 +46,13 @@ public sealed class ReadingModuleTests
     }
 
     [Fact]
-    public void ParseTemplate_YieldsValidDraftCandidate_WithParagraphsAndVocab()
+    public async Task ParseTemplate_YieldsValidDraftCandidate_WithParagraphsAndVocab()
     {
         var db = CreateContext(nameof(ParseTemplate_YieldsValidDraftCandidate_WithParagraphsAndVocab));
         var admin = CreateAdmin(db);
         var excel = new ReadingExcelService(db, admin);
         using var stream = new MemoryStream(excel.BuildTemplate());
-        var preview = excel.ParseAndValidate(stream);
+        var preview = await excel.ParseAndValidateAsync(stream);
 
         Assert.True(preview.HasImportableReadings);
         Assert.Empty(preview.FailedReadings);
@@ -69,7 +69,7 @@ public sealed class ReadingModuleTests
     }
 
     [Fact]
-    public void Parse_PartialImport_KeepsValidReading_WhenSiblingInvalid()
+    public async Task Parse_PartialImport_KeepsValidReading_WhenSiblingInvalid()
     {
         var db = CreateContext(nameof(Parse_PartialImport_KeepsValidReading_WhenSiblingInvalid));
         var admin = CreateAdmin(db);
@@ -85,7 +85,7 @@ public sealed class ReadingModuleTests
         using var stream = new MemoryStream();
         workbook.SaveAs(stream);
         stream.Position = 0;
-        var preview = excel.ParseAndValidate(stream);
+        var preview = await excel.ParseAndValidateAsync(stream);
 
         Assert.True(preview.HasImportableReadings);
         Assert.Single(preview.ValidReadings);
@@ -94,7 +94,7 @@ public sealed class ReadingModuleTests
     }
 
     [Fact]
-    public void Parse_RejectsDuplicateReadingCode_InDatabase()
+    public async Task Parse_RejectsDuplicateReadingCode_InDatabase()
     {
         var db = CreateContext(nameof(Parse_RejectsDuplicateReadingCode_InDatabase));
         db.ReadingPassages.Add(new ReadingPassage
@@ -111,14 +111,14 @@ public sealed class ReadingModuleTests
         var admin = CreateAdmin(db);
         var excel = new ReadingExcelService(db, admin);
         using var stream = new MemoryStream(excel.BuildTemplate());
-        var preview = excel.ParseAndValidate(stream);
+        var preview = await excel.ParseAndValidateAsync(stream);
 
         Assert.False(preview.HasImportableReadings);
         Assert.Contains(preview.Errors, e => e.Column == "ReadingCode" && e.Message.Contains("already exists", StringComparison.OrdinalIgnoreCase));
     }
 
     [Fact]
-    public void Parse_PassageDuplicateParagraphNo_FailsReading()
+    public async Task Parse_PassageDuplicateParagraphNo_FailsReading()
     {
         var db = CreateContext(nameof(Parse_PassageDuplicateParagraphNo_FailsReading));
         var admin = CreateAdmin(db);
@@ -130,14 +130,14 @@ public sealed class ReadingModuleTests
         using var stream = new MemoryStream();
         workbook.SaveAs(stream);
         stream.Position = 0;
-        var preview = excel.ParseAndValidate(stream);
+        var preview = await excel.ParseAndValidateAsync(stream);
 
         Assert.False(preview.HasImportableReadings);
         Assert.Contains(preview.Errors, e => e.Column == "ParagraphNo");
     }
 
     [Fact]
-    public void Parse_VocabularyWithoutMeaning_Fails_EmptyVocabSheet_Ok()
+    public async Task Parse_VocabularyWithoutMeaning_Fails_EmptyVocabSheet_Ok()
     {
         var db = CreateContext(nameof(Parse_VocabularyWithoutMeaning_Fails_EmptyVocabSheet_Ok));
         var admin = CreateAdmin(db);
@@ -149,7 +149,7 @@ public sealed class ReadingModuleTests
             using var stream = new MemoryStream();
             workbook.SaveAs(stream);
             stream.Position = 0;
-            var bad = excel.ParseAndValidate(stream);
+            var bad = await excel.ParseAndValidateAsync(stream);
             Assert.False(bad.HasImportableReadings);
             Assert.Contains(bad.Errors, e => e.Column == "Meaning");
         }
@@ -161,7 +161,7 @@ public sealed class ReadingModuleTests
             using var stream = new MemoryStream();
             workbook.SaveAs(stream);
             stream.Position = 0;
-            var ok = excel.ParseAndValidate(stream);
+            var ok = await excel.ParseAndValidateAsync(stream);
             Assert.True(ok.HasImportableReadings);
             Assert.Empty(ok.ValidReadings[0].Vocabulary);
         }
@@ -758,8 +758,8 @@ public sealed class ReadingModuleTests
 
         var matchingJson = System.Text.Json.JsonSerializer.Serialize(new Dictionary<string, string>
         {
-            ["p1"] = string.Join(',', new[] { cat.Id.ToString(), meo.Id.ToString() }.OrderBy(x => x)),
-            ["p2"] = string.Join(',', new[] { dog.Id.ToString(), cho.Id.ToString() }.OrderBy(x => x))
+            [cat.Id.ToString()] = meo.Id.ToString(),
+            [dog.Id.ToString()] = cho.Id.ToString()
         });
         await learning.SaveAnswerAsync(31, attempt.Id, new SaveReadingAnswerRequest
         {
@@ -813,7 +813,7 @@ public sealed class ReadingModuleTests
         var right = passage.Questions.Single().Options.Single(o => o.MatchSide == "Right");
         var matchingJson = System.Text.Json.JsonSerializer.Serialize(new Dictionary<string, string>
         {
-            ["k1"] = string.Join(',', new[] { left.Id.ToString(), right.Id.ToString() }.OrderBy(x => x))
+            [left.Id.ToString()] = right.Id.ToString()
         });
         await learning.SaveAnswerAsync(32, attempt.Id, new SaveReadingAnswerRequest
         {

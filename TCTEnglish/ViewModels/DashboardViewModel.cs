@@ -5,6 +5,14 @@ namespace TCTVocabulary.ViewModels
         public string? FullName { get; set; }
         public int Streak { get; set; }
         public int Goal { get; set; }
+        public int TotalXp { get; set; }
+        public int TodayXp { get; set; }
+        public int DailyGoalPercent { get; set; }
+        public int ActiveGoalCount { get; set; }
+        public int MetGoalCount { get; set; }
+        public string DailyGoalSummary { get; set; } = string.Empty;
+        public int BusinessHour { get; set; }
+        public List<TCTEnglish.ViewModels.GoalsStudyDayViewModel> StudyDays { get; set; } = new();
 
         public int FolderCount { get; set; }
         public int SetCount { get; set; }

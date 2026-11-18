@@ -1,0 +1,1018 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A2 - TH\u1EA4T NGI\u1EC6PI",
+        "YoutubeId": "CZFy-Ymk6fs",
+        "Level": "A2",
+        "Topic": "H\u1ECDc t\u1EADp \u0026 c\u00F4ng vi\u1EC7c",
+        "ThumbnailUrl": "https://img.youtube.com/vi/CZFy-Ymk6fs/hqdefault.jpg",
+        "Duration": "10:02",
+        "SourceUrl": "https://www.youtube.com/watch?v=CZFy-Ymk6fs",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.098720cb25694701af2569506d80b4f0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 361,
+        "EndTime": 368.8,
+        "Text": "People learn to fight. They work hard and dream of better days. In busy cities",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.09c4e6ae397941a092ad291490b3cb8e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 538,
+        "EndTime": 544.56,
+        "Text": "selling bang me from a cart. Friends help too. They share job news or buy",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.0f084ba5622942a9a6c5901c5be60dc0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 204,
+        "EndTime": 214,
+        "Text": "Hello everyone. Welcome to this A2 English listening practice video. Today I want to talk about unemployment in",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.108612fc7cc04addaf65690f973cf2f0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 455,
+        "EndTime": 465.36,
+        "Text": "Unemployment is tough. People need money for food, rent, or family. Without a job, they feel stressed.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.11dc8ea2016748e4aaa5c76ab0468c55",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 92,
+        "EndTime": 99.52,
+        "Text": "cooking or fixing phones, but it takes time and waiting is hard. Many feel they",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.12006f1bbf334fb3a10146efa0fded7d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 147,
+        "EndTime": 154,
+        "Text": "people care for each other. When someone has no job, neighbors give rice or soup.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.12373e5254904b51bf6c48f21bffe9b2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 238,
+        "EndTime": 248.08,
+        "Text": "sometimes there are no jobs. For example, students study business or English, but companies don\u0027t hire them.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.126240d6b6fa4749a206e2722428b570",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 339,
+        "EndTime": 347.44,
+        "Text": "cart. Friends help too. They share job news or buy food together. In Vietnam,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.1b38b472e3244583911b17a865ca8fef",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 99,
+        "EndTime": 105.36,
+        "Text": "are not good enough. Families help, but sometimes parents push them to find jobs",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.1ffc226efb3b4573ad506b0d4e559821",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 131,
+        "EndTime": 139.599,
+        "Text": "small jobs like working at a cafe or teaching kids. Others start small businesses like selling Bank Me from a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.2103d58a8b354145a0a0b644ff4b77c5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 322,
+        "EndTime": 331.84,
+        "Text": "street, like snacks or flowers, to earn a little money. It\u0027s not easy, but they try. But people don\u0027t give up. Some find",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.27c269375abc4945a606e426a632864c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 544,
+        "EndTime": 551.519,
+        "Text": "food together. In Vietnam, people care for each other. When someone has no job,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.288f7a37f01e43118ef16754bb467cb9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 483,
+        "EndTime": 492.8,
+        "Text": "Some try hard to find work. They go to job fairs or use apps like Vietnam works. Others learn new skills like",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.29502aabfc234e118c1bca1f045f2000",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 465,
+        "EndTime": 473.52,
+        "Text": "Some live with parents because they can\u0027t pay for a house. In big cities like Hanoi or Ho Chi Min City, life is",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.2a3b70048c8348d9843061d6c86c7319",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 55,
+        "EndTime": 62.64,
+        "Text": "Unemployment is tough. People need money for food, rent, or family. Without a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.2cfc5d40273c4f2ab85b0bbd3245834a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 214,
+        "EndTime": 223.12,
+        "Text": "Vietnam. Unemployment is when people want to work but cannot find a job. It happens to many people and makes life",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.30477cb4ad7e420b93466d456c197c22",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 438,
+        "EndTime": 447.919,
+        "Text": "sometimes there are no jobs. For example, students study business or English, but companies don\u0027t hire them.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.31d3615752274aedad93412949ec4fd8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 223,
+        "EndTime": 230,
+        "Text": "hard. Let me share how it affects daily life and how people stay strong. In",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.32b69bacf3c0450eb5da65b02df6c2e1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 529,
+        "EndTime": 538.16,
+        "Text": "people don\u0027t give up. Some find small jobs like working at a cafe or teaching kids. Others start small businesses like",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.3bf35eeddb7f412b917ba67ee31195b2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 173,
+        "EndTime": 182.879,
+        "Text": "In conclusion, unemployment in Vietnam makes life hard, especially for young people. No job means stress and no",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.4276adc2caf349849bba558abc79e81e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 368,
+        "EndTime": 373.919,
+        "Text": "with loud streets and kind hearts, they keep going.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.42a095090e7441d29548092c7c875cce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 305,
+        "EndTime": 313.199,
+        "Text": "fast. This adds more stress. In Vietnam, unemployment touches everyone. Young",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.42aa7b1529ca43f0a862dd1e3eaa880f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 313,
+        "EndTime": 322.4,
+        "Text": "people want to make parents proud, but no job makes it hard. Some lose hope and stop looking. Others sell things on the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.42b895fda1644ede8091024cccbc199d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 71,
+        "EndTime": 78.88,
+        "Text": "Chi Min City, life is expensive. No job means no money for food or drink. Young",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.4970f7b241a44d40aaa37becb839e6f7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 83,
+        "EndTime": 92.56,
+        "Text": "Some try hard to find work. They go to job fairs or use apps like Vietnam works. Others learn new skills like",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.51b7325e4c4d4998accce5331ba4e663",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 62,
+        "EndTime": 71.439,
+        "Text": "job, they feel stressed. Some live with parents because they can\u0027t pay for a house. In big cities like Hanoi or Ho",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.549263f8f4574679b290ddefae75c9e5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 410,
+        "EndTime": 420.639,
+        "Text": "Today I want to talk about unemployment in Vietnam. Unemployment is when people want to work but cannot find a job. It",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.591898da5765480d95b6747046d7f97c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 513,
+        "EndTime": 520.88,
+        "Text": "people want to make parents proud, but no job makes it hard. Some lose hope and stop looking.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.5bd67f903af94dd38a73df198470780e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 22,
+        "EndTime": 29.679,
+        "Text": "hard. Let me share how it affects daily life and how people stay strong. In",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.60cee1f25f904af49252e3591eb8eeb0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 588,
+        "EndTime": 596.8,
+        "Text": "Do you know someone without a job? How do they stay strong? Don\u0027t forget to subscribe to our channel for more A2",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.63341a96eef54893b523c9d20b078e72",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 404,
+        "EndTime": 410.96,
+        "Text": "Hello everyone. Welcome to this A2 English listening practice video.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.641c49a9798644d4bb87aa65528f193f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 112,
+        "EndTime": 122.079,
+        "Text": "people want to make parents proud, but no job makes it hard. Some lose hope and stop looking. Others sell things on the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.644d28f8a3164b25bd6e81afd898fbd3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 596,
+        "EndTime": 602.046984,
+        "Text": "English listening practice videos. See you next time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.66e928f6cff245bf8b221aef88a0c363",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 105,
+        "EndTime": 112.799,
+        "Text": "fast. This adds more stress. In Vietnam, unemployment touches everyone. Young",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.68a357b1dd0740de9a8b1442c8882e81",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 139,
+        "EndTime": 147.12,
+        "Text": "cart. Friends help too. They share job news or buy food together. In Vietnam,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.6d9e11ca14de4f38a711931d38edbf7b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 389,
+        "EndTime": 403.4,
+        "Text": "job? How do they stay strong? Don\u0027t forget to subscribe to our channel for more A2 English listening practice videos. See you next time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.7075f3d3096742a5aba6f652adcb3f78",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 354,
+        "EndTime": 361.84,
+        "Text": "This love keeps them strong. Unemployment is sad, but hope is big.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.751a33333dcf4aac97587e5cdc4d39eb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 347,
+        "EndTime": 354.32,
+        "Text": "people care for each other. When someone has no job, neighbors give rice or soup.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.799c709288a7481baa4d372ef147332d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 168,
+        "EndTime": 173.599,
+        "Text": "with loud streets and kind hearts, they keep going.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.7e134f21ca9248139f4dcf2ecd2f2ef7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 161,
+        "EndTime": 168.48,
+        "Text": "People learn to fight. They work hard and dream of better days. In busy cities",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.8b2d03f710d344a58ca2f35b018aa30f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 292,
+        "EndTime": 299.84,
+        "Text": "cooking or fixing phones, but it takes time and waiting is hard. Many feel they",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.8d9c9b6d4aa34e37bcac810d5ad8a6aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 248,
+        "EndTime": 255.599,
+        "Text": "They send many job applications, but no one calls back. This makes them sad and worried.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.917a9b3495dc43c7ac253bd71f2182a9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 383,
+        "EndTime": 389.919,
+        "Text": "money, but people help each other and try again. Do you know someone without a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.93d157c8044a4e1dbe3ff1eb00d3c330",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 189,
+        "EndTime": 203.08,
+        "Text": "job? How do they stay strong? Don\u0027t forget to subscribe to our channel for more A2 English listening practice videos. See you next time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.95844fc52662483980a103be80860f53",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 4,
+        "EndTime": 13.679,
+        "Text": "Hello everyone. Welcome to this A2 English listening practice video. Today I want to talk about unemployment in",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.99e2114c78f94fa2b7efaf9c606b9bca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 561,
+        "EndTime": 568.72,
+        "Text": "People learn to fight. They work hard and dream of better days. In busy cities",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.9b15c76711494f97b75d9ab52957518f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 255,
+        "EndTime": 262.96,
+        "Text": "Unemployment is tough. People need money for food, rent, or family. Without a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.a1860606df324583bad0376d1f7c52b1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 473,
+        "EndTime": 483.759,
+        "Text": "expensive. No job means no money for food or drink. Young people feel bad when friends go out, but they stay home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.a24a6271e1944325972f3bbd143fde9d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 279,
+        "EndTime": 283.919,
+        "Text": "people feel bad when friends go out, but they stay home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.a3bf4ad60e054c429647a7cba88fdb7e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 583,
+        "EndTime": 588.24,
+        "Text": "money, but people help each other and try again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.a726399eb2ab4dd5a6e28b319fb791ae",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 420,
+        "EndTime": 429.919,
+        "Text": "happens to many people and makes life hard. Let me share how it affects daily life and how people stay strong. In",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.a95f286d9cf7421fb0890e38777d274b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 271,
+        "EndTime": 279.199,
+        "Text": "Chi Min City, life is expensive. No job means no money for food or drink. Young",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.aad4d1f0080e474c9d9184dc0cf1257e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 122,
+        "EndTime": 131.52,
+        "Text": "street, like snacks or flowers to earn a little money. It\u0027s not easy, but they try. But people don\u0027t give up. Some find",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.abec0853770246d8a728f96396a796b7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 373,
+        "EndTime": 383.28,
+        "Text": "In conclusion, unemployment in Vietnam makes life hard, especially for young people. No job means stress and no",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.adda9916609b4f74b8fcb1facd1238e0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 283,
+        "EndTime": 292.88,
+        "Text": "Some try hard to find work. They go to job fairs or use apps like Vietnam works. Others learn new skills like",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.b6056817a8b44a6aa064366821148390",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 429,
+        "EndTime": 438.319,
+        "Text": "Vietnam, many people look for jobs, especially young people. After university, they want work, but",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.b95f445e7d25414c8742579fe8ae66f2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 492,
+        "EndTime": 499.759,
+        "Text": "cooking or fixing phones, but it takes time and waiting is hard. Many feel they",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.bcdb26607aef4fd4aa4f7bfaecc371a1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 447,
+        "EndTime": 455.52,
+        "Text": "They send many job applications, but no one calls back. This makes them sad and worried.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.c573b85ad1474e4eb7338190667397cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 262,
+        "EndTime": 271.759,
+        "Text": "job, they feel stressed. Some live with parents because they can\u0027t pay for a house. In big cities like Hanoi or Ho",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.ccc6b7543ec74514af8001dfd2f0041f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 520,
+        "EndTime": 529.2,
+        "Text": "Others sell things on the street like snacks or flowers to earn a little money. It\u0027s not easy, but they try. But",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.cd6f2d94102d4e19a4ab93e62ce10db5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 29,
+        "EndTime": 38.16,
+        "Text": "Vietnam, many people look for jobs, especially young people. After university, they want work, but",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.d11a3f446d624d5b9aba405d3e0bde41",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 47,
+        "EndTime": 55.28,
+        "Text": "They send many job applications, but no one calls back. This makes them sad and worried.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.d284fbafbf7f4fce8b686d8058ec4524",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 154,
+        "EndTime": 161.519,
+        "Text": "This love keeps them strong. Unemployment is sad, but hope is big.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.dc197cb598724573aad972ab35881971",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 499,
+        "EndTime": 505.599,
+        "Text": "are not good enough. Families help, but sometimes parents push them to find jobs",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.e2a4aa3b0ced40858178379b9d2b3743",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 568,
+        "EndTime": 573.76,
+        "Text": "with loud streets and kind hearts, they keep going.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.e3a193a914e84e07ab407901038fc779",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 230,
+        "EndTime": 238.48,
+        "Text": "Vietnam, many people look for jobs, especially young people. After university, they want work, but",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.e6ac62b005d94d62bd7825c4fae67c3e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 13,
+        "EndTime": 22.8,
+        "Text": "Vietnam. Unemployment is when people want to work but cannot find a job. It happens to many people and makes life",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.e75e6edcae2e46c1998758c1749a686f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 182,
+        "EndTime": 189.599,
+        "Text": "money, but people help each other and try again. Do you know someone without a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.e998f385cdc948f3b3b9e5ae63555a17",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 78,
+        "EndTime": 83.52,
+        "Text": "people feel bad when friends go out, but they stay home.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.eb947711c8034785beda1162347c6bc3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 38,
+        "EndTime": 47.76,
+        "Text": "sometimes there are no jobs. For example, students study business or English, but companies don\u0027t hire them.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.f117984d83b1425d954c38d51ef7efde",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 505,
+        "EndTime": 513.039,
+        "Text": "fast. This adds more stress. In Vietnam, unemployment touches everyone. Young",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.f16c82bc34bc4249ba7f967cfcc132a4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 299,
+        "EndTime": 305.68,
+        "Text": "are not good enough. Families help, but sometimes parents push them to find jobs",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.f3607b198a434133b0890376bacaba2a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 573,
+        "EndTime": 583.12,
+        "Text": "In conclusion, unemployment in Vietnam makes life hard, especially for young people. No job means stress and no",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.f76164af520549b28e1d639fefd3c5e0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 331,
+        "EndTime": 339.919,
+        "Text": "small jobs like working at a cafe or teaching kids. Others start small businesses like selling bang me from a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.fdc40e66b3d54352ae79163aa495de26",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 557,
+        "EndTime": 561.76,
+        "Text": "Unemployment is sad, but hope is big.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e.fe491c9926f24e02acc60ab8595b6b7e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 551,
+        "EndTime": 557.36,
+        "Text": "neighbors give rice or soup. This love keeps them strong.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.d531b10e32317896eb2ab7ceb3ef5915963edf55050d223a775d429cdb7ec92e"
+}

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Services;
+using TCTEnglish.Services.Sets;
 using TCTEnglish.ViewModels;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
@@ -20,6 +21,8 @@ namespace TCTVocabulary.Controllers
         private readonly IListeningService _listeningService;
         private readonly TCTEnglish.Services.Reading.IReadingLearningService _readingLearning;
         private readonly DbflashcardContext _context;
+        private readonly IPersonalSetService _personalSets;
+        private readonly ILogger<StudyController>? _logger;
 
         public StudyController(
             IStudyService studyService,
@@ -27,8 +30,12 @@ namespace TCTVocabulary.Controllers
             IWritingRequestRateLimiter writingRequestRateLimiter,
             IListeningService listeningService,
             TCTEnglish.Services.Reading.IReadingLearningService readingLearning,
-            DbflashcardContext context)
+            DbflashcardContext context,
+            IPersonalSetService personalSets,
+            ILogger<StudyController>? logger = null)
         {
+            _logger = logger;
+            _personalSets = personalSets;
             _studyService = studyService;
             _writingService = writingService;
             _writingRequestRateLimiter = writingRequestRateLimiter;
@@ -39,14 +46,14 @@ namespace TCTVocabulary.Controllers
 
         [Authorize]
         [HttpGet("Study/{id:int?}")]
-        public async Task<IActionResult> Study(int id)
+        public async Task<IActionResult> Study(int id, string? mode = null)
         {
             if (!TryGetCurrentUserId(out var userId))
             {
                 return Unauthorized();
             }
 
-            return await RenderStudyViewAsync(nameof(Study), id, userId, redirectToFolderWhenEmpty: true);
+            return await RenderStudyViewAsync(nameof(Study), id, userId, redirectToSetWhenEmpty: true, mode);
         }
 
         [Authorize]
@@ -62,6 +69,17 @@ namespace TCTVocabulary.Controllers
             if (!TryGetCurrentUserId(out var userId))
             {
                 return Unauthorized();
+            }
+
+            // The card must exist and belong to a set the user may view (B7); otherwise nothing is written.
+            var cardSetId = await _context.Cards
+                .AsNoTracking()
+                .Where(c => c.CardId == request.CardId)
+                .Select(c => (int?)c.SetId)
+                .FirstOrDefaultAsync();
+            if (cardSetId == null || !await _personalSets.CanViewSetAsync(cardSetId.Value, userId, IsAdminUser()))
+            {
+                return NotFound();
             }
 
             var result = await _studyService.UpdateCardProgressAsync(request.CardId, request.IsKnown, userId);
@@ -89,34 +107,47 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("Folder", "Folder");
             }
 
-            return await RenderStudyViewAsync(nameof(Speaking), id.Value, userId, redirectToFolderWhenEmpty: true);
+            return await RenderStudyViewAsync(nameof(Speaking), id.Value, userId, redirectToSetWhenEmpty: true);
         }
         
         [HttpGet("Listening")]
-        public async Task<IActionResult> Listening(string? level = null, string? topic = null)
+        public async Task<IActionResult> Listening(string? level = null, string? topic = null, CancellationToken ct = default)
         {
             var userId = TryGetCurrentUserId(out var currentUserId) ? currentUserId : (int?)null;
-            var viewModel = await _listeningService.GetIndexViewModelAsync(level, topic, userId);
+            // The page filters client-side, so it needs every lesson; level/topic only pick the initial selection.
+            var viewModel = await _listeningService.GetIndexViewModelAsync(null, null, userId, ct);
+            viewModel.SelectedLevel = NormalizeListeningLevel(level);
+            viewModel.SelectedTopic = !string.IsNullOrWhiteSpace(topic) && viewModel.Topics.Contains(topic) ? topic : null;
             return View(viewModel);
         }
 
+        private static string? NormalizeListeningLevel(string? level)
+        {
+            var key = level?.Trim().ToUpperInvariant();
+            return key is "A1" or "A2" or "B1" or "B2" or "C1" ? key : null;
+        }
+
         [HttpGet("Listening/Practice/{id:int}")]
-        public async Task<IActionResult> ListeningPractice(int id)
+        public async Task<IActionResult> ListeningPractice(int id, CancellationToken ct = default)
         {
             TryGetCurrentUserId(out var userId);
-            var viewModel = await _listeningService.GetPracticeViewModelAsync(id, userId == 0 ? null : userId);
+            var viewModel = await _listeningService.GetPracticeViewModelAsync(id, userId == 0 ? null : userId, ct);
             return viewModel == null ? NotFound() : View(viewModel);
         }
 
         [Authorize]
         [HttpPost("Listening/EvaluateQuiz")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EvaluateListeningQuiz([FromBody] ListeningQuizSubmitDto? dto)
+        public async Task<IActionResult> EvaluateListeningQuiz([FromBody] ListeningQuizSubmitDto? dto, CancellationToken ct = default)
         {
             if (dto == null || dto.LessonId <= 0)
                 return BadRequest(new { error = "Dữ liệu không hợp lệ." });
 
-            var result = await _listeningService.EvaluateQuizAsync(dto);
+            if (!TryGetCurrentUserId(out var userId))
+                return Unauthorized(new { error = "Bạn cần đăng nhập." });
+
+            // Access, grading and best-score persistence are decided by the service (404 when the lesson is not usable).
+            var result = await _listeningService.EvaluateQuizAsync(dto, userId, ct);
             return result == null
                 ? NotFound(new { error = "Không tìm thấy bài nghe." })
                 : Json(new { success = true, data = result });
@@ -255,7 +286,42 @@ namespace TCTVocabulary.Controllers
                 ? currentUserId
                 : (int?)null;
             var viewModel = await _writingService.GetWritingExerciseListViewModelAsync(level, contentType, topic, page, userId, status, myPage);
+            if (userId.HasValue)
+            {
+                Response.Headers.CacheControl = "no-store";
+                viewModel.RecentOwnerUserId = userId;
+                try
+                {
+                    viewModel.RecentExercises = await _writingService.GetRecentExercisesAsync(userId.Value);
+                }
+                catch (Exception ex) when (ex is System.Data.Common.DbException or TimeoutException)
+                {
+                    _logger?.LogWarning(ex, "Writing recent history unavailable for user {UserId}", userId.Value);
+                    viewModel.RecentLoadFailed = true;
+                }
+            }
             return View(viewModel);
+        }
+
+        [Authorize]
+        [HttpGet("/api/writing/recent")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public async Task<IActionResult> RecentWritingExercises(CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+            return Json(new { success = true, ownerUserId = userId, data = await _writingService.GetRecentExercisesAsync(userId, ct: ct) });
+        }
+
+        [Authorize]
+        [HttpPost("/api/writing/{exerciseId:int}/recent")]
+        [ValidateAntiForgeryToken]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public async Task<IActionResult> RecordWritingExerciseVisit(int exerciseId, CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+            var openedAt = await _writingService.RecordExerciseVisitAsync(userId, exerciseId, ct);
+            return openedAt.HasValue ? Json(new { success = true, lastOpenedAtUtc = openedAt.Value })
+                : NotFound(new { error = "Không tìm thấy bài viết." });
         }
 
         [AllowAnonymous]
@@ -275,54 +341,91 @@ namespace TCTVocabulary.Controllers
 
         [Authorize]
         [HttpPost("Writing/Exercises/CreateFromAi")]
+        [RequestSizeLimit(65536)]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateWritingExerciseFromAi(
             [FromBody] WritingCreateFromAiRequestViewModel? request,
             CancellationToken cancellationToken)
         {
-            if (request == null)
+            if (request == null || !ModelState.IsValid)
             {
                 return BadRequest(new { error = "Thieu du lieu tao bai viet.", errorCode = "request_required" });
             }
 
             var result = await _writingService.CreateFromAiAsync(request, GetCurrentUserId(), cancellationToken);
-            if (result.Outcome == WritingCreateFromAiOutcome.Success)
+            return WritingGenerationResponse(result);
+        }
+
+        [Authorize]
+        [HttpGet("/api/writing/generation/capabilities")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public IActionResult WritingGenerationCapabilities() => Json(new { success = true, contractVersion = 1,
+            modes = new[] { "from_text", "from_brief" },
+            templates = TCTEnglish.Services.Writing.Generation.WritingTemplateCatalog.Capabilities });
+
+        [Authorize]
+        [HttpGet("/api/writing/generation/quota")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public async Task<IActionResult> WritingGenerationQuota(CancellationToken ct)
+        {
+            var quota = await _writingService.GetWritingGenerationQuotaAsync(GetCurrentUserId(), ct);
+            return quota == null ? NotFound() : Json(new { success = true, data = quota });
+        }
+
+        [Authorize]
+        [HttpGet("/api/writing/generation/by-key/{key}")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public async Task<IActionResult> WritingGenerationByKey(string key, CancellationToken ct)
+        {
+            var result = await _writingService.GetWritingGenerationByKeyAsync(GetCurrentUserId(), key, ct);
+            return result == null ? NotFound() : WritingGenerationResponse(result);
+        }
+
+        [Authorize]
+        [HttpGet("/api/writing/generation/{operationId:guid}")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public async Task<IActionResult> WritingGenerationStatus(Guid operationId, CancellationToken ct)
+        {
+            var result = await _writingService.GetWritingGenerationAsync(GetCurrentUserId(), operationId, ct);
+            return result == null ? NotFound() : WritingGenerationResponse(result);
+        }
+
+        [Authorize]
+        [HttpPost("/api/writing/generation/{operationId:guid}/confirm-template")]
+        [ValidateAntiForgeryToken]
+        [RequestSizeLimit(8192)]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public async Task<IActionResult> ConfirmWritingTemplate(Guid operationId, [FromBody] WritingTemplateConfirmation? request, CancellationToken ct)
+        {
+            if (request == null || !ModelState.IsValid) return BadRequest(new { errorCode = "request_required" });
+            return WritingGenerationResponse(await _writingService.ConfirmWritingTemplateAsync(GetCurrentUserId(), operationId, request, ct));
+        }
+
+        [Authorize]
+        [HttpPost("/api/writing/generation/{operationId:guid}/cancel")]
+        [ValidateAntiForgeryToken]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public async Task<IActionResult> CancelWritingGeneration(Guid operationId, CancellationToken ct) =>
+            WritingGenerationResponse(await _writingService.CancelWritingGenerationAsync(GetCurrentUserId(), operationId, ct));
+
+        private IActionResult WritingGenerationResponse(WritingCreateFromAiResultViewModel result)
+        {
+            if (result.RetryAfterSeconds > 0) Response.Headers["Retry-After"] = result.RetryAfterSeconds.ToString();
+            var status = result.Outcome switch
             {
-                return Json(new
-                {
-                    success = true,
-                    data = new
-                    {
-                        exerciseId = result.ExerciseId,
-                        sentenceCount = result.SentenceCount,
-                        level = result.Level,
-                        contentType = result.ContentType,
-                        isReplay = result.IsReplay
-                    }
-                });
-            }
-
-            if (result.Outcome == WritingCreateFromAiOutcome.QuotaExceeded)
-            {
-                if (result.RetryAfterSeconds > 0)
-                {
-                    Response.Headers["Retry-After"] = result.RetryAfterSeconds.ToString();
-                }
-
-                return StatusCode(429, new { error = result.ErrorMessage, errorCode = result.ErrorCode, retryAfterSeconds = result.RetryAfterSeconds });
-            }
-
-            if (result.Outcome == WritingCreateFromAiOutcome.Forbidden)
-            {
-                return StatusCode(403, new { error = result.ErrorMessage, errorCode = result.ErrorCode });
-            }
-
-            if (result.Outcome == WritingCreateFromAiOutcome.Invalid)
-            {
-                return BadRequest(new { error = result.ErrorMessage, errorCode = result.ErrorCode });
-            }
-
-            return StatusCode(503, new { error = result.ErrorMessage, errorCode = result.ErrorCode });
+                WritingCreateFromAiOutcome.Success or WritingCreateFromAiOutcome.TemplateOffer => 200,
+                WritingCreateFromAiOutcome.Pending => 202,
+                WritingCreateFromAiOutcome.QuotaExceeded => 429,
+                WritingCreateFromAiOutcome.Forbidden => 403,
+                WritingCreateFromAiOutcome.Invalid => 400,
+                WritingCreateFromAiOutcome.Conflict => 409,
+                WritingCreateFromAiOutcome.NotFound => 404,
+                _ => 503
+            };
+            return StatusCode(status, new { success = result.Outcome == WritingCreateFromAiOutcome.Success,
+                error = result.ErrorMessage, errorCode = result.ErrorCode, retryAfterSeconds = result.RetryAfterSeconds,
+                contractVersion = 1, data = result });
         }
 
         [Authorize]
@@ -385,6 +488,7 @@ namespace TCTVocabulary.Controllers
                 userId,
                 status);
 
+            Response.Headers.CacheControl = "no-store";
             return viewModel == null ? NotFound() : View(viewModel);
         }
 
@@ -455,6 +559,11 @@ namespace TCTVocabulary.Controllers
                 return BadRequest(new { error = "Vui lòng nhập một câu tiếng Anh trước khi gửi bài." });
             }
 
+            if (!ModelState.IsValid || request.UserAnswer.Length > TCTEnglish.Services.Writing.WritingAssessmentPolicy.MaxAcceptedAnswerLength)
+            {
+                return BadRequest(new { error = "Câu trả lời không hợp lệ hoặc vượt quá 1.000 ký tự." });
+            }
+
             if (!_writingRequestRateLimiter.TryConsumeEvaluation(
                     userId,
                     HttpContext.Connection.RemoteIpAddress?.ToString(),
@@ -505,19 +614,40 @@ namespace TCTVocabulary.Controllers
             string viewName,
             int setId,
             int? userId = null,
-            bool redirectToFolderWhenEmpty = false)
+            bool redirectToSetWhenEmpty = false,
+            string? mode = null)
         {
-            var viewModel = await _studyService.GetStudyViewModelAsync(setId, userId);
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
+            // Read access to the set (B4): legacy sets are Public, folder/class/saved access is included.
+            var isAdmin = IsAdminUser();
+            if (!await _personalSets.CanViewSetAsync(setId, currentUserId, isAdmin))
+            {
+                return NotFound();
+            }
+
+            var isDue = string.Equals(mode, "due", StringComparison.OrdinalIgnoreCase);
+            var viewModel = await _studyService.GetStudyViewModelAsync(setId, userId, isDue ? "due" : null);
             if (viewModel == null)
             {
                 return NotFound();
             }
 
-            if (redirectToFolderWhenEmpty && !viewModel.Cards.Any())
+            if (redirectToSetWhenEmpty && !viewModel.Cards.Any())
             {
-                return RedirectToAction(nameof(FolderController.FolderDetail), "Folder", new { id = viewModel.Set.FolderId });
+                // /Sets/{id} always exists, unlike FolderDetail/0 for sets without a folder (B6).
+                if (isDue)
+                {
+                    TempData["SetMessage"] = "Bạn đã ôn xong bộ này. Quay lại sau nhé.";
+                }
+
+                return RedirectToAction(nameof(SetController.Detail), "Set", new { id = setId });
             }
 
+            viewModel.CanEdit = await _personalSets.CanEditSetAsync(setId, currentUserId, isAdmin);
             return View(viewName, viewModel);
         }
 

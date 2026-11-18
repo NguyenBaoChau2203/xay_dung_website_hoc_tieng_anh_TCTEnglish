@@ -238,7 +238,8 @@ public sealed class AiController : BaseController
             _logger.LogWarning(ex, "AI provider failed for conversation {conversationId}", request.ConversationId);
             return StatusCode(StatusCodes.Status503ServiceUnavailable, new
             {
-                error = AiProviderErrorMessages.For(ex.ErrorCode)
+                error = AiProviderErrorMessages.For(ex.ErrorCode),
+                errorCode = ex.ErrorCode
             });
         }
     }

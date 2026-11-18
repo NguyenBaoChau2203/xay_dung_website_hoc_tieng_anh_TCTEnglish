@@ -24,6 +24,12 @@ public class SpeakingAssessment
     /// <summary>Ordered text-match score 0–100. Not pronunciation fluency.</summary>
     public double TextMatchScore { get; set; }
 
+    /// <summary>Temporal flow estimate; null when the recording cannot support it.</summary>
+    public double? FluencyScore { get; set; }
+    /// <summary>Attempted reference positions, excluding omissions and insertions.</summary>
+    public double? CompletenessScore { get; set; }
+    public int? MetricVersion { get; set; }
+
     public bool SpeechDetected { get; set; }
 
     /// <summary>Completed | NoSpeech | EngineUnavailable | InvalidAudio</summary>

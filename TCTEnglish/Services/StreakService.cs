@@ -33,9 +33,14 @@ namespace TCTVocabulary.Services
             return result.CurrentStreak;
         }
 
-        public async Task<StreakUpdateResult> UpdateStreakWithMetadataAsync(int userId)
+        public Task<StreakUpdateResult> UpdateStreakWithMetadataAsync(int userId)
+            => TCTEnglish.Services.Accounts.UserMutationScope.ExecuteAsync(_context, userId,
+                () => UpdateStreakCoreAsync(userId), _ => true, CancellationToken.None);
+
+        private async Task<StreakUpdateResult> UpdateStreakCoreAsync(int userId)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+            using var operation = _clock.BeginOperation();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId && u.AnonymizedAt == null);
             if (user == null)
             {
                 _logger.LogWarning("Cannot update streak because user {userId} was not found", userId);

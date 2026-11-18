@@ -19,6 +19,7 @@ public sealed class SpeechTranscriptionResult
     public string ModelIdentity { get; init; } = string.Empty;
     public string? ErrorCode { get; init; }
     public string? Message { get; init; }
+    public int? RetryAfterSeconds { get; init; }
 }
 
 public sealed class SpeechSegment

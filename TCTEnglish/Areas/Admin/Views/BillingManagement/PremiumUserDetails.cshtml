@@ -55,8 +55,8 @@
             <div class="row g-2">
                 <div class="col-md-3"><div class="small text-muted">Gói</div><div class="fw-semibold">@Model.CurrentSubscription.PlanName</div></div>
                 <div class="col-md-3"><div class="small text-muted">Trạng thái</div><div><span class="@Model.CurrentSubscription.SubscriptionBadgeClass">@Model.CurrentSubscription.SubscriptionStatus</span></div></div>
-                <div class="col-md-3"><div class="small text-muted">Bắt đầu</div><div class="fw-semibold">@(Model.CurrentSubscription.StartsAtUtc?.ToString("dd/MM/yyyy HH:mm") ?? "-")</div></div>
-                <div class="col-md-3"><div class="small text-muted">Kết thúc</div><div class="fw-semibold">@(Model.CurrentSubscription.EndsAtUtc?.ToString("dd/MM/yyyy HH:mm") ?? "-")</div></div>
+                <div class="col-md-3"><div class="small text-muted">Bắt đầu</div><div class="fw-semibold">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(Model.CurrentSubscription.StartsAtUtc)</div></div>
+                <div class="col-md-3"><div class="small text-muted">Kết thúc</div><div class="fw-semibold">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(Model.CurrentSubscription.EndsAtUtc)</div></div>
                 <div class="col-md-3"><div class="small text-muted">Còn lại</div><div class="fw-semibold">@(Model.CurrentSubscription.DaysRemaining?.ToString() ?? "-") ngày</div></div>
                 <div class="col-md-3"><div class="small text-muted">Mã đơn kích hoạt</div><div class="fw-semibold">@(Model.CurrentSubscription.ActivatedByOrderCode ?? "-")</div></div>
                 <div class="col-md-3"><div class="small text-muted">Cổng thanh toán</div><div class="fw-semibold">@(Model.CurrentSubscription.Provider ?? "-")</div></div>
@@ -94,8 +94,8 @@
                             <td>@item.PlanName</td>
                             <td><span class="badge bg-light text-dark border">@item.Status</span></td>
                             <td>
-                                <div class="small">@item.StartsAtUtc.ToString("dd/MM/yyyy HH:mm")</div>
-                                <div class="small text-muted">đến @item.EndsAtUtc.ToString("dd/MM/yyyy HH:mm")</div>
+                                <div class="small">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(item.StartsAtUtc)</div>
+                                <div class="small text-muted">đến @TCTEnglish.Services.Billing.BillingTime.ToDisplay(item.EndsAtUtc)</div>
                             </td>
                             <td>@(item.ActivatedByOrderCode ?? "-")</td>
                             <td>@(item.Provider ?? (item.IsManual ? "manual" : "-"))</td>
@@ -136,8 +136,8 @@
                             <td>@item.Provider</td>
                             <td class="text-end">@item.AmountVnd.ToString("N0") VND</td>
                             <td><span class="badge bg-light text-dark border">@item.Status</span></td>
-                            <td>@item.CreatedAtUtc.ToString("dd/MM/yyyy HH:mm")</td>
-                            <td>@(item.PaidAtUtc?.ToString("dd/MM/yyyy HH:mm") ?? "-")</td>
+                            <td>@TCTEnglish.Services.Billing.BillingTime.ToDisplay(item.CreatedAtUtc)</td>
+                            <td>@TCTEnglish.Services.Billing.BillingTime.ToDisplay(item.PaidAtUtc)</td>
                             <td>
                                 @if (item.IsPaidButNotActivated)
                                 {

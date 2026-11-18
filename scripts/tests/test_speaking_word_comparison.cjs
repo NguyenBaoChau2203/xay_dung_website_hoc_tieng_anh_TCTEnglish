@@ -53,6 +53,8 @@ function buildPracticeDomWithComparison() {
     'btn-dic-slider-prev',
     'btn-dic-slider-next',
     'btn-hide-text',
+    'spk-transcript-panel',
+    'spk-transcript-list',
     'prog-bar',
     'prog-text',
     'prog-pct',
@@ -300,6 +302,116 @@ async function recordAndStop(byId) {
   byId['btn-record'].click();
   await delay(40);
 }
+
+test('committed score and word comparison survive sentence 1 to 2 to 1 without another request', async () => {
+  const { document, byId } = buildPracticeDomWithComparison();
+  const { fetchImpl, fetchCalls } = buildAssessFetch([{ body: {
+    success: true, canCommitProgress: true, assessmentId: 'receipt-1', textMatchScore: 88,
+    fluencyAvailable: false, completenessAvailable: false,
+    comparison: { available: true, operations: [
+      { kind: 'matched', referenceToken: 'Hello', hypothesisToken: 'Hello' },
+      { kind: 'missing', referenceToken: 'world' },
+    ] },
+  } }]);
+  const { window } = createSandbox({ document, speechRecorder: createControllableRecorder(), fetchImpl });
+  await recordAndStop(byId);
+  const before = chipLabels(byId['spk-word-comparison-body']);
+  window.TctSpeakingPractice.selectSentence(1, false);
+  assert.equal(byId['spk-word-comparison'].hidden, true);
+  window.TctSpeakingPractice.selectSentence(0, false);
+  assert.equal(byId['score-total'].textContent, '88');
+  assert.equal(byId['score-accuracy'].textContent, '88');
+  assert.equal(byId['score-fluency'].textContent, '—');
+  assert.equal(byId['score-complete'].textContent, '—');
+  assert.equal(byId['spk-word-comparison'].hidden, false);
+  assert.deepEqual(chipLabels(byId['spk-word-comparison-body']), before);
+  assert.match(byId['spk-assessment-status'].textContent, /Đã lưu/);
+  assert.equal(fetchCalls.length, 2);
+});
+
+test('a saved zero score remains assessed and restores its missing-word feedback', () => {
+  const { document, byId } = buildPracticeDomWithComparison();
+  const { window } = createSandbox({ document });
+  Object.assign(window.SPK_SENTENCES[0], { isPracticed: true, totalScore: 0, accuracyScore: 0,
+    fluencyAvailable: false, completenessAvailable: false,
+    comparison: { available: true, operations: [{ kind: 'missing', referenceToken: 'Hello' }] } });
+  window.TctSpeakingPractice.selectSentence(0, false);
+  assert.equal(byId['score-total'].textContent, '0');
+  assert.equal(byId['score-fluency'].textContent, '—');
+  assert.equal(byId['spk-word-comparison'].hidden, false);
+  assert.match(byId['spk-assessment-status'].textContent, /Đã lưu/);
+});
+
+test('available component scores including a measured zero survive sentence navigation', () => {
+  const { document, byId } = buildPracticeDomWithComparison();
+  const { window, fetchCalls } = createSandbox({ document });
+  Object.assign(window.SPK_SENTENCES[0], { isPracticed: true, totalScore: 90, accuracyScore: 90,
+    fluencyScore: 76, completenessScore: 0, fluencyAvailable: true, completenessAvailable: true });
+  for (const index of [0, 1, 0]) window.TctSpeakingPractice.selectSentence(index, false);
+  assert.equal(byId['score-fluency'].textContent, '76');
+  assert.equal(byId['bar-fluency'].style.width, '76%');
+  assert.equal(byId['score-complete'].textContent, '0');
+  assert.equal(byId['score-complete'].title, '');
+  assert.match(byId['spk-assessment-status'].textContent, /ước lượng/);
+  assert.equal(fetchCalls.length, 0);
+});
+
+test('commit renders the retained best comparison and component scores instead of the lower new take', async () => {
+  const { document, byId } = buildPracticeDomWithComparison();
+  const { fetchImpl: assessFetch, fetchCalls } = buildAssessFetch([{ body: {
+    success: true, canCommitProgress: true, assessmentId: 'lower-take', textMatchScore: 40,
+    comparison: { available: true, operations: [{ kind: 'missing', referenceToken: 'new' }] },
+  } }]);
+  const fetchImpl = async (url, options) => {
+    if (String(url).includes('/progress')) return { ok: true, json: async () => ({
+      success: true, totalScore: 90, accuracyScore: 90, fluencyScore: 77, completenessScore: 100,
+      fluencyAvailable: true, completenessAvailable: true,
+      comparison: { available: true, operations: [{ kind: 'matched', referenceToken: 'best', hypothesisToken: 'best' }] },
+    }) };
+    return assessFetch(url, options);
+  };
+  const { window } = createSandbox({ document, speechRecorder: createControllableRecorder(), fetchImpl });
+  await recordAndStop(byId);
+  window.TctSpeakingPractice.selectSentence(1, false);
+  window.TctSpeakingPractice.selectSentence(0, false);
+  assert.equal(byId['score-total'].textContent, '90');
+  assert.equal(byId['score-fluency'].textContent, '77');
+  assert.equal(byId['score-complete'].textContent, '100');
+  assert.deepEqual(chipLabels(byId['spk-word-comparison-body']), ['best']);
+  assert.equal(fetchCalls.filter(call => call.url.includes('/assess')).length, 1);
+});
+
+test('multiple saved sentences retain distinct scores and comparisons through arbitrary navigation', () => {
+  const { document, byId } = buildPracticeDomWithComparison();
+  const { window, fetchCalls } = createSandbox({ document });
+  const scores = [90, 0, 61];
+  window.SPK_SENTENCES.push({ id: 103, text: 'Third sentence', start: 4, end: 6 });
+  window.SPK_SENTENCES.forEach((sentence, i) => Object.assign(sentence, {
+    isPracticed: true, totalScore: scores[i], accuracyScore: scores[i], fluencyAvailable: false, completenessAvailable: false,
+    comparison: { available: true, operations: [{ kind: 'substituted', referenceToken: 'source' + i, hypothesisToken: 'heard' + i }] },
+  }));
+  for (const index of [0, 2, 1, 2, 0]) {
+    window.TctSpeakingPractice.selectSentence(index, false);
+    assert.equal(byId['score-total'].textContent, String(scores[index]));
+    assert.deepEqual(chipLabels(byId['spk-word-comparison-body']), ['source' + index + ' → heard' + index]);
+    assert.equal(byId['score-fluency'].textContent, '—');
+  }
+  assert.equal(fetchCalls.length, 0);
+});
+
+test('transcript toggle hides the whole list and stays hidden when selecting another sentence', () => {
+  const { document, byId } = buildPracticeDomWithComparison();
+  const { window } = createSandbox({ document });
+  byId['btn-hide-text'].click();
+  assert.equal(byId['spk-transcript-list'].hidden, true);
+  assert.equal(byId['btn-hide-text'].getAttribute('aria-expanded'), 'false');
+  assert.match(byId['btn-hide-text'].textContent, /Hiện/);
+  window.TctSpeakingPractice.selectSentence(1, false);
+  assert.equal(byId['spk-transcript-list'].hidden, true);
+  byId['btn-hide-text'].click();
+  assert.equal(byId['spk-transcript-list'].hidden, false);
+  assert.equal(byId['btn-hide-text'].getAttribute('aria-expanded'), 'true');
+});
 
 test('new record click clears prior word comparison before mic request', async () => {
   const { document, byId } = buildPracticeDomWithComparison();

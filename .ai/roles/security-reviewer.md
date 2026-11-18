@@ -1,7 +1,8 @@
 # Security reviewer lens
 
-Used by the same agent for a deliberate review pass. Do not dispatch a worker,
-enable autonomous security hooks or access production data.
+Used by the same agent for a deliberate review pass by default. Delegation is
+permitted only under AGENTS.md's owner execution policy; this lens does not grant
+it. Do not enable autonomous security hooks or access production data.
 
 - Verify access scope for affected reads/mutations, GetCurrentUserId(), RBAC
   and NotFound() on ownership violations.

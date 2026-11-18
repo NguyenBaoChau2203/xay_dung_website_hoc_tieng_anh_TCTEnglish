@@ -1,0 +1,175 @@
+@using TCTEnglish.Services.Sets
+@{
+    // ViewData: Prefix (unique id prefix), Named (true on the edit page so inputs post to CardFormViewModel),
+    // IsPremium, Topics (extra topics already used in the set).
+    var p = ViewData["Prefix"] as string ?? "cd";
+    var named = ViewData["Named"] as bool? == true;
+    var isPremium = ViewData["IsPremium"] as bool? == true;
+    var extraTopics = ViewData["Topics"] as IEnumerable<string> ?? Enumerable.Empty<string>();
+    string N(string name) => named ? name : null;
+}
+<div class="ts-details" data-ts-details>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="@p-tab-examples" data-bs-toggle="tab" data-bs-target="#@p-pane-examples" data-ts-tab="examples" type="button" role="tab" aria-controls="@p-pane-examples" aria-selected="true"><span data-ts-tab-label="examples">Ví dụ</span></button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="@p-tab-image" data-bs-toggle="tab" data-bs-target="#@p-pane-image" data-ts-tab="image" type="button" role="tab" aria-controls="@p-pane-image" aria-selected="false"><span data-ts-tab-label="image">Ảnh</span></button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="@p-tab-info" data-bs-toggle="tab" data-bs-target="#@p-pane-info" data-ts-tab="info" type="button" role="tab" aria-controls="@p-pane-info" aria-selected="false"><span data-ts-tab-label="info">Thông tin</span></button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="@p-tab-note" data-bs-toggle="tab" data-bs-target="#@p-pane-note" data-ts-tab="note" type="button" role="tab" aria-controls="@p-pane-note" aria-selected="false"><span data-ts-tab-label="note">Ghi chú</span></button>
+        </li>
+    </ul>
+
+    <div class="tab-content ts-tab-content">
+        <div class="tab-pane fade show active" id="@p-pane-examples" role="tabpanel" aria-labelledby="@p-tab-examples" tabindex="0">
+            <div data-ts-examples></div>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-ts-add-example><i class="fa-solid fa-plus me-1" aria-hidden="true"></i>Thêm ví dụ</button>
+        </div>
+
+        <div class="tab-pane fade" id="@p-pane-image" role="tabpanel" aria-labelledby="@p-tab-image" tabindex="0">
+            <div data-ts-image-current class="ts-image-current"></div>
+            @if (named)
+            {
+                <input type="hidden" name="ImageUrl" data-ts-image-url-field />
+                <span data-ts-image-source-fields></span>
+            }
+            <p class="text-danger" role="alert" data-ts-image-error hidden></p>
+            <div class="ts-image-actions">
+                <label class="btn btn-outline-primary btn-sm mb-0" for="@p-image-upload">
+                    <i class="fa-solid fa-arrow-up-from-bracket me-1" aria-hidden="true"></i>Tải ảnh của tôi lên
+                </label>
+                <input type="file" class="visually-hidden" id="@p-image-upload" accept="image/*" capture="environment" data-ts-image-upload />
+                <button type="button" class="btn btn-outline-danger btn-sm" data-ts-image-remove hidden>Không dùng ảnh</button>
+            </div>
+            @if (isPremium)
+            {
+                <div class="ts-image-search">
+                    <label class="form-label" for="@p-image-query">Tìm ảnh gợi ý</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="@p-image-query" maxlength="60" data-ts-image-query placeholder="Ví dụ: person running" />
+                        <button type="button" class="btn btn-primary" data-ts-image-search>Tìm ảnh</button>
+                    </div>
+                    <div class="ts-image-results" data-ts-image-results></div>
+                </div>
+            }
+            else
+            {
+                <p class="form-text" data-ts-image-locked><i class="fa-solid fa-crown me-1" aria-hidden="true"></i>Tìm ảnh gợi ý là tính năng Premium.</p>
+            }
+        </div>
+
+        <div class="tab-pane fade" id="@p-pane-info" role="tabpanel" aria-labelledby="@p-tab-info" tabindex="0">
+            <fieldset class="mb-3" data-ts-pos>
+                <legend class="form-label">Loại từ (tối đa 6)</legend>
+                <div class="ts-chip-grid">
+                    @foreach (var (code, label) in CardPartsOfSpeech.All)
+                    {
+                        <span>
+                            <input type="checkbox" class="btn-check" id="@p-pos-@code" value="@code" name="@N("PartsOfSpeech")" />
+                            <label class="ts-pill" for="@p-pos-@code">@label</label>
+                        </span>
+                    }
+                </div>
+            </fieldset>
+
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-sm-6">
+                    <label class="form-label" for="@p-topic">Chủ đề</label>
+                    <input type="text" class="form-control" id="@p-topic" list="@p-topics" maxlength="60" name="@N("Topic")" data-ts-topic />
+                    <datalist id="@p-topics">
+                        @foreach (var topic in SetTopics.All.Union(extraTopics))
+                        {
+                            <option value="@topic"></option>
+                        }
+                    </datalist>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <label class="form-label" for="@p-emoji">Emoji</label>
+                    <input type="text" class="form-control" id="@p-emoji" maxlength="16" name="@N("Emoji")" data-ts-emoji />
+                </div>
+                <div class="col-6 col-sm-3">
+                    <label class="form-label" for="@p-cefr">CEFR</label>
+                    <select class="form-select" id="@p-cefr" name="@N("Cefr")" data-ts-cefr>
+                        <option value="">Không rõ</option>
+                        @foreach (var level in CefrLevels.All)
+                        {
+                            <option value="@level">@level</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label class="form-label" for="@p-ipa-us">Phiên âm Mỹ (US)</label>
+                    <input type="text" class="form-control tct-phonetic" id="@p-ipa-us" maxlength="100" name="@N("Phonetic")" placeholder="/rɪˈzɪliənt/" data-ts-ipa-us />
+                </div>
+                <div class="col-6">
+                    <label class="form-label" for="@p-ipa-uk">Phiên âm Anh (UK)</label>
+                    <input type="text" class="form-control tct-phonetic" id="@p-ipa-uk" maxlength="100" name="@N("PhoneticUk")" data-ts-ipa-uk />
+                </div>
+                <div class="col-12">
+                    <label class="form-label" for="@p-meaning-en">Định nghĩa tiếng Anh</label>
+                    <input type="text" class="form-control" id="@p-meaning-en" maxlength="400" name="@N("MeaningEn")" lang="en" data-ts-meaning-en />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <span class="form-label d-block">Cụm từ thường gặp</span>
+                <div data-ts-collocations></div>
+                <button type="button" class="btn btn-outline-primary btn-sm" data-ts-add-collocation><i class="fa-solid fa-plus me-1" aria-hidden="true"></i>Thêm cụm từ</button>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6">
+                    <div data-ts-tags="synonyms">
+                        <label class="form-label" for="@p-syn">Đồng nghĩa</label>
+                        <div class="ts-tag-list" data-ts-tag-list></div>
+                        <input type="text" class="form-control" id="@p-syn" maxlength="80" placeholder="Gõ rồi nhấn Enter" />
+                        <span data-ts-tag-hidden></span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div data-ts-tags="antonyms">
+                        <label class="form-label" for="@p-ant">Trái nghĩa</label>
+                        <div class="ts-tag-list" data-ts-tag-list></div>
+                        <input type="text" class="form-control" id="@p-ant" maxlength="80" placeholder="Gõ rồi nhấn Enter" />
+                        <span data-ts-tag-hidden></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <span class="form-label d-block">Họ từ</span>
+                <div data-ts-wordfamily></div>
+                <button type="button" class="btn btn-outline-primary btn-sm" data-ts-add-wordfamily><i class="fa-solid fa-plus me-1" aria-hidden="true"></i>Thêm từ họ hàng</button>
+            </div>
+
+            <div class="mb-3" data-ts-verbforms hidden>
+                <span class="form-label d-block">Dạng động từ</span>
+                <div class="row g-2">
+                    <div class="col-6 col-md-3"><label class="form-label" for="@p-vf-past">Quá khứ</label><input type="text" class="form-control" id="@p-vf-past" maxlength="80" name="@N("VerbForms.Past")" data-ts-verb-past /></div>
+                    <div class="col-6 col-md-3"><label class="form-label" for="@p-vf-pp">Quá khứ phân từ</label><input type="text" class="form-control" id="@p-vf-pp" maxlength="80" name="@N("VerbForms.PastParticiple")" data-ts-verb-pp /></div>
+                    <div class="col-6 col-md-3"><label class="form-label" for="@p-vf-ing">V-ing</label><input type="text" class="form-control" id="@p-vf-ing" maxlength="80" name="@N("VerbForms.Ing")" data-ts-verb-ing /></div>
+                    <div class="col-6 col-md-3"><label class="form-label" for="@p-vf-third">Ngôi 3 số ít</label><input type="text" class="form-control" id="@p-vf-third" maxlength="80" name="@N("VerbForms.ThirdPerson")" data-ts-verb-third /></div>
+                </div>
+            </div>
+
+            <div class="mb-1" data-ts-plural-box hidden>
+                <label class="form-label" for="@p-plural">Số nhiều</label>
+                <input type="text" class="form-control" id="@p-plural" maxlength="80" name="@N("Plural")" data-ts-plural />
+            </div>
+            @if (named)
+            {
+                <input type="hidden" name="AiGenerated" value="false" data-ts-ai-field />
+            }
+        </div>
+
+        <div class="tab-pane fade" id="@p-pane-note" role="tabpanel" aria-labelledby="@p-tab-note" tabindex="0">
+            <label class="form-label" for="@p-note">Ghi chú riêng (mẹo nhớ)</label>
+            <textarea class="form-control" id="@p-note" rows="4" maxlength="1000" name="@N("PersonalNote")" data-ts-note></textarea>
+            <p class="form-text text-end" data-ts-note-counter>0/1000</p>
+        </div>
+    </div>
+</div>

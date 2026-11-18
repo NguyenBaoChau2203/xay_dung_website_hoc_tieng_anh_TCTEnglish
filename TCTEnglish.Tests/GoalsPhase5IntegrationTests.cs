@@ -91,6 +91,7 @@ public sealed class GoalsPhase5IntegrationTests
         await factory.InitializeAsync();
         await SeedReadingReplayPassageAsync(factory);
         using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        var antiforgery = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, $"/Reading/Study/{ReadingReplayPassageId}");
 
         using (var studyResponse = await client.GetAsync($"/Reading/Study/{ReadingReplayPassageId}"))
         {
@@ -104,6 +105,7 @@ public sealed class GoalsPhase5IntegrationTests
                 Encoding.UTF8,
                 "application/x-www-form-urlencoded")
         };
+        firstRequest.Headers.Add("RequestVerificationToken", antiforgery);
         using var firstResponse = await client.SendAsync(firstRequest);
         Assert.Equal(HttpStatusCode.OK, firstResponse.StatusCode);
 
@@ -114,6 +116,7 @@ public sealed class GoalsPhase5IntegrationTests
                 Encoding.UTF8,
                 "application/x-www-form-urlencoded")
         };
+        replayRequest.Headers.Add("RequestVerificationToken", antiforgery);
         using var replayResponse = await client.SendAsync(replayRequest);
         Assert.Equal(HttpStatusCode.OK, replayResponse.StatusCode);
 
@@ -188,6 +191,27 @@ public sealed class GoalsPhase5IntegrationTests
         Assert.NotNull(progress.CompletedAt);
     }
 
+    [Fact]
+    public async Task SubmitReading_WithoutAntiforgery_CannotCompleteOrCreditTheAttempt()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        await SeedReadingReplayPassageAsync(factory);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        using var study = await client.GetAsync($"/Reading/Study/{ReadingReplayPassageId}");
+        Assert.Equal(HttpStatusCode.OK, study.StatusCode);
+        using var response = await client.PostAsync("/Reading/SubmitReading", new FormUrlEncodedContent(new Dictionary<string, string>
+        {
+            ["passageId"] = ReadingReplayPassageId.ToString(),
+            [$"answers[{ReadingReplayQuestionId}]"] = ReadingReplayCorrectOptionId.ToString()
+        }));
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        Assert.False(await context.ReadingAttempts.AnyAsync(a => a.IsSubmitted));
+        Assert.False(await context.UserReadingHistories.AnyAsync(h => h.IsCompleted));
+    }
+
     private static async Task SeedReadingReplayPassageAsync(TestWebApplicationFactory factory)
     {
         using var scope = factory.Services.CreateScope();
@@ -197,6 +221,7 @@ public sealed class GoalsPhase5IntegrationTests
         {
             Id = ReadingReplayPassageId,
             Title = "Goals replay reading",
+            Status = TCTEnglish.Models.Reading.ReadingStatuses.Published,
             Content = "Replay-safe reading passage for goals integration test.",
             Level = "A1",
             Topic = "Replay",

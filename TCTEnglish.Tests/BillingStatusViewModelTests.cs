@@ -12,43 +12,22 @@ namespace TCTEnglish.Tests
         {
             var manualReview = new PaymentHistoryItemViewModel
             {
-                Status = PaymentOrderStatuses.ManualReview
+                Provider = PaymentProviders.VNPay,
+                Status = PaymentOrderStatuses.ManualReview,
+                ExpiresAtUtc = System.DateTime.UtcNow.AddDays(-2)
             };
             var partiallyRefunded = new PaymentHistoryItemViewModel
             {
-                Status = PaymentOrderStatuses.PartiallyRefunded
+                Provider = PaymentProviders.VNPay,
+                Status = PaymentOrderStatuses.PartiallyRefunded,
+                ExpiresAtUtc = System.DateTime.UtcNow.AddDays(-2)
             };
 
-            Assert.Equal("Chờ kiểm tra thủ công", manualReview.StatusDisplayName);
-            Assert.Equal("badge bg-warning text-dark rounded-pill px-3", manualReview.StatusBadgeClass);
-            Assert.Equal("bi bi-search me-1", manualReview.StatusIconClass);
-
-            Assert.Equal("Hoàn tiền một phần", partiallyRefunded.StatusDisplayName);
-            Assert.Equal("badge bg-info text-dark rounded-pill px-3", partiallyRefunded.StatusBadgeClass);
-            Assert.Equal("bi bi-arrow-left-right me-1", partiallyRefunded.StatusIconClass);
-        }
-
-        [Fact]
-        public void PaymentResult_ManualReviewAndPartiallyRefunded_HaveExpectedDisplayMappings()
-        {
-            var manualReview = new PaymentResultViewModel
-            {
-                HasValidReturnSignature = true,
-                OrderStatus = PaymentOrderStatuses.ManualReview
-            };
-            var partiallyRefunded = new PaymentResultViewModel
-            {
-                HasValidReturnSignature = true,
-                OrderStatus = PaymentOrderStatuses.PartiallyRefunded
-            };
-
-            Assert.Equal("Manual review", manualReview.StatusDisplayName);
-            Assert.Equal("bi bi-search", manualReview.IconClass);
-            Assert.Equal("badge bg-warning-subtle text-warning-emphasis border border-warning-subtle", manualReview.StatusBadgeClass);
-
-            Assert.Equal("Hoàn tiền một phần", partiallyRefunded.StatusDisplayName);
-            Assert.Equal("bi bi-arrow-left-right", partiallyRefunded.IconClass);
-            Assert.Equal("badge bg-info-subtle text-info-emphasis border border-info-subtle", partiallyRefunded.StatusBadgeClass);
+            // The learner never sees "Manual review" or an internal word: a review is "Đang xác nhận".
+            Assert.Equal("Đang xác nhận", manualReview.StatusView.Label);
+            Assert.Equal("fa-solid fa-hourglass-half", manualReview.StatusView.IconClass);
+            Assert.Equal("Hoàn tiền một phần", partiallyRefunded.StatusView.Label);
+            Assert.Equal("info", partiallyRefunded.StatusView.Tone);
         }
 
         [Fact]

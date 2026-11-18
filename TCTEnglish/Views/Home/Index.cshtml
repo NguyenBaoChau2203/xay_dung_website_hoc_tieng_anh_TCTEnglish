@@ -3,14 +3,8 @@
     ViewData["Title"] = "Dashboard";
     // Simple display calculations (approved Q5)
     var userName    = Model.FullName ?? User.Identity?.Name ?? "Bạn";
-    var nowHour     = DateTime.Now.Hour;
+    var nowHour     = Model.BusinessHour;
     var greetText   = nowHour < 12 ? "Chào buổi sáng" : nowHour < 18 ? "Chào buổi chiều" : "Chào buổi tối";
-    // Streak week dots
-    string[] dayNames   = { "T2","T3","T4","T5","T6","T7","CN" };
-    int todayDow        = (int)DateTime.Now.DayOfWeek;
-    int todayInWeek     = todayDow == 0 ? 6 : todayDow - 1;
-    int litDays         = Math.Min(Model.Streak % 7 == 0 && Model.Streak > 0 ? 7 : Model.Streak % 7, 7);
-    int streakStart     = Math.Max(0, todayInWeek - litDays + 1);
     // Memory bar
     var totalVocab  = Math.Max(Model.MasteredCount + Model.LearningCount + Model.NewCount, 1);
     var masteredPct = (int)Math.Round(Model.MasteredCount * 100d / totalVocab);
@@ -65,7 +59,7 @@
                     <p class="db-command__meta">@f.SetCount bộ từ · @f.CreatorName</p>
                     @if (Model.Goal > 0)
                     {
-                        <p class="db-command__goal">Hôm nay: <strong>@Model.CardsReviewedToday/@Model.Goal</strong> từ</p>
+                        <p class="db-command__goal">Mục tiêu hôm nay: <strong>@Model.CardsReviewedToday/@Model.Goal thẻ</strong></p>
                     }
                     <a asp-controller="Folder" asp-action="FolderDetail" asp-route-id="@f.FolderId" class="db-cta-btn">
                         <i class="fa-solid fa-bolt" aria-hidden="true"></i> Học ngay
@@ -78,7 +72,7 @@
                     <p class="db-command__meta">Tạo folder của bạn hoặc khám phá folder từ cộng đồng</p>
                     @if (Model.Goal > 0)
                     {
-                        <p class="db-command__goal">Hôm nay: <strong>@Model.CardsReviewedToday/@Model.Goal</strong> từ</p>
+                        <p class="db-command__goal">Mục tiêu hôm nay: <strong>@Model.CardsReviewedToday/@Model.Goal thẻ</strong></p>
                     }
                     <a asp-controller="Folder" asp-action="Index" class="db-cta-btn db-cta-btn--secondary">
                         <i class="fa-solid fa-compass" aria-hidden="true"></i> Khám phá folders
@@ -91,23 +85,41 @@
                 <span class="db-label">Streak</span>
                 <p class="db-streak-num">@Model.Streak</p>
                 <p class="db-streak-label">ngày liên tiếp</p>
-                <div class="db-week-dots mt-2" aria-label="Tuần này: @litDays ngày học">
-                    @for (int i = 0; i < 7; i++)
+                <div class="db-week-dots mt-2" aria-label="7 ngày gần nhất: @Model.StudyDays.Count(d => d.HasConfirmedStudy) ngày học đã xác nhận">
+                    @foreach (var day in Model.StudyDays)
                     {
-                        var on    = i >= streakStart && i <= todayInWeek ? "db-day-dot--on" : "";
-                        var today = i == todayInWeek ? "db-day-dot--today" : "";
-                        <span class="db-day-dot @on @today">@dayNames[i]</span>
+                        var on = day.HasConfirmedStudy ? "db-day-dot--on" : "";
+                        var today = day.IsToday ? "db-day-dot--today" : "";
+                        <span class="db-day-dot @on @today" title="@day.FullLabel: @day.StudyLabel" aria-label="@day.FullLabel: @day.StudyLabel">@day.DayLabel</span>
                     }
                 </div>
             </div>
         </div>
     </div>
 
+    <section class="db-card mb-3" aria-label="Mục tiêu học hôm nay">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div>
+                <span class="db-label">Mục tiêu hôm nay</span>
+                <p class="mb-0">@(Model.ActiveGoalCount > 0 ? Model.DailyGoalSummary : "Chọn kỹ năng và đặt mục tiêu để bắt đầu.")</p>
+            </div>
+            <a asp-controller="Goals" asp-action="Index" class="btn btn-outline-primary btn-sm">Xem mục tiêu</a>
+        </div>
+        @if (Model.ActiveGoalCount > 0)
+        {
+            <p class="small mt-2 mb-0">Đã đạt @Model.MetGoalCount/@Model.ActiveGoalCount mục tiêu · @Model.DailyGoalPercent%</p>
+        }
+    </section>
+
     @* ROW B: STATS STRIP *@
     <div class="row g-3 mb-3">
         <div class="col-12">
             <div class="db-card db-stats-strip">
                 <div class="db-stats-counts">
+                    <div class="db-stat-item">
+                        <span class="db-stat-val">@Model.TotalXp XP</span>
+                        <span class="db-stat-lbl">Hôm nay: @Model.TodayXp XP</span>
+                    </div>
                     <div class="db-stat-item">
                         <span class="db-stat-val">@Model.CardCount</span>
                         <span class="db-stat-lbl">Thẻ từ</span>

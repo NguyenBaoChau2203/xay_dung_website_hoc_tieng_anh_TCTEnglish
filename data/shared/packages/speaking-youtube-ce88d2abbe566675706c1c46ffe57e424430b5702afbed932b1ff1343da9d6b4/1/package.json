@@ -1,0 +1,1473 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level C1-  \u0110\u1ED2 \u0102N NHANH -",
+        "YoutubeId": "_UtQVkoYNgQ",
+        "Level": "C1",
+        "Topic": "\u0102n u\u1ED1ng",
+        "ThumbnailUrl": "https://img.youtube.com/vi/_UtQVkoYNgQ/hqdefault.jpg",
+        "Duration": "13:28",
+        "SourceUrl": "https://www.youtube.com/watch?v=_UtQVkoYNgQ",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.026015187ec74d1aaa688e2074a0d265",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 11,
+        "EndTime": 19.279,
+        "Text": "I am absolutely starving. Let\u0027s just order some double cheeseburgers and fries on Grab. It\u0027s fast and there\u0027s a discount code today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.02cb7200fb1a4b35846dd9ecd8c6f991",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 218,
+        "EndTime": 227.68,
+        "Text": "If people knew how much chemical processing goes into a simple chicken nugget, they might think twice. And for busy people like us, I guess the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.0c95eb9adce3473689a22fc27e64cc05",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 526,
+        "EndTime": 533.92,
+        "Text": "How about we go to the supermarket down the street? We can grab some fresh chicken breast, whole wheat tortillas, and lots of veggies. We can make healthy",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.0d6547409564487fb6d90e1603953959",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 286,
+        "EndTime": 296.4,
+        "Text": "H, no thanks, Tom. I am trying to completely cut out fast food. It is incredibly unhealthy and honestly it makes me feel so sluggish afterward.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.0d73bfb8cf344dc58aff91e747952454",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 419,
+        "EndTime": 425.199,
+        "Text": "a fresh, healthy salad bowl costs twice as much as a processed fast food combo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.0d89d71e5a6a404e8054a7ed63a3ed2d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 259,
+        "EndTime": 267.12,
+        "Text": "How about we go to the supermarket down the street? We can grab some fresh chicken breast, whole wheat tortillas, and lots of veggies. We can make healthy",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.0ec6c66138444e1b94cc0e46a2f24be0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 563,
+        "EndTime": 573.12,
+        "Text": "Oh, come on. Don\u0027t be so strict. We have a massive deadline tonight. Who is the time or the money to buy organic kale, quinoa, and cook a three course meal?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.10a118eadc844ca190232320c1a25182",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 328,
+        "EndTime": 332.72,
+        "Text": "Addicted? Isn\u0027t that a bit of an exaggeration? It\u0027s just a burger.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.11cd2e4faa6a418282d43c3bb0a2924f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 576,
+        "EndTime": 585.44,
+        "Text": "That is exactly the trap the fast food industry wants you to fall into. Have you ever thought about the origins of this industry? It started decades ago as",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.11d2e8074dac4966a01664ed036defd0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 505,
+        "EndTime": 513.2,
+        "Text": "Exactly. It requires a bit of discipline, but it saves money and protects your long-term health. The short-term convenience of fast food is",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.164c00f9fd754cf4a5b58ac4e59a7a46",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 194,
+        "EndTime": 202.56,
+        "Text": "That makes sense. The revenue from those taxes could actually be used to subsidize fresh local produce. If governments made fruits and vegetables",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.18eef7c7b7a5417bbcd7f6d35b4fa884",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 780,
+        "EndTime": 783.2,
+        "Text": "simply not worth the long-term medical bills.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.19836ea58ab84dde8a0c0a888b60cd4f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 332,
+        "EndTime": 340,
+        "Text": "It really isn\u0027t an exaggeration. Food scientists intentionally engineer these products to be hyper palatable. They",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.1dc292c111bc41bcbab7b08c6f64c058",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 137,
+        "EndTime": 144.16,
+        "Text": "free delivery vouchers. It is psychological warfare, and it is very hard to resist. I completely agree that",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.1dc9701c600946febecc11cc04bf1827",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 267,
+        "EndTime": 270.16,
+        "Text": "chicken wraps at home in less than 20 minutes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.22286f3bdc524c09abfb8ad0a648048f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 728,
+        "EndTime": 736.16,
+        "Text": "That makes sense. The revenue from those taxes could actually be used to subsidize fresh local produce. If governments made fruits and vegetables",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.2443edaa85194abc822251b614610af3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 128,
+        "EndTime": 137.04,
+        "Text": "aggressive algorithms. The moment you unlock your phone around dinnertime, you are bombarded with notifications, vivid pictures of crispy fried chicken, and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.244e200e4d7e4ebea95c037b044169c8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 310,
+        "EndTime": 318.639,
+        "Text": "That is exactly the trap the fast food industry wants you to fall into. Have you ever thought about the origins of this industry? It started decades ago as",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.251fce01a37d4fe79ffb483226a2decf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 614,
+        "EndTime": 621.44,
+        "Text": "crave it. And the health risks are terrifying. We are seeing a massive spike in obesity, type 2 diabetes, and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.2a9b7620b4844a90b838d895d697f424",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 606,
+        "EndTime": 614.24,
+        "Text": "calculate the exact ratio of sugar, salt, and trans fats to trigger dopamine releases in our brains. That is why you",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.2fca6f601e084239a6da5d9644d8f11f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 724,
+        "EndTime": 728.079,
+        "Text": "a sugar tax on sweetened beverages, which is a great start.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.3032c6ac18434d5087c8716f3fa3e80b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 191,
+        "EndTime": 194.48,
+        "Text": "a sugar tax on sweetened beverages, which is a great start.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.30ab4a952dfb4344b5bab54a9c2e916a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 449,
+        "EndTime": 457.84,
+        "Text": "government should step in. We need stricter regulations on junk food advertising, especially ads targeting children. Some countries have introduced",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.30c5ddd86f2f489abc7ae21159d11f9b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 166,
+        "EndTime": 175.44,
+        "Text": "towards junk food. The system essentially punishes you financially for wanting to eat well. So, what is the solution? We can\u0027t just shut down every",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.344934d66cdb4623a92c3b617badda02",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 716,
+        "EndTime": 724.64,
+        "Text": "government should step in. We need stricter regulations on junk food advertising, especially ads targeting children. Some countries have introduced",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.373500e709924751b7f71baf5d1002ae",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 249,
+        "EndTime": 259.359,
+        "Text": "All right. All right. You win this debate. Your logic is flawless. And now I feel incredibly guilty for craving a burger. So, what is the alternative for tonight?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.378ddaf915a44c0e80ce93ea754d9b46",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 9.56,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level C1 and the topic is fast food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.38d1b37a1b0c46d4882dfd5d4348102d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 643,
+        "EndTime": 654.48,
+        "Text": "That\u0027s true, but it also highlights how superficial our modern lifestyle has become. We claim we don\u0027t have time to cook, yet we spend hours mindlessly scrolling on Tik Tok or Instagram.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.3fe50a2ba0e5456ca4e0b8cf68dddb2d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 26,
+        "EndTime": 34.239,
+        "Text": "makes me feel so sluggish afterward. Oh, come on. Don\u0027t be so strict. We have a massive deadline tonight. Who has the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.4190b81dff6d4a6db9fd7f3588091893",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 573,
+        "EndTime": 576.8,
+        "Text": "Fast food is cheap, accessible, and it gets the job done.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.4304d3e200444e148c40913547ab2f57",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 668,
+        "EndTime": 677.76,
+        "Text": "pictures of crispy fried chicken, and free delivery vouchers. It is psychological warfare, and it is very hard to resist. I completely agree that",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.448efc6b55894ce0a7cb7914777e69c6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 340,
+        "EndTime": 347.44,
+        "Text": "calculate the exact ratio of sugar, salt, and trans fats to trigger dopamine releases in our brains. That is why you",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.46a1e56c35304da4971fe9f4e0152276",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 585,
+        "EndTime": 595.12,
+        "Text": "a quick occasional meal for busy workers. But today, it has morphed into a highly engineered multibillion dollar machine designed to make us addicted.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.4df70e4fbcac460ea83bd8f107138956",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 202,
+        "EndTime": 207.44,
+        "Text": "cheaper and more accessible in urban areas, people would naturally buy them more.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.55892a71cb3342f1939a3917027907b5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 533,
+        "EndTime": 536.959,
+        "Text": "chicken wraps at home in less than 20 minutes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.5605b71435fd4b04a617f0b6c5fc69a7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 120,
+        "EndTime": 128,
+        "Text": "Ouch. That hit a little too close to home. But you also can\u0027t ignore the role of technology. Food delivery apps use",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.5ae55aab956349d591fa0fef45630fee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 55,
+        "EndTime": 61.52,
+        "Text": "morphed into a highly engineered multibillion dollar machine designed to make us addicted.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.5bb60736bb3e4fa29cf8e213a39605f7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 238,
+        "EndTime": 246.4,
+        "Text": "Exactly. It requires a bit of discipline, but it saves money and protects your long-term health. The short-term convenience of fast food is",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.5beeac52aa404a86ae0d6807b1ac7697",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 403,
+        "EndTime": 410.96,
+        "Text": "free delivery vouchers. It is psychological warfare, and it is very hard to resist. I completely agree that",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.5e028b40fa5645b19f7f487d4d70ad3a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 654,
+        "EndTime": 661.6,
+        "Text": "Ouch. That hit a little too close to home. But you also can\u0027t ignore the role of technology. Food delivery apps use",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.6579cb1c164945f2920ab91507f9b1b9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 709,
+        "EndTime": 716.32,
+        "Text": "fast food chain overnight. No, but we desperately need a multi-layered approach to fix this. On a macro level,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.68292ba6845f41c5941e441dd56626c1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 9,
+        "EndTime": 11.599,
+        "Text": "Now listen carefully.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.68bd444ff0b940159e96e62ee5a77b73",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 158,
+        "EndTime": 166.48,
+        "Text": "Exactly. Healthy eating has almost become a privilege for the wealthy. When a student is on a tight budget, the financial incentive heavily leans",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.6a476d2ccf0644eeb1d17cd6765b5879",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 783,
+        "EndTime": 792.959,
+        "Text": "All right. All right. You win this debate. Your logic is flawless. And now I feel incredibly guilty for craving a burger. So, what is the alternative for tonight?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.71a540f779fb4fe8a40915df7eaf94e8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 442,
+        "EndTime": 449.52,
+        "Text": "fast food chain overnight. No, but we desperately need a multi-layered approach to fix this. On a macro level,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.725a8b8e33dd45ebbea4a951aec8b215",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 376,
+        "EndTime": 387.68,
+        "Text": "That\u0027s true, but it also highlights how superficial our modern lifestyle has become. We claim we don\u0027t have time to cook, yet we spend hours mindlessly scrolling on Tik Tok or Instagram.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.7436344efaa54118b64aa3bfe2c020bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 87,
+        "EndTime": 96.4,
+        "Text": "cardiovascular diseases, especially among young people. I hear you on the health risks, but you have to look at the socioeconomic reality and current",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.768f5a56605246b8a004f5dcc54b88e7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 771,
+        "EndTime": 780,
+        "Text": "Exactly. It requires a bit of discipline, but it saves money and protects your long-term health. The short-term convenience of fast food is",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.76bf8e5125ef45cf95a0477e6bdaa368",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 485,
+        "EndTime": 494.479,
+        "Text": "If people knew how much chemical processing goes into a simple chicken nugget, they might think twice. And for busy people like us, I guess the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.7a286a4f8728496d92749ff811973cf7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 746,
+        "EndTime": 752.48,
+        "Text": "Schools need to provide real nutritional education so kids actually understand what they\u0027re putting into their bodies.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.7c570222f33740b5b1366cbe073e82a0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 34,
+        "EndTime": 39.52,
+        "Text": "time or the money to buy organic kale, quinoa, and cook a three course meal?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.81ed2cea80d345d7bcb4fd139caca96e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 552,
+        "EndTime": 563.2,
+        "Text": "H, no thanks, Tom. I am trying to completely cut out fast food. It is incredibly unhealthy and honestly it makes me feel so sluggish afterward.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.823732ff057e484088f35cd9edb6571f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 144,
+        "EndTime": 152.959,
+        "Text": "the marketing is predatory, especially toward the younger generation. But another huge issue is the pricing disparity. It is a systemic failure that",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.83c7249b637f4f91837e21babc52d834",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 73,
+        "EndTime": 80.64,
+        "Text": "calculate the exact ratio of sugar, salt, and trans fats to trigger dopamine releases in our brains. That is why you",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.850b16e3df534fc0872714a839c26b13",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 761,
+        "EndTime": 771.92,
+        "Text": "practical solution is meal prepping. If we take a few hours on Sunday to cook and pack our meals for the week, we eliminate the excuse of not having time on a busy Wednesday evening.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.85618e64d75043ba8b84a9ecd1e65c5c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 599,
+        "EndTime": 606.8,
+        "Text": "It really isn\u0027t an exaggeration. Food scientists intentionally engineer these products to be hyper palatable. They",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.89a6d72955a94805a880f002001d9ef3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 803,
+        "EndTime": 808.309841,
+        "Text": "That actually sounds delicious and my wallet will definitely thank you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.8b012ab605024592a1f044edd1d8e351",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 19,
+        "EndTime": 26.96,
+        "Text": "H no thanks, Tom. I am trying to completely cut out fast food. It is incredibly unhealthy and honestly it",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.8cfaf5805502498a806d4f0342f2fd24",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 677,
+        "EndTime": 686.56,
+        "Text": "the marketing is predatory, especially toward the younger generation. But another huge issue is the pricing disparity. It is a systemic failure that",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.901ec86593404388af826e971551017b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 394,
+        "EndTime": 403.84,
+        "Text": "aggressive algorithms. The moment you unlock your phone around dinnertime, you are bombarded with notifications, vivid pictures of crispy fried chicken, and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.91318237b58b4ca292829d174bd75487",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 479,
+        "EndTime": 485.68,
+        "Text": "Schools need to provide real nutritional education so kids actually understand what they\u0027re putting into their bodies.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.91abe342d7fa41898be5cd7cdb2ce652",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 80,
+        "EndTime": 87.84,
+        "Text": "crave it. And the health risks are terrifying. We are seeing a massive spike in obesity, type 2 diabetes, and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.91ccda2e1f0f42029b2afbc0bbe43fa7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 152,
+        "EndTime": 158.4,
+        "Text": "a fresh, healthy salad bowl costs twice as much as a processed fast food combo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.9406d9ff13bb4ebe9a28b191aac3f52e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 96,
+        "EndTime": 104.64,
+        "Text": "consumer trends. We live in a hyperfast technologydriven world. Young people are juggling university, part-time jobs, and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.942f71f8faa74a559c2c37e27e2ab7bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 278,
+        "EndTime": 286.08,
+        "Text": "I am absolutely starving. Let\u0027s just order some double cheeseburgers and fries on Grab. It\u0027s fast and there\u0027s a discount code today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.95d4b971c7e34000b64dd9fd493236b1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 736,
+        "EndTime": 741.04,
+        "Text": "cheaper and more accessible in urban areas, people would naturally buy them more.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.95fff32b57f2472cab0f3c0fbc4a12b5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 425,
+        "EndTime": 433.28,
+        "Text": "Exactly. Healthy eating has almost become a privilege for the wealthy. When a student is on a tight budget, the financial incentive heavily leans",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.9667b151cf4f4e7690fcea6b94d811c6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 469,
+        "EndTime": 474.24,
+        "Text": "cheaper and more accessible in urban areas, people would naturally buy them more.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.9672a413d300427a8454a217d1e939ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 461,
+        "EndTime": 469.36,
+        "Text": "That makes sense. The revenue from those taxes could actually be used to subsidize fresh local produce. If governments made fruits and vegetables",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.989fd58e0b2d4c2eb750d6208dee131d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 371,
+        "EndTime": 376.4,
+        "Text": "social lives. We\u0027re exhausted, and we naturally seek instant gratification.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.98edcea8f9464c1ea7d0b47e4eba5870",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 516,
+        "EndTime": 526.16,
+        "Text": "All right. All right. You win this debate. Your logic is flawless. And now I feel incredibly guilty for craving a burger. So, what is the alternative for tonight?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.9acd221893734e35962b95819df380df",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 48,
+        "EndTime": 55.52,
+        "Text": "the origins of this industry? It started decades ago as a quick occasional meal for busy workers. But today, it has",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.9d7dda38931047f2a9bbff382440d7a7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 700,
+        "EndTime": 709.04,
+        "Text": "towards junk food. The system essentially punishes you financially for wanting to eat well. So, what is the solution? We can\u0027t just shut down every",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.a375a0882d784e359303b5ed82ede1dd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 212,
+        "EndTime": 218.879,
+        "Text": "Schools need to provide real nutritional education so kids actually understand what they\u0027re putting into their bodies.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.a6672d5a055d47f3a2526c867e9b6040",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 39,
+        "EndTime": 48.32,
+        "Text": "Fast food is cheap, accessible, and it gets the job done. That is exactly the trap the fast food industry wants you to fall into. Have you ever thought about",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.a6909083ee38422db34c59ec8c490ed0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 246,
+        "EndTime": 249.599,
+        "Text": "simply not worth the long-term medical bills.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.a7f51ca4d1a543e09512333fdc6f0a80",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 65,
+        "EndTime": 73.2,
+        "Text": "It really isn\u0027t an exaggeration. Food scientists intentionally engineer these products to be hyper palatable. They",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.a820cfe06fbd4f1595091fccee84512b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 354,
+        "EndTime": 363.199,
+        "Text": "cardiovascular diseases, especially among young people. I hear you on the health risks, but you have to look at the socioeconomic reality and current",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.aa49180fd0064148abec376b77835f8a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 686,
+        "EndTime": 692,
+        "Text": "a fresh, healthy salad bowl costs twice as much as a processed fast food combo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.aa8021fc6fbd4358bb50f8359a7de3cc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 474,
+        "EndTime": 479.44,
+        "Text": "Spot on. And on a micro level, it comes down to education and personal habits.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.aae1bc60199d4730900871a2f8a92f94",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 61,
+        "EndTime": 65.92,
+        "Text": "Addicted? Isn\u0027t that a bit of an exaggeration? It\u0027s just a burger.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.afabe86f630340e1bf744209b3beea89",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 513,
+        "EndTime": 516.399,
+        "Text": "simply not worth the long-term medical bills.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.b716d9c867b84ee0b808fb0ce5500850",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 306,
+        "EndTime": 310,
+        "Text": "Fast food is cheap, accessible, and it gets the job done.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.b82fce038cc64b10b066b6c0e7366285",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 207,
+        "EndTime": 212.64,
+        "Text": "Spot on. And on a micro level, it comes down to education and personal habits.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.b8aaa700ca8c48f2b4cd8aa08a816ffe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 296,
+        "EndTime": 306.32,
+        "Text": "Oh, come on. Don\u0027t be so strict. We have a massive deadline tonight. Who is the time or the money to buy organic kale, quinoa, and cook a three course meal?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.bdbbf65f4f0b4b5b9055ed8b8d76e8af",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 494,
+        "EndTime": 505.12,
+        "Text": "practical solution is meal prepping. If we take a few hours on Sunday to cook and pack our meals for the week, we eliminate the excuse of not having time on a busy Wednesday evening.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.be15a0bd0def4ba3864b94390978fbaa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 347,
+        "EndTime": 354.639,
+        "Text": "crave it. And the health risks are terrifying. We are seeing a massive spike in obesity, type 2 diabetes, and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.bf556d67e6394ba2a5434b54e733beff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 545,
+        "EndTime": 552.88,
+        "Text": "I am absolutely starving. Let\u0027s just order some double cheeseburgers and fries on Grab. It\u0027s fast and there\u0027s a discount code today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.c61e8fc6736f43bcadb957f260ae34c3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 638,
+        "EndTime": 643.2,
+        "Text": "social lives. We\u0027re exhausted, and we naturally seek instant gratification.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.cbd6be62c9974177b0789b3dd3353bf6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 621,
+        "EndTime": 630,
+        "Text": "cardiovascular diseases, especially among young people. I hear you on the health risks, but you have to look at the socioeconomic reality and current",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.cd1d182a798d47d499cbfc28f0fec6d7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 410,
+        "EndTime": 419.759,
+        "Text": "the marketing is predatory, especially toward the younger generation. But another huge issue is the pricing disparity. It is a systemic failure that",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.cfc7b8f427864cfdb0c62b0e6c899a98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 227,
+        "EndTime": 238.319,
+        "Text": "practical solution is meal prepping. If we take a few hours on Sunday to cook and pack our meals for the week, we eliminate the excuse of not having time on a busy Wednesday evening.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.d11f78fc4c5f4cbc98256b96b43421be",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 752,
+        "EndTime": 761.279,
+        "Text": "If people knew how much chemical processing goes into a simple chicken nugget, they might think twice. And for busy people like us, I guess the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.d3b3dabdb2a1427d878bc3cdb4cbf69e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 692,
+        "EndTime": 700.079,
+        "Text": "Exactly. Healthy eating has almost become a privilege for the wealthy. When a student is on a tight budget, the financial incentive heavily leans",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.d551098c0c8f4bb684f14d6fbd44fae2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 109,
+        "EndTime": 120.88,
+        "Text": "That\u0027s true, but it also highlights how superficial our modern lifestyle has become. We claim we don\u0027t have time to cook, yet we spend hours mindlessly scrolling on Tik Tok or Instagram.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.d7f49a08fd3f413e9493d874d14bb10d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 630,
+        "EndTime": 638.24,
+        "Text": "consumer trends. We live in a hyperfast technologydriven world. Young people are juggling university, part-time jobs, and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.dcc1ce701c104d3e844f5b888687e73b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 387,
+        "EndTime": 394.8,
+        "Text": "Ouch. That hit a little too close to home. But you also can\u0027t ignore the role of technology. Food delivery apps use",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.dcf607a62813426caa53dc12e0eb3b98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 595,
+        "EndTime": 599.519,
+        "Text": "Addicted? Isn\u0027t that a bit of an exaggeration? It\u0027s just a burger.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.df6a36fc15eb4d5393f2c0a434b59d0a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 536,
+        "EndTime": 544.279,
+        "Text": "That actually sounds delicious and my wallet will definitely thank you. Let\u0027s go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.e12a46c43b7f4728bdad5ad09e04896b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 175,
+        "EndTime": 182.72,
+        "Text": "fast food chain overnight. No, but we desperately need a multi-layered approach to fix this. On a macro level,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.e7de5d47e16541568fc752f1744c5734",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 457,
+        "EndTime": 461.28,
+        "Text": "a sugar tax on sweetened beverages, which is a great start.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.ec3a34deeae04c9bae20fc9f79b61766",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 318,
+        "EndTime": 328.32,
+        "Text": "a quick occasional meal for busy workers. But today, it has morphed into a highly engineered multibillion dollar machine designed to make us addicted.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.ec51f86f06a94d45b88b664ed8035e67",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 433,
+        "EndTime": 442.24,
+        "Text": "towards junk food. The system essentially punishes you financially for wanting to eat well. So, what is the solution? We can\u0027t just shut down every",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.ecb8c0b003f14fc3a3b66b3d118d8242",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 792,
+        "EndTime": 800.72,
+        "Text": "How about we go to the supermarket down the street? We can grab some fresh chicken breast, whole wheat tortillas, and lots of veggies. We can make healthy",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.eed9478be50a4304ab968ba2092ecb67",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 800,
+        "EndTime": 803.76,
+        "Text": "chicken wraps at home in less than 20 minutes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.ef77a395c46849c5980d65c2a33f01a0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 182,
+        "EndTime": 191.04,
+        "Text": "government should step in. We need stricter regulations on junk food advertising, especially ads targeting children. Some countries have introduced",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.f0cdb46348a5470d85840c734f955bf9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 363,
+        "EndTime": 371.44,
+        "Text": "consumer trends. We live in a hyperfast technologydriven world. Young people are juggling university, part-time jobs, and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.f3410abe8fca4514b5dd453befa02025",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 104,
+        "EndTime": 109.6,
+        "Text": "social lives. We\u0027re exhausted, and we naturally seek instant gratification.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.f96e4d58a9b84ca3aa90b9398cd264b5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 661,
+        "EndTime": 668.56,
+        "Text": "aggressive algorithms. The moment you unlock your phone around dinnertime, you are bombarded with notifications, vivid",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.f9f7a7497a5b4bf1a07200b9c9bd1c8a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 270,
+        "EndTime": 277.479,
+        "Text": "That actually sounds delicious and my wallet will definitely thank you. Let\u0027s go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4.fae09fa8bc154602bf8f64de1c3b2ebf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 741,
+        "EndTime": 746.24,
+        "Text": "Spot on. And on a micro level, it comes down to education and personal habits.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.ce88d2abbe566675706c1c46ffe57e424430b5702afbed932b1ff1343da9d6b4"
+}

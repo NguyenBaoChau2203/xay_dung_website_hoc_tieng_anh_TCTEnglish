@@ -1,588 +1,339 @@
 ﻿@{
     Layout = null;
-}
 
+    var isAuthenticated = User.Identity?.IsAuthenticated == true;
+    var pageTitle = "TCT English — Học tiếng Anh mỗi ngày 15 phút";
+    var pageDescription = "Học từ vựng, nghe, nói, đọc và viết tiếng Anh theo bài ngắn. TCT English tự xếp lịch ôn để bạn nhớ lâu.";
+    var pageUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Url.Content("~/")}";
+    var shareImage = $"{Context.Request.Scheme}://{Context.Request.Host}{Url.Content("~/images/landing/og-landing.png")}";
+}
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="TCT English — nền tảng học tiếng Anh cho nhân viên TCT: từ vựng, nghe, nói, đọc, viết và trợ lý AI." />
-    <title>TCT English — Nền tảng học tiếng Anh</title>
-    <link rel="icon" href="~/brand/logo/favicon/favicon.ico" asp-append-version="true" />
-    <link rel="icon" type="image/svg+xml" href="~/brand/logo/favicon/favicon.svg" asp-append-version="true" />
-    <link rel="icon" type="image/png" sizes="32x32" href="~/brand/logo/favicon/favicon-32.png" asp-append-version="true" />
-    <link rel="icon" type="image/png" sizes="16x16" href="~/brand/logo/favicon/favicon-16.png" asp-append-version="true" />
-    <link rel="apple-touch-icon" href="~/brand/logo/favicon/apple-touch-icon.png" asp-append-version="true" />
+    <title>@pageTitle</title>
+    <meta name="description" content="@pageDescription" />
+    <meta name="theme-color" content="#0a0f2e" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:site_name" content="TCT English" />
+    <meta property="og:title" content="@pageTitle" />
+    <meta property="og:description" content="@pageDescription" />
+    <meta property="og:url" content="@pageUrl" />
+    <meta property="og:image" content="@shareImage" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trang chủ TCT English: Tiếng Anh ngấm dần, mỗi ngày 15 phút" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="@shareImage" />
+    <script>document.documentElement.classList.add('lp-js');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/ai-chat-launcher.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+    <script src="~/js/landing-core.js" asp-append-version="true" defer></script>
+    <script src="~/js/landing.js" asp-append-version="true" defer></script>
 </head>
-<body class="landing-page">
-    <a class="landing-skip" href="#landing-main">Bỏ qua điều hướng</a>
+<body class="lp">
+    <a class="lp-skip" href="#noi-dung">Bỏ qua điều hướng</a>
 
-    <header class="landing-header" id="landingHeader">
-        <div class="landing-wrap landing-header__inner">
-            <a class="landing-logo" asp-controller="Home" asp-action="Landing" aria-label="TCT English — trang chủ">
-                <img src="~/brand/logo/tct-english-logo.svg"
-                     asp-append-version="true"
-                     alt="TCT English"
-                     width="168"
-                     height="40" />
-            </a>
-
-            <nav class="landing-nav" aria-label="Điều hướng chính">
-                <a href="#features">Tính năng</a>
-                <a href="#study-modes">Chế độ học</a>
-                <a href="#ai-assistant">AI Chatbot</a>
-                <a asp-controller="Home" asp-action="Contact">Liên hệ</a>
-            </nav>
-
-            <div class="landing-actions">
-                <a class="landing-btn landing-btn--ghost" asp-controller="Account" asp-action="Login">Đăng nhập</a>
-                <a class="landing-btn landing-btn--primary" asp-controller="Account" asp-action="Register">Bắt đầu học miễn phí</a>
-                <button type="button"
-                        class="landing-menu-toggle"
-                        id="landingMenuToggle"
-                        aria-controls="landingDrawer"
-                        aria-expanded="false"
-                        aria-label="Mở menu">
-                    <i class="fas fa-bars" aria-hidden="true"></i>
-                </button>
+    <div class="lp-top">
+        <header class="lp-header">
+            <div class="lp-wrap">
+                <nav class="lp-nav" aria-label="Điều hướng chính">
+                    <a class="lp-logo" href="/">TCT English</a>
+                    <div class="lp-nav-links" id="lp-nav-links">
+                        <a href="#ky-nang">Kỹ năng</a>
+                        <a href="#on-tap">Cách ôn tập</a>
+                        <a href="#tro-ly-ai">Trợ lý AI</a>
+                        <a href="/Home/Contact">Liên hệ</a>
+                        @if (!isAuthenticated)
+                        {
+                            <a class="lp-nav-login" href="/Account/Login">Đăng nhập</a>
+                        }
+                    </div>
+                    <div class="lp-nav-actions">
+                        @if (isAuthenticated)
+                        {
+                            <a class="lp-btn lp-btn--sm" href="/Home/Index">Vào trang học</a>
+                        }
+                        else
+                        {
+                            <a class="lp-nav-login-link" href="/Account/Login">Đăng nhập</a>
+                            <a class="lp-btn lp-btn--sm" href="/Account/Register">Bắt đầu miễn phí</a>
+                        }
+                    </div>
+                    <button class="lp-nav-toggle" type="button" data-lp-nav-toggle aria-expanded="false" aria-controls="lp-nav-links" aria-label="Mở menu">
+                        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                    </button>
+                </nav>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <div class="landing-drawer"
-         id="landingDrawer"
-         aria-hidden="true">
-        <div class="landing-drawer__panel" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
-            <a href="#features">Tính năng</a>
-            <a href="#study-modes">Chế độ học</a>
-            <a href="#ai-assistant">AI Chatbot</a>
-            <a href="#progress">Tiến độ</a>
-            <a href="#how-it-works">Cách sử dụng</a>
-            <a href="#faq">Câu hỏi thường gặp</a>
-            <a asp-controller="Home" asp-action="Contact">Liên hệ</a>
-            <div class="landing-drawer__cta">
-                <a class="landing-btn landing-btn--outline" asp-controller="Account" asp-action="Login">Đăng nhập</a>
-                <a class="landing-btn landing-btn--primary" asp-controller="Account" asp-action="Register">Bắt đầu học miễn phí</a>
+        <main id="noi-dung">
+            <div class="lp-wrap">
+                <section class="lp-hero" aria-labelledby="lp-hero-title">
+                    <span class="lp-pill">
+                        <img src="~/images/ai/tct-ai-mark.svg" asp-append-version="true" alt="" width="30" height="30" />
+                        Có trợ lý AI trả lời mọi câu hỏi tiếng Anh
+                    </span>
+                    <h1 id="lp-hero-title">Tiếng Anh ngấm dần,<br />mỗi ngày 15 phút.</h1>
+                    <p class="lp-sub">Học từ vựng, nghe, nói, đọc và viết theo bài ngắn. TCT English tự xếp lịch để bạn ôn lại đúng lúc sắp quên.</p>
+                    <div class="lp-cta">
+                        @if (isAuthenticated)
+                        {
+                            <a class="lp-btn" href="/Home/Index">Vào trang học</a>
+                        }
+                        else
+                        {
+                            <a class="lp-btn" href="/Account/Register">Bắt đầu miễn phí</a>
+                        }
+                        <a class="lp-btn lp-btn--glass" href="#hoc-thu"><i class="fa-solid fa-play" aria-hidden="true"></i>Xem cách học</a>
+                    </div>
+
+                    <div class="lp-shot">
+                        <div class="lp-frame">
+                            <div class="lp-frame-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                            <img class="lp-frame-img"
+                                 src="~/images/landing/hero-home-1120.webp"
+                                 srcset="@Url.Content("~/images/landing/hero-home-1120.webp") 1110w, @Url.Content("~/images/landing/hero-home-2240.webp") 2220w"
+                                 sizes="(min-width: 1100px) 1030px, calc(100vw - 36px)"
+                                 width="1110" height="655" fetchpriority="high" decoding="async"
+                                 alt="Trang Từ vựng của TCT English: mục tiêu hôm nay, từ cần ôn và lịch ôn 7 ngày" />
+                        </div>
+                        <div class="lp-chip lp-chip--1" aria-hidden="true">
+                            <img src="~/images/goals/streak-flame-clay.svg" alt="" width="40" height="40" />
+                            <div>Chuỗi ngày học<small>Đừng để đứt hôm nay</small></div>
+                        </div>
+                        <div class="lp-chip lp-chip--2" aria-hidden="true">
+                            <i class="fa-regular fa-calendar-check lp-chip-icon"></i>
+                            <div>negotiate<small>Ôn lại sau 7 ngày</small></div>
+                        </div>
+                        <div class="lp-chip lp-chip--3" aria-hidden="true">
+                            <img src="~/images/goals/badge-trophy-clay.svg" alt="" width="40" height="40" />
+                            <div>Huy hiệu mới<small>Nhịp từ vựng</small></div>
+                        </div>
+                        <div class="lp-chip lp-chip--4" aria-hidden="true">
+                            <img class="lp-chip-avatar" src="~/images/ai/tct-ai-mark.svg" alt="" width="52" height="52" />
+                            <div>“Deadline” khác “due date”…<small>Trợ lý AI đang trả lời</small></div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </div>
+        </main>
+        <div class="lp-fade" aria-hidden="true"></div>
     </div>
 
-    <main id="landing-main">
-        <section class="landing-hero" data-enter aria-labelledby="landing-hero-title">
-            <div class="landing-hero__universe" aria-hidden="true">
-                <div class="landing-hero__atmosphere"></div>
-                <div class="landing-hero__softforms">
-                    <span class="landing-hero__softform landing-hero__softform--a"></span>
-                    <span class="landing-hero__softform landing-hero__softform--b"></span>
-                    <span class="landing-hero__softform landing-hero__softform--c"></span>
-                </div>
-                <div class="landing-hero__props">
-                    <img class="landing-hero__prop landing-hero__prop--book"
-                         src="~/brand/landing/hero-props/prop-open-book.svg"
-                         asp-append-version="true"
-                         width="76"
-                         height="60"
-                         alt=""
-                         decoding="async" />
-                    <img class="landing-hero__prop landing-hero__prop--headphones"
-                         src="~/brand/landing/hero-props/prop-headphones.svg"
-                         asp-append-version="true"
-                         width="68"
-                         height="68"
-                         alt=""
-                         decoding="async" />
-                    <img class="landing-hero__prop landing-hero__prop--card"
-                         src="~/brand/landing/hero-props/prop-vocab-card.svg"
-                         asp-append-version="true"
-                         width="54"
-                         height="66"
-                         alt=""
-                         decoding="async" />
-                    <img class="landing-hero__prop landing-hero__prop--card-b"
-                         src="~/brand/landing/hero-props/prop-vocab-card.svg"
-                         asp-append-version="true"
-                         width="48"
-                         height="58"
-                         alt=""
-                         decoding="async" />
-                </div>
-                <div class="landing-hero__chips">
-                    <span class="landing-hero__chip landing-hero__chip--learn">LEARN</span>
-                    <span class="landing-hero__chip landing-hero__chip--speak">SPEAK</span>
-                    <span class="landing-hero__chip landing-hero__chip--listen">LISTEN</span>
-                </div>
-            </div>
-
-            <div class="landing-wrap landing-hero__inner">
-                <div class="landing-hero__copy">
-                    <p class="landing-kicker">
-                        <i class="fas fa-bolt" aria-hidden="true"></i>
-                        Trợ lý AI tiếng Anh
-                    </p>
-                    <h1 id="landing-hero-title">
-                        Chinh phục tiếng Anh với
-                        <span class="landing-brand-mark">TCT English</span>
-                    </h1>
-                    <p class="landing-hero__lead">
-                        Nền tảng học tiếng Anh dành cho nhân viên công ty TCT —
-                        từ vựng, nghe, nói, đọc, viết cùng trợ lý AI.
-                    </p>
-                    <div class="landing-hero__cta">
-                        <a class="landing-btn landing-btn--primary landing-btn--lg"
-                           asp-controller="Account"
-                           asp-action="Register">
-                            Học ngay miễn phí
-                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-                        <a class="landing-btn landing-btn--outline landing-btn--lg" href="#features">
-                            Khám phá tính năng
-                        </a>
-                    </div>
+    <div class="lp-wrap">
+        <section class="lp-sec" id="hoc-thu" aria-labelledby="lp-try-title">
+            <div class="lp-try">
+                <div class="lp-try-copy">
+                    <h2 id="lp-try-title">Thử một câu trước khi đăng ký.</h2>
+                    <p class="lp-lead">Ba câu hỏi từ vựng, trả lời ngay trên trang này. Không cần tài khoản.</p>
+                    <ul class="lp-tick">
+                        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Hệ thống tự chấm, bạn chỉ cần chọn đáp án</li>
+                        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Mỗi từ đúng được xếp ngày ôn lại</li>
+                        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Dùng phím 1 đến 4 để trả lời nhanh</li>
+                    </ul>
                 </div>
 
-                <div class="landing-hero__stage" aria-label="Minh họa giao diện học trên TCT English">
-                    <div class="landing-hero__ground" aria-hidden="true"></div>
-
-                    <aside class="landing-side-card landing-side-card--left">
-                        <div class="landing-side-card__label">
-                            <i class="fas fa-layer-group" aria-hidden="true"></i>
-                            Bộ thẻ từ vựng
+                <div class="lp-quiz" data-lp-demo
+                     data-lp-cta-href="@(isAuthenticated ? "/Home/Index" : "/Account/Register")"
+                     data-lp-cta-label="@(isAuthenticated ? "Vào trang học" : "Tạo tài khoản miễn phí")"
+                     data-lp-result-note="@(isAuthenticated ? "Vào trang học để lưu tiến độ và học tiếp." : "Tạo tài khoản để lưu tiến độ và học tiếp.")">
+                    <div class="lp-quiz-play" data-lp-demo-play>
+                        <div class="lp-quiz-head">
+                            <span data-lp-demo-progress>Học thử · câu 1/3</span>
+                            <b class="lp-quiz-tag">Từ mới</b>
                         </div>
-                        <ul class="landing-side-card__list">
-                            <li>
-                                <strong>Accomplish</strong>
-                                <span>Hoàn thành, đạt được</span>
-                            </li>
-                            <li>
-                                <strong>Negotiate</strong>
-                                <span>Đàm phán, thương lượng</span>
-                            </li>
-                            <li>
-                                <strong>Collaborate</strong>
-                                <span>Cộng tác, hợp tác</span>
-                            </li>
+                        <p class="lp-quiz-ask" data-lp-demo-prompt>Từ nào có nghĩa này?</p>
+                        <p class="lp-quiz-word" data-lp-demo-word>đàm phán</p>
+                        <ul class="lp-quiz-options" role="group" aria-label="Chọn đáp án đúng" data-lp-demo-options>
+                            <li class="lp-option"><kbd>1</kbd><span class="lp-option-label">accomplish</span></li>
+                            <li class="lp-option"><kbd>2</kbd><span class="lp-option-label">negotiate</span></li>
+                            <li class="lp-option"><kbd>3</kbd><span class="lp-option-label">schedule</span></li>
+                            <li class="lp-option"><kbd>4</kbd><span class="lp-option-label">confirm</span></li>
                         </ul>
-                        <p class="landing-side-card__note">Minh họa giao diện</p>
-                    </aside>
-
-                    <div class="landing-phone">
-                        <div class="landing-phone__glow" aria-hidden="true"></div>
-                        <div class="landing-phone__device">
-                            <div class="landing-phone__notch" aria-hidden="true"></div>
-                            <div class="landing-phone__screen">
-                                <div class="landing-phone__status">
-                                    <span>9:41</span>
-                                    <span class="landing-phone__status-icons" aria-hidden="true">
-                                        <i class="fas fa-signal"></i>
-                                        <i class="fas fa-wifi"></i>
-                                        <i class="fas fa-battery-full"></i>
-                                    </span>
-                                </div>
-                                <div class="landing-phone__appbar">
-                                    <span class="landing-phone__brand">TCT English</span>
-                                    <span class="landing-phone__mode">Flashcard</span>
-                                </div>
-                                <div class="landing-phone__progress" aria-hidden="true">
-                                    <span></span>
-                                </div>
-                                <article class="landing-phone__flashcard">
-                                    <p class="landing-phone__eyebrow">Business English</p>
-                                    <h3 class="landing-phone__term">Accomplish</h3>
-                                    <p class="landing-phone__ipa">/əˈkɑːm.plɪʃ/</p>
-                                    <p class="landing-phone__def">Hoàn thành, đạt được</p>
-                                    <p class="landing-phone__example">We accomplished the quarterly goals ahead of schedule.</p>
-                                </article>
-                                <div class="landing-phone__actions" aria-hidden="true">
-                                    <span class="landing-phone__chip landing-phone__chip--muted">Cần ôn lại</span>
-                                    <span class="landing-phone__chip landing-phone__chip--ok">Đã thuộc</span>
-                                </div>
-                            </div>
+                        <div class="lp-quiz-feedback" aria-live="polite" data-lp-demo-feedback></div>
+                        <div class="lp-quiz-nojs">
+                            <a class="lp-btn lp-btn--sm" href="@(isAuthenticated ? "/Home/Index" : "/Account/Register")">@(isAuthenticated ? "Vào trang học" : "Bắt đầu miễn phí")</a>
                         </div>
                     </div>
-
-                    <aside class="landing-side-card landing-side-card--right">
-                        <div class="landing-side-card__label">
-                            <img src="~/brand/mascot/stickers/tico-mascot-head-color.png"
-                                 asp-append-version="true"
-                                 width="28"
-                                 height="28"
-                                 alt=""
-                                 decoding="async" />
-                            TCT AI
-                        </div>
-                        <div class="landing-side-card__chat">
-                            <p class="landing-side-card__bubble landing-side-card__bubble--user">
-                                Khi nào dùng “deadline”?
-                            </p>
-                            <p class="landing-side-card__bubble landing-side-card__bubble--bot">
-                                Dùng khi mốc nộp việc cứng — quá hạn thường có hậu quả.
-                            </p>
-                        </div>
-                        <p class="landing-side-card__note">Minh họa trợ lý AI</p>
-                    </aside>
-
-                    <div class="landing-tico-host landing-tico--hero is-tico-poster"
-                         data-tico-host>
-                        <img class="landing-tico__poster"
-                             src="~/brand/mascot/poses/tico-mascot-welcome-color.png"
-                             asp-append-version="true"
-                             width="280"
-                             height="336"
-                             alt="Tico, linh vật TCT English"
-                             decoding="async" />
-                        <canvas class="landing-tico__canvas"
-                                hidden
-                                aria-hidden="true"></canvas>
-                        <p class="landing-tico__bubble" hidden role="status">
-                            Xin chào! Chào mừng bạn đến với TCT English!
-                        </p>
-                    </div>
+                    <div class="lp-quiz-result" data-lp-demo-result hidden></div>
                 </div>
             </div>
         </section>
 
-        <section class="landing-section landing-section--muted" id="features" aria-labelledby="features-title">
-            <div class="landing-wrap">
-                <div class="landing-reveal">
-                    <p class="landing-eyebrow">Tính năng</p>
-                    <h2 class="landing-section__title" id="features-title">Sáu kỹ năng trên một nền tảng</h2>
-                    <p class="landing-section__desc">
-                        Học từ vựng, luyện nghe – nói – đọc – viết và chat với trợ lý AI trong cùng một tài khoản.
-                    </p>
-                </div>
+        <section class="lp-sec" id="ky-nang" aria-labelledby="lp-skills-title">
+            <h2 id="lp-skills-title">Mọi thứ bạn cần để học đều nằm ở đây.</h2>
+            <p class="lp-lead">Không phải lắp ghép nhiều ứng dụng. Một tài khoản, năm kỹ năng, một mục tiêu mỗi ngày.</p>
 
-                <div class="landing-features">
-                    <article class="landing-feature landing-reveal">
-                        <div class="landing-feature__icon" aria-hidden="true"><i class="fas fa-layer-group"></i></div>
-                        <h3>Vocabulary</h3>
-                        <p>Flashcard kèm nghĩa, phiên âm và luyện tập theo bộ thẻ / thư mục của bạn.</p>
-                    </article>
-                    <article class="landing-feature landing-reveal">
-                        <div class="landing-feature__icon" aria-hidden="true"><i class="fas fa-book-open"></i></div>
-                        <h3>Reading</h3>
-                        <p>Bài đọc hiểu theo trình độ, câu hỏi kiểm tra và theo dõi tiến độ đọc.</p>
-                    </article>
-                    <article class="landing-feature landing-reveal">
-                        <div class="landing-feature__icon" aria-hidden="true"><i class="fas fa-headphones"></i></div>
-                        <h3>Listening</h3>
-                        <p>Luyện nghe theo bài / video có transcript và quiz kiểm tra.</p>
-                        <span class="landing-feature__note">Một số công cụ Listening nâng cao thuộc Premium</span>
-                    </article>
-                    <article class="landing-feature landing-reveal">
-                        <div class="landing-feature__icon" aria-hidden="true"><i class="fas fa-microphone"></i></div>
-                        <h3>Speaking</h3>
-                        <p>Luyện nói theo video, shadowing từng câu và theo dõi tiến độ luyện tập.</p>
-                    </article>
-                    <article class="landing-feature landing-reveal">
-                        <div class="landing-feature__icon" aria-hidden="true"><i class="fas fa-pen"></i></div>
-                        <h3>Writing</h3>
-                        <p>Bài tập viết theo chủ đề và mức độ; AI hỗ trợ chấm và góp ý khi được bật.</p>
-                        <span class="landing-feature__note">Tạo bài bằng AI có thể cần Premium</span>
-                    </article>
-                    <article class="landing-feature landing-reveal">
-                        <div class="landing-feature__icon landing-feature__icon--accent" aria-hidden="true"><i class="fas fa-comments"></i></div>
-                        <h3>AI Chatbot</h3>
-                        <p>Trò chuyện tiếng Anh, hỏi từ vựng / ngữ pháp và luyện diễn đạt với trợ lý AI.</p>
-                        <span class="landing-feature__note">Tài khoản miễn phí có hạn mức; Premium không giới hạn quota AI</span>
-                    </article>
-                </div>
+            <div class="lp-grid">
+                <article class="lp-card lp-card--lesson">
+                    <h3>Bài học từ vựng ba bước</h3>
+                    <p>Làm quen, luyện tập, xem kết quả. Hệ thống tự chấm, bạn không phải tự đánh giá mình.</p>
+                    <img class="lp-lesson-shot"
+                         src="~/images/landing/lesson-card-780.webp"
+                         srcset="@Url.Content("~/images/landing/lesson-card-780.webp") 816w, @Url.Content("~/images/landing/lesson-card-1560.webp") 1632w"
+                         sizes="(min-width: 900px) 640px, calc(100vw - 80px)"
+                         width="816" height="590" loading="lazy" decoding="async"
+                         alt="Câu hỏi luyện tập trong một bài học từ vựng của TCT English" />
+                </article>
+
+                <article class="lp-card" id="on-tap">
+                    <h3>Lịch ôn riêng cho từng từ</h3>
+                    <p>Trả lời đúng, khoảng cách ôn dài dần cho đến khi thuộc hẳn. Quên thì quay về bậc đầu.</p>
+                    <p class="lp-visually-hidden">Khoảng cách ôn: 1, 3, 7, 14, 30 rồi 60 ngày.</p>
+                    <ol class="lp-ladder" aria-label="Các bậc khoảng cách ôn, tính bằng ngày">
+                        <li style="--lp-h:30%"><b>1</b><small>ngày</small></li>
+                        <li style="--lp-h:42%"><b>3</b><small>ngày</small></li>
+                        <li style="--lp-h:55%"><b>7</b><small>ngày</small></li>
+                        <li style="--lp-h:68%"><b>14</b><small>ngày</small></li>
+                        <li style="--lp-h:84%"><b>30</b><small>ngày</small></li>
+                        <li style="--lp-h:100%"><b>60</b><small>ngày</small></li>
+                    </ol>
+                </article>
             </div>
-        </section>
 
-        <section class="landing-section landing-section--dark" id="study-modes" aria-labelledby="modes-title">
-            <div class="landing-wrap">
-                <div class="landing-reveal">
-                    <p class="landing-eyebrow">Chế độ học</p>
-                    <h2 class="landing-section__title" id="modes-title">Bốn cách luyện từ vựng</h2>
-                    <p class="landing-section__desc">
-                        Chọn chế độ phù hợp từng buổi học — từ ôn nhanh đến kiểm tra ghi nhớ.
-                    </p>
-                </div>
-                <div class="landing-modes">
-                    <article class="landing-mode landing-reveal">
-                        <i class="fas fa-clone" aria-hidden="true"></i>
-                        <h3>Flashcard</h3>
-                        <p>Lật thẻ, đánh dấu đã thuộc hoặc cần ôn lại.</p>
-                    </article>
-                    <article class="landing-mode landing-reveal">
-                        <i class="fas fa-list-ul" aria-hidden="true"></i>
-                        <h3>Trắc nghiệm</h3>
-                        <p>Câu hỏi nhiều lựa chọn sinh từ bộ thẻ của bạn.</p>
-                    </article>
-                    <article class="landing-mode landing-reveal">
-                        <i class="fas fa-keyboard" aria-hidden="true"></i>
-                        <h3>Viết từ</h3>
-                        <p>Gõ lại thuật ngữ để kiểm tra chính tả và ghi nhớ.</p>
-                    </article>
-                    <article class="landing-mode landing-reveal">
-                        <i class="fas fa-puzzle-piece" aria-hidden="true"></i>
-                        <h3>Ghép thẻ</h3>
-                        <p>Ghép từ với nghĩa trong chế độ Matching.</p>
-                    </article>
-                </div>
+            <div class="lp-skills">
+                <article class="lp-card lp-card--skill">
+                    <span class="lp-skill-icon lp-skill-icon--cyan" aria-hidden="true"><i class="fa-solid fa-headphones"></i></span>
+                    <h3>Nghe</h3>
+                    <p>Video A1 đến C2, xem lời thoại, chép chính tả và làm quiz.</p>
+                </article>
+                <article class="lp-card lp-card--skill">
+                    <span class="lp-skill-icon lp-skill-icon--violet" aria-hidden="true"><i class="fa-solid fa-microphone"></i></span>
+                    <h3>Nói</h3>
+                    <p>Nhại theo từng câu và xem điểm phát âm.</p>
+                </article>
+                <article class="lp-card lp-card--skill">
+                    <span class="lp-skill-icon lp-skill-icon--amber" aria-hidden="true"><i class="fa-solid fa-pen-nib"></i></span>
+                    <h3>Viết</h3>
+                    <p>Viết câu tiếng Anh, nhận góp ý về nghĩa, ngữ pháp và cách dùng từ.</p>
+                </article>
+                <article class="lp-card lp-card--skill">
+                    <span class="lp-skill-icon lp-skill-icon--green" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span>
+                    <h3>Đọc</h3>
+                    <p>Bài đọc kèm câu hỏi kiểm tra.</p>
+                </article>
             </div>
-        </section>
 
-        <section class="landing-section" id="ai-assistant" aria-labelledby="ai-title">
-            <div class="landing-wrap landing-ai">
-                <div class="landing-reveal">
-                    <div class="landing-ai-mock" aria-label="Minh họa hội thoại với trợ lý AI">
-                        <div class="landing-ai-mock__head">
-                            <img class="landing-ai-mock__avatar"
-                                 src="~/brand/mascot/stickers/tico-mascot-head-color.png"
-                                 asp-append-version="true"
-                                 width="36"
-                                 height="36"
-                                 alt=""
-                                 loading="lazy"
-                                 decoding="async" />
-                            <span>TCT AI Assistant</span>
-                        </div>
-                        <div class="landing-ai-mock__body">
-                            <div class="landing-bubble landing-bubble--user">
-                                “Deadline” và “due date” khác nhau thế nào?
-                            </div>
-                            <div class="landing-bubble landing-bubble--bot">
-                                <strong>Deadline</strong> nhấn mạnh mốc cứng; <strong>due date</strong> trung lập hơn — ngày cần hoàn thành.
-                                Đây là ví dụ minh họa trên landing, không phải đoạn chat thật của bạn.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="landing-reveal">
-                    <p class="landing-eyebrow">Trợ lý AI</p>
-                    <h2 class="landing-section__title" id="ai-title">Hỏi đáp và luyện hội thoại bằng tiếng Anh</h2>
-                    <p class="landing-section__desc">
-                        Trợ lý AI giúp giải thích từ vựng, ngữ pháp, gợi ý cách diễn đạt và luyện chat —
-                        mở từ nút Tico ở góc màn hình sau khi đăng nhập.
-                    </p>
-                    <ul class="landing-ai-list">
-                        <li>
-                            <i class="fas fa-comments" aria-hidden="true"></i>
-                            <div>
-                                <strong>Giao tiếp bằng tiếng Anh</strong>
-                                <span>Chat để luyện diễn đạt và nhận phản hồi ngay trong phiên.</span>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-spell-check" aria-hidden="true"></i>
-                            <div>
-                                <strong>Giải thích từ và ngữ pháp</strong>
-                                <span>Hỏi nghĩa, cấu trúc câu và ví dụ dùng trong công việc.</span>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-lightbulb" aria-hidden="true"></i>
-                            <div>
-                                <strong>Gợi ý cách diễn đạt</strong>
-                                <span>Xin cách viết email, câu lịch sự hoặc từ đồng nghĩa phù hợp ngữ cảnh.</span>
-                            </div>
-                        </li>
+            <div class="lp-grid lp-grid--b">
+                <article class="lp-card">
+                    <h3>Mục tiêu, chuỗi ngày học, huy hiệu</h3>
+                    <p>Đặt số từ mỗi ngày và giữ chuỗi. Học cùng bạn bè trong lớp học nhóm.</p>
+                    <ul class="lp-tiles">
+                        <li><img src="~/images/goals/streak-flame-clay.svg" alt="" width="40" height="40" />Chuỗi ngày học</li>
+                        <li><img src="~/images/goals/goal-target-clay.svg" alt="" width="40" height="40" />Mục tiêu mỗi ngày</li>
+                        <li><img src="~/images/goals/badge-trophy-clay.svg" alt="" width="40" height="40" />Huy hiệu</li>
                     </ul>
-                </div>
-            </div>
-        </section>
+                </article>
 
-        <section class="landing-section landing-section--muted" id="progress" aria-labelledby="progress-title">
-            <div class="landing-wrap landing-progress">
-                <div class="landing-reveal">
-                    <p class="landing-eyebrow">Theo dõi tiến độ</p>
-                    <h2 class="landing-section__title" id="progress-title">Giữ nhịp học mỗi ngày</h2>
-                    <p class="landing-section__desc">
-                        Hệ thống mục tiêu, chuỗi ngày học và huy hiệu giúp bạn thấy rõ mình đang tiến bộ thế nào.
-                    </p>
-                    <div class="landing-progress-cards">
-                        <article class="landing-progress-card">
-                            <i class="fas fa-bullseye" aria-hidden="true"></i>
-                            <h3>Mục tiêu học</h3>
-                            <p>Đặt mục tiêu từ vựng / hoạt động và theo dõi trên trang Goals.</p>
-                        </article>
-                        <article class="landing-progress-card">
-                            <i class="fas fa-fire" aria-hidden="true"></i>
-                            <h3>Chuỗi ngày học</h3>
-                            <p>Duy trì streak khi học liên tục; hệ thống ghi nhận chuỗi hiện tại và dài nhất.</p>
-                        </article>
-                        <article class="landing-progress-card">
-                            <i class="fas fa-award" aria-hidden="true"></i>
-                            <h3>Huy hiệu</h3>
-                            <p>Nhận badge khi đạt các mốc học tập đã cấu hình trong hệ thống.</p>
-                        </article>
-                        <article class="landing-progress-card">
-                            <i class="fas fa-users" aria-hidden="true"></i>
-                            <h3>Lớp và chia sẻ</h3>
-                            <p>Tạo / tham gia lớp, chia sẻ bộ thẻ và chat nhóm với đồng nghiệp.</p>
-                        </article>
+                <article class="lp-card" id="tro-ly-ai">
+                    <h3>Trợ lý AI trả lời bất cứ lúc nào</h3>
+                    <p>Giải thích từ, ngữ pháp và đặt ví dụ theo tình huống của bạn.</p>
+                    <div class="lp-chat" role="group" aria-label="Ví dụ hội thoại với trợ lý AI">
+                        <p class="lp-bubble lp-bubble--user">“Deadline” và “due date” khác nhau thế nào?</p>
+                        <div class="lp-bubble lp-bubble--bot">
+                            <img src="~/images/ai/tct-ai-mark.svg" alt="" width="34" height="34" />
+                            <span><b>Deadline</b> là hạn chót, trễ sẽ có hậu quả. <b>Due date</b> chỉ là ngày đến hạn.</span>
+                        </div>
                     </div>
-                </div>
-
-                <div class="landing-progress__visual landing-reveal">
-                    <img class="landing-tico--progress"
-                         src="~/brand/mascot/poses/tico-mascot-success-color.png"
-                         asp-append-version="true"
-                         width="200"
-                         height="240"
-                         alt="Tico, linh vật TCT English"
-                         loading="lazy"
-                         decoding="async" />
-                    <p class="landing-progress__caption">Tico đồng hành khi bạn hoàn thành mục tiêu học.</p>
-                </div>
+                </article>
             </div>
         </section>
 
-        <section class="landing-section" id="how-it-works" aria-labelledby="how-title">
-            <div class="landing-wrap">
-                <div class="landing-section__head--center landing-reveal">
-                    <p class="landing-eyebrow">Cách sử dụng</p>
-                    <h2 class="landing-section__title" id="how-title">Ba bước để bắt đầu</h2>
-                    <p class="landing-section__desc">
-                        Không cần cài phần mềm — mở trình duyệt, đăng ký và chọn nội dung học.
-                    </p>
-                </div>
-
-                <div class="landing-steps">
-                    <article class="landing-step landing-step--welcome landing-reveal">
-                        <h3>Đăng ký tài khoản</h3>
-                        <p>Tạo tài khoản miễn phí hoặc đăng nhập nếu đã có sẵn.</p>
-                        <img class="landing-tico--welcome"
-                             src="~/brand/mascot/poses/tico-mascot-welcome-color.png"
-                             asp-append-version="true"
-                             width="96"
-                             height="115"
-                             alt=""
-                             loading="lazy"
-                             decoding="async" />
-                    </article>
-                    <article class="landing-step landing-reveal">
-                        <h3>Chọn nội dung học</h3>
-                        <p>Chọn bộ thẻ, bài đọc / nghe / nói / viết phù hợp mục tiêu của bạn.</p>
-                    </article>
-                    <article class="landing-step landing-reveal">
-                        <h3>Luyện tập và theo dõi</h3>
-                        <p>Học theo chế độ flashcard hoặc quiz, rồi xem tiến độ và streak trên Goals.</p>
-                    </article>
-                </div>
+        <section class="lp-sec" id="cau-hoi" aria-labelledby="lp-faq-title">
+            <h2 id="lp-faq-title">Câu hỏi thường gặp</h2>
+            <div class="lp-faq">
+                <details class="lp-faq-item" open>
+                    <summary>TCT English có miễn phí không?<span class="lp-faq-icon" aria-hidden="true"></span></summary>
+                    <p>Có. Tài khoản miễn phí học được từ vựng, nghe, nói, đọc, viết và dùng trợ lý AI (có hạn mức mỗi ngày). Gói Premium mở thêm video riêng tư để luyện nói, tạo bài viết bằng AI, dịch lời thoại và quiz AI cho bài nghe.</p>
+                </details>
+                <details class="lp-faq-item">
+                    <summary>Mỗi ngày cần học bao lâu?<span class="lp-faq-icon" aria-hidden="true"></span></summary>
+                    <p>Khoảng 15 phút: ôn các từ đến hạn, học vài từ mới hoặc làm một bài nghe. Mục tiêu từ vựng mỗi ngày hiện là 10 từ.</p>
+                </details>
+                <details class="lp-faq-item">
+                    <summary>Lịch ôn tập hoạt động thế nào?<span class="lp-faq-icon" aria-hidden="true"></span></summary>
+                    <p>Mỗi từ có một bậc nhớ. Trả lời đúng, từ lên một bậc và khoảng cách ôn dài dần: 1, 3, 7, 14, 30 rồi 60 ngày. Quên thì từ quay về bậc đầu.</p>
+                </details>
+                <details class="lp-faq-item">
+                    <summary>Tôi mới bắt đầu thì học được không?<span class="lp-faq-icon" aria-hidden="true"></span></summary>
+                    <p>Được. Từ vựng và bài nghe có từ trình độ A1; bạn chọn bài theo trình độ của mình.</p>
+                </details>
+                <details class="lp-faq-item">
+                    <summary>Có cần cài ứng dụng không?<span class="lp-faq-icon" aria-hidden="true"></span></summary>
+                    <p>Không. TCT English chạy trên trình duyệt của máy tính và điện thoại.</p>
+                </details>
             </div>
         </section>
 
-        <section class="landing-section landing-section--muted" id="faq" aria-labelledby="faq-title">
-            <div class="landing-wrap">
-                <div class="landing-section__head--center landing-reveal">
-                    <p class="landing-eyebrow">FAQ</p>
-                    <h2 class="landing-section__title" id="faq-title">Câu hỏi thường gặp</h2>
-                    <p class="landing-section__desc">
-                        Những điểm cần biết trước khi đăng ký học trên TCT English.
-                    </p>
-                </div>
-
-                <div class="landing-faq landing-reveal">
-                    <details>
-                        <summary>TCT English có miễn phí không?</summary>
-                        <p>
-                            Đăng ký và học các tính năng cơ bản là miễn phí. Một số công cụ nâng cao
-                            (ví dụ tạo bài Writing bằng AI, một phần Listening / Speaking riêng tư, hoặc
-                            quota AI không giới hạn) thuộc gói Premium.
-                        </p>
-                    </details>
-                    <details>
-                        <summary>Ai có thể sử dụng?</summary>
-                        <p>
-                            Nền tảng hướng tới nhân viên công ty TCT. Bạn cần tài khoản đăng ký để học
-                            và lưu tiến độ.
-                        </p>
-                    </details>
-                    <details>
-                        <summary>Có cần cài đặt phần mềm không?</summary>
-                        <p>
-                            Không. TCT English chạy trên trình duyệt web — không cần cài app riêng.
-                        </p>
-                    </details>
-                    <details>
-                        <summary>Có thể học trên điện thoại không?</summary>
-                        <p>
-                            Có. Giao diện hỗ trợ trình duyệt trên điện thoại và máy tính bảng.
-                            Một số màn hình học phức tạp vẫn thoải mái hơn trên màn hình lớn.
-                        </p>
-                    </details>
-                    <details>
-                        <summary>AI Chatbot hỗ trợ những gì?</summary>
-                        <p>
-                            Chat tiếng Anh, giải thích từ vựng / ngữ pháp, gợi ý diễn đạt và luyện hội thoại.
-                            Tài khoản thường có hạn mức lượt dùng; Premium hoặc Admin không bị giới hạn quota AI.
-                        </p>
-                    </details>
-                </div>
-            </div>
+        <section class="lp-end" aria-labelledby="lp-end-title">
+            <h2 id="lp-end-title">Học những từ đầu tiên ngay tối nay.</h2>
+            <p>Tài khoản miễn phí, học ngay trên trình duyệt.</p>
+            @if (isAuthenticated)
+            {
+                <a class="lp-btn lp-btn--accent" href="/Home/Index">Vào trang học</a>
+            }
+            else
+            {
+                <a class="lp-btn lp-btn--accent" href="/Account/Register">Bắt đầu miễn phí</a>
+            }
         </section>
+    </div>
 
-        <section class="landing-cta" aria-labelledby="cta-title">
-            <div class="landing-wrap landing-cta__inner">
-                <h2 id="cta-title">Bắt đầu học tiếng Anh trên TCT English</h2>
-                <p>
-                    Tạo tài khoản miễn phí để học từ vựng, luyện kỹ năng và dùng trợ lý AI theo hạn mức của gói.
-                </p>
-                <a class="landing-btn landing-btn--on-dark landing-btn--lg"
-                   asp-controller="Account"
-                   asp-action="Register">
-                    Bắt đầu học miễn phí
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="landing-footer">
-        <div class="landing-wrap">
-            <div class="landing-footer__grid">
-                <div>
-                    <div class="landing-footer__brand">TCT English</div>
-                    <p class="landing-footer__desc">
-                        Nền tảng học tiếng Anh cho nhân viên TCT — từ vựng đến trợ lý AI.
-                    </p>
+    <footer class="lp-foot">
+        <div class="lp-wrap">
+            <div class="lp-foot-grid">
+                <div class="lp-foot-brand">
+                    <a class="lp-logo" href="/">TCT English</a>
+                    <p>Học từ vựng, nghe, nói, đọc và viết tiếng Anh theo bài ngắn, có lịch ôn tập tự động.</p>
                 </div>
-                <div>
-                    <h3>Điều hướng</h3>
+                <nav aria-labelledby="lp-foot-skills">
+                    <h2 class="lp-foot-title" id="lp-foot-skills">Kỹ năng</h2>
                     <ul>
-                        <li><a href="#features">Tính năng</a></li>
-                        <li><a href="#study-modes">Chế độ học</a></li>
-                        <li><a href="#ai-assistant">AI Chatbot</a></li>
-                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="/Vocabulary">Từ vựng</a></li>
+                        <li><a href="/Home/Listening">Nghe</a></li>
+                        <li><a href="/Speaking">Nói</a></li>
+                        <li><a href="/Home/Writing">Viết</a></li>
+                        <li><a href="@(isAuthenticated ? "/Home/Reading" : "/Account/Login?returnUrl=%2FHome%2FReading")">Đọc</a></li>
                     </ul>
-                </div>
-                <div>
-                    <h3>Thông tin</h3>
+                </nav>
+                <nav aria-labelledby="lp-foot-account">
+                    <h2 class="lp-foot-title" id="lp-foot-account">Tài khoản</h2>
                     <ul>
-                        <li><a asp-controller="Home" asp-action="Contact">Liên hệ</a></li>
-                        <li><a asp-controller="Home" asp-action="Introduction">Giới thiệu</a></li>
-                        <li><a asp-controller="Home" asp-action="Privacypolicy">Chính sách bảo mật</a></li>
-                        <li><a asp-controller="Home" asp-action="Termsofuse">Điều khoản sử dụng</a></li>
+                        @if (isAuthenticated)
+                        {
+                            <li><a href="/Home/Index">Vào trang học</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="/Account/Login">Đăng nhập</a></li>
+                            <li><a href="/Account/Register">Tạo tài khoản</a></li>
+                        }
+                        <li><a href="/Premium">Gói Premium</a></li>
                     </ul>
-                </div>
+                </nav>
+                <nav aria-labelledby="lp-foot-info">
+                    <h2 class="lp-foot-title" id="lp-foot-info">Thông tin</h2>
+                    <ul>
+                        <li><a href="/Home/Introduction">Giới thiệu</a></li>
+                        <li><a href="/Home/Contact">Liên hệ</a></li>
+                        <li><a href="/Home/Privacypolicy">Quyền riêng tư</a></li>
+                        <li><a href="/Home/Termsofuse">Điều khoản</a></li>
+                    </ul>
+                </nav>
             </div>
-            <div class="landing-footer__bottom">
-                <span>&copy; 2026 TCT English</span>
-            </div>
+            <p class="lp-copy">© 2026 TCT English</p>
         </div>
     </footer>
 
-    <partial name="~/Views/Shared/_AiChatLauncher.cshtml" />
     <script src="~/js/ai-chat-launcher.js" asp-append-version="true"></script>
-    <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
-      }
-    }
-    </script>
-    <script src="~/js/landing.js" asp-append-version="true"></script>
-    <script type="module" src="~/js/landing-tico.js" asp-append-version="true"></script>
+    <partial name="~/Views/Shared/_AiChatLauncher.cshtml" />
 </body>
 </html>

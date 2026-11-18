@@ -4,6 +4,7 @@ using TCTEnglish.Models.Reading;
 using TCTEnglish.ViewModels;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
+using TCTEnglish.Services.Accounts;
 
 namespace TCTEnglish.Services.Reading;
 
@@ -128,12 +129,11 @@ public sealed class ReadingLearningService : IReadingLearningService
                 {
                     Id = o.Id,
                     OptionText = o.OptionText,
-                    MatchKey = o.MatchKey,
                     MatchSide = o.MatchSide
                 }).ToList(),
                 SavedAnswerText = openAttempt?.Answers.FirstOrDefault(a => a.QuestionId == q.Id)?.AnswerText,
                 SavedSelectedOptionId = openAttempt?.Answers.FirstOrDefault(a => a.QuestionId == q.Id)?.SelectedOptionId,
-                SavedMatchingJson = openAttempt?.Answers.FirstOrDefault(a => a.QuestionId == q.Id)?.MatchingJson,
+                SavedMatchingJson = SafeMatchingJson(q, openAttempt?.Answers.FirstOrDefault(a => a.QuestionId == q.Id)?.MatchingJson),
                 IsFlagged = openAttempt?.Answers.FirstOrDefault(a => a.QuestionId == q.Id)?.IsFlagged ?? false
             }).ToList(),
             Vocabulary = passage.VocabularyItems.Select(v => new ReadingVocabViewModel
@@ -153,7 +153,7 @@ public sealed class ReadingLearningService : IReadingLearningService
     public async Task<ReadingAttempt> StartAttemptAsync(int userId, int passageId, string mode, int? timeLimitSeconds, CancellationToken ct = default)
     {
         var study = await GetStudyAsync(userId, passageId, ct)
-            ?? throw new InvalidOperationException("Reading not accessible.");
+            ?? throw new ReadingNotFoundException();
 
         var existing = await _db.ReadingAttempts
             .FirstOrDefaultAsync(a => a.UserId == userId && a.ReadingPassageId == passageId && !a.IsSubmitted, ct);
@@ -174,12 +174,22 @@ public sealed class ReadingLearningService : IReadingLearningService
         return attempt;
     }
 
-    public async Task SaveAnswerAsync(int userId, int attemptId, SaveReadingAnswerRequest request, CancellationToken ct = default)
+    public Task SaveAnswerAsync(int userId, int attemptId, SaveReadingAnswerRequest request, CancellationToken ct = default) =>
+        WithUserMutationAsync(userId, async () => { await SaveAnswerCoreAsync(userId, attemptId, request, ct); return true; }, ct);
+
+    private async Task SaveAnswerCoreAsync(int userId, int attemptId, SaveReadingAnswerRequest request, CancellationToken ct)
     {
         var attempt = await _db.ReadingAttempts
             .Include(a => a.Answers)
             .FirstOrDefaultAsync(a => a.Id == attemptId && a.UserId == userId, ct)
-            ?? throw new InvalidOperationException("Attempt not found.");
+            ?? throw new ReadingNotFoundException();
+        await RequireAccessAsync(userId, attempt.ReadingPassageId, ct);
+        if (!await _db.ReadingQuestions.AnyAsync(q => q.Id == request.QuestionId && q.PassageId == attempt.ReadingPassageId, ct)
+            || (request.SelectedOptionId.HasValue && !await _db.ReadingOptions.AnyAsync(
+                o => o.Id == request.SelectedOptionId && o.QuestionId == request.QuestionId, ct)))
+            throw new ReadingNotFoundException();
+        if (request.AnswerText?.Length > 4000 || request.MatchingJson?.Length > 16000)
+            throw new ArgumentException("Answer is too long.");
         if (attempt.IsSubmitted)
             throw new InvalidOperationException("Attempt already submitted.");
 
@@ -202,26 +212,18 @@ public sealed class ReadingLearningService : IReadingLearningService
         await _db.SaveChangesAsync(ct);
     }
 
-    public async Task<ReadingSubmitResultViewModel> SubmitAttemptAsync(int userId, int attemptId, CancellationToken ct = default)
+    public Task<ReadingSubmitResultViewModel> SubmitAttemptAsync(int userId, int attemptId, CancellationToken ct = default) =>
+        WithUserMutationAsync(userId, () => SubmitAttemptCoreAsync(userId, attemptId, ct), ct);
+
+    private async Task<ReadingSubmitResultViewModel> SubmitAttemptCoreAsync(int userId, int attemptId, CancellationToken ct)
     {
         var attempt = await _db.ReadingAttempts
             .Include(a => a.Answers)
             .Include(a => a.ReadingPassage).ThenInclude(p => p.Questions).ThenInclude(q => q.Options)
             .FirstOrDefaultAsync(a => a.Id == attemptId && a.UserId == userId, ct)
-            ?? throw new InvalidOperationException("Attempt not found.");
+            ?? throw new ReadingNotFoundException();
 
-        if (attempt.IsSubmitted)
-            throw new InvalidOperationException("Attempt already submitted.");
-
-        if (!attempt.ReadingPassage.IsPublished || attempt.ReadingPassage.Status != ReadingStatuses.Published)
-            throw new InvalidOperationException("Reading is not published.");
-
-        if (!await IsAdminUserAsync(userId, ct))
-        {
-            var studentLevel = await GetUserReadingLevelAsync(userId, ct);
-            if (!CefrLevels.CanAccess(studentLevel, attempt.ReadingPassage.Level))
-                throw new InvalidOperationException("Reading level not allowed.");
-        }
+        await RequireAccessAsync(userId, attempt.ReadingPassageId, ct);
 
         var details = new List<ReadingQuestionResultViewModel>();
         var score = 0;
@@ -232,8 +234,8 @@ public sealed class ReadingLearningService : IReadingLearningService
         {
             maxScore += question.Points > 0 ? question.Points : 1;
             var answer = attempt.Answers.FirstOrDefault(a => a.QuestionId == question.Id);
-            var isCorrect = ScoreQuestion(question, answer);
-            if (answer != null) answer.IsCorrect = isCorrect;
+            var isCorrect = attempt.IsSubmitted ? answer?.IsCorrect == true : ScoreQuestion(question, answer);
+            if (answer != null && !attempt.IsSubmitted) answer.IsCorrect = isCorrect;
             if (isCorrect)
             {
                 correctCount++;
@@ -252,6 +254,13 @@ public sealed class ReadingLearningService : IReadingLearningService
                 EvidenceParagraphId = question.EvidenceParagraphId
             });
         }
+
+        if (attempt.IsSubmitted)
+            return new ReadingSubmitResultViewModel
+            {
+                AttemptId = attempt.Id, Score = attempt.Score ?? 0, MaxScore = attempt.MaxScore ?? 0,
+                CorrectCount = correctCount, TotalCount = attempt.ReadingPassage.Questions.Count, Details = details
+            };
 
         attempt.IsSubmitted = true;
         attempt.SubmittedAt = DateTime.UtcNow;
@@ -280,7 +289,9 @@ public sealed class ReadingLearningService : IReadingLearningService
         if (isNewCompletion)
         {
             var activityUpdate = _goalsService.BuildReadingCompletionActivityUpdate();
-            await _goalsService.RecordLearningActivityAsync(userId, activityUpdate);
+            var credit = await _goalsService.RecordLearningActivityAsync(userId, activityUpdate);
+            if (credit.Status != OperationStatus.Success)
+                throw new InvalidOperationException("Reading completion could not be recorded.");
         }
 
         return new ReadingSubmitResultViewModel
@@ -297,7 +308,7 @@ public sealed class ReadingLearningService : IReadingLearningService
     public async Task SaveAnnotationAsync(int userId, ReadingAnnotationRequest request, CancellationToken ct = default)
     {
         if (await GetStudyAsync(userId, request.PassageId, ct) == null)
-            throw new InvalidOperationException("Reading not accessible.");
+            throw new ReadingNotFoundException();
 
         _db.ReadingAnnotations.Add(new ReadingAnnotation
         {
@@ -317,19 +328,23 @@ public sealed class ReadingLearningService : IReadingLearningService
     public async Task DeleteAnnotationAsync(int userId, int annotationId, CancellationToken ct = default)
     {
         var item = await _db.ReadingAnnotations.FirstOrDefaultAsync(a => a.Id == annotationId && a.UserId == userId, ct);
-        if (item == null) return;
+        if (item == null) throw new ReadingNotFoundException();
         _db.ReadingAnnotations.Remove(item);
         await _db.SaveChangesAsync(ct);
     }
 
-    public Task<List<ReadingAnnotation>> GetAnnotationsAsync(int userId, int passageId, CancellationToken ct = default) =>
-        _db.ReadingAnnotations.AsNoTracking()
+    public async Task<List<ReadingAnnotation>> GetAnnotationsAsync(int userId, int passageId, CancellationToken ct = default)
+    {
+        await RequireAccessAsync(userId, passageId, ct);
+        return await _db.ReadingAnnotations.AsNoTracking()
             .Where(a => a.UserId == userId && a.ReadingPassageId == passageId)
             .OrderBy(a => a.StartOffset)
             .ToListAsync(ct);
+    }
 
-    public async Task<ReadingVocabularyItem?> LookupWordAsync(int passageId, string word, CancellationToken ct = default)
+    public async Task<ReadingVocabularyItem?> LookupWordAsync(int userId, int passageId, string word, CancellationToken ct = default)
     {
+        await RequireAccessAsync(userId, passageId, ct);
         if (string.IsNullOrWhiteSpace(word)) return null;
         var normalized = word.Trim();
         return await _db.ReadingVocabularyItems.AsNoTracking()
@@ -349,10 +364,13 @@ public sealed class ReadingLearningService : IReadingLearningService
         {
             source = await _db.ReadingVocabularyItems.AsNoTracking()
                 .FirstOrDefaultAsync(v => v.Id == vocabItemId.Value, ct);
+            if (source == null || (passageId.HasValue && source.ReadingPassageId != passageId))
+                throw new ReadingNotFoundException();
+            await RequireAccessAsync(userId, source.ReadingPassageId, ct);
         }
         else if (passageId.HasValue)
         {
-            source = await LookupWordAsync(passageId.Value, word, ct);
+            source = await LookupWordAsync(userId, passageId.Value, word, ct);
         }
 
         var entry = new StudentVocabulary
@@ -376,18 +394,22 @@ public sealed class ReadingLearningService : IReadingLearningService
     private static string? FirstNonEmpty(string? preferred, string? fallback) =>
         !string.IsNullOrWhiteSpace(preferred) ? preferred.Trim() : fallback;
 
-    public Task<List<StudentVocabulary>> GetNotebookAsync(int userId, string? search, CancellationToken ct = default)
+    public Task<List<ReadingNotebookEntryViewModel>> GetNotebookAsync(int userId, string? search, CancellationToken ct = default)
     {
         var query = _db.StudentVocabularies.AsNoTracking().Where(v => v.UserId == userId);
         if (!string.IsNullOrWhiteSpace(search))
             query = query.Where(v => v.Word.Contains(search) || (v.VietnameseMeaning != null && v.VietnameseMeaning.Contains(search)));
-        return query.OrderByDescending(v => v.CreatedAt).ToListAsync(ct);
+        return query.OrderByDescending(v => v.CreatedAt).Select(v => new ReadingNotebookEntryViewModel
+        {
+            Id = v.Id, Word = v.Word, Ipa = v.Ipa, PartOfSpeech = v.PartOfSpeech,
+            EnglishDefinition = v.EnglishDefinition, VietnameseMeaning = v.VietnameseMeaning, Example = v.Example
+        }).ToListAsync(ct);
     }
 
     public async Task DeleteNotebookEntryAsync(int userId, int id, CancellationToken ct = default)
     {
         var item = await _db.StudentVocabularies.FirstOrDefaultAsync(v => v.Id == id && v.UserId == userId, ct);
-        if (item == null) return;
+        if (item == null) throw new ReadingNotFoundException();
         _db.StudentVocabularies.Remove(item);
         await _db.SaveChangesAsync(ct);
     }
@@ -465,31 +487,85 @@ public sealed class ReadingLearningService : IReadingLearningService
         if (string.IsNullOrWhiteSpace(matchingJson)) return false;
         try
         {
-            var map = JsonSerializer.Deserialize<Dictionary<string, string>>(matchingJson);
-            if (map == null || map.Count == 0) return false;
-            var expected = question.Options
-                .Where(o => !string.IsNullOrWhiteSpace(o.MatchKey))
-                .GroupBy(o => o.MatchKey!)
-                .ToDictionary(g => g.Key, g => g.Select(x => x.Id.ToString()).OrderBy(x => x).ToArray());
-
-            foreach (var pair in expected)
+            var map = ReadMatchingMap(question, matchingJson);
+            var left = question.Options.Where(o => o.MatchSide == "Left").ToList();
+            var right = question.Options.Where(o => o.MatchSide == "Right").ToDictionary(o => o.Id.ToString());
+            if (map == null || left.Count == 0 || map.Count != left.Count || map.Values.Distinct().Count() != map.Count)
+                return false;
+            foreach (var option in left)
             {
-                if (!map.TryGetValue(pair.Key, out var value)) return false;
-                var parts = value.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                    .OrderBy(x => x).ToArray();
-                if (!parts.SequenceEqual(pair.Value)) return false;
+                if (!map.TryGetValue(option.Id.ToString(), out var rightId)
+                    || !right.TryGetValue(rightId, out var target)
+                    || string.IsNullOrEmpty(option.MatchKey) || option.MatchKey != target.MatchKey)
+                    return false;
             }
 
             return true;
         }
-        catch
+        catch (JsonException)
         {
             return false;
         }
     }
 
+    private static string? SafeMatchingJson(ReadingQuestion question, string? json)
+    {
+        var map = ReadMatchingMap(question, json);
+        return map == null ? null : JsonSerializer.Serialize(map);
+    }
+
+    private static Dictionary<string, string>? ReadMatchingMap(ReadingQuestion question, string? json)
+    {
+        if (string.IsNullOrWhiteSpace(json)) return null;
+        try
+        {
+            var raw = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+            var left = question.Options.Where(o => o.MatchSide == "Left").ToList();
+            var rightIds = question.Options.Where(o => o.MatchSide == "Right").Select(o => o.Id.ToString()).ToHashSet();
+            if (raw == null || raw.Count > left.Count) return null;
+            var map = new Dictionary<string, string>(StringComparer.Ordinal);
+            foreach (var pair in raw)
+            {
+                var leftId = pair.Key;
+                var rightId = pair.Value;
+                if (string.IsNullOrEmpty(rightId)) return null;
+                if (rightId.Contains(','))
+                {
+                    // The initial PR stored MatchKey -> "leftId,rightId". Preserve
+                    // these answers, but return only option IDs to the learner.
+                    var option = left.FirstOrDefault(o => o.MatchKey == pair.Key);
+                    if (option == null) return null;
+                    leftId = option.Id.ToString();
+                    var ids = rightId.Split(',', StringSplitOptions.TrimEntries);
+                    if (ids.Length != 2 || !ids.Contains(leftId)) return null;
+                    rightId = ids.FirstOrDefault(id => id != leftId) ?? "";
+                }
+                if (!left.Any(o => o.Id.ToString() == leftId) || !rightIds.Contains(rightId) || !map.TryAdd(leftId, rightId))
+                    return null;
+            }
+            return map;
+        }
+        catch (JsonException) { return null; }
+    }
+
     private static string NormalizeText(string? value) =>
         string.Join(' ', (value ?? string.Empty).Trim().ToLowerInvariant().Split(' ', StringSplitOptions.RemoveEmptyEntries));
+
+    private Task<T> WithUserMutationAsync<T>(int userId, Func<Task<T>> action, CancellationToken ct) =>
+        _db.Database.IsRelational()
+            ? UserMutationScope.ExecuteAsync(_db, userId, action, _ => true, ct)
+            : action(); // EF InMemory is used only by legacy unit fixtures.
+
+    private async Task RequireAccessAsync(int userId, int passageId, CancellationToken ct)
+    {
+        var user = await _db.Users.AsNoTracking().Where(u => u.UserId == userId && u.AnonymizedAt == null)
+            .Select(u => new { u.ReadingLevel, u.Role }).FirstOrDefaultAsync(ct);
+        var level = await _db.ReadingPassages.AsNoTracking()
+            .Where(p => p.Id == passageId && p.IsPublished && p.Status == ReadingStatuses.Published)
+            .Select(p => p.Level).FirstOrDefaultAsync(ct);
+        if (user == null || level == null || (Roles.Normalize(user.Role) != Roles.Admin && !CefrLevels.CanAccess(user.ReadingLevel, level)))
+            throw new ReadingNotFoundException();
+    }
 
     private async Task<bool> IsAdminUserAsync(int userId, CancellationToken ct)
     {

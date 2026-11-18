@@ -1,0 +1,1759 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level C1-  UNG TH\u01AF M\u00C1U -",
+        "YoutubeId": "eZzeZqdmG70",
+        "Level": "C1",
+        "Topic": "S\u1EE9c kh\u1ECFe",
+        "ThumbnailUrl": "https://img.youtube.com/vi/eZzeZqdmG70/hqdefault.jpg",
+        "Duration": "15:58",
+        "SourceUrl": "https://www.youtube.com/watch?v=eZzeZqdmG70",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.044296b6ae5c45309be6e58e0aa6cb8d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 11,
+        "EndTime": 18.64,
+        "Text": "Jake, did you see that story going around online? The girl who is 23 and just got diagnosed with leukemia.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.051d93269630447d8a96be1f9b325b09",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 817,
+        "EndTime": 823.76,
+        "Text": "unexplained bruising, nothing that screams emergency until it suddenly does.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.0555c7b159b546639fd21a94c77efedd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 88,
+        "EndTime": 96.96,
+        "Text": "What she talked about was the retrospective questioning, the what if I had slept more? What if I had taken those symptoms seriously earlier? And",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.0580cf98468e43078e2b27e7aac56d54",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 349,
+        "EndTime": 357.36,
+        "Text": "That is terrifying. Leukemia at 23. Most people that age assume serious illness simply does not apply to them yet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.07ceafdb49284718b708bc8e3e998e30",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 793,
+        "EndTime": 801.6,
+        "Text": "It adapts. But that patience has a threshold. What affected me about her decision to share publicly was the framing. She wasn\u0027t presenting herself",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.0898eab7a46248629cbcb71d1b4b8b00",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 84,
+        "EndTime": 88.4,
+        "Text": "renewable, is a real concern regardless of her specific case.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.0e392f6b41404f30ac52ce9d2e87bbc0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 493,
+        "EndTime": 501.36,
+        "Text": "Exactly. And leukemia in particular can present with symptoms that are easy to dismiss. fatigue, frequent illness,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.0ec0a76493db4f73b62cb4feb0e87828",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 554,
+        "EndTime": 559.92,
+        "Text": "overwhelming. Does a story like this actually change how you think about your own habits?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.0ef39958f95949718fd8d88fbb64790d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 909,
+        "EndTime": 915.199,
+        "Text": "them. That\u0027s a generous impulse to have while in the middle of the hardest experience of your life.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.0efc30a584244cc48228b0d2fd6d055c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 40,
+        "EndTime": 47.84,
+        "Text": "That is exactly the problem. We treat youth like a form of immunity. late nights, skipping meals, surviving on",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.106acc6dd48b46aebf5205d9990801cc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 601,
+        "EndTime": 609.6,
+        "Text": "Before the diagnosis, an ordinary day felt unremarkable. after a day without pain became something she actively longed for.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.146777322f1c4360bd56b59019638b89",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 72,
+        "EndTime": 77.6,
+        "Text": "identifiable cause at all. You cannot reduce it to a single habit.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.16986bc113884da8b4fafcd6d5296f82",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 529,
+        "EndTime": 538.56,
+        "Text": "talked about her family and I think that dimension gets under reppresented. When someone young becomes seriously ill, the pain extends well beyond the patient.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.18d9237d9612460c943634c59107a7cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 250,
+        "EndTime": 258.959,
+        "Text": "tends to close relatively quickly once the immediacy fades. We absorb information well. We sustain behavioral change poorly",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.1a1b3d5ced8544fb98011484c80d1a99",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 77,
+        "EndTime": 84.56,
+        "Text": "Right? That would be an oversimplification. But the broader pattern she was describing, young people treating their bodies as infinitely",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.1a5c44291c84421bb789ffd48e5153ee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 339,
+        "EndTime": 349.759,
+        "Text": "She is a content creator, young, active, looked completely healthy from the outside and then suddenly she gets this diagnosis and everything just stops.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.1b579ac8150f4219ba5f98c18af2936d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 632,
+        "EndTime": 637.279,
+        "Text": "midnight for once. small things, but the big decisions are made up of the small ones.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.1ee0845d375c4ad4bcdc86fd41dc82ce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 710,
+        "EndTime": 717.76,
+        "Text": "Right? That would be an oversimplification. But the broader pattern she was describing, young people treating their bodies as infinitely",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.1fac80dcb41d420e872a3c3064055d6f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 33,
+        "EndTime": 40.719,
+        "Text": "That is terrifying. Leukemia at 23, most people that age assume serious illness simply does not apply to them yet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.20808b3013ef49789663f3ee1f4a6fd9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 746,
+        "EndTime": 755.36,
+        "Text": "kind of pain because it\u0027s directed entirely inward. And she lost more than her health. She lost her sense of control. Before the diagnosis, she made",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.2253baf444e5463bab941e184090d2a1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 698,
+        "EndTime": 706.079,
+        "Text": "complex. It involves genetic mutations, possible exposure to radiation or certain chemicals, and often no",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.26900dc161d84bc694f0acd0f459685c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 22,
+        "EndTime": 33.2,
+        "Text": "She is a content creator, young, active, looked completely healthy from the outside and then suddenly she gets this diagnosis and everything just stops.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.2f26b07d00a4494ea3ea35f1940f2640",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 401,
+        "EndTime": 404.96,
+        "Text": "renewable, is a real concern regardless of her specific case.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.3068e899a345402fa866ad94647a9ee1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 777,
+        "EndTime": 786.32,
+        "Text": "Surviving on minimal sleep becomes a badge of ambition. And the body absorbs all of that without complaining loudly until eventually it does.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.30fab613774a4c86817abeb10cf744e2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 801,
+        "EndTime": 810.48,
+        "Text": "as a moral lesson. She was saying, \u0022I wish I had listened more carefully,\u0022 which is a much more honest position than reducing illness to personal failure.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.320a85d6f4994e6cbea03c9673010035",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 940,
+        "EndTime": 948.959,
+        "Text": "Same. And I hope people carry her story a little longer than usual. Actually book that checkup they\u0027ve been postponing. Actually sleep before",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.344dcd6135c4440ba529842384ae51ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 65,
+        "EndTime": 72.88,
+        "Text": "complex. It involves genetic mutations, possible exposure to radiation or certain chemicals, and often no",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.347fafd167954a9bac0198fd13f18d74",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 212,
+        "EndTime": 221.92,
+        "Text": "talked about her family and I think that dimension gets under reppresented. When someone young becomes seriously ill, the pain extends well beyond the patient.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.35013c2945984b6bb4695a2aad5d8e86",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 258,
+        "EndTime": 268.639,
+        "Text": "because preventative health requires you to act urgently on behalf of a future self you can\u0027t yet see or feel. And the present self always finds reasons to defer.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.38ab432d6c2f413ca3b32745c3b745d3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 307,
+        "EndTime": 315.759,
+        "Text": "Same. And I hope people carry her story a little longer than usual. Actually book that checkup they\u0027ve been postponing. Actually sleep before",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.38fa20ced6bd4f038308f89b691876ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 538,
+        "EndTime": 547.44,
+        "Text": "Parents watching a child face something like this experience a specific kind of helplessness that doesn\u0027t have a clean resolution. And each person performing",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.3a6b0146fe344d89a9148d6cbbad385b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 131,
+        "EndTime": 141.76,
+        "Text": "what her body was doing, which is something healthy people take entirely for granted. There\u0027s also a cultural layer here. Hustle culture has essentially glamorized self- neglect.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.3aeb1706b6ff4fc58c75125e7658caea",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 655,
+        "EndTime": 666.399,
+        "Text": "She is a content creator, young, active, looked completely healthy from the outside and then suddenly she gets this diagnosis and everything just stops.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.3befa29e5397456097b3821ec3438b17",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 230,
+        "EndTime": 238.239,
+        "Text": "strength to protect the other from the full weight of their fear. That emotional labor sits on top of everything else that\u0027s already",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.3c3c33fffad94a4999b6606df6e541c4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 204,
+        "EndTime": 212.799,
+        "Text": "gap between feeling vaguely unwell and actually acting on it is where a lot of damage quietly accumulates. She also",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.3c97d9fe615c437b83fec1975595ee6d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 521,
+        "EndTime": 529.36,
+        "Text": "gap between feeling vaguely unwell and actually acting on it is where a lot of damage quietly accumulates. She also",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.3e5cf7d2252047dab41ef2022f1c032d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 58,
+        "EndTime": 65.199,
+        "Text": "She was careful not to frame it as simple cause and effect, which I respected. Medically, leukemia is",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.3ed54014a569480b844763015e7b3ded",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 488,
+        "EndTime": 493.919,
+        "Text": "listened more carefully,\u0022 which is a much more honest position than reducing illness to personal failure.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.3fcd6f7eb08a4145bbe6553e36b50ef2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 458,
+        "EndTime": 461.039,
+        "Text": "Burning out gets reframed as dedication.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.40a446941fc346c481f69f655e384993",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 315,
+        "EndTime": 320.72,
+        "Text": "midnight for once. small things, but the big decisions are made up of the small ones.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.419dc2b7f13647a587c890b1f79a99e3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 381,
+        "EndTime": 389.44,
+        "Text": "complex. It involves genetic mutations, possible exposure to radiation or certain chemicals, and often no",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.41d9d19c20cd472c8a43c4b9f6355787",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 141,
+        "EndTime": 144.4,
+        "Text": "Burning out gets reframed as dedication.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.44e778fe99a74a19a08e1286184ebbe7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 438,
+        "EndTime": 447.84,
+        "Text": "choices about her days, her work, her future. The illness took all of that from her. She went from deciding what content to make to having no say over",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.45aa0930764f4e89a85e78c0fde21a1e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 691,
+        "EndTime": 698.399,
+        "Text": "She was careful not to frame it as simple cause and effect, which I respected. Medically, leukemia is",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.45cc8cc52d8c4953ba8b130a0d36a52e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 706,
+        "EndTime": 710.8,
+        "Text": "identifiable cause at all. You cannot reduce it to a single habit.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.47f20633586748b5b5c20d6b4ce81ddb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 413,
+        "EndTime": 421.84,
+        "Text": "the unbearable thing about those questions is they cannot change anything. They just sit there. That psychological dimension is rarely",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.4bfd277f412a471ab984984f56d60a7a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 282,
+        "EndTime": 290.4,
+        "Text": "What stays with me is what she said about ordinary days. Before the diagnosis, an ordinary day felt unremarkable. after a day without pain",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.5067fe29458a4fadb06830b5dbaf7e57",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 238,
+        "EndTime": 243.36,
+        "Text": "overwhelming. Does a story like this actually change how you think about your own habits?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.519f91a5cd304d3581fb6e45ed463674",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 122,
+        "EndTime": 131.28,
+        "Text": "choices about her days, her work, her future. The illness took all of that from her. She went from deciding what content to make to having no say over",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.53ae4cb2b74742bd97b3b90752bc184b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 364,
+        "EndTime": 372,
+        "Text": "bubble tea and caffeine, ignoring persistent fatigue, all justified under the logic of being young enough to recover.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.58a3c66644fd4022a3eb6c6ed0dbd0b8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 421,
+        "EndTime": 430,
+        "Text": "discussed openly. The grief of looking back at your own behavior and wondering whether you unknowingly contributed to what happened to you. It\u0027s a particular",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.58ca0e5bb61549319e7f4b2710af947d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 8,
+        "EndTime": 11.519,
+        "Text": "Now listen carefully.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.58ed002c692e4b509d6ea59a66956909",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 823,
+        "EndTime": 831.36,
+        "Text": "Young adults are also among the least likely to attend regular health screenings because they feel fine and assume that means they are fine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.5fb5e3747ea04f5098635cc8847b950b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 566,
+        "EndTime": 575.6,
+        "Text": "tends to close relatively quickly once the immediacy fades. We absorb information well. We sustain behavioral change poorly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.61c2cb62b2b34437930eea12a4fe2784",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 404,
+        "EndTime": 413.52,
+        "Text": "What she talked about was the retrospective questioning, the what if I had slept more? What if I had taken those symptoms seriously earlier? And",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.62b3d454392942dca8f79253cf9f3078",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 507,
+        "EndTime": 514.719,
+        "Text": "Young adults are also among the least likely to attend regular health screenings because they feel fine and assume that means they are fine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.638ea952dad74e92b9fcc26ea54e888d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 848,
+        "EndTime": 855.12,
+        "Text": "dimension gets under reppresented. When someone young becomes seriously ill, the pain extends well beyond the patient.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.655b801a220444cebfa8357e02d8f56d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 469,
+        "EndTime": 476.72,
+        "Text": "And by that point, the damage can already be significant. The body is extraordinarily patient. It compensates.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.66481efe376f4292a49a7d2fc409714b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 892,
+        "EndTime": 901.839,
+        "Text": "Because preventative health requires you to act urgently on behalf of a future self you can\u0027t yet see or feel. and the present self always finds reasons to defer.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.665b1d0c5df447f2bf436baf8eb74531",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 559,
+        "EndTime": 566.88,
+        "Text": "Honestly, it does in the moment, but that\u0027s the uncomfortable truth. These stories open a window of reflection that",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.6878ae009178488096bb4cc3ef8b9a3d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 47,
+        "EndTime": 55.36,
+        "Text": "bubble tea and caffeine, ignoring persistent fatigue, all justified under the logic of being young enough to recover.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.6bfcf1305a0f4086bb3bcbf8e8ca3887",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 840,
+        "EndTime": 848.079,
+        "Text": "actually acting on it is where a lot of damage quietly accumulates. She also talked about her family and I think that",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.6d79bde3caba4ad4bacab08ad94362a1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 738,
+        "EndTime": 746.639,
+        "Text": "discussed openly. The grief of looking back at your own behavior and wondering whether you unknowingly contributed to what happened to you. It\u0027s a particular",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.6e8b245f714a4040b4cebfea42986a4a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 447,
+        "EndTime": 458.319,
+        "Text": "what her body was doing, which is something healthy people take entirely for granted. There\u0027s also a cultural layer here. Hustle culture has essentially glamorized self- neglect.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.6eb796f6bbeb43e48f0c795d8aabc3a2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 871,
+        "EndTime": 876.56,
+        "Text": "overwhelming. Does a story like this actually change how you think about your own habits?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.76fdacb8943844f297a5fde73dc9e62d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 901,
+        "EndTime": 909.68,
+        "Text": "She did not share this to generate shock. She shared it so that people who still have the privilege of making different choices might actually make",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.7a7aa4399fef4fb788dfbc6e667db744",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 666,
+        "EndTime": 673.92,
+        "Text": "That is terrifying. Leukemia at 23, most people that age assume serious illness simply does not apply to them yet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.7b6b2c4fef66496cb74f1f34d60ff221",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 476,
+        "EndTime": 480,
+        "Text": "It adapts. But that patience has a threshold.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.810e05f25bbe4aa58a800f5223541bfc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 926,
+        "EndTime": 933.12,
+        "Text": "The things that used to feel like nothing, sleeping well, eating without nausea, walking without exhaustion,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.832179077fd84d478e6ad6e6671b9a29",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 160,
+        "EndTime": 168.4,
+        "Text": "It adapts. But that patience has a threshold. What affected me about her decision to share publicly was the framing. She wasn\u0027t presenting herself",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.844b4579b76b4107b335a036a3952315",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 575,
+        "EndTime": 584.399,
+        "Text": "Because preventative health requires you to act urgently on behalf of a future self you can\u0027t yet see or feel. And the present self always finds reasons to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.86398c73650b42f9b37060fcd57c4792",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 96,
+        "EndTime": 105.2,
+        "Text": "the unbearable thing about those questions is they cannot change anything. They just sit there. That psychological dimension is rarely",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.8e8f2c93caef49128c5ea792742f4202",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 730,
+        "EndTime": 738.399,
+        "Text": "the unbearable thing about those questions is they cannot change anything. They just sit there. That psychological dimension is rarely",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.8e956ffbd6cb4cb39245535393a10a7c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 547,
+        "EndTime": 554.8,
+        "Text": "strength to protect the other from the full weight of their fear. That emotional labor sits on top of everything else that\u0027s already",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.91384d2326d74280a562e29e816cde06",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 915,
+        "EndTime": 923.6,
+        "Text": "What stays with me is what she said about ordinary days. Before the diagnosis, an ordinary day felt unremarkable. after a day without pain",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.966d833557cc423dbc3764a73ecd96cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 616,
+        "EndTime": 623.92,
+        "Text": "suddenly become precious. And most of us won\u0027t recognize their value until they\u0027re threatened. I hope she gets through treatment.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.98041904ba5a443687e2b109b02a7378",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 177,
+        "EndTime": 184.72,
+        "Text": "Exactly. And leukemia in particular can present with symptoms that are easy to dismiss. fatigue, frequent illness,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.99944a3fe7b441698c9734c1f9d95476",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 389,
+        "EndTime": 394.16,
+        "Text": "identifiable cause at all. You cannot reduce it to a single habit.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.9997956d0f214161993acbc80e33f407",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 18,
+        "EndTime": 22.56,
+        "Text": "I saw something about it but didn\u0027t read the full story. What exactly happened?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.9ab1813699ee4f16a63859a77775d214",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 755,
+        "EndTime": 764.48,
+        "Text": "choices about her days, her work, her future. The illness took all of that from her. She went from deciding what content to make to having no say over",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.9fd85b9322de48d28d971e26f32470c8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 721,
+        "EndTime": 730.16,
+        "Text": "What she talked about was the retrospective questioning, the what if I had slept more? What if I had taken those symptoms seriously earlier? And",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.a03a64cfeaad47cc999cb0a774e47a5e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 276,
+        "EndTime": 282,
+        "Text": "them. That\u0027s a generous impulse to have while in the middle of the hardest experience of your life.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.a0f4debedb9648cca1be8abf12b83322",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 372,
+        "EndTime": 375.28,
+        "Text": "Did she connect her lifestyle to the diagnosis directly?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.a28359d39cb14f768c5621fe0736f1ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 375,
+        "EndTime": 381.84,
+        "Text": "She was careful not to frame it as simple cause and effect, which I respected. Medically, leukemia is",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.a5224ab32e16470fa165ff9252465f42",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 144,
+        "EndTime": 153.12,
+        "Text": "Surviving on minimal sleep becomes a badge of ambition. And the body absorbs all of that without complaining loudly until eventually it does.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.a62fa30b17b241919556d5187ee9e2c0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 651,
+        "EndTime": 655.76,
+        "Text": "I saw something about it but didn\u0027t read the full story. What exactly happened?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.a76bfd22a44840f6802fa7a86394388c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 430,
+        "EndTime": 438.72,
+        "Text": "kind of pain because it\u0027s directed entirely inward. And she lost more than her health. She lost her sense of control. Before the diagnosis, she made",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.a8cf13ddd2c54870971b7ca8634c416e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 461,
+        "EndTime": 469.68,
+        "Text": "Surviving on minimal sleep becomes a badge of ambition. And the body absorbs all of that without complaining loudly until eventually it does.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.a95cafbd2e9340f6a5be6558cb7be42d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1,
+        "EndTime": 8.96,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level C1 and the topic is leukemia.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.aa514837ddd149c8982d8a59baf51bb0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 933,
+        "EndTime": 940.56,
+        "Text": "suddenly become precious. And most of us won\u0027t recognize their value until they\u0027re threatened. I hope she gets through treatment.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.ab18f829785c44128a5498c451f87c98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 153,
+        "EndTime": 160.16,
+        "Text": "And by that point, the damage can already be significant. The body is extraordinarily patient. It compensates.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.ae94478b54bd49fa89a7075e24a9af36",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 501,
+        "EndTime": 507.199,
+        "Text": "unexplained bruising, nothing that screams emergency until it suddenly does.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.af78e9acc32c486ab05181fad01ee4e8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 168,
+        "EndTime": 177.28,
+        "Text": "as a moral lesson. She was saying, \u0022I wish I had listened more carefully,\u0022 which is a much more honest position than reducing illness to personal failure.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.b21725bfe30d4534b5924cf0ce292551",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 673,
+        "EndTime": 681.04,
+        "Text": "That is exactly the problem. We treat youth like a form of immunity. late nights, skipping meals, surviving on",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.b38d30bdba2748ec88f3ef7b34fe395b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 55,
+        "EndTime": 58.719,
+        "Text": "Did she connect her lifestyle to the diagnosis directly?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.b61ba49e7a50440bb8d52c91d05f5c66",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 328,
+        "EndTime": 335.28,
+        "Text": "Jake, did you see that story going around online? The girl who was 23 and just got diagnosed with leukemia.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.b78646aca1d945bca9cf17bebbf2da6e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 584,
+        "EndTime": 592.8,
+        "Text": "defer. She did not share this to generate shock. She shared it so that people who still have the privilege of making different choices might actually",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.b9b60be8c0b74dcf9fef50d7c15b66af",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 688,
+        "EndTime": 691.92,
+        "Text": "Did she connect her lifestyle to the diagnosis directly?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.bb7182d6f6774fdcb99707d02b0c5031",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 268,
+        "EndTime": 276.479,
+        "Text": "She did not share this to generate shock. She shared it so that people who still have the privilege of making different choices might actually make",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.bbceccc7655b4838b5513d93bd4e6514",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 198,
+        "EndTime": 204.879,
+        "Text": "By the time many people take the symptoms seriously enough to seek help, the disease has already progressed. That",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.bd37948bf400491a81055986f3def396",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 774,
+        "EndTime": 777.6,
+        "Text": "Burning out gets reframed as dedication.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.bde353c77358426fabf532159ac2ebdc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 184,
+        "EndTime": 190.56,
+        "Text": "unexplained bruising, nothing that screams emergency until it suddenly does.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.c0d6014ba8274a709ca20b8d48465cf0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 637,
+        "EndTime": 643.399,
+        "Text": "And the body keeps a very precise account of all of them.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.c5150c3587b444f2a71e8c9272e09e10",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 243,
+        "EndTime": 250.319,
+        "Text": "Honestly, it does in the moment, but that\u0027s the uncomfortable truth. These stories open a window of reflection that",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.c6e7fb45df7e49cfb3a4ee3f8e9b36f6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 357,
+        "EndTime": 364.4,
+        "Text": "That is exactly the problem. We treat youth like a form of immunity. Late nights, skipping meals, surviving on",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.cc1ba118963a43f9ab697106f3d8a688",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 592,
+        "EndTime": 601.68,
+        "Text": "make them. That\u0027s a generous impulse to have while in the middle of the hardest experience of your life. What stays with me is what she said about ordinary days.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.cc5f4cd0bb984dc58f97e45d875f3a57",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 320,
+        "EndTime": 326.84,
+        "Text": "And the body keeps a very precise account of all of them.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.cceb115673aa4441abb3bfdbc1fce79d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 876,
+        "EndTime": 883.519,
+        "Text": "Honestly, it does in the moment, but that\u0027s the uncomfortable truth. These stories open a window of reflection that",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.ce25da0fdf1747189d37249df745950f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 644,
+        "EndTime": 651.839,
+        "Text": "Jake, did you see that story going around online? The girl who is 23 and just got diagnosed with leukemia.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.d038caa86a884f99a13034676d16fb5f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 190,
+        "EndTime": 198.159,
+        "Text": "Young adults are also among the least likely to attend regular health screenings because they feel fine and assume that means they are fine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.d27de93cffc04a87a73e59f01fe3b883",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 681,
+        "EndTime": 688.56,
+        "Text": "bubble tea and caffeine, ignoring persistent fatigue, all justified under the logic of being young enough to recover.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.d45d012c0b31434ca1beb7885ffba4a4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 609,
+        "EndTime": 616.56,
+        "Text": "The things that used to feel like nothing, sleeping well, eating without nausea, walking without exhaustion,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.d6e1055b64434b4282d543fcd774ed28",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 290,
+        "EndTime": 293.04,
+        "Text": "became something she actively longed for.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.da86a1db3fb6420f96222d4068bdf656",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 883,
+        "EndTime": 892.24,
+        "Text": "tends to close relatively quickly once the immediacy fades. We absorb information well. We sustain behavioral change poorly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.dd29d9b41ae84f60b25f5c4b5a8019ef",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 105,
+        "EndTime": 113.439,
+        "Text": "discussed openly. The grief of looking back at your own behavior and wondering whether you unknowingly contributed to what happened to you. It\u0027s a particular",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.ddafd7a10579467fa4dae0e918ee9c70",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 335,
+        "EndTime": 339.199,
+        "Text": "I saw something about it but didn\u0027t read the full story. What exactly happened?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.de6073cac9084236b738b1d44aa85e81",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 394,
+        "EndTime": 401.12,
+        "Text": "Right? That would be an oversimplification. But the broader pattern she was describing, young people treating their bodies as infinitely",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.e16298d5f28d4fc5ad7f1cdbd4aeb657",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 764,
+        "EndTime": 774.959,
+        "Text": "what her body was doing, which is something healthy people take entirely for granted. There\u0027s also a cultural layer here. Hustle culture has essentially glamorized self- neglect.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.e3b36bb438874b719e82014c88426628",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 623,
+        "EndTime": 632.399,
+        "Text": "Same. And I hope people carry her story a little longer than usual. Actually book that checkup they\u0027ve been postponing. Actually sleep before",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.eb88e55b90e84fa19e14c74d819bdbec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 855,
+        "EndTime": 864.079,
+        "Text": "Parents watching a child face something like this experience a specific kind of helplessness that doesn\u0027t have a clean resolution. And each person performing",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.eec6aedc2ac44d2a84eb7b7069a03649",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 864,
+        "EndTime": 871.44,
+        "Text": "strength to protect the other from the full weight of their fear. That emotional labor sits on top of everything else that\u0027s already",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.ef8374bc55b14d6790b072547013aec1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 923,
+        "EndTime": 926.24,
+        "Text": "became something she actively longed for.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.eff4cc9b5b93492e86c27f5209e88fb3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 717,
+        "EndTime": 721.6,
+        "Text": "renewable, is a real concern regardless of her specific case.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.f14c2f71fc604962a63d4d34cc5c3b05",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 293,
+        "EndTime": 299.919,
+        "Text": "The things that used to feel like nothing, sleeping well, eating without nausea, walking without exhaustion,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.f2195bd8b8a74ee0a93a96b40031f2cb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 113,
+        "EndTime": 122.159,
+        "Text": "kind of pain because it\u0027s directed entirely inward. And she lost more than her health. She lost her sense of control. Before the diagnosis, she made",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.f6183f4f6a3f4fc78e699298c9acea80",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 810,
+        "EndTime": 817.92,
+        "Text": "Exactly. And leukemia in particular can present with symptoms that are easy to dismiss. fatigue, frequent illness,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.f68564094b6b43b5b9bae3263164cb95",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 831,
+        "EndTime": 840.639,
+        "Text": "By the time many people take the symptoms seriously enough to seek help, the disease has already progressed. That gap between feeling vaguely unwell and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.f77811f1914f479bacd621228c463a62",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 514,
+        "EndTime": 521.44,
+        "Text": "By the time many people take the symptoms seriously enough to seek help, the disease has already progressed. That",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.f7c9d85282b6409b947222200060a45e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 948,
+        "EndTime": 955.759,
+        "Text": "midnight for once. small things, but the big decisions are made up of the small ones.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.f9fafcd48d9c4d6cb16d5ab6d542f3d6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 299,
+        "EndTime": 307.36,
+        "Text": "suddenly become precious. And most of us won\u0027t recognize their value until they\u0027re threatened. I hope she gets through treatment.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.fc4884022d5148e487a433f3fae224d6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 221,
+        "EndTime": 230.879,
+        "Text": "Parents watching a child face something like this experience a specific kind of helplessness that doesn\u0027t have a clean resolution. And each person performing",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.fd5c4055a42d49b788660971f533c4c2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 786,
+        "EndTime": 793.36,
+        "Text": "And by that point, the damage can already be significant. The body is extraordinarily patient. It compensates.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f.fdec7ca17fbc4011a5c313fe95c1ab30",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 480,
+        "EndTime": 488.08,
+        "Text": "What affected me about her decision to share publicly was the framing. She wasn\u0027t presenting herself as a moral lesson. She was saying, \u0022I wish I had",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.1d7cac8e586f179be8aa519e93d4ff98a6b30fa152cbbdb085d98bb80b04dd0f"
+}

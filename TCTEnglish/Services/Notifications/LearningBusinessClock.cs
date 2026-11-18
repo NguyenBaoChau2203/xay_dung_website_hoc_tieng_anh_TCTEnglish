@@ -8,13 +8,28 @@ public sealed class LearningBusinessClock
 {
     private static readonly TimeZoneInfo BusinessTimeZone = ResolveBusinessTimeZone();
     private readonly TimeProvider _timeProvider;
+    private readonly AsyncLocal<DateTime?> _operationInstant = new();
 
     public LearningBusinessClock(TimeProvider timeProvider)
     {
         _timeProvider = timeProvider;
     }
 
-    public DateTime UtcNow => _timeProvider.GetUtcNow().UtcDateTime;
+    public DateTime UtcNow => _operationInstant.Value ?? _timeProvider.GetUtcNow().UtcDateTime;
+
+    // One occurrence instant for a transaction/read projection; nested services share
+    // it without freezing other requests using this singleton clock.
+    public IDisposable BeginOperation()
+    {
+        var previous = _operationInstant.Value;
+        _operationInstant.Value = UtcNow;
+        return new OperationScope(() => _operationInstant.Value = previous);
+    }
+
+    private sealed class OperationScope(Action restore) : IDisposable
+    {
+        public void Dispose() => restore();
+    }
 
     public DateTime BusinessDate =>
         TimeZoneInfo.ConvertTimeFromUtc(UtcNow, BusinessTimeZone).Date;
@@ -53,16 +68,16 @@ public sealed class LearningBusinessClock
             }
             catch (TimeZoneNotFoundException)
             {
-                return TimeZoneInfo.Utc;
+                return TimeZoneInfo.CreateCustomTimeZone("TCT UTC+7", TimeSpan.FromHours(7), "UTC+7", "UTC+7");
             }
             catch (InvalidTimeZoneException)
             {
-                return TimeZoneInfo.Utc;
+                return TimeZoneInfo.CreateCustomTimeZone("TCT UTC+7", TimeSpan.FromHours(7), "UTC+7", "UTC+7");
             }
         }
         catch (InvalidTimeZoneException)
         {
-            return TimeZoneInfo.Utc;
+            return TimeZoneInfo.CreateCustomTimeZone("TCT UTC+7", TimeSpan.FromHours(7), "UTC+7", "UTC+7");
         }
     }
 }

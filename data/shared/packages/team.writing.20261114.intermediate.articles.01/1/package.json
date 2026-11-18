@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.intermediate.articles.01",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.intermediate.articles.01",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Kh\u1EDFi \u0111\u1EA7u m\u1ED9t nh\u00F3m \u0111\u1ECDc s\u00E1ch b\u1EC1n v\u1EEFng",
+        "Level": "intermediate",
+        "ContentType": "articles",
+        "Topic": "\u0110\u1ECDc s\u00E1ch",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E0i vi\u1EBFt h\u01B0\u1EDBng d\u1EABn t\u1ED5 ch\u1EE9c nh\u00F3m \u0111\u1ECDc nh\u1ECF v\u1EDBi l\u1ECBch v\u00E0 k\u1EF3 v\u1ECDng th\u1EF1c t\u1EBF.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.08da9d9c20054bba8a2de9099b7e5eb3",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Hai c\u00E2u h\u1ECFi m\u1EDF th\u01B0\u1EDDng t\u1EA1o ra trao \u0111\u1ED5i t\u1ED1t h\u01A1n m\u1ED9t b\u00E0i ki\u1EC3m tra n\u1ED9i dung.",
+        "EnglishMeaning": "Two open questions often produce a better conversation than a quiz about the plot.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.articles.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.2fe8654a68aa48519e79d7be40d6d868",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "N\u1EBFu s\u00E1ch kh\u00F3 mua, nh\u00F3m c\u00F3 th\u1EC3 ch\u1ECDn m\u1ED9t t\u00E1c ph\u1EA9m d\u1EC5 ti\u1EBFp c\u1EADn h\u01A1n.",
+        "EnglishMeaning": "If the book is difficult to obtain, the group can choose something more accessible.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.articles.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.5058a684502247a0be4e26284ae93d33",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "M\u1ED9t nh\u00F3m \u0111\u1ECDc s\u00E1ch kh\u00F4ng c\u1EA7n \u0111\u00F4ng ng\u01B0\u1EDDi \u0111\u1EC3 c\u00F3 nh\u1EEFng cu\u1ED9c th\u1EA3o lu\u1EADn th\u00FA v\u1ECB.",
+        "EnglishMeaning": "A reading group does not need many members to have interesting discussions.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.articles.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.51ac133b18834d8dbd7e40b75956f011",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Once several meetings have taken place, the group should reconsider its timetable and how it chooses books.",
+        "NormalizedHash": "03d777b42632b3e6017f95a1a97e5e515339d4fc639586d6ed1e3bec744af691"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.intermediate.articles.01.ca0ecb2327ab4e228e2e6c81396c8234",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.5e6c6200c51f4e16bfd80a85b933235b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Ba ho\u1EB7c b\u1ED1n ng\u01B0\u1EDDi v\u1EDBi th\u1EDDi gian ph\u00F9 h\u1EE3p c\u00F3 th\u1EC3 l\u00E0 \u0111i\u1EC3m kh\u1EDFi \u0111\u1EA7u t\u1ED1t.",
+        "EnglishMeaning": "Three or four people with compatible schedules can make a good starting point.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.articles.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.94c632ef9abc4aa4babc63f10d607fdc",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Tr\u01B0\u1EDBc khi ch\u1ECDn cu\u1ED1n \u0111\u1EA7u ti\u00EAn, h\u00E3y h\u1ECFi m\u1ECDi ng\u01B0\u1EDDi mu\u1ED1n \u0111\u1ECDc \u0111\u1EC3 l\u00E0m g\u00EC.",
+        "EnglishMeaning": "Before choosing the first book, ask everyone what they hope to gain from reading.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.articles.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.9806cc114ba6486ca818d614305f644f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "H\u00E3y \u0111\u1EC3 h\u1ECD tham gia nh\u01B0ng b\u00E1o tr\u01B0\u1EDBc n\u1EBFu cu\u1ED9c th\u1EA3o lu\u1EADn s\u1EBD ti\u1EBFt l\u1ED9 k\u1EBFt th\u00FAc.",
+        "EnglishMeaning": "Let them participate, but warn them if the discussion will reveal the ending.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.articles.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.a1f7e8cfc40840d18f00aea9e27a0c5d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Bu\u1ED5i g\u1EB7p \u0111\u1EA7u ti\u00EAn n\u00EAn ng\u1EAFn \u0111\u1EC3 m\u1ECDi ng\u01B0\u1EDDi c\u1EA3m th\u1EA5y tho\u1EA3i m\u00E1i quay l\u1EA1i.",
+        "EnglishMeaning": "Keep the first meeting short so that people feel comfortable returning.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.articles.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.bd581439e697467b87145e92b0ce9750",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "Kh\u00F4ng ph\u1EA3i th\u00E0nh vi\u00EAn n\u00E0o c\u0169ng \u0111\u1ECDc xong v\u00E0o \u0111\u00FAng ng\u00E0y h\u1EB9n.",
+        "EnglishMeaning": "Not every member will have finished reading by the meeting date.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.articles.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.ca0ecb2327ab4e228e2e6c81396c8234",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "Sau v\u00E0i bu\u1ED5i, nh\u00F3m n\u00EAn xem l\u1EA1i l\u1ECBch v\u00E0 c\u00E1ch ch\u1ECDn s\u00E1ch.",
+        "EnglishMeaning": "After a few meetings, the group should review its schedule and book selection process.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.articles.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.d1439d301d424af3a371b33bdcfbfb17",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "H\u00E3y th\u1ED1ng nh\u1EA5t \u0111\u1ED9 d\u00E0i v\u1EEBa s\u1EE9c v\u00E0 cho m\u1ECDi ng\u01B0\u1EDDi \u0111\u1EE7 th\u1EDDi gian t\u00ECm s\u00E1ch.",
+        "EnglishMeaning": "Agree on a manageable length and allow everyone enough time to find a copy.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.articles.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.e973498e9a454849a59c0d8ec1afca4e",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "M\u1ED9t s\u1ED1 ng\u01B0\u1EDDi th\u00EDch kh\u00E1m ph\u00E1 t\u00E1c gi\u1EA3 m\u1EDBi, trong khi ng\u01B0\u1EDDi kh\u00E1c mu\u1ED1n duy tr\u00EC th\u00F3i quen.",
+        "EnglishMeaning": "Some want to discover new authors, while others hope to maintain a habit.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.articles.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.articles.01.fa1b0e2d3f62409ea90b4ea79aeeb749",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "M\u1ED9t k\u1EBF ho\u1EA1ch c\u00F3 th\u1EC3 \u0111i\u1EC1u ch\u1EC9nh s\u1EBD d\u1EC5 duy tr\u00EC h\u01A1n nh\u1EEFng quy t\u1EAFc qu\u00E1 c\u1EE9ng nh\u1EAFc.",
+        "EnglishMeaning": "An adaptable plan will be easier to maintain than rules that are too rigid.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.articles.01"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.intermediate.articles.01"
+}

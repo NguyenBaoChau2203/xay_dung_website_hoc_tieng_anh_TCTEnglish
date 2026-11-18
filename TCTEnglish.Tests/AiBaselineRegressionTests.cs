@@ -106,7 +106,7 @@ public sealed class AiBaselineRegressionTests
 
         var reply = await SendAsync(context, PrimaryUserId, "cach tao lop hoc");
 
-        Assert.Contains("/Home/CreateClass", reply.Text);
+        Assert.Contains("Bạn có thể mở mục này trên website", reply.Text, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Tạo lớp", reply.Text, StringComparison.OrdinalIgnoreCase);
     }
 
@@ -264,7 +264,7 @@ public sealed class AiBaselineRegressionTests
 
         var reply = await SendAsync(context, PrimaryUserId, "policy nghia la gi");
 
-        Assert.Contains("không tìm thấy từ", reply.Text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("chưa tìm thấy từ", reply.Text, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("policy", reply.Text, StringComparison.OrdinalIgnoreCase);
     }
 
@@ -287,18 +287,19 @@ public sealed class AiBaselineRegressionTests
 
         var reply = await SendAsync(context, EmptyUserId, "lop hoc cua toi");
 
-        Assert.Contains("chưa tham gia lớp học nào", reply.Text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("chưa thấy lớp học nào bạn đang tham gia", reply.Text, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
-    public async Task GenerateReplyAsync_StudyRecommendation_WhenNoSets_ReturnsEmptyState()
+    public async Task GenerateReplyAsync_StudyRecommendation_WhenNoSets_ReturnsGeneralStarterChoices()
     {
-        await using var context = CreateContext(nameof(GenerateReplyAsync_StudyRecommendation_WhenNoSets_ReturnsEmptyState));
+        await using var context = CreateContext(nameof(GenerateReplyAsync_StudyRecommendation_WhenNoSets_ReturnsGeneralStarterChoices));
         await SeedUsersAsync(context);
 
         var reply = await SendAsync(context, EmptyUserId, "toi nen hoc gi tiep");
 
-        Assert.Contains("chưa có đủ dữ liệu học", reply.Text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("gợi ý khởi đầu chung", reply.Text, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("Dựa trên dữ liệu học của bạn", reply.Text);
     }
 
     [Fact]
@@ -345,7 +346,7 @@ public sealed class AiBaselineRegressionTests
 
         var reply = await SendAsync(context, PrimaryUserId, "toi nen hoc gi tiep");
 
-        Assert.Contains("chưa có đủ dữ liệu học", reply.Text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("gợi ý khởi đầu chung", reply.Text, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("Outsider Study Plan", reply.Text);
         Assert.DoesNotContain("outsider-term", reply.Text, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("outsider definition", reply.Text, StringComparison.OrdinalIgnoreCase);
@@ -360,7 +361,7 @@ public sealed class AiBaselineRegressionTests
 
         var reply = await SendAsync(context, PrimaryUserId, "invoice nghia la gi");
 
-        Assert.Contains("không tìm thấy từ", reply.Text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("chưa tìm thấy từ", reply.Text, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("outsider only", reply.Text, StringComparison.OrdinalIgnoreCase);
     }
 

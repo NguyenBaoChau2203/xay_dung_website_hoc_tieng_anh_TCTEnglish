@@ -1,0 +1,28 @@
+@model TCTEnglish.Services.Sets.PracticeModes.ModeInfo
+@{
+    var big = ViewData["Big"] is true;
+}
+<label class="tct-card k-card tp-mode-card tp-hue-@Model.Hue@(big ? " tp-mode-card--big" : "")" data-tp-card="@Model.Key">
+    <input type="radio" name="mode" value="@Model.Key" class="visually-hidden" />
+    @if (big)
+    {
+        <span class="k-art-box k-art-box--hub tp-mode-card__art" aria-hidden="true"><partial name="~/Views/Practice/_ModeArt.cshtml" model="Model.Key" /></span>
+    }
+    else
+    {
+        <span class="k-icon-sq tp-mode-card__icon" aria-hidden="true"><i class="@Model.Icon"></i></span>
+    }
+    <span class="tp-mode-card__text">
+        @if (big)
+        {
+            <span class="tct-badge tct-badge--primary tp-suggest" data-tp-suggest="@Model.Key" hidden><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>Gợi ý cho bạn</span>
+        }
+        <span class="tp-mode-card__name">@Model.Label</span>
+        <span class="tp-mode-card__hint">@Model.Hint</span>
+        @if (big)
+        {
+            <span class="tp-stat" data-tp-stat="@Model.Key" hidden></span>
+        }
+    </span>
+    <span class="tp-mode-card__check" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+</label>

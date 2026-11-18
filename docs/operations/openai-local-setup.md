@@ -37,6 +37,15 @@ App vẫn boot khi thiếu key: Writing Local và các tính năng offline tiế
 Speaking cloud ASR báo chưa cấu hình (không fake điểm). Key/account cần credit,
 quyền model audio/text và network — “configured” ≠ verified live.
 
+Khi nhà cung cấp gián đoạn, học viên vẫn luyện phát âm ở chế độ **Tự luyện**
+(nghe lại, không chấm, không XP), Writing Local giữ nguyên quyết định nội bộ,
+và tạo bài AI thất bại dẫn tới catalog bài đã xuất bản. Chat nội bộ không được
+gắn nhãn là lượt gọi GPT. Ba lỗi tạm thời liên tiếp của cùng một họ
+text/embedding/speech và cùng thẩm quyền endpoint-model-key mở guard trong tiến
+trình 30 giây, tối đa 120 giây theo Retry-After. Guard từ chối trước khi gửi
+HTTP và không cộng usage cho lần chưa gửi. Khởi động lại tiến trình xóa guard.
+Không có endpoint bơm lỗi công khai.
+
 ## Defaults, override và budget
 
 Git defaults: `AI:BaseUrl=https://api.openai.com/v1`, `AI:Model=gpt-6-luna`,

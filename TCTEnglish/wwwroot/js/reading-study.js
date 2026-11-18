@@ -162,11 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const select = row.querySelector('.matching-select');
             const rightId = select?.value;
             if (!leftId || !rightId) return;
-            const leftKey = (row.dataset.matchKey || '').trim();
-            const rightKey = (select.selectedOptions[0]?.dataset.matchKey || '').trim();
-            const key = leftKey || rightKey || leftId;
-            const ids = [String(leftId), String(rightId)].sort();
-            map[key] = ids.join(',');
+            map[String(leftId)] = String(rightId);
         });
         return Object.keys(map).length ? JSON.stringify(map) : null;
     }
@@ -184,11 +180,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         panel.querySelectorAll('.matching-row').forEach((row) => {
             const leftId = String(row.dataset.leftId || '');
-            const key = (row.dataset.matchKey || '').trim() || leftId;
-            const value = map[key];
+            const value = map[leftId];
             if (!value) return;
-            const parts = String(value).split(',').map((p) => p.trim()).filter(Boolean);
-            const rightId = parts.find((id) => id !== leftId);
+            const rightId = String(value);
             const select = row.querySelector('.matching-select');
             if (select && rightId) {
                 select.value = rightId;

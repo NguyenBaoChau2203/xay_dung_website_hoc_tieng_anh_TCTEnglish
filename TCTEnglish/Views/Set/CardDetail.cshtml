@@ -1,0 +1,351 @@
+@model TCTEnglish.ViewModels.Sets.CardDetailViewModel
+@using System.Text.Json
+@using TCTEnglish.Services.Sets
+@using TCTEnglish.ViewModels
+@using TCTVocabulary.Services
+@functions {
+    // Splits a sentence around case-insensitive occurrences of the term so it can be highlighted without Html.Raw.
+    static IEnumerable<(string Text, bool Hit)> Segments(string sentence, string term)
+    {
+        if (string.IsNullOrWhiteSpace(term))
+        {
+            yield return (sentence, false);
+            yield break;
+        }
+
+        var index = 0;
+        while (index < sentence.Length)
+        {
+            var at = sentence.IndexOf(term, index, StringComparison.OrdinalIgnoreCase);
+            if (at < 0)
+            {
+                yield return (sentence[index..], false);
+                yield break;
+            }
+
+            if (at > index)
+            {
+                yield return (sentence[index..at], false);
+            }
+
+            yield return (sentence.Substring(at, term.Length), true);
+            index = at + term.Length;
+        }
+    }
+}
+@{
+    ViewData["Title"] = Model.Term;
+    var header = new PageHeaderViewModel
+    {
+        Title = Model.Term,
+        Breadcrumbs = new[]
+        {
+            new PageBreadcrumbItem("Bộ thẻ", Url.Action("Index", "Set")),
+            new PageBreadcrumbItem(Model.SetName, Url.Action("Detail", "Set", new { id = Model.SetId })),
+            new PageBreadcrumbItem(Model.Term)
+        }
+    };
+    var details = Model.Details;
+    var hasFamily = details.WordFamily.Count > 0 || (details.VerbForms != null && !details.VerbForms.IsEmpty) || !string.IsNullOrWhiteSpace(details.Plural);
+    var progress = Model.Progress;
+
+    // US/UK chips when both pronunciations exist and differ, otherwise one chip; the speak button lives inside each chip.
+    var prons = new List<(string? Label, string? Title, string Ipa)>();
+    if (!string.IsNullOrWhiteSpace(Model.Phonetic) && !string.IsNullOrWhiteSpace(Model.PhoneticUk) && Model.Phonetic != Model.PhoneticUk)
+    {
+        prons.Add(("US", "Anh-Mỹ", Model.Phonetic!));
+        prons.Add(("UK", "Anh-Anh", Model.PhoneticUk!));
+    }
+    else if (!string.IsNullOrWhiteSpace(Model.Phonetic ?? Model.PhoneticUk))
+    {
+        prons.Add((null, null, (Model.Phonetic ?? Model.PhoneticUk)!));
+    }
+
+    string DueText()
+    {
+        if (progress.NextReviewDate == null) { return "chưa có lịch"; }
+        var due = BusinessDateHelper.ToBusinessDateFromUtcStorage(progress.NextReviewDate.Value);
+        var days = (due - BusinessDateHelper.Today).Days;
+        return days < 0 ? $"quá hạn {-days} ngày" : days == 0 ? "hôm nay" : days == 1 ? "ngày mai" : $"sau {days} ngày";
+    }
+
+    var lastReviewed = progress.HasReviewed && progress.LastReviewedDate != null
+        ? BusinessDateHelper.ToBusinessDateFromUtcStorage(progress.LastReviewedDate.Value).ToString("dd/MM/yyyy")
+        : "chưa ôn";
+    var statusBadge = progress.StatusKey switch
+    {
+        "suspended" => "tct-badge ts-badge--dashed",
+        "hard" => "tct-badge tct-badge--danger",
+        "learned" => "tct-badge tct-badge--success",
+        "learning" => "tct-badge tct-badge--warning",
+        _ => "tct-badge"
+    };
+    var config = new
+    {
+        cardId = Model.CardId,
+        suspended = progress.IsSuspended,
+        term = Model.Term,
+        suspendUrl = Url.Content("~/api/sets/cards/" + Model.CardId + "/suspend")
+    };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personal-sets.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tct-page--narrow ts-page ts-page--word">
+    <partial name="_PageHeader" model="header" />
+    <partial name="_SetAlerts" />
+
+    <section class="ts-word-hero tct-card k-panel" aria-label="Tổng quan từ">
+        <div class="ts-word-hero-main">
+            <p class="ts-word-term-lang k-display" lang="en" aria-hidden="true">@Model.Term</p>
+            <p class="ts-word-ipa">
+                @foreach (var pron in prons)
+                {
+                    <span class="ts-pron">
+                        @if (pron.Label != null)
+                        {
+                            <abbr title="@pron.Title">@pron.Label</abbr>
+                        }
+                        <span class="tct-phonetic">@pron.Ipa</span>
+                        <button type="button" class="btn k-btn--soft k-btn--icon ts-speak-sm" data-ts-speak="@Model.Term" aria-label="Phát âm @Model.Term@(pron.Label != null ? " (" + pron.Label + ")" : "")" hidden>
+                            <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                }
+                @if (prons.Count == 0)
+                {
+                    <button type="button" class="btn k-btn--soft k-btn--icon ts-speak-sm" data-ts-speak="@Model.Term" aria-label="Phát âm @Model.Term" hidden>
+                        <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+                    </button>
+                }
+            </p>
+        </div>
+        @if (!string.IsNullOrEmpty(Model.ImageUrl) || !string.IsNullOrEmpty(Model.Emoji))
+        {
+            <div class="ts-word-hero-art ts-hue-primary" aria-hidden="true">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Model.ImageUrl" alt="" />
+                }
+                else
+                {
+                    <span class="ts-word-glyph">@Model.Emoji</span>
+                }
+            </div>
+        }
+    </section>
+    @if (Model.ImageSource?.Provider == "pixabay")
+    {
+        <p class="ts-image-credit">
+            Ảnh: @(string.IsNullOrWhiteSpace(Model.ImageSource.Author) ? "Pixabay" : Model.ImageSource.Author) /
+            <a href="@(Model.ImageSource.PageUrl is { } page && page.StartsWith("https://") ? page : "https://pixabay.com")" target="_blank" rel="noopener">Pixabay</a>
+        </p>
+    }
+
+    <div class="ts-badges">
+        @foreach (var pos in Model.PartsOfSpeech)
+        {
+            <span class="tct-badge tct-badge--primary">@CardPartsOfSpeech.LabelOf(pos)</span>
+        }
+        @if (!string.IsNullOrEmpty(Model.Cefr))
+        {
+            <span class="k-cefr">@Model.Cefr</span>
+        }
+        @if (!string.IsNullOrEmpty(Model.Topic))
+        {
+            <span class="tct-badge tct-badge--info">Chủ đề: @Model.Topic</span>
+        }
+    </div>
+    <p class="ts-word-meaning-main tct-break">@Model.Definition</p>
+    @if (!string.IsNullOrWhiteSpace(Model.MeaningEn))
+    {
+        <p class="ts-word-meaning-en tct-text-muted tct-break" lang="en">@Model.MeaningEn</p>
+    }
+
+    <div class="ts-word-actions">
+        <a class="btn btn-primary" href="/Practice/learn?words=@Model.CardId&amp;from=set"><i class="fa-solid fa-graduation-cap me-1" aria-hidden="true"></i>Học từ này</a>
+        <a class="btn btn-outline-primary" href="/Practice/typing?words=@Model.CardId"><i class="fa-solid fa-keyboard me-1" aria-hidden="true"></i>Gõ từ này</a>
+        @if (Model.CanEdit)
+        {
+            <a class="btn btn-outline-primary" href="@Url.Action("EditCard", "Set", new { cardId = Model.CardId })"><i class="fa-solid fa-pen me-1" aria-hidden="true"></i>Sửa</a>
+            <div class="dropdown">
+                <button class="btn btn-outline-primary tct-btn-icon" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Thêm thao tác">
+                    <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#tsDeleteCard"><i class="fa-regular fa-trash-can me-2" aria-hidden="true"></i>Xóa từ</button></li>
+                </ul>
+            </div>
+        }
+    </div>
+
+    <div class="ts-word-layout">
+        <aside class="ts-word-side" aria-label="Tiến độ">
+            <section class="tct-card k-panel ts-word-section" aria-labelledby="ts-sec-progress">
+                <div class="ts-progress-head">
+                    <h2 class="ts-section-title" id="ts-sec-progress">Tiến độ của bạn</h2>
+                    <span class="@statusBadge">@progress.StatusLabel</span>
+                </div>
+                <dl class="ts-stat-grid">
+                    <div class="ts-stat ts-hue-danger"><dt>Số lần quên</dt><dd>@progress.WrongCount</dd></div>
+                    <div class="ts-stat ts-hue-success"><dt>Số lần nhớ liên tiếp</dt><dd>@progress.RepetitionCount</dd></div>
+                    <div class="ts-stat ts-hue-info"><dt>Lần ôn tới</dt><dd>@DueText()</dd></div>
+                </dl>
+                <p class="ts-last-reviewed">Lần ôn gần nhất: @lastReviewed</p>
+                <div class="ts-suspend-row">
+                    <div class="ts-suspend-text">
+                        <span class="ts-suspend-title" id="ts-suspend-title">Tạm ẩn khỏi ôn tập</span>
+                        <span class="ts-suspend-help" id="ts-suspend-help">Từ vẫn nằm trong bộ nhưng không xuất hiện khi ôn.</span>
+                    </div>
+                    <button type="button" class="k-switch" id="ts-suspend" role="switch" aria-checked="@(progress.IsSuspended ? "true" : "false")" aria-pressed="@(progress.IsSuspended ? "true" : "false")" aria-describedby="ts-suspend-help">
+                        <span class="visually-hidden" id="ts-suspend-label">Tạm ẩn khỏi ôn tập</span>
+                    </button>
+                </div>
+            </section>
+        </aside>
+
+        <div class="ts-word-main">
+            @if (details.Examples.Count > 0)
+            {
+                <section class="tct-card k-panel ts-word-section" aria-labelledby="ts-sec-examples">
+                    <h2 class="ts-section-title" id="ts-sec-examples">Câu ví dụ</h2>
+                    <ul class="ts-examples">
+                        @for (var i = 0; i < details.Examples.Count; i++)
+                        {
+                            var example = details.Examples[i];
+                            <li class="ts-example">
+                                <div class="ts-example-body">
+                                    <p class="ts-example-en tct-break" lang="en">
+                                        @foreach (var seg in Segments(example.Text ?? string.Empty, Model.Term))
+                                        {
+                                            if (seg.Hit) { <mark class="ts-hl">@seg.Text</mark> }
+                                            else { @seg.Text }
+                                        }
+                                    </p>
+                                    @if (!string.IsNullOrWhiteSpace(example.Vi))
+                                    {
+                                        <p class="tct-text-muted tct-break">@example.Vi</p>
+                                    }
+                                </div>
+                                <button type="button" class="btn k-btn--soft k-btn--icon ts-speak-sm" data-ts-speak="@example.Text" aria-label="Đọc câu ví dụ @(i + 1)" hidden><i class="fa-solid fa-volume-high" aria-hidden="true"></i></button>
+                            </li>
+                        }
+                    </ul>
+                </section>
+            }
+
+            @if (details.Collocations.Count > 0)
+            {
+                <section class="tct-card k-panel ts-word-section" aria-labelledby="ts-sec-col">
+                    <h2 class="ts-section-title" id="ts-sec-col">Cụm từ thường gặp</h2>
+                    <ul class="ts-plain-list">
+                        @foreach (var c in details.Collocations)
+                        {
+                            <li><span lang="en" class="tct-break"><strong>@c.Text</strong></span>@if (!string.IsNullOrWhiteSpace(c.Vi)) { <span class="tct-text-muted"> — @c.Vi</span> }</li>
+                        }
+                    </ul>
+                </section>
+            }
+
+            @if (Model.RelatedSynonyms.Count > 0 || Model.RelatedAntonyms.Count > 0)
+            {
+                <section class="tct-card k-panel ts-word-section" aria-labelledby="ts-sec-rel">
+                    <h2 class="ts-section-title" id="ts-sec-rel">Đồng nghĩa và trái nghĩa</h2>
+                    @foreach (var (label, items) in new[] { ("Đồng nghĩa", Model.RelatedSynonyms), ("Trái nghĩa", Model.RelatedAntonyms) })
+                    {
+                        if (items.Count == 0) { continue; }
+                        <div class="ts-rel-row">
+                            <p class="ts-rel-label">@label</p>
+                            <ul class="ts-chip-row">
+                                @foreach (var item in items)
+                                {
+                                    <li>
+                                        @if (item.CardId.HasValue)
+                                        {
+                                            <a class="ts-chip ts-chip--link" lang="en" href="@Url.Action("CardDetail", "Set", new { cardId = item.CardId.Value })">@item.Text</a>
+                                        }
+                                        else if (Model.CanEdit)
+                                        {
+                                            <a class="ts-chip ts-chip--add" lang="en" title="Thêm từ này" href="@Url.Action("AddCards", "Set", new { id = Model.SetId, term = item.Text })">+ @item.Text</a>
+                                        }
+                                        else
+                                        {
+                                            <span class="ts-chip" lang="en">@item.Text</span>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </section>
+            }
+
+            @if (hasFamily)
+            {
+                <section class="tct-card k-panel ts-word-section" aria-labelledby="ts-sec-family">
+                    <h2 class="ts-section-title" id="ts-sec-family">Họ từ và dạng từ</h2>
+                    @if (details.WordFamily.Count > 0)
+                    {
+                        <ul class="ts-plain-list">
+                            @foreach (var w in details.WordFamily)
+                            {
+                                <li><span lang="en"><strong>@w.Text</strong></span>@if (!string.IsNullOrEmpty(w.Pos)) { <span class="tct-badge ms-2">@CardPartsOfSpeech.LabelOf(w.Pos)</span> }@if (!string.IsNullOrWhiteSpace(w.Vi)) { <span class="tct-text-muted"> — @w.Vi</span> }</li>
+                            }
+                        </ul>
+                    }
+                    @if (details.VerbForms != null && !details.VerbForms.IsEmpty)
+                    {
+                        <dl class="ts-dl" lang="en">
+                            @if (!string.IsNullOrWhiteSpace(details.VerbForms.Past)) { <div><dt>Quá khứ</dt><dd>@details.VerbForms.Past</dd></div> }
+                            @if (!string.IsNullOrWhiteSpace(details.VerbForms.PastParticiple)) { <div><dt>Quá khứ phân từ</dt><dd>@details.VerbForms.PastParticiple</dd></div> }
+                            @if (!string.IsNullOrWhiteSpace(details.VerbForms.Ing)) { <div><dt>V-ing</dt><dd>@details.VerbForms.Ing</dd></div> }
+                            @if (!string.IsNullOrWhiteSpace(details.VerbForms.ThirdPerson)) { <div><dt>Ngôi 3 số ít</dt><dd>@details.VerbForms.ThirdPerson</dd></div> }
+                        </dl>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(details.Plural))
+                    {
+                        <p lang="en"><span class="tct-text-muted">Số nhiều:</span> @details.Plural</p>
+                    }
+                </section>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.PersonalNote))
+            {
+                <section class="tct-card k-panel ts-word-section ts-note-card" aria-labelledby="ts-sec-note">
+                    <h2 class="ts-section-title" id="ts-sec-note">Ghi chú riêng</h2>
+                    <p class="ts-note-text tct-break">@Model.PersonalNote</p>
+                </section>
+            }
+        </div>
+    </div>
+
+    @if (Model.CanEdit)
+    {
+        <div class="modal fade" id="tsDeleteCard" tabindex="-1" aria-labelledby="tsDeleteCardTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <form class="modal-content" method="post" asp-controller="Set" asp-action="DeleteCard" asp-route-cardId="@Model.CardId">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="tsDeleteCardTitle">Xóa “@Model.Term”?</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body">Tiến độ ôn của mọi người với từ này cũng bị xóa.</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Giữ lại</button>
+                        <button type="submit" class="btn btn-danger">Xóa từ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+
+    <div id="tsToastHost" class="toast-container ts-toast-host" aria-live="polite" aria-atomic="false"></div>
+    <script id="tsCardConfig" type="application/json">@Html.Raw(JsonSerializer.Serialize(config))</script>
+    @Html.AntiForgeryToken()
+</div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+    <script src="~/js/set-card-detail.js" asp-append-version="true"></script>
+}

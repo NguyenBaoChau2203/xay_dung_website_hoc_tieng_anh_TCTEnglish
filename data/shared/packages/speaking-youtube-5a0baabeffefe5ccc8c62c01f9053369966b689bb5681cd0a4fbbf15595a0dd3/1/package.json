@@ -1,0 +1,2539 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A1 - T\u1EACP TH\u1EC2 D\u1EE4C -",
+        "YoutubeId": "_nn_W2-GAyc",
+        "Level": "A1",
+        "Topic": "S\u1EE9c kh\u1ECFe",
+        "ThumbnailUrl": "https://img.youtube.com/vi/_nn_W2-GAyc/hqdefault.jpg",
+        "Duration": "19:53",
+        "SourceUrl": "https://www.youtube.com/watch?v=_nn_W2-GAyc",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.00ade828ed57406a99168798a4157bf0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1092,
+        "EndTime": 1100.96,
+        "Text": "Okay. What if we just walk? Walk where? Just in the park at night. Why at night?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.02f18630ef294e5aa461c95f4ca6aeca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 544,
+        "EndTime": 550.959,
+        "Text": "I am not angry. I just don\u0027t want to go to the gym. Okay, fine. But why?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.04897cf44b1f496d924f129e9f06d6e0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 800,
+        "EndTime": 808.16,
+        "Text": "Hey, Mark. Are you still on the sofa? Yeah. What time is it? It\u0027s almost 6:00 in the evening.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.06d06d7817f0486887060fe921e48c89",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 997,
+        "EndTime": 999.92,
+        "Text": "You can ask someone for help.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.0c0feec324e5413bb07292de9231b918",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 156,
+        "EndTime": 161.92,
+        "Text": "Because I went one time. Okay. You went to a gym when?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.0dbbb08538454a7ebe14b11a6023cf10",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 682,
+        "EndTime": 683.92,
+        "Text": "Riding a bike.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.0e727532f99e4876ad9ca810986be352",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1114,
+        "EndTime": 1121.76,
+        "Text": "Come on. Your back hurts. Your head hurts. You look at a computer screen all day. The trees and the fresh air will help you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.0e84471afb1a47e98e7c358f13cc82f2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 102,
+        "EndTime": 109.2,
+        "Text": "That was a long time ago, Leo. I was young. I was thin. Now I\u0027m old.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.0fef8388e2aa45d1a3ac1a7b1df2180a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 909,
+        "EndTime": 918.079,
+        "Text": "You don\u0027t have to play basketball. You can do something else. Like what? You can come to the gym with me. No, never.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.1109f50bff4d48608c29906b443fe310",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1042,
+        "EndTime": 1049.28,
+        "Text": "The gym can be very scary for the first time. I understand that. Yes, it is very scary.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.12d0759b9ab84a57bec7365f332e8d38",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1055,
+        "EndTime": 1060.64,
+        "Text": "You don\u0027t need heavy weights. You don\u0027t need nice clothes. You just need to move your body.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.159fc0ba11114ac1a2deb7519e813ba7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 503,
+        "EndTime": 506.8,
+        "Text": "We\u0027re 26 years old, Mark. You\u0027re not old.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.15ab3b49878648d5a55d14dd31cd498d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 66,
+        "EndTime": 74.479,
+        "Text": "That is not how it works. When I run, I feel good. I breathe fresh air. My head feels clear. After a run, I actually",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.1a305badf5c04875afd6f4bbbeb6fb4b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 881,
+        "EndTime": 885.839,
+        "Text": "You need a hobby. You need to go outside. I don\u0027t like sports.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.1a44b70d4538490ba598568438f85798",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 708,
+        "EndTime": 712.959,
+        "Text": "Nobody will look at you. Nobody will laugh at you. Just walking.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.1b9266daa9ec4d63b23c9796d09c3ea7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 413,
+        "EndTime": 420.8,
+        "Text": "Oh, I slept for 2 hours. You look really tired. I am. I feel terrible.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.1d28ce292d6b40b58c233741c4d458d2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 26,
+        "EndTime": 32.559,
+        "Text": "Did you eat anything today? I had a sandwich at my desk. Work was really busy today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.1d897d106ac8410fabd2aad55b96d5f1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 961,
+        "EndTime": 967.04,
+        "Text": "No, nothing happened. That\u0027s the problem. I don\u0027t understand.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.1e59f0676b2749f399a8f6089412bd2f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 924,
+        "EndTime": 928.88,
+        "Text": "You never go to the gym? How do you know you hate it? I just know.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.2007e33eca1141f2bb10fbbf5eea7f7f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 515,
+        "EndTime": 523.519,
+        "Text": "You don\u0027t have to play basketball. You can do something else. Like what? You can come to the gym with me. No, never.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.24bb135814e2427ba44ed33809a8f0c4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 660,
+        "EndTime": 666.079,
+        "Text": "You don\u0027t need heavy weights. You don\u0027t need nice clothes. You just need to move your body.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.26a5b8c32a0742a380e8675ed287b246",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 52,
+        "EndTime": 59.6,
+        "Text": "Oh, run? No way. I just told you I\u0027m tired. Yes, but running actually helps.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.292d3e4e5e4148f39fa8d88b844d052d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1049,
+        "EndTime": 1055.28,
+        "Text": "But the gym is not the only place to exercise. Sports are everywhere. What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.29de2df4ec954c29911234e1814b73c7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 891,
+        "EndTime": 897.839,
+        "Text": "That was a long time ago, Leo. I was young. I was thin. Now I\u0027m old.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.302d9d854ddc494aa4a47c7ae2ea7515",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1100,
+        "EndTime": 1103.12,
+        "Text": "Because nobody\u0027s there. It\u0027s quiet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.311f33da8d024e2bbc810ea434a73e70",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 301,
+        "EndTime": 308.56,
+        "Text": "I\u0027m just telling you the truth. Okay. What if we just walk? Walk where?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.3808600c570543e192397bb5de46fece",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 945,
+        "EndTime": 950.56,
+        "Text": "Because I went one time. Okay. You went to a gym when?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.38c12588b0a24996a1449b61a251cc99",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 167,
+        "EndTime": 172.959,
+        "Text": "Cuz it was a bad day and I don\u0027t like talking about it. What happened? Did you hurt yourself?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.3cb4d17465f74906bd67b51b929b71e0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1069,
+        "EndTime": 1077.44,
+        "Text": "I don\u0027t like swimming. The water\u0027s cold and I don\u0027t want people to look at my body. Okay, no swimming. What about cycling?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.3d03d1be530c4b9faabdecbdb238997c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 9,
+        "EndTime": 16.96,
+        "Text": "Now listen carefully. Hey Mark, are you still on the sofa? Yeah. What time is it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.3ff98d8ef42e4512bb5eb9fffeec04bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 581,
+        "EndTime": 586.24,
+        "Text": "Why did you feel stupid? Because everyone was big and strong.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.43e216b616c84fd1ab68291b97766495",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 654,
+        "EndTime": 660.72,
+        "Text": "But the gym is not the only place to exercise. Sports are everywhere. What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.46bc1302d7d747aab84a0c79923577da",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 430,
+        "EndTime": 435.759,
+        "Text": "I can\u0027t stop. I need the money, but my head hurts and my back hurts.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.490206cb0a1840bfa5adc517bd8ac485",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 89,
+        "EndTime": 97.2,
+        "Text": "Maybe not everything, but sports are good for you. You need a hobby. You need to go outside. I don\u0027t like sports.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.492d6b0430fe43cc97fe789ab2d4cf83",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 390,
+        "EndTime": 393.84,
+        "Text": "You have been resting for 2 years, Mark. Get your shoes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.497b72544b694654a7c13c70cc583e21",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 32,
+        "EndTime": 36.16,
+        "Text": "You are always busy. You need to stop working so much.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.4a05905d52794196a4c06a990a173299",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 605,
+        "EndTime": 613.839,
+        "Text": "No, I couldn\u0027t. There was a guy next to me. He was lifting a very big weight. He looked at me and I think he laughed.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.4a93c3720a294cfd847c5c8ac54f2685",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 955,
+        "EndTime": 961.68,
+        "Text": "Cuz it was a bad day and I don\u0027t like talking about it. What happened? Did you hurt yourself?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.4b50f34980ff4508a03d71bcdb411fd4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 366,
+        "EndTime": 374.8,
+        "Text": "Walking to get coffee is a sport for you right now? Yes, it\u0027s a sport. Okay, but just walking. No running.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.4f3e8dc866484a04827689e6f5a40be9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 225,
+        "EndTime": 232.239,
+        "Text": "Maybe, but I felt very small. I felt weak. I just wanted to go home. So, I",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.4f4fa518c0d44592b49bc80547c8f2f5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 211,
+        "EndTime": 219.76,
+        "Text": "No, I couldn\u0027t. There was a guy next to me. He was lifting a very big weight. He looked at me and I think he laughed.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.4fb7fee5ac63418ab88f00882c8fa1a3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 523,
+        "EndTime": 529.76,
+        "Text": "Why not? It\u0027s a really nice place. They have good music and new machines. I hate the gym.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.5312f6c5d8f14149a19a125f18565abe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 980,
+        "EndTime": 987.04,
+        "Text": "They all looked perfect. They wore nice sports clothes. They knew exactly what to do.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.53b477c2cc894358862a2cbfb3e91c8a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1031,
+        "EndTime": 1034.559,
+        "Text": "It\u0027s for fit people. It\u0027s for people like you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.53e88aa75ef448cabd0b172229045b29",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 556,
+        "EndTime": 561.36,
+        "Text": "About 2 years ago before we lived together. Really? You never told me that?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.54c215f3ec284c1ea8b0c6cac0cb07cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 219,
+        "EndTime": 225.12,
+        "Text": "He probably didn\u0027t laugh at you. People at the gym only look at themselves in the mirror.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.54f55aa9a833470eb0c71b880c461c3f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 561,
+        "EndTime": 567.12,
+        "Text": "Cuz it was a bad day and I don\u0027t like talking about it. What happened? Did you hurt yourself?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.54f64a376d094b32b2d1198b9bf6abfe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 97,
+        "EndTime": 102.88,
+        "Text": "That is not true. You liked basketball when we were in high school. We played every day after class.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.5535818466ed410aa46c56cd3210d394",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 841,
+        "EndTime": 848.24,
+        "Text": "Oh, run? No way. I just told you I\u0027m tired. Yes, but running actually helps.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.55adf618f2bf48558c2b8bf3b3ede766",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 472,
+        "EndTime": 481.12,
+        "Text": "But you sleep all weekend, Mark. You sleep on Saturday and Sunday, and on Monday, you\u0027re still tired. Sleep is not helping you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.5802ffce79d3468385f06ff115e19c3f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 112,
+        "EndTime": 121.2,
+        "Text": "I feel old. I\u0027m heavier now. I can\u0027t run fast. If I play basketball now, I will just fall down.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.5c433396abaf4920b65c7bafdab94e01",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 393,
+        "EndTime": 396.319,
+        "Text": "All right. All right. Let me find my jacket.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.5cfadaff3d3e4ce7af2f658cdeb51976",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 260,
+        "EndTime": 266.639,
+        "Text": "But the gym is not the only place to exercise. Sports are everywhere. What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.5f6b935cd7b34287b2860afb23c66519",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 918,
+        "EndTime": 924.32,
+        "Text": "Why not? It\u0027s a really nice place. They have good music and new machines. I hate the gym.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.5fd1359c878646bba9299806931e38b0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 695,
+        "EndTime": 702.64,
+        "Text": "I\u0027m just telling you the truth. Okay. What if we just walk? Walk where?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.6131bc0a134948b38483d64b9a2292f0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 830,
+        "EndTime": 836.72,
+        "Text": "I know why your back hurts. You sit at a computer for 10 hours a day. That is my job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.621f44b951614d63b72bc7d8602c5e69",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1008,
+        "EndTime": 1013.759,
+        "Text": "He probably didn\u0027t laugh at you. People at the gym only look at themselves in the mirror.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.64c14093babc471db77c830309acf8c6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 178,
+        "EndTime": 187.68,
+        "Text": "I bought new shoes. I paid for one month at the gym near my old house. I walked inside and I just felt really stupid.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.6598918914314d97ab962ddc6317593a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 254,
+        "EndTime": 260.639,
+        "Text": "The gym can be very scary for the first time. I understand that. Yes, it is very scary.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.68776182e01d4aeda4cb2c49a6345340",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 289,
+        "EndTime": 294.8,
+        "Text": "I don\u0027t have a bike. Bikes are expensive. I can give you my old bike.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.6902e256eec2435fbaeb5740b84aab4b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1137,
+        "EndTime": 1143.039,
+        "Text": "And walking will make me happy. It\u0027s a good start. I really don\u0027t like the cold.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.6aa99d3884eb4901820e903d7e4d56f5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 354,
+        "EndTime": 360.4,
+        "Text": "We can walk to the coffee shop. I\u0027ll buy you a hot coffee. The coffee shop is 20 minutes away.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.6bb8de22347544f4af8bb2d8b669438f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 24,
+        "EndTime": 26.72,
+        "Text": "I am. I feel terrible.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.6d758837fe624f569e4b07ba8ac88470",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1060,
+        "EndTime": 1069.679,
+        "Text": "I walk from my bed to my computer every morning. Very funny. I also walk to the fridge. Seriously, Mark, what about swimming?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.6e85177017394c0abed63add5af46488",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 406,
+        "EndTime": 413.6,
+        "Text": "Hey, Mark. Are you still on the sofa? Yeah. What time is it? It\u0027s almost 6:00 in the evening.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.6eec9e9798644054a95847cb5ba5a705",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 396,
+        "EndTime": 406.16,
+        "Text": "Put on some warm socks, too. Stop acting like my mother. Then move faster. I want my coffee. I\u0027m coming. Give me a minute.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.6f621bdeb0c045f68af32702b28e5db7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 78,
+        "EndTime": 87.04,
+        "Text": "But you sleep all weekend, Mark. You sleep on Saturday and Sunday, and on Monday, you\u0027re still tired. Sleep is not helping you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.6fba5f37286d426c8391206c3bd8567f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1103,
+        "EndTime": 1107.52,
+        "Text": "Nobody will look at you. Nobody will laugh at you. Just walking.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.70bcd4853b534ac18527ae77f1f889d3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 550,
+        "EndTime": 556,
+        "Text": "Because I went one time. Okay. You went to a gym when?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.72ff26da02bc4bd890b9373eb5eb137e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 161,
+        "EndTime": 167.28,
+        "Text": "About 2 years ago before we lived together. Really? You never told me that?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.73c6ebc2c87b45bf9b84550c9eabcbe9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 784,
+        "EndTime": 787.92,
+        "Text": "You have been resting for 2 years, Mark. Get your shoes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.745e8b877a114d7298e45860ebc4c5ac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 592,
+        "EndTime": 603.279,
+        "Text": "Everyone starts somewhere, Mark. I know, but I looked at the machines and I didn\u0027t know how to use them. I tried to lift some weights. They were too heavy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.76edea6520434b31b812d2efe6a39efb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 950,
+        "EndTime": 955.92,
+        "Text": "About 2 years ago before we lived together. Really? You never told me that?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.7758725fb61b484d804a08ad299a081f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 928,
+        "EndTime": 937.12,
+        "Text": "That is a bad answer. Come with me tomorrow morning. Just try it for 1 hour. I said no. Leo, stop asking me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.7784cd1cd76f4c40981b5b9ce4648f04",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 702,
+        "EndTime": 708.56,
+        "Text": "Just in the park at night. Why at night? Because nobody\u0027s there. It\u0027s quiet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.781fbc99dc144cc0b47b237e650889a9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 496,
+        "EndTime": 503.28,
+        "Text": "That was a long time ago, Leo. I was young. I was thin. Now I\u0027m old.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.784c18c2e1604cf6b07d448ccf9243d5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 36,
+        "EndTime": 41.68,
+        "Text": "I can\u0027t stop. I need the money. But my head hurts and my back hurts.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.793be5f91dab4589b5ef8597bb4e6150",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 87,
+        "EndTime": 89.68,
+        "Text": "So, running will fix my life.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.7a80d3fd5de54d2db5a130257b036e0d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 760,
+        "EndTime": 768.88,
+        "Text": "Walking to get coffee is a sport for you right now? Yes, it\u0027s a sport. Okay, but just walking. No running.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.7c8b252a5862450db4925357ccc64a8a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 567,
+        "EndTime": 572.399,
+        "Text": "No, nothing happened. That\u0027s the problem. I don\u0027t understand.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.7e15788130ea4b49a59330fbd2e9968d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 875,
+        "EndTime": 881.12,
+        "Text": "So, running will fix my life. Maybe not everything, but sports are good for you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.7e16112ee29440e5a96d898c9d80352e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 481,
+        "EndTime": 486.56,
+        "Text": "So, running will fix my life. Maybe not everything, but sports are good for you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.82e63d03dc644c2690927d786f6aa458",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 897,
+        "EndTime": 901.36,
+        "Text": "We\u0027re 26 years old, Mark. You\u0027re not old.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.82f5ec1096d94878921477b7351d7656",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 148,
+        "EndTime": 150.08,
+        "Text": "Why are you getting angry?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.837d0c6632e643eabc5fc7bdf1783f0e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 836,
+        "EndTime": 841.519,
+        "Text": "I know, but you need to move. I\u0027m going for a run. Do you want to come?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.84c7bdefab164adc91fdda892fee75a7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1013,
+        "EndTime": 1020.88,
+        "Text": "Maybe, but I felt very small. I felt weak. I just wanted to go home. So, I",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.85035ec95c434f3b80c791e2b5145699",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 442,
+        "EndTime": 446.96,
+        "Text": "I know, but you need to move. I\u0027m going for a run. Do you want to come?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.85a80d6b2be144f68dcc276d5674a030",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 460,
+        "EndTime": 470,
+        "Text": "That is not how it works. When I run, I feel good. I breathe fresh air. My head feels clear. After a run, I actually have more energy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.85c8631ab07048dda7b7a013c0389d23",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1149,
+        "EndTime": 1154.72,
+        "Text": "Exactly. 20 minutes to go, 20 minutes to come back, 40 minutes of exercise.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.869a80ae2a424a77afca55ac60459109",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 150,
+        "EndTime": 156.879,
+        "Text": "I am not angry. I just don\u0027t want to go to the gym. Okay, fine. But why?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.8709246baae046ea956da49463b66277",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 192,
+        "EndTime": 198.4,
+        "Text": "They all looked perfect. They wore nice sports clothes. They knew exactly what to do.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.87149d79d04942309a8071274a3f4648",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 572,
+        "EndTime": 581.76,
+        "Text": "I bought new shoes. I paid for one month at the gym near my old house. I walked inside and I just felt really stupid.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.89078620b1f74036bf8da68065ef4c79",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 109,
+        "EndTime": 112.72,
+        "Text": "We\u0027re 26 years old, Mark. You\u0027re not old.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.89cc1eb5f97c4e9a9ef9a4f198649b9f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1077,
+        "EndTime": 1078.48,
+        "Text": "Riding a bike.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.8c33ef74bd4b4d909e6e15d2b9a35978",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 640,
+        "EndTime": 648.32,
+        "Text": "Sorry, Mark. I didn\u0027t know you felt that way. It\u0027s fine. I\u0027m just not a sports guy. I\u0027ll just stay on the sofa.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.8cf98258fce74b5d871150c01777afcc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 314,
+        "EndTime": 318.88,
+        "Text": "Nobody will look at you. Nobody will laugh at you. Just walking.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.8ed84b3ed7734e87a8e5175340341321",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 586,
+        "EndTime": 592.48,
+        "Text": "They all looked perfect. They wore nice sports clothes. They knew exactly what to do.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.907291d9d08443829b022780b45dcd04",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 824,
+        "EndTime": 830.32,
+        "Text": "I can\u0027t stop. I need the money, but my head hurts and my back hurts.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.91cb4b28e0734cff828d8472b84dbcf4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 272,
+        "EndTime": 281.04,
+        "Text": "I walk from my bed to my computer every morning. Very funny. I also walk to the fridge. Seriously, Mark, what about swimming?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.92ad620c53744ef0984c3572048adf6d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1163,
+        "EndTime": 1172,
+        "Text": "I promise no running. And if I get tired, we stop. We will stop if you get tired. Wait, you said you were going for a run.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.92f56ce6010a46c3a67c8abc39302eb0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 453,
+        "EndTime": 460.72,
+        "Text": "How does running help? You run, you use energy, and then you are more tired. That makes no sense.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.93e73842455148699d2c386e2f548e81",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 742,
+        "EndTime": 748.48,
+        "Text": "And walking will make me happy. It\u0027s a good start. I really don\u0027t like the cold.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.96b72a515e3848e18e5244dfbbc7b02b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 777,
+        "EndTime": 784.399,
+        "Text": "I can run tomorrow. Today, I will walk with my lazy friend. Hey, I\u0027m not lazy. I\u0027m just resting.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.976b70b6ecf14639af9aef93ba88b235",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1154,
+        "EndTime": 1163.44,
+        "Text": "Walking to get coffee is a sport for you right now? Yes, it\u0027s a sport. Okay, but just walking. No running.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.9856d010800c406c82c92d733fe9c128",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 172,
+        "EndTime": 178.319,
+        "Text": "No, nothing happened. That\u0027s the problem. I don\u0027t understand.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.995f7ec4a87b4dbba74e33c9599ab07b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1143,
+        "EndTime": 1149.039,
+        "Text": "We can walk to the coffee shop. I\u0027ll buy you a hot coffee. The coffee shop is 20 minutes away.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.9a46df7728fd4593a3b91ffe75d2bdd3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1178,
+        "EndTime": 1182.48,
+        "Text": "You have been resting for 2 years, Mark. Get your shoes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.9b5f2d6fc4f4443581c52e859e5a7ae8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 59,
+        "EndTime": 66.64,
+        "Text": "How does running help? You run, you use energy, and then you are more tired. That makes no sense.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.9e96aebc73da49dc890bd261a2bf6111",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 999,
+        "EndTime": 1008.399,
+        "Text": "No, I couldn\u0027t. There was a guy next to me. He was lifting a very big weight. He looked at me and I think he laughed.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.9e9eb7b390c845afb673e0aefd01c783",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 733,
+        "EndTime": 742.399,
+        "Text": "Because I\u0027m your friend. I see you every day. You come home, you look sad, you sit on the sofa, and you sleep. I want you to be healthy. I want you to be happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.a162453effab436995299c6db76e127c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 486,
+        "EndTime": 491.28,
+        "Text": "You need a hobby. You need to go outside. I don\u0027t like sports.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.a35a03e85a5746578b1ce1b15c48f288",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 187,
+        "EndTime": 192.159,
+        "Text": "Why did you feel stupid? Because everyone was big and strong.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.a3d8a6c565db45d1936074a83053c59a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 603,
+        "EndTime": 605.36,
+        "Text": "You can ask someone for help.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.a842e975a52943f1bc5e7f0cedbd687f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 683,
+        "EndTime": 688.88,
+        "Text": "I don\u0027t have a bike. Bikes are expensive. I can give you my old bike.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.a8b42ac54aa64b6493bdc65b48167127",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 768,
+        "EndTime": 777.44,
+        "Text": "I promise no running. And if I get tired, we stop. We will stop if you get tired. Wait, you said you were going for a run.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.a8c915cbc8f24d28a0b6f89e289db74e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 383,
+        "EndTime": 390.319,
+        "Text": "I can run tomorrow. Today, I will walk with my lazy friend. Hey, I\u0027m not lazy. I\u0027m just resting.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.a8db125ca57d45ddba45210a78c50100",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 901,
+        "EndTime": 909.839,
+        "Text": "I feel old. I\u0027m heavier now. I can\u0027t run fast. If I play basketball now, I will just fall down.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.a8fce1bde1834d4e920fd59b611bb43e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 333,
+        "EndTime": 339.039,
+        "Text": "It\u0027s cold outside tonight. So, wear a jacket. Why do you care so much?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.a93047a2ebad4679b843c8e6feea94d5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 790,
+        "EndTime": 800.8,
+        "Text": "Put on some warm socks, too. Stop acting like my mother. Then move faster. I want my coffee. I\u0027m coming. Give me a minute.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.a93e546fb00b4ed0923e7790e8d6666f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 239,
+        "EndTime": 242.56,
+        "Text": "Now you know. The gym is not for me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.aa6cd48e44b24598b196994dcebb17ff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 675,
+        "EndTime": 682.88,
+        "Text": "I don\u0027t like swimming. The water\u0027s cold and I don\u0027t want people to look at my body. Okay, no swimming. What about cycling?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.ae111f131677470f9415530ea5a2f8e0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1078,
+        "EndTime": 1083.52,
+        "Text": "I don\u0027t have a bike. Bikes are expensive. I can give you my old bike.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.aedf5078c6fc4f4393aed435b6f14725",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 787,
+        "EndTime": 790.399,
+        "Text": "All right. All right. Let me find my jacket.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.afabeccad17e49a3b6ef4ee8a376127b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 855,
+        "EndTime": 863.12,
+        "Text": "That is not how it works. When I run, I feel good. I breathe fresh air. My head feels clear. After a run, I actually",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.b0dcd2977735416194ecf572304c7f46",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 242,
+        "EndTime": 245.92,
+        "Text": "It\u0027s for fit people. It\u0027s for people like you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.b15a406cf2864925a261effee59327ee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 633,
+        "EndTime": 636.64,
+        "Text": "Now you know. The gym is not for me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.b1c2dd24c2544ad3868d2ad999c52cd5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 308,
+        "EndTime": 314.479,
+        "Text": "Just in the park at night. Why at night? Because nobody\u0027s there. It\u0027s quiet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.b25c6ddf59e54cc6999f21f5a12da70b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 542,
+        "EndTime": 544.16,
+        "Text": "Why are you getting angry?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.b2e85ddd971b46c989b98301a26915de",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 719,
+        "EndTime": 727.2,
+        "Text": "Come on. Your back hurts. Your head hurts. You look at a computer screen all day. The trees and the fresh air will help you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.b491d74dfa4b4688932ba53ff1e90fbe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 48,
+        "EndTime": 52.879,
+        "Text": "I know, but you need to move. I\u0027m going for a run. Do you want to come?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.b63c67d093ec4dae993975045800aaa9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1172,
+        "EndTime": 1178.96,
+        "Text": "I can run tomorrow. Today, I will walk with my lazy friend. Hey, I\u0027m not lazy. I\u0027m just resting.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.b82698b88872479584748f3396dd1e64",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 135,
+        "EndTime": 140.239,
+        "Text": "You never go to the gym? How do you know you hate it? I just know.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.b9044efb185c425c88458d7c747d4195",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 688,
+        "EndTime": 695.76,
+        "Text": "The streets are too busy. Cars drive too fast. It\u0027s dangerous. You have an excuse for everything.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.ba23f6bce7f6498ab4676bcbcdf3d0d7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 198,
+        "EndTime": 209.2,
+        "Text": "Everyone starts somewhere, Mark. I know, but I looked at the machines and I didn\u0027t know how to use them. I tried to lift some weights. They were too heavy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.bad09b89e8444ad289c6aee3d1de1bfc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 318,
+        "EndTime": 325.6,
+        "Text": "Yes, for 30 minutes we can just walk and talk. You need to leave this house. I don\u0027t know.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.bb629519a8724ff19f681e1108ab7098",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1107,
+        "EndTime": 1114.24,
+        "Text": "Yes. For 30 minutes, we can just walk and talk. You need to leave this house. I don\u0027t know.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.bbd7478cd82c42179081290cb7892b92",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 712,
+        "EndTime": 719.68,
+        "Text": "Yes. For 30 minutes, we can just walk and talk. You need to leave this house. I don\u0027t know.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.bd4b53db8c364ccd8154ca3b4be0304d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 506,
+        "EndTime": 515.279,
+        "Text": "I feel old. I\u0027m heavier now. I can\u0027t run fast. If I play basketball now, I will just fall down.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.be75ad94ab254cf7accce09c97392e5d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 121,
+        "EndTime": 129.44,
+        "Text": "You don\u0027t have to play basketball. You can do something else. Like what? You can come to the gym with me. No, never.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.c136dc36ebc8497b8deb94213e8762f4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 885,
+        "EndTime": 891.519,
+        "Text": "That is not true. You liked basketball when we were in high school. We played every day after class.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.c14eec5ccec545919f6fb1c8c3bc421f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 281,
+        "EndTime": 288.8,
+        "Text": "I don\u0027t like swimming. The water\u0027s cold and I don\u0027t want people to look at my body. Okay, no swimming. What about cycling?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.c3e71f48ea394574a673249a23b62623",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 987,
+        "EndTime": 997.839,
+        "Text": "Everyone starts somewhere, Mark. I know, but I looked at the machines and I didn\u0027t know how to use them. I tried to lift some weights. They were too heavy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.c525bc353ac24593811b547e3e9cf029",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 209,
+        "EndTime": 211.28,
+        "Text": "You can ask someone for help.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.c7ebf1ca788348fdb0a4224a09c296e7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 619,
+        "EndTime": 626.32,
+        "Text": "Maybe, but I felt very small. I felt weak. I just wanted to go home. So, I",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.c84351eb3047461e8f96f8570e8d9266",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 636,
+        "EndTime": 640,
+        "Text": "It\u0027s for fit people. It\u0027s for people like you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.c8a26a92879d405da413e7890125a557",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1121,
+        "EndTime": 1127.679,
+        "Text": "It\u0027s cold outside tonight. So, wear a jacket. Why do you care so much?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.c8d7dc91a87d46118fa85d739255100f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 266,
+        "EndTime": 272,
+        "Text": "You don\u0027t need heavy weights. You don\u0027t need nice clothes. You just need to move your body.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.ca1fbf7b1e8b406d942229268beb9b24",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 360,
+        "EndTime": 366.08,
+        "Text": "Exactly. 20 minutes to go, 20 minutes to come back, 40 minutes of exercise.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.cb621045341340a0b96aadf53dc88dc5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 534,
+        "EndTime": 542.56,
+        "Text": "That is a bad answer. Come with me tomorrow morning. Just try it for 1 hour. I said no. Leo, stop asking me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.cb8852f8f0e8480b9f026ee12ca9eef3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1184,
+        "EndTime": 1193.343129,
+        "Text": "Put on some warm socks, too. Stop acting like my mother. Then move faster. I want my coffee. I\u0027m coming.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.cc76fe6c2049457dbe7f1e4f1cd84f98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 816,
+        "EndTime": 824.8,
+        "Text": "I had a sandwich at my desk. Work was really busy today. You are always busy. You need to stop working so much.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.cebd75c5f3904166b9a912ad8c527e46",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 339,
+        "EndTime": 348.32,
+        "Text": "Because I\u0027m your friend. I see you every day. You come home, you look sad, you sit on the sofa, and you sleep. I want you to be healthy. I want you to be happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.d14eb10b1ecd4a63a64b2ff884de4581",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 648,
+        "EndTime": 654.72,
+        "Text": "The gym can be very scary for the first time. I understand that. Yes, it is very scary.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.d1c5bfd74b384a5387375e37cdeb9060",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 374,
+        "EndTime": 383.36,
+        "Text": "I promise no running. And if I get tired, we stop. We will stop if you get tired. Wait, you said you were going for a run.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.d299cfea8a224a218d794c3641193dce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 937,
+        "EndTime": 938.72,
+        "Text": "Why are you getting angry?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.d2e1583329c34b7488f371bfd7c0ab5b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 867,
+        "EndTime": 875.68,
+        "Text": "But you sleep all weekend, Mark. You sleep on Saturday and Sunday, and on Monday, you\u0027re still tired. Sleep is not helping you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.d31224b266b44c0e93778857f6a6371f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 74,
+        "EndTime": 78.88,
+        "Text": "have more energy. Good for you. I just want to sleep.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.d3d2a46c0cf04c5f9fb267f6cd9f75b0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 863,
+        "EndTime": 867.519,
+        "Text": "have more energy. Good for you. I just want to sleep.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.d516266454f24339948510203760ff9d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 41,
+        "EndTime": 48.079,
+        "Text": "I know why your back hurts. You sit at a computer for 10 hours a day. That is my job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.d59f3dbbb3974ef0b9ae49502eb45ce4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 294,
+        "EndTime": 301.68,
+        "Text": "The streets are too busy. Cars drive too fast. It\u0027s dangerous. You have an excuse for everything.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.d5f0b27f86424c6490b1b511c53ca5ef",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 325,
+        "EndTime": 333.12,
+        "Text": "Come on. Your back hurts. Your head hurts. You look at a computer screen all day. The trees and the fresh air will help you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.d7aba512f7fd40cca64048825529bf81",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 626,
+        "EndTime": 633.68,
+        "Text": "walked out. I went home and I never went back. I lost my money for that month. Wow. I didn\u0027t know that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.d99cb59a9dce4cc2b1346bddd91750c8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 420,
+        "EndTime": 422.4,
+        "Text": "Did you eat anything today?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.d9f79da729e24af2ba95bf57cb4e5887",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 976,
+        "EndTime": 980.8,
+        "Text": "Why did you feel stupid? Because everyone was big and strong.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.da2440e8855d43f69f6e886d3de79ab7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1028,
+        "EndTime": 1031.199,
+        "Text": "Now you know. The gym is not for me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.dab767d615b74a849712bd80b05a9571",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1127,
+        "EndTime": 1137.039,
+        "Text": "Because I\u0027m your friend. I see you every day. You come home, you look sad, you sit on the sofa, and you sleep. I want you to be healthy. I want you to be happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.db46b76fc3b14a61bde779e29e4d5558",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 348,
+        "EndTime": 354.4,
+        "Text": "And walking will make me happy. It\u0027s a good start. I really don\u0027t like the cold.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.dfcabd87caba40ffbab3aadf1c68d7b4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 9.16,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A1 and the topic is exercise.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.e0774704c9074b1da286e33af17bbd57",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 245,
+        "EndTime": 254.239,
+        "Text": "Sorry, Mark. I didn\u0027t know you felt that way. It\u0027s fine. I\u0027m just not a sports guy. I\u0027ll just stay on the sofa.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.e0d13fff5819447e9046932862597f86",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1020,
+        "EndTime": 1028.24,
+        "Text": "walked out. I went home and I never went back. I lost my money for that month. Wow. I didn\u0027t know that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.e22649b98baf465bb80b5392b7808ac9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 232,
+        "EndTime": 239.599,
+        "Text": "walked out. I went home and I never went back. I lost my money for that month. Wow. I didn\u0027t know that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.e3962491af6b459686679751aaea1376",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 435,
+        "EndTime": 442.16,
+        "Text": "I know why your back hurts. You sit at a computer for 10 hours a day. That is my job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.e58fe75d99a74a6fa28f2cfd572a13c4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 727,
+        "EndTime": 733.12,
+        "Text": "It\u0027s cold outside tonight. So, wear a jacket. Why do you care so much?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.e7592a98739b4553b7a4474636b57bf6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1182,
+        "EndTime": 1184.96,
+        "Text": "All right. All right. Let me find my jacket.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.e86dca12396b4251ba50755a6125d2b1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 808,
+        "EndTime": 816.959,
+        "Text": "Oh, [sighs] I slept for 2 hours. You look really tired. I am. I feel terrible. Did you eat anything today?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.ebb7c058f9bf486ea586f03b50e98441",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 491,
+        "EndTime": 496.96,
+        "Text": "That is not true. You liked basketball when we were in high school. We played every day after class.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.ebc2257ba8d743148db0fcfa312c566f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 938,
+        "EndTime": 945.519,
+        "Text": "I am not angry. I just don\u0027t want to go to the gym. Okay, fine. But why?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.ec95231d3f454f35a8567790eb20a9df",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 848,
+        "EndTime": 855.36,
+        "Text": "How does running help? You run, you use energy, and then you are more tired. That makes no sense.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.ee083866e32d490fa4864822748da588",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1034,
+        "EndTime": 1042.88,
+        "Text": "Sorry, Mark. I didn\u0027t know you felt that way. It\u0027s fine. I\u0027m just not a sports guy. I\u0027ll just stay on the sofa.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.ef8fd4c9ba5f42dd8745535ef22beefc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 16,
+        "EndTime": 24.32,
+        "Text": "It\u0027s almost 6:00 in the evening. Oh, I slept for 2 hours. You look really tired.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.f109b7cdad2b493c86c5594104fcc54b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1083,
+        "EndTime": 1092.64,
+        "Text": "The streets are too busy. Cars drive too fast. It\u0027s dangerous. You have an excuse for everything. I\u0027m just telling you the truth.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.f24130733d0a4255881c08e443b38fdf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 529,
+        "EndTime": 534.32,
+        "Text": "You never go to the gym? How do you know you hate it? I just know.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.f2a27a59746e4a47805b7bd2c0196961",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 470,
+        "EndTime": 472.96,
+        "Text": "Good for you. I just want to sleep.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.f644353c6cc54c9d850bd19365dfef7a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 666,
+        "EndTime": 675.12,
+        "Text": "I walk from my bed to my computer every morning. Very funny. I also walk to the fridge. Seriously, Mark, what about swimming?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.f67eeca0c7b84e8fa8c0f0e054e02866",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 422,
+        "EndTime": 430.24,
+        "Text": "I had a sandwich at my desk. Work was really busy today. You are always busy. You need to stop working so much.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.f9b6c9b9dadc4860a9c61fc7204bf363",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 140,
+        "EndTime": 148.48,
+        "Text": "That is a bad answer. Come with me tomorrow morning. Just try it for 1 hour. I said no, Leo. Stop asking me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.fa4cbeee2dab4d36a097f3d3c9d35457",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 613,
+        "EndTime": 619.2,
+        "Text": "He probably didn\u0027t laugh at you. People at the gym only look at themselves in the mirror.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.fb2906f6ca2e4d199ca48da82f9cbda5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 967,
+        "EndTime": 976.32,
+        "Text": "I bought new shoes. I paid for one month at the gym near my old house. I walked inside and I just felt really stupid.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.fcc3c42d6f4547eeb3ca68440d4e64e0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 748,
+        "EndTime": 754.48,
+        "Text": "We can walk to the coffee shop. I\u0027ll buy you a hot coffee. The coffee shop is 20 minutes away.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.fe9ad1c5108745dfbdbbdb6c6361aed6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 754,
+        "EndTime": 760.16,
+        "Text": "Exactly. 20 minutes to go, 20 minutes to come back, 40 minutes of exercise.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.ff57bebaba6d4f528833d90eec74192b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 446,
+        "EndTime": 453.68,
+        "Text": "Oh, run? No way. I just told you I\u0027m tired. Yes, but running actually helps.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.ff915d8b5fcf44b9837e0bbb38a00f4d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 129,
+        "EndTime": 135.68,
+        "Text": "Why not? It\u0027s a really nice place. They have good music and new machines. I hate the gym.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3.ffe4848a90e24147be211a30a2d24fcf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 288,
+        "EndTime": 289.84,
+        "Text": "Riding a bike.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.5a0baabeffefe5ccc8c62c01f9053369966b689bb5681cd0a4fbbf15595a0dd3"
+}

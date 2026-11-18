@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none" role="img" aria-label="TCT AI Logo Monochrome">
+  <!-- Single-color companion silhouette using compound path cutouts for 100% clean opacity on any background -->
+  <g fill="currentColor">
+    <!-- Companion Body with Negative Cutouts for Visor/Eyes/Smile -->
+    <path fill-rule="evenodd" d="
+      M 46 32
+      C 58 30, 70 30, 82 32
+      C 96 35, 102 44, 102 60
+      C 102 76, 96 86, 82 89
+      C 74 90.5, 62 91, 52 91
+      C 42 91, 37 94, 28 102
+      C 27 103, 25 102.5, 25.5 101
+      C 27.5 95, 29 89.5, 27 84
+      C 24 76, 24 68, 26 60
+      C 28 44, 34 35, 46 32 Z
+
+      M 39 46
+      C 37 46, 36 47, 36 49
+      L 36 77
+      C 36 83, 40 85, 46 85
+      L 82 85
+      C 88 85, 92 83, 92 77
+      L 92 49
+      C 92 47, 91 46, 89 46
+      Z
+    " />
+
+    <!-- Left Ear Communicator Node -->
+    <rect x="18" y="54" width="6" height="18" rx="3" />
+
+    <!-- Eyes (Positive Space inside Visor Knockout) -->
+    <rect x="49" y="54" width="7" height="11" rx="3.5" />
+    <rect x="72" y="54" width="7" height="11" rx="3.5" />
+
+    <!-- Cheerful Smile Arc -->
+    <path d="M 58 68 Q 64 74 70 68" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" />
+
+    <!-- Antenna Connector -->
+    <path d="M 76 34 Q 82 28 85 24" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" />
+
+    <!-- 4-Point TCT AI Intelligence Beacon Spark -->
+    <path d="M 88 10
+             Q 90 20 98 22
+             Q 90 24 88 34
+             Q 86 24 78 22
+             Q 86 20 88 10 Z" />
+  </g>
+</svg>

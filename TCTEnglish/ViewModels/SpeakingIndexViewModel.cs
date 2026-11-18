@@ -14,6 +14,8 @@ namespace TCTVocabulary.ViewModels
         // NEW: Videos grouped by CEFR level (A1, A2, B1, B2)
         public Dictionary<string, List<SpeakingVideoViewModel>> VideosByLevel { get; set; } = new();
 
+        public IReadOnlyList<TCTEnglish.ViewModels.RecentSpeakingVideoViewModel> RecentVideos { get; set; } = Array.Empty<TCTEnglish.ViewModels.RecentSpeakingVideoViewModel>();
+
         public List<SpeakingVideoViewModel> MyVideos { get; set; } = new();
         public bool CanImportPrivateVideos { get; set; }
         public bool IsMyVideosLocked { get; set; }
@@ -29,6 +31,7 @@ namespace TCTVocabulary.ViewModels
         public bool PublicHasMore { get; set; }
         public Dictionary<string, int> PublicTotalByLevel { get; set; } = new();
         public Dictionary<string, bool> PublicHasMoreByLevel { get; set; } = new();
+        public Dictionary<string, int> PublicTotalByTopic { get; set; } = new();
 
         public int MyVideosTotalCount { get; set; }
         public bool MyVideosHasMore { get; set; }

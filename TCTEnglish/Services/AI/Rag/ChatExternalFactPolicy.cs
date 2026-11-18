@@ -5,6 +5,16 @@ namespace TCTEnglish.Services.AI.Rag;
 
 public static class ChatExternalFactPolicy
 {
+    public static bool IsExplicitHomeworkCompletionRequest(string? message)
+    {
+        var normalized = AiTextNormalizer.Normalize(message);
+        if (AiTextNormalizer.ContainsAny(normalized, "stored passage", "saved card", "trong bai", "trong bo", "trong the", "da luu"))
+            return false;
+        return Regex.IsMatch(normalized,
+            @"^(?:(?:please )?do my .+ homework|(?:lam|giai) (?:toan bo )?bai tap .+ (?:ho|giup) (?:toi|minh)(?: .*)?)$",
+            RegexOptions.CultureInvariant | RegexOptions.NonBacktracking, TimeSpan.FromMilliseconds(100));
+    }
+
     public static bool IsUnscopedGenerationRequest(string? message)
     {
         var normalized = AiTextNormalizer.Normalize(message);

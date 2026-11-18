@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.club-attendance",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.club-attendance",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Bu\u1ED5i sinh ho\u1EA1t c\u00E2u l\u1EA1c b\u1ED9 s\u00E1ch",
+        "Level": "beginner",
+        "ContentType": "reports",
+        "Topic": "C\u00E2u l\u1EA1c b\u1ED9",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E1o c\u00E1o s\u1ED1 li\u1EC7u gi\u1EA3 \u0111\u1ECBnh v\u1EC1 ho\u1EA1t \u0111\u1ED9ng \u0111\u1ECDc s\u00E1ch.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-attendance.1ef2b7c3bef44d2fa7d30f9600323ad8",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "C\u00E1c b\u1EA1n l\u1EA7n l\u01B0\u1EE3t gi\u1EDBi thi\u1EC7u nh\u00E2n v\u1EADt m\u00ECnh y\u00EAu th\u00EDch.",
+        "EnglishMeaning": "They took turns introducing their favourite characters.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-attendance"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-attendance.24bfba4059d84f508945d33253c6de2a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Hai b\u1EA1n ch\u01B0a c\u00F3 \u0111\u1EE7 th\u1EDDi gian \u0111\u1EC3 tr\u00ECnh b\u00E0y xong.",
+        "EnglishMeaning": "Two students did not have enough time to finish their talks.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-attendance"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-attendance.2e3a42f60e6e47b394c2cc9887b1b80d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "C\u1EA3 nh\u00F3m v\u1EABn nghe ch\u0103m ch\u00FA v\u00E0 \u0111\u1EB7t nh\u1EEFng c\u00E2u h\u1ECFi ng\u1EAFn.",
+        "EnglishMeaning": "The group still listened carefully and asked short questions.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-attendance"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-attendance.4c3772064a60424ca7e90198135bec39",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "The meeting was held in the library on Wednesday afternoon.",
+        "NormalizedHash": "a6cb195bc45d123547a6055d3873db888de8f07870e299c29227b1c71b32ada5"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.club-attendance.839a67a74e9048818e5ad5a2754e2f6f",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-attendance.4fbe9f76172a4c63becc11bab14e29e6",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "C\u00F3 t\u00E1m h\u1ECDc sinh tham gia v\u00E0 m\u1ED7i b\u1EA1n mang m\u1ED9t cu\u1ED1n s\u00E1ch.",
+        "EnglishMeaning": "Eight students attended, and each brought a book.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-attendance"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-attendance.5e4cf253521d4fe6b689bc6c99b67dff",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Nh\u00F3m c\u0169ng s\u1EBD chu\u1EA9n b\u1ECB m\u1ED9t chi\u1EBFc \u0111\u1ED3ng h\u1ED3 \u0111\u1EC3 theo d\u00F5i th\u1EDDi gian.",
+        "EnglishMeaning": "The group will also prepare a clock to keep track of time.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-attendance"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-attendance.839a67a74e9048818e5ad5a2754e2f6f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Bu\u1ED5i sinh ho\u1EA1t di\u1EC5n ra trong th\u01B0 vi\u1EC7n v\u00E0o chi\u1EC1u th\u1EE9 T\u01B0.",
+        "EnglishMeaning": "The meeting took place in the library on Wednesday afternoon.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-attendance"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-attendance.ed47f6e9cdc744bdaa6b2d49f743f8dd",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "B\u00E1o c\u00E1o n\u00E0y t\u00F3m t\u1EAFt m\u1ED9t bu\u1ED5i sinh ho\u1EA1t c\u00E2u l\u1EA1c b\u1ED9 s\u00E1ch gi\u1EA3 \u0111\u1ECBnh.",
+        "EnglishMeaning": "This report summarises a fictional book club meeting.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-attendance"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-attendance.f8d8698e326b4c6ea77e465d99d9685c",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Ng\u01B0\u1EDDi ph\u1EE5 tr\u00E1ch \u0111\u1EC1 ngh\u1ECB d\u00E0nh th\u00EAm m\u01B0\u1EDDi ph\u00FAt cho bu\u1ED5i sau.",
+        "EnglishMeaning": "The organiser suggested adding ten minutes to the next meeting.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-attendance"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.club-attendance"
+}

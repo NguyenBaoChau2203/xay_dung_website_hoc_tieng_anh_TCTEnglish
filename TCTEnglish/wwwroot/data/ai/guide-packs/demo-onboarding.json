@@ -1,0 +1,400 @@
+{
+  "_version": "1.0.0",
+  "_reviewed": "2026-11-18",
+  "_scope": "Reviewed general guidance for current learner features. No personal data, external certification or privileged operations.",
+  "guides": [
+    {
+      "id": "demo-first-visit",
+      "title": "Bắt đầu với TCT English",
+      "route": "/Home/Index",
+      "topic": "onboarding",
+      "body": "Bạn có thể thử một vòng học ngắn trên TCT English mà chưa cần có dữ liệu cá nhân:\n1. Vào trang chủ để chọn Reading, Listening, Writing hoặc Speaking theo kỹ năng muốn luyện.\n2. Với từ vựng, mở một bộ từ bạn được quyền xem; dùng Flashcard trước rồi chọn một hoạt động trong Practice phù hợp với dữ liệu của bộ.\n3. Làm một bài ngắn, xem phản hồi rồi ghi lại chỗ cần luyện lại. Nếu muốn duy trì thói quen, đặt mục tiêu vừa sức trong Goals.\nĐây là gợi ý chung để làm quen. Mình chưa đánh giá trình độ của bạn và không coi kết quả luyện tập là chứng chỉ.",
+      "questions": [
+        "Lần đầu dùng website nên làm gì trước?",
+        "Tôi mới vào TCT English, bắt đầu từ đâu?",
+        "Hướng dẫn người mới dùng trang này",
+        "Cho tôi một vòng trải nghiệm website",
+        "First visit: how do I get started on TCT English?",
+        "New here, show me a simple first session",
+        "Tôi chưa biết dùng TCT English như thế nào",
+        "Demo lần đầu nên thử những mục gì?"
+      ],
+      "keywords": [
+        "lan dau dung",
+        "lan dau vao",
+        "moi vao tct english",
+        "nguoi moi dung",
+        "first visit",
+        "new here",
+        "vong trai nghiem",
+        "demo lan dau"
+      ],
+      "matchPhrases": [
+        "lan dau dung",
+        "lan dau vao",
+        "moi vao tct english",
+        "nguoi moi dung",
+        "first visit",
+        "new here",
+        "vong trai nghiem",
+        "demo lan dau"
+      ],
+      "matchRules": [
+        [
+          "moi dang nhap",
+          "thu"
+        ],
+        [
+          "new here",
+          "session"
+        ],
+        [
+          "lan dau",
+          "website"
+        ]
+      ]
+    },
+    {
+      "id": "demo-dashboard-courses",
+      "title": "Chọn khu vực học trên trang chủ",
+      "route": "/Home/Index",
+      "topic": "onboarding",
+      "body": "Trang chủ là nơi chọn hoạt động, còn mỗi khu vực phục vụ một cách luyện khác nhau:\n• Reading: đọc nội dung và làm bài theo nội dung đang mở.\n• Listening: luyện nghe với nội dung có trong mục nghe.\n• Writing: chọn bài viết và gửi bài theo hướng dẫn trên màn hình.\n• Speaking: luyện với playlist/video và các công cụ có trong bài.\n• Bộ từ và Practice: ôn từ vựng, kiểm tra hoặc luyện các hoạt động từ bộ đủ dữ liệu mà bạn có quyền truy cập.\nBạn muốn luyện kỹ năng nào trước? Nếu bạn nói tên mục đang thấy, mình có thể hướng dẫn cụ thể hơn; mình không tự biết màn hình bạn đang mở.",
+      "questions": [
+        "Trang chủ có những khu vực học nào?",
+        "Các mục Reading Listening Writing Speaking khác nhau ra sao?",
+        "Tôi muốn xem bản đồ các chức năng học",
+        "Học kỹ năng nào ở đâu trên website?",
+        "What are the learning sections on this site?",
+        "Where do I choose a skill to practice?",
+        "Giải thích các mục học trên dashboard",
+        "Mình nên chọn phần nào trên trang chủ?"
+      ],
+      "keywords": [
+        "khu vuc hoc",
+        "ban do chuc nang",
+        "learning sections",
+        "choose a skill",
+        "muc hoc tren dashboard",
+        "phan nao tren trang chu"
+      ],
+      "matchPhrases": [
+        "khu vuc hoc",
+        "ban do chuc nang",
+        "learning sections",
+        "choose a skill",
+        "muc hoc tren dashboard",
+        "phan nao tren trang chu"
+      ],
+      "matchRules": [
+        [
+          "dashboard",
+          "khu vuc"
+        ],
+        [
+          "choose",
+          "skill",
+          "dashboard"
+        ],
+        [
+          "ban do",
+          "chuc nang"
+        ]
+      ]
+    },
+    {
+      "id": "demo-no-content",
+      "title": "Khi danh sách bài học đang trống",
+      "route": "/Home/Index",
+      "topic": "onboarding",
+      "body": "Nếu một danh sách chưa có nội dung, bạn có thể kiểm tra bộ lọc, từ khóa và tài khoản đang đăng nhập, rồi quay lại trang chủ để thử kỹ năng hoặc bộ từ khác mà bạn có quyền xem.\nDanh sách trống không đủ để kết luận website đã xóa bài hay bạn chưa học gì. Nội dung có thể chưa được tạo, chưa công khai, không khớp bộ lọc hoặc không thuộc quyền truy cập của tài khoản này.\nBạn cho mình biết tên mục đang trống và dòng thông báo trên màn hình để mình hướng dẫn tiếp. Không cần gửi mật khẩu, mã xác minh hay dữ liệu riêng tư.",
+      "questions": [
+        "Danh sách bài học trống thì làm gì?",
+        "Không có bài nào trong mục này thì học ở đâu?",
+        "Tại sao danh sách nội dung không hiện bài?",
+        "Website không có nội dung để demo thì sao?",
+        "What can I try when a lesson list is empty?",
+        "There are no lessons in this section, what next?",
+        "Mở mục học nhưng chưa thấy bài nào",
+        "Bộ lọc không tìm thấy bài thì phải làm sao?"
+      ],
+      "keywords": [
+        "danh sach bai hoc trong",
+        "danh sach noi dung",
+        "lesson list is empty",
+        "no lessons in this section",
+        "chua thay bai nao",
+        "khong tim thay bai"
+      ],
+      "matchPhrases": [
+        "danh sach bai hoc trong",
+        "danh sach noi dung",
+        "lesson list is empty",
+        "no lessons in this section",
+        "chua thay bai nao",
+        "khong tim thay bai"
+      ],
+      "matchRules": [
+        [
+          "muc",
+          "chua thay bai"
+        ],
+        [
+          "no lessons",
+          "section"
+        ],
+        [
+          "danh sach",
+          "trong"
+        ]
+      ]
+    },
+    {
+      "id": "demo-vocabulary-vs-writing",
+      "title": "Phân biệt luyện gõ từ và luyện viết bài",
+      "route": "/Home/Writing/Exercises",
+      "topic": "onboarding",
+      "body": "Luyện gõ từ trong bộ từ và Writing là hai hoạt động khác nhau:\n• Typing/Write trong luyện từ: nhập đáp án của thẻ để nhớ cách viết từ. Hoạt động dùng dữ liệu của bộ từ bạn chọn.\n• Writing: viết câu hoặc bài theo yêu cầu trong mục Writing; đọc đề và xem phản hồi của chính bài đã gửi khi có kết quả.\nBạn không cần tạo một bộ từ mới chỉ để mở các bài Writing đang có. Nếu muốn luyện diễn đạt, chọn Writing; nếu muốn nhớ chính tả từ trong bộ, chọn hoạt động gõ từ. Phản hồi luyện tập không xác nhận band IELTS.",
+      "questions": [
+        "Typing với Writing khác nhau chỗ nào?",
+        "Viết từ và viết bài là cùng một chế độ à?",
+        "Tôi muốn viết đoạn văn chứ không gõ đáp án thẻ",
+        "Phân biệt Write của flashcard và Writing",
+        "What is the difference between Typing and Writing?",
+        "I want paragraph practice instead of typing cards",
+        "Luyện chính tả từ hay luyện viết bài nên chọn gì?",
+        "Writing có cần dữ liệu bộ thẻ không?"
+      ],
+      "keywords": [
+        "typing voi writing",
+        "typing and writing",
+        "viet tu va viet bai",
+        "viet doan van",
+        "paragraph practice",
+        "write cua flashcard",
+        "writing co can du lieu bo the"
+      ],
+      "matchPhrases": [
+        "typing voi writing",
+        "typing and writing",
+        "viet tu va viet bai",
+        "viet doan van",
+        "paragraph practice",
+        "write cua flashcard",
+        "writing co can du lieu bo the"
+      ],
+      "matchRules": [
+        [
+          "viet doan van",
+          "tu vung"
+        ],
+        [
+          "typing",
+          "different",
+          "writing"
+        ],
+        [
+          "typing",
+          "writing"
+        ],
+        [
+          "viet tu",
+          "viet bai"
+        ]
+      ]
+    },
+    {
+      "id": "demo-reading-vs-read-mode",
+      "title": "Reading và việc đọc từ trong thẻ",
+      "route": "/Home/Reading",
+      "topic": "onboarding",
+      "body": "Reading là khu vực luyện đọc nội dung, mở từ trang chủ hoặc mục Reading. Bộ từ vựng dùng Flashcard và các chế độ Practice đang có; không có một chế độ riêng tên Read trong bộ chuyển chế độ học từ.\nNếu muốn luyện hiểu bài đọc, mở Reading và chọn nội dung bạn được quyền xem. Nếu muốn ôn từ trong bộ, dùng Flashcard hoặc hoạt động Practice phù hợp. Việc nghe/đọc một từ trên thẻ không tự biến hoạt động đó thành một bài Reading hay một lần chấm kỹ năng đọc.",
+      "questions": [
+        "Reading có giống Read trong bộ từ không?",
+        "Tìm chế độ Read trong flashcard ở đâu?",
+        "Tôi muốn đọc bài chứ không học thẻ từ",
+        "Phân biệt Reading và đọc từ trên flashcard",
+        "Is there a Read mode for vocabulary sets?",
+        "Reading practice versus flashcard reading",
+        "Tại sao không thấy mode Read trong bộ từ?",
+        "Muốn luyện đọc hiểu bài thì dùng phần nào?"
+      ],
+      "keywords": [
+        "che do read",
+        "mode read",
+        "read mode",
+        "doc bai chu khong",
+        "reading va doc tu",
+        "reading practice versus",
+        "doc hieu bai"
+      ],
+      "matchPhrases": [
+        "che do read",
+        "mode read",
+        "read mode",
+        "doc bai chu khong",
+        "reading va doc tu",
+        "reading practice versus",
+        "doc hieu bai"
+      ],
+      "matchRules": [
+        [
+          "doc hieu",
+          "the"
+        ],
+        [
+          "read mode",
+          "vocabulary"
+        ],
+        [
+          "reading",
+          "flashcard"
+        ]
+      ]
+    },
+    {
+      "id": "demo-ai-help-scope",
+      "title": "Dùng trợ lý khi cần hướng dẫn",
+      "route": "/AI/Chat",
+      "topic": "onboarding",
+      "body": "Mình có thể hướng dẫn cách dùng các mục của TCT English, gợi ý cách tổ chức buổi học và trả lời từ các nguồn học tập hoặc dữ liệu của chính bạn khi hệ thống có đủ nguồn được phép xem.\nVới một lộ trình chung, bạn có thể nói mục tiêu, kỹ năng muốn luyện và thời gian rảnh; chưa có bộ từ cá nhân vẫn có thể nhận gợi ý chung. Với câu hỏi về tiến độ thật, mình cần dữ liệu phù hợp của tài khoản và sẽ nói rõ nếu chưa đủ.\nMình không thực hiện hộ việc thanh toán, đổi mật khẩu, xóa dữ liệu hoặc cấp quyền; không cung cấp bí mật hay dữ liệu của người khác. Hãy nêu rõ tính năng/câu hỏi trong một tin nhắn; đừng gửi mật khẩu, khóa API hoặc mã xác minh.",
+      "questions": [
+        "Trợ lý có thể giúp tôi những gì trên website?",
+        "Nên hỏi chatbot thế nào để được hướng dẫn rõ?",
+        "AI trên trang này có làm thao tác hộ tôi không?",
+        "Chatbot có biết hết dữ liệu tài khoản không?",
+        "What can this website assistant help with?",
+        "How should I ask for help in this chat?",
+        "Tôi cần cung cấp gì khi hỏi trợ lý?",
+        "Có thể nhờ chatbot đổi mật khẩu hộ không?"
+      ],
+      "keywords": [
+        "tro ly co the giup",
+        "nen hoi chatbot",
+        "ask for help in this chat",
+        "website assistant help",
+        "chatbot doi mat khau ho",
+        "hoi tro ly"
+      ],
+      "matchPhrases": [
+        "tro ly co the giup",
+        "nen hoi chatbot",
+        "ask for help in this chat",
+        "website assistant help",
+        "chatbot doi mat khau ho",
+        "hoi tro ly"
+      ],
+      "matchRules": [
+        [
+          "hoi chatbot",
+          "du lieu hoc"
+        ],
+        [
+          "website assistant",
+          "help"
+        ],
+        [
+          "tro ly",
+          "giup"
+        ]
+      ]
+    },
+    {
+      "id": "demo-save-chat",
+      "title": "Xem lại câu trả lời và nguồn trong chat",
+      "route": "/AI/Chat",
+      "topic": "onboarding",
+      "body": "Bạn có thể xem lại hội thoại trong khu vực Chat khi hệ thống còn lưu lịch sử cho tài khoản hiện tại. Nguồn hoặc nút mở trang đi kèm câu trả lời giúp bạn đi tới nội dung đã được phép truy cập.\nKhi tải lại, hệ thống kiểm tra lại quyền và nguồn. Nếu nguồn cũ đã đổi, bị xóa hoặc không xác minh lại được, hãy chú ý cảnh báo và hỏi lại để lấy câu trả lời mới. Lịch sử cũ không phải bằng chứng rằng nội dung vẫn còn đúng hay bạn vẫn có quyền mở.\nNếu một lượt gửi bị gián đoạn hoặc chưa hiện phản hồi, xem lịch sử/trạng thái trước khi gửi lặp. Mình không khẳng định lượt chưa có kết quả đã hoàn thành.",
+      "questions": [
+        "Tải lại trang có xem lại đoạn chat không?",
+        "Cách đọc nguồn của câu trả lời đã lưu",
+        "Chat cũ báo nguồn thay đổi thì làm gì?",
+        "Lịch sử trợ lý có giữ nguyên quyền truy cập không?",
+        "Can I review my previous chat answers?",
+        "Why does an old chat answer show a source warning?",
+        "Mở lại hội thoại khi câu trả lời bị gián đoạn",
+        "Xem lịch sử chat và hỏi lại như thế nào?"
+      ],
+      "keywords": [
+        "tai lai trang co xem lai",
+        "nguon cua cau tra loi da luu",
+        "chat cu bao",
+        "old chat answer",
+        "previous chat answers",
+        "lich su chat va hoi lai"
+      ],
+      "matchPhrases": [
+        "tai lai trang co xem lai",
+        "nguon cua cau tra loi da luu",
+        "chat cu bao",
+        "old chat answer",
+        "previous chat answers",
+        "lich su chat va hoi lai"
+      ],
+      "matchRules": [
+        [
+          "chat cu",
+          "nguon"
+        ],
+        [
+          "previous",
+          "chat",
+          "reloading"
+        ],
+        [
+          "lich su chat",
+          "hoi lai"
+        ]
+      ]
+    },
+    {
+      "id": "demo-ambiguous-request",
+      "title": "Nêu rõ mục hoặc vấn đề cần hỗ trợ",
+      "route": "/AI/Chat",
+      "topic": "onboarding",
+      "body": "Bạn cho mình biết tên mục đang dùng và việc muốn làm nhé, chẳng hạn: “mình muốn luyện nghe 15 phút”, “lập lộ trình TOEIC 450 trên web” hoặc “Speaking không thu được micro”.\nNếu gặp lỗi, hãy mô tả bước vừa làm và dòng thông báo đang thấy. Mình không tự nhìn thấy màn hình hiện tại và không đoán điểm số, tiến độ hay nội dung riêng tư chỉ từ “cái này”. Không cần gửi mật khẩu, mã xác minh hay khóa API.",
+      "questions": [
+        "Cái này dùng sao vậy bạn?",
+        "Làm giúp cái đó đi",
+        "Tôi không hiểu chỗ này",
+        "Hướng dẫn thêm được không, tôi chưa biết hỏi gì",
+        "How do I use this thing?",
+        "Can you help with this part?",
+        "Mình chưa biết diễn tả vấn đề đang gặp",
+        "Tôi cần nói rõ thông tin gì để được hỗ trợ?"
+      ],
+      "keywords": [
+        "cai nay dung sao",
+        "lam giup cai do",
+        "khong hieu cho nay",
+        "use this thing",
+        "help with this part",
+        "chua biet dien ta",
+        "noi ro thong tin gi"
+      ],
+      "matchPhrases": [
+        "cai nay dung sao",
+        "lam giup cai do",
+        "khong hieu cho nay",
+        "use this thing",
+        "help with this part",
+        "chua biet dien ta",
+        "noi ro thong tin gi"
+      ],
+      "matchRules": [
+        [
+          "khong hieu",
+          "cho nay"
+        ],
+        [
+          "help",
+          "this part"
+        ],
+        [
+          "cai nay",
+          "dung sao"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+@*
+    "Premium có thêm gì" comparison (plan 5.1): a real table built from PremiumBenefits, plus the rows that are free for everyone.
+    Marks carry text alternatives ("Có", "Không có"). Needs billing.css.
+*@
+@using TCTEnglish.Services.Billing
+<section class="k-panel tb-card tb-benefits" aria-labelledby="tb-benefits-title">
+    <h2 id="tb-benefits-title" class="tb-section-title">Premium có thêm gì</h2>
+    <div class="tb-table-wrap">
+        <table class="tb-table">
+            <caption class="visually-hidden">So sánh tính năng giữa gói Miễn phí và Premium</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Tính năng</th>
+                    <th scope="col" class="tb-table__free">Miễn phí</th>
+                    <th scope="col" class="tb-table__premium">Premium</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var row in PremiumBenefits.ForEveryone)
+                {
+                    <tr>
+                        <th scope="row">@row</th>
+                        <td class="tb-table__free"><i class="fa-solid fa-circle-check tb-yes" aria-hidden="true"></i><span class="visually-hidden">Có</span></td>
+                        <td class="tb-table__premium"><i class="fa-solid fa-circle-check tb-yes" aria-hidden="true"></i><span class="visually-hidden">Có</span></td>
+                    </tr>
+                }
+                @foreach (var benefit in PremiumBenefits.Gated)
+                {
+                    <tr>
+                        <th scope="row">@benefit.Title</th>
+                        <td class="tb-table__free">
+                            @if (benefit.FreeText != null)
+                            {
+                                <span>@benefit.FreeText</span>
+                            }
+                            else
+                            {
+                                <i class="fa-solid fa-minus tb-no" aria-hidden="true"></i><span class="visually-hidden">Không có</span>
+                            }
+                        </td>
+                        <td class="tb-table__premium">
+                            @if (benefit.PremiumText != null)
+                            {
+                                <span>@benefit.PremiumText</span>
+                            }
+                            else
+                            {
+                                <i class="fa-solid fa-circle-check tb-yes" aria-hidden="true"></i><span class="visually-hidden">Có</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

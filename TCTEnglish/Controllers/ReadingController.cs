@@ -16,15 +16,18 @@ namespace TCTEnglish.Controllers
         private readonly IReadingLearningService _learning;
         private readonly IReadingTranslationService _translationService;
         private readonly IReadingAssistService _assist;
+        private readonly TCTEnglish.Services.AI.IAiRequestRateLimiter? _rateLimiter;
 
         public ReadingController(
             IReadingLearningService learning,
             IReadingTranslationService translationService,
-            IReadingAssistService assist)
+            IReadingAssistService assist,
+            TCTEnglish.Services.AI.IAiRequestRateLimiter? rateLimiter = null)
         {
             _learning = learning;
             _translationService = translationService;
             _assist = assist;
+            _rateLimiter = rateLimiter;
         }
 
         [HttpGet("Reading/Progress")]
@@ -80,8 +83,9 @@ namespace TCTEnglish.Controllers
 
         [HttpPost("Reading/SaveAnswer")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SaveAnswer([FromBody] SaveReadingAnswerApiRequest request)
+        public Task<IActionResult> SaveAnswer([FromBody] SaveReadingAnswerApiRequest request) => ReadingResultAsync(async () =>
         {
+            if (request == null) return BadRequest();
             var userId = GetCurrentUserId();
             await _learning.SaveAnswerAsync(userId, request.AttemptId, new SaveReadingAnswerRequest
             {
@@ -92,7 +96,7 @@ namespace TCTEnglish.Controllers
                 IsFlagged = request.IsFlagged
             });
             return Json(new { success = true });
-        }
+        });
 
         [HttpPost("Reading/SubmitAttempt")]
         [ValidateAntiForgeryToken]
@@ -104,16 +108,20 @@ namespace TCTEnglish.Controllers
                 var result = await _learning.SubmitAttemptAsync(userId, attemptId);
                 return Json(new { success = true, result });
             }
-            catch (InvalidOperationException ex)
+            catch (ReadingNotFoundException)
             {
-                return BadRequest(new { success = false, message = ex.Message });
+                return NotFound();
+            }
+            catch (InvalidOperationException)
+            {
+                return BadRequest(new { success = false, message = "Chưa thể lưu kết quả. Bạn hãy thử lại." });
             }
         }
 
         // Legacy submit endpoint kept for older forms — maps to attempt submit after creating/finding open attempt.
         [HttpPost("Reading/SubmitReading")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SubmitReading(int passageId, Dictionary<int, int> answers)
+        public Task<IActionResult> SubmitReading(int passageId, Dictionary<int, int> answers) => ReadingResultAsync(async () =>
         {
             var userId = GetCurrentUserId();
             var attempt = await _learning.StartAttemptAsync(userId, passageId, "Practice", null);
@@ -142,37 +150,37 @@ namespace TCTEnglish.Controllers
                     paraphrase = d.Paraphrase
                 })
             });
-        }
+        });
 
         [HttpPost("Reading/Annotations")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SaveAnnotation([FromBody] ReadingAnnotationRequest request)
+        public Task<IActionResult> SaveAnnotation([FromBody] ReadingAnnotationRequest request) => ReadingResultAsync(async () =>
         {
             var userId = GetCurrentUserId();
             await _learning.SaveAnnotationAsync(userId, request);
             return Json(new { success = true });
-        }
+        });
 
         [HttpGet("Reading/Annotations/{passageId}")]
-        public async Task<IActionResult> Annotations(int passageId)
+        public Task<IActionResult> Annotations(int passageId) => ReadingResultAsync(async () =>
         {
             var userId = GetCurrentUserId();
             var items = await _learning.GetAnnotationsAsync(userId, passageId);
-            return Json(new { items });
-        }
+            return Json(new { items = items.Select(a => new { a.Id, a.AnnotationType, a.StartOffset, a.EndOffset, a.SelectedText, a.NoteText, a.Color }) });
+        });
 
         [HttpPost("Reading/Annotations/Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteAnnotation(int id)
+        public Task<IActionResult> DeleteAnnotation(int id) => ReadingResultAsync(async () =>
         {
             await _learning.DeleteAnnotationAsync(GetCurrentUserId(), id);
             return Json(new { success = true });
-        }
+        });
 
         [HttpGet("Reading/Lookup")]
-        public async Task<IActionResult> Lookup(int passageId, string word)
+        public Task<IActionResult> Lookup(int passageId, string word) => ReadingResultAsync(async () =>
         {
-            var item = await _learning.LookupWordAsync(passageId, word);
+            var item = await _learning.LookupWordAsync(GetCurrentUserId(), passageId, word);
             if (item == null) return Json(new { found = false });
             return Json(new
             {
@@ -185,7 +193,7 @@ namespace TCTEnglish.Controllers
                 vietnameseMeaning = item.VietnameseMeaning,
                 example = item.Example
             });
-        }
+        });
 
         [HttpPost("Reading/Assist")]
         [ValidateAntiForgeryToken]
@@ -193,6 +201,12 @@ namespace TCTEnglish.Controllers
         {
             if (request is null || string.IsNullOrWhiteSpace(request.SelectedText))
                 return BadRequest(new { success = false, errorCode = "invalid_selection", errorMessage = "Chọn 1–8 từ trong đoạn văn." });
+
+            if (_rateLimiter != null && !_rateLimiter.TryConsume(GetCurrentUserId(), HttpContext.Connection.RemoteIpAddress?.ToString(), out var retryAfter))
+            {
+                Response.Headers["Retry-After"] = retryAfter.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                return StatusCode(StatusCodes.Status429TooManyRequests, new { success = false, errorCode = "rate_limited", errorMessage = "Bạn tra từ hơi nhanh. Hãy chờ một chút rồi thử lại." });
+            }
 
             var result = await _assist.AssistAsync(GetCurrentUserId(), request, ct);
             if (!result.Success && string.Equals(result.ErrorCode, "not_found", StringComparison.Ordinal))
@@ -203,7 +217,7 @@ namespace TCTEnglish.Controllers
 
         [HttpPost("Reading/Notebook/Save")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SaveNotebook([FromBody] SaveNotebookApiRequest request)
+        public Task<IActionResult> SaveNotebook([FromBody] SaveNotebookApiRequest request) => ReadingResultAsync(async () =>
         {
             if (request is null || string.IsNullOrWhiteSpace(request.Word))
                 return BadRequest(new { success = false, message = "Thiếu từ cần lưu." });
@@ -224,15 +238,15 @@ namespace TCTEnglish.Controllers
                 request.Word,
                 fields);
             return Json(new { success = true, id = entry.Id });
-        }
+        });
 
         [HttpPost("Reading/Notebook/Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteNotebook(int id)
+        public Task<IActionResult> DeleteNotebook(int id) => ReadingResultAsync(async () =>
         {
             await _learning.DeleteNotebookEntryAsync(GetCurrentUserId(), id);
             return RedirectToAction(nameof(Notebook));
-        }
+        });
 
         [HttpGet("Reading/Notebook/Export")]
         public async Task<IActionResult> ExportNotebook()
@@ -357,9 +371,16 @@ namespace TCTEnglish.Controllers
         private static string Csv(string? value)
         {
             var v = value ?? "";
-            if (v.Contains(',') || v.Contains('"') || v.Contains('\n'))
-                return "\"" + v.Replace("\"", "\"\"") + "\"";
-            return v;
+            if (v.Length > 0 && v[0] is '=' or '+' or '-' or '@' or '\t' or '\r' or '\n') v = "'" + v;
+            return "\"" + v.Replace("\"", "\"\"") + "\"";
+        }
+
+        private async Task<IActionResult> ReadingResultAsync(Func<Task<IActionResult>> action)
+        {
+            try { return await action(); }
+            catch (ReadingNotFoundException) { return NotFound(); }
+            catch (ArgumentException) { return BadRequest(new { success = false, message = "Dữ liệu không hợp lệ." }); }
+            catch (InvalidOperationException) { return BadRequest(new { success = false, message = "Chưa thể lưu. Bạn hãy tải lại và thử lại." }); }
         }
     }
 

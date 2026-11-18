@@ -1,0 +1,1668 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A1 - MUA QU\u1EA6N \u00C1O -",
+        "YoutubeId": "HjJeBn7XWhE",
+        "Level": "A1",
+        "Topic": "Mua s\u1EAFm \u0026 t\u00E0i ch\u00EDnh",
+        "ThumbnailUrl": "https://img.youtube.com/vi/HjJeBn7XWhE/hqdefault.jpg",
+        "Duration": "12:06",
+        "SourceUrl": "https://www.youtube.com/watch?v=HjJeBn7XWhE",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.00bb6fca682a4fb682c43529c698ea72",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 676,
+        "EndTime": 684.399,
+        "Text": "Let me check. The blue shirt is $40. The brown pants are $50. So that\u0027s $90 total.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.0171cd2525fb4513a38d235815c11574",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 346,
+        "EndTime": 353.759,
+        "Text": "Okay, I like it. But what about pants? Can I wear my old blue jeans? Do your blue jeans have holes in them?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.033b953af0d745eeaa48818afad9f1b4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 96,
+        "EndTime": 100.24,
+        "Text": "Dark blue? I usually only wear black or gray.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.045143377fb442f4a913ea4446c55beb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 79,
+        "EndTime": 87.6,
+        "Text": "I am very clumsy. I always drop food or spill drinks. If I drink coffee tonight, the coffee will definitely go on my shirt.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.06ea6365288d4e739d0beccbca740243",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 717,
+        "EndTime": 719.6,
+        "Text": "You really saved my date.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.0a653291aa44475e8a9540bd32c60a79",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 90,
+        "EndTime": 96.72,
+        "Text": "So, no white shirts today. Let\u0027s look at dark colors. How about this dark blue shirt?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.0bfefc5e603e4422b79059fdc4d90526",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 659,
+        "EndTime": 666.16,
+        "Text": "You\u0027re right. I actually really like this outfit. I feel more confident now. I\u0027m glad. Do you want to buy them?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.0f42f6743c184e6aacc6cc6cc95b7a67",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 556,
+        "EndTime": 564.24,
+        "Text": "I am very clumsy. I always drop food or spill drinks. If I drink coffee tonight, the coffee will definitely go on my shirt.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.0f81d4eb701143ac9d61b202160a9754",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 285,
+        "EndTime": 290.4,
+        "Text": "Okay. A coffee shop is relaxed. You want to look nice but not too formal.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.112419bc590247e7bfcc5b4259699586",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 63,
+        "EndTime": 66.96,
+        "Text": "I usually just wear big t-shirts and sweatpants.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.117c7781512c44f18c466273013b0713",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 576,
+        "EndTime": 584.24,
+        "Text": "Dark blue is a very nice color. It\u0027s friendly and polite, and it\u0027s a button-up shirt, so you will look very clean.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.118cdba03c3d4c9caebdc735d814b0ec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 24,
+        "EndTime": 33.2,
+        "Text": "For me? I have a date tonight. My first date with a girl I really like. Oh, that is exciting. Congratulations.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.15c0ea49a1524b938563622ed8fac03d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 493,
+        "EndTime": 498,
+        "Text": "Um, yes, please. I really need help. I am completely lost.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.1b5d66d67f8f42488932fbb183a39ba4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 573,
+        "EndTime": 576.88,
+        "Text": "Dark blue? I usually only wear black or gray.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.1bf06f28d70841aeae098799e0fcb927",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 371,
+        "EndTime": 379.199,
+        "Text": "2 minutes later. Okay, I\u0027m out. What do you think? Wow, that looks completely different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.20cd58430dd3440992c477cbabc6f8db",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 446,
+        "EndTime": 452.16,
+        "Text": "Oh, $90. That is a little expensive. My old shirts are usually only $20.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.20dccd8b4153433c9c776ee860bd6f6e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 107,
+        "EndTime": 110.399,
+        "Text": "Okay, I like it. But what about pants?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.25a4c1c0cfdf473da80ad16f5e443c74",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 356,
+        "EndTime": 363.28,
+        "Text": "Then no, you cannot wear them on a first date. Let\u0027s try these brown pants. They are soft and comfortable.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.26791c417ce3462aa97cc03bda3ba053",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 55,
+        "EndTime": 63.76,
+        "Text": "No, a suit is too much. You will look like a businessman going to a meeting. Oh, I see. I just want to look handsome.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.27d62d8ad7704deba6fe1c4b02d91057",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 66,
+        "EndTime": 74.64,
+        "Text": "We definitely need to change that for a date. Let\u0027s find something casual but smart. What is your favorite color?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.296c29446f1c405e99ab8a06a62095c8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 602,
+        "EndTime": 609.92,
+        "Text": "Yes, they look great together. Go to the fitting room over there and try them on. Okay, I\u0027ll be right back.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.2ad2d05fbdd6468e9966653b04091a60",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 476,
+        "EndTime": 481.44,
+        "Text": "Here is your bag. Thank you so much for your help, Anna. You really saved my date.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.2b7e70548f2341b89c172974779cf114",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 329,
+        "EndTime": 335.199,
+        "Text": "So, no white shirts today. Let\u0027s look at dark colors. How about this dark blue shirt?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.2c5b914e1a4e40f1a8161ee23a41fe5e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 271,
+        "EndTime": 277.199,
+        "Text": "Thanks, but I am very stressed. I don\u0027t know what to wear. I am very bad at fashion.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.2e7bec974c8e4e328887fd5effe93f6d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 42,
+        "EndTime": 46.559,
+        "Text": "We are going to a coffee shop and then maybe we will walk by the river.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.3126b6d2d2314217b1551f6ae9ba33fb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 594,
+        "EndTime": 602.8,
+        "Text": "Then no, you cannot wear them on a first date. Let\u0027s try these brown pants. They are soft and comfortable. Brown and blue.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.32a174ba2860463b8483c77376055c9c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 584,
+        "EndTime": 587.04,
+        "Text": "Okay, I like it. But what about pants?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.3653b22dddc3477faa81cc4427e6c341",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 412,
+        "EndTime": 421.039,
+        "Text": "Exactly. So, don\u0027t worry about being perfect. Just be yourself. And you look great, so that\u0027s one less thing to worry about.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.3b1b3b1266ae4a2cbd224d10e110a858",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 396,
+        "EndTime": 402.639,
+        "Text": "Thank you. I\u0027m just so nervous. What if I say something stupid? Or what if I spill water on the table?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.3ddd5da730fa4abcb51469ba7fe8ee84",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 452,
+        "EndTime": 459.44,
+        "Text": "Yes, but this is a very good brand. The fabric is soft and strong. You can wear these clothes to work, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.401778901d0a4c9586d003178e08bfb2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 174,
+        "EndTime": 182.56,
+        "Text": "Exactly. So, don\u0027t worry about being perfect. Just be yourself. And you look great. So, that\u0027s one less thing to worry about.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.40234d69788d4567b35c30ea89087787",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 619,
+        "EndTime": 626.72,
+        "Text": "Really? I feel a little strange. These clothes are very different from my old clothes. The pants feel tight.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.42d2d73553914192a8a67875b431b6d8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 140,
+        "EndTime": 143.28,
+        "Text": "The shirt fits you perfectly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.45aaac5d708046c39717e191844fb077",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 388,
+        "EndTime": 396.08,
+        "Text": "They\u0027re not tight. They just fit your body well. Your old clothes are probably too big. You look very handsome.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.5193027242a4461f85508b5937f466ef",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 87,
+        "EndTime": 90.72,
+        "Text": "I understand. That happens to me, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.53cffb48c8064a0f8c83dbcf0f3985e3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 519,
+        "EndTime": 523.2,
+        "Text": "We are going to a coffee shop and then maybe we will walk by the river.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.549150e9c05e42da8b54cb19f3bee63a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 117,
+        "EndTime": 126.24,
+        "Text": "Then no, you cannot wear them on a first date. Let\u0027s try these brown pants. They are soft and comfortable. Brown and blue.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.566c6451c8c14b078ce76b9599929b69",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 251,
+        "EndTime": 259.919,
+        "Text": "Hello. Welcome to the store. Can I help you find something? Um, yes, please. I really need help. I am completely lost.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.5769435663cb4762bff7e2170dc60056",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 706,
+        "EndTime": 710.48,
+        "Text": "Oh, great. $80 is much better. Can I pay by card?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.576b24283e3349df9d541560a52b463e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 651,
+        "EndTime": 659.2,
+        "Text": "Exactly. So, don\u0027t worry about being perfect. Just be yourself. And you look great. So, that\u0027s one less thing to worry about.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.57995c7b4e6b4c8b9e0f9f3634884947",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 381,
+        "EndTime": 388.56,
+        "Text": "Really? I feel a little strange. These clothes are very different from my old clothes. The pants feel tight.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.58f4cb0c59784a529e27e9a05268e2a6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 150,
+        "EndTime": 157.599,
+        "Text": "They\u0027re not tight. They just fit your body well. Your old clothes are probably too big. You look very handsome.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.5952d98417d64200a014776b956a0cfc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 38,
+        "EndTime": 42.559,
+        "Text": "Don\u0027t worry, I can help you. Where are you going for the date?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.5a3d08f07cb04900af63a65e6cadd53c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 564,
+        "EndTime": 567.279,
+        "Text": "I understand. That happens to me, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.5d97ce31138a40bc8015afc867a1837b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 33,
+        "EndTime": 38.719,
+        "Text": "Thanks, but I am very stressed. I don\u0027t know what to wear. I am very bad at fashion.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.5e01e016325949dbb4ec8e604fe5bf03",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 710,
+        "EndTime": 717.839,
+        "Text": "Yes, of course. You can tap your card here. Done. Here is your bag. Thank you so much for your help, Anna.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.6385f1c867ca43c5be0a2a12231dc5b1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 468,
+        "EndTime": 472.4,
+        "Text": "Oh, great. $80 is much better. Can I pay by card?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.67d00c7b71ae4c18bdc358ae6d2b9186",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 338,
+        "EndTime": 346.08,
+        "Text": "Dark blue is a very nice color. It\u0027s friendly and polite, and it\u0027s a button-up shirt, so you will look very clean.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.6af787328d3a4eceaaf8a5457581ac17",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 640,
+        "EndTime": 647.839,
+        "Text": "It\u0027s normal to be nervous. Just take a deep breath. She agreed to go on a date with you. She wants to see you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.6b9aa0d1bdcc4d20817a1c8b0641a10b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 326,
+        "EndTime": 329.199,
+        "Text": "I understand. That happens to me, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.6bfab469a6304e83ae9bf0484fdd089e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 501,
+        "EndTime": 509.759,
+        "Text": "For me. I have a date tonight. My first date with a girl I really like. Oh, that is exciting. Congratulations.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.6e6a54c48bc749b9a376309431efccc7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 229,
+        "EndTime": 233.92,
+        "Text": "Oh, great. $80 is much better. Can I pay by card?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.6f80bea4c4204ccf888c35e52f03a16f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 51,
+        "EndTime": 55.199,
+        "Text": "I have this black suit in my hand. Is a suit good?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.6fe305b87c7644469a177a0e2c6a1657",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 16,
+        "EndTime": 21.439,
+        "Text": "Um, yes, please. I really need help. I am completely lost.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.7030c3d077e748d2ad21410ff565166f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 523,
+        "EndTime": 528.56,
+        "Text": "Okay. A coffee shop is relaxed. You want to look nice, but not too formal.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.7319464edd0143a9853bc14664cca025",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 684,
+        "EndTime": 690.24,
+        "Text": "Oh, $90. That is a little expensive. My old shirts are usually only $20.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.75c8e80d8b1a4308a14db73c2de3551c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 438,
+        "EndTime": 446.319,
+        "Text": "Let me check. The blue shirt is $40. The brown pants are $50. So, that\u0027s $90 total.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.77a8f6146898406da75fc94babb3c1dd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 223,
+        "EndTime": 229.599,
+        "Text": "We also have a discount today. You get $10 off. So, the final price is $80.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.78181169545247488a82dd3c686297ea",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 666,
+        "EndTime": 669.2,
+        "Text": "Yes, definitely. Do I need a jacket, too?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.78a4f35fb55b43818ebfeb42647a1ceb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 567,
+        "EndTime": 573.36,
+        "Text": "So, no white shirts today. Let\u0027s look at dark colors. How about this dark blue shirt?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.794ed1cb2e01475fa2a4ef240d41c11f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 543,
+        "EndTime": 551.2,
+        "Text": "We definitely need to change that for a date. Let\u0027s find something casual but smart. What is your favorite color?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.7b5e53fd2fe0435e8b5b4f8b8da669c8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 100,
+        "EndTime": 107.6,
+        "Text": "Dark blue is a very nice color. It\u0027s friendly and polite, and it\u0027s a button-up shirt, so you will look very clean.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.80a51a88bdfc4d5885efcbba97c1f65a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 126,
+        "EndTime": 133.36,
+        "Text": "Yes, they look great together. Go to the fitting room over there and try them on. Okay, I\u0027ll be right back.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.87cd74f1f858466aa11ecaf147589abd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 164,
+        "EndTime": 171.28,
+        "Text": "It\u0027s normal to be nervous. Just take a deep breath. She agreed to go on a date with you. She wants to see you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.8818ca0ee7c64fd9aa5fe608c4f4c09a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 46,
+        "EndTime": 51.92,
+        "Text": "Okay, a coffee shop is relaxed. You want to look nice, but not too formal.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.89d56aa1014a44f694654076b8b8392d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 509,
+        "EndTime": 515.279,
+        "Text": "Thanks, but I am very stressed. I don\u0027t know what to wear. I am very bad at fashion.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.8f4a78414f3444dea2e192bdfb2066ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 199,
+        "EndTime": 207.84,
+        "Text": "Let me check. The blue shirt is $40. The brown pants are $50. So that\u0027s $90 total.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.96eaa86ef05a4277a4afe69aa045eb7c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 9.72,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A1 and the topic is shopping for clothes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.97ec0d7e142844018c1560df797d1420",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 353,
+        "EndTime": 356.08,
+        "Text": "Yes, a big hole in the knee.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.984ad781a21b46488117b735c2e0153f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 498,
+        "EndTime": 501.36,
+        "Text": "Are you looking for a gift or something for yourself?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.98f545e75d7145e494243be4ca74ed90",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 207,
+        "EndTime": 213.599,
+        "Text": "Oh, $90. That is a little expensive. My old shirts are usually only $20.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.9dcf9136035c4cc990c5f9cd3a41c116",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 302,
+        "EndTime": 305.44,
+        "Text": "I usually just wear big t-shirts and sweatpants.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.9de0e55d80c0409cb10071ee5304837a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 531,
+        "EndTime": 540.32,
+        "Text": "No, a suit is too much. You will look like a businessman going to a meeting. Oh, I see. I just want to look handsome.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.9e10437bbd0942958af3ebb4b81e8ba7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 669,
+        "EndTime": 676.32,
+        "Text": "No. The weather\u0027s warm today. The shirt is enough. Let\u0027s go to the cash register. Okay. How much is everything?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.9f2d17aad420494a85c9c314c9812c3c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 335,
+        "EndTime": 338.72,
+        "Text": "Dark blue? I usually only wear black or gray.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.a1ab18ceea464375aa8544ad3e2174d4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 277,
+        "EndTime": 285.04,
+        "Text": "Don\u0027t worry, I can help you. Where are you going for the date? We are going to a coffee shop and then maybe we will walk by the river.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.a25119d7d10a4e1aba960798e3a50dce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 609,
+        "EndTime": 617.36,
+        "Text": "2 minutes later. Okay, I\u0027m out. What do you think? Wow, that looks completely different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.a2fbe4b0fc584927bce2ac4534bb12da",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 182,
+        "EndTime": 189.519,
+        "Text": "You\u0027re right. I actually really like this outfit. I feel more confident now. I\u0027m glad. Do you want to buy them?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.a3416f67a90c499eb0ce53cff8e22ef5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 489,
+        "EndTime": 493.039,
+        "Text": "Hello. Welcome to the store. Can I help you find something?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.a484b33148a148e68871f7003c09fa4a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 459,
+        "EndTime": 462.08,
+        "Text": "That is true. They feel very nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.a8f7960be0424fbeb1185c20633a7a8c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 305,
+        "EndTime": 313.12,
+        "Text": "We definitely need to change that for a date. Let\u0027s find something casual but smart. What is your favorite color?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.a9220dbbce414c01b3a54c09fa5f031c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 290,
+        "EndTime": 293.68,
+        "Text": "I have this black suit in my hand. Is a suit good?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.aa7ca003ea8f4d7599e806a5f8082826",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 626,
+        "EndTime": 634.24,
+        "Text": "They\u0027re not tight. They just fit your body well. Your old clothes are probably too big. You look very handsome.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.ab5066f1355c4d75b92b17c24bd0f851",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 697,
+        "EndTime": 700.16,
+        "Text": "That is true. They feel very nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.b39be4a52bac41c08c79dfa79f17be86",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 379,
+        "EndTime": 381.759,
+        "Text": "The shirt fits you perfectly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.b70600086055495294aecf6a9aee2fed",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 719,
+        "EndTime": 725.716463,
+        "Text": "You are very welcome, Ben. Have a great time tonight. I will try. Thanks again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.b7558101a84143f9bd0189d32061ca82",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 428,
+        "EndTime": 431.12,
+        "Text": "Yes, definitely. Do I need a jacket, too?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.b808dbcdc42449baa72f85a7fa3e11b2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 242,
+        "EndTime": 251.36,
+        "Text": "You are very welcome, Ben. Have a great time tonight. I will try. Thanks again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.b8edd8694ffb45ac9961d2dbc9daf77a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 409,
+        "EndTime": 412.96,
+        "Text": "That\u0027s true. She already knows I\u0027m a little clumsy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.b9b26ac4ec054311a5b437483b608ff8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 421,
+        "EndTime": 428,
+        "Text": "You\u0027re right. I actually really like this outfit. I feel more confident now. I\u0027m glad. Do you want to buy them?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.bc5618c7e952490682ec1d069e7ae314",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 472,
+        "EndTime": 476.24,
+        "Text": "Yes, of course. You can tap your card here. Done.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.bcca8b3af74a4e9fb8ca454c6ec79dfc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 363,
+        "EndTime": 371.84,
+        "Text": "Brown and blue. Yes, they look great together. Go to the fitting room over there and try them on. Okay, I\u0027ll be right back.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.bd0b7eab48fa4594a73bd77094133525",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 157,
+        "EndTime": 164.16,
+        "Text": "Thank you. I\u0027m just so nervous. What if I say something stupid? Or what if I spill water on the table?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.bd6e31fb7cad4a6ba20689d490173991",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 241,
+        "EndTime": 242.959,
+        "Text": "You really saved my date.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.bf61b6c00ebc411bb99b60b512399206",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 700,
+        "EndTime": 706.16,
+        "Text": "We also have a discount today. You get $10 off. So, the final price is $80.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.bfe6828119764fe5bf2e1cd112f9e940",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 540,
+        "EndTime": 543.519,
+        "Text": "I usually just wear big t-shirts and sweatpants.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.c012e29b34584cd4a1884031bd7af847",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 313,
+        "EndTime": 318.4,
+        "Text": "I like white, but white is dangerous for me. Dangerous. Why?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.c0d879ec8a604aa0b299e865a0a55c56",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 263,
+        "EndTime": 271.68,
+        "Text": "For me? I have a date tonight. My first date with a girl I really like. Oh, that is exciting. Congratulations.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.c6a8cd67249542e990dea98b427f5bb9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 647,
+        "EndTime": 651.04,
+        "Text": "That\u0027s true. She already knows I\u0027m a little clumsy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.c798faf85cc74ea0a9b2843c1155d654",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 402,
+        "EndTime": 409.759,
+        "Text": "It\u0027s normal to be nervous. Just take a deep breath. She agreed to go on a date with you. She wants to see you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.c9680e18c6d846728a27777ae7ed5acf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 133,
+        "EndTime": 140.72,
+        "Text": "2 minutes later. Okay, I\u0027m out. What do you think? Wow, that looks completely different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.cab132f90fa64ca0a9d51889ec1324e4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 220,
+        "EndTime": 223.599,
+        "Text": "That is true. They feel very nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.cbcdbc9e918f4da9a73011dfacd7ac7c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 617,
+        "EndTime": 619.92,
+        "Text": "The shirt fits you perfectly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.ce06ac4e9bfd4eaf947e47292750d869",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 690,
+        "EndTime": 697.6,
+        "Text": "Yes, but this is a very good brand. The fabric is soft and strong. You can wear these clothes to work, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.d148f4ebe73349af9c402b6401530c0d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 431,
+        "EndTime": 438.24,
+        "Text": "No. The weather\u0027s warm today. The shirt is enough. Let\u0027s go to the cash register. Okay. How much is everything?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.d1902d7b2ad3423ebff6037f8cc4c7b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 110,
+        "EndTime": 117.6,
+        "Text": "Can I wear my old blue jeans? Do your blue jeans have holes in them? Yes, a big hole in the knee.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.d1aa444fbb094f7b95982db07159f30a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 10,
+        "EndTime": 12.88,
+        "Text": "Now listen carefully.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.d4ee196d3b454cdaa0d11ee4ffa72b41",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 293,
+        "EndTime": 302.24,
+        "Text": "No, a suit is too much. You will look like a businessman going to a meeting. Oh, I see. I just want to look handsome.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.d77f884f2a0446c5948965c4fa7b9b79",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 189,
+        "EndTime": 192.64,
+        "Text": "Yes, definitely. Do I need a jacket, too?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.d8860a3499ea4e878978f70e463f9aab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 171,
+        "EndTime": 174.48,
+        "Text": "That\u0027s true. She already knows I\u0027m a little clumsy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.dc49255748934f999434b032b888be32",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 12,
+        "EndTime": 16.48,
+        "Text": "Hello. Welcome to the store. Can I help you find something?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.dfe2876fc90e49b595a5fd9696fb0922",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 233,
+        "EndTime": 241.2,
+        "Text": "Yes, of course. You can tap your card here. Done. Here is your bag. Thank you so much for your help, Anna.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.e0cb0306c1d94e1db15c822545168ce0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 481,
+        "EndTime": 489.44,
+        "Text": "You are very welcome, Ben. Have a great time tonight. I will try. Thanks again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.e1eaf5b6ed4e4cd1b9142e4aaf913e4c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 528,
+        "EndTime": 531.839,
+        "Text": "I have this black suit in my hand. Is a suit good?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.e4061649dc47420e827e008edc51c4e0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 192,
+        "EndTime": 199.76,
+        "Text": "No. The weather\u0027s warm today. The shirt is enough. Let\u0027s go to the cash register. Okay. How much is everything?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.e591cb4f31df475db4b98a54efb1a86a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 143,
+        "EndTime": 150.08,
+        "Text": "Really? I feel a little strange. These clothes are very different from my old clothes. The pants feel tight.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.ebbba9806ad84385ab9c40d762bd420e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 515,
+        "EndTime": 519.2,
+        "Text": "Don\u0027t worry, I can help you. Where are you going for the date?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.f3ddd58b3d2e41f1a70ca90eddfc08bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 587,
+        "EndTime": 594.24,
+        "Text": "Can I wear my old blue jeans? Do your blue jeans have holes in them? Yes, a big hole in the knee.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.f467fe0bd0b24bdfb93515465527b55f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 259,
+        "EndTime": 263.28,
+        "Text": "Are you looking for a gift or something for yourself?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.f6c0eb1a50bd4bacb21efd9dafa53ccb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 21,
+        "EndTime": 24.8,
+        "Text": "Are you looking for a gift or something for yourself?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.f72687ecdcf74f8e85c613d3772123d6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 462,
+        "EndTime": 468.08,
+        "Text": "We also have a discount today. You get $10 off. So, the final price is $80.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.fa5fe26792154fdabec6050ec1dc0374",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 213,
+        "EndTime": 220.959,
+        "Text": "Yes, but this is a very good brand. The fabric is soft and strong. You can wear these clothes to work, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.fb5c511639594f5084ec25ba5acc30a8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 551,
+        "EndTime": 556.48,
+        "Text": "I like white, but white is dangerous for me. Dangerous? Why?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.fbaab7611afc415d9532a2b6233cd175",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 634,
+        "EndTime": 640.8,
+        "Text": "Thank you. I\u0027m just so nervous. What if I say something stupid? Or what if I spill water on the table?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.fd3286491974445cbc59b804dda9507a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 74,
+        "EndTime": 79.92,
+        "Text": "I like white, but white is dangerous for me. Dangerous? Why?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443.fe309ff63b7e47e0af4ff56f69244eec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 318,
+        "EndTime": 326.08,
+        "Text": "I am very clumsy. I always drop food or spill drinks. If I drink coffee tonight, the coffee will definitely go on my shirt.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.4b91c475d0582b8b4e3cb9a4e41c3d57293c4b4f0ecc5a55f69c9c4d41804443"
+}

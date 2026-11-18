@@ -1,32 +1,38 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TCTEnglish.Services.Sets;
+using TCTEnglish.ViewModels.Sets;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 using TCTVocabulary.ViewModels;
 
 namespace TCTVocabulary.Controllers
 {
+    /// <summary>
+    /// Legacy /Home set routes (kept contract-compatible) live here; the personal-set workspace routes
+    /// (/Sets, /s/{slug}) are in SetController.Personal.cs.
+    /// </summary>
     [Authorize]
     [AutoValidateAntiforgeryToken]
     [Route("Home")]
-    public class SetController : BaseController
+    public partial class SetController : BaseController
     {
         private readonly DbflashcardContext _context;
         private readonly IFileStorageService _fileStorageService;
         private readonly IVocabSuggestService _vocabSuggestService;
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IPersonalSetService _personalSets;
 
         public SetController(
-            DbflashcardContext context, 
+            DbflashcardContext context,
             IFileStorageService fileStorageService,
             IVocabSuggestService vocabSuggestService,
-            IHttpClientFactory httpClientFactory)
+            IPersonalSetService personalSets)
         {
             _context = context;
             _fileStorageService = fileStorageService;
             _vocabSuggestService = vocabSuggestService;
-            _httpClientFactory = httpClientFactory;
+            _personalSets = personalSets;
         }
 
         [HttpGet("SuggestVocab")]
@@ -52,25 +58,22 @@ namespace TCTVocabulary.Controllers
         }
 
         [HttpGet("CreateSet")]
-        public async Task<IActionResult> CreateSet(int? folderId)
+        public async Task<IActionResult> CreateSet(int? folderId, CancellationToken ct)
         {
             if (!TryGetCurrentUserId(out var userId))
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var model = new SetEditorViewModel
-            {
-                FolderId = folderId
-            };
-
-            model.EnsureCardSlot();
-            return View(model);
+            // A folder the user cannot manage is ignored here; the POST still rejects it with 404.
+            var form = await _personalSets.GetNewSetFormAsync(userId, IsAdminUser(), folderId, ct)
+                ?? await _personalSets.GetNewSetFormAsync(userId, IsAdminUser(), null, ct);
+            return View(form);
         }
 
         [HttpPost("CreateSet")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateSet(SetEditorViewModel model)
+        public async Task<IActionResult> CreateSet(SetEditorViewModel model, CancellationToken ct)
         {
             if (!TryGetCurrentUserId(out var userId))
             {
@@ -81,7 +84,7 @@ namespace TCTVocabulary.Controllers
             {
                 var folderExists = await GetManageableFoldersQuery(userId)
                     .AsNoTracking()
-                    .AnyAsync(f => f.FolderId == model.FolderId.Value);
+                    .AnyAsync(f => f.FolderId == model.FolderId.Value, ct);
 
                 if (!folderExists)
                 {
@@ -93,22 +96,34 @@ namespace TCTVocabulary.Controllers
             var cardInputs = NormalizeAndValidateEditor(model);
             if (!ModelState.IsValid)
             {
-                model.EnsureCardSlot();
-                return View(model);
+                return View(await BuildInfoFormAsync(model, userId, ct));
             }
 
+            var now = DateTime.UtcNow;
             var newSet = new Set
             {
                 SetName = model.SetName,
                 FolderId = model.FolderId,
                 OwnerId = userId,
                 Description = model.Description,
-                CreatedAt = DateTime.UtcNow
+                // Learner-created sets are private by default; the model default (Public) is only for seeded/imported content.
+                Visibility = TCTEnglish.Services.Sets.SetVisibility.Private,
+                CreatedAt = now,
+                UpdatedAt = now
             };
 
-            await AddCardsAsync(newSet, cardInputs);
+            try
+            {
+                await AddCardsAsync(newSet, cardInputs, now, ct);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError(nameof(model.Cards), ex.Message);
+                return View(await BuildInfoFormAsync(model, userId, ct));
+            }
+
             _context.Sets.Add(newSet);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(ct);
 
             return model.FolderId.HasValue
                 ? RedirectToAction(nameof(FolderController.FolderDetail), "Folder", new { id = model.FolderId.Value })
@@ -117,103 +132,69 @@ namespace TCTVocabulary.Controllers
 
         [HttpPost("DeleteSet")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteSet(int setId, int folderId)
+        public async Task<IActionResult> DeleteSet(int setId, int folderId, CancellationToken ct)
         {
             if (!TryGetCurrentUserId(out var currentUserId))
             {
                 return Unauthorized();
             }
 
-            var set = await GetManageableSetsQuery(currentUserId)
-                .Include(s => s.Cards)
-                .FirstOrDefaultAsync(s => s.SetId == setId);
-
-            if (set == null)
+            // Progress -> cards -> subscriptions -> set, in one transaction (B2).
+            var result = await _personalSets.DeleteSetAsync(setId, currentUserId, IsAdminUser(), ct: ct);
+            if (result.Status != OperationStatus.Success)
             {
                 return NotFound();
             }
-
-            if (set.Cards.Count != 0)
-            {
-                _context.Cards.RemoveRange(set.Cards);
-            }
-
-            _context.Sets.Remove(set);
-            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(FolderController.FolderDetail), "Folder", new { id = folderId });
         }
 
         [HttpPost("RemoveSetFromFolder")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveSetFromFolder(int setId, int folderId)
+        public async Task<IActionResult> RemoveSetFromFolder(int setId, int folderId, CancellationToken ct)
         {
             if (!TryGetCurrentUserId(out var currentUserId))
             {
                 return Unauthorized();
             }
 
-            var set = await GetManageableSetsQuery(currentUserId)
-                .Include(s => s.Cards)
-                .FirstOrDefaultAsync(s => s.SetId == setId && s.FolderId == folderId);
-
-            if (set == null)
+            var inFolder = await GetManageableSetsQuery(currentUserId)
+                .AsNoTracking()
+                .AnyAsync(s => s.SetId == setId && s.FolderId == folderId, ct);
+            if (!inFolder)
             {
                 return NotFound();
             }
 
-            if (set.Cards.Count != 0)
+            var result = await _personalSets.DeleteSetAsync(setId, currentUserId, IsAdminUser(), ct: ct);
+            if (result.Status != OperationStatus.Success)
             {
-                _context.Cards.RemoveRange(set.Cards);
+                return NotFound();
             }
-
-            _context.Sets.Remove(set);
-            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(FolderController.FolderDetail), "Folder", new { id = folderId });
         }
 
         [HttpGet("EditSet/{id:int}")]
-        public async Task<IActionResult> EditSet(int id)
+        public async Task<IActionResult> EditSet(int id, CancellationToken ct)
         {
             if (!TryGetCurrentUserId(out var currentUserId))
             {
                 return Unauthorized();
             }
 
-            var set = await GetManageableSetsQuery(currentUserId)
-                .AsNoTracking()
-                .Where(s => s.SetId == id)
-                .Select(s => new SetEditorViewModel
-                {
-                    SetId = s.SetId,
-                    FolderId = s.FolderId,
-                    SetName = s.SetName,
-                    Description = s.Description,
-                    Cards = s.Cards
-                        .OrderBy(c => c.CardId)
-                        .Select(c => new SetCardEditorItemViewModel
-                        {
-                            Term = c.Term,
-                            Definition = c.Definition,
-                            ExistingImageUrl = c.ImageUrl
-                        })
-                        .ToList()
-                })
-                .FirstOrDefaultAsync();
-
-            if (set == null)
+            var form = await _personalSets.GetSetInfoFormAsync(id, currentUserId, IsAdminUser(), ct);
+            if (form == null)
             {
                 return NotFound();
             }
 
-            set.EnsureCardSlot();
-            return View(set);
+            return View("Settings", form);
         }
 
         [HttpPost("EditSet")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditSet(SetEditorViewModel model)
+        public async Task<IActionResult> EditSet(SetEditorViewModel model, CancellationToken ct)
         {
             if (!TryGetCurrentUserId(out var currentUserId))
             {
@@ -225,71 +206,101 @@ namespace TCTVocabulary.Controllers
                 return NotFound();
             }
 
-            var existingSet = await GetManageableSetsQuery(currentUserId)
-                .Include(s => s.Cards)
-                .FirstOrDefaultAsync(s => s.SetId == model.SetId.Value);
+            var existing = await GetManageableSetsQuery(currentUserId)
+                .AsNoTracking()
+                .Where(s => s.SetId == model.SetId.Value)
+                .Select(s => new { s.SetId, s.FolderId })
+                .FirstOrDefaultAsync(ct);
 
-            if (existingSet == null)
+            if (existing == null)
             {
                 return NotFound();
             }
 
-            model.FolderId = existingSet.FolderId;
+            model.FolderId = existing.FolderId;
             PopulateCardsFromLegacyRequest(model);
             var cardInputs = NormalizeAndValidateEditor(model);
             if (!ModelState.IsValid)
             {
-                model.EnsureCardSlot();
-                return View(model);
+                return View("Settings", await BuildInfoFormAsync(model, currentUserId, ct));
             }
 
-            existingSet.SetName = model.SetName;
-            existingSet.Description = model.Description;
-
-            var oldCardIds = existingSet.Cards.Select(c => c.CardId).ToList();
-            if (oldCardIds.Count != 0)
+            var rows = new List<LegacyCardRow>();
+            try
             {
-                var relatedProgresses = await _context.LearningProgresses
-                    .Where(lp => oldCardIds.Contains(lp.CardId))
-                    .ToListAsync();
+                foreach (var card in cardInputs)
+                {
+                    string? uploaded = null;
+                    if (card.ImageFile != null && card.ImageFile.Length > 0)
+                    {
+                        uploaded = await _fileStorageService.SaveImageAsync(card.ImageFile, ImageUploadPolicies.CardImage, ct);
+                    }
 
-                _context.LearningProgresses.RemoveRange(relatedProgresses);
+                    rows.Add(new LegacyCardRow
+                    {
+                        Term = card.Term,
+                        Definition = card.Definition,
+                        ImageUrl = card.ExistingImageUrl,
+                        UploadedImageUrl = uploaded
+                    });
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError(nameof(model.Cards), ex.Message);
+                return View("Settings", await BuildInfoFormAsync(model, currentUserId, ct));
             }
 
-            _context.Cards.RemoveRange(existingSet.Cards);
+            // Non-destructive upsert: learning progress and card details survive an edit (B1).
+            var result = await _personalSets.ApplyLegacyEditAsync(
+                existing.SetId, model.SetName, model.Description, rows, currentUserId, IsAdminUser(), ct);
+            if (result.Status != OperationStatus.Success)
+            {
+                return NotFound();
+            }
 
-            await AddCardsAsync(existingSet, cardInputs);
-            await _context.SaveChangesAsync();
-
-            return existingSet.FolderId.HasValue
-                ? RedirectToAction(nameof(FolderController.FolderDetail), "Folder", new { id = existingSet.FolderId.Value })
+            return existing.FolderId.HasValue
+                ? RedirectToAction(nameof(FolderController.FolderDetail), "Folder", new { id = existing.FolderId.Value })
                 : RedirectToAction("Folder", "Folder");
         }
 
-        private async Task AddCardsAsync(Set targetSet, IReadOnlyCollection<SetCardEditorItemViewModel> cards)
+        private async Task<SetInfoFormViewModel> BuildInfoFormAsync(SetEditorViewModel model, int userId, CancellationToken ct)
+        {
+            SetInfoFormViewModel? form = null;
+            if (model.SetId.HasValue)
+            {
+                form = await _personalSets.GetSetInfoFormAsync(model.SetId.Value, userId, IsAdminUser(), ct);
+            }
+
+            form ??= await _personalSets.GetNewSetFormAsync(userId, IsAdminUser(), null, ct) ?? new SetInfoFormViewModel();
+            form.SetName = model.SetName;
+            form.Description = model.Description;
+            form.FolderId = model.FolderId;
+            return form;
+        }
+
+        private async Task AddCardsAsync(Set targetSet, IReadOnlyCollection<SetCardEditorItemViewModel> cards, DateTime now, CancellationToken ct)
         {
             foreach (var card in cards)
             {
                 var imageUrl = card.ExistingImageUrl;
                 if (card.ImageFile != null && card.ImageFile.Length > 0)
                 {
-                    imageUrl = await SaveCardImageAsync(card.ImageFile);
+                    imageUrl = await _fileStorageService.SaveImageAsync(card.ImageFile, ImageUploadPolicies.CardImage, ct);
                 }
                 else if (!string.IsNullOrWhiteSpace(imageUrl) && imageUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                 {
-                    // It's an external URL (e.g. from Pixabay), download and save
-                    var localPath = await DownloadAndSaveExternalImageAsync(imageUrl);
-                    if (localPath != null)
-                    {
-                        imageUrl = localPath;
-                    }
+                    // Only https Pixabay images are downloaded, with size/type limits (B3); anything else is dropped.
+                    imageUrl = await _personalSets.ImportExternalImageAsync(imageUrl, ct);
                 }
 
                 targetSet.Cards.Add(new Card
                 {
                     Term = card.Term,
                     Definition = card.Definition,
-                    ImageUrl = imageUrl
+                    ImageUrl = imageUrl,
+                    CreatedAt = now,
+                    UpdatedAt = now
                 });
             }
         }
@@ -386,39 +397,6 @@ namespace TCTVocabulary.Controllers
                     ExistingImageUrl = i < legacyImageUrls.Count ? legacyImageUrls[i]?.ToString() : null,
                     ImageFile = Request.Form.Files[$"ImageFile_{i}"]
                 });
-            }
-        }
-
-        private Task<string> SaveCardImageAsync(IFormFile imageFile)
-        {
-            return _fileStorageService.SaveImageAsync(imageFile, ImageUploadPolicies.CardImage);
-        }
-
-        private async Task<string?> DownloadAndSaveExternalImageAsync(string externalUrl)
-        {
-            try
-            {
-                var client = _httpClientFactory.CreateClient();
-                var imageBytes = await client.GetByteArrayAsync(externalUrl);
-                
-                var ext = ".jpg";
-                var fileName = Guid.NewGuid().ToString("N") + ext;
-                
-                var relativePath = $"/images/cards/{fileName}";
-                var absolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "cards", fileName);
-                
-                var dir = Path.GetDirectoryName(absolutePath);
-                if (dir != null && !Directory.Exists(dir))
-                {
-                    Directory.CreateDirectory(dir);
-                }
-
-                await System.IO.File.WriteAllBytesAsync(absolutePath, imageBytes);
-                return relativePath;
-            }
-            catch
-            {
-                return null;
             }
         }
 

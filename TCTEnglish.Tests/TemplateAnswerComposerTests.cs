@@ -29,7 +29,7 @@ public sealed class TemplateAnswerComposerTests
             ],
             CancellationToken.None);
 
-        Assert.Contains("Bạn hiện có 2 bộ từ vựng:", result);
+        Assert.Contains("Mình tìm thấy 2 bộ từ vựng của bạn 📚", result);
         Assert.Contains("**Business Terms**: 18 thẻ", result);
         Assert.Contains("**Daily English**: 12 thẻ", result);
     }
@@ -67,7 +67,8 @@ public sealed class TemplateAnswerComposerTests
             ],
             CancellationToken.None);
 
-        Assert.Contains("Mình tìm thấy từ \"forecast\"", result);
+        Assert.Contains("Mình tìm thấy từ **forecast** rồi nè 📖", result);
+        Assert.Contains("bộ từ **Business Terms**", result);
         Assert.Contains("**Định nghĩa:** dự báo", result);
         Assert.Contains("**Phiên âm:** /ˈfɔː.kæst/", result);
     }
@@ -84,7 +85,7 @@ public sealed class TemplateAnswerComposerTests
             ],
             CancellationToken.None);
 
-        Assert.Contains("Một số bài speaking phù hợp với bạn:", result);
+        Assert.Contains("Mình gợi ý vài bài luyện nói để bạn chọn nhé 🎙️", result);
         Assert.Contains("**Team Meeting Basics** — Level A2, Chủ đề: Meeting", result);
     }
 
@@ -101,7 +102,7 @@ public sealed class TemplateAnswerComposerTests
             ],
             CancellationToken.None);
 
-        Assert.Contains("Bạn đang tham gia 2 lớp học:", result);
+        Assert.Contains("Mình tìm thấy 2 lớp học bạn đang tham gia:", result);
         Assert.Contains("Vai trò: Chủ lớp", result);
         Assert.Contains("**TOEIC Sprint**", result);
     }
@@ -122,7 +123,8 @@ public sealed class TemplateAnswerComposerTests
             CancellationToken.None);
 
         Assert.Contains("1. Vào trang Lớp học.", result);
-        Assert.Contains("Bạn có thể truy cập ngay tại: /Home/CreateClass", result);
+        Assert.Contains("Bạn có thể mở mục này trên website để bắt đầu", result);
+        Assert.DoesNotContain("/Home/CreateClass", result);
     }
 
     [Fact]
@@ -159,7 +161,7 @@ public sealed class TemplateAnswerComposerTests
             ],
             CancellationToken.None);
 
-        Assert.Contains("Dựa trên dữ liệu học của bạn, mình gợi ý:", result);
+        Assert.Contains("Hôm nay mình cùng ôn lại những phần này nhé 🌱", result);
         Assert.Contains("**Daily English**", result);
         Assert.Contains("Cần thêm 4 thẻ.", result);
     }
@@ -186,6 +188,19 @@ public sealed class TemplateAnswerComposerTests
 
         Assert.Contains("**High Priority Set**", result);
         Assert.DoesNotContain("Low Priority Set", result);
+    }
+
+    [Theory]
+    [InlineData("/Home/CreateClass")]
+    [InlineData("/Account/ChangePassword")]
+    [InlineData("/Home/EditSet/{id}")]
+    public async Task GuideCopy_DoesNotPromiseAButtonThatMayNotRender(string route)
+    {
+        var result = await _composer.ComposeAsync(UserIntent.WebsiteGuide, "help",
+            [new KnowledgeSnippet("Example", "Open the appropriate page.", KnowledgeSnippetSources.WebsiteGuide, route)], default);
+        Assert.Contains("Open the appropriate page.", result);
+        Assert.DoesNotContain("nút", result);
+        Assert.DoesNotContain("{id}", result);
     }
 
     [Fact]

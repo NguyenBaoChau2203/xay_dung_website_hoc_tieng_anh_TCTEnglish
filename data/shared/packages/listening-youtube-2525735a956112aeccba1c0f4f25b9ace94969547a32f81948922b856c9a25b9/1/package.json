@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "listening-youtube-2525735a956112aeccba1c0f4f25b9ace94969547a32f81948922b856c9a25b9",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.listening.youtube.2525735a956112aeccba1c0f4f25b9ace94969547a32f81948922b856c9a25b9",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "C2 Proficiency (CPE) Listening Test 3 with answers",
+        "Level": "C2",
+        "Topic": "C2 Proficiency exam practice",
+        "YoutubeId": "GMB76rm26ZU",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/GMB76rm26ZU/hqdefault.jpg",
+        "Duration": "42:15",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": null
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.listening.youtube.2525735a956112aeccba1c0f4f25b9ace94969547a32f81948922b856c9a25b9"
+}

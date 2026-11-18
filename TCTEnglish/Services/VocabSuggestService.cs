@@ -12,19 +12,22 @@ using TCTEnglish.Services.AI;
 
 namespace TCTVocabulary.Services
 {
-    public class VocabSuggestService : IVocabSuggestService
+    public partial class VocabSuggestService : IVocabSuggestService
     {
         private readonly IAiProviderClient _aiClient;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
         private readonly ILogger<VocabSuggestService> _logger;
+        private readonly Microsoft.Extensions.Caching.Memory.IMemoryCache? _cache;
 
         public VocabSuggestService(
             IAiProviderClient aiClient,
             IHttpClientFactory httpClientFactory,
             IConfiguration configuration,
-            ILogger<VocabSuggestService> logger)
+            ILogger<VocabSuggestService> logger,
+            Microsoft.Extensions.Caching.Memory.IMemoryCache? cache = null)
         {
+            _cache = cache;
             _aiClient = aiClient;
             _httpClientFactory = httpClientFactory;
             _configuration = configuration;

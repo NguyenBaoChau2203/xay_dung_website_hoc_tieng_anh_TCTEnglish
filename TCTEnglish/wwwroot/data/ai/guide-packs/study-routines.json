@@ -1,0 +1,503 @@
+{
+  "_version": "1.0.0",
+  "_reviewed": "2026-11-18",
+  "_scope": "Reviewed general site guidance; no personal facts, exam certification or guaranteed outcomes.",
+  "guides": [
+    {
+      "id": "routine-15-min",
+      "title": "Một buổi học ngắn 15 phút",
+      "route": "/Home/Index",
+      "topic": "study-routine",
+      "body": "Nếu bạn chỉ có **15 phút**, mình gợi ý một khung thử nhẹ nhàng 🌱\n\n- 3 phút: ôn vài từ/cụm đã gặp, nếu bạn có bộ được phép học.\n- 5 phút: chọn một đoạn Listening hoặc Reading vừa sức.\n- 4 phút: nói theo một câu trong Speaking hoặc viết một câu ở Writing.\n- 3 phút: xem lại một lỗi và chọn phần muốn học tiếp.\n\nKhông có bộ từ riêng thì dành phần đầu để xem lại nội dung bài công khai được phép xem. Đây chỉ là cách chia thời gian tham khảo, không bảo đảm tăng một mức trình độ hay điểm thi. Bạn có thể mở Dashboard để chọn kỹ năng rồi điều chỉnh sau vài buổi thử.",
+      "questions": [
+        "Mình chỉ có 15 phút mỗi ngày nên học thế nào?",
+        "Sắp một buổi học 15 phút giúp mình",
+        "Có cách học nhanh trong 15 phút nghỉ trưa không?",
+        "Tôi rảnh khoảng mười lăm phút nên chọn hoạt động nào?",
+        "Luyện tiếng Anh ở web trong 15 phút có thể chia ra sao?",
+        "Lịch bận chỉ có 15 phút vẫn bắt đầu được chứ?",
+        "I only have fifteen minutes a day, what can I do here?",
+        "Gợi ý một phiên học ngắn 15 phút không cần set riêng"
+      ],
+      "keywords": [
+        "có 15 phút",
+        "rảnh 15 phút",
+        "15 phút buổi trưa",
+        "15 phút mỗi ngày",
+        "mười lăm phút",
+        "fifteen minutes"
+      ],
+      "matchPhrases": [
+        "có 15 phút",
+        "rảnh 15 phút",
+        "15 phút buổi trưa",
+        "15 phút mỗi ngày",
+        "mười lăm phút",
+        "fifteen minutes"
+      ],
+      "matchRules": [
+        [
+          "15",
+          "phut"
+        ],
+        [
+          "muoi lam",
+          "phut"
+        ],
+        [
+          "fifteen",
+          "minutes"
+        ]
+      ]
+    },
+    {
+      "id": "routine-30-min",
+      "title": "Khung luyện 30 phút cân bằng",
+      "route": "/Home/Index",
+      "topic": "study-routine",
+      "body": "Bạn có thể thử **30 phút** theo khung: 5 phút ôn từ/cụm, 10 phút nghe hoặc đọc, 10 phút nói hoặc viết, 5 phút xem lại lỗi.\n\nMở một kỹ năng từ Dashboard, chọn nội dung vừa sức và dùng phần hỗ trợ thực tế của bài. Không nhất thiết luyện cả bốn kỹ năng trong mọi buổi; có thể luân phiên để tránh vội. Nếu bạn chưa có bộ từ riêng, vẫn có thể dành phần đầu cho từ gặp trong bài công khai được phép xem.\n\nĐây là lịch tham khảo, chưa phải kế hoạch cá nhân đã đánh giá và không cam kết kết quả thi. Điều chỉnh nhịp nếu thấy quá nhiều hoặc quá ít.",
+      "questions": [
+        "Cho mình lịch học 30 phút mỗi ngày",
+        "Tôi có nửa tiếng nên phối hợp các kỹ năng ra sao?",
+        "Chia một buổi luyện 30 phút trên web giúp mình",
+        "Mỗi ngày học nửa giờ bắt đầu bằng mục nào?",
+        "Có khung 30 phút vừa ôn vừa luyện kỹ năng không?",
+        "Tôi muốn học đều nhưng chỉ rảnh khoảng 30 phút",
+        "How can I use thirty minutes a day on this website?",
+        "Gợi ý khung học nửa tiếng cho người mới"
+      ],
+      "keywords": [
+        "30 phút mỗi ngày",
+        "có 30 phút",
+        "rảnh 30 phút",
+        "nửa tiếng",
+        "nửa giờ",
+        "thirty minutes"
+      ],
+      "matchPhrases": [
+        "30 phút mỗi ngày",
+        "có 30 phút",
+        "rảnh 30 phút",
+        "nửa tiếng",
+        "nửa giờ",
+        "thirty minutes"
+      ],
+      "matchRules": [
+        [
+          "30",
+          "phut"
+        ],
+        [
+          "ba muoi",
+          "phut"
+        ],
+        [
+          "nua",
+          "tieng"
+        ],
+        [
+          "nua",
+          "gio"
+        ]
+      ]
+    },
+    {
+      "id": "routine-60-min",
+      "title": "Khung luyện một giờ có thời gian sửa lỗi",
+      "route": "/Home/Index",
+      "topic": "study-routine",
+      "body": "Nếu có khoảng **một giờ**, bạn có thể thử: 10 phút ôn từ/cụm, 15 phút Listening, 15 phút Reading, 15 phút chọn Writing hoặc Speaking, 5 phút xem lại lỗi.\n\nBạn cũng có thể chia thành hai lượt ngắn để giữ tập trung. Hãy chọn bài đang được phép xem và vừa sức; không cần hoàn thành thật nhiều trang trong một buổi. Khi nội dung quá khó, giảm khối lượng và dành thêm thời gian hiểu lại.\n\nĐây là khung tổ chức thời gian, không phải cam kết đạt điểm hoặc yêu cầu bắt buộc. Goals có thể giúp bạn theo dõi mục tiêu hoạt động phù hợp.",
+      "questions": [
+        "Mình có một giờ mỗi ngày nên học ra sao?",
+        "Gợi ý lịch học 60 phút trên website",
+        "Tôi muốn phối hợp nhiều kỹ năng trong một giờ",
+        "Có thể chia một giờ thành hai lượt học không?",
+        "Học 60 phút nên dành bao lâu để xem lại lỗi?",
+        "Tôi rảnh một tiếng buổi tối muốn luyện có hệ thống",
+        "How can I organise one hour of study here?",
+        "Cho mình một khung tự học khoảng 60 phút"
+      ],
+      "keywords": [
+        "60 phút",
+        "một giờ mỗi ngày",
+        "có một giờ",
+        "một tiếng buổi tối",
+        "one hour of study"
+      ],
+      "matchPhrases": [
+        "60 phút",
+        "một giờ mỗi ngày",
+        "có một giờ",
+        "một tiếng buổi tối",
+        "one hour of study"
+      ],
+      "matchRules": [
+        [
+          "60",
+          "phut"
+        ],
+        [
+          "sau muoi",
+          "phut"
+        ],
+        [
+          "mot",
+          "tieng"
+        ],
+        [
+          "mot",
+          "gio"
+        ]
+      ]
+    },
+    {
+      "id": "routine-busy-week",
+      "title": "Học khi lịch bận và không đều",
+      "route": "/Goals",
+      "topic": "study-routine",
+      "body": "Nếu lịch của bạn bận, hãy chọn **một việc nhỏ có thể lặp lại** thay vì dồn mọi kỹ năng vào một buổi dài.\n\nBạn có thể luân phiên ngày nghe/đọc với ngày nói/viết, ôn ít từ đã gặp và xem lại một lỗi. Mở Goals để đặt mục tiêu vừa sức; nếu khối lượng chưa phù hợp, xem cách chỉnh mục tiêu đang có trên trang.\n\nKhông cần bù bằng cách làm quá nhiều bài sau một ngày nghỉ. Streak và XP phản ánh hoạt động được hệ thống ghi nhận theo quy tắc hiện có, không phải thước đo duy nhất của khả năng ngôn ngữ.",
+      "questions": [
+        "Lịch làm việc của tôi thất thường thì học thế nào?",
+        "Bận cả tuần nên đặt mục tiêu nhỏ ra sao?",
+        "Mình không thể học đúng giờ mỗi ngày có sao không?",
+        "Có cách luân phiên kỹ năng khi ít thời gian không?",
+        "Tôi hay bỏ buổi vì lịch bận nên bắt đầu lại thế nào?",
+        "Làm sao giữ nhịp học mà không dồn quá nhiều bài?",
+        "How can I study when my weekly schedule is irregular?",
+        "Tôi muốn một cách học linh hoạt cho tuần bận"
+      ],
+      "keywords": [
+        "lịch bận",
+        "lịch thất thường",
+        "lịch không đều",
+        "tuần bận",
+        "ít thời gian",
+        "irregular schedule"
+      ],
+      "matchPhrases": [
+        "lịch bận",
+        "lịch thất thường",
+        "lịch không đều",
+        "tuần bận",
+        "ít thời gian",
+        "irregular schedule"
+      ],
+      "matchRules": [
+        [
+          "tuan",
+          "ban"
+        ],
+        [
+          "lam ca",
+          "hoc"
+        ],
+        [
+          "doi gio",
+          "hoc"
+        ],
+        [
+          "lich",
+          "that thuong"
+        ],
+        [
+          "irregular",
+          "schedule"
+        ]
+      ]
+    },
+    {
+      "id": "routine-no-owned-set",
+      "title": "Bắt đầu luyện khi chưa có bộ từ riêng",
+      "route": "/Home/Reading",
+      "topic": "study-routine",
+      "body": "**Bạn không cần tạo bộ từ riêng mới dùng được mọi khu vực học** 🌱\n\nBạn có thể mở Reading, Listening, Writing hoặc Speaking và chọn nội dung công khai mà tài khoản được phép xem. Một số bài hoặc tính năng vẫn phụ thuộc quyền truy cập, trạng thái xử lý và gói tài khoản.\n\nBộ từ giúp bạn lưu và ôn từ vựng của mình; các chế độ Practice cần một bộ đủ dữ liệu và được phép học. Nếu muốn thử ngay, chọn một bài Reading/Writing công khai trước, rồi tạo bộ từ sau khi có nhu cầu ôn riêng. Đây là khung khởi đầu chung. Muốn điều chỉnh theo nhu cầu, bạn có thể cho biết kỹ năng ưu tiên và thời gian rảnh.",
+      "questions": [
+        "Chưa có bộ từ riêng tôi có học được Reading Writing không?",
+        "Mình chưa tạo set thì bắt đầu học ở đâu?",
+        "Có bắt buộc tạo bộ thẻ trước khi luyện trên website không?",
+        "Tài khoản mới không có từ vựng vẫn học được chứ?",
+        "Tôi muốn luyện Writing nhưng chưa có bộ thẻ",
+        "Không có set thì những phần nào vẫn có thể bắt đầu?",
+        "Can I study public lessons without creating my own set?",
+        "Mất gốc có cần tạo bộ từ trước khi mở bài đọc không?"
+      ],
+      "keywords": [
+        "chưa có bộ từ",
+        "chưa tạo set",
+        "không có set",
+        "không có bộ thẻ",
+        "cần tạo set",
+        "without creating my own set"
+      ],
+      "matchPhrases": [
+        "chưa có bộ từ",
+        "chưa tạo set",
+        "không có set",
+        "không có bộ thẻ",
+        "cần tạo set",
+        "without creating my own set"
+      ],
+      "matchRules": [
+        [
+          "can",
+          "tao set"
+        ],
+        [
+          "tai khoan",
+          "chua co",
+          "the"
+        ],
+        [
+          "chua co",
+          "bo tu"
+        ],
+        [
+          "without",
+          "set"
+        ]
+      ]
+    },
+    {
+      "id": "routine-return-after-break",
+      "title": "Quay lại học sau một thời gian nghỉ",
+      "route": "/Goals",
+      "topic": "study-routine",
+      "body": "Khi quay lại sau một thời gian nghỉ, bạn có thể bắt đầu bằng **một lượt ôn ngắn** 🌱\n\nMở bộ từ hoặc bài học bạn còn được phép xem, kiểm tra xem phần nào vẫn nhớ và giảm độ khó nếu cần. Sau đó chọn một bài nghe/đọc vừa sức và một hoạt động nói/viết nhỏ. Goals và hồ sơ có thể giúp bạn xem hoạt động đã ghi nhận.\n\nStreak cũ có thể không còn liên tục; đừng coi điều đó là mất toàn bộ khả năng đã học. Mình không tự sửa lịch sử hay cộng bù điểm trong chat. Bạn có thể đặt một mục tiêu mới vừa sức rồi tăng dần nhịp học.",
+      "questions": [
+        "Lâu không học giờ quay lại nên bắt đầu thế nào?",
+        "Mình nghỉ một thời gian thì ôn lại từ đâu?",
+        "Bị đứt nhịp học có cần làm lại tất cả không?",
+        "Tôi quên nhiều sau kỳ nghỉ nên chọn bài ra sao?",
+        "Quay lại website sau lâu ngày nên xem mục nào?",
+        "Làm sao đặt lại nhịp học sau thời gian nghỉ?",
+        "How should I resume after a long study break?",
+        "Tôi muốn học lại nhẹ nhàng sau khi bỏ vài tuần"
+      ],
+      "keywords": [
+        "sau thời gian nghỉ",
+        "lâu không học",
+        "quay lại học",
+        "học lại sau",
+        "study break"
+      ],
+      "matchPhrases": [
+        "sau thời gian nghỉ",
+        "lâu không học",
+        "quay lại học",
+        "học lại sau",
+        "study break"
+      ],
+      "matchRules": [
+        [
+          "bo luyen",
+          "tro lai"
+        ],
+        [
+          "quay lai",
+          "nghi"
+        ],
+        [
+          "lau",
+          "khong hoc"
+        ],
+        [
+          "study",
+          "break"
+        ]
+      ]
+    },
+    {
+      "id": "routine-remember-vocabulary",
+      "title": "Ôn từ để nhớ trong ngữ cảnh",
+      "route": "/Practice",
+      "topic": "study-routine",
+      "body": "Để ôn từ có ý nghĩa hơn, bạn có thể kết hợp **nhớ lại rồi dùng trong ngữ cảnh**.\n\n1. Chọn một bộ bạn được phép học, ôn một ít thẻ bằng Flashcard hoặc Learn.\n2. Thử nhớ nghĩa/cách dùng trước khi xem đáp án; đổi sang Test/Typing nếu muốn tự kiểm tra theo chế độ đang có.\n3. Xem lại định nghĩa, phiên âm, ví dụ đã lưu; không coi nội dung chat tự tạo là định nghĩa được xác minh.\n4. Gặp lại từ trong bài Reading/Listening hoặc thử dùng một câu ngắn ở Writing.\n\nKhi muốn ghi vào lịch ôn của tài khoản, kiểm tra tùy chọn tính vào ôn tập trên trang. Hoàn thành mọi hoạt động trình duyệt không đồng nghĩa đã lưu tiến độ lên server.",
+      "questions": [
+        "Học từ xong mau quên thì ôn thế nào?",
+        "Mình nên nhớ từ theo câu hay chỉ học nghĩa?",
+        "Ôn từ vựng thế nào cho có ngữ cảnh?",
+        "Tôi muốn tự kiểm tra thay vì lật đáp án liên tục",
+        "Các chế độ Practice giúp ôn lại từ ra sao?",
+        "Làm sao phối hợp flashcard với bài đọc để nhớ từ?",
+        "How can I review vocabulary in context?",
+        "Mình muốn cách ôn từ mà không chỉ nhìn đáp án"
+      ],
+      "keywords": [
+        "mau quên từ",
+        "nhớ từ theo",
+        "ôn từ trong ngữ cảnh",
+        "vocabulary in context",
+        "lật đáp án"
+      ],
+      "matchPhrases": [
+        "mau quên từ",
+        "nhớ từ theo",
+        "ôn từ trong ngữ cảnh",
+        "vocabulary in context",
+        "lật đáp án"
+      ],
+      "matchRules": [
+        [
+          "hoc",
+          "quen"
+        ],
+        [
+          "tu",
+          "bo the",
+          "nghe doc"
+        ],
+        [
+          "tu",
+          "ngu canh"
+        ],
+        [
+          "vocabulary",
+          "context"
+        ]
+      ]
+    },
+    {
+      "id": "routine-weak-listening",
+      "title": "Luyện nghe khi thường không bắt kịp",
+      "route": "/Home/Listening",
+      "topic": "study-routine",
+      "body": "Nếu chưa bắt kịp bài nghe, bạn có thể giảm khối lượng và tập trung vào **một đoạn ngắn** 🎧\n\nNghe thử để nắm ý chính, xem transcript nếu bài có, đối chiếu phần nghe chưa ra rồi nghe lại. Khi đã hiểu hơn, thử nghe mà không nhìn phần hỗ trợ. Chọn nội dung vừa sức từ trang Listening; chỉ dùng điều khiển mà bài thực tế cung cấp.\n\nNếu muốn nói theo, chuyển sang một bài Speaking có transcript. Đây là gợi ý cách luyện, không phải chẩn đoán khả năng nghe hay bảo đảm một mức điểm.",
+      "questions": [
+        "Mình nghe tiếng Anh không kịp thì tập thế nào?",
+        "Luyện Listening khi nghe không ra từ nên làm gì?",
+        "Có nên xem transcript ngay từ đầu không?",
+        "Tôi thường bị mất ý khi nghe bài dài",
+        "Làm sao chọn bài nghe vừa sức trên web?",
+        "Nghe lại một đoạn ngắn có ích hơn làm nhiều bài không?",
+        "What can I do when I cannot follow the listening audio?",
+        "Mình muốn một cách luyện nghe chậm và chắc"
+      ],
+      "keywords": [
+        "nghe không kịp",
+        "không bắt kịp",
+        "nghe không ra",
+        "mất ý khi nghe",
+        "follow the listening audio"
+      ],
+      "matchPhrases": [
+        "nghe không kịp",
+        "không bắt kịp",
+        "nghe không ra",
+        "mất ý khi nghe",
+        "follow the listening audio"
+      ],
+      "matchRules": [
+        [
+          "bai nghe",
+          "khong theo"
+        ],
+        [
+          "transcript",
+          "tu luyen"
+        ],
+        [
+          "nghe",
+          "khong kip"
+        ],
+        [
+          "nghe",
+          "khong ra"
+        ]
+      ]
+    },
+    {
+      "id": "routine-shy-speaking",
+      "title": "Bắt đầu nói khi còn ngại hoặc thiếu tự tin",
+      "route": "/Speaking",
+      "topic": "study-routine",
+      "body": "Bạn có thể bắt đầu bằng **một câu ngắn, riêng tư và vừa sức** 🎙️\n\nMở bài Speaking có transcript, nghe câu mẫu rồi nói theo. Nếu dùng ghi âm, kiểm tra quyền micro và nghe lại phần ghi của mình khi giao diện hỗ trợ. Ưu tiên nói rõ ý và sửa một lỗi nhỏ mỗi lượt thay vì cố đọc thật nhanh.\n\nĐiểm/phản hồi chỉ có khi lượt chấm thực sự được xử lý và còn phụ thuộc tính năng, quyền truy cập, dịch vụ. Không có kết quả thì mình không tự suy ra điểm. Bài luyện không thay thế đánh giá Speaking của một kỳ thi.",
+      "questions": [
+        "Tôi ngại nói tiếng Anh nên bắt đầu thế nào?",
+        "Mới luyện nói có nên chọn câu thật ngắn không?",
+        "Mình sợ nói sai thì tập ở mục nào?",
+        "Có cách luyện Speaking một mình cho đỡ ngại không?",
+        "Nói theo transcript thế nào để không chỉ đọc cho nhanh?",
+        "Tôi muốn tự tin hơn khi luyện nói trên web",
+        "How can I start speaking practice when I feel shy?",
+        "Mình thiếu tự tin nên thử một lượt Speaking ra sao?"
+      ],
+      "keywords": [
+        "ngại nói",
+        "sợ nói sai",
+        "thiếu tự tin",
+        "speaking when i feel shy",
+        "luyện nói một mình"
+      ],
+      "matchPhrases": [
+        "ngại nói",
+        "sợ nói sai",
+        "thiếu tự tin",
+        "speaking when i feel shy",
+        "luyện nói một mình"
+      ],
+      "matchRules": [
+        [
+          "ngai",
+          "speaking"
+        ],
+        [
+          "noi",
+          "mot minh"
+        ],
+        [
+          "so",
+          "noi sai"
+        ]
+      ]
+    },
+    {
+      "id": "routine-writing-stuck",
+      "title": "Luyện viết khi chưa biết bắt đầu câu",
+      "route": "/Home/Writing/Exercises",
+      "topic": "study-routine",
+      "body": "Nếu chưa biết viết gì, bạn có thể chọn **bài Writing công khai ở mức vừa sức** rồi đọc kỹ câu gợi ý ✍️\n\nXác định ý muốn diễn đạt, thử viết một câu ngắn, gửi theo hướng dẫn của bài và xem lại phản hồi thực tế. Nếu câu quá khó, chọn dạng/cấp độ dễ hơn đang có. Đừng chỉ chép đáp án rồi coi đó là khả năng tự viết của mình.\n\nWriting luyện câu khác với Typing từ vựng trong Practice. Tạo bài cá nhân và các chức năng AI có điều kiện riêng; bạn không bắt buộc tạo bài bằng AI mới luyện được bài công khai.",
+      "questions": [
+        "Mình mở Writing mà không biết viết gì thì làm sao?",
+        "Tôi chưa viết được câu dài nên chọn bài nào?",
+        "Luyện viết câu cho người mới bắt đầu ở đâu?",
+        "Có cần nhờ AI tạo bài mới luyện Writing được không?",
+        "Tôi muốn tập viết từ câu đơn giản",
+        "Chọn bài Writing dễ hơn khi đang bí ý thế nào?",
+        "How can I start when I am stuck writing a sentence?",
+        "Mình muốn luyện viết mà không chép đáp án"
+      ],
+      "keywords": [
+        "bí ý khi viết",
+        "không biết viết gì",
+        "chưa viết được câu",
+        "luyện viết câu đơn giản",
+        "stuck writing"
+      ],
+      "matchPhrases": [
+        "bí ý khi viết",
+        "không biết viết gì",
+        "chưa viết được câu",
+        "luyện viết câu đơn giản",
+        "stuck writing"
+      ],
+      "matchRules": [
+        [
+          "viet",
+          "bi"
+        ],
+        [
+          "viet",
+          "co ban"
+        ],
+        [
+          "viet",
+          "cau don gian"
+        ],
+        [
+          "stuck",
+          "writing"
+        ]
+      ]
+    }
+  ]
+}

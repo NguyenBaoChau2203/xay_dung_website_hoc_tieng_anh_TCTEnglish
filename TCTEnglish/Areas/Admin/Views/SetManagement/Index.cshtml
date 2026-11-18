@@ -32,12 +32,12 @@
                     <label class="form-label small fw-bold">Tìm kiếm</label>
                     <div class="input-group">
                         <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
-                        <input type="text" name="q" value="@Model.SearchToken" class="form-control border-start-0" placeholder="Tên set hoặc mô tả..." />
+                        <input type="text" name="q" value="@Model.SearchToken" class="form-control border-start-0" aria-label="Tìm kiếm bộ thẻ" placeholder="Tên set hoặc mô tả..." />
                     </div>
                 </div>
                 <div class="col-md-2">
                     <label class="form-label small fw-bold">Folder</label>
-                    <select name="folderId" class="form-select">
+                    <select name="folderId" class="form-select" aria-label="Lọc theo thư mục">
                         <option value="">Tất cả</option>
                         @foreach (var folder in Model.Folders)
                         {
@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-md-2">
                     <label class="form-label small fw-bold">Loại</label>
-                    <select name="ownerFilter" class="form-select">
+                    <select name="ownerFilter" class="form-select" aria-label="Lọc theo loại">
                         <option value="all" selected="@(Model.OwnerFilter == "all")">Tất cả</option>
                         <option value="system" selected="@(Model.OwnerFilter == "system")">System</option>
                         <option value="user" selected="@(Model.OwnerFilter == "user")">User</option>
@@ -124,7 +124,7 @@
                             <td class="small text-muted">@item.CreatedAt?.ToString("dd/MM/yyyy")</td>
                             <td class="text-end pe-4">
                                 <div class="dropdown">
-                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown" aria-label="Thao tác với bộ thẻ">
                                         <i class="bi bi-three-dots"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end shadow">

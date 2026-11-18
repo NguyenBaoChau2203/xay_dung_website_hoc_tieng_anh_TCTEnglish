@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.first-bus",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.first-bus",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "L\u1EA7n \u0111\u1EA7u t\u1EF1 \u0111i xe bu\u00FDt",
+        "Level": "beginner",
+        "ContentType": "diaries",
+        "Topic": "\u0110i l\u1EA1i",
+        "SourceType": "original-20261114",
+        "PreviewText": "Nh\u1EADt k\u00FD v\u1EC1 m\u1ED9t chuy\u1EBFn \u0111i m\u1EDBi v\u00E0 c\u1EA3m gi\u00E1c t\u1EF1 tin h\u01A1n.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.first-bus.36c51fe897474e90981dad1d65bd0c29",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "T\u00F4i c\u1EA3m \u01A1n c\u00F4 v\u00E0 \u0111\u1EBFn l\u1EDBp \u0111\u00FAng gi\u1EDD.",
+        "EnglishMeaning": "I thanked her and arrived at class on time.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.first-bus"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.first-bus.607edbc7d0f9427e9cfd939394401133",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Sau gi\u1EDD h\u1ECDc, t\u00F4i t\u00ECm \u0111\u01B0\u1EE3c tr\u1EA1m v\u1EC1 nh\u00E0 kh\u00E1 d\u1EC5 d\u00E0ng.",
+        "EnglishMeaning": "After class, I found the stop for home quite easily.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.first-bus"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.first-bus.8841be5bf6d64eaf93cb529389c4789b",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "I thanked her and got to class on time.",
+        "NormalizedHash": "e429f8618dc3bacb3ab33ec6ef074e85ee17baaf133ccabe87a415d34ce98492"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.first-bus.36c51fe897474e90981dad1d65bd0c29",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.first-bus.90a12ecf831c43f0a875fe4e56e3863c",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Ng\u00E0y mai t\u00F4i s\u1EBD th\u1EED \u0111i c\u00F9ng tuy\u1EBFn xe bu\u00FDt n\u00E0y l\u1EA7n n\u1EEFa.",
+        "EnglishMeaning": "Tomorrow I will try taking the same bus again.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.first-bus"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.first-bus.9dcd3492bd27463d91b8b45d3e459925",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "T\u00F4i \u0111\u1EBFn tr\u1EA1m s\u1EDBm m\u01B0\u1EDDi ph\u00FAt v\u00E0 ki\u1EC3m tra s\u1ED1 xe.",
+        "EnglishMeaning": "I arrived at the stop ten minutes early and checked the bus number.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.first-bus"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.first-bus.a6fd468cfcf147c196f97cfb36946d56",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "S\u00E1ng nay t\u00F4i \u0111\u00E3 t\u1EF1 \u0111i xe bu\u00FDt \u0111\u1EBFn l\u1EDBp l\u1EA7n \u0111\u1EA7u ti\u00EAn.",
+        "EnglishMeaning": "This morning, I took the bus to class by myself for the first time.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.first-bus"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.first-bus.c1919bcb2c15489f92ec5f85cc1e78d4",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "L\u00FAc \u0111\u1EA7u, t\u00F4i lo m\u00ECnh s\u1EBD xu\u1ED1ng nh\u1EA7m tr\u1EA1m.",
+        "EnglishMeaning": "At first, I was worried about getting off at the wrong stop.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.first-bus"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.first-bus.eccba5ffa6fe4a7ea3358128a64c0012",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "B\u00E2y gi\u1EDD t\u00F4i c\u1EA3m th\u1EA5y t\u1EF1 tin h\u01A1n khi \u0111i l\u1EA1i m\u1ED9t m\u00ECnh.",
+        "EnglishMeaning": "Now I feel more confident about travelling alone.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.first-bus"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.first-bus.f8f7bfef909e4834bf265f0d0b9e0c63",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "M\u1ED9t c\u00F4 l\u1EDBn tu\u1ED5i \u0111\u00E3 ch\u1EC9 cho t\u00F4i tr\u1EA1m g\u1EA7n tr\u01B0\u1EDDng.",
+        "EnglishMeaning": "An older woman showed me the stop near my school.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.first-bus"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.first-bus"
+}

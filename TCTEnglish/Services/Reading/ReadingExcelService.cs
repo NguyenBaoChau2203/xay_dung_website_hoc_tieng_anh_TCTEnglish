@@ -1,4 +1,6 @@
 using ClosedXML.Excel;
+using System.IO.Compression;
+using System.Xml;
 using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Areas.Admin.ViewModels;
 using TCTEnglish.Models.Reading;
@@ -34,6 +36,7 @@ public sealed class ReadingExcelService : IReadingExcelService
         guide.Cell(8, 1).Value = "Optional ImageUrl: /images/..., /uploads/..., or https://...";
         guide.Cell(9, 1).Value = "Optional media ZIP: root files named {ReadingCode}.jpg|png|webp|gif (ZIP wins over ImageUrl).";
         guide.Cell(10, 1).Value = "Matching answers: set Match_Key (shared pair id) and Match_Side (Left|Right) on Answers rows.";
+        guide.Cell(11, 1).Value = "Evidence_Paragraph_ID uses the Passage ParagraphNo, not a database ID.";
 
         var info = workbook.AddWorksheet("Reading_Info");
         WriteHeader(info, "ReadingCode", "Title", "CEFR", "Topic", "Duration", "Description", "ImageUrl");
@@ -117,13 +120,13 @@ public sealed class ReadingExcelService : IReadingExcelService
         return stream.ToArray();
     }
 
-    public byte[] ExportReading(int passageId)
+    public async Task<byte[]> ExportReadingAsync(int passageId, CancellationToken ct = default)
     {
-        var passage = _db.ReadingPassages.AsNoTracking()
+        var passage = await _db.ReadingPassages.AsNoTracking()
             .Include(p => p.Paragraphs)
             .Include(p => p.Questions).ThenInclude(q => q.Options)
             .Include(p => p.VocabularyItems).ThenInclude(v => v.Paragraph)
-            .First(p => p.Id == passageId);
+            .FirstOrDefaultAsync(p => p.Id == passageId, ct) ?? throw new ReadingNotFoundException();
 
         var readingKey = passage.ExternalReadingKey ?? $"RD-{passage.Id}";
         using var workbook = new XLWorkbook();
@@ -187,7 +190,7 @@ public sealed class ReadingExcelService : IReadingExcelService
                 answers.Cell(answerRow, 4).Value = "TRUE";
                 answers.Cell(answerRow, 5).Value = q.Explanation;
                 answers.Cell(answerRow, 6).Value = q.EvidenceText;
-                answers.Cell(answerRow, 7).Value = q.EvidenceParagraphId?.ToString();
+                answers.Cell(answerRow, 7).Value = passage.Paragraphs.FirstOrDefault(p => p.Id == q.EvidenceParagraphId)?.ParagraphOrder.ToString();
                 answers.Cell(answerRow, 8).Value = q.Paraphrase;
                 answerRow++;
             }
@@ -201,7 +204,7 @@ public sealed class ReadingExcelService : IReadingExcelService
                     answers.Cell(answerRow, 4).Value = opt.IsCorrect ? "TRUE" : "FALSE";
                     answers.Cell(answerRow, 5).Value = q.Explanation;
                     answers.Cell(answerRow, 6).Value = q.EvidenceText;
-                    answers.Cell(answerRow, 7).Value = q.EvidenceParagraphId?.ToString();
+                    answers.Cell(answerRow, 7).Value = passage.Paragraphs.FirstOrDefault(p => p.Id == q.EvidenceParagraphId)?.ParagraphOrder.ToString();
                     answers.Cell(answerRow, 8).Value = q.Paraphrase;
                     answers.Cell(answerRow, 9).Value = opt.MatchKey;
                     answers.Cell(answerRow, 10).Value = opt.MatchSide;
@@ -231,11 +234,12 @@ public sealed class ReadingExcelService : IReadingExcelService
         return stream.ToArray();
     }
 
-    public ReadingExcelPreviewResult ParseAndValidate(Stream stream)
+    public async Task<ReadingExcelPreviewResult> ParseAndValidateAsync(Stream stream, CancellationToken ct = default)
     {
         var result = new ReadingExcelPreviewResult();
         try
         {
+            ValidateWorkbookArchive(stream, ct);
             using var workbook = new XLWorkbook(stream);
             foreach (var sheet in RequiredSheets)
             {
@@ -289,10 +293,10 @@ public sealed class ReadingExcelService : IReadingExcelService
                 .Select(g => g.Key)
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-            var existingKeys = _db.ReadingPassages.AsNoTracking()
+            var existingKeys = (await _db.ReadingPassages.AsNoTracking()
                 .Where(p => p.ExternalReadingKey != null)
                 .Select(p => p.ExternalReadingKey!)
-                .ToList()
+                .ToListAsync(ct))
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
             var answersByQuestion = BuildAnswerIndex(answersSheet);
@@ -447,7 +451,7 @@ public sealed class ReadingExcelService : IReadingExcelService
 
             return result;
         }
-        catch (Exception ex)
+        catch (Exception ex) when (ex is not OperationCanceledException)
         {
             result.Errors.Add(Err(null, "", 0, "", null,
                 "Invalid Excel file: " + ex.Message,
@@ -522,7 +526,7 @@ public sealed class ReadingExcelService : IReadingExcelService
                 item.PassageId = created.Id;
                 item.Message = "Imported as Draft.";
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is not OperationCanceledException)
             {
                 if (tx != null) await tx.RollbackAsync(ct);
                 _db.ChangeTracker.Clear();
@@ -688,6 +692,16 @@ public sealed class ReadingExcelService : IReadingExcelService
                     question.Explanation ??= Cell(answersSheet, aRow, "Explanation");
                     question.EvidenceText ??= Cell(answersSheet, aRow, "Evidence_Text");
                     question.Paraphrase ??= Cell(answersSheet, aRow, "Paraphrase");
+                    var evidenceOrder = Cell(answersSheet, aRow, "Evidence_Paragraph_ID");
+                    if (!string.IsNullOrWhiteSpace(evidenceOrder))
+                    {
+                        if (!int.TryParse(evidenceOrder, out var paragraphNo)
+                            || !preview.Paragraphs.Any(p => p.ParagraphOrder == paragraphNo)
+                            || (question.EvidenceParagraphOrder.HasValue && question.EvidenceParagraphOrder != paragraphNo))
+                            errors.Add(Err(readingCode, "Answers", aRow, "Evidence_Paragraph_ID", evidenceOrder,
+                                "Evidence paragraph is missing or inconsistent.", "Use one Passage ParagraphNo for this question."));
+                        else question.EvidenceParagraphOrder = paragraphNo;
+                    }
 
                     if (question.QuestionType is ReadingQuestionTypes.GapFill or ReadingQuestionTypes.ShortAnswer)
                     {
@@ -875,6 +889,38 @@ public sealed class ReadingExcelService : IReadingExcelService
             if (sheet.Row(row).IsEmpty()) continue;
             yield return row;
         }
+    }
+
+    private static void ValidateWorkbookArchive(Stream stream, CancellationToken ct)
+    {
+        if (!stream.CanSeek || stream.Length - stream.Position > 10 * 1024 * 1024)
+            throw new InvalidDataException("Workbook exceeds compressed size limit (10MB).");
+        var position = stream.Position;
+        using (var archive = new ZipArchive(stream, ZipArchiveMode.Read, leaveOpen: true))
+        {
+            if (archive.Entries.Count > 512 || archive.Entries.Sum(e => (double)e.Length) > 64 * 1024 * 1024)
+                throw new InvalidDataException("Workbook exceeds expanded size limit (64MB).");
+            foreach (var entry in archive.Entries)
+            {
+                ct.ThrowIfCancellationRequested();
+                if (entry.Length > 16 * 1024 * 1024)
+                    throw new InvalidDataException("Workbook entry exceeds expanded size limit (16MB).");
+                if (!entry.FullName.StartsWith("xl/worksheets/", StringComparison.Ordinal) || !entry.FullName.EndsWith(".xml", StringComparison.Ordinal)) continue;
+                using var xml = XmlReader.Create(entry.Open(), new XmlReaderSettings
+                { DtdProcessing = DtdProcessing.Prohibit, MaxCharactersInDocument = 16 * 1024 * 1024, CloseInput = true });
+                var cells = 0;
+                while (xml.Read())
+                {
+                    ct.ThrowIfCancellationRequested();
+                    if (xml.NodeType != XmlNodeType.Element) continue;
+                    if (xml.LocalName == "c" && ++cells > 50000)
+                        throw new InvalidDataException("Workbook exceeds cell limit (50000 per sheet).");
+                    if (xml.LocalName == "row" && int.TryParse(xml.GetAttribute("r"), out var row) && row > 10001)
+                        throw new InvalidDataException("Workbook exceeds row limit (10000 data rows per sheet).");
+                }
+            }
+        }
+        stream.Position = position;
     }
 
     private static string? Cell(IXLWorksheet sheet, int row, string columnName)

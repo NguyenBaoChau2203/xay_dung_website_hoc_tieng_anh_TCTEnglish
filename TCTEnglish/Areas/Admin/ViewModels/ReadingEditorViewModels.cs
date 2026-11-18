@@ -95,6 +95,8 @@ public class ReadingQuestionEditorViewModel
     public string? Explanation { get; set; }
     public string? EvidenceText { get; set; }
     public int? EvidenceParagraphId { get; set; }
+    /// <summary>Portable Excel ParagraphNo; resolved inside the destination passage.</summary>
+    public int? EvidenceParagraphOrder { get; set; }
     public string? Paraphrase { get; set; }
     public List<ReadingOptionEditorViewModel> Options { get; set; } = new();
 }

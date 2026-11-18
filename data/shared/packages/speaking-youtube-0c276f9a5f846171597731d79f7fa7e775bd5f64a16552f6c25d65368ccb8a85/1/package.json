@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A2 - MONEY",
+        "YoutubeId": "JcXs_EMYakY",
+        "Level": "A2",
+        "Topic": "Mua s\u1EAFm \u0026 t\u00E0i ch\u00EDnh",
+        "ThumbnailUrl": "https://img.youtube.com/vi/JcXs_EMYakY/hqdefault.jpg",
+        "Duration": "7:55",
+        "SourceUrl": "https://www.youtube.com/watch?v=JcXs_EMYakY",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.0127445a093c40cd851ba9158915149f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 17,
+        "EndTime": 24.96,
+        "Text": "Hi Tom. Yes, the city is fun, but everything costs money. True. At home, my parents paid for all.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.0258ec07ce174be3817b7bdd5a958996",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 146,
+        "EndTime": 151.36,
+        "Text": "Wow. Free sounds great. We watch his videos together. No cost. Learn English.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.035ac90d497345d6b7ad668d7d6e4c74",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 430,
+        "EndTime": 435.759,
+        "Text": "So stressful. Work part-time, study, no money for fun. What do we do?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.03e3f57979bf46f8b35b8ab6ff5be283",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 10,
+        "EndTime": 13.28,
+        "Text": "Now listen carefully.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.041029174e7d4b269ee79c26f6125ed3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 62,
+        "EndTime": 69.76,
+        "Text": "Same. I work at a shop. It helps my family, but I\u0027m stressed. School is important, too, right? My family isn\u0027t rich. If I don\u0027t",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.04b3b66cb4564d16ad07be8f90fdc826",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 352,
+        "EndTime": 358.16,
+        "Text": "Heidily? My wallet says no. I pay for rent, food, bus, and school books.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.0744f67f40dd4e0a88a4f0ad6e7f2968",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 241,
+        "EndTime": 247.2,
+        "Text": "Yeah. They buy expensive stuff, don\u0027t think about rent. They have time to study and follow dreams.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.0ab236c049d241e2a4be3015c0fec62e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 172,
+        "EndTime": 179.519,
+        "Text": "Hi, Tom. Yes, the city is fun, but everything costs money. True. At home, my parents paid for all.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.0ce2f508e97b4f739c91a4243c821b08",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 167,
+        "EndTime": 172.319,
+        "Text": "Hey, Anna. We\u0027re firstear students in the big city now. You like it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.126969ee40e943b89f67021fed78e7bb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 69,
+        "EndTime": 73.2,
+        "Text": "work, my parents work more. I feel sad for them.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.136cccd38dba49d493282a00f1a2f5c0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 187,
+        "EndTime": 192.8,
+        "Text": "I miss milk tea, too. Before, mom gave me money. Now, I save every penny.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.143d909c81954273a2730dd8d9912e8d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 284,
+        "EndTime": 287.52,
+        "Text": "together, save money, no expensive classes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.17ceb36904da4c41834f635f4f5cb84f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 465,
+        "EndTime": 470.08,
+        "Text": "Yes. Save now. Dream big. Maybe one day we go Heidi Low.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.1c24d9a844ab45f0a6c7ec5ea8c552a3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 455,
+        "EndTime": 460.72,
+        "Text": "Wow, free sounds great. We watch his videos together. No cost. Learn English.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.2b2464c7e7a64e8aa773bb806f44b190",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 452,
+        "EndTime": 455.44,
+        "Text": "He\u0027s kind and handsome. Let\u0027s try his lessons.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.2dc82c3e36074ab5a8c9b75cba78f964",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 179,
+        "EndTime": 181.519,
+        "Text": "Now, I check my wallet all the time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.30209c7630bb44c8af86274ce9698045",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 216,
+        "EndTime": 224.319,
+        "Text": "Same. I work at a shop. It helps my family, but I\u0027m stressed. School is important, too, right? My family isn\u0027t rich. If I don\u0027t",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.30dcf1ca1ee246f696cebb2586be42b7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 322,
+        "EndTime": 327.12,
+        "Text": "Hey Anna, we\u0027re firstear students in the big city now. You like it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.31ea012dcaa644f58672aa25e746437d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 236,
+        "EndTime": 241.439,
+        "Text": "They have everything. Nice clothes, good phones, no worries about money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.387ee72c8c144d16bc5727f2587ab98b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 435,
+        "EndTime": 442.319,
+        "Text": "M find free English apps. Or study together, save money, no expensive classes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.38d4da20cd6b468cbe972e71e0f8d900",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 424,
+        "EndTime": 430.56,
+        "Text": "Same. My parents are tired. I don\u0027t ask for money. But without English, hard to get good job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.3b2b3ffeb0a2485dba7139f6f28bc426",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 310,
+        "EndTime": 317.28,
+        "Text": "Yes. Save now, dream big. Maybe one day we go Heidi Low. Deal Tom. Study hard. Save money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.3b366d35509744fa986a6a34abd6c3eb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 92,
+        "EndTime": 101.119,
+        "Text": "Exactly. We have no choice. Work, study, save, and school costs so much. I worry if I finish, I find a job or not.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.4abb4941c27f49b59758d302c4e2ce4c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 224,
+        "EndTime": 227.76,
+        "Text": "work, my parents work more. I feel sad for them.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.4aee8c3a52da4ef0878891bb8a5eb791",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 396,
+        "EndTime": 402,
+        "Text": "Yeah, they buy expensive stuff, don\u0027t think about rent. They have time to study and follow dreams.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.54e4f75744b5445b85c70515ab3930f0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 181,
+        "EndTime": 187.44,
+        "Text": "Same. I want spicy noodles and milk tea, but I can\u0027t buy them every day like with my parents.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.55b2b4e23bc14b239a3b88fa4b784da1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 336,
+        "EndTime": 342.24,
+        "Text": "Same. I want spicy noodles and milk tea, but I can\u0027t buy them every day like with my parents.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.5792a8e554fd44c19725429a1aa12d64",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 104,
+        "EndTime": 107.6,
+        "Text": "I think about learning English or Chinese for better future.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.57dab587e65b45448016a72936a5a23b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 258,
+        "EndTime": 262.24,
+        "Text": "I think about learning English or Chinese for better future.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.5a16a22d495d40b993a04b7b9b1371cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 402,
+        "EndTime": 410.479,
+        "Text": "Exactly. We have no choice. Work, study, save, and school costs so much. I worry if I finish, I find a job or not.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.5a81b853283243b8aa7cf6c881ffd407",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 32,
+        "EndTime": 38.239,
+        "Text": "I miss milk tea, too. Before, mom gave me money. Now I save every penny.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.5ae565d1c3ae477ba4ef3965d923a05b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 306,
+        "EndTime": 310.88,
+        "Text": "Yes. Study at the library. No cost. And eat cheap noodles. Not Heidi Low.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.5b75d4253f584927b065d2059feb85a6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 390,
+        "EndTime": 396.24,
+        "Text": "They have everything. Nice clothes, good phones, no worries about money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.5c0879398acf4d3aa68a22c14c4107c1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 81,
+        "EndTime": 86.88,
+        "Text": "They have everything. Nice clothes, good phones, no worries about money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.6058612eecc34a71a0321e963f78fa4d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 162,
+        "EndTime": 166.36,
+        "Text": "Heidiow later.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.626166e255de41eead7c5b659c20058b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 73,
+        "EndTime": 81.52,
+        "Text": "I know. My parents aren\u0027t rich either. I work to help, but my grades are bad now. So, no. And I\u0027m jealous of rich kids.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.62898f22e79b49d3be27151faff1eef0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 107,
+        "EndTime": 115.04,
+        "Text": "Me too. I want to study IELTS or Chinese, but lessons cost a lot. I can\u0027t ask my parents. They work too hard already.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.62a07595d33a48069bcd67963141d20e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 210,
+        "EndTime": 216.799,
+        "Text": "Yeah, I work part-time at a cafe. It\u0027s hard. I study, I work, and I\u0027m so tired.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.6561f28261e5475abd5bb9cd3fa0d9c9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 358,
+        "EndTime": 363.68,
+        "Text": "Me, too. Rent, food, transport, school stuff. I want Heidi Lao, but no way.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.6987fda52c7444a7bbc24bdce3f206a4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 382,
+        "EndTime": 390.88,
+        "Text": "I know. My parents aren\u0027t rich either. I work to help, but my grades are bad now. So, no. And I\u0027m jealous of rich kids.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.6a6e413a336243319ec8ff1f0c4983ea",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1,
+        "EndTime": 9.56,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A2 and the topic is money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.73423280a9c749539a078603ae5a6a9b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 470,
+        "EndTime": 475.475011,
+        "Text": "Deal. Tom. Study hard. Save money. Heidy low later.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.744366b048ac41ef9a5534ac7963765d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 410,
+        "EndTime": 413.68,
+        "Text": "True. Many people know jobs now. Scary.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.760188de8318435fb6b657ff90d32e93",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 300,
+        "EndTime": 306,
+        "Text": "Wow, free sounds great. We watch his videos together. No cost. Learn English.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.79ffb0d3741040e288c370a75a32ce44",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 255,
+        "EndTime": 258.88,
+        "Text": "True. Many people know jobs now. Scary.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.7ac8a639baaf4cf188c4dab46ff5d3e8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 115,
+        "EndTime": 121.2,
+        "Text": "Same. My parents are tired. I don\u0027t ask for money. But without English, hard to get good job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.7b8c190060b04ccd9dd588a806861391",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 317,
+        "EndTime": 321,
+        "Text": "Heidily low later.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.7ba298abc60a4fdda263a8859a92eb31",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 376,
+        "EndTime": 382.56,
+        "Text": "Right. My family isn\u0027t rich. If I don\u0027t work, my parents work more. I feel sad for them.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.7c3d54b60a804fdeba16ec11d8ae302d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 13,
+        "EndTime": 17.76,
+        "Text": "Hey Anna, we\u0027re firstear students in the big city now. You like it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.7c60f0572f1a487790500c039bbf2ee5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 413,
+        "EndTime": 417.039,
+        "Text": "I think about learning English or Chinese for better future.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.820dde6f65cd43388b9a864d790fb7dc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 38,
+        "EndTime": 43.04,
+        "Text": "Yes, I see friends eat at Heidi. Looks so good, but too expensive.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.83f30d0e8e63477d8deff2cb63218d3c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 43,
+        "EndTime": 48.719,
+        "Text": "Heidily? My wallet says no. I pay for rent, food, bus, and school books.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.83f4de3e8e0b4d1fa4871fb8f68bcbc0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 371,
+        "EndTime": 376.88,
+        "Text": "Same. I work at a shop. It helps my family, but I\u0027m stressed. School is important, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.8a98f8531cba448b811e8f73abc15ba0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 26,
+        "EndTime": 32.88,
+        "Text": "Same. I want spicy noodles and milk tea, but I can\u0027t buy them every day like with my parents.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.8ac41a2c505d4fabb33c554b1f9640cc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 327,
+        "EndTime": 334.32,
+        "Text": "Hi Tom. Yes, the city is fun, but everything costs money. True. At home, my parents paid for all.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.8d24c3d9ec724aa185821ce3696ee1dd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 334,
+        "EndTime": 336.32,
+        "Text": "Now I check my wallet all the time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.9023d8b453ec4114b204b9452bca0612",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 192,
+        "EndTime": 197.599,
+        "Text": "Yes, I see friends eat at Heidi. looks so good but too expensive.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.95665adfd86a4d37928eeb0c82406ab7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 275,
+        "EndTime": 284.88,
+        "Text": "So stressful. Work part-time, study, no money for fun. What do we do? M maybe find free English apps or study",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.976434cf44094f0ab419b237951de231",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 363,
+        "EndTime": 371.6,
+        "Text": "So, you work to get money? Yeah, I work part-time at a cafe. It\u0027s hard. I study, I work, and I\u0027m so tired.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.99fe51ba162b459e8835a7aafe802096",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 197,
+        "EndTime": 203.36,
+        "Text": "Heidi Lao. My wallet says no. I pay for rent, food, bus, and school books.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.9bc7c962ac7f4d9693e5aab27d6a039b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 142,
+        "EndTime": 146.08,
+        "Text": "He\u0027s kind and handsome. Let\u0027s try his lessons.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.a1ebe6783ad24053a6c0f4e44b6ff8c5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 287,
+        "EndTime": 297.199,
+        "Text": "Good idea. I saw on Tik Tok a guy who makes videos about self-study IELTS. His videos are good. He has a YouTube channel for English listening. All free.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.ab89ab2d50694befb27624a025469399",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 342,
+        "EndTime": 347.6,
+        "Text": "I miss milk tea, too. Before, mom gave me money. Now I save every penny.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.b7a696f5d2854bd7893d140732370209",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 151,
+        "EndTime": 156.319,
+        "Text": "Yes. Study at the library. No cost. And eat cheap noodles, not Heidi.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.c0da01cd3a2d43fd8672626a21dce5b4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 460,
+        "EndTime": 465.68,
+        "Text": "Yes. Study at the library. No cost. And eat cheap noodles. Not Heidi.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.cc40d854879d41199fd864fc875a6ca3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 86,
+        "EndTime": 92.64,
+        "Text": "Yeah. They buy expensive stuff, don\u0027t think about rent. They have time to study and follow dreams.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.ce54d6c10dcb4e23b8da5a9b2aee5106",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 297,
+        "EndTime": 300.639,
+        "Text": "He\u0027s kind and handsome. Let\u0027s try his lessons.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.d366a88793aa4edca04f13ca2ae8c398",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 442,
+        "EndTime": 452,
+        "Text": "Good idea. I saw on Tik Tok a guy who makes videos about self-study IELTS. His videos are good. He has a YouTube channel for English listening. All free.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.d38a434c65f64fd291d06fa665a99f04",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 227,
+        "EndTime": 236.08,
+        "Text": "I know. My parents aren\u0027t rich either. I work to help, but my grades are bad now. So, no. And I\u0027m jealous of rich kids.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.d4141163e2834b838a0a5e31655eb4ad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 269,
+        "EndTime": 275.759,
+        "Text": "Same. My parents are tired. I don\u0027t ask for money. But without English, hard to get good job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.d5620a10af514ab296cc44c445fe1485",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 101,
+        "EndTime": 104.32,
+        "Text": "True. Many people know jobs now. Scary.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.dccb67bb6ee3454ba8507805f6d505d1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 247,
+        "EndTime": 255.68,
+        "Text": "Exactly. We have no choice. Work, study, save, and school costs so much. I worry if I finish I find a job or not.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.e07f955af98b436588836252efe41257",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 48,
+        "EndTime": 54.32,
+        "Text": "Me, too. Rent, food, transport, school stuff. I want Heidi Lao, but no way.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.e4329f141e1141c38150afbb6f6ff3cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 203,
+        "EndTime": 210.56,
+        "Text": "Me, too. Rent, food, transport, school stuff. I want Heidi Lao, but no way. So, you work to get money?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.e64c50ac72ca490e8f9e7b62df7f1a88",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 132,
+        "EndTime": 142.56,
+        "Text": "Good idea. I saw on Tik Tok a guy who makes videos about self-study IELTS. His videos are good. He has a YouTube channel for English listening. All free.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.e9a6049d53ed4973b54ff5f3e93e356a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 156,
+        "EndTime": 162.72,
+        "Text": "Yes. Save now. Dream big. Maybe one day we go Heidi Low. Deal. Tom. Study hard. Save money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.ee096150b2144d6c92cf4acc1f79d5dd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 417,
+        "EndTime": 424.4,
+        "Text": "Me too. I want to study IELTS or Chinese, but lessons cost a lot. I can\u0027t ask my parents. They work too hard already.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.eeb096985a974177994dfa12c1004b71",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 121,
+        "EndTime": 126.399,
+        "Text": "So stressful. Work part-time, study, no money for fun. What do we do?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.efb7491a4893483b989c27a1b887fd3a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 54,
+        "EndTime": 62.239,
+        "Text": "So, you work to get money? Yeah, I work part-time at a cafe. It\u0027s hard. I study, I work, and I\u0027m so tired.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.f2afb24c9005461d8901716e87ee87d8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 126,
+        "EndTime": 132.959,
+        "Text": "M find free English apps. Or study together, save money, no expensive classes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.f56ef3a180554e539aa24ace5303e231",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 347,
+        "EndTime": 352.4,
+        "Text": "Yes, I see friends eat at Heidi. Looks so good, but too expensive.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.f7f5c6498d79485998724c29d5411412",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 24,
+        "EndTime": 26.96,
+        "Text": "Now I check my wallet all the time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85.f9c296ca41674cf7b372b36a6ae18be9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 262,
+        "EndTime": 269.6,
+        "Text": "Me too. I want to study IELTS or Chinese, but lessons cost a lot. I can\u0027t ask my parents. They work too hard already.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.0c276f9a5f846171597731d79f7fa7e775bd5f64a16552f6c25d65368ccb8a85"
+}

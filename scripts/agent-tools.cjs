@@ -6,7 +6,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const { spawn, spawnSync } = require('node:child_process');
 const ROOT = path.resolve(__dirname, '..');
-const REASON = 'The owner requires one agent. Implement and review inline; do not delegate.';
+const REASON = 'The owner requires one agent except for native subagents in Antigravity using Gemini 3.8 Flash High with recognized modelName metadata. Follow AGENTS.md; do not delegate from other hosts or models.';
 const HOSTS = new Set(['codex', 'claude', 'cursor', 'antigravity']);
 const EVENTS = new Set(['SessionStart', 'PreToolUse', 'PostToolUse', 'Stop']);
 const DELEGATION = new Set(['Agent', 'Task', 'spawn_agent', 'followup_task',
@@ -212,6 +212,11 @@ function fastHook(host, name, payload, singleAgent = true) {
   if (!HOSTS.has(host) || !EVENTS.has(name)) throw new Error('Unsupported hook host or event.');
   const tool = host === 'antigravity' ? payload.toolCall?.name : payload.tool_name || (host === 'cursor' && payload.subagent_id ? 'Agent' : '');
   if (!singleAgent || name !== 'PreToolUse' || !DELEGATION.has(tool)) return {};
+  // Only native tools and the host's documented top-level metadata qualify.
+  // Do not infer a model from tool arguments, prompts, transcripts or env vars.
+  if (host === 'antigravity' && ['invoke_subagent', 'define_subagent'].includes(tool)
+      && typeof payload.modelName === 'string'
+      && ['gemini-3.8-flash-high', 'gemini 3.8 flash high'].includes(payload.modelName.trim().toLowerCase())) return {};
   if (host === 'cursor') return { permission: 'deny', user_message: REASON };
   if (host === 'antigravity') return { decision: 'deny', reason: REASON };
   return { hookSpecificOutput: { hookEventName: name, permissionDecision: 'deny', permissionDecisionReason: REASON } };
@@ -252,7 +257,7 @@ async function main(args) {
       return 0;
     }
     if (name === 'SessionStart') {
-      const message = 'TCT English: reuse AGENTS.md; one agent implements and reviews. Read .ai/README.md only for routing/setup questions. Setup is pending: allow the TCT folder-open task or double-click SETUP-AGENTS.cmd. MCP first use restores locked dependencies. Do not index CodeGraph automatically.';
+      const message = 'TCT English: reuse AGENTS.md; one agent by default. Only Antigravity using Gemini 3.8 Flash High may use native subagents under its owner execution policy. Read .ai/README.md only for routing/setup questions. Setup is pending: allow the TCT folder-open task or double-click SETUP-AGENTS.cmd. MCP first use restores locked dependencies. Do not index CodeGraph automatically.';
       const output = host === 'cursor' ? { additional_context: message } : host === 'antigravity'
         ? { injectSteps: [{ ephemeralMessage: message }] } : { hookSpecificOutput: { hookEventName: name, additionalContext: message } };
       process.stdout.write(JSON.stringify(output));

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "listening-youtube-812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091",
+  "version": 2,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.listening.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A2- CU\u1ED8C CHI\u1EBEN SOCOLA-",
+        "Level": "A2",
+        "Topic": "CU\u1ED8C CHI\u1EBEN SOCOLA",
+        "YoutubeId": "c-rI2L21KjA",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/c-rI2L21KjA/hqdefault.jpg",
+        "Duration": "9:41",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": false,
+        "TranscriptSource": null
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.listening.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+}

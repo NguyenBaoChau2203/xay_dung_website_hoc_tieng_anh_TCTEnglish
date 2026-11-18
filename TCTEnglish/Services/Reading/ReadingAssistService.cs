@@ -50,7 +50,7 @@ public sealed class ReadingAssistService(
         if (await learning.GetStudyAsync(userId, request.PassageId, ct) is null)
             return Fail("not_found", "Không tìm thấy bài đọc.", notFound: true);
 
-        var local = await learning.LookupWordAsync(request.PassageId, selected, ct);
+        var local = await learning.LookupWordAsync(userId, request.PassageId, selected, ct);
         if (local is not null)
         {
             return FromPassageVocab(local, mode);
@@ -66,7 +66,7 @@ public sealed class ReadingAssistService(
         {
             return Fail(
                 "not_configured",
-                "AI chưa được cấu hình trên máy này. Chạy scripts/set-local-ai-key.ps1 rồi restart start-local.");
+                "Tra từ bằng AI hiện chưa sẵn sàng. Bạn vẫn có thể dùng từ vựng có sẵn trong bài và sổ tay.");
         }
 
         try
@@ -81,6 +81,8 @@ public sealed class ReadingAssistService(
             var reply = await aiProvider.GenerateReplyAsync(userId, messages, ct, new AiProviderRequestOptions
             {
                 MaxOutputTokens = MaxOutputTokens,
+                MaxAttempts = 1,
+                MaxInputBytes = 16000,
                 ConstrainedOutput = new ChatConstrainedOutput(SchemaName, SchemaJson)
             });
 

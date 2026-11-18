@@ -5,7 +5,8 @@ description: Use when tuning CSS or browser-native motion in TCT English, includ
 
 # Motion for learning tasks
 
-Use the same agent and incumbent UI identity in
+Follow AGENTS.md's owner execution policy, including its sole Antigravity
+client/model exception, and the incumbent UI identity in
 [DESIGN.md](../../../DESIGN.md). Start from the learner's action: what change
 should motion explain? Frequent study actions need brief feedback and continuity.
 

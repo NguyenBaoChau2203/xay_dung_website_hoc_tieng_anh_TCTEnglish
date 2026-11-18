@@ -28,10 +28,11 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
         var system = await db.Users.AsNoTracking().SingleOrDefaultAsync(u => u.Email == "system@tct.local", ct);
         if (system != null) owners["system"] = system.UserId;
         var output = packages.Select(p => $"{(applied.Any(a => a.PackageId == p.Package.Id && a.Version == p.Package.Version && a.Digest == p.Release.Sha256) ? "applied" : "pending")} {p.Package.Id}/{p.Package.Version}").ToList();
+        var baselineRecords = FindBoundRecords(packages, bindings.Keys.ToHashSet(StringComparer.Ordinal));
         foreach (var binding in bindings.Values)
         {
             var row = FindRow(binding);
-            var expected = packages.Reverse().SelectMany(p => p.Package.Records).FirstOrDefault(r => r.Key == binding.Key);
+            var expected = baselineRecords.GetValueOrDefault(binding.Key);
             if (row == null || SharedDataFormat.Digest(Project(binding.Key, binding.Kind, row, expected)) != binding.Digest)
                 output.Add($"local-edit {binding.Kind} {binding.Key}");
         }
@@ -67,9 +68,23 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
                     if (file != null && file.Release.Sha256 != previous.Digest) throw new SharedDataException($"Applied package was rewritten: {previous.PackageId}/{previous.Version}.");
                 }
                 var pending = packages.Where(p => !applied.Any(a => a.PackageId == p.Package.Id && a.Version == p.Package.Version)).ToList();
+                var baselineRecords = FindBoundRecords(packages, pending.SelectMany(p => p.Package.Records)
+                    .Where(r => bindings.ContainsKey(r.Key)).Select(r => r.Key).ToHashSet(StringComparer.Ordinal));
                 var completed = applied.Select(a => a.PackageId + ":" + a.Version).ToHashSet(StringComparer.Ordinal);
                 var kinds = pending.SelectMany(p => p.Package.Records.Select(r => r.Kind)).Concat(pending.SelectMany(p => p.Package.DeleteKeys).Where(bindings.ContainsKey).Select(k => bindings[k].Kind)).Distinct(StringComparer.Ordinal);
                 rows = await LoadRowsAsync(kinds, mysql, ct);
+                // Only rows that predate this batch can be adopted. A growing
+                // candidate scan rehashes every newly inserted cue for every
+                // later cue and makes large fresh catalogs quadratic or worse.
+                var occupied = bindings.Values.GroupBy(b => b.Kind, StringComparer.Ordinal)
+                    .ToDictionary(g => g.Key, g => g.Select(b => b.EntityId).ToHashSet(), StringComparer.Ordinal);
+                var adoption = rows.ToDictionary(pair => pair.Key, pair =>
+                {
+                    var spec = SharedDataRegistry.Get(pair.Key);
+                    occupied.TryGetValue(pair.Key, out var ids);
+                    return new SharedDataAdoptionIndex(pair.Value.Cast<object>()
+                        .Where(row => (ids == null || !ids.Contains(spec.GetId(row))) && IsShareable(row)));
+                }, StringComparer.Ordinal);
                 foreach (var package in OrderPackages(pending, completed))
                 {
                     var current = package.Package;
@@ -92,7 +107,9 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
                                 row = FindRow(binding) ?? throw new SharedDataException($"Tracked record was removed locally: {record.Key}. Export/resolve the change first.");
                                 SharedDataRegistry.AssertShareable(row);
                                 var actual = SharedDataFormat.Digest(Project(record.Key, record.Kind, row, record));
-                                if (actual != digest && actual != binding.Digest) throw new SharedDataException($"Local edit conflict: {record.Key}. Export or resolve it; nothing in this batch was committed.");
+                                var baselineActual = SharedDataFormat.Digest(Project(record.Key, record.Kind, row,
+                                    baselineRecords.GetValueOrDefault(record.Key) ?? record));
+                                if (actual != digest && baselineActual != binding.Digest) throw new SharedDataException($"Local edit conflict: {record.Key}. Export or resolve it; nothing in this batch was committed.");
                                 if (actual != digest) SetValues(record, spec, row);
                                 binding.Digest = digest;
                                 selected[record.Key] = row;
@@ -101,11 +118,21 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
                             else
                             {
                                 // Adopt only a unique exact match, never a title/ID match or another owner's item.
-                                var occupied = bindings.Values.Where(x => x.Kind == record.Kind).Select(x => x.EntityId).ToHashSet();
-                                var candidates = rows[record.Kind].Cast<object>().Where(x => !occupied.Contains(spec.GetId(x)))
-                                    .Where(IsShareable).Where(x => SharedDataFormat.Digest(Project(record.Key, record.Kind, x, record)) == digest).ToList();
+                                // Projection depends on optional field presence and
+                                // resolved references/owner aliases. Separate contexts
+                                // preserve those contracts, including nested folders.
+                                var context = SharedDataFormat.Digest(new
+                                {
+                                    OptionalFields = spec.OptionalFields.Where(record.Values.ContainsKey).Order(StringComparer.Ordinal),
+                                    record.References
+                                });
+                                const string probeKey = "tct.shared.adoption";
+                                var candidateDigest = SharedDataFormat.Digest(record with { Key = probeKey });
+                                var candidates = adoption[record.Kind].Find(context, candidateDigest,
+                                    candidate => SharedDataFormat.Digest(Project(probeKey, record.Kind, candidate, record)));
                                 if (candidates.Count > 1) throw new SharedDataException($"Ambiguous existing data: {record.Key}. Bind the intended record explicitly before release.");
                                 row = candidates.SingleOrDefault() ?? Activator.CreateInstance(spec.Type)!;
+                                if (candidates.Count == 1) adoption[record.Kind].Claim(row);
                                 if (candidates.Count == 0)
                                 {
                                     SetValues(record, spec, row); SetCreationDates(row); db.Add(row); rows[record.Kind].Add(row);
@@ -115,6 +142,7 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
                                 newBindings.Add((binding, row, spec));
                                 Report.Add($"{(candidates.Count == 0 ? "added" : "adopted")} {record.Kind} {record.Key}");
                             }
+                            baselineRecords[record.Key] = record;
                         }
                         await db.SaveChangesAsync(ct);
                         foreach (var item in newBindings) { item.Binding.EntityId = item.Spec.GetId(item.Row); db.SharedDataBindings.Add(item.Binding); }
@@ -201,10 +229,10 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
     private void ValidateValues(SharedRecord record, SharedEntitySpec spec)
     {
         var model = db.Model.FindEntityType(spec.Type)!;
-        foreach (var field in spec.Fields)
+        foreach (var field in spec.AllFields)
         {
+            if (!record.Values.TryGetValue(field, out var value)) continue;
             var property = model.FindProperty(field)!;
-            var value = record.Values[field];
             if (value.ValueKind == JsonValueKind.Null && !property.IsNullable) throw new SharedDataException($"Required content value missing: {record.Key}/{field}.");
             if (value.ValueKind == JsonValueKind.String && property.GetMaxLength() is int max && value.GetString()!.Length > max) throw new SharedDataException($"Content value exceeds schema length: {record.Key}/{field}.");
         }
@@ -212,16 +240,19 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
 
     private void SetValues(SharedRecord record, SharedEntitySpec spec, object row)
     {
-        foreach (var field in spec.Fields)
+        foreach (var field in spec.AllFields)
         {
             var property = spec.Property(field);
-            var value = record.Values[field].Deserialize(property.PropertyType, SharedDataFormat.Json);
+            // A missing optional field (older package) imports as the property default.
+            var value = record.Values.TryGetValue(field, out var element)
+                ? element.Deserialize(property.PropertyType, SharedDataFormat.Json)
+                : spec.OptionalDefault(field, row);
             if (field.EndsWith("Url", StringComparison.Ordinal) && value is string text && text.StartsWith("asset:", StringComparison.Ordinal)) value = "/uploads/shared/" + text[6..];
             property.SetValue(row, value);
         }
         foreach (var reference in spec.References)
         {
-            var key = record.References[reference.Property];
+            var key = record.References.GetValueOrDefault(reference.Property);
             spec.Property(reference.Property).SetValue(row, key == null ? null : ResolveId(key, reference.Kind));
         }
         foreach (var owner in spec.Owners) spec.Property(owner).SetValue(row, owners[record.References[owner]![6..]]);
@@ -242,13 +273,31 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
 
     private object? FindRow(SharedDataBinding binding) => rows.TryGetValue(binding.Kind, out var set) ? set.Cast<object>().SingleOrDefault(x => SharedDataRegistry.Get(binding.Kind).GetId(x) == binding.EntityId) : null;
 
+    private Dictionary<string, SharedRecord> FindBoundRecords(IReadOnlyList<LoadedSharedPackage> packages, HashSet<string> keys)
+    {
+        var found = new Dictionary<string, SharedRecord>(StringComparer.Ordinal);
+        if (keys.Count == 0) return found;
+        foreach (var record in packages.Reverse().SelectMany(p => p.Package.Records))
+        {
+            if (keys.Contains(record.Key) && !found.ContainsKey(record.Key)
+                && bindings.TryGetValue(record.Key, out var binding)
+                && SharedDataFormat.Digest(record) == binding.Digest)
+            {
+                found[record.Key] = record;
+                if (found.Count == keys.Count) break;
+            }
+        }
+        return found;
+    }
+
     internal SharedRecord Project(string key, string kind, object row, SharedRecord? expected = null)
     {
         var spec = SharedDataRegistry.Get(kind);
         var values = new Dictionary<string, JsonElement>(StringComparer.Ordinal);
-        foreach (var field in spec.Fields)
+        foreach (var field in spec.AllFields)
         {
             var value = spec.Property(field).GetValue(row);
+            if (spec.OptionalFields.Contains(field) && spec.IsDefaultOptionalValue(field, value, row) && expected?.Values.ContainsKey(field) != true) continue;
             if (field.EndsWith("Url", StringComparison.Ordinal) && value is string s && s.StartsWith("/uploads/shared/", StringComparison.Ordinal)) value = "asset:" + s[16..];
             values[field] = JsonSerializer.SerializeToElement(value, SharedDataFormat.Json);
         }
@@ -256,9 +305,13 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
         foreach (var reference in spec.References)
         {
             var id = spec.Property(reference.Property).GetValue(row) as int?;
-            if (id == null) { refs[reference.Property] = null; continue; }
+            if (id == null)
+            {
+                if (reference.AllowMissing && expected?.References.ContainsKey(reference.Property) != true) continue;
+                refs[reference.Property] = null; continue;
+            }
             refs[reference.Property] = bindings.Values.FirstOrDefault(b => b.Kind == reference.Kind && b.EntityId == id)?.Key;
-            if (refs[reference.Property] == null && expected?.References[reference.Property] is { } desired && selected.TryGetValue(desired, out var parent) && SharedDataRegistry.Get(reference.Kind).GetId(parent) == id)
+            if (refs[reference.Property] == null && expected?.References.GetValueOrDefault(reference.Property) is { } desired && selected.TryGetValue(desired, out var parent) && SharedDataRegistry.Get(reference.Kind).GetId(parent) == id)
                 refs[reference.Property] = desired;
             refs[reference.Property] ??= "unmapped:" + reference.Kind + ":" + id;
         }
@@ -290,7 +343,7 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
         var ordered = new List<List<SharedRecord>>();
         while (remaining.Count > 0)
         {
-            var layer = remaining.Values.Where(r => SharedDataRegistry.Get(r.Kind).References.All(f => r.References[f.Property] is not { } k || !remaining.ContainsKey(k))).ToList();
+            var layer = remaining.Values.Where(r => SharedDataRegistry.Get(r.Kind).References.All(f => r.References.GetValueOrDefault(f.Property) is not { } k || !remaining.ContainsKey(k))).ToList();
             if (layer.Count == 0) throw new SharedDataException("Content dependency cycle.");
             foreach (var item in layer) remaining.Remove(item.Key);
             ordered.Add(layer);

@@ -1,0 +1,26 @@
+@model TCTEnglish.ViewModels.Sets.SetDetailViewModel
+<div class="modal fade" id="tsShareModal" tabindex="-1" aria-labelledby="tsShareTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="tsShareTitle">Chia sẻ bộ thẻ</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <p>Người có link xem được danh sách từ, rồi có thể theo học trực tiếp hoặc sao chép về bộ của họ.</p>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="ts-share-switch" checked="@Model.HasShareLink" />
+                    <label class="form-check-label" for="ts-share-switch">Chia sẻ bằng link</label>
+                </div>
+                <div class="ts-share-link" id="ts-share-link" hidden>
+                    <div class="input-group mt-3">
+                        <label class="visually-hidden" for="ts-share-url">Link chia sẻ</label>
+                        <input type="text" class="form-control" id="ts-share-url" readonly value="@Model.ShareUrl" />
+                        <button type="button" class="btn btn-primary" id="ts-share-copy"><i class="fa-regular fa-copy me-1" aria-hidden="true"></i><span>Sao chép</span></button>
+                    </div>
+                    <button type="button" class="btn btn-link ps-0 mt-2" id="ts-share-regenerate">Tạo link mới (link cũ sẽ không dùng được)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <filter id="trophy-shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="3" dy="8" stdDeviation="6" flood-color="#745b00" flood-opacity="0.25" />
+    </filter>
+    <filter id="trophy-soft" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#111c2d" flood-opacity="0.12" />
+    </filter>
+    <!-- Gold gradient for cup body -->
+    <linearGradient id="gold-cup" x1="40" y1="20" x2="160" y2="130" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fff59d" />
+      <stop offset="25%" stop-color="#fdd835" />
+      <stop offset="70%" stop-color="#ffb300" />
+      <stop offset="100%" stop-color="#f57f17" />
+    </linearGradient>
+    <!-- Base pedestal gradient -->
+    <linearGradient id="pedestal-grad" x1="60" y1="140" x2="140" y2="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4255ff" />
+      <stop offset="100%" stop-color="#2136e7" />
+    </linearGradient>
+    <linearGradient id="stem-grad" x1="90" y1="120" x2="110" y2="155" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffd54f" />
+      <stop offset="100%" stop-color="#ff8f00" />
+    </linearGradient>
+  </defs>
+
+  <!-- Pedestal Base Shadow -->
+  <ellipse cx="100" cy="186" rx="52" ry="8" fill="#111c2d" opacity="0.15" />
+
+  <!-- Pedestal Step 2 (Bottom Slab) -->
+  <rect x="58" y="166" width="84" height="16" rx="8" fill="url(#pedestal-grad)" filter="url(#trophy-soft)" />
+  <rect x="62" y="167" width="76" height="4" rx="2" fill="#ffffff" opacity="0.35" />
+
+  <!-- Pedestal Step 1 (Upper Slab) -->
+  <rect x="72" y="152" width="56" height="16" rx="6" fill="#2f3fe0" />
+  <rect x="76" y="153" width="48" height="3" rx="1.5" fill="#ffffff" opacity="0.4" />
+
+  <!-- Trophy Stem -->
+  <path d="M 92 124 L 108 124 L 106 153 L 94 153 Z" fill="url(#stem-grad)" />
+
+  <!-- Trophy Cup Handles -->
+  <!-- Left Handle -->
+  <path d="M 68 46 C 36 46, 32 86, 62 98 L 68 88 C 48 78, 48 56, 70 56 Z" fill="url(#gold-cup)" filter="url(#trophy-soft)" />
+  <path d="M 64 50 C 44 50, 42 74, 58 84" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.5" />
+  <!-- Right Handle -->
+  <path d="M 132 46 C 164 46, 168 86, 138 98 L 132 88 C 152 78, 152 56, 130 56 Z" fill="url(#gold-cup)" filter="url(#trophy-soft)" />
+  <path d="M 136 50 C 156 50, 158 74, 142 84" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.5" />
+
+  <!-- Trophy Cup Body (Claymorphic Curvature) -->
+  <path d="M 60 32
+           L 140 32
+           C 140 32, 138 88, 108 122
+           C 104 126, 96 126, 92 122
+           C 62 88, 60 32, 60 32 Z"
+        fill="url(#gold-cup)"
+        filter="url(#trophy-shadow)" />
+
+  <!-- Top Rim Opening -->
+  <ellipse cx="100" cy="32" rx="40" ry="10" fill="#fff59d" />
+  <ellipse cx="100" cy="33" rx="36" ry="7" fill="#ffb300" opacity="0.6" />
+
+  <!-- Cup Gloss Highlight Arc -->
+  <path d="M 68 44 C 70 76, 82 102, 94 115 C 84 102, 74 76, 72 44 Z" fill="#ffffff" opacity="0.45" />
+
+  <!-- Center Star Emblem on Trophy -->
+  <path d="M 100 60
+           L 104 70 L 115 70 L 106 77
+           L 109 88 L 100 81 L 91 88
+           L 94 77 L 85 70 L 96 70 Z"
+        fill="#ffffff"
+        filter="url(#trophy-soft)" />
+
+  <!-- Twinkle Stars -->
+  <path d="M 158 24 Q 163 24 163 19 Q 163 24 168 24 Q 163 24 163 29 Q 163 24 158 24 Z" fill="#ffcd1f" />
+  <path d="M 42 36 Q 46 36 46 32 Q 46 36 50 36 Q 46 36 46 40 Q 46 36 42 36 Z" fill="#ffcd1f" opacity="0.8" />
+  <circle cx="166" cy="112" r="3" fill="#4255ff" opacity="0.6" />
+</svg>

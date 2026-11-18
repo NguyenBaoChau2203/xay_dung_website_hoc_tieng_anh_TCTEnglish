@@ -119,10 +119,23 @@ public sealed class ReadingAdminService : IReadingAdminService
     {
         var passage = await _db.ReadingPassages
             .Include(p => p.Questions).ThenInclude(q => q.Options)
+            .Include(p => p.Paragraphs)
             .FirstOrDefaultAsync(p => p.Id == passageId, ct)
             ?? throw new InvalidOperationException("Reading not found.");
 
         EnsureEditable(passage);
+
+        var evidenceIds = new Dictionary<ReadingQuestionEditorViewModel, int?>();
+        foreach (var question in questions)
+        {
+            int? paragraphId = question.EvidenceParagraphOrder.HasValue
+                ? passage.Paragraphs.SingleOrDefault(p => p.ParagraphOrder == question.EvidenceParagraphOrder)?.Id
+                : question.EvidenceParagraphId;
+            if ((question.EvidenceParagraphOrder.HasValue && paragraphId == null)
+                || (paragraphId.HasValue && !passage.Paragraphs.Any(p => p.Id == paragraphId)))
+                throw new InvalidOperationException("Evidence paragraph must belong to this reading.");
+            evidenceIds[question] = paragraphId;
+        }
 
         _db.ReadingOptions.RemoveRange(passage.Questions.SelectMany(q => q.Options));
         _db.ReadingQuestions.RemoveRange(passage.Questions);
@@ -145,7 +158,7 @@ public sealed class ReadingAdminService : IReadingAdminService
                 CorrectAnswerText = q.CorrectAnswerText,
                 Explanation = q.Explanation,
                 EvidenceText = q.EvidenceText,
-                EvidenceParagraphId = q.EvidenceParagraphId,
+                EvidenceParagraphId = evidenceIds[q],
                 Paraphrase = q.Paraphrase,
                 Options = q.Options.Select((o, i) => new ReadingOption
                 {
@@ -297,6 +310,11 @@ public sealed class ReadingAdminService : IReadingAdminService
             .Include(p => p.UserReadingHistories)
             .FirstOrDefaultAsync(p => p.Id == passageId, ct);
         if (passage == null) return;
+        if (passage.IsPublished || passage.Status is not (ReadingStatuses.Draft or ReadingStatuses.Rejected)
+            || passage.UserReadingHistories.Count > 0
+            || await _db.ReadingAttempts.AnyAsync(a => a.ReadingPassageId == passageId, ct)
+            || await _db.ReadingUserTranslations.AnyAsync(t => t.ReadingPassageId == passageId, ct))
+            throw new InvalidOperationException("Bài đã công bố hoặc có lịch sử học. Hãy lưu trữ thay vì xóa.");
         var imageUrl = passage.ImageUrl;
         _db.ReadingPassages.Remove(passage);
         await _db.SaveChangesAsync(ct);

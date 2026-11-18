@@ -25,8 +25,11 @@ public sealed class AiProviderRequestOptions
     /// <summary>Optional chat guard, checked immediately before every HTTP attempt.</summary>
     public Func<CancellationToken, Task<bool>>? ConfirmCurrent { get; init; }
 
-    /// <summary>Cumulative known/uncertain usage, persisted with a bounded independent token.</summary>
+    /// <summary>Cumulative known/uncertain usage for chat or durable Writing, persisted with a bounded independent token.</summary>
     public Func<int, int, CancellationToken, Task<bool>>? RecordUsage { get; init; }
+
+    /// <summary>Writing operations must recover a lost dispatched outcome rather than sending it again.</summary>
+    public bool StopOnUncertainOutcome { get; init; }
 }
 
 /// <summary>

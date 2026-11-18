@@ -1,6 +1,7 @@
 using System.IO.Compression;
 using Microsoft.AspNetCore.Http;
 using TCTEnglish.Areas.Admin.ViewModels;
+using TCTVocabulary.Services;
 
 namespace TCTEnglish.Services.Reading;
 
@@ -61,10 +62,28 @@ public static class ReadingImportMediaZip
         var matched = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         await using var zipStream = mediaZip.OpenReadStream();
-        using var archive = new ZipArchive(zipStream, ZipArchiveMode.Read, leaveOpen: false);
+        ZipArchive archive;
+        try { archive = new ZipArchive(zipStream, ZipArchiveMode.Read, leaveOpen: true); }
+        catch (InvalidDataException)
+        {
+            warnings.Add(new ReadingExcelWarning { Sheet = "MediaZip", Message = "ZIP không hợp lệ." });
+            return;
+        }
+        using var archiveLifetime = archive;
+        if (archive.Entries.Count > 200 || archive.Entries.Sum(e => (double)e.Length) > 50 * 1024 * 1024)
+        {
+            warnings.Add(new ReadingExcelWarning { Sheet = "MediaZip", Message = "ZIP có quá nhiều ảnh hoặc vượt 50MB sau giải nén." });
+            return;
+        }
 
         foreach (var entry in archive.Entries)
         {
+            ct.ThrowIfCancellationRequested();
+            if (entry.Length > ImageUploadPolicies.ReadingPassage.MaxFileSizeInBytes)
+            {
+                warnings.Add(new ReadingExcelWarning { Sheet = "MediaZip", Message = $"Bỏ qua '{entry.Name}' — ảnh vượt quá 5MB sau giải nén." });
+                continue;
+            }
             if (string.IsNullOrWhiteSpace(entry.Name) || entry.FullName.Contains('/') || entry.FullName.Contains('\\'))
             {
                 if (!string.IsNullOrWhiteSpace(entry.Name) && entry.Length > 0)
@@ -119,7 +138,14 @@ public static class ReadingImportMediaZip
             {
                 await using var entryStream = entry.Open();
                 await using var copy = new MemoryStream();
-                await entryStream.CopyToAsync(copy, ct);
+                var buffer = new byte[81920];
+                int read;
+                while ((read = await entryStream.ReadAsync(buffer, ct)) > 0)
+                {
+                    if (copy.Length + read > ImageUploadPolicies.ReadingPassage.MaxFileSizeInBytes)
+                        throw new InvalidDataException("Expanded image exceeds the limit.");
+                    await copy.WriteAsync(buffer.AsMemory(0, read), ct);
+                }
                 copy.Position = 0;
 
                 var formFile = new FormFile(copy, 0, copy.Length, "ImageFile", entry.Name)
@@ -131,13 +157,13 @@ public static class ReadingImportMediaZip
                 reading.ImageUrl = await admin.SavePassageImageAsync(formFile, ct);
                 matched.Add(code);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is not OperationCanceledException)
             {
                 warnings.Add(new ReadingExcelWarning
                 {
                     ReadingCode = code,
                     Sheet = "MediaZip",
-                    Message = $"Không lưu được '{entry.Name}': {ex.Message}"
+                    Message = $"Không lưu được '{entry.Name}'. Kiểm tra định dạng và dung lượng ảnh."
                 });
             }
         }

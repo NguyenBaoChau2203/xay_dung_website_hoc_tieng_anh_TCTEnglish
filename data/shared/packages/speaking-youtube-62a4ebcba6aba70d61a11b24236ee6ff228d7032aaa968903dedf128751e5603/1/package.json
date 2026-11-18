@@ -1,0 +1,1096 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A2- TAI N\u1EA0N -",
+        "YoutubeId": "DtofL_9_AjQ",
+        "Level": "A2",
+        "Topic": "S\u1EE9c kh\u1ECFe",
+        "ThumbnailUrl": "https://img.youtube.com/vi/DtofL_9_AjQ/hqdefault.jpg",
+        "Duration": "8:23",
+        "SourceUrl": "https://www.youtube.com/watch?v=DtofL_9_AjQ",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.0219fe5aa8d748a89e907f48849cd199",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 456,
+        "EndTime": 465.12,
+        "Text": "Very. I get it. I get it. Next time, use your signal properly. I did use my signal.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.06a9d38a1b0443cdaa9a7a6b2461235a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 98,
+        "EndTime": 105.52,
+        "Text": "No, I don\u0027t need your money. I need you to stop shouting. Okay. Okay, I won\u0027t shout.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.08a362bfb3be40648d26452e0e7a8ad7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 311,
+        "EndTime": 318.56,
+        "Text": "Good choice. Honestly, your shouting is scarier than the police. Good. Remember that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.0c0b167eb3c04f7189494a06ef5513b7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 402,
+        "EndTime": 410.479,
+        "Text": "I I just You think I\u0027m scared, huh? Maybe a little. Good. You should be scared.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.0daf69bebe4c4823bf498c0070073ac5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 41,
+        "EndTime": 49.28,
+        "Text": "Pay for the repair. Pay for this tiny line. Yes, you hit my car. You must pay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.0ec68112fbc5449bab67871c7f12cd83",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 425,
+        "EndTime": 432.72,
+        "Text": "No, I don\u0027t need your money. I need you to stop shouting. Okay. Okay, I won\u0027t shout.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.188300a5f8244e17a25ffb2e5fa80ac4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 360,
+        "EndTime": 365.12,
+        "Text": "Hey, don\u0027t shout at me like that. I\u0027m trying to be nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.1900ca5ca2214441bc1c4b0390b8dde6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 318,
+        "EndTime": 323.759,
+        "Text": "Okay, are we done? Wait, one more thing. What?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.1dbbf559aff04e82bf7659ec01f4ddb0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 476,
+        "EndTime": 484.24,
+        "Text": "Honestly, your shouting is scarier than the police. Good. Remember that. Okay. Are we done?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.1e64154abc1f4af8b7e51459855cd142",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 276,
+        "EndTime": 280.08,
+        "Text": "Good. Let\u0027s exchange info and go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.2373a23469b34bd88c9c3d7e148b1a40",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 280,
+        "EndTime": 284.88,
+        "Text": "Yeah. No one is hurt. That\u0027s the important thing.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.29cc4d1aa6054d16b2e61dc6f1731b63",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 365,
+        "EndTime": 373.199,
+        "Text": "Sorry is not enough. What do you want then? Pay for the repair. Pay for this tiny line?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.2db507347a1a4ac081f0aad682d35bb9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 292,
+        "EndTime": 301.6,
+        "Text": "Very. I get it. I get it. Next time, use your signal properly. I did use my signal.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.34a6f9efe1ed4c079c2f4c8af2e14ff8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 347,
+        "EndTime": 356.08,
+        "Text": "Look, you scratched my car. What are you doing? I said sorry. Are you okay? I\u0027m fine, but my car is not.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.39c3092bea7643ae90a732f890baf759",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 11,
+        "EndTime": 17.119,
+        "Text": "Now listen carefully. Hey, watch out. You just hit my car.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.3c7469142b3f47b7b252657e273728d2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 26,
+        "EndTime": 33.76,
+        "Text": "I\u0027m fine, but my car is not. It\u0027s just a small scratch. Small scratch? Are you blind?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.414ccf881697438eb53158e8998aa1fb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 419,
+        "EndTime": 421.12,
+        "Text": "Is your scooter damaged?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.435c1d0f6a4b42efb7cdfb93049f3c00",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 121,
+        "EndTime": 129.36,
+        "Text": "See, you should have said that from the beginning. I know. I overreacted. Very overreacted.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.47c28a8bf1eb4bf2a8bdcb020e77615d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 105,
+        "EndTime": 112.64,
+        "Text": "Thank you. Now, do you have insurance? Yes. Here\u0027s my card and ID.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.4cc39b599a4645ee9bddf13e18ed2772",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 49,
+        "EndTime": 53.92,
+        "Text": "I\u0027m a student. I don\u0027t have money. Not my problem.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.4df688d253934fdba0c340d6319002ad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 141,
+        "EndTime": 144.64,
+        "Text": "Maybe you didn\u0027t look. You want to start again?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.502ff96225a5447f8461b13b285f0199",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 308,
+        "EndTime": 311.36,
+        "Text": "No. No. Sorry. Sorry. Let\u0027s not fight again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.531cd342893d451d906bfbde0bd629fc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 53,
+        "EndTime": 60.879,
+        "Text": "Well, it\u0027s my problem. I can\u0027t pay for a scratch this small. Okay, fine. Then I\u0027ll call the police.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.58953079d3064fd9af20e12052885bcd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 448,
+        "EndTime": 456.56,
+        "Text": "See, you should have said that from the beginning. I know. I overreacted. Very overreacted.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.58ac01c5e6374bc8b957554c13bb3a16",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 471,
+        "EndTime": 476.24,
+        "Text": "No. No. Sorry. Sorry. Let\u0027s not fight again. Good choice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.5eb723d7311a45b193510b2734cfa77a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 75,
+        "EndTime": 83.36,
+        "Text": "I I just You think I\u0027m scared, huh? Maybe a little. Good. You should be scared.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.5ed2841497a64af38542a14183e93692",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 443,
+        "EndTime": 448.479,
+        "Text": "Yeah. No one is hurt. That\u0027s the important thing.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.5f375c8dd31e4dd48fd5d7a8256136c4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 17,
+        "EndTime": 20.64,
+        "Text": "Oh my god. I\u0027m so sorry. I didn\u0027t see you turning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.616f2a502de14e69b888e8c39d2c737d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 180,
+        "EndTime": 184.239,
+        "Text": "Oh my god. I\u0027m so sorry. I didn\u0027t see you turning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.652694f5dda14d80b5993806c21a327c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 301,
+        "EndTime": 308.16,
+        "Text": "No, you didn\u0027t. I didn\u0027t see anything. Maybe you didn\u0027t look. You want to start again?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.6565b783d10640528c1b872c7b8e0326",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 217,
+        "EndTime": 224.4,
+        "Text": "Well, it\u0027s my problem. I can\u0027t pay for a scratch this small. Okay, fine. Then I\u0027ll call the police.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.69ab3da58c8e4490839e8542bd4890b5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 71,
+        "EndTime": 75.28,
+        "Text": "Uh, you shout. You blame now. You call police.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.6d779925b62a4681997dcc902e88fc2f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 432,
+        "EndTime": 439.759,
+        "Text": "Thank you. Now, do you have insurance? Yes. Here\u0027s my card and ID.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.6e954b82e5c0486bb534aa83fc66eda3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 92,
+        "EndTime": 98.4,
+        "Text": "Is your scooter damaged? A little, but it doesn\u0027t matter. Do you want me to pay?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.7717f4a629694afbad3eb6611b8ff0e5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 235,
+        "EndTime": 238.799,
+        "Text": "you shout, you blame. Now you call police.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.7e6ea77756204d729b4067426a1ad425",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 238,
+        "EndTime": 246.879,
+        "Text": "I I just You think I\u0027m scared, huh? Maybe a little. Good. You should be scared.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.8316db07f19c4394b24b99ebd2ea559d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 398,
+        "EndTime": 402.4,
+        "Text": "Uh, you shout, you blame, now you call police.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.8406224b1b6d430c85c0e8a6feabfe14",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 177,
+        "EndTime": 180.64,
+        "Text": "Hey, watch out. You just hit my car.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.84195ee97f9b46fba438cdd61814d042",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 65,
+        "EndTime": 71.2,
+        "Text": "Oh, really? Call them. Call. Let\u0027s see if they come for your little scratch.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.8500525b80bb4756a692077511802102",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 116,
+        "EndTime": 121.36,
+        "Text": "Yeah, no one is hurt. That\u0027s the important thing.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.859a78a657c147f09be4a0606afac2d9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 484,
+        "EndTime": 487.36,
+        "Text": "Wait, one more thing. What?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.872c4b0168a14d0d87bf0581d56a2b82",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 33,
+        "EndTime": 41.52,
+        "Text": "Hey, don\u0027t shout at me like that. I\u0027m trying to be nice. Sorry is not enough. What do you want then?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.899febc06c2a437e8f1cd4f88ead4cd6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 1.28,
+        "Text": "[Music]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.8f1bc655dd9d4127a4f6e135271cb508",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 494,
+        "EndTime": 502.804898,
+        "Text": "You, too. And sorry again. Okay. Bye. Bye.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.98634aa1c9e144a3875ff964e5b275b4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 157,
+        "EndTime": 160.239,
+        "Text": "Wait, one more thing. What?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.98bf226a2ed94035bac4ee9340d5324d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 410,
+        "EndTime": 419.28,
+        "Text": "Okay. Okay, calm down. I am calm. You made me crazy. I\u0027m sorry. I was too angry. Good. You better be sorry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.9f15e76d42574f2fac340d9087400fda",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 331,
+        "EndTime": 339.479,
+        "Text": "You too. And sorry again. Okay. Bye. Bye.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.a3ae1f9b3a034bab82994ea1a7d82527",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 197,
+        "EndTime": 205.12,
+        "Text": "Hey, don\u0027t shout at me like that. I\u0027m trying to be nice. Sorry is not enough. What do you want then?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.a9b657b2d36642d2a40b3a4c01cb47ee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 129,
+        "EndTime": 138,
+        "Text": "Very. I get it. I get it. Next time, use your signal properly. I did use my signal.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.aa8209cb99df4235b6b4f30817eab7ba",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 262,
+        "EndTime": 269.12,
+        "Text": "No, I don\u0027t need your money. I need you to stop shouting. Okay. Okay, I won\u0027t shout.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.ac0b3cefb301434f9ca2d489ffa309b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 323,
+        "EndTime": 331.36,
+        "Text": "Don\u0027t ever scream at a girl on a motorbike again. I won\u0027t. I promise. Drive safely.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.af6f8e38d93b44f4802280384d77f2d3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 421,
+        "EndTime": 425.52,
+        "Text": "A little, but it doesn\u0027t matter. Do you want me to pay?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.afc3df677f084863b18bc424554fc29e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1,
+        "EndTime": 9.64,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A2 and the topic is accident.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.b417f297724a46f3b2d1a65a57507b84",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 439,
+        "EndTime": 443.68,
+        "Text": "Good. Let\u0027s exchange info and go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.b60c77f4343140979dbfeba1278338e0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 167,
+        "EndTime": 175.959,
+        "Text": "You, too. And sorry again. Okay. Bye. Bye.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.b64c6d2eaab346d2823e6d6c75e97f6b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 344,
+        "EndTime": 347.759,
+        "Text": "Oh my god. I\u0027m so sorry. I didn\u0027t see you turning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.b687573cc35f4e7998e5f6047a77459d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 392,
+        "EndTime": 398.4,
+        "Text": "Oh, really? Call them. Call. Let\u0027s see if they come for your little scratch.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.bb30aee8f0a54f65afaecb78751b4339",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 224,
+        "EndTime": 227.12,
+        "Text": "What? Police for this?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.bd706f0175554d49b8dd1cc6ab3a09ff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 60,
+        "EndTime": 65.68,
+        "Text": "What? Police for this? Yes, I\u0027m calling now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.be50b5ebe85f4389b897f6f4e57c464d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 341,
+        "EndTime": 344.24,
+        "Text": "Hey, watch out. You just hit my car.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.c245a4aea33a4115a39bd6bb06321b51",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 192,
+        "EndTime": 197.36,
+        "Text": "It\u0027s just a small scratch. Small scratch? Are you blind?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.c550155e719d4a339fdc72a66cfd6fcb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 356,
+        "EndTime": 360.88,
+        "Text": "It\u0027s just a small scratch. Small scratch? Are you blind?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.c70b9832e70c4065864be4bbfc8fd6f8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 83,
+        "EndTime": 92.159,
+        "Text": "Okay. Okay, calm down. I am calm. You made me crazy. I\u0027m sorry. I was too angry. Good. You better be sorry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.d18cf483655e410fb65819526ff475ad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 388,
+        "EndTime": 392.8,
+        "Text": "What? Police for this? Yes. I\u0027m calling now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.d1ebb98e52d64f20977b569054b3ef4b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 487,
+        "EndTime": 494.879,
+        "Text": "Don\u0027t ever scream at a girl on a motorbike again. I won\u0027t. I promise. Drive safely.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.d339b06bf11f406f9500bf73e07d59e9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 112,
+        "EndTime": 116.56,
+        "Text": "Good. Let\u0027s exchange info and go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.d5259ce61912445e99ad844e7ea88131",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 149,
+        "EndTime": 157.04,
+        "Text": "Honestly, your shouting is scarier than the police. Good. Remember that. Okay. Are we done?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.d6e2f6ad010e42cb97043716b90a857c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 373,
+        "EndTime": 381.12,
+        "Text": "Yes. You hit my car. You must pay. I\u0027m a student. I don\u0027t have money. Not my problem.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.dc1c6483b4c145db89149e62ea650ef6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 246,
+        "EndTime": 255.68,
+        "Text": "Okay. Okay, calm down. I am calm. You made me crazy. I\u0027m sorry. I was too angry. Good. You better be sorry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.dcbc3ad4f506420884333ca3a2a85d8b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 284,
+        "EndTime": 292.96,
+        "Text": "See, you should have said that from the beginning. I know. I overreacted. Very overreacted.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.df529df2c9514c63b0226ddd1c66895c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 269,
+        "EndTime": 276.24,
+        "Text": "Thank you. Now, do you have insurance? Yes. Here\u0027s my card and ID.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.eadbf675056342dc94667b898307dd01",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 255,
+        "EndTime": 262,
+        "Text": "Is your scooter damaged? a little, but it doesn\u0027t matter. Do you want me to pay?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.ebf423dc51484c4e9a867015f46279b1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 381,
+        "EndTime": 388,
+        "Text": "Well, it\u0027s my problem. I can\u0027t pay for a scratch this small. Okay, fine. Then I\u0027ll call the police.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.ec71438787e94c3db9483ab80619c268",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 138,
+        "EndTime": 141.04,
+        "Text": "No, you didn\u0027t. I didn\u0027t see anything.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.edcb518be2ae4166b8ed4eff9adc8abf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 160,
+        "EndTime": 167.76,
+        "Text": "Don\u0027t ever scream at a girl on a motorbike again. I won\u0027t. I promise. Drive safely.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.eea56fe8d3834bcf8647483565ee67d8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 144,
+        "EndTime": 149.12,
+        "Text": "No. No. Sorry. Sorry. Let\u0027s not fight again. Good choice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.eebbdaeef8244b55895b0a168211ede1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 205,
+        "EndTime": 212.879,
+        "Text": "Pay for the repair. Pay for this tiny line. Yes. You hit my car. You must pay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.eef63642d72047f7933d22ea17ce5126",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 184,
+        "EndTime": 192.48,
+        "Text": "Look, you scratched my car. What are you doing? I said sorry. Are you okay? I\u0027m fine, but my car is not.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.ef78ec70c9144a4e835d1b1885264499",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 20,
+        "EndTime": 26.08,
+        "Text": "Look, you scratched my car. What are you doing? I said sorry. Are you okay?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.f54f289f45184b769d93547b0a8bc837",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 465,
+        "EndTime": 471.759,
+        "Text": "No, you didn\u0027t. I didn\u0027t see anything. Maybe you didn\u0027t look. You want to start again?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.f93cc44fd6394768b8d39fd076ebe716",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 212,
+        "EndTime": 217.519,
+        "Text": "I\u0027m a student. I don\u0027t have money. Not my problem.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603.fb633b54ffa64065b12cef98a10cce55",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 227,
+        "EndTime": 235.68,
+        "Text": "Yes, I\u0027m calling now. Oh, really? Call them. Call. Let\u0027s see if they come for your little scratch. Uh,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.62a4ebcba6aba70d61a11b24236ee6ff228d7032aaa968903dedf128751e5603"
+}

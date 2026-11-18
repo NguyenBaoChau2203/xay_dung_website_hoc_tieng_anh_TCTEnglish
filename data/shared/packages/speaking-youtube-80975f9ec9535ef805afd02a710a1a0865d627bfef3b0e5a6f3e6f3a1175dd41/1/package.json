@@ -1,0 +1,1356 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A2- \u0110I CH\u01A0I V\u1EDAI B\u1EA0N G\u00C1I-",
+        "YoutubeId": "OMmgZLGvdMc",
+        "Level": "A2",
+        "Topic": "Vui ch\u01A1i \u0026 gi\u1EA3i tr\u00ED",
+        "ThumbnailUrl": "https://img.youtube.com/vi/OMmgZLGvdMc/hqdefault.jpg",
+        "Duration": "9:36",
+        "SourceUrl": "https://www.youtube.com/watch?v=OMmgZLGvdMc",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.034d0de5460643d19ee75649df6131a9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 302,
+        "EndTime": 308.4,
+        "Text": "I\u0027m just helping you. And buy new shoes, too. Shoes? Come on, Mom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.034ff889dd0945b480614d6bc6c1c929",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 158,
+        "EndTime": 165.716,
+        "Text": "That\u0027s too much, Mom. That\u0027s how you impress a girl. I just wanted a t-shirt, not a wedding.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.04d0f52aa8d34e2289ff1a513b66fea8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 496,
+        "EndTime": 502.08,
+        "Text": "And maybe some perfume. You want to smell nice, right? Mom, please stop.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.06a52d870bac4980a12fedecbcd78e13",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 488,
+        "EndTime": 490.16,
+        "Text": "[laughter]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.0e6eb288dd2246ab83979fa6dcd5f0e6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 77,
+        "EndTime": 80.56,
+        "Text": "Yes, please, Mom. I just want to look good.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.0ea9a53cf5e44c919ca69d72c64799c9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 177,
+        "EndTime": 186.4,
+        "Text": "And no kissing, mom. Okay. Okay. Have fun, my handsome boy. Thanks, Mom. And please don\u0027t tell Dad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.0eb4a43a11eb455aafcb58e59e8e4637",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 365,
+        "EndTime": 374.24,
+        "Text": "And no kissing, Mom. Okay. Okay, have fun, my handsome boy. Thanks, Mom. And please don\u0027t tell Dad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.11a11795aae341c3a71d89df8f40c780",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 120,
+        "EndTime": 126.399,
+        "Text": "And maybe some perfume. You want to smell nice, right? Mom, please stop.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.1501092441f0415ba9d2e7cff231f9bf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 106,
+        "EndTime": 113.316,
+        "Text": "It looks messy. Girls don\u0027t like messy hair. Mom, stop. You\u0027re embarrassing me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.172aee79bd7d451e8b2eef9f1daa5a2d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 17,
+        "EndTime": 20.96,
+        "Text": "New clothes? Why? You just bought some last month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.1851a39353b14f5ba11c7ade98bab137",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 167,
+        "EndTime": 170.64,
+        "Text": "Okay, fine. Just buy one t-shirt.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.1d4d533455464b85970c6fc8c59e1bb0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 436,
+        "EndTime": 439.919,
+        "Text": "I\u0027m going with a girl from my class. She sits next to me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.211da676a0da42df83680562864c6b8e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 564,
+        "EndTime": 572.48,
+        "Text": "What? [laughter] I\u0027m just kidding. You\u0027re the funniest, mom. I know. Now go, lover boy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.231cce6e2a9a4f77b4439f86a187d33b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 376,
+        "EndTime": 384.639,
+        "Text": "What? [laughter] I\u0027m just kidding. You\u0027re the funniest, Mom. I know. Now go, lover boy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.25a7db12029c46fdb477844fa12d0e4b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 543,
+        "EndTime": 546.32,
+        "Text": "Okay, fine. Just buy one t-shirt.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.2869a645dfa94d2f9655f415f1a39145",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 479,
+        "EndTime": 485.84,
+        "Text": "A haircut? But I like my hair. It looks messy. Girls don\u0027t like messy hair.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.2a5326b1edee4303b3a5f8b0b49c98fd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 332,
+        "EndTime": 337.199,
+        "Text": "Oh, not yet. Maybe later. You\u0027re impossible.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.2b668a3c5d8743728b5cf295f728e26b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 208,
+        "EndTime": 215.04,
+        "Text": "But I wore them many times already. They look old now. Old? They\u0027re still new.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.2c648a9e042340ad882e4fdcf4591f3b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 170,
+        "EndTime": 177.36,
+        "Text": "Finally. But remember, don\u0027t come home too late. Yes, mom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.2f06a56e3b974353af42523484b6cb9c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 490,
+        "EndTime": 496.24,
+        "Text": "I\u0027m just helping you. And buy new shoes, too. Shoes? Come on, Mom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.35cab0802da6421a9234094ce5a85b6d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 96,
+        "EndTime": 103.36,
+        "Text": "Wait, wait, don\u0027t be too happy. If you buy new clothes, you must also get a haircut.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.38c23cc0e6514fbbb3211179bd3dfc48",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 44,
+        "EndTime": 51.28,
+        "Text": "Uh-huh. I knew it. So, that\u0027s why you want new clothes. No, it\u0027s not like that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.39a4316b11e0401786b6f0d9a106f46a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 284,
+        "EndTime": 291.199,
+        "Text": "Wait, wait, don\u0027t be too happy. If you buy new clothes, you must also get a haircut.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.39c4916c1ce54d61aa81674315fc92d9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 413,
+        "EndTime": 420.4,
+        "Text": "H Are you going with the girl? What? No, I mean, yes, maybe.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.3b3a6a473ada4254ada378064ba6d5cd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 355,
+        "EndTime": 363.68,
+        "Text": "Okay, fine. Just buy one t-shirt. Finally. But remember, don\u0027t come home too late.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.3e54852f24284e838f41f8f14eb4f1d8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 434,
+        "EndTime": 436.16,
+        "Text": "Different how?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.3e99ceab44744f1a8434450f8311281d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 113,
+        "EndTime": 114.479,
+        "Text": "[laughter]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.4007952cc9304e82b9cee9414dbd1275",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 337,
+        "EndTime": 346.16,
+        "Text": "You\u0027ll thank me one day. So, new clothes, haircut, shoes, perfume, dinner. Got it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.440b76026b524eedb221148a94da1e27",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 248,
+        "EndTime": 256.88,
+        "Text": "I\u0027m going with a girl from my class. She sits next to me. Oh, so it is a girl. You\u0027re still young, Ben.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.4799d8dc6f494bd089e073b55ac5fc99",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 69,
+        "EndTime": 77.119,
+        "Text": "Mom, we\u0027re just friends. We\u0027re going to eat and talk. That\u0027s all. H just friends, huh?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.49b3a85bb3434a12a69f5fbcf8d00e3e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 546,
+        "EndTime": 553.04,
+        "Text": "Finally, but remember, don\u0027t come home too late. Yes, mom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.4a44bcfbde5745f1a7a260a72c8f6f8a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 223,
+        "EndTime": 232.56,
+        "Text": "Very important, Mom. Hm. Are you going with the girl? What? No. I mean, yes, maybe.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.4ab624f9c9644c5299325b86c4f0093f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 51,
+        "EndTime": 59.6,
+        "Text": "Sure. Sure. If you were going with boys, you wouldn\u0027t care what you wear. But this time is different. Different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.4c4b3a671dd24435829c844cf7b85859",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 149,
+        "EndTime": 158.239,
+        "Text": "You\u0027ll thank me one day. So, new clothes, haircut, shoes, perfume, dinner. Got it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.4ed82f097f2b41e5ba9cf9c07c735181",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 410,
+        "EndTime": 413.12,
+        "Text": "Very important, Mom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.53986780a352435ba8cd21715f7d1266",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 12,
+        "EndTime": 17.039,
+        "Text": "Now listen carefully. Mom, can I buy new clothes?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.56bef060790441b5bbec62a2bbd773b2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 142,
+        "EndTime": 149.36,
+        "Text": "Mom, it\u0027s not love. Oh, not yet. Maybe later. You\u0027re impossible.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.5777c33bc11b44e28356233eb3b257b4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 511,
+        "EndTime": 513.76,
+        "Text": "But I don\u0027t have enough money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.5d3af4b04822495393b62e43ef3bdf02",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 27,
+        "EndTime": 35.28,
+        "Text": "No, Mom. I want to look nice. I\u0027m going out with my friends. Friends? How important is this outing?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.5f5681fa41fd4e89968a68a53e6b41f6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 439,
+        "EndTime": 444.72,
+        "Text": "Oh, so it is a girl. You\u0027re still young, Ben.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.64023222be804df8a8a066b81e24ebf7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 246,
+        "EndTime": 248.319,
+        "Text": "Different how?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.64762abf969849bf82dfd6b65c3d3fb1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 294,
+        "EndTime": 300.648,
+        "Text": "It looks messy. Girls don\u0027t like messy hair. Mom, stop. You\u0027re embarrassing me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.64f2ac7e632447b5b29eed1fee68d35a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 323,
+        "EndTime": 325.919,
+        "Text": "But I don\u0027t have enough money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.6893374ea623496d87e7010b6a8e8f4d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 300,
+        "EndTime": 302.32,
+        "Text": "[laughter]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.6ee1d6c169f743ca89009786ec65fca4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 84,
+        "EndTime": 91.68,
+        "Text": "No, I just want to look clean. Clean and handsome, right? Maybe a little.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.6f9d3359dedc4c50bca5a6b5814423b0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 314,
+        "EndTime": 323.759,
+        "Text": "I\u0027m not done. You should also pay for her food. Okay. What? Why me? Because you\u0027re the man. Be a gentleman.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.7172ab75c05540328bb5bb219a77ff7b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 215,
+        "EndTime": 223.12,
+        "Text": "No, Mom. I want to look nice. I\u0027m going out with my friends. Friends? How important is this outing?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.728bea1dc61a4b11824d6bb0757a676b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 525,
+        "EndTime": 534,
+        "Text": "You\u0027ll thank me one day. So, new clothes, haircut, shoes, perfume, dinner. Got it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.74d3d50645164ca8b9109c4725691465",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 60,
+        "EndTime": 64.239,
+        "Text": "I\u0027m going with a girl from my class. She sits next to me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.7cd8b5f380cf4643b75679f86b6bfd93",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 308,
+        "EndTime": 314.24,
+        "Text": "And maybe some perfume. You want to smell nice, right? Mom, please stop.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.7f52924e1622454099b3d364761ea1c7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 325,
+        "EndTime": 332.8,
+        "Text": "Then ask your dad. Tell him it\u0027s for true love. Mom, it\u0027s not love.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.844c3a8604a445cd84f1d6f2d993379c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 402,
+        "EndTime": 410.96,
+        "Text": "No, Mom. I want to look nice. I\u0027m going out with my friends. Friends? How important is this outing?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.898c44f45da842e6b8b5d841876648c3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 59,
+        "EndTime": 60.399,
+        "Text": "How?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.8bb51cd94d484eee9bbbf38333fa35ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 456,
+        "EndTime": 463.28,
+        "Text": "All right. All right. You want to impress her, I see. No, I just want to look clean.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.8c8db2b29320431f806b2f5a4b59753a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 572,
+        "EndTime": 575.715556,
+        "Text": "I\u0027m leaving.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.8fb8ee05e7b14ef291f2db1e32615184",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 513,
+        "EndTime": 520.64,
+        "Text": "Then ask your dad. Tell him it\u0027s for true love. Mom, it\u0027s not love.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.98e72a1f2d384b07b240264f2e7bc422",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 20,
+        "EndTime": 27.199,
+        "Text": "But I wore them many times already. They look old now. Old? They\u0027re still new.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.98f47376b1624c84a150eacb9df44219",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 452,
+        "EndTime": 456.24,
+        "Text": "Yes. Please, Mom. I just want to look good.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.9b3d21200d05431787ea80db53e0f4d8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1,
+        "EndTime": 10.12,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A2 and the topic is go out with girlfriend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.9c275d9c53bc4400a2d8d1d4c4657a60",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 135,
+        "EndTime": 138,
+        "Text": "But I don\u0027t have enough money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.9ce82c0e9ef24c86ac01beeef41908eb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 114,
+        "EndTime": 120.56,
+        "Text": "I\u0027m just helping you. and buy new shoes, too. Shoes? Come on, Mom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.9dfbae527e424cfa9e2fd02bc0932beb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 204,
+        "EndTime": 208.8,
+        "Text": "New clothes? Why? You just bought some last month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.9e37b38eb68f46b49c76da4800851c21",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 363,
+        "EndTime": 365.199,
+        "Text": "Yes, Mom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.9f4760bf12d840ccb412b2e37d7a4db4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 275,
+        "EndTime": 282.639,
+        "Text": "Clean and handsome, right? Maybe a little. Okay, fine. Buy something nice then.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.a1cfa5081b944885b5842d3143372bc7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 186,
+        "EndTime": 188.959,
+        "Text": "Too late. I already texted him.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.a6024c7070954c0cb5f80dbe5a211cbd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 103,
+        "EndTime": 106.32,
+        "Text": "A haircut? But I like my hair.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.a7e104a56c5d4d848a4ee725df7bb5d6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 426,
+        "EndTime": 434.8,
+        "Text": "Sure. Sure. If you were going with boys, you wouldn\u0027t care what you wear. But this time is different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.a948dce0a3334c779e3040c600dab7e6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 188,
+        "EndTime": 196.8,
+        "Text": "What? [laughter] I\u0027m just kidding. You\u0027re the funniest, Mom. I know. Now go, lover boy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.acdfa54dd2ae4dd38512e4c2dde1026e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 472,
+        "EndTime": 479.12,
+        "Text": "Wait, wait. Don\u0027t be too happy. If you buy new clothes, you must also get a haircut.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.afdaa698b2d045ada522584a68eb5d89",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 35,
+        "EndTime": 37.36,
+        "Text": "Very important, Mom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.b30a5bcd3e8c423588655833dedaf03e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 463,
+        "EndTime": 470.479,
+        "Text": "Clean and handsome, right? Maybe a little. Okay, fine. Buy something nice, then.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.b3ad3ba2cc6b44d0813a34b5ef9fa294",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 126,
+        "EndTime": 135.84,
+        "Text": "I\u0027m not done. You should also pay for her food. Okay. What? Why me? Because you\u0027re the man. Be a gentleman.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.b6e15963d1a04ef2b3fa3e8bc73da271",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 520,
+        "EndTime": 525.12,
+        "Text": "Oh, not yet. Maybe later. You\u0027re impossible.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.baa61e53473b4ac79229384de30555c2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 470,
+        "EndTime": 472.479,
+        "Text": "Really? Thanks, Mom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.bb18d169d64e42f785032b40891636f9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 268,
+        "EndTime": 275.44,
+        "Text": "All right. All right. You want to impress her, I see. No, I just want to look clean.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.bff02be30a9a486591b74715a692ecc6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 384,
+        "EndTime": 392.72,
+        "Text": "I\u0027m leaving. Mom, can I buy new clothes?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.c2e62121ee8241b0bd62cf0ef016506f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 37,
+        "EndTime": 44.719,
+        "Text": "H Are you going with the girl? What? No, I mean, yes, maybe.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.c7e42146652d4262a711399ad86526a5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 553,
+        "EndTime": 562.16,
+        "Text": "And no kissing, Mom. Okay. Okay. Have fun, my handsome boy. Thanks, Mom. And please don\u0027t tell Dad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.c85280bf5d3c413b9b59584683c41989",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 165,
+        "EndTime": 167.36,
+        "Text": "[laughter]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.c97b3864ec3540a5a96658a9a35b57f0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 291,
+        "EndTime": 294.16,
+        "Text": "A haircut? But I like my hair.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.cdc670a5dc2640a5ad296e2010697f03",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 64,
+        "EndTime": 69.04,
+        "Text": "Oh, so it is a girl. You\u0027re still young, Ben.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.cef745591e3f4404a75de195445027ed",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 534,
+        "EndTime": 541.036,
+        "Text": "That\u0027s too much. Mom, that\u0027s how you impress a girl. I just wanted a t-shirt, not a wedding.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.d03c0384c4ad48cea0dc886d27607dee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 256,
+        "EndTime": 264.96,
+        "Text": "Mom, we\u0027re just friends. We\u0027re going to eat and talk. That\u0027s all. H just friends, huh?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.d3ed54ec7c024280aad0a1034d29377e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 392,
+        "EndTime": 400.56,
+        "Text": "New clothes? Why? You just bought some last month. But I wore them many times already. They look old now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.d47b041f44404b949fc4d6e741d1d6e4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 232,
+        "EndTime": 239.12,
+        "Text": "Uhhuh. I knew it. So that\u0027s why you want new clothes. No, it\u0027s not like that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.d67119c8b1d3418490eb58a61b30f2fc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 264,
+        "EndTime": 268.4,
+        "Text": "Yes, please, Mom. I just want to look good.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.d85ad6e19cb64eaca695539b8ffa290c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 282,
+        "EndTime": 284.639,
+        "Text": "Really? Thanks, Mom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.d97f1c5187c2401da5d67d29ac246cb3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 239,
+        "EndTime": 246.959,
+        "Text": "Sure. Sure. If you were going with boys, you wouldn\u0027t care what you wear. But this time is different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.db0ab56957b34cbd9717f21a0d0b3ac5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 541,
+        "EndTime": 543.056,
+        "Text": "[laughter]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.de3cd68f671448e2869d58f6f837a611",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 502,
+        "EndTime": 511.599,
+        "Text": "I\u0027m not done. You should also pay for her food. Okay. What? Why me? Because you\u0027re the man. Be a gentleman.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.defccd0ac6ff48308710a7850c934760",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 138,
+        "EndTime": 142.56,
+        "Text": "Then ask your dad. Tell him it\u0027s for true love.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.e5704d2d894f433e92b05da8a17344a5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 353,
+        "EndTime": 355.068,
+        "Text": "[laughter]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.e6dce7ed89b74ca3aa8972fcdf9bd5f3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 80,
+        "EndTime": 84.4,
+        "Text": "All right. All right. You want to impress her, I see.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.eb8d45bc70ba4a83b90c91e32288eaeb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 374,
+        "EndTime": 376.88,
+        "Text": "Too late. I already texted him.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.ee3edbfecdf8424fac5061ee7b425437",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 400,
+        "EndTime": 402.88,
+        "Text": "Old? They\u0027re still new.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.ee7d005098414655b14e129f68824ff8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 420,
+        "EndTime": 426.96,
+        "Text": "Uh-huh. I knew it. So that\u0027s why you want new clothes. No, it\u0027s not like that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.ef0efad0444e4d56b355848e2cfacdc2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 346,
+        "EndTime": 353.048,
+        "Text": "That\u0027s too much, Mom. That\u0027s how you impress a girl. I just wanted a t-shirt, not a wedding.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.ef2b4daeb3d84f2b926cf553dae3544a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 562,
+        "EndTime": 564.72,
+        "Text": "Too late. I already texted him.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.f0f7a3e1c80e48b4b0089a2df194af31",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 91,
+        "EndTime": 96.72,
+        "Text": "Okay, fine. Buy something nice then. Really? Thanks, Mom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.f37680dbb5344b128c0cfc708bc9ed21",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 444,
+        "EndTime": 452.8,
+        "Text": "Mom, we\u0027re just friends. We\u0027re going to eat and talk. That\u0027s all. H just friends, huh?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.f4b314d8920b47fd9deb9d52336b85b0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 196,
+        "EndTime": 204.879,
+        "Text": "I\u0027m leaving. Mom, can I buy new clothes?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41.f6d57ccd025f46118c9aafbbf092ba35",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 485,
+        "EndTime": 488.635,
+        "Text": "Mom, stop. You\u0027re embarrassing me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.80975f9ec9535ef805afd02a710a1a0865d627bfef3b0e5a6f3e6f3a1175dd41"
+}

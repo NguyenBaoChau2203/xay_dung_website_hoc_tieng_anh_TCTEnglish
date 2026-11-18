@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <filter id="ai-shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="3" dy="6" stdDeviation="6" flood-color="#7c3aed" flood-opacity="0.2" />
+    </filter>
+    <filter id="ai-soft" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#111c2d" flood-opacity="0.12" />
+    </filter>
+    <linearGradient id="doc-surface" x1="40" y1="25" x2="115" y2="135" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#f5f3ff" />
+      <stop offset="100%" stop-color="#ede9fe" />
+    </linearGradient>
+    <linearGradient id="ai-wand" x1="80" y1="50" x2="140" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#c084fc" />
+      <stop offset="50%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#6d28d9" />
+    </linearGradient>
+    <linearGradient id="star-gold" x1="90" y1="20" x2="140" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fff176" />
+      <stop offset="50%" stop-color="#ffcd1f" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Glow Disk -->
+  <circle cx="80" cy="80" r="66" fill="#f5f3ff" opacity="0.8" />
+
+  <!-- Clay Document Base -->
+  <g filter="url(#ai-shadow)">
+    <rect x="36" y="28" width="76" height="104" rx="14" fill="url(#doc-surface)" />
+    <!-- Top folded corner -->
+    <path d="M 88 28 L 112 52 L 96 52 A 8 8 0 0 1 88 44 Z" fill="#ddd6fe" />
+    <!-- Document Lines -->
+    <rect x="48" y="52" width="34" height="5" rx="2.5" fill="#8b5cf6" opacity="0.4" />
+    <rect x="48" y="66" width="52" height="4" rx="2" fill="#94a3b8" opacity="0.5" />
+    <rect x="48" y="78" width="48" height="4" rx="2" fill="#94a3b8" opacity="0.5" />
+    <rect x="48" y="90" width="42" height="4" rx="2" fill="#94a3b8" opacity="0.5" />
+    <rect x="48" y="102" width="36" height="4" rx="2" fill="#94a3b8" opacity="0.5" />
+    <rect x="48" y="114" width="28" height="5" rx="2.5" fill="#10b981" opacity="0.7" />
+  </g>
+
+  <!-- AI Magic Sparkle Star -->
+  <g filter="url(#ai-soft)">
+    <path d="M 122 34 Q 126 44 136 48 Q 126 52 122 62 Q 118 52 108 48 Q 118 44 122 34 Z" fill="url(#star-gold)" />
+    <!-- Center white pip -->
+    <circle cx="122" cy="48" r="3" fill="#ffffff" opacity="0.9" />
+  </g>
+
+  <!-- Floating Magic Wand -->
+  <g transform="rotate(-30 115 105)" filter="url(#ai-soft)">
+    <rect x="110" y="70" width="8" height="60" rx="4" fill="url(#ai-wand)" />
+    <rect x="111" y="72" width="2" height="50" rx="1" fill="#ffffff" opacity="0.5" />
+    <!-- Tip Gold Cap -->
+    <rect x="109" y="68" width="10" height="7" rx="3" fill="url(#star-gold)" />
+  </g>
+
+  <!-- Mini Sparkles -->
+  <path d="M 32 46 Q 35 46 35 43 Q 35 46 38 46 Q 35 46 35 49 Q 35 46 32 46 Z" fill="#8b5cf6" />
+  <path d="M 134 94 Q 137 94 137 91 Q 137 94 140 94 Q 137 94 137 97 Q 137 94 134 94 Z" fill="#ffcd1f" />
+  <circle cx="28" cy="112" r="3" fill="#06b6d4" opacity="0.8" />
+</svg>

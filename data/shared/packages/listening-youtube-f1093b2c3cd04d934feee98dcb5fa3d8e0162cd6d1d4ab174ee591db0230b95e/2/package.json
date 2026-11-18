@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "listening-youtube-f1093b2c3cd04d934feee98dcb5fa3d8e0162cd6d1d4ab174ee591db0230b95e",
+  "version": 2,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.listening.youtube.f1093b2c3cd04d934feee98dcb5fa3d8e0162cd6d1d4ab174ee591db0230b95e",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level B1 - Y\u00CAU SAI C\u00C1CH -",
+        "Level": "B1",
+        "Topic": "Y\u00CAU SAI C\u00C1CH",
+        "YoutubeId": "_JOf7RBDCx8",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/_JOf7RBDCx8/hqdefault.jpg",
+        "Duration": "24:39",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": false,
+        "TranscriptSource": null
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.listening.youtube.f1093b2c3cd04d934feee98dcb5fa3d8e0162cd6d1d4ab174ee591db0230b95e"
+}

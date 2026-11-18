@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.paper-boat",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.paper-boat",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Chi\u1EBFc thuy\u1EC1n gi\u1EA5y trong l\u1EDBp",
+        "Level": "beginner",
+        "ContentType": "stories",
+        "Topic": "S\u00E1ng t\u1EA1o",
+        "SourceType": "original-20261114",
+        "PreviewText": "C\u00E2u chuy\u1EC7n v\u1EC1 c\u00E1ch bi\u1EBFn m\u1ED9t t\u1EDD gi\u1EA5y c\u0169 th\u00E0nh m\u00F3n qu\u00E0.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-boat.110516845b794687b82353719d25f8e5",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "H\u1ECD \u0111\u1EB7t chi\u1EBFc thuy\u1EC1n tr\u00EAn b\u00E0n v\u00E0 t\u01B0\u1EDFng t\u01B0\u1EE3ng m\u1ED9t chuy\u1EBFn \u0111i xa.",
+        "EnglishMeaning": "They put the boat on the desk and imagined a long journey.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-boat"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-boat.7ee1abd0552248e3a5eda2683003dcad",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "\u0110\u00FAng l\u00FAc \u0111\u00F3, em h\u1ECD c\u1EADu \u0111\u1EBFn th\u0103m c\u00F9ng c\u00F4 gi\u00E1o.",
+        "EnglishMeaning": "Just then, his little cousin came to visit with the teacher.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-boat"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-boat.ac80dcdd16c54838b36e10e8645f0c24",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "B\u00ECnh ng\u1ED3i xu\u1ED1ng v\u00E0 g\u1EA5p t\u1EDD gi\u1EA5y th\u00E0nh m\u1ED9t chi\u1EBFc thuy\u1EC1n.",
+        "EnglishMeaning": "Binh sat down and folded the paper into a boat.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-boat"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-boat.ae8334e9e4214e1283eff6fdcaa792bd",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "C\u1EADu \u0111\u1ECBnh b\u1ECF n\u00F3 v\u00E0o h\u1ED9p gi\u1EA5y c\u0169 \u1EDF cu\u1ED1i l\u1EDBp.",
+        "EnglishMeaning": "He was going to put it in the used paper box at the back.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-boat"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-boat.b32f20a6fabd4f3ba9c6fae57162a6a0",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Em h\u1ECD v\u1EBD th\u00EAm m\u1ED9t c\u00E1nh bu\u1ED3m m\u00E0u xanh b\u1EB1ng b\u00FAt ch\u00EC.",
+        "EnglishMeaning": "His cousin drew a blue sail on it with a pencil.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-boat"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-boat.b61519fa0d034c96a7174befae4874fd",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "T\u1EDD gi\u1EA5y c\u0169 \u0111\u00E3 tr\u1EDF th\u00E0nh kh\u1EDFi \u0111\u1EA7u c\u1EE7a m\u1ED9t tr\u00F2 ch\u01A1i m\u1EDBi.",
+        "EnglishMeaning": "The old paper had become the start of a new game.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-boat"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-boat.cd5fbb6ca6de4af884ab6f8f3a36ad6d",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Binh sat down and made a paper boat by folding the sheet.",
+        "NormalizedHash": "c377d46191e247d569b7a3d6e80404c8a7c019bc211ceb349f0fccc39a44cf3b"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.paper-boat.ac80dcdd16c54838b36e10e8645f0c24",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-boat.f1cd3ecae6ab4d7ba8c463c6a18b5e39",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Em bu\u1ED3n v\u00EC chi\u1EBFc thuy\u1EC1n \u0111\u1ED3 ch\u01A1i c\u1EE7a m\u00ECnh \u0111\u00E3 b\u1ECB g\u00E3y.",
+        "EnglishMeaning": "She was sad because her toy boat was broken.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-boat"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-boat.fd8f42d577e544e5b8c709028de84022",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Trong gi\u1EDD ngh\u1EC9, B\u00ECnh t\u00ECm th\u1EA5y m\u1ED9t t\u1EDD gi\u1EA5y ch\u1EC9 vi\u1EBFt m\u1ED9t m\u1EB7t.",
+        "EnglishMeaning": "During the break, Binh found a sheet of paper with writing on one side.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-boat"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.paper-boat"
+}

@@ -1,87 +1,131 @@
 /**
- * time-tracker.js — TCT English
- * Đo thời gian user ở tại 1 trang học và gửi lên server khi rời trang.
- *
- * Cách dùng: thêm vào view cần track:
- *   <script src="~/js/time-tracker.js" data-feature="Speaking" defer></script>
- *
- * Hoặc gọi thủ công:
- *   TimeTracker.start("Flashcard");
+ * Activity tracker. Heartbeats go to the authenticated checkpoint API.
+ * The antiforgery token stays in a header or form body, never the query string.
  */
 (function () {
     'use strict';
 
-    // Lấy feature từ attribute của script tag
-    const scriptEl = document.currentScript
-        || document.querySelector('script[data-feature]');
-    const featureName = scriptEl?.getAttribute('data-feature') ?? null;
+    var scriptEl = document.currentScript || document.querySelector('script[data-feature]');
+    var featureName = scriptEl ? scriptEl.getAttribute('data-feature') : null;
+    var modeName = scriptEl ? scriptEl.getAttribute('data-mode') : null;
+    var session = null;
+    var pendingStart = false;
+    var generation = 0;
+    var lastInteraction = Date.now();
+    var timer = null;
 
-    if (!featureName) return;
-
-    let startTime = Date.now();
-    let sent = false;
-
-    // Lấy anti-forgery token từ form ẩn trên trang (Razor @Html.AntiForgeryToken)
-    function getAntiforgeryToken() {
-        return document.querySelector('input[name="__RequestVerificationToken"]')?.value ?? '';
+    function token() {
+        var input = document.querySelector('input[name="__RequestVerificationToken"]');
+        return input ? input.value : '';
     }
 
-    function sendTime() {
-        if (sent) return;
-        const durationSeconds = Math.round((Date.now() - startTime) / 1000);
-        if (durationSeconds < 10) return;   // quá ngắn → bỏ qua
+    function post(url, body) {
+        return fetch(url, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': token()
+            },
+            body: JSON.stringify(body),
+            keepalive: true
+        });
+    }
 
-        sent = true;
-        const token = getAntiforgeryToken();
-
-        // navigator.sendBeacon đảm bảo gửi ngay cả khi đóng tab
-        const payload = JSON.stringify({ feature: featureName, durationSeconds });
-        const blob = new Blob([payload], { type: 'application/json' });
-
-        // sendBeacon không cho phép set header → dùng fetch thay thế khi trang còn active
-        // Khi visibility=hidden → dùng sendBeacon (không có header nhưng controller dùng [AutoValidateAntiforgeryToken])
-        // Giải pháp: gắn token vào query string để server tự validate
-        const url = `/api/LearningApi/track-time?__RequestVerificationToken=${encodeURIComponent(token)}`;
-
-        if (navigator.sendBeacon) {
-            navigator.sendBeacon(url, blob);
-        } else {
-            // Fallback: keepalive fetch
-            fetch('/api/LearningApi/track-time', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'RequestVerificationToken': token
-                },
-                body: payload,
-                keepalive: true
-            }).catch(() => {});
+    function noteInteraction() {
+        if (session && Date.now() - lastInteraction >= 90000) stop();
+        lastInteraction = Date.now();
+        if (document.visibilityState === 'visible' && !session && !pendingStart) {
+            start();
         }
     }
 
-    // Gửi khi user ẩn tab / chuyển tab / đóng trình duyệt
-    document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'hidden') {
-            sendTime();
-        } else {
-            // User quay lại trang → reset timer
-            if (sent) {
-                startTime = Date.now();
-                sent = false;
+    function sample() {
+        if (!session) return;
+        var now = Date.now();
+        var until = Math.min(now, lastInteraction + 90000);
+        session.activeMilliseconds += Math.max(0, until - session.lastSample);
+        session.lastSample = now;
+    }
+
+    function flush(endSession) {
+        if (!session) return;
+        var current = session;
+        current.sequence += 1;
+        current.lastFlush = Date.now();
+        post('/api/LearningApi/activity-checkpoint', {
+            sessionId: current.id,
+            sequence: current.sequence,
+            cumulativeActiveSeconds: Math.floor(current.activeMilliseconds / 1000),
+            leaseToken: current.leaseToken,
+            visible: true,
+            endSession: Boolean(endSession)
+        }).then(function (response) {
+            if (!response.ok && session === current) {
+                generation += 1;
+                if (timer) window.clearInterval(timer);
+                timer = null;
+                session = null;
             }
+        }).catch(function () { /* A later cumulative checkpoint can cover a lost response. */ });
+    }
+
+    function tick() {
+        if (!session) return;
+        sample();
+        if (document.visibilityState !== 'visible' || Date.now() - lastInteraction >= 90000) {
+            stop();
+        } else if (Date.now() - session.lastFlush >= 30000) {
+            flush(false);
         }
+    }
+
+    function start() {
+        if (session || pendingStart || !featureName || !token() || document.visibilityState !== 'visible') return;
+        pendingStart = true;
+        var expectedGeneration = ++generation;
+        post('/api/LearningApi/activity-session', { feature: featureName, mode: modeName })
+            .then(function (response) { return response.ok ? response.json() : null; })
+            .then(function (payload) {
+                if (expectedGeneration !== generation) return;
+                pendingStart = false;
+                if (!payload || document.visibilityState !== 'visible') return;
+                session = {
+                    id: payload.sessionId, leaseToken: payload.leaseToken, sequence: 0,
+                    activeMilliseconds: 0, lastSample: Date.now(), lastFlush: Date.now()
+                };
+                timer = window.setInterval(tick, 1000);
+            })
+            .catch(function () { if (expectedGeneration === generation) pendingStart = false; });
+    }
+
+    function stop() {
+        generation += 1;
+        pendingStart = false;
+        if (timer) window.clearInterval(timer);
+        timer = null;
+        if (session) { sample(); flush(true); }
+        session = null;
+    }
+
+    ['pointerdown', 'keydown', 'touchstart'].forEach(function (name) {
+        document.addEventListener(name, noteInteraction, { passive: true });
     });
+    document.addEventListener('play', function (event) {
+        if (event.isTrusted) noteInteraction();
+    }, true);
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'hidden') stop();
+    });
+    window.addEventListener('pagehide', stop);
+    window.addEventListener('pageshow', function (event) { if (event.persisted) stop(); });
 
-    // Fallback: beforeunload (không đáng tin bằng visibilitychange nhưng hỗ trợ rộng hơn)
-    window.addEventListener('pagehide', sendTime);
-
-    // Expose API để gọi thủ công nếu cần
     window.TimeTracker = {
         start: function (feature) {
             featureName = feature;
-            startTime = Date.now();
-            sent = false;
+            stop();
+            noteInteraction();
         },
-        stop: sendTime
+        stop: stop
     };
 })();

@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.return-umbrella",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.return-umbrella",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Tr\u1EA3 l\u1EA1i chi\u1EBFc \u00F4",
+        "Level": "beginner",
+        "ContentType": "emails",
+        "Topic": "\u0110\u1ED3 d\u00F9ng",
+        "SourceType": "original-20261114",
+        "PreviewText": "Email c\u1EA3m \u01A1n b\u1EA1n v\u00E0 h\u1EB9n tr\u1EA3 l\u1EA1i chi\u1EBFc \u00F4 \u0111\u00E3 m\u01B0\u1EE3n.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.return-umbrella.1d84306a62764f2b8e67d123913dd412",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "M\u00ECnh \u0111\u00E3 \u0111\u1EC3 \u00F4 m\u1EDF cho kh\u00F4 \u1EDF nh\u00E0 t\u1ED1i qua.",
+        "EnglishMeaning": "I left the umbrella open to dry at home last night.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.return-umbrella"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.return-umbrella.231971bd1fa84cf89b82e1079ea8bf17",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "M\u00ECnh s\u1EBD \u0111\u1EE3i b\u1EA1n \u1EDF c\u1ED5ng ch\u00EDnh l\u00FAc b\u1ED1n gi\u1EDD.",
+        "EnglishMeaning": "I will wait for you at the main gate at four.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.return-umbrella"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.return-umbrella.26650c52230442c583c62eff14716fc3",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "N\u1EBFu b\u1EA1n b\u1EADn, m\u00ECnh c\u00F3 th\u1EC3 mang \u00F4 \u0111\u1EBFn nh\u00E0 b\u1EA1n.",
+        "EnglishMeaning": "If you are busy, I can bring it to your house.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.return-umbrella"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.return-umbrella.2c1cccde5b244699982773ddeda1a0b3",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Nh\u1EDD chi\u1EBFc \u00F4 c\u1EE7a b\u1EA1n, s\u00E1ch c\u1EE7a m\u00ECnh v\u1EABn kh\u00F4 r\u00E1o.",
+        "EnglishMeaning": "Your umbrella kept my books dry.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.return-umbrella"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.return-umbrella.543d388577ef41828a9e98e7afee09d4",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "I will wait at the main gate for you at four.",
+        "NormalizedHash": "e56673c7a9237a9596f671f6d3f67cecf237fe4662fb3736742956c8643b5fa8"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.return-umbrella.231971bd1fa84cf89b82e1079ea8bf17",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.return-umbrella.6752fa72c3984d97be145094a1e1a342",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Tr\u1EDDi m\u01B0a r\u1EA5t to khi m\u00ECnh r\u1EDDi l\u1EDBp h\u1ECDc ti\u1EBFng Anh.",
+        "EnglishMeaning": "It rained heavily when I left my English class.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.return-umbrella"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.return-umbrella.d86d1b4685fc48c4b50faace722e8dd7",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Ch\u00E0o Mai, c\u1EA3m \u01A1n b\u1EA1n \u0111\u00E3 cho m\u00ECnh m\u01B0\u1EE3n \u00F4 h\u00F4m qua.",
+        "EnglishMeaning": "Hi Mai, thank you for lending me your umbrella yesterday.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.return-umbrella"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.return-umbrella.ee10eacb82bf40ae9f615bb61f5475bc",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Mong s\u1EDBm g\u1EB7p l\u1EA1i b\u1EA1n, v\u00E0 m\u1ED9t l\u1EA7n n\u1EEFa c\u1EA3m \u01A1n b\u1EA1n nh\u00E9.",
+        "EnglishMeaning": "See you soon, and thanks again for your help.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.return-umbrella"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.return-umbrella.f48760b47fa74afda09ad68b5ba7ecf1",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "M\u00ECnh c\u00F3 th\u1EC3 tr\u1EA3 \u00F4 cho b\u1EA1n sau gi\u1EDD h\u1ECDc ng\u00E0y mai kh\u00F4ng?",
+        "EnglishMeaning": "Can I return it to you after school tomorrow?",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.return-umbrella"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.return-umbrella"
+}

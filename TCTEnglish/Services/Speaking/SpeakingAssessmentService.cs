@@ -13,6 +13,8 @@ public sealed class SpeakingAssessmentOutcome
     public Guid? AssessmentId { get; init; }
     public string Status { get; init; } = string.Empty;
     public double TextMatchScore { get; init; }
+    public double? FluencyScore { get; init; }
+    public double? CompletenessScore { get; init; }
     public bool SpeechDetected { get; init; }
     public string TranscriptPreview { get; init; } = string.Empty;
     public SpeakingTextAlignmentResult? Comparison { get; init; }
@@ -20,6 +22,25 @@ public sealed class SpeakingAssessmentOutcome
     public bool CompletenessAvailable { get; init; }
     public bool CanCommitProgress { get; init; }
     public int? RetryAfterSeconds { get; init; }
+
+    public static SpeakingAssessmentOutcome FromTranscriptionFailure(SpeechTranscriptionResult transcription)
+    {
+        var code = string.IsNullOrWhiteSpace(transcription.ErrorCode) ? "engine_unavailable" : transcription.ErrorCode;
+        var busy = code == "engine_busy";
+        return new SpeakingAssessmentOutcome
+        {
+            Success = false,
+            StatusCode = busy
+                ? 429
+                : transcription.Status == SpeechTranscriptionStatus.Timeout ? 504 : 503,
+            ErrorCode = code,
+            Message = string.IsNullOrWhiteSpace(transcription.Message) ? "ASR chưa sẵn sàng." : transcription.Message,
+            RetryAfterSeconds = busy ? transcription.RetryAfterSeconds ?? 5 : null,
+            FluencyAvailable = false,
+            CompletenessAvailable = false,
+            CanCommitProgress = false
+        };
+    }
 }
 
 public interface ISpeakingAssessmentService
@@ -113,19 +134,7 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
             or SpeechTranscriptionStatus.Unavailable
             or SpeechTranscriptionStatus.Timeout)
         {
-            return new SpeakingAssessmentOutcome
-            {
-                Success = false,
-                StatusCode = transcription.ErrorCode == "engine_busy"
-                    ? 429
-                    : transcription.Status == SpeechTranscriptionStatus.Timeout ? 504 : 503,
-                ErrorCode = transcription.ErrorCode ?? "engine_unavailable",
-                Message = transcription.Message ?? "ASR chưa sẵn sàng.",
-                RetryAfterSeconds = transcription.ErrorCode == "engine_busy" ? 5 : null,
-                FluencyAvailable = false,
-                CompletenessAvailable = false,
-                CanCommitProgress = false
-            };
+            return SpeakingAssessmentOutcome.FromTranscriptionFailure(transcription);
         }
 
         if (transcription.Status == SpeechTranscriptionStatus.InvalidAudio)
@@ -156,6 +165,7 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
             };
         }
 
+        var comparison = SpeakingTextAlignment.Compare(access.ReferenceText, transcription.Transcript);
         var assessment = new SpeakingAssessment
         {
             PublicId = Guid.NewGuid(),
@@ -171,6 +181,9 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
                 : transcription.ModelIdentity,
             TranscriptText = speechDetected ? transcription.Transcript : string.Empty,
             TextMatchScore = Math.Round(textMatch, 2),
+            FluencyScore = SpeakingComponentScorer.EstimateFluency(bytes, transcription.Transcript),
+            CompletenessScore = SpeakingComponentScorer.Completeness(comparison),
+            MetricVersion = SpeakingComponentScorer.Version,
             SpeechDetected = speechDetected,
             Status = speechDetected ? "Completed" : "NoSpeech",
             Consumed = false
@@ -187,9 +200,6 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
             assessment.Status,
             assessment.TextMatchScore);
 
-        // Align on the full transcript before preview truncation; never a second ASR call.
-        var comparison = SpeakingTextAlignment.Compare(access.ReferenceText, assessment.TranscriptText);
-
         return new SpeakingAssessmentOutcome
         {
             Success = true,
@@ -199,8 +209,10 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
             SpeechDetected = assessment.SpeechDetected,
             TranscriptPreview = Truncate(assessment.TranscriptText, 120),
             Comparison = comparison,
-            FluencyAvailable = false,
-            CompletenessAvailable = false,
+            FluencyScore = assessment.FluencyScore,
+            CompletenessScore = assessment.CompletenessScore,
+            FluencyAvailable = assessment.FluencyScore.HasValue,
+            CompletenessAvailable = assessment.CompletenessScore.HasValue,
             CanCommitProgress = assessment.SpeechDetected,
             Message = assessment.SpeechDetected
                 ? null

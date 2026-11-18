@@ -1,999 +1,987 @@
-/**
- * listening-practice.js
- * Listening Practice Page — Client-side logic
- *
- * Features:
- *  - YouTube IFrame API (load, play, pause, seekTo, getCurrentTime)
- *  - HTML5 <audio> integration
- *  - Playback speed control (0.5x, 0.75x, 1x, 1.25x, 1.5x)
- *  - A-B Loop (3-state toggle)
- *  - Listen counter (tracks completed plays)
- *  - Auto-scroll to active transcript line
- *  - Per-line replay button
- *  - Tab switching (Transcript / Quiz / Vocab)
- *  - 4 Practice Modes: Normal, Dictation, Fill-in-Blanks, Shadowing
- *  - Quiz: collect answers → POST /Home/Listening/EvaluateQuiz
- *  - Progress auto-save: POST /Home/Listening/SaveProgress/{lessonId}
- *  - Anti-CSRF: token read from hidden input
+/*
+ * /Home/Listening/Practice/{id}: player, steps, tabs, shortcuts and (in the sections below) the transcript, dictation,
+ * fill-in, vocabulary and quiz behaviour. Needs window.TctSets (personal-sets-common.js) and
+ * window.TctListening.core (listening-core.js). Lesson data comes from <script type="application/json" id="tlConfig">.
+ * DOM is built with createElement and textContent only; server data is never turned into markup.
  */
 (function () {
     'use strict';
 
-    // ══════════════════════════════════════════════════════════════
-    // 1. DATA — injected by Razor into window constants
-    // ══════════════════════════════════════════════════════════════
-    console.log('[LP] Booting script. window.LP_TRANSCRIPT:', window.LP_TRANSCRIPT);
-    
-    const lessonId        = window.LP_LESSON_ID;
-    const youtubeId       = window.LP_YOUTUBE_ID;
-    
-    // Evaluate lazily or once at start
-    let transcriptData  = (window.LP_TRANSCRIPT || []).slice().sort((a, b) => a.orderIndex - b.orderIndex);
-    const quizData        = window.LP_QUIZ || [];
-    const isAuthenticated = window.LP_AUTH === true;
-    const isPremiumUser   = window.LP_IS_PREMIUM === true;
+    var core = window.TctListening && window.TctListening.core;
+    var Sets = window.TctSets;
+    var page = document.querySelector('.tl-page--practice');
+    if (!core || !Sets || !page) { return; }
 
-    console.log('[LP] transcriptData initialized. Length:', transcriptData.length);
+    var config = {};
+    try { config = JSON.parse(document.getElementById('tlConfig').textContent) || {}; } catch (e) { config = {}; }
+    var progress = config.progress || {};
+    var lines = config.lines || [];
+    var urls = config.urls || {};
 
-    // ══════════════════════════════════════════════════════════════
-    // 2. ANTI-CSRF TOKEN
-    // ══════════════════════════════════════════════════════════════
-    function getCsrfToken() {
-        const el = document.querySelector('input[name="__RequestVerificationToken"]');
-        return el ? el.value : '';
+    // ------------------------------------------------------------------ small helpers
+
+    function byId(id) { return document.getElementById(id); }
+    function setHidden(el, hidden) { if (el) { el.hidden = !!hidden; } }
+
+    function setButtonContent(button, iconClass, text) {
+        button.textContent = '';
+        button.appendChild(Sets.icon(iconClass));
+        button.appendChild(document.createTextNode(' '));
+        button.appendChild(Sets.el('span', null, text));
     }
 
-    // ══════════════════════════════════════════════════════════════
-    // 3. PLAYER — YouTube IFrame API or HTML5 Audio
-    // ══════════════════════════════════════════════════════════════
-    let ytPlayer          = null;
-    let ytReady            = false;
-    let audioEl           = document.getElementById('lp-audio');
-    let transcriptPolling = null;
-
-    // ── YouTube IFrame API ────────────────────────────────────────
-    if (youtubeId) {
-        window.onYouTubeIframeAPIReady = function () {
-            new YT.Player('youtube-player', {
-                events: {
-                    onReady: function (event) {
-                        ytPlayer = event.target;        // true player instance with seekTo/playVideo
-                        window.ytPlayer = event.target; // expose globally
-                        ytReady = true;
-                        startTranscriptHighlight();
-                    },
-                    onStateChange: function (e) {
-                        if (e.data === YT.PlayerState.PLAYING) {
-                            startTranscriptHighlight();
-                        } else if (e.data === YT.PlayerState.PAUSED) {
-                            stopTranscriptHighlight();
-                        } else if (e.data === YT.PlayerState.ENDED) {
-                            stopTranscriptHighlight();
-                        }
-                    }
-                }
-            });
-        };
-
-        const tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        document.head.appendChild(tag);
+    function announce(id, text) {
+        var el = byId(id);
+        if (el) { el.textContent = ''; window.setTimeout(function () { el.textContent = text; }, 30); }
     }
 
-    // ── HTML5 Audio ───────────────────────────────────────────────
-    if (audioEl) {
-        audioEl.addEventListener('play',  startTranscriptHighlight);
-        audioEl.addEventListener('pause', stopTranscriptHighlight);
-        audioEl.addEventListener('ended', function () {
-            stopTranscriptHighlight();
-        });
-    }
+    // ------------------------------------------------------------------ progress and steps
 
-    // ── Seek helpers ──────────────────────────────────────────────
-    function seekTo(seconds) {
-        console.log('[LP] seekTo called:', seconds, 'ytReady:', ytReady, 'ytPlayer:', ytPlayer, 'audioEl:', audioEl);
-        const yt = ytReady ? (ytPlayer || window.ytPlayer) : null;
-        if (yt && typeof yt.seekTo === 'function') {
-            console.log('[LP] Using YouTube player to seek');
-            yt.seekTo(seconds, true);
-            yt.playVideo();
-        } else if (audioEl) {
-            console.log('[LP] Using HTML5 audio to seek');
-            audioEl.currentTime = seconds;
-            audioEl.play().catch(() => {});
-        } else {
-            console.warn('[LP] seekTo: no player available!');
-        }
-    }
-    window.seekTo = seekTo; // Expose for dynamically generated HTML
+    var flags = {
+        transcript: !!progress.transcriptCompleted,
+        quiz: !!progress.quizCompleted,
+        vocab: !!progress.vocabReviewed
+    };
+    var required = core.requiredSteps(config.steps);
+    var saveWarned = false;
 
-    function getCurrentTime() {
-        if (ytPlayer && typeof ytPlayer.getCurrentTime === 'function') {
-            return ytPlayer.getCurrentTime();
-        }
-        if (audioEl) return audioEl.currentTime;
-        return 0;
-    }
-
-    function pausePlayer() {
-        if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
-            ytPlayer.pauseVideo();
-        } else if (audioEl) {
-            audioEl.pause();
-        }
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 4. TAB SWITCHING
-    // ══════════════════════════════════════════════════════════════
-    const tabBtns   = document.querySelectorAll('.lp-tab-btn');
-    const tabPanels = document.querySelectorAll('.lp-tab-panel');
-
-    function setActiveTab(target) {
-        tabBtns.forEach(b => {
-            const isActive = b.dataset.tab === target;
-            b.classList.toggle('lp-tab-active', isActive);
-            b.setAttribute('aria-selected', isActive ? 'true' : 'false');
-        });
-
-        tabPanels.forEach(p => {
-            const isActive = p.id === ('panel-' + target);
-            p.classList.toggle('lp-panel-active', isActive);
-            if (isActive) {
-                p.removeAttribute('hidden');
-            } else {
-                p.setAttribute('hidden', 'hidden');
+    /** POST the progress patch (guests skip). One retry; one toast per page visit when it still fails. */
+    function saveProgress(patch) {
+        if (!config.isAuthenticated) { return Promise.resolve(false); }
+        function attempt() { return Sets.fetchJson(urls.save, { method: 'POST', body: patch }); }
+        return attempt().catch(function () { return attempt(); }).then(function () { return true; }, function () {
+            if (!saveWarned) {
+                saveWarned = true;
+                Sets.toast('Không lưu được tiến độ. Kết quả trên trang vẫn được giữ.', { type: 'danger' });
             }
+            return false;
         });
     }
 
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
-            setActiveTab(this.dataset.tab);
-        });
-    });
-
-    const initialActiveBtn = document.querySelector('.lp-tab-btn.lp-tab-active');
-    setActiveTab(initialActiveBtn ? initialActiveBtn.dataset.tab : 'transcript');
-
-    // ══════════════════════════════════════════════════════════════
-    // 5. MODE SELECTOR
-    // ══════════════════════════════════════════════════════════════
-    const modeCards  = document.querySelectorAll('.lp-mode-card');
-    const modePanels = document.querySelectorAll('.lp-mode-panel');
-
-    modeCards.forEach(card => {
-        card.addEventListener('click', function () {
-            const mode = this.dataset.mode;
-
-            modeCards.forEach(c => c.classList.remove('active'));
-            modePanels.forEach(p => p.classList.remove('lp-mode-active'));
-
-            this.classList.add('active');
-            const panel = document.getElementById('mode-' + mode);
-            if (panel) panel.classList.add('lp-mode-active');
-
-            // Initialize on first enter
-            if (mode === 'dictation' && !dictationInited) {
-                initDictation();
-            } else if (mode === 'fillin' && !fillinInited) {
-                initFillIn();
-            }
-        });
-    });
-
-    // ══════════════════════════════════════════════════════════════
-    // 6. TRANSCRIPT (MODE 1)
-    // ══════════════════════════════════════════════════════════════
-    const transcriptLines = document.querySelectorAll('.lp-transcript-line');
-    console.log('[LP] Found transcript lines in DOM:', transcriptLines.length);
-    if (transcriptLines.length > 0) {
-        const firstLine = transcriptLines[0];
-        console.log('[LP] First line data-start:', firstLine.dataset.start, 'parsed:', parseFloat(firstLine.dataset.start));
+    function markTab(key) {
+        var tab = document.querySelector('[data-tl-tab="' + key + '"]');
+        if (!tab || tab.querySelector('.tl-tab__done')) { return; }
+        tab.appendChild(Sets.icon('fa-solid fa-circle-check tl-tab__done'));
+        tab.appendChild(Sets.el('span', 'visually-hidden', 'đã xong'));
     }
 
-    // ── Click to seek ─────────────────────────────────────────────
-    transcriptLines.forEach(line => {
-        const start = parseFloat(line.dataset.start);
-        if (!isNaN(start)) {
-            line.addEventListener('click', function (e) {
-                if (e.target.closest('.lp-line-vi-btn')) return;
-                if (e.target.closest('.lp-line-replay-btn')) return;
-                seekTo(start);
-            });
+    function setStep(key, done) {
+        flags[key] = !!done;
+        var step = document.querySelector('.tl-step[data-step="' + key + '"]');
+        if (step) {
+            step.setAttribute('data-done', done ? 'true' : 'false');
+            var icon = step.querySelector('.tl-step__icon');
+            if (icon) { icon.className = (done ? 'fa-solid fa-circle-check' : 'fa-regular fa-circle') + ' tl-step__icon'; }
+            var state = step.querySelector('.tl-step__state');
+            if (state) { state.textContent = done ? 'đã xong' : 'chưa xong'; }
         }
+        if (done) { markTab(key); }
+        setHidden(byId('tlDone'), !core.isComplete(flags, required));
+    }
 
-        // Vietnamese toggle
-        const viBtn = line.querySelector('.lp-line-vi-btn');
-        if (viBtn) {
-            viBtn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                const viEl = line.querySelector('.lp-line-vi');
-                if (!viEl) return;
-                const visible = viEl.classList.toggle('lp-vi-visible');
-                viBtn.textContent = visible ? 'Ẩn dịch' : 'Xem dịch';
-            });
+    // ------------------------------------------------------------------ tabs
+
+    var HASH = { transcript: 'loi-thoai', vocab: 'tu-vung', quiz: 'quiz' };
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-tl-tab]'));
+    var tablist = document.querySelector('.tl-tabs');
+
+    function tabKey(tab) { return tab.getAttribute('data-tl-tab'); }
+
+    function selectTab(key, options) {
+        options = options || {};
+        var found = false;
+        tabs.forEach(function (tab) {
+            var on = tabKey(tab) === key;
+            found = found || on;
+            tab.setAttribute('aria-selected', on ? 'true' : 'false');
+            tab.tabIndex = on ? 0 : -1;
+            setHidden(byId('tlPanel-' + tabKey(tab)), !on);
+            if (on && options.focus) { tab.focus(); }
+        });
+        if (found && options.hash !== false) {
+            try { window.history.replaceState(null, '', window.location.pathname + window.location.search + '#' + HASH[key]); } catch (e) { /* ignore */ }
         }
+    }
 
-        // Per-line replay button
-        const replayBtn = line.querySelector('.lp-line-replay-btn');
-        if (replayBtn) {
-            replayBtn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                const s = parseFloat(line.dataset.start);
-                if (!isNaN(s)) seekTo(s);
-            });
-        }
-    });
+    function keyFromHash() {
+        var hash = window.location.hash.replace(/^#/, '');
+        var key = Object.keys(HASH).filter(function (k) { return HASH[k] === hash; })[0];
+        return key && document.querySelector('[data-tl-tab="' + key + '"]') ? key : null;
+    }
 
-    // ── Highlight current line during playback ────────────────────
-    function highlightCurrentLine() {
-        const t = getCurrentTime();
-        transcriptLines.forEach(line => {
-            const start = parseFloat(line.dataset.start);
-            const end   = parseFloat(line.dataset.end);
-            if (!isNaN(start) && !isNaN(end) && t >= start && t <= end) {
-                line.classList.add('lp-line-active');
-            } else {
-                line.classList.remove('lp-line-active');
-            }
+    if (tablist) {
+        tablist.addEventListener('click', function (event) {
+            var tab = event.target.closest('[data-tl-tab]');
+            if (tab) { selectTab(tabKey(tab)); }
+        });
+        tablist.addEventListener('keydown', function (event) {
+            var current = tabs.indexOf(document.activeElement);
+            if (current < 0) { return; }
+            var next = -1;
+            if (event.key === 'ArrowRight') { next = (current + 1) % tabs.length; }
+            else if (event.key === 'ArrowLeft') { next = (current - 1 + tabs.length) % tabs.length; }
+            else if (event.key === 'Home') { next = 0; }
+            else if (event.key === 'End') { next = tabs.length - 1; }
+            if (next >= 0) { event.preventDefault(); selectTab(tabKey(tabs[next]), { focus: true }); }
         });
     }
 
-    function startTranscriptHighlight() {
-        if (transcriptPolling) return;
-        transcriptPolling = setInterval(highlightCurrentLine, 300);
-    }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-tl-goto]'), function (button) {
+        button.addEventListener('click', function () { selectTab(button.getAttribute('data-tl-goto'), { focus: true }); });
+    });
+    window.addEventListener('hashchange', function () { var key = keyFromHash(); if (key) { selectTab(key, { hash: false }); } });
+    selectTab(keyFromHash() || 'transcript', { hash: false });
 
-    function stopTranscriptHighlight() {
-        clearInterval(transcriptPolling);
-        transcriptPolling = null;
-        transcriptLines.forEach(l => l.classList.remove('lp-line-active'));
-    }
+    // ------------------------------------------------------------------ player adapter (YouTube IFrame API or <audio>)
 
-    // ── Toggle all Vietnamese ─────────────────────────────────────
-    const toggleAllViBtn = document.getElementById('btn-toggle-all-vi');
-    let allViVisible = false;
+    function createPlayer() {
+        var listeners = [];
+        var api = { kind: 'none', ready: false };
+        function emit(state) { listeners.forEach(function (fn) { fn(state); }); }
+        api.onState = function (fn) { listeners.push(fn); };
 
-    if (toggleAllViBtn) {
-        toggleAllViBtn.addEventListener('click', async function () {
-            // Check if translations exist
-            const anyVi = Array.from(document.querySelectorAll('.lp-line-vi')).some(el => el.textContent.trim().length > 0);
-            
-            if (!anyVi) {
-                if (!isPremiumUser) {
-                    showToast('warning', 'Vui lòng nâng cấp Premium để sử dụng tính năng dịch bằng AI.');
-                    return;
-                }
+        var audio = byId('tlAudio');
+        var iframe = byId('tlYoutube');
 
-                toggleAllViBtn.disabled = true;
-                toggleAllViBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang dịch bằng AI...';
+        if (audio) {
+            api.kind = 'audio';
+            api.ready = true;
+            api.play = function () { var p = audio.play(); if (p && p.catch) { p.catch(function () { /* autoplay refused */ }); } };
+            api.pause = function () { audio.pause(); };
+            api.toggle = function () { if (audio.paused) { api.play(); } else { api.pause(); } };
+            api.seek = function (seconds) { audio.currentTime = Math.max(0, seconds); };
+            api.time = function () { return audio.currentTime || 0; };
+            api.rate = function (value) { if (value === undefined) { return audio.playbackRate; } audio.playbackRate = value; return value; };
+            audio.addEventListener('play', function () { emit('playing'); });
+            audio.addEventListener('pause', function () { emit('paused'); });
+            audio.addEventListener('ended', function () { emit('ended'); });
+        } else if (iframe && config.youtubeId) {
+            api.kind = 'youtube';
+            var yt = null;
+            var notice = byId('tlPlayerNotice');
+            var failTimer = window.setTimeout(function () { setHidden(notice, false); }, 8000);
+            var fail = function () { window.clearTimeout(failTimer); setHidden(notice, false); };
 
+            var start = function () {
                 try {
-                    const resp = await fetch(`/Home/Listening/Translate/${lessonId}`, {
-                        method: 'POST',
-                        headers: { 'RequestVerificationToken': getCsrfToken() }
+                    yt = new window.YT.Player('tlYoutube', {
+                        events: {
+                            onReady: function () {
+                                window.clearTimeout(failTimer);
+                                setHidden(notice, true);
+                                api.ready = true;
+                                emit('ready');
+                            },
+                            onStateChange: function (event) {
+                                var s = event.data;
+                                if (s === 1) { emit('playing'); } else if (s === 2) { emit('paused'); } else if (s === 0) { emit('ended'); }
+                            }
+                        }
                     });
+                } catch (e) { fail(); }
+            };
 
-                    if (resp.ok) {
-                        showToast('success', 'Đã dịch xong! Đang tải lại...');
-                        setTimeout(() => location.reload(), 1000);
-                        return;
-                    } else {
-                        const err = await resp.json();
-                        showToast('error', err.message || 'Lỗi dịch thuật.');
-                    }
-                } catch (e) {
-                    console.error(e);
-                    showToast('error', 'Lỗi kết nối khi dịch bài.');
-                }
-
-                toggleAllViBtn.disabled = false;
-                toggleAllViBtn.innerHTML = '<i class="fas fa-language"></i> Xem tất cả bản dịch';
-                return;
+            if (window.YT && window.YT.Player) {
+                start();
+            } else {
+                window.onYouTubeIframeAPIReady = start;
+                var tag = document.createElement('script');
+                tag.src = 'https://www.youtube.com/iframe_api';
+                tag.onerror = fail;
+                document.head.appendChild(tag);
             }
 
-            // Normal toggle behavior
-            allViVisible = !allViVisible;
-            document.querySelectorAll('.lp-line-vi').forEach(vi => {
-                vi.classList.toggle('lp-vi-visible', allViVisible);
-            });
-            document.querySelectorAll('.lp-line-vi-btn').forEach(btn => {
-                btn.textContent = allViVisible ? 'Ẩn dịch' : 'Xem dịch';
-            });
-            toggleAllViBtn.innerHTML = allViVisible
-                ? '<i class="fas fa-eye-slash"></i> Ẩn tất cả'
-                : '<i class="fas fa-language"></i> Xem tất cả bản dịch';
-        });
-    }
-
-    // ── Mark transcript as read ───────────────────────────────────
-    const markReadBtn = document.getElementById('btn-mark-transcript-read');
-
-    if (markReadBtn) {
-        markReadBtn.addEventListener('click', async function () {
-            await saveProgress({ transcriptCompleted: true });
-            markReadBtn.disabled = true;
-            markReadBtn.innerHTML = '<i class="fas fa-check-circle"></i> Đã đánh dấu hoàn thành';
-            updateProgressDot('dot-transcript');
-            showToast('success', 'Đã lưu tiến độ Transcript! 🎉');
-        });
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 7. DICTATION MODE (MODE 2)
-    // ══════════════════════════════════════════════════════════════
-    let dictationInited = false;
-    let dictTotalWords  = 0;
-    let dictCorrect     = 0;
-    let dictNear        = 0;
-    let dictWrong       = 0;
-
-    function levenshtein(a, b) {
-        const m = a.length, n = b.length;
-        const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
-        for (let i = 0; i <= m; i++) dp[i][0] = i;
-        for (let j = 0; j <= n; j++) dp[0][j] = j;
-        for (let i = 1; i <= m; i++) {
-            for (let j = 1; j <= n; j++) {
-                dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
-            }
-        }
-        return dp[m][n];
-    }
-
-    function initDictation() {
-        if ((!transcriptData || transcriptData.length === 0) && window.LP_TRANSCRIPT && window.LP_TRANSCRIPT.length > 0) {
-            transcriptData = window.LP_TRANSCRIPT.slice().sort((a, b) => a.orderIndex - b.orderIndex);
-        }
-        const container = document.getElementById('dictation-lines');
-        if (!container) return;
-        if (!transcriptData || transcriptData.length === 0) {
-            container.innerHTML = '<p class="text-muted p-3">Không có nội dung transcript để luyện tập.</p>';
-            return;
-        }
-        dictationInited = true;
-        container.innerHTML = '';
-        const speakerMap = new Map();
-        let speakerIdx = 0;
-        transcriptData.forEach((line, idx) => {
-            if (!speakerMap.has(line.speaker)) speakerMap.set(line.speaker, speakerIdx++);
-            const spClass = speakerMap.get(line.speaker) === 0 ? '' : 'speaker-b';
-            const item = document.createElement('div');
-            item.className = 'lp-dictation-item';
-            item.innerHTML = `
-                <div class="lp-dict-item-header">
-                    <span class="lp-dict-num">${idx + 1}</span>
-                    <span class="lp-dict-speaker-tag ${spClass}">${escHtml(line.speaker)}</span>
-                    ${line.startTime != null ? `<button type="button" class="lp-dict-listen-btn" data-start="${line.startTime}"><i class="fas fa-play"></i> Nghe</button>` : ''}
-                </div>
-                <textarea class="lp-dict-textarea" rows="2" placeholder="Nhập những gì bạn nghe được…"></textarea>
-                <div class="lp-dict-feedback"></div>
-                <div class="lp-dict-answer">
-                    <strong>Đáp án:</strong> ${escHtml(line.text)}
-                </div>
-                <div class="lp-dict-check-wrap"><button type="button" class="lp-dict-check-btn">Kiểm tra</button></div>
-            `;
-            container.appendChild(item);
-            const ta = item.querySelector('.lp-dict-textarea');
-            const checkBtn = item.querySelector('.lp-dict-check-btn');
-            const listenBtn = item.querySelector('.lp-dict-listen-btn');
-            if (listenBtn) listenBtn.addEventListener('click', () => seekTo(line.startTime));
-            if (ta) {
-                ta.addEventListener('keydown', (e) => {
-                    if (e.key === 'Tab') { e.preventDefault(); if (line.startTime != null) seekTo(line.startTime); }
-                    else if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); checkDictationLine(item, line); }
-                });
-            }
-            if (checkBtn) checkBtn.addEventListener('click', () => checkDictationLine(item, line));
-        });
-        updateDictRing(0);
-    }
-
-    function checkDictationLine(item, line) {
-        if (item.classList.contains('lp-dict-done')) return;
-        const ta = item.querySelector('.lp-dict-textarea');
-        const feedbackEl = item.querySelector('.lp-dict-feedback');
-        const answerEl = item.querySelector('.lp-dict-answer');
-        const checkBtn = item.querySelector('.lp-dict-check-btn');
-        if (!ta || !feedbackEl) return;
-        const userWords   = ta.value.trim().toLowerCase().replace(/[^a-z0-9'\s]/g, '').split(/\s+/).filter(Boolean);
-        const targetWords = line.text.toLowerCase().replace(/[^a-z0-9'\s]/g, '').split(/\s+/).filter(Boolean);
-        let correctInLine = 0, nearInLine = 0, wrongInLine = 0, html = '';
-        const maxLen = Math.max(userWords.length, targetWords.length);
-        for (let i = 0; i < maxLen; i++) {
-            const u = userWords[i] || '', t = targetWords[i] || '';
-            if (u === t && u !== '') { html += `<span class="lp-w-correct">${escHtml(u)}</span> `; correctInLine++; }
-            else if (t !== '' && u !== '' && levenshtein(u, t) <= 2) { html += `<span class="lp-w-near" title="Đúng: ${escHtml(t)}">${escHtml(u)}</span> `; nearInLine++; }
-            else if (t !== '') { html += `<span class="lp-w-wrong" title="Đúng: ${escHtml(t)}">${escHtml(u || '—')}</span> `; wrongInLine++; }
-        }
-        feedbackEl.innerHTML = html; feedbackEl.style.display = 'block';
-        answerEl.style.display = 'block';
-        item.classList.add('lp-dict-done'); ta.disabled = true;
-        if (checkBtn) checkBtn.disabled = true;
-        dictCorrect += correctInLine; dictNear += nearInLine; dictWrong += wrongInLine; dictTotalWords += maxLen;
-        const pct = dictTotalWords > 0 ? Math.round((dictCorrect + dictNear * 0.5) / dictTotalWords * 100) : 0;
-        updateDictRing(pct);
-        const totalItems = document.querySelectorAll('.lp-dictation-item').length;
-        const doneItems  = document.querySelectorAll('.lp-dictation-item.lp-dict-done').length;
-        if (doneItems === totalItems) showDictSummary();
-    }
-
-    function updateDictRing(pct) {
-        const ringPctEl = document.getElementById('dict-ring-pct');
-        const ringProg  = document.getElementById('dict-ring-progress');
-        if (ringPctEl) ringPctEl.textContent = pct + '%';
-        if (ringProg) {
-            const offset = 150.796 - (pct / 100) * 150.796;
-            ringProg.style.strokeDashoffset = offset;
-            ringProg.style.stroke = pct >= 70 ? 'var(--lp-success)' : pct >= 40 ? 'var(--lp-warning)' : 'var(--lp-error)';
-        }
-    }
-
-    function showDictSummary() {
-        const summaryEl = document.getElementById('dict-summary');
-        if (!summaryEl) return;
-        document.getElementById('dict-stat-correct').textContent = dictCorrect;
-        document.getElementById('dict-stat-near').textContent    = dictNear;
-        document.getElementById('dict-stat-wrong').textContent   = dictWrong;
-        summaryEl.classList.add('show');
-        showToast('success', '✨ Hoàn thành Chính tả!');
-    }
-
-    const dictRetryBtn = document.getElementById('btn-dict-retry');
-    if (dictRetryBtn) {
-        dictRetryBtn.addEventListener('click', () => {
-            const summaryEl = document.getElementById('dict-summary');
-            if (summaryEl) summaryEl.classList.remove('show');
-            dictationInited = false;
-            initDictation();
-        });
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 8. FILL-IN-THE-BLANKS MODE (MODE 3)
-    // ══════════════════════════════════════════════════════════════
-    let fillinInited = false;
-    let fillinBlanks = []; // Array of {id, answer}
-
-    function pickBlankIndices(words) {
-        const skipWords = new Set(['a', 'an', 'the', 'is', 'am', 'are', 'was', 'were', 'be', 'to', 'of', 'in', 'on', 'at', 'it', 'i', 'we', 'he', 'she', 'my', 'me', 'do', 'did', 'and', 'or', 'but', 'so', 'if', 'no', 'not', 'yes']);
-        const candidates = [];
-        words.forEach((w, i) => {
-            const clean = w.replace(/[.,!?;:'"()]/g, '').toLowerCase();
-            if (clean.length >= 3 && !skipWords.has(clean)) candidates.push(i);
-        });
-        if (!candidates.length) return [];
-        const shuffled = candidates.sort(() => Math.random() - 0.5);
-        const count = Math.min(Math.max(1, Math.floor(candidates.length * 0.3)), 3);
-        return shuffled.slice(0, count).sort((a, b) => a - b);
-    }
-
-    function initFillIn() {
-        console.log('[LP] initFillIn triggered');
-        
-        // Final fallback
-        if ((!transcriptData || transcriptData.length === 0) && window.LP_TRANSCRIPT && window.LP_TRANSCRIPT.length > 0) {
-            console.log('[LP] transcriptData was empty but window.LP_TRANSCRIPT has data. Re-initializing...');
-            transcriptData = window.LP_TRANSCRIPT.slice().sort((a, b) => a.orderIndex - b.orderIndex);
-        }
-
-        const container = document.getElementById('fillin-lines');
-        const footer    = document.getElementById('fillin-footer');
-        if (!container) return;
-
-        if (!transcriptData || transcriptData.length === 0) {
-            console.warn('[LP] No transcript data for fill-in. window.LP_TRANSCRIPT:', window.LP_TRANSCRIPT);
-            container.innerHTML = '<p class="text-muted p-3">Không có nội dung transcript để luyện tập.</p>';
-            return;
-        }
-
-        fillinInited = true;
-        fillinBlanks = [];
-        container.innerHTML = '';
-
-        const speakerMap = new Map();
-        let speakerIdx = 0;
-
-        transcriptData.forEach((line, lineIdx) => {
-            if (!speakerMap.has(line.speaker)) {
-                speakerMap.set(line.speaker, speakerIdx++);
-            }
-            const spClass = speakerMap.get(line.speaker) === 0 ? '' : 'speaker-b';
-
-            const words = line.text.trim().split(/\s+/);
-            if (words.length < 3) return;
-
-            const blankIndices = pickBlankIndices(words);
-            if (blankIndices.length === 0) return;
-
-            let lineHtml = '';
-            words.forEach((w, wordIdx) => {
-                if (blankIndices.includes(wordIdx)) {
-                    const clean = w.replace(/[.,!?;:'"()]/g, '');
-                    const punct = w.substring(w.toLowerCase().indexOf(clean.toLowerCase()) + clean.length);
-                    const wid   = `fill-${lineIdx}-${wordIdx}`;
-                    
-                    fillinBlanks.push({ id: wid, answer: clean });
-
-                    lineHtml += `<input class="lp-fillin-blank" 
-                                        id="${wid}" 
-                                        data-answer="${escHtml(clean)}"
-                                        style="width:${Math.max(clean.length * 10 + 20, 50)}px"
-                                        autocomplete="off"
-                                 />${escHtml(punct)} `;
-                } else {
-                    lineHtml += escHtml(w) + ' ';
-                }
-            });
-
-            const item = document.createElement('div');
-            item.className = 'lp-dictation-item';
-            item.innerHTML = `
-                <div class="lp-dict-item-header">
-                    <span class="lp-dict-num">${lineIdx + 1}</span>
-                    <span class="lp-dict-speaker-tag ${spClass}">${escHtml(line.speaker)}</span>
-                    ${line.startTime != null ? `<button type="button" class="lp-dict-listen-btn" data-start="${line.startTime}"><i class="fas fa-play"></i> Nghe</button>` : ''}
-                </div>
-                <div class="lp-fillin-text">${lineHtml}</div>
-                <div class="lp-dict-answer">
-                    <strong>Đáp án:</strong> ${escHtml(line.text)}
-                </div>
-                <div class="lp-dict-check-wrap"><button type="button" class="lp-fillin-check-btn lp-dict-check-btn">Kiểm tra</button></div>
-            `;
-            container.appendChild(item);
-
-            // Bind click to play button
-            const playBtn = item.querySelector('.lp-dict-listen-btn');
-            if (playBtn) {
-                playBtn.addEventListener('click', function () {
-                    seekTo(parseFloat(this.dataset.start));
-                });
-            }
-
-            // Bind real-time check for each blank
-            item.querySelectorAll('.lp-fillin-blank').forEach(input => {
-                input.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        checkSingleBlank(this);
-                    }
-                });
-                input.addEventListener('blur', function() {
-                    if (this.value.trim()) checkSingleBlank(this);
-                });
-            });
-
-            // Bind check button
-            const checkBtn = item.querySelector('.lp-fillin-check-btn');
-            if (checkBtn) {
-                checkBtn.addEventListener('click', () => {
-                    item.querySelectorAll('.lp-fillin-blank').forEach(input => {
-                        checkSingleBlank(input);
-                    });
-                    const answerEl = item.querySelector('.lp-dict-answer');
-                    if (answerEl) answerEl.style.display = 'block';
-                    checkBtn.disabled = true;
-                });
-            }
-        });
-
-        // Reset ring
-        const ringPctEl = document.getElementById('fillin-ring-pct');
-        const ringProg  = document.getElementById('fillin-ring-progress');
-        if (ringPctEl) ringPctEl.textContent = '0%';
-        if (ringProg) {
-            ringProg.style.strokeDashoffset = 150.796;
-            ringProg.style.stroke = 'var(--lp-error)';
-        }
-
-        if (footer) footer.style.display = 'flex';
-
-        const progressText = document.getElementById('fillin-progress-text');
-        if (progressText) progressText.textContent = '';
-
-        console.log(`[LP] Generated fill-in with ${fillinBlanks.length} blanks`);
-    }
-
-    function checkSingleBlank(input) {
-        if (input.disabled) return;
-        const answer = input.dataset.answer;
-        const val = input.value.trim();
-        if (val.toLowerCase() === answer.toLowerCase()) {
-            input.classList.remove('wrong');
-            input.classList.add('correct');
-            input.disabled = true;
-            // Remove answer span if correct after being wrong
-            const next = input.nextElementSibling;
-            if (next && next.classList.contains('lp-fillin-answer')) next.remove();
+            api.play = function () { if (yt && yt.playVideo) { yt.playVideo(); } };
+            api.pause = function () { if (yt && yt.pauseVideo) { yt.pauseVideo(); } };
+            api.toggle = function () {
+                if (!yt || !yt.getPlayerState) { return; }
+                if (yt.getPlayerState() === 1) { api.pause(); } else { api.play(); }
+            };
+            api.seek = function (seconds) { if (yt && yt.seekTo) { yt.seekTo(Math.max(0, seconds), true); } };
+            api.time = function () { return yt && yt.getCurrentTime ? yt.getCurrentTime() || 0 : 0; };
+            api.rate = function (value) {
+                if (!yt || !yt.setPlaybackRate) { return 1; }
+                if (value === undefined) { return yt.getPlaybackRate ? yt.getPlaybackRate() : 1; }
+                yt.setPlaybackRate(value);
+                return value;
+            };
         } else {
-            input.classList.remove('correct');
-            input.classList.add('wrong');
-            // Show correct answer beside if not already shown
-            if (!input.nextElementSibling || !input.nextElementSibling.classList.contains('lp-fillin-answer')) {
-                const span = document.createElement('span');
-                span.className = 'lp-fillin-answer';
-                span.textContent = answer;
-                input.parentNode.insertBefore(span, input.nextSibling);
-            }
+            var none = function () { /* no media */ };
+            api.play = api.pause = api.toggle = api.seek = none;
+            api.time = function () { return 0; };
+            api.rate = function () { return 1; };
         }
-        updateFillinProgress();
+        return api;
     }
 
-    function updateFillinProgress() {
-        const inputs = document.querySelectorAll('#fillin-lines .lp-fillin-blank');
-        let correct = 0;
-        let filled = 0;
-        inputs.forEach(i => {
-            if (i.classList.contains('correct')) correct++;
-            if (i.value.trim()) filled++;
-        });
-        
-        const total = fillinBlanks.length;
-        const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
-        
-        const ringPctEl = document.getElementById('fillin-ring-pct');
-        const ringProg  = document.getElementById('fillin-ring-progress');
-        if (ringPctEl) ringPctEl.textContent = pct + '%';
-        if (ringProg) {
-            const offset = 150.796 - (pct / 100) * 150.796;
-            ringProg.style.strokeDashoffset = offset;
-            ringProg.style.stroke = pct >= 70 ? 'var(--lp-success)' : pct >= 40 ? 'var(--lp-warning)' : 'var(--lp-error)';
-        }
+    var player = createPlayer();
+    var playing = false;
+    var playBtn = byId('tlPlay');
+    var loopBtn = byId('tlLoop');
+    var loopOn = false;
 
-        const progressText = document.getElementById('fillin-progress-text');
-        if (progressText) progressText.textContent = correct + ' / ' + total + ' từ đúng';
+    function syncPlayButton() {
+        if (!playBtn) { return; }
+        playBtn.setAttribute('aria-label', playing ? 'Tạm dừng' : 'Phát');
+        var icon = playBtn.querySelector('i');
+        if (icon) { icon.className = playing ? 'fa-solid fa-pause' : 'fa-solid fa-play'; }
     }
 
-    // Check all button
-    const fillinCheckBtn = document.getElementById('btn-fillin-check');
-    const fillinRetryBtn = document.getElementById('btn-fillin-retry');
-
-    if (fillinCheckBtn) {
-        fillinCheckBtn.onclick = function () {
-            let correct = 0;
-            fillinBlanks.forEach(function (b) {
-                const input = document.getElementById(b.id);
-                if (!input) return;
-                const val = input.value.trim();
-                // Compare case-insensitive
-                if (val.toLowerCase() === b.answer.toLowerCase()) {
-                    input.classList.remove('wrong');
-                    input.classList.add('correct');
-                    correct++;
-                    const next = input.nextElementSibling;
-                    if (next && next.classList.contains('lp-fillin-answer')) next.remove();
-                } else {
-                    input.classList.remove('correct');
-                    input.classList.add('wrong');
-                    input.title = 'Đáp án: ' + b.answer;
-                    if (!input.nextElementSibling || !input.nextElementSibling.classList.contains('lp-fillin-answer')) {
-                        const span = document.createElement('span');
-                        span.className = 'lp-fillin-answer';
-                        span.textContent = b.answer;
-                        input.parentNode.insertBefore(span, input.nextSibling);
-                    }
-                }
-                input.disabled = true;
-            });
-
-            const total = fillinBlanks.length;
-            const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
-            
-            const progressText = document.getElementById('fillin-progress-text');
-            if (progressText) progressText.textContent = correct + ' / ' + total + ' từ đúng';
-            
-            // Show summary
-            const summaryEl = document.getElementById('fillin-summary');
-            if (summaryEl) {
-                document.getElementById('fillin-stat-correct').textContent = correct;
-                document.getElementById('fillin-stat-wrong').textContent = total - correct;
-                summaryEl.classList.add('show');
-            }
-
-            if (fillinRetryBtn) fillinRetryBtn.style.display = 'inline-flex';
-            fillinCheckBtn.disabled = true;
-
-            showToast(pct >= 70 ? 'success' : 'error', 'Kết quả: ' + correct + '/' + total + ' (' + pct + '%)');
-        };
-    }
-
-    if (fillinRetryBtn) {
-        fillinRetryBtn.onclick = function () {
-            fillinInited = false;
-            fillinRetryBtn.style.display = 'none';
-            if (fillinCheckBtn) fillinCheckBtn.disabled = false;
-            initFillIn();
-        };
-    }
-
-    const retrySummaryBtn = document.getElementById('btn-fillin-retry-summary');
-    if (retrySummaryBtn) {
-        retrySummaryBtn.onclick = function () {
-            const summaryEl = document.getElementById('fillin-summary');
-            if (summaryEl) summaryEl.classList.remove('show');
-            fillinInited = false;
-            if (fillinCheckBtn) fillinCheckBtn.disabled = false;
-            initFillIn();
-        };
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 8. QUIZ
-    // ══════════════════════════════════════════════════════════════
-    const submitBtn   = document.getElementById('btn-submit-quiz');
-    const resultPanel = document.getElementById('quiz-result-panel');
-    let quizSubmitted = false;
-
-    if (submitBtn) {
-        submitBtn.addEventListener('click', async function () {
-            if (quizSubmitted) return;
-
-            const answers = {};
-            let allAnswered = true;
-
-            document.querySelectorAll('.lp-quiz-item').forEach(item => {
-                const qId    = parseInt(item.dataset.questionId);
-                const chosen = item.querySelector('input[type="radio"]:checked');
-                if (!chosen) {
-                    allAnswered = false;
-                    item.style.outline = '2px solid var(--lp-error)';
-                    setTimeout(() => { item.style.outline = ''; }, 2000);
-                } else {
-                    answers[qId] = chosen.value;
-                }
-            });
-
-            if (!allAnswered) {
-                showToast('error', 'Hãy trả lời tất cả các câu hỏi!');
-                return;
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang chấm...';
-
-            try {
-                const response = await fetch('/Home/Listening/EvaluateQuiz', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type':            'application/json',
-                        'RequestVerificationToken': getCsrfToken()
-                    },
-                    body: JSON.stringify({ lessonId: lessonId, answers: answers })
-                });
-
-                if (!response.ok) throw new Error('Server error');
-
-                const json = await response.json();
-                if (!json.success) throw new Error('Evaluate failed');
-
-                quizSubmitted = true;
-                displayQuizResult(json.data);
-                await saveProgress({ quizCompleted: true, quizScore: json.data.scorePercent });
-
-            } catch (err) {
-                console.error(err);
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Nộp bài';
-                showToast('error', 'Có lỗi xảy ra, vui lòng thử lại.');
-            }
-        });
-    }
-
-    function displayQuizResult(result) {
-        result.answers.forEach(ans => {
-            const item = document.querySelector(`.lp-quiz-item[data-question-id="${ans.questionId}"]`);
-            if (!item) return;
-
-            item.classList.add(ans.isCorrect ? 'correct' : 'wrong');
-            item.querySelectorAll('input[type="radio"]').forEach(r => r.disabled = true);
-
-            item.querySelectorAll('.lp-option-label').forEach(label => {
-                const radio = label.querySelector('input[type="radio"]');
-                if (!radio) return;
-                if (radio.value === ans.correctAnswer) {
-                    label.classList.add('lp-opt-correct');
-                } else if (radio.value === ans.userAnswer && !ans.isCorrect) {
-                    label.classList.add('lp-opt-wrong');
-                }
-            });
-
-            const expEl = item.querySelector('.lp-explanation');
-            if (expEl) {
-                expEl.innerHTML = `<strong>Giải thích:</strong> ${ans.explanation || 'Không có giải thích.'}`;
-                expEl.className = 'lp-explanation show ' + (ans.isCorrect ? 'correct' : 'wrong');
-            }
-        });
-
-        submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Đã nộp bài';
-        submitBtn.disabled  = true;
-
-        if (resultPanel) {
-            const passed = result.passed;
-            resultPanel.className = 'lp-result-panel show ' + (passed ? 'lp-result-pass' : 'lp-result-fail');
-
-            document.getElementById('result-emoji').textContent = passed ? '🎉' : '😅';
-            document.getElementById('result-score').textContent = `${result.correctCount} / ${result.totalQuestions}`;
-            document.getElementById('result-pct').textContent   = `${result.scorePercent}%`;
-            document.getElementById('result-msg').textContent   = passed
-                ? 'Xuất sắc! Bạn đã vượt qua bài kiểm tra.'
-                : 'Chưa đạt. Hãy nghe lại và thử lại nhé!';
-
-            resultPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        updateProgressDot('dot-quiz');
-        showToast('success', `Điểm của bạn: ${result.scorePercent}%`);
-    }
-
-    // ── Retry Quiz ──────────────────────────────────────────────
-    const retryQuizBtn = document.getElementById('btn-retry-quiz');
-    if (retryQuizBtn) {
-        retryQuizBtn.addEventListener('click', () => {
-            quizSubmitted = false;
-            
-            // Reset items
-            document.querySelectorAll('.lp-quiz-item').forEach(item => {
-                item.classList.remove('correct', 'wrong');
-                item.querySelectorAll('input[type="radio"]').forEach(r => {
-                    r.disabled = false;
-                    r.checked  = false;
-                });
-                item.querySelectorAll('.lp-option-label').forEach(label => {
-                    label.classList.remove('lp-opt-correct', 'lp-opt-wrong');
-                });
-                const expEl = item.querySelector('.lp-explanation');
-                if (expEl) {
-                    expEl.classList.remove('show', 'correct', 'wrong');
-                    expEl.innerHTML = '';
-                }
-            });
-
-            // Reset footer & results
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Nộp bài';
-            }
-            if (resultPanel) {
-                resultPanel.classList.remove('show', 'lp-result-pass', 'lp-result-fail');
-            }
-
-            // Scroll to top of quiz
-            const quizList = document.querySelector('.lp-quiz-list');
-            if (quizList) quizList.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 15. PROGRESS SAVE
-    // ══════════════════════════════════════════════════════════════
-    async function saveProgress(dto) {
-        if (!isAuthenticated) return;
-        try {
-            const response = await fetch(`/Home/Listening/SaveProgress/${lessonId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type':            'application/json',
-                    'RequestVerificationToken': getCsrfToken()
-                },
-                body: JSON.stringify(dto)
-            });
-            if (!response.ok) throw new Error('Save failed');
-        } catch (err) {
-            console.warn('Progress save error:', err);
-        }
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 16. PROGRESS INDICATORS
-    // ══════════════════════════════════════════════════════════════
-    function updateProgressDot(id) {
-        const dot = document.getElementById(id);
-        if (dot) dot.classList.add('done');
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 17. TOAST
-    // ══════════════════════════════════════════════════════════════
-    const toastEl   = document.getElementById('lp-toast');
-    let  toastTimer = null;
-
-    function showToast(type, msg) {
-        if (!toastEl) return;
-        clearTimeout(toastTimer);
-        toastEl.className = `lp-toast${type ? ' lp-toast-' + type : ''} lp-toast-show`;
-        toastEl.innerHTML = msg;
-        toastTimer = setTimeout(() => {
-            toastEl.classList.remove('lp-toast-show');
-        }, 3500);
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 18. UTILITIES
-    // ══════════════════════════════════════════════════════════════
-    function escHtml(str) {
-        if (!str) return '';
-        return String(str)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 19. SPEED CONTROL
-    // ══════════════════════════════════════════════════════════════
-    const speedBtns = document.querySelectorAll('.lp-speed-btn:not(.lp-speed-locked):not([disabled])');
-    speedBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const rate = parseFloat(btn.dataset.rate);
-            if (!rate) return;
-
-            // YouTube
-            if (window.ytPlayer && typeof window.ytPlayer.setPlaybackRate === 'function') {
-                window.ytPlayer.setPlaybackRate(rate);
-            } 
-            // HTML5 Audio
-            else if (audioEl) {
-                audioEl.playbackRate = rate;
-            }
-
-            // Update UI
-            document.querySelectorAll('.lp-speed-btn').forEach(b => b.classList.remove('lp-speed-active'));
-            btn.classList.add('lp-speed-active');
-            
-            console.log('[LP] Playback rate set to:', rate);
-        });
+    player.onState(function (state) {
+        if (state === 'playing') { playing = true; } else if (state === 'paused' || state === 'ended') { playing = false; }
+        syncPlayButton();
+        if (state === 'ready') { applySpeed(); }
     });
 
-    // ══════════════════════════════════════════════════════════════
-    // 20. AI QUIZ GENERATOR
-    // ══════════════════════════════════════════════════════════════
-    const btnGenQuiz = document.getElementById('btnGenerateQuiz');
-    if (btnGenQuiz) {
-        btnGenQuiz.addEventListener('click', async () => {
-            const lessonId = btnGenQuiz.dataset.lessonId;
-            const token = getCsrfToken();
-            
-            btnGenQuiz.disabled = true;
-            btnGenQuiz.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang biên soạn...';
+    if (playBtn) { playBtn.addEventListener('click', function () { player.toggle(); }); }
+    if (byId('tlBack')) { byId('tlBack').addEventListener('click', function () { player.seek(player.time() - 5); }); }
+    if (byId('tlForward')) { byId('tlForward').addEventListener('click', function () { player.seek(player.time() + 5); }); }
 
-            try {
-                const formData = new FormData();
-                formData.append('lessonId', lessonId);
-                if (token) formData.append('__RequestVerificationToken', token);
+    function setLoop(on) {
+        loopOn = !!on;
+        if (loopBtn) { loopBtn.setAttribute('aria-pressed', loopOn ? 'true' : 'false'); }
+    }
+    if (loopBtn) { loopBtn.addEventListener('click', function () { setLoop(!loopOn); }); }
 
-                const resp = await fetch('/Home/Listening/My/GenerateQuiz', {
-                    method: 'POST',
-                    headers: { 'RequestVerificationToken': token },
-                    body: formData
-                });
+    function applySpeed() {
+        var checked = document.querySelector('input[name="tlSpeed"]:checked');
+        if (checked) { player.rate(Number(checked.value)); }
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('input[name="tlSpeed"]'), function (radio) {
+        radio.addEventListener('change', applySpeed);
+    });
 
-                if (resp.ok) {
-                    location.reload(); 
-                } else {
-                    let errorMessage = 'Không thể tạo bài tập.';
-                    try {
-                        const data = await resp.json();
-                        errorMessage = data.message || data.error || errorMessage;
-                    } catch (e) {
-                         // Fallback to text reading if JSON is malformed
-                         const textResponse = await resp.text();
-                         console.warn("Could not parse JSON response from Server, body was:", textResponse);
-                    }
-                    
-                    alert(errorMessage);
-                    btnGenQuiz.disabled = false;
-                    btnGenQuiz.innerHTML = '<i class="fas fa-magic"></i> Tạo quiz bằng AI';
-                }
-            } catch (err) {
-                console.error(err);
-                alert('Lỗi kết nối. Vui lòng thử lại.');
-                btnGenQuiz.disabled = false;
-                btnGenQuiz.innerHTML = '<i class="fas fa-magic"></i> Tạo quiz bằng AI';
+    // ------------------------------------------------------------------ keyboard shortcuts
+
+    // The transcript section fills these in; until then the keys simply do nothing.
+    var lineApi = { prev: function () { }, next: function () { }, replay: function () { } };
+
+    document.addEventListener('keydown', function (event) {
+        if (event.ctrlKey || event.metaKey || event.altKey || event.defaultPrevented) { return; }
+        var target = event.target;
+        var tag = target && target.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (target && target.isContentEditable)) { return; }
+        var onControl = tag === 'BUTTON' || tag === 'A' || tag === 'SUMMARY';
+        var inGroup = target && target.closest && target.closest('[role="tablist"], [role="radiogroup"], audio, iframe');
+
+        if (event.key === ' ') {
+            if (onControl || inGroup) { return; }
+            event.preventDefault();
+            player.toggle();
+        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+            if (inGroup) { return; }
+            event.preventDefault();
+            if (event.key === 'ArrowLeft') { lineApi.prev(); } else { lineApi.next(); }
+        } else if (event.key === 'r' || event.key === 'R') {
+            lineApi.replay();
+        } else if (event.key === 'l' || event.key === 'L') {
+            setLoop(!loopOn);
+        }
+    });
+
+    // ------------------------------------------------------------------ transcript: modes, lines, active line
+
+    var linesList = byId('tlLines');
+    var linesWrap = byId('tlLinesWrap');
+    var timed = [];
+    var lastActive = -1;
+    var segmentEnd = null;
+    var rafId = null;
+    var lastUserScroll = 0;
+    var AUTOSCROLL_KEY = 'tct.listening.autoscroll';
+    var SHOW_VI_KEY = 'tct.listening.showvi.' + config.lessonId;
+
+    if (linesList) {
+        Array.prototype.forEach.call(linesList.querySelectorAll('.tl-line'), function (li) {
+            var start = li.getAttribute('data-start');
+            if (start === null || start === '') { return; }
+            timed.push({ start: Number(start), end: Number(li.getAttribute('data-end')), el: li, index: Number(li.getAttribute('data-i')) });
+        });
+        timed.sort(function (a, b) { return a.start - b.start; });
+    }
+
+    function timedPosition(order) {
+        for (var i = 0; i < timed.length; i++) { if (timed[i].index === order) { return i; } }
+        return -1;
+    }
+
+    function setActive(position) {
+        if (position === lastActive || position < 0 || !timed[position]) { return; }
+        if (lastActive >= 0 && timed[lastActive]) {
+            timed[lastActive].el.classList.remove('is-active');
+            timed[lastActive].el.removeAttribute('aria-current');
+        }
+        lastActive = position;
+        var el = timed[position].el;
+        el.classList.add('is-active');
+        el.setAttribute('aria-current', 'true');
+        if (autoScrollOn && Date.now() - lastUserScroll > 3000) { el.scrollIntoView({ block: 'nearest', behavior: 'auto' }); }
+    }
+
+    function tick() {
+        rafId = null;
+        var time = player.time();
+        var position = core.lineIndexAt(timed, time);
+        if (position >= 0) { setActive(position); }
+        if (segmentEnd !== null && time >= segmentEnd) {
+            segmentEnd = null;
+            player.pause();
+        } else if (loopOn && lastActive >= 0 && timed[lastActive] && time >= timed[lastActive].end - 0.12) {
+            player.seek(timed[lastActive].start);
+        }
+        if (playing) { rafId = window.requestAnimationFrame(tick); }
+    }
+
+    function startTicking() { if (rafId === null && timed.length) { rafId = window.requestAnimationFrame(tick); } }
+
+    player.onState(function (state) {
+        if (state === 'playing') { startTicking(); }
+        if (state === 'paused' || state === 'ended') {
+            if (rafId !== null) { window.cancelAnimationFrame(rafId); rafId = null; }
+            segmentEnd = null;
+        }
+    });
+
+    /** Seek to a timed line and play it; with stopAtEnd the player pauses when the line ends. */
+    function playTimed(position, stopAtEnd) {
+        if (position < 0 || !timed[position]) { return; }
+        setActive(position);
+        segmentEnd = stopAtEnd ? timed[position].end : null;
+        player.seek(timed[position].start);
+        player.play();
+        startTicking();
+    }
+
+    function currentPosition() {
+        if (lastActive >= 0) { return lastActive; }
+        return Math.max(0, core.lineIndexAt(timed, player.time()));
+    }
+
+    lineApi.prev = function () { if (timed.length) { playTimed(Math.max(0, currentPosition() - 1)); } };
+    lineApi.next = function () { if (timed.length) { playTimed(Math.min(timed.length - 1, currentPosition() + 1)); } };
+    lineApi.replay = function () { if (timed.length) { playTimed(currentPosition()); } };
+
+    if (linesList) {
+        linesList.addEventListener('click', function (event) {
+            var seek = event.target.closest('.tl-line__seek');
+            if (seek) {
+                var order = Number(seek.closest('.tl-line').getAttribute('data-i'));
+                playTimed(timedPosition(order));
+                return;
+            }
+            var reveal = event.target.closest('.tl-line__reveal');
+            if (reveal) {
+                var li = reveal.closest('.tl-line');
+                li.setAttribute('data-revealed', 'true');
+                syncLineVisibility(li);
+                var seekBtn = li.querySelector('.tl-line__seek');
+                if (seekBtn) { seekBtn.focus(); }
             }
         });
     }
 
-})();
+    // the learner's own scrolling wins for three seconds
+    if (linesWrap) {
+        ['wheel', 'touchmove', 'pointerdown', 'keydown'].forEach(function (name) {
+            linesWrap.addEventListener(name, function () { lastUserScroll = Date.now(); }, { passive: true });
+        });
+    }
+
+    // ------------------------------------------------------------------ transcript: toggles
+
+    var viBtn = byId('tlToggleVi');
+    var hideBtn = byId('tlToggleHide');
+    var scrollBtn = byId('tlToggleScroll');
+    var autoScrollOn = Sets.safeStorage.get(AUTOSCROLL_KEY) !== '0';
+
+    function setPressed(button, on) { if (button) { button.setAttribute('aria-pressed', on ? 'true' : 'false'); } }
+
+    function syncLineVisibility(li) {
+        var masked = hideBtn && hideBtn.getAttribute('aria-pressed') === 'true' && li.getAttribute('data-revealed') !== 'true';
+        var en = li.querySelector('.tl-line__en');
+        var reveal = li.querySelector('.tl-line__reveal');
+        var seek = li.querySelector('.tl-line__seek');
+        var mask = li.querySelector('.tl-line__mask');
+        if (en) { en.hidden = masked; }
+        if (reveal) { reveal.hidden = !masked; }
+        if (masked && seek && !mask) {
+            mask = Sets.el('span', 'tl-line__mask', '••••••');
+            mask.setAttribute('aria-hidden', 'true');
+            seek.appendChild(mask);
+        } else if (!masked && mask) {
+            mask.remove();
+        }
+        if (masked && !seek && !mask && en) {
+            var holder = Sets.el('span', 'tl-line__mask', '••••••');
+            holder.setAttribute('aria-hidden', 'true');
+            en.parentNode.insertBefore(holder, en);
+        } else if (!masked) {
+            var stray = li.querySelector('.tl-line__text > .tl-line__mask');
+            if (stray) { stray.remove(); }
+        }
+    }
+
+    function syncVi() {
+        var on = viBtn && viBtn.getAttribute('aria-pressed') === 'true';
+        Array.prototype.forEach.call(document.querySelectorAll('#tlLines .tl-line__vi'), function (el) { el.hidden = !on; });
+    }
+
+    if (viBtn) {
+        viBtn.addEventListener('click', function () {
+            if (viBtn.disabled) { return; }
+            setPressed(viBtn, viBtn.getAttribute('aria-pressed') !== 'true');
+            syncVi();
+        });
+    }
+    if (hideBtn) {
+        hideBtn.addEventListener('click', function () {
+            setPressed(hideBtn, hideBtn.getAttribute('aria-pressed') !== 'true');
+            Array.prototype.forEach.call(document.querySelectorAll('#tlLines .tl-line'), function (li) {
+                li.removeAttribute('data-revealed');
+                syncLineVisibility(li);
+            });
+        });
+    }
+    setPressed(scrollBtn, autoScrollOn);
+    if (scrollBtn) {
+        scrollBtn.addEventListener('click', function () {
+            autoScrollOn = !autoScrollOn;
+            setPressed(scrollBtn, autoScrollOn);
+            Sets.safeStorage.set(AUTOSCROLL_KEY, autoScrollOn ? '1' : '0');
+        });
+    }
+
+    // translate with AI (Premium); a page reload brings the saved translation in
+    var translateBtn = byId('tlTranslate');
+    if (translateBtn) {
+        translateBtn.addEventListener('click', function () {
+            Sets.pending(translateBtn, true, 'Đang dịch…');
+            Sets.fetchJson(urls.translate, { method: 'POST' }).then(function () {
+                Sets.toast('Đã dịch lời thoại.');
+                Sets.safeStorage.set(SHOW_VI_KEY, '1');
+                window.setTimeout(function () { window.location.reload(); }, 700);
+            }).catch(function (error) {
+                Sets.pending(translateBtn, false);
+                var data = error && error.data;
+                Sets.toast((data && data.message) || 'Không dịch được lời thoại. Vui lòng thử lại.', { type: 'danger' });
+            });
+        });
+    }
+    if (Sets.safeStorage.get(SHOW_VI_KEY) === '1') {
+        Sets.safeStorage.remove(SHOW_VI_KEY);
+        if (viBtn && !viBtn.disabled) { setPressed(viBtn, true); syncVi(); }
+    }
+
+    // ------------------------------------------------------------------ transcript: mode switch
+
+    var modeHooks = {};
+    var modeBuilt = {};
+
+    function showMode(mode) {
+        ['normal', 'dictation', 'fill'].forEach(function (name) { setHidden(byId('tlModePanel-' + name), name !== mode); });
+        if (!modeBuilt[mode] && typeof modeHooks[mode] === 'function') { modeHooks[mode](); modeBuilt[mode] = true; }
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll('input[name="tlMode"]'), function (radio) {
+        radio.addEventListener('change', function () { if (radio.checked) { showMode(radio.value); } });
+    });
+
+    // ------------------------------------------------------------------ transcript: mark as heard
+
+    var markDoneBtn = byId('tlMarkDone');
+    if (markDoneBtn) {
+        markDoneBtn.addEventListener('click', function () {
+            if (markDoneBtn.disabled) { return; }
+            markDoneBtn.disabled = true;
+            setButtonContent(markDoneBtn, 'fa-solid fa-circle-check', 'Đã nghe xong lời thoại');
+            setStep('transcript', true);
+            saveProgress({ transcriptCompleted: true });
+        });
+    }
+
+    // ------------------------------------------------------------------ practice modes: shared helpers
+
+    var TYPING_ATTRS = { lang: 'en', autocomplete: 'off', autocapitalize: 'none', autocorrect: 'off', spellcheck: 'false' };
+
+    function applyTypingAttrs(input) {
+        Object.keys(TYPING_ATTRS).forEach(function (name) { input.setAttribute(name, TYPING_ATTRS[name]); });
+    }
+
+    function playLine(order) {
+        var position = timedPosition(order);
+        if (position >= 0) { playTimed(position, true); }
+    }
+
+    function listenButton(order) {
+        var button = Sets.el('button', 'btn btn-outline-primary btn-sm tl-listen');
+        button.type = 'button';
+        setButtonContent(button, 'fa-solid fa-play', 'Nghe câu này');
+        if (timedPosition(order) < 0) {
+            button.disabled = true;
+            button.title = 'Câu này không có mốc thời gian';
+        } else {
+            button.addEventListener('click', function () { playLine(order); });
+        }
+        return button;
+    }
+
+    function srOnly(text) { return Sets.el('span', 'visually-hidden', text); }
+
+    var RESULT_ICON = { correct: 'fa-solid fa-circle-check', near: 'fa-solid fa-circle-exclamation', wrong: 'fa-solid fa-circle-xmark' };
+
+    function summaryTile(label, value, hue) {
+        var tile = Sets.el('div', 'tl-summary__tile k-pillow tl-hue-' + hue);
+        tile.appendChild(Sets.el('span', 'tl-summary__value', String(value)));
+        tile.appendChild(Sets.el('span', 'tl-summary__label', label));
+        return tile;
+    }
+
+    // ------------------------------------------------------------------ practice mode: dictation
+
+    modeHooks.dictation = function () {
+        var panel = byId('tlModePanel-dictation');
+        var statuses = lines.map(function () { return null; });
+        var feedback = [];
+        var inputs = [];
+
+        var head = Sets.el('div', 'tl-dict__head');
+        head.appendChild(Sets.el('p', 'tl-dict__rule', 'Nghe từng câu rồi gõ lại.'));
+        var ring = Sets.el('div', 'tl-ring');
+        ring.setAttribute('role', 'img');
+        var ringText = Sets.el('span', 'tl-ring__text', '0%');
+        ring.appendChild(ringText);
+        head.appendChild(ring);
+        panel.appendChild(head);
+        panel.appendChild(Sets.el('p', 'tl-hint', 'Enter: kiểm tra · Shift+Enter: xuống dòng · Alt+R: nghe lại câu · Tab: chuyển sang ô kế tiếp.'));
+
+        var list = Sets.el('div', 'tl-dict__list');
+        var summary = Sets.el('div', 'tl-summary k-panel');
+        summary.hidden = true;
+        summary.setAttribute('role', 'status');
+
+        function refresh() {
+            var checked = statuses.filter(Boolean).length;
+            var percent = lines.length ? Math.round(checked * 100 / lines.length) : 0;
+            ring.style.setProperty('--p', percent + '%');
+            ring.setAttribute('aria-label', percent + '% số câu đã kiểm tra');
+            ringText.textContent = percent + '%';
+            if (lines.length && checked === lines.length) {
+                var count = function (name) { return statuses.filter(function (s) { return s === name; }).length; };
+                summary.textContent = '';
+                var tiles = Sets.el('div', 'tl-summary__tiles');
+                tiles.appendChild(summaryTile('Đúng', count('correct'), 'success'));
+                tiles.appendChild(summaryTile('Gần đúng', count('near'), 'warning'));
+                tiles.appendChild(summaryTile('Sai', count('wrong'), 'danger'));
+                summary.appendChild(tiles);
+                var again = Sets.el('button', 'btn btn-outline-primary');
+                again.type = 'button';
+                setButtonContent(again, 'fa-solid fa-rotate-right', 'Làm lại');
+                again.addEventListener('click', reset);
+                summary.appendChild(again);
+                summary.hidden = false;
+            } else {
+                summary.hidden = true;
+            }
+        }
+
+        function showResult(i, result, revealed) {
+            var box = feedback[i];
+            box.textContent = '';
+            var status = revealed ? 'wrong' : result.status;
+            box.className = 'tl-feedback tl-feedback--' + status;
+            var title = Sets.el('p', 'tl-feedback__title');
+            title.appendChild(Sets.icon(RESULT_ICON[status]));
+            title.appendChild(document.createTextNode(' ' + (revealed ? 'Đáp án' : status === 'correct' ? 'Chính xác!' : status === 'near' ? 'Gần đúng' : 'Chưa đúng')));
+            box.appendChild(title);
+            if (!revealed) {
+                var words = Sets.el('p', 'tl-feedback__words');
+                words.setAttribute('lang', 'en');
+                result.words.forEach(function (w, k) {
+                    if (k) { words.appendChild(document.createTextNode(' ')); }
+                    words.appendChild(Sets.el('span', 'tl-w tl-w--' + w.state, w.text));
+                });
+                box.appendChild(words);
+                if (status !== 'correct') {
+                    box.appendChild(Sets.el('p', 'tl-feedback__legend', 'Từ gạch chấm: gần đúng. Từ gạch liền: sai hoặc thiếu.'));
+                }
+            }
+            var answer = Sets.el('p', 'tl-feedback__answer');
+            answer.appendChild(document.createTextNode('Câu đúng: '));
+            var sentence = Sets.el('span', null, lines[i].text);
+            sentence.setAttribute('lang', 'en');
+            answer.appendChild(sentence);
+            box.appendChild(answer);
+            statuses[i] = status;
+            refresh();
+        }
+
+        function check(i) { showResult(i, core.gradeDictation(inputs[i].value, lines[i].text), false); }
+
+        function reset() {
+            inputs.forEach(function (input, i) { input.value = ''; feedback[i].textContent = ''; feedback[i].className = 'tl-feedback'; statuses[i] = null; });
+            refresh();
+            if (inputs[0]) { inputs[0].focus(); }
+        }
+
+        lines.forEach(function (line, i) {
+            var card = Sets.el('div', 'tl-dcard k-panel');
+            var top = Sets.el('div', 'tl-dcard__top');
+            top.appendChild(Sets.el('span', 'tl-dcard__num', String(i + 1)));
+            top.appendChild(Sets.el('span', 'tl-dcard__speaker tct-badge tct-badge--primary', line.speaker || ''));
+            top.appendChild(listenButton(i));
+            card.appendChild(top);
+
+            var label = Sets.el('label', 'visually-hidden', 'Gõ lại câu ' + (i + 1));
+            var input = document.createElement('textarea');
+            input.className = 'form-control tl-dcard__input';
+            input.id = 'tlDict-' + i;
+            input.rows = 2;
+            applyTypingAttrs(input);
+            label.setAttribute('for', input.id);
+            input.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); check(i); }
+                else if (event.altKey && event.code === 'KeyR') { event.preventDefault(); playLine(i); }
+            });
+            inputs.push(input);
+            card.appendChild(label);
+            card.appendChild(input);
+
+            var actions = Sets.el('div', 'tl-dcard__actions');
+            var checkBtn = Sets.el('button', 'btn btn-primary btn-sm');
+            checkBtn.type = 'button';
+            checkBtn.textContent = 'Kiểm tra';
+            checkBtn.addEventListener('click', function () { check(i); });
+            var showBtn = Sets.el('button', 'btn btn-outline-primary btn-sm');
+            showBtn.type = 'button';
+            showBtn.textContent = 'Xem đáp án';
+            showBtn.addEventListener('click', function () { showResult(i, null, true); });
+            actions.appendChild(checkBtn);
+            actions.appendChild(showBtn);
+            card.appendChild(actions);
+
+            var box = Sets.el('div', 'tl-feedback');
+            box.setAttribute('aria-live', 'polite');
+            feedback.push(box);
+            card.appendChild(box);
+            list.appendChild(card);
+        });
+
+        panel.appendChild(list);
+        panel.appendChild(summary);
+        refresh();
+    };
+
+    // ------------------------------------------------------------------ practice mode: fill in the blanks
+
+    modeHooks.fill = function () {
+        var panel = byId('tlModePanel-fill');
+        var retry = 0;
+
+        function render() {
+            panel.textContent = '';
+            var rng = core.mulberry32(Number(config.lessonId) * 1000 + retry);
+            var blanks = [];
+
+            panel.appendChild(Sets.el('p', 'tl-hint', 'Điền từ còn thiếu trong mỗi câu. Enter: kiểm tra ô này và sang ô kế tiếp.'));
+            var list = Sets.el('div', 'tl-dict__list');
+            var summary = Sets.el('div', 'tl-summary k-panel');
+            summary.hidden = true;
+            summary.setAttribute('role', 'status');
+
+            function paint(blank, status) {
+                blank.status = status;
+                blank.wrap.className = 'tl-blank tl-blank--' + status;
+                blank.mark.textContent = '';
+                blank.mark.appendChild(Sets.icon(RESULT_ICON[status]));
+                blank.mark.appendChild(srOnly(status === 'correct' ? 'Đúng' : status === 'near' ? 'Gần đúng' : 'Sai'));
+                blank.answerEl.textContent = status === 'correct' ? '' : 'Đáp án: ' + blank.answer;
+                blank.answerEl.hidden = status === 'correct';
+            }
+
+            function refreshSummary() {
+                if (!blanks.length || blanks.some(function (b) { return !b.status; })) { summary.hidden = true; return; }
+                var count = function (name) { return blanks.filter(function (b) { return b.status === name; }).length; };
+                summary.textContent = '';
+                var tiles = Sets.el('div', 'tl-summary__tiles');
+                tiles.appendChild(summaryTile('Đúng', count('correct'), 'success'));
+                tiles.appendChild(summaryTile('Gần đúng', count('near'), 'warning'));
+                tiles.appendChild(summaryTile('Sai', count('wrong'), 'danger'));
+                summary.appendChild(tiles);
+                summary.hidden = false;
+            }
+
+            function checkBlank(blank) { paint(blank, core.gradeBlank(blank.input.value, blank.answer)); refreshSummary(); }
+
+            lines.forEach(function (line, i) {
+                var card = Sets.el('div', 'tl-dcard k-panel tl-fill__line');
+                var top = Sets.el('div', 'tl-dcard__top');
+                top.appendChild(Sets.el('span', 'tl-dcard__num', String(i + 1)));
+                var sentence = Sets.el('p', 'tl-fill__sentence');
+                sentence.setAttribute('lang', 'en');
+                var picked = core.pickBlanks(line.text, rng);
+                var k = 0;
+                picked.parts.forEach(function (part) {
+                    if (part.type === 'text') { sentence.appendChild(document.createTextNode(part.value)); return; }
+                    k += 1;
+                    var wrap = Sets.el('span', 'tl-blank');
+                    var input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'form-control tl-blank__input';
+                    input.size = Math.max(3, part.answer.length + 1);
+                    input.setAttribute('aria-label', 'Từ còn thiếu ' + k + ' của câu ' + (i + 1));
+                    applyTypingAttrs(input);
+                    var mark = Sets.el('span', 'tl-blank__mark');
+                    var answerEl = Sets.el('span', 'tl-blank__answer');
+                    answerEl.hidden = true;
+                    wrap.appendChild(input);
+                    wrap.appendChild(mark);
+                    wrap.appendChild(answerEl);
+                    var blank = { input: input, wrap: wrap, mark: mark, answerEl: answerEl, answer: part.answer, status: null };
+                    blanks.push(blank);
+                    input.addEventListener('keydown', function (event) {
+                        if (event.key !== 'Enter' || event.isComposing) { return; }
+                        event.preventDefault();
+                        checkBlank(blank);
+                        var next = blanks[blanks.indexOf(blank) + 1];
+                        if (next) { next.input.focus(); }
+                    });
+                    sentence.appendChild(wrap);
+                });
+                top.appendChild(sentence);
+                top.appendChild(listenButton(i));
+                card.appendChild(top);
+                list.appendChild(card);
+            });
+
+            panel.appendChild(list);
+
+            if (!blanks.length) {
+                panel.appendChild(Sets.el('p', 'tl-hint', 'Chưa chọn được từ nào để điền trong bài này.'));
+            } else {
+                var footer = Sets.el('div', 'tl-footer-row tl-fill__footer');
+                var retryBtn = Sets.el('button', 'btn btn-outline-primary');
+                retryBtn.type = 'button';
+                setButtonContent(retryBtn, 'fa-solid fa-rotate-right', 'Làm lại');
+                retryBtn.addEventListener('click', function () { retry += 1; render(); var first = panel.querySelector('.tl-blank__input'); if (first) { first.focus(); } });
+                var allBtn = Sets.el('button', 'btn btn-primary');
+                allBtn.type = 'button';
+                setButtonContent(allBtn, 'fa-solid fa-check', 'Kiểm tra tất cả');
+                allBtn.addEventListener('click', function () { blanks.forEach(function (b) { paint(b, core.gradeBlank(b.input.value, b.answer)); }); refreshSummary(); });
+                footer.appendChild(retryBtn);
+                footer.appendChild(allBtn);
+                panel.appendChild(footer);
+            }
+            panel.appendChild(summary);
+        }
+
+        render();
+    };
+
+    // ------------------------------------------------------------------ vocabulary tab
+
+    function swapBrokenImage(img) {
+        if (!img || !img.parentNode || !img.classList.contains('tl-thumb')) { return; }
+        var holder = Sets.el('span', 'tl-thumb--empty');
+        holder.setAttribute('aria-hidden', 'true');
+        holder.appendChild(Sets.icon('fa-solid fa-image'));
+        img.parentNode.replaceChild(holder, img);
+    }
+    page.addEventListener('error', function (event) {
+        if (event.target && event.target.tagName === 'IMG') { swapBrokenImage(event.target); }
+    }, true);
+    Array.prototype.forEach.call(page.querySelectorAll('img.tl-thumb'), function (img) {
+        if (img.complete && img.naturalWidth === 0) { swapBrokenImage(img); }
+    });
+
+    if (Sets.canSpeak()) {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-tl-speak]'), function (button) {
+            button.hidden = false;
+            button.addEventListener('click', function () { Sets.speak(button.getAttribute('data-tl-speak')); });
+        });
+    }
+
+    var vocabDoneBtn = byId('tlVocabDone');
+    if (vocabDoneBtn) {
+        vocabDoneBtn.addEventListener('click', function () {
+            if (vocabDoneBtn.disabled) { return; }
+            vocabDoneBtn.disabled = true;
+            setButtonContent(vocabDoneBtn, 'fa-solid fa-circle-check', 'Đã học xong từ vựng');
+            setStep('vocab', true);
+            saveProgress({ vocabReviewed: true });
+        });
+    }
+
+    // ------------------------------------------------------------------ quiz tab
+
+    var quizForm = byId('tlQuizForm');
+    var quizResult = byId('tlQuizResult');
+
+    if (quizForm) {
+        var fieldsets = Array.prototype.slice.call(quizForm.querySelectorAll('.tl-q'));
+        var quizSubmit = byId('tlQuizSubmit');
+        var quizCount = byId('tlQuizCount');
+
+        var chosenFor = function (fs) { var r = fs.querySelector('input:checked'); return r ? r.value : null; };
+        var answeredCount = function () { return fieldsets.filter(function (fs) { return chosenFor(fs); }).length; };
+
+        function syncQuizCount() {
+            if (quizCount) { quizCount.textContent = 'Đã chọn ' + answeredCount() + '/' + fieldsets.length; }
+        }
+
+        function clearMissing(fs) {
+            fs.classList.remove('tl-q--missing');
+            var note = fs.querySelector('.tl-q__missing');
+            if (note) { note.hidden = true; }
+        }
+
+        quizForm.addEventListener('change', function (event) {
+            var fs = event.target.closest('.tl-q');
+            if (fs) { clearMissing(fs); }
+            syncQuizCount();
+        });
+
+        function resultRing(percent, large) {
+            var ring = Sets.el('div', 'tl-ring' + (large ? ' tl-ring--lg' : ''));
+            ring.setAttribute('role', 'img');
+            ring.setAttribute('aria-label', 'Điểm ' + percent + '%');
+            ring.style.setProperty('--p', percent + '%');
+            ring.appendChild(Sets.el('span', 'tl-ring__text', percent + '%'));
+            return ring;
+        }
+
+        function resetQuiz() {
+            fieldsets.forEach(function (fs) {
+                clearMissing(fs);
+                Array.prototype.forEach.call(fs.querySelectorAll('input'), function (input) { input.checked = false; input.disabled = false; });
+                Array.prototype.forEach.call(fs.querySelectorAll('.tl-option'), function (option) {
+                    option.classList.remove('tl-option--correct', 'tl-option--wrong');
+                    var mark = option.querySelector('.tl-option__mark');
+                    if (mark) { mark.textContent = ''; }
+                });
+                var explain = fs.querySelector('.tl-q__explain');
+                if (explain) { explain.textContent = ''; explain.hidden = true; }
+            });
+            if (quizResult) { quizResult.hidden = true; quizResult.textContent = ''; }
+            if (quizSubmit) { quizSubmit.disabled = false; }
+            syncQuizCount();
+            var first = quizForm.querySelector('input');
+            if (first) { first.focus(); }
+        }
+
+        function retryButton() {
+            var button = Sets.el('button', 'btn btn-outline-primary');
+            button.type = 'button';
+            setButtonContent(button, 'fa-solid fa-rotate-right', 'Làm lại quiz');
+            button.addEventListener('click', resetQuiz);
+            return button;
+        }
+
+        function showStoredScore(score) {
+            quizResult.textContent = '';
+            quizResult.appendChild(resultRing(score, true));
+            var body = Sets.el('div', 'tl-result__body');
+            body.appendChild(Sets.el('p', 'tl-result__title', 'Điểm cao nhất: ' + score + '%'));
+            body.appendChild(retryButton());
+            quizResult.appendChild(body);
+            quizResult.hidden = false;
+        }
+
+        function showResult(data) {
+            var byQuestion = {};
+            (data.answers || []).forEach(function (a) { byQuestion[a.questionId] = a; });
+            fieldsets.forEach(function (fs) {
+                var answer = byQuestion[fs.getAttribute('data-qid')];
+                Array.prototype.forEach.call(fs.querySelectorAll('input'), function (input) { input.disabled = true; });
+                if (!answer) { return; }
+                Array.prototype.forEach.call(fs.querySelectorAll('.tl-option'), function (option) {
+                    var key = option.getAttribute('data-key');
+                    var mark = option.querySelector('.tl-option__mark');
+                    var text = null, icon = null, cls = null;
+                    if (key === answer.correctAnswer) { cls = 'tl-option--correct'; icon = 'fa-solid fa-circle-check'; text = 'Đáp án đúng'; }
+                    else if (key === answer.userAnswer) { cls = 'tl-option--wrong'; icon = 'fa-solid fa-circle-xmark'; text = 'Bạn chọn'; }
+                    if (cls && mark) {
+                        option.classList.add(cls);
+                        mark.textContent = '';
+                        mark.appendChild(Sets.icon(icon));
+                        mark.appendChild(document.createTextNode(' ' + text));
+                    }
+                });
+                var explain = fs.querySelector('.tl-q__explain');
+                if (explain) {
+                    if (answer.explanation) { explain.textContent = 'Giải thích: ' + answer.explanation; explain.hidden = false; }
+                    else { explain.textContent = ''; explain.hidden = true; }
+                }
+            });
+
+            quizResult.textContent = '';
+            quizResult.appendChild(resultRing(data.scorePercent, true));
+            var body = Sets.el('div', 'tl-result__body');
+            body.appendChild(Sets.el('p', 'tl-result__title', 'Đúng ' + data.correctCount + '/' + data.totalQuestions));
+            body.appendChild(Sets.el('p', 'tl-result__remark', data.passed ? 'Đạt! Bạn đã vượt qua bài quiz.' : 'Chưa đạt. Nghe lại rồi thử lần nữa nhé.'));
+            if (data.bestScorePercent !== null && data.bestScorePercent !== undefined) {
+                body.appendChild(Sets.el('p', 'tl-result__best', 'Điểm cao nhất: ' + data.bestScorePercent + '%'));
+            }
+            body.appendChild(retryButton());
+            quizResult.appendChild(body);
+            quizResult.hidden = false;
+            quizResult.focus();
+            if (data.bestScorePercent !== null && data.bestScorePercent !== undefined) { setStep('quiz', true); }
+        }
+
+        quizForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (!quizSubmit || quizSubmit.disabled) { return; }
+
+            var missing = fieldsets.filter(function (fs) { return !chosenFor(fs); });
+            if (missing.length) {
+                missing.forEach(function (fs) {
+                    fs.classList.add('tl-q--missing');
+                    var note = fs.querySelector('.tl-q__missing');
+                    if (note) { note.hidden = false; }
+                });
+                var firstInput = missing[0].querySelector('input');
+                if (firstInput) { firstInput.focus(); }
+                announce('tlQuizLive', 'Còn ' + missing.length + ' câu chưa trả lời.');
+                return;
+            }
+
+            var answers = {};
+            fieldsets.forEach(function (fs) { answers[fs.getAttribute('data-qid')] = chosenFor(fs); });
+            quizSubmit.disabled = true;
+            setButtonContent(quizSubmit, 'fa-solid fa-spinner fa-spin', 'Đang chấm…');
+            Sets.fetchJson(urls.evaluate, { method: 'POST', body: { lessonId: config.lessonId, answers: answers } }).then(function (response) {
+                setButtonContent(quizSubmit, 'fa-solid fa-paper-plane', 'Nộp bài');
+                showResult(response && response.data ? response.data : {});
+            }).catch(function () {
+                quizSubmit.disabled = false;
+                setButtonContent(quizSubmit, 'fa-solid fa-paper-plane', 'Nộp bài');
+                Sets.toast('Không chấm được bài. Vui lòng thử lại.', { type: 'danger' });
+            });
+        });
+
+        // a finished quiz shows the stored best score; the questions stay answerable again
+        if (quizResult && progress.quizCompleted && progress.quizScore !== null && progress.quizScore !== undefined) {
+            showStoredScore(progress.quizScore);
+        }
+        syncQuizCount();
+    }
+
+    // ------------------------------------------------------------------ quiz generation with AI (own lessons, or Admin on shared ones)
+
+    var generateBtn = byId('tlGenerateQuiz');
+    if (generateBtn) {
+        generateBtn.addEventListener('click', function () {
+            Sets.pending(generateBtn, true, 'Đang soạn câu hỏi…');
+            var form = new FormData();
+            form.append('lessonId', String(config.lessonId));
+            Sets.fetchJson(urls.generateQuiz, { method: 'POST', body: form }).then(function () {
+                Sets.toast('Đã tạo quiz.');
+                window.setTimeout(function () { window.location.reload(); }, 600);
+            }).catch(function (error) {
+                Sets.pending(generateBtn, false);
+                var data = error && error.data;
+                Sets.toast((data && data.message) || 'Không tạo được quiz. Vui lòng thử lại.', { type: 'danger' });
+            });
+        });
+    }
+}());

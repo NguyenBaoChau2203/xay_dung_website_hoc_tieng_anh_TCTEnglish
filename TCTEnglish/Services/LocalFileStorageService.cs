@@ -107,6 +107,65 @@ namespace TCTVocabulary.Services
             }
         }
 
+        public bool TryDeleteOwnedLocalFile(string? publicUrl, string expectedPublicPrefix)
+        {
+            if (!TryResolveOwnedPath(publicUrl, expectedPublicPrefix, out var fullPath))
+            {
+                return false;
+            }
+
+            if (!File.Exists(fullPath))
+            {
+                return true;
+            }
+
+            try
+            {
+                File.Delete(fullPath);
+                _logger?.LogInformation("Deleted owned local file for prefix {publicUrlPrefix}", expectedPublicPrefix);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger?.LogWarning(ex, "Failed to delete owned local file for prefix {publicUrlPrefix}", expectedPublicPrefix);
+                return false;
+            }
+        }
+
+        private bool TryResolveOwnedPath(string? publicUrl, string expectedPublicPrefix, out string fullPath)
+        {
+            fullPath = string.Empty;
+            if (string.IsNullOrWhiteSpace(publicUrl)
+                || string.IsNullOrWhiteSpace(expectedPublicPrefix)
+                || !publicUrl.StartsWith(expectedPublicPrefix, StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            if (publicUrl.Contains("..", StringComparison.Ordinal)
+                || publicUrl.Contains('\\', StringComparison.Ordinal)
+                || publicUrl.Contains(':', StringComparison.Ordinal)
+                || publicUrl.StartsWith("//", StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            var prefixRoot = Path.GetFullPath(Path.Combine(
+                _webRootPath,
+                expectedPublicPrefix.Trim('/').Replace('/', Path.DirectorySeparatorChar)));
+            var relativePath = publicUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar);
+            fullPath = Path.GetFullPath(Path.Combine(_webRootPath, relativePath));
+            var comparison = OperatingSystem.IsWindows() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+            if (!fullPath.StartsWith(prefixRoot + Path.DirectorySeparatorChar, comparison)
+                && !fullPath.Equals(prefixRoot, comparison))
+            {
+                fullPath = string.Empty;
+                return false;
+            }
+
+            return true;
+        }
+
         private static void Validate(IFormFile file, FileUploadOptions options)
         {
             if (file == null || file.Length == 0)

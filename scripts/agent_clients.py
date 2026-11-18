@@ -22,6 +22,11 @@ MATCHERS = {
 
 
 def hook_command(host: str, event: str) -> str:
+    if host == "antigravity":
+        # Antigravity workspace hooks use a fixed file command from the workspace
+        # root. Avoid inline JS: cmd.exe does not interpret Python's escaped
+        # double quotes around node -e in the same way as PowerShell does.
+        return f"node scripts/agent-tools.cjs hook {host} {event}"
     return f'node -e "{LOADER}" hook {host} {event}'
 
 

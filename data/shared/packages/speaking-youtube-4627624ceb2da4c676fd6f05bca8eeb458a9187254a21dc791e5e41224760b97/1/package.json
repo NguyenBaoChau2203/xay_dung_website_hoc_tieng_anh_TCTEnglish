@@ -1,0 +1,2045 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A1 - \u0110I CH\u1EE2 -",
+        "YoutubeId": "fFXR3CMy8jw",
+        "Level": "A1",
+        "Topic": "Mua s\u1EAFm \u0026 t\u00E0i ch\u00EDnh",
+        "ThumbnailUrl": "https://img.youtube.com/vi/fFXR3CMy8jw/hqdefault.jpg",
+        "Duration": "15:42",
+        "SourceUrl": "https://www.youtube.com/watch?v=fFXR3CMy8jw",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.00c81cf374f941a1a96b631fb37eda01",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 165,
+        "EndTime": 174.64,
+        "Text": "Good. Put a little bit of sugar in the stew. Just a little. It makes the tomatoes taste sweeter and richer. Oh, and add some fresh garlic.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.01934d282c00489c9fa20f27596d1d1e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 600,
+        "EndTime": 606.399,
+        "Text": "Rosa, thank you so much. I\u0027m so lucky I met you yesterday. Why do you say that, sweetie?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.03d9a6d937344a35a702c866b39712ac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 365,
+        "EndTime": 370.479,
+        "Text": "of him. That is wonderful to hear. So, what are we cooking today? More chicken?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.06870c083352483e993dfdc77737c4bf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 76,
+        "EndTime": 84.4,
+        "Text": "I do. When my husband and I were young, we were just dating. I wanted to impress him, so I cooked my special beef stew.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.0831bdbfe78a4d3b8ab3bde29ed2db25",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 475,
+        "EndTime": 484.879,
+        "Text": "Good. Put a little bit of sugar in the stew. Just a little. It makes the tomatoes taste sweeter and richer. Oh, and add some fresh garlic.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.0f6ac762a613411ea6d5559bafe99710",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 281,
+        "EndTime": 286.32,
+        "Text": "Got it. I will send you a message right now so you have my number, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.122c7abf2b594fad8dd803c6accf8279",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 174,
+        "EndTime": 181.44,
+        "Text": "Salt, pepper, a little sugar, and garlic. Got it. And what are you going to eat it with?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.12a2ac6053134fe4b34b121130509a32",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 517,
+        "EndTime": 523.919,
+        "Text": "Roast chicken? Yes, I will try that next week. You have so many good ideas.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.13f160bc0efc4e9d8c48e9e868bc4e4c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 933,
+        "EndTime": 937.279,
+        "Text": "I do. I will send you a picture of the stew tonight.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.148718c8a5504ab3aba568c6b9410523",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 22,
+        "EndTime": 25.439,
+        "Text": "Tell me everything. Did your boyfriend like it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.1887b6fce62c41a6b2bb7ab75975fc39",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 509,
+        "EndTime": 517.919,
+        "Text": "Good idea. And maybe next time you can try making a roast chicken. That is also very easy and looks beautiful for dinner.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.18b786163cac4a109953d3db07d4dcfb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 207,
+        "EndTime": 213.68,
+        "Text": "Roast chicken? Yes, I will try that next week. You have so many good ideas.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.195b33016bc949ebb9e46e1ae10fb253",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 547,
+        "EndTime": 554.72,
+        "Text": "I know, but I\u0027m your regular customer now, and I really need your magic recipe to work, please.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.1995bf3101d8408aa094f596d1ed5448",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 127,
+        "EndTime": 133.68,
+        "Text": "You need good beef. I have some very fresh beef right here. It is perfect for a slow stew.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.19fc648cc1f848c5aab8c675d1aefcf8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 816,
+        "EndTime": 820.16,
+        "Text": "Bread sounds perfect. I will go to the bakery after this.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.1aaf7522a5d64174826c3efd62b982e6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 874,
+        "EndTime": 878.72,
+        "Text": "Thank you. Now remember, cook it on low heat for two hours.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.1c49ba19699743d48decba7fcc24cbc4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 696,
+        "EndTime": 705.04,
+        "Text": "I do. When my husband and I were young, we were just dating. I wanted to impress him, so I cooked my special beef stew.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.1c5c684726314eefaeefc6e65298f933",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 344,
+        "EndTime": 348.16,
+        "Text": "Three bowls? That is a very hungry man.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.2148ed8f886043be89a693efab98f9ce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 853,
+        "EndTime": 858.079,
+        "Text": "$16, sweetie. My beef is very high quality.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.223624e8c78a4b47a8f586ad7033466c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 705,
+        "EndTime": 707.6,
+        "Text": "Beef stew. Is it difficult?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.23db6538860d4975bffe067033491ca8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 263,
+        "EndTime": 268.56,
+        "Text": "Don\u0027t worry. Here, let me give you my phone number. Really? Are you sure?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.24704e7d85ac44f9973a7bc510b738be",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 737,
+        "EndTime": 742.32,
+        "Text": "Never. And he only wants my stew. He says nobody else can make it right.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.250ec0df541c498fa6db23fb505f6303",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 187,
+        "EndTime": 195.519,
+        "Text": "You can dip the bread into the stew or you can eat it with hot white rice. A small green salad on the side is also very nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.275325c43a9143769d6b7f29579eec99",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 774,
+        "EndTime": 776.48,
+        "Text": "Big pieces are better for stew.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.29ca57454bea4dba8fc9d33e96d10f71",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 250,
+        "EndTime": 253.76,
+        "Text": "Thank you so much, Rosa. Here\u0027s the money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.2b26552d2a77424e81f93c8bf47646bf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 596,
+        "EndTime": 600,
+        "Text": "Perfect. My phone is ringing. I see your message.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.2e13d9c5526f4a12800911e2db517f7d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 497,
+        "EndTime": 505.759,
+        "Text": "You can dip the bread into the stew or you can eat it with hot white rice. A small green salad on the side is also very nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.2e14195bec364becb37839432e96b370",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 834,
+        "EndTime": 847.6,
+        "Text": "I\u0027ve been cooking for a long time, sweetie. Now, let\u0027s see. The beef is $14. The tomatoes and onions are $4. The total is $18. $18?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.2ec37b9b837c445fb45617349cd399af",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 348,
+        "EndTime": 353.84,
+        "Text": "Yes. He said it was exactly what he needed. And the ginger really helped him relax.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.2f211a26cb34472eb89095f2edee74e7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 258,
+        "EndTime": 263.84,
+        "Text": "2 hours? What if I forget something while I\u0027m cooking? I\u0027m still a little nervous.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.30288411fc9e4499bc264cb9fec5d692",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 561,
+        "EndTime": 564,
+        "Text": "Thank you so much, Rosa. Here\u0027s the money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.3077a1976697442eb3c473837c38a5fc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 335,
+        "EndTime": 344.72,
+        "Text": "He loved it. [snorts] He was so tired when he came home, but when he smelled the soup, he smiled. He actually ate three bowls.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.31ba6d6dde0f45f8bbae47f42f6675b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 244,
+        "EndTime": 250.879,
+        "Text": "You are very good at bargaining. Okay, $16 for my favorite customer.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.3b702db170ab455fbe13324cb85c3a2b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 379,
+        "EndTime": 386.56,
+        "Text": "Even more? Oh, you want the magic recipe? Yes, a magic recipe. Do you have one?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.3c1f148abc9147c1b758c43d2e923a01",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 871,
+        "EndTime": 874.399,
+        "Text": "Thank you so much, Rosa. Here\u0027s the money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.40ee15c6d8bb498f9c7630ada6635694",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 643,
+        "EndTime": 646.079,
+        "Text": "Tell me everything. Did your boyfriend like it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.41072b8ae9804b469044d39b172cec8e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 689,
+        "EndTime": 696.959,
+        "Text": "Even more? Oh, you want the magic recipe? Yes, a magic recipe. Do you have one?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.412223bc08974d109cf40d58db370669",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 716,
+        "EndTime": 723.519,
+        "Text": "He loved it so much that he asked me to marry him a week later. Really? Just because of the beef stew?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.41949758684042099f49e9dc86648b25",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 747,
+        "EndTime": 754.399,
+        "Text": "You need good beef. I have some very fresh beef right here. It is perfect for a slow stew.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.42fcdd44fcf04229a2b728affcbad35d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 413,
+        "EndTime": 423.199,
+        "Text": "He told me if I can eat this for the rest of my life, I will be a very happy man. We have been married for 30 years, and he still asks for it every Sunday.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.430a82e263fa48799f319247983d45d7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 910,
+        "EndTime": 916.8,
+        "Text": "Rosa, thank you so much. I\u0027m so lucky I met you yesterday. Why do you say that, sweetie?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.43a3ebfeeaaf40af992f7454ee30a666",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 304,
+        "EndTime": 309.039,
+        "Text": "but now I think it\u0027s actually really fun. You made me love cooking.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.4536ba67ad924d46ab9ecf1a7f4cfdec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 523,
+        "EndTime": 537.12,
+        "Text": "I\u0027ve been cooking for a long time, sweetie. Now, let\u0027s see. The beef is $14. The tomatoes and onions are $4. The total is $18. $18?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.4559b6d491d642b380c7be82e6015e94",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 296,
+        "EndTime": 304.08,
+        "Text": "Because you sell such good food and you\u0027re a great cook. Before I met you, I thought cooking was so boring and scary,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.473eb0f93d3b4c51b00fb1c32aa7823e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 564,
+        "EndTime": 568.32,
+        "Text": "Thank you. Now remember, cook it on low heat for 2 hours.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.48b96d01c4e14e05bce1bfbe4b6ae8e5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 889,
+        "EndTime": 897.36,
+        "Text": "Of course. If you forget what to do, just send me a message or call me. I\u0027ll help you. That is so nice of you. Let me save it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.4a593bfa863e4ca4819cb3827c023518",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 574,
+        "EndTime": 578.8,
+        "Text": "Don\u0027t worry. Here, let me give you my phone number. Really? Are you sure?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.4a9723dfb85f4021ad548af1167940a8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 723,
+        "EndTime": 731.519,
+        "Text": "He told me if I eat this for the rest of my life, I will be a very happy man. We have been married for 30 years and he",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.4d9c49da2770415f8f9b8ad8dfa49c82",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 47,
+        "EndTime": 54.8,
+        "Text": "You were right. Actually, I had so much fun making it. I think I like cooking now. It feels really good to take care",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.4fc7ce6a2ff848f7bcb66b6b0107f595",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 60,
+        "EndTime": 69.119,
+        "Text": "No, I want to try something new. I want to make something very special. Do you have a recipe that will make him love me even more?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.50d4574c2eda404fb868fdfbdbbf6a3a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 505,
+        "EndTime": 509.759,
+        "Text": "Bread sounds perfect. I will go to the bakery after this.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.512c61fb51504cefbcca1c2181e43fee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 878,
+        "EndTime": 884.56,
+        "Text": "Two hours? What if I forget something while I\u0027m cooking? I\u0027m still a little nervous.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.546204d3bcdd4c7695dba61a57eab9a5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 902,
+        "EndTime": 906.959,
+        "Text": "Got it. I will send you a message right now so you have my number, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.55abbe6399d54fb9b91081eeef7f67e8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 316,
+        "EndTime": 325.12,
+        "Text": "I can\u0027t wait to see it. Good luck with your dinner. Thank you. See you soon. Hi, Rosa. Good morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.55e72796fd4440ff860d889c6a3d581a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 543,
+        "EndTime": 547.6,
+        "Text": "$16, sweetie. My beef is very high quality.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.59608aa34deb4d64bacd0e52e4ee2be3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 253,
+        "EndTime": 258.079,
+        "Text": "Thank you. Now remember, cook it on low heat for 2 hours.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.5d07b17afdae4cb48d2851d7d2845ccc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 181,
+        "EndTime": 187.36,
+        "Text": "Oh, I didn\u0027t think about that. What do you suggest? You should buy some warm French bread.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.5e719b6a88b04dd5ba8ef3f347844829",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 226,
+        "EndTime": 232.959,
+        "Text": "Oh, Rosa, can you do $16? I only brought $16 today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.5fd2dd417c8f444fbdb6bd82d65f62f6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 289,
+        "EndTime": 296.16,
+        "Text": "Rosa, thank you so much. I\u0027m so lucky I met you yesterday. Why do you say that, sweetie?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.61278c3ada044d30962901602fa02475",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 43,
+        "EndTime": 47.28,
+        "Text": "I told you food made with love always works.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.6282bb999c9a4d4da9ee0eef652ab6d6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 592,
+        "EndTime": 596.56,
+        "Text": "Got it. I will send you a message right now so you have my number, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.638c4fc356f74a18ba534754d0c5c43d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 658,
+        "EndTime": 664.24,
+        "Text": "Yes. He said it was exactly what he needed. And the ginger really helped him relax.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.67eee8a88337466c83a739cfa59786c6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 897,
+        "EndTime": 902.56,
+        "Text": "098 45217.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.68d5643ce2374f83ae9ad81b88a0bcaf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 153,
+        "EndTime": 155.76,
+        "Text": "Big pieces are better for stew.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.6a10d4e8557148eca6fcac014ddca9e4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 795,
+        "EndTime": 802.16,
+        "Text": "Salt, pepper, a little sugar, and garlic. Got it. And what are you going to eat it with?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.6a3d7155098b467e8e5561d1f9835627",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 102,
+        "EndTime": 112.96,
+        "Text": "He told me if I can eat this for the rest of my life, I will be a very happy man. We have been married for 30 years, and he still asks for it every Sunday.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.6becac93b946471f949194a280fae788",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 466,
+        "EndTime": 469.919,
+        "Text": "Okay. What about spices? Do I need anything else?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.6dbfd1a9583547d3a3a8c405498c448e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 443,
+        "EndTime": 447.36,
+        "Text": "Okay, I will take some. What vegetables do I need?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.6f3a1e14b4a84eaea06f062c29b33da2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 469,
+        "EndTime": 475.44,
+        "Text": "Yes, you need salt and black pepper. Do you have sugar at home? Yes, I have sugar.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.71187b8b3f374cb7a29b9ce5c5172ffe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 144,
+        "EndTime": 153.519,
+        "Text": "I still have some potatoes and carrots from yesterday, so I just need the beef, tomatoes, and onions. Perfect. Let me cut the beef for you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.72173431a77a489ba2b75b0914332142",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 884,
+        "EndTime": 889.199,
+        "Text": "Don\u0027t worry. Here, let me give you my phone number. Really? Are you sure?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.77b506c6ca994cdc8590449d46953f57",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 155,
+        "EndTime": 159.68,
+        "Text": "Okay. What about spices? Do I need anything else?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.7972d807bcfc4522bcdc01da3def7c30",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 112,
+        "EndTime": 116.96,
+        "Text": "That is so romantic. He never gets tired of it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.7a5d4819221c4c74a28bd06fcaa3e958",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 937,
+        "EndTime": 941.778141,
+        "Text": "I can\u0027t wait to see it. Good luck with your dinner. Thank you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.7bbec9463abb423eaddf47da7ada1b54",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 357,
+        "EndTime": 365.039,
+        "Text": "You were right. Actually, I had so much fun making it. I think I like cooking now. It feels really good to take care",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.7bdd3947f55342c3ae629bfce7356c7f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 84,
+        "EndTime": 86.96,
+        "Text": "Beef stew. Is it difficult?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.7be6e9240d784b67a7543914f801f86d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 14,
+        "EndTime": 22.96,
+        "Text": "Hello sweetie. You came back. I was hoping to see you. How was the chicken soup? It was amazing. I am so happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.7e7970f0b6de4f3b92bb27f78067564b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 916,
+        "EndTime": 924.72,
+        "Text": "Because you sell such good food and you\u0027re a great cook. Before I met you, I thought cooking was so boring and scary,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.810e64b88841488296078edc9c771a70",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 667,
+        "EndTime": 675.44,
+        "Text": "You were right. Actually, I had so much fun making it. I think I like cooking now. It feels really good to take care",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.82cf02050ded4b448b9503363077006a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 232,
+        "EndTime": 237.36,
+        "Text": "$16, sweetie. My beef is very high quality.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.85d92d5482694781beda6a3d26aae14b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 742,
+        "EndTime": 747.92,
+        "Text": "That is exactly what I want. I want to make your magic beef stew. What do I need?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.8a3a2ef8787e4d1d867c443fcb9618ba",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 213,
+        "EndTime": 226.959,
+        "Text": "I\u0027ve been cooking for a long time, sweetie. Now, let\u0027s see. The beef is $14. The tomatoes and onions are $4. The total is $18. $18?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.8b706acf16484102ae00d17aab042e6c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 325,
+        "EndTime": 333.199,
+        "Text": "Hello, sweetie. You came back. I was hoping to see you. How was the chicken soup? It was amazing. I am so happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.8d9b493c761d42a593eee56198c0c023",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 237,
+        "EndTime": 244.48,
+        "Text": "I know, but I\u0027m your regular customer now, and I really need your magic recipe to work, please.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.8f8b3cd984fe4ff59adf089fc72ee353",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 159,
+        "EndTime": 165.2,
+        "Text": "Yes, you need salt and black pepper. Do you have sugar at home? Yes, I have sugar.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.8fcab74ba43d44e491723e0dc14e7ea7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 635,
+        "EndTime": 643.68,
+        "Text": "Hello, sweetie. You came back. I was hoping to see you. How was the chicken soup? It was amazing. I am so happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.90be54d7c63140ce8a354e034174ca54",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 776,
+        "EndTime": 780.399,
+        "Text": "Okay. What about spices? Do I need anything else?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.9152dd6640e049c49bd8b059005e51af",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 437,
+        "EndTime": 443.919,
+        "Text": "You need good beef. I have some very fresh beef right here. It is perfect for a slow stew.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.915499efb8eb43209d3d795c47598bf3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 820,
+        "EndTime": 828.399,
+        "Text": "Good idea. And maybe next time you can try making a roast chicken that is also very easy and looks beautiful for dinner.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.961288eb016842269f4917c586f6ede7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 858,
+        "EndTime": 865.12,
+        "Text": "I know, but I\u0027m your regular customer now, and I really need your magic recipe to work, please.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.969cbaef52d64959a05ba7762141b6dc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 828,
+        "EndTime": 834.32,
+        "Text": "Roast chicken? Yes, I will try that next week. You have so many good ideas.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.9a7e373a3ba0443a9209c889c8a6f126",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 406,
+        "EndTime": 413.039,
+        "Text": "He loved it so much that he asked me to marry him a week later. Really? Just because of the beef stew?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.9bd30fb772594898b2687b1a1eb34017",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 276,
+        "EndTime": 281.84,
+        "Text": "098 45217.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.9c3a8d538f2947dd8e319d930c5f317f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 10,
+        "EndTime": 14.88,
+        "Text": "Now listen carefully. Hi Rosa. Good morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.9d3b3f19506440478d47d1e11c44a41f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 865,
+        "EndTime": 871.519,
+        "Text": "You are very good at bargaining. Okay, $16 for my favorite customer.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.9e9fe51dc6e54796b2723c1262cb2005",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 397,
+        "EndTime": 406,
+        "Text": "No, it is very simple, but it smells beautiful and the meat gets so soft it melts in your mouth. Wow. Did he like it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.9ee55da5fbed4399af80efe3168c3932",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 121,
+        "EndTime": 127.28,
+        "Text": "That is exactly what I want. I want to make your magic beef stew. What do I need?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.9f85a226834a41978e593b9bf6fff9dc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 568,
+        "EndTime": 574.08,
+        "Text": "2 hours? What if I forget something while I\u0027m cooking? I\u0027m still a little nervous.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.a006a2b9fe75454985cb68d8bc577b23",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 370,
+        "EndTime": 379.36,
+        "Text": "No, I want to try something new. I want to make something very special. Do you have a recipe that will make him love me even more?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.a26e001c945e454c85a8ece5019ea5c5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 463,
+        "EndTime": 466,
+        "Text": "Big pieces are better for stew.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.a26e51bf289d4224bed836414ea73afb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 646,
+        "EndTime": 655.12,
+        "Text": "He loved it. He was so tired when he came home, but when he smelled the soup, he smiled. He actually ate three bowls.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.a74192c0c753406fa6dafb0f89cf601b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 86,
+        "EndTime": 95.759,
+        "Text": "No, it is very simple, but it smells beautiful and the meat gets so soft it melts in your mouth. Wow. Did he like it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.a78e7845cf0243e18044a257365e7bc4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 37,
+        "EndTime": 43.6,
+        "Text": "Yes. He said it was exactly what he needed. And the ginger really helped him relax.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.a7fcc6f842824aae8ea8595cf224fb76",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 286,
+        "EndTime": 289.759,
+        "Text": "Perfect. My phone is ringing. I see your message.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.a97e16a319754395a88afa88b9fd28fc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 847,
+        "EndTime": 853.6,
+        "Text": "Oh, Rosa, can you do $16? I only brought $16 today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.aa821cdebd8a4689b55f93572770a4eb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 614,
+        "EndTime": 619.279,
+        "Text": "but now I think it\u0027s actually really fun. You made me love cooking.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.ab8fdc30bc044a40b8207065f6925037",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 578,
+        "EndTime": 586.959,
+        "Text": "Of course. If you forget what to do, just send me a message or call me. I\u0027ll help you. That is so nice of you. Let me save it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.aba8c51c7e5546249c235696d036e2f3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 427,
+        "EndTime": 431.919,
+        "Text": "Never. And he only wants my stew. He says nobody else can make it right.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.ac5f06d5238e4c7a983799fb5039fb94",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 309,
+        "EndTime": 313.12,
+        "Text": "Cooking is just sharing love. I\u0027m glad you enjoy it now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.b37b7b1af5444403bc9f16b626946e7c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 675,
+        "EndTime": 680.88,
+        "Text": "of him. That is wonderful to hear. So, what are we cooking today? More chicken?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.b3bddb91467a432987e1fb3f5ad18efb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 69,
+        "EndTime": 76.32,
+        "Text": "Even more? Oh, you want the magic recipe? Yes, a magic recipe. Do you have one?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.b4dbf8dc986d44609032a04e5d9c1588",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 386,
+        "EndTime": 394.639,
+        "Text": "I do. When my husband and I were young, we were just dating. I wanted to impress him, so I cooked my special beef stew.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.b52bf717808f4f498c23b28e1ec209d2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 137,
+        "EndTime": 144.48,
+        "Text": "You need potatoes, carrots, onions, and tomatoes. The tomatoes make the sauce very rich and sweet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.b64ca53f17234a95bf8e1c418884ff94",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 313,
+        "EndTime": 316.639,
+        "Text": "I do. I will send you a picture of the stew tonight.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.b85bcc0144474443a6ef41984910d28f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 431,
+        "EndTime": 437.52,
+        "Text": "That is exactly what I want. I want to make your magic beef stew. What do I need?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.bb99d4cbfa244f7ebcccdec58e211b9c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 9.72,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level B1 and the topic is go to the market.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.bdd58dac19c440eea53e5b890c3ef986",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 554,
+        "EndTime": 561.12,
+        "Text": "You are very good at bargaining. Okay, $16 for my favorite customer.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.c12acccf29b34e77ac0d1ab1dccfb90a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 537,
+        "EndTime": 543.2,
+        "Text": "Oh, Rosa, can you do $16? I only brought $16 today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.c1e73a065f684a95bae08f03fea6a46e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 25,
+        "EndTime": 34.48,
+        "Text": "He loved it. He was so tired when he came home, but when he smelled the soup, he smiled. He actually ate three bowls.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.c736fb9f3dd04c6cbda928b687c4278f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 423,
+        "EndTime": 427.199,
+        "Text": "That is so romantic. He never gets tired of it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.cd881879dd8f40c68bfdee9f4a1b559a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 731,
+        "EndTime": 737.68,
+        "Text": "still asks for it every Sunday. That is so romantic. He never gets tired of it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.ce78e1d101954b50af86aeeb08da92ff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 924,
+        "EndTime": 929.68,
+        "Text": "but now I think it\u0027s actually really fun. You made me love cooking.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.d1a20d7d34374e6398a1f3fca5461ee4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 906,
+        "EndTime": 910.399,
+        "Text": "Perfect. My phone is ringing. I see your message.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.d1c50d4bd65e494190af284f3a901d4b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 606,
+        "EndTime": 614.32,
+        "Text": "Because you sell such good food and you\u0027re a great cook. Before I met you, I thought cooking was so boring and scary,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.d1d24e6293e947aa8632a79b382be500",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 54,
+        "EndTime": 60.239,
+        "Text": "of him. That is wonderful to hear. So, what are we cooking today? More chicken?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.d3093d3dafc4481eafa7a083051f733d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 268,
+        "EndTime": 276.72,
+        "Text": "Of course. If you forget what to do, just send me a message or call me. I\u0027ll help you. That is so nice of you. Let me save it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.d56d58d6f4af45908826612cc8e2fdae",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 586,
+        "EndTime": 592.08,
+        "Text": "098 45217.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.d6765a1045664b51b202c1c163a7513d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 454,
+        "EndTime": 463.759,
+        "Text": "I still have some potatoes and carrots from yesterday, so I just need the beef, tomatoes, and onions. Perfect. Let me cut the beef for you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.d8152c31f35f47b6842cf613d3e9957a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 754,
+        "EndTime": 757.839,
+        "Text": "Okay, I will take some. What vegetables do I need?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.d8e7dbdc78a94f2ba3aac145fe999e3c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 133,
+        "EndTime": 137.12,
+        "Text": "Okay, I will take some. What vegetables do I need?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.d955493739cb42a598627bcf1b52be3b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 95,
+        "EndTime": 102.799,
+        "Text": "He loved it so much that he asked me to marry him a week later. Really? Just because of the beef stew?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.da42e86754904ca5b48569662c08dc2b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 808,
+        "EndTime": 816.16,
+        "Text": "You can dip the bread into the stew or you can eat it with hot white rice. A small green salad on the side is also very nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.dbf9853757e24390a7787d37ad480c3b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 199,
+        "EndTime": 207.76,
+        "Text": "Good idea. And maybe next time you can try making a roast chicken. That is also very easy and looks beautiful for dinner.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.dd5874fed3984ee18f805c1175abd17f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 491,
+        "EndTime": 497.599,
+        "Text": "Oh, I didn\u0027t think about that. What do you suggest? You should buy some warm French bread.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.dd728e035eed4843b2cfd1d8f6b8572a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 929,
+        "EndTime": 933.76,
+        "Text": "Cooking is just sharing love. I\u0027m glad you enjoy it now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.de5742ecc9b94bee9f5c82cc883c6d66",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 353,
+        "EndTime": 357.52,
+        "Text": "I told you food made with love always works.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.e150999b075542c7b1cce89fa4ac9d35",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 619,
+        "EndTime": 623.36,
+        "Text": "Cooking is just sharing love. I\u0027m glad you enjoy it now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.e1b45b80b6d14b12b9ddc406731a7ef7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 116,
+        "EndTime": 121.68,
+        "Text": "Never. And he only wants my stew. He says nobody else can make it right.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.e22f92bda1e7474bbb0e014f7ab0db25",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 785,
+        "EndTime": 795.279,
+        "Text": "Good. Put a little bit of sugar in the stew. Just a little. It makes the tomatoes taste sweeter and richer. Oh, and add some fresh garlic.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.e42e2de07be14730a22f8e6ecd72ae2b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 484,
+        "EndTime": 491.68,
+        "Text": "Salt, pepper, a little sugar, and garlic. Got it. And what are you going to eat it with?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.e77f0c2bde6846f5908c70e79b399f41",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 655,
+        "EndTime": 658.56,
+        "Text": "Three bowls? That is a very hungry man.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.eb23a40e46ec436bab93890fbc303a64",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 333,
+        "EndTime": 335.68,
+        "Text": "Tell me everything. Did your boyfriend like it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.ef10dff687f94bc6b95e6cff2a3f693f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 394,
+        "EndTime": 397.199,
+        "Text": "Beef stew. Is it difficult?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.f0209a172d13421a9fc14656be31dc08",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 447,
+        "EndTime": 454.72,
+        "Text": "You need potatoes, carrots, onions, and tomatoes. The tomatoes make the sauce very rich and sweet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.f19b44dab2d24334b058f100e9820437",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 780,
+        "EndTime": 785.92,
+        "Text": "Yes, you need salt and black pepper. Do you have sugar at home? Yes, I have sugar.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.f1defab4d375458a9037700d8f489ecc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 802,
+        "EndTime": 808,
+        "Text": "Oh, I didn\u0027t think about that. What do you suggest? You should buy some warm French bread.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.f2f794690c2d4063a535eaae3b85d174",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 757,
+        "EndTime": 765.12,
+        "Text": "You need potatoes, carrots, onions, and tomatoes. The tomatoes make the sauce very rich and sweet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.f387dc62173f4a54b58a4ec14ff9e3e2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 765,
+        "EndTime": 774.16,
+        "Text": "I still have some potatoes and carrots from yesterday, so I just need the beef, tomatoes, and onions. Perfect. Let me cut the beef for you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.f5846c5e539f4ddbba5a0ca0102690ec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 623,
+        "EndTime": 626.88,
+        "Text": "I do. I will send you a picture of the stew tonight.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.f71644a7d01e4c42857dba08d03aa6af",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 195,
+        "EndTime": 199.519,
+        "Text": "Bread sounds perfect. I will go to the bakery after this.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.f869d05488184cfb91f5a446bf308cb7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 680,
+        "EndTime": 689.76,
+        "Text": "No, I want to try something new. I want to make something very special. Do you have a recipe that will make him love me even more?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.f8d35141f4444233b491f02bba5f03a4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 34,
+        "EndTime": 37.92,
+        "Text": "Three bowls? That is a very hungry man.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.f91d8ff92605402b8fe4d1aeada1e8f5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 707,
+        "EndTime": 716.399,
+        "Text": "No, it is very simple, but it smells beautiful and the meat gets so soft it melts in your mouth. Wow. Did he like it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.fd4da9d0b171440084a218cd83f3726a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 626,
+        "EndTime": 635.519,
+        "Text": "I can\u0027t wait to see it. Good luck with your dinner. Thank you. See you soon. Hi, Rosa. Good morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97.ff437f2123c047ae96dd338750520c44",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 664,
+        "EndTime": 667.92,
+        "Text": "I told you food made with love always works.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.4627624ceb2da4c676fd6f05bca8eeb458a9187254a21dc791e5e41224760b97"
+}

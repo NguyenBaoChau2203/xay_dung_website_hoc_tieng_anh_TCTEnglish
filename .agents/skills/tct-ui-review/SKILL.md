@@ -5,7 +5,8 @@ description: Use when auditing or polishing rendered TCT English pages for hiera
 
 # Review the interface the learner uses
 
-Apply this as the same agent, following AGENTS.md and
+Follow AGENTS.md's owner execution policy, including its sole Antigravity
+client/model exception, and
 [DESIGN.md](../../../DESIGN.md). This is a curated Impeccable integration;
 it does not install its binary, hooks, asset producers or worker roles.
 
@@ -23,7 +24,7 @@ it does not install its binary, hooks, asset producers or worker roles.
 5. In an available browser inspect **whole-feature** multi-platform behavior:
    ~1440 (sidebar open/collapsed on the learner shell), 768 and 375-390, plus
    200% zoom; exercise keyboard navigation. Follow
-   [multi-platform UI design](../../../docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md)
+   [canonical multi-platform rules](../../../DESIGN.md#multi-platform-mandatory)
    and the workflow PR checklist. Check real rendered states, with screenshots
    where useful. If login/server/assets block a check, name the unverified state.
    A single-viewport pass is incomplete.
@@ -36,5 +37,6 @@ Additional references, only as needed:
 [polish](../../../.ai/vendor/impeccable/polish.md),
 [typography](../../../.ai/vendor/impeccable/typeset.md).
 
-Do not invoke impeccable context, download binaries or spawn reviewers. Use
+Do not invoke impeccable context or download binaries. Reviewer delegation is
+permitted only under AGENTS.md's owner execution policy. Use
 the browser tooling available in the current session.

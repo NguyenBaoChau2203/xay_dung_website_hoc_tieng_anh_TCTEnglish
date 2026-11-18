@@ -132,3 +132,9 @@ local có che ký tự bằng `pwsh -NoProfile -File scripts/set-local-ai-key.ps
 rồi chạy `pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser`.
 Launcher giữ DB/key, normalize đúng override Google cũ và provision FFmpeg pin.
 Không gửi key vào chat. Xem [OpenAI local setup](openai-local-setup.md).
+
+Khi OpenAI lỗi, site vẫn dùng MariaDB. Speaking có **Tự luyện** không chấm;
+Writing Local giữ kết quả nội bộ; tạo bài AI thất bại chuyển sang catalog có
+sẵn; Chat không tự gửi lại một yêu cầu chưa rõ đã xử lý. Guard lỗi lặp nằm trong
+tiến trình web, không đổi schema hay cổng release. Chi tiết ở
+[local speech](local-speech.md).

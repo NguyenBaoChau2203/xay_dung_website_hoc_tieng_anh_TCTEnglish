@@ -29,6 +29,6 @@ new icon CDN for a component task.
    (desktop ~1440 with sidebar open/collapsed and mobile 768 / 375-390), text
    zoom 200%, long Vietnamese/English text, contrast and reduced motion in a
    real browser when available. Follow
-   [multi-platform UI design](../../../docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md).
+   [canonical multi-platform rules](../../../DESIGN.md#multi-platform-mandatory).
    Do not report the UI work complete if only one viewport was verified. Report
    unavailable browser verification explicitly.

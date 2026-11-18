@@ -21,9 +21,9 @@
 
 <div class="alert alert-info border-info-subtle" role="alert">
     <i class="bi bi-info-circle me-1"></i>
-    Hoan tien tu dong chua duoc ho tro trong he thong admin.
-    Neu can refund, vui long xu ly truc tiep tren cong thanh toan (VNPay/MoMo),
-    sau do cap nhat ghi chu va audit theo quy trinh van hanh.
+    Hoàn tiền tự động chưa được hỗ trợ trong hệ thống quản trị.
+    Nếu cần hoàn tiền, vui lòng xử lý trực tiếp trên cổng thanh toán (VNPay/MoMo),
+    sau đó cập nhật ghi chú và nhật ký quản trị theo quy trình vận hành.
 </div>
 
 <div class="row g-3 mb-4">
@@ -31,7 +31,7 @@
         <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
                 <p class="text-muted small mb-1">Trạng thái</p>
-                <span class="@Model.StatusBadgeClass">@Model.Status</span>
+                <span class="@Model.StatusBadgeClass">@TCTEnglish.Services.Billing.PaymentOrderLabels.StatusLabel(Model.Status)</span>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
             <div class="card-body">
                 <p class="text-muted small mb-1">Paid at</p>
                 <div class="fw-medium">
-                    @(Model.PaidAtUtc.HasValue ? Model.PaidAtUtc.Value.AddHours(7).ToString("dd/MM/yyyy HH:mm") : "Chưa thanh toán")
+                    @(Model.PaidAtUtc.HasValue ? TCTEnglish.Services.Billing.BillingTime.ToDisplay(Model.PaidAtUtc.Value) : "Chưa thanh toán")
                 </div>
             </div>
         </div>
@@ -75,10 +75,10 @@
                     <dd class="col-sm-8">@Model.OrderCode</dd>
 
                     <dt class="col-sm-4 text-muted">Created</dt>
-                    <dd class="col-sm-8">@Model.CreatedAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</dd>
+                    <dd class="col-sm-8">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(Model.CreatedAtUtc)</dd>
 
                     <dt class="col-sm-4 text-muted">Expires</dt>
-                    <dd class="col-sm-8">@Model.ExpiresAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</dd>
+                    <dd class="col-sm-8">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(Model.ExpiresAtUtc)</dd>
 
                     <dt class="col-sm-4 text-muted">Transaction</dt>
                     <dd class="col-sm-8">@(Model.ProviderTransactionId ?? "N/A")</dd>
@@ -189,7 +189,7 @@
                                 }
                             </td>
                             <td>
-                                <span class="text-muted small">@evt.ReceivedAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</span>
+                                <span class="text-muted small">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(evt.ReceivedAtUtc)</span>
                             </td>
                             <td class="pe-4">
                                 <details>
@@ -253,7 +253,7 @@
                                 <div class="fw-medium">@audit.AdminDisplayName</div>
                                 <small class="text-muted">@audit.AdminEmail</small>
                             </td>
-                            <td class="small text-muted">@audit.CreatedAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</td>
+                            <td class="small text-muted">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(audit.CreatedAtUtc)</td>
                             <td class="pe-4 small text-muted">@(audit.IpAddress ?? "N/A")</td>
                         </tr>
                     }
@@ -264,17 +264,17 @@
 </div>
 
 @* ── Admin Actions ───────────────────────────────────────────────────────── *@
-@if (Model.Status != "manual_review")
+@if (Model.Status != "manual_review" && TCTEnglish.Services.Billing.PaymentOrderStateMachine.CanSendToManualReview(Model.Status, TCTEnglish.Services.Billing.PaymentTransitionSource.Admin))
 {
     <div class="card border-warning shadow-sm mt-4">
         <div class="card-header bg-warning-subtle py-3">
             <h2 class="h6 fw-semibold mb-0 text-warning-emphasis">
-                <i class="bi bi-exclamation-triangle-fill me-1"></i>Đánh dấu Manual Review
+                <i class="bi bi-exclamation-triangle-fill me-1"></i>Chuyển sang kiểm tra thủ công
             </h2>
         </div>
         <div class="card-body">
             <p class="small text-muted mb-3">
-                Đánh dấu order này để yêu cầu kiểm tra thủ công. Thao tác sẽ được ghi vào audit log.
+                Chuyển đơn này sang kiểm tra thủ công. Thao tác được ghi vào nhật ký quản trị.
                 <strong>Bắt buộc nhập lý do.</strong>
             </p>
             <form asp-action="MarkManualReview" method="post">
@@ -288,7 +288,7 @@
                     </div>
                     <div class="col-md-3">
                         <button type="submit" class="btn btn-warning btn-sm w-100">
-                            <i class="bi bi-flag-fill me-1"></i>Mark Manual Review
+                            <i class="bi bi-flag-fill me-1"></i>Chuyển kiểm tra thủ công
                         </button>
                     </div>
                 </div>
@@ -296,12 +296,12 @@
         </div>
     </div>
 }
-else
+else if (Model.Status == "manual_review")
 {
     <div class="card border-primary shadow-sm mt-4">
         <div class="card-header bg-primary-subtle py-3">
             <h2 class="h6 fw-semibold mb-0 text-primary-emphasis">
-                <i class="bi bi-check2-square me-1"></i>Xu ly Manual Review
+                <i class="bi bi-check2-square me-1"></i>Xử lý đơn kiểm tra thủ công
             </h2>
         </div>
         <div class="card-body">
@@ -310,10 +310,10 @@ else
                     <form asp-action="ResolveManualReviewConfirmPaid" method="post">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="PaymentOrderId" value="@Model.Id" />
-                        <label class="form-label small fw-medium">Ly do confirm paid <span class="text-danger">*</span></label>
+                        <label class="form-label small fw-medium">Lý do xác nhận đã thanh toán <span class="text-danger">*</span></label>
                         <textarea name="Reason" class="form-control form-control-sm" rows="3" maxlength="1000" required></textarea>
                         <button type="submit" class="btn btn-success btn-sm mt-2">
-                            <i class="bi bi-check-circle me-1"></i>Confirm Paid
+                            <i class="bi bi-check-circle me-1"></i>Xác nhận đã thanh toán
                         </button>
                     </form>
                 </div>
@@ -321,10 +321,10 @@ else
                     <form asp-action="ResolveManualReviewReject" method="post">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="PaymentOrderId" value="@Model.Id" />
-                        <label class="form-label small fw-medium">Ly do reject <span class="text-danger">*</span></label>
+                        <label class="form-label small fw-medium">Lý do từ chối <span class="text-danger">*</span></label>
                         <textarea name="Reason" class="form-control form-control-sm" rows="3" maxlength="1000" required></textarea>
                         <button type="submit" class="btn btn-danger btn-sm mt-2">
-                            <i class="bi bi-x-circle me-1"></i>Reject
+                            <i class="bi bi-x-circle me-1"></i>Từ chối
                         </button>
                     </form>
                 </div>

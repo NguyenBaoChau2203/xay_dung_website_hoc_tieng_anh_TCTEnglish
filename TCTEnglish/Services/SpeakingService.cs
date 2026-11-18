@@ -29,7 +29,8 @@ public sealed class SpeakingService : ISpeakingService
 
     public async Task<SpeakingIndexViewModel> GetSpeakingIndexViewModelAsync(
         int? currentUserId,
-        SpeakingCatalogQuery? query = null)
+        SpeakingCatalogQuery? query = null,
+        bool includeRecent = true)
     {
         query ??= new SpeakingCatalogQuery();
         var pageSize = Math.Clamp(query.PageSize <= 0 ? DefaultPublicPageSize : query.PageSize, 1, MaxPageSize);
@@ -82,6 +83,7 @@ public sealed class SpeakingService : ISpeakingService
         var publicHasMoreByLevel = new Dictionary<string, bool>();
         var publicTotalCount = 0;
         var publicHasMore = false;
+        var publicTotalByTopic = new Dictionary<string, int>();
 
         if (!query.Mine)
         {
@@ -102,6 +104,10 @@ public sealed class SpeakingService : ISpeakingService
             var levelsToLoad = activeLevel is not null
                 ? levelOrder.Where(l => l == activeLevel)
                 : levelOrder;
+
+            var topicCounts = await publicBase.Where(v => levelOrder.Contains(v.Level!) && (activeLevel == null || v.Level == activeLevel))
+                .GroupBy(v => v.Topic ?? "General").Select(g => new { Topic = g.Key, Count = g.Count() }).ToListAsync();
+            publicTotalByTopic = topicCounts.ToDictionary(x => x.Topic, x => x.Count);
 
             foreach (var level in levelsToLoad)
             {
@@ -155,7 +161,8 @@ public sealed class SpeakingService : ISpeakingService
             PublicTotalCount = publicTotalCount,
             PublicHasMore = publicHasMore,
             PublicTotalByLevel = publicTotalByLevel,
-            PublicHasMoreByLevel = publicHasMoreByLevel
+            PublicHasMoreByLevel = publicHasMoreByLevel,
+            PublicTotalByTopic = publicTotalByTopic
         };
 
         if (!currentUserId.HasValue)
@@ -203,6 +210,10 @@ public sealed class SpeakingService : ISpeakingService
         viewModel.MyVideosHasMore = myTotal > (query.Mine ? skip + pageSize : pageSize);
         viewModel.CanImportPrivateVideos = currentRole is Roles.Admin or Roles.Premium;
         viewModel.IsMyVideosLocked = isLocked;
+        if (includeRecent)
+        {
+            viewModel.RecentVideos = await GetRecentVideosAsync(currentUserId.Value);
+        }
 
         return viewModel;
     }
@@ -238,6 +249,20 @@ public sealed class SpeakingService : ISpeakingService
             return null;
         }
 
+        // Restore the receipt committed with the retained progress, not an
+        // uncommitted/newer take or another learner's transcript. One batch query.
+        var sentenceIds = video.SpeakingSentences.Select(s => s.Id).ToList();
+        var savedAssessments = await _context.SpeakingAssessments.AsNoTracking()
+            .Where(a => a.UserId == currentUserId && sentenceIds.Contains(a.SentenceId)
+                && a.Consumed && a.Status == "Completed"
+                && _context.UserSpeakingProgresses.Any(p => p.UserId == currentUserId
+                    && p.SentenceId == a.SentenceId && p.TotalScore == a.TextMatchScore
+                    && p.PracticedAt == a.ConsumedAtUtc))
+            .OrderByDescending(a => a.Id)
+            .Select(a => new { a.SentenceId, a.TranscriptText, a.FluencyScore, a.CompletenessScore, a.MetricVersion })
+            .ToListAsync();
+        var receipts = savedAssessments.GroupBy(a => a.SentenceId).ToDictionary(g => g.Key, g => g.First());
+
         return new SpeakingPracticeViewModel
         {
             VideoId = video.Id,
@@ -251,18 +276,35 @@ public sealed class SpeakingService : ISpeakingService
                     var latestProgress = s.UserSpeakingProgresses
                         .OrderByDescending(p => p.PracticedAt)
                         .FirstOrDefault();
+                    receipts.TryGetValue(s.Id, out var receipt);
+                    var comparison = receipt == null ? null : SpeakingTextAlignment.Compare(s.Text, receipt.TranscriptText);
+                    var completeness = receipt?.CompletenessScore
+                        ?? (comparison == null ? null : SpeakingComponentScorer.Completeness(comparison));
 
                     return new SpeakingSentenceViewModel
                     {
                         Id = s.Id,
                         StartTime = s.StartTime,
                         EndTime = s.EndTime,
-                        Text = s.Text,
+                        Text = TranscriptDisplayText.Format(s.Text),
                         VietnameseMeaning = s.VietnameseMeaning,
                         TotalScore = latestProgress?.TotalScore,
                         AccuracyScore = latestProgress?.AccuracyScore,
-                        FluencyScore = latestProgress?.FluencyScore,
-                        CompletenessScore = latestProgress?.CompletenessScore
+                        FluencyScore = receipt?.FluencyScore ?? latestProgress?.FluencyScore,
+                        CompletenessScore = completeness ?? latestProgress?.CompletenessScore,
+                        FluencyAvailable = receipt != null ? receipt.FluencyScore.HasValue : latestProgress?.FluencyScore > 0,
+                        CompletenessAvailable = receipt != null ? completeness.HasValue : latestProgress?.CompletenessScore > 0,
+                        Comparison = comparison == null ? null : new SpeakingComparisonViewModel
+                        {
+                            Available = comparison.ComparisonAvailable,
+                            UnavailableReason = comparison.UnavailableReason,
+                            Operations = comparison.Operations.Select(op => new SpeakingComparisonOperationViewModel
+                            {
+                                Kind = op.Kind.ToString().ToLowerInvariant(),
+                                ReferenceToken = op.ReferenceToken,
+                                HypothesisToken = op.HypothesisToken
+                            }).ToList()
+                        }
                     };
                 }).ToList()
         };
@@ -305,7 +347,7 @@ public sealed class SpeakingService : ISpeakingService
         if (!transcriptResult.IsEnglishUsable || transcriptResult.Sentences.Count == 0)
         {
             return LearnerImportPreparation.Failed(SpeakingImportResult.Invalid(
-                "Video chưa có phụ đề tiếng Anh với mốc thời gian hợp lệ. Hãy chọn video có phụ đề hoặc tải file SRT/VTT tiếng Anh."));
+                "Không thể lấy phụ đề tiếng Anh với mốc thời gian hợp lệ. Video có thể chưa có phụ đề hoặc YouTube đang chặn truy cập. Hãy chọn video khác hoặc tải file SRT/VTT tiếng Anh."));
         }
 
         var metadata = await _youtubeTranscriptService.GetVideoMetadataAsync(normalizedYoutubeId);
@@ -547,6 +589,100 @@ public sealed class SpeakingService : ISpeakingService
         _context.SpeakingVideos.Remove(video);
         await _context.SaveChangesAsync();
         return OperationResult.Success();
+    }
+
+    public async Task<DateTime?> RecordVideoVisitAsync(int userId, int videoId, CancellationToken ct = default)
+    {
+        var role = await GetVisitRoleAsync(userId, ct);
+        if (role == null || !await ViewableVisitVideos(userId, role).AnyAsync(v => v.Id == videoId, ct))
+        {
+            return null;
+        }
+
+        var openedAt = DateTime.UtcNow;
+        var visits = _context.UserSpeakingVideoVisits.Where(v => v.UserId == userId && v.VideoId == videoId);
+        // Conditional UPDATE is atomic and never replaces a newer concurrent visit.
+        var changed = await visits.Where(v => v.LastOpenedAtUtc < openedAt)
+            .ExecuteUpdateAsync(setters => setters.SetProperty(v => v.LastOpenedAtUtc, openedAt), ct);
+        if (changed == 0)
+        {
+            if (!await visits.AnyAsync(ct))
+            {
+                var visit = new TCTEnglish.Models.UserSpeakingVideoVisit
+                {
+                    UserId = userId, VideoId = videoId, LastOpenedAtUtc = openedAt
+                };
+                _context.UserSpeakingVideoVisits.Add(visit);
+                try
+                {
+                    await _context.SaveChangesAsync(ct);
+                }
+                catch (DbUpdateException ex) when (IsVisitDuplicateKey(ex))
+                {
+                    _context.Entry(visit).State = EntityState.Detached;
+                }
+            }
+            // Another first visit may have inserted between our UPDATE and
+            // existence check. Apply our timestamp even when that check is true.
+            await visits.Where(v => v.LastOpenedAtUtc < openedAt)
+                .ExecuteUpdateAsync(setters => setters.SetProperty(v => v.LastOpenedAtUtc, openedAt), ct);
+        }
+
+        var stored = await visits.AsNoTracking().Select(v => v.LastOpenedAtUtc).SingleAsync(ct);
+        return DateTime.SpecifyKind(stored, DateTimeKind.Utc);
+    }
+
+    public async Task<IReadOnlyList<TCTEnglish.ViewModels.RecentSpeakingVideoViewModel>> GetRecentVideosAsync(int userId, int limit = 6, CancellationToken ct = default)
+    {
+        var role = await GetVisitRoleAsync(userId, ct);
+        if (role == null) return Array.Empty<TCTEnglish.ViewModels.RecentSpeakingVideoViewModel>();
+
+        var recent = await (from visit in _context.UserSpeakingVideoVisits.AsNoTracking()
+                            join video in ViewableVisitVideos(userId, role) on visit.VideoId equals video.Id
+                            where visit.UserId == userId
+                            orderby visit.LastOpenedAtUtc descending, visit.VideoId descending
+                            select new TCTEnglish.ViewModels.RecentSpeakingVideoViewModel
+                            {
+                                Id = video.Id, Title = video.Title, YoutubeId = video.YoutubeId,
+                                Level = video.Level ?? string.Empty, Topic = video.Topic ?? string.Empty,
+                                ThumbnailUrl = video.ThumbnailUrl ?? YoutubeUrlHelper.BuildDefaultThumbnailUrl(video.YoutubeId),
+                                Duration = video.Duration, SentenceCount = video.SpeakingSentences.Count,
+                                IsPrivate = video.OwnerUserId.HasValue, LastOpenedAtUtc = visit.LastOpenedAtUtc
+                            }).Take(Math.Clamp(limit, 1, 6)).ToListAsync(ct);
+        foreach (var item in recent) item.LastOpenedAtUtc = DateTime.SpecifyKind(item.LastOpenedAtUtc, DateTimeKind.Utc);
+        return recent;
+    }
+
+    private IQueryable<SpeakingVideo> ViewableVisitVideos(int userId, string role)
+    {
+        var canUsePrivate = role is Roles.Premium or Roles.Admin;
+        return _context.SpeakingVideos.AsNoTracking()
+            .Where(v => (v.OwnerUserId == null || (v.OwnerUserId == userId && canUsePrivate))
+                && v.SpeakingSentences.Any());
+    }
+
+    private async Task<string?> GetVisitRoleAsync(int userId, CancellationToken ct)
+    {
+        var now = DateTime.UtcNow;
+        var user = await _context.Users.AsNoTracking()
+            .Where(u => u.UserId == userId && u.AnonymizedAt == null
+                && (u.Status != UserStatus.Blocked || (u.LockExpiry != null && u.LockExpiry <= now)))
+            .Select(u => new { u.Role }).SingleOrDefaultAsync(ct);
+        return user == null ? null : Roles.Normalize(user.Role);
+    }
+
+    private static bool IsVisitDuplicateKey(DbUpdateException exception)
+    {
+        for (Exception? inner = exception.InnerException; inner != null; inner = inner.InnerException)
+        {
+            if (inner is MySqlConnector.MySqlException mysql && mysql.Number == 1062) return true;
+            // SQLite is used by the existing relational integration host; do not
+            // confuse foreign-key failures (787) with the unique-key race.
+            if (inner.GetType().FullName == "Microsoft.Data.Sqlite.SqliteException"
+                && inner.GetType().GetProperty("SqliteExtendedErrorCode")?.GetValue(inner) is int code
+                && code is 1555 or 2067) return true;
+        }
+        return false;
     }
 
     private async Task<string> GetNormalizedRoleAsync(int userId)

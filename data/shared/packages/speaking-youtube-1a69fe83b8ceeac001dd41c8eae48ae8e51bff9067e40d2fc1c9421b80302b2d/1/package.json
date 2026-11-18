@@ -1,0 +1,979 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A2 - T\u00CCNH Y\u00CAU",
+        "YoutubeId": "-lrX0zBbNG8",
+        "Level": "A2",
+        "Topic": "Tr\u00F2 chuy\u1EC7n \u0026 t\u00ECnh c\u1EA3m",
+        "ThumbnailUrl": "https://img.youtube.com/vi/-lrX0zBbNG8/hqdefault.jpg",
+        "Duration": "7:38",
+        "SourceUrl": "https://www.youtube.com/watch?v=-lrX0zBbNG8",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.0035ab32d8af40ad9a83242d6fae5777",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1,
+        "EndTime": 9.56,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A2 and the topic is love.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.00fe343f375f447c934ee71fb23177ea",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 66,
+        "EndTime": 69.92,
+        "Text": "Prettier? Come on, Anna. You\u0027re awesome.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.042e374722cd49e8a12271e4c7e4a734",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 119,
+        "EndTime": 127.6,
+        "Text": "No problem. Jerry goes with you, then ask him to watch a movie or go to the park. Have fun, talk more.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.056608ab1cd44c01a9c12ce167fdb43d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 379,
+        "EndTime": 386.96,
+        "Text": "H Don\u0027t be sad. You should talk to Jerry. Say hi. Smile. Maybe he likes you back.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.06ba1c38e2934e00aa052d8a1949f4b8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 298,
+        "EndTime": 304.72,
+        "Text": "What? Me? I\u0027m just helping. Jerry will like you. Let\u0027s get milk tea to plan this.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.115273371a434702a3882e4eeda9b5b5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 88,
+        "EndTime": 94.079,
+        "Text": "But what if Jenny gets mad? I don\u0027t want to lose my friend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.1762d2b5727e44128a8559f544ddeca3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 30,
+        "EndTime": 38.399,
+        "Text": "Oh, he\u0027s super smart. Always gets good grades. And he\u0027s rich. He comes to school in a big car.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.1abd21dd0b5c4b2facbbe8a54fc24551",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 69,
+        "EndTime": 73.68,
+        "Text": "You\u0027re nice and fun. Jerry will like you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.1c5de0ed10584a1db49e5446b63e9359",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 282,
+        "EndTime": 289.199,
+        "Text": "Jenny? Leave her to me. I\u0027ll ask her to eat spicy noodles and drink milk tea. She\u0027ll be happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.1d347beef1004667bb772ab9cd662aa0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 149,
+        "EndTime": 155.76,
+        "Text": "What? Me? I\u0027m just helping. Jerry will like you. Let\u0027s get milk tea to plan this.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.20652b00fcc2420381144e5a47a5e52d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 38,
+        "EndTime": 43.84,
+        "Text": "A car? Fancy. Sounds like a movie star. You talk to him?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.24ee33a0111d42f9a5510f679d60f284",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 127,
+        "EndTime": 133.12,
+        "Text": "Movie park? Good idea. But what about Jenny?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.2c4bf0ac3dcf404c8d26955f1717e126",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 207,
+        "EndTime": 215.44,
+        "Text": "No, I don\u0027t tell her. I\u0027m scared. What if she stops being my friend? She\u0027s prettier than me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.2e989a1c3ee54e6f8bf421fffbda30ed",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 1.28,
+        "Text": "[Music]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.2ed9910a39c1414ab402dc064a16ab98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 342,
+        "EndTime": 349.84,
+        "Text": "No way. I\u0027m shy. And many girls in class like him, too. Even my best friend, Jenny.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.3119869d50704979a35081fe5d6da423",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 405,
+        "EndTime": 413.199,
+        "Text": "Don\u0027t worry, Anna. You\u0027re cool. Here\u0027s a plan. Ask Jerry to study together. You\u0027re good at studying, right?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.32fb53ce2dbd4416825c9fbdcac33c03",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 155,
+        "EndTime": 160.519,
+        "Text": "Deal. But you pay, Tom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.3318ba9d7b55476684a0e5c08624564b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 258,
+        "EndTime": 268.479,
+        "Text": "cool. Here\u0027s a plan. Ask Jerry to study together. You\u0027re good at studying, right? Study? Me? I sleep in class sometimes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.34878d5bdf824a6a9c99d604c7140104",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 413,
+        "EndTime": 417.68,
+        "Text": "Study? Me? I sleep in class sometimes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.37e0b10cdca34c1092d561c8c2d29586",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 386,
+        "EndTime": 392.319,
+        "Text": "But what if Jenny gets mad? I don\u0027t want to lose my friend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.39aa5c05cd28493bbd7d3e0b2fe87a49",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 230,
+        "EndTime": 237.76,
+        "Text": "H Don\u0027t be sad. You should talk to Jerry. Say hi, smile. Maybe he likes you back.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.3a56020e1f1d4db6bd7f2d244723e460",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 222,
+        "EndTime": 230.48,
+        "Text": "Really? But Jenny is so confident. She talks to him all the time. I just watch.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.3c5400d07d5e499f836ad261692a123c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 329,
+        "EndTime": 336.56,
+        "Text": "Oh, he\u0027s super smart. Always gets good grades. And he\u0027s rich. He comes to school in a big car.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.3d8c505a04da4f308be8d17b4ae0781b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 102,
+        "EndTime": 107.759,
+        "Text": "You think so? Okay, maybe I try. But I\u0027m still scared.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.42e328731b954f7788e09de44ff5d17c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 187,
+        "EndTime": 192.8,
+        "Text": "A car? Fancy. Sounds like a movie star. You talk to him.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.462b2ae869364e059abecbfc370171ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 336,
+        "EndTime": 342,
+        "Text": "A car? Fancy. Sounds like a movie star. You talk to him?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.48a8e04c74a84609bae5757d90908893",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 81,
+        "EndTime": 88.799,
+        "Text": "H Don\u0027t be sad. You should talk to Jerry. Say hi. Smile. Maybe he likes you back.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.49b97c848ce74ba9a58f4163bb5b907d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 192,
+        "EndTime": 199.44,
+        "Text": "No way. I\u0027m shy. And many girls in class like him, too. Even my best friend,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.4c5c2336fff34769962cb99a6ad86134",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 167,
+        "EndTime": 175.599,
+        "Text": "Okay, Tom. His name is Jerry. I met him first day at school. He\u0027s so handsome. I fall in love.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.547c28a7e116428abdf451ad02da8848",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 324,
+        "EndTime": 329.039,
+        "Text": "Handsome? Wow. What\u0027s so special about Jerry?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.573b63b3e7f14c818257466cc3f5c7c4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 243,
+        "EndTime": 251.04,
+        "Text": "True. Friends are important. Maybe tell Jenny you like Jerry. Be honest. Good friends understand.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.5760a484a4ae41f9850fdb3abcaad9a8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 162,
+        "EndTime": 167.599,
+        "Text": "Anna, we ate spicy noodles. Now, tell me about this boy you like.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.5b1ce40965a140ea84db9636d87cf179",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 456,
+        "EndTime": 457.572426,
+        "Text": "[Music]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.5facb8e969f440ccbcd7a20b3f1e8928",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 133,
+        "EndTime": 140.239,
+        "Text": "Jenny? Leave her to me. I\u0027ll ask her to eat spicy noodles and drink milk tea. She\u0027ll be happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.6ab64fa0efac4591a97dc952998991bd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 438,
+        "EndTime": 447.919,
+        "Text": "You and Jenny? Okay. But if Jerry doesn\u0027t like me, I stop being friends with you and I\u0027ll be mad at you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.6c83ce9dd5fb49fca46a6c004b4d8d74",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 179,
+        "EndTime": 187.28,
+        "Text": "Oh, he\u0027s super smart. Always gets good grades. And he\u0027s rich. He comes to school in a big car.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.6ed5f27689bc4c919a2080de9f82fe42",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 175,
+        "EndTime": 179.84,
+        "Text": "Handsome? Wow. What\u0027s so special about Jerry?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.71f134bf4432466c90ca2f41d7c0a178",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 215,
+        "EndTime": 218.879,
+        "Text": "Prettier? Come on, Anna. You\u0027re awesome.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.84c6b605233a4aefab711e0b82f5f323",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 311,
+        "EndTime": 316.8,
+        "Text": "Anna, we ate spicy noodles. Now, tell me about this boy you like.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.85974fcef3af416993931d89f83ae990",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 26,
+        "EndTime": 30.88,
+        "Text": "Handsome? Wow. What\u0027s so special about Jerry?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.85a0980635c14f75ac159328e31a09f2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 431,
+        "EndTime": 438.4,
+        "Text": "Jenny? Leave her to me. I\u0027ll ask her to eat spicy noodles and drink milk tea. She\u0027ll be happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.8a8ac167f85e442a98e4323cc398f792",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 392,
+        "EndTime": 400.24,
+        "Text": "True. Friends are important. Maybe tell Jenny you like Jerry. Be honest. Good friends understand.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.939ec81b12324d969cb8f18492d052a0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 364,
+        "EndTime": 368.08,
+        "Text": "Prettier? Come on, Anna. You\u0027re awesome.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.9668d0b9cf4b4fa487396883c4af38da",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 58,
+        "EndTime": 66.479,
+        "Text": "No, I don\u0027t tell her. I\u0027m scared. What if she stops being my friend? She\u0027s prettier than me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.a3c8853c8f2a42f682a95bfd33fcc114",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 447,
+        "EndTime": 456.67,
+        "Text": "What? Me? I\u0027m just helping. Jerry will like you. Let\u0027s get milk tea to plan this deal. But you pay Tom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.a88c424003124b338122fc3e9bb28cdf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 371,
+        "EndTime": 379.68,
+        "Text": "Really? But Jenny is so confident. She talks to him all the time. I just watch.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.a9bbb89df1004f949f6349cd23b6e893",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 316,
+        "EndTime": 324.8,
+        "Text": "Okay, Tom. His name is Jerry. I met him first day at school. He\u0027s so handsome. I fall in love.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.abf13ec9422a4be18879c64854d6ffea",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 427,
+        "EndTime": 431.36,
+        "Text": "Good idea. But what about Jenny?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.b0b4fcd6f89740a1b76fbd7c78e5f5aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 199,
+        "EndTime": 207.2,
+        "Text": "Jenny. Your best friend likes him. Oh no, that\u0027s sad. Does Jenny know you like Jerry?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.b26ccc05cd1c4f4ebcbaa4d5e4313e5a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 13,
+        "EndTime": 18.64,
+        "Text": "Anna, we ate spicy noodles. Now tell me about this boy you like.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.b3eaca13916b44da96f580a911f7c472",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 237,
+        "EndTime": 243.12,
+        "Text": "But what if Jenny gets mad. I don\u0027t want to lose my friend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.b544ebecb84440d1a816af1c017bfac8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 107,
+        "EndTime": 115.04,
+        "Text": "Don\u0027t worry, Anna. You\u0027re cool. Here\u0027s a plan. Ask Jerry to study together. You\u0027re good at studying, right?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.b8fdcf107ac841cca12b081ef62f5469",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 349,
+        "EndTime": 352.56,
+        "Text": "Your best friend likes him. Oh, no.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.bb0a2d6560e44c408f7711d514fd165e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 417,
+        "EndTime": 427.599,
+        "Text": "No problem. Jerry goes with you, then ask him to watch a movie or go to the park. Have fun. Talk more. movie park.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.bb1bea9a48504dbf86f9d9760ecc0113",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 304,
+        "EndTime": 309.479,
+        "Text": "Deal. But you pay Tom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.bcf54dff31da49329eec253e41392a4e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 268,
+        "EndTime": 276.56,
+        "Text": "No problem. Jerry goes with you, then ask him to watch a movie or go to the park. Have fun. Talk more.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.bdbc76e1763a49b68e9864ad4b43dd11",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 73,
+        "EndTime": 81.52,
+        "Text": "Really? But Jenny is so confident. She talks to him all the time. I just watch.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.c441254d820747a9a382e27cf8bd4e65",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 352,
+        "EndTime": 356.4,
+        "Text": "That\u0027s sad. Does Jenny know you like Jerry?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.c69705c7655c4b6cb9d906f3d98c7ad3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 18,
+        "EndTime": 26.64,
+        "Text": "Okay, Tom. His name is Jerry. I met him first day at school. He\u0027s so handsome. I fall in love.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.cb21d27391f548bcac75dfa51bd6243b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 251,
+        "EndTime": 258.4,
+        "Text": "You think so? Okay, maybe I try, but I\u0027m still scared. Don\u0027t worry, Anna. You\u0027re",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.d8a162882ef0460a96435809cef4ff79",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 51,
+        "EndTime": 54.399,
+        "Text": "Your best friend likes him? Oh, no.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.dff63dd4bcc441e98fee1b00719566ae",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 43,
+        "EndTime": 51.68,
+        "Text": "No way. I\u0027m shy. And many girls in class like him, too. Even my best friend, Jenny.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.e4782b327b1742d38da44597a888cc64",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 368,
+        "EndTime": 371.84,
+        "Text": "You\u0027re nice and fun. Jerry will like you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.e55738fd1f2d47b1affbc26382951404",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 115,
+        "EndTime": 119.52,
+        "Text": "study me. I sleep in class sometimes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.e9291358b5f5482bb8b874c1fcb17acb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 94,
+        "EndTime": 102.079,
+        "Text": "True. Friends are important. Maybe tell Jenny you like Jerry. Be honest. Good friends understand.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.ecdc82d85bb94b2e8b6a272782a874ff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 289,
+        "EndTime": 298.72,
+        "Text": "You and Jenny. Okay. But if Jerry doesn\u0027t like me, I stop being friends with you and I\u0027ll be mad at you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.f03905e2e2ae444bb5e076a19aaf12c2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 276,
+        "EndTime": 282.16,
+        "Text": "Movie park. Good idea. But what about Jenny?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.f0ac11b290a547b79aafe15ed247291c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 10,
+        "EndTime": 13.599,
+        "Text": "Now listen carefully.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.f117cfc870b140a5b6f070a16adce0fd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 140,
+        "EndTime": 149.76,
+        "Text": "You and Jenny? Okay. But if Jerry doesn\u0027t like me, I stop being friends with you and I\u0027ll be mad at you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.f3c6b754cf87419bb85a3b451a99a246",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 400,
+        "EndTime": 405.919,
+        "Text": "You think so? Okay, maybe I try, but I\u0027m still scared.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.f63670ca6f3c4f74a92b0cfbb500e6d5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 356,
+        "EndTime": 364.639,
+        "Text": "No, I don\u0027t tell her. I\u0027m scared. What if she stops being my friend? She\u0027s prettier than me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.f8e0f31ef6c74946bdfab6f03d34e0da",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 54,
+        "EndTime": 58.239,
+        "Text": "That\u0027s sad. Does Jenny know you like Jerry?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d.fea0810bf62c47c59157cebfed51343b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 218,
+        "EndTime": 222.64,
+        "Text": "You\u0027re nice and fun. Jerry will like you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.1a69fe83b8ceeac001dd41c8eae48ae8e51bff9067e40d2fc1c9421b80302b2d"
+}

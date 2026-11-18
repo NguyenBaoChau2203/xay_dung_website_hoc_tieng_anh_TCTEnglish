@@ -1,0 +1,1330 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A2- KI\u1EC6T S\u1EE8C-",
+        "YoutubeId": "q_ilbziDXOk",
+        "Level": "A2",
+        "Topic": "S\u1EE9c kh\u1ECFe",
+        "ThumbnailUrl": "https://img.youtube.com/vi/q_ilbziDXOk/hqdefault.jpg",
+        "Duration": "9:48",
+        "SourceUrl": "https://www.youtube.com/watch?v=q_ilbziDXOk",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.01b51700fbac4e42853299680c166825",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 455,
+        "EndTime": 462.639,
+        "Text": "Yeah. I feel like I\u0027m on fire, but not in a good way. Same. My brain is burning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.0417695401434b45beacf6db4fd53c01",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 320,
+        "EndTime": 324.96,
+        "Text": "You know what\u0027s funny? Everyone says being a student is easy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.045c2edcc1714673845bab58f94e572f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 65,
+        "EndTime": 71.84,
+        "Text": "And when I study, I think I can\u0027t do this anymore. That\u0027s burnout, Anna.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.08785445b30b485c9b1b5a59c5cf5b26",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 52,
+        "EndTime": 61.28,
+        "Text": "Yeah, me too. Everyone says, \u0022Study hard or you\u0027ll be nothing.\u0022 It\u0027s so stressful. I want to rest, but I can\u0027t.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.0c1b0357d87a479bbf1a90e03bd7b952",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 413,
+        "EndTime": 419.039,
+        "Text": "Same for me. I study all day then go home and study again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.0f38dc8191184896be3b861feff07401",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 376,
+        "EndTime": 380.8,
+        "Text": "Perfect. A small break for our tired brains.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.1768242026c84a7d8eba6cd7c24fe690",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 319,
+        "EndTime": 320.56,
+        "Text": "Me, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.1e48dbd00e86427392e507ba15dce5d2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 324,
+        "EndTime": 328.8,
+        "Text": "Yeah, but it\u0027s not. It\u0027s a full-time job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.1f6486d877a247838bda903a12c0bff9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 299,
+        "EndTime": 302.24,
+        "Text": "Life is so hard sometimes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.21c1f1d1f26e43f9805f942df5c5318f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 338,
+        "EndTime": 341.44,
+        "Text": "I don\u0027t know, but I hope so.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.239d8eb67d0049cf8bf814b68b75ed95",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 511,
+        "EndTime": 512.399,
+        "Text": "Me too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.25d781bec5674a6cbca9942875f5a2a2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 78,
+        "EndTime": 83.439,
+        "Text": "And at home, there\u0027s also work to do. You mean housework?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.294cfee2dfbe4bff88715ac9922df664",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 11,
+        "EndTime": 14.16,
+        "Text": "Now listen carefully.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.30388fc7efce433eae10136e1ff39162",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 35,
+        "EndTime": 43.52,
+        "Text": "Exactly. When I finish one exam, another one comes right away. I know. Sometimes I just want to stop.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.312acd967eaf4bb09b7893a5ddef8a75",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 30,
+        "EndTime": 35.36,
+        "Text": "Same for me. I study all day, then go home and study again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.31a836b9713b4611a7989a63a3cac2ad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 444,
+        "EndTime": 449.599,
+        "Text": "Same here. When I rest, I think I\u0027m wasting time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.3230992f068f477ab6126220987d6516",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 127,
+        "EndTime": 128.72,
+        "Text": "Me, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.36ae49b75d4a44a1a37fde2b6cbb5b98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 14,
+        "EndTime": 22.08,
+        "Text": "Hey Anna, you look really tired. Are you okay? Not really. I feel so tired every day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.389bc05f1e7743e5891d58afce9217cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 24,
+        "EndTime": 30.08,
+        "Text": "Yeah, it never ends. One test after another, one subject after another.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.38dce760901b4277b6b902270d26ec0d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 380,
+        "EndTime": 390.08,
+        "Text": "Yeah, maybe that\u0027s what we need. Not more studying, but more breathing. You\u0027re right. Let\u0027s breathe, not burn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.39904262e72d45c8a1aecc2c93cc4599",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 449,
+        "EndTime": 455.599,
+        "Text": "And when I study, I think I can\u0027t do this anymore. That\u0027s burnout, Anna.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.3a5f65b0184c4265abe87e27f0c3efbc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 136,
+        "EndTime": 141.68,
+        "Text": "True. We study, work, and still worry about the future.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.3ae20e1f2cd0440fac5e9b83762c4248",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 171,
+        "EndTime": 178.56,
+        "Text": "Deal. But only if you promise to sleep before midnight. I\u0027ll try. You too. Okay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.3f78e93ff90e4ea9a37ea5ec54536e3f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 227,
+        "EndTime": 235.36,
+        "Text": "Exactly. When I finish one exam, another one comes right away. I know. Sometimes I just want to stop.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.40d93399daaf4bc1894e5a0b4b4c507a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 158,
+        "EndTime": 163.04,
+        "Text": "Maybe we don\u0027t have to run. Maybe we can just walk.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.432fa9d515b94aad82aaae49eca54fb8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 188,
+        "EndTime": 198.239,
+        "Text": "Yeah, maybe that\u0027s what we need. Not more studying, but more breathing. You\u0027re right. Let\u0027s breathe, not burn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.4a8963020615465aa36be87f1afd3d96",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 440,
+        "EndTime": 444.96,
+        "Text": "It\u0027s so stressful. I want to rest, but I can\u0027t.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.4b3ff83a548d4002a49b36e92a25166a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 555,
+        "EndTime": 562.32,
+        "Text": "Deal. But only if you promise to sleep before midnight. I\u0027ll try. You, too. Okay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.532f8e52b2df4e6bbd87fc95c7ce6061",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 467,
+        "EndTime": 474.8,
+        "Text": "Yeah. If I don\u0027t help, my parents think I don\u0027t care. My [clears throat] mom too, she says, \u0022You just study and do",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.54e0860d9b2645ea83f14fb72e91bb79",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 222,
+        "EndTime": 227.2,
+        "Text": "Same for me. I study all day then go home and study again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.550336d79c03400e8a721b3bd93d5aba",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 390,
+        "EndTime": 395.8,
+        "Text": "Ha, nice line, Tom. I\u0027ll remember that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.56e6795ee61840618518f8ad0ea8c130",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 100,
+        "EndTime": 107.52,
+        "Text": "Yeah. If I study, I feel guilty for not helping. If I help, I feel guilty for not studying.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.575d6436e514498dacf6da612d241dfc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 283,
+        "EndTime": 292.16,
+        "Text": "family.\u0022 But if we help too much, we have no time to study, right? It feels like we can\u0027t win.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.58accf95ed81441195c4e1485129a553",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 533,
+        "EndTime": 538.16,
+        "Text": "Maybe we just need balance, study, rest, and live a little.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.5c584b760502457c8b0dd665c07e5c03",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 354,
+        "EndTime": 363.44,
+        "Text": "That sounds nice. I want to walk for once. Then let\u0027s promise to take it slow, one step at a time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.5cb360ac84a74a959635ae0026e155fc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 512,
+        "EndTime": 516.88,
+        "Text": "You know what\u0027s funny? Everyone says being a student is easy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.60c5b31edaaf45b2943ad1aab6501bcb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 572,
+        "EndTime": 581.92,
+        "Text": "Yeah, maybe that\u0027s what we need. Not more studying, but more breathing. You\u0027re right. Let\u0027s breathe, not burn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.63f2e8b4fd06431e8e9ff87d9e7772c0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 178,
+        "EndTime": 185.12,
+        "Text": "Okay. And maybe tomorrow let\u0027s go for coffee after class. No study, just talk.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.63f5bb9c425a49009af790ffddb8096c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 248,
+        "EndTime": 253.12,
+        "Text": "It\u0027s so stressful. I want to rest, but I can\u0027t.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.67868bdc2ea34403baf2569ea7742411",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 346,
+        "EndTime": 350.32,
+        "Text": "Yeah, but it\u0027s hard when everyone around you keeps running.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.69ad8b898f7447539b56f830b3c0cbb0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 491,
+        "EndTime": 494.08,
+        "Text": "Life is so hard sometimes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.6cf2233345be452fa8b7e4bcf9c1e153",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 562,
+        "EndTime": 568.8,
+        "Text": "Okay. And maybe tomorrow, let\u0027s go for coffee after class. No study, just talk.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.6f22ed092384456ba4f95638f26719ac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 141,
+        "EndTime": 149.599,
+        "Text": "Sometimes I wonder, will all this really make us happy one day? I don\u0027t know, but I hope so.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.70e21f5219094ed19b11588f14e01702",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 149,
+        "EndTime": 154.48,
+        "Text": "Maybe we just need balance. Study, rest, and live a little.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.71ee8d88da77481d92c1e400453ca2c5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 363,
+        "EndTime": 370.479,
+        "Text": "Deal. But only if you promise to sleep before midnight. I\u0027ll try. You, too. Okay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.746ac4ce259c4005a2869ba413eab2f0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 311,
+        "EndTime": 319.28,
+        "Text": "and no one asking, \u0022Did you study yet?\u0022 or \u0022When is your next exam?\u0022 Uh, I hate that question.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.76bd5806f92a4f13ac61351dd12b8ada",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 419,
+        "EndTime": 427.199,
+        "Text": "Exactly. When I finish one exam, another one comes right away. I know. Sometimes I just want to stop.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.77c5dcbe119a49308147c59df68d0e2c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 107,
+        "EndTime": 119.439,
+        "Text": "Life is so hard sometimes. I just want one day with no school, no work, no thinking, a quiet day with sleep and peace.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.7967c5ed330245a2a7baaf73e1515b20",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 213,
+        "EndTime": 216.319,
+        "Text": "Why? Too much studying again?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.7d38ea7bf13d44169701c001c719eb97",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 474,
+        "EndTime": 484,
+        "Text": "nothing for the family.\u0022 But if we help too much, we have no time to study, right? It feels like we can\u0027t win.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.8121fbbab3cc4882b9aae6f93ce93653",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 370,
+        "EndTime": 376.96,
+        "Text": "Okay. And maybe tomorrow, let\u0027s go for coffee after class. No study, just talk.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.82396dd11da642e89a2047286b07a992",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 462,
+        "EndTime": 467.12,
+        "Text": "And at home, there\u0027s also work to do. You mean housework?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.87b87c8219db4d25b7f6489bb1340ac8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 302,
+        "EndTime": 311.28,
+        "Text": "I just want one day with no school, no work, no thinking. A quiet day with sleep and peace",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.9276c1290ee04d68a230d1f7e5902961",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 275,
+        "EndTime": 283.759,
+        "Text": "Yeah. If I don\u0027t help, my parents think I don\u0027t care. My mom too, she says, \u0022You just study and do nothing for the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.92c8fcde0f67470aabebba4293fdc7b4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 542,
+        "EndTime": 546.72,
+        "Text": "Maybe we don\u0027t have to run. Maybe we can just walk.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.96d7393c9e9c4737aa815aab94fee6ac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 494,
+        "EndTime": 503.12,
+        "Text": "I just want one day with no school, no work, no thinking. A quiet day with sleep and peace",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.9aaabc2b9ff74e29aa2e9d6371574658",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 427,
+        "EndTime": 431.28,
+        "Text": "But if I stop, I feel scared. Scared of what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.9c9ff585b7cf45c49c9bb6f9b18b03b4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 71,
+        "EndTime": 78.96,
+        "Text": "Yeah. I feel like I\u0027m on fire, but not in a good way. Same. My brain is burning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.a6d05ed26da94a09a275f92fcddf8eff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 216,
+        "EndTime": 222,
+        "Text": "Yeah, it never ends. One test after another, one subject after another.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.a9c400c01059497ebb7ffa33cac8cb57",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 484,
+        "EndTime": 491.199,
+        "Text": "Yeah. If I study, I feel guilty for not helping. If I help, I feel guilty for not studying.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.aa2f3d9704a2486e8079da86ffbed33d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 154,
+        "EndTime": 158.48,
+        "Text": "Yeah, but it\u0027s hard when everyone around you keeps running.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.aac21d096d8a4bf79d70e8cfaf72a93f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 244,
+        "EndTime": 248.879,
+        "Text": "Yeah, me too. Everyone says study hard or you\u0027ll be nothing.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.ab3177a741da4b63a15d7065bca70930",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 516,
+        "EndTime": 520.64,
+        "Text": "Yeah, but it\u0027s not. It\u0027s a full-time job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.ac81a224b6824596b3156004161e1c20",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 435,
+        "EndTime": 440.8,
+        "Text": "Yeah, me too. Everyone says study hard or you\u0027ll be nothing.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.ad12762607ec4e5b99cbe8d5a04d7de3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 530,
+        "EndTime": 533.279,
+        "Text": "I don\u0027t know, but I hope so.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.b1958a52a1a4466cab438ac670b7ce63",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 581,
+        "EndTime": 587.534512,
+        "Text": "Ha, nice line, Tom. I\u0027ll remember that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.b23dbb97c5e5412d85e8752464a3e9b5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 341,
+        "EndTime": 346.32,
+        "Text": "Maybe we just need balance, study, rest, and live a little.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.b4f4c406ae0c45e1a06db7dfc2082916",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 328,
+        "EndTime": 338.72,
+        "Text": "True. We study, work, and still worry about the future. Sometimes I wonder, will all this really make us happy one day?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.b810766c775d4c1a9a1bd3bfd79513ea",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 128,
+        "EndTime": 133.12,
+        "Text": "You know what\u0027s funny? Everyone says being a student is easy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.baa862b1d1de4e7fb0fb4cd1d823392f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 292,
+        "EndTime": 299.36,
+        "Text": "Yeah. If I study, I feel guilty for not helping. If I help, I feel guilty for not studying.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.bbc7fbc95b4d46df8114788f43ba2e15",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 47,
+        "EndTime": 52.239,
+        "Text": "Scared that if I don\u0027t study, I won\u0027t get a good job in the future.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.bc77e12fd63a4087bab6c1140ac17c21",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 263,
+        "EndTime": 270.8,
+        "Text": "Yeah. I feel like I\u0027m on fire, but not in a good way. Same. My brain is burning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.be66d5fee7d24c7cb0794cc2d8350bed",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 235,
+        "EndTime": 239.36,
+        "Text": "But if I stop, I feel scared. Scared of what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.c0f4754ac78b4c38b289afb858fc1b2b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 520,
+        "EndTime": 530.56,
+        "Text": "True. We study, work, and still worry about the future. Sometimes I wonder, will all this really make us happy one day?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.c1ce69e8f58b49ef9b876d33d6a521b9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 198,
+        "EndTime": 203.959,
+        "Text": "Ha, nice line, Tom. I\u0027ll remember that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.c7009a9cdee44e4b999c38fcbcfbbd88",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 253,
+        "EndTime": 257.759,
+        "Text": "Same here. When I rest, I think I\u0027m wasting time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.c8ee96317ef140e3ab344a875bedb8b1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 87,
+        "EndTime": 95.84,
+        "Text": "My mom, too. She says, \u0022You just study and do nothing for the family.\u0022 But if we help too much, we have no time",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.ca1621acdbe14016983193b7eae44410",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 503,
+        "EndTime": 511.12,
+        "Text": "and no one asking did you study yet or when is your next exam? Uh I hate that question.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.cbe9162813cb44d5be1aa6fe41247c42",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 568,
+        "EndTime": 572.64,
+        "Text": "Perfect. A small break for our tired brains.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.cc41edf16b304abfb1a38ac700fdf691",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1,
+        "EndTime": 9.56,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A2 and the topic is burnout.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.ceaeb24045174225bdbaad03970324f1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 133,
+        "EndTime": 136.959,
+        "Text": "Yeah, but it\u0027s not. It\u0027s a full-time job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.cfdd728718a6494f8240ff58a9eaa651",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 206,
+        "EndTime": 213.92,
+        "Text": "Hey, Anna, you look really tired. Are you okay? Not really. I feel so tired every day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.d1586be9a8374da78df5b9bb8e21870d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 163,
+        "EndTime": 171.599,
+        "Text": "That sounds nice. I want to walk for once. Then let\u0027s promise to take it slow, one step at a time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.d1c50ffcb779466bbec4129ee0260163",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 397,
+        "EndTime": 405.759,
+        "Text": "Hey, Anna, you look really tired. Are you okay? Not really. I feel so tired every day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.d4d3d4c15aaa4e0cad0708b0bd5374d7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 257,
+        "EndTime": 263.68,
+        "Text": "And when I study, I think I can\u0027t do this anymore. That\u0027s burnout, Anna.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.d4e624a67bc64d7f89d8170057c9f179",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 405,
+        "EndTime": 408.16,
+        "Text": "Why? Too much studying again?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.d63a2cd63e3944409166791eb450235c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 61,
+        "EndTime": 65.92,
+        "Text": "Same here. When I rest, I think I\u0027m wasting time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.d6871a28bfb14381ab5c1a48f1f5e2ae",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 83,
+        "EndTime": 87.759,
+        "Text": "Yeah. If I don\u0027t help, my parents think I don\u0027t care.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.dc210ba60c94428ab65cd32d4612bd5f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 350,
+        "EndTime": 354.88,
+        "Text": "Maybe we don\u0027t have to run. Maybe we can just walk.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.dc5ef6434f244a7dbfb9140177b094a1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 408,
+        "EndTime": 413.84,
+        "Text": "Yeah, it never ends. One test after another, one subject after another.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.e47a4601e25a44f9b5ae4960b7b0cebe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 43,
+        "EndTime": 47.52,
+        "Text": "But if I stop, I feel scared. Scared of what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.e57d1854e32847cd80f28763c052b3c3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 185,
+        "EndTime": 188.959,
+        "Text": "Perfect. A small break for our tired brains.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.e713a76409b344b2b2954fa810b47ec2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 538,
+        "EndTime": 542.16,
+        "Text": "Yeah, but it\u0027s hard when everyone around you keeps running.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.e8e106ae0da447549d8f73ded5fe8268",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 119,
+        "EndTime": 127.439,
+        "Text": "And no one asking, \u0022Did you study yet?\u0022 or \u0022When is your next exam?\u0022 Uh, I hate that question.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.ea05b352d8ba47f6b70303475341cb54",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 431,
+        "EndTime": 435.919,
+        "Text": "Scared that if I don\u0027t study, I won\u0027t get a good job in the future.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.f04579a198e04f9b828d92668bbc5008",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 270,
+        "EndTime": 275.28,
+        "Text": "And at home, there\u0027s also work to do. You mean housework?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.f4b81a3bf9ae41b7ab8dd87888a0a00d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 239,
+        "EndTime": 244.08,
+        "Text": "Scared that if I don\u0027t study, I won\u0027t get a good job in the future.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.f5dc16f0709b4790a730a36261c0caf5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 546,
+        "EndTime": 555.279,
+        "Text": "That sounds nice. I want to walk for once. Then let\u0027s promise to take it slow, one step at a time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.f71d5b2105d142faba31322c53815cce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 95,
+        "EndTime": 100.32,
+        "Text": "to study, right? It feels like we can\u0027t win.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a.fd54f4512f054c2db5ea3fb7f0ed156f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 22,
+        "EndTime": 24.48,
+        "Text": "Why? Too much studying again?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.22ae14edffc87e06db68fe04b8e4b5e1e990a74f1375c1b3b62771ac99bc365a"
+}

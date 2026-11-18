@@ -36,6 +36,12 @@ namespace TCTEnglish.Hubs
             var userId = TryGetCurrentUserId();
             if (userId.HasValue)
             {
+                if (!await IsConnectionAllowedAsync(userId.Value))
+                {
+                    Context.Abort();
+                    return;
+                }
+
                 var presenceChange = UserPresenceTracker.AddConnection(userId.Value, Context.ConnectionId);
 
                 if (Context.User?.IsInRole(Roles.Admin) == true)
@@ -345,6 +351,14 @@ namespace TCTEnglish.Hubs
         public Task StopAiStream(string streamId)
         {
             return _aiStreamingService.StopStreamAsync(Context.ConnectionId, streamId).AsTask();
+        }
+
+        private async Task<bool> IsConnectionAllowedAsync(int userId)
+        {
+            await using var scope = _scopeFactory.CreateAsyncScope();
+            var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            var clock = scope.ServiceProvider.GetService<TimeProvider>() ?? TimeProvider.System;
+            return await TCTEnglish.Services.Accounts.AccountSessionValidator.IsValidAsync(db, Context.User, clock.GetUtcNow().UtcDateTime);
         }
 
         private int? TryGetCurrentUserId()

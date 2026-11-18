@@ -14,7 +14,7 @@ public interface IReadingLearningService
     Task SaveAnnotationAsync(int userId, ReadingAnnotationRequest request, CancellationToken ct = default);
     Task DeleteAnnotationAsync(int userId, int annotationId, CancellationToken ct = default);
     Task<List<ReadingAnnotation>> GetAnnotationsAsync(int userId, int passageId, CancellationToken ct = default);
-    Task<ReadingVocabularyItem?> LookupWordAsync(int passageId, string word, CancellationToken ct = default);
+    Task<ReadingVocabularyItem?> LookupWordAsync(int userId, int passageId, string word, CancellationToken ct = default);
     Task<StudentVocabulary> SaveToNotebookAsync(
         int userId,
         int? passageId,
@@ -22,7 +22,7 @@ public interface IReadingLearningService
         string word,
         ReadingNotebookFields? fields = null,
         CancellationToken ct = default);
-    Task<List<StudentVocabulary>> GetNotebookAsync(int userId, string? search, CancellationToken ct = default);
+    Task<List<ReadingNotebookEntryViewModel>> GetNotebookAsync(int userId, string? search, CancellationToken ct = default);
     Task DeleteNotebookEntryAsync(int userId, int id, CancellationToken ct = default);
     Task<ReadingProgressViewModel> GetProgressAsync(int userId, CancellationToken ct = default);
 }

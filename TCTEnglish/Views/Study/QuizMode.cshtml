@@ -6,7 +6,7 @@
 <div class="quiz-mode-container">
     <!-- Header với thanh tiến độ và nút quay lại -->
     <div class="quiz-header">
-        <a asp-action="Study" asp-route-id="@Model.Set.SetId" class="btn-back" title="Quay lại">
+        <a asp-action="Detail" asp-controller="Set" asp-route-id="@Model.Set.SetId" class="btn-back" title="Quay lại bộ thẻ">
             <i class="fas fa-arrow-left"></i>
         </a>
         <div class="header-content">
@@ -836,6 +836,14 @@
 
             const totalAnswered = totalCorrect + totalIncorrect + totalSkipped;
             const accuracy = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+            // Last quiz result, shown on the set detail page (best effort).
+            try {
+                const statsKey = 'tct:set-stats:@Model.Set.SetId';
+                const stats = JSON.parse(localStorage.getItem(statsKey) || '{}') || {};
+                stats.quizPercent = accuracy;
+                stats.quizAt = Date.now();
+                localStorage.setItem(statsKey, JSON.stringify(stats));
+            } catch (e) { /* storage unavailable */ }
             document.getElementById('pieValue').innerText = accuracy + '%';
             document.getElementById('pieChart').style.setProperty('--percentage', accuracy);
 

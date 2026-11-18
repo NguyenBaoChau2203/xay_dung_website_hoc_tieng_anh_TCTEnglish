@@ -23,14 +23,19 @@ if ([int](Invoke-Sql 'SELECT COUNT(*) FROM information_schema.tables WHERE table
 
 Update-Schema '20260510020134_AddReadingUserTranslation'
 Invoke-Sql "INSERT INTO users (UserID,Email,PasswordHash,FullName,Role,Status,CreatedAt) VALUES (900001,'ci-user@example.test','not-a-login-password','Migration regression','Standard',0,UTC_TIMESTAMP());" | Out-Null
-$before = Invoke-Sql 'CHECKSUM TABLE users;'
+# Compare every pre-upgrade column. A physical table checksum also changes when
+# an additive migration introduces a column, even if all existing values survive.
+$baselineColumns = @(Invoke-Sql 'SELECT COLUMN_NAME FROM information_schema.columns WHERE table_schema=DATABASE() AND table_name="users" ORDER BY ORDINAL_POSITION;')
+$quotedColumns = @($baselineColumns | ForEach-Object { '`' + $_.Replace('`', '``') + '`' })
+$baselineRead = 'SELECT ' + ($quotedColumns -join ',') + ' FROM users ORDER BY UserID;'
+$before = @(Invoke-Sql $baselineRead)
 Update-Schema ''
-$after = Invoke-Sql 'CHECKSUM TABLE users;'
-if ($before -ne $after) { throw 'Upgrade changed the baseline users table.' }
+$after = @(Invoke-Sql $baselineRead)
+if (($before -join "`n") -cne ($after -join "`n")) { throw 'Upgrade changed existing baseline user values.' }
 $historyBeforeRetry = @(Invoke-Sql 'SELECT MigrationId FROM __efmigrationshistory ORDER BY MigrationId;')
 Update-Schema ''
 $historyAfterRetry = @(Invoke-Sql 'SELECT MigrationId FROM __efmigrationshistory ORDER BY MigrationId;')
 if (@(Compare-Object $historyBeforeRetry $historyAfterRetry).Count -gt 0) { throw 'Repeated migration changed history.' }
 $expectedMigrations = @(Get-ChildItem -LiteralPath 'TCTEnglish/Migrations' -Filter '*.cs' | Where-Object { $_.Name -match '^\d{14}_' -and $_.Name -notlike '*.Designer.cs' }).Count
 if ($historyAfterRetry.Count -ne $expectedMigrations) { throw 'Expected all source migrations to be applied.' }
-Write-Host "MariaDB regression passed: baseline upgrade, FK indexes, preserved user checksum, repeat execution ($($historyAfterRetry.Count) migrations)."
+Write-Host "MariaDB regression passed: baseline upgrade, FK indexes, preserved baseline user values, repeat execution ($($historyAfterRetry.Count) migrations)."

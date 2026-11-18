@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.intermediate.stories.03",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.intermediate.stories.03",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Chi\u1EBFc h\u1ED9p d\u01B0\u1EDBi gh\u1EBF s\u00E2n tr\u01B0\u1EDDng",
+        "Level": "intermediate",
+        "ContentType": "stories",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc",
+        "SourceType": "original-20261114",
+        "PreviewText": "Truy\u1EC7n k\u1EC3 qu\u00E1 tr\u00ECnh hi\u1EC3u m\u1ED9t l\u1EDDi nh\u1EAFn b\u00ED \u1EA9n v\u00E0 kh\u00F4i ph\u1EE5c g\u00F3c \u0111\u1ECDc s\u00E1ch.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.00aae7be3f7d49659fedce8ded1b740f",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Vy proposed putting the cards on display once the library opened again.",
+        "NormalizedHash": "cef2e7e86a81e9165513af6fc9040221bfe61c6852835964c9c36b1717bf4277"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.intermediate.stories.03.285f0ec472b44b1c94bde0ec47777f2a",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.173c4d41d2364de4b26ce3533af9feeb",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Tuy v\u1EADy, Vy v\u1EABn nh\u1EB7t h\u1ED9p l\u00EAn v\u00E0 h\u1ECFi c\u00F4 th\u1EE7 th\u01B0 \u0111ang \u0111\u1EE9ng g\u1EA7n \u0111\u00F3.",
+        "EnglishMeaning": "Even so, Vy picked it up and asked the librarian standing nearby about it.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.1b71d2b22df84f56a82a46fcbe16f257",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "V\u00E0i ng\u00E0y sau, chi\u1EBFc h\u1ED9p \u0111\u00E3 c\u00F3 th\u00EAm l\u1EDDi gi\u1EDBi thi\u1EC7u t\u1EEB nh\u1EEFng h\u1ECDc sinh hi\u1EC7n t\u1EA1i.",
+        "EnglishMeaning": "A few days later, the box contained new recommendations from current students.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.27ad51bcca3b4e23a3b6d0a0afa83c3f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "B\u00EAn trong c\u00F3 c\u00E1c t\u1EA5m th\u1EBB m\u00E0 h\u1ECDc sinh t\u1EEBng vi\u1EBFt v\u1EC1 cu\u1ED1n s\u00E1ch y\u00EAu th\u00EDch.",
+        "EnglishMeaning": "Inside were cards on which students had written about their favourite books.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.285f0ec472b44b1c94bde0ec47777f2a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "Vy \u0111\u1EC1 ngh\u1ECB tr\u01B0ng b\u00E0y c\u00E1c t\u1EA5m th\u1EBB khi th\u01B0 vi\u1EC7n m\u1EDF c\u1EEDa l\u1EA1i.",
+        "EnglishMeaning": "Vy suggested displaying the cards when the library reopened.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.298f33f3f6be40409429a7a0b7101d8f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Tr\u00EAn n\u1EAFp c\u00F3 d\u00F2ng ch\u1EEF nh\u1EDD ng\u01B0\u1EDDi t\u00ECm th\u1EA5y mang \u0111\u1EBFn th\u01B0 vi\u1EC7n.",
+        "EnglishMeaning": "The lid carried a message asking the finder to take it to the library.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.42a2159cb7f74e59bf29a340c7f1b352",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Trong gi\u1EDD ngh\u1EC9, Vy th\u1EA5y m\u1ED9t chi\u1EBFc h\u1ED9p g\u1ED7 n\u1EB1m d\u01B0\u1EDBi chi\u1EBFc gh\u1EBF c\u0169 trong s\u00E2n.",
+        "EnglishMeaning": "During the break, Vy noticed a wooden box beneath an old bench in the playground.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.94cac46e57e04de9b242af9c9b5635a2",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "C\u00F4 t\u01B0\u1EDFng \u0111\u00E2y l\u00E0 tr\u00F2 \u0111\u00F9a v\u00EC th\u01B0 vi\u1EC7n \u0111\u00E3 \u0111\u00F3ng c\u1EEDa s\u1EEDa ch\u1EEFa c\u1EA3 tu\u1EA7n.",
+        "EnglishMeaning": "She thought it was a joke because the library had been closed for repairs all week.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.985159297a7a4f55bab124af9df9d3e3",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "C\u00F4 th\u1EE7 th\u01B0 \u0111\u1ED3ng \u00FD v\u00E0 \u0111\u1EC3 th\u00EAm nh\u1EEFng t\u1EA5m th\u1EBB tr\u1EAFng b\u00EAn c\u1EA1nh h\u1ED9p.",
+        "EnglishMeaning": "The librarian agreed and placed some blank cards beside the box.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.9f09b70ad4c44faaacbfc0a05a3f2d13",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "C\u00F4 th\u1EE7 th\u01B0 nh\u1EADn ra chi\u1EBFc h\u1ED9p d\u00F9ng cho g\u00F3c \u0111\u1ECDc ngo\u00E0i tr\u1EDDi t\u1EEB nhi\u1EC1u n\u0103m tr\u01B0\u1EDBc.",
+        "EnglishMeaning": "The librarian recognised a box used for the outdoor reading corner many years earlier.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.a6f3ac88eaad4ff6bfa08227e63ae5df",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "M\u1ED9t t\u1EA5m nh\u1EAFc \u0111\u1EBFn cu\u1ED1n truy\u1EC7n m\u00E0 Vy v\u1EEBa \u0111\u1ECDc xong t\u1ED1i h\u00F4m qua.",
+        "EnglishMeaning": "One card mentioned the story that Vy had finished reading the previous evening.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.b023f6be73a54920bec88bdc75930ca5",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Ng\u01B0\u1EDDi vi\u1EBFt \u0111\u00E3 ch\u00FA \u00FD \u0111\u1EBFn m\u1ED9t nh\u00E2n v\u1EADt ph\u1EE5 m\u00E0 c\u00F4 g\u1EA7n nh\u01B0 b\u1ECF qua.",
+        "EnglishMeaning": "The writer had noticed a minor character whom she had almost overlooked.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.03.e518b36f220f432fbb06da7204505794",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "Chi\u1EBFc gh\u1EBF c\u0169 c\u0169ng \u0111\u01B0\u1EE3c chuy\u1EC3n v\u00E0o b\u00F3ng r\u00E2m, n\u01A1i c\u00E2u chuy\u1EC7n ti\u1EBFp t\u1EE5c qua t\u1EEBng cu\u1ED1n s\u00E1ch.",
+        "EnglishMeaning": "The old bench was moved into the shade, where the conversation continued through books.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.03"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.intermediate.stories.03"
+}

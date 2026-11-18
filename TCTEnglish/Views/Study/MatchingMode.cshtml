@@ -5,7 +5,7 @@
 <div class="matching-container">
     <!-- Header -->
     <header class="matching-header">
-        <a asp-action="Study" asp-route-id="@Model.Set.SetId" class="btn-back" title="Quay lại học phần">
+        <a asp-action="Detail" asp-controller="Set" asp-route-id="@Model.Set.SetId" class="btn-back" title="Quay lại bộ thẻ">
             <i class="fas fa-arrow-left"></i>
         </a>
         <div class="header-main">
@@ -696,6 +696,19 @@
 
         function finishGame() {
             const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+            // Keep the fastest full completion for the set detail page (best effort; early finishes do not count).
+            if (matchedCount === cards.length) {
+                try {
+                    const statsKey = 'tct:set-stats:@Model.Set.SetId';
+                    const stats = JSON.parse(localStorage.getItem(statsKey) || '{}') || {};
+                    const elapsed = Date.now() - startTime;
+                    if (typeof stats.matchMs !== 'number' || elapsed < stats.matchMs) {
+                        stats.matchMs = elapsed;
+                        stats.matchAt = Date.now();
+                        localStorage.setItem(statsKey, JSON.stringify(stats));
+                    }
+                } catch (e) { /* storage unavailable */ }
+            }
             const totalAttempts = matchedCount + incorrectCount;
             const accuracy = totalAttempts > 0 ? Math.round((matchedCount / totalAttempts) * 100) : 100;
 

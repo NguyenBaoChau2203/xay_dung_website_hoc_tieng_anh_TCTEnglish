@@ -174,10 +174,24 @@ namespace TCTEnglish.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Archive(int id)
+        {
+            try { await _admin.ArchiveAsync(id, GetCurrentUserId(), HttpContext.RequestAborted); }
+            catch (InvalidOperationException) { return NotFound(); }
+            TempData["Success"] = "Đã lưu trữ bài đọc và giữ nguyên lịch sử học.";
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            await _admin.DeleteAsync(id);
-            TempData["Success"] = "Đã xóa bài đọc.";
+            try
+            {
+                await _admin.DeleteAsync(id);
+                TempData["Success"] = "Đã xóa bài đọc.";
+            }
+            catch (InvalidOperationException ex) { TempData["Error"] = ex.Message; }
             return RedirectToAction(nameof(Index));
         }
 
@@ -189,10 +203,14 @@ namespace TCTEnglish.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Export(int id)
+        public async Task<IActionResult> Export(int id, CancellationToken ct)
         {
-            var bytes = _excel.ExportReading(id);
-            return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"Reading_{id}.xlsx");
+            try
+            {
+                var bytes = await _excel.ExportReadingAsync(id, ct);
+                return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"Reading_{id}.xlsx");
+            }
+            catch (ReadingNotFoundException) { return NotFound(); }
         }
 
         [HttpGet]
@@ -227,7 +245,7 @@ namespace TCTEnglish.Areas.Admin.Controllers
             }
 
             await using var stream = file.OpenReadStream();
-            var result = _excel.ParseAndValidate(stream);
+            var result = await _excel.ParseAndValidateAsync(stream, HttpContext.RequestAborted);
 
             if (result.HasImportableReadings)
             {

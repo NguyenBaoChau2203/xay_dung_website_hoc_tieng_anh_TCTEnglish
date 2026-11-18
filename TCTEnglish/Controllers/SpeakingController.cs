@@ -48,6 +48,7 @@ namespace TCTVocabulary.Controllers
 
         [HttpGet("/Speaking")]
         [HttpGet("/Speaking/Index")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public async Task<IActionResult> Index(
             string? level = null,
             string? topic = null,
@@ -97,7 +98,7 @@ namespace TCTVocabulary.Controllers
                 PageSize = pageSize,
                 Mine = mine
             };
-            var viewModel = await _speakingService.GetSpeakingIndexViewModelAsync(currentUserId, query);
+            var viewModel = await _speakingService.GetSpeakingIndexViewModelAsync(currentUserId, query, includeRecent: false);
 
             if (mine)
             {
@@ -129,6 +130,7 @@ namespace TCTVocabulary.Controllers
 
         [HttpGet("/Speaking/Practice")]
         [HttpGet("/Speaking/Practice/{id:int}")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public async Task<IActionResult> Practice(int id)
         {
             if (!TryGetCurrentUserId(out var currentUserId))
@@ -139,6 +141,26 @@ namespace TCTVocabulary.Controllers
                 return NotFound();
 
             return View(viewModel);
+        }
+
+        [HttpGet("/api/speaking/recent")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public async Task<IActionResult> RecentVideos(CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+            return Ok(new { success = true, data = await _speakingService.GetRecentVideosAsync(userId, ct: ct) });
+        }
+
+        [HttpPost("/api/speaking/{videoId:int}/recent")]
+        [ValidateAntiForgeryToken]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public async Task<IActionResult> RecordRecentVideo(int videoId, CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+            var openedAt = await _speakingService.RecordVideoVisitAsync(userId, videoId, ct);
+            return openedAt.HasValue
+                ? Ok(new { success = true, lastOpenedAtUtc = openedAt.Value })
+                : NotFound();
         }
 
         [HttpPost("/Speaking/My/Create")]
@@ -342,6 +364,8 @@ namespace TCTVocabulary.Controllers
                 assessmentId = outcome.AssessmentId,
                 status = outcome.Status,
                 textMatchScore = outcome.TextMatchScore,
+                fluencyScore = outcome.FluencyScore,
+                completenessScore = outcome.CompletenessScore,
                 speechDetected = outcome.SpeechDetected,
                 transcriptPreview = outcome.TranscriptPreview,
                 comparison = SerializeSpeakingComparison(outcome.Comparison),
@@ -396,6 +420,7 @@ namespace TCTVocabulary.Controllers
                 {
                     s.Id,
                     s.VideoId,
+                    s.Text,
                     OwnerUserId = s.SpeakingVideo.OwnerUserId
                 })
                 .FirstOrDefaultAsync(cancellationToken);
@@ -447,8 +472,13 @@ namespace TCTVocabulary.Controllers
             // Client-issued numeric scores are ignored; server assessment is authoritative.
             var totalScore = assessment.TextMatchScore;
             var accuracyScore = assessment.TextMatchScore;
-            const double fluencyScore = 0d;
-            const double completenessScore = 0d;
+            var comparison = SpeakingTextAlignment.Compare(sentenceAccess.Text, assessment.TranscriptText);
+            var measuredCompleteness = assessment.CompletenessScore ?? SpeakingComponentScorer.Completeness(comparison);
+            var fluencyScore = assessment.FluencyScore ?? 0d;
+            var completenessScore = measuredCompleteness ?? 0d;
+            var fluencyAvailable = assessment.FluencyScore.HasValue;
+            var completenessAvailable = measuredCompleteness.HasValue;
+            var metricVersion = assessment.MetricVersion;
 
             await using var completionTransaction = await _context.Database.BeginTransactionAsync(cancellationToken);
             try
@@ -460,13 +490,33 @@ namespace TCTVocabulary.Controllers
 
             if (existing != null)
             {
-                if (totalScore > existing.TotalScore)
+                if (totalScore >= existing.TotalScore)
                 {
                     existing.TotalScore = totalScore;
                     existing.AccuracyScore = accuracyScore;
                     existing.FluencyScore = fluencyScore;
                     existing.CompletenessScore = completenessScore;
                     existing.PracticedAt = utcNow;
+                }
+                else
+                {
+                    // Keep the same take in the UI and after reload when the best
+                    // total is retained. Never mix metrics/transcripts across takes.
+                    var retained = await _context.SpeakingAssessments.AsNoTracking()
+                        .Where(a => a.UserId == userId && a.SentenceId == sentenceId && a.Consumed
+                            && a.Status == "Completed" && a.ConsumedAtUtc == existing.PracticedAt
+                            && a.TextMatchScore == existing.TotalScore)
+                        .OrderByDescending(a => a.Id).FirstOrDefaultAsync(cancellationToken);
+                    comparison = retained == null ? null : SpeakingTextAlignment.Compare(sentenceAccess.Text, retained.TranscriptText);
+                    var retainedCompleteness = retained?.CompletenessScore
+                        ?? (comparison == null ? null : SpeakingComponentScorer.Completeness(comparison));
+                    totalScore = existing.TotalScore;
+                    accuracyScore = existing.AccuracyScore;
+                    fluencyScore = retained?.FluencyScore ?? existing.FluencyScore;
+                    completenessScore = retainedCompleteness ?? existing.CompletenessScore;
+                    fluencyAvailable = retained != null ? retained.FluencyScore.HasValue : existing.FluencyScore > 0;
+                    completenessAvailable = retained != null ? retainedCompleteness.HasValue : existing.CompletenessScore > 0;
+                    metricVersion = retained?.MetricVersion;
                 }
             }
             else
@@ -550,8 +600,10 @@ namespace TCTVocabulary.Controllers
                 accuracyScore,
                 fluencyScore,
                 completenessScore,
-                fluencyAvailable = false,
-                completenessAvailable = false,
+                fluencyAvailable,
+                completenessAvailable,
+                metricVersion,
+                comparison = SerializeSpeakingComparison(comparison),
                 assessmentSource = "server-text-match",
                 passedSentenceCount,
                 requiredSentenceCount,

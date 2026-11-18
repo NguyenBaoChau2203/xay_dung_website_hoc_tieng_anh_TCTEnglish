@@ -16,7 +16,9 @@ HOSTS = {"codex", "claude", "cursor", "antigravity"}
 DELEGATION_TOOLS = {"spawn_agent", "Agent", "Task", "followup_task", "collaboration.spawn_agent", "collaboration.followup_task", "invoke_subagent", "define_subagent"}
 EDIT_TOOLS = {"Bash", "Shell", "exec_command", "apply_patch", "Edit", "Write", "run_command", "write_to_file", "replace_file_content", "multi_replace_file_content"}
 CONTEXT = (
-    "TCT English project context: one agent implements and reviews. Reuse current "
+    "TCT English project context: one agent by default. Only Antigravity using "
+    "Gemini 3.8 Flash High may use native subagents under AGENTS.md's owner "
+    "execution policy. Reuse current "
     "AGENTS.md/.ai/README.md context; load only the active plan step and needed "
     "skill. CodeGraph first for indexed source; fresh verbatim output counts as "
     "read. Use bounded reads for stale/missing files or a concrete gap; no automatic "
@@ -86,7 +88,10 @@ def normalize_event(host: str, name: str, event: dict) -> dict:
         tool = event.get("tool_name", "")
         if host == "cursor" and name == "PreToolUse" and event.get("subagent_id"):
             tool = "Agent"
-    return {"host": host, "session_id": str(session), "tool_name": tool, "hook_event_name": name}
+    normalized = {"host": host, "session_id": str(session), "tool_name": tool, "hook_event_name": name}
+    if host == "antigravity" and isinstance(event.get("modelName"), str):
+        normalized["model_name"] = event["modelName"]
+    return normalized
 
 
 def host_output(host: str, name: str, result: dict) -> dict:
@@ -155,12 +160,18 @@ def handle(name: str, event: dict, root: Path = ROOT) -> dict:
     if name == "PreToolUse":
         if event.get("tool_name") not in DELEGATION_TOOLS:
             return {}
+        model = event.get("model_name")
+        if (event.get("host") == "antigravity"
+                and event.get("tool_name") in {"invoke_subagent", "define_subagent"}
+                and isinstance(model, str)
+                and model.strip().lower() in {"gemini-3.8-flash-high", "gemini 3.8 flash high"}):
+            return {}
         config = tomllib.loads((root / ".codex/config.toml").read_text(encoding="utf-8"))
         if config.get("features", {}).get("multi_agent") is False:
             return {"hookSpecificOutput": {
                 "hookEventName": name,
                 "permissionDecision": "deny",
-                "permissionDecisionReason": "The owner requires one agent. Perform investigation, implementation and review inline; do not delegate."
+                "permissionDecisionReason": "The owner requires one agent except for native subagents in Antigravity using Gemini 3.8 Flash High with recognized modelName metadata. Follow AGENTS.md; do not delegate from other hosts or models."
             }}
         return {}
     if name == "PostToolUse" and event.get("tool_name") not in EDIT_TOOLS:
