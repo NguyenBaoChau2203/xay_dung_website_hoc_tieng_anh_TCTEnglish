@@ -39,6 +39,10 @@ The Vietnamese/English subtitle overlay is a layer inside the page's video frame
 
 Tap-a-word lookups outside the lesson vocabulary call `IVocabSuggestService` (the AI) for Premium and Admin only. Guards: lesson vocabulary is answered from page data with no request, results are cached for 24 hours per term, and each user is limited to 30 lookups per 10 minutes. The cache and the limiter are static inside `ListeningWordService` (in-memory, per app instance, reset on restart and not shared between instances) because the plan allowed a single DI line. The live AI path was not exercised in the local acceptance run (no paid request was made); the dictionary and error states were verified through a stubbed endpoint and the service tests.
 
+### LISTENING-QUIZ-COMPLETES-ON-ANY-SCORE — a submitted quiz counts as done at any score, 2026-11-18 (existing behaviour)
+
+`ListeningService` marks `QuizCompleted = true` for every graded attempt, so a 0 % attempt completes the quiz step and, with the other steps, the lesson; `Đạt` / `Chưa đạt` (pass mark 60 %) is only the remark on the result. Found in the Listening redesign end-to-end run (a 0/5 attempt turned the step row to `0%` with a check and the catalog counted the lesson as done). The redesign did not change this rule; changing it is a product decision for the owner.
+
 ### LISTENING-PROGRAM-DI-LINE — one DI registration added for the word service, 2026-11-18
 
 `Program.cs` gained one line, `AddScoped<IListeningWordService, ListeningWordService>`, authorized by the Listening redesign plan. It is the only change to that file; the next owner of `Program.cs` should keep it when merging.
