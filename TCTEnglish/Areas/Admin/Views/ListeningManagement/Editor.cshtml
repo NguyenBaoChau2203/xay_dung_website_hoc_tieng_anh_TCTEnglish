@@ -1,0 +1,149 @@
+@using TCTEnglish.Services.Admin
+@model LessonEditorViewModel
+@{
+    var editor = Model.Editor;
+    var isNew = editor.IsNew;
+    var title = isNew ? "Thêm bài nghe" : (string.IsNullOrWhiteSpace(Model.Info.Title) ? "Bài nghe" : Model.Info.Title!);
+    ViewData["Title"] = isNew ? "Thêm bài nghe" : "Sửa bài nghe: " + title;
+
+    var tags = new List<AcTag>();
+    if (!isNew)
+    {
+        if (!string.IsNullOrWhiteSpace(Model.Info.Level)) { tags.Add(new AcTag(Model.Info.Level!, AcTone.Primary)); }
+        if (editor.IsLearnerOwned) { tags.Add(new AcTag("Riêng tư", AcTone.Info)); }
+        else { tags.Add(editor.IsPublished ? new AcTag("Đã xuất bản", AcTone.Success) : new AcTag("Bản nháp", AcTone.Warning)); }
+    }
+
+    var subParts = new List<string>();
+    if (!string.IsNullOrWhiteSpace(Model.Info.Topic)) { subParts.Add(Model.Info.Topic!); }
+    if (!string.IsNullOrWhiteSpace(Model.Info.Duration)) { subParts.Add(Model.Info.Duration!); }
+    if (!string.IsNullOrWhiteSpace(Model.Info.YoutubeId)) { subParts.Add("YouTube " + Model.Info.YoutubeId); }
+
+    var header = new AcPageHeaderModel
+    {
+        Icon = "fa-solid fa-headphones",
+        Title = title,
+        Subtitle = isNew ? "Bài mới được lưu ở dạng bản nháp. Sau khi lưu thông tin bạn có thể thêm lời thoại, quiz và từ vựng." : string.Join(" · ", subParts),
+        Crumbs = new[] { new AcCrumb("Quản lý bài nghe", Url.Action("Index", "ListeningManagement", new { area = "Admin" })), new AcCrumb(isNew ? "Thêm bài nghe" : title) },
+        Tags = tags,
+    };
+
+    var tabs = new (string Key, string Text, string Icon, int? Count)[]
+    {
+        (LessonTabs.Info, "Thông tin", "fa-solid fa-circle-info", null),
+        (LessonTabs.Transcript, "Lời thoại", "fa-solid fa-align-left", editor.Lines.Count),
+        (LessonTabs.Quiz, "Quiz", "fa-solid fa-list-check", editor.Questions.Count),
+        (LessonTabs.Vocab, "Từ vựng", "fa-solid fa-spell-check", editor.Items.Count),
+    };
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-content.css" asp-append-version="true" />
+}
+
+<div class="ac-page ac-lesson-editor">
+    <partial name="_AcPageHeader" model="header" />
+    <partial name="_AcAlerts" />
+
+    @if (editor.IsLearnerOwned)
+    {
+        <div class="ac-notice ac-notice--info" role="note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div>Bài nghe riêng của <strong>@editor.OwnerName</strong>. Admin chỉ xem và có thể xóa.@(editor.IsPublished ? " Bài này chưa nằm trong danh mục chung." : "")</div>
+        </div>
+    }
+
+    @if (!isNew)
+    {
+        var deleteModel = new AcConfirmDeleteModel
+        {
+            Controller = "ListeningManagement",
+            Route = new Dictionary<string, string> { ["id"] = editor.Id.ToString() },
+            ConfirmName = Model.Info.Title ?? "",
+            Title = "Xóa bài nghe?",
+            Impact = editor.LearnerProgressCount > 0
+                ? $"{editor.LearnerProgressCount} học viên đã học bài này; tiến độ của họ sẽ bị xóa cùng lời thoại, quiz và từ vựng."
+                : "Lời thoại, quiz và từ vựng của bài sẽ bị xóa. Chưa có học viên nào học bài này.",
+            AriaLabel = "Xóa bài nghe này",
+            ButtonText = "Xóa bài",
+        };
+        <div class="ac-toolbar">
+            @if (!editor.IsLearnerOwned && editor.IsPublished)
+            {
+                <a href="/Home/Listening/Practice/@editor.Id" class="btn ac-btn ac-btn--outline" title="Mở bài nghe như học viên thấy">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i><span>Xem như học viên</span>
+                </a>
+            }
+            @if (editor.IsPublished)
+            {
+                <form method="post" asp-action="Unpublish" asp-route-id="@editor.Id" class="ac-inline-form" data-ac-pending>
+                    <button type="submit" class="btn ac-btn ac-btn--outline"><i class="fa-solid fa-file-pen" aria-hidden="true"></i><span>Chuyển về bản nháp</span></button>
+                </form>
+            }
+            else if (!editor.IsLearnerOwned)
+            {
+                <form method="post" asp-action="Publish" asp-route-id="@editor.Id" class="ac-inline-form" data-ac-pending>
+                    <button type="submit" class="btn ac-btn ac-btn--primary"><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i><span>Xuất bản</span></button>
+                </form>
+            }
+            <partial name="_AcConfirmDelete" model="deleteModel" />
+        </div>
+    }
+
+    <div class="ac-card ac-editor-card">
+        <div class="ac-tabs" role="tablist" aria-label="Các phần của bài nghe">
+            @foreach (var tab in tabs)
+            {
+                var selected = Model.Tab == tab.Key;
+                if (isNew && tab.Key != LessonTabs.Info)
+                {
+                    <span class="ac-tab is-disabled" role="tab" aria-disabled="true" aria-selected="false" tabindex="-1" title="Lưu thông tin trước để mở phần này">
+                        <i class="@tab.Icon" aria-hidden="true"></i><span>@tab.Text</span>
+                    </span>
+                    continue;
+                }
+
+                <a class="ac-tab" role="tab" id="tab-@tab.Key" aria-controls="tabpanel-@tab.Key" aria-selected="@(selected ? "true" : "false")"
+                   tabindex="@(selected ? "0" : "-1")" data-ac-tab-link
+                   href="@(isNew ? Url.Action("Create", "ListeningManagement", new { area = "Admin" }) : Url.Action("Editor", "ListeningManagement", new { area = "Admin", id = editor.Id, tab = tab.Key }))">
+                    <i class="@tab.Icon" aria-hidden="true"></i><span>@tab.Text</span>
+                    @if (tab.Count.HasValue)
+                    {
+                        <span class="ac-count">@tab.Count.Value</span>
+                    }
+                </a>
+            }
+        </div>
+
+        <div role="tabpanel" id="tabpanel-@Model.Tab" aria-labelledby="tab-@Model.Tab" class="ac-tabpanel">
+            @if (!string.IsNullOrWhiteSpace(Model.Summary) && Model.Errors.Count > 0)
+            {
+                <div class="alert ac-alert ac-alert--danger ac-error-summary" role="alert">
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+                    <span class="ac-alert-text">@Model.Summary</span>
+                </div>
+            }
+
+            @switch (Model.Tab)
+            {
+                case LessonTabs.Transcript:
+                    <partial name="_TabTranscript" model="Model" />
+                    break;
+                case LessonTabs.Quiz:
+                    <partial name="_TabQuiz" model="Model" />
+                    break;
+                case LessonTabs.Vocab:
+                    <partial name="_TabVocab" model="Model" />
+                    break;
+                default:
+                    <partial name="_TabInfo" model="Model" />
+                    break;
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin-content.js" asp-append-version="true"></script>
+    <script src="~/js/admin-listening-editor.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,12 @@
+@model SaveBarModel
+<div class="ac-savebar">
+    <span class="ac-dirty-note" data-ac-dirty-bar hidden role="status">
+        <i class="fa-solid fa-circle" aria-hidden="true"></i> Có thay đổi chưa lưu
+    </span>
+    <div class="ac-savebar-actions">
+        <a href="@Model.DiscardUrl" class="btn ac-btn ac-btn--outline" data-ac-discard>Hủy thay đổi</a>
+        <button type="submit" class="btn ac-btn ac-btn--primary">
+            <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i><span>@Model.SaveText</span>
+        </button>
+    </div>
+</div>

@@ -1,51 +1,28 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using TCTEnglish.Services.Admin;
 
 namespace TCTVocabulary.Areas.Admin.ViewModels
 {
+    /// <summary>List page of vocabulary sets. Rows and figures come from IAdminVocabularyService.</summary>
     public class SetManagementIndexViewModel
     {
-        public List<SetListItemViewModel> Sets { get; set; } = new();
-        public List<FolderFilterOption> Folders { get; set; } = new();
-        public string? SearchToken { get; set; }
-        public int? FolderFilter { get; set; }
-        public string? OwnerFilter { get; set; } // "all" | "system" | "user"
-        public int CurrentPage { get; set; }
-        public int TotalPages { get; set; }
-        public int TotalItems { get; set; }
-    }
-
-    public class SetListItemViewModel
-    {
-        public int SetId { get; set; }
-        public string SetName { get; set; } = null!;
-        public string? Description { get; set; }
-        public string OwnerName { get; set; } = null!;
-        public string OwnerEmail { get; set; } = null!;
-        public int OwnerId { get; set; }
-        public string? FolderName { get; set; }
+        public AdminSetListResult List { get; set; } = new();
+        public AdminSetFigures Figures { get; set; } = new(0, 0, 0, 0);
+        public string? Q { get; set; }
+        /// <summary>"", "system" or "user" (query name kept as ownerFilter for old links).</summary>
+        public string OwnerFilter { get; set; } = "";
         public int? FolderId { get; set; }
-        public int CardCount { get; set; }
-        public int ViewCount { get; set; }
-        public DateTime? CreatedAt { get; set; }
-        public bool IsSystemSet { get; set; } // true nếu OwnerEmail == "system@tct.local"
+        public string Visibility { get; set; } = "";
+        public string Sort { get; set; } = "newest";
     }
 
-    public class FolderFilterOption
+    /// <summary>Create / edit form of a system set. Posted fields are only these three.</summary>
+    public class SetFormViewModel
     {
-        public int FolderId { get; set; }
-        public string FolderName { get; set; } = null!;
-        public string OwnerName { get; set; } = null!;
-    }
+        public int? SetId { get; set; }
 
-    public class SetCreateEditViewModel
-    {
-        public int? SetId { get; set; } // null = create
-
-        [Required(ErrorMessage = "Tên bộ từ vựng không được để trống")]
         [Display(Name = "Tên bộ từ vựng")]
-        public string SetName { get; set; } = null!;
+        public string? Name { get; set; }
 
         [Display(Name = "Mô tả")]
         public string? Description { get; set; }
@@ -53,63 +30,31 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
         [Display(Name = "Thư mục")]
         public int? FolderId { get; set; }
 
-        [Display(Name = "Chủ sở hữu")]
-        public int? OwnerId { get; set; }
-
-        public List<FolderFilterOption> AvailableFolders { get; set; } = new();
-        public List<OwnerOption> AvailableOwners { get; set; } = new();
-    }
-
-    public class OwnerOption
-    {
-        public int UserId { get; set; }
-        public string DisplayName { get; set; } = null!; // "FullName (email)"
+        // Display only (never posted back into the service).
+        public bool IsSystem { get; set; } = true;
+        public string OwnerName { get; set; } = "";
+        public string Exposure { get; set; } = "Public";
+        public IReadOnlyList<AdminFolderOption> Folders { get; set; } = Array.Empty<AdminFolderOption>();
+        public IReadOnlyDictionary<string, string> Errors { get; set; } = new Dictionary<string, string>();
+        public string? Summary { get; set; }
     }
 
     public class SetCardsViewModel
     {
-        public int SetId { get; set; }
-        public string SetName { get; set; } = null!;
-        public string? FolderName { get; set; }
-        public List<CardItemViewModel> Cards { get; set; } = new();
+        public AdminCardListResult Cards { get; set; } = new();
+        public string? Q { get; set; }
+        public string? Topic { get; set; }
+        public string Quality { get; set; } = "";
     }
 
-    public class CardItemViewModel
+    /// <summary>Add / edit card form with per-field messages and the learner-card preview.</summary>
+    public class CardFormViewModel
     {
-        public int CardId { get; set; }
-        public string Term { get; set; } = null!;
-        public string Definition { get; set; } = null!;
-        public string? ImageUrl { get; set; }
-        public string? Phonetic { get; set; }
-        public string? Example { get; set; }
-        public string? ExampleTranslation { get; set; }
-        public string? Topic { get; set; }
-    }
-
-    public class CardCreateEditViewModel
-    {
-        public int? CardId { get; set; } // null = create
+        public int? CardId { get; set; }
         public int SetId { get; set; }
-
-        [Required(ErrorMessage = "Vui lòng nhập thuật ngữ.")]
-        [MaxLength(255)]
-        public string Term { get; set; } = string.Empty;
-
-        [Required(ErrorMessage = "Vui lòng nhập định nghĩa.")]
-        public string Definition { get; set; } = string.Empty;
-
-        public string? ImageUrl { get; set; }
-
-        [MaxLength(100)]
-        public string? Phonetic { get; set; }
-
-        public string? Example { get; set; }
-        public string? ExampleTranslation { get; set; }
-
-        [MaxLength(100)]
-        public string? Topic { get; set; }
-
-        // For display context
-        public string? SetName { get; set; }
+        public string SetName { get; set; } = "";
+        public AdminCardInput Input { get; set; } = new();
+        public IReadOnlyDictionary<string, string> Errors { get; set; } = new Dictionary<string, string>();
+        public string? Summary { get; set; }
     }
 }

@@ -1,0 +1,174 @@
+@using TCTEnglish.Services.Admin
+@using TCTEnglish.Services.Sets
+@model CardFormViewModel
+@{
+    var isEdit = Model.CardId.HasValue;
+    var input = Model.Input;
+    string? Err(string key) => Model.Errors.TryGetValue(key, out var message) ? message : null;
+    string Invalid(string key) => Err(key) != null ? "is-invalid" : "";
+    string? Described(string key, string? hintId = null) => Err(key) != null ? $"card-{key}-error" : hintId;
+    var cefr = (input.Cefr ?? "").Trim().ToUpperInvariant();
+    var posCodes = string.Join(", ", CardPartsOfSpeech.All.Select(p => p.Code));
+}
+
+<div class="ac-split">
+    <div class="ac-card ac-card-pad">
+        @if (!string.IsNullOrWhiteSpace(Model.Summary) && Model.Errors.Count > 0)
+        {
+            <div class="alert ac-alert ac-alert--danger ac-error-summary" role="alert">
+                <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+                <span class="ac-alert-text">@Model.Summary</span>
+            </div>
+        }
+
+        <form method="post" asp-action="@(isEdit ? "EditCard" : "AddCard")" id="cardForm" data-ac-pending novalidate>
+            @if (isEdit)
+            {
+                <input type="hidden" name="cardId" value="@Model.CardId" />
+            }
+            else
+            {
+                <input type="hidden" name="setId" value="@Model.SetId" />
+            }
+
+            <div class="ac-form-grid">
+                <div class="ac-field">
+                    <label class="ac-label" for="card-Term">Từ <span class="ac-required" aria-hidden="true">*</span></label>
+                    <input id="card-Term" name="Term" value="@input.Term" class="form-control ac-control @Invalid("Term")" maxlength="@AdminVocabularyService.MaxTermLength"
+                           required aria-required="true" aria-invalid="@(Err("Term") != null ? "true" : null)" aria-describedby="@Described("Term")" autocomplete="off" />
+                    @if (Err("Term") is { } termError) { <div class="ac-error" id="card-Term-error" role="alert">@termError</div> }
+                </div>
+                <div class="ac-field">
+                    <label class="ac-label" for="card-Definition">Nghĩa tiếng Việt <span class="ac-required" aria-hidden="true">*</span></label>
+                    <input id="card-Definition" name="Definition" value="@input.Definition" class="form-control ac-control @Invalid("Definition")" maxlength="@AdminVocabularyService.MaxDefinitionLength"
+                           required aria-required="true" aria-invalid="@(Err("Definition") != null ? "true" : null)" aria-describedby="@Described("Definition")" autocomplete="off" />
+                    @if (Err("Definition") is { } definitionError) { <div class="ac-error" id="card-Definition-error" role="alert">@definitionError</div> }
+                </div>
+
+                <div class="ac-field">
+                    <label class="ac-label" for="card-Phonetic">Phiên âm (US)</label>
+                    <input id="card-Phonetic" name="Phonetic" value="@input.Phonetic" class="form-control ac-control @Invalid("Phonetic")" maxlength="@AdminVocabularyService.MaxPhoneticLength"
+                           placeholder="/dɒɡ/" aria-invalid="@(Err("Phonetic") != null ? "true" : null)" aria-describedby="@Described("Phonetic")" autocomplete="off" />
+                    @if (Err("Phonetic") is { } phoneticError) { <div class="ac-error" id="card-Phonetic-error" role="alert">@phoneticError</div> }
+                </div>
+                <div class="ac-field">
+                    <label class="ac-label" for="card-PhoneticUk">Phiên âm (UK)</label>
+                    <input id="card-PhoneticUk" name="PhoneticUk" value="@input.PhoneticUk" class="form-control ac-control @Invalid("PhoneticUk")" maxlength="@AdminVocabularyService.MaxPhoneticLength"
+                           aria-invalid="@(Err("PhoneticUk") != null ? "true" : null)" aria-describedby="@Described("PhoneticUk")" autocomplete="off" />
+                    @if (Err("PhoneticUk") is { } phoneticUkError) { <div class="ac-error" id="card-PhoneticUk-error" role="alert">@phoneticUkError</div> }
+                </div>
+
+                <div class="ac-field">
+                    <label class="ac-label" for="card-PartsOfSpeech">Từ loại</label>
+                    <input id="card-PartsOfSpeech" name="PartsOfSpeech" value="@input.PartsOfSpeech" class="form-control ac-control @Invalid("PartsOfSpeech")"
+                           placeholder="noun, verb" aria-invalid="@(Err("PartsOfSpeech") != null ? "true" : null)" aria-describedby="@Described("PartsOfSpeech", "card-PartsOfSpeech-hint")" autocomplete="off" />
+                    @if (Err("PartsOfSpeech") is { } posError)
+                    {
+                        <div class="ac-error" id="card-PartsOfSpeech-error" role="alert">@posError</div>
+                    }
+                    else
+                    {
+                        <div class="ac-hint" id="card-PartsOfSpeech-hint">Mã cách nhau bằng dấu phẩy: @posCodes.</div>
+                    }
+                </div>
+                <div class="ac-field">
+                    <label class="ac-label" for="card-Cefr">Cấp độ CEFR</label>
+                    <select id="card-Cefr" name="Cefr" class="form-select ac-control @Invalid("Cefr")" aria-invalid="@(Err("Cefr") != null ? "true" : null)" aria-describedby="@Described("Cefr")">
+                        <option value="">Chưa đặt</option>
+                        @foreach (var level in AdminInputRules.CefrLevels)
+                        {
+                            <option value="@level" selected="@(cefr == level)">@level</option>
+                        }
+                    </select>
+                    @if (Err("Cefr") is { } cefrError) { <div class="ac-error" id="card-Cefr-error" role="alert">@cefrError</div> }
+                </div>
+
+                <div class="ac-field">
+                    <label class="ac-label" for="card-Emoji">Emoji</label>
+                    <input id="card-Emoji" name="Emoji" value="@input.Emoji" class="form-control ac-control @Invalid("Emoji")" maxlength="@AdminVocabularyService.MaxEmojiLength"
+                           placeholder="🐶" aria-invalid="@(Err("Emoji") != null ? "true" : null)" aria-describedby="@Described("Emoji", "card-Emoji-hint")" autocomplete="off" />
+                    @if (Err("Emoji") is { } emojiError)
+                    {
+                        <div class="ac-error" id="card-Emoji-error" role="alert">@emojiError</div>
+                    }
+                    else
+                    {
+                        <div class="ac-hint" id="card-Emoji-hint">Hình minh họa nhanh của từ; nên dùng một emoji.</div>
+                    }
+                </div>
+                <div class="ac-field">
+                    <label class="ac-label" for="card-ImageUrl">Ảnh (liên kết https hoặc /…)</label>
+                    <input id="card-ImageUrl" name="ImageUrl" value="@input.ImageUrl" class="form-control ac-control @Invalid("ImageUrl")" maxlength="@AdminVocabularyService.MaxImageUrlLength"
+                           placeholder="https://… hoặc /images/…" aria-invalid="@(Err("ImageUrl") != null ? "true" : null)" aria-describedby="@Described("ImageUrl", "card-ImageUrl-hint")" autocomplete="off" />
+                    @if (Err("ImageUrl") is { } imageError)
+                    {
+                        <div class="ac-error" id="card-ImageUrl-error" role="alert">@imageError</div>
+                    }
+                    else
+                    {
+                        <div class="ac-hint" id="card-ImageUrl-hint">Chỉ nhận liên kết https hoặc đường dẫn nội bộ.</div>
+                    }
+                </div>
+
+                <div class="ac-field ac-span-2">
+                    <label class="ac-label" for="card-Topic">Chủ đề (bài)</label>
+                    <input id="card-Topic" name="Topic" value="@input.Topic" class="form-control ac-control @Invalid("Topic")" maxlength="@AdminVocabularyService.MaxTopicLength"
+                           placeholder="Animals (Động vật)" aria-invalid="@(Err("Topic") != null ? "true" : null)" aria-describedby="@Described("Topic", "card-Topic-hint")" autocomplete="off" />
+                    @if (Err("Topic") is { } topicError)
+                    {
+                        <div class="ac-error" id="card-Topic-error" role="alert">@topicError</div>
+                    }
+                    else
+                    {
+                        <div class="ac-hint" id="card-Topic-hint">Các thẻ cùng chủ đề được gom thành bài học, khoảng 10 thẻ mỗi bài.</div>
+                    }
+                </div>
+
+                <div class="ac-field ac-span-2">
+                    <label class="ac-label" for="card-Example">Ví dụ</label>
+                    <textarea id="card-Example" name="Example" rows="2" class="form-control ac-control @Invalid("Example")" maxlength="@AdminVocabularyService.MaxExampleLength"
+                              data-ac-max="@AdminVocabularyService.MaxExampleLength" aria-invalid="@(Err("Example") != null ? "true" : null)" aria-describedby="@Described("Example")">@input.Example</textarea>
+                    <div class="ac-counter" data-ac-counter-for="card-Example" aria-hidden="true"></div>
+                    @if (Err("Example") is { } exampleError) { <div class="ac-error" id="card-Example-error" role="alert">@exampleError</div> }
+                </div>
+                <div class="ac-field ac-span-2">
+                    <label class="ac-label" for="card-ExampleTranslation">Dịch ví dụ</label>
+                    <textarea id="card-ExampleTranslation" name="ExampleTranslation" rows="2" class="form-control ac-control @Invalid("ExampleTranslation")" maxlength="@AdminVocabularyService.MaxExampleLength"
+                              data-ac-max="@AdminVocabularyService.MaxExampleLength" aria-invalid="@(Err("ExampleTranslation") != null ? "true" : null)" aria-describedby="@Described("ExampleTranslation")">@input.ExampleTranslation</textarea>
+                    <div class="ac-counter" data-ac-counter-for="card-ExampleTranslation" aria-hidden="true"></div>
+                    @if (Err("ExampleTranslation") is { } translationError) { <div class="ac-error" id="card-ExampleTranslation-error" role="alert">@translationError</div> }
+                </div>
+                <div class="ac-field ac-span-2">
+                    <label class="ac-label" for="card-MeaningEn">Nghĩa tiếng Anh</label>
+                    <input id="card-MeaningEn" name="MeaningEn" value="@input.MeaningEn" class="form-control ac-control @Invalid("MeaningEn")" maxlength="@AdminVocabularyService.MaxMeaningEnLength"
+                           aria-invalid="@(Err("MeaningEn") != null ? "true" : null)" aria-describedby="@Described("MeaningEn")" autocomplete="off" />
+                    @if (Err("MeaningEn") is { } meaningError) { <div class="ac-error" id="card-MeaningEn-error" role="alert">@meaningError</div> }
+                </div>
+            </div>
+
+            <div class="ac-form-actions">
+                <a asp-action="Cards" asp-route-id="@Model.SetId" class="btn ac-btn ac-btn--outline">Hủy</a>
+                <button type="submit" class="btn ac-btn ac-btn--primary">
+                    <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i><span>@(isEdit ? "Lưu thẻ" : "Thêm thẻ")</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <aside class="ac-preview" aria-label="Xem trước thẻ như học viên thấy" data-ac-preview data-ac-preview-form="cardForm">
+        <h2 class="ac-card-title ac-preview-title"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>Xem trước</span></h2>
+        <div class="ac-flashcard">
+            <span class="ac-word-pic ac-word-pic--lg" data-ac-bind-pic>
+                <img data-ac-pic-img alt="" hidden />
+                <span data-ac-pic-text></span>
+            </span>
+            <div class="ac-flashcard-term" data-ac-bind="Term" data-ac-empty="Từ mới"></div>
+            <div class="ac-flashcard-phonetic" data-ac-bind="Phonetic" data-ac-empty="/phiên âm/"></div>
+            <div class="ac-flashcard-meaning" data-ac-bind="Definition" data-ac-empty="Nghĩa tiếng Việt"></div>
+            <hr class="ac-flashcard-rule" />
+            <div class="ac-flashcard-example" data-ac-bind="Example" data-ac-empty="Chưa có ví dụ"></div>
+            <div class="ac-flashcard-example-vi" data-ac-bind="ExampleTranslation" data-ac-empty=""></div>
+        </div>
+        <p class="ac-hint">Xem trước theo dữ liệu đang nhập; trang học thật có thể trình bày khác đôi chút.</p>
+    </aside>
+</div>

@@ -1,0 +1,14 @@
+@model AcConfirmDeleteModel
+<form method="post"
+      asp-area="Admin" asp-controller="@Model.Controller" asp-action="@Model.Action"
+      asp-all-route-data="@(new Dictionary<string, string>(Model.Route))"
+      class="ac-inline-form"
+      data-ac-confirm-name="@Model.ConfirmName"
+      data-ac-confirm-title="@Model.Title"
+      data-ac-confirm-impact="@Model.Impact"
+      data-ac-confirm-button="@Model.ConfirmText">
+    <input type="hidden" name="confirmName" value="" data-ac-confirm-input />
+    <button type="submit" class="@(string.IsNullOrEmpty(Model.ButtonText) ? "btn ac-icon-btn ac-icon-btn--danger" : "btn ac-btn ac-btn--danger")" aria-label="@Model.AriaLabel" title="@Model.AriaLabel">
+        <i class="@Model.Icon" aria-hidden="true"></i>@if (!string.IsNullOrEmpty(Model.ButtonText)){<span>@Model.ButtonText</span>}
+    </button>
+</form>

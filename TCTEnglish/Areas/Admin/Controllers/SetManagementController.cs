@@ -1,467 +1,359 @@
+using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
+using TCTEnglish.Services.Admin;
 using TCTVocabulary.Areas.Admin.ViewModels;
 using TCTVocabulary.Models;
+using TCTVocabulary.Security;
 
 namespace TCTVocabulary.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// Vocabulary sets in the admin. Rules live in <see cref="IAdminVocabularyService"/>:
+    /// system sets are editable but not renamable, learner sets are view / make private / delete only.
+    /// </summary>
     [Area("Admin")]
     [Authorize(Roles = Roles.Admin)]
     public class SetManagementController : Controller
     {
-        private readonly DbflashcardContext _context;
-        private const int PageSize = 20;
-        private const string SystemEmail = "system@tct.local";
+        private readonly IAdminVocabularyService _service;
 
-        public SetManagementController(DbflashcardContext context)
+        public SetManagementController(IAdminVocabularyService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // 1) GET Index
-        public async Task<IActionResult> Index(string? q, int? folderId, string? ownerFilter, int page = 1)
+        public async Task<IActionResult> Index(string? q, int? folderId, string? ownerFilter, string? visibility, string? sort, int page = 1, CancellationToken ct = default)
         {
-            var query = _context.Sets
-                .Include(s => s.Owner)
-                .Include(s => s.Folder)
-                .AsNoTracking();
+            var source = ownerFilter is "system" or "user" ? ownerFilter : "";
+            var exposure = visibility is "Public" or "Link" or "Private" ? visibility : "";
+            var sortKey = sort is "name" or "cards" or "views" ? sort : "newest";
+            // The folder filter only makes sense for system sets (their folders), and the page disables it otherwise.
+            int? folder = source == "system" ? folderId : null;
 
-            // Filter Search Token
-            if (!string.IsNullOrWhiteSpace(q))
+            var list = await _service.ListSetsAsync(new AdminSetQuery(source, folder, exposure, q, sortKey, page), ct);
+            var figures = await _service.GetFiguresAsync(ct);
+
+            return View(new SetManagementIndexViewModel
             {
-                query = query.Where(s => s.SetName.Contains(q) || (s.Description != null && s.Description.Contains(q)));
-            }
-
-            // Filter Folder
-            if (folderId.HasValue)
-            {
-                query = query.Where(s => s.FolderId == folderId);
-            }
-
-            // Filter Owner
-            if (ownerFilter == "system")
-            {
-                query = query.Where(s => s.Owner.Email == SystemEmail);
-            }
-            else if (ownerFilter == "user")
-            {
-                query = query.Where(s => s.Owner.Email != SystemEmail);
-            }
-
-            var totalItems = await query.CountAsync();
-            var sets = await query
-                .OrderByDescending(s => s.CreatedAt)
-                .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .Select(s => new SetListItemViewModel
-                {
-                    SetId = s.SetId,
-                    SetName = s.SetName,
-                    Description = s.Description,
-                    OwnerName = s.Owner.FullName ?? s.Owner.Email,
-                    OwnerEmail = s.Owner.Email,
-                    OwnerId = s.OwnerId,
-                    FolderName = s.Folder != null ? s.Folder.FolderName : null,
-                    FolderId = s.FolderId,
-                    CardCount = s.Cards.Count,
-                    ViewCount = s.ViewCount,
-                    CreatedAt = s.CreatedAt,
-                    IsSystemSet = s.Owner.Email == SystemEmail
-                })
-                .ToListAsync();
-
-            var folders = await _context.Folders
-                .Include(f => f.User)
-                .AsNoTracking()
-                .Select(f => new FolderFilterOption
-                {
-                    FolderId = f.FolderId,
-                    FolderName = f.FolderName,
-                    OwnerName = f.User.FullName ?? f.User.Email
-                })
-                .ToListAsync();
-
-            var model = new SetManagementIndexViewModel
-            {
-                Sets = sets,
-                Folders = folders,
-                SearchToken = q,
-                FolderFilter = folderId,
-                OwnerFilter = ownerFilter ?? "all",
-                CurrentPage = page,
-                TotalItems = totalItems,
-                TotalPages = (int)Math.Ceiling(totalItems / (double)PageSize)
-            };
-
-            return View(model);
+                List = list,
+                Figures = figures,
+                Q = q,
+                OwnerFilter = source,
+                FolderId = folder,
+                Visibility = exposure,
+                Sort = sortKey,
+            });
         }
 
         // 2) GET Create
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(CancellationToken ct)
         {
-            var folders = await _context.Folders
-                .Include(f => f.User)
-                .AsNoTracking()
-                .Select(f => new FolderFilterOption
-                {
-                    FolderId = f.FolderId,
-                    FolderName = f.FolderName,
-                    OwnerName = f.User.FullName ?? f.User.Email
-                })
-                .ToListAsync();
-
-            var users = await _context.Users
-                .AsNoTracking()
-                .Select(u => new OwnerOption
-                {
-                    UserId = u.UserId,
-                    DisplayName = $"{(string.IsNullOrEmpty(u.FullName) ? "No Name" : u.FullName)} ({u.Email})"
-                })
-                .ToListAsync();
-
-            var model = new SetCreateEditViewModel
-            {
-                AvailableFolders = folders,
-                AvailableOwners = users
-            };
-
-            return View(model);
+            var form = await _service.GetSetFormAsync(null, ct);
+            return View(ToViewModel(form!));
         }
 
         // 3) POST Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(SetCreateEditViewModel model)
+        public async Task<IActionResult> Create(SetFormViewModel model, CancellationToken ct)
         {
-            if (!ModelState.IsValid)
+            if (!TryGetAdminId(out var adminId))
             {
-                // Reload data for view
-                model.AvailableFolders = await _context.Folders
-                    .Include(f => f.User)
-                    .AsNoTracking()
-                    .Select(f => new FolderFilterOption
-                    {
-                        FolderId = f.FolderId,
-                        FolderName = f.FolderName,
-                        OwnerName = f.User.FullName ?? f.User.Email
-                    })
-                    .ToListAsync();
-
-                model.AvailableOwners = await _context.Users
-                    .AsNoTracking()
-                    .Select(u => new OwnerOption
-                    {
-                        UserId = u.UserId,
-                        DisplayName = $"{(string.IsNullOrEmpty(u.FullName) ? "No Name" : u.FullName)} ({u.Email})"
-                    })
-                    .ToListAsync();
-
-                return View(model);
+                return Challenge();
             }
 
-            int ownerId = model.OwnerId ?? int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
-
-            var set = new Set
+            var result = await _service.CreateSystemSetAsync(new AdminSetInput { Name = model.Name, Description = model.Description, FolderId = model.FolderId }, adminId, ct);
+            if (result.IsSuccess)
             {
-                SetName = model.SetName,
-                Description = model.Description,
-                FolderId = model.FolderId,
-                OwnerId = ownerId,
-                CreatedAt = DateTime.UtcNow,
-                ViewCount = 0
-            };
+                TempData["SuccessMessage"] = "Đã tạo bộ từ vựng hệ thống. Hãy thêm thẻ cho bộ này.";
+                return RedirectToAction(nameof(Cards), new { id = result.Value });
+            }
 
-            _context.Sets.Add(set);
-            await _context.SaveChangesAsync();
-
-            TempData["SuccessMessage"] = "Đã tạo bộ từ vựng mới thành công.";
-            return RedirectToAction(nameof(Index));
+            var form = await _service.GetSetFormAsync(null, ct);
+            return View(WithErrors(model, form!, result.Message, result.FieldErrors));
         }
 
         // 4) GET Edit
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id, CancellationToken ct)
         {
-            var set = await _context.Sets
-                .Include(s => s.Owner)
-                .Include(s => s.Folder)
-                .FirstOrDefaultAsync(s => s.SetId == id);
-
-            if (set == null) return NotFound();
-
-            var folders = await _context.Folders
-                .Include(f => f.User)
-                .AsNoTracking()
-                .Select(f => new FolderFilterOption
-                {
-                    FolderId = f.FolderId,
-                    FolderName = f.FolderName,
-                    OwnerName = f.User.FullName ?? f.User.Email
-                })
-                .ToListAsync();
-
-            var users = await _context.Users
-                .AsNoTracking()
-                .Select(u => new OwnerOption
-                {
-                    UserId = u.UserId,
-                    DisplayName = $"{(string.IsNullOrEmpty(u.FullName) ? "No Name" : u.FullName)} ({u.Email})"
-                })
-                .ToListAsync();
-
-            var model = new SetCreateEditViewModel
+            var form = await _service.GetSetFormAsync(id, ct);
+            if (form == null)
             {
-                SetId = set.SetId,
-                SetName = set.SetName,
-                Description = set.Description,
-                FolderId = set.FolderId,
-                OwnerId = set.OwnerId,
-                AvailableFolders = folders,
-                AvailableOwners = users
-            };
+                return NotFound();
+            }
 
-            return View(model);
+            if (!form.IsSystem)
+            {
+                TempData["ErrorMessage"] = AdminVocabularyMessages.LearnerContentReadOnly;
+                return RedirectToAction(nameof(Cards), new { id });
+            }
+
+            return View(ToViewModel(form));
         }
 
         // 5) POST Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(SetCreateEditViewModel model)
+        public async Task<IActionResult> Edit(SetFormViewModel model, CancellationToken ct)
         {
-            if (!ModelState.IsValid)
+            if (!model.SetId.HasValue)
             {
-                model.AvailableFolders = await _context.Folders
-                    .Include(f => f.User)
-                    .AsNoTracking()
-                    .Select(f => new FolderFilterOption
-                    {
-                        FolderId = f.FolderId,
-                        FolderName = f.FolderName,
-                        OwnerName = f.User.FullName ?? f.User.Email
-                    })
-                    .ToListAsync();
-
-                model.AvailableOwners = await _context.Users
-                    .AsNoTracking()
-                    .Select(u => new OwnerOption
-                    {
-                        UserId = u.UserId,
-                        DisplayName = $"{(string.IsNullOrEmpty(u.FullName) ? "No Name" : u.FullName)} ({u.Email})"
-                    })
-                    .ToListAsync();
-
-                return View(model);
+                return BadRequest();
             }
 
-            if (!model.SetId.HasValue) return BadRequest();
+            if (!TryGetAdminId(out var adminId))
+            {
+                return Challenge();
+            }
 
-            var set = await _context.Sets.FirstOrDefaultAsync(s => s.SetId == model.SetId.Value);
+            var result = await _service.UpdateSetAsync(model.SetId.Value, new AdminSetInput { Name = model.Name, Description = model.Description, FolderId = model.FolderId }, adminId, ct);
+            switch (result.Status)
+            {
+                case AdminResultStatus.Success:
+                    TempData["SuccessMessage"] = "Đã cập nhật bộ từ vựng.";
+                    if (result.Warnings.Count > 0)
+                    {
+                        TempData["WarningMessage"] = string.Join(" ", result.Warnings);
+                    }
 
-            if (set == null) return NotFound();
+                    return RedirectToAction(nameof(Cards), new { id = model.SetId.Value });
+                case AdminResultStatus.NotFound:
+                    return NotFound();
+                case AdminResultStatus.Forbidden:
+                    TempData["ErrorMessage"] = result.Message;
+                    return RedirectToAction(nameof(Cards), new { id = model.SetId.Value });
+                default:
+                    var form = await _service.GetSetFormAsync(model.SetId, ct);
+                    return form == null ? NotFound() : View(WithErrors(model, form, result.Message, result.FieldErrors));
+            }
+        }
 
-            set.SetName = model.SetName;
-            set.Description = model.Description;
-            set.FolderId = model.FolderId;
-            // KHÔNG đổi OwnerId theo yêu cầu
+        // 6) POST Delete (the admin has to type the exact set name)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id, string? confirmName, CancellationToken ct)
+        {
+            if (!TryGetAdminId(out var adminId))
+            {
+                return Challenge();
+            }
 
-            await _context.SaveChangesAsync();
+            var result = await _service.DeleteSetAsync(id, confirmName, adminId, ct);
+            if (result.Status == AdminResultStatus.NotFound)
+            {
+                return NotFound();
+            }
 
-            TempData["SuccessMessage"] = "Đã cập nhật bộ từ vựng thành công.";
+            if (result.IsSuccess)
+            {
+                TempData["SuccessMessage"] = "Đã xóa bộ từ vựng và dữ liệu học liên quan.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = result.Message ?? "Không xóa được bộ từ vựng.";
+            }
+
             return RedirectToAction(nameof(Index));
         }
 
-        // 6) POST Delete
+        // 7) POST SetVisibility (learner sets can only be made private)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> SetVisibility(int id, string visibility, CancellationToken ct)
         {
-            var set = await _context.Sets
-                .Include(s => s.Cards)
-                .FirstOrDefaultAsync(s => s.SetId == id);
+            if (!TryGetAdminId(out var adminId))
+            {
+                return Challenge();
+            }
 
-            if (set == null) return NotFound();
+            var result = await _service.SetVisibilityAsync(id, visibility, adminId, ct);
+            if (result.Status == AdminResultStatus.NotFound)
+            {
+                return NotFound();
+            }
 
-            var cardIds = set.Cards.Select(c => c.CardId).ToList();
+            if (result.IsSuccess)
+            {
+                TempData["SuccessMessage"] = "Đã đặt bộ thẻ về riêng tư và tắt liên kết chia sẻ.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = result.Message ?? "Không đổi được chế độ hiển thị.";
+            }
 
-            // Xóa LearningProgress liên quan đến các Card của Set này
-            var progress = _context.LearningProgresses.Where(lp => cardIds.Contains(lp.CardId));
-            _context.LearningProgresses.RemoveRange(progress);
-
-            // Xóa Cards
-            _context.Cards.RemoveRange(set.Cards);
-
-            // Xóa Set
-            _context.Sets.Remove(set);
-
-            await _context.SaveChangesAsync();
-
-            TempData["SuccessMessage"] = "Đã xóa bộ từ vựng thành công.";
             return RedirectToAction(nameof(Index));
         }
 
-        // 7) GET Cards
-        public async Task<IActionResult> Cards(int id)
+        // 8) GET Export (system sets only, in the shape of system-vocabulary.json)
+        public async Task<IActionResult> Export(int id, CancellationToken ct)
         {
-            var set = await _context.Sets
-                .Include(s => s.Cards)
-                .Include(s => s.Folder)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(s => s.SetId == id);
-
-            if (set == null) return NotFound();
-
-            var model = new SetCardsViewModel
+            var export = await _service.ExportSystemSetAsync(id, ct);
+            if (export == null)
             {
-                SetId = set.SetId,
-                SetName = set.SetName,
-                FolderName = set.Folder?.FolderName,
-                Cards = set.Cards
-                    .OrderBy(c => c.CardId)
-                    .Select(c => new CardItemViewModel
-                    {
-                        CardId = c.CardId,
-                        Term = c.Term,
-                        Definition = c.Definition,
-                        ImageUrl = c.ImageUrl,
-                        Phonetic = c.Phonetic,
-                        Example = c.Example,
-                        ExampleTranslation = c.ExampleTranslation,
-                        Topic = c.Topic
-                    })
-                    .ToList()
-            };
-
-            return View(model);
-        }
-
-        // 8) POST DeleteCard
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteCard(int cardId, int setId)
-        {
-            var card = await _context.Cards.FirstOrDefaultAsync(c => c.CardId == cardId && c.SetId == setId);
-
-            if (card == null) return NotFound();
-
-            // Xóa LearningProgress liên quan đến Card
-            var progress = _context.LearningProgresses.Where(lp => lp.CardId == cardId);
-            _context.LearningProgresses.RemoveRange(progress);
-
-            // Xóa Card
-            _context.Cards.Remove(card);
-
-            await _context.SaveChangesAsync();
-
-            TempData["SuccessMessage"] = "Đã xóa thẻ từ vựng thành công.";
-            return RedirectToAction(nameof(Cards), new { id = setId });
-        }
-
-        // 9) GET AddCard
-        public async Task<IActionResult> AddCard(int setId)
-        {
-            var set = await _context.Sets.AsNoTracking().FirstOrDefaultAsync(s => s.SetId == setId);
-            if (set == null) return NotFound();
-
-            var model = new CardCreateEditViewModel
-            {
-                SetId = setId,
-                SetName = set.SetName
-            };
-
-            return View(model);
-        }
-
-        // 10) POST AddCard
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddCard(CardCreateEditViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                var set = await _context.Sets.AsNoTracking().FirstOrDefaultAsync(s => s.SetId == model.SetId);
-                model.SetName = set?.SetName;
-                return View(model);
+                return NotFound();
             }
 
-            var setExists = await _context.Sets.AnyAsync(s => s.SetId == model.SetId);
-            if (!setExists) return NotFound();
-
-            var card = new Card
-            {
-                SetId = model.SetId,
-                Term = model.Term,
-                Definition = model.Definition,
-                ImageUrl = model.ImageUrl,
-                Phonetic = model.Phonetic,
-                Example = model.Example,
-                ExampleTranslation = model.ExampleTranslation,
-                Topic = model.Topic
-            };
-
-            _context.Cards.Add(card);
-            await _context.SaveChangesAsync();
-
-            TempData["SuccessMessage"] = "Đã thêm thẻ mới thành công.";
-            return RedirectToAction(nameof(Cards), new { id = model.SetId });
+            return File(Encoding.UTF8.GetBytes(export.Json), "application/json; charset=utf-8", export.FileName);
         }
 
-        // 11) GET EditCard
-        public async Task<IActionResult> EditCard(int id)
+        // 9) GET Cards
+        public async Task<IActionResult> Cards(int id, string? q, string? topic, string? quality, int page = 1, CancellationToken ct = default)
         {
-            var card = await _context.Cards
-                .Include(c => c.Set)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(c => c.CardId == id);
-
-            if (card == null) return NotFound();
-
-            var model = new CardCreateEditViewModel
+            var qualityKey = quality is "complete" or "missing-example" or "missing-phonetic" or "missing-picture" ? quality : "";
+            var cards = await _service.ListCardsAsync(id, new AdminCardQuery(q, topic, qualityKey, page), ct);
+            if (cards == null)
             {
-                CardId = card.CardId,
-                SetId = card.SetId,
-                Term = card.Term,
-                Definition = card.Definition,
-                ImageUrl = card.ImageUrl,
-                Phonetic = card.Phonetic,
-                Example = card.Example,
-                ExampleTranslation = card.ExampleTranslation,
-                Topic = card.Topic,
-                SetName = card.Set.SetName
-            };
-
-            return View(model);
-        }
-
-        // 12) POST EditCard
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditCard(CardCreateEditViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                var set = await _context.Sets.AsNoTracking().FirstOrDefaultAsync(s => s.SetId == model.SetId);
-                model.SetName = set?.SetName;
-                return View(model);
+                return NotFound();
             }
 
-            if (!model.CardId.HasValue) return BadRequest();
+            return View(new SetCardsViewModel { Cards = cards, Q = q, Topic = topic, Quality = qualityKey });
+        }
 
-            var card = await _context.Cards.FirstOrDefaultAsync(c => c.CardId == model.CardId.Value);
-            if (card == null) return NotFound();
+        // 10) POST DeleteCard (the card knows its own set)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteCard(int cardId, CancellationToken ct)
+        {
+            if (!TryGetAdminId(out var adminId))
+            {
+                return Challenge();
+            }
 
-            card.Term = model.Term;
-            card.Definition = model.Definition;
-            card.ImageUrl = model.ImageUrl;
-            card.Phonetic = model.Phonetic;
-            card.Example = model.Example;
-            card.ExampleTranslation = model.ExampleTranslation;
-            card.Topic = model.Topic;
+            var result = await _service.DeleteCardAsync(cardId, adminId, ct);
+            switch (result.Status)
+            {
+                case AdminResultStatus.NotFound:
+                    return NotFound();
+                case AdminResultStatus.Success:
+                    TempData["SuccessMessage"] = "Đã xóa thẻ từ vựng.";
+                    return RedirectToAction(nameof(Cards), new { id = result.Value });
+                default:
+                    TempData["ErrorMessage"] = result.Message ?? "Không xóa được thẻ.";
+                    var form = await _service.GetCardFormAsync(cardId, null, ct);
+                    return form == null ? RedirectToAction(nameof(Index)) : RedirectToAction(nameof(Cards), new { id = form.SetId });
+            }
+        }
 
-            await _context.SaveChangesAsync();
+        // 11) GET AddCard
+        public async Task<IActionResult> AddCard(int setId, CancellationToken ct)
+        {
+            var form = await _service.GetCardFormAsync(null, setId, ct);
+            if (form == null)
+            {
+                return NotFound();
+            }
 
-            TempData["SuccessMessage"] = "Đã cập nhật thẻ thành công.";
-            return RedirectToAction(nameof(Cards), new { id = model.SetId });
+            if (!form.IsSystem)
+            {
+                TempData["ErrorMessage"] = AdminVocabularyMessages.LearnerContentReadOnly;
+                return RedirectToAction(nameof(Cards), new { id = setId });
+            }
+
+            return View(new CardFormViewModel { SetId = form.SetId, SetName = form.SetName, Input = form.Input });
+        }
+
+        // 12) POST AddCard
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddCard(int setId, AdminCardInput input, CancellationToken ct)
+        {
+            if (!TryGetAdminId(out var adminId))
+            {
+                return Challenge();
+            }
+
+            var result = await _service.AddCardAsync(setId, input, adminId, ct);
+            switch (result.Status)
+            {
+                case AdminResultStatus.Success:
+                    TempData["SuccessMessage"] = "Đã thêm thẻ mới.";
+                    return RedirectToAction(nameof(Cards), new { id = setId });
+                case AdminResultStatus.NotFound:
+                    return NotFound();
+                case AdminResultStatus.Forbidden:
+                    TempData["ErrorMessage"] = result.Message;
+                    return RedirectToAction(nameof(Cards), new { id = setId });
+                default:
+                    var form = await _service.GetCardFormAsync(null, setId, ct);
+                    return form == null
+                        ? NotFound()
+                        : View(new CardFormViewModel { SetId = setId, SetName = form.SetName, Input = input, Errors = result.FieldErrors, Summary = result.Message });
+            }
+        }
+
+        // 13) GET EditCard
+        public async Task<IActionResult> EditCard(int id, CancellationToken ct)
+        {
+            var form = await _service.GetCardFormAsync(id, null, ct);
+            if (form == null)
+            {
+                return NotFound();
+            }
+
+            if (!form.IsSystem)
+            {
+                TempData["ErrorMessage"] = AdminVocabularyMessages.LearnerContentReadOnly;
+                return RedirectToAction(nameof(Cards), new { id = form.SetId });
+            }
+
+            return View(new CardFormViewModel { CardId = form.CardId, SetId = form.SetId, SetName = form.SetName, Input = form.Input });
+        }
+
+        // 14) POST EditCard
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditCard(int cardId, AdminCardInput input, CancellationToken ct)
+        {
+            if (!TryGetAdminId(out var adminId))
+            {
+                return Challenge();
+            }
+
+            var result = await _service.UpdateCardAsync(cardId, input, adminId, ct);
+            switch (result.Status)
+            {
+                case AdminResultStatus.Success:
+                    TempData["SuccessMessage"] = "Đã cập nhật thẻ.";
+                    return RedirectToAction(nameof(Cards), new { id = result.Value });
+                case AdminResultStatus.NotFound:
+                    return NotFound();
+                case AdminResultStatus.Forbidden:
+                    TempData["ErrorMessage"] = result.Message;
+                    var owner = await _service.GetCardFormAsync(cardId, null, ct);
+                    return owner == null ? RedirectToAction(nameof(Index)) : RedirectToAction(nameof(Cards), new { id = owner.SetId });
+                default:
+                    var form = await _service.GetCardFormAsync(cardId, null, ct);
+                    return form == null
+                        ? NotFound()
+                        : View(new CardFormViewModel { CardId = cardId, SetId = form.SetId, SetName = form.SetName, Input = input, Errors = result.FieldErrors, Summary = result.Message });
+            }
+        }
+
+        private bool TryGetAdminId(out int adminId) => User.TryGetUserId(out adminId);
+
+        private static SetFormViewModel ToViewModel(AdminSetForm form) => new()
+        {
+            SetId = form.SetId,
+            Name = form.Name,
+            Description = form.Description,
+            FolderId = form.FolderId,
+            IsSystem = form.IsSystem,
+            OwnerName = form.OwnerName,
+            Exposure = form.Exposure,
+            Folders = form.Folders,
+        };
+
+        private static SetFormViewModel WithErrors(SetFormViewModel posted, AdminSetForm form, string? summary, IReadOnlyDictionary<string, string> errors)
+        {
+            var model = ToViewModel(form);
+            model.Name = posted.Name;
+            model.Description = posted.Description;
+            model.FolderId = posted.FolderId;
+            model.Errors = errors;
+            model.Summary = summary;
+            return model;
         }
     }
 }

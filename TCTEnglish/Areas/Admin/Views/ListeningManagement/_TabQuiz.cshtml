@@ -1,0 +1,38 @@
+@using TCTEnglish.Services.Admin
+@model LessonEditorViewModel
+@{
+    var editor = Model.Editor;
+    var errors = Model.Errors;
+    var discardUrl = Url.Action("Editor", "ListeningManagement", new { area = "Admin", id = editor.Id, tab = LessonTabs.Quiz })!;
+    var saveBar = new SaveBarModel("Lưu quiz", discardUrl);
+    var blank = new RowView<AdminQuizInput>("__i__", 0, new AdminQuizInput(), new Dictionary<string, string>(), "Questions");
+}
+
+@if (errors.TryGetValue("Questions", out var generalError))
+{
+    <div class="alert ac-alert ac-alert--danger" role="alert"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span class="ac-alert-text">@generalError</span></div>
+}
+
+<form method="post" asp-action="ManageQuiz" asp-route-id="@editor.Id" data-ac-pending data-ac-dirty novalidate>
+    <fieldset class="ac-fieldset" disabled="@Model.ReadOnly">
+        <legend class="visually-hidden">Câu hỏi quiz</legend>
+        <div data-ac-rows data-ac-prefix="questions" data-ac-row-noun="câu hỏi" id="quiz-rows">
+            @for (var i = 0; i < Model.Questions.Count; i++)
+            {
+                <partial name="_QuizRow" model="@(new RowView<AdminQuizInput>(i.ToString(), i + 1, Model.Questions[i], errors, "Questions"))" />
+            }
+        </div>
+        <p class="ac-empty-rows" data-ac-empty-rows @(Model.Questions.Count > 0 ? "hidden" : "")>@(Model.ReadOnly ? "Bài này chưa có câu hỏi nào." : "Chưa có câu hỏi nào. Bấm \"Thêm câu hỏi\" để bắt đầu.")</p>
+        <template data-ac-row-template>
+            <partial name="_QuizRow" model="blank" />
+        </template>
+        @if (!Model.ReadOnly)
+        {
+            <button type="button" class="btn ac-btn ac-btn--outline ac-add-row" data-ac-add-row><i class="fa-solid fa-plus" aria-hidden="true"></i><span>Thêm câu hỏi</span></button>
+        }
+    </fieldset>
+    @if (!Model.ReadOnly)
+    {
+        <partial name="_SaveBar" model="saveBar" />
+    }
+</form>

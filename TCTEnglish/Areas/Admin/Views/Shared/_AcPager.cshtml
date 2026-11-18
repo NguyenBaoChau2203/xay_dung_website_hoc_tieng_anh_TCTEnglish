@@ -1,0 +1,39 @@
+@model AcPagerModel
+@{
+    var baseRoute = Model.Route.Where(kv => !string.IsNullOrEmpty(kv.Value)).ToDictionary(kv => kv.Key, kv => kv.Value!);
+    var numbers = new[] { 1, Model.Page - 1, Model.Page, Model.Page + 1, Model.TotalPages }
+        .Where(n => n >= 1 && n <= Model.TotalPages).Distinct().OrderBy(n => n).ToList();
+    var atFirst = Model.Page <= 1;
+    var atLast = Model.Page >= Model.TotalPages;
+}
+<div class="ac-pager">
+    <p class="ac-pager-text" role="status">
+        @if (Model.TotalItems == 0)
+        {
+            <span>Không có kết quả</span>
+        }
+        else
+        {
+            <span>Hiển thị @Model.From–@Model.To trong @Model.TotalItems</span>
+        }
+    </p>
+    @if (Model.TotalPages > 1)
+    {
+        <nav aria-label="Phân trang">
+            <ul class="pagination ac-pagination mb-0">
+                <li class="page-item @(atFirst ? "disabled" : "")">
+                    <a class="page-link" asp-action="@Model.Action" asp-all-route-data="@(new Dictionary<string, string>(baseRoute) { ["page"] = Math.Max(1, Model.Page - 1).ToString() })" aria-label="Trang trước" aria-disabled="@(atFirst ? "true" : null)" tabindex="@(atFirst ? "-1" : null)"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></a>
+                </li>
+                @foreach (var number in numbers)
+                {
+                    <li class="page-item @(number == Model.Page ? "active" : "")">
+                        <a class="page-link" asp-action="@Model.Action" asp-all-route-data="@(new Dictionary<string, string>(baseRoute) { ["page"] = number.ToString() })" aria-label="Trang @number" aria-current="@(number == Model.Page ? "page" : null)">@number</a>
+                    </li>
+                }
+                <li class="page-item @(atLast ? "disabled" : "")">
+                    <a class="page-link" asp-action="@Model.Action" asp-all-route-data="@(new Dictionary<string, string>(baseRoute) { ["page"] = Math.Min(Model.TotalPages, Model.Page + 1).ToString() })" aria-label="Trang sau" aria-disabled="@(atLast ? "true" : null)" tabindex="@(atLast ? "-1" : null)"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+                </li>
+            </ul>
+        </nav>
+    }
+</div>

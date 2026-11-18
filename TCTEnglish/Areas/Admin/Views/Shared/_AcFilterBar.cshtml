@@ -1,0 +1,42 @@
+@model AcFilterBarModel
+<div class="ac-card ac-filter">
+    <form method="get" id="@Model.FormId" asp-area="Admin" asp-controller="@Model.Controller" asp-action="@Model.Action" class="ac-filter-form">
+        @foreach (var hidden in Model.Hidden)
+        {
+            <input type="hidden" name="@hidden.Key" value="@hidden.Value" />
+        }
+        @foreach (var field in Model.Fields)
+        {
+            var inputId = $"{Model.FormId}-{field.Name}";
+            <div class="ac-field @(field.Kind == "search" ? "ac-field--grow" : "")">
+                <label class="ac-label" for="@inputId">@field.Label</label>
+                @if (field.Kind == "search")
+                {
+                    <div class="ac-search">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                        <input type="search" id="@inputId" name="@field.Name" value="@field.Value" class="form-control ac-control" placeholder="@field.Placeholder" autocomplete="off" />
+                    </div>
+                }
+                else
+                {
+                    <select id="@inputId" name="@field.Name" class="form-select ac-control" disabled="@field.Disabled">
+                        @foreach (var option in field.Options)
+                        {
+                            <option value="@option.Value" selected="@(string.Equals(option.Value, field.Value ?? "", StringComparison.Ordinal))">@option.Text</option>
+                        }
+                    </select>
+                }
+                @if (!string.IsNullOrWhiteSpace(field.Hint))
+                {
+                    <div class="ac-hint">@field.Hint</div>
+                }
+            </div>
+        }
+        <div class="ac-filter-actions">
+            <button type="submit" class="btn ac-btn ac-btn--primary"><i class="fa-solid fa-filter" aria-hidden="true"></i><span>Lọc</span></button>
+            <a asp-area="Admin" asp-controller="@Model.Controller" asp-action="@Model.Action" class="btn ac-btn ac-btn--outline" title="Xóa bộ lọc" aria-label="Xóa bộ lọc">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,2 @@
+@model AcTag
+<span class="ac-tag ac-tag--@Model.Tone">@if (!string.IsNullOrEmpty(Model.Icon)){<i class="@Model.Icon" aria-hidden="true"></i>}@Model.Text</span>
