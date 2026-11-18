@@ -444,4 +444,105 @@ public sealed class ListeningRedesignRenderTests
         Assert.Equal(System.Text.Json.JsonValueKind.Null, guestJson.RootElement.GetProperty("userKey").ValueKind);
         Assert.Contains("href=\"/Account/Login?returnUrl=%2FHome%2FListening%2FPractice%2F" + A1FullId + "\"", PageBody(guestHtml), StringComparison.Ordinal);
     }
+
+    // ------------------------------------------------------------------ practice tabs and contents (L5, plan 5.3-5.4)
+
+    [Fact]
+    public async Task Practice_HasFiveTabsWithTheirPanels_AndNoModeRadios()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var student = Client(factory, StudentId, Roles.Standard);
+        var body = PageBody(await HtmlAsync(student, $"/Home/Listening/Practice/{A1FullId}"));
+
+        foreach (var key in new[] { "transcript", "dictation", "fill", "quiz", "vocab" })
+        {
+            Assert.Contains($"id=\"tlTab-{key}\"", body, StringComparison.Ordinal);
+            Assert.Contains($"id=\"tlPanel-{key}\"", body, StringComparison.Ordinal);
+            Assert.Contains($"data-tl-tab=\"{key}\"", body, StringComparison.Ordinal);
+        }
+
+        // tab order follows the plan, labels are Vietnamese
+        Assert.Matches("tlTab-transcript(?s:.)*Lời thoại(?s:.)*tlTab-dictation(?s:.)*Chép chính tả(?s:.)*tlTab-fill(?s:.)*Điền từ(?s:.)*tlTab-quiz(?s:.)*Quiz(?s:.)*tlTab-vocab(?s:.)*Từ vựng", body);
+        Assert.Equal(5, Regex.Matches(body, "role=\"tab\"").Count);
+
+        // the old mode radios are gone; their panels became tabs
+        Assert.DoesNotContain("name=\"tlMode\"", body, StringComparison.Ordinal);
+        Assert.DoesNotContain("tlModePanel", body, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Practice_TabsFollowTheContent_QuizAndVocabHiddenWhenEmpty_QuizKeptForAiGeneration()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var student = Client(factory, StudentId, Roles.Standard);
+
+        // transcript only: Lời thoại, Chép chính tả, Điền từ - and nothing else
+        var plain = PageBody(await HtmlAsync(student, $"/Home/Listening/Practice/{A1PlainId}"));
+        Assert.Equal(3, Regex.Matches(plain, "role=\"tab\"").Count);
+        Assert.DoesNotContain("tlTab-quiz", plain, StringComparison.Ordinal);
+        Assert.DoesNotContain("tlTab-vocab", plain, StringComparison.Ordinal);
+
+        // the owner of a private lesson without questions keeps the Quiz tab for the AI-generate empty state
+        using var owner = Client(factory, PremiumId, Roles.Premium);
+        var mine = PageBody(await HtmlAsync(owner, $"/Home/Listening/Practice/{PrivateId}"));
+        Assert.Contains("tlTab-quiz", mine, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Practice_Transcript_TimeIsTheSeekButton_TextCarriesNoNestedButton_AndTheToolbarIsComplete()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var student = Client(factory, StudentId, Roles.Standard);
+        var body = PageBody(await HtmlAsync(student, $"/Home/Listening/Practice/{A1FullId}"));
+
+        foreach (var id in new[] { "tlToggleVi", "tlToggleHide", "tlToggleScroll", "tlMarkDone", "tlLines", "tlLinesWrap" })
+            Assert.Contains($"id=\"{id}\"", body, StringComparison.Ordinal);
+        Assert.Contains("Bấm vào từ để tra nghĩa", body, StringComparison.Ordinal);
+
+        // the clock is the only seek control of a line; the sentence text is left free for word buttons
+        Assert.Matches("class=\"tl-line__seek tl-line__time\" aria-label=\"Nghe từ câu 1, 0:00\">0:00</button>", body);
+        Assert.DoesNotMatch("<button[^>]*tl-line__seek[^>]*>\\s*<span class=\"tl-line__en\"", body);
+        Assert.Matches("<span class=\"tl-line__en\" lang=\"en\">Line 1</span>", body);
+
+        // the lesson vocabulary goes to the script so it can underline the words
+        var html = await HtmlAsync(student, $"/Home/Listening/Practice/{A1FullId}");
+        var config = Regex.Match(html, "<script type=\"application/json\" id=\"tlConfig\">((?s:.)*?)</script>").Groups[1].Value;
+        using var json = System.Text.Json.JsonDocument.Parse(config);
+        Assert.Equal(2, json.RootElement.GetProperty("vocab").GetArrayLength());
+        Assert.Equal("word1", json.RootElement.GetProperty("vocab")[0].GetProperty("word").GetString());
+        Assert.Equal("/api/listening/word/save", json.RootElement.GetProperty("urls").GetProperty("wordSave").GetString());
+    }
+
+    [Fact]
+    public async Task Practice_Quiz_KeepsTheFormContract_AndAddsOneQuestionNavigation()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var student = Client(factory, StudentId, Roles.Standard);
+        var body = PageBody(await HtmlAsync(student, $"/Home/Listening/Practice/{A1FullId}"));
+
+        foreach (var id in new[] { "tlQuizForm", "tlQuizResult", "tlQuizLive", "tlQuizSubmit", "tlQuizCount", "tlQuizPrev", "tlQuizNext", "tlQuizHead", "tlQuizDots" })
+            Assert.Contains($"id=\"{id}\"", body, StringComparison.Ordinal);
+        // every question stays in the markup (all answers are still submitted together)
+        Assert.Equal(2, Regex.Matches(body, "<fieldset class=\"tl-q k-panel\"").Count);
+        Assert.Contains("Nộp bài", body, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Practice_VocabTab_OffersSaveAllToSignedInUsersOnly_AndKeepsTheReviewedButton()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var student = Client(factory, StudentId, Roles.Standard);
+        var body = PageBody(await HtmlAsync(student, $"/Home/Listening/Practice/{A1FullId}"));
+        Assert.Contains("id=\"tlVocabSaveAll\"", body, StringComparison.Ordinal);
+        Assert.Contains("Lưu tất cả vào Bộ thẻ", body, StringComparison.Ordinal);
+        Assert.Contains("id=\"tlVocabDone\"", body, StringComparison.Ordinal);
+        Assert.Contains("Đánh dấu đã ôn", body, StringComparison.Ordinal);
+        Assert.Contains("id=\"tlVocabSaveSummary\"", body, StringComparison.Ordinal);
+        Assert.Equal(2, Regex.Matches(body, "data-tl-vocab-word=").Count);
+
+        using var guest = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        var guestBody = PageBody(await HtmlAsync(guest, $"/Home/Listening/Practice/{A1FullId}"));
+        Assert.DoesNotContain("tlVocabSaveAll", guestBody, StringComparison.Ordinal);
+        Assert.Contains("id=\"tlVocabDone\"", guestBody, StringComparison.Ordinal);
+    }
 }

@@ -578,7 +578,9 @@ public sealed class ListeningIntegrationTests
         Assert.DoesNotContain("data-step=\"vocab\"", html, StringComparison.Ordinal);
         Assert.Contains("data-step=\"transcript\"", html, StringComparison.Ordinal);
         Assert.DoesNotContain("data-step=\"quiz\"", html, StringComparison.Ordinal);
-        Assert.Contains("Bài nghe chưa có quiz.", WebUtility.HtmlDecode(html), StringComparison.Ordinal);
+        // plan 5.3: no questions and no AI generation for this user, so the Quiz tab is hidden altogether
+        Assert.DoesNotContain("tlTab-quiz", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("Bài nghe chưa có quiz.", WebUtility.HtmlDecode(html), StringComparison.Ordinal);
     }
 
     [Fact]

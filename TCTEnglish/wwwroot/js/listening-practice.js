@@ -1,6 +1,6 @@
 /*
- * /Home/Listening/Practice/{id}: player, steps, tabs, shortcuts and (in the sections below) the transcript, dictation,
- * fill-in, vocabulary and quiz behaviour. Needs window.TctSets (personal-sets-common.js) and
+ * /Home/Listening/Practice/{id}: player, steps, five tabs (transcript, dictation, fill-in, quiz, vocabulary), shortcuts and
+ * the behaviour of each tab. Needs window.TctSets (personal-sets-common.js) and
  * window.TctListening.core (listening-core.js). Lesson data comes from <script type="application/json" id="tlConfig">.
  * DOM is built with createElement and textContent only; server data is never turned into markup.
  */
@@ -58,6 +58,27 @@
         });
     }
 
+    /** POST api/listening/word/save. Rejects with { guest: true } for guests; resolves { saved, duplicate?, setUrl }. */
+    function saveWord(term, definition, example) {
+        if (!config.isAuthenticated) { var guest = new Error('guest'); guest.guest = true; return Promise.reject(guest); }
+        return Sets.fetchJson(urls.wordSave, { method: 'POST', body: { lessonId: config.lessonId, term: term, definition: definition, example: example || '' } });
+    }
+
+    /** Save one lesson-vocabulary item and tell the learner what happened (toast). */
+    function saveVocabItem(item, button) {
+        if (!config.isAuthenticated) { Sets.toast('Đăng nhập để lưu từ vào Bộ thẻ.'); return Promise.resolve(null); }
+        if (button) { Sets.pending(button, true, 'Đang lưu…'); }
+        return saveWord(item.word, item.definition || '', item.example || '').then(function (result) {
+            if (button) { Sets.pending(button, false); }
+            Sets.toast(result && result.duplicate ? 'Từ này đã có trong bộ thẻ.' : 'Đã lưu "' + item.word + '" vào bộ "Từ vựng Luyện nghe".');
+            return result;
+        }).catch(function (error) {
+            if (button) { Sets.pending(button, false); }
+            Sets.toast((error && error.message) || 'Chưa lưu được từ này. Thử lại sau.', { type: 'danger' });
+            return null;
+        });
+    }
+
     function markTab(key) {
         var tab = document.querySelector('[data-tl-tab="' + key + '"]');
         if (!tab || tab.querySelector('.tl-tab__done')) { return; }
@@ -102,11 +123,14 @@
 
     // ------------------------------------------------------------------ tabs
 
-    // New hashes are written; the old Vietnamese ones keep working.
-    var HASH = { transcript: 'transcript', vocab: 'vocab', quiz: 'quiz' };
+    // Five tabs. New hashes are written; the old Vietnamese ones keep working.
+    var HASH = { transcript: 'transcript', dictation: 'dictation', fill: 'fill', quiz: 'quiz', vocab: 'vocab' };
     var LEGACY_HASH = { 'loi-thoai': 'transcript', 'tu-vung': 'vocab' };
     var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-tl-tab]'));
     var tablist = document.querySelector('.tl-tabs');
+    // dictation and fill build their panel the first time they are opened (hooks are set further down)
+    var tabHooks = {};
+    var tabBuilt = {};
 
     function tabKey(tab) { return tab.getAttribute('data-tl-tab'); }
 
@@ -124,6 +148,7 @@
         if (found && options.hash !== false) {
             try { window.history.replaceState(null, '', window.location.pathname + window.location.search + '#' + HASH[key]); } catch (e) { /* ignore */ }
         }
+        if (found && !tabBuilt[key] && typeof tabHooks[key] === 'function') { tabBuilt[key] = true; tabHooks[key](); }
     }
 
     function keyFromHash() {
@@ -149,19 +174,10 @@
         });
     }
 
-    var openDictation = function () {
-        selectTab('transcript');
-        var radio = byId('tlMode-dictation');
-        if (radio) { radio.checked = true; radio.dispatchEvent(new Event('change', { bubbles: true })); radio.focus(); }
-    };
     Array.prototype.forEach.call(document.querySelectorAll('[data-tl-goto]'), function (button) {
-        button.addEventListener('click', function () {
-            var key = button.getAttribute('data-tl-goto');
-            if (key === 'dictation') { openDictation(); } else { selectTab(key, { focus: true }); }
-        });
+        button.addEventListener('click', function () { selectTab(button.getAttribute('data-tl-goto'), { focus: true }); });
     });
     window.addEventListener('hashchange', function () { var key = keyFromHash(); if (key) { selectTab(key, { hash: false }); } });
-    selectTab(keyFromHash() || 'transcript', { hash: false });
 
     // ------------------------------------------------------------------ player adapter (YouTube IFrame API or <audio>)
 
@@ -271,6 +287,7 @@
     function setLoop(on) {
         loopOn = !!on;
         if (loopBtn) { loopBtn.setAttribute('aria-pressed', loopOn ? 'true' : 'false'); }
+        Array.prototype.forEach.call(document.querySelectorAll('[data-tl-loop-chip]'), function (chip) { chip.setAttribute('aria-pressed', loopOn ? 'true' : 'false'); });
     }
     if (loopBtn) { loopBtn.addEventListener('click', function () { setLoop(!loopOn); }); }
 
@@ -402,6 +419,8 @@
 
     if (linesList) {
         linesList.addEventListener('click', function (event) {
+            var wordBtn = event.target.closest('.tl-word');
+            if (wordBtn) { openWord(wordBtn); return; }
             var seek = event.target.closest('.tl-line__seek');
             if (seek) {
                 var order = Number(seek.closest('.tl-line').getAttribute('data-i'));
@@ -426,6 +445,37 @@
         });
     }
 
+    // ------------------------------------------------------------------ transcript: tap-a-word
+
+    var vocabIdx = core.vocabIndex(config.vocab || []);
+
+    /** A line of English as text plus one button per word; lesson-vocabulary words get a dotted underline. */
+    function renderWords(container, text) {
+        container.textContent = '';
+        core.markVocab(core.wordSpans(text), vocabIdx).forEach(function (span) {
+            if (span.t !== 'word') { container.appendChild(document.createTextNode(span.v)); return; }
+            var button = Sets.el('button', 'tl-word' + (span.vocab ? ' tl-word--vocab' : ''), span.v);
+            button.type = 'button';
+            button.setAttribute('data-term', span.vocab ? span.vocab.word : span.key);
+            button.setAttribute('data-key', span.key);
+            container.appendChild(button);
+        });
+    }
+
+    /** The word popover / sheet (listening-word.js) when it is loaded; a word click never seeks. */
+    function openWord(button) {
+        var word = window.TctListening && window.TctListening.word;
+        if (word && typeof word.open === 'function') {
+            var li = button.closest('.tl-line');
+            var order = li ? Number(li.getAttribute('data-i')) : -1;
+            word.open(button, { term: button.getAttribute('data-term'), key: button.getAttribute('data-key'), line: order >= 0 ? lines[order] : null });
+        }
+    }
+
+    if (linesList) {
+        Array.prototype.forEach.call(linesList.querySelectorAll('.tl-line__en'), function (el) { renderWords(el, el.textContent); });
+    }
+
     // ------------------------------------------------------------------ transcript: toggles
 
     var viBtn = byId('tlToggleVi');
@@ -439,24 +489,15 @@
         var masked = hideBtn && hideBtn.getAttribute('aria-pressed') === 'true' && li.getAttribute('data-revealed') !== 'true';
         var en = li.querySelector('.tl-line__en');
         var reveal = li.querySelector('.tl-line__reveal');
-        var seek = li.querySelector('.tl-line__seek');
         var mask = li.querySelector('.tl-line__mask');
         if (en) { en.hidden = masked; }
         if (reveal) { reveal.hidden = !masked; }
-        if (masked && seek && !mask) {
+        if (masked && !mask && en) {
             mask = Sets.el('span', 'tl-line__mask', '••••••');
             mask.setAttribute('aria-hidden', 'true');
-            seek.appendChild(mask);
+            en.parentNode.insertBefore(mask, en);
         } else if (!masked && mask) {
             mask.remove();
-        }
-        if (masked && !seek && !mask && en) {
-            var holder = Sets.el('span', 'tl-line__mask', '••••••');
-            holder.setAttribute('aria-hidden', 'true');
-            en.parentNode.insertBefore(holder, en);
-        } else if (!masked) {
-            var stray = li.querySelector('.tl-line__text > .tl-line__mask');
-            if (stray) { stray.remove(); }
         }
     }
 
@@ -511,20 +552,6 @@
         if (viBtn && !viBtn.disabled) { setPressed(viBtn, true); syncVi(); }
     }
 
-    // ------------------------------------------------------------------ transcript: mode switch
-
-    var modeHooks = {};
-    var modeBuilt = {};
-
-    function showMode(mode) {
-        ['normal', 'dictation', 'fill'].forEach(function (name) { setHidden(byId('tlModePanel-' + name), name !== mode); });
-        if (!modeBuilt[mode] && typeof modeHooks[mode] === 'function') { modeHooks[mode](); modeBuilt[mode] = true; }
-    }
-
-    Array.prototype.forEach.call(document.querySelectorAll('input[name="tlMode"]'), function (radio) {
-        radio.addEventListener('change', function () { if (radio.checked) { showMode(radio.value); } });
-    });
-
     // ------------------------------------------------------------------ transcript: mark as heard
 
     var markDoneBtn = byId('tlMarkDone');
@@ -575,145 +602,275 @@
         return tile;
     }
 
-    // ------------------------------------------------------------------ practice mode: dictation
+    // ------------------------------------------------------------------ dictation tab: one sentence at a time
 
-    modeHooks.dictation = function () {
-        var panel = byId('tlModePanel-dictation');
-        var statuses = lines.map(function () { return null; });
-        var feedback = [];
-        var inputs = [];
+    function clock(seconds) {
+        var total = Math.max(0, Math.floor(Number(seconds) || 0));
+        var h = Math.floor(total / 3600), m = Math.floor(total % 3600 / 60), s = total % 60;
+        return (h > 0 ? h + ':' + (m < 10 ? '0' : '') : '') + m + ':' + (s < 10 ? '0' : '') + s;
+    }
 
+    /** The first lesson-vocabulary item found in a line, or null. */
+    function vocabInLine(text) {
+        var spans = core.markVocab(core.wordSpans(text), vocabIdx);
+        for (var i = 0; i < spans.length; i++) { if (spans[i].t === 'word' && spans[i].vocab) { return spans[i].vocab; } }
+        return null;
+    }
+
+    var STRIP_LABEL = { correct: 'chính xác', near: 'gần đúng', wrong: 'chưa đúng', skipped: 'đã bỏ qua' };
+
+    tabHooks.dictation = function () {
+        var panel = byId('tlPanel-dictation');
+        var total = lines.length;
+        var results = dictationResults.load();
+        var current = 0;
+        for (var s = 0; s < total; s++) { if (!results[s]) { current = s; break; } }
+
+        // header: position, time range, loop chip
         var head = Sets.el('div', 'tl-dict__head');
-        head.appendChild(Sets.el('p', 'tl-dict__rule', 'Nghe từng câu rồi gõ lại.'));
-        var ring = Sets.el('div', 'tl-ring');
-        ring.setAttribute('role', 'img');
-        var ringText = Sets.el('span', 'tl-ring__text', '0%');
-        ring.appendChild(ringText);
-        head.appendChild(ring);
+        var title = Sets.el('h3', 'tl-dict__title');
+        var range = Sets.el('span', 'tl-dict__range');
+        var loopChip = Sets.el('button', 'tl-chip tl-dict__loop');
+        loopChip.type = 'button';
+        loopChip.setAttribute('data-tl-loop-chip', '');
+        loopChip.setAttribute('aria-pressed', loopOn ? 'true' : 'false');
+        setButtonContent(loopChip, 'fa-solid fa-repeat', 'Lặp câu');
+        loopChip.addEventListener('click', function () { setLoop(!loopOn); });
+        head.appendChild(title);
+        head.appendChild(range);
+        head.appendChild(loopChip);
         panel.appendChild(head);
-        panel.appendChild(Sets.el('p', 'tl-hint', 'Enter: kiểm tra · Shift+Enter: xuống dòng · Alt+R: nghe lại câu · Tab: chuyển sang ô kế tiếp.'));
 
-        var list = Sets.el('div', 'tl-dict__list');
+        // segmented progress strip: one button per sentence
+        var strip = Sets.el('div', 'tl-strip');
+        strip.setAttribute('role', 'group');
+        strip.setAttribute('aria-label', 'Tiến độ chép chính tả');
+        var segs = lines.map(function (line, i) {
+            var seg = Sets.el('button', 'tl-strip__seg');
+            seg.type = 'button';
+            seg.addEventListener('click', function () { showLine(i, true); });
+            strip.appendChild(seg);
+            return seg;
+        });
+        panel.appendChild(strip);
+
+        // play row: listen to the current sentence; the level bars are decoration only
+        var playRow = Sets.el('div', 'tl-dict__play');
+        var playBtn = Sets.el('button', 'btn btn-outline-primary tl-dict__listen');
+        playBtn.type = 'button';
+        setButtonContent(playBtn, 'fa-solid fa-play', 'Nghe câu này');
+        playBtn.addEventListener('click', function () { playLine(current); });
+        var level = Sets.el('span', 'tl-level');
+        level.setAttribute('aria-hidden', 'true');
+        for (var b = 0; b < 12; b++) { level.appendChild(Sets.el('i', 'tl-level__bar')); }
+        playRow.appendChild(playBtn);
+        playRow.appendChild(level);
+        panel.appendChild(playRow);
+        var untimed = Sets.el('p', 'tl-hint', 'Câu này chưa có mốc thời gian, hãy nghe cả bài.');
+        untimed.hidden = true;
+        panel.appendChild(untimed);
+        player.onState(function (state) { panel.classList.toggle('is-playing', state === 'playing'); });
+
+        var input = document.createElement('textarea');
+        input.className = 'form-control tl-dict__input';
+        input.rows = 3;
+        input.setAttribute('aria-label', 'Gõ lại câu bạn nghe được');
+        applyTypingAttrs(input);
+        input.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); check(); }
+            else if (event.ctrlKey && event.code === 'Space') { event.preventDefault(); playLine(current); }
+        });
+        panel.appendChild(input);
+        panel.appendChild(Sets.el('p', 'tl-hint', 'Ctrl+Space: nghe lại câu · Enter: kiểm tra · Shift+Enter: xuống dòng.'));
+
+        var actions = Sets.el('div', 'tl-dict__actions');
+        var skipBtn = Sets.el('button', 'btn btn-outline-primary');
+        skipBtn.type = 'button';
+        skipBtn.textContent = 'Bỏ qua';
+        skipBtn.addEventListener('click', skip);
+        var checkBtn = Sets.el('button', 'btn btn-primary');
+        checkBtn.type = 'button';
+        checkBtn.textContent = 'Kiểm tra';
+        checkBtn.addEventListener('click', check);
+        actions.appendChild(skipBtn);
+        actions.appendChild(checkBtn);
+        panel.appendChild(actions);
+
+        var box = Sets.el('div', 'tl-result-box');
+        box.hidden = true;
+        panel.appendChild(box);
         var summary = Sets.el('div', 'tl-summary k-panel');
         summary.hidden = true;
         summary.setAttribute('role', 'status');
+        panel.appendChild(summary);
 
-        function refresh() {
-            var checked = statuses.filter(Boolean).length;
-            var percent = lines.length ? Math.round(checked * 100 / lines.length) : 0;
-            ring.style.setProperty('--p', percent + '%');
-            ring.setAttribute('aria-label', percent + '% số câu đã kiểm tra');
-            ringText.textContent = percent + '%';
-            if (lines.length && checked === lines.length) {
-                var count = function (name) { return statuses.filter(function (s) { return s === name; }).length; };
-                summary.textContent = '';
-                var tiles = Sets.el('div', 'tl-summary__tiles');
-                tiles.appendChild(summaryTile('Đúng', count('correct'), 'success'));
-                tiles.appendChild(summaryTile('Gần đúng', count('near'), 'warning'));
-                tiles.appendChild(summaryTile('Sai', count('wrong'), 'danger'));
-                summary.appendChild(tiles);
-                var again = Sets.el('button', 'btn btn-outline-primary');
-                again.type = 'button';
-                setButtonContent(again, 'fa-solid fa-rotate-right', 'Làm lại');
-                again.addEventListener('click', reset);
-                summary.appendChild(again);
-                summary.hidden = false;
-            } else {
-                summary.hidden = true;
-            }
+        var footer = Sets.el('div', 'tl-dict__footer');
+        var resetBtn = Sets.el('button', 'btn btn-link');
+        resetBtn.type = 'button';
+        setButtonContent(resetBtn, 'fa-solid fa-rotate-left', 'Làm lại từ đầu');
+        var confirmBox = Sets.el('div', 'tl-confirm k-panel');
+        confirmBox.setAttribute('role', 'group');
+        confirmBox.setAttribute('aria-label', 'Xác nhận làm lại từ đầu');
+        confirmBox.hidden = true;
+        confirmBox.appendChild(Sets.el('p', 'tl-confirm__text', 'Xóa kết quả chép chính tả của bài này trên trình duyệt?'));
+        var confirmYes = Sets.el('button', 'btn btn-outline-danger btn-sm');
+        confirmYes.type = 'button';
+        confirmYes.textContent = 'Xóa kết quả';
+        var confirmNo = Sets.el('button', 'btn btn-outline-primary btn-sm');
+        confirmNo.type = 'button';
+        confirmNo.textContent = 'Hủy';
+        confirmBox.appendChild(confirmYes);
+        confirmBox.appendChild(confirmNo);
+        footer.appendChild(resetBtn);
+        footer.appendChild(confirmBox);
+        panel.appendChild(footer);
+        var live = Sets.el('p', 'visually-hidden');
+        live.id = 'tlDictLive';
+        live.setAttribute('role', 'status');
+        live.setAttribute('aria-live', 'polite');
+        panel.appendChild(live);
+
+        resetBtn.addEventListener('click', function () { confirmBox.hidden = false; resetBtn.hidden = true; confirmYes.focus(); });
+        confirmNo.addEventListener('click', function () { confirmBox.hidden = true; resetBtn.hidden = false; resetBtn.focus(); });
+        confirmYes.addEventListener('click', function () {
+            dictationResults.clear();
+            results = {};
+            refreshDictationStep();
+            confirmBox.hidden = true;
+            resetBtn.hidden = false;
+            showLine(0, true);
+            announce('tlDictLive', 'Đã xóa kết quả chép chính tả.');
+        });
+
+        function statusOf(i) { return results[i] ? results[i].status : null; }
+
+        function paintStrip() {
+            segs.forEach(function (seg, i) {
+                var st = statusOf(i);
+                var cls = 'tl-strip__seg';
+                if (st === 'correct' || st === 'near') { cls += ' is-done'; } else if (st === 'wrong') { cls += ' is-wrong'; } else if (st === 'skipped') { cls += ' is-skipped'; }
+                if (i === current) { cls += ' is-current'; seg.setAttribute('aria-current', 'step'); } else { seg.removeAttribute('aria-current'); }
+                seg.className = cls;
+                seg.setAttribute('aria-label', 'Câu ' + (i + 1) + ': ' + (STRIP_LABEL[st] || 'chưa làm'));
+            });
         }
 
-        function showResult(i, result, revealed) {
-            var box = feedback[i];
+        function renderSummary() {
+            var any = Object.keys(results).some(function (k) { return Number(k) < total; });
+            resetBtn.hidden = !any || !confirmBox.hidden;
+            var done = 0;
+            for (var i = 0; i < total; i++) { if (results[i]) { done += 1; } }
+            if (!total || done < total) { summary.hidden = true; return; }
+            var count = function (name) { var n = 0; for (var i = 0; i < total; i++) { if (statusOf(i) === name) { n += 1; } } return n; };
+            summary.textContent = '';
+            var tiles = Sets.el('div', 'tl-summary__tiles');
+            tiles.appendChild(summaryTile('Đúng', count('correct'), 'success'));
+            tiles.appendChild(summaryTile('Gần đúng', count('near'), 'warning'));
+            tiles.appendChild(summaryTile('Sai', count('wrong'), 'danger'));
+            tiles.appendChild(summaryTile('Bỏ qua', count('skipped'), 'info'));
+            summary.appendChild(tiles);
+            summary.hidden = false;
+        }
+
+        function renderResult(grade) {
+            var line = lines[current];
+            var verdict = core.dictationVerdict(grade);
             box.textContent = '';
-            var status = revealed ? 'wrong' : result.status;
-            box.className = 'tl-feedback tl-feedback--' + status;
-            var title = Sets.el('p', 'tl-feedback__title');
-            title.appendChild(Sets.icon(RESULT_ICON[status]));
-            title.appendChild(document.createTextNode(' ' + (revealed ? 'Đáp án' : status === 'correct' ? 'Chính xác!' : status === 'near' ? 'Gần đúng' : 'Chưa đúng')));
-            box.appendChild(title);
-            if (!revealed) {
-                var words = Sets.el('p', 'tl-feedback__words');
-                words.setAttribute('lang', 'en');
-                result.words.forEach(function (w, k) {
-                    if (k) { words.appendChild(document.createTextNode(' ')); }
-                    words.appendChild(Sets.el('span', 'tl-w tl-w--' + w.state, w.text));
-                });
-                box.appendChild(words);
-                if (status !== 'correct') {
-                    box.appendChild(Sets.el('p', 'tl-feedback__legend', 'Từ gạch chấm: gần đúng. Từ gạch liền: sai hoặc thiếu.'));
-                }
+            box.className = 'tl-result-box tl-result-box--' + verdict.tone;
+            box.hidden = false;
+            var head2 = Sets.el('p', 'tl-result-box__title');
+            head2.appendChild(Sets.icon(RESULT_ICON[verdict.tone === 'correct' ? 'correct' : verdict.tone === 'near' ? 'near' : 'wrong']));
+            head2.appendChild(document.createTextNode(' ' + (verdict.tone === 'correct' ? 'Chính xác · 100%' : (verdict.tone === 'near' ? 'Gần đúng · ' : 'Chưa đúng · ') + verdict.percent + '%')));
+            box.appendChild(head2);
+            var words = Sets.el('p', 'tl-result-box__words');
+            words.setAttribute('lang', 'en');
+            (grade.words || []).forEach(function (w, k) {
+                if (k) { words.appendChild(document.createTextNode(' ')); }
+                words.appendChild(Sets.el('span', 'tl-w tl-w--' + w.state, w.text));
+            });
+            box.appendChild(words);
+            if (verdict.tone !== 'correct') {
+                box.appendChild(Sets.el('p', 'tl-feedback__legend', 'Từ gạch chấm: gần đúng. Từ gạch ngang: sai. Từ gạch chân: còn thiếu.'));
             }
-            var answer = Sets.el('p', 'tl-feedback__answer');
+            var answer = Sets.el('p', 'tl-result-box__answer');
             answer.appendChild(document.createTextNode('Câu đúng: '));
-            var sentence = Sets.el('span', null, lines[i].text);
+            var sentence = Sets.el('span', null, line.text);
             sentence.setAttribute('lang', 'en');
             answer.appendChild(sentence);
             box.appendChild(answer);
-            statuses[i] = status;
-            refresh();
+            if (line.vi) { box.appendChild(Sets.el('p', 'tl-result-box__vi', line.vi)); }
+
+            var row = Sets.el('div', 'tl-result-box__actions');
+            var item = vocabInLine(line.text);
+            if (item) {
+                var saveBtn = Sets.el('button', 'btn btn-outline-primary btn-sm');
+                saveBtn.type = 'button';
+                setButtonContent(saveBtn, 'fa-regular fa-bookmark', 'Lưu "' + item.word + '"');
+                saveBtn.addEventListener('click', function () { saveVocabItem(item, saveBtn); });
+                row.appendChild(saveBtn);
+            }
+            var retryBtn = Sets.el('button', 'btn btn-outline-primary btn-sm');
+            retryBtn.type = 'button';
+            retryBtn.textContent = 'Thử lại';
+            retryBtn.addEventListener('click', function () { box.hidden = true; input.value = ''; input.focus(); });
+            row.appendChild(retryBtn);
+            if (current < total - 1) {
+                var nextBtn = Sets.el('button', 'btn btn-primary btn-sm');
+                nextBtn.type = 'button';
+                nextBtn.textContent = 'Câu tiếp theo';
+                nextBtn.addEventListener('click', function () { showLine(current + 1, true); });
+                row.appendChild(nextBtn);
+            }
+            box.appendChild(row);
         }
 
-        function check(i) { showResult(i, core.gradeDictation(inputs[i].value, lines[i].text), false); }
-
-        function reset() {
-            inputs.forEach(function (input, i) { input.value = ''; feedback[i].textContent = ''; feedback[i].className = 'tl-feedback'; statuses[i] = null; });
-            refresh();
-            if (inputs[0]) { inputs[0].focus(); }
+        function showLine(i, focus) {
+            current = Math.min(Math.max(0, i), total - 1);
+            var line = lines[current];
+            title.textContent = 'Câu ' + (current + 1) + '/' + total;
+            var position = timedPosition(current);
+            range.textContent = position >= 0 ? clock(timed[position].start) + ' – ' + clock(timed[position].end) : '';
+            range.hidden = position < 0;
+            playBtn.disabled = position < 0;
+            untimed.hidden = position >= 0;
+            var saved = results[current];
+            input.value = saved && saved.text ? saved.text : '';
+            if (saved && saved.status !== 'skipped') { renderResult(core.gradeDictation(saved.text || '', line.text)); } else { box.hidden = true; }
+            paintStrip();
+            renderSummary();
+            if (focus) { input.focus(); }
         }
 
-        lines.forEach(function (line, i) {
-            var card = Sets.el('div', 'tl-dcard k-panel');
-            var top = Sets.el('div', 'tl-dcard__top');
-            top.appendChild(Sets.el('span', 'tl-dcard__num', String(i + 1)));
-            top.appendChild(Sets.el('span', 'tl-dcard__speaker tct-badge tct-badge--primary', line.speaker || ''));
-            top.appendChild(listenButton(i));
-            card.appendChild(top);
+        function store(result) {
+            results[current] = result;
+            dictationResults.save(current, result);
+            refreshDictationStep();
+        }
 
-            var label = Sets.el('label', 'visually-hidden', 'Gõ lại câu ' + (i + 1));
-            var input = document.createElement('textarea');
-            input.className = 'form-control tl-dcard__input';
-            input.id = 'tlDict-' + i;
-            input.rows = 2;
-            applyTypingAttrs(input);
-            label.setAttribute('for', input.id);
-            input.addEventListener('keydown', function (event) {
-                if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); check(i); }
-                else if (event.altKey && event.code === 'KeyR') { event.preventDefault(); playLine(i); }
-            });
-            inputs.push(input);
-            card.appendChild(label);
-            card.appendChild(input);
+        function check() {
+            var value = input.value;
+            if (!value.trim()) { announce('tlDictLive', 'Hãy gõ câu bạn nghe được.'); input.focus(); return; }
+            var grade = core.gradeDictation(value, lines[current].text);
+            store({ status: grade.status, score: grade.score, text: value });
+            renderResult(grade);
+            paintStrip();
+            renderSummary();
+            var verdict = core.dictationVerdict(grade);
+            announce('tlDictLive', (verdict.tone === 'correct' ? 'Chính xác' : verdict.tone === 'near' ? 'Gần đúng' : 'Chưa đúng') + ', ' + verdict.percent + ' phần trăm.');
+        }
 
-            var actions = Sets.el('div', 'tl-dcard__actions');
-            var checkBtn = Sets.el('button', 'btn btn-primary btn-sm');
-            checkBtn.type = 'button';
-            checkBtn.textContent = 'Kiểm tra';
-            checkBtn.addEventListener('click', function () { check(i); });
-            var showBtn = Sets.el('button', 'btn btn-outline-primary btn-sm');
-            showBtn.type = 'button';
-            showBtn.textContent = 'Xem đáp án';
-            showBtn.addEventListener('click', function () { showResult(i, null, true); });
-            actions.appendChild(checkBtn);
-            actions.appendChild(showBtn);
-            card.appendChild(actions);
+        function skip() {
+            store({ status: 'skipped', score: 0 });
+            if (current < total - 1) { showLine(current + 1, true); } else { box.hidden = true; paintStrip(); renderSummary(); }
+        }
 
-            var box = Sets.el('div', 'tl-feedback');
-            box.setAttribute('aria-live', 'polite');
-            feedback.push(box);
-            card.appendChild(box);
-            list.appendChild(card);
-        });
-
-        panel.appendChild(list);
-        panel.appendChild(summary);
-        refresh();
+        showLine(current, true);
     };
 
     // ------------------------------------------------------------------ practice mode: fill in the blanks
 
-    modeHooks.fill = function () {
-        var panel = byId('tlModePanel-fill');
+    tabHooks.fill = function () {
+        var panel = byId('tlPanel-fill');
         var retry = 0;
 
         function render() {
@@ -839,12 +996,43 @@
         });
     }
 
+    // "Lưu tất cả vào Bộ thẻ": one request per word, in order, then a single summary line
+    var saveAllBtn = byId('tlVocabSaveAll');
+    if (saveAllBtn) {
+        saveAllBtn.addEventListener('click', function () {
+            var items = Array.prototype.map.call(document.querySelectorAll('.tl-vocab__item[data-tl-vocab-word]'), function (li) {
+                return { word: li.getAttribute('data-tl-vocab-word'), definition: li.getAttribute('data-tl-vocab-def') || '', example: li.getAttribute('data-tl-vocab-example') || '' };
+            });
+            var summary = byId('tlVocabSaveSummary');
+            var saved = 0, existing = 0, failed = 0, setUrl = null;
+            Sets.pending(saveAllBtn, true, 'Đang lưu…');
+            items.reduce(function (chain, item) {
+                return chain.then(function () {
+                    return saveWord(item.word, item.definition, item.example).then(function (result) {
+                        if (result && result.setUrl) { setUrl = result.setUrl; }
+                        if (result && result.duplicate) { existing += 1; } else { saved += 1; }
+                    }).catch(function () { failed += 1; });
+                });
+            }, Promise.resolve()).then(function () {
+                Sets.pending(saveAllBtn, false);
+                if (!summary) { return; }
+                summary.textContent = 'Đã lưu ' + saved + ' từ, ' + existing + ' từ đã có sẵn.' + (failed ? ' ' + failed + ' từ chưa lưu được.' : '') + ' ';
+                if (setUrl) {
+                    var link = Sets.el('a', null, 'Mở bộ thẻ');
+                    link.href = setUrl;
+                    summary.appendChild(link);
+                }
+                summary.hidden = false;
+            });
+        });
+    }
+
     var vocabDoneBtn = byId('tlVocabDone');
     if (vocabDoneBtn) {
         vocabDoneBtn.addEventListener('click', function () {
             if (vocabDoneBtn.disabled) { return; }
             vocabDoneBtn.disabled = true;
-            setButtonContent(vocabDoneBtn, 'fa-solid fa-circle-check', 'Đã học xong từ vựng');
+            setButtonContent(vocabDoneBtn, 'fa-solid fa-circle-check', 'Đã ôn xong từ vựng');
             setStep('vocab', true);
             saveProgress({ vocabReviewed: true });
         });
@@ -860,7 +1048,48 @@
         var quizSubmit = byId('tlQuizSubmit');
         var quizCount = byId('tlQuizCount');
 
+        // one question per screen; after grading every question shows again as the review list
+        var qHead = byId('tlQuizHead');
+        var qPos = byId('tlQuizPos');
+        var qDots = byId('tlQuizDots');
+        var qPrev = byId('tlQuizPrev');
+        var qNext = byId('tlQuizNext');
+        var qIndex = 0;
+        var reviewing = false;
+        var dotButtons = fieldsets.map(function (fs, i) {
+            var li = Sets.el('li');
+            var dot = Sets.el('button', 'tl-dot');
+            dot.type = 'button';
+            dot.addEventListener('click', function () { goQuestion(i, true); });
+            li.appendChild(dot);
+            if (qDots) { qDots.appendChild(li); }
+            return dot;
+        });
+
         var chosenFor = function (fs) { var r = fs.querySelector('input:checked'); return r ? r.value : null; };
+
+        function paintQuiz() {
+            if (qHead) { qHead.hidden = reviewing; }
+            if (qPrev) { qPrev.hidden = reviewing || qIndex === 0; }
+            if (qNext) { qNext.hidden = reviewing || qIndex === fieldsets.length - 1; }
+            if (quizSubmit) { quizSubmit.hidden = reviewing || qIndex !== fieldsets.length - 1; }
+            fieldsets.forEach(function (fs, i) { fs.hidden = !reviewing && i !== qIndex; });
+            if (qPos) { qPos.textContent = 'Câu ' + (qIndex + 1) + '/' + fieldsets.length; }
+            dotButtons.forEach(function (dot, i) {
+                var answered = !!chosenFor(fieldsets[i]);
+                dot.className = 'tl-dot' + (i === qIndex ? ' is-current' : '') + (answered ? ' is-answered' : '');
+                dot.setAttribute('aria-label', 'Câu ' + (i + 1) + ': ' + (answered ? 'đã chọn' : 'chưa chọn'));
+                if (i === qIndex) { dot.setAttribute('aria-current', 'step'); } else { dot.removeAttribute('aria-current'); }
+            });
+        }
+
+        function goQuestion(i, focus) {
+            qIndex = Math.min(Math.max(0, i), fieldsets.length - 1);
+            paintQuiz();
+            if (focus) { var input = fieldsets[qIndex].querySelector('input'); if (input) { input.focus(); } }
+        }
+        if (qPrev) { qPrev.addEventListener('click', function () { goQuestion(qIndex - 1, true); }); }
+        if (qNext) { qNext.addEventListener('click', function () { goQuestion(qIndex + 1, true); }); }
         var answeredCount = function () { return fieldsets.filter(function (fs) { return chosenFor(fs); }).length; };
 
         function syncQuizCount() {
@@ -877,6 +1106,7 @@
             var fs = event.target.closest('.tl-q');
             if (fs) { clearMissing(fs); }
             syncQuizCount();
+            paintQuiz();
         });
 
         function resultRing(percent, large) {
@@ -903,8 +1133,8 @@
             if (quizResult) { quizResult.hidden = true; quizResult.textContent = ''; }
             if (quizSubmit) { quizSubmit.disabled = false; }
             syncQuizCount();
-            var first = quizForm.querySelector('input');
-            if (first) { first.focus(); }
+            reviewing = false;
+            goQuestion(0, true);
         }
 
         function retryButton() {
@@ -963,6 +1193,8 @@
             body.appendChild(retryButton());
             quizResult.appendChild(body);
             quizResult.hidden = false;
+            reviewing = true;
+            paintQuiz();
             quizResult.focus();
             if (data.bestScorePercent !== null && data.bestScorePercent !== undefined) { setStep('quiz', true, data.bestScorePercent + '%'); }
         }
@@ -978,8 +1210,7 @@
                     var note = fs.querySelector('.tl-q__missing');
                     if (note) { note.hidden = false; }
                 });
-                var firstInput = missing[0].querySelector('input');
-                if (firstInput) { firstInput.focus(); }
+                goQuestion(fieldsets.indexOf(missing[0]), true);
                 announce('tlQuizLive', 'Còn ' + missing.length + ' câu chưa trả lời.');
                 return;
             }
@@ -1003,6 +1234,7 @@
             showStoredScore(progress.quizScore);
         }
         syncQuizCount();
+        paintQuiz();
     }
 
     // ------------------------------------------------------------------ quiz generation with AI (own lessons, or Admin on shared ones)
@@ -1023,4 +1255,6 @@
             });
         });
     }
+
+    selectTab(keyFromHash() || 'transcript', { hash: false });
 }());
