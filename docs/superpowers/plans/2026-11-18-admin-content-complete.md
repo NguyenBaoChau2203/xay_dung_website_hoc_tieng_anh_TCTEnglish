@@ -734,3 +734,26 @@ Admin pages currently use Bootstrap Icons almost everywhere (counts in the main 
 **Before screenshots.** `.tmp/admin-content/before/` (1440 and 768 wide): 15 pages each, including `/Admin/UserManagement` as the style reference.
 
 **Gate record — A0 (2026-11-18, docs only).** G1 pass (0 errors, 16 warnings = baseline). G2/G3 pass at baseline (1 known failure, see above). G4 pass at baseline (1 known failure). G5 pass (no code change; `has-pending-model-changes` not applicable). G6 pass (`git diff --check`). G7 pass (only the plan and the prompt). G8–G15 n/a (no UI or logic change yet). Decisions: D1–D4 defaults kept. Throwaway content: none created yet.
+
+### A1 — Admin UI foundation (2026-11-18)
+
+**Built.**
+- `Services/Admin/AdminInputRules.cs` (YouTube id parser for watch, short, embed, shorts, live and nocookie links, with look-alike hosts rejected; https/local URL rule; `m:ss`/`h:mm:ss` duration; CEFR set; text normalisation and limits; page clamping) with 91 unit tests in `AdminInputRulesTests.cs`, written before the code.
+- `Services/Admin/AdminResult.cs`: `AdminResult` / `AdminResult<T>` with `Success`, `NotFound`, `Invalid` (+ per-row messages), `Forbidden` and non-blocking warnings. **Deviation from section 4.2:** the shared `OperationResult` (legacy namespace, outside the allowed files, no `Forbidden` status) is left untouched; the admin services return this new type instead.
+- `Areas/Admin/ViewModels/AdminContentShared.cs` (kit models) and eight partials `_AcPageHeader`, `_AcFigures`, `_AcStatusTag`, `_AcAlerts`, `_AcFilterBar`, `_AcTableHeader`, `_AcPager`, `_AcConfirmDelete`. **Deviation from 5.1:** Razor has no content slots, so `_AcTableCard` is split into `_AcTableHeader` (title, count chip, sort) and `_AcPager` (footer "Hiển thị a–b trong n"); the table itself is written in each page inside `<div class="ac-card">`.
+- `wwwroot/css/admin-content.css` (scoped `.ac-page`, tokens only) and `wwwroot/js/admin-content.js` (pure helpers + counters, type-the-name delete via SweetAlert2 `text`, unsaved-changes guard, pending state, auto-submit selects) with 12 node tests in `scripts/tests/test_admin_content.cjs`.
+
+**Gate record — A1.**
+- G1 pass: 0 errors; full rebuild gives 58 warnings, none from the new files. *Correction to the A0 record:* "16 warnings" was an incremental build that only recompiled the test project; the whole-solution baseline is 58.
+- G2/G3 pass: 3243 tests (3152 + 91 new), 0 failed, 53 skipped. The A0 failure (`AiRagPhase5FixRound2Tests…`) did not fail this time, so it is a timing flake.
+- G4 pass: 511 node tests, 510 passed; only the A0 speaking-catalog hash failure remains.
+- G5 pass: no learner page or contract touched; `dotnet ef migrations has-pending-model-changes` → "No changes".
+- G6 pass: no hex, `rgb()`, `:root` or priority overrides in `admin-content.css`; every `var(--tct-*)` exists in `tct-learning-ui.css`; no inline `style` or `<script>` in the partials; `git diff --check` clean for the changed files.
+- G7 pass: only new files under `Services/Admin/`, `Areas/Admin/ViewModels/`, `Areas/Admin/Views/Shared/_Ac*`, `wwwroot/css|js`, the two test files. `Program.cs`, `_AdminLayout.cshtml`, `Services/Billing/**`, `NotificationService.cs` untouched.
+- G8–G11 n/a: nothing renders the kit yet (first consumer is A3); the partials compile with the Razor build. G9 n/a for the same reason.
+- G12 pass: scripted contrast over the kit colour pairs (tags, buttons, alerts, counters, muted text, table head, link) is 5.15–17.10 against the 4.5 target; control border 3.66 and focus ring 5.28 against the 3.0 non-text target. The disabled-state pair is 4.24, which WCAG exempts for inactive controls.
+- G13 pass: the full suite above covers learner pages and other admin pages; they are unchanged.
+- G14 pass: the new partials use Font Awesome only (0 `bi bi-`).
+- G15 pass: no `innerHTML`/`eval` in `admin-content.js` (asserted by a node test); no credentials, `.tmp/` or screenshots staged.
+- Decisions: `TryNormalizeDuration` treats an empty duration as "not set" (import fills it later) and rejects `00:00`; the delete confirmation compares the typed name exactly after trimming what the admin typed.
+- Throwaway content: none.

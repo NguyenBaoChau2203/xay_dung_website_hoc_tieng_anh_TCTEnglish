@@ -1,0 +1,29 @@
+@{
+    var success = TempData["SuccessMessage"] as string;
+    var error = TempData["ErrorMessage"] as string;
+    var warning = TempData["WarningMessage"] as string;
+}
+@if (!string.IsNullOrWhiteSpace(success))
+{
+    <div class="alert ac-alert ac-alert--success alert-dismissible fade show" role="status">
+        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+        <span class="ac-alert-text">@success</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng thông báo"></button>
+    </div>
+}
+@if (!string.IsNullOrWhiteSpace(warning))
+{
+    <div class="alert ac-alert ac-alert--warning alert-dismissible fade show" role="status">
+        <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+        <span class="ac-alert-text">@warning</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng cảnh báo"></button>
+    </div>
+}
+@if (!string.IsNullOrWhiteSpace(error))
+{
+    <div class="alert ac-alert ac-alert--danger alert-dismissible fade show" role="alert">
+        <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+        <span class="ac-alert-text">@error</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng lỗi"></button>
+    </div>
+}
