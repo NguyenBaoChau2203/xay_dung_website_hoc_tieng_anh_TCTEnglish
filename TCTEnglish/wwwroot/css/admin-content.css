@@ -227,7 +227,12 @@
 .ac-page .form-select:focus-visible,
 .ac-page .page-link:focus-visible,
 .ac-page a:focus-visible,
-.ac-page [role="tab"]:focus-visible {
+.ac-page [role="tab"]:focus-visible,
+.ac-page summary:focus-visible,
+.ac-page pre:focus-visible,
+.ac-page textarea:focus-visible,
+.ac-page .form-check-input:focus-visible,
+.ac-page .btn-close:focus-visible {
     outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
     outline-offset: var(--tct-focus-ring-offset);
     box-shadow: none;
