@@ -1,0 +1,68 @@
+@model TCTEnglish.ViewModels.ListeningPracticeViewModel
+@*
+    "Tiến độ bài này" card of /Home/Listening/Practice/{id} (plan 5.2, mockup F2). One row per step that has content; a row jumps to its tab.
+    data-step keys: transcript, dictation (optional, browser-local, filled by listening-practice.js), quiz, vocab.
+    The completion banner #tlDone stays under the rows.
+*@
+@{
+    var transcriptCount = Model.TranscriptLines.Count;
+    var quizCount = Model.QuizQuestions.Count;
+    var vocabCount = Model.VocabItems.Count;
+
+    string QuizValue() => Model.QuizCompleted && Model.QuizScore.HasValue ? Model.QuizScore.Value + "%" : "0/" + quizCount;
+    string VocabValue() => Model.VocabReviewed ? "Xong" : vocabCount + " từ";
+}
+<div class="tl-steps k-panel" aria-label="Tiến độ bài này" role="group">
+    <h2 class="tl-steps__title">Tiến độ bài này</h2>
+    @if (transcriptCount > 0 || quizCount > 0 || vocabCount > 0)
+    {
+        <ol class="tl-steps__list">
+            @if (transcriptCount > 0)
+            {
+                <li class="tl-step" data-step="transcript" data-done="@(Model.TranscriptCompleted ? "true" : "false")">
+                    <button type="button" class="tl-step__btn" data-tl-goto="transcript">
+                        <i class="@(Model.TranscriptCompleted ? "fa-solid fa-circle-check" : "fa-regular fa-circle") tl-step__icon" aria-hidden="true"></i>
+                        <span class="tl-step__label">Nghe hết lời thoại</span>
+                        <span class="tl-step__value" data-tl-step-value>@(Model.TranscriptCompleted ? "Xong" : "Chưa xong")</span>
+                        <span class="visually-hidden tl-step__state">@(Model.TranscriptCompleted ? "đã xong" : "chưa xong")</span>
+                    </button>
+                </li>
+                <li class="tl-step tl-step--optional" data-step="dictation" data-done="false" data-total="@transcriptCount">
+                    <button type="button" class="tl-step__btn" data-tl-goto="dictation">
+                        <i class="fa-regular fa-circle tl-step__icon" aria-hidden="true"></i>
+                        <span class="tl-step__label">Chép chính tả <span class="tct-badge tl-step__tag">Tùy chọn</span></span>
+                        <span class="tl-step__value" data-tl-step-value>Chưa làm</span>
+                        <span class="visually-hidden tl-step__state">chưa làm</span>
+                    </button>
+                </li>
+            }
+            @if (quizCount > 0)
+            {
+                <li class="tl-step" data-step="quiz" data-done="@(Model.QuizCompleted ? "true" : "false")" data-total="@quizCount">
+                    <button type="button" class="tl-step__btn" data-tl-goto="quiz">
+                        <i class="@(Model.QuizCompleted ? "fa-solid fa-circle-check" : "fa-regular fa-circle") tl-step__icon" aria-hidden="true"></i>
+                        <span class="tl-step__label">Làm quiz</span>
+                        <span class="tl-step__value" data-tl-step-value>@QuizValue()</span>
+                        <span class="visually-hidden tl-step__state">@(Model.QuizCompleted ? "đã xong" : "chưa xong")</span>
+                    </button>
+                </li>
+            }
+            @if (vocabCount > 0)
+            {
+                <li class="tl-step" data-step="vocab" data-done="@(Model.VocabReviewed ? "true" : "false")" data-total="@vocabCount">
+                    <button type="button" class="tl-step__btn" data-tl-goto="vocab">
+                        <i class="@(Model.VocabReviewed ? "fa-solid fa-circle-check" : "fa-regular fa-circle") tl-step__icon" aria-hidden="true"></i>
+                        <span class="tl-step__label">Ôn từ vựng trong bài</span>
+                        <span class="tl-step__value" data-tl-step-value>@VocabValue()</span>
+                        <span class="visually-hidden tl-step__state">@(Model.VocabReviewed ? "đã xong" : "chưa xong")</span>
+                    </button>
+                </li>
+            }
+        </ol>
+    }
+    <div class="tl-done k-soft tl-hue-success" id="tlDone" hidden="@(Model.IsCompleted ? null : "hidden")">
+        <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+        <span>Bạn đã hoàn thành bài nghe này!</span>
+        <a href="/Home/Listening">Bài nghe khác</a>
+    </div>
+</div>

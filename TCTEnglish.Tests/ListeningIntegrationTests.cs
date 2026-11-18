@@ -562,7 +562,8 @@ public sealed class ListeningIntegrationTests
         Assert.DoesNotContain("SECRET-EXPLANATION", html, StringComparison.Ordinal);
         Assert.Contains("Bạn đang học ở chế độ khách. Đăng nhập để lưu tiến độ.", text, StringComparison.Ordinal);
         Assert.Contains("id=\"tlTab-vocab\"", html, StringComparison.Ordinal);
-        Assert.Matches(@"data-step=""transcript""[\s\S]*data-step=""vocab""[\s\S]*data-step=""quiz""", html);
+        // plan 5.2: transcript, optional dictation, quiz, vocabulary
+        Assert.Matches(@"data-step=""transcript""[\s\S]*data-step=""dictation""[\s\S]*data-step=""quiz""[\s\S]*data-step=""vocab""", html);
         Assert.Contains("Đăng nhập để làm quiz và lưu điểm.", text, StringComparison.Ordinal);
     }
 
@@ -587,7 +588,7 @@ public sealed class ListeningIntegrationTests
         using var student = Client(factory, TestDataIds.UserId, Roles.Standard);
         var studentHtml = await IndexHtmlAsync(student, $"/Home/Listening/Practice/{PublicFullId}");
         Assert.DoesNotContain("name=\"tlSpeed\"", studentHtml, StringComparison.Ordinal);
-        Assert.Contains("Mở khóa tốc độ với Premium", WebUtility.HtmlDecode(studentHtml), StringComparison.Ordinal);
+        Assert.Contains("Đổi tốc độ là tính năng Premium", WebUtility.HtmlDecode(studentHtml), StringComparison.Ordinal);
 
         using var premium = Client(factory, PremiumOwnerId, Roles.Premium);
         var own = await IndexHtmlAsync(premium, $"/Home/Listening/Practice/{PrivateNoQuizId}");

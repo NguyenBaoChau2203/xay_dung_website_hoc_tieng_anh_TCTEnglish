@@ -1,6 +1,7 @@
 @using System.Globalization
 @using System.Text.Json
 @using TCTEnglish.ViewModels
+@using TCTVocabulary.Security
 @model TCTEnglish.ViewModels.ListeningPracticeViewModel
 @{
     ViewData["Title"] = "Luyện nghe — " + Model.Title;
@@ -18,6 +19,7 @@
         _ => (Label: Model.Level, Hue: "primary")
     };
 
+    var loginUrl = "/Account/Login?returnUrl=" + Uri.EscapeDataString("/Home/Listening/Practice/" + Model.LessonId);
     var videoId = Model.SafeYoutubeId;
     var audioUrl = Model.SafeAudioUrl;
     bool hasVideo = videoId != null;
@@ -30,17 +32,17 @@
     bool anyTranslation = Model.TranscriptLines.Any(l => !string.IsNullOrWhiteSpace(l.VietnameseMeaning));
     bool allTranslated = transcriptCount > 0 && Model.TranscriptLines.All(l => !string.IsNullOrWhiteSpace(l.VietnameseMeaning));
 
-    // Required steps, in page order (mirrors ListeningService.IsLessonComplete).
-    var steps = new List<(string Key, string Label, string Tab, bool Done)>();
-    if (transcriptCount > 0) { steps.Add(("transcript", "Nghe và đọc lời thoại", "transcript", Model.TranscriptCompleted)); }
-    if (vocabCount > 0) { steps.Add(("vocab", "Học từ vựng", "vocab", Model.VocabReviewed)); }
-    if (quizCount > 0) { steps.Add(("quiz", "Làm quiz", "quiz", Model.QuizCompleted)); }
     bool allDone = Model.IsCompleted;
 
     var header = new PageHeaderViewModel
     {
         Title = Model.Title,
-        Breadcrumbs = new[] { new PageBreadcrumbItem("Luyện nghe", "/Home/Listening"), new PageBreadcrumbItem(Model.Title) }
+        Breadcrumbs = new[]
+        {
+            new PageBreadcrumbItem("Luyện nghe", "/Home/Listening"),
+            new PageBreadcrumbItem(Model.Level, "/Home/Listening?level=" + Uri.EscapeDataString(Model.Level)),
+            new PageBreadcrumbItem(Model.Title)
+        }
     };
 
     string Clock(double? seconds)
@@ -58,12 +60,16 @@
     // Second distinct speaker gets the info hue.
     var speakerOrder = Model.TranscriptLines.Select(l => l.Speaker).Distinct().ToList();
 
+    // The signed-in user's id only keys the browser-local dictation results (D3); it is never sent anywhere.
+    var userKey = User.TryGetUserId(out var currentUserId) ? currentUserId.ToString() : null;
+
     var config = new
     {
         lessonId = Model.LessonId,
         youtubeId = videoId,
         audioUrl = hasAudio ? audioUrl : null,
         isAuthenticated = Model.IsAuthenticated,
+        userKey,
         canUseSpeed = Model.CanUseSpeed,
         canTranslate = Model.CanTranslate,
         canUseAi = Model.CanUseAi,
@@ -114,11 +120,7 @@
 
     <p class="tl-meta">
         <span class="tct-badge tct-badge--@levelInfo.Hue">@levelInfo.Label</span>
-        <span><i class="fa-solid fa-tag" aria-hidden="true"></i> @Model.Topic</span>
-        @if (!string.IsNullOrWhiteSpace(Model.Duration))
-        {
-            <span><i class="fa-regular fa-clock" aria-hidden="true"></i> @Model.Duration</span>
-        }
+        <span class="tct-badge"><i class="fa-solid fa-tag" aria-hidden="true"></i> @Model.Topic@(string.IsNullOrWhiteSpace(Model.Duration) ? "" : " · " + Model.Duration)</span>
         @if (!string.IsNullOrWhiteSpace(Model.Speaker1Name))
         {
             <span><i class="fa-solid fa-user" aria-hidden="true"></i> @Model.Speaker1Name@(string.IsNullOrWhiteSpace(Model.Speaker1Country) ? "" : $" ({Model.Speaker1Country})")</span>
@@ -134,7 +136,7 @@
         <div class="tl-guest k-panel k-panel--quiet" role="note">
             <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
             <p class="tl-guest__text">Bạn đang học ở chế độ khách. Đăng nhập để lưu tiến độ.</p>
-            <a class="btn btn-primary btn-sm" href="/Account/Login">Đăng nhập</a>
+            <a class="btn btn-primary btn-sm" href="@loginUrl">Đăng nhập</a>
         </div>
     }
 
@@ -163,62 +165,42 @@
                 }
 
                 <div class="tl-controls" role="toolbar" aria-label="Điều khiển phát">
+                    <button type="button" class="btn k-btn--icon-surface tl-controls__btn" id="tlPrevLine" aria-label="Câu trước"><i class="fa-solid fa-backward-step" aria-hidden="true"></i></button>
                     <button type="button" class="btn k-btn--icon-surface tl-controls__btn" id="tlBack" aria-label="Lùi 5 giây"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i></button>
                     <button type="button" class="btn btn-primary tl-controls__play" id="tlPlay" aria-label="Phát"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
                     <button type="button" class="btn k-btn--icon-surface tl-controls__btn" id="tlForward" aria-label="Tới 5 giây"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i></button>
-                    <button type="button" class="btn btn-outline-primary btn-sm tl-toggle" id="tlLoop" aria-pressed="false"><i class="fa-solid fa-repeat" aria-hidden="true"></i> Lặp câu</button>
+                    <button type="button" class="btn k-btn--icon-surface tl-controls__btn" id="tlNextLine" aria-label="Câu sau"><i class="fa-solid fa-forward-step" aria-hidden="true"></i></button>
                 </div>
-                <div class="tl-speed">
-                    @if (Model.CanUseSpeed)
-                    {
-                        <div class="k-seg" role="radiogroup" aria-label="Tốc độ phát">
-                            @foreach (var rate in new[] { "0.5", "0.75", "1", "1.25", "1.5" })
-                            {
-                                <input type="radio" class="btn-check" name="tlSpeed" id="tlSpeed-@rate" value="@rate" checked="@(rate == "1" ? "checked" : null)" />
-                                <label class="k-seg__item" for="tlSpeed-@rate">@(rate)×</label>
-                            }
-                        </div>
-                    }
-                    else
-                    {
-                        <span class="tl-speed__fixed">Tốc độ 1×</span>
-                        <a class="tl-speed__unlock" href="/Account/Premium"><i class="fa-solid fa-lock" aria-hidden="true"></i> Mở khóa tốc độ với Premium</a>
-                    }
+                <div class="tl-options">
+                    <div class="tl-speed">
+                        @if (Model.CanUseSpeed)
+                        {
+                            <div class="k-seg" role="radiogroup" aria-label="Tốc độ phát">
+                                @foreach (var rate in new[] { "0.5", "0.75", "1", "1.25", "1.5" })
+                                {
+                                    <input type="radio" class="btn-check" name="tlSpeed" id="tlSpeed-@rate" value="@rate" checked="@(rate == "1" ? "checked" : null)" />
+                                    <label class="k-seg__item" for="tlSpeed-@rate">@(rate)×</label>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <a class="tl-speed__locked k-seg__item" href="/Account/Premium" title="Đổi tốc độ là tính năng Premium" aria-label="Tốc độ 1×. Đổi tốc độ là tính năng Premium"><span>1×</span> <i class="fa-solid fa-lock" aria-hidden="true"></i></a>
+                        }
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm tl-toggle" id="tlLoop" aria-pressed="false"><i class="fa-solid fa-repeat" aria-hidden="true"></i> Lặp câu</button>
                 </div>
             </div>
 
-            <div class="tl-steps k-panel" aria-label="Tiến độ bài nghe" role="group">
-                <h2 class="tl-steps__title">Tiến độ bài nghe</h2>
-                @if (steps.Count > 0)
-                {
-                    <ol class="tl-steps__list">
-                        @foreach (var step in steps)
-                        {
-                            <li class="tl-step" data-step="@step.Key" data-done="@(step.Done ? "true" : "false")">
-                                <button type="button" class="tl-step__btn" data-tl-goto="@step.Tab">
-                                    <i class="@(step.Done ? "fa-solid fa-circle-check" : "fa-regular fa-circle") tl-step__icon" aria-hidden="true"></i>
-                                    <span class="tl-step__label">@step.Label</span>
-                                    <span class="visually-hidden tl-step__state">@(step.Done ? "đã xong" : "chưa xong")</span>
-                                </button>
-                            </li>
-                        }
-                    </ol>
-                }
-                <div class="tl-done k-soft tl-hue-success" id="tlDone" hidden="@(allDone ? null : "hidden")">
-                    <i class="fa-solid fa-trophy" aria-hidden="true"></i>
-                    <span>Bạn đã hoàn thành bài nghe này!</span>
-                    <a href="/Home/Listening">Bài nghe khác</a>
-                </div>
-            </div>
+            <partial name="_ListeningStepCard" model="Model" />
 
             <p class="tl-keys" aria-hidden="true">
                 <span><kbd class="k-kbd">Space</kbd> phát / dừng</span>
-                <span><kbd class="k-kbd">←</kbd> <kbd class="k-kbd">→</kbd> câu trước / sau</span>
-                <span><kbd class="k-kbd">R</kbd> nghe lại câu</span>
+                <span><kbd class="k-kbd">←</kbd> <kbd class="k-kbd">→</kbd> đổi câu</span>
+                <span><kbd class="k-kbd">R</kbd> nghe lại</span>
                 <span><kbd class="k-kbd">L</kbd> lặp câu</span>
             </p>
         </aside>
-
         <section class="tl-work" aria-label="Nội dung bài nghe">
             <div class="tl-tabs k-seg" role="tablist" aria-label="Các phần của bài nghe">
                 <button type="button" role="tab" class="k-seg__item" id="tlTab-transcript" aria-controls="tlPanel-transcript" aria-selected="true" data-tl-tab="transcript">

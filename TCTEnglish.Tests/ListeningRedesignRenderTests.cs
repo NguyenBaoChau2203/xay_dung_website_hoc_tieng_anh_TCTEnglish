@@ -366,4 +366,82 @@ public sealed class ListeningRedesignRenderTests
         using var guestJson = System.Text.Json.JsonDocument.Parse(guestConfig);
         Assert.Equal(System.Text.Json.JsonValueKind.Null, guestJson.RootElement.GetProperty("userKey").ValueKind);
     }
+
+    // ------------------------------------------------------------------ practice layout (L4, plan 5.2)
+
+    [Fact]
+    public async Task Practice_Standard_ShowsBreadcrumbWithLevel_LineButtons_LockedSpeed_AndFourStepRowsInOrder()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var student = Client(factory, StudentId, Roles.Standard);
+        var html = await HtmlAsync(student, $"/Home/Listening/Practice/{A1FullId}");
+        var body = PageBody(html);
+
+        // breadcrumb: Luyện nghe / A1 / title (the level links back to the filtered catalog)
+        Assert.Contains("href=\"/Home/Listening?level=A1\"", body, StringComparison.Ordinal);
+        Assert.Contains("Ordering coffee", body, StringComparison.Ordinal);
+        Assert.Contains("Daily · 01:20", body, StringComparison.Ordinal);
+
+        // player ids survive, the two line buttons are new
+        foreach (var id in new[] { "tlYoutube", "tlPrevLine", "tlBack", "tlPlay", "tlForward", "tlNextLine", "tlLoop" })
+            Assert.Contains($"id=\"{id}\"", body, StringComparison.Ordinal);
+
+        // Standard: fixed 1x with the Premium tooltip, no speed radios
+        Assert.DoesNotContain("name=\"tlSpeed\"", body, StringComparison.Ordinal);
+        Assert.Contains("title=\"Đổi tốc độ là tính năng Premium\"", body, StringComparison.Ordinal);
+
+        // step card: title, four rows in plan order, the dictation row is optional and filled client-side
+        Assert.Contains("Tiến độ bài này", body, StringComparison.Ordinal);
+        Assert.Matches("data-step=\"transcript\"(?s:.)*Nghe hết lời thoại(?s:.)*data-step=\"dictation\"(?s:.)*Chép chính tả(?s:.)*Tùy chọn(?s:.)*data-step=\"quiz\"(?s:.)*Làm quiz(?s:.)*0/2(?s:.)*data-step=\"vocab\"(?s:.)*Ôn từ vựng trong bài(?s:.)*2 từ", body);
+        Assert.Contains("data-tl-goto=\"dictation\"", body, StringComparison.Ordinal);
+        Assert.Contains("id=\"tlDone\"", body, StringComparison.Ordinal);
+        Assert.Contains("Space", body, StringComparison.Ordinal);
+        Assert.Contains("đổi câu", body, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Practice_StepRowsFollowTheLessonContent_AndPremiumSeesTheSpeedRadios()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var premium = Client(factory, PremiumId, Roles.Premium);
+
+        // transcript only: no quiz or vocab row (same rule as requiredSteps), dictation stays
+        var plain = PageBody(await HtmlAsync(premium, $"/Home/Listening/Practice/{A1PlainId}"));
+        Assert.Contains("data-step=\"transcript\"", plain, StringComparison.Ordinal);
+        Assert.Contains("data-step=\"dictation\"", plain, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-step=\"quiz\"", plain, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-step=\"vocab\"", plain, StringComparison.Ordinal);
+
+        // Premium: five speed radios, no lock tooltip
+        Assert.Equal(5, Regex.Matches(plain, "name=\"tlSpeed\"").Count);
+        Assert.DoesNotContain("Đổi tốc độ là tính năng Premium", plain, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Practice_CompletedSteps_ShowTheirValues_AndTheConfigCarriesOnlyTheSignedInUsersKey()
+    {
+        await using var factory = await CreateFactoryAsync();
+        await SeedAsync(factory, db => db.UserListeningProgresses.Add(new UserListeningProgress
+        {
+            UserId = StudentId, LessonId = A1FullId, TranscriptCompleted = true, QuizCompleted = true, QuizScore = 86, VocabReviewed = true, CompletedAt = DateTime.UtcNow, LastAccessedAt = DateTime.UtcNow,
+        }));
+        using var student = Client(factory, StudentId, Roles.Standard);
+        var html = await HtmlAsync(student, $"/Home/Listening/Practice/{A1FullId}");
+        var body = PageBody(html);
+
+        Assert.Matches("data-step=\"transcript\" data-done=\"true\"(?s:.)*Xong", body);
+        Assert.Matches("data-step=\"quiz\" data-done=\"true\"(?s:.)*86%", body);
+        Assert.Matches("data-step=\"vocab\" data-done=\"true\"(?s:.)*Xong", body);
+
+        var config = Regex.Match(html, "<script type=\"application/json\" id=\"tlConfig\">((?s:.)*?)</script>").Groups[1].Value;
+        using var json = System.Text.Json.JsonDocument.Parse(config);
+        Assert.Equal(StudentId.ToString(), json.RootElement.GetProperty("userKey").GetString());
+
+        using var guest = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        var guestHtml = await HtmlAsync(guest, $"/Home/Listening/Practice/{A1FullId}");
+        var guestConfig = Regex.Match(guestHtml, "<script type=\"application/json\" id=\"tlConfig\">((?s:.)*?)</script>").Groups[1].Value;
+        using var guestJson = System.Text.Json.JsonDocument.Parse(guestConfig);
+        Assert.Equal(System.Text.Json.JsonValueKind.Null, guestJson.RootElement.GetProperty("userKey").ValueKind);
+        Assert.Contains("href=\"/Account/Login?returnUrl=%2FHome%2FListening%2FPractice%2F" + A1FullId + "\"", PageBody(guestHtml), StringComparison.Ordinal);
+    }
 }

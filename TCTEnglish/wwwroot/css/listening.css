@@ -359,6 +359,11 @@
 /* Below 1200px the stage dissolves into the grid so the player alone can stay in view while the learner types. */
 @media (max-width: 1199.98px) {
     .tl-page .tl-stage { display: contents; }
+    /* stacked order (plan 5.2): player, tabs, then the progress card and the key hints */
+    .tl-page .tl-player { order: 1; }
+    .tl-page .tl-work { order: 2; }
+    .tl-page .tl-steps { order: 3; }
+    .tl-page .tl-keys { order: 4; }
 }
 
 @media (max-width: 768px) {
@@ -397,9 +402,12 @@
     font-weight: var(--tct-weight-bold);
 }
 
-.tl-page .tl-speed { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--tct-space-sm); font-size: var(--tct-text-sm); }
-.tl-page .tl-speed__fixed { color: var(--tct-text-secondary); }
-.tl-page .tl-speed__unlock { font-weight: var(--tct-weight-semibold); }
+.tl-page .tl-options { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--tct-space-sm); }
+.tl-page .tl-options .k-seg__item { padding-inline: var(--tct-space-sm); }
+.tl-page .tl-speed { display: flex; flex-wrap: wrap; align-items: center; gap: var(--tct-space-sm); font-size: var(--tct-text-sm); }
+/* Standard learners see a fixed 1x; the lock explains why and links to Premium */
+.tl-page .tl-speed__locked { display: inline-flex; align-items: center; gap: var(--tct-space-xs); text-decoration: none; color: var(--tct-text-secondary); }
+.tl-page .tl-speed__locked i { font-size: var(--tct-text-xs); }
 
 /* ---------------------------------------------------------------- practice: steps */
 .tl-page .tl-steps { padding: var(--tct-space-md); }
@@ -421,6 +429,10 @@
 }
 
 .tl-page .tl-step__btn:hover { background: var(--tct-primary-tint); }
+.tl-page .tl-step__label { flex: 1 1 auto; min-width: 0; }
+.tl-page .tl-step__value { flex: 0 0 auto; font-size: var(--tct-text-sm); font-variant-numeric: tabular-nums; color: var(--tct-text-secondary); }
+.tl-page .tl-step[data-done="true"] .tl-step__value { color: var(--tct-success-text); font-weight: var(--tct-weight-semibold); }
+.tl-page .tl-step__tag { margin-inline-start: var(--tct-space-xs); font-size: var(--tct-text-xs); }
 .tl-page .tl-step__icon { flex: 0 0 auto; color: var(--tct-text-muted); font-size: var(--tct-text-lg); }
 .tl-page .tl-step[data-done="true"] .tl-step__icon { color: var(--tct-success-text); }
 .tl-page .tl-step[data-done="true"] .tl-step__label { font-weight: var(--tct-weight-semibold); }

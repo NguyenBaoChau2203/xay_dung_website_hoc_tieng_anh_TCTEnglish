@@ -65,23 +65,46 @@
         tab.appendChild(Sets.el('span', 'visually-hidden', 'đã xong'));
     }
 
-    function setStep(key, done) {
-        flags[key] = !!done;
+    /** Paint one row of the "Tiến độ bài này" card: icon, hidden state text and the visible value ("Xong", "86%", "3/8 câu · 90%"). */
+    function paintStep(key, done, value) {
         var step = document.querySelector('.tl-step[data-step="' + key + '"]');
-        if (step) {
-            step.setAttribute('data-done', done ? 'true' : 'false');
-            var icon = step.querySelector('.tl-step__icon');
-            if (icon) { icon.className = (done ? 'fa-solid fa-circle-check' : 'fa-regular fa-circle') + ' tl-step__icon'; }
-            var state = step.querySelector('.tl-step__state');
-            if (state) { state.textContent = done ? 'đã xong' : 'chưa xong'; }
-        }
+        if (!step) { return; }
+        step.setAttribute('data-done', done ? 'true' : 'false');
+        var icon = step.querySelector('.tl-step__icon');
+        if (icon) { icon.className = (done ? 'fa-solid fa-circle-check' : 'fa-regular fa-circle') + ' tl-step__icon'; }
+        var state = step.querySelector('.tl-step__state');
+        if (state) { state.textContent = done ? 'đã xong' : 'chưa xong'; }
+        var shown = step.querySelector('[data-tl-step-value]');
+        if (shown && value) { shown.textContent = value; }
+    }
+
+    function setStep(key, done, value) {
+        flags[key] = !!done;
+        paintStep(key, done, value || (done && (key === 'transcript' || key === 'vocab') ? 'Xong' : ''));
         if (done) { markTab(key); }
         setHidden(byId('tlDone'), !core.isComplete(flags, required));
     }
 
+    // The optional dictation row reads this browser's own results (D3); it never counts toward completion.
+    var dictationStorage = null;
+    try { dictationStorage = window.localStorage; } catch (e) { dictationStorage = null; }
+    var dictationResults = core.dictationStore(dictationStorage, config.userKey, config.lessonId);
+
+    function refreshDictationStep() {
+        var total = (config.steps && config.steps.transcript) || 0;
+        if (!total) { return; }
+        var sum = dictationResults.summary(total);
+        var checked = sum.done + sum.skipped;
+        if (!checked) { paintStep('dictation', false, 'Chưa làm'); return; }
+        paintStep('dictation', checked >= total, checked + '/' + total + ' câu' + (sum.done ? ' · ' + sum.accuracy + '%' : ''));
+    }
+    refreshDictationStep();
+
     // ------------------------------------------------------------------ tabs
 
-    var HASH = { transcript: 'loi-thoai', vocab: 'tu-vung', quiz: 'quiz' };
+    // New hashes are written; the old Vietnamese ones keep working.
+    var HASH = { transcript: 'transcript', vocab: 'vocab', quiz: 'quiz' };
+    var LEGACY_HASH = { 'loi-thoai': 'transcript', 'tu-vung': 'vocab' };
     var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-tl-tab]'));
     var tablist = document.querySelector('.tl-tabs');
 
@@ -105,7 +128,7 @@
 
     function keyFromHash() {
         var hash = window.location.hash.replace(/^#/, '');
-        var key = Object.keys(HASH).filter(function (k) { return HASH[k] === hash; })[0];
+        var key = LEGACY_HASH[hash] || Object.keys(HASH).filter(function (k) { return HASH[k] === hash; })[0];
         return key && document.querySelector('[data-tl-tab="' + key + '"]') ? key : null;
     }
 
@@ -126,8 +149,16 @@
         });
     }
 
+    var openDictation = function () {
+        selectTab('transcript');
+        var radio = byId('tlMode-dictation');
+        if (radio) { radio.checked = true; radio.dispatchEvent(new Event('change', { bubbles: true })); radio.focus(); }
+    };
     Array.prototype.forEach.call(document.querySelectorAll('[data-tl-goto]'), function (button) {
-        button.addEventListener('click', function () { selectTab(button.getAttribute('data-tl-goto'), { focus: true }); });
+        button.addEventListener('click', function () {
+            var key = button.getAttribute('data-tl-goto');
+            if (key === 'dictation') { openDictation(); } else { selectTab(key, { focus: true }); }
+        });
     });
     window.addEventListener('hashchange', function () { var key = keyFromHash(); if (key) { selectTab(key, { hash: false }); } });
     selectTab(keyFromHash() || 'transcript', { hash: false });
@@ -360,6 +391,14 @@
     lineApi.prev = function () { if (timed.length) { playTimed(Math.max(0, currentPosition() - 1)); } };
     lineApi.next = function () { if (timed.length) { playTimed(Math.min(timed.length - 1, currentPosition() + 1)); } };
     lineApi.replay = function () { if (timed.length) { playTimed(currentPosition()); } };
+
+    // previous / next line buttons next to play (same behaviour as the arrow keys); inert without timed lines
+    ['tlPrevLine', 'tlNextLine'].forEach(function (id) {
+        var btn = byId(id);
+        if (!btn) { return; }
+        if (!timed.length) { btn.disabled = true; return; }
+        btn.addEventListener('click', function () { if (id === 'tlPrevLine') { lineApi.prev(); } else { lineApi.next(); } });
+    });
 
     if (linesList) {
         linesList.addEventListener('click', function (event) {
@@ -925,7 +964,7 @@
             quizResult.appendChild(body);
             quizResult.hidden = false;
             quizResult.focus();
-            if (data.bestScorePercent !== null && data.bestScorePercent !== undefined) { setStep('quiz', true); }
+            if (data.bestScorePercent !== null && data.bestScorePercent !== undefined) { setStep('quiz', true, data.bestScorePercent + '%'); }
         }
 
         quizForm.addEventListener('submit', function (event) {
