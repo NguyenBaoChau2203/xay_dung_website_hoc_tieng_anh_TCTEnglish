@@ -778,6 +778,119 @@
     box-shadow: var(--tct-shadow-overlay);
 }
 
+/* -- Vocabulary: word cell, quality tags, learner-card preview ------------- */
+.ac-word {
+    display: flex;
+    align-items: center;
+    gap: var(--tct-space-md);
+}
+
+.ac-word-pic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: var(--tct-radius-md);
+    background: var(--tct-primary-soft);
+    color: var(--tct-primary-strong);
+    font-size: var(--tct-text-lg);
+    font-weight: var(--tct-weight-semibold);
+}
+
+.ac-word-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ac-word-pic--lg {
+    width: 72px;
+    height: 72px;
+    font-size: var(--tct-text-3xl);
+}
+
+.ac-tag-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tct-space-xs);
+}
+
+.ac-cell-clip {
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ac-static-value {
+    display: flex;
+    align-items: center;
+    gap: var(--tct-space-sm);
+    min-height: var(--tct-control-h);
+    font-weight: var(--tct-weight-semibold);
+}
+
+.ac-preview-title {
+    margin-bottom: var(--tct-space-md);
+}
+
+.ac-flashcard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--tct-space-sm);
+    padding: var(--tct-space-lg);
+    background: var(--tct-surface);
+    border: 1px solid var(--tct-border-subtle);
+    border-radius: var(--tct-radius-lg);
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.ac-flashcard-term {
+    font-size: var(--tct-text-2xl);
+    font-weight: var(--tct-weight-bold);
+}
+
+.ac-flashcard-phonetic {
+    color: var(--tct-text-muted);
+    font-family: var(--tct-font-phonetic);
+}
+
+.ac-flashcard-meaning {
+    font-size: var(--tct-text-lg);
+    font-weight: var(--tct-weight-semibold);
+}
+
+.ac-flashcard-rule {
+    width: 100%;
+    margin: var(--tct-space-sm) 0;
+    border-color: var(--tct-border);
+}
+
+.ac-flashcard-example {
+    color: var(--tct-text-secondary);
+    font-style: italic;
+}
+
+.ac-flashcard-example-vi {
+    color: var(--tct-text-muted);
+    font-size: var(--tct-text-xs);
+}
+
+.ac-flashcard .is-empty {
+    color: var(--tct-text-muted);
+    font-weight: var(--tct-weight-regular);
+}
+
+.ac-notice code {
+    color: inherit;
+    font-family: var(--tct-font-mono);
+}
+
 /* -- Responsive ---------------------------------------------------------- */
 @media (max-width: 1100px) {
     .ac-split {

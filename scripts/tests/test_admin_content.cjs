@@ -138,6 +138,15 @@ test('snapshotFields and isDirty track real edits only', () => {
   assert.equal(A.isDirty(initial, A.snapshotFields(other)), false);
 });
 
+test('previewInitial prefers the emoji, then the first letter of the term', () => {
+  assert.equal(A.previewInitial('dog', '🐶'), '🐶');
+  assert.equal(A.previewInitial('dog', '  '), 'D');
+  assert.equal(A.previewInitial('  airport', ''), 'A');
+  assert.equal(A.previewInitial('élan', null), 'É');
+  assert.equal(A.previewInitial('', ''), '?');
+  assert.equal(A.previewInitial(null, undefined), '?');
+});
+
 test('the file never writes data with innerHTML or eval', () => {
   const source = fs.readFileSync(jsPath, 'utf8');
   assert.equal(/innerHTML|outerHTML|insertAdjacentHTML|document\.write|eval\(|new Function/.test(source), false);

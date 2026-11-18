@@ -1,143 +1,152 @@
-@model TCTVocabulary.Areas.Admin.ViewModels.SetManagementIndexViewModel
+@using TCTEnglish.Services.Admin
+@using TCTEnglish.Services.Billing
+@model SetManagementIndexViewModel
 @{
-    ViewData["Title"] = "Quản lý Vocabulary Sets";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-    bool hasFilter = !string.IsNullOrEmpty(Model.SearchToken) || Model.FolderFilter.HasValue || (Model.OwnerFilter != null && Model.OwnerFilter != "all");
+    ViewData["Title"] = "Quản lý bộ từ vựng";
+    var list = Model.List;
+    var figures = Model.Figures;
+    var header = new AcPageHeaderModel
+    {
+        Icon = "fa-solid fa-layer-group",
+        Title = "Quản lý bộ từ vựng",
+        Subtitle = "Bộ từ vựng hệ thống (trang Từ vựng) và bộ thẻ người dùng tạo.",
+        Actions = new[] { new AcAction("Tạo bộ từ vựng hệ thống", Url.Action("Create", "SetManagement", new { area = "Admin" })!, "fa-solid fa-plus", "primary") },
+    };
+    var cards = new List<AcFigure>
+    {
+        new("Bộ từ vựng hệ thống", figures.SystemSets.ToString("N0"), "fa-solid fa-layer-group", AcTone.Primary),
+        new("Thẻ hệ thống", figures.SystemCards.ToString("N0"), "fa-solid fa-clone", AcTone.Success),
+        new("Bộ thẻ người dùng", figures.UserSets.ToString("N0"), "fa-solid fa-user", AcTone.Info),
+        new("Thẻ thiếu ví dụ/IPA", figures.SystemCardsMissingExampleOrPhonetic.ToString("N0"), "fa-solid fa-triangle-exclamation", AcTone.Warning, "Chỉ tính thẻ hệ thống"),
+    };
+    var folderOptions = new List<AcOption> { new("", "Tất cả thư mục hệ thống") };
+    folderOptions.AddRange(list.SystemFolders.Select(f => new AcOption(f.FolderId.ToString(), f.Name)));
+    var filter = new AcFilterBarModel
+    {
+        Controller = "SetManagement",
+        FormId = "setFilterForm",
+        Fields = new AcFilterField[]
+        {
+            new() { Name = "q", Label = "Tìm kiếm", Kind = "search", Value = Model.Q, Placeholder = "Tên bộ hoặc mô tả..." },
+            new() { Name = "ownerFilter", Label = "Nguồn", Value = Model.OwnerFilter, Options = new[] { new AcOption("", "Tất cả"), new AcOption("system", "Từ vựng hệ thống"), new AcOption("user", "Của người dùng") } },
+            new() { Name = "folderId", Label = "Thư mục", Value = Model.FolderId?.ToString(), Disabled = Model.OwnerFilter != "system", Hint = Model.OwnerFilter != "system" ? "Chọn Nguồn = Từ vựng hệ thống để lọc theo thư mục." : null, Options = folderOptions },
+            new() { Name = "visibility", Label = "Hiển thị", Value = Model.Visibility, Options = new[] { new AcOption("", "Tất cả"), new AcOption("Public", "Công khai"), new AcOption("Link", "Có liên kết"), new AcOption("Private", "Riêng tư") } },
+        },
+    };
+    var tableHeader = new AcTableHeaderModel
+    {
+        Title = "Danh sách bộ từ vựng",
+        Icon = "fa-solid fa-list",
+        Count = list.TotalItems,
+        SortFormId = "setFilterForm",
+        Sort = new AcFilterField
+        {
+            Name = "sort", Label = "Sắp xếp", Value = Model.Sort,
+            Options = new[] { new AcOption("newest", "Mới tạo trước"), new AcOption("name", "Tên A–Z"), new AcOption("cards", "Nhiều thẻ nhất"), new AcOption("views", "Nhiều lượt học nhất") },
+        },
+    };
+    var pager = new AcPagerModel
+    {
+        Page = list.Page, PageSize = list.PageSize, TotalItems = list.TotalItems,
+        Route = new Dictionary<string, string?>
+        {
+            ["q"] = Model.Q, ["ownerFilter"] = Model.OwnerFilter, ["folderId"] = Model.FolderId?.ToString(),
+            ["visibility"] = Model.Visibility, ["sort"] = Model.Sort == "newest" ? null : Model.Sort,
+        },
+    };
 }
 
-<div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h1 class="h3 mb-0 text-gray-800">Vocabulary Sets</h1>
-            <p class="text-muted small">Quản lý các bộ từ vựng trong hệ thống.</p>
-        </div>
-        <a asp-action="Create" class="btn btn-primary">
-            <i class="fas fa-plus me-1"></i> Tạo Set mới
-        </a>
-    </div>
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-content.css" asp-append-version="true" />
+}
 
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="fas fa-check-circle me-1"></i> @TempData["SuccessMessage"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
+<div class="ac-page ac-sets">
+    <partial name="_AcPageHeader" model="header" />
+    <partial name="_AcAlerts" />
+    <partial name="_AcFigures" model="@((IReadOnlyList<AcFigure>)cards)" />
+    <partial name="_AcFilterBar" model="filter" />
 
-    <!-- Filtering -->
-    <div class="card shadow-sm mb-4">
-        <div class="card-body">
-            <form asp-action="Index" method="get" class="row g-3 align-items-end">
-                <div class="col-md-4">
-                    <label class="form-label small fw-bold">Tìm kiếm</label>
-                    <div class="input-group">
-                        <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
-                        <input type="text" name="q" value="@Model.SearchToken" class="form-control border-start-0" aria-label="Tìm kiếm bộ thẻ" placeholder="Tên set hoặc mô tả..." />
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label small fw-bold">Folder</label>
-                    <select name="folderId" class="form-select" aria-label="Lọc theo thư mục">
-                        <option value="">Tất cả</option>
-                        @foreach (var folder in Model.Folders)
-                        {
-                            <option value="@folder.FolderId" selected="@(Model.FolderFilter == folder.FolderId)">@folder.FolderName (@folder.OwnerName)</option>
-                        }
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label small fw-bold">Loại</label>
-                    <select name="ownerFilter" class="form-select" aria-label="Lọc theo loại">
-                        <option value="all" selected="@(Model.OwnerFilter == "all")">Tất cả</option>
-                        <option value="system" selected="@(Model.OwnerFilter == "system")">System</option>
-                        <option value="user" selected="@(Model.OwnerFilter == "user")">User</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-dark w-100">
-                        <i class="bi bi-filter"></i> Lọc
-                    </button>
-                </div>
-                @if (hasFilter)
-                {
-                    <div class="col-md-2">
-                        <a asp-action="Index" class="btn btn-outline-secondary w-100">Xóa lọc</a>
-                    </div>
-                }
-            </form>
-        </div>
-    </div>
-
-    <!-- Table -->
-    <div class="card shadow-sm overflow-hidden">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light">
+    <div class="ac-card">
+        <partial name="_AcTableHeader" model="tableHeader" />
+        <div class="ac-table-wrap">
+            <table class="ac-table">
+                <thead>
                     <tr>
-                        <th class="ps-4">Set</th>
-                        <th>Owner</th>
-                        <th>Folder</th>
-                        <th class="text-center">Cards</th>
-                        <th class="text-center">Views</th>
-                        <th>Created At</th>
-                        <th class="text-end pe-4">Actions</th>
+                        <th scope="col">Bộ từ vựng</th>
+                        <th scope="col">Nguồn</th>
+                        <th scope="col">Chủ sở hữu</th>
+                        <th scope="col">Thư mục</th>
+                        <th scope="col">Hiển thị</th>
+                        <th scope="col" class="ac-num">Thẻ</th>
+                        <th scope="col" class="ac-num">Lượt học</th>
+                        <th scope="col">Ngày tạo</th>
+                        <th scope="col" class="ac-actions">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if (!Model.Sets.Any())
+                    @if (list.Rows.Count == 0)
                     {
                         <tr>
-                            <td colspan="7" class="text-center py-5 text-muted">
-                                <i class="bi bi-file-earmark-x fs-1 d-block mb-2"></i>
-                                Không tìm thấy học phần nào.
+                            <td colspan="9">
+                                <div class="ac-empty">
+                                    <i class="fa-regular fa-folder-open" aria-hidden="true"></i>
+                                    <p class="mb-0">Không có bộ từ vựng nào khớp với bộ lọc hiện tại.</p>
+                                </div>
                             </td>
                         </tr>
                     }
-                    @foreach (var item in Model.Sets)
+                    @foreach (var row in list.Rows)
                     {
+                        var exposure = row.Exposure switch
+                        {
+                            "Public" => new AcTag("Công khai", AcTone.Success),
+                            "Link" => new AcTag("Có liên kết", AcTone.Warning),
+                            _ => new AcTag("Riêng tư", AcTone.Danger),
+                        };
+                        var source = row.IsSystem ? new AcTag("Từ vựng hệ thống", AcTone.Primary) : new AcTag("Của người dùng", AcTone.Info);
+                        var deleteModel = new AcConfirmDeleteModel
+                        {
+                            Controller = "SetManagement",
+                            Route = new Dictionary<string, string> { ["id"] = row.SetId.ToString() },
+                            ConfirmName = row.Name,
+                            Title = "Xóa bộ từ vựng?",
+                            Impact = $"{row.CardCount} thẻ và tiến độ học của học viên sẽ bị xóa."
+                                + (row.IsSystem ? " Bộ hệ thống sẽ được tạo lại ở lần đồng bộ sau nếu còn trong system-vocabulary.json." : ""),
+                            AriaLabel = $"Xóa bộ {row.Name}",
+                        };
                         <tr>
-                            <td class="ps-4">
-                                <div class="fw-bold text-dark">@item.SetName</div>
-                                @if (!string.IsNullOrEmpty(item.Description))
-                                {
-                                    <div class="small text-muted text-truncate" style="max-width: 250px;" title="@item.Description">
-                                        @item.Description
-                                    </div>
-                                }
-                            </td>
                             <td>
-                                <div class="small fw-medium">@item.OwnerName</div>
-                                @if (item.IsSystemSet)
-                                {
-                                    <span class="badge bg-info-subtle text-info border border-info-subtle" style="font-size: 0.7rem;">System</span>
-                                }
-                                else
-                                {
-                                    <span class="badge bg-secondary-subtle text-secondary" style="font-size: 0.7rem;">User</span>
-                                }
+                                <div class="ac-cell-main">@(string.IsNullOrWhiteSpace(row.Name) ? "(Chưa đặt tên)" : row.Name)</div>
+                                <div class="ac-cell-sub">@(row.IsSystem ? $"{row.TopicCount} chủ đề" : "Bộ thẻ cá nhân")</div>
                             </td>
-                            <td>@(item.FolderName ?? "—")</td>
-                            <td class="text-center">
-                                <span class="badge bg-light text-dark border">@item.CardCount</span>
-                            </td>
-                            <td class="text-center small">@item.ViewCount.ToString("N0")</td>
-                            <td class="small text-muted">@item.CreatedAt?.ToString("dd/MM/yyyy")</td>
-                            <td class="text-end pe-4">
-                                <div class="dropdown">
-                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown" aria-label="Thao tác với bộ thẻ">
-                                        <i class="bi bi-three-dots"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end shadow">
-                                        <li><a class="dropdown-item" asp-action="Edit" asp-route-id="@item.SetId"><i class="bi bi-pencil me-2"></i> Edit</a></li>
-                                        <li><a class="dropdown-item" asp-action="Cards" asp-route-id="@item.SetId"><i class="bi bi-card-list me-2"></i> Manage Cards</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li>
-                                            <form asp-action="Delete" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn xóa học phần này?')">
-                                                <input type="hidden" name="id" value="@item.SetId" />
-                                                <button type="submit" class="dropdown-item text-danger"><i class="bi bi-trash me-2"></i> Delete</button>
-                                            </form>
-                                        </li>
-                                    </ul>
+                            <td><partial name="_AcStatusTag" model="source" /></td>
+                            <td>@(row.IsSystem ? "TCT English (hệ thống)" : row.OwnerName)</td>
+                            <td>@(string.IsNullOrWhiteSpace(row.FolderName) ? "—" : row.FolderName)</td>
+                            <td><partial name="_AcStatusTag" model="exposure" /></td>
+                            <td class="ac-num">@row.CardCount.ToString("N0")</td>
+                            <td class="ac-num">@row.ViewCount.ToString("N0")</td>
+                            <td class="ac-num">@(row.CreatedAt.HasValue ? BillingTime.ToDisplayDate(row.CreatedAt.Value) : "—")</td>
+                            <td class="ac-actions">
+                                <div class="ac-actions-row">
+                                    <a asp-action="Cards" asp-route-id="@row.SetId" class="ac-icon-btn" title="@(row.IsSystem ? "Quản lý thẻ" : "Xem thẻ")" aria-label="@(row.IsSystem ? "Quản lý thẻ của" : "Xem thẻ của") @row.Name">
+                                        <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+                                    </a>
+                                    @if (row.IsSystem)
+                                    {
+                                        <a asp-action="Edit" asp-route-id="@row.SetId" class="ac-icon-btn" title="Sửa thông tin" aria-label="Sửa thông tin @row.Name">
+                                            <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                                        </a>
+                                    }
+                                    else if (row.Exposure != "Private")
+                                    {
+                                        <form method="post" asp-action="SetVisibility" asp-route-id="@row.SetId" class="ac-inline-form">
+                                            <input type="hidden" name="visibility" value="Private" />
+                                            <button type="submit" class="btn ac-icon-btn" title="Đặt riêng tư và tắt liên kết chia sẻ" aria-label="Đặt riêng tư bộ @row.Name">
+                                                <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+                                    }
+                                    <partial name="_AcConfirmDelete" model="deleteModel" />
                                 </div>
                             </td>
                         </tr>
@@ -145,40 +154,10 @@
                 </tbody>
             </table>
         </div>
-
-        <!-- Pagination -->
-        @if (Model.TotalPages > 1)
-        {
-            <div class="card-footer bg-white border-top-0 py-3">
-                <nav>
-                    <ul class="pagination pagination-sm justify-content-center mb-0">
-                        <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
-                            <a class="page-link" asp-action="Index" 
-                               asp-route-page="@(Model.CurrentPage - 1)" 
-                               asp-route-q="@Model.SearchToken" 
-                               asp-route-folderId="@Model.FolderFilter"
-                               asp-route-ownerFilter="@Model.OwnerFilter">Previous</a>
-                        </li>
-                        @for (int i = 1; i <= Model.TotalPages; i++)
-                        {
-                            <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
-                                <a class="page-link" asp-action="Index" 
-                                   asp-route-page="@i" 
-                                   asp-route-q="@Model.SearchToken"
-                                   asp-route-folderId="@Model.FolderFilter"
-                                   asp-route-ownerFilter="@Model.OwnerFilter">@i</a>
-                            </li>
-                        }
-                        <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
-                            <a class="page-link" asp-action="Index" 
-                               asp-route-page="@(Model.CurrentPage + 1)" 
-                               asp-route-q="@Model.SearchToken"
-                               asp-route-folderId="@Model.FolderFilter"
-                               asp-route-ownerFilter="@Model.OwnerFilter">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        }
+        <partial name="_AcPager" model="pager" />
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/admin-content.js" asp-append-version="true"></script>
+}

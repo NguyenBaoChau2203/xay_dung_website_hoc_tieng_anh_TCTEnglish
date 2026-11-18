@@ -52,17 +52,32 @@ test('Folder detail: the three-dot buttons have an accessible name', () => {
   assertNamed('Views/Folder/FolderDetail.cshtml', /<button class="btn-icon-more"[^>]*>/, 1);
 });
 
-test('Admin Set and Listening lists: search, filters and row menu are named', () => {
-  assertNamed(adminView('SetManagement/Index.cshtml'), /<input type="text" name="q"[^>]*>/, 1);
-  assertNamed(adminView('SetManagement/Index.cshtml'), /<select name="(folderId|ownerFilter)"[^>]*>/, 2);
-  assertNamed(adminView('SetManagement/Index.cshtml'), /<button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown"[^>]*>/, 1);
+// The vocabulary-set pages moved to the shared admin content kit (A3 of admin-content-complete): the
+// filter controls are named by a <label for> inside _AcFilterBar, and every icon action carries an aria-label.
+test('Admin Set list: search and filters are labelled through the shared filter bar, icon actions are named', () => {
+  const index = read(adminView('SetManagement/Index.cshtml'));
+  assert.match(index, /<partial name="_AcFilterBar"/);
+  const bar = read(adminView('Shared/_AcFilterBar.cshtml'));
+  assert.match(bar, /<label class="ac-label" for="@inputId"/);
+  assert.equal((bar.match(/id="@inputId"/g) || []).length, 2, 'search input and select both carry the id the label points at');
+  const iconActions = tagsMatching(index, /<(?:a|button)\b[^>]*class="(?:btn )?ac-icon-btn[^"]*"[^>]*>/);
+  assert.ok(iconActions.length >= 3, 'the row actions are rendered with the icon-button class');
+  iconActions.forEach((tag) => assert.ok(hasName(tag), `icon action without aria-label: ${tag.replace(/\s+/g, ' ').slice(0, 110)}`));
+  assert.match(read(adminView('Shared/_AcConfirmDelete.cshtml')), /aria-label="@Model\.AriaLabel"/);
+});
+
+test('Admin Listening list: search, filters and row menu are named', () => {
   assertNamed(adminView('ListeningManagement/Index.cshtml'), /<input type="text" name="q"[^>]*>/, 1);
   assertNamed(adminView('ListeningManagement/Index.cshtml'), /<select name="level"[^>]*>/, 1);
   assertNamed(adminView('ListeningManagement/Index.cshtml'), /<button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown"[^>]*>/, 1);
 });
 
-test('Admin Set edit form: the read-only owner field is named', () => {
-  assertNamed(adminView('SetManagement/Edit.cshtml'), /<input type="text" class="form-control" readonly[^>]*>/, 1);
+// The owner picker is gone (system sets are always system-owned); the read-only field that remains is the set name.
+test('Admin Set edit form: the read-only name field is labelled', () => {
+  const form = read(adminView('SetManagement/_SetForm.cshtml'));
+  assert.match(form, /<label class="ac-label" for="set-name"/);
+  assert.match(form, /<input id="set-name" name="Name"[\s\S]*?readonly="@isEdit"/);
+  assert.match(read(adminView('SetManagement/Edit.cshtml')), /<partial name="_SetForm"/);
 });
 
 test('Admin Listening form: the four speaker inputs are named', () => {

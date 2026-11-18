@@ -303,6 +303,71 @@
     });
   }
 
+  /** What the small picture box shows when there is no image: the emoji, else the first letter of the term. */
+  function previewInitial(term, emoji) {
+    var e = typeof emoji === 'string' ? emoji.trim() : '';
+    if (e) return e;
+    var t = typeof term === 'string' ? term.trim() : '';
+    return t ? Array.from(t)[0].toUpperCase() : '?';
+  }
+
+  /** Live preview of a form: [data-ac-bind="Field"] mirrors the field text, [data-ac-bind-pic] mirrors image/emoji. */
+  function initPreviews(doc) {
+    qsa(doc, '[data-ac-preview]').forEach(function (preview) {
+      var form = doc.getElementById(preview.getAttribute('data-ac-preview-form') || '');
+      if (!form) return;
+      var field = function (name) { return form.elements[name] ? String(form.elements[name].value) : ''; };
+      var refresh = function () {
+        qsa(preview, '[data-ac-bind]').forEach(function (el) {
+          var value = field(el.getAttribute('data-ac-bind')).trim();
+          el.textContent = value || el.getAttribute('data-ac-empty') || '';
+          el.classList.toggle('is-empty', !value);
+        });
+        qsa(preview, '[data-ac-bind-pic]').forEach(function (box) {
+          var img = box.querySelector('[data-ac-pic-img]');
+          var text = box.querySelector('[data-ac-pic-text]');
+          var url = field('ImageUrl').trim();
+          var showImage = !!url && isSafeImageUrl(url);
+          if (img) {
+            if (showImage) { img.src = url; }
+            img.hidden = !showImage;
+          }
+          if (text) {
+            text.hidden = showImage;
+            text.textContent = previewInitial(field('Term'), field('Emoji'));
+          }
+        });
+      };
+      form.addEventListener('input', refresh);
+      form.addEventListener('change', refresh);
+      qsa(preview, '[data-ac-pic-img]').forEach(function (img) {
+        img.addEventListener('error', function () {
+          img.hidden = true;
+          qsa(preview, '[data-ac-pic-text]').forEach(function (t) { t.hidden = false; });
+        });
+      });
+      refresh();
+    });
+  }
+
+  /** A broken table picture falls back to the initial given in data-ac-initial (text only). */
+  function initImageFallbacks(doc) {
+    var swap = function (img) {
+      var holder = img.parentNode;
+      if (!holder || holder.getAttribute('data-ac-swapped') === 'true') return;
+      holder.setAttribute('data-ac-swapped', 'true');
+      var span = doc.createElement('span');
+      span.className = 'ac-word-initial';
+      span.textContent = img.getAttribute('data-ac-initial') || '?';
+      img.hidden = true;
+      holder.appendChild(span);
+    };
+    qsa(doc, 'img[data-ac-fallback]').forEach(function (img) {
+      img.addEventListener('error', function () { swap(img); });
+      if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) swap(img);
+    });
+  }
+
   function init(doc) {
     var win = doc.defaultView || (typeof window !== 'undefined' ? window : null);
     if (!win) return;
@@ -311,6 +376,8 @@
     initPendingState(doc);
     initConfirmDelete(doc, win);
     initDirtyGuard(doc, win);
+    initPreviews(doc);
+    initImageFallbacks(doc);
   }
 
   return {
@@ -327,6 +394,7 @@
     moveItem: moveItem,
     isDirty: isDirty,
     snapshotFields: snapshotFields,
+    previewInitial: previewInitial,
     init: init
   };
 });

@@ -110,11 +110,21 @@ public sealed class AdminVocabularyService : IAdminVocabularyService
                 s.Visibility,
                 HasLink = s.ShareSlug != null,
                 CardCount = s.Cards.Count,
-                TopicCount = s.Cards.Where(c => c.Topic != null && c.Topic != "").Select(c => c.Topic).Distinct().Count(),
                 s.ViewCount,
                 s.CreatedAt,
             })
             .ToListAsync(ct);
+
+        // Distinct topics per set in a separate grouped query: MariaDB cannot resolve the outer set column
+        // inside the derived table that a correlated DISTINCT-COUNT subquery produces.
+        var pageIds = raw.Select(r => r.SetId).ToList();
+        var topicCounts = pageIds.Count == 0
+            ? new Dictionary<int, int>()
+            : await _db.Cards.AsNoTracking()
+                .Where(c => pageIds.Contains(c.SetId) && c.Topic != null && c.Topic != "")
+                .GroupBy(c => c.SetId)
+                .Select(g => new { SetId = g.Key, Topics = g.Select(c => c.Topic).Distinct().Count() })
+                .ToDictionaryAsync(x => x.SetId, x => x.Topics, ct);
 
         var folders = await SystemFoldersAsync(ct);
 
@@ -133,7 +143,7 @@ public sealed class AdminVocabularyService : IAdminVocabularyService
                 FolderName = r.FolderName,
                 Exposure = ExposureOf(r.Visibility, r.HasLink),
                 CardCount = r.CardCount,
-                TopicCount = r.TopicCount,
+                TopicCount = topicCounts.GetValueOrDefault(r.SetId),
                 ViewCount = r.ViewCount,
                 CreatedAt = r.CreatedAt,
             }).ToList(),
