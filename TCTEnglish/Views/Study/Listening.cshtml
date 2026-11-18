@@ -1,42 +1,49 @@
 @model TCTEnglish.ViewModels.ListeningIndexViewModel
 @using System.Text.Json
 @using TCTEnglish.ViewModels
+@using TCTVocabulary.Security
 @{
     ViewData["Title"] = "Luyện nghe tiếng Anh - TCT English";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    // CEFR levels in display order: label, description, icon and hue (text always accompanies the colour).
+    // CEFR levels in display order. The label heads each shelf (text always accompanies the level key).
     var levels = new[]
     {
-        (Key: "A1", Label: "A1 · Sơ cấp", Desc: "Tiếng Anh dễ, nói chậm", Icon: "fa-seedling", Hue: "success"),
-        (Key: "A2", Label: "A2 · Cơ bản", Desc: "Nói rõ, từ vựng thông dụng", Icon: "fa-leaf", Hue: "info"),
-        (Key: "B1", Label: "B1 · Trung cấp", Desc: "Tốc độ tự nhiên, chủ đề quen thuộc", Icon: "fa-fire", Hue: "primary"),
-        (Key: "B2", Label: "B2 · Trung cao cấp", Desc: "Vốn từ rộng hơn", Icon: "fa-bolt", Hue: "warning"),
-        (Key: "C1", Label: "C1 · Nâng cao", Desc: "Nói nhanh, tự nhiên", Icon: "fa-rocket", Hue: "danger"),
-        (Key: "C2", Label: "C2 · Thành thạo", Desc: "Sắc thái, thành ngữ, tiếng Anh nói phức tạp", Icon: "fa-award", Hue: "accent")
+        (Key: "A1", Label: "A1 · Sơ cấp"),
+        (Key: "A2", Label: "A2 · Cơ bản"),
+        (Key: "B1", Label: "B1 · Trung cấp"),
+        (Key: "B2", Label: "B2 · Trung cao cấp"),
+        (Key: "C1", Label: "C1 · Nâng cao"),
+        (Key: "C2", Label: "C2 · Thành thạo")
     };
 
     var header = new PageHeaderViewModel
     {
         Title = "Luyện nghe",
-        Description = "Nghe hội thoại thực tế, xem lời thoại, luyện chính tả và làm quiz."
+        Description = "Nghe hội thoại thật, tra từ ngay trong lời thoại, chép chính tả và làm quiz."
     };
 
     var visibleLevels = levels.Where(l => Model.LessonsByLevel.TryGetValue(l.Key, out var list) && list.Count > 0).ToList();
     var lessonCount = visibleLevels.Sum(l => Model.LessonsByLevel[l.Key].Count);
     var hasLessons = lessonCount > 0;
-    var percentDone = Model.TotalLessons > 0 ? (int)Math.Round(100.0 * Model.CompletedLessons / Model.TotalLessons) : 0;
     var selectedLevel = Model.SelectedLevel ?? "all";
     var selectedTopic = Model.SelectedTopic ?? "all";
+    var signedIn = Model.IsAuthenticated;
+    var completedByLevel = Model.Levels.ToDictionary(l => l.Key, l => l.CompletedCount);
+
+    // The signed-in user's id only keys the browser-local dictation results (D3); it is never sent anywhere.
+    var userKey = User.TryGetUserId(out var currentUserId) ? currentUserId.ToString() : null;
 
     var config = new
     {
-        isAuthenticated = Model.IsAuthenticated,
+        isAuthenticated = signedIn,
         canImport = Model.CanImport,
+        userKey,
         selectedLevel,
         selectedTopic,
         topics = Model.Topics,
-        pageSize = 6,
+        shelfSize = 4,
+        gridSize = 8,
         urls = new
         {
             create = "/Home/Listening/My/Create",
@@ -48,10 +55,9 @@
     var configJson = JsonSerializer.Serialize(config, new JsonSerializerOptions(JsonSerializerDefaults.Web));
 
     var noLessons = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Chưa có bài nghe nào.", Message = "Nội dung đang được cập nhật." };
-    var noResults = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Không tìm thấy bài nghe phù hợp.", Message = "Thử từ khóa khác hoặc bỏ bớt bộ lọc." };
-    var noMine = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Chưa có bài nghe nào.", Message = "Dán link YouTube ở trên để tạo bài luyện nghe riêng." };
+    var noResults = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Không có bài nào khớp bộ lọc.", Message = "Thử từ khóa khác hoặc bỏ bớt bộ lọc." };
 
-    var statusLabels = new[] { (Key: "all", Label: "Tất cả"), (Key: "new", Label: "Chưa học"), (Key: "progress", Label: "Đang học"), (Key: "done", Label: "Đã xong") };
+    var statusLabels = new[] { (Key: "all", Label: "Mọi trạng thái"), (Key: "new", Label: "Chưa học"), (Key: "progress", Label: "Đang học"), (Key: "done", Label: "Đã xong") };
 }
 
 @section Styles {
@@ -61,159 +67,48 @@
 
 <div class="tct-theme tct-page tl-page tl-page--index">
     @Html.AntiForgeryToken()
-    <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
 
-    @if (Model.IsAuthenticated)
-    {
-        <section class="tl-overview k-panel tl-hue-primary" aria-labelledby="tl-overview-title">
-            <div class="tl-overview__main">
-                <h2 id="tl-overview-title" class="tl-overview__title">Tiến độ nghe của bạn</h2>
-                <dl class="tl-overview__stats">
-                    <div class="tl-overview__stat k-pillow tl-hue-success"><dt>bài đã xong</dt><dd>@Model.CompletedLessons</dd></div>
-                    <div class="tl-overview__stat k-pillow tl-hue-warning"><dt>đang học</dt><dd>@Model.InProgressLessons</dd></div>
-                    <div class="tl-overview__stat k-pillow tl-hue-primary"><dt>tổng số bài</dt><dd>@Model.TotalLessons</dd></div>
-                </dl>
-                <div class="k-progress k-progress--thin k-progress--success" role="img" aria-label="Đã xong @Model.CompletedLessons/@Model.TotalLessons bài">
-                    <span class="k-progress__fill" style="--p:@(percentDone)%"></span>
-                </div>
-            </div>
-            <div class="tl-overview__side">
-                @if (Model.ContinueLesson is { } resume)
-                {
-                    var resumeThumb = resume.ThumbnailSrc;
-                    <div class="tl-continue k-card">
-                        <div class="tl-continue__thumb k-art-box">
-                            @if (resumeThumb != null)
-                            {
-                                <img class="tl-thumb" src="@resumeThumb" alt="" width="160" height="90" loading="lazy" decoding="async" />
-                            }
-                            else
-                            {
-                                <span class="tl-thumb--empty" aria-hidden="true"><i class="fa-solid fa-headphones"></i></span>
-                            }
-                        </div>
-                        <div class="tl-continue__body">
-                            <p class="tl-continue__label">Tiếp tục nghe</p>
-                            <p class="tl-continue__title tct-clamp-2 tct-break">@resume.Title</p>
-                            <p class="tl-continue__meta">
-                                <span class="tct-badge tct-badge--primary">@resume.Level</span>
-                                @resume.StepsDone/@resume.StepsTotal phần
-                            </p>
-                            <a class="btn btn-primary btn-sm" href="/Home/Listening/Practice/@resume.Id"><i class="fa-solid fa-play" aria-hidden="true"></i> Nghe tiếp</a>
-                        </div>
-                    </div>
-                }
-                else if (Model.TotalLessons > 0)
-                {
-                    <p class="tl-overview__hint">Chọn một bài bên dưới để bắt đầu.</p>
-                }
-            </div>
-        </section>
-    }
-    else
-    {
-        <div class="tl-guest k-panel k-panel--quiet" role="note">
-            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-            <p class="tl-guest__text">Đăng nhập để lưu tiến độ và thêm bài nghe của riêng bạn.</p>
-            <a class="btn btn-primary btn-sm" href="/Account/Login">Đăng nhập</a>
-        </div>
-    }
-
-    @if (Model.IsAuthenticated)
-    {
-        <section class="tl-mine" aria-labelledby="tl-mine-title">
-            <header class="tl-mine__head">
-                <h2 id="tl-mine-title" class="tl-section-title" tabindex="-1">Bài nghe của tôi</h2>
-                <span class="tct-badge tct-badge--primary" id="tlMineCount">@Model.MyLessons.Count bài</span>
-                @if (Model.IsMyLessonsSectionLocked)
-                {
-                    <span class="tct-badge tct-badge--warning"><i class="fa-solid fa-lock" aria-hidden="true"></i> Cần Premium</span>
-                }
-            </header>
-
-            @if (Model.CanImport)
-            {
-                <form id="tlImport" class="tl-import k-panel" novalidate>
-                    <label class="tl-import__label" for="tlImportUrl">Dán link YouTube</label>
-                    <div class="tl-import__row">
-                        <input id="tlImportUrl" name="youtubeUrl" type="url" class="form-control" required maxlength="300"
-                               placeholder="https://www.youtube.com/watch?v=…" autocomplete="off" aria-describedby="tlImportHint tlImportError" />
-                        <button type="submit" class="btn btn-primary" id="tlImportSubmit"><i class="fa-solid fa-plus" aria-hidden="true"></i> Thêm bài nghe</button>
-                    </div>
-                    <p class="tl-import__hint" id="tlImportHint">Chỉ hỗ trợ video tiếng Anh có phụ đề.</p>
-                    <p class="tl-import__error" id="tlImportError" role="alert" hidden></p>
-                    <div class="tl-import__status" id="tlImportStatus" role="status" aria-live="polite"></div>
-                </form>
-            }
-            else
-            {
-                <div class="tl-locked k-panel">
-                    <i class="fa-solid fa-crown" aria-hidden="true"></i>
-                    <p class="tl-locked__text">Thêm bài nghe từ YouTube là tính năng Premium.</p>
-                    <a class="btn btn-primary" href="/Account/Premium">Nâng cấp Premium</a>
-                </div>
-            }
-
-            @if (Model.MyLessons.Count > 0)
-            {
-                <ul class="tl-grid" id="tlMineGrid">
-                    @foreach (var mine in Model.MyLessons)
-                    {
-                        <partial name="_ListeningMyLessonCard" model="mine" />
-                    }
-                </ul>
-            }
-            <div id="tlMineEmpty" hidden="@(Model.MyLessons.Count > 0 || !Model.CanImport ? "hidden" : null)">
-                <partial name="~/Views/Shared/_StateMessage.cshtml" model="noMine" />
-            </div>
-        </section>
-    }
-
-    @if (!hasLessons)
-    {
-        <partial name="~/Views/Shared/_StateMessage.cshtml" model="noLessons" />
-    }
-    else
-    {
-        <div class="tl-toolbar" role="search">
-            <div class="tl-search">
+    <div class="tl-head">
+        <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
+        @if (hasLessons)
+        {
+            <div class="tl-search" role="search">
                 <label class="visually-hidden" for="tlSearch">Tìm bài nghe</label>
                 <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                <input id="tlSearch" type="search" class="form-control" maxlength="80" autocomplete="off"
-                       placeholder="Tìm theo tên bài hoặc chủ đề…" />
+                <input id="tlSearch" type="search" class="form-control" maxlength="80" autocomplete="off" placeholder="Tìm bài nghe, chủ đề…" />
             </div>
-            <div class="tl-filters">
-                <div class="k-seg" id="tlLevels" role="group" aria-label="Lọc theo trình độ">
-                    <button type="button" class="k-seg__item" data-level="all" aria-pressed="@(selectedLevel == "all" ? "true" : "false")">Tất cả</button>
-                    @foreach (var lvl in levels)
+        }
+    </div>
+
+    @if (hasLessons)
+    {
+        <partial name="_ListeningHero" model="Model" />
+        <partial name="_ListeningLevelRow" model="Model" />
+
+        <div class="tl-filters">
+            @if (signedIn)
+            {
+                <div class="tl-chips" id="tlStatuses" role="group" aria-label="Lọc theo trạng thái">
+                    @foreach (var st in statusLabels)
                     {
-                        <button type="button" class="k-seg__item" data-level="@lvl.Key" aria-pressed="@(selectedLevel == lvl.Key ? "true" : "false")">@lvl.Key</button>
+                        <button type="button" class="tl-chip" data-status="@st.Key" aria-pressed="@(st.Key == "all" ? "true" : "false")">@st.Label</button>
                     }
                 </div>
-                @if (Model.IsAuthenticated)
-                {
-                    <div class="k-seg" id="tlStatuses" role="group" aria-label="Lọc theo trạng thái">
-                        @foreach (var st in statusLabels)
-                        {
-                            <button type="button" class="k-seg__item" data-status="@st.Key" aria-pressed="@(st.Key == "all" ? "true" : "false")">@st.Label</button>
-                        }
-                    </div>
-                }
-            </div>
+            }
             @if (Model.Topics.Count > 0)
             {
-                <div class="tl-topics">
-                    <div class="k-seg k-seg--wrap" id="tlTopics" role="group" aria-label="Lọc theo chủ đề">
-                        <button type="button" class="k-seg__item" data-topic="all" aria-pressed="@(selectedTopic == "all" ? "true" : "false")">Tất cả chủ đề</button>
+                <div class="tl-topic">
+                    <label for="tlTopic" class="tl-topic__label">Chủ đề:</label>
+                    <select id="tlTopic" class="form-select form-select-sm">
+                        <option value="all" selected="@(selectedTopic == "all" ? "selected" : null)">Tất cả</option>
                         @foreach (var topic in Model.Topics)
                         {
-                            <button type="button" class="k-seg__item" data-topic="@topic" aria-pressed="@(selectedTopic == topic ? "true" : "false")">@topic</button>
+                            <option value="@topic" selected="@(selectedTopic == topic ? "selected" : null)">@topic</option>
                         }
-                    </div>
-                    <button type="button" class="btn btn-link tl-topics__toggle" id="tlTopicsToggle" aria-expanded="false" hidden>Xem thêm chủ đề</button>
+                    </select>
                 </div>
             }
-            <p class="tl-count" id="tlCount" aria-live="polite">@lessonCount bài nghe</p>
+            <p class="tl-count visually-hidden" id="tlCount" aria-live="polite">@lessonCount bài nghe</p>
         </div>
 
         <div id="tlEmpty" hidden>
@@ -225,30 +120,96 @@
             @foreach (var lvl in visibleLevels)
             {
                 var cards = Model.LessonsByLevel[lvl.Key];
-                <section class="tl-level tl-hue-@lvl.Hue" data-level-section="@lvl.Key" aria-labelledby="tl-level-@lvl.Key">
-                    <header class="tl-level__head">
-                        <span class="tl-level__icon k-pillow" aria-hidden="true"><i class="fa-solid @lvl.Icon"></i></span>
-                        <div class="tl-level__titles">
-                            <h2 id="tl-level-@lvl.Key" class="tl-section-title">@lvl.Label</h2>
-                            <p class="tl-level__desc">@lvl.Desc</p>
-                        </div>
-                        <span class="tct-badge tct-badge--primary tl-level__count" data-level-count>@cards.Count bài</span>
+                var done = completedByLevel.TryGetValue(lvl.Key, out var d) ? d : 0;
+                <section class="tl-shelf" data-level-section="@lvl.Key" aria-labelledby="tl-level-@lvl.Key">
+                    <header class="tl-shelf__head">
+                        <h2 id="tl-level-@lvl.Key" class="tl-section-title">@lvl.Label</h2>
+                        <span class="tct-badge tct-badge--primary tl-shelf__count" data-level-count data-done="@done">@(signedIn ? done + "/" + cards.Count : cards.Count + " bài")</span>
+                        <button type="button" class="btn btn-link tl-shelf__all" data-level-all="@lvl.Key" hidden>Xem cả @cards.Count bài</button>
                     </header>
                     <ul class="tl-grid" data-level-grid>
                         @foreach (var card in cards)
                         {
-                            @await Html.PartialAsync("_ListeningLessonCard", card, new ViewDataDictionary(ViewData) { { "Auth", Model.IsAuthenticated } })
+                            @await Html.PartialAsync("_ListeningLessonCard", card, new ViewDataDictionary(ViewData) { { "Auth", signedIn } })
                         }
                     </ul>
-                    <div class="tl-level__more"><button type="button" class="btn btn-outline-primary" data-level-more hidden>Xem thêm</button></div>
+                    <div class="tl-shelf__more"><button type="button" class="btn btn-outline-primary" data-level-more hidden>Xem thêm bài</button></div>
                 </section>
             }
         </div>
     }
+    else
+    {
+        <partial name="~/Views/Shared/_StateMessage.cshtml" model="noLessons" />
+    }
+
+    @if (signedIn)
+    {
+        <section class="tl-mine" aria-labelledby="tl-mine-title">
+            <header class="tl-shelf__head">
+                <h2 id="tl-mine-title" class="tl-section-title" tabindex="-1">Bài nghe của tôi</h2>
+                <span class="tct-badge tct-badge--primary">Premium</span>
+                <span class="tl-mine__count" id="tlMineCount">@Model.MyLessons.Count bài</span>
+                @if (Model.CanImport)
+                {
+                    <button type="button" class="btn btn-link tl-shelf__all" id="tlImportOpen" aria-expanded="false" aria-controls="tlImportPanel">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Thêm từ YouTube
+                    </button>
+                }
+            </header>
+
+            @if (Model.CanImport)
+            {
+                <div class="tl-import-panel" id="tlImportPanel" hidden>
+                    <form id="tlImport" class="tl-import k-panel" novalidate>
+                        <label class="tl-import__label" for="tlImportUrl">Dán link YouTube</label>
+                        <div class="tl-import__row">
+                            <input id="tlImportUrl" name="youtubeUrl" type="url" class="form-control" required maxlength="300"
+                                   placeholder="https://www.youtube.com/watch?v=…" autocomplete="off" aria-describedby="tlImportHint tlImportError" />
+                            <button type="submit" class="btn btn-primary" id="tlImportSubmit"><i class="fa-solid fa-plus" aria-hidden="true"></i> Thêm bài nghe</button>
+                        </div>
+                        <p class="tl-import__hint" id="tlImportHint">Chỉ hỗ trợ video tiếng Anh có phụ đề.</p>
+                        <p class="tl-import__error" id="tlImportError" role="alert" hidden></p>
+                        <div class="tl-import__status" id="tlImportStatus" role="status" aria-live="polite"></div>
+                    </form>
+                </div>
+
+                <ul class="tl-grid" id="tlMineGrid">
+                    @foreach (var mine in Model.MyLessons)
+                    {
+                        <partial name="_ListeningMyLessonCard" model="mine" />
+                    }
+                    <li class="tl-grid__item tl-grid__item--tile">
+                        <button type="button" class="tl-tile" id="tlImportTile" aria-expanded="false" aria-controls="tlImportPanel">
+                            <i class="fa-brands fa-youtube tl-tile__icon" aria-hidden="true"></i>
+                            <span class="tl-tile__label">Dán link YouTube</span>
+                        </button>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                if (Model.MyLessons.Count > 0)
+                {
+                    <ul class="tl-grid" id="tlMineGrid">
+                        @foreach (var mine in Model.MyLessons)
+                        {
+                            <partial name="_ListeningMyLessonCard" model="mine" />
+                        }
+                    </ul>
+                }
+                <div class="tl-locked k-panel">
+                    <i class="fa-solid fa-crown" aria-hidden="true"></i>
+                    <p class="tl-locked__text">Nhập video YouTube để luyện nghe là tính năng Premium.</p>
+                    <a class="btn btn-primary" href="/Account/Premium">Nâng cấp Premium</a>
+                </div>
+            }
+        </section>
+    }
 
     <div id="tsToastHost" class="toast-container ts-toast-host" aria-live="polite"></div>
 
-    @if (Model.IsAuthenticated && Model.CanImport)
+    @if (signedIn && Model.CanImport)
     {
         <div class="modal fade" id="tlDeleteLesson" tabindex="-1" aria-labelledby="tlDeleteTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">

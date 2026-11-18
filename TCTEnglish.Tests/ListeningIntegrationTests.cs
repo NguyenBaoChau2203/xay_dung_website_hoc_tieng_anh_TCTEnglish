@@ -454,7 +454,10 @@ public sealed class ListeningIntegrationTests
         Assert.DoesNotContain("onclick=", html, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("English Listening Lab", text, StringComparison.Ordinal);
         Assert.DoesNotContain("Update hàng tuần", text, StringComparison.Ordinal);
-        Assert.Contains("Tiến độ nghe của bạn", text, StringComparison.Ordinal);
+        // the old "Tiến độ nghe của bạn" overview is gone; its numbers moved into the hero and the level row (plan 5.1)
+        Assert.DoesNotContain("Tiến độ nghe của bạn", text, StringComparison.Ordinal);
+        Assert.Contains("id=\"tlLevels\"", html, StringComparison.Ordinal);
+        Assert.Contains("role=\"radiogroup\"", html, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -501,13 +504,13 @@ public sealed class ListeningIntegrationTests
 
         using var guest = IntegrationTestClientHelper.CreateAnonymousClient(factory);
         var guestText = WebUtility.HtmlDecode(await IndexHtmlAsync(guest));
-        Assert.Contains("Đăng nhập để lưu tiến độ và thêm bài nghe của riêng bạn.", guestText, StringComparison.Ordinal);
+        Assert.Contains("Đăng nhập để lưu tiến độ và tiếp tục bài đang nghe.", guestText, StringComparison.Ordinal);
         Assert.DoesNotContain("Tiến độ nghe của bạn", guestText, StringComparison.Ordinal);
         Assert.DoesNotContain("tlImport", guestText, StringComparison.Ordinal);
 
         using var student = Client(factory, TestDataIds.UserId, Roles.Standard);
         var studentHtml = await IndexHtmlAsync(student);
-        Assert.Contains("Thêm bài nghe từ YouTube là tính năng Premium.", WebUtility.HtmlDecode(studentHtml), StringComparison.Ordinal);
+        Assert.Contains("Nhập video YouTube để luyện nghe là tính năng Premium.", WebUtility.HtmlDecode(studentHtml), StringComparison.Ordinal);
         Assert.DoesNotContain("id=\"tlImport\"", studentHtml, StringComparison.Ordinal);
 
         using var premium = Client(factory, PremiumOwnerId, Roles.Premium);
