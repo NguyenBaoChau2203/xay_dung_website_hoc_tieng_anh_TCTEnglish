@@ -12,6 +12,7 @@ const path = require('node:path');
 const repoRoot = path.resolve(__dirname, '../..');
 
 test('Logo deliverables: vector master, monochrome variant, 512px PNG, and identity guide', () => {
+  assert.ok(fs.existsSync(path.join(repoRoot, 'TCTEnglish/wwwroot/brand/mascot/stickers/tico-mascot-head-color.png')), 'Active mascot asset must ship with the views');
   const masterSvgPath = path.join(repoRoot, 'TCTEnglish/wwwroot/images/ai/tct-ai-mark.svg');
   const monoSvgPath = path.join(repoRoot, 'TCTEnglish/wwwroot/images/ai/tct-ai-mark-mono.svg');
   const pngPath = path.join(repoRoot, 'TCTEnglish/wwwroot/images/ai/tct-ai-mark.png');
@@ -55,7 +56,7 @@ test('AC01 Full Chat & Partials: Clay theme wrapper, logo integration, and acces
   assert.match(chatView, /data-ai-history-root/, 'Preserves history root attribute');
   assert.match(chatView, /id="confirmDeleteConversationBtn"/, 'Preserves delete confirmation button');
 
-  assert.match(shellPartial, /var aiAvatar = "\/images\/ai\/tct-ai-mark\.svg";/, 'Shell references new vector mark');
+  assert.match(shellPartial, /var aiAvatar = "\/brand\/mascot\/stickers\/tico-mascot-head-color\.png";/, 'Shell references the shipped Tico mascot');
   assert.match(shellPartial, /data-ai-avatar="@aiAvatar"/, 'Shell exposes data-ai-avatar attribute');
   assert.match(shellPartial, /ai-chat-header-mark/, 'Shell header renders brand logo mark');
   assert.match(shellPartial, /id="messageInput"/, 'Preserves message textarea ID');
@@ -76,8 +77,8 @@ test('AC03 Floating Launcher: Theme wrapper, mark trigger, and accessible header
   const launcherPartial = fs.readFileSync(path.join(repoRoot, 'TCTEnglish/Views/Shared/_AiChatLauncher.cshtml'), 'utf8');
 
   assert.match(launcherPartial, /class="[^"]*tct-theme[^"]*ai-launcher[^"]*"/, 'Launcher container scoped with tct-theme');
-  assert.match(launcherPartial, /img src="~\/images\/ai\/tct-ai-mark\.svg"[^>]*class="ai-launcher-icon"/, 'Trigger renders new mark');
-  assert.match(launcherPartial, /img src="~\/images\/ai\/tct-ai-mark\.svg"[^>]*class="ai-launcher-header-mark"/, 'Panel header renders new mark');
+  assert.match(launcherPartial, /img src="~\/brand\/mascot\/stickers\/tico-mascot-head-color\.png"[^>]*class="ai-launcher-icon"/, 'Trigger renders the shipped Tico mascot');
+  assert.match(launcherPartial, /img src="~\/brand\/mascot\/stickers\/tico-mascot-head-color\.png"[^>]*class="ai-launcher-header-mark"/, 'Panel header renders the shipped Tico mascot');
   assert.match(launcherPartial, /data-ai-toggle/, 'Preserves trigger toggle hook');
   assert.match(launcherPartial, /data-ai-frame/, 'Preserves lazy iframe hook');
   assert.match(launcherPartial, /data-ai-close/, 'Preserves close button hook');
@@ -113,5 +114,5 @@ test('CSS & JS Motion: Clay depth, bubble transitions, and reduced motion fallba
   assert.match(launcherCss, /@media \(prefers-reduced-motion: reduce\)/, 'Launcher CSS has reduced-motion block');
 
   assert.match(chatJs, /prefers-reduced-motion: reduce/, 'Chat JS checks prefers-reduced-motion in scrollToBottom');
-  assert.match(chatJs, /\/images\/ai\/tct-ai-mark\.svg/, 'Chat JS references new mark as default assistant avatar');
+  assert.match(chatJs, /\/brand\/mascot\/stickers\/tico-mascot-head-color\.png/, 'Chat JS references the shipped Tico mascot as default assistant avatar');
 });

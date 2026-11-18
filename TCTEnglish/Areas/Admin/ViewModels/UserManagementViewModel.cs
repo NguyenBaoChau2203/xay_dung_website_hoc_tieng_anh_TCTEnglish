@@ -27,6 +27,7 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
         public string Email { get; set; } = string.Empty;
         public string? AvatarUrl { get; set; }
         public string Role { get; set; } = string.Empty;
+        public string ReadingLevel { get; set; } = "A1";
         public UserStatus Status { get; set; }
         public DateTime? CreatedAt { get; set; }
         public int FolderCount { get; set; }
@@ -82,6 +83,10 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
         [Required(ErrorMessage = "Vai trò không được để trống.")]
         public string Role { get; set; } = string.Empty;
 
+        [Required]
+        [StringLength(2)]
+        public string ReadingLevel { get; set; } = "A1";
+
         public UserStatus Status { get; set; }
     }
 
@@ -99,6 +104,10 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
 
         [Required(ErrorMessage = "Vai trò không được để trống.")]
         public string Role { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Cấp độ Reading không được để trống.")]
+        [StringLength(2)]
+        public string ReadingLevel { get; set; } = "A1";
     }
 
     public class UserRowUpdateViewModel
@@ -107,6 +116,7 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
         public string FullName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
+        public string ReadingLevel { get; set; } = "A1";
         public UserStatus Status { get; set; }
         private string NormalizedRole => Roles.Normalize(Role);
         public string RoleBadgeClass => NormalizedRole switch

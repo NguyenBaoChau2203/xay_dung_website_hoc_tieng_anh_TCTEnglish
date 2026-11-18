@@ -69,6 +69,7 @@
     display: block;
     height: 100%;
     object-fit: contain;
+    padding: var(--tct-space-xs);
     width: 100%;
 }
 

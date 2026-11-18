@@ -1,463 +1,350 @@
-@using System.Text.Json
 @model TCTVocabulary.ViewModels.DashboardViewModel
 @{
     ViewData["Title"] = "Dashboard";
-    var userName   = Model.FullName ?? User.Identity?.Name ?? "Bạn";
-    var initials   = userName.Length > 0 ? userName[0].ToString().ToUpper() : "U";
-    var xpCurrent = Model.TotalXp;
-    var totalProgress = Math.Max(Model.MasteredCount + Model.LearningCount + Model.NewCount, 1);
-    var masteredPct = (int)Math.Round(Model.MasteredCount * 100d / totalProgress);
-    var learningPct = (int)Math.Round(Model.LearningCount * 100d / totalProgress);
-    var newPct = Math.Max(0, 100 - masteredPct - learningPct);
-    var featureTimeJson = JsonSerializer.Serialize(Model.FeatureTimeBreakdown);
-    // Time-based greeting
-    var nowHour = Model.BusinessHour;
-    var greetingText = nowHour < 12 ? "Chào buổi sáng ☀️"
-                     : nowHour < 18 ? "Chào buổi chiều 🌤️"
-                     : "Chào buổi tối 🌙";
+    // Simple display calculations (approved Q5)
+    var userName    = Model.FullName ?? User.Identity?.Name ?? "Bạn";
+    var nowHour     = Model.BusinessHour;
+    var greetText   = nowHour < 12 ? "Chào buổi sáng" : nowHour < 18 ? "Chào buổi chiều" : "Chào buổi tối";
+    // Memory bar
+    var totalVocab  = Math.Max(Model.MasteredCount + Model.LearningCount + Model.NewCount, 1);
+    var masteredPct = (int)Math.Round(Model.MasteredCount * 100d / totalVocab);
+    var learningPct = (int)Math.Round(Model.LearningCount * 100d / totalVocab);
+    var newPct      = Math.Max(0, 100 - masteredPct - learningPct);
+    var hasVocab    = Model.CardCount > 0;
+    // Weekly time chart
+    var maxMin      = Model.FeatureTimeBreakdown.Any()
+                        ? Math.Max(Model.FeatureTimeBreakdown.Max(d => d.TotalMinutes), 1)
+                        : 1;
+    // Continue reading
+    var hasContinue = Model.RecentInProcessReading != null;
 }
 
 <link rel="stylesheet" href="~/css/Dashboard.css" />
-<script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script>
 
 @Html.AntiForgeryToken()
 
-<!-- ════════════════════════════════════
-     GREETING
-═══════════════════════════════════════ -->
-<div class="db-greeting d-flex justify-content-between align-items-center">
-    <div>
-        <p class="db-greeting__sub">@greetingText</p>
-        <h1 class="db-greeting__title">
-            Xin chào, <span class="db-greeting__name">@userName</span>!
-        </h1>
-    </div>
-    <div class="db-greeting__role">
-        @if (Model.Role == "Admin")
-        {
-            <span class="badge bg-danger" style="font-size: 0.9rem; padding: 0.5em 0.8em; border-radius: 8px;">Admin</span>
-        }
-        else if (Model.Role == "Premium")
-        {
-            <span class="badge bg-warning text-dark" style="font-size: 0.9rem; padding: 0.5em 0.8em; border-radius: 8px;">Premium</span>
-        }
-        else
-        {
-            <span class="badge bg-secondary" style="font-size: 0.9rem; padding: 0.5em 0.8em; border-radius: 8px;">Standard</span>
-        }
-    </div>
-</div>
+<div class="db-page tct-theme">
 
-<!-- ════════════════════════════════════
-     ROW 1 : XP | Streak | Memory
-═══════════════════════════════════════ -->
-<div class="row g-3 mb-3">
-
-    <!-- XP / Level (col-7) -->
-    <div class="col-12 col-lg-7">
-        <div class="db-card h-100">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <span class="db-label">XP đã tích lũy</span>
-                <span class="db-pill">Đã ghi nhận</span>
-            </div>
-
-            <div class="d-flex justify-content-between align-items-baseline mb-2">
-                <span class="db-xp-current">@xpCurrent <span class="db-xp-unit">XP</span></span>
-                <span class="db-xp-max">Hôm nay: @Model.TodayXp XP</span>
-            </div>
-            <p class="db-xp-hint mb-3">XP từ hoạt động học đã lưu. Ngày học tính theo UTC+7.</p>
-
-            <div class="row g-2">
-                <div class="col-4">
-                    <div class="db-mini-stat db-mini-stat--blue text-center">
-                        <span class="db-mini-stat__val">@Model.CardCount</span>
-                        <span class="db-mini-stat__lbl">Cards</span>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="db-mini-stat db-mini-stat--green text-center">
-                        <span class="db-mini-stat__val">@Model.SetCount</span>
-                        <span class="db-mini-stat__lbl">Sets</span>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="db-mini-stat db-mini-stat--yellow text-center">
-                        <span class="db-mini-stat__val">@Model.FolderCount</span>
-                        <span class="db-mini-stat__lbl">Folders</span>
-                    </div>
-                </div>
-            </div>
+    @* GREETING *@
+    <header class="db-greeting">
+        <div>
+            <p class="db-greeting__sub">@greetText</p>
+            <h1 class="db-greeting__name">Xin chào, <span class="db-greeting__highlight">@userName</span>!</h1>
         </div>
-    </div>
-
-    <!-- Streak (col-2) -->
-    <div class="col-6 col-lg-2">
-        <div class="db-card h-100 d-flex flex-column align-items-center justify-content-center text-center gap-1 py-3">
-            <span class="db-flame">🔥</span>
-            <p class="db-streak-num">@Model.Streak</p>
-            <p class="db-streak-label">Day Streak</p>
-            <div class="db-week-dots mt-2" aria-label="Ngày học đã xác nhận trong 7 ngày qua, UTC+7">
-                @foreach (var day in Model.StudyDays)
-                {
-                    <span class="db-day-dot @(day.HasConfirmedStudy ? "db-day-dot--on" : "") @(day.IsToday ? "db-day-dot--today" : "")" title="@day.FullLabel: @day.StudyLabel">@day.DayLabel</span>
-                }
-            </div>
-        </div>
-    </div>
-
-    <!-- Memory Strength (col-3) -->
-    <div class="col-6 col-lg-3">
-        <div class="db-card h-100 d-flex flex-column">
-            <span class="db-label mb-1">Memory Strength</span>
-            <div id="dbRadialChart" style="flex:1;min-height:160px;">
-                <div class="db-chart-skeleton"></div>
-            </div>
-            <div class="row g-1 text-center" style="font-size:12px;">
-                <div class="col-12 col-sm-4">
-                    <span class="db-dot db-dot--green"></span>
-                    <span class="text-muted">Mastered</span><br>
-                    <strong>@Model.MasteredCount</strong>
-                </div>
-                <div class="col-12 col-sm-4">
-                    <span class="db-dot db-dot--yellow"></span>
-                    <span class="text-muted">Learning</span><br>
-                    <strong>@Model.LearningCount</strong>
-                </div>
-                <div class="col-12 col-sm-4">
-                    <span class="db-dot db-dot--blue"></span>
-                    <span class="text-muted">New</span><br>
-                    <strong>@Model.NewCount</strong>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ════════════════════════════════════
-     ROW 2 : CTA | Quick Access
-═══════════════════════════════════════ -->
-<div class="row g-3 mb-3">
-
-    <!-- CTA Study Now (col-4) -->
-    <div class="col-12 col-md-5 col-lg-4">
-        <div class="db-card db-card--cta h-100 d-flex flex-column justify-content-between">
-            <div class="db-cta-deco db-cta-deco--top"></div>
-            <div class="db-cta-deco db-cta-deco--bot"></div>
-            <a asp-controller="Goals" asp-action="Index" style="position:relative;z-index:1;text-decoration:none;color:inherit;">
-                <span class="db-cta-tag">Mục tiêu hôm nay</span>
-                <h2 class="db-cta-title">Mục tiêu hôm nay: <strong>@Model.DailyGoalPercent%</strong></h2>
-                <p class="db-cta-sub">@(Model.ActiveGoalCount > 0 ? $"Đã đạt {Model.MetGoalCount}/{Model.ActiveGoalCount} mục tiêu kỹ năng (UTC+7)." : "Chưa có mục tiêu đang chạy. Chọn kỹ năng và đặt mục tiêu của bạn.")</p>
-                @if (Model.ActiveGoalCount > 0)
-                {
-                    <p class="db-cta-sub">@Model.DailyGoalSummary</p>
-                }
-            </a>
-            @if (Model.TodayFolders.Any())
+        <div>
+            @switch (Model.Role)
             {
-                <a asp-controller="Folder" asp-action="FolderDetail"
-                   asp-route-id="@Model.TodayFolders.First().FolderId"
-                   class="db-cta-btn">
-                    <i class="fa-solid fa-bolt"></i> Học ngay!
-                </a>
-            }
-            else
-            {
-                <a asp-controller="Folder" asp-action="Index" class="db-cta-btn">
-                    <i class="fa-solid fa-plus"></i> Tạo folder mới
-                </a>
+                case "Admin":
+                    <span class="tct-badge tct-badge--danger">Admin</span>
+                    break;
+                case "Premium":
+                    <span class="tct-badge tct-badge--warning">Premium</span>
+                    break;
+                default:
+                    <span class="tct-badge">Standard</span>
+                    break;
             }
         </div>
-    </div>
+    </header>
 
-    <!-- Quick Access (col-8) -->
-    <div class="col-12 col-md-7 col-lg-8">
-        <div class="db-card h-100">
-            <span class="db-label d-block mb-3">Truy cập nhanh</span>
-            <div class="row g-2">
-                <div class="col-4">
-                    <a asp-controller="Vocabulary" asp-action="Index" class="db-quick-item db-quick-item--blue">
-                        <i class="fa-solid fa-clone"></i><span>Flashcards</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a asp-controller="Speaking" asp-action="Index" class="db-quick-item db-quick-item--yellow">
-                        <i class="fa-solid fa-microphone"></i><span>Speaking</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a asp-controller="Study" asp-action="Reading" class="db-quick-item db-quick-item--purple">
-                        <i class="fa-solid fa-book-open"></i><span>Reading</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a asp-controller="Study" asp-action="Listening" class="db-quick-item db-quick-item--blue">
-                        <i class="fa-solid fa-headphones"></i><span>Listening</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a asp-controller="Study" asp-action="Writing" class="db-quick-item db-quick-item--yellow">
-                        <i class="fa-solid fa-pen-nib"></i><span>Writing</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a asp-controller="Vocabulary" asp-action="Index" class="db-quick-item db-quick-item--purple">
-                        <i class="fa-solid fa-language"></i><span>Vocabulary</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ════════════════════════════════════
-     ROW 3 : Heatmap | Today Folders
-═══════════════════════════════════════ -->
-<div class="row g-3 mb-3">
-
-    <!-- Thời gian học theo tính năng (col-8) -->
-    <div class="col-12 col-lg-8">
-        <div class="db-card">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="db-label">Thời gian học trong tuần</span>
-                <span class="db-label-sub text-muted" style="font-size:.75rem;">phút</span>
-            </div>
-            <div id="dbTimeChart">
-                <div class="db-chart-skeleton" style="height:160px;"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Today Folders (col-4) -->
-    <div class="col-12 col-lg-4">
-        <div class="db-card h-100">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <span class="db-label">Học gì hôm nay</span>
-                <a asp-controller="Folder" asp-action="Index" class="db-link-sm">Xem tất cả →</a>
-            </div>
-
-            @if (Model.TodayFolders.Any())
-            {
-                <div class="d-flex flex-column gap-2">
-                    @foreach (var folder in Model.TodayFolders.Take(4))
+    @* ROW A: COMMAND STRIP + STREAK *@
+    <div class="row g-3 mb-3">
+        <div class="col-12 col-lg-8">
+            <div class="db-card db-command h-100">
+                @if (Model.TodayFolders.Any())
+                {
+                    var f = Model.TodayFolders.First();
+                    <span class="db-label">@(f.IsOwnedByCurrentUser ? "Học tiếp" : "Khám phá cộng đồng")</span>
+                    <p class="db-command__title">@f.FolderName</p>
+                    <p class="db-command__meta">@f.SetCount bộ từ · @f.CreatorName</p>
+                    @if (Model.Goal > 0)
                     {
-                        <a asp-controller="Folder" asp-action="FolderDetail"
-                           asp-route-id="@folder.FolderId"
-                           class="db-folder-item">
-                            <div class="db-folder-icon">
-                                <i class="fa-solid fa-folder-open"></i>
-                            </div>
-                            <div class="db-folder-info">
-                                <span class="db-folder-name">@folder.FolderName</span>
-                                <span class="db-folder-meta">@folder.SetCount sets · @folder.CreatorName</span>
-                            </div>
-                            <i class="fa-solid fa-chevron-right db-folder-arrow"></i>
-                        </a>
+                        <p class="db-command__goal">Mục tiêu hôm nay: <strong>@Model.CardsReviewedToday/@Model.Goal thẻ</strong></p>
+                    }
+                    <a asp-controller="Folder" asp-action="FolderDetail" asp-route-id="@f.FolderId" class="db-cta-btn">
+                        <i class="fa-solid fa-bolt" aria-hidden="true"></i> Học ngay
+                    </a>
+                }
+                else
+                {
+                    <span class="db-label">Bắt đầu học</span>
+                    <p class="db-command__title">Chưa có folder để học</p>
+                    <p class="db-command__meta">Tạo folder của bạn hoặc khám phá folder từ cộng đồng</p>
+                    @if (Model.Goal > 0)
+                    {
+                        <p class="db-command__goal">Mục tiêu hôm nay: <strong>@Model.CardsReviewedToday/@Model.Goal thẻ</strong></p>
+                    }
+                    <a asp-controller="Folder" asp-action="Index" class="db-cta-btn db-cta-btn--secondary">
+                        <i class="fa-solid fa-compass" aria-hidden="true"></i> Khám phá folders
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="db-card h-100 d-flex flex-column align-items-center justify-content-center text-center gap-1 py-3">
+                <span class="db-label">Streak</span>
+                <p class="db-streak-num">@Model.Streak</p>
+                <p class="db-streak-label">ngày liên tiếp</p>
+                <div class="db-week-dots mt-2" aria-label="7 ngày gần nhất: @Model.StudyDays.Count(d => d.HasConfirmedStudy) ngày học đã xác nhận">
+                    @foreach (var day in Model.StudyDays)
+                    {
+                        var on = day.HasConfirmedStudy ? "db-day-dot--on" : "";
+                        var today = day.IsToday ? "db-day-dot--today" : "";
+                        <span class="db-day-dot @on @today" title="@day.FullLabel: @day.StudyLabel" aria-label="@day.FullLabel: @day.StudyLabel">@day.DayLabel</span>
                     }
                 </div>
-            }
-            else
-            {
-                <div class="db-empty">
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                    <p class="mb-2">Bạn chưa có folder nào</p>
-                    <a asp-controller="Folder" asp-action="Index" class="db-cta-btn db-cta-btn--sm">
-                        Tạo folder đầu tiên
+            </div>
+        </div>
+    </div>
+
+    <section class="db-card mb-3" aria-label="Mục tiêu học hôm nay">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div>
+                <span class="db-label">Mục tiêu hôm nay</span>
+                <p class="mb-0">@(Model.ActiveGoalCount > 0 ? Model.DailyGoalSummary : "Chọn kỹ năng và đặt mục tiêu để bắt đầu.")</p>
+            </div>
+            <a asp-controller="Goals" asp-action="Index" class="btn btn-outline-primary btn-sm">Xem mục tiêu</a>
+        </div>
+        @if (Model.ActiveGoalCount > 0)
+        {
+            <p class="small mt-2 mb-0">Đã đạt @Model.MetGoalCount/@Model.ActiveGoalCount mục tiêu · @Model.DailyGoalPercent%</p>
+        }
+    </section>
+
+    @* ROW B: STATS STRIP *@
+    <div class="row g-3 mb-3">
+        <div class="col-12">
+            <div class="db-card db-stats-strip">
+                <div class="db-stats-counts">
+                    <div class="db-stat-item">
+                        <span class="db-stat-val">@Model.TotalXp XP</span>
+                        <span class="db-stat-lbl">Hôm nay: @Model.TodayXp XP</span>
+                    </div>
+                    <div class="db-stat-item">
+                        <span class="db-stat-val">@Model.CardCount</span>
+                        <span class="db-stat-lbl">Thẻ từ</span>
+                    </div>
+                    <div class="db-stat-sep" aria-hidden="true"></div>
+                    <div class="db-stat-item">
+                        <span class="db-stat-val">@Model.SetCount</span>
+                        <span class="db-stat-lbl">Bộ từ</span>
+                    </div>
+                    <div class="db-stat-sep" aria-hidden="true"></div>
+                    <div class="db-stat-item">
+                        <span class="db-stat-val">@Model.FolderCount</span>
+                        <span class="db-stat-lbl">Folder</span>
+                    </div>
+                </div>
+                <div class="db-memory">
+                    <span class="db-label mb-2">Tiến độ từ vựng</span>
+                    <div class="db-mem-bar"
+                         role="img"
+                         aria-label="Tiến độ: @Model.MasteredCount đã thuộc, @Model.LearningCount đang học, @Model.NewCount mới">
+                        @if (hasVocab)
+                        {
+                            @if (masteredPct > 0)
+                            {
+                                <div class="db-mem-seg db-mem-seg--mastered" style="width:@masteredPct%" title="Đã thuộc: @Model.MasteredCount"></div>
+                            }
+                            @if (learningPct > 0)
+                            {
+                                <div class="db-mem-seg db-mem-seg--learning" style="width:@learningPct%" title="Đang học: @Model.LearningCount"></div>
+                            }
+                            @if (newPct > 0)
+                            {
+                                <div class="db-mem-seg db-mem-seg--new" style="width:@newPct%" title="Mới: @Model.NewCount"></div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="db-mem-seg db-mem-seg--empty" style="width:100%"></div>
+                        }
+                    </div>
+                    <div class="db-mem-legend">
+                        <span><span class="db-dot db-dot--green" aria-hidden="true"></span>Đã thuộc <strong>@Model.MasteredCount</strong></span>
+                        <span><span class="db-dot db-dot--yellow" aria-hidden="true"></span>Đang học <strong>@Model.LearningCount</strong></span>
+                        <span><span class="db-dot db-dot--blue" aria-hidden="true"></span>Mới <strong>@Model.NewCount</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ROW C: WEEKLY TIME (pure CSS bars) *@
+    <div class="row g-3 mb-3">
+        <div class="col-12">
+            <div class="db-card">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="db-label">Thời gian học trong tuần</span>
+                    <span class="db-chart-unit">phút</span>
+                </div>
+                <div class="db-time-chart" role="img" aria-label="Biểu đồ thời gian học theo ngày trong tuần">
+                    @if (Model.FeatureTimeBreakdown.Any())
+                    {
+                        @foreach (var day in Model.FeatureTimeBreakdown)
+                        {
+                            var barH = (int)Math.Round(day.TotalMinutes * 100.0 / maxMin);
+                            <div class="db-time-col @(day.IsToday ? "db-time-col--today" : "")">
+                                <div class="db-time-bar-outer">
+                                    <div class="db-time-bar-wrap" style="height:@barH%">
+                                        @if (day.FlashcardMinutes > 0)  { <div class="db-time-seg" style="flex:@day.FlashcardMinutes;background:var(--db-col-flash)"    title="Flashcard: @day.FlashcardMinutes p"></div> }
+                                        @if (day.QuizMinutes > 0)       { <div class="db-time-seg" style="flex:@day.QuizMinutes;background:var(--db-col-quiz)"        title="Quiz: @day.QuizMinutes p"></div> }
+                                        @if (day.SpeakingMinutes > 0)   { <div class="db-time-seg" style="flex:@day.SpeakingMinutes;background:var(--db-col-speaking)"  title="Speaking: @day.SpeakingMinutes p"></div> }
+                                        @if (day.ReadingMinutes > 0)    { <div class="db-time-seg" style="flex:@day.ReadingMinutes;background:var(--db-col-reading)"    title="Reading: @day.ReadingMinutes p"></div> }
+                                        @if (day.ListeningMinutes > 0)  { <div class="db-time-seg" style="flex:@day.ListeningMinutes;background:var(--db-col-listening)" title="Listening: @day.ListeningMinutes p"></div> }
+                                        @if (day.WritingMinutes > 0)    { <div class="db-time-seg" style="flex:@day.WritingMinutes;background:var(--db-col-writing)"    title="Writing: @day.WritingMinutes p"></div> }
+                                        @if (day.GrammarMinutes > 0)    { <div class="db-time-seg" style="flex:@day.GrammarMinutes;background:var(--db-col-grammar)"    title="Grammar: @day.GrammarMinutes p"></div> }
+                                    </div>
+                                </div>
+                                <span class="db-time-label">@day.DayLabel</span>
+                                @if (day.TotalMinutes > 0) { <span class="db-time-total">@day.TotalMinutes</span> }
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="db-chart-empty">Chưa có dữ liệu học tuần này</p>
+                    }
+                </div>
+                <div class="db-time-legend" aria-hidden="true">
+                    <span><span class="db-dot" style="background:var(--db-col-flash)"></span>Flashcard</span>
+                    <span><span class="db-dot" style="background:var(--db-col-quiz)"></span>Quiz</span>
+                    <span><span class="db-dot" style="background:var(--db-col-speaking)"></span>Speaking</span>
+                    <span><span class="db-dot" style="background:var(--db-col-reading)"></span>Reading</span>
+                    <span><span class="db-dot" style="background:var(--db-col-listening)"></span>Listening</span>
+                    <span><span class="db-dot" style="background:var(--db-col-writing)"></span>Writing</span>
+                    <span><span class="db-dot" style="background:var(--db-col-grammar)"></span>Grammar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ROW D: QUICK ACCESS + DAILY CHALLENGE *@
+    <div class="row g-3 mb-3">
+        <div class="col-12 col-md-6">
+            <div class="db-card h-100">
+                <span class="db-label d-block mb-3">Truy cập nhanh</span>
+                <div class="row g-2">
+                    <div class="col-4"><a asp-controller="Vocabulary" asp-action="Index"  class="db-quick-item db-quick-item--blue"><i class="fa-solid fa-clone" aria-hidden="true"></i><span>Flashcards</span></a></div>
+                    <div class="col-4"><a asp-controller="Speaking"   asp-action="Index"  class="db-quick-item db-quick-item--yellow"><i class="fa-solid fa-microphone" aria-hidden="true"></i><span>Speaking</span></a></div>
+                    <div class="col-4"><a asp-controller="Study"      asp-action="Reading" class="db-quick-item db-quick-item--purple"><i class="fa-solid fa-book-open" aria-hidden="true"></i><span>Reading</span></a></div>
+                    <div class="col-4"><a asp-controller="Study"      asp-action="Listening" class="db-quick-item db-quick-item--blue"><i class="fa-solid fa-headphones" aria-hidden="true"></i><span>Listening</span></a></div>
+                    <div class="col-4"><a asp-controller="Study"      asp-action="Writing" class="db-quick-item db-quick-item--yellow"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i><span>Writing</span></a></div>
+                    <div class="col-4"><a asp-controller="Vocabulary" asp-action="Index"  class="db-quick-item db-quick-item--purple"><i class="fa-solid fa-language" aria-hidden="true"></i><span>Vocabulary</span></a></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="db-card db-card--challenge h-100">
+                <span class="db-label d-block mb-2">Daily Challenge</span>
+                <div id="daily-challenge-content">
+                    <partial name="_DailyChallenge" model="Model.DailyChallenge" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ROW E: CONTINUE READING + HEATMAP *@
+    <div class="row g-3 mb-3">
+        @if (hasContinue)
+        {
+            var r = Model.RecentInProcessReading!;
+            <div class="col-12 col-md-6">
+                <div class="db-card db-card--continue h-100">
+                    <span class="db-label d-block mb-2">Đang đọc dở</span>
+                    <p class="db-continue-title">@r.Title</p>
+                    @{
+                        var metaParts = new System.Collections.Generic.List<string>();
+                        if (!string.IsNullOrWhiteSpace(r.Level)) metaParts.Add(r.Level);
+                        if (!string.IsNullOrWhiteSpace(r.Topic)) metaParts.Add(r.Topic);
+                    }
+                    @if (metaParts.Count > 0)
+                    {
+                        <p class="db-continue-meta">@string.Join(" · ", metaParts)</p>
+                    }
+                    <a asp-controller="Reading" asp-action="Study" asp-route-id="@r.Id" class="db-continue-btn mt-auto">
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Tiếp tục đọc
                     </a>
                 </div>
-            }
+            </div>
+        }
+        <div class="@(hasContinue ? "col-12 col-md-6" : "col-12")">
+            <div class="db-card h-100">
+                <span class="db-label d-block mb-3">Lịch sử ôn tập (28 ngày)</span>
+                @if (Model.HeatmapCells.Any())
+                {
+                    <div class="db-heatmap" aria-label="Lịch sử học 28 ngày gần nhất">
+                        @foreach (var cell in Model.HeatmapCells)
+                        {
+                            var heat = cell.ReviewedCards == 0 ? 0 : cell.ReviewedCards <= 5 ? 1 : cell.ReviewedCards <= 15 ? 2 : 3;
+                            <div class="db-heat-cell db-heat--@heat"
+                                 title="@cell.DayLabel @cell.WeekLabel: @cell.ReviewedCards thẻ"></div>
+                        }
+                    </div>
+                    <div class="db-heat-legend mt-2" aria-hidden="true">
+                        <span>Ít</span>
+                        <span class="db-heat-swatch db-heat--0"></span>
+                        <span class="db-heat-swatch db-heat--1"></span>
+                        <span class="db-heat-swatch db-heat--2"></span>
+                        <span class="db-heat-swatch db-heat--3"></span>
+                        <span>Nhiều</span>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted" style="font-size:var(--tct-text-sm)">Chưa có dữ liệu ôn tập trong 28 ngày qua.</p>
+                }
+            </div>
         </div>
     </div>
+
 </div>
 
-<!-- ════════════════════════════════════
-     ROW 4 : Daily Challenge
-═══════════════════════════════════════ -->
-<div class="row g-3 mb-3">
-    <div class="col-12">
-        <div class="db-card db-card--challenge">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <span class="db-label">
-                    <i class="fa-solid fa-bolt" style="color:#4255ff"></i> Daily Challenge
-                </span>
-            </div>
-            <div id="daily-challenge-content">
-                <partial name="_DailyChallenge" model="Model.DailyChallenge" />
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ════════════════════════════════════
-     SCRIPTS
-═══════════════════════════════════════ -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-
-    // ── Daily Challenge ───────────────────────────────────────────
     const container = document.getElementById("daily-challenge-content");
-    if (container) {
-        container.addEventListener("click", function (e) {
-            const btn = e.target.closest(".answer-btn");
-            if (!btn || btn.classList.contains("correct") || btn.classList.contains("wrong")) return;
+    if (!container) return;
 
-            const csrfToken = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
-            fetch("/Home/CheckAnswer", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-                    "RequestVerificationToken": csrfToken ?? ""
-                },
-                body: new URLSearchParams({
-                    selectedCardId: btn.dataset.id,
-                    challengeToken: btn.dataset.token ?? ""
-                }).toString()
-            })
-            .then(r => r.json())
-            .then(data => {
-                const correctId = String(data.correctCardId ?? "");
-                btn.classList.add(data.correct === true ? "correct" : "wrong");
-                if (data.correct !== true)
-                    container.querySelector(`.answer-btn[data-id="${correctId}"]`)?.classList.add("correct");
-                setTimeout(refreshChallenge, 1200);
-            })
-            .catch(err => console.error("Lỗi:", err));
+    container.addEventListener("click", function (e) {
+        const btn = e.target.closest(".answer-btn");
+        if (!btn || btn.disabled) return;
+
+        // Disable all buttons immediately (prevent double-submit)
+        container.querySelectorAll(".answer-btn").forEach(b => { b.disabled = true; });
+
+        const csrfToken = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+        fetch("/Home/CheckAnswer", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                "RequestVerificationToken": csrfToken ?? ""
+            },
+            body: new URLSearchParams({
+                selectedCardId: btn.dataset.id,
+                challengeToken: btn.dataset.token ?? ""
+            }).toString()
+        })
+        .then(r => r.json())
+        .then(data => {
+            const correctId = String(data.correctCardId ?? "");
+            btn.classList.add(data.correct === true ? "correct" : "wrong");
+            if (data.correct !== true)
+                container.querySelector(`.answer-btn[data-id="${correctId}"]`)?.classList.add("correct");
+            // Wrong → new question (still incomplete). Correct → completed state. No endless XP loop.
+            setTimeout(refreshChallenge, 1200);
+        })
+        .catch(err => {
+            console.error("Lỗi:", err);
+            container.querySelectorAll(".answer-btn").forEach(b => { b.disabled = false; });
         });
+    });
 
-        function refreshChallenge() {
-            container.style.opacity = "0.5";
-            fetch("/Home/RefreshDailyChallenge")
-                .then(r => r.text())
-                .then(html => { container.innerHTML = html; container.style.opacity = "1"; })
-                .catch(() => { container.style.opacity = "1"; });
-        }
-    }
-
-    // ── Radial Bar ────────────────────────────────────────────────
-    if (document.querySelector("#dbRadialChart") && typeof ApexCharts !== "undefined") {
-        const radialEl = document.querySelector("#dbRadialChart");
-        const radialChart = new ApexCharts(radialEl, {
-            series: [@masteredPct, @learningPct, @newPct],
-            chart:  { type: "radialBar", height: 180, background: "transparent" },
-            theme:  { mode: "light" },
-            plotOptions: {
-                radialBar: {
-                    hollow: { size: "28%" },
-                    track:  { background: "#f1f5f9", margin: 4 },
-                    dataLabels: {
-                        name:  { fontSize: "10px", color: "#64748b" },
-                        value: { fontSize: "13px", fontWeight: 700, color: "#1e293b" }
-                    }
-                }
-            },
-            colors: ["#10b981", "#f59e0b", "#4255ff"],
-            labels: ["Mastered", "Learning", "New"],
-            legend: { show: false }
-        });
-        radialEl.querySelector(".db-chart-skeleton")?.remove();
-        radialChart.render();
-    }
-
-    // ── Stacked Bar: Thời gian học theo tính năng ────────────────────
-    if (document.querySelector("#dbTimeChart") && typeof ApexCharts !== "undefined") {
-        const ftRaw = @Html.Raw(featureTimeJson);
-
-        // Tính Thứ 2 của tuần hiện tại
-        const now = new Date();
-        const dow = now.getDay(); // 0=CN, 1=T2, ..., 6=T7
-        const daysToMonday = dow === 0 ? -6 : 1 - dow;
-        const monday = new Date(now);
-        monday.setDate(now.getDate() + daysToMonday);
-
-        // Xây dựng 7 ngày T2→CN với ngày đúng, ghép data từ backend theo DayLabel
-        const dayNames = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
-        const backendMap = {};
-        ftRaw.forEach(d => { backendMap[d.DayLabel] = d; });
-
-        const ftData = dayNames.map((label, i) => {
-            const date = new Date(monday);
-            date.setDate(monday.getDate() + i);
-            const dd = String(date.getDate()).padStart(2, "0");
-            const mm = String(date.getMonth() + 1).padStart(2, "0");
-            const bd = backendMap[label] || {};
-            return {
-                DayLabel: label,
-                FullDate: `${dd}/${mm}`,
-                IsToday: date.toDateString() === now.toDateString(),
-                FlashcardMinutes: bd.FlashcardMinutes ?? 0,
-                QuizMinutes:      bd.QuizMinutes      ?? 0,
-                SpeakingMinutes:  bd.SpeakingMinutes  ?? 0,
-                ReadingMinutes:   bd.ReadingMinutes   ?? 0,
-                ListeningMinutes: bd.ListeningMinutes ?? 0,
-                WritingMinutes:   bd.WritingMinutes   ?? 0,
-                GrammarMinutes:   bd.GrammarMinutes   ?? 0,
-            };
-        });
-
-        const labels = ftData.map(d => d.DayLabel);
-
-        // Màu sắc cho từng tính năng
-        const features = [
-            { key: "FlashcardMinutes", name: "Flashcard",  color: "#4255ff" },
-            { key: "QuizMinutes",      name: "Quiz",        color: "#f97316" },
-            { key: "SpeakingMinutes",  name: "Speaking",    color: "#10b981" },
-            { key: "ReadingMinutes",   name: "Reading",     color: "#6366f1" },
-            { key: "ListeningMinutes", name: "Listening",   color: "#f59e0b" },
-            { key: "WritingMinutes",   name: "Writing",     color: "#ec4899" },
-            { key: "GrammarMinutes",   name: "Grammar",     color: "#14b8a6" },
-        ];
-
-        const timeEl = document.querySelector("#dbTimeChart");
-        const timeChart = new ApexCharts(timeEl, {
-            series: features.map(f => ({
-                name: f.name,
-                data: ftData.map(d => d[f.key] ?? 0)
-            })),
-            chart: {
-                type: "bar", stacked: true, height: 160,
-                background: "transparent", toolbar: { show: false },
-                animations: { enabled: true, speed: 500 }
-            },
-            colors: features.map(f => f.color),
-            plotOptions: {
-                bar: { borderRadius: 3, columnWidth: "55%" }
-            },
-            dataLabels: { enabled: false },
-            xaxis: {
-                categories: labels,
-                labels: { style: { colors: "#94a3b8", fontSize: "11px" } },
-                axisBorder: { show: false },
-                axisTicks:  { show: false }
-            },
-            yaxis: {
-                labels: {
-                    style: { colors: "#94a3b8", fontSize: "11px" },
-                    formatter: v => v > 0 ? v + "p" : ""
-                },
-                min: 0
-            },
-            grid: { borderColor: "#f1f5f9", strokeDashArray: 4, padding: { left: 0 } },
-            legend: {
-                show: true, position: "top", horizontalAlign: "right",
-                fontSize: "11px", offsetY: -8,
-                markers: { width: 8, height: 8, radius: 2 }
-            },
-            tooltip: {
-                shared: true,
-                intersect: false,
-                theme: "light",
-                y: { formatter: v => v + " phút" },
-                x: {
-                    formatter: (val, { dataPointIndex }) => {
-                        const d = ftData[dataPointIndex];
-                        return `${d.DayLabel} (${d.FullDate})${d.IsToday ? " — Hôm nay" : ""}`;
-                    }
-                }
-            }
-        });
-        timeEl.querySelector(".db-chart-skeleton")?.remove();
-        timeChart.render();
+    function refreshChallenge() {
+        container.style.opacity = "0.5";
+        fetch("/Home/RefreshDailyChallenge")
+            .then(r => r.text())
+            .then(html => { container.innerHTML = html; container.style.opacity = "1"; })
+            .catch(() => { container.style.opacity = "1"; });
     }
 });
 </script>
-
-

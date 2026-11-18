@@ -47,7 +47,7 @@ Key OpenAI nhập riêng bằng `scripts/set-local-ai-key.ps1`; sync không sử
 
 | Gốc được chọn khi xuất | Dữ liệu đi kèm |
 | --- | --- |
-| `ReadingPassage` | Bài đọc, câu hỏi, lựa chọn |
+| `ReadingPassage` | Bài đọc, đoạn văn, câu hỏi, lựa chọn và từ vựng của bài |
 | `ListeningLesson` | Bài nghe chung, transcript, quiz, từ vựng |
 | `SpeakingPlaylist` / `SpeakingVideo` | Playlist, video chung, câu phụ đề |
 | `WritingExercise` | Bài viết chung, câu mẫu, đáp án được chấp nhận |
@@ -55,7 +55,7 @@ Key OpenAI nhập riêng bằng `scripts/set-local-ai-key.ps1`; sync không sử
 | `Class` | Thông tin lớp không mật khẩu, liên kết thư mục/học liệu |
 | `PremiumPlan` | Định nghĩa gói; không mang giao dịch/quyền mua của người dùng |
 
-Hiện19 kiểu/trường nằm trong `SharedDataRegistry.cs`. Không xuất bài nghe/video/
+Hiện21 kiểu nội dung nằm trong `SharedDataRegistry.cs`. Không xuất bài nghe/video/
 bài viết riêng, users, mật khẩu, thành viên lớp, chat, thông báo, thanh toán,
 credits, bài làm, điểm, tiến độ hoặc Goal cá nhân. Chia sẻ loại mới cần adapter
 có kiểu rõ ràng và kiểm thử trong PR; không nhập bảng tùy ý/SQL dump. Gói mẫu

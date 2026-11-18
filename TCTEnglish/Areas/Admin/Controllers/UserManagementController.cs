@@ -49,6 +49,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                     Email = u.Email,
                     AvatarUrl = u.AvatarUrl,
                     Role = u.Role ?? Roles.Standard,
+                    ReadingLevel = u.ReadingLevel,
                     Status = u.Status,
                     CreatedAt = u.CreatedAt,
                     FolderCount = u.Folders.Count,
@@ -90,6 +91,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                     FullName = u.FullName ?? string.Empty,
                     Email = u.Email,
                     Role = u.Role ?? Roles.Standard,
+                    ReadingLevel = u.ReadingLevel,
                     Status = u.Status
                 })
                 .FirstOrDefaultAsync();
@@ -100,6 +102,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             }
 
             user.Role = Roles.Normalize(user.Role);
+            user.ReadingLevel = TCTEnglish.Models.Reading.CefrLevels.Normalize(user.ReadingLevel);
             user.Status = ResolveDisplayStatus(user.Status, user.UserId);
 
             return Json(user);
@@ -161,6 +164,11 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 return BadRequest(new { message = "Email này đã được sử dụng bởi người dùng khác." });
             }
 
+            if (!TCTEnglish.Models.Reading.CefrLevels.IsValid(model.ReadingLevel))
+            {
+                return BadRequest(new { message = "Cấp độ Reading không hợp lệ." });
+            }
+
             var saved = await TCTEnglish.Services.Accounts.UserMutationScope.ExecuteAsync(_context, model.UserId, async () =>
             {
                 user = await _context.Users.FirstOrDefaultAsync(row => row.UserId == model.UserId && row.AnonymizedAt == null);
@@ -176,6 +184,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 user.FullName = model.FullName;
                 user.Email = model.Email;
                 user.Role = Roles.Normalize(model.Role);
+                user.ReadingLevel = TCTEnglish.Models.Reading.CefrLevels.Normalize(model.ReadingLevel);
                 await _context.SaveChangesAsync();
                 return true;
             }, result => result, HttpContext.RequestAborted);
@@ -431,6 +440,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 FullName = user.FullName ?? "N/A",
                 Email = user.Email,
                 Role = Roles.Normalize(user.Role),
+                ReadingLevel = TCTEnglish.Models.Reading.CefrLevels.Normalize(user.ReadingLevel),
                 Status = ResolveDisplayStatus(user.Status, user.UserId)
             };
         }

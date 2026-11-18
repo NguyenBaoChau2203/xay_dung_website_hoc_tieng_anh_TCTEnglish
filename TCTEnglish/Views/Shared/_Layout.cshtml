@@ -5,6 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TCTEnglish</title>
+    <link rel="icon" href="~/brand/logo/favicon/favicon.ico" asp-append-version="true" />
+    <link rel="icon" type="image/svg+xml" href="~/brand/logo/favicon/favicon.svg" asp-append-version="true" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/brand/logo/favicon/favicon-32.png" asp-append-version="true" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/brand/logo/favicon/favicon-16.png" asp-append-version="true" />
+    <link rel="apple-touch-icon" href="~/brand/logo/favicon/apple-touch-icon.png" asp-append-version="true" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,8 +46,15 @@
     <a href="#main-content" class="skip-link">Chuyển đến nội dung chính</a>
     <header class="header">
         <div class="header-left">
-            <button type="button" class="menu-icon-btn" id="menuToggleBtn" aria-label="Mở hoặc đóng thanh điều hướng" aria-controls="mainSidebar" aria-expanded="false"><i class="fas fa-bars menu-icon"></i></button>
-            <a asp-controller="Home" asp-action="Index" class="logo">TCT</a>
+            <button type="button" class="menu-icon-btn" id="menuToggleBtn" aria-label="Mở hoặc đóng thanh điều hướng" aria-controls="mainSidebar" aria-expanded="true"><i class="fas fa-bars menu-icon"></i></button>
+            <a asp-controller="Home" asp-action="Index" class="logo" aria-label="TCT English — trang chủ">
+                <img src="~/brand/logo/tct-english-logo.svg"
+                     asp-append-version="true"
+                     alt="TCT English"
+                     class="logo-img"
+                     width="168"
+                     height="40" />
+            </a>
         </div>
 
         <form asp-controller="Home"

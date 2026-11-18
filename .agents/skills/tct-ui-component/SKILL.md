@@ -25,6 +25,10 @@ new icon CDN for a component task.
    standard layout. Avoid inline styles and page-global selector overrides.
 5. For visual choices load `tct-ui-ux-pro-max`; for interface review use
    `tct-ui-review`; load `tct-ui-motion` only for an actual motion change.
-6. Check keyboard-only operation, narrow and desktop widths, text zoom,
-   long Vietnamese/English text, contrast and reduced motion in a real browser
-   when available. Report unavailable browser verification explicitly.
+6. Check keyboard-only operation, **whole-feature** multi-platform behavior
+   (desktop ~1440 with sidebar open/collapsed and mobile 768 / 375-390), text
+   zoom 200%, long Vietnamese/English text, contrast and reduced motion in a
+   real browser when available. Follow
+   [canonical multi-platform rules](../../../DESIGN.md#multi-platform-mandatory).
+   Do not report the UI work complete if only one viewport was verified. Report
+   unavailable browser verification explicitly.

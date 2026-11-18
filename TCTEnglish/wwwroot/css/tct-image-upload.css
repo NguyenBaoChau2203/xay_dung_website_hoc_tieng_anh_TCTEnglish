@@ -1,0 +1,287 @@
+/* TCT Image Upload modal — tokens from tct-learning-ui.css; see docs/design-system/tct-image-upload.md */
+
+.tct-image-upload .modal-dialog {
+    max-width: 28rem;
+}
+
+.tct-image-upload .modal-content {
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-lg);
+    box-shadow: var(--tct-shadow-overlay, var(--tct-shadow-soft));
+    overflow: hidden;
+}
+
+.tct-image-upload .modal-header {
+    border-bottom: 1px solid var(--tct-border);
+    padding: 1rem 1.15rem;
+}
+
+.tct-image-upload .modal-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--tct-text);
+}
+
+.tct-image-upload .modal-body {
+    padding: 1.15rem;
+}
+
+.tct-image-upload .modal-footer {
+    border-top: 1px solid var(--tct-border);
+    padding: 0.85rem 1.15rem;
+    gap: 0.5rem;
+}
+
+.tct-image-upload__panel {
+    background: var(--tct-surface);
+    border-radius: var(--tct-radius-lg);
+    padding: 1rem;
+    border: 1px solid var(--tct-border);
+}
+
+.tct-image-upload__head {
+    margin-bottom: 0.85rem;
+}
+
+.tct-image-upload__title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.tct-image-upload__dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 9.5rem;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    border: 1.5px dashed var(--tct-border);
+    border-radius: var(--tct-radius-md);
+    background: var(--tct-surface);
+    transition:
+        background var(--tct-dur, 250ms) var(--tct-ease, ease),
+        border-color var(--tct-dur, 250ms) var(--tct-ease, ease);
+    cursor: pointer;
+}
+
+.tct-image-upload__dropzone:focus-visible {
+    outline: 2px solid var(--tct-focus-ring, var(--tct-primary));
+    outline-offset: 2px;
+}
+
+.tct-image-upload__dropzone.is-dragging {
+    background: var(--tct-primary-soft);
+    border-color: var(--tct-primary);
+    border-style: dashed;
+    border-width: 2px;
+}
+
+.tct-image-upload__icon {
+    font-size: 2rem;
+    color: var(--tct-primary);
+    opacity: 0.95;
+}
+
+.tct-image-upload__drop-text {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--tct-text);
+}
+
+.tct-image-upload__browse {
+    color: var(--tct-primary-strong, var(--tct-primary));
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.tct-image-upload__hint {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--tct-text-muted);
+}
+
+.tct-image-upload__or {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1rem 0;
+    color: var(--tct-text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: lowercase;
+}
+
+.tct-image-upload__or::before,
+.tct-image-upload__or::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--tct-border);
+}
+
+.tct-image-upload__url-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tct-image-upload__url-row .form-control {
+    flex: 1 1 12rem;
+    min-height: var(--tct-target-min, 44px);
+}
+
+.tct-image-upload__url-row .btn {
+    min-height: var(--tct-target-min, 44px);
+}
+
+.tct-image-upload__file {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-md);
+    background: var(--tct-surface);
+}
+
+.tct-image-upload__file.is-hidden {
+    display: none;
+}
+
+.tct-image-upload__file-thumb {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--tct-radius-sm, 8px);
+    background: var(--tct-primary-soft) center / cover no-repeat;
+    border: 1px solid var(--tct-border);
+    flex-shrink: 0;
+}
+
+.tct-image-upload__file-meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.tct-image-upload__file-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--tct-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tct-image-upload__file-size {
+    font-size: 0.75rem;
+    color: var(--tct-text-muted);
+    margin-bottom: 0.35rem;
+}
+
+.tct-image-upload__progress {
+    height: 0.4rem;
+    border-radius: var(--tct-radius-pill, 999px);
+    background: var(--tct-primary-soft);
+    overflow: hidden;
+}
+
+.tct-image-upload__progress > span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--tct-primary);
+    border-radius: inherit;
+    transition: width var(--tct-dur, 250ms) var(--tct-ease, ease);
+}
+
+.tct-image-upload__file.is-complete .tct-image-upload__progress > span {
+    background: var(--tct-primary-strong, var(--tct-primary));
+}
+
+.tct-image-upload__pct {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--tct-text-muted);
+    min-width: 2.5rem;
+    text-align: right;
+}
+
+.tct-image-upload__done {
+    color: var(--tct-success);
+    font-size: 1.15rem;
+}
+
+.tct-image-upload__clear {
+    border: 0;
+    background: transparent;
+    color: var(--tct-danger);
+    min-width: var(--tct-target-min, 44px);
+    min-height: var(--tct-target-min, 44px);
+    padding: 0;
+}
+
+.tct-image-upload__visually-hidden-file {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.tct-image-upload__trigger {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.tct-image-upload__trigger-card {
+    aspect-ratio: 16 / 10;
+    max-width: 28rem;
+    border-radius: var(--tct-radius-lg);
+    border: 1px solid var(--tct-border);
+    overflow: hidden;
+    background: var(--tct-surface-muted, var(--tct-primary-soft));
+    position: relative;
+}
+
+.tct-image-upload__trigger-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.tct-image-upload__trigger-empty {
+    height: 100%;
+    min-height: 9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--tct-text-muted);
+    padding: 1rem;
+    text-align: center;
+}
+
+.tct-image-upload__trigger-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tct-image-upload__dropzone,
+    .tct-image-upload__progress > span {
+        transition: none;
+    }
+}

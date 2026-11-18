@@ -37,5 +37,14 @@ namespace TCTVocabulary.Services
             AllowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".webp" },
             AllowedMimeTypes = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" }
         };
+
+        public static readonly FileUploadOptions ReadingPassage = new()
+        {
+            RelativeDirectory = "images/reading",
+            PublicUrlPrefix = "/images/reading/",
+            MaxFileSizeInBytes = 5 * 1024 * 1024,
+            AllowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".webp" },
+            AllowedMimeTypes = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" }
+        };
     }
 }

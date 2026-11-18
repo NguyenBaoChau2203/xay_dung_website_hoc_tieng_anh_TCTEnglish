@@ -1,227 +1,310 @@
 @model AdminDashboardViewModel
+@using System.Text.Json
 @{
     ViewData["Title"] = "Dashboard";
+    var range7Active = Model.SelectedRangeDays == 7 ? "is-active" : "";
+    var range30Active = Model.SelectedRangeDays == 30 ? "is-active" : "";
+    var chartSeries = Model.DailyActivity.Select(d => new
+    {
+        date = d.Date.ToString("yyyy-MM-dd"),
+        completions = d.Completions,
+        xp = d.XpEarned,
+        learners = d.ActiveLearners
+    });
+    var chartJson = JsonSerializer.Serialize(chartSeries);
+    var hasCompletions = Model.DailyActivity.Any(d => d.Completions > 0 || d.XpEarned > 0);
+    var hasSkillData = Model.SkillBars.Any(s => s.Count > 0);
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/admin-dashboard.css" asp-append-version="true" />
 }
 
-<div class="tct-theme admin-dashboard-page">
-    <!-- ===== Page Header ===== -->
-    <div class="d-flex flex-wrap justify-content-between align-items-center admin-page-header gap-3">
+<div class="admin-dashboard-page tct-theme" data-admin-dashboard>
+    <header class="admin-dash-header">
         <div>
-            <h1 class="admin-page-title">
-                <i class="bi bi-speedometer2 text-primary me-2"></i>Tổng quan hệ thống
-            </h1>
-            <p class="admin-page-subtitle">Thống kê hoạt động và quản trị nền tảng TCT English.</p>
+            <h1 class="admin-dash-title">Dashboard</h1>
+            <p class="admin-dash-subtitle">Trung tâm điều phối nội dung và hoạt động học TCT English</p>
         </div>
-        <div class="admin-date-badge">
-            <i class="bi bi-calendar3"></i>
-            <span>Hôm nay: @DateTime.Now.ToString("dd/MM/yyyy")</span>
-        </div>
-    </div>
+        <nav class="admin-dash-range" aria-label="Lọc theo kỳ">
+            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" asp-route-range="7"
+               class="@range7Active"
+               aria-current="@(Model.SelectedRangeDays == 7 ? "page" : null)">7 ngày</a>
+            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" asp-route-range="30"
+               class="@range30Active"
+               aria-current="@(Model.SelectedRangeDays == 30 ? "page" : null)">30 ngày</a>
+        </nav>
+    </header>
 
-    <!-- ===== KPI Cards ===== -->
-    <div class="row g-3 mb-2">
-        <!-- Total Users -->
-        <div class="col-md-4">
-            <div class="admin-kpi-card admin-kpi-card--users">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="admin-kpi-label">Tổng người dùng</span>
-                    <div class="admin-kpi-icon admin-kpi-icon--users">
-                        <i class="bi bi-people-fill"></i>
+    <section class="row g-3 g-lg-4 mb-4" aria-label="Chỉ số tổng quan">
+        @{
+            var kpis = new[] { Model.TotalUsersKpi, Model.ActiveLearnersKpi, Model.CompletionsKpi, Model.CatalogKpi };
+        }
+        @foreach (var kpi in kpis)
+        {
+            <div class="col-12 col-sm-6 col-xl-3">
+                <article class="admin-dash-kpi">
+                    <div class="admin-dash-kpi-icon tone-@kpi.Tone" aria-hidden="true">
+                        <i class="bi @kpi.IconClass"></i>
+                    </div>
+                    <div>
+                        <p class="admin-dash-kpi-label">@kpi.Label</p>
+                        <p class="admin-dash-kpi-value">@kpi.Value.ToString("N0")</p>
+                        @if (!string.IsNullOrWhiteSpace(kpi.DeltaLabel) && kpi.Delta.HasValue && kpi.Delta.Value != 0)
+                        {
+                            var down = kpi.Delta.Value < 0;
+                            <span class="admin-dash-kpi-delta @(down ? "is-down" : null)">@kpi.DeltaLabel</span>
+                        }
+                    </div>
+                </article>
+            </div>
+        }
+    </section>
+
+    <section class="row g-3 g-lg-4 mb-4" aria-label="Phân tích hoạt động">
+        <div class="col-12 col-lg-7">
+            <div class="admin-dash-panel">
+                <div class="admin-dash-panel-header">
+                    <h2 class="admin-dash-panel-title">Tiến độ học theo ngày</h2>
+                    <span class="text-muted small">@Model.SelectedRangeDays ngày gần nhất</span>
+                </div>
+                <div class="admin-dash-panel-body"
+                     data-activity-chart
+                     data-series='@Html.Raw(chartJson)'>
+                    <div data-chart-svg></div>
+                    <div class="admin-dash-chart-empty" data-chart-empty @(hasCompletions ? "hidden" : null)>
+                        <i class="bi bi-graph-up" aria-hidden="true"></i>
+                        <p class="mb-2">Chưa có hoạt động học trong kỳ này</p>
+                        <a asp-area="Admin" asp-controller="SetManagement" asp-action="Index"
+                           class="btn btn-sm btn-outline-primary">Quản lý Vocabulary Sets</a>
                     </div>
                 </div>
-                <div class="d-flex align-items-baseline justify-content-between flex-wrap gap-2">
-                    <h2 class="admin-kpi-value">@Model.TotalUsers.ToString("N0")</h2>
-                    @if (Model.NewUsersLast7Days > 0)
+            </div>
+        </div>
+        <div class="col-12 col-lg-5">
+            <div class="admin-dash-panel">
+                <div class="admin-dash-panel-header">
+                    <h2 class="admin-dash-panel-title">Phân loại kỹ năng</h2>
+                </div>
+                <div class="admin-dash-panel-body">
+                    @if (!hasSkillData)
                     {
-                        <span class="admin-kpi-trend" title="Người dùng đăng ký trong 7 ngày qua">
-                            <i class="bi bi-arrow-up-short fs-6"></i>+@Model.NewUsersLast7Days <small>7 ngày</small>
-                        </span>
+                        <div class="admin-dash-empty">
+                            <i class="bi bi-bar-chart" aria-hidden="true"></i>
+                            <p class="mb-2">Chưa có hoàn thành kỹ năng trong kỳ này</p>
+                            <a asp-area="Admin" asp-controller="ListeningManagement" asp-action="Index"
+                               class="btn btn-sm btn-outline-primary">Mở Listening Lessons</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="admin-dash-skill">
+                            @foreach (var skill in Model.SkillBars)
+                            {
+                                <div class="admin-dash-skill-row">
+                                    <a class="admin-dash-skill-label"
+                                       asp-area="Admin"
+                                       asp-controller="@skill.Controller"
+                                       asp-action="Index">
+                                        <i class="bi @skill.IconClass" aria-hidden="true"></i>
+                                        @skill.Label
+                                    </a>
+                                    <div class="admin-dash-skill-track" role="presentation">
+                                        <div class="admin-dash-skill-fill"
+                                             data-skill-fill
+                                             data-percent="@skill.Percent"
+                                             style="width:0%"></div>
+                                    </div>
+                                    <span class="admin-dash-skill-count">@skill.Count.ToString("N0")</span>
+                                </div>
+                            }
+                        </div>
                     }
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Total Classes -->
-        <div class="col-md-4">
-            <div class="admin-kpi-card admin-kpi-card--classes">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="admin-kpi-label">Tổng lớp học</span>
-                    <div class="admin-kpi-icon admin-kpi-icon--classes">
-                        <i class="bi bi-collection-fill"></i>
-                    </div>
+    <section class="row g-3 g-lg-4 mb-4" aria-label="Điều phối nội dung">
+        <div class="col-12 col-xl-8">
+            <div class="admin-dash-panel">
+                <div class="admin-dash-panel-header">
+                    <h2 class="admin-dash-panel-title">Công cụ học tập</h2>
                 </div>
-                <div class="d-flex align-items-baseline justify-content-between flex-wrap gap-2">
-                    <h2 class="admin-kpi-value">@Model.TotalClasses.ToString("N0")</h2>
-                    @if (Model.NewClassesLast7Days > 0)
-                    {
-                        <span class="admin-kpi-trend" title="Lớp học được tạo trong 7 ngày qua">
-                            <i class="bi bi-arrow-up-short fs-6"></i>+@Model.NewClassesLast7Days <small>7 ngày</small>
-                        </span>
-                    }
+                <div class="admin-dash-panel-body">
+                    <div class="row g-3">
+                        @foreach (var tool in Model.Tools)
+                        {
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <a class="admin-dash-tool"
+                                   asp-area="Admin"
+                                   asp-controller="@tool.Controller"
+                                   asp-action="Index">
+                                    <div class="admin-dash-tool-top">
+                                        <span class="admin-dash-tool-icon tone-@tool.Tone" aria-hidden="true">
+                                            <i class="bi @tool.IconClass"></i>
+                                        </span>
+                                        <p class="admin-dash-tool-title">@tool.Title</p>
+                                    </div>
+                                    <p class="admin-dash-tool-count">@tool.Count.ToString("N0")</p>
+                                    <span class="admin-dash-tool-cta">Quản lý <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                                </a>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Total Vocabulary Sets -->
-        <div class="col-md-4">
-            <div class="admin-kpi-card admin-kpi-card--sets">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="admin-kpi-label">Tổng học phần từ vựng</span>
-                    <div class="admin-kpi-icon admin-kpi-icon--sets">
-                        <i class="bi bi-journals"></i>
+        <div class="col-12 col-xl-4">
+            <div class="d-flex flex-column gap-3 h-100">
+                <div class="admin-dash-panel">
+                    <div class="admin-dash-panel-header">
+                        <h2 class="admin-dash-panel-title">Cần chú ý</h2>
+                    </div>
+                    <div class="admin-dash-panel-body">
+                        @if (!Model.AttentionItems.Any())
+                        {
+                            <div class="admin-dash-empty py-3">
+                                <i class="bi bi-check2-circle" aria-hidden="true"></i>
+                                <p class="mb-0">Không có mục cần xử lý ngay.</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <ul class="admin-dash-list">
+                                @foreach (var item in Model.AttentionItems)
+                                {
+                                    <li class="admin-dash-list-item">
+                                        <span class="admin-dash-dot severity-@item.Severity" aria-hidden="true"></span>
+                                        <div>
+                                            @if (!string.IsNullOrWhiteSpace(item.Href))
+                                            {
+                                                <a href="@item.Href">
+                                                    <p class="admin-dash-list-title">@item.Title</p>
+                                                    <p class="admin-dash-list-detail">@item.Detail</p>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <p class="admin-dash-list-title">@item.Title</p>
+                                                <p class="admin-dash-list-detail">@item.Detail</p>
+                                            }
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        }
                     </div>
                 </div>
-                <div class="d-flex align-items-baseline justify-content-between flex-wrap gap-2">
-                    <h2 class="admin-kpi-value">@Model.TotalSets.ToString("N0")</h2>
-                    @if (Model.NewSetsLast7Days > 0)
-                    {
-                        <span class="admin-kpi-trend" title="Học phần tạo trong 7 ngày qua">
-                            <i class="bi bi-arrow-up-short fs-6"></i>+@Model.NewSetsLast7Days <small>7 ngày</small>
-                        </span>
-                    }
+
+                <div class="admin-dash-panel flex-grow-1">
+                    <div class="admin-dash-panel-header">
+                        <h2 class="admin-dash-panel-title">Hoạt động gần đây</h2>
+                    </div>
+                    <div class="admin-dash-panel-body">
+                        @if (!Model.ActivityFeed.Any())
+                        {
+                            <div class="admin-dash-empty py-3">
+                                <i class="bi bi-clock-history" aria-hidden="true"></i>
+                                <p class="mb-0">Chưa ghi nhận hoạt động trong kỳ.</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <ul class="admin-dash-list">
+                                @foreach (var item in Model.ActivityFeed)
+                                {
+                                    <li class="admin-dash-list-item">
+                                        <span class="admin-dash-dot severity-info" aria-hidden="true"></span>
+                                        <div class="flex-grow-1">
+                                            <p class="admin-dash-list-title">@item.Message</p>
+                                            <p class="admin-dash-list-detail">
+                                                <span class="admin-dash-feed-meta">@item.OccurredOn.ToString("dd/MM/yyyy") · @item.SkillLabel</span>
+                                            </p>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- ===== Quick Actions ===== -->
-    <div class="row g-2 mb-3">
-        <div class="col-6 col-lg-3">
-            <a asp-area="Admin" asp-controller="UserManagement" asp-action="Index" class="admin-quick-action-card">
-                <div class="admin-quick-action-icon bg-primary bg-opacity-10 text-primary">
-                    <i class="bi bi-people"></i>
-                </div>
-                <div>
-                    <div class="fw-semibold small">Quản lý Users</div>
-                    <div class="text-muted small">Tài khoản & phân quyền</div>
-                </div>
-                <i class="bi bi-arrow-right admin-quick-action-arrow"></i>
-            </a>
-        </div>
-        <div class="col-6 col-lg-3">
-            <a asp-area="Admin" asp-controller="SpeakingVideoManagement" asp-action="Index" class="admin-quick-action-card">
-                <div class="admin-quick-action-icon bg-info bg-opacity-10 text-info">
-                    <i class="bi bi-mic"></i>
-                </div>
-                <div>
-                    <div class="fw-semibold small">Quản lý Speaking</div>
-                    <div class="text-muted small">Video & phụ đề AI</div>
-                </div>
-                <i class="bi bi-arrow-right admin-quick-action-arrow"></i>
-            </a>
-        </div>
-        <div class="col-6 col-lg-3">
-            <a asp-area="Admin" asp-controller="WritingExerciseManagement" asp-action="Index" class="admin-quick-action-card">
-                <div class="admin-quick-action-icon bg-success bg-opacity-10 text-success">
-                    <i class="bi bi-pencil-square"></i>
-                </div>
-                <div>
-                    <div class="fw-semibold small">Quản lý Writing</div>
-                    <div class="text-muted small">Bài tập & câu dịch</div>
-                </div>
-                <i class="bi bi-arrow-right admin-quick-action-arrow"></i>
-            </a>
-        </div>
-        <div class="col-6 col-lg-3">
-            <a asp-area="Admin" asp-controller="AiManagement" asp-action="Index" class="admin-quick-action-card">
-                <div class="admin-quick-action-icon bg-warning bg-opacity-10 text-warning">
-                    <i class="bi bi-robot"></i>
-                </div>
-                <div>
-                    <div class="fw-semibold small">Quản lý AI</div>
-                    <div class="text-muted small">Mô hình & Intent</div>
-                </div>
-                <i class="bi bi-arrow-right admin-quick-action-arrow"></i>
-            </a>
-        </div>
-    </div>
-
-    <!-- ===== Recent Users Table ===== -->
-    <div class="admin-card-surface">
-        <div class="admin-card-header">
-            <h2 class="admin-card-title">
-                <i class="bi bi-clock-history text-primary"></i>
-                <span>Người dùng mới nhất</span>
+    <section class="admin-dash-panel mb-2" aria-label="Người dùng mới nhất">
+        <div class="admin-dash-panel-header">
+            <h2 class="admin-dash-panel-title">
+                <i class="bi bi-clock-history me-2 text-muted" aria-hidden="true"></i>Người dùng mới nhất
             </h2>
             <a asp-area="Admin" asp-controller="UserManagement" asp-action="Index"
-               class="btn btn-sm btn-outline-primary rounded-pill px-3">
-                Xem tất cả danh sách <i class="bi bi-arrow-right ms-1"></i>
+               class="btn btn-sm btn-outline-primary">
+                Xem tất cả <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i>
             </a>
         </div>
-
-        <div class="table-responsive">
-            <table class="table admin-table align-middle">
-                <thead>
-                    <tr>
-                        <th class="ps-4">ID</th>
-                        <th>Họ tên & Email</th>
-                        <th>Vai trò</th>
-                        <th>Trạng thái</th>
-                        <th>Ngày tạo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (!Model.RecentUsers.Any())
-                    {
+        <div class="admin-dash-panel-body p-0">
+            <div class="table-responsive tct-table-wrap">
+                <table class="table table-hover align-middle mb-0 admin-dash-table">
+                    <thead>
                         <tr>
-                            <td colspan="5">
-                                <div class="admin-empty-state">
-                                    <i class="bi bi-inbox admin-empty-state-icon d-block"></i>
-                                    <p class="mb-0 fw-medium">Chưa có người dùng nào trong hệ thống.</p>
-                                </div>
-                            </td>
+                            <th class="ps-4">ID</th>
+                            <th>Họ tên</th>
+                            <th class="admin-dash-col-email">Email</th>
+                            <th>Vai trò</th>
+                            <th>Trạng thái</th>
+                            <th class="admin-dash-col-created">Ngày tạo</th>
                         </tr>
-                    }
-                    @foreach (var user in Model.RecentUsers)
-                    {
-                        <tr>
-                            <td class="ps-4 fw-semibold text-muted">#@user.UserId</td>
-                            <td>
-                                <div class="d-flex align-items-center gap-2">
-                                    <div class="admin-user-avatar">
-                                        @(string.IsNullOrEmpty(user.FullName) || user.FullName == "N/A" ? "U" : user.FullName.Substring(0, 1).ToUpper())
-                                    </div>
-                                    <div>
-                                        <div class="fw-semibold text-dark">@user.FullName</div>
-                                        <small class="text-muted">@user.Email</small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                @{
-                                    var (roleClass, roleIcon) = user.Role switch
-                                    {
-                                        "Admin" => ("admin-role-badge--admin", "bi-shield-fill"),
-                                        "Premium" => ("admin-role-badge--premium", "bi-gem"),
-                                        _ => ("admin-role-badge--standard", "bi-person")
-                                    };
-                                }
-                                <span class="admin-role-badge @roleClass">
-                                    <i class="bi @roleIcon"></i>@user.Role
-                                </span>
-                            </td>
-                            <td>
-                                @{
-                                    var (statusClass, statusIcon, statusLabel) = user.Status switch
-                                    {
-                                        UserStatus.Online  => ("admin-status-badge--online",  "bi-circle-fill", "Online"),
-                                        UserStatus.Blocked => ("admin-status-badge--blocked", "bi-x-circle-fill", "Blocked"),
-                                        _                  => ("admin-status-badge--offline", "bi-moon-fill", "Offline")
-                                    };
-                                }
-                                <span class="admin-status-badge @statusClass">
-                                    <i class="bi @statusIcon" style="font-size: 0.65rem;"></i>@statusLabel
-                                </span>
-                            </td>
-                            <td class="text-muted small">@user.CreatedAt?.ToString("dd/MM/yyyy")</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @if (!Model.RecentUsers.Any())
+                        {
+                            <tr>
+                                <td colspan="6" class="text-center text-muted py-5">
+                                    <i class="bi bi-inbox fs-1 d-block mb-2" aria-hidden="true"></i>
+                                    Chưa có người dùng nào.
+                                </td>
+                            </tr>
+                        }
+                        @foreach (var user in Model.RecentUsers)
+                        {
+                            <tr>
+                                <td class="ps-4 fw-medium">#@user.UserId</td>
+                                <td>@user.FullName</td>
+                                <td class="admin-dash-col-email">@user.Email</td>
+                                <td>
+                                    @{
+                                        var roleBadge = user.Role switch
+                                        {
+                                            "Admin" => "bg-danger",
+                                            "Premium" => "bg-primary",
+                                            _ => "bg-secondary"
+                                        };
+                                    }
+                                    <span class="badge @roleBadge">@user.Role</span>
+                                </td>
+                                <td>
+                                    @{
+                                        var (statusBadge, statusIcon, statusLabel) = user.Status switch
+                                        {
+                                            UserStatus.Online => ("badge bg-success", "bi-check-circle-fill", "Online"),
+                                            UserStatus.Blocked => ("badge bg-danger", "bi-x-circle-fill", "Blocked"),
+                                            _ => ("badge bg-secondary", "bi-moon-fill", "Offline")
+                                        };
+                                    }
+                                    <span class="@statusBadge">
+                                        <i class="bi @statusIcon me-1" aria-hidden="true"></i>@statusLabel
+                                    </span>
+                                </td>
+                                <td class="admin-dash-col-created">@user.CreatedAt?.ToString("dd/MM/yyyy")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+    </section>
 </div>
+
+@section Scripts {
+    <script src="~/js/admin-dashboard.js" asp-append-version="true"></script>
+}

@@ -1,52 +1,32 @@
-﻿@model TCTEnglish.Areas.Admin.ViewModels.ReadingCreateViewModel
+﻿@model TCTEnglish.Areas.Admin.ViewModels.ReadingEditorViewModel
+@using TCTEnglish.Areas.Admin.ViewModels
 @{
-    int id = ViewBag.Id;
+    ViewData["Title"] = "Chỉnh sửa bài đọc";
 }
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-between mb-3">
-        <h2>Chỉnh sửa bài đọc</h2>
-        <a asp-action="Index" class="btn btn-outline-secondary">Quay lại</a>
+@section Styles {
+    <link rel="stylesheet" href="~/css/tct-image-upload.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin-reading.css" asp-append-version="true" />
+}
+
+<div class="container-fluid py-4 tct-theme admin-reading-page">
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-3 mb-4">
+        <div>
+            <div class="admin-reading-eyebrow mb-2">Quản trị Reading</div>
+            <h1 class="h3 admin-reading-header-title mb-1">@Model.Title</h1>
+            <p class="admin-reading-header-desc mb-0">
+                Sửa metadata, nội dung và câu hỏi khi được phép; kiểm duyệt phía trên. Từ vựng qua Excel.
+            </p>
+        </div>
+        <partial name="_ReadingStatusBadge" model="Model.Status" />
     </div>
 
-    <form asp-action="Edit" asp-route-id="@id" method="post" class="card shadow-sm p-4">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="mb-3">
-                    <label class="form-label">Tiêu đề</label>
-                    <input asp-for="Title" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Nội dung bài đọc (HTML)</label>
-                    <textarea asp-for="Content" class="form-control" rows="12"></textarea>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="mb-3">
-                    <label class="form-label">Cấp độ (A1-C1)</label>
-                    <select asp-for="Level" class="form-select">
-                        <option>A1</option>
-                        <option>A2</option>
-                        <option>B1</option>
-                        <option>B2</option>
-                        <option>C1</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Chủ đề</label>
-                    <input asp-for="Topic" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">URL Ảnh</label>
-                    <input asp-for="ImageUrl" class="form-control" />
-                </div>
-                <div class="form-check mb-3">
-                    <input asp-for="IsPublished" class="form-check-input" />
-                    <label class="form-check-label">Cho phép hiển thị</label>
-                </div>
-                <hr />
-                <button type="submit" class="btn btn-primary w-100 mb-2">Lưu thay đổi</button>
-            </div>
-        </div>
-    </form>
+    <partial name="_ReadingAlerts" />
+    <partial name="_ReadingWorkflowPanel" model="Model" />
+    <partial name="_ReadingEditorForm" model="Model" />
 </div>
+
+@section Scripts {
+    <script src="~/js/tct-image-upload.js" asp-append-version="true"></script>
+    <script src="~/js/admin-reading.js" asp-append-version="true"></script>
+}

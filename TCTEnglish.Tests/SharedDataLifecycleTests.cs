@@ -162,14 +162,16 @@ public class SharedDataLifecycleTests
             await new SharedDataExporter(source,folder.Path,new(){{"team-owner",111}}).ExportAsync(folder.Path,kind,id,key,key);
         }
         var packages=await SharedDataFormat.LoadAsync(folder.Path);
-        Assert.Equal(19,packages.Sum(p=>p.Package.Records.Count));
+        Assert.Equal(21,packages.Sum(p=>p.Package.Records.Count));
+        Assert.Contains(packages.SelectMany(p => p.Package.Records), r => r.Kind == "ReadingParagraph");
+        Assert.Contains(packages.SelectMany(p => p.Package.Records), r => r.Kind == "ReadingVocabularyItem");
         await WithDb(async destination=>
         {
             destination.Users.Add(new(){UserId=444,Email="destination@example.test",PasswordHash="different",FullName="Destination",Role="Admin",CreatedAt=DateTime.UtcNow});await destination.SaveChangesAsync();
             destination.ReadingPassages.Add(new(){Id=700,Title="Unrelated",Content="Keep",Level="A1",CreatedAt=DateTime.UtcNow});await destination.SaveChangesAsync();
             var engine=new SharedDataEngine(destination,folder.Path,new(){{"team-owner",444}});
             await engine.ApplyAsync(packages);await engine.ApplyAsync(packages);
-            Assert.Equal(19,await destination.SharedDataBindings.CountAsync());
+            Assert.Equal(21,await destination.SharedDataBindings.CountAsync());
             Assert.Equal(444,(await destination.Classes.SingleAsync()).OwnerId);
             Assert.Equal(444,(await destination.Sets.SingleAsync()).OwnerId);
             Assert.Equal(444,(await destination.WritingAcceptedAnswers.SingleAsync()).ApprovedByUserId);

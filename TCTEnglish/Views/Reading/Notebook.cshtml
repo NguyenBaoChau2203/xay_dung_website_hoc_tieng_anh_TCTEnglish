@@ -1,0 +1,48 @@
+@model IEnumerable<TCTEnglish.ViewModels.ReadingNotebookEntryViewModel>
+@{
+    ViewData["Title"] = "Vocabulary Notebook";
+    Layout = "_Layout";
+}
+
+<div class="container py-4 tct-theme">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <h1 class="h3 mb-0">Vocabulary Notebook</h1>
+        <div class="d-flex gap-2">
+            <a href="/Reading/Notebook/Export" class="btn btn-outline-secondary btn-sm">Export CSV</a>
+            <a asp-controller="Study" asp-action="Reading" class="btn btn-outline-primary btn-sm">Thư viện Reading</a>
+        </div>
+    </div>
+
+    <form method="get" class="mb-3">
+        <input type="search" name="q" value="@ViewBag.Search" class="form-control" placeholder="Tìm từ đã lưu..." />
+    </form>
+
+    @if (!Model.Any())
+    {
+        <p class="text-muted">Chưa có từ nào trong sổ tay.</p>
+    }
+    else
+    {
+        <div class="row g-3" id="notebookFlashcards">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h2 class="h5">@item.Word</h2>
+                            <p class="mb-1 text-muted">@(item.Ipa ?? "") @(item.PartOfSpeech ?? "")</p>
+                            <p class="mb-1">@(item.EnglishDefinition ?? "")</p>
+                            <p class="mb-1">@(item.VietnameseMeaning ?? "")</p>
+                            <p class="small">@(item.Example ?? "")</p>
+                            <form asp-controller="Reading" asp-action="DeleteNotebook" method="post">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Xóa</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

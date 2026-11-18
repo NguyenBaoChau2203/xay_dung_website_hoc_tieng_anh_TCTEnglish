@@ -6,7 +6,7 @@ using TCTVocabulary.Models;
 
 namespace TCTEnglish.Infrastructure.SharedData;
 
-public sealed record SharedReference(string Property, string Kind, bool Optional = false);
+public sealed record SharedReference(string Property, string Kind, bool Optional = false, bool AllowMissing = false);
 
 /// <summary>Explicit portable content contract. No arbitrary EF entity/table access.</summary>
 public sealed record SharedEntitySpec(Type Type, string Id, string[] Fields, SharedReference[] References,
@@ -22,7 +22,15 @@ public sealed record SharedEntitySpec(Type Type, string Id, string[] Fields, Sha
     public IEnumerable<string> AllFields => Fields.Concat(OptionalFields);
 
     /// <summary>True when an optional field's current value equals the default and should not be written.</summary>
-    public bool IsDefaultOptionalValue(string field, object? value) => value == null || value is false;
+    public bool IsDefaultOptionalValue(string field, object? value, object row) => Equals(value, OptionalDefault(field, row));
+
+    public object? OptionalDefault(string field, object row) => (row, field) switch
+    {
+        (ReadingPassage passage, "Status") => passage.IsPublished ? "Published" : "Draft",
+        (ReadingQuestion, "QuestionType") => "MultipleChoice",
+        (ReadingQuestion, "Points") => 1,
+        _ => Property(field).PropertyType.IsValueType ? Activator.CreateInstance(Property(field).PropertyType) : null
+    };
 
     public PropertyInfo Property(string name) => Type.GetProperty(name) ?? throw new SharedDataException("Unknown content property.");
     public int GetId(object entity) => (int)Property(Id).GetValue(entity)!;
@@ -42,9 +50,11 @@ public static class SharedDataRegistry
         ["Set"] = Spec<Set>("SetId", "SetName Description", [new("FolderId", "Folder", true)], ["OwnerId"]),
         ["Card"] = Spec<Card>("CardId", "Term Definition ImageUrl Phonetic Example ExampleTranslation Topic", [new("SetId", "Set")],
             optionalFields: "PartsOfSpeech MeaningEn Cefr PhoneticUk Emoji DetailsJson ImageSourceJson"),
-        ["ReadingPassage"] = Spec<ReadingPassage>("Id", "Title Content Level Topic ImageUrl IsPublished"),
-        ["ReadingQuestion"] = Spec<ReadingQuestion>("Id", "QuestionText OrderIndex", [new("PassageId", "ReadingPassage")]),
-        ["ReadingOption"] = Spec<ReadingOption>("Id", "OptionText IsCorrect", [new("QuestionId", "ReadingQuestion")]),
+        ["ReadingPassage"] = Spec<ReadingPassage>("Id", "Title Content Level Topic ImageUrl IsPublished", optionalFields: "Description EstimatedTimeMinutes Status ExternalReadingKey"),
+        ["ReadingParagraph"] = Spec<ReadingParagraph>("Id", "ExternalParagraphKey ParagraphOrder ParagraphContent", [new("ReadingPassageId", "ReadingPassage")]),
+        ["ReadingQuestion"] = Spec<ReadingQuestion>("Id", "QuestionText OrderIndex", [new("PassageId", "ReadingPassage"), new("EvidenceParagraphId", "ReadingParagraph", true, true)], optionalFields: "QuestionType Points ParagraphReference CorrectAnswerText Explanation EvidenceText Paraphrase ExternalQuestionKey"),
+        ["ReadingOption"] = Spec<ReadingOption>("Id", "OptionText IsCorrect", [new("QuestionId", "ReadingQuestion")], optionalFields: "ExternalOptionKey MatchKey MatchSide OptionOrder"),
+        ["ReadingVocabularyItem"] = Spec<ReadingVocabularyItem>("Id", "ExternalVocabularyKey Word Ipa PartOfSpeech EnglishDefinition VietnameseMeaning Example", [new("ReadingPassageId", "ReadingPassage"), new("ParagraphId", "ReadingParagraph", true)]),
         ["ListeningLesson"] = Spec<ListeningLesson>("Id", "Title Level Topic YoutubeId AudioUrl ThumbnailUrl Duration Speaker1Name Speaker2Name Speaker1Country Speaker2Country IsPublished TranscriptSource"),
         ["ListeningTranscriptLine"] = Spec<ListeningTranscriptLine>("Id", "OrderIndex Speaker Text VietnameseMeaning StartTime EndTime", [new("LessonId", "ListeningLesson")]),
         ["ListeningQuizQuestion"] = Spec<ListeningQuizQuestion>("Id", "OrderIndex QuestionText OptionA OptionB OptionC OptionD CorrectAnswer Explanation", [new("LessonId", "ListeningLesson")]),
@@ -66,6 +76,7 @@ public static class SharedDataRegistry
     {
         ("Folder", "Folder", "ParentFolderId") or ("Folder", "Set", "FolderId") or ("Set", "Card", "SetId") or
         ("ReadingPassage", "ReadingQuestion", "PassageId") or ("ReadingQuestion", "ReadingOption", "QuestionId") or
+        ("ReadingPassage", "ReadingParagraph", "ReadingPassageId") or ("ReadingPassage", "ReadingVocabularyItem", "ReadingPassageId") or
         ("ListeningLesson", "ListeningTranscriptLine", "LessonId") or ("ListeningLesson", "ListeningQuizQuestion", "LessonId") or ("ListeningLesson", "ListeningVocabItem", "LessonId") or
         ("SpeakingPlaylist", "SpeakingVideo", "PlaylistId") or ("SpeakingVideo", "SpeakingSentence", "VideoId") or
         ("WritingExercise", "WritingExerciseSentence", "WritingExerciseId") or ("WritingExerciseSentence", "WritingAcceptedAnswer", "WritingExerciseSentenceId") or

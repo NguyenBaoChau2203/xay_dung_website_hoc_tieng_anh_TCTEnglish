@@ -160,6 +160,10 @@ proposing follow-up work so they do not optimize already-completed items.
 
 - Triệu chứng: `_AdminLayout.cshtml` không nạp jQuery, nhưng `SpeakingVideoManagement/{Create,Edit}` và `WritingExerciseManagement/{Create,Edit}` vẫn include `_ValidationScriptsPartial` (jquery.validate) → `ReferenceError: jQuery is not defined` ở console (suy ra từ mã nguồn, chưa mở các trang này trong trình duyệt vì thuộc người khác).
 - Các view của Trọng (SetManagement, ListeningManagement, NotificationManagement) đã gỡ include này; test `scripts/tests/test_owner_admin_views_sweep.cjs` canh lại khi layout có jQuery.
+- PR140 (18/11/2026): ReadingManagement Create/Edit đã gỡ partial chết, thêm
+  native required và giữ validation server. HTTP regression và browser sau
+  restart không còn lỗi jQuery trên hai form Reading; không suy ra rằng các
+  form Speaking/Writing nêu trên đã được sửa.
 - Hướng sửa: chủ các module Speaking/Writing gỡ include tương tự, hoặc chủ layout admin nạp jQuery (đổi hành vi: bật validation phía client).
 
 ### SWEEP-LISTENING-YOUTUBE-THUMB-404 — confirmed 16/11/2026

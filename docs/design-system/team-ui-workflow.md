@@ -22,11 +22,14 @@ Mọi thành viên dùng cùng token/component, không tự dựng bộ Clay ri�
 | Cần | Ở đâu |
 | --- | --- |
 | Chuẩn thiết kế (màu, font, bo góc, lớp, layout, a11y) | `DESIGN.md` |
+| Luật đa nền tảng (mobile + desktop, whole-feature) | `docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md` |
 | Token (`--tct-*`) và class (`.tct-*`, `.tct-theme`) | `TCTEnglish/wwwroot/css/tct-learning-ui.css` |
 | Partial dùng chung | `TCTEnglish/Views/Shared/_PageHeader.cshtml`, `_StateMessage.cshtml` |
 | ViewModel của partial | `TCTEnglish/ViewModels/SharedUiViewModels.cs` |
 | Gallery có ví dụ chép được | `docs/design-system/preview.html` |
+| Upload ảnh (modal states, MVC staging) | [tct-image-upload.md](tct-image-upload.md) — bắt buộc khi thiết kế UI upload ảnh mới |
 | Prompt giao việc cho agent | `.ai/prompts/implement-page-with-team-design-system.md` |
+| Hàng đợi rà soát đa nền tảng | `docs/superpowers/plans/2026-11-09-multi-platform-feature-audit.md` |
 
 **Mở gallery:** mở trực tiếp `docs/design-system/preview.html` bằng trình duyệt (cần
 internet vì dùng đúng các CDN của ứng dụng). Gallery nạp CSS/JS thật của repo; thu/phóng
@@ -93,27 +96,33 @@ Mỗi trang đúng **một** `<h1>` (partial `_PageHeader` đã tạo nó). Nút
    `pwsh -NoProfile -File scripts/pull-local.ps1`. Pull code thành công chưa đủ: cần mã thoát 0
    và dữ liệu dùng chung đã đồng bộ (xem mục 8).
 2. **Nhánh chủ đề:** `feature/<ten-man-hinh>` hoặc `fix/...`, không dùng tiền tố `codex/`.
-3. **Xác định phạm vi:** route, vai trò, trạng thái (loading/empty/error/success), file
-   view/CSS/JS bạn sở hữu. Việc nằm ngoài (ví dụ đổi layout chung) ghi thành đề xuất.
+3. **Xác định phạm vi:** liệt kê **toàn bộ surface** của chức năng trong đợt này (mọi
+   route/view/CSS/JS liên quan), vai trò, trạng thái (loading/empty/error/success). Việc nằm
+   ngoài (ví dụ đổi layout chung) ghi thành đề xuất shared-impact. Không tách “chỉ desktop”
+   hoặc “chỉ mobile” thành đợt sau.
 4. **Chọn component** từ gallery/DESIGN.md trước khi tự tạo. Thiếu component: làm theo mục 5.
    Bản làm lại cần thể hiện Claymorphism bằng panel/nút nổi mềm từ nguồn chung;
    trang bảng dữ liệu và nội dung dài dùng mức bóng nhẹ ở khung chứa.
 5. **CSS có phạm vi:** `wwwroot/css/{feature}.css`, selector bắt đầu bằng class của trang,
    giá trị lấy từ `var(--tct-*)`. Không khai báo `:root` mới, không hex riêng, không selector phần tử toàn cục.
+   Không hardcode offset sidebar/header; dùng token shell.
 6. **Kiểm tra trên trang thật:** `pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser`
    (nếu cổng bận hãy dùng cổng khác, đừng tắt tiến trình của người khác). Dùng tài khoản test
-   cục bộ trong `.appdata/local/access.json`. Xem 1440, 768, 375/390, phóng 200%, văn bản tiếng
-   Việt/Anh dài, Tab/Escape, trạng thái lỗi.
+   cục bộ trong `.appdata/local/access.json`. Kiểm tra **cả** desktop (sidebar mở/thu) và
+   mobile (drawer/overlay), 1440 / 768 / 375/390, phóng 200%, văn bản tiếng Việt/Anh dài,
+   Tab/Escape, trạng thái lỗi — theo
+   [spec đa nền tảng](../superpowers/specs/2026-11-09-multi-platform-ui-design.md).
 7. **Review:** tự xem diff, điền checklist ở mục 7, rồi nhờ chủ dự án review. Commit, PR và merge
    cần chủ dự án cho phép ở từng bước.
 
 ## 3. Bắt buộc và linh hoạt
 
 Bảng đầy đủ nằm trong DESIGN.md (mục *Mandatory versus page-level*). Tóm tắt: **bắt buộc**
-là màu, font/độ đậm, shell và offset, hình dạng control, focus ring, validation, bốn trạng thái
-UI, nền tảng truy cập (a11y), một `<h1>`. **Chủ trang quyết định** bố cục nội dung, thứ tự mục,
-mật độ thông tin và component riêng được dựng từ token. Màn học (practice) và màn Admin không
-buộc dùng cùng một bố cục.
+là màu, font/độ đậm, shell và offset, **đa nền tảng mobile + desktop trong cùng thay đổi
+(whole-feature)**, hình dạng control, focus ring, validation, bốn trạng thái UI, nền tảng
+truy cập (a11y), một `<h1>`. **Chủ trang quyết định** bố cục nội dung, thứ tự mục, mật độ
+thông tin và component riêng được dựng từ token. Màn học (practice) và màn Admin không buộc
+dùng cùng một bố cục, nhưng đều phải đạt acceptance matrix đa nền tảng.
 
 ## 4. Ranh giới trách nhiệm
 
@@ -121,7 +130,11 @@ buộc dùng cùng một bố cục.
 | --- | --- |
 | `tct-learning-ui.css`, `layout.css`, `site.css` | `Views/<Feature>/**`, `wwwroot/css/<feature>.css`, `wwwroot/js/<feature>.js` |
 | `_Layout.cshtml`, `_AdminLayout.cshtml`, `_PageHeader`, `_StateMessage` | ViewModel và controller của tính năng (theo quy tắc kiến trúc) |
-| `DESIGN.md`, `AGENTS.md`, gallery | Dữ liệu mẫu và nội dung của tính năng |
+| `DESIGN.md`, `AGENTS.md`, gallery, spec đa nền tảng | Dữ liệu mẫu và nội dung của tính năng |
+
+**Shell note:** offset footer khi sidebar desktop/tablet mở thuộc `layout.css` (sibling
+`.layout:not(.sidebar-collapsed) ~ .tct-footer`); sửa chung ảnh hưởng mọi trang dùng
+`_Layout.cshtml`.
 
 Phân công người–màn hình do chủ dự án quyết định; bảng ở mục 6 để trống cột *Chủ sở hữu*
 cho đến khi được gán. Không tự suy ra phân công.
@@ -144,32 +157,32 @@ Màn hình cũ chưa dùng token. Khi chuyển một màn hình: thay hex/biến
 bọc `tct-theme`, dùng partial/component chung, xoá `:root` riêng của trang, cập nhật dòng ở đây
 trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mới có cùng ý nghĩa với token.
 
-| Màn hình | Route / view | CSS hiện tại | Hệ token riêng đang dùng | Trạng thái | Chủ sở hữu |
-| --- | --- | --- | --- | --- | --- |
-| Dashboard | `/Home/Index` | `Dashboard.css` | `--brand`, `--surface`, `--radius` (không tiền tố) | Chưa chuyển | _chủ dự án gán_ |
-| Landing (trang giới thiệu công khai) | `/` và `/Home/Landing` (`Layout = null`) | `landing.css` (+ `landing.js`, `landing-core.js`) | Token riêng `--lp-*` khai báo một lần trong `.lp` (nền tối, có chủ ý: khác tông Clay sáng của nhóm; xem known-issues LANDING-DARK-THEME-D1) | Đã làm lại 16/11/2026 trên nhánh `feature/landing-night` (chưa hợp vào `master`) | Trọng |
-| Từ vựng | `/Vocabulary/*` (trang chủ, khóa học, màn học 3 bước) | `vocabulary.css` + kit `study-kit.css` (phạm vi `.tv-page`) + `practice.css` cho màn học | `var(--tct-*)` dùng chung | Đã chuyển code (làm lại 13/11/2026, thêm SRS và minh họa 14/11/2026: banner mục tiêu, bảng trí nhớ, lịch ôn 7 ngày, bìa khóa học có hình); đã hợp vào `master` (merge `22c53ab`, 14/11/2026) | Trọng |
-| Nói | `/Speaking`, `/Speaking/Practice` + `/Admin/SpeakingVideoManagement*` | `speaking.css`, `admin-speaking-video.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
-| Nghe | `/Home/Listening`, `/Home/Listening/Practice/{id}` | `study-kit.css` + `listening.css` | `var(--tct-*)` dùng chung (kit `k-*` mở rộng cho `.tl-page`) | Đã chuyển Clay 2026-11-13 | Huỳnh Phú Trọng |
-| Viết | `/Home/Writing*` + `/Admin/WritingExerciseManagement*` | `writing-index.css`, `writing-exercises.css`, `writing.css`, `admin-writing-exercise.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
-| Đọc | `/Home/Reading*` | `Reading.css`, `reading-study.css` | `--rd-*` | Chưa chuyển | _chủ dự án gán_ |
-| Mục tiêu | `/Goals` | `goals.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
-| Tài khoản | `/Account/Profile`, `/Account/Settings`, `/Account/AccessDenied` | `account-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
-| Đăng nhập / khôi phục mật khẩu | `/Account/Login`, `/Account/ForgotPassword*`, `/Account/ResetPassword` (`Layout = null`) | `account-auth-ui.css` + `tct-learning-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
-| Lớp học, thư mục | `/Class/*`, `/Folder/*` (trang thư mục mới: dòng "Bộ thẻ cá nhân") | `Class-Detail.css` | Giá trị cố định | Lớp học chưa chuyển; danh sách và trang thư mục đã chuyển Clay 2026-11-16 | _chủ dự án gán_ |
-| Thông báo | `/Notification` (cả `/Notification/Index`), bảng chuông trong khung chung; trang Admin `/Admin/NotificationManagement/{Create,History}` | `study-kit.css` (phạm vi `.tn-page`) + `notification-page.css`; `notifications.css` cho chuông (+ `notification-core.js`, `notification-page.js`, `notifications.js`) | `--tct-*` | Đã chuyển Clay 2026-11-17 (trang có nhóm theo ngày, lọc, thẻ nhắc học; bảng chuông có tab, tải theo keyset và bàn phím đầy đủ; Admin chỉ sửa logic và câu chữ; xem docs/superpowers/plans/2026-11-17-notifications-complete.md) | Huỳnh Phú Trọng |
-| AI chat và Admin AI | `/AI/Chat`, chat nhúng/launcher + `/Admin/AiManagement` | `ai-chat.css`, `ai-chat-launcher.css`, `admin-ai-management.css` | Token chung; logo riêng theo hướng dẫn nhận diện | Đã chuyển code; xem ledger 10/11 | Chau |
-| Liên hệ | `/Home/Contact` | `contact.css`, `contact.js` | `var(--tct-*)` dùng chung, Claymorphism | Đã chuyển Clay 2026-11-17; xem docs/feature-audits/2026-11-16-contact-refresh/02-interface-ledger.md | Chau |
-| Bộ thẻ cá nhân | `/Sets`, `/Sets/Folders/{id}`, `/Sets/{id}`, `/Sets/{id}/Add`, `/Sets/{id}/Import`, `/Sets/Cards/{id}`, `/s/{slug}` | `study-kit.css` + `personal-sets.css` | `--tct-*` | Đã chuyển Clay 2026-11-11 (token Clay dùng chung); xem docs/superpowers/plans/2026-11-11-study-clay.md | Huỳnh Phú Trọng |
-| Thanh toán Premium | `/Premium`, `/Billing/Order/{mã}`, `/Billing/History` (`/Billing/MoMoQr` chỉ chuyển hướng); trang trả về không xác minh được: `InvalidReturn` | `study-kit.css` (phạm vi `.tb-page`) + `billing.css` (+ `billing-core.js`, `billing-pricing.js`, `billing-order.js`) | `--tct-*` | Đã chuyển Clay 2026-11-17 (làm lại cả luồng: một form chọn gói và cách trả, trang đơn tự cập nhật, lịch sử có tiếp tục thanh toán và biên nhận; xem docs/superpowers/plans/2026-11-17-billing-hardening-and-redesign.md); trang Admin thanh toán chỉ sửa lỗi và câu chữ | Huỳnh Phú Trọng |
-| Luyện tập | `/Practice`, `/Practice/{mode}`, `/Practice/HardWords` | `study-kit.css` + `practice.css` | `--tct-*` | Đã chuyển Clay 2026-11-11 (token Clay dùng chung); xem docs/superpowers/plans/2026-11-11-study-clay.md | Huỳnh Phú Trọng |
-| Khung Admin, Dashboard và Users | Layout Admin + `/Admin/Dashboard`, `/Admin/UserManagement` | `admin-shell.css`, `admin-dashboard.css`, `admin-user-management.css`; giữ `account.css` cho tương thích | Token chung và CSS theo phạm vi | Đã chuyển code; xem ledger 10/11 | Chau |
-| Loader đăng nhập | Overlay trong `Views/Account/Auth.cshtml` | `account-auth-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code; xem ledger 10/11 | Chau |
-| Admin Bộ từ vựng | `/Admin/SetManagement` (danh sách, tạo/sửa bộ hệ thống, thẻ của bộ, thêm/sửa thẻ, tải JSON) | `admin-content.css` (phạm vi `.ac-page`) + `admin-content.js` | `--tct-*`, bộ phần tử `_Ac*` dùng chung | Đã chuyển 18/11/2026; xem docs/superpowers/plans/2026-11-18-admin-content-complete.md | Huỳnh Phú Trọng |
-| Admin Bài nghe | `/Admin/ListeningManagement` (danh sách, trình sửa 4 tab `Editor/{id}`) | `admin-content.css` + `admin-content.js` + `admin-listening-editor.js` | `--tct-*`, bộ phần tử `_Ac*` dùng chung | Đã chuyển 18/11/2026; xem plan 2026-11-18-admin-content-complete | Huỳnh Phú Trọng |
-| Admin Thanh toán | `/Admin/BillingManagement` (danh sách đơn + 5 trang phụ) | `admin-content.css` (phạm vi `.ac-page`, `.ac-billing`) + `admin-content.js` | `--tct-*`; 5 trang phụ giữ markup Bootstrap trong `.ac-billing` | Đã chuyển 18/11/2026 (trang chính bằng bộ chung, trang phụ restyle); xem plan 2026-11-18-admin-content-complete | Huỳnh Phú Trọng |
-| Admin Thông báo | `/Admin/NotificationManagement/{Create,History}` | `admin-content.css` + `admin-content.js` | `--tct-*`, bộ phần tử `_Ac*` dùng chung | Đã chuyển 18/11/2026; xem plan 2026-11-18-admin-content-complete | Huỳnh Phú Trọng |
-| Admin của Class, Reading, Message | `/Admin` của lớp học, bài đọc, tin nhắn | CSS module hiện có + khung Admin chung | Kiểm tra theo từng module | Chưa chuyển toàn bộ nội dung module | Chủ module tương ứng |
+Cột **Đa nền**: `Chưa audit` | Màn hình | Route / view | CSS hiện tại | Hệ token riêng đang dùng | Trạng thái | Đa nền | Chủ sở hữu |
+| --- | --- | --- | --- | --- | --- | --- |
+| Dashboard | `/Home/Index` | `Dashboard.css` | `var(--tct-*)` theo phạm vi Dashboard | Đang review/tích hợp PR140 | Chưa audit | _chủ dự án gán_ |
+| Landing (trang giới thiệu công khai) | `/` và `/Home/Landing` (`Layout = null`) | `landing.css` (+ `landing.js`, `landing-core.js`) | Token riêng `--lp-*` khai báo một lần trong `.lp` (nền tối, có chủ ý: khác tông Clay sáng của nhóm; xem known-issues LANDING-DARK-THEME-D1) | Đã làm lại 16/11/2026 trên nhánh `feature/landing-night` (chưa hợp vào `master`) | Chưa audit | Trọng |
+| Từ vựng | `/Vocabulary/*` (trang chủ, khóa học, màn học 3 bước) | `vocabulary.css` + kit `study-kit.css` (phạm vi `.tv-page`) + `practice.css` cho màn học | `var(--tct-*)` dùng chung | Đã chuyển code (làm lại 13/11/2026, thêm SRS và minh họa 14/11/2026: banner mục tiêu, bảng trí nhớ, lịch ôn 7 ngày, bìa khóa học có hình); đã hợp vào `master` (merge `22c53ab`, 14/11/2026) | Chưa audit | Trọng |
+| Nói | `/Speaking`, `/Speaking/Practice` + `/Admin/SpeakingVideoManagement*` | `speaking.css`, `admin-speaking-video.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chưa audit | Chau |
+| Nghe | `/Home/Listening`, `/Home/Listening/Practice/{id}` | `study-kit.css` + `listening.css` | `var(--tct-*)` dùng chung (kit `k-*` mở rộng cho `.tl-page`) | Đã chuyển Clay 2026-11-13 | Chưa audit | Huỳnh Phú Trọng |
+| Viết | `/Home/Writing*` + `/Admin/WritingExerciseManagement*` | `writing-index.css`, `writing-exercises.css`, `writing.css`, `admin-writing-exercise.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chưa audit | Chau |
+| Đọc | `/Home/Reading`, `/Reading/*`, `/Admin/ReadingManagement/*` | `Reading.css`, `reading-study.css` | `--rd-*` | Đang review/tích hợp PR140 | Chưa audit | _chủ dự án gán_ |
+| Mục tiêu | `/Goals` | `goals.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chưa audit | Chau |
+| Tài khoản | `/Account/Profile`, `/Account/Settings`, `/Account/AccessDenied` | `account-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chưa audit | Chau |
+| Đăng nhập / khôi phục mật khẩu | `/Account/Login`, `/Account/ForgotPassword*`, `/Account/ResetPassword` (`Layout = null`) | `account-auth-ui.css` + `tct-learning-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chưa audit | Chau |
+| Lớp học, thư mục | `/Class/*`, `/Folder/*` (trang thư mục mới: dòng "Bộ thẻ cá nhân") | `Class-Detail.css` | Giá trị cố định | Lớp học chưa chuyển; danh sách và trang thư mục đã chuyển Clay 2026-11-16 | Chưa audit | _chủ dự án gán_ |
+| Thông báo | `/Notification` (cả `/Notification/Index`), bảng chuông trong khung chung; trang Admin `/Admin/NotificationManagement/{Create,History}` | `study-kit.css` (phạm vi `.tn-page`) + `notification-page.css`; `notifications.css` cho chuông (+ `notification-core.js`, `notification-page.js`, `notifications.js`) | `--tct-*` | Đã chuyển Clay 2026-11-17 (trang có nhóm theo ngày, lọc, thẻ nhắc học; bảng chuông có tab, tải theo keyset và bàn phím đầy đủ; Admin chỉ sửa logic và câu chữ; xem docs/superpowers/plans/2026-11-17-notifications-complete.md) | Chưa audit | Huỳnh Phú Trọng |
+| AI chat và Admin AI | `/AI/Chat`, chat nhúng/launcher + `/Admin/AiManagement` | `ai-chat.css`, `ai-chat-launcher.css`, `admin-ai-management.css` | Token chung; logo riêng theo hướng dẫn nhận diện | Đã chuyển code; xem ledger 10/11 | Chưa audit | Chau |
+| Liên hệ | `/Home/Contact` | `contact.css`, `contact.js` | `var(--tct-*)` dùng chung, Claymorphism | Đã chuyển Clay 2026-11-17; xem docs/feature-audits/2026-11-16-contact-refresh/02-interface-ledger.md | Chưa audit | Chau |
+| Bộ thẻ cá nhân | `/Sets`, `/Sets/Folders/{id}`, `/Sets/{id}`, `/Sets/{id}/Add`, `/Sets/{id}/Import`, `/Sets/Cards/{id}`, `/s/{slug}` | `study-kit.css` + `personal-sets.css` | `--tct-*` | Đã chuyển Clay 2026-11-11 (token Clay dùng chung); xem docs/superpowers/plans/2026-11-11-study-clay.md | Chưa audit | Huỳnh Phú Trọng |
+| Thanh toán Premium | `/Premium`, `/Billing/Order/{mã}`, `/Billing/History` (`/Billing/MoMoQr` chỉ chuyển hướng); trang trả về không xác minh được: `InvalidReturn` | `study-kit.css` (phạm vi `.tb-page`) + `billing.css` (+ `billing-core.js`, `billing-pricing.js`, `billing-order.js`) | `--tct-*` | Đã chuyển Clay 2026-11-17 (làm lại cả luồng: một form chọn gói và cách trả, trang đơn tự cập nhật, lịch sử có tiếp tục thanh toán và biên nhận; xem docs/superpowers/plans/2026-11-17-billing-hardening-and-redesign.md); trang Admin thanh toán chỉ sửa lỗi và câu chữ | Chưa audit | Huỳnh Phú Trọng |
+| Luyện tập | `/Practice`, `/Practice/{mode}`, `/Practice/HardWords` | `study-kit.css` + `practice.css` | `--tct-*` | Đã chuyển Clay 2026-11-11 (token Clay dùng chung); xem docs/superpowers/plans/2026-11-11-study-clay.md | Chưa audit | Huỳnh Phú Trọng |
+| Khung Admin, Dashboard và Users | Layout Admin + `/Admin/Dashboard`, `/Admin/UserManagement` | `admin-shell.css`, `admin-dashboard.css`, `admin-user-management.css`; giữ `account.css` cho tương thích | Token chung và CSS theo phạm vi | Đã chuyển code; xem ledger 10/11 | Chưa audit | Chau |
+| Loader đăng nhập | Overlay trong `Views/Account/Auth.cshtml` | `account-auth-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code; xem ledger 10/11 | Chưa audit | Chau |
+| Admin Bộ từ vựng | `/Admin/SetManagement` (danh sách, tạo/sửa bộ hệ thống, thẻ của bộ, thêm/sửa thẻ, tải JSON) | `admin-content.css` (phạm vi `.ac-page`) + `admin-content.js` | `--tct-*`, bộ phần tử `_Ac*` dùng chung | Đã chuyển 18/11/2026; xem docs/superpowers/plans/2026-11-18-admin-content-complete.md | Chưa audit | Huỳnh Phú Trọng |
+| Admin Bài nghe | `/Admin/ListeningManagement` (danh sách, trình sửa 4 tab `Editor/{id}`) | `admin-content.css` + `admin-content.js` + `admin-listening-editor.js` | `--tct-*`, bộ phần tử `_Ac*` dùng chung | Đã chuyển 18/11/2026; xem plan 2026-11-18-admin-content-complete | Chưa audit | Huỳnh Phú Trọng |
+| Admin Thanh toán | `/Admin/BillingManagement` (danh sách đơn + 5 trang phụ) | `admin-content.css` (phạm vi `.ac-page`, `.ac-billing`) + `admin-content.js` | `--tct-*`; 5 trang phụ giữ markup Bootstrap trong `.ac-billing` | Đã chuyển 18/11/2026 (trang chính bằng bộ chung, trang phụ restyle); xem plan 2026-11-18-admin-content-complete | Chưa audit | Huỳnh Phú Trọng |
+| Admin Thông báo | `/Admin/NotificationManagement/{Create,History}` | `admin-content.css` + `admin-content.js` | `--tct-*`, bộ phần tử `_Ac*` dùng chung | Đã chuyển 18/11/2026; xem plan 2026-11-18-admin-content-complete | Chưa audit | Huỳnh Phú Trọng |
+| Admin của Class, Reading, Message | `/Admin` của lớp học, bài đọc, tin nhắn | CSS module hiện có + khung Admin chung | Kiểm tra theo từng module | Chưa chuyển toàn bộ nội dung module | Chưa audit | Chủ module tương ứng |
 
 Ledger cho AI Chat: [giao diện và logo](../feature-audits/2026-11-10-ai-chat-ui-execution-ledger.md).
 Ledger cho Admin/loader: [phạm vi và kiểm chứng](../feature-audits/2026-11-10-admin-loader-ui-execution-ledger.md).
@@ -182,6 +195,13 @@ font gốc 14px trên mobile…) nằm ở mục *Open proposals* của DESIGN.m
 ## 7. Checklist PR cho màn hình giao diện
 
 - [ ] Dùng `tct-theme`, token và component chung; không hex/font/bo góc riêng, không `:root` mới, không `!important` tràn lan.
+- [ ] **Whole-feature đa nền tảng:** mọi surface UI của chức năng trong phạm vi đều đạt
+      mobile **và** desktop trong cùng thay đổi (không để viewport còn lại “làm sau”).
+- [ ] **Desktop (~1440 / ≤1024):** sidebar mở và thu; `.main`/footer không bị che; không
+      hardcode 280/240.
+- [ ] **Mobile (≤768, kiểm tra 375/390):** drawer/overlay đúng; margin main/footer = 0;
+      target chạm ≥44px; không tràn ngang trang (kể cả khi có `overflow-x: hidden` che lỗi).
+- [ ] 200% zoom: nhiệm vụ chính vẫn làm được; nội dung học thiết yếu không bị cắt.
 - [ ] Claymorphism đúng DESIGN.md: khối nổi/bo tròn/bóng trong-ngoài dùng chung; ô nhập, chữ, focus và bảng dễ đọc. Ưu tiên xem bản laptop trước.
 - [ ] Responsive: 1440, 768, 375/390 và 200% zoom, không tràn ngang (kiểm tra cả phần tử bị `overflow-x: hidden` che).
 - [ ] Bàn phím: Tab theo đúng thứ tự, focus nhìn thấy rõ, Escape đóng hộp thoại/ngăn kéo và trả focus.
@@ -190,7 +210,7 @@ font gốc 14px trên mobile…) nằm ở mục *Open proposals* của DESIGN.m
 - [ ] Đủ trạng thái: loading, empty, error, success, disabled, pending (chống gửi trùng).
 - [ ] Giữ nguyên hành vi: route, HTTP/JSON/SignalR, selector/ID/`data-*` mà JS đang dùng, antiforgery, validation, kiểm tra quyền.
 - [ ] Ảnh chụp dùng dữ liệu tổng hợp, không chứa email/token/thông tin cá nhân; lưu trong `.tmp/<tên>/` (đã bị git bỏ qua), không commit.
-- [ ] Đã cập nhật dòng của màn hình ở mục 6 (nếu chuyển một màn hình cũ).
+- [ ] Đã cập nhật dòng của màn hình ở mục 6 (token và/hoặc cột **Đa nền** khi audit/fix).
 - [ ] `dotnet build` và kiểm tra liên quan đã chạy; ghi rõ phần nào **chưa** kiểm tra.
 
 ## 8. Dữ liệu, Docker và khoá

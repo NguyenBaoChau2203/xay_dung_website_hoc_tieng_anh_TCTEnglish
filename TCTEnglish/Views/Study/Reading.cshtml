@@ -1,151 +1,147 @@
 @model IEnumerable<TCTEnglish.ViewModels.ReadingListViewModel>
+@{
+    ViewData["Title"] = "Thư viện Reading";
+    var items = Model?.ToList() ?? new List<TCTEnglish.ViewModels.ReadingListViewModel>();
+    var topics = items
+        .Select(x => (x.Topic ?? string.Empty).Trim())
+        .Where(t => !string.IsNullOrWhiteSpace(t))
+        .Distinct(StringComparer.OrdinalIgnoreCase)
+        .OrderBy(t => t, StringComparer.OrdinalIgnoreCase)
+        .ToList();
+    var readingLevelGated = ViewBag.ReadingLevelGated as bool? ?? true;
+    var studentLevel = ViewBag.StudentReadingLevel as string;
+}
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="~/css/Reading.css" asp-append-version="true" />
 
-<div class="reading-index-page">
+<div class="tct-theme reading-index-page">
     <div class="container">
-        <!-- Hero Section -->
-        <header class="reading-hero">
-            <h1>Luyện Kỹ Năng Đọc</h1>
-            <p>Khám phá kho tàng bài đọc đa dạng cấp độ, giúp bạn cải thiện vốn từ vựng và tư duy ngôn ngữ mỗi ngày.</p>
+        <header class="reading-hero tct-page-header">
+            <div class="tct-page-header__row reading-hero__row">
+                <div class="tct-page-header__text">
+                    <h1 class="tct-page-title">Bài đọc tương tác</h1>
+                    @if (readingLevelGated)
+                    {
+                        <p class="tct-page-desc reading-hero__desc">
+                            Chọn bài phù hợp cấp độ CEFR của bạn. Chỉ hiển thị bài phù hợp cấp độ hiện tại.
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="tct-page-desc reading-hero__desc">
+                            Bạn đang xem toàn bộ bài đã xuất bản (mọi cấp độ CEFR). Dùng bộ lọc bên dưới để thu hẹp danh sách.
+                        </p>
+                    }
+                </div>
+                <div class="tct-page-header__actions reading-hero__actions">
+                    @if (readingLevelGated)
+                    {
+                        <span class="tct-badge tct-badge--primary reading-hero__level"
+                              title="Cấp độ CEFR đang áp dụng cho thư viện bài đọc">
+                            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                            Cấp độ @(string.IsNullOrWhiteSpace(studentLevel) ? "A1" : studentLevel)
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="tct-badge tct-badge--info reading-hero__level"
+                              title="Tài khoản Admin xem mọi cấp độ CEFR đã xuất bản">
+                            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                            Tất cả cấp độ
+                        </span>
+                    }
+                    <a href="/Reading/Progress" class="btn btn-outline-primary">
+                        <i class="fa-solid fa-chart-line me-1" aria-hidden="true"></i>
+                        Tiến độ
+                    </a>
+                    <a href="/Reading/Notebook" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-book me-1" aria-hidden="true"></i>
+                        Sổ từ vựng
+                    </a>
+                </div>
+            </div>
         </header>
 
-        <!-- Toolbar & Search -->
-        <div class="reading-toolbar-wrap mb-5">
-            <div class="row align-items-center g-4">
+        <div class="reading-toolbar-wrap mb-4">
+            <div class="row align-items-center g-3">
                 <div class="col-lg-4">
                     <div class="search-group">
-                        <i class="bi bi-search"></i>
-                        <input type="text" id="readingSearch" class="form-control search-input" placeholder="Tìm tiêu đề bài đọc...">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                        <label class="visually-hidden" for="readingSearch">Tìm tiêu đề bài đọc</label>
+                        <input type="search"
+                               id="readingSearch"
+                               class="form-control search-input"
+                               placeholder="Tìm tiêu đề bài đọc..."
+                               autocomplete="off" />
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="d-flex flex-wrap justify-content-lg-end align-items-center gap-3">
-                        <div class="filter-chips">
-                            <button class="filter-chip active" data-filter="all">Tất cả</button>
-                            <button class="filter-chip" data-filter="A1">A1</button>
-                            <button class="filter-chip" data-filter="A2">A2</button>
-                            <button class="filter-chip" data-filter="B1">B1</button>
-                            <button class="filter-chip" data-filter="B2">B2</button>
-                            <button class="filter-chip" data-filter="C1">C1</button>
+                        <div class="filter-chips" role="group" aria-label="Lọc theo cấp độ CEFR">
+                            <button type="button" class="filter-chip active" data-filter="all">Tất cả</button>
+                            <button type="button" class="filter-chip" data-filter="A1">A1</button>
+                            <button type="button" class="filter-chip" data-filter="A2">A2</button>
+                            <button type="button" class="filter-chip" data-filter="B1">B1</button>
+                            <button type="button" class="filter-chip" data-filter="B2">B2</button>
+                            <button type="button" class="filter-chip" data-filter="C1">C1</button>
+                            <button type="button" class="filter-chip" data-filter="C2">C2</button>
                         </div>
-                        <div class="vr d-none d-md-block mx-2"></div>
-                        <div class="status-group">
-                            <button class="btn status-btn" data-status="inprogress" title="Đang làm">
-                                <i class="bi bi-clock-history"></i>
+                        <div class="vr d-none d-md-block" aria-hidden="true"></div>
+                        <div class="status-group" role="group" aria-label="Lọc theo tiến độ">
+                            <button type="button" class="btn status-btn" data-status="inprogress" title="Đang làm" aria-pressed="false">
+                                <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
+                                <span class="visually-hidden">Đang làm</span>
                             </button>
-                            <button class="btn status-btn" data-status="completed" title="Đã xong">
-                                <i class="bi bi-check-circle-fill"></i>
+                            <button type="button" class="btn status-btn" data-status="completed" title="Đã xong" aria-pressed="false">
+                                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                                <span class="visually-hidden">Đã xong</span>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            @if (topics.Count > 0)
+            {
+                <div class="topic-chips mt-3" role="group" aria-label="Lọc theo chủ đề">
+                    <button type="button" class="filter-chip topic-chip active" data-topic-filter="all">Tất cả chủ đề</button>
+                    @foreach (var topic in topics)
+                    {
+                        <button type="button"
+                                class="filter-chip topic-chip"
+                                data-topic-filter="@topic.ToLowerInvariant()">@topic</button>
+                    }
+                </div>
+            }
         </div>
 
-        <!-- Content Groups -->
-        @if (Model == null || !Model.Any())
+        @if (items.Count == 0)
         {
             <div class="text-center py-5">
-                <img src="/img/empty-reading.svg" alt="Empty" style="width: 200px; opacity: 0.5;" />
-                <h4 class="mt-4 text-muted">Chưa có bài đọc nào được xuất bản.</h4>
+                <img class="tct-mascot"
+                     src="~/brand/mascot/poses/tico-mascot-welcome-color.png"
+                     asp-append-version="true"
+                     alt=""
+                     width="160"
+                     height="160"
+                     decoding="async"
+                     aria-hidden="true" />
+                <h2 class="h4 mt-4 text-muted">Chưa có bài đọc nào được xuất bản.</h2>
             </div>
         }
         else
         {
-            var levels = new[] { "A1", "A2", "B1", "B2", "C1", "C2" };
-            
-            <div class="reading-groups-container" id="readingGrid">
-                @foreach (var lvl in levels)
+            <div class="reading-card-grid" id="readingGrid">
+                @foreach (var item in items.OrderBy(x => x.Level).ThenBy(x => x.Title))
                 {
-                    var itemsInLevel = Model.Where(x => x.Level == lvl).ToList();
-                    if (itemsInLevel.Any())
-                    {
-                        <section class="level-group" data-group-level="@lvl">
-                            <div class="level-group-header">
-                                <div class="level-title-wrap">
-                                    <div class="level-badge-large lvl-@lvl-bg">@lvl</div>
-                                    <div class="level-group-info">
-                                        <h3>Các bài đọc @lvl</h3>
-                                        <p>Nâng cao kỹ năng đọc hiểu trình độ @lvl</p>
-                                    </div>
-                                </div>
-                                <div class="scroll-hint d-none d-md-block text-muted small">
-                                    <i class="bi bi-arrow-left-right me-1"></i> Cuộn sang ngang để xem thêm
-                                </div>
-                            </div>
-
-                            <div class="scroll-container-outer">
-                                <div class="scroll-container">
-                                    @foreach (var item in itemsInLevel)
-                                    {
-                                        <div class="reading-item-container"
-                                             data-title="@item.Title.ToLower()"
-                                             data-level="@item.Level"
-                                             data-completed="@item.IsCompleted.ToString().ToLower()"
-                                             data-inprogress="@item.IsInProgress.ToString().ToLower()">
-                                            
-                                            <a asp-controller="Reading" asp-action="Study" asp-route-id="@item.Id" class="reading-card-item">
-                                                <div class="card-thumb-wrap">
-                                                    @if (!string.IsNullOrEmpty(item.ImageUrl))
-                                                    {
-                                                        <img src="@item.ImageUrl" class="card-img" alt="@item.Title" loading="lazy" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="thumb-placeholder-new">
-                                                            <i class="bi bi-journal-text"></i>
-                                                            <span class="fw-bold small text-uppercase">Reading</span>
-                                                        </div>
-                                                    }
-                                                    <span class="level-tag lvl-@item.Level">@item.Level</span>
-                                                </div>
-
-                                                <div class="card-content">
-                                                    <h5 class="card-title">@item.Title</h5>
-                                                    
-                                                    <div class="card-footer p-0 bg-transparent border-0">
-                                                        <div class="status-indicator">
-                                                            @if (item.IsCompleted)
-                                                            {
-                                                                <span class="status-completed">
-                                                                    <i class="bi bi-check-circle-fill"></i> Hoàn thành
-                                                                </span>
-                                                            }
-                                                            else if (item.IsInProgress)
-                                                            {
-                                                                <span class="status-inprogress">
-                                                                    <i class="bi bi-play-circle-fill"></i> Đang học
-                                                                </span>
-                                                            }
-                                                            else
-                                                            {
-                                                                <span class="text-muted small">
-                                                                    <i class="bi bi-circle"></i> Chưa học
-                                                                </span>
-                                                            }
-                                                        </div>
-                                                        
-                                                        <span class="start-btn">
-                                                            Học <i class="bi bi-arrow-right"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        </section>
-                    }
+                    <partial name="_ReadingLessonCard" model="item" />
                 }
             </div>
-            
+
             <div id="noResults" class="text-center py-5 d-none">
-                <i class="bi bi-search-heart display-1 text-muted opacity-25"></i>
-                <h4 class="mt-4 text-muted">Không tìm thấy bài đọc phù hợp.</h4>
-                <button class="btn btn-link" onclick="resetFilters()">Xóa bộ lọc</button>
+                <i class="fa-solid fa-magnifying-glass display-4 text-muted opacity-25" aria-hidden="true"></i>
+                <h2 class="h4 mt-4 text-muted">Không tìm thấy bài đọc phù hợp.</h2>
+                <button type="button" class="btn btn-link" onclick="resetFilters()">Xóa bộ lọc</button>
             </div>
         }
     </div>

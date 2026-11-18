@@ -1,0 +1,10 @@
+@model string?
+@{
+    var status = Model ?? TCTEnglish.Models.Reading.ReadingStatuses.Draft;
+    var modifier = TCTEnglish.Areas.Admin.ViewModels.ReadingAdminUi.StatusModifier(status);
+    var label = TCTEnglish.Areas.Admin.ViewModels.ReadingAdminUi.StatusLabel(status);
+}
+<span class="admin-reading-status admin-reading-status--@modifier" title="@status">
+    <span class="admin-reading-status-dot" aria-hidden="true"></span>
+    <span>@label</span>
+</span>

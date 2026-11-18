@@ -104,7 +104,7 @@ namespace TCTVocabulary.Controllers
         // POST: /Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(string email, string password, string fullName) // Mapping Username input to FullName
+        public async Task<IActionResult> Register(string email, string password, string fullName, string? readingLevel = null) // Mapping Username input to FullName
         {
             ViewData["ActiveTab"] = "register"; // Keep user on Register tab if error
 
@@ -127,6 +127,8 @@ namespace TCTVocabulary.Controllers
                 return View("Auth");
             }
 
+            var normalizedReadingLevel = TCTEnglish.Models.Reading.CefrLevels.Normalize(readingLevel, "A1");
+
             // 2. Check if email exists
             var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (existingUser != null)
@@ -145,7 +147,8 @@ namespace TCTVocabulary.Controllers
                 PasswordHash = passwordHash,
                 FullName = fullName,
                 CreatedAt = DateTime.UtcNow,
-                Role = Roles.Standard
+                Role = Roles.Standard,
+                ReadingLevel = normalizedReadingLevel
             };
 
             _context.Users.Add(newUser);

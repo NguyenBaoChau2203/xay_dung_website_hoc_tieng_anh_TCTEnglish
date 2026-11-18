@@ -422,6 +422,7 @@
                 document.getElementById("editFullName").value = data.fullName;
                 document.getElementById("editEmail").value = data.email;
                 document.getElementById("editRole").value = data.role;
+                document.getElementById("editReadingLevel").value = data.readingLevel || "A1";
                 document.getElementById("editStatusLabel").value = getStatusLabel(data.status);
                 hideError("editErrorAlert");
 
@@ -443,7 +444,8 @@
             userId: Number(document.getElementById("editUserId").value),
             fullName: document.getElementById("editFullName").value.trim(),
             email: document.getElementById("editEmail").value.trim(),
-            role: document.getElementById("editRole").value
+            role: document.getElementById("editRole").value,
+            readingLevel: document.getElementById("editReadingLevel").value
         };
 
         if (!payload.fullName || !payload.email) {

@@ -7,6 +7,7 @@
     - Error uses role="alert"; the others use role="status" (polite announcement).
     - Never pass raw exception text as Message; use a recoverable, user-facing sentence.
     - ActionUrl must be local; otherwise the action is omitted.
+    - Tico mascot poses follow brand/mascot/04-guidelines/expression-map.md (not favicon/header).
     Needs tct-learning-ui.css (loaded by _Layout and _AdminLayout).
 *@
 @using TCTEnglish.ViewModels
@@ -19,28 +20,32 @@
         StateMessageKind.Success => "tct-state--success",
         _ => "tct-state--empty"
     };
-    var iconClass = kind switch
-    {
-        StateMessageKind.Error => "fa-solid fa-triangle-exclamation",
-        StateMessageKind.Success => "fa-solid fa-circle-check",
-        _ => "fa-solid fa-inbox"
-    };
     var role = kind == StateMessageKind.Error ? "alert" : "status";
     var showAction = !string.IsNullOrWhiteSpace(Model.ActionLabel)
         && !string.IsNullOrWhiteSpace(Model.ActionUrl)
         && Url.IsLocalUrl(Model.ActionUrl);
+    // Expression map: welcome / thinking / retry / success — assets under wwwroot/brand/mascot/
+    var mascotSrc = kind switch
+    {
+        StateMessageKind.Loading => "~/brand/mascot/poses/tico-mascot-thinking-color.png",
+        StateMessageKind.Error => "~/brand/mascot/poses/tico-mascot-retry-color.png",
+        StateMessageKind.Success => "~/brand/mascot/poses/tico-mascot-success-color.png",
+        _ => "~/brand/mascot/poses/tico-mascot-welcome-color.png"
+    };
 }
-<div class="tct-state @modifier" role="@role" aria-busy="@(kind == StateMessageKind.Loading ? "true" : null)">
-    <span class="tct-state__icon" aria-hidden="true">
-        @if (kind == StateMessageKind.Loading)
-        {
-            <span class="spinner-border spinner-border-sm" role="presentation"></span>
-        }
-        else
-        {
-            <i class="@iconClass"></i>
-        }
-    </span>
+<div class="tct-state @modifier tct-state--mascot" role="@role" aria-busy="@(kind == StateMessageKind.Loading ? "true" : null)">
+    @if (kind == StateMessageKind.Loading)
+    {
+        <span class="spinner-border spinner-border-sm mb-2" aria-hidden="true"></span>
+    }
+    <img class="tct-state__mascot"
+         src="@mascotSrc"
+         asp-append-version="true"
+         alt=""
+         width="140"
+         height="140"
+         decoding="async"
+         aria-hidden="true" />
     <p class="tct-state__title">@Model.Title</p>
     @if (!string.IsNullOrWhiteSpace(Model.Message))
     {

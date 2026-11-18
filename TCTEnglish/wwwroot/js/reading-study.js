@@ -1,15 +1,14 @@
 ﻿/**
  * READING STUDY JAVASCRIPT
- * Chức năng: Điều hướng câu hỏi, Dịch từng câu (Anti-Limit), Popup dịch từ bám theo scroll.
+ * Chức năng: Điều hướng câu hỏi, Dịch toàn bài (Anti-Limit), autosave / nộp bài.
+ * Selection toolbar + My Vocab: reading-hybrid-toolbar.js
  */
 
 document.addEventListener("DOMContentLoaded", function () {
     // --- KHAI BÁO BIẾN ---
-    const popup = document.getElementById("wordPopup");
     const panels = document.querySelectorAll('.question-panel');
     const totalQuestions = panels.length;
     let currentIdx = 0;
-    let translateTimeout = null;
 
     // --- 1. ĐIỀU HƯỚNG CÂU HỎI ---
     window.showQuestion = function (index) {
@@ -49,8 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         btn.classList.toggle("active");
         btn.innerHTML = isShowing ?
-            '<i class="bi bi-translate"></i> Dịch toàn bài' :
-            '<i class="bi bi-eye-slash"></i> Ẩn bản dịch';
+            '<i class="fa-solid fa-language" aria-hidden="true"></i> Dịch toàn bài' :
+            '<i class="fa-solid fa-eye-slash" aria-hidden="true"></i> Ẩn bản dịch';
         for (const block of blocks) {
             const transEl = block.querySelector(".translation");
             if (!transEl) continue;
@@ -107,56 +106,186 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // --- 3. POPUP DỊCH TỪ KHI BÔI ĐEN (FIXED & SCROLL ADAPTIVE) ---
-    function updatePopupPosition() {
-        const selection = window.getSelection();
-        if (selection.rangeCount === 0 || popup.classList.contains("d-none")) return;
+    // Mobile tabs + font size
+    const grid = document.getElementById('readingStudyGrid');
+    document.querySelectorAll('[data-study-tab]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('[data-study-tab]').forEach((b) => b.classList.remove('active'));
+            btn.classList.add('active');
+            grid?.classList.remove('tab-passage', 'tab-questions');
+            grid?.classList.add(btn.dataset.studyTab === 'questions' ? 'tab-questions' : 'tab-passage');
+        });
+    });
 
-        const range = selection.getRangeAt(0);
-        const rect = range.getBoundingClientRect();
+    const passageText = document.getElementById('passageContent');
+    let fontSize = 1.1;
+    document.getElementById('fontLarger')?.addEventListener('click', () => {
+        fontSize = Math.min(1.6, fontSize + 0.1);
+        if (passageText) passageText.style.fontSize = fontSize + 'rem';
+    });
+    document.getElementById('fontSmaller')?.addEventListener('click', () => {
+        fontSize = Math.max(0.9, fontSize - 0.1);
+        if (passageText) passageText.style.fontSize = fontSize + 'rem';
+    });
 
-        // Tính toán vị trí dựa trên Viewport (vì popup là position: fixed)
-        // rect.top là vị trí so với mép trên màn hình
-        const popupWidth = popup.offsetWidth;
-        popup.style.left = `${rect.left + (rect.width / 2) - (popupWidth / 2)}px`;
-        popup.style.top = `${rect.top - popup.offsetHeight - 10}px`; // Nằm trên từ 10px
+    const toolbar = document.querySelector('.reading-toolbar');
+    const attemptId = Number(toolbar?.dataset.attemptId || 0);
+    const mode = toolbar?.dataset.mode || 'Practice';
+    const timeLimit = Number(toolbar?.dataset.timeLimit || 0);
+    const tokenInput = () => document.querySelector('#readingForm input[name="__RequestVerificationToken"]')?.value;
+
+    async function autosaveAnswer(questionId, { selectedOptionId = null, answerText = null, matchingJson = null, isFlagged = false } = {}) {
+        if (!attemptId) return;
+        try {
+            await fetch('/Reading/SaveAnswer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': tokenInput() || ''
+                },
+                body: JSON.stringify({
+                    attemptId,
+                    questionId,
+                    selectedOptionId,
+                    answerText,
+                    matchingJson,
+                    isFlagged: !!isFlagged
+                })
+            });
+        } catch { /* keep local form state */ }
     }
 
-    document.addEventListener("mouseup", function () {
-        clearTimeout(translateTimeout);
-        translateTimeout = setTimeout(async () => {
-            const selection = window.getSelection();
-            const text = selection.toString().trim();
+    function buildMatchingJson(panel) {
+        const map = {};
+        panel.querySelectorAll('.matching-row').forEach((row) => {
+            const leftId = row.dataset.leftId;
+            const select = row.querySelector('.matching-select');
+            const rightId = select?.value;
+            if (!leftId || !rightId) return;
+            map[String(leftId)] = String(rightId);
+        });
+        return Object.keys(map).length ? JSON.stringify(map) : null;
+    }
 
-            // Chỉ dịch từ đơn hoặc cụm từ ngắn (dưới 5 từ)
-            if (!text || text.length < 2 || text.split(/\s+/).length > 5) {
-                popup.classList.add("d-none");
+    function restoreMatchingSelections(panel) {
+        const raw = panel.dataset.savedMatching;
+        if (!raw) return;
+        let map;
+        try {
+            map = JSON.parse(raw);
+        } catch {
+            return;
+        }
+        if (!map || typeof map !== 'object') return;
+
+        panel.querySelectorAll('.matching-row').forEach((row) => {
+            const leftId = String(row.dataset.leftId || '');
+            const value = map[leftId];
+            if (!value) return;
+            const rightId = String(value);
+            const select = row.querySelector('.matching-select');
+            if (select && rightId) {
+                select.value = rightId;
+            }
+        });
+
+        if (panel.querySelectorAll('.matching-select').length &&
+            [...panel.querySelectorAll('.matching-select')].every((s) => s.value)) {
+            markNavDone(Number(panel.dataset.qIndex || 0));
+        }
+    }
+
+    document.querySelectorAll('.question-panel input[type="radio"]').forEach((input) => {
+        input.addEventListener('change', () => {
+            const panel = input.closest('.question-panel');
+            const qid = Number(panel?.dataset.qId || 0);
+            const idx = Number(panel?.dataset.qIndex || 0);
+            markNavDone(idx);
+            autosaveAnswer(qid, { selectedOptionId: Number(input.value) });
+        });
+        if (input.checked) {
+            const panel = input.closest('.question-panel');
+            markNavDone(Number(panel?.dataset.qIndex || 0));
+        }
+    });
+
+    let textSaveTimers = new Map();
+    document.querySelectorAll('.reading-text-answer').forEach((field) => {
+        const persist = () => {
+            const panel = field.closest('.question-panel');
+            const qid = Number(panel?.dataset.qId || 0);
+            const idx = Number(panel?.dataset.qIndex || field.dataset.qIndex || 0);
+            const value = field.value.trim();
+            if (value) markNavDone(idx);
+            autosaveAnswer(qid, { answerText: field.value });
+        };
+        field.addEventListener('input', () => {
+            const qid = field.closest('.question-panel')?.dataset.qId || field.id;
+            clearTimeout(textSaveTimers.get(qid));
+            textSaveTimers.set(qid, setTimeout(persist, 400));
+        });
+        field.addEventListener('change', persist);
+        if (field.value.trim()) {
+            markNavDone(Number(field.dataset.qIndex || field.closest('.question-panel')?.dataset.qIndex || 0));
+        }
+    });
+
+    document.querySelectorAll('.question-panel[data-q-type="Matching"]').forEach((panel) => {
+        restoreMatchingSelections(panel);
+        panel.querySelectorAll('.matching-select').forEach((select) => {
+            select.addEventListener('change', () => {
+                const qid = Number(panel.dataset.qId || 0);
+                const idx = Number(panel.dataset.qIndex || select.dataset.qIndex || 0);
+                const matchingJson = buildMatchingJson(panel);
+                if (matchingJson) markNavDone(idx);
+                autosaveAnswer(qid, { matchingJson });
+            });
+        });
+    });
+
+    async function flushPendingAnswers() {
+        const tasks = [];
+        document.querySelectorAll('.question-panel').forEach((panel) => {
+            const qid = Number(panel.dataset.qId || 0);
+            if (!qid) return;
+            const type = panel.dataset.qType || '';
+            if (type === 'MultipleChoice' || type === 'TrueFalse') {
+                const checked = panel.querySelector('input[type="radio"]:checked');
+                if (checked) tasks.push(autosaveAnswer(qid, { selectedOptionId: Number(checked.value) }));
+            } else if (type === 'GapFill' || type === 'ShortAnswer') {
+                const field = panel.querySelector('.reading-text-answer');
+                if (field) tasks.push(autosaveAnswer(qid, { answerText: field.value }));
+            } else if (type === 'Matching') {
+                const matchingJson = buildMatchingJson(panel);
+                if (matchingJson) tasks.push(autosaveAnswer(qid, { matchingJson }));
+            }
+        });
+        await Promise.all(tasks);
+    }
+
+    // Timed mode
+    const timerEl = document.getElementById('readingTimer');
+    if (mode === 'Timed' && timeLimit > 0 && timerEl) {
+        timerEl.classList.remove('d-none');
+        let remaining = timeLimit;
+        const tick = () => {
+            const m = String(Math.floor(remaining / 60)).padStart(2, '0');
+            const s = String(remaining % 60).padStart(2, '0');
+            timerEl.textContent = `${m}:${s}`;
+            if (remaining === 300 || remaining === 60) {
+                timerEl.classList.add('text-warning');
+                alert(remaining === 300 ? 'Còn 5 phút.' : 'Còn 1 phút.');
+            }
+            if (remaining <= 0) {
+                clearInterval(timer);
+                document.getElementById('readingForm')?.requestSubmit();
                 return;
             }
-
-            popup.classList.remove("d-none");
-            popup.innerHTML = '<i class="bi bi-hourglass-split"></i>';
-            updatePopupPosition();
-
-            try {
-                const res = await fetch(`/Reading/Translate?text=${encodeURIComponent(text)}`);
-                const data = await res.json();
-                popup.innerHTML = `<strong>${text}</strong>${data.translation}`;
-                // Cập nhật lại vị trí sau khi nội dung thay đổi kích thước popup
-                setTimeout(updatePopupPosition, 10);
-            } catch {
-                popup.innerHTML = "Lỗi kết nối";
-            }
-        }, 250);
-    });
-
-    // Lắng nghe sự kiện cuộn ở mọi nơi để cập nhật vị trí popup
-    window.addEventListener("scroll", updatePopupPosition, true);
-
-    document.addEventListener("mousedown", (e) => {
-        if (!popup.contains(e.target)) popup.classList.add("d-none");
-    });
-
+            remaining -= 1;
+        };
+        tick();
+        var timer = setInterval(tick, 1000);
+    }
 
     // --- 4. XỬ LÝ NỘP BÀI AJAX ---
     document.getElementById('readingForm')?.addEventListener('submit', async function (e) {
@@ -166,30 +295,68 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.disabled = true;
 
         try {
-            const response = await fetch('/Reading/SubmitReading', { method: 'POST', body: formData });
-            const result = await response.json();
+            await flushPendingAnswers();
+            const token = formData.get('__RequestVerificationToken');
+            let response;
+            if (attemptId) {
+                const body = new URLSearchParams({ attemptId: String(attemptId) });
+                response = await fetch('/Reading/SubmitAttempt', {
+                    method: 'POST',
+                    headers: token ? { 'RequestVerificationToken': token, 'Content-Type': 'application/x-www-form-urlencoded' } : {},
+                    body
+                });
+            } else {
+                response = await fetch('/Reading/SubmitReading', {
+                    method: 'POST',
+                    headers: token ? { 'RequestVerificationToken': token } : {},
+                    body: formData
+                });
+            }
+            const payload = await response.json();
+            const result = payload.result || payload;
 
-            if (result.success) {
+            if (payload.success || result) {
+                const correctCount = result.correctCount ?? result.CorrectCount;
+                const totalCount = result.totalCount ?? result.TotalCount;
+                const details = result.details || result.Details || [];
                 document.getElementById('quizStatus').className = "alert alert-success d-block border-0 shadow-sm";
-                document.getElementById('quizStatus').innerHTML = `<b>Kết quả: ${result.correctCount}/${result.totalCount}</b>`;
+                document.getElementById('quizStatus').innerHTML = `<b>Kết quả: ${correctCount}/${totalCount}</b>`;
 
-                result.details.forEach((item, index) => {
-                    const panel = document.querySelector(`.question-panel[data-q-id="${item.questionId}"]`);
-                    const navBtn = document.getElementById(`nav-btn-${index}`);
+                details.forEach((item) => {
+                    const qid = item.questionId ?? item.QuestionId;
+                    const panel = document.querySelector(`.question-panel[data-q-id="${qid}"]`);
+                    if (!panel) return;
+                    const idx = Number(panel.dataset.qIndex || 0);
+                    const navBtn = document.getElementById(`nav-btn-${idx}`);
                     const feedback = panel.querySelector('.result-feedback');
+                    const isCorrect = item.isCorrect ?? item.IsCorrect;
+                    const correctOptionText = item.correctOptionText ?? item.CorrectOptionText;
+                    const correctAnswerText = item.correctAnswerText ?? item.CorrectAnswerText;
+                    const explanation = item.explanation ?? item.Explanation;
+                    const evidence = item.evidenceText ?? item.EvidenceText;
+                    const paraphrase = item.paraphrase ?? item.Paraphrase;
+                    const answerHint = correctOptionText || correctAnswerText || '';
 
-                    feedback.classList.remove('d-none');
-                    if (item.isCorrect) {
-                        navBtn.classList.add('nav-correct');
-                        feedback.innerHTML = `<span class="text-success fw-bold small">✓ Chính xác</span>`;
-                    } else {
-                        navBtn.classList.add('nav-wrong');
-                        feedback.innerHTML = `<span class="text-danger fw-bold small">✘ Sai. Đáp án: ${item.correctOptionText}</span>`;
+                    if (feedback) {
+                        feedback.classList.remove('d-none');
+                        if (isCorrect) {
+                            feedback.innerHTML = `<span class="text-success fw-bold small">Chính xác</span>`;
+                        } else {
+                            feedback.innerHTML = `<span class="text-danger fw-bold small">Sai.${answerHint ? ` Đáp án: ${answerHint}` : ''}</span>`;
+                        }
+                        if (explanation || evidence || paraphrase) {
+                            feedback.innerHTML += `<div class="small text-muted mt-2">${explanation || ''}<br>${evidence || ''}<br>${paraphrase || ''}</div>`;
+                        }
                     }
-                    panel.querySelectorAll('input').forEach(i => i.disabled = true);
+                    if (navBtn) {
+                        navBtn.classList.add(isCorrect ? 'nav-correct' : 'nav-wrong');
+                    }
+                    panel.querySelectorAll('input, textarea, select').forEach((el) => { el.disabled = true; });
                 });
                 btn.classList.add('d-none');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                btn.disabled = false;
             }
         } catch (err) {
             btn.disabled = false;

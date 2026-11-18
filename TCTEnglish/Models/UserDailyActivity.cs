@@ -18,5 +18,8 @@ public class UserDailyActivity
     public int ReadingCompletedCount { get; set; }
     public int ListeningCompletedCount { get; set; }
 
+    /// <summary>True after one successful Daily Challenge completion for this activity date.</summary>
+    public bool DailyChallengeCompleted { get; set; }
+
     public virtual User User { get; set; } = null!;
 }

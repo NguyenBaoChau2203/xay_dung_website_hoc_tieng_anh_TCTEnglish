@@ -1,6 +1,13 @@
 @model TCTVocabulary.ViewModels.DailyChallengeViewModel
 
-@if (!string.IsNullOrWhiteSpace(Model.Term) && Model.Options.Any())
+@if (Model.IsCompletedToday)
+{
+    <p class="db-challenge-done">
+        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+        Bạn đã hoàn thành Daily Challenge hôm nay.
+    </p>
+}
+else if (!string.IsNullOrWhiteSpace(Model.Term) && Model.Options.Any())
 {
     <h2 id="challenge-term">
         @Model.Term
@@ -9,10 +16,11 @@
     <div class="answers">
         @foreach (var opt in Model.Options)
         {
-            <button class="answer-btn"
+            <button type="button"
+                    class="answer-btn"
                     data-id="@opt.CardId"
                     data-token="@Model.ChallengeToken">
-                <i class="fa-solid fa-circle-dot"></i>
+                <i class="fa-solid fa-circle-dot" aria-hidden="true"></i>
                 @opt.Definition
             </button>
         }
@@ -21,7 +29,7 @@
 else
 {
     <p class="empty-text">
-        <i class="fa-solid fa-circle-exclamation"></i>
+        <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
         Daily challenge hiện chưa khả dụng
     </p>
 }

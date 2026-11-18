@@ -42,6 +42,167 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### PR140 Reading/Dashboard integration, access and data preservation — 2026-11-18
+
+**Symptom**: PR140 chậm 178 commit và có 30 đường dẫn xung đột với master.
+Reading lookup/notebook/answers thiếu kiểm tra nguồn; matching lộ key;
+completion và XP có thể tách rời. V1 bị viết lại, v2 sai SHA và engine báo
+local-edit giả khi thêm optional fields. Migration thu hẹp dữ liệu có thể dở
+dang; ZIP/XLSX chưa chặn tài nguyên trước giải nén. Browser thấy lỗi jQuery ở
+Reading Admin; Dashboard mới làm mất các hiển thị Goals/XP của master.
+
+**Root Cause**: Nhánh feature cũ giao nhau với các sửa master; contract access,
+transaction, portable data và dependency của Admin shell chưa được tích hợp.
+Chi tiết từng finding, regression và giới hạn nằm trong
+`docs/feature-audits/2026-11-18-pr140-review-repair.md`.
+
+**Solution**: Giữ cả hai lịch sử; kiểm tra owner/publication/CEFR/quan hệ ID;
+dùng user transaction cho submit/Goals và daily challenge; trả matching option
+IDs, đọc được legacy saved answers; chặn hard delete có lịch sử và nối Archive;
+neutralize CSV; giới hạn archive/XLSX và dùng DB async; map evidence bằng
+ParagraphNo. Phục hồi nguyên bytes v1, sửa SHA v2, giữ kiểm tra local-edit thật
+với baseline đúng phiên bản. Thêm guard trước migration Reading, không sửa các
+migration đã có. Khôi phục projection Goals/XP/study days/loading của master.
+
+**Files Changed**:
+- `TCTEnglish/Services/Reading/*`, Reading controllers/ViewModels/views và
+  `wwwroot/js/reading-study.js` — access, transaction, import, matching, UI.
+- `TCTEnglish/Infrastructure/SharedData/*`, `data/shared/catalog.json` và package
+  v1/v2 — immutable history và tương thích contract.
+- `TCTEnglish/Migrations/20261109091315_GuardLegacyReadingLengths*` — validation
+  trước DDL, kèm Designer/snapshot; không thay dữ liệu ứng dụng.
+- `TCTEnglish.Tests/Pr140*`, các fixture Goals/Reading/shared-data liên quan.
+
+**Verification**: Có log red trước các sửa chính; full local 3161 pass/54 skip,
+targeted 130 pass/2 skip, HTTP native-validation/Archive 2 pass (có phần trùng);
+498 Node pass; Python 150 pass/3 skip. MariaDB 10.5.23 xác nhận chặn dữ liệu quá
+dài trước DDL, upgrade 22→26, repeat, giữ dữ liệu, rollback và submit đồng thời.
+30 lượt browser ở 10 route/3 kích thước; ghi rõ giới hạn zoom/role/live services
+trong audit. Kết quả CI/merge/release thuộc bàn giao sau khi quan sát thực tế.
+
+**Commit**: `fix(reading): integrate master and repair reviewed PR140 findings`
+
+**Notes**: Tái sử dụng `UserMutationScope` và clock của master. Lỗi jQuery cùng
+root cause với bug sweep 16/11; bỏ partial chết, thêm native required, giữ
+server validation. Không spawn agent khác, force, reset DB, gọi AI/SMTP live,
+thay secrets hoặc bật production. Phiên bản package đã phát hành giữ bất biến.
+
+### Admin learner Reading library gated by CEFR ReadingLevel — 2026-11-17
+
+**Symptom**: Login Admin trên `/Home/Reading` vẫn hiện badge “Cấp độ A1” và server chỉ trả bài ≤ A1; filter chip C2 trống dù DB có bài C2 Published.
+
+**Root Cause**: `ReadingLearningService.GetLibraryAsync` / `GetStudyAsync` / `SubmitAttemptAsync` luôn cổng theo `Users.ReadingLevel`; không có nhánh `Roles.Admin`.
+
+**Solution**: Admin bypass CEFR trên library/study/submit; Standard/Premium giữ gate. Header Admin: badge “Tất cả cấp độ” + copy không nói “cấp độ của bạn”.
+
+**Files Changed**:
+- `TCTEnglish/Services/Reading/ReadingLearningService.cs` — `IsAdminUserAsync` bypass
+- `TCTEnglish/Controllers/StudyController.cs` — `ViewBag.ReadingLevelGated`
+- `TCTEnglish/Views/Study/Reading.cshtml` — Admin vs learner header
+- `TCTEnglish.Tests/ReadingModuleTests.cs` — Admin library/study tests
+
+**Verification**: 4 focused tests passed (Release). Local Admin `/Home/Reading`: badge “Tất cả cấp độ”, có marker C2/B1, `cardCount` > A1-only.
+
+**Commit**: not committed (owner did not request commit)
+
+**Notes**: Premium không bypass. Không đổi schema/`ReadingLevel` trong DB.
+
+### Reading Admin/Learner UI token + Excel-first clarity (plan C) — 2026-11-16
+
+**Symptom**: Admin Reading eyebrow EN (“Content Management”), font-weight 800; learner library palette tím `#6366f1` / CDN Bootstrap Icons / thiếu chip C2; Progress chart hex Bootstrap; form Edit không làm rõ Excel-first cho typed questions.
+
+**Root Cause**: Learner CSS dùng `--rd-*` riêng (tracker “Chưa chuyển”); Admin copy/token chưa đồng bộ DESIGN; Create/Edit content-first nhưng CTA Excel mờ.
+
+**Solution**: Admin copy VI + Excel callout + `BaseController.GetCurrentUserId`; `admin-reading` font 700; learner `Reading.css` alias `--tct-*`, FA icons, chip C2, copy plain; study/Progress scoped tokens; không đổi schema/typed scoring đợt A.
+
+**Files Changed**:
+- `TCTEnglish/Areas/Admin/Controllers/ReadingManagementController.cs` — BaseController
+- Admin Reading views + `admin-reading.css` — copy/token/Excel CTA
+- `TCTEnglish/Views/Study/Reading.cshtml`, `ReadingStudy.cshtml`, `Reading.css`, `reading-study.css`, `reading-study.js`
+- `TCTEnglish/Views/Reading/Progress.cshtml`
+- `docs/design-system/team-ui-workflow.md` — tracker Đọc
+
+**Verification**: `dotnet test --filter FullyQualifiedName~ReadingModuleTests` — 21 passed. Browser 1440/768/375: không quan sát lần này.
+
+**Commit**: not committed (owner did not request commit)
+
+**Notes**: Timed/Annotation vẫn ngoài phạm vi. ManageQuestions legacy view còn file nhưng controller redirect Edit.
+
+### Reading Study UI only supported radio options for all question types — 2026-11-16
+
+**Symptom**: Backend/Excel và `ScoreQuestion` hỗ trợ MultipleChoice, TrueFalse, GapFill, Matching, ShortAnswer, nhưng màn `/Reading/Study/{id}` chỉ render radio theo `Options`. GapFill/ShortAnswer/Matching không nhập được đáp án; autosave không gửi `answerText`/`matchingJson`.
+
+**Root Cause**: `ReadingStudy.cshtml` không nhánh theo `QuestionType`; `reading-study.js` chỉ listen radio. `GetStudyAsync` không expose `MatchingJson` đã lưu để restore attempt mở.
+
+**Solution**: Render theo type (radio / text|textarea / matching select); autosave + flush trước submit theo contract `SaveAnswer`; map `SavedMatchingJson`; feedback dùng `correctAnswerText` khi không có option đúng.
+
+**Files Changed**:
+- `TCTEnglish/Views/Study/ReadingStudy.cshtml` — UI theo QuestionType
+- `TCTEnglish/wwwroot/js/reading-study.js` — autosave text/matching + restore Matching
+- `TCTEnglish/wwwroot/css/reading-study.css` — layout matching tối thiểu
+- `TCTEnglish/ViewModels/QuestionViewModel.cs` — `SavedMatchingJson`
+- `TCTEnglish/Services/Reading/ReadingLearningService.cs` — map MatchingJson
+- `TCTEnglish.Tests/ReadingModuleTests.cs` — GapFill/Matching/ShortAnswer score + restore
+
+**Verification**: `dotnet test --filter FullyQualifiedName~ReadingModuleTests` — 21 passed; `dotnet build -c Release` — 0 errors. Browser 1440/768/375: không quan sát trong lần này (local web không chạy kiểm tra UI).
+
+**Commit**: not committed (owner did not request commit)
+
+**Notes**: Timed entry / Annotation UI vẫn ngoài phạm vi đợt A. Matching JSON phải khớp `ScoreMatching` (`MatchKey` → danh sách option id). `MatchKey` vẫn có trên OptionViewModel (đã vậy trước fix).
+
+### Admin sidebar cannot scroll when Chrome zoom shrinks viewport — 2026-11-16
+
+**Symptom**: Admin NavMenu bị cắt khi zoom Chrome (90–100%+ / cửa sổ thấp); không cuộn được tới mục dưới hoặc nút "Về trang chính".
+
+**Root Cause**: `.admin-sidebar` chỉ có `min-height: 100vh` (không khóa height, không overflow). `nav.flex-grow-1` thiếu `min-height: 0` + `overflow-y: auto` nên flex child không tạo scrollport riêng khi nội dung dài hơn viewport.
+
+**Solution**: Khóa sidebar `height/max-height: 100vh|100dvh` + `overflow: hidden`; brand/footer `flex-shrink: 0`; nav `min-height: 0; overflow-y: auto; overscroll-behavior: contain` với scrollbar mỏng. Áp dụng cả desktop và drawer mobile.
+
+**Files Changed**:
+- `TCTEnglish/Areas/Admin/Views/Shared/_AdminLayout.cshtml` — CSS + class `admin-sidebar-brand` / `admin-sidebar-nav` / `admin-sidebar-footer`
+
+**Verification**: Chrome DevTools trên `/Admin` — computed `overflow:hidden` trên sidebar, `overflow-y:auto` + `min-height:0` trên nav; mô phỏng height 420px vẫn cuộn được (`scrolled: true`).
+
+**Commit**: not committed (owner did not request commit)
+
+**Notes**: View Razor/runtime; process `:5101` Release vẫn nhận markup mới qua reload. Không đổi route/menu items.
+
+### Landing primary CTA text invisible until hover — 2026-11-16
+
+
+**Symptom**: Nút header "Bắt đầu học miễn phí" gần như mất chữ khi không hover; hover thì chữ trắng hiện rõ.
+
+**Root Cause**: `.landing-page a { color: inherit }` (specificity 0,1,1) thắng `.landing-btn--primary { color: #fff }` (0,1,0), nên chữ kế thừa `--landing-text` (#24345b) trên nền primary. `:hover` (0,2,0) mới đưa màu về trắng.
+
+**Solution**: Thu hẹp rule inherit thành `.landing-page a:not(.landing-btn)` để các variant nút giữ đúng màu riêng.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/css/landing.css` — `a` inherit excludes `.landing-btn`
+
+**Verification**: Chrome DevTools trên `http://localhost:5100/` — computed color header/hero primary = `rgb(255,255,255)`; screenshot idle state chữ trắng rõ.
+
+**Commit**: not committed (owner did not request commit)
+
+**Notes**: Cùng nguyên nhân có thể ảnh hưởng `.landing-btn--on-dark` nếu inherit từ section chữ trắng.
+
+### Reading admin missing Authorize + antiforgery on mutate/submit — 2026-11-09
+
+**Symptom**: Admin Reading endpoints lacked role gate while other Admin controllers used `[Authorize(Roles = Admin)]`. TogglePublish/Delete/DeleteQuestion and student SubmitReading lacked antiforgery; Study allowed unpublished passages.
+
+**Root Cause**: Legacy ReadingManagementController was incomplete relative to Admin security conventions; SubmitReading used fetch FormData without token validation.
+
+**Solution**: Add Admin role authorize; ValidateAntiForgeryToken on mutate/submit; Study/Submit require published; study form emits antiforgery token. Later Reading module work added level gates and workflow Status.
+
+**Files Changed**:
+- `TCTEnglish/Areas/Admin/Controllers/ReadingManagementController.cs` — Authorize + antiforgery
+- `TCTEnglish/Controllers/ReadingController.cs` — Submit antiforgery + published checks
+- `TCTEnglish/Views/Study/ReadingStudy.cshtml` / `wwwroot/js/reading-study.js` — token on submit
+
+**Verification**: Release build succeeded; `ReadingModuleTests` 11 passed (level gate, self-review blocked, import draft, scoring).
+
+**Commit**: not committed (owner did not request commit)
+
+**Notes**: Full Reading SRS implementation landed in the same change set (schema, workflow, Excel, student tools).
 ### Publication integration: stale Writing/Profile fixtures and catalog checkout bytes — 2026-11-18
 
 **Symptom/cause**: After merging current master with the completed learning/chat
@@ -4095,6 +4256,73 @@ content, persisted model, migration, protected config or saved secret changed.
 No paid request, commit, push, CI or deploy. Dense/live evaluation stays BLOCKED.
 No matching entry in known-issues.md required a status change.
 
+### Footer overlaps open desktop sidebar — 2026-11-09
+
+**Symptom**: When the main nav sidebar was open, the site footer columns (brand
+text starting with “TCT Vocabulary”) sat under the fixed sidebar and were
+partially hidden.
+
+**Root Cause**: `.main` receives `margin-left` matching the sidebar width, but
+`.tct-footer` is a sibling outside `.layout` and had no matching offset. The
+fixed sidebar therefore painted over the left of the footer.
+
+**Solution**: Offset `.tct-footer` with the same sidebar tokens as `.main` when
+`.layout` is not `.sidebar-collapsed` (280px desktop, 240px ≤1024px). Keep
+`margin-left: 0` at ≤768px where the sidebar overlays instead of pushing
+content. Existing `layout.js` toggle of `sidebar-collapsed` drives both main
+and footer without JS changes.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/css/layout.css` — sibling selector for open-sidebar footer offset
+- `.ai/context/bug-fix-log.md` — this entry
+
+**Verification**: Browser DevTools on `/Home/Index` after login: open nav
+footer/main `margin-left` both `280px`, brand left of sidebar by ~30px padding;
+collapsed both `0px`; at ~1000px width both `240px`; below 768px both `0px`.
+Shared-impact CSS only; pages using `_Layout.cshtml`.
+
+**Commit**: not created (local fix only)
+
+**Notes**: No persisted model, migration, protected config, commit, push or
+deploy. HideSidebar pages already use `sidebar-collapsed` so footer stays full
+width. No known-issues.md entry required.
+
+### Multi-platform UI rules Phase A/B round 1 — 2026-11-09
+
+**Symptom**: Multi-platform (mobile + desktop) whole-feature rule was only
+partially implied in checklists; footer/menu shell gaps and some Admin tables
+lacked responsive wrappers.
+
+**Root Cause**: Policy lived as soft checklist items rather than a mandatory
+whole-feature rule across DESIGN/workflow/prompts/skills. Shell footer used
+`nowrap`; menu toggle was under 44px; Admin ReadingManagement table had a fixed
+350px actions column without `.table-responsive`.
+
+**Solution**: Added multi-platform spec and Phase B audit plan; updated DESIGN,
+workflow tracker (Đa nền column), prompts, AGENTS, UI skills, gallery note.
+Shell: footer wrap, 44px menu target, default `aria-expanded`. Feature fixes:
+Dashboard answers ≤768, Listening delete min-height 44px, Admin table wraps and
+toggle target. Audited learner index surfaces at 390 for overflow.
+
+**Files Changed**:
+- `docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md`
+- `docs/superpowers/plans/2026-11-09-multi-platform-feature-audit.md`
+- `DESIGN.md`, `docs/design-system/team-ui-workflow.md`, `preview.html`
+- `AGENTS.md`, `.ai/prompts/implement-page-with-team-design-system.md`,
+  `.ai/templates/execution-prompt.md`, `.agents/skills/tct-ui-component|review`
+- `layout.css`, `_Layout.cshtml`, `Dashboard.css`, `listening-index.css`
+- Admin `ReadingManagement/Index`, `BillingManagement/Health`, `_AdminLayout`
+
+**Verification**: Browser 1440 shell open/collapsed; 390 overflow sweep on
+Dashboard, Vocabulary, Listening, Reading, Writing, Speaking, Goals, Class,
+Folder, Profile, Settings, Notification, AI Chat, Contact, Admin Dashboard.
+Practice deep links and live Auth logout not verified this round.
+
+**Commit**: not created
+
+**Notes**: Tracker rows set to `Audit xong` (shell `Đạt đa nền`). Promote to
+`Đạt đa nền` after practice-surface passes. No migration/shared-data/protected
+config. No commit/push/deploy.
 ### Personal sets redesign — B1–B7 (Set/Card/Study) — 2026-11-09
 
 **Symptom**: Editing a set via `POST /Home/EditSet` wiped learning progress and card phonetic/example/topic; deleting a set/card with progress failed on the FK; any `http(s)` card image URL was downloaded server-side; Study/Quiz/Write/Matching had no view check; the Study exit link went to `/Home/FolderDetail/0` for sets without a folder; `UpdateCardProgress` wrote progress for any card id.
