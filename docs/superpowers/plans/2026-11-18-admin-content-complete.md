@@ -915,3 +915,14 @@ The host stopped two attempts at the whole suite for low memory (at A3 and at A5
 - No page state is conveyed by colour alone: every status tag carries its words.
 
 **Gate record — A8.** G1/G2/G3: the only code change is CSS, so the suites of the A5–A7 gate stand (3483 tests, 0 failed); G4 unchanged (514 node tests, the same single A0 failure); G5 pass (no model change); G6 pass (CSS greps clean); G7 pass (only `admin-content.css` and this plan); G8, G10, G11 pass as above; G9: the four mockups' structure is matched by A3, A5, A6 and A7 (differences recorded there); G12 pass; G13 pass (other admin and learner pages answer 200); G14 and G15 pass. Throwaway content: none.
+
+
+### A9 — Docs (2026-11-18)
+
+- `docs/design-system/team-ui-workflow.md`: the row "Admin của các module còn lại" is split into Admin Bộ từ vựng, Admin Bài nghe, Admin Thanh toán and Admin Thông báo (all "Đã chuyển 18/11/2026") and a remaining row for Class, Reading and Message.
+- `.ai/context/known-issues.md`: new entries `ADMIN-CONTENT-SIDEBAR-LABELS-D1` (proposal for Chau: two sidebar labels), `ADMIN-CONTENT-SEEDER-NAME-RULE` (the seeder matches sets by owner, name and folder and cards by term, why a system set cannot be renamed, and how to merge the exported JSON into `system-vocabulary.json`), `ADMIN-CONTENT-LEARNER-POLICY`, `ADMIN-CONTENT-PROGRAM-DI-LINES`, `ADMIN-BILLING-SECONDARY-PAGES-BOOTSTRAP` and `ADMIN-CONTENT-TEST-HOST-MEMORY`; the earlier `NOTIFICATIONS-ADMIN-VISUAL-BATCH`, `SWEEP-LISTENING-YOUTUBE-THUMB-404` and `SWEEP-ADMIN-SET-SAMPLE-IMAGES-404` entries carry their new status.
+- `.ai/context/bug-fix-log.md`: one entry for the whole work (S1–S9, L1–L10, P1–P3, N1), including the MariaDB-only failure found on the dev database.
+- `docs/project-structure.md`: one bullet describing the shared admin kit and the thin controllers.
+- Deviation recorded: the JSON export of a system set lives inside `AdminVocabularyService.ExportSystemSetAsync` (private DTOs mirroring the file's property order) instead of a separate `SystemVocabularyExport.cs`; the other planned file names are unchanged.
+
+**Gate record — A9.** Documentation only: G1–G5 unchanged from A8 (3483 .NET tests, 514 node tests with the single A0 failure, no model change); G6 `git diff --check` clean; G7 only the four docs above and this plan; G8–G12 and G14 n/a; G13 and G15 n/a (no code). Throwaway content: none.
