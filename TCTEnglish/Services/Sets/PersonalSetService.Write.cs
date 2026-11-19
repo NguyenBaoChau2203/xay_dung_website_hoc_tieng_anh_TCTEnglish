@@ -732,6 +732,32 @@ public sealed partial class PersonalSetService
         return await CloneInternalAsync(target.Value.SetId, userId, ct);
     }
 
+    /// <summary>
+    /// A new card with every content field of <paramref name="source"/> (not its ids, set or progress). The one place
+    /// that decides which fields a copy carries: cloning a set and the onboarding starter decks both use it.
+    /// </summary>
+    internal static Card CopyCard(Card source, DateTime now, bool keepPersonalNote) => new()
+    {
+        Term = source.Term,
+        Definition = source.Definition,
+        ImageUrl = source.ImageUrl,
+        Phonetic = source.Phonetic,
+        Example = source.Example,
+        ExampleTranslation = source.ExampleTranslation,
+        Topic = source.Topic,
+        PartsOfSpeech = source.PartsOfSpeech,
+        MeaningEn = source.MeaningEn,
+        Cefr = source.Cefr,
+        PhoneticUk = source.PhoneticUk,
+        Emoji = source.Emoji,
+        DetailsJson = source.DetailsJson,
+        ImageSourceJson = source.ImageSourceJson,
+        AiGenerated = source.AiGenerated,
+        PersonalNote = keepPersonalNote ? source.PersonalNote : null,
+        CreatedAt = now,
+        UpdatedAt = now,
+    };
+
     private async Task<OperationResult<int>> CloneInternalAsync(int sourceSetId, int userId, CancellationToken ct)
     {
         if (await _db.Sets.CountAsync(s => s.OwnerId == userId, ct) >= MaxOwnedSets)
@@ -768,27 +794,7 @@ public sealed partial class PersonalSetService
         var cards = await _db.Cards.AsNoTracking().Where(c => c.SetId == sourceSetId).OrderBy(c => c.CardId).ToListAsync(ct);
         foreach (var card in cards)
         {
-            clone.Cards.Add(new Card
-            {
-                Term = card.Term,
-                Definition = card.Definition,
-                ImageUrl = card.ImageUrl,
-                Phonetic = card.Phonetic,
-                Example = card.Example,
-                ExampleTranslation = card.ExampleTranslation,
-                Topic = card.Topic,
-                PartsOfSpeech = card.PartsOfSpeech,
-                MeaningEn = card.MeaningEn,
-                Cefr = card.Cefr,
-                PhoneticUk = card.PhoneticUk,
-                Emoji = card.Emoji,
-                DetailsJson = card.DetailsJson,
-                ImageSourceJson = card.ImageSourceJson,
-                AiGenerated = card.AiGenerated,
-                PersonalNote = cloneOwnNotes ? card.PersonalNote : null,
-                CreatedAt = now,
-                UpdatedAt = now,
-            });
+            clone.Cards.Add(CopyCard(card, now, cloneOwnNotes));
         }
 
         await using var transaction = await _db.Database.BeginTransactionAsync(ct);

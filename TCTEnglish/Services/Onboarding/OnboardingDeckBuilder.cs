@@ -108,6 +108,25 @@ public static class OnboardingDeckBuilder
         return decks;
     }
 
+    /// <summary>
+    /// The next <paramref name="count"/> (1..20) cards for an existing deck: the same ranking, from the deck's topics, skipping every
+    /// term in <paramref name="usedTerms"/> (own sets and known words). Fewer cards than asked means the topics are used up.
+    /// </summary>
+    public static IReadOnlyList<OnboardingCard> PickNext(
+        IReadOnlyList<string> topicKeys, string level, IReadOnlyList<OnboardingCard> pool, IReadOnlySet<string> usedTerms, int count)
+    {
+        var group = new Group { Key = "refill", Name = string.Empty, Goal = "other" };
+        group.Topics.AddRange(topicKeys.Where(key => OnboardingCatalog.TryGetTopic(key, out _)).Distinct(StringComparer.Ordinal));
+        var used = new HashSet<string>(usedTerms.Select(Lemma), StringComparer.Ordinal);
+        var picked = Fill(group, pool, level, Math.Clamp(count, 1, 20), used);
+        return picked
+            .Select((card, order) => (Card: card, Order: order))
+            .OrderBy(item => Rank(item.Card.Cefr))
+            .ThenBy(item => item.Order)
+            .Select(item => item.Card)
+            .ToList();
+    }
+
     // One group per chosen goal (in the learner's order), then the phrase group, then the topics no goal covers.
     private static List<Group> FormGroups(IReadOnlyList<string> goals, IReadOnlyList<string> topics)
     {

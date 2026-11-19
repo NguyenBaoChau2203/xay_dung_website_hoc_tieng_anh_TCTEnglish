@@ -100,6 +100,8 @@ builder.Services.AddScoped<IGoalsService, GoalsService>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IStudyService, StudyService>();
 builder.Services.AddScoped<TCTEnglish.Services.Sets.IPersonalSetService, TCTEnglish.Services.Sets.PersonalSetService>();
+builder.Services.AddScoped<TCTEnglish.Services.Onboarding.IOnboardingService, TCTEnglish.Services.Onboarding.OnboardingService>();
+builder.Services.AddSingleton<TCTEnglish.Services.Onboarding.IOnboardingRequestLimiter, TCTEnglish.Services.Onboarding.OnboardingRequestLimiter>();
 builder.Services.AddScoped<TCTEnglish.Services.Admin.IAdminVocabularyService, TCTEnglish.Services.Admin.AdminVocabularyService>();
 builder.Services.AddScoped<TCTEnglish.Services.Admin.IAdminListeningService, TCTEnglish.Services.Admin.AdminListeningService>();
 builder.Services.AddOptions<TCTEnglish.Services.Writing.WritingEvaluationOptions>()

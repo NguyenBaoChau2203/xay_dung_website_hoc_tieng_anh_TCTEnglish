@@ -657,3 +657,26 @@ New: `Services/Onboarding/OnboardingCatalog.cs` (6 goals, 48 topics, goal → to
 | G7 | Files = section 5. |
 | G8–G14, G16 | Not applicable (no UI). |
 | G15 | Pure functions; no data access. |
+
+### 12.4 S3 gate record (service)
+
+New: `Services/Onboarding/{OnboardingModels,OnboardingService,OnboardingRequestLimiter}.cs`, `PickNext` in the deck builder, `OnboardingServiceTests` (33 tests incl. the limiter). Edited: `Services/Sets/PersonalSetService.Write.cs` (the card copy of `CloneInternalAsync` moved into `internal static CopyCard`, same fields, same values; no signature or behaviour change) and two DI lines in `Program.cs`.
+
+**Design notes**
+- The service does not use `IPersonalSetService`: it works on the `DbflashcardContext` in one transaction and shares only `CopyCard`, so the public interface is unchanged.
+- Idempotency: inside the transaction the request id is claimed with one `UPDATE … WHERE LastRequestId <> @id`. Under InnoDB the row lock makes a concurrent second request wait and then see zero rows updated, and it replays the stored result (`LastResultJson`). The same id with another payload hash is a conflict. SQLite has no row locks, so the tests prove the sequential retry, the conflict and the rollback; the concurrent case relies on this MariaDB behaviour and is **not** covered by an automated test.
+- A system topic is the system set with that exact name; when an older set shares the name ("Nghề nghiệp" exists twice) the one with more cards is used.
+- "Đã biết" only removes cards from the decks created now and stores the lower-case terms; no progress row is written.
+- The "Again" mode reuses the folder (name compared ignoring case and edge spaces), numbers the names and never repeats a term the user already owns.
+
+| Gate | Result |
+| --- | --- |
+| G1 | Debug and Release build, 0 errors. |
+| G2 | `OnboardingServiceTests` 33/33 (state, prompt spacing, skip rules, preview validation and determinism, owned terms excluded, query count constant, complete with field-by-field copy and unchanged system rows, switched-off decks and known words, idempotency and conflict, rollback at the second save, set limit, again mode, existing folder, refill, banner). Sets and clone tests pass unchanged. |
+| G3 | Full .NET suite (Release, 2 threads): **3723 passed**, 0 failed, 58 skipped (baseline 3645 + the 78 onboarding tests). |
+| G4 | Node: 570 passed (baseline 570). |
+| G5 | No model change; no route added yet. |
+| G6 | New C# only. |
+| G7 | `Program.cs` diff = 2 DI lines; the DbContext is untouched in this phase; `PersonalSetService.Write.cs` change is the helper extraction. |
+| G8–G14, G16 | Not applicable (no UI); query count of the preview is asserted in the tests (≤ 8 SELECTs, constant for 3 and 8 topics). |
+| G15 | Every query is scoped by the user id; the system vocabulary is only read (fingerprint of the system rows identical before and after). |
