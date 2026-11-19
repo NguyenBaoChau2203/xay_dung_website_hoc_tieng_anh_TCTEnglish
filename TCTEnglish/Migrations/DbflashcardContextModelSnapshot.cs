@@ -1544,6 +1544,75 @@ namespace TCTEnglish.Migrations
                     b.ToTable("UserNotificationPreferences", (string)null);
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.UserOnboarding", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("BannerDismissedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("CompletedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("DailyNewWords")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DecksJson")
+                        .HasColumnType("mediumtext");
+
+                    b.Property<int?>("FolderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GoalsJson")
+                        .HasMaxLength(400)
+                        .HasColumnType("varchar(400)");
+
+                    b.Property<string>("KnownTermsJson")
+                        .HasColumnType("mediumtext");
+
+                    b.Property<DateTime?>("LastPromptedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("LastRequestHash")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("LastRequestId")
+                        .HasMaxLength(36)
+                        .HasColumnType("varchar(36)");
+
+                    b.Property<string>("LastResultJson")
+                        .HasMaxLength(4000)
+                        .HasColumnType("varchar(4000)");
+
+                    b.Property<string>("Level")
+                        .HasMaxLength(2)
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<int>("PromptCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("varchar(16)");
+
+                    b.Property<string>("TopicKeysJson")
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("UserOnboardings");
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.UserSpeakingVideoVisit", b =>
                 {
                     b.Property<int>("UserId")
@@ -4925,6 +4994,15 @@ namespace TCTEnglish.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.UserOnboarding", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", null)
+                        .WithOne()
+                        .HasForeignKey("TCTEnglish.Models.UserOnboarding", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TCTEnglish.Models.UserSpeakingVideoVisit", b =>

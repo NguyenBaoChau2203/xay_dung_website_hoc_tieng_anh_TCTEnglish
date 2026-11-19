@@ -117,6 +117,7 @@ public partial class DbflashcardContext : DbContext
     {
         ConfigureWritingGeneration(modelBuilder);
         ConfigureAiVoice(modelBuilder);
+        ConfigureOnboarding(modelBuilder);
         modelBuilder.Entity<Card>(entity =>
         {
             entity.HasKey(e => e.CardId).HasName("PK__Cards__55FECD8E2103FA66");

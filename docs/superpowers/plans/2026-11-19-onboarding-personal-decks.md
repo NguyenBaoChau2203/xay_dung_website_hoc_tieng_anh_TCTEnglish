@@ -617,3 +617,22 @@ _(Filled by the agent: S0 verdicts; per-phase gate records; mockup differences; 
 - **Eligibility date** `OnboardingEligibleFromUtc = 2026-11-19T00:00:00Z` (the run date). All 10 users of the local database were created before it, so none is auto-prompted locally; the end-to-end run uses a new account.
 - **Rate limit (deviation from "reuse the pattern").** `Program.cs` already has `AddRateLimiter` with an `account-security` policy, but a new policy there would be more than "DI lines only". The 10 per 10 minutes limit for complete/refill is therefore a small singleton limiter (`OnboardingRequestLimiter`, same idea as `AiRequestRateLimiter`), registered with one DI line.
 - The pop-up uses a Bootstrap modal (existing pattern) instead of a hand-written dialog.
+
+### 12.2 S1 gate record (data)
+
+New: `Models/UserOnboarding.cs`, `Models/DbflashcardContext.Onboarding.cs` (partial file, `DbSet` + `ConfigureOnboarding`), migration `20261119151230_AddUserOnboarding` (+ Designer, snapshot +78 lines), `OnboardingSchemaTests`. Edited: one line `ConfigureOnboarding(modelBuilder);` in `Models/DbflashcardContext.cs`.
+
+**Deviation from plan 4.1 (additive, same table).** Three extra columns for idempotency: `LastRequestHash varchar(64)` (the 409 rule needs a payload fingerprint) and `LastResultJson varchar(4000)` (a retried request returns the same result without recomputing). No other change; no `FolderId` foreign key by design.
+
+| Gate | Result |
+| --- | --- |
+| G1 | Debug and test project build, 0 errors. |
+| G2 | `OnboardingSchemaTests` 3/3 (migration has only `CreateTable`/`DropTable` of `UserOnboardings`, row round trip, one row per user, cascade on user delete, column mapping). |
+| G3, G4 | Full .NET and node suites are **not** run at S1 (no behaviour or script changed); they run at S3, S4, S6, S8 and S10. Baseline to beat: .NET 3645 / node 570. |
+| G5 | `has-pending-model-changes`: none. Exactly one new migration; it creates one table and touches no other. Applied to the local Docker MariaDB 10.5-compatible database (`Applying migration '20261119151230_AddUserOnboarding'`, `SHOW CREATE TABLE` checked, FK cascade present). |
+| G6 | `git diff --check` clean on new files; encoding guard passed. No CSS/views touched. |
+| G7 | Files = section 5. The DbContext diff is one added line. |
+| G8–G12, G14 | Not applicable (no UI). |
+| G13 | Not applicable yet (no behaviour change). |
+| G15 | Cascade delete only; no query exists yet. |
+| G16 | Not applicable. |
