@@ -1,0 +1,1090 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A21",
+    "name": "Nhạc cụ & nghệ thuật",
+    "description": "#a1 #a2 #music #art",
+    "topic": "Nhạc cụ & nghệ thuật",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "guitar",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "đàn ghi-ta",
+      "meaningEn": "a musical instrument with six strings",
+      "examples": [
+        {
+          "text": "He plays the guitar in a small band.",
+          "vi": "Anh ấy chơi ghi-ta trong một ban nhạc nhỏ."
+        },
+        {
+          "text": "My guitar is old but sounds beautiful.",
+          "vi": "Cây đàn ghi-ta của tôi đã cũ nhưng nghe rất hay."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play the guitar",
+          "vi": "chơi ghi-ta"
+        }
+      ],
+      "imageQuery": "acoustic guitar",
+      "image": {
+        "file": "a21/guitar.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/acoustic-guitar-LBCPMZCQPT",
+        "author": "Pawel Kadysz",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "acoustic guitar",
+        "sha256": "112c8c641a3ee4e1e06d72b1a65b43365424d75314e3d5f58c7662ea28cf6100",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ɡɪˈtɑɹ/",
+      "ipaUk": "/ɡɪˈtɑː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/guitar",
+      "ipaVerified": true
+    },
+    {
+      "term": "piano",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "đàn piano",
+      "meaningEn": "a big musical instrument with black and white keys",
+      "examples": [
+        {
+          "text": "She practises the piano every evening.",
+          "vi": "Cô ấy luyện đàn piano mỗi buổi tối."
+        },
+        {
+          "text": "There is an old piano in our living room.",
+          "vi": "Có một cây đàn piano cũ trong phòng khách nhà tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play the piano",
+          "vi": "chơi piano"
+        }
+      ],
+      "imageQuery": "piano keys",
+      "image": {
+        "file": "a21/piano.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/piano-keys-DPYMRMG50T",
+        "author": "Freestocks.org",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "piano keys",
+        "sha256": "b280e6e273a527bf63b5727342745c325168105f42f9b6cadd1310d0533bd849",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/piˈænoʊ/",
+      "ipaUk": "/ˈpjænəʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/piano",
+      "ipaVerified": true
+    },
+    {
+      "term": "violin",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đàn vi-ô-lông",
+      "meaningEn": "a small musical instrument with four strings played with a bow",
+      "examples": [
+        {
+          "text": "He learns to play the violin.",
+          "vi": "Cậu ấy đang học chơi vi-ô-lông."
+        },
+        {
+          "text": "The violin sounds sweet and soft.",
+          "vi": "Tiếng vi-ô-lông nghe ngọt ngào và nhẹ nhàng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play the violin",
+          "vi": "chơi vi-ô-lông"
+        }
+      ],
+      "imageQuery": "violin",
+      "image": {
+        "file": "a21/violin.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/70125105@N06/26651708507",
+        "author": "Carlo Raso",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "violin",
+        "sha256": "a5ee98f5665929c2c4596ad348eb0ec29fb52e2086821a154763a44fd2dc7c47",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˌvaɪ.əˈlɪn/",
+      "ipaUk": "/ˌvaɪ.əˈlɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/violin",
+      "ipaVerified": true
+    },
+    {
+      "term": "drum",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái trống",
+      "meaningEn": "a musical instrument that you hit with sticks",
+      "examples": [
+        {
+          "text": "The boy is playing the drum loudly.",
+          "vi": "Cậu bé đang đánh trống rất to."
+        },
+        {
+          "text": "We heard a drum from the street.",
+          "vi": "Chúng tôi nghe thấy tiếng trống từ ngoài phố."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "beat a drum",
+          "vi": "đánh trống"
+        }
+      ],
+      "imageQuery": "drum kit",
+      "image": {
+        "file": "a21/drum.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6266849/png-public-domain-black",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "drum kit",
+        "sha256": "4017ea9db5fdbb81be4e80838ef920182fc8448432cbd3aec12ab80d21ef2bff",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/dɹʌm/",
+      "ipaUk": "/dɹʌm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/drum",
+      "ipaVerified": true
+    },
+    {
+      "term": "flute",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cây sáo",
+      "meaningEn": "a long thin instrument that you blow across",
+      "examples": [
+        {
+          "text": "She plays the flute in the school band.",
+          "vi": "Cô ấy thổi sáo trong ban nhạc của trường."
+        },
+        {
+          "text": "The sound of the flute is light and clear.",
+          "vi": "Tiếng sáo nhẹ nhàng và trong trẻo."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play the flute",
+          "vi": "thổi sáo"
+        }
+      ],
+      "imageQuery": "flute instrument",
+      "image": {
+        "file": "a21/flute.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6290349/png-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "flute instrument",
+        "sha256": "9625bee487674f048f8be0e62d9234d5c41337eaa7fc734b8c1ef7f4958165f4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/flu(ː)t/",
+      "ipaUk": "/flu(ː)t/",
+      "ipaSource": "https://en.wiktionary.org/wiki/flute",
+      "ipaVerified": true
+    },
+    {
+      "term": "trumpet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "kèn trumpet",
+      "meaningEn": "a loud brass instrument that you blow into",
+      "examples": [
+        {
+          "text": "He plays the trumpet in a jazz band.",
+          "vi": "Anh ấy thổi trumpet trong một ban nhạc jazz."
+        },
+        {
+          "text": "The trumpet is very loud.",
+          "vi": "Tiếng kèn trumpet rất to."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play the trumpet",
+          "vi": "thổi kèn trumpet"
+        }
+      ],
+      "imageQuery": "trumpet brass",
+      "image": {
+        "file": "a21/trumpet.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Dynacord_PowerMate_600_powered_mixer_%26_trumpet_(brass_instrument,_trumpet,_electronics,_audio,_equipment)_(2015-09-25_21.14.30_by_hpgruesen_@PIXNIO_251311).jpg",
+        "author": "hpgruesen",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "trumpet brass",
+        "sha256": "8ec3b78bccf477269c94512e7dd9aa302d1a6ebddb8776aba186946b6a37c03f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈtɹʌmpɪt/",
+      "ipaUk": "/ˈtɹʌmpɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/trumpet",
+      "ipaVerified": true
+    },
+    {
+      "term": "saxophone",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "kèn saxophone",
+      "meaningEn": "a curved metal instrument used in jazz",
+      "examples": [
+        {
+          "text": "The man played the saxophone on the street.",
+          "vi": "Người đàn ông thổi kèn saxophone trên phố."
+        },
+        {
+          "text": "A saxophone has a warm, deep sound.",
+          "vi": "Kèn saxophone có âm thanh ấm và trầm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play the saxophone",
+          "vi": "thổi kèn saxophone"
+        }
+      ],
+      "imageQuery": "saxophone",
+      "image": {
+        "file": "a21/saxophone.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/132795455@N08/20311658263",
+        "author": "Image Catalog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "saxophone",
+        "sha256": "0d682c5c0eb40d99f2cb90b6903838c3343420b00481591a90dd5065c38a9434",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈsæksəˌfoʊ̯n/",
+      "ipaUk": "/ˈsæksəˌfəʊ̯n/",
+      "ipaSource": "https://en.wiktionary.org/wiki/saxophone",
+      "ipaVerified": true
+    },
+    {
+      "term": "harp",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đàn hạc",
+      "meaningEn": "a large instrument with many strings that you pull with your fingers",
+      "examples": [
+        {
+          "text": "She plays the harp very gently.",
+          "vi": "Cô ấy chơi đàn hạc rất nhẹ nhàng."
+        },
+        {
+          "text": "A harp has many long strings.",
+          "vi": "Đàn hạc có rất nhiều dây dài."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play the harp",
+          "vi": "chơi đàn hạc"
+        }
+      ],
+      "imageQuery": "harp",
+      "image": {
+        "file": "a21/harp.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/70125105@N06/32266826342",
+        "author": "Carlo Raso",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "harp",
+        "sha256": "30dad38415d90361f2af835656bd528a41b9e9b50cf61b0bb389c96491e4327a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/hɑɹp/",
+      "ipaUk": "/hɑːp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/harp",
+      "ipaVerified": true
+    },
+    {
+      "term": "cello",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đàn cello",
+      "meaningEn": "a big string instrument that you play sitting down",
+      "examples": [
+        {
+          "text": "He sits down to play the cello.",
+          "vi": "Anh ấy ngồi xuống chơi đàn cello."
+        },
+        {
+          "text": "The cello is much bigger than a violin.",
+          "vi": "Đàn cello to hơn đàn vi-ô-lông rất nhiều."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play the cello",
+          "vi": "chơi đàn cello"
+        }
+      ],
+      "imageQuery": "cello",
+      "image": {
+        "file": "a21/cello.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5908151/image-public-domain-art-hand",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cello",
+        "sha256": "593536c83c272b0cc417df21e836560bff1ba169ced768427119d7e8eef8089b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈt͡ʃɛloʊ/",
+      "ipaUk": "/ˈtʃɛləʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cello",
+      "ipaVerified": true
+    },
+    {
+      "term": "harmonica",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "kèn harmonica",
+      "meaningEn": "a small instrument that you blow and suck air through",
+      "examples": [
+        {
+          "text": "My grandfather plays the harmonica.",
+          "vi": "Ông tôi chơi kèn harmonica."
+        },
+        {
+          "text": "A harmonica fits in your pocket.",
+          "vi": "Kèn harmonica nhét vừa túi áo."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play the harmonica",
+          "vi": "thổi kèn harmonica"
+        }
+      ],
+      "imageQuery": "harmonica",
+      "image": {
+        "file": "a21/harmonica.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/harmonica-music-Q22SIY7HA6",
+        "author": "AJ Montpetit",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "harmonica",
+        "sha256": "c0b11a5b3e52e37677208a22542b23ae3b1212ebd2a88e2f0e49e74ad03c97a7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˌhɑɹˈmɑnɪkə/",
+      "ipaUk": "/hɑːˈmɒnɪkə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/harmonica",
+      "ipaVerified": true
+    },
+    {
+      "term": "ukulele",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đàn ukulele",
+      "meaningEn": "a small guitar with four strings",
+      "examples": [
+        {
+          "text": "She plays a ukulele at the beach.",
+          "vi": "Cô ấy chơi đàn ukulele ở bãi biển."
+        },
+        {
+          "text": "A ukulele is easy to learn.",
+          "vi": "Đàn ukulele rất dễ học."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play the ukulele",
+          "vi": "chơi ukulele"
+        }
+      ],
+      "imageQuery": "ukulele",
+      "image": {
+        "file": "a21/ukulele.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/128433076@N04/19141103336",
+        "author": "Will Anderson Photographs",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "ukulele",
+        "sha256": "485e2ab55078078a17a015cef943543d1b59b2832b8d121d022a6732892056c8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/juː.kəˈleɪ.li/",
+      "ipaUk": "/juː.kəˈleɪ.li/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ukulele",
+      "ipaVerified": true
+    },
+    {
+      "term": "accordion",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đàn accordion",
+      "meaningEn": "an instrument that you squeeze open and shut while pressing keys",
+      "examples": [
+        {
+          "text": "The old man plays the accordion in the square.",
+          "vi": "Ông lão chơi đàn accordion ở quảng trường."
+        },
+        {
+          "text": "An accordion makes a lively sound.",
+          "vi": "Đàn accordion tạo ra âm thanh sôi nổi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play the accordion",
+          "vi": "chơi đàn accordion"
+        }
+      ],
+      "imageQuery": "accordion instrument",
+      "image": {
+        "file": "a21/accordion.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6449440/png-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "accordion instrument",
+        "sha256": "fa6fcfa52795c1abe463a895a6420739568ae9b0f1a89566606113c997b072e6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/əˈkoɹ.di.ən/",
+      "ipaUk": "/əˈkɔː.diː.ən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/accordion",
+      "ipaVerified": true
+    },
+    {
+      "term": "microphone",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "micro",
+      "meaningEn": "a device that makes your voice louder",
+      "examples": [
+        {
+          "text": "The singer held the microphone in her hand.",
+          "vi": "Ca sĩ cầm micro trong tay."
+        },
+        {
+          "text": "The microphone is not working.",
+          "vi": "Cái micro không hoạt động."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "speak into the microphone",
+          "vi": "nói vào micro"
+        }
+      ],
+      "imageQuery": "microphone stage",
+      "image": {
+        "file": "a21/microphone.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/23408922@N07/15601584309",
+        "author": "comedy_nose",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "microphone stage",
+        "sha256": "e852b09dd74596f808ccf425b19d96f54e1a5c61015a9621f02548614c1a2e26",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈmaɪ.kɹəˌfoʊn/",
+      "ipaUk": "/ˈmaɪ.kɹəˌfəʊn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/microphone",
+      "ipaVerified": true
+    },
+    {
+      "term": "orchestra",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "dàn nhạc giao hưởng",
+      "meaningEn": "a large group of musicians who play together",
+      "examples": [
+        {
+          "text": "The orchestra played a beautiful song.",
+          "vi": "Dàn nhạc đã chơi một bản nhạc tuyệt đẹp."
+        },
+        {
+          "text": "My sister plays the violin in the school orchestra.",
+          "vi": "Chị tôi chơi vi-ô-lông trong dàn nhạc của trường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "symphony orchestra",
+          "vi": "dàn nhạc giao hưởng"
+        }
+      ],
+      "imageQuery": "orchestra concert hall",
+      "image": {
+        "file": "a21/orchestra.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/43686761@N04/29175342525",
+        "author": "Sinfóníuhljómsveit Íslands",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "orchestra concert hall",
+        "sha256": "7dc526ad1661b462943b32a4931262cc0c919dfcba1b82bc83655390dc856675",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈoɹ.kɪs.tɹə/",
+      "ipaUk": "/ˈɔː.kɪs.tɹə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/orchestra",
+      "ipaVerified": true
+    },
+    {
+      "term": "concert",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "buổi hòa nhạc",
+      "meaningEn": "a show where musicians play for an audience",
+      "examples": [
+        {
+          "text": "We went to a rock concert on Friday.",
+          "vi": "Thứ Sáu chúng tôi đã đi xem một buổi hòa nhạc rock."
+        },
+        {
+          "text": "The concert starts at eight o'clock.",
+          "vi": "Buổi hòa nhạc bắt đầu lúc tám giờ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go to a concert",
+          "vi": "đi xem hòa nhạc"
+        }
+      ],
+      "imageQuery": "concert stage lights",
+      "image": {
+        "file": "a21/concert.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/135396164@N05/25545258533",
+        "author": "freestocks.org",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "concert stage lights",
+        "sha256": "799be63331155bee9b1c25528d22f1a90f1ca74e9bcab959a5cfc0a232a1e468",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/kənˈsɝt/",
+      "ipaUk": "/kənˈsɜːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/concert",
+      "ipaVerified": true
+    },
+    {
+      "term": "stage",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sân khấu",
+      "meaningEn": "the raised floor where actors and singers perform",
+      "examples": [
+        {
+          "text": "The singer walked onto the stage.",
+          "vi": "Ca sĩ bước lên sân khấu."
+        },
+        {
+          "text": "There are bright lights on the stage.",
+          "vi": "Trên sân khấu có những ánh đèn sáng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "on stage",
+          "vi": "trên sân khấu"
+        }
+      ],
+      "imageQuery": "theatre stage curtain",
+      "image": {
+        "file": "a21/stage.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Harrogate_Theatre_pit_and_curtain.jpg",
+        "author": "Celia Perry",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "theatre stage curtain",
+        "sha256": "8d16982eedf82790a985073df05a1f7a12c05adbc83d18c1511ef8e4e8ba8d53",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/steɪd͡ʒ/",
+      "ipaUk": "/steɪd͡ʒ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/stage",
+      "ipaVerified": true
+    },
+    {
+      "term": "theatre",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nhà hát",
+      "meaningEn": "a building where people watch plays",
+      "examples": [
+        {
+          "text": "We saw a play at the theatre last night.",
+          "vi": "Tối qua chúng tôi xem một vở kịch ở nhà hát."
+        },
+        {
+          "text": "The old theatre has red velvet seats.",
+          "vi": "Nhà hát cũ có những chiếc ghế nhung đỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go to the theatre",
+          "vi": "đi xem kịch"
+        }
+      ],
+      "imageQuery": "theatre interior seats",
+      "image": {
+        "file": "a21/theatre.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/153295164@N05/51909739971",
+        "author": "theatretalks",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "theatre interior seats",
+        "sha256": "c3c2f409dbe94534e25af1552e80aeb6fe3a49a4c67fa44a7a9e91c69b6c1361",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈθiːətər/",
+      "ipaUk": "/ˈθɪətə/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found"
+    },
+    {
+      "term": "sculpture",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tác phẩm điêu khắc",
+      "meaningEn": "a work of art made from stone, metal or clay",
+      "examples": [
+        {
+          "text": "There is a large sculpture in the park.",
+          "vi": "Có một tác phẩm điêu khắc lớn trong công viên."
+        },
+        {
+          "text": "He made a small sculpture from clay.",
+          "vi": "Cậu ấy làm một tác phẩm điêu khắc nhỏ từ đất sét."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "stone sculpture",
+          "vi": "tượng đá"
+        }
+      ],
+      "imageQuery": "sculpture park",
+      "image": {
+        "file": "a21/sculpture.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/48125931@N00/5722949355",
+        "author": "puffin11uk",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "sculpture park",
+        "sha256": "83bbcbfbc7669b90acb0ee841ac6bf935497af78b2b1bb8a052235bb1b0e4cc5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈskʌlpt͡ʃɚ/",
+      "ipaUk": "/ˈskʌlptj(ʊ)ə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sculpture",
+      "ipaVerified": true
+    },
+    {
+      "term": "statue",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bức tượng",
+      "meaningEn": "a figure of a person or animal made from stone or metal",
+      "examples": [
+        {
+          "text": "A statue of a king stands in the square.",
+          "vi": "Một bức tượng nhà vua đứng ở quảng trường."
+        },
+        {
+          "text": "Tourists take photos next to the statue.",
+          "vi": "Khách du lịch chụp ảnh cạnh bức tượng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bronze statue",
+          "vi": "tượng đồng"
+        }
+      ],
+      "imageQuery": "statue square",
+      "image": {
+        "file": "a21/statue.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/7156765@N05/51600261440",
+        "author": "Onasill - Bill Badzo - 149 Million Views - Thank Y",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "statue square",
+        "sha256": "656ed6ca5019584c630bc573eba29a710a66d6053e01892459168faad44fbefa",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈstæt͡ʃu/",
+      "ipaUk": "/ˈstæt͡ʃ.uː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/statue",
+      "ipaVerified": true
+    },
+    {
+      "term": "paintbrush",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cọ vẽ",
+      "meaningEn": "a brush used for painting",
+      "examples": [
+        {
+          "text": "She washed her paintbrush in the water.",
+          "vi": "Cô ấy rửa cây cọ vẽ trong nước."
+        },
+        {
+          "text": "A thin paintbrush is good for small details.",
+          "vi": "Cọ vẽ nhỏ rất tốt cho những chi tiết nhỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wet paintbrush",
+          "vi": "cọ vẽ ướt"
+        }
+      ],
+      "imageQuery": "paintbrush paint palette",
+      "image": {
+        "file": "a21/paintbrush.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6338193/png-sticker-art",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "paintbrush paint palette",
+        "sha256": "6c32cb1bfe82149f5f17080fd310289516d5f296c494b6912d39e27c4b285f77",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpeɪntˌbɹʌʃ/",
+      "ipaUk": "/ˈpeɪntˌbɹʌʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/paintbrush",
+      "ipaVerified": true
+    },
+    {
+      "term": "canvas",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tấm toan vẽ",
+      "meaningEn": "strong cloth that artists paint on",
+      "examples": [
+        {
+          "text": "He painted a mountain on the canvas.",
+          "vi": "Anh ấy vẽ một ngọn núi lên tấm toan."
+        },
+        {
+          "text": "The empty canvas is waiting for colour.",
+          "vi": "Tấm toan trống đang chờ những mảng màu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "blank canvas",
+          "vi": "tấm toan trống"
+        }
+      ],
+      "imageQuery": "blank canvas painting art",
+      "image": {
+        "file": "a21/canvas.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/96511847@N04/9203623490",
+        "author": "Foto Miki Digital",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "blank canvas painting art",
+        "sha256": "0e3a7d00201e0c96bcd44209470fc76ae657238d0d610a3b780b5c0109446ef1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈkæn.vəs/",
+      "ipaUk": "/ˈkæn.vəs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/canvas",
+      "ipaVerified": true
+    },
+    {
+      "term": "poster",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "áp phích",
+      "meaningEn": "a large printed picture or notice that you put on a wall",
+      "examples": [
+        {
+          "text": "I put a music poster on my wall.",
+          "vi": "Tôi dán một tấm áp phích âm nhạc lên tường."
+        },
+        {
+          "text": "The poster says the concert is on Friday.",
+          "vi": "Tấm áp phích cho biết buổi hòa nhạc diễn ra vào thứ Sáu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "film poster",
+          "vi": "áp phích phim"
+        }
+      ],
+      "imageQuery": "poster wall",
+      "image": {
+        "file": "a21/poster.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6030881/photo-image-paper-texture-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "poster wall",
+        "sha256": "5189e197cb7b54dd8eff430b82b72c40f52815036a574c61983da172155fcca9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpoʊstɚ/",
+      "ipaUk": "/ˈpoʊstɚ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/poster",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents"
+    },
+    {
+      "term": "gallery",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "phòng tranh",
+      "meaningEn": "a building or room where paintings are shown",
+      "plural": "galleries",
+      "examples": [
+        {
+          "text": "We visited an art gallery on Sunday.",
+          "vi": "Chủ nhật chúng tôi đã thăm một phòng tranh."
+        },
+        {
+          "text": "The gallery has paintings from many countries.",
+          "vi": "Phòng tranh có những bức tranh từ nhiều quốc gia."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "art gallery",
+          "vi": "phòng trưng bày nghệ thuật"
+        }
+      ],
+      "imageQuery": "art gallery interior wall paintings",
+      "image": {
+        "file": "a21/gallery.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Interior_view_of_the_art_studio_or_gallery_of_the_Paul_deLongpre_residence,_Hollywood_Boulevard_and_Cahuenga_Avenue,_Hollywood,_ca.1905_(CHS-5048).jpg",
+        "author": "C. C. Pierce",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "art gallery interior wall paintings",
+        "sha256": "3ec3b7a81450ea5ff4b20923c43d3c1f7494040426a841432de308a2597f2b71",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈɡæləɹi/",
+      "ipaUk": "/ˈɡæləɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/gallery",
+      "ipaVerified": true
+    },
+    {
+      "term": "mask",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "chiếc mặt nạ",
+      "meaningEn": "a cover that you wear over your face",
+      "examples": [
+        {
+          "text": "The dancer wore a colourful mask.",
+          "vi": "Người múa đeo một chiếc mặt nạ nhiều màu."
+        },
+        {
+          "text": "The children made paper masks at school.",
+          "vi": "Bọn trẻ làm mặt nạ giấy ở trường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "paper mask",
+          "vi": "mặt nạ giấy"
+        }
+      ],
+      "imageQuery": "decorative mask carnival",
+      "image": {
+        "file": "a21/mask.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/34409164@N06/5022285453",
+        "author": "gnuckx",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "decorative mask carnival",
+        "sha256": "720136ba5f5cfcaccd9bda9c78de38f62b02ec20782f5a5a641046fa303cb020",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/mæsk/",
+      "ipaUk": "/mɑːsk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mask",
+      "ipaVerified": true
+    },
+    {
+      "term": "puppet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con rối",
+      "meaningEn": "a small figure that you move with your hand or with strings",
+      "examples": [
+        {
+          "text": "The children watched a puppet show.",
+          "vi": "Bọn trẻ xem một buổi biểu diễn múa rối."
+        },
+        {
+          "text": "She made a puppet from an old sock.",
+          "vi": "Cô ấy làm một con rối từ chiếc tất cũ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "water puppet",
+          "vi": "múa rối nước"
+        }
+      ],
+      "imageQuery": "hand puppet toy",
+      "image": {
+        "file": "a21/puppet.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/94006243@N08/15407241810",
+        "author": "STUDIO ALIJN",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "hand puppet toy",
+        "sha256": "a46f6e663ad34563d49d1e07c3823ec17b18c4aa814a6c2aba4493696e89c351",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpʌpɪt/",
+      "ipaUk": "/ˈpʌpɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/puppet",
+      "ipaVerified": true
+    }
+  ]
+}

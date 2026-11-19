@@ -1,0 +1,1182 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A22",
+    "name": "Màu sắc & hình dạng",
+    "description": "#a1 #a2 #colours #shapes",
+    "topic": "Màu sắc & hình dạng",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "red",
+      "partsOfSpeech": [
+        "adj",
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "màu đỏ",
+      "meaningEn": "the colour of blood or a ripe tomato",
+      "examples": [
+        {
+          "text": "She wore a red dress to the party.",
+          "vi": "Cô ấy mặc một chiếc váy đỏ đến bữa tiệc."
+        },
+        {
+          "text": "Red is my favourite colour.",
+          "vi": "Đỏ là màu tôi yêu thích nhất."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bright red",
+          "vi": "đỏ tươi"
+        }
+      ],
+      "generate": {
+        "kind": "color",
+        "value": "red"
+      },
+      "image": {
+        "file": "a22/red.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:red",
+        "sha256": "ff5184e7e59d1bf292bd676ec3ca5f08e38bb2f1f63396a4a69876eb3c996657",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ɹɛd/",
+      "ipaUk": "/ɹɛd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/red",
+      "ipaVerified": true
+    },
+    {
+      "term": "blue",
+      "partsOfSpeech": [
+        "adj",
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "màu xanh dương",
+      "meaningEn": "the colour of a clear sky or the sea",
+      "examples": [
+        {
+          "text": "The sky is blue today.",
+          "vi": "Hôm nay bầu trời màu xanh."
+        },
+        {
+          "text": "He bought a blue shirt.",
+          "vi": "Anh ấy mua một chiếc áo sơ mi xanh dương."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "light blue",
+          "vi": "xanh nhạt"
+        },
+        {
+          "text": "dark blue",
+          "vi": "xanh đậm"
+        }
+      ],
+      "generate": {
+        "kind": "color",
+        "value": "blue"
+      },
+      "image": {
+        "file": "a22/blue.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:blue",
+        "sha256": "bd79d9340e93c0c0fd591d240ee271f8f0a1404f298cb22d8b37af146b60f850",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/blu/",
+      "ipaUk": "/bluː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/blue",
+      "ipaVerified": true
+    },
+    {
+      "term": "green",
+      "partsOfSpeech": [
+        "adj",
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "màu xanh lá",
+      "meaningEn": "the colour of grass and leaves",
+      "examples": [
+        {
+          "text": "The grass is green after the rain.",
+          "vi": "Cỏ xanh mướt sau cơn mưa."
+        },
+        {
+          "text": "She has green eyes.",
+          "vi": "Cô ấy có đôi mắt màu xanh lá."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "dark green",
+          "vi": "xanh lá đậm"
+        }
+      ],
+      "generate": {
+        "kind": "color",
+        "value": "green"
+      },
+      "image": {
+        "file": "a22/green.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:green",
+        "sha256": "0e89332006e87e3cb25c2ac62202d9073bdbdfabd396593e95c5608bc3ab5007",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ɡɹin/",
+      "ipaUk": "/ɡɹiːn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/green",
+      "ipaVerified": true
+    },
+    {
+      "term": "yellow",
+      "partsOfSpeech": [
+        "adj",
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "màu vàng",
+      "meaningEn": "the colour of the sun or a banana",
+      "examples": [
+        {
+          "text": "The banana is yellow.",
+          "vi": "Quả chuối có màu vàng."
+        },
+        {
+          "text": "She painted the door yellow.",
+          "vi": "Cô ấy sơn cánh cửa màu vàng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bright yellow",
+          "vi": "vàng tươi"
+        }
+      ],
+      "generate": {
+        "kind": "color",
+        "value": "yellow"
+      },
+      "image": {
+        "file": "a22/yellow.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:yellow",
+        "sha256": "d122a26026a1229f7fae26df836a9e45be3c956695214dcf22849c0ab808e864",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈjɛloʊ/",
+      "ipaUk": "/ˈjæl.ə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/yellow",
+      "ipaVerified": true
+    },
+    {
+      "term": "purple",
+      "partsOfSpeech": [
+        "adj",
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "màu tím",
+      "meaningEn": "a colour between red and blue",
+      "examples": [
+        {
+          "text": "The flowers in the garden are purple.",
+          "vi": "Những bông hoa trong vườn màu tím."
+        },
+        {
+          "text": "My sister loves purple clothes.",
+          "vi": "Chị tôi thích quần áo màu tím."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "light purple",
+          "vi": "tím nhạt"
+        }
+      ],
+      "generate": {
+        "kind": "color",
+        "value": "purple"
+      },
+      "image": {
+        "file": "a22/purple.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:purple",
+        "sha256": "3a1c7932e94adf2ba2d0ae83add98b419a66d8e9c3363dc51bbd40635d18568f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpɝ.pl̩/",
+      "ipaUk": "/ˈpɜː.pl̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/purple",
+      "ipaVerified": true
+    },
+    {
+      "term": "pink",
+      "partsOfSpeech": [
+        "adj",
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "màu hồng",
+      "meaningEn": "a light red colour",
+      "examples": [
+        {
+          "text": "The baby has a pink hat.",
+          "vi": "Em bé đội một chiếc mũ màu hồng."
+        },
+        {
+          "text": "Pink roses are my favourite flowers.",
+          "vi": "Hoa hồng màu hồng là loài hoa tôi thích nhất."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "light pink",
+          "vi": "hồng nhạt"
+        }
+      ],
+      "generate": {
+        "kind": "color",
+        "value": "pink"
+      },
+      "image": {
+        "file": "a22/pink.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:pink",
+        "sha256": "7768405f0507897e227ccf9f58d866ee52c9348179d68d1a9180dcd12e0fb374",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpɪŋk/",
+      "ipaUk": "/ˈpɪŋk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pink",
+      "ipaVerified": true
+    },
+    {
+      "term": "black",
+      "partsOfSpeech": [
+        "adj",
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "màu đen",
+      "meaningEn": "the darkest colour, like the night sky",
+      "examples": [
+        {
+          "text": "He wears a black coat in winter.",
+          "vi": "Anh ấy mặc áo khoác đen vào mùa đông."
+        },
+        {
+          "text": "My cat is black and white.",
+          "vi": "Con mèo của tôi có màu đen và trắng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "black and white",
+          "vi": "đen trắng"
+        }
+      ],
+      "generate": {
+        "kind": "color",
+        "value": "black"
+      },
+      "image": {
+        "file": "a22/black.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:black",
+        "sha256": "e3a1e99845f2d6118ec935a543a70878fe463163ee0a091036598fdb16f2be04",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/blæk/",
+      "ipaUk": "/blæk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/black",
+      "ipaVerified": true
+    },
+    {
+      "term": "white",
+      "partsOfSpeech": [
+        "adj",
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "màu trắng",
+      "meaningEn": "the colour of snow and milk",
+      "examples": [
+        {
+          "text": "The walls of my room are white.",
+          "vi": "Tường phòng tôi màu trắng."
+        },
+        {
+          "text": "She wore a white shirt.",
+          "vi": "Cô ấy mặc một chiếc áo sơ mi trắng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pure white",
+          "vi": "trắng tinh"
+        }
+      ],
+      "generate": {
+        "kind": "color",
+        "value": "white"
+      },
+      "image": {
+        "file": "a22/white.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:white",
+        "sha256": "3d69cef0bba204c78bca59df86602e42701ce1618d334054813d29c3579be6f4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈʍaɪt/",
+      "ipaUk": "/ˈʍaɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/white",
+      "ipaVerified": true
+    },
+    {
+      "term": "grey",
+      "partsOfSpeech": [
+        "adj",
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "màu xám",
+      "meaningEn": "the colour between black and white",
+      "examples": [
+        {
+          "text": "The sky is grey and cloudy.",
+          "vi": "Bầu trời xám xịt và nhiều mây."
+        },
+        {
+          "text": "My grandfather has grey hair.",
+          "vi": "Ông tôi có mái tóc màu bạc."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "light grey",
+          "vi": "xám nhạt"
+        }
+      ],
+      "generate": {
+        "kind": "color",
+        "value": "grey"
+      },
+      "image": {
+        "file": "a22/grey.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:grey",
+        "sha256": "5a5a7bbd4efc334319e3465ce486aed9963deb3dae3d74d2f1f05a3fc431e884",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ɡɹeɪ/",
+      "ipaUk": "/ɡɹeɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/grey",
+      "ipaVerified": true
+    },
+    {
+      "term": "brown",
+      "partsOfSpeech": [
+        "adj",
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "màu nâu",
+      "meaningEn": "the colour of chocolate or wood",
+      "examples": [
+        {
+          "text": "The dog has brown eyes.",
+          "vi": "Con chó có đôi mắt màu nâu."
+        },
+        {
+          "text": "She bought brown shoes.",
+          "vi": "Cô ấy mua một đôi giày màu nâu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "dark brown",
+          "vi": "nâu đậm"
+        }
+      ],
+      "generate": {
+        "kind": "color",
+        "value": "brown"
+      },
+      "image": {
+        "file": "a22/brown.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:brown",
+        "sha256": "3b91fe59d9e54c28966f82f0d231677edac894b8616186f1048975b3841aef7d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/bɹaʊ̯n/",
+      "ipaUk": "/bɹaʊ̯n/",
+      "ipaSource": "https://en.wiktionary.org/wiki/brown",
+      "ipaVerified": true
+    },
+    {
+      "term": "gold",
+      "partsOfSpeech": [
+        "noun",
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "màu vàng kim; vàng",
+      "meaningEn": "a shiny yellow colour, or the precious metal",
+      "examples": [
+        {
+          "text": "She wore a gold necklace.",
+          "vi": "Cô ấy đeo một sợi dây chuyền vàng."
+        },
+        {
+          "text": "The athlete won a gold medal.",
+          "vi": "Vận động viên giành huy chương vàng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "gold medal",
+          "vi": "huy chương vàng"
+        }
+      ],
+      "generate": {
+        "kind": "color",
+        "value": "gold"
+      },
+      "image": {
+        "file": "a22/gold.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:gold",
+        "sha256": "54b52e2ebb93c0192b5ef9631d7b5beb5a93d11b4901895b66e49853d92b87eb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ɡoʊld/",
+      "ipaUk": "/ɡəʊld/",
+      "ipaSource": "https://en.wiktionary.org/wiki/gold",
+      "ipaVerified": true
+    },
+    {
+      "term": "silver",
+      "partsOfSpeech": [
+        "noun",
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "màu bạc; bạc",
+      "meaningEn": "a shiny grey colour, or the precious metal",
+      "examples": [
+        {
+          "text": "He gave her a silver ring.",
+          "vi": "Anh ấy tặng cô ấy một chiếc nhẫn bạc."
+        },
+        {
+          "text": "The moon was silver in the night sky.",
+          "vi": "Mặt trăng ánh bạc trên bầu trời đêm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "silver spoon",
+          "vi": "thìa bạc"
+        }
+      ],
+      "generate": {
+        "kind": "color",
+        "value": "silver"
+      },
+      "image": {
+        "file": "a22/silver.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:silver",
+        "sha256": "e2313d8b64289ff0092a49c7c0841046437703fdbf567b799816084849aa45e2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈsɪl.vɚ/",
+      "ipaUk": "/ˈsɪl.və/",
+      "ipaSource": "https://en.wiktionary.org/wiki/silver",
+      "ipaVerified": true
+    },
+    {
+      "term": "circle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "hình tròn",
+      "meaningEn": "a perfectly round shape",
+      "examples": [
+        {
+          "text": "Draw a circle on the paper.",
+          "vi": "Hãy vẽ một hình tròn lên tờ giấy."
+        },
+        {
+          "text": "The children sat in a circle.",
+          "vi": "Bọn trẻ ngồi thành một vòng tròn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "sit in a circle",
+          "vi": "ngồi thành vòng tròn"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "circle"
+      },
+      "image": {
+        "file": "a22/circle.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:circle",
+        "sha256": "fc8f665e1ba1916dc864ad7ec0e85476e42c398b161276750bbc44e947cc576d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈsɜɹkəl/",
+      "ipaUk": "/ˈsɜːkəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/circle",
+      "ipaVerified": true
+    },
+    {
+      "term": "square",
+      "partsOfSpeech": [
+        "noun",
+        "adj"
+      ],
+      "cefr": "A1",
+      "definition": "hình vuông",
+      "meaningEn": "a shape with four equal sides",
+      "examples": [
+        {
+          "text": "The table is a square.",
+          "vi": "Cái bàn có dạng hình vuông."
+        },
+        {
+          "text": "A square has four straight sides.",
+          "vi": "Hình vuông có bốn cạnh thẳng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "square table",
+          "vi": "bàn vuông"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "square"
+      },
+      "image": {
+        "file": "a22/square.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:square",
+        "sha256": "16865a9bf3f850d9036a761cb5be7e93557223fea384e748439ad3508fdae038",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/skwɛə(ɹ)/",
+      "ipaUk": "/skwɛə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/square",
+      "ipaVerified": true
+    },
+    {
+      "term": "triangle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "hình tam giác",
+      "meaningEn": "a shape with three sides",
+      "examples": [
+        {
+          "text": "She drew a triangle on the board.",
+          "vi": "Cô ấy vẽ một hình tam giác lên bảng."
+        },
+        {
+          "text": "A triangle has three corners.",
+          "vi": "Hình tam giác có ba góc."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a right-angled triangle",
+          "vi": "tam giác vuông"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "triangle"
+      },
+      "image": {
+        "file": "a22/triangle.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:triangle",
+        "sha256": "8eef800fafe2e81bc2270db7aa998c754bc98d7fc0e43ad6f043d9d4f2dd4100",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈtɹaɪˌæŋɡəl/",
+      "ipaUk": "/ˈtɹaɪəŋɡəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/triangle",
+      "ipaVerified": true
+    },
+    {
+      "term": "rectangle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hình chữ nhật",
+      "meaningEn": "a shape with four sides, two long and two short",
+      "examples": [
+        {
+          "text": "The door is a tall rectangle.",
+          "vi": "Cánh cửa là một hình chữ nhật cao."
+        },
+        {
+          "text": "Draw a rectangle with a ruler.",
+          "vi": "Hãy dùng thước vẽ một hình chữ nhật."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "long rectangle",
+          "vi": "hình chữ nhật dài"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "rectangle"
+      },
+      "image": {
+        "file": "a22/rectangle.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:rectangle",
+        "sha256": "9deb5effe44670854adbaf2d78258711b483494e4bb7e4632447760b3208f23e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈrɛktæŋɡl̩/",
+      "ipaUk": "/ˈrɛktæŋɡl̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rectangle",
+      "ipaVerified": true
+    },
+    {
+      "term": "oval",
+      "partsOfSpeech": [
+        "noun",
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "hình bầu dục",
+      "meaningEn": "a shape like an egg or a long circle",
+      "examples": [
+        {
+          "text": "The mirror has an oval shape.",
+          "vi": "Chiếc gương có hình bầu dục."
+        },
+        {
+          "text": "An egg is oval.",
+          "vi": "Quả trứng có hình bầu dục."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "oval face",
+          "vi": "khuôn mặt trái xoan"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "oval"
+      },
+      "image": {
+        "file": "a22/oval.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:oval",
+        "sha256": "d66a857027bd5edfcb44ff6f1ea50cf3afcbdd75bba3b2f95f8eb9975526448d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈoʊvəl/",
+      "ipaUk": "/ˈəʊvəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/oval",
+      "ipaVerified": true
+    },
+    {
+      "term": "star",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "ngôi sao",
+      "meaningEn": "a shape with five points, or a bright light in the night sky",
+      "examples": [
+        {
+          "text": "The teacher gave me a gold star.",
+          "vi": "Cô giáo tặng tôi một ngôi sao vàng."
+        },
+        {
+          "text": "We can see many stars tonight.",
+          "vi": "Tối nay chúng ta có thể thấy nhiều ngôi sao."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "five-pointed star",
+          "vi": "ngôi sao năm cánh"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "star"
+      },
+      "image": {
+        "file": "a22/star.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:star",
+        "sha256": "ef4731228144ff5dc8a1bcfad2b2e9f4cf5cde1cf99009891b25c97826b037a9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/stɑɹ/",
+      "ipaUk": "/stɑː(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/star",
+      "ipaVerified": true
+    },
+    {
+      "term": "diamond",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hình thoi; kim cương",
+      "meaningEn": "a shape with four equal sides standing on one point",
+      "examples": [
+        {
+          "text": "The kite has a diamond shape.",
+          "vi": "Con diều có hình thoi."
+        },
+        {
+          "text": "She drew a red diamond on the card.",
+          "vi": "Cô ấy vẽ một hình thoi đỏ lên tấm thẻ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "diamond shape",
+          "vi": "hình thoi"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "diamond"
+      },
+      "image": {
+        "file": "a22/diamond.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:diamond",
+        "sha256": "a9837dd14e89f9c64903be3b00913920903a6ac4df7c107514fcea5eef6e4bfc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈdaɪ.ə.mənd/",
+      "ipaUk": "/ˈdaɪ.ə.mənd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/diamond",
+      "ipaVerified": true
+    },
+    {
+      "term": "cube",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hình khối lập phương",
+      "meaningEn": "a solid shape with six equal square sides",
+      "examples": [
+        {
+          "text": "A dice is a small cube.",
+          "vi": "Con xúc xắc là một khối lập phương nhỏ."
+        },
+        {
+          "text": "He built a tower from wooden cubes.",
+          "vi": "Cậu ấy xếp một tòa tháp từ những khối gỗ lập phương."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ice cube",
+          "vi": "viên đá lạnh"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "cube"
+      },
+      "image": {
+        "file": "a22/cube.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:cube",
+        "sha256": "6f81c6a585f6717547489d27924fa87041a66576b6bf617be75bee4e324b4e77",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/kjuːb/",
+      "ipaUk": "/kjuːb/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cube",
+      "ipaVerified": true
+    },
+    {
+      "term": "sphere",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hình cầu",
+      "meaningEn": "a perfectly round solid shape like a ball",
+      "examples": [
+        {
+          "text": "A ball is a sphere.",
+          "vi": "Quả bóng là một hình cầu."
+        },
+        {
+          "text": "The Earth is almost a sphere.",
+          "vi": "Trái Đất gần như là một hình cầu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "glass sphere",
+          "vi": "quả cầu thủy tinh"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "sphere"
+      },
+      "image": {
+        "file": "a22/sphere.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:sphere",
+        "sha256": "361f9321306226dd9e49dcf0f25209902f0de5c2cfea70d681c0719b9e6968ec",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/sfɪɚ/",
+      "ipaUk": "/sfɪə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sphere",
+      "ipaVerified": true
+    },
+    {
+      "term": "cone",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hình nón",
+      "meaningEn": "a solid shape with a round base and a point at the top",
+      "examples": [
+        {
+          "text": "The ice cream is in a cone.",
+          "vi": "Cây kem nằm trong một chiếc ốc quế hình nón."
+        },
+        {
+          "text": "A party hat is shaped like a cone.",
+          "vi": "Chiếc mũ dự tiệc có hình nón."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "traffic cone",
+          "vi": "cọc tiêu giao thông"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "cone"
+      },
+      "image": {
+        "file": "a22/cone.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:cone",
+        "sha256": "66865c57973c255db77cf95f43615c47e2000e8daefb39eb36aa11ac1e8497a8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈkoʊn/",
+      "ipaUk": "/ˈkəʊn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cone",
+      "ipaVerified": true
+    },
+    {
+      "term": "cylinder",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hình trụ",
+      "meaningEn": "a solid shape with two flat round ends, like a can",
+      "examples": [
+        {
+          "text": "A can of soup is a cylinder.",
+          "vi": "Lon súp là một hình trụ."
+        },
+        {
+          "text": "The pipe is a long cylinder.",
+          "vi": "Đường ống là một hình trụ dài."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "metal cylinder",
+          "vi": "hình trụ kim loại"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "cylinder"
+      },
+      "image": {
+        "file": "a22/cylinder.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:cylinder",
+        "sha256": "c09de1c1eea56030e3b6778af65d292c1463bc9ec989a52945827da30a031df3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈsɪləndɚ/",
+      "ipaUk": "/ˈsɪlɪndə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cylinder",
+      "ipaVerified": true
+    },
+    {
+      "term": "spiral",
+      "partsOfSpeech": [
+        "noun",
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "hình xoắn ốc",
+      "meaningEn": "a shape that curves round and round",
+      "examples": [
+        {
+          "text": "A snail shell has a spiral shape.",
+          "vi": "Vỏ ốc sên có hình xoắn ốc."
+        },
+        {
+          "text": "We walked up the spiral stairs.",
+          "vi": "Chúng tôi đi lên cầu thang xoắn ốc."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "spiral staircase",
+          "vi": "cầu thang xoắn ốc"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "spiral"
+      },
+      "image": {
+        "file": "a22/spiral.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:spiral",
+        "sha256": "7787679345ce501b9f5099b9c506b7028fc333bce629220c1c9933b70076a977",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈspaɪɹəl/",
+      "ipaUk": "/ˈspaɪɹəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/spiral",
+      "ipaVerified": true
+    },
+    {
+      "term": "crescent",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hình lưỡi liềm",
+      "meaningEn": "a thin curved shape like the new moon",
+      "examples": [
+        {
+          "text": "The moon looks like a crescent tonight.",
+          "vi": "Tối nay mặt trăng trông như hình lưỡi liềm."
+        },
+        {
+          "text": "She drew a yellow crescent on the sky.",
+          "vi": "Cô ấy vẽ một hình lưỡi liềm vàng lên bầu trời."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "crescent moon",
+          "vi": "trăng lưỡi liềm"
+        }
+      ],
+      "generate": {
+        "kind": "shape",
+        "value": "crescent"
+      },
+      "image": {
+        "file": "a22/crescent.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shape:crescent",
+        "sha256": "823d65d0b8340eeb5c930a87191c98bd89569aee3e47b1a88bea166dbafcbdc8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈkɹɛs.ənt/",
+      "ipaUk": "/ˈkɹɛz.ənt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/crescent",
+      "ipaVerified": true
+    }
+  ]
+}
