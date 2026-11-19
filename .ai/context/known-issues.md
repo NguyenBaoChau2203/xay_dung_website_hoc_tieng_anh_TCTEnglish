@@ -27,6 +27,28 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
+### ONBOARDING-SHARED-FILES — first-run onboarding touches shared files, 2026-11-20
+
+The first-run onboarding (plan `docs/superpowers/plans/2026-11-19-onboarding-personal-decks.md`, feature note `docs/features/onboarding.md`) is
+implemented locally on `feature/onboarding-personal-decks`. Items for Châu to review before it is merged:
+
+1. **`Views/Home/Index.cshtml`**: exactly one added line, `<partial name="_OnboardingHost" />`, at the end of the main `.db-page` container. The same
+   one-line include is in `Views/Vocabulary/Index.cshtml` and `Views/Set/Index.cshtml`. The host renders nothing for guests or on any error.
+2. **DbContext**: one added line in `Models/DbflashcardContext.cs` (`ConfigureOnboarding(modelBuilder);`); the `DbSet` and the mapping live in the new
+   partial file `Models/DbflashcardContext.Onboarding.cs`.
+3. **`Program.cs`**: two DI lines (`IOnboardingService`, `IOnboardingRequestLimiter`); the 10 calls per 10 minutes limit is a small singleton rather than a
+   new policy in `AddRateLimiter`.
+4. **Migration `20261119151230_AddUserOnboarding`**: creates one new table `UserOnboardings` (FK to `Users`, cascade delete) and touches nothing else;
+   applied to the local Docker MariaDB only. `has-pending-model-changes` is clean. Staging and production receive it through the normal release.
+5. **Eligibility date**: `OnboardingService.DefaultEligibleFromUtc = 2026-11-19`. Accounts created before it are never prompted automatically. Set it to
+   the real release day if the merge happens later (a new account made between those days would otherwise be prompted too).
+6. **Personal sets**: every set tile on `/Sets` and on a folder page now shows a 2×2 mosaic (4 or more images) or one photo (1–3 images); the starter
+   folder tile and `Views/Set/_FolderTile.cshtml` changed for the "Mới" chip. One bounded query serves all tiles.
+7. The greeting in the pop-up uses the display name as the dashboard does (the plan said "first name"; the mockup and the dashboard show the full name).
+
+Not covered by automated tests: two requests with the same id at the same instant (relies on the InnoDB row lock). 12 synthetic accounts
+`onb-*@tct.local` were left in the local Docker database (no sets); delete them with the normal account tools if they bother anyone.
+
 ### SYSTEM-CONTENT-FAKE-SEED — invented Listening seed lessons, 2026-11-19
 
 `Models/ListeningLessonSeedData.cs` still holds hand-written transcripts without times attached to YouTube ids that were never verified, so the lessons do not match

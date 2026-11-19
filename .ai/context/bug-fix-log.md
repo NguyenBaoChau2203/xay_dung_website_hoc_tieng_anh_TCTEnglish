@@ -6027,3 +6027,20 @@ blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 **Commit**: `fix(vocabulary)` series on `fix/vocabulary-course-covers`; nothing pushed.
 
 **Notes**: To set the cover of a new system set, add its exact name and a card term that has an image to `VocabularyCoverCatalog.Terms` and to `data/content/vocabulary-covers.json` (a test fails if the two differ or the term is not a card of the set with an image). Pick a single clear subject; the image is shown at 4:3 and about 265 px wide.
+
+
+### Onboarding topic captions unreadable on light photos — 2026-11-20
+
+**Symptom**: In step 2 of the first-run pop-up, the white topic names on the photo tiles were hard to read on light pictures and white-background drawings (for example "Nhà bếp & dụng cụ nấu ăn", "Nghề nghiệp").
+
+**Root Cause**: The caption used a gradient that reached only 82% dark at the very bottom and was much lighter where the text sits. A scripted contrast check over the real pixels of all 48 tiles gave 2.2:1 at worst; 31 of the 48 were below 4.5:1.
+
+**Solution**: A scrim of about 88% behind the caption area that fades out only above the text (`.tob-tile__caption` in `onboarding.css`). Re-measured: lowest 11.99:1.
+
+**Files Changed**: `TCTEnglish/wwwroot/css/onboarding.css`.
+
+**Verification**: Contrast script on 48 tiles (brightest 5% of the pixels under the text), plus 121 text elements of steps 1–4 at least 5.28:1; evidence in the plan section 12.8.
+
+**Commit**: `fix(onboarding)` on `feature/onboarding-personal-decks`; nothing pushed.
+
+**Notes**: Found before release by the S7 checks; no user saw it.
