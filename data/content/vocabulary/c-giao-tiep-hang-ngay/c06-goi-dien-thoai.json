@@ -37,7 +37,24 @@
           "vi": "Anna đây."
         }
       ],
-      "imageQuery": "woman answering phone office"
+      "imageQuery": "woman answering phone office",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/hello-this-is-anna-speaking.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "9e07669b4d7838a680676296869e029d912470adb2d67d6527b9767fd6baea47",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Who's calling, please?",
@@ -67,7 +84,24 @@
           "vi": "Tôi có thể hỏi ai đang gọi không?"
         }
       ],
-      "imageQuery": "receptionist phone call"
+      "imageQuery": "receptionist phone call",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/who-s-calling-please.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "d164fc689bbc43ead6261266f2087f796fc93f68fedb5d925d20c44f57da7b34",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Can I speak to Mr Brown?",
@@ -97,7 +131,24 @@
           "vi": "Xin chờ một chút."
         }
       ],
-      "imageQuery": "person asking phone speak manager"
+      "imageQuery": "person asking phone speak manager",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/can-i-speak-to-mr-brown.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "c349bc395eb34a21359915f9920cee441d3d13ac56c06c6e3645a4a9ce85acea",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Hold on, please.",
@@ -127,7 +178,24 @@
           "vi": "Chờ một chút."
         }
       ],
-      "imageQuery": "receptionist telephone waiting"
+      "imageQuery": "receptionist telephone waiting",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/hold-on-please.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "6c1073164da47ea1d03df628321af0a1d302057c8cc78af9bc3405e33c574994",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'll put you through.",
@@ -157,7 +225,24 @@
           "vi": "Xin giữ máy."
         }
       ],
-      "imageQuery": "switchboard operator headset"
+      "imageQuery": "switchboard operator headset",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/i-ll-put-you-through.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "938706422e40f64b6af31d19e2d0b9a4c741896945d3a418670e32f0ade58652",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "He's not available right now.",
@@ -187,7 +272,24 @@
           "vi": "Ông ấy đang họp."
         }
       ],
-      "imageQuery": "empty office desk phone"
+      "imageQuery": "empty office desk phone",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/he-s-not-available-right-now.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "df31ff07fcce311332071d95ee526a8dd21d7bfc641120def81a0b077f4bd51b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Can I take a message?",
@@ -217,7 +319,24 @@
           "vi": "Không, cảm ơn."
         }
       ],
-      "imageQuery": "receptionist writing message note"
+      "imageQuery": "receptionist writing message note",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/can-i-take-a-message.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "764ba287bfd7811a98c51bf789e6f575095b951b2ec6e1facb9b0e6e3a355542",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could you ask him to call me back?",
@@ -247,7 +366,24 @@
           "vi": "Tôi sẽ chuyển lời cho anh ấy."
         }
       ],
-      "imageQuery": "phone message call back note"
+      "imageQuery": "phone message call back note",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/could-you-ask-him-to-call-me-back.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "a7ad1d21838b8ab6bb3381e2773f05b0e1c28784cc13c99686390f1a4a1198d4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "What's your phone number?",
@@ -277,7 +413,24 @@
           "vi": "Cho tôi xin số của bạn?"
         }
       ],
-      "imageQuery": "exchanging phone numbers smartphone"
+      "imageQuery": "exchanging phone numbers smartphone",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/what-s-your-phone-number.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "5b44c0e936a38e6205f6eae95322c8c09b71584f8901b5ba3ae4a6b1c46c4325",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I can't hear you.",
@@ -307,7 +460,24 @@
           "vi": "Tín hiệu bị chập chờn."
         }
       ],
-      "imageQuery": "person holding phone cannot hear"
+      "imageQuery": "person holding phone cannot hear",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/i-can-t-hear-you.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "42b595dd0af621917834fb5239b3343461528edd947a7dd34b1aeff7fa3c142b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "The line is busy.",
@@ -337,7 +507,24 @@
           "vi": "Xin hãy gọi lại."
         }
       ],
-      "imageQuery": "busy telephone line phone"
+      "imageQuery": "busy telephone line phone",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/the-line-is-busy.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "a314d4808da061f0435ce169b1eb066cb0157712e3b78ac2d38b5a8636ff2fe1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "You have the wrong number.",
@@ -367,7 +554,24 @@
           "vi": "Xin lỗi đã làm phiền."
         }
       ],
-      "imageQuery": "confused person phone wrong number"
+      "imageQuery": "confused person phone wrong number",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/you-have-the-wrong-number.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "8d2ebca2990c1ce40fe78cee36ded90aa3d32cf799a659bc20a91a09dff33627",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could you speak more slowly?",
@@ -397,7 +601,24 @@
           "vi": "Tôi sẽ nói lại."
         }
       ],
-      "imageQuery": "student on phone confused speaking"
+      "imageQuery": "student on phone confused speaking",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/could-you-speak-more-slowly.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "87b8b7e6c48f0daef24e9023cbb675acb6daf5b5b5e298f4d75b958d064429fd",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could you repeat that, please?",
@@ -427,7 +648,24 @@
           "vi": "Tôi không nghe kịp."
         }
       ],
-      "imageQuery": "person asking repeat phone call"
+      "imageQuery": "person asking repeat phone call",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/could-you-repeat-that-please.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "f16efd82cfe7b53cb5f31046d4cb32a56405524f210eb38d78335c398e98924e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Thanks for calling.",
@@ -457,7 +695,24 @@
           "vi": "Chúc bạn một ngày tốt lành."
         }
       ],
-      "imageQuery": "customer service ending call"
+      "imageQuery": "customer service ending call",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/thanks-for-calling.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "3e1ab3da60561258efcb0d78643b99da1eeabfb25a0c682f03964e1268e6cff3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'll call you back later.",
@@ -487,7 +742,24 @@
           "vi": "Rảnh thì gọi tôi nhé."
         }
       ],
-      "imageQuery": "person busy putting phone away"
+      "imageQuery": "person busy putting phone away",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/i-ll-call-you-back-later.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "1687cd97c806634c9518ebd23faaba17e89471b974ba681a3fc68f4a4e8c6907",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "My battery is dying.",
@@ -517,7 +789,24 @@
           "vi": "Điện thoại tôi hết pin."
         }
       ],
-      "imageQuery": "phone low battery icon"
+      "imageQuery": "phone low battery icon",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/my-battery-is-dying.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "128649d000cab6ec7a812fc9840ee247f89f8e9975c9850d4c5824983372ced4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Sorry, the signal is bad.",
@@ -547,7 +836,24 @@
           "vi": "Tín hiệu bị chập chờn."
         }
       ],
-      "imageQuery": "phone weak signal bars"
+      "imageQuery": "phone weak signal bars",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/sorry-the-signal-is-bad.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "885ee5b0189a0e1d108b00fd47b9028eccb2de1bb28c7e024d5db7e73b909d7f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Please leave a message after the tone.",
@@ -577,7 +883,24 @@
           "vi": "Tôi sẽ gọi lại."
         }
       ],
-      "imageQuery": "answering machine voicemail phone"
+      "imageQuery": "answering machine voicemail phone",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/please-leave-a-message-after-the-tone.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "ad12593c54156247958db9f3252b7f67df6b42a95693d3b7ac3156c6e40360c6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Speak to you soon.",
@@ -607,7 +930,24 @@
           "vi": "Tạm biệt nhé."
         }
       ],
-      "imageQuery": "friend saying bye on phone"
+      "imageQuery": "friend saying bye on phone",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c06/speak-to-you-soon.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "509ca38a49508b22ff00115ad127686433cf08b01aeadd71f64a8210c89e9827",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     }
   ]
 }

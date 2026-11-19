@@ -37,7 +37,24 @@
           "vi": "Mời đi lối này."
         }
       ],
-      "imageQuery": "couple entering restaurant host"
+      "imageQuery": "couple entering restaurant host",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/a-table-for-two-please.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "b1ede25e3774805d6d2230ffd77b318e0191fd72b4aa8683dacbb29b8cbf9121",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Can I see the menu, please?",
@@ -67,7 +84,24 @@
           "vi": "Bạn cứ từ từ."
         }
       ],
-      "imageQuery": "waiter handing menu"
+      "imageQuery": "waiter handing menu",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/can-i-see-the-menu-please.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "a44705420b2e59d21f237f27ab1aa02fd2b1599bd7ca551c8f16f78781b7cd0c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "What do you recommend?",
@@ -97,7 +131,24 @@
           "vi": "Món đặc biệt hôm nay là súp."
         }
       ],
-      "imageQuery": "customer asking waiter recommendation"
+      "imageQuery": "customer asking waiter recommendation",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/what-do-you-recommend.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "b784fa58041cf19b8cf27919870b320114ab1b0dbd970e76a6421d414d316d30",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'd like the chicken soup.",
@@ -127,7 +178,24 @@
           "vi": "Còn gì nữa không ạ?"
         }
       ],
-      "imageQuery": "customer ordering soup restaurant"
+      "imageQuery": "customer ordering soup restaurant",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/i-d-like-the-chicken-soup.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "04cc96de62515d644a53dd1667fccc46daa65a3e1c8786f8efe63afab101108c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could I have some water, please?",
@@ -157,7 +225,24 @@
           "vi": "Nước thường hay nước có ga?"
         }
       ],
-      "imageQuery": "glass of water waiter pouring"
+      "imageQuery": "glass of water waiter pouring",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/could-i-have-some-water-please.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "7ef963be242ad2868676e6fdfec364629052d75df6a2de3fd835dca7ec8127d4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Is this dish spicy?",
@@ -187,7 +272,24 @@
           "vi": "Món này hơi cay."
         }
       ],
-      "imageQuery": "customer asking spicy chilli dish"
+      "imageQuery": "customer asking spicy chilli dish",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/is-this-dish-spicy.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "9d6b7403d658f86f89a4ea295d91732265ffe28dba4d7c5527d98688445872e9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'm allergic to peanuts.",
@@ -217,7 +319,24 @@
           "vi": "Món này có sữa không?"
         }
       ],
-      "imageQuery": "allergy warning peanuts menu"
+      "imageQuery": "allergy warning peanuts menu",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/i-m-allergic-to-peanuts.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "dbc3a3462f5242820b4a644cb285d8f6b415d5c515e82c5211cdb0005e6f5ad0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'll have the same.",
@@ -247,7 +366,24 @@
           "vi": "Cho tôi giống vậy."
         }
       ],
-      "imageQuery": "two friends ordering same dish"
+      "imageQuery": "two friends ordering same dish",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/i-ll-have-the-same.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "baa86c546b8d4380a367bbdb6615bf946fb77b83b37ca2452d13f942891b1a72",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Can we order, please?",
@@ -277,7 +413,24 @@
           "vi": "Xin đợi một chút."
         }
       ],
-      "imageQuery": "customer raising hand waiter"
+      "imageQuery": "customer raising hand waiter",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/can-we-order-please.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "55ff1ceb2482c0b40064971dfac67dd61e31364a70a525f59f5cebe286c486f9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Anything to drink?",
@@ -307,7 +460,24 @@
           "vi": "Chỉ nước lọc thôi."
         }
       ],
-      "imageQuery": "waiter asking drinks order"
+      "imageQuery": "waiter asking drinks order",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/anything-to-drink.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "8033589de7afaf8a410acf75ac1d1b259284f0f515a5542ef14cf0d7e435e279",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could I have the bill, please?",
@@ -337,7 +507,24 @@
           "vi": "Cho tôi tính tiền."
         }
       ],
-      "imageQuery": "customer asking bill restaurant"
+      "imageQuery": "customer asking bill restaurant",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/could-i-have-the-bill-please.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "dd4b0db255ac3fc1a5b099b83d60ad7700748cb76040f5a915701cda815b03a3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Is service included?",
@@ -367,7 +554,24 @@
           "vi": "Phí phục vụ mười phần trăm."
         }
       ],
-      "imageQuery": "bill service charge restaurant receipt"
+      "imageQuery": "bill service charge restaurant receipt",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/is-service-included.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "11351a813ff0eafca67883fc376ed247dda81e8b9fd1154e6224a34b0fe1ea0b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Can I pay by card?",
@@ -397,7 +601,24 @@
           "vi": "Được, tất nhiên."
         }
       ],
-      "imageQuery": "paying by card terminal restaurant"
+      "imageQuery": "paying by card terminal restaurant",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/can-i-pay-by-card.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "357c95b321d2be042efc9fb6980e5f042fa698575724de8df26c52a032365fff",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Keep the change.",
@@ -427,7 +648,24 @@
           "vi": "Cảm ơn ông."
         }
       ],
-      "imageQuery": "customer leaving tip waiter"
+      "imageQuery": "customer leaving tip waiter",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/keep-the-change.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "9df737536dcbc36b2e93dc44c4667079c074c682a79e47a9d8d1d2d444fa379e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "It was delicious.",
@@ -457,7 +695,24 @@
           "vi": "Xin khen đầu bếp."
         }
       ],
-      "imageQuery": "happy customers finishing meal"
+      "imageQuery": "happy customers finishing meal",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/it-was-delicious.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "2d1376b9422c35c6ba761661b1d709c89ad3010a31d31aac0fc6fa8dac6fe935",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could we have another chair?",
@@ -487,7 +742,24 @@
           "vi": "Tôi sẽ mang đến một cái."
         }
       ],
-      "imageQuery": "extra chair restaurant table"
+      "imageQuery": "extra chair restaurant table",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/could-we-have-another-chair.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "7b1c0756a0d434b621bdcede9098a4ae14193acf587296fcac0b17d1f6362a72",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'd like it without onions.",
@@ -517,7 +789,24 @@
           "vi": "Cho thêm nước sốt."
         }
       ],
-      "imageQuery": "burger no onions order"
+      "imageQuery": "burger no onions order",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/i-d-like-it-without-onions.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "8dd64320bd80744a83f25eadb6ff027e51396e080b2326574da135143761bb65",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Takeaway or eat in?",
@@ -547,7 +836,24 @@
           "vi": "Tôi ăn tại chỗ."
         }
       ],
-      "imageQuery": "fast food counter takeaway bag"
+      "imageQuery": "fast food counter takeaway bag",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/takeaway-or-eat-in.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "b11f9cb615b572dc15f68598c76479c044e4d114e4ff72bf2c4f5c2453168191",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could you wrap this up?",
@@ -577,7 +883,24 @@
           "vi": "Được ạ."
         }
       ],
-      "imageQuery": "leftover food box takeaway"
+      "imageQuery": "leftover food box takeaway",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/could-you-wrap-this-up.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "e3f332e19a8c84bc80b37f1547ed8d4b6596c617536b6ccd0e99d18490885b10",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Enjoy your meal!",
@@ -607,7 +930,24 @@
           "vi": "Chúc ngon miệng!"
         }
       ],
-      "imageQuery": "waiter serving dishes table"
+      "imageQuery": "waiter serving dishes table",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c03/enjoy-your-meal.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "944dc194fbaa87330e1d2ad4cac11d4ec69ec442786fce6795b29fc6c8cfc271",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     }
   ]
 }

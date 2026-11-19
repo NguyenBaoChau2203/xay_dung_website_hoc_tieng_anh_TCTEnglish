@@ -37,7 +37,24 @@
           "vi": "Cảm ơn bạn rất nhiều."
         }
       ],
-      "imageQuery": "person receiving gift saying thank you"
+      "imageQuery": "person receiving gift saying thank you",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/thank-you.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "3363999ae73e9596f5f1756fca85d5267279ed1fdbac814fc9f8ce38c57f7dc8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Thanks a lot.",
@@ -67,7 +84,24 @@
           "vi": "Cảm ơn bạn rất nhiều."
         }
       ],
-      "imageQuery": "friends helping each other smiling"
+      "imageQuery": "friends helping each other smiling",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/thanks-a-lot.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "cd35b5218ea4a1e46c157cca12441b02f7251870bebe22d73906176022654d49",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "You're welcome.",
@@ -97,7 +131,24 @@
           "vi": "Rất vui được giúp."
         }
       ],
-      "imageQuery": "waiter and customer polite exchange"
+      "imageQuery": "waiter and customer polite exchange",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/you-re-welcome.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "964d0a470c968fe1388ee4578e62a820798f3d39f0ab23d109bbcbc4e6165e4e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'm sorry.",
@@ -127,7 +178,24 @@
           "vi": "Xin lỗi về chuyện đó."
         }
       ],
-      "imageQuery": "person apologising sorry"
+      "imageQuery": "person apologising sorry",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/i-m-sorry.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "6dc37b3bc717ff2a613461084cce5ed7a015e6c64d25a1239ad7cc8009cd193e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Excuse me.",
@@ -157,7 +225,24 @@
           "vi": "Xin lỗi đã làm phiền bạn."
         }
       ],
-      "imageQuery": "asking stranger for directions polite"
+      "imageQuery": "asking stranger for directions polite",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/excuse-me.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "436c981b36c3b7799c0a7bee678ca7377fbee70ce25d22d17ba82eee297c5965",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Pardon?",
@@ -187,7 +272,24 @@
           "vi": "Bạn nhắc lại được không?"
         }
       ],
-      "imageQuery": "person cupping ear listening"
+      "imageQuery": "person cupping ear listening",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/pardon.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "6acb2cbea56053ea8f9c0b911e8c26e47c52eceb47e28ad5dd97a69b15f1afd0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Please.",
@@ -217,7 +319,24 @@
           "vi": "Làm ơn giúp tôi."
         }
       ],
-      "imageQuery": "polite request please cafe"
+      "imageQuery": "polite request please cafe",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/please.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "2e20cb0a8aa57428521dec82857da70398a83f18c0fb79dfdd142104f2fedf3b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Can you help me, please?",
@@ -247,7 +366,24 @@
           "vi": "Tôi cần giúp đỡ."
         }
       ],
-      "imageQuery": "helping carry box"
+      "imageQuery": "helping carry box",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/can-you-help-me-please.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "1ea46bc3e4f9f2db7f51f9aa2e48f210f39691e91c0dcc60a0bb2b403f4fa5a7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could you open the window?",
@@ -273,7 +409,24 @@
           "vi": "Bạn có phiền mở nó ra không?"
         }
       ],
-      "imageQuery": "person opening window hot room"
+      "imageQuery": "person opening window hot room",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/could-you-open-the-window.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "e06dbac34ccea1017e0c1a9c6cb25325e6952f98337bd0cc1aaa89cb094b4ead",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Would you mind...?",
@@ -299,7 +452,24 @@
           "vi": "Bạn có phiền nếu tôi ngồi đây không?"
         }
       ],
-      "imageQuery": "polite request office"
+      "imageQuery": "polite request office",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/would-you-mind.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "d96702688b5ae9fe723a27dc075518020278d7aaa6ec95f52a08053bd88a6634",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Do you mind if I...?",
@@ -329,7 +499,24 @@
           "vi": "Cứ tự nhiên."
         }
       ],
-      "imageQuery": "asking permission seat bus"
+      "imageQuery": "asking permission seat bus",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/do-you-mind-if-i.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "01a19b897565beadae8b7a6e64f98a25243a1b951a6fff9fa2fde49503d58e89",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "May I come in?",
@@ -359,7 +546,24 @@
           "vi": "Được, vào đi."
         }
       ],
-      "imageQuery": "student knocking classroom door"
+      "imageQuery": "student knocking classroom door",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/may-i-come-in.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "f101bac6261a7ab0fc3601abb033cda304f6823c24b52b3ad6fc4a62d122be40",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Can I borrow your pen?",
@@ -389,7 +593,24 @@
           "vi": "Cảm ơn vì đã cho mượn."
         }
       ],
-      "imageQuery": "classmates sharing pen"
+      "imageQuery": "classmates sharing pen",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/can-i-borrow-your-pen.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "d3cd44ae65f107f60ee795df9f34972cf20c9ce2ec64f0e83fc936eabdf0b154",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Here you are.",
@@ -419,7 +640,24 @@
           "vi": "Cảm ơn bạn."
         }
       ],
-      "imageQuery": "waiter giving coffee"
+      "imageQuery": "waiter giving coffee",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/here-you-are.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "472b5ab92a2ddd5e4e43026ba9cd1f2ed928c3434c7444e55edc4d684d50b766",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "That's okay.",
@@ -449,7 +687,24 @@
           "vi": "Không sao đâu."
         }
       ],
-      "imageQuery": "friends forgiving apology"
+      "imageQuery": "friends forgiving apology",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/that-s-okay.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "39470b3ac1e933972201b6354c993683917ae652c4bf1da053a3c544323003ff",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "No problem.",
@@ -479,7 +734,24 @@
           "vi": "Không phiền gì đâu."
         }
       ],
-      "imageQuery": "helper smiling thumbs up"
+      "imageQuery": "helper smiling thumbs up",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/no-problem.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "13d4d479ea01fe4224fff1790e789afb65f5edf77455bcee7c959153e1e2c2b3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "After you.",
@@ -509,7 +781,24 @@
           "vi": "Mời quý cô trước."
         }
       ],
-      "imageQuery": "man holding door polite"
+      "imageQuery": "man holding door polite",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/after-you.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "b207686ad8b71453f95e1310fcee3457c94e75331d7ec9a81cdc715d45da5538",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Sorry to keep you waiting.",
@@ -539,7 +828,24 @@
           "vi": "Tôi xin lỗi vì sự chậm trễ."
         }
       ],
-      "imageQuery": "reception welcoming visitor waiting"
+      "imageQuery": "reception welcoming visitor waiting",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/sorry-to-keep-you-waiting.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "e925c696318454da40544e034675dd8e9d16a07b862c3260122e58d294eb4b57",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I really appreciate it.",
@@ -569,7 +875,24 @@
           "vi": "Điều đó có ý nghĩa lớn với tôi."
         }
       ],
-      "imageQuery": "grateful person hand on heart"
+      "imageQuery": "grateful person hand on heart",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/i-really-appreciate-it.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "f6b9af2d1dcd482d160026ab11ebc8e01396c7348380945d30ea17924a79dde4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could I ask a favour?",
@@ -599,7 +922,24 @@
           "vi": "Tất nhiên rồi."
         }
       ],
-      "imageQuery": "friends asking favour polite"
+      "imageQuery": "friends asking favour polite",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c02/could-i-ask-a-favour.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "123d435077a91d0302c8512ed608e04731cf28c9465e109680be52bef84f9e71",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     }
   ]
 }

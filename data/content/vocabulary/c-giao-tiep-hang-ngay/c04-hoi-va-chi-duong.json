@@ -37,7 +37,24 @@
           "vi": "Gần đây có hiệu thuốc không?"
         }
       ],
-      "imageQuery": "tourist asking directions station"
+      "imageQuery": "tourist asking directions station",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/where-is-the-station.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "4428c159b8a21356ee631068f1d4029812aa9417f3f4c0c77b4e8f7f7c94f915",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "How do I get to the airport?",
@@ -67,7 +84,24 @@
           "vi": "Đi bằng xe buýt."
         }
       ],
-      "imageQuery": "traveller asking way airport map"
+      "imageQuery": "traveller asking way airport map",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/how-do-i-get-to-the-airport.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "cf9355f8661b0e6720a925d797756aa946411cf23c0461f9b666f8feecf42c44",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Is it far from here?",
@@ -97,7 +131,24 @@
           "vi": "Khá xa đấy."
         }
       ],
-      "imageQuery": "tourist with luggage asking distance"
+      "imageQuery": "tourist with luggage asking distance",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/is-it-far-from-here.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "3d11f5ab53fe201d5373d9bcef7b19c48a5e29005407758b8cffa476ed51922b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Go straight ahead.",
@@ -127,7 +178,24 @@
           "vi": "Đi dọc con đường này."
         }
       ],
-      "imageQuery": "person pointing straight road"
+      "imageQuery": "person pointing straight road",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/go-straight-ahead.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "7c40446987fa04834dff176f93866be62e213f597c6aa9bcd8d82c48020640ba",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Turn left at the corner.",
@@ -157,7 +225,24 @@
           "vi": "Sau đó rẽ trái."
         }
       ],
-      "imageQuery": "street corner turn left sign"
+      "imageQuery": "street corner turn left sign",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/turn-left-at-the-corner.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "904850352d1130d3177df9e074138cd5c03abf073fd0b5c32280a59c7093b9dc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Turn right at the traffic lights.",
@@ -187,7 +272,24 @@
           "vi": "Sau đó rẽ phải."
         }
       ],
-      "imageQuery": "traffic lights crossroads turn right"
+      "imageQuery": "traffic lights crossroads turn right",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/turn-right-at-the-traffic-lights.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "c33a88c7c0f5517bde7278d30c563b4e0320ccbd1b4fccea318815d80f41cb3c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "It's on your left.",
@@ -217,7 +319,24 @@
           "vi": "Nó ở ngay phía trước."
         }
       ],
-      "imageQuery": "person pointing left building"
+      "imageQuery": "person pointing left building",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/it-s-on-your-left.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "1058fea129de0a90b89083291b311533744dcf34b288dc2634f5edbe4670056c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "It's next to the bank.",
@@ -247,7 +366,24 @@
           "vi": "Nó nằm giữa cửa hàng và quán cà phê."
         }
       ],
-      "imageQuery": "buildings next to bank street"
+      "imageQuery": "buildings next to bank street",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/it-s-next-to-the-bank.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "3dcad90cff08d11e1e79824121579567409800bf28ddea57d75d4372a0cc1777",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "It's opposite the park.",
@@ -277,7 +413,24 @@
           "vi": "Nó ở phía trước trường học."
         }
       ],
-      "imageQuery": "hotel opposite park street"
+      "imageQuery": "hotel opposite park street",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/it-s-opposite-the-park.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "9ab8b672f544fb2d8114a9ea4ee992fccbf3578da977dbdcdb569eb053eb382c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Take the second street on the right.",
@@ -307,7 +460,24 @@
           "vi": "Đi qua trường học."
         }
       ],
-      "imageQuery": "street junction counting turnings"
+      "imageQuery": "street junction counting turnings",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/take-the-second-street-on-the-right.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "1fdcd879a0f8e923089ed5d6ab7793369ebbb112a33e06fd358f3811d15e4fcb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Cross the bridge.",
@@ -337,7 +507,24 @@
           "vi": "Đi bộ qua cầu."
         }
       ],
-      "imageQuery": "people crossing bridge river"
+      "imageQuery": "people crossing bridge river",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/cross-the-bridge.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "f2a0d8da175749bde3042e56e8fd39aeeeaef0bdab9966915926d8b5a138dda8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "You can't miss it.",
@@ -367,7 +554,24 @@
           "vi": "Bạn sẽ thấy nó."
         }
       ],
-      "imageQuery": "big red building street"
+      "imageQuery": "big red building street",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/you-can-t-miss-it.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "acb078c2173248f7b84f8f3a96b1b3abb8fa88933d2aa96d32a995548c154bae",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "How long does it take?",
@@ -397,7 +601,24 @@
           "vi": "Khoảng nửa tiếng."
         }
       ],
-      "imageQuery": "clock travel time bus"
+      "imageQuery": "clock travel time bus",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/how-long-does-it-take.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "dea22608fda80c62bae6d5c91c857fbddf272cf809d2f07a1516ee6d2ee621d3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "It's about five minutes on foot.",
@@ -427,7 +648,24 @@
           "vi": "Đi xe hơi năm phút."
         }
       ],
-      "imageQuery": "people walking street sign minutes"
+      "imageQuery": "people walking street sign minutes",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/it-s-about-five-minutes-on-foot.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "2779e86973a20cce2697637a4b54194977b82af6dbedea4d0433f2f2fd4230d9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Is there a bus stop near here?",
@@ -457,7 +695,24 @@
           "vi": "Không xa đây."
         }
       ],
-      "imageQuery": "bus stop sign street"
+      "imageQuery": "bus stop sign street",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/is-there-a-bus-stop-near-here.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "ad8e6ba29a0c1440eb661a41ee38a93c8ffec6004261dc6ff2d30bb083b8b62d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Which bus goes to the museum?",
@@ -487,7 +742,24 @@
           "vi": "Bạn cần xe số mười hai."
         }
       ],
-      "imageQuery": "bus numbers board passengers"
+      "imageQuery": "bus numbers board passengers",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/which-bus-goes-to-the-museum.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "a9c97da5347c0690b5faffcb32611233d23b6854c3d228f94deb2e92527557d8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'm lost.",
@@ -517,7 +789,24 @@
           "vi": "Tôi đang tìm nhà ga."
         }
       ],
-      "imageQuery": "lost tourist looking at map"
+      "imageQuery": "lost tourist looking at map",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/i-m-lost.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "47a1243452200bbd81221e45508738030f06629924eb9309fed0ae91e7aff01f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Can you show me on the map?",
@@ -547,7 +836,24 @@
           "vi": "Nó ở đây này."
         }
       ],
-      "imageQuery": "two people pointing city map"
+      "imageQuery": "two people pointing city map",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/can-you-show-me-on-the-map.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "0c6a0598ebd309675b17c0b366c073e5b1a5b8c3080d9a48b49c2828bb9258f3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Where can I buy a ticket?",
@@ -577,7 +883,24 @@
           "vi": "Bạn có thể dùng máy bán vé."
         }
       ],
-      "imageQuery": "ticket office counter station"
+      "imageQuery": "ticket office counter station",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/where-can-i-buy-a-ticket.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "1a120ad012354ba6e32859500dd02b3c4d3e5d78489c3c41627365cefeac0d37",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Keep going until you see the school.",
@@ -607,7 +930,24 @@
           "vi": "Nó ở ngay đó."
         }
       ],
-      "imageQuery": "school building road walking"
+      "imageQuery": "school building road walking",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c04/keep-going-until-you-see-the-school.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "41b7e2708db1140d3e12c9dcb61c7d7f9c489faf51b3fe259695cfdfa548385d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     }
   ]
 }

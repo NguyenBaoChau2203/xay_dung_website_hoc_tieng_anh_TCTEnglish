@@ -37,7 +37,24 @@
           "vi": "Chào!"
         }
       ],
-      "imageQuery": "two people greeting each other"
+      "imageQuery": "two people greeting each other",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/hello.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "af3096eca862ea0d28402e06a89a03997dd854e6bfb406632b2145475071e07b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Good morning!",
@@ -67,7 +84,24 @@
           "vi": "Chào buổi sáng!"
         }
       ],
-      "imageQuery": "morning greeting office"
+      "imageQuery": "morning greeting office",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/good-morning.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "49c767a91018be2580806c14a594566bdd32a5528c2c33f6c7bedce59ad34e8f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Good afternoon!",
@@ -93,7 +127,24 @@
           "vi": "Chào buổi chiều, thưa bà."
         }
       ],
-      "imageQuery": "afternoon greeting reception"
+      "imageQuery": "afternoon greeting reception",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/good-afternoon.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "dc2806e0c42e714bb7106f8dc2499fab88d5d9636e855aa3a9b39f650492780e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Good evening!",
@@ -119,7 +170,24 @@
           "vi": "Chào buổi tối, thưa ông."
         }
       ],
-      "imageQuery": "evening greeting restaurant"
+      "imageQuery": "evening greeting restaurant",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/good-evening.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "7e851cd15b683b6c27d4c0490f7412be4d6c12b7e0987d0f33e1ede5f260ddd5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "How are you?",
@@ -149,7 +217,24 @@
           "vi": "Cũng không tệ."
         }
       ],
-      "imageQuery": "friends meeting street"
+      "imageQuery": "friends meeting street",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/how-are-you.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "6edddc59cecc2568aee4a230018bea72aa174907e3beb8b8195c702b78ed5200",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'm fine, thank you.",
@@ -179,7 +264,24 @@
           "vi": "Tôi ổn."
         }
       ],
-      "imageQuery": "polite conversation smiling"
+      "imageQuery": "polite conversation smiling",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/i-m-fine-thank-you.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "929049a565532d9a52ab9330a0930e9bbb50637aaea92794cc19fd09f2096576",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Nice to meet you.",
@@ -209,7 +311,24 @@
           "vi": "Tôi cũng rất vui được gặp bạn."
         }
       ],
-      "imageQuery": "two people shaking hands meeting"
+      "imageQuery": "two people shaking hands meeting",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/nice-to-meet-you.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "573064a396acc108bc03411ea271d48f9da04d595b320c250e99eaca52227778",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "My name is...",
@@ -239,7 +358,24 @@
           "vi": "Cứ gọi tôi là Mike."
         }
       ],
-      "imageQuery": "self introduction classroom"
+      "imageQuery": "self introduction classroom",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/my-name-is.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "2443e2f5ee908b43bc9c33a2170cde9715f54bacbfef8884e2e7e893311a6bdf",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "What's your name?",
@@ -265,7 +401,24 @@
           "vi": "Tôi có thể hỏi tên bạn không?"
         }
       ],
-      "imageQuery": "asking name new classmates"
+      "imageQuery": "asking name new classmates",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/what-s-your-name.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "096b1575dd504e104258dfd9e6e2644944f924313a66fd91761f9823c87ed5f8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Where are you from?",
@@ -295,7 +448,24 @@
           "vi": "Tôi đến từ Nhật Bản."
         }
       ],
-      "imageQuery": "students world map talking"
+      "imageQuery": "students world map talking",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/where-are-you-from.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "46b385c6b3feda5cf9ca2d40eca0b475275bc2e283078b35de7dcb0d89395fc3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'm from...",
@@ -321,7 +491,24 @@
           "vi": "Tôi đến từ Peru."
         }
       ],
-      "imageQuery": "person introducing country flag"
+      "imageQuery": "person introducing country flag",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/i-m-from.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "3d4b929210b1ecbfb736be84256a5b4d0da9ad7dfcaf4e331dc598fbe143dd55",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "How old are you?",
@@ -351,7 +538,24 @@
           "vi": "Tháng sau tôi sẽ mười hai tuổi."
         }
       ],
-      "imageQuery": "children talking age"
+      "imageQuery": "children talking age",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/how-old-are-you.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "98a807488c235cf95d9c38405059adbd6adaa1f79afb6d6f124b0ce329dd4aba",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "What do you do?",
@@ -381,7 +585,24 @@
           "vi": "Tôi vẫn còn là học sinh."
         }
       ],
-      "imageQuery": "people networking event talking"
+      "imageQuery": "people networking event talking",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/what-do-you-do.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "e1f4ce81ec874d3f43842e6a0815d1667c5a17d9dda0b87b8d05820b82da0299",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "This is my friend.",
@@ -411,7 +632,24 @@
           "vi": "Đây là bạn tôi, Joe."
         }
       ],
-      "imageQuery": "introducing friend party"
+      "imageQuery": "introducing friend party",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/this-is-my-friend.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "d55c3b9740a3c21c548fac6b774dda8c5081ace51ba66a8fd5bc78fd3b76a9d2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Let me introduce myself.",
@@ -437,7 +675,24 @@
           "vi": "Cho phép tôi tự giới thiệu."
         }
       ],
-      "imageQuery": "person introducing himself meeting room"
+      "imageQuery": "person introducing himself meeting room",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/let-me-introduce-myself.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "6e53cd5e7d8124329bd04238cba9b1b7b65abf7fcc8f0ea4de64d3cdeca6fe00",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "It's a pleasure to meet you.",
@@ -463,7 +718,24 @@
           "vi": "Hân hạnh là của tôi."
         }
       ],
-      "imageQuery": "formal handshake business meeting"
+      "imageQuery": "formal handshake business meeting",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/it-s-a-pleasure-to-meet-you.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "12b30878bc08687456f04603161dc6dbd838833e3ccb25276c3c808dbed39ad0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Long time no see!",
@@ -493,7 +765,24 @@
           "vi": "Dạo này bạn thế nào?"
         }
       ],
-      "imageQuery": "old friends meeting hug"
+      "imageQuery": "old friends meeting hug",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/long-time-no-see.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "1d3b3bbaf071a80791cdccd6c6549e41ab2d2a9020c6eda05257da0101d8d41e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "See you later!",
@@ -523,7 +812,24 @@
           "vi": "Hẹn mai gặp!"
         }
       ],
-      "imageQuery": "friends waving goodbye"
+      "imageQuery": "friends waving goodbye",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/see-you-later.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "d24229cccacda794c1cd2a7e6752010d17e6bc30fbdd9142149303b701abf388",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Goodbye!",
@@ -553,7 +859,24 @@
           "vi": "Bảo trọng nhé!"
         }
       ],
-      "imageQuery": "person waving goodbye"
+      "imageQuery": "person waving goodbye",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/goodbye.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "d3eb9511e6f1b560eeefc8114518e0788b4eed85458081bc162b2c27d53b5330",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Have a nice day!",
@@ -583,7 +906,24 @@
           "vi": "Chúc bạn cuối tuần vui vẻ!"
         }
       ],
-      "imageQuery": "shop assistant smiling customer"
+      "imageQuery": "shop assistant smiling customer",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c01/have-a-nice-day.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "446b399a024f9761a8c85367abc29d2054eb7b7cdf19a12c1a2ecd1be0e9d9cc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     }
   ]
 }

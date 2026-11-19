@@ -37,7 +37,24 @@
           "vi": "Hãy đến quầy số mười hai."
         }
       ],
-      "imageQuery": "airport check-in desk passengers"
+      "imageQuery": "airport check-in desk passengers",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/where-is-the-check-in-desk.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "8ff7df85862d0c5a1045f79ee408ab90bc015471ca4f0455b57321db0cecb232",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Here is my passport.",
@@ -67,7 +84,24 @@
           "vi": "Cảm ơn bạn."
         }
       ],
-      "imageQuery": "passport check officer desk"
+      "imageQuery": "passport check officer desk",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/here-is-my-passport.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "90ec3b6d3a20e1124ebe2980e2abfcdf0ac59b9bbee9c111afd1d4b624e6ac56",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'd like a window seat.",
@@ -97,7 +131,24 @@
           "vi": "Tôi sẽ kiểm tra giúp bạn."
         }
       ],
-      "imageQuery": "airplane window seat view"
+      "imageQuery": "airplane window seat view",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/i-d-like-a-window-seat.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "2a97a928503744a75a1568bdc60b1e4cede4da83f4586c7d43fd7541f75f7988",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Is this my boarding gate?",
@@ -127,7 +178,24 @@
           "vi": "Vâng, đúng rồi."
         }
       ],
-      "imageQuery": "airport gate sign boarding"
+      "imageQuery": "airport gate sign boarding",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/is-this-my-boarding-gate.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "6e5cc873c06e045e81c1784df80c5c8b1ec8bb2efb4cf4b5b4d838bf5bf70542",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Do I need to pay for extra baggage?",
@@ -157,7 +225,24 @@
           "vi": "Xin hãy đặt túi lên cân."
         }
       ],
-      "imageQuery": "luggage scale check-in"
+      "imageQuery": "luggage scale check-in",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/do-i-need-to-pay-for-extra-baggage.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "5d80bbcb8fb38636794f0a8f8d008c3900117a279e41b42742c437b8651543ff",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "My flight has been delayed.",
@@ -187,7 +272,24 @@
           "vi": "Chuyến bay đã bị hủy."
         }
       ],
-      "imageQuery": "departure board delayed flight"
+      "imageQuery": "departure board delayed flight",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/my-flight-has-been-delayed.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "b0614a53180a223ec814fc1a8a0deb6078831990763660dcba9e8cecc94df8f0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Where can I get my luggage?",
@@ -217,7 +319,24 @@
           "vi": "Băng chuyền số ba."
         }
       ],
-      "imageQuery": "baggage claim carousel suitcases"
+      "imageQuery": "baggage claim carousel suitcases",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/where-can-i-get-my-luggage.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "30dd97ab2362cf57b8be25f3aa3eb5fb272ac6432b7bc2ad75fcbe8135799599",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I have nothing to declare.",
@@ -247,7 +366,24 @@
           "vi": "Xin hãy mở túi của bạn."
         }
       ],
-      "imageQuery": "customs officer checking bag"
+      "imageQuery": "customs officer checking bag",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/i-have-nothing-to-declare.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "b26552acd30694cc721a2fde33076bdca75e2c7d082b7379d50cb61e17297c8b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "What time is boarding?",
@@ -277,7 +413,24 @@
           "vi": "Xin hãy chờ ở cổng."
         }
       ],
-      "imageQuery": "passengers waiting gate clock"
+      "imageQuery": "passengers waiting gate clock",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/what-time-is-boarding.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "3a02015a41c073d2ce44f677bbe1e84b6c3aff3256378a835811bbf78b9d1cc4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I have a reservation.",
@@ -307,7 +460,24 @@
           "vi": "Để tôi kiểm tra."
         }
       ],
-      "imageQuery": "hotel reception check in"
+      "imageQuery": "hotel reception check in",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/i-have-a-reservation.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "c60a539db1e83a60b70434122c5436d75f60a532b0b5dbe2ed85106c4bab824b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'd like to check in, please.",
@@ -337,7 +507,24 @@
           "vi": "Xin điền vào mẫu này."
         }
       ],
-      "imageQuery": "hotel reception key guest"
+      "imageQuery": "hotel reception key guest",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/i-d-like-to-check-in-please.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "592bddff5adae9568f54868fd394a36496b2f89c214cbc0f819aa5b77dc1497d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could I have a room with a view?",
@@ -367,7 +554,24 @@
           "vi": "Một phòng ở tầng cao."
         }
       ],
-      "imageQuery": "hotel room window sea view"
+      "imageQuery": "hotel room window sea view",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/could-i-have-a-room-with-a-view.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "880c86e9928d0715f547445e0d2b35041f592db24549addb5873d5c9e3acdb9f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "What time is breakfast?",
@@ -397,7 +601,24 @@
           "vi": "Ở tầng trệt."
         }
       ],
-      "imageQuery": "hotel breakfast buffet"
+      "imageQuery": "hotel breakfast buffet",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/what-time-is-breakfast.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "9475728e2b6b5d88abe372bea141f8eb66e32d9ebe6061e64f033dfdec54fd74",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Is breakfast included?",
@@ -427,7 +648,24 @@
           "vi": "Giá mười đô la."
         }
       ],
-      "imageQuery": "hotel breakfast tray price"
+      "imageQuery": "hotel breakfast tray price",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/is-breakfast-included.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "0c98003a01bee9b1f6f1b9f2ef78038b0d0b3ade7215a1903c65ec2664fc6935",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could you call a taxi for me?",
@@ -457,7 +695,24 @@
           "vi": "Mười phút nữa xe sẽ đến."
         }
       ],
-      "imageQuery": "hotel reception taxi call"
+      "imageQuery": "hotel reception taxi call",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/could-you-call-a-taxi-for-me.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "12e1f71fcda1ad3dcc69e38ae0d0c5d69f2797d5d6345057fef06fc386070003",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "What's the Wi-Fi password?",
@@ -487,7 +742,24 @@
           "vi": "Mạng là Hotel Guest."
         }
       ],
-      "imageQuery": "wifi password card hotel"
+      "imageQuery": "wifi password card hotel",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/what-s-the-wi-fi-password.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "193ea9b07332980853ed3aaa714f42f0f9be43fb6477e972486f740c800f9428",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "The air conditioner isn't working.",
@@ -517,7 +789,24 @@
           "vi": "Tôi xin lỗi về điều đó."
         }
       ],
-      "imageQuery": "hotel room air conditioner remote"
+      "imageQuery": "hotel room air conditioner remote",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/the-air-conditioner-isn-t-working.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "eb6ad3a1bb552c516fac2a996d4df30d2f3b97b0fe5b1c40d6e38504f5e1cc61",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'd like to check out.",
@@ -547,7 +836,24 @@
           "vi": "Hóa đơn đây ạ."
         }
       ],
-      "imageQuery": "hotel guest check out suitcase"
+      "imageQuery": "hotel guest check out suitcase",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/i-d-like-to-check-out.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "8d23c8fd2ccb6a920e40055477c2a151440f385dc0da9784b4125409215a5c76",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Can I leave my bags here?",
@@ -577,7 +883,24 @@
           "vi": "Phiếu gửi của bạn đây."
         }
       ],
-      "imageQuery": "luggage storage hotel lobby"
+      "imageQuery": "luggage storage hotel lobby",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/can-i-leave-my-bags-here.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "6bab536b0179121fbc3d12a4f1713205abddac088e2bd3311aec8881d0f9a4dd",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could I have a wake-up call at six?",
@@ -607,7 +930,24 @@
           "vi": "Số phòng của bạn là gì?"
         }
       ],
-      "imageQuery": "hotel phone alarm clock morning"
+      "imageQuery": "hotel phone alarm clock morning",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c07/could-i-have-a-wake-up-call-at-six.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "09be5770e9d8f9dc5c4d2840dcac9948b783a98257e8cd056b0dcc45cc1364a2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     }
   ]
 }

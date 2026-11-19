@@ -37,7 +37,24 @@
           "vi": "Giá mười đô la."
         }
       ],
-      "imageQuery": "customer asking price shop"
+      "imageQuery": "customer asking price shop",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/how-much-is-this.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "40a118a9d8fa0c1c4426ddd1a05201f8f568ff8d47a479aa419f55831fbc2712",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "It's too expensive.",
@@ -67,7 +84,24 @@
           "vi": "Cao hơn mức tôi có thể trả."
         }
       ],
-      "imageQuery": "customer looking at price tag surprised"
+      "imageQuery": "customer looking at price tag surprised",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/it-s-too-expensive.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "2267b3e551155e5e12801d8bd786fe4b15b41fc474729752a9a33887e6faedf5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Can you give me a discount?",
@@ -97,7 +131,24 @@
           "vi": "Đó là giá tốt nhất của tôi."
         }
       ],
-      "imageQuery": "bargaining market stall customer seller"
+      "imageQuery": "bargaining market stall customer seller",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/can-you-give-me-a-discount.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "cfdf2e6ee7bffed0915c8a894c06cd7afb993dbd44446b2063eeea6c0b9374b8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Do you have a smaller size?",
@@ -127,7 +178,24 @@
           "vi": "Chúng tôi có cỡ vừa."
         }
       ],
-      "imageQuery": "clothes sizes rack customer"
+      "imageQuery": "clothes sizes rack customer",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/do-you-have-a-smaller-size.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "2e21da96b9ab087225fce272b0b4b6b838b23fc3da53f43a47b4ada4c769e5b5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Can I try it on?",
@@ -157,7 +225,24 @@
           "vi": "Tất nhiên rồi."
         }
       ],
-      "imageQuery": "customer trying jacket mirror"
+      "imageQuery": "customer trying jacket mirror",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/can-i-try-it-on.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "fbe75ef597e26df140138da7c76e4c171d77acc936aefd04310c6eb32731be68",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Where is the fitting room?",
@@ -187,7 +272,24 @@
           "vi": "Cạnh khu giày."
         }
       ],
-      "imageQuery": "fitting room sign clothes store"
+      "imageQuery": "fitting room sign clothes store",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/where-is-the-fitting-room.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "c39d035763b9ed60b25fda31d51b0a31ca97d86f32960559a32c6c2b0fea6823",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'm just looking, thanks.",
@@ -217,7 +319,24 @@
           "vi": "Không, cảm ơn."
         }
       ],
-      "imageQuery": "shop assistant customer browsing"
+      "imageQuery": "shop assistant customer browsing",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/i-m-just-looking-thanks.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "484ac94b47f5869f46494e23352d051a3d7a557dc9791e93b9122707558f136d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'll take it.",
@@ -247,7 +366,24 @@
           "vi": "Tôi sẽ suy nghĩ thêm."
         }
       ],
-      "imageQuery": "customer deciding purchase smiling"
+      "imageQuery": "customer deciding purchase smiling",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/i-ll-take-it.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "a0a8a5e17da44cc3d0c402c98e621587b22739c0a37d494a5551b9efd3b17ab8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Do you have this in blue?",
@@ -277,7 +413,24 @@
           "vi": "Chỉ có màu đen."
         }
       ],
-      "imageQuery": "shirts colours rack"
+      "imageQuery": "shirts colours rack",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/do-you-have-this-in-blue.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "b2d8f972d16a8d09250a4e96b06e0bf8de28f6d10bc9daeb54e4cc0d34cc23e1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "What's the best price?",
@@ -307,7 +460,24 @@
           "vi": "Đó là giá cuối của tôi."
         }
       ],
-      "imageQuery": "market bargaining haggling"
+      "imageQuery": "market bargaining haggling",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/what-s-the-best-price.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "cce121e4e4094225f30e344ad445f35fa411c900303ff189d826be41e0dad025",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "That's a good deal.",
@@ -337,7 +507,24 @@
           "vi": "Hời quá!"
         }
       ],
-      "imageQuery": "customer happy cheap price tag"
+      "imageQuery": "customer happy cheap price tag",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/that-s-a-good-deal.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "1a41e295ccd63d44b62ac4a3664689f2e6381ba35ff9a07c7fcdf3a940954786",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Is there a sale?",
@@ -367,7 +554,24 @@
           "vi": "Đợt giảm giá kết thúc vào Chủ nhật."
         }
       ],
-      "imageQuery": "sale sign shop window"
+      "imageQuery": "sale sign shop window",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/is-there-a-sale.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "1d0fe9d7305c26dc113283e8afe786f0a234b3ce3b2ba406015ab08bea9c5f80",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Can I get a receipt?",
@@ -397,7 +601,24 @@
           "vi": "Hãy giữ lại để đổi trả."
         }
       ],
-      "imageQuery": "cashier handing receipt"
+      "imageQuery": "cashier handing receipt",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/can-i-get-a-receipt.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "5a0581659070381888585f4860300935eb3065d6c6e9b5ea73837b827730b88a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Do you accept credit cards?",
@@ -427,7 +648,24 @@
           "vi": "Có, nhận các loại thẻ chính."
         }
       ],
-      "imageQuery": "card sign shop counter"
+      "imageQuery": "card sign shop counter",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/do-you-accept-credit-cards.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "534c1b2da7bf0da1ecccfb7364cfa01bf219fe0a6910e0229abcec8fe48375fd",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'd like to return this.",
@@ -457,7 +695,24 @@
           "vi": "Tôi muốn được hoàn tiền."
         }
       ],
-      "imageQuery": "customer returning item counter"
+      "imageQuery": "customer returning item counter",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/i-d-like-to-return-this.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "77155858d5001cae136594420cfeee087e2e594b0d74d99933e91b55946c529f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "It doesn't fit.",
@@ -487,7 +742,24 @@
           "vi": "Tôi đổi được không?"
         }
       ],
-      "imageQuery": "person trying clothes tight"
+      "imageQuery": "person trying clothes tight",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/it-doesn-t-fit.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "c74b282609443d159318041e928d52f2e04b374dea9ee951cfc57a36e2f83d4d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Could you gift-wrap it?",
@@ -517,7 +789,24 @@
           "vi": "Bạn thích giấy gói nào?"
         }
       ],
-      "imageQuery": "gift wrapping shop counter ribbon"
+      "imageQuery": "gift wrapping shop counter ribbon",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/could-you-gift-wrap-it.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "f3dd2446fbc1486866592bb116b8a6d1df3a2d704025b1a2dd610226efb90565",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Do you have anything cheaper?",
@@ -547,7 +836,24 @@
           "vi": "Nó ở trên kệ."
         }
       ],
-      "imageQuery": "customer asking cheaper product shelf"
+      "imageQuery": "customer asking cheaper product shelf",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/do-you-have-anything-cheaper.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "dff0f81c6c7f55868b909b54f8cd60eb005394ea827feee59b4c0a4eee2cde23",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "Where can I pay?",
@@ -577,7 +883,24 @@
           "vi": "Ở đằng kia ạ."
         }
       ],
-      "imageQuery": "supermarket checkout customer basket"
+      "imageQuery": "supermarket checkout customer basket",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/where-can-i-pay.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "a37fb141b107f24096ab3487dd63db2e2ca9ae083240c650809e59ee32f0b343",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     },
     {
       "term": "I'm looking for a gift.",
@@ -607,7 +930,24 @@
           "vi": "Chiếc khăn này thì sao?"
         }
       ],
-      "imageQuery": "gift shop customer assistant"
+      "imageQuery": "gift shop customer assistant",
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "image": {
+        "file": "c05/i-m-looking-for-a-gift.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "f425d59ec26941ebf8c7f2f3444944aa37bd9d6d8353e57cc1fa8200e8efb36e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
     }
   ]
 }

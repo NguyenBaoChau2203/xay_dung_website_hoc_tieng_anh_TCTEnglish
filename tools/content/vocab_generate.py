@@ -2162,6 +2162,239 @@ def edu_icon(name: str) -> bytes:
     return finish(img)
 
 
+SETTING_WORDS = [
+    ("restaurant", ("waiter", "menu", "restaurant", "dish", "meal", "table", "bill", "order", "drink", "chair", "takeaway", "fast food", "burger", "soup", "water", "allergy", "chef", "tip")),
+    ("airport", ("airport", "passport", "boarding", "gate", "luggage", "baggage", "flight", "customs", "check-in", "seat", "departure", "plane")),
+    ("hotel", ("hotel", "reception", "room", "wake-up", "breakfast", "check out", "check in", "wifi", "air conditioner", "taxi")),
+    ("shop", ("shop", "price", "market", "bargain", "customer", "fitting", "cheaper", "gift", "sale", "receipt", "card", "clothes", "sizes", "cashier", "checkout", "wrapping", "return", "tag")),
+    ("phone", ("phone", "call", "voicemail", "answering", "signal", "battery", "message", "switchboard", "headset", "telephone", "number")),
+    ("street", ("street", "map", "directions", "bridge", "bus", "corner", "turn", "road", "station", "lost", "walking", "junction", "building", "ticket office")),
+    ("classroom", ("classroom", "student", "teacher", "pen", "classmates", "english", "notebook", "learning")),
+    ("office", ("office", "colleagues", "meeting", "business", "formal", "manager", "desk", "reception")),
+    ("park", ("park", "weather", "sunny", "picnic", "outdoor", "walk", "weekend", "friends", "waving", "goodbye", "cold", "scarf")),
+    ("home", ("home", "window", "neighbours", "family", "door", "favour", "hug", "helping", "box", "gift")),
+]
+PROP_WORDS = [
+    ("menu", ("menu", "order", "ordering")), ("bill", ("bill", "receipt", "card", "paying", "pay", "tip", "price", "change")),
+    ("map", ("map",)), ("phone", ("phone", "call", "voicemail", "battery", "signal", "smartphone", "message", "answering")),
+    ("passport", ("passport",)), ("suitcase", ("luggage", "baggage", "suitcase", "bags", "bag", "wrapping")),
+    ("key", ("key", "reception", "check in", "check out", "reservation")), ("ticket", ("ticket", "boarding")),
+    ("coffee", ("coffee", "cafe", "tea", "drink", "water")), ("gift", ("gift", "present")),
+    ("clock", ("clock", "time", "watch", "minutes", "waiting")), ("umbrella", ("weather", "rain", "cold")),
+    ("tray", ("tray", "meal", "dish", "food", "soup", "takeaway", "burger")),
+]
+
+
+def infer_scene(term: str, query: str) -> tuple[str, str]:
+    text = (term + " " + query).lower()
+    best, best_n = "street", 0
+    for name, words in SETTING_WORDS:
+        n = sum(1 for w in words if w in text)
+        if n > best_n:
+            best, best_n = name, n
+    prop = "none"
+    for name, words in PROP_WORDS:
+        if any(w in text for w in words):
+            prop = name
+            break
+    return best, prop
+
+
+def _wrap(text: str, width: int) -> list[str]:
+    lines, cur = [], ""
+    for w in text.split():
+        trial = (cur + " " + w).strip()
+        if len(trial) > width and cur:
+            lines.append(cur)
+            cur = w
+        else:
+            cur = trial
+    if cur:
+        lines.append(cur)
+    return lines
+
+
+FORCED_SETTING = {"C03": "restaurant", "C04": "street", "C05": "shop", "C06": "phone"}
+
+
+def scene_image(term: str, query: str, seed: int, code: str = "") -> bytes:
+    """Original illustration of a conversational situation with the phrase in a speech bubble (kind "scene")."""
+    from PIL import ImageFont
+
+    setting, prop = infer_scene(term, query)
+    setting = FORCED_SETTING.get(code.upper(), setting)
+    if setting in ("airport", "hotel", "restaurant", "phone") and code.upper() in ("C01", "C02", "C08"):
+        setting = "park" if code.upper() == "C08" else "office"
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+    PAL = [(37, 99, 235), (234, 88, 12), (22, 163, 74), (219, 39, 119), (124, 58, 237), (14, 165, 233)]
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=4, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    # background
+    floor_y = 300
+    wall = {"street": (186, 230, 253), "park": (186, 230, 253), "office": (226, 232, 240), "classroom": (254, 249, 195), "restaurant": (254, 226, 202),
+            "shop": (237, 233, 254), "airport": (219, 234, 254), "hotel": (254, 243, 199), "home": (220, 252, 231), "phone": (241, 245, 249)}[setting]
+    d.rectangle((0, 0, W * s, H * s), fill=wall)
+    d.rectangle((0, floor_y * s, W * s, H * s), fill={"street": (156, 163, 175), "park": (134, 239, 172)}.get(setting, (214, 196, 160)))
+    if setting in ("street", "park"):
+        if setting == "street":
+            for k, (x, h, col) in enumerate(((10, 150, (203, 213, 225)), (130, 190, (254, 215, 170)), (290, 130, (187, 247, 208)), (390, 170, (221, 214, 254)))):
+                box(x, floor_y - h, x + 110, floor_y, col, 0, 2)
+                for r_ in range(h // 44):
+                    for c_ in range(2):
+                        box(x + 16 + c_ * 46, floor_y - h + 14 + r_ * 44, x + 40 + c_ * 46, floor_y - h + 40 + r_ * 44, (147, 197, 253), 2, 2)
+        else:
+            for x in (30, 150, 400):
+                line(x, floor_y, x, floor_y - 120, 12, (120, 72, 36))
+                oval(x - 56, floor_y - 210, x + 56, floor_y - 100, (74, 222, 128), 3)
+            oval(400, 20, 450, 70, (250, 204, 21), 3)
+    elif setting == "restaurant":
+        box(30, 40, 150, 140, (147, 197, 253), 4, 3)
+        box(330, 50, 450, 130, (254, 243, 199), 4, 3)
+        late_table = True
+    elif setting == "shop":
+        for r_ in range(3):
+            line(20, 70 + r_ * 56, 460, 70 + r_ * 56, 6, (180, 120, 70))
+            for c_ in range(9):
+                box(30 + c_ * 49, 40 + r_ * 56, 62 + c_ * 49, 70 + r_ * 56, PAL[(c_ + r_) % 6], 3, 2)
+    elif setting == "airport":
+        box(20, 30, 460, 190, (186, 230, 253), 4, 3)
+        poly([(180, 130), (300, 124), (330, 134), (300, 144)], (255, 255, 255))
+        poly([(230, 130), (260, 90), (275, 90), (262, 130)], (203, 213, 225))
+        box(300, 214, 470, 262, (148, 163, 184), 6, 3)
+    elif setting == "hotel":
+        box(20, 40, 150, 140, (254, 215, 170), 4, 3)
+        for k in range(6):
+            oval(36 + (k % 3) * 36, 56 + (k // 3) * 40, 52 + (k % 3) * 36, 72 + (k // 3) * 40, (250, 204, 21), 2)
+        box(290, 230, 470, 262, (146, 83, 36), 6, 3)
+    elif setting == "classroom":
+        box(40, 30, 300, 150, (22, 101, 52), 4, 4)
+        line(60, 70, 240, 70, 3, (240, 244, 240))
+        line(60, 100, 200, 100, 3, (240, 244, 240))
+        box(60, 236, 200, 252, (180, 120, 70), 6, 3)
+        box(300, 236, 440, 252, (180, 120, 70), 6, 3)
+    elif setting == "office":
+        box(300, 30, 460, 150, (147, 197, 253), 4, 3)
+        box(30, 232, 200, 252, (180, 120, 70), 6, 3)
+        box(60, 190, 140, 232, (51, 65, 85), 6, 3)
+    elif setting == "home":
+        box(30, 40, 170, 140, (147, 197, 253), 4, 3)
+        box(300, 200, 470, 300, (251, 146, 60), 14, 3)
+        oval(400, 150, 440, 200, (74, 222, 128), 3)
+    elif setting == "phone":
+        for k in range(6):
+            oval(20 + k * 80, 150 + (k % 2) * 40, 40 + k * 80, 170 + (k % 2) * 40, (219, 234, 254), 0)
+
+    # people
+    late_table = locals().get('late_table', False)
+    two = setting != "phone" or "call" not in term.lower()
+    g1, g2 = ("m", "f") if seed % 2 == 0 else ("f", "m")
+    c1, c2 = PAL[seed % 6], PAL[(seed + 2) % 6]
+    if setting == "phone":
+        xa, xb = 150, 330
+    else:
+        xa, xb = 150, 330
+    _person(d, xa, 128, 2.2, g1, c1)
+    if two:
+        _person(d, xb, 128, 2.2, g2, c2)
+    if late_table:
+        box(40, 268, 440, 286, (180, 120, 70), 6, 3)
+        line(110, 286, 110, 340, 9, (120, 72, 36))
+        line(370, 286, 370, 340, 9, (120, 72, 36))
+    # prop between the people
+    px, py = 240, 240
+    if prop == "menu":
+        box(px - 34, py - 40, px + 34, py + 30, (255, 255, 255), 5, 3)
+        for k in range(3):
+            line(px - 22, py - 24 + k * 16, px + 22, py - 24 + k * 16, 3, (148, 163, 184))
+    elif prop == "bill":
+        poly([(px - 28, py - 44), (px + 28, py - 44), (px + 28, py + 30), (px + 14, py + 22), (px, py + 30), (px - 14, py + 22), (px - 28, py + 30)], (255, 255, 255))
+        for k in range(3):
+            line(px - 18, py - 28 + k * 16, px + 18, py - 28 + k * 16, 3, (148, 163, 184))
+    elif prop == "map":
+        poly([(px - 40, py - 36), (px - 14, py - 28), (px + 14, py - 36), (px + 40, py - 28), (px + 40, py + 30), (px + 14, py + 38), (px - 14, py + 30), (px - 40, py + 38)], (254, 240, 138))
+        line(px - 30, py + 10, px + 30, py - 10, 3, (59, 130, 246))
+        oval(px + 14, py - 24, px + 26, py - 12, (239, 68, 68), 2)
+    elif prop == "phone":
+        box(px - 22, py - 44, px + 22, py + 30, (30, 41, 59), 8, 3)
+        box(px - 16, py - 32, px + 16, py + 14, (147, 197, 253), 3, 0)
+    elif prop == "passport":
+        box(px - 26, py - 36, px + 26, py + 30, (30, 58, 138), 4, 3)
+        oval(px - 12, py - 20, px + 12, py + 4, (250, 204, 21), 2)
+    elif prop == "suitcase":
+        box(px - 38, py - 20, px + 38, py + 40, (180, 83, 9), 8, 3)
+        box(px - 14, py - 36, px + 14, py - 20, (180, 83, 9), 4, 3)
+    elif prop == "key":
+        oval(px - 24, py - 30, px, py - 6, (250, 204, 21), 3)
+        line(px, py - 18, px + 34, py - 18, 6, (250, 204, 21))
+        line(px + 24, py - 18, px + 24, py - 6, 6, (250, 204, 21))
+    elif prop == "ticket":
+        poly([(px - 40, py - 26), (px + 40, py - 26), (px + 40, py + 20), (px - 40, py + 20)], (250, 204, 21))
+        line(px + 14, py - 26, px + 14, py + 20, 2)
+    elif prop == "coffee":
+        box(px - 22, py - 26, px + 18, py + 24, (255, 255, 255), 5, 3)
+        oval(px + 12, py - 12, px + 34, py + 10, (255, 255, 255), 3)
+        line(px - 10, py - 36, px - 6, py - 48, 3, (148, 163, 184))
+    elif prop == "gift":
+        box(px - 30, py - 20, px + 30, py + 34, (244, 114, 182), 4, 3)
+        box(px - 6, py - 20, px + 6, py + 34, (253, 224, 71), 0, 0)
+        box(px - 30, py + 2, px + 30, py + 14, (253, 224, 71), 0, 0)
+    elif prop == "clock":
+        oval(px - 28, py - 40, px + 28, py + 16, (255, 255, 255), 3)
+        line(px, py - 12, px, py - 30, 3)
+        line(px, py - 12, px + 14, py - 6, 3)
+    elif prop == "umbrella":
+        d.pieslice(((px - 44) * s, (py - 60) * s, (px + 44) * s, (py + 28) * s), 180, 360, fill=(59, 130, 246), outline=L, width=3 * s)
+        line(px, py - 16, px, py + 36, 4)
+    elif prop == "tray":
+        poly([(px - 44, py), (px + 44, py), (px + 34, py + 20), (px - 34, py + 20)], (170, 178, 192))
+        oval(px - 26, py - 18, px + 8, py + 2, (255, 255, 255), 2)
+        box(px + 14, py - 26, px + 38, py, (200, 230, 250), 4, 2)
+
+    # speech bubble with the phrase
+    def font(px_):
+        for name in ("arialbd.ttf", "arial.ttf", "DejaVuSans-Bold.ttf"):
+            try:
+                return ImageFont.truetype(name, int(px_))
+            except OSError:
+                continue
+        return ImageFont.load_default()
+
+    size = 28
+    while True:
+        f = font(size * s)
+        lines = _wrap(term, max(10, int(26 * 28 / size)))
+        widths = [d.textlength(ln, font=f) for ln in lines]
+        total_h = len(lines) * size * 1.25
+        if (max(widths) / s <= 410 and total_h <= 84) or size <= 15:
+            break
+        size -= 1
+    bw, bh = max(widths) / s + 34, total_h + 34
+    bx0 = max(20, min(W - 20 - bw, xa - 40))
+    by0 = 16
+    box(bx0, by0, bx0 + bw, by0 + bh, (255, 255, 255), 16, 3)
+    tx = xa + 10
+    poly([(tx - 14, by0 + bh - 2), (tx + 14, by0 + bh - 2), (tx, by0 + bh + 24)], (255, 255, 255))
+    d.line([((tx - 12) * s, (by0 + bh - 1) * s), ((tx + 12) * s, (by0 + bh - 1) * s)], fill=(255, 255, 255), width=5 * s)
+    for i, ln in enumerate(lines):
+        d.text(((bx0 + 15) * s, (by0 + 17 + i * size * 1.25) * s), ln, fill=L, font=f)
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -2169,7 +2402,7 @@ def main() -> None:
     final = BUILD / "vocab-images" / "final" / code
     final.mkdir(parents=True, exist_ok=True)
     done = 0
-    for card in manifest["cards"]:
+    for i, card in enumerate(manifest["cards"]):
         spec = card.get("generate")
         if not spec or card.get("image"):
             continue
@@ -2220,6 +2453,8 @@ def main() -> None:
             data = med_icon(val)
         elif kind == "edu":
             data = edu_icon(val)
+        elif kind == "scene":
+            data = scene_image(card["term"], card.get("imageQuery", ""), i, manifest["set"]["code"])
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"
