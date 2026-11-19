@@ -1,0 +1,54 @@
+@model TCTEnglish.ViewModels.Sets.SetDetailViewModel
+@using TCTEnglish.Services.Onboarding
+@using TCTVocabulary.Security
+@inject IOnboardingService Onboarding
+@*
+    "Gợi ý thêm cùng chủ đề" on the detail page of an onboarding deck (plan 3, "Deck detail"). Always shown as a card for the
+    owner's starter decks (decided at S6 by the look of the page): the next 10 words of the deck's topics, or a message when the
+    topics are used up. onboarding-refill.js sends POST api/onboarding/refill/{setId} with a request id.
+*@
+@{
+    RefillSuggestion? suggestion = null;
+    if (User.TryGetUserId(out var refillUserId))
+    {
+        try
+        {
+            suggestion = await Onboarding.GetRefillSuggestionAsync(refillUserId, Model.SetId, Context.RequestAborted);
+        }
+        catch (Exception)
+        {
+            suggestion = null;
+        }
+    }
+}
+@if (suggestion != null)
+{
+    <section class="tct-card k-card ts-refill" aria-labelledby="ts-refill-title" data-tob-refill-card data-set-id="@Model.SetId" data-set-name="@Model.SetName">
+        <h2 class="ts-section-title" id="ts-refill-title"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Gợi ý thêm cùng chủ đề</h2>
+        @if (suggestion.Available > 0)
+        {
+            <p class="ts-refill__text" data-tob-refill-text>Thêm 10 từ tiếp theo về @string.Join(", ", suggestion.TopicNames)?</p>
+            <ul class="ts-refill__thumbs" aria-label="Một vài từ sắp thêm">
+                @foreach (var card in suggestion.Preview)
+                {
+                    <li class="ts-refill__item">
+                        @if (!string.IsNullOrEmpty(card.ImageUrl))
+                        {
+                            <img class="ts-refill__img" src="@card.ImageUrl" alt="" loading="lazy" decoding="async" />
+                        }
+                        <span class="ts-refill__term tct-break">@card.Term</span>
+                    </li>
+                }
+            </ul>
+            <button type="button" class="btn btn-primary" data-tob-refill><i class="fa-solid fa-plus me-1" aria-hidden="true"></i>Thêm 10 từ</button>
+        }
+        else
+        {
+            <p class="ts-refill__text">Bạn đã có tất cả từ của chủ đề này 🎉</p>
+            <a class="btn btn-outline-primary" href="@Url.Action("Index", "Vocabulary")">Xem các khóa từ vựng</a>
+        }
+        <p class="ts-refill__status" role="status" data-tob-refill-status></p>
+    </section>
+    <script src="~/js/onboarding-core.js" asp-append-version="true" defer></script>
+    <script src="~/js/onboarding-refill.js" asp-append-version="true" defer></script>
+}

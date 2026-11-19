@@ -610,6 +610,33 @@ public sealed class OnboardingService : IOnboardingService
     }
 
     // =====================================================================================
+    // Refill suggestion (deck detail page)
+    // =====================================================================================
+
+    public async Task<RefillSuggestion?> GetRefillSuggestionAsync(int userId, int setId, CancellationToken ct = default)
+    {
+        var row = await _db.UserOnboardings.AsNoTracking()
+            .Where(x => x.UserId == userId)
+            .Select(x => new { x.DecksJson, x.KnownTermsJson, x.Level })
+            .FirstOrDefaultAsync(ct);
+        var deck = row == null ? null : ReadDecks(row.DecksJson).FirstOrDefault(d => d.SetId == setId);
+        if (row == null || deck == null || !await _db.Sets.AnyAsync(s => s.SetId == setId && s.OwnerId == userId, ct))
+        {
+            return null;
+        }
+
+        var pool = await LoadPoolAsync(deck.TopicKeys, ct);
+        var used = (await LoadOwnedTermsAsync(userId, ct)).ToHashSet(StringComparer.Ordinal);
+        used.UnionWith(ReadKnownTerms(new UserOnboarding { KnownTermsJson = row.KnownTermsJson }));
+        var next = OnboardingDeckBuilder.PickNext(deck.TopicKeys, row.Level ?? "A2", pool, used, 20);
+
+        return new RefillSuggestion(
+            deck.TopicKeys.Where(key => OnboardingCatalog.TryGetTopic(key, out _)).Select(key => OnboardingCatalog.Topic(key).SetName).ToList(),
+            next.Take(4).Select(card => new PreviewCard(card.CardId, card.Term, card.Meaning, card.ImageUrl, card.Cefr)).ToList(),
+            next.Count);
+    }
+
+    // =====================================================================================
     // Idempotency
     // =====================================================================================
 
@@ -683,20 +710,5 @@ public sealed class OnboardingService : IOnboardingService
         }
     }
 
-    private static IReadOnlyList<OnboardingDeckRef> ReadDecks(string? json)
-    {
-        if (string.IsNullOrEmpty(json))
-        {
-            return Array.Empty<OnboardingDeckRef>();
-        }
-
-        try
-        {
-            return JsonSerializer.Deserialize<List<OnboardingDeckRef>>(json, Json) ?? new List<OnboardingDeckRef>();
-        }
-        catch (JsonException)
-        {
-            return Array.Empty<OnboardingDeckRef>();
-        }
-    }
+    private static IReadOnlyList<OnboardingDeckRef> ReadDecks(string? json) => OnboardingStored.Decks(json);
 }

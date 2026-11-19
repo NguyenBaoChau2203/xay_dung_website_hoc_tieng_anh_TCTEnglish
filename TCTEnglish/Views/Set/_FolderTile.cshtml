@@ -3,13 +3,14 @@
     // One link names the whole tile for assistive technology; the visible text is hidden from it so nothing is read twice.
     var label = $"Thư mục {Model.Name}, {Model.SetCount} bộ thẻ, {Model.WordCount} từ"
         + (Model.DueCount > 0 ? $", {Model.DueCount} từ cần ôn" : string.Empty)
-        + (Model.IsOwn ? string.Empty : $", đã lưu từ {Model.OwnerName}");
+        + (Model.IsOwn ? string.Empty : $", đã lưu từ {Model.OwnerName}")
+        + (Model.IsNew ? ", mới" : string.Empty);
 }
 <article class="tct-card tct-card--interactive k-card ts-folder ts-hue-@Model.Hue">
     <a class="ts-folder-link" href="@Url.Action("FolderPage", "Set", new { id = Model.FolderId })"><span class="visually-hidden">@label</span></a>
-    <span class="ts-folder-icon" aria-hidden="true"><i class="fa-solid @(Model.IsOwn ? "fa-folder" : "fa-folder-open")"></i></span>
+    <span class="ts-folder-icon" aria-hidden="true"><i class="fa-solid @(Model.IsStarterFolder ? "fa-route" : Model.IsOwn ? "fa-folder" : "fa-folder-open")"></i></span>
     <div class="ts-folder-body" aria-hidden="true">
-        <h3 class="ts-folder-name tct-clamp-2 tct-break" title="@Model.Name">@Model.Name</h3>
+        <h3 class="ts-folder-name tct-clamp-2 tct-break" title="@Model.Name">@Model.Name@if (Model.IsNew) { <span class="tct-badge tct-badge--primary ts-folder-new">Mới</span> }</h3>
         <p class="ts-folder-meta">
             @if (!Model.IsOwn)
             {

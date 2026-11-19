@@ -19,6 +19,8 @@
     }
     // A link so it works without JavaScript; layout.js opens the create-folder dialog for this address.
     headerActions.Add(new PageHeaderAction("Tạo thư mục", "/Sets#tao-thu-muc", PageActionVariant.Secondary, "fa-solid fa-folder-plus"));
+    // A link to the same page with a fragment so it works without JavaScript; onboarding.js opens the flow for this address.
+    headerActions.Add(new PageHeaderAction("Tạo thêm từ sở thích", "/Sets#tao-them-tu-so-thich", PageActionVariant.Secondary, "fa-solid fa-wand-magic-sparkles"));
     headerActions.Add(new PageHeaderAction("Tạo bộ thẻ", createUrl, PageActionVariant.Primary, "fa-solid fa-plus"));
     var header = new PageHeaderViewModel
     {
@@ -46,6 +48,19 @@
 
 <div class="tct-theme tct-page ts-page ts-page--list">
     <partial name="_PageHeader" model="header" />
+
+    @if (Model.StarterBanner != null)
+    {
+        <section class="ts-starter-banner" aria-label="Bộ thẻ mới theo sở thích" data-tob-banner>
+            <span class="ts-starter-banner__icon" aria-hidden="true"><i class="fa-solid fa-route"></i></span>
+            <div class="ts-starter-banner__text">
+                <strong>@Model.StarterBanner.DeckCount bộ thẻ mới được tạo theo sở thích của bạn</strong>
+                <span>@Model.StarterBanner.Summary</span>
+            </div>
+            <a class="ts-starter-banner__link" href="/Sets#tao-them-tu-so-thich">Đổi sở thích</a>
+            <button type="button" class="btn-close" aria-label="Đóng thông báo" data-tob-banner-dismiss></button>
+        </section>
+    }
 
     @if (showOverview)
     {

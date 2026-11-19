@@ -6,13 +6,34 @@
             ? (Model.HasShareLink ? ("fa-solid fa-link", "Chia sẻ bằng link") : ("fa-solid fa-lock", "Riêng tư"))
             : ("fa-solid fa-globe", "Công khai");
     var studied = Model.WordCount - Model.NewCount;
+    var photos = Model.MosaicImages;
 }
 <article class="tct-card tct-card--interactive k-card ts-tile">
     <a class="ts-tile-link" href="@Url.Action("Detail", "Set", new { id = Model.SetId })">
-        <span class="visually-hidden">Mở bộ thẻ @Model.SetName</span>
+        <span class="visually-hidden">Mở bộ thẻ @Model.SetName@(Model.IsStarterDeck ? ", từ sở thích" : "")</span>
     </a>
-    <div class="ts-tile-art ts-hue-@Model.CoverHue" aria-hidden="true">
-        <span class="ts-tile-term">@Model.SampleTerm</span>
+    <div class="ts-tile-art ts-hue-@Model.CoverHue@(photos.Count > 0 ? " ts-tile-art--photo" : "")" aria-hidden="true">
+        @if (photos.Count >= 4)
+        {
+            <span class="ts-tile-mosaic">
+                @foreach (var url in photos.Take(4))
+                {
+                    <img src="@url" alt="" loading="lazy" decoding="async" />
+                }
+            </span>
+        }
+        else if (photos.Count > 0)
+        {
+            <img class="ts-tile-photo" src="@photos[0]" alt="" loading="lazy" decoding="async" />
+        }
+        else
+        {
+            <span class="ts-tile-term">@Model.SampleTerm</span>
+        }
+        @if (Model.IsStarterDeck)
+        {
+            <span class="ts-tile-starter"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>Từ sở thích</span>
+        }
         <span class="ts-tile-vis"><i class="@visIcon"></i><span class="ts-tile-vis-text">@visLabel</span></span>
     </div>
     <div class="ts-tile-body ts-hue-@Model.CoverHue">

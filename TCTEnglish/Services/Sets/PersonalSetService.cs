@@ -1,6 +1,7 @@
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Models;
+using TCTEnglish.Services.Onboarding;
 using TCTEnglish.ViewModels.Sets;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
@@ -127,10 +128,14 @@ public sealed partial class PersonalSetService : IPersonalSetService
         var stats = await LoadProgressStatsAsync(userId, ids, ct);
         ApplyProgressStats(own.Concat(subscribed).Concat(shared), stats);
 
+        var starter = await LoadStarterAsync(userId, ct);
+        await ApplyTileExtrasAsync(own.Concat(subscribed).Concat(shared).ToList(), starter, ct);
+
         model.Own = own;
         model.Subscribed = subscribed;
         model.Shared = shared;
         model.Folders = await ListFoldersForFilterAsync(userId, normalized, ct);
+        ApplyStarterToIndex(model, starter);
         return model;
     }
 
@@ -201,6 +206,94 @@ public sealed partial class PersonalSetService : IPersonalSetService
         }
 
         return source.Length <= 24 ? source : source[..24];
+    }
+
+    // =====================================================================================
+    // First-run onboarding decks and mosaic covers (read side)
+    // =====================================================================================
+
+    private sealed record StarterInfo(
+        IReadOnlyList<OnboardingDeckRef> Decks, IReadOnlyList<string> Goals, string? Level, int? FolderId, DateTime? CompletedAt, bool BannerOpen)
+    {
+        public HashSet<int> SetIds => Decks.Select(deck => deck.SetId).ToHashSet();
+    }
+
+    /// <summary>The viewer's onboarding decks (one small row), or null when they never created any.</summary>
+    private async Task<StarterInfo?> LoadStarterAsync(int userId, CancellationToken ct)
+    {
+        var row = await _db.UserOnboardings.AsNoTracking()
+            .Where(x => x.UserId == userId && x.DecksJson != null)
+            .Select(x => new { x.DecksJson, x.GoalsJson, x.Level, x.FolderId, x.CompletedAt, x.BannerDismissedAt, x.Status })
+            .FirstOrDefaultAsync(ct);
+        if (row == null)
+        {
+            return null;
+        }
+
+        var decks = OnboardingStored.Decks(row.DecksJson);
+        return decks.Count == 0
+            ? null
+            : new StarterInfo(decks, OnboardingStored.Goals(row.GoalsJson), row.Level, row.FolderId, row.CompletedAt,
+                row.Status == OnboardingStatus.Completed && row.BannerDismissedAt == null);
+    }
+
+    /// <summary>
+    /// Marks the viewer's onboarding decks and loads the first four card images of every listed set in ONE query
+    /// (a bounded result: at most four rows per set), so the number of queries does not grow with the number of sets.
+    /// </summary>
+    private async Task ApplyTileExtrasAsync(IReadOnlyList<SetCardTileViewModel> tiles, StarterInfo? starter, CancellationToken ct)
+    {
+        if (tiles.Count == 0)
+        {
+            return;
+        }
+
+        var starterIds = starter?.SetIds ?? new HashSet<int>();
+        foreach (var tile in tiles)
+        {
+            tile.IsStarterDeck = tile.Relation == "own" && starterIds.Contains(tile.SetId);
+        }
+
+        var ids = tiles.Select(t => t.SetId).Distinct().ToList();
+        var rows = await _db.Cards.AsNoTracking()
+            .Where(c => ids.Contains(c.SetId) && c.ImageUrl != null && c.ImageUrl != string.Empty
+                && _db.Cards.Count(o => o.SetId == c.SetId && o.ImageUrl != null && o.ImageUrl != string.Empty && o.CardId < c.CardId) < 4)
+            .OrderBy(c => c.SetId).ThenBy(c => c.CardId)
+            .Select(c => new { c.SetId, c.ImageUrl })
+            .ToListAsync(ct);
+
+        var bySet = rows
+            .GroupBy(row => row.SetId)
+            .ToDictionary(
+                group => group.Key,
+                group => group.Select(row => StudyService.SafeVocabularyImageUrl(row.ImageUrl)).Where(url => url != null).Select(url => url!).Take(4).ToList());
+        foreach (var tile in tiles)
+        {
+            if (bySet.TryGetValue(tile.SetId, out var urls))
+            {
+                tile.MosaicImages = urls;
+            }
+        }
+    }
+
+    private void ApplyStarterToIndex(SetIndexViewModel model, StarterInfo? starter)
+    {
+        if (starter == null)
+        {
+            return;
+        }
+
+        foreach (var folder in model.Folders.Where(f => f.IsOwn && starter.FolderId == f.FolderId))
+        {
+            folder.IsStarterFolder = true;
+            folder.IsNew = starter.CompletedAt != null && Now - starter.CompletedAt.Value < TimeSpan.FromDays(7);
+        }
+
+        var existing = model.Own.Count(t => t.IsStarterDeck);
+        if (starter.BannerOpen && existing > 0)
+        {
+            model.StarterBanner = new StarterBannerViewModel { DeckCount = existing, Summary = OnboardingStored.BannerSummary(starter.Goals, starter.Level) };
+        }
     }
 
     private sealed record ProgressStat(int Due, int Started);
@@ -348,6 +441,7 @@ public sealed partial class PersonalSetService : IPersonalSetService
         var others = await LoadTilesAsync(inFolder.Where(s => s.OwnerId != userId), 200, "shared", userId, ct);
         var tiles = mine.Concat(others).OrderByDescending(t => t.SetId).ToList();
         ApplyProgressStats(tiles, await LoadProgressStatsAsync(userId, tiles.Select(t => t.SetId).ToList(), ct));
+        await ApplyTileExtrasAsync(tiles, await LoadStarterAsync(userId, ct), ct);
 
         var page = new SetFolderPageViewModel
         {
@@ -456,6 +550,8 @@ public sealed partial class PersonalSetService : IPersonalSetService
                 .ToListAsync(ct)
             : new List<SetMoveTarget>();
 
+        var starterDeck = isOwner ? (await LoadStarterAsync(userId, ct))?.Decks.FirstOrDefault(deck => deck.SetId == setId) : null;
+
         return new SetDetailViewModel
         {
             SetId = head.SetId,
@@ -481,6 +577,10 @@ public sealed partial class PersonalSetService : IPersonalSetService
             Topics = topics,
             MoveTargets = targets,
             StudyStrip = new StudyStripViewModel { MasteredPercent = masteredPercent, DueCount = due, WordCount = head.WordCount },
+            IsStarterDeck = starterDeck != null,
+            StarterTopics = starterDeck == null
+                ? new List<string>()
+                : starterDeck.TopicKeys.Where(key => OnboardingCatalog.TryGetTopic(key, out _)).Select(key => OnboardingCatalog.Topic(key).SetName).ToList(),
         };
     }
 

@@ -725,3 +725,28 @@ New: `Views/Shared/_OnboardingHost.cshtml`, `wwwroot/js/onboarding-core.js` (pur
 | G10–G12, G13, G16 | Mouse path verified in the run above; keyboard, accessibility, contrast, regression pages and timings at S7/S8/S10. |
 | G14 | Copy checked against plan section 3; asserted in `test_onboarding_assets.cjs`. |
 | G15 | No `innerHTML` with server data; antiforgery header on every POST; markup-in-name test. |
+
+### 12.7 S6 gate record ("Bộ thẻ của tôi" and the deck detail)
+
+New: `Views/Set/_StarterRefill.cshtml`, `wwwroot/js/onboarding-refill.js`, `Services/Onboarding/OnboardingStored.cs`, `GetRefillSuggestionAsync`, `OnboardingSetPagesTests` (10). Edited (additive): `PersonalSetService.cs` (`LoadStarterAsync`, `ApplyTileExtrasAsync`, `ApplyStarterToIndex` and three call sites), `ViewModels/Sets/{SetViewModels,SetFolderViewModels}.cs` (`MosaicImages`, `IsStarterDeck`, `StarterBanner`, `IsStarterFolder`, `IsNew`, `StarterTopics`), `Views/Set/{Index,_SetTile,_FolderTile,Detail}.cshtml`, `wwwroot/css/personal-sets.css` (a new section scoped to `.ts-page`), `onboarding.js` (banner dismiss and the `#tao-them-tu-so-thich` link).
+
+**What the pages do now**
+- `/Sets`: the header has "Tạo thêm từ sở thích" for every signed-in user (a link to `/Sets#tao-them-tu-so-thich`, so it also works without JavaScript); a one-time banner after the onboarding ("{k} bộ thẻ mới được tạo theo sở thích của bạn", the goals and level, "Đổi sở thích", close) remembered on the server; the folder "Lộ trình của tôi" gets a route icon and a "Mới" chip for 7 days; the onboarding decks carry the "Từ sở thích" chip.
+- Mosaic covers apply to **every** set tile on `/Sets` and on a folder page: 4 or more images a 2×2 mosaic, 1–3 images one photo, none keep the art. The images come from one bounded query for all listed sets (at most 4 rows per set; unsafe URLs are dropped); a test proves the number of SELECTs is the same for a handful and for 50 more sets.
+- Deck detail (own onboarding decks only): the "Từ sở thích" badge, a source line (shown only when the description no longer names the topics, to avoid repeating it) and the "Gợi ý thêm cùng chủ đề" card with 4 thumbnails and "Thêm 10 từ" (refill, idempotent, toast, reload), or "Bạn đã có tất cả từ của chủ đề này 🎉" when the topics are used up. The card is **always shown** for these decks (decided by the look of the page; the page has no side column, so it sits between the study modes and the word list, not at the side as in mockup P4).
+- Other users' pages are unaffected: a private starter deck is a 404 for anyone else.
+
+**Additions to the plan's file list (recorded):** `Views/Set/_FolderTile.cshtml` (the "Mới" chip and the route icon need it) and `Views/Set/_StarterRefill.cshtml` with `onboarding-refill.js` (new files).
+
+| Gate | Result |
+| --- | --- |
+| G1 | Debug and Release build, 0 errors. |
+| G2 | `OnboardingSetPagesTests` 10/10 plus all earlier onboarding tests. |
+| G3 | **The full .NET suite was not completed at this phase:** the run was stopped by the host because the machine was critically short of memory (not a test failure), and it was not restarted. Instead a bounded regression subset (names containing Onboarding, PersonalSet, Folder, Vocabulary, SetCard, Clone; 1 thread) was run: **540 passed, 1 skipped, 0 failed**. The last complete run (S3) is 3723 passed. The full suite must be run at S10. |
+| G4 | Node: **588 passed**, 0 failed (baseline 570). |
+| G5 | No route added in S6, no model change. |
+| G6 | New CSS uses tokens only (no hex/rgb), no inline style or handler in the new views; no `innerHTML`. |
+| G7 | Files = section 5 plus the two recorded additions; `Detail.cshtml` and `Index.cshtml` diffs are additive. |
+| G8 | Scripted Chrome on the real app (new account, full onboarding, then the pages) at 1440×900 and 390×844: banner, dismiss remembered after reload, header button opens the flow at step 1 (no Back), Esc closes, folder chip and route icon, 3 mosaics with all 12 images loaded, deck detail with badge and refill card, refill 25 → 35 words, no console error. |
+| G9 | `/Sets` matches mockup P3 (banner, button, folder chip, mosaics, chips); the detail differs from P4 as noted. |
+| G10–G12, G14–G16 | Mouse path verified above; keyboard, accessibility and contrast at S7; query count asserted; antiforgery and ownership are unchanged for the refill (S4 tests). |

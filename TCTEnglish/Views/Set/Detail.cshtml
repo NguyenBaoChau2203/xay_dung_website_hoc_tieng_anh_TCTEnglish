@@ -77,11 +77,20 @@
                 {
                     <span class="ts-dot" aria-hidden="true"></span><span><i class="@visibilityIcon me-1" aria-hidden="true"></i>@visibilityText</span>
                 }
+                @if (Model.IsStarterDeck)
+                {
+                    <span class="ts-dot" aria-hidden="true"></span><span class="tct-badge ts-starter-badge"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>Từ sở thích</span>
+                }
                 @if (Model.DueCount > 0)
                 {
                     <span class="ts-dot" aria-hidden="true"></span><span class="ts-due">@Model.DueCount cần ôn</span>
                 }
             </p>
+            @* The description made at creation already names the topics; the source line only appears when it no longer does (e.g. after an edit). *@
+            @if (Model.IsStarterDeck && Model.StarterTopics.Count > 0 && !Model.StarterTopics.All(topic => (Model.Description ?? string.Empty).Contains(topic)))
+            {
+                <p class="ts-hero-source tct-break">Nguồn: @string.Join(", ", Model.StarterTopics) (thư viện TCT)</p>
+            }
             <div class="ts-hero-actions">
                 @if (Model.IsStudying)
                 {
@@ -125,6 +134,11 @@
             </nav>
             <p class="ts-study-more"><a href="/Practice?set=@Model.SetId">Luyện riêng từng kỹ năng: Trắc nghiệm, Gõ từ, Nghe, Điền từ <i class="fa-solid fa-arrow-right ms-1" aria-hidden="true"></i></a></p>
         </section>
+    }
+
+    @if (Model.IsStarterDeck && Model.IsOwner)
+    {
+        <partial name="_StarterRefill" model="Model" />
     }
 
     <section class="ts-words" aria-label="Danh sách từ">

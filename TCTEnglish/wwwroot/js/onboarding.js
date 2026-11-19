@@ -188,8 +188,23 @@
         state.step === 5 ? hide() : skip();
     });
 
+    var AGAIN_HASH = '#tao-them-tu-so-thich';
+
     document.addEventListener('click', function (event) {
-        var trigger = event.target && event.target.closest ? event.target.closest('[data-tob-open]') : null;
+        var target = event.target && event.target.closest ? event.target : null;
+        if (!target) { return; }
+
+        // The one-time banner on "Bộ thẻ của tôi": remembered on the server, removed at once.
+        var dismiss = target.closest('[data-tob-banner-dismiss]');
+        if (dismiss) {
+            var banner = dismiss.closest('[data-tob-banner]');
+            request('POST', api.banner || '/api/onboarding/banner/dismiss').catch(debug);
+            if (banner && banner.parentNode) { banner.parentNode.removeChild(banner); }
+            return;
+        }
+
+        // "Tạo thêm từ sở thích" and "Đổi sở thích" are links to /Sets#tao-them-tu-so-thich so they also work without the script.
+        var trigger = target.closest('[data-tob-open], a[href$="' + AGAIN_HASH + '"]');
         if (!trigger) { return; }
         event.preventDefault();
         if (!isOpen) { open('again', false); }
@@ -761,6 +776,8 @@
         try {
             if (cfg.shouldPrompt) {
                 window.setTimeout(function () { if (!isOpen) { open('first', true); } }, 500);
+            } else if (window.location.hash === AGAIN_HASH) {
+                window.setTimeout(function () { if (!isOpen) { open('again', false); } }, 300);
             }
         } catch (error) {
             debug(error);

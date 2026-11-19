@@ -18,6 +18,10 @@ public sealed class SetFolderTileViewModel
 
     /// <summary>One of the kit hues: warning | primary | success | info.</summary>
     public string Hue { get; set; } = "warning";
+
+    /// <summary>The folder "Lộ trình của tôi" the onboarding created, and whether it is less than 7 days old.</summary>
+    public bool IsStarterFolder { get; set; }
+    public bool IsNew { get; set; }
 }
 
 /// <summary>A set the owner could move into the folder shown on the folder page.</summary>

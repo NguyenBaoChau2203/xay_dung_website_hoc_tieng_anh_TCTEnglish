@@ -1216,3 +1216,70 @@
 
     .ts-page .ts-tile-add { border-color: CanvasText; background: transparent; }
 }
+
+/* ==================================================================================================
+   First-run onboarding decks (plan 2026-11-19-onboarding-personal-decks, S6): mosaic covers, the
+   "Từ sở thích" chip, the one-time banner, the new-folder chip and the refill card. Tokens only.
+   ================================================================================================== */
+.ts-page .ts-tile-art--photo { padding: 0; }
+.ts-page .ts-tile-art--photo::before, .ts-page .ts-tile-art--photo::after { display: none; }
+.ts-page .ts-tile-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ts-page .ts-tile-mosaic { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; background: var(--tct-surface); }
+.ts-page .ts-tile-mosaic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.ts-page .ts-tile-starter {
+    position: absolute;
+    top: var(--tct-space-sm);
+    inset-inline-start: var(--tct-space-sm);
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tct-space-xs);
+    padding: 2px var(--tct-space-sm);
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-warning-soft);
+    color: var(--tct-warning-text);
+    font-size: var(--tct-text-xs);
+    font-weight: var(--tct-weight-bold);
+    box-shadow: var(--tct-clay-shadow-quiet);
+}
+
+.ts-page .ts-folder-new { margin-inline-start: var(--tct-space-sm); vertical-align: middle; }
+
+.ts-page .ts-starter-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--tct-space-md);
+    margin-bottom: var(--tct-space-lg);
+    padding: var(--tct-space-md) var(--tct-space-lg);
+    border-radius: var(--tct-clay-radius-panel);
+    background: var(--tct-warning-soft);
+    color: var(--tct-text);
+    box-shadow: var(--tct-clay-shadow-quiet);
+}
+.ts-page .ts-starter-banner__icon { flex: 0 0 auto; color: var(--tct-warning-text); font-size: var(--tct-text-xl); }
+.ts-page .ts-starter-banner__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+.ts-page .ts-starter-banner__text span { color: var(--tct-text-secondary); font-size: var(--tct-text-sm); }
+.ts-page .ts-starter-banner__link { flex: 0 0 auto; color: var(--tct-warning-text); font-weight: var(--tct-weight-bold); white-space: nowrap; }
+
+.ts-page .ts-starter-badge { background: var(--tct-warning-soft); color: var(--tct-warning-text); border-color: transparent; font-weight: var(--tct-weight-bold); }
+.ts-page .ts-hero-source { margin: calc(-1 * var(--tct-space-sm)) 0 var(--tct-space-md); color: var(--tct-text-secondary); font-size: var(--tct-text-sm); }
+
+.ts-page .ts-refill { margin-bottom: var(--tct-space-lg); padding: var(--tct-space-lg); }
+.ts-page .ts-refill .ts-section-title { margin-top: 0; }
+.ts-page .ts-refill__text { margin: 0 0 var(--tct-space-md); color: var(--tct-text-secondary); }
+.ts-page .ts-refill__thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--tct-space-md); max-width: 32rem; margin: 0 0 var(--tct-space-md); padding: 0; list-style: none; }
+.ts-page .ts-refill__item { display: flex; flex-direction: column; gap: var(--tct-space-xs); min-width: 0; font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); }
+.ts-page .ts-refill__img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--tct-radius-md); background: var(--tct-surface-muted); }
+.ts-page .ts-refill__status { min-height: 1.5em; margin: var(--tct-space-sm) 0 0; color: var(--tct-danger-text); font-size: var(--tct-text-sm); }
+
+@media (max-width: 575.98px) {
+    .ts-page .ts-starter-banner { flex-wrap: wrap; }
+    .ts-page .ts-starter-banner__text { flex-basis: calc(100% - 4rem); }
+    .ts-page .ts-refill__thumbs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (forced-colors: active) {
+    .ts-page :is(.ts-starter-banner, .ts-tile-starter) { box-shadow: none; border: 1px solid CanvasText; }
+    .ts-page .ts-tile-mosaic { background: Canvas; }
+}

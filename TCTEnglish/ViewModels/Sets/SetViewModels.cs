@@ -44,6 +44,12 @@ public sealed class SetCardTileViewModel
     public int NewCount { get; set; }
     public int ProgressPercent { get; set; }
 
+    /// <summary>Safe URLs of the first card images (up to 4): 4 show as a 2x2 mosaic, 1-3 as one photo, none keep the art.</summary>
+    public List<string> MosaicImages { get; set; } = new();
+
+    /// <summary>One of the decks the first-run onboarding created for this user (shows the "Từ sở thích" chip).</summary>
+    public bool IsStarterDeck { get; set; }
+
     /// <summary>own | subscribed | shared</summary>
     public string Relation { get; set; } = "own";
 
@@ -61,7 +67,16 @@ public sealed class SetIndexViewModel
     public List<SetCardTileViewModel> Own { get; set; } = new();
     public List<SetCardTileViewModel> Subscribed { get; set; } = new();
     public List<SetCardTileViewModel> Shared { get; set; } = new();
+
+    /// <summary>The one-time banner after the onboarding; null when there is nothing to show.</summary>
+    public StarterBannerViewModel? StarterBanner { get; set; }
     public bool IsEmpty => Own.Count == 0 && Subscribed.Count == 0 && Shared.Count == 0;
+}
+
+public sealed class StarterBannerViewModel
+{
+    public int DeckCount { get; set; }
+    public string Summary { get; set; } = string.Empty;
 }
 
 public sealed class StudyStripViewModel
@@ -104,6 +119,12 @@ public sealed class SetDetailViewModel
     public List<string> Topics { get; set; } = new();
     public List<SetMoveTarget> MoveTargets { get; set; } = new();
     public StudyStripViewModel StudyStrip { get; set; } = new();
+
+    /// <summary>One of the viewer's own onboarding decks.</summary>
+    public bool IsStarterDeck { get; set; }
+
+    /// <summary>The library topics the starter deck was built from (for the "Nguồn" line).</summary>
+    public List<string> StarterTopics { get; set; } = new();
 }
 
 public sealed class SharedCardPreview

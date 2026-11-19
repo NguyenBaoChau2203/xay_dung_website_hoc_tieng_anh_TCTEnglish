@@ -61,8 +61,14 @@ public sealed record CatalogTopicView(string Key, string Name, string Band, IRea
 /// <summary>Everything the pop-up needs besides the user's own state.</summary>
 public sealed record OnboardingCatalogView(IReadOnlyList<OnboardingGoal> Goals, IReadOnlyList<CatalogTopicView> Topics, IReadOnlyList<string> WelcomeCovers);
 
+/// <summary>What the "Gợi ý thêm cùng chủ đề" card of a starter deck shows: the topics, the next cards (up to 4) and how many are left (up to 20).</summary>
+public sealed record RefillSuggestion(IReadOnlyList<string> TopicNames, IReadOnlyList<PreviewCard> Preview, int Available);
+
 public interface IOnboardingService
 {
+    /// <summary>Null unless the set is one of the user's own onboarding decks.</summary>
+    Task<RefillSuggestion?> GetRefillSuggestionAsync(int userId, int setId, CancellationToken ct = default);
+
     /// <summary>The goals, the 48 topics with their cover photos (one grouped query) and the welcome thumbnails.</summary>
     Task<OnboardingCatalogView> GetCatalogAsync(CancellationToken ct = default);
 
