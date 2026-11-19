@@ -474,3 +474,27 @@ _(Filled by the agent: C0 verdicts; per-phase gate records; per-set and per-less
 - **Listing (unknown 3):** `AddSampleSetsAsync` and `AdminVocabularyService` identify system sets by owner = `system@tct.local` with `Visibility = Public`; new folders must be owned by that user and public.
 - **Local DB (unknown 1, read-only counts):** system user owns 3 folders and 8 sets (the plan expects 9; verify at C5). `listeninglessons`: 90 unpublished (A1–C2, 15 per level, REACH leftovers) and 10 published (A1 4, A2 2, B1 2, B2 1, C2 1), which include the fake seed lessons and the fixture lessons 107+ added during the Listening redesign. Which published rows are fake seed versus fixture is still to be listed before D6.
 - **Still open at C0:** V2/V3/V4/V6 re-checks, unknown 4 (image upload path), unknown 5 (in-process service call), unknown 7 (caption smoke test on a VOA video), `shared-data.ps1 -Action Status` and `-Action Validate`.
+
+### 12.2 Execution record (2026-11-19, local only)
+
+**Branch:** `feature/system-content-fill`, local commits only (no push, PR, merge or deploy). Author identity was passed per commit.
+
+**Decisions taken and why**
+- No Pixabay key and no credit display for other providers: images are CC0 / Public Domain Mark / public domain or original drawings (plan 4.2 allowed BY/BY-SA, but `CardDetail.cshtml` only credits Pixabay, so BY images were not used).
+- 509 of 1,160 cards use original artwork drawn by `tools/content/vocab_generate.py` (colours, shapes, body, jobs, places, family, kitchen, emotions, health, tech, travel, shopping, education, media, sports, art, law, relationships, business, science, and all 160 phrase scenes). Photos were used where a clean CC0 photo existed.
+- Photos of people, bodies and clothes were avoided (unsafe search results); A07, A08, A09, A14, A23 and phrases are drawings.
+- Listening: only NASA (public-domain policy quoted per lesson). VOA videos have no retrievable English captions through the app's service, so A1 has 0 lessons and A2 has 1. Minimums in D5 were therefore **not met** (A1 8, A2 8, B1 8, B2 6, C1 4, C2 3): delivered A2 1, B1 10, B2 6, C1 3, C2 2.
+- D6: the 10 published local fixture lessons (`local-fixture`, `tct-fixture-ll`) were hidden with `IsPublished=0` in the local Docker database (ids 1, 107–115). No file was edited.
+- D7: all 92 legacy cards have a real image (JPEG 480×360 at the old paths; 31 `ImageUrl` values set). Names untouched.
+
+**Gate results (local)**
+- `validate_vocab.py --require-images` over all 48 manifests: 0 errors; manual IPA cards flagged `ipaVerified:false` (see the manifests, ≤ 3 %).
+- `validate_listening.py`: 0 errors, 0 warnings.
+- `scripts/content-import.ps1`: `ImportVocab` created 1,160 cards, a second run created 0 / unchanged 960 (and the rest after the last sets); `ImportListening` created 22 lessons, a second run reported 22 unchanged.
+- `shared-data.ps1 -Action Validate`: exit 0. Packages: one per set (48) and per lesson (22).
+- App check over HTTP with a local test account: `/Home/Listening` lists the new lessons and not the fake seed; `/Home/Listening/Practice/130` shows the timed lines, Vietnamese, quiz, vocabulary and the YouTube embed; `/Vocabulary/Index` lists the three new folders; `/Sets/57` renders; an exported image URL returns 200.
+- Not observed: a browser session (play, highlight sync, dictation, quiz submit, subtitles overlay) and mobile layouts. Production, staging and CI were not touched.
+
+**Replaced terms:** abstract or unpicturable candidates (e.g. deadline, payslip, name badge, soda, butter, jam, porridge, celery) were swapped for picturable terms of the same topic while writing the sets; terms repeated across sets were replaced so no word appears twice (`dupcheck`).
+
+**Rejected candidates:** VOA Learning English series videos (no English caption track), long podcast compilations (> 20 min and not suitable), third-party news clips.
