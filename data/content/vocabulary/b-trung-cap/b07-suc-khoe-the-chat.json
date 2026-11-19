@@ -1,0 +1,1229 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B07",
+    "name": "Sức khỏe & thể chất",
+    "description": "#b1 #b2 #health #fitness",
+    "topic": "Sức khỏe & thể chất",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "exercise",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bài tập thể dục",
+      "meaningEn": "physical activity that keeps your body strong",
+      "examples": [
+        {
+          "text": "Regular exercise helps you sleep better.",
+          "vi": "Tập thể dục đều đặn giúp bạn ngủ ngon hơn."
+        },
+        {
+          "text": "I do morning exercise in the park.",
+          "vi": "Tôi tập thể dục buổi sáng trong công viên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "do exercise",
+          "vi": "tập thể dục"
+        },
+        {
+          "text": "regular exercise",
+          "vi": "tập luyện đều đặn"
+        }
+      ],
+      "imageQuery": "people exercising park",
+      "ipaUs": "/ˈɛk.sɚ.saɪz/",
+      "ipaUk": "/ˈɛk.sə.saɪz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/exercise",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/exercise.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Haikou_People%27s_Park_-_people_exercising_on_exercise_equipment_-_01.jpg",
+        "author": "Anna Frodesiak",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "people exercising park",
+        "sha256": "e55d6a094b9fd05344f3bc530e143679b5d6a47ba93a098deacc8407fe626de3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "gym",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "phòng tập gym",
+      "meaningEn": "a place with equipment where people exercise",
+      "examples": [
+        {
+          "text": "She goes to the gym three times a week.",
+          "vi": "Cô ấy đến phòng tập ba lần mỗi tuần."
+        },
+        {
+          "text": "The gym opens at six in the morning.",
+          "vi": "Phòng tập mở cửa lúc sáu giờ sáng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "join a gym",
+          "vi": "đăng ký phòng tập"
+        },
+        {
+          "text": "gym membership",
+          "vi": "thẻ thành viên phòng tập"
+        }
+      ],
+      "imageQuery": "gym equipment weights",
+      "ipaUs": "/d͡ʒɪm/",
+      "ipaUk": "/d͡ʒɪm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/gym",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/gym.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6037808/photo-image-public-domain-free-sport",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "gym equipment weights",
+        "sha256": "b01fbadda0bb3820659dd1074f873dea3adb44e6faefb97c6dde32ebf33b8da1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "dumbbell",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tạ tay",
+      "meaningEn": "a short bar with a weight at each end for lifting",
+      "examples": [
+        {
+          "text": "He lifts a heavy dumbbell every morning.",
+          "vi": "Sáng nào anh ấy cũng nâng một cặp tạ tay nặng."
+        },
+        {
+          "text": "She bought two small dumbbells for home.",
+          "vi": "Cô ấy mua hai chiếc tạ tay nhỏ để tập ở nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "lift a dumbbell",
+          "vi": "nâng tạ tay"
+        },
+        {
+          "text": "pair of dumbbells",
+          "vi": "cặp tạ tay"
+        }
+      ],
+      "imageQuery": "dumbbells weights",
+      "ipaUs": "/ˈdʌm.bɛl/",
+      "ipaUk": "/ˈdʌm.bɛl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/dumbbell",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/dumbbell.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/weights-dumbbells-QP7WI19WFG",
+        "author": "Skitter Photo",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "dumbbells weights",
+        "sha256": "2da9244dcd8fbff933aa9f3990e58905b125c1c14a71ab622a0ca02c02198473",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "treadmill",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "máy chạy bộ",
+      "meaningEn": "a machine with a moving belt that you run on",
+      "examples": [
+        {
+          "text": "I run on the treadmill when it rains.",
+          "vi": "Tôi chạy trên máy chạy bộ khi trời mưa."
+        },
+        {
+          "text": "The treadmill is next to the window.",
+          "vi": "Chiếc máy chạy bộ ở cạnh cửa sổ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "run on a treadmill",
+          "vi": "chạy trên máy chạy bộ"
+        },
+        {
+          "text": "treadmill workout",
+          "vi": "buổi tập trên máy chạy bộ"
+        }
+      ],
+      "imageQuery": "treadmill gym",
+      "ipaUs": "/ˈtɹɛd.mɪl/",
+      "ipaUk": "/ˈtɹɛd.mɪl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/treadmill",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/treadmill.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/7396a27d86/",
+        "author": "Rashed Hossain",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "treadmill gym",
+        "sha256": "0cbab8a8007e8c39d0946c6930465bd9de94798e79e650227cb3acb2ffa1431a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "stretch",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B1",
+      "definition": "giãn cơ, duỗi",
+      "meaningEn": "to make your muscles longer by pulling them gently",
+      "examples": [
+        {
+          "text": "Stretch your legs before you run.",
+          "vi": "Hãy giãn cơ chân trước khi chạy."
+        },
+        {
+          "text": "He stretched his arms over his head.",
+          "vi": "Anh ấy duỗi hai tay lên quá đầu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "stretch your arms",
+          "vi": "duỗi tay"
+        },
+        {
+          "text": "stretch before exercise",
+          "vi": "giãn cơ trước khi tập"
+        }
+      ],
+      "imageQuery": "stretching exercise",
+      "verbForms": {
+        "past": "stretched",
+        "pastParticiple": "stretched",
+        "ing": "stretching",
+        "thirdPerson": "stretches"
+      },
+      "ipaUs": "/stɹɛt͡ʃ/",
+      "ipaUk": "/stɹɛt͡ʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/stretch",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/stretch.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/stretching-exercises-HUVYWA4LKS",
+        "author": "Direct Media",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "stretching exercise",
+        "sha256": "511d63c5f5629f92e8d5d1bc33ae24ec3de91aa6f9f20934b7af12df3d028cb9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "jog",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B1",
+      "definition": "chạy bộ nhẹ",
+      "meaningEn": "to run slowly and steadily for exercise",
+      "examples": [
+        {
+          "text": "I jog around the lake every evening.",
+          "vi": "Tối nào tôi cũng chạy bộ quanh hồ."
+        },
+        {
+          "text": "They jogged along the beach at sunrise.",
+          "vi": "Họ chạy bộ dọc bãi biển lúc bình minh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go jogging",
+          "vi": "đi chạy bộ"
+        },
+        {
+          "text": "jog around the park",
+          "vi": "chạy bộ quanh công viên"
+        }
+      ],
+      "imageQuery": "jogging park runner",
+      "verbForms": {
+        "past": "jogged",
+        "pastParticiple": "jogged",
+        "ing": "jogging",
+        "thirdPerson": "jogs"
+      },
+      "ipaUs": "/d͡ʒɑɡ/",
+      "ipaUk": "/d͡ʒɒɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/jog",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/jog.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Indiana_Dunes_National_Park_(cf500527-7cda-44e9-aa6b-7cc992a97cfd).jpg",
+        "author": "Victoria Stauffenberg",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "jogging park runner",
+        "sha256": "d2584d857d877c803e6f27853c063c592cd25d86393d2dc79f6f1387b501fd31",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "muscle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "cơ bắp",
+      "meaningEn": "a part of the body that makes you move",
+      "examples": [
+        {
+          "text": "Swimming builds strong muscles.",
+          "vi": "Bơi lội giúp xây dựng cơ bắp khỏe."
+        },
+        {
+          "text": "He pulled a muscle in his leg.",
+          "vi": "Anh ấy bị căng cơ ở chân."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "build muscle",
+          "vi": "tăng cơ"
+        },
+        {
+          "text": "pull a muscle",
+          "vi": "bị căng cơ"
+        }
+      ],
+      "imageQuery": "muscle arm",
+      "ipaUs": "/ˈmʌs.əl/",
+      "ipaUk": "/ˈmʌs.əl/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/muscle",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "b07/muscle.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/13957158/image-hand-person-art",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "muscle arm",
+        "sha256": "60451c3261eaacae61060e3dcc1bd334845df691d6cf93b7a50d859bcebd043a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "skeleton",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bộ xương",
+      "meaningEn": "all the bones in a human or animal body",
+      "examples": [
+        {
+          "text": "The museum has a dinosaur skeleton.",
+          "vi": "Bảo tàng có một bộ xương khủng long."
+        },
+        {
+          "text": "A skeleton gives the body its shape.",
+          "vi": "Bộ xương tạo nên hình dáng của cơ thể."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "human skeleton",
+          "vi": "bộ xương người"
+        },
+        {
+          "text": "dinosaur skeleton",
+          "vi": "bộ xương khủng long"
+        }
+      ],
+      "imageQuery": "skeleton bones model",
+      "ipaUs": "/ˈskɛlətən/",
+      "ipaUk": "/ˈskɛlɪtən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/skeleton",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "med",
+        "value": "skeleton"
+      },
+      "image": {
+        "file": "b07/skeleton.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:med:skeleton",
+        "sha256": "b3131ed212b4bdd74a50eb30718ccbc68facf659f8014c2e6149727c0ed3bad7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "heartbeat",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhịp tim",
+      "meaningEn": "the regular movement of your heart",
+      "examples": [
+        {
+          "text": "The doctor listened to my heartbeat.",
+          "vi": "Bác sĩ nghe nhịp tim của tôi."
+        },
+        {
+          "text": "Your heartbeat gets faster when you run.",
+          "vi": "Nhịp tim của bạn nhanh hơn khi bạn chạy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fast heartbeat",
+          "vi": "nhịp tim nhanh"
+        },
+        {
+          "text": "hear a heartbeat",
+          "vi": "nghe thấy nhịp tim"
+        }
+      ],
+      "imageQuery": "heartbeat pulse monitor",
+      "ipaUs": "/ˈhɑɹtˌbit/",
+      "ipaUk": "/ˈhɑːtˌbiːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/heartbeat",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "med",
+        "value": "heartbeat"
+      },
+      "image": {
+        "file": "b07/heartbeat.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:med:heartbeat",
+        "sha256": "04fd3e8afc3e6938df7580095ab22b08b1edf747f55d323fcd0d28dac3bd1220",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "blood pressure",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "huyết áp",
+      "meaningEn": "the force of blood pushing against the blood vessels",
+      "examples": [
+        {
+          "text": "The nurse checked my blood pressure.",
+          "vi": "Y tá đo huyết áp cho tôi."
+        },
+        {
+          "text": "High blood pressure can be dangerous.",
+          "vi": "Huyết áp cao có thể nguy hiểm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "high blood pressure",
+          "vi": "huyết áp cao"
+        },
+        {
+          "text": "check blood pressure",
+          "vi": "đo huyết áp"
+        }
+      ],
+      "imageQuery": "blood pressure monitor arm",
+      "ipaUs": "/blʌd ˈpɹɛʃɚ/",
+      "ipaUk": "/blʌd ˈpɹɛʃə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/blood + https://en.wiktionary.org/wiki/pressure",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/blood-pressure.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5924328/photo-image-public-domain-person-doctor",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "blood pressure monitor arm",
+        "sha256": "1a219763eeea5c638123b183506a79758e0555b4f9483c723dff2a9cbe0358bf",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "diet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "chế độ ăn",
+      "meaningEn": "the food that a person usually eats",
+      "examples": [
+        {
+          "text": "A healthy diet includes a lot of vegetables.",
+          "vi": "Một chế độ ăn lành mạnh có nhiều rau củ."
+        },
+        {
+          "text": "He is on a diet to lose weight.",
+          "vi": "Anh ấy đang ăn kiêng để giảm cân."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "balanced diet",
+          "vi": "chế độ ăn cân bằng"
+        },
+        {
+          "text": "be on a diet",
+          "vi": "đang ăn kiêng"
+        }
+      ],
+      "imageQuery": "healthy food diet vegetables",
+      "ipaUs": "/ˈdaɪət/",
+      "ipaUk": "/ˈdaɪət/",
+      "ipaSource": "https://en.wiktionary.org/wiki/diet",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/diet.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/41284017@N08/7880829380",
+        "author": "USDAgov",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "healthy food diet vegetables",
+        "sha256": "3c9549feac4e002127cf0ad9146532da2379473ae86fffb5dc2e944ee4dc4848",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "calorie",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "calo",
+      "meaningEn": "a unit for measuring the energy in food",
+      "examples": [
+        {
+          "text": "A small apple has very few calories.",
+          "vi": "Một quả táo nhỏ có rất ít calo."
+        },
+        {
+          "text": "She counts the calories in every meal.",
+          "vi": "Cô ấy đếm lượng calo trong mỗi bữa ăn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "burn calories",
+          "vi": "đốt cháy calo"
+        },
+        {
+          "text": "low in calories",
+          "vi": "ít calo"
+        }
+      ],
+      "imageQuery": "calorie food label",
+      "ipaUs": "/ˈkæləɹi/",
+      "ipaUk": "/ˈkæləɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/calorie",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "med",
+        "value": "calorie"
+      },
+      "image": {
+        "file": "b07/calorie.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:med:calorie",
+        "sha256": "23972fad18a33bc2d6872367be844c151f02807e76cd70bb3eaf2c62b3183cb5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "scale",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cái cân",
+      "meaningEn": "a machine you stand on to find out your weight",
+      "examples": [
+        {
+          "text": "He stood on the scale to check his weight.",
+          "vi": "Anh ấy đứng lên cái cân để kiểm tra cân nặng."
+        },
+        {
+          "text": "There is a scale in the bathroom.",
+          "vi": "Trong phòng tắm có một cái cân."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bathroom scale",
+          "vi": "cân sức khỏe"
+        },
+        {
+          "text": "step on the scale",
+          "vi": "bước lên cân"
+        }
+      ],
+      "imageQuery": "bathroom scale weight",
+      "ipaUs": "/skeɪl/",
+      "ipaUk": "/skeɪl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/scale",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "med",
+        "value": "scale"
+      },
+      "image": {
+        "file": "b07/scale.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:med:scale",
+        "sha256": "ba1045581f835e28ff6e417c24a792031dbc8a131fbbbf183f5ab0d844338941",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "thermometer",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhiệt kế",
+      "meaningEn": "a tool that measures how hot or cold something is",
+      "examples": [
+        {
+          "text": "The nurse put a thermometer under my arm.",
+          "vi": "Y tá đặt nhiệt kế dưới nách tôi."
+        },
+        {
+          "text": "The thermometer shows thirty-nine degrees.",
+          "vi": "Nhiệt kế chỉ ba mươi chín độ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "digital thermometer",
+          "vi": "nhiệt kế điện tử"
+        },
+        {
+          "text": "take your temperature with a thermometer",
+          "vi": "đo nhiệt bằng nhiệt kế"
+        }
+      ],
+      "imageQuery": "medical thermometer",
+      "ipaUs": "/θɚˈmɑ.mɪ.tɚ/",
+      "ipaUk": "/θəˈmɒm.ɪ.tə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/thermometer",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/thermometer.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5925351/photo-image-public-domain-medicine-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "medical thermometer",
+        "sha256": "4e83eca9fe45ec41e0ab51293e31748b257c31dc1883cdf018615cdc0b25037c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "stethoscope",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "ống nghe",
+      "meaningEn": "a tool doctors use to listen to your heart and lungs",
+      "examples": [
+        {
+          "text": "The doctor put the stethoscope on my chest.",
+          "vi": "Bác sĩ đặt ống nghe lên ngực tôi."
+        },
+        {
+          "text": "She wears a stethoscope around her neck.",
+          "vi": "Cô ấy đeo ống nghe quanh cổ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "use a stethoscope",
+          "vi": "dùng ống nghe"
+        },
+        {
+          "text": "doctor's stethoscope",
+          "vi": "ống nghe của bác sĩ"
+        }
+      ],
+      "imageQuery": "stethoscope doctor",
+      "ipaUs": "/ˈstɛθəsˌkoʊp/",
+      "ipaUk": "/ˈstɛθəskəʊp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/stethoscope",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/stethoscope.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/stethoscope-medical-9M1HWW2JFV",
+        "author": "Negative Space",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "stethoscope doctor",
+        "sha256": "ea50061bb90a4428eba302c8a49ee4734335f24aaf6ba42b5d3f7852e9a33926",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "prescription",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đơn thuốc",
+      "meaningEn": "a paper from a doctor that lets you buy medicine",
+      "examples": [
+        {
+          "text": "The doctor wrote me a prescription for antibiotics.",
+          "vi": "Bác sĩ kê cho tôi đơn thuốc kháng sinh."
+        },
+        {
+          "text": "You need a prescription to buy this medicine.",
+          "vi": "Bạn cần có đơn thuốc để mua loại thuốc này."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "write a prescription",
+          "vi": "kê đơn thuốc"
+        },
+        {
+          "text": "fill a prescription",
+          "vi": "mua thuốc theo đơn"
+        }
+      ],
+      "imageQuery": "prescription pharmacy paper",
+      "ipaUs": "/pɹəˈskɹɪp.ʃən/",
+      "ipaUk": "/pɹəˈskɹɪp.ʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/prescription",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "med",
+        "value": "prescription"
+      },
+      "image": {
+        "file": "b07/prescription.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:med:prescription",
+        "sha256": "20e30eac130100c7e6dfe6dc808b21936597fff8442460b36bc0a89683d60a6a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "surgery",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "phẫu thuật",
+      "meaningEn": "a medical operation in which doctors cut the body",
+      "examples": [
+        {
+          "text": "He needs surgery on his knee.",
+          "vi": "Anh ấy cần phẫu thuật đầu gối."
+        },
+        {
+          "text": "The surgery took three hours.",
+          "vi": "Ca phẫu thuật kéo dài ba giờ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "have surgery",
+          "vi": "phẫu thuật"
+        },
+        {
+          "text": "heart surgery",
+          "vi": "phẫu thuật tim"
+        }
+      ],
+      "imageQuery": "surgery operating room",
+      "ipaUs": "/ˈsɝ.d͡ʒə.ɹi/",
+      "ipaUk": "/ˈsɜː.d͡ʒə.ɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/surgery",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/surgery.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Operating_room_activity_150702-F-LP903-438.jpg",
+        "author": "Capt. David Murphy",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "surgery operating room",
+        "sha256": "724b82cc60a13c46ec46bb98ba8a5a4888dfd1d3116fba9438f2e7fd944e062d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "x-ray",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "chụp X-quang",
+      "meaningEn": "a picture of the inside of your body made with rays",
+      "examples": [
+        {
+          "text": "The doctor took an x-ray of my arm.",
+          "vi": "Bác sĩ chụp X-quang cánh tay tôi."
+        },
+        {
+          "text": "The x-ray shows a broken bone.",
+          "vi": "Phim X-quang cho thấy một chiếc xương bị gãy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "take an x-ray",
+          "vi": "chụp X-quang"
+        },
+        {
+          "text": "chest x-ray",
+          "vi": "X-quang ngực"
+        }
+      ],
+      "imageQuery": "x-ray image bones",
+      "ipaUs": "/ɛks ɹeɪ/",
+      "ipaUk": "/ɛks ɹeɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/x + https://en.wiktionary.org/wiki/ray",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/x-ray.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Hip_replacement_Image_3684-PH.jpg",
+        "author": "X-ray Image ID: 3684. Photographer: Unknown.",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "x-ray image bones",
+        "sha256": "a80574bd537f25f43393303be17693781d331008bc9494df9de3e7146c7bf128",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "vaccine",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "vắc-xin",
+      "meaningEn": "a medicine that protects you from a disease",
+      "examples": [
+        {
+          "text": "Children get a vaccine against measles.",
+          "vi": "Trẻ em được tiêm vắc-xin phòng bệnh sởi."
+        },
+        {
+          "text": "The new vaccine is safe and effective.",
+          "vi": "Loại vắc-xin mới an toàn và hiệu quả."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "get a vaccine",
+          "vi": "tiêm vắc-xin"
+        },
+        {
+          "text": "flu vaccine",
+          "vi": "vắc-xin cúm"
+        }
+      ],
+      "imageQuery": "vaccine syringe vial",
+      "ipaUs": "/vækˈsin/",
+      "ipaUk": "/ˈvæk.siːn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/vaccine",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/vaccine.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:First_COVID_Vaccines_Administered_in_Rota_(6483132).jpg",
+        "author": "U.S. Navy photo by Petty Officer 1st Class Nathan Carpenter",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "vaccine syringe vial",
+        "sha256": "df06b06417876a2a32905d8fd58356d3c28e671fa1866af7920fd4fd064c3401",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hospital bed",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "giường bệnh",
+      "meaningEn": "a bed in a hospital for a sick or hurt person",
+      "examples": [
+        {
+          "text": "The patient rested in a hospital bed.",
+          "vi": "Bệnh nhân nằm nghỉ trên giường bệnh."
+        },
+        {
+          "text": "There are four hospital beds in this room.",
+          "vi": "Phòng này có bốn giường bệnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "lie in a hospital bed",
+          "vi": "nằm trên giường bệnh"
+        },
+        {
+          "text": "adjustable hospital bed",
+          "vi": "giường bệnh chỉnh được"
+        }
+      ],
+      "imageQuery": "hospital bed ward",
+      "ipaUs": "/ˈhɑs.pɪ.tl̩ bɛd/",
+      "ipaUk": "/ˈhɒs.pɪ.tl̩ bɛd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hospital + https://en.wiktionary.org/wiki/bed",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/hospital-bed.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Bed_in_Three_Persons_Room,_Internal_Medicine_Ward,_NTUH_East_Campus_20101204a.JPG",
+        "author": "玄史生",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "hospital bed ward",
+        "sha256": "3929766c0c95331a560c47f17598812c435e9f2d1df596fc56e28ae2783c2d2f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "stretcher",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cáng cứu thương",
+      "meaningEn": "a light bed used to carry a hurt person",
+      "examples": [
+        {
+          "text": "They carried the injured man on a stretcher.",
+          "vi": "Họ khiêng người đàn ông bị thương trên cáng."
+        },
+        {
+          "text": "The stretcher was put in the ambulance.",
+          "vi": "Chiếc cáng được đưa lên xe cấp cứu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "carry on a stretcher",
+          "vi": "khiêng bằng cáng"
+        },
+        {
+          "text": "stretcher bearer",
+          "vi": "người khiêng cáng"
+        }
+      ],
+      "imageQuery": "stretcher paramedics",
+      "ipaUs": "/ˈstɹɛt͡ʃɚ/",
+      "ipaUk": "/ˈstɹɛt͡ʃə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/stretcher",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/stretcher.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:US_Navy_070119-N-4049C-024_Firefighter_Paramedics_William_Strickland_and_Steven_Ames_assist_a_simulated_burn_victim_during_a_mass_casualty_drill_at_Naval_Branch_Health_Clinic_Mayport.jpg",
+        "author": "U.S. Navy photo by Mass Communication Specialist Seaman Patrick J. Cook",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "stretcher paramedics",
+        "sha256": "b84b644dd8d8066774637f7d8a314e147cde42be3b522c4676cecb288b19abd3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "blood test",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "xét nghiệm máu",
+      "meaningEn": "a medical check of a small amount of your blood",
+      "examples": [
+        {
+          "text": "I had a blood test this morning.",
+          "vi": "Sáng nay tôi đã đi xét nghiệm máu."
+        },
+        {
+          "text": "The blood test shows that you are healthy.",
+          "vi": "Kết quả xét nghiệm máu cho thấy bạn khỏe mạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "have a blood test",
+          "vi": "đi xét nghiệm máu"
+        },
+        {
+          "text": "blood test results",
+          "vi": "kết quả xét nghiệm máu"
+        }
+      ],
+      "imageQuery": "blood test tube sample",
+      "ipaUs": "/blʌd tɛst/",
+      "ipaUk": "/blʌd tɛst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/blood + https://en.wiktionary.org/wiki/test",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/blood-test.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3338342/free-photo-image-blood-collection-tube-cc0-creative-commons",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "blood test tube sample",
+        "sha256": "1c4879a1d1b5b1d3ebad9ed3e6571efb0444644ddf5374174eacc72b819ffa1b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "toothbrush",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bàn chải đánh răng",
+      "meaningEn": "a small brush for cleaning your teeth",
+      "examples": [
+        {
+          "text": "Remember to pack your toothbrush.",
+          "vi": "Nhớ mang theo bàn chải đánh răng nhé."
+        },
+        {
+          "text": "My toothbrush is blue.",
+          "vi": "Bàn chải đánh răng của tôi màu xanh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "electric toothbrush",
+          "vi": "bàn chải điện"
+        },
+        {
+          "text": "change your toothbrush",
+          "vi": "thay bàn chải đánh răng"
+        }
+      ],
+      "imageQuery": "toothbrush toothpaste",
+      "ipaUs": "/ˈtuθ.bɹʌʃ/",
+      "ipaUk": "/ˈtuːθ.bɹʌʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/toothbrush",
+      "ipaVerified": true,
+      "image": {
+        "file": "b07/toothbrush.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/toothbrush-toothpaste-UD9953XS1H",
+        "author": "WDnet Studio",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "toothbrush toothpaste",
+        "sha256": "cf503736528678498647bad2d484b1db54aa4fb0d2a2f3d04ff028006930a403",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "contact lens",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "kính áp tròng",
+      "meaningEn": "a thin lens that you wear on the eye to see better",
+      "examples": [
+        {
+          "text": "She wears contact lenses instead of glasses.",
+          "vi": "Cô ấy đeo kính áp tròng thay vì kính mắt."
+        },
+        {
+          "text": "Put the contact lens in carefully.",
+          "vi": "Hãy đặt kính áp tròng vào mắt thật cẩn thận."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wear contact lenses",
+          "vi": "đeo kính áp tròng"
+        },
+        {
+          "text": "contact lens case",
+          "vi": "hộp đựng kính áp tròng"
+        }
+      ],
+      "imageQuery": "contact lens case",
+      "ipaUs": "/ˈkɑntækt lɛnz/",
+      "ipaUk": "/ˈkɒntækt lɛnz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/contact + https://en.wiktionary.org/wiki/lens",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "med",
+        "value": "contact lens"
+      },
+      "image": {
+        "file": "b07/contact-lens.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:med:contact lens",
+        "sha256": "691d8d2e994aacb7d11a8440606c1af8e2f40c29a3d1ec4ee5303e99c1795ccd",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hearing aid",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "máy trợ thính",
+      "meaningEn": "a small device that helps people hear better",
+      "examples": [
+        {
+          "text": "My grandfather wears a hearing aid in his left ear.",
+          "vi": "Ông tôi đeo máy trợ thính ở tai trái."
+        },
+        {
+          "text": "The hearing aid needs a new battery.",
+          "vi": "Máy trợ thính cần thay pin mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wear a hearing aid",
+          "vi": "đeo máy trợ thính"
+        },
+        {
+          "text": "hearing aid battery",
+          "vi": "pin máy trợ thính"
+        }
+      ],
+      "imageQuery": "hearing aid ear",
+      "ipaUs": "/ˈhɪɹɪŋ eɪd/",
+      "ipaUk": "/ˈhɪəɹɪŋ eɪd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hearing + https://en.wiktionary.org/wiki/aid",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "med",
+        "value": "hearing aid"
+      },
+      "image": {
+        "file": "b07/hearing-aid.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:med:hearing aid",
+        "sha256": "93abeefc859f9ecfaec348c0858340e81a13ef50e0cc5f7487c5a4c24c60d8fb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

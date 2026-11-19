@@ -1917,6 +1917,98 @@ def cook_icon(name: str) -> bytes:
     return finish(img)
 
 
+def med_icon(name: str) -> bytes:
+    """Flat original drawing for a body or medical word (kind "med")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=6, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    def text(x, y, t, size, col=L):
+        d.text((x * s, y * s), t, fill=col, font=_big_font(size * s))
+
+    BONE = (250, 245, 232)
+    if name == "skeleton":
+        oval(205, 30, 275, 100, BONE)
+        box(222, 92, 258, 110, BONE, 4)
+        oval(225, 58, 239, 72, L, 0)
+        oval(243, 58, 257, 72, L, 0)
+        line(232, 90, 248, 90, 3)
+        line(240, 110, 240, 230, 8, (214, 205, 184))
+        for k in range(5):
+            d.arc(((190 + 0) * s, (116 + k * 20) * s, 290 * s, (150 + k * 20) * s), 0, 180, fill=L, width=4 * s)
+            d.arc((190 * s, (116 + k * 20) * s, 290 * s, (150 + k * 20) * s), 0, 180, fill=BONE, width=2 * s)
+        poly([(200, 230), (280, 230), (292, 262), (240, 276), (188, 262)], BONE)
+        for sx in (-1, 1):
+            line(240 + sx * 50, 120, 240 + sx * 110, 210, 8, BONE)
+            line(240 + sx * 110, 210, 240 + sx * 120, 290, 8, BONE)
+            line(240 + sx * 22, 270, 240 + sx * 36, 340, 9, BONE)
+    elif name == "heartbeat":
+        d.rectangle((0, 0, W * s, H * s), fill=(15, 23, 42))
+        pts = [(20, 190), (110, 190), (140, 190), (160, 110), (190, 280), (215, 150), (235, 190), (330, 190), (360, 190), (380, 150), (400, 230), (420, 190), (460, 190)]
+        d.line([(x * s, y * s) for x, y in pts], fill=(74, 222, 128), width=7 * s, joint="curve")
+        for gx in range(0, 480, 40):
+            d.line((gx * s, 0, gx * s, H * s), fill=(30, 41, 59), width=1 * s)
+        oval(205, 40, 275, 100, (244, 63, 94))
+    elif name == "calorie":
+        box(130, 40, 350, 320, (255, 255, 255), 8, 4)
+        text(150, 54, "Nutrition", 34)
+        text(150, 100, "Facts", 34)
+        line(145, 150, 335, 150, 8)
+        text(150, 162, "Calories", 34)
+        text(150, 204, "210", 56)
+        for k in range(3):
+            line(150, 276 + k * 14, 330 - (k % 2) * 40, 276 + k * 14, 3, (148, 163, 184))
+        d.polygon(poly_star(400 * s, 80 * s, 36 * s, 16 * s, 8), fill=(250, 204, 21), outline=L)
+    elif name == "scale":
+        box(110, 130, 370, 300, (226, 232, 240), 26, 4)
+        box(170, 150, 310, 210, (255, 255, 255), 10, 3)
+        d.arc((190 * s, 165 * s, 290 * s, 250 * s), 180, 360, fill=L, width=4 * s)
+        line(240, 205, 262, 170, 4, (220, 38, 38))
+        oval(230, 195, 250, 215, L, 0)
+        box(150, 240, 330, 268, (203, 213, 225), 10, 2)
+        text(196, 130, "kg", 22)
+    elif name == "prescription":
+        box(110, 30, 370, 330, (255, 255, 255), 10, 4)
+        text(134, 40, "Rx", 100, (37, 99, 235))
+        for k in range(5):
+            line(140, 190 + k * 26, 340 - (k % 3) * 30, 190 + k * 26, 4, (148, 163, 184))
+        oval(300, 56, 350, 106, (254, 226, 226), 3)
+        line(318, 70, 332, 92, 4, (220, 38, 38))
+    elif name == "contact lens":
+        oval(150, 90, 330, 220, (219, 234, 254), 4)
+        oval(180, 112, 300, 198, (255, 255, 255), 2)
+        d.arc((150 * s, 90 * s, 330 * s, 220 * s), 200, 300, fill=(255, 255, 255), width=5 * s)
+        box(150, 250, 330, 320, (203, 213, 225), 18, 4)
+        box(150, 250, 240, 320, (147, 197, 253), 18, 4)
+        text(171, 262, "L", 40)
+        text(268, 262, "R", 40)
+    elif name == "hearing aid":
+        d.arc((150 * s, 40 * s, 330 * s, 260 * s), 200, 20, fill=(250, 213, 172), width=26 * s)
+        d.arc((150 * s, 40 * s, 330 * s, 260 * s), 200, 20, fill=L, width=3 * s)
+        d.arc((190 * s, 70 * s, 310 * s, 200 * s), 220, 40, fill=(180, 140, 110), width=14 * s)
+        box(270, 130, 310, 230, (96, 165, 250), 18, 3)
+        oval(284, 232, 300, 248, (96, 165, 250), 3)
+        for k in range(3):
+            line(350 + k * 14, 150 + k * 10, 350 + k * 14, 170 + k * 10, 4)
+    else:
+        raise SystemExit(f"unknown med icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -1971,6 +2063,8 @@ def main() -> None:
             data = shop_icon(val)
         elif kind == "cook":
             data = cook_icon(val)
+        elif kind == "med":
+            data = med_icon(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"
