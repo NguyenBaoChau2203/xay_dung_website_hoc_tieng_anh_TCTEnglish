@@ -11,7 +11,8 @@ namespace TCTVocabulary.Services.Vocabulary
     /// Courses are matched by their exact name (trimmed, ordinal), the same convention as the seeder and the
     /// shared-data packages. A <c>null</c> term means "no single picture fits, show the illustration".
     /// A course that is not listed falls back to its first card that has an image.
-    /// The same data lives in <c>data/content/vocabulary/covers.json</c>; a test keeps the two in sync.
+    /// The same data lives in <c>data/content/vocabulary-covers.json</c> (outside the manifest folder, which the importer and tools scan
+    /// for every <c>*.json</c>); a test keeps the two in sync.
     /// </summary>
     public static class VocabularyCoverCatalog
     {

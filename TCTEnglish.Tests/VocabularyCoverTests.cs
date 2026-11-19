@@ -32,7 +32,6 @@ public sealed class VocabularyCoverCatalogTests
         var list = new List<(string, HashSet<string>)>();
         foreach (var file in Directory.GetFiles(dir, "*.json", SearchOption.AllDirectories).OrderBy(f => f, StringComparer.Ordinal))
         {
-            if (Path.GetFileName(file) == "covers.json") continue;
             var root = JsonDocument.Parse(File.ReadAllText(file)).RootElement;
             var terms = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (var card in root.GetProperty("cards").EnumerateArray())
@@ -66,7 +65,7 @@ public sealed class VocabularyCoverCatalogTests
     [Fact]
     public void CoversJson_AgreesWithTheCatalogInCode()
     {
-        var path = Path.Combine(RepoRoot(), "data", "content", "vocabulary", "covers.json");
+        var path = Path.Combine(RepoRoot(), "data", "content", "vocabulary-covers.json");
         var rows = JsonDocument.Parse(File.ReadAllText(path)).RootElement.EnumerateArray().ToList();
 
         var fromJson = new Dictionary<string, string?>(StringComparer.Ordinal);
@@ -277,5 +276,31 @@ public sealed class VocabularyCoverServiceTests
         Assert.True(few > 0);
         Assert.Equal(few, many);
         Assert.Equal("/images/cards/w7.webp", Course(home, ManyFirstId + 7).CoverImageUrl);
+    }
+
+    [Fact]
+    public async Task Pages_RenderThePhotoCover_WithTheIllustrationHiddenNextToIt()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var index = await client.GetStringAsync("/Vocabulary/Index");
+        Assert.Contains("class=\"tv-cover__photo\" data-tv-cover-photo src=\"/images/cards/tiger.webp\"", index);
+        Assert.Contains("loading=\"lazy\"", index);
+        Assert.Contains("data-tv-cover-art hidden", index);
+        Assert.Contains("tv-cover--photo", index);
+        // unsafe urls never reach the markup
+        Assert.DoesNotContain("evil.example.test", index);
+        Assert.DoesNotContain("javascript:alert", index);
+        Assert.DoesNotContain("http://cdn.example.test", index);
+
+        var wild = await client.GetStringAsync($"/Vocabulary/Detail?setId={WildSetId}");
+        Assert.Contains("data-tv-cover-photo src=\"/images/cards/tiger.webp\"", wild);
+        Assert.Contains("loading=\"eager\"", wild);
+
+        var plain = await client.GetStringAsync($"/Vocabulary/Detail?setId={NoImageSetId}");
+        Assert.DoesNotContain("data-tv-cover-photo", plain);
+        Assert.DoesNotContain("tv-cover--photo", plain);
+        Assert.Contains("tv-art", plain); // the illustration is rendered
     }
 }
