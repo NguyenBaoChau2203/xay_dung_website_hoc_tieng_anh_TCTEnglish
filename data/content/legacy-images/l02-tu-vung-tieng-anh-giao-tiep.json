@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ Vựng Tiếng Anh Thông Dụng",
+  "set": {
+    "code": "L02",
+    "name": "Từ vựng tiếng Anh giao tiếp",
+    "description": "#communication #conversation #basic",
+    "topic": "Từ vựng tiếng Anh giao tiếp"
+  },
+  "cards": [
+    {
+      "term": "Hello",
+      "target": "/images/greetings/hello.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Hello",
+      "image": {
+        "file": "l02/hello.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "04193a8bb9333060b2fdce068cf8f1c663a6a7c17cdaddd9956c351431936ae4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "How are you?",
+      "target": "/images/greetings/how-are-you.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "How are you?",
+      "image": {
+        "file": "l02/how-are-you.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "5aabac70545663791c8346ecb480db8354d64f5cb0c95c5b9aa5bf2fb8d6b5d4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "What's your name?",
+      "target": "/images/greetings/what-s-your-name.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "What's your name?",
+      "image": {
+        "file": "l02/what-s-your-name.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "cf016adf1e51948216b7f0b5e6a2a82786928cc66f015d7ece21534afbf148f0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Where are you from?",
+      "target": "/images/greetings/where-are-you-from.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Where are you from?",
+      "image": {
+        "file": "l02/where-are-you-from.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "7f9546b7cacb1f9dd54a9dae2c0f8b7c918190a1559ac02c177f202f88fba8fe",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "I don't understand",
+      "target": "/images/greetings/i-don-t-understand.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "I don't understand",
+      "image": {
+        "file": "l02/i-don-t-understand.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "cd8e89ca06378d5a8e7b055ccf4304e4deab94e9439db6f6654881b16d3264fa",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Can you repeat?",
+      "target": "/images/greetings/can-you-repeat.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Can you repeat?",
+      "image": {
+        "file": "l02/can-you-repeat.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "e47b8bf8c4cc6cc0f4a244187f8002a4eddc0ab8ad99ef9914055b7a230413f3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Speak slowly",
+      "target": "/images/greetings/speak-slowly.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Speak slowly",
+      "image": {
+        "file": "l02/speak-slowly.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "4822187c1382a6def1a9ccd47a329e9f19ba27150f2e4aa61b893516b7618724",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Nice to meet you",
+      "target": "/images/greetings/nice-to-meet-you.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Nice to meet you",
+      "image": {
+        "file": "l02/nice-to-meet-you.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "5767abb0683e23481bd5c5b2dbfaf6142133a464b93c70b33ce181ea5945b4fd",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "See you later",
+      "target": "/images/greetings/see-you-later.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "See you later",
+      "image": {
+        "file": "l02/see-you-later.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "00dbd91e38c2072fb2f261168e575a5795794abb79243db677c7e62f86463296",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Have a nice day",
+      "target": "/images/greetings/have-a-nice-day.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Have a nice day",
+      "image": {
+        "file": "l02/have-a-nice-day.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "67e1bcbe7baa12d484826e2c555beaf74ffbba2c70301bee3a0072a370eb126d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

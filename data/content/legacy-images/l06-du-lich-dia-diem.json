@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ Vựng Theo Chủ Đề",
+  "set": {
+    "code": "L06",
+    "name": "Du lịch & Địa điểm",
+    "description": "#travel #places #conversation #b1",
+    "topic": "Du lịch & Địa điểm"
+  },
+  "cards": [
+    {
+      "term": "Airport",
+      "target": "/images/travel/airport.jpg",
+      "hadImage": true,
+      "imageQuery": "airport terminal",
+      "image": {
+        "file": "l06/airport.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/42009447@N05/11353875455",
+        "author": "MassDOT",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "airport terminal",
+        "sha256": "601a84583e9e27576d3cf477b9fdfbc54fe9428795530903abd3612a534e1c4a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Hotel",
+      "target": "/images/travel/hotel.jpg",
+      "hadImage": true,
+      "imageQuery": "hotel building",
+      "image": {
+        "file": "l06/hotel.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/hotel-building-RWAH1RGKQJ",
+        "author": "Austin Neill",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "hotel building",
+        "sha256": "e60a81b11f5100f770fee95e79b88e964304244b1d4368e8d6cf2950cbe32bfe",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Beach",
+      "target": "/images/travel/beach.jpg",
+      "hadImage": true,
+      "imageQuery": "beach",
+      "image": {
+        "file": "l06/beach.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/99775151@N02/9444037481",
+        "author": "ishacc",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "beach",
+        "sha256": "bc08a265d4c8f2f2deb1227639a40433432282a6da0c1ceb0f711b4a396647dc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Mountain",
+      "target": "/images/travel/mountain.jpg",
+      "hadImage": true,
+      "imageQuery": "mountain",
+      "image": {
+        "file": "l06/mountain.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/7544495@N02/8339296677",
+        "author": "Pat Dryburgh",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "mountain",
+        "sha256": "ac802c84b84d154187cec08c51fff60f19cf88aaf1c292bb9fc147125f92d01b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Restaurant",
+      "target": "/images/travel/restaurant.jpg",
+      "hadImage": true,
+      "imageQuery": "restaurant interior",
+      "image": {
+        "file": "l06/restaurant.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/95867dd383/",
+        "author": "Nilo Velez",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "restaurant interior",
+        "sha256": "6acc38a3f1da709d52bc319e6c2151f3c2c1b58c2858ee3640ebc0eba96acbac",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Museum",
+      "target": "/images/travel/museum.jpg",
+      "hadImage": true,
+      "imageQuery": "museum",
+      "image": {
+        "file": "l06/museum.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/7156765@N05/51697921854",
+        "author": "Onasill - Bill Badzo - 149 Million Views - Thank Y",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "museum",
+        "sha256": "7081a85e534ddb2ea5319db9cdc00673836bf0d794ef54911848a6802e7d8736",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Passport",
+      "target": "/images/travel/passport.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "travel",
+        "value": "passport"
+      },
+      "image": {
+        "file": "l06/passport.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:passport",
+        "sha256": "ca6797cd5c11dff0c28a4f8c01eb55b4ae7999815fc8ee1e6595ea64b062a2f4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Ticket",
+      "target": "/images/travel/ticket.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "travel",
+        "value": "ticket"
+      },
+      "image": {
+        "file": "l06/ticket.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:ticket",
+        "sha256": "7b19d6c21845b211c71317d47975526bed1ba0396abae31da4d4baa1df10eaa4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Luggage",
+      "target": "/images/travel/luggage.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "travel",
+        "value": "luggage"
+      },
+      "image": {
+        "file": "l06/luggage.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:luggage",
+        "sha256": "6ae0ac601fe62a3d4faa107b2c250fe74695e134fedb086c3a1452a00158b198",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Tourist",
+      "target": "/images/travel/tourist.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "travel",
+        "value": "tourist"
+      },
+      "image": {
+        "file": "l06/tourist.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:tourist",
+        "sha256": "29ab698699cac882401cd8f10a0f77aca766cd34ec15848238b28e35cef7daea",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

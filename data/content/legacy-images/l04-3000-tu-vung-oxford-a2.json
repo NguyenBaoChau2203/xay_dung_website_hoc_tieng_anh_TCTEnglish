@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ Vựng Oxford",
+  "set": {
+    "code": "L04",
+    "name": "3000 từ vựng Oxford A2",
+    "description": "#oxford #a2 #essential",
+    "topic": "3000 từ vựng Oxford A2"
+  },
+  "cards": [
+    {
+      "term": "Education",
+      "target": "/images/education/education.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "edu",
+        "value": "graduation"
+      },
+      "image": {
+        "file": "l04/education.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:graduation",
+        "sha256": "d6d819ece0580c4bb5be7169327ff0d552fb0c88b699199a35c9e0f5544297e5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "School",
+      "target": "/images/education/school.jpg",
+      "hadImage": true,
+      "imageQuery": "school building",
+      "image": {
+        "file": "l04/school.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/122654055@N06/23109388041",
+        "author": "unclibraries_commons",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "school building",
+        "sha256": "f95080e1e5d64b35e7f1a0cc62c73332e4edc470a876c587ca59fad0fc95b905",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Teacher",
+      "target": "/images/education/teacher.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "people",
+        "value": "teacher"
+      },
+      "image": {
+        "file": "l04/teacher.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:teacher",
+        "sha256": "3ca1c1f8e4f7fef58627cc6651d1e3a484fb176c66d69fa0bb66b2861d2fcd18",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Student",
+      "target": "/images/education/student.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "people",
+        "value": "student"
+      },
+      "image": {
+        "file": "l04/student.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:student",
+        "sha256": "201b3199a877256135e4c2d0901f7d35147aa202afa079a8c5f61c007fd3e9b9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Book",
+      "target": "/images/education/book.jpg",
+      "hadImage": true,
+      "imageQuery": "open book",
+      "image": {
+        "file": "l04/book.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/132795455@N08/22555208593",
+        "author": "Image Catalog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "open book",
+        "sha256": "be198e5bf4ffc55fed97624d8917b879e716d1cab34b557081067018a01f46e3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Pen",
+      "target": "/images/education/pen.jpg",
+      "hadImage": true,
+      "imageQuery": "ballpoint pen",
+      "image": {
+        "file": "l04/pen.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/150219019@N03/30916693823",
+        "author": "Johnson Watch Co",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "ballpoint pen",
+        "sha256": "bde43edf7520c10acea7f9a038cf5f82bc3e592e217403c5ec9e62b6a427171c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Desk",
+      "target": "/images/education/desk.jpg",
+      "hadImage": true,
+      "imageQuery": "school desk",
+      "image": {
+        "file": "l04/desk.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/59809888@N06/6798320581",
+        "author": "South Australian History Network",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "school desk",
+        "sha256": "c32fc15af95c921f0e4f1a36aef1d328ea99d2b4c1fb115da93e85d30c020a0f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Homework",
+      "target": "/images/education/homework.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "edu",
+        "value": "assignment"
+      },
+      "image": {
+        "file": "l04/homework.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:assignment",
+        "sha256": "f81f02d6d3ba3274a7f622f0fa958dbe6aef3b026247703713aa5fab554397be",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Exam",
+      "target": "/images/education/exam.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "edu",
+        "value": "quiz"
+      },
+      "image": {
+        "file": "l04/exam.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:quiz",
+        "sha256": "85b0a0940db3f96563df622bceb4a10f0752227d945047929954bbc3e4d9ecf1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Lesson",
+      "target": "/images/education/lesson.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "edu",
+        "value": "tutor"
+      },
+      "image": {
+        "file": "l04/lesson.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:tutor",
+        "sha256": "7ecba435e3988f8e49cad0ae66c21a80b74e1423066dc8e0a69023a0da5ad13e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ Vựng Theo Chủ Đề",
+  "set": {
+    "code": "L05",
+    "name": "Đồ ăn & Thức uống",
+    "description": "#food #drink #common #a1",
+    "topic": "Đồ ăn & Thức uống"
+  },
+  "cards": [
+    {
+      "term": "Rice",
+      "target": "/images/food/rice.jpg",
+      "hadImage": true,
+      "imageQuery": "bowl of rice",
+      "image": {
+        "file": "l05/rice.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/11165984/bowl-rice-image-element",
+        "author": "Miiruuku",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bowl of rice",
+        "sha256": "cc4c2380b1b5460d539759dc9815e47b52215222b389e77104dfb8e6b3c7c1c2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Bread",
+      "target": "/images/food/bread.jpg",
+      "hadImage": true,
+      "imageQuery": "bread loaf",
+      "image": {
+        "file": "l05/bread.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5970492/bread-loaf",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bread loaf",
+        "sha256": "2cf949be9c7ff4af3376195689ac16a703ea42eeda5d0836db27aa041eb0a245",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Chicken",
+      "target": "/images/food/chicken.jpg",
+      "hadImage": true,
+      "imageQuery": "roast chicken",
+      "image": {
+        "file": "l05/chicken.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/35034347371@N01/515651",
+        "author": "roland",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "roast chicken",
+        "sha256": "e9412d56dfcb392acd5118e97702f7438fcfe5481d028b68f861678bbf5be9ea",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Beef",
+      "target": "/images/food/beef.jpg",
+      "hadImage": true,
+      "imageQuery": "beef steak",
+      "image": {
+        "file": "l05/beef.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5926857/photo-image-public-domain-food-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "beef steak",
+        "sha256": "cbbe12ebe7e8fa45678ba89beba6f62f65f30e9fece33ead890c3dc26a484db3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Fish",
+      "target": "/images/food/fish.jpg",
+      "hadImage": true,
+      "imageQuery": "grilled fish plate",
+      "image": {
+        "file": "l05/fish.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/3096a5bde8/",
+        "author": "Joan Namunina",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "grilled fish plate",
+        "sha256": "508f903a1e633c9322e9d9ba1a536499c6c7010cebc925638099058285fb83bf",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Vegetable",
+      "target": "/images/food/vegetable.jpg",
+      "hadImage": true,
+      "imageQuery": "fresh vegetables",
+      "image": {
+        "file": "l05/vegetable.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5927583/photo-image-public-domain-plant-fruit",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "fresh vegetables",
+        "sha256": "9f9095b500b23b1c76a54931848d5d5ebb1e18fd55074dd2ec30b518e7f0176d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Fruit",
+      "target": "/images/food/fruit.jpg",
+      "hadImage": true,
+      "imageQuery": "fresh fruit",
+      "image": {
+        "file": "l05/fruit.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/fresh-fruit-UW8AKAGQI3",
+        "author": "Foodie Girl",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "fresh fruit",
+        "sha256": "7b68271d126c445d6c7ffafc8ad206faa5e28c467594801818a7a8b40607d8fa",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Water",
+      "target": "/images/drink/water.jpg",
+      "hadImage": true,
+      "imageQuery": "drinking glass water",
+      "image": {
+        "file": "l05/water.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Glass_of_water_ouside.jpg",
+        "author": "Kurt Kaiser",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "drinking glass water",
+        "sha256": "c0a6612e0bd9f3560742757c4ab9bf889d9f9935089404de8be2b027fe3ba96d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Coffee",
+      "target": "/images/drink/coffee.jpg",
+      "hadImage": true,
+      "imageQuery": "cup of coffee",
+      "image": {
+        "file": "l05/coffee.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Coffee_cup_and_coffee_bean.jpg",
+        "author": "mcfoodie",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "cup of coffee",
+        "sha256": "51fc2a760a0b27fd47da8970c5f5ae6be453a207bef23357fc68f73646b2892a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Tea",
+      "target": "/images/drink/tea.jpg",
+      "hadImage": true,
+      "imageQuery": "cup of tea",
+      "image": {
+        "file": "l05/tea.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/76696276@N00/3188248672",
+        "author": "mkniebes",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cup of tea",
+        "sha256": "3ab2396f46dbbb355003a0dca5f863558110d93d0ec9b07e6fd85a720faead51",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Milk",
+      "target": "/images/drink/milk.jpg",
+      "hadImage": true,
+      "imageQuery": "glass of milk",
+      "image": {
+        "file": "l05/milk.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/184594136@N08/52633675811",
+        "author": "Alabama Extension",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "glass of milk",
+        "sha256": "bfa4f1d343a4adb87dd03c76bdfa83a8424d8956ef915790b784d3d72760fcae",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Juice",
+      "target": "/images/drink/juice.jpg",
+      "hadImage": true,
+      "imageQuery": "orange juice glass",
+      "image": {
+        "file": "l05/juice.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8718218/glass-orange-juice",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "orange juice glass",
+        "sha256": "f67d868a49af2f59da4e46fe6c7dc697bdb6263c4bd7c67557e592ec79b1003d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

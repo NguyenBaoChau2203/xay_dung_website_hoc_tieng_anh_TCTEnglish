@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ Vựng Theo Chủ Đề",
+  "set": {
+    "code": "L08",
+    "name": "Màu sắc",
+    "description": "#colors #basic #a1",
+    "topic": "Màu sắc"
+  },
+  "cards": [
+    {
+      "term": "Red",
+      "target": "/images/colors/red.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "color",
+        "value": "red"
+      },
+      "image": {
+        "file": "l08/red.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:red",
+        "sha256": "ff5184e7e59d1bf292bd676ec3ca5f08e38bb2f1f63396a4a69876eb3c996657",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Blue",
+      "target": "/images/colors/blue.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "color",
+        "value": "blue"
+      },
+      "image": {
+        "file": "l08/blue.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:blue",
+        "sha256": "bd79d9340e93c0c0fd591d240ee271f8f0a1404f298cb22d8b37af146b60f850",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Yellow",
+      "target": "/images/colors/yellow.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "color",
+        "value": "yellow"
+      },
+      "image": {
+        "file": "l08/yellow.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:yellow",
+        "sha256": "d122a26026a1229f7fae26df836a9e45be3c956695214dcf22849c0ab808e864",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Green",
+      "target": "/images/colors/green.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "color",
+        "value": "green"
+      },
+      "image": {
+        "file": "l08/green.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:green",
+        "sha256": "0e89332006e87e3cb25c2ac62202d9073bdbdfabd396593e95c5608bc3ab5007",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Black",
+      "target": "/images/colors/black.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "color",
+        "value": "black"
+      },
+      "image": {
+        "file": "l08/black.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:black",
+        "sha256": "e3a1e99845f2d6118ec935a543a70878fe463163ee0a091036598fdb16f2be04",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "White",
+      "target": "/images/colors/white.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "color",
+        "value": "white"
+      },
+      "image": {
+        "file": "l08/white.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:white",
+        "sha256": "3d69cef0bba204c78bca59df86602e42701ce1618d334054813d29c3579be6f4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Orange",
+      "target": "/images/colors/orange.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "color",
+        "value": "orange"
+      },
+      "image": {
+        "file": "l08/orange.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:orange",
+        "sha256": "b7afcebf960d464c82abf1e95d7f1e62cb1fb230c240400a2cb450a27ca4a170",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Purple",
+      "target": "/images/colors/purple.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "color",
+        "value": "purple"
+      },
+      "image": {
+        "file": "l08/purple.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:purple",
+        "sha256": "3a1c7932e94adf2ba2d0ae83add98b419a66d8e9c3363dc51bbd40635d18568f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Pink",
+      "target": "/images/colors/pink.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "color",
+        "value": "pink"
+      },
+      "image": {
+        "file": "l08/pink.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:pink",
+        "sha256": "7768405f0507897e227ccf9f58d866ee52c9348179d68d1a9180dcd12e0fb374",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Brown",
+      "target": "/images/colors/brown.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "color",
+        "value": "brown"
+      },
+      "image": {
+        "file": "l08/brown.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:color:brown",
+        "sha256": "3b91fe59d9e54c28966f82f0d231677edac894b8616186f1048975b3841aef7d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

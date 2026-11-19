@@ -1,0 +1,432 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ Vựng Tiếng Anh Thông Dụng",
+  "set": {
+    "code": "L01",
+    "name": "1000 từ tiếng Anh thông dụng",
+    "description": "#common #basic #a1",
+    "topic": "1000 từ tiếng Anh thông dụng"
+  },
+  "cards": [
+    {
+      "term": "Dog",
+      "target": "/images/greetings/dog.jpg",
+      "hadImage": false,
+      "imageQuery": "dog",
+      "image": {
+        "file": "l01/dog.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/28709821@N00/2675133924",
+        "author": "pepsiline",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "dog",
+        "sha256": "96f6491b3d0b9d9ea4e6b281ee27aef194c8fb006932505d366d5cd8be24efc9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Cat",
+      "target": "/images/animals/cat.jpg",
+      "hadImage": true,
+      "imageQuery": "cat",
+      "image": {
+        "file": "l01/cat.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/51686021@N07/42700002412",
+        "author": "Burnt Pineapple Productions",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cat",
+        "sha256": "5839e949f6d3dd7ec25d65a42a3612260961c4dbd8017098fb9791691f9505e0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Bird",
+      "target": "/images/animals/bird.jpg",
+      "hadImage": true,
+      "imageQuery": "bird",
+      "image": {
+        "file": "l01/bird.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/91501748@N07/27111885091",
+        "author": "Mathias Appel",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bird",
+        "sha256": "b6b20953b0b0687aaa50b95afe4be874c0fd473fa0e47f507b873724cf6d0954",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Fish",
+      "target": "/images/animals/fish.jpg",
+      "hadImage": true,
+      "imageQuery": "goldfish in aquarium",
+      "image": {
+        "file": "l01/fish.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Goldfish3.jpg",
+        "author": "No machine-readable author provided. Heptagon assumed (based on copyright claims).",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "goldfish in aquarium",
+        "sha256": "fb835bad0d17c45b60f4b4bfb0c044c40996f6089c1b89a001f8f7c3f1cf8001",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Horse",
+      "target": "/images/animals/horse.jpg",
+      "hadImage": true,
+      "imageQuery": "horse",
+      "image": {
+        "file": "l01/horse.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/126064386@N03/20129028816",
+        "author": "swallowedtail",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "horse",
+        "sha256": "7033a5a5c0da35d0c72032c85878baf53f74a8c69095bc499d82f0552584124c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Elephant",
+      "target": "/images/animals/elephant.jpg",
+      "hadImage": true,
+      "imageQuery": "elephant",
+      "image": {
+        "file": "l01/elephant.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/50838842@N06/6987533809",
+        "author": "USFWS Headquarters",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "elephant",
+        "sha256": "94170674993f6df90655419fbef2cd2f7ed408121bb3df07cfefc59066bed15c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Lion",
+      "target": "/images/animals/lion.jpg",
+      "hadImage": true,
+      "imageQuery": "lion",
+      "image": {
+        "file": "l01/lion.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/91501748@N07/26229121115",
+        "author": "Mathias Appel",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "lion",
+        "sha256": "61ce2f946a4de7ee1a8a1d7b036d8674028fef38c1605ec01e045bbfdb5735d8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Tiger",
+      "target": "/images/animals/tiger.jpg",
+      "hadImage": true,
+      "imageQuery": "tiger",
+      "image": {
+        "file": "l01/tiger.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/91501748@N07/26212985061",
+        "author": "Mathias Appel",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "tiger",
+        "sha256": "aedf286287d63543b6de050de00cecb34ddf7c4dcd21b609ced07e183c8b41f2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Monkey",
+      "target": "/images/animals/monkey.jpg",
+      "hadImage": true,
+      "imageQuery": "monkey",
+      "image": {
+        "file": "l01/monkey.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/91501748@N07/26733426676",
+        "author": "Mathias Appel",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "monkey",
+        "sha256": "cde2c0d32a53c0f643dffa65731e3f3f9ab5c8e4312f2c369ce9ea93547c99f3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Bear",
+      "target": "/images/animals/bear.jpg",
+      "hadImage": true,
+      "imageQuery": "bear",
+      "image": {
+        "file": "l01/bear.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/43322816@N08/12092767656",
+        "author": "U. S. Fish and Wildlife Service - Northeast Region",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "bear",
+        "sha256": "178dd58e9ec0d3a0ded16f83402cdadc07eee32721916db8667b6d02db2b42eb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Hello",
+      "target": "/images/greetings/hello.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Hello",
+      "image": {
+        "file": "l01/hello.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "6000b7929e466f204cd44f9873d26b6d8077e836137eb3d6ac5f99e341d0fd85",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Goodbye",
+      "target": "/images/greetings/goodbye.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Goodbye",
+      "image": {
+        "file": "l01/goodbye.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "72af0e3b9011baebb654243d5aa32a13d691bc856fcf999ad668315a14bdb8c0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Good morning",
+      "target": "/images/greetings/good-morning.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Good morning",
+      "image": {
+        "file": "l01/good-morning.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "e6f3def11d456558cea60d7f962c5a3c9c2ac34725db98c779ac382c77a3c603",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Good night",
+      "target": "/images/greetings/good-night.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Good night",
+      "image": {
+        "file": "l01/good-night.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "f5f4b5a4887b62f58dfc0328503dd95b290d286d6aa900e1973ef986a8d86aed",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "See you later",
+      "target": "/images/greetings/see-you-later.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "See you later",
+      "image": {
+        "file": "l01/see-you-later.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "00dbd91e38c2072fb2f261168e575a5795794abb79243db677c7e62f86463296",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Thank you",
+      "target": "/images/greetings/thank-you.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Thank you",
+      "image": {
+        "file": "l01/thank-you.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "77d948d7636e5728c4fad2791ff6bdb8c29867ca8ee0b4bd2c54477d476ff1d7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Please",
+      "target": "/images/greetings/please.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Please",
+      "image": {
+        "file": "l01/please.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "5cef4f86731655238e61ba2f828d60547825b573a896bcbfd29fa502ffb1bd6d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Sorry",
+      "target": "/images/greetings/sorry.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Sorry",
+      "image": {
+        "file": "l01/sorry.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "f2f5683e95cd1e9ea11b6e5231cf842cf00c92bd163c5df8bcc8272ca7575c0b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Excuse me",
+      "target": "/images/greetings/excuse-me.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "Excuse me",
+      "image": {
+        "file": "l01/excuse-me.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "8ec8a2b70ae8cca30b93635834e6256ca157d3ec2ae2d89c039af5eb80f6da5b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "You're welcome",
+      "target": "/images/greetings/you-re-welcome.jpg",
+      "hadImage": false,
+      "generate": {
+        "kind": "scene",
+        "value": "phrase"
+      },
+      "imageQuery": "You're welcome",
+      "image": {
+        "file": "l01/you-re-welcome.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:scene:phrase",
+        "sha256": "c882468ccbbd2d7a52a99761abd06df0fb42d158b99e0c1fb4e484d90e0b01a7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

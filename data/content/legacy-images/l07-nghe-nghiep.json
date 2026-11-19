@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ Vựng Theo Chủ Đề",
+  "set": {
+    "code": "L07",
+    "name": "Nghề nghiệp",
+    "description": "#jobs #profession #b1",
+    "topic": "Nghề nghiệp"
+  },
+  "cards": [
+    {
+      "term": "Doctor",
+      "target": "/images/jobs/doctor.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "job",
+        "value": "doctor"
+      },
+      "image": {
+        "file": "l07/doctor.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:doctor",
+        "sha256": "79952a2d9a59c8051cf090a0f1d5efe74d7780a5d38ce8d6c55a2a143d6afceb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Teacher",
+      "target": "/images/jobs/teacher.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "people",
+        "value": "teacher"
+      },
+      "image": {
+        "file": "l07/teacher.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:teacher",
+        "sha256": "3ca1c1f8e4f7fef58627cc6651d1e3a484fb176c66d69fa0bb66b2861d2fcd18",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Engineer",
+      "target": "/images/jobs/engineer.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "job",
+        "value": "engineer"
+      },
+      "image": {
+        "file": "l07/engineer.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:engineer",
+        "sha256": "f86fccd77a1590be796b6868b49559841a3a34e30cf37a9fea0aeb2a668f6822",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Nurse",
+      "target": "/images/jobs/nurse.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "job",
+        "value": "nurse"
+      },
+      "image": {
+        "file": "l07/nurse.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:nurse",
+        "sha256": "d094ad59dd58f149e69a65b93f866a7bdbdd179450a89ac03c264e3dcd2fd42c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Police officer",
+      "target": "/images/jobs/police.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "job",
+        "value": "police officer"
+      },
+      "image": {
+        "file": "l07/police-officer.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:police officer",
+        "sha256": "cb1e1b10a344e799ff17cc65ed580704382f0ace45a8538ab985fa18e8e1fe1b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Chef",
+      "target": "/images/jobs/chef.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "job",
+        "value": "chef"
+      },
+      "image": {
+        "file": "l07/chef.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:chef",
+        "sha256": "10d93a65dd4fdf27cf206e415dd54e60c3e27dcb8505fd4c899b05faa331a13e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Driver",
+      "target": "/images/jobs/driver.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "job",
+        "value": "driver"
+      },
+      "image": {
+        "file": "l07/driver.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:driver",
+        "sha256": "fe732a2dbc9d6c4ffed76b066d0df88e5de8f0a1cb8ba246dbe288e4e723f3e0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Farmer",
+      "target": "/images/jobs/farmer.jpg",
+      "hadImage": true,
+      "generate": {
+        "kind": "job",
+        "value": "farmer"
+      },
+      "image": {
+        "file": "l07/farmer.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:farmer",
+        "sha256": "2c20fcc65faad9d78423b5405c28ecc811faca2f01b50aa1152f9bb4ce1f4c89",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Artist",
+      "target": "/images/jobs/artist.jpg",
+      "hadImage": true,
+      "imageQuery": "artist painting",
+      "image": {
+        "file": "l07/artist.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:An_Artist_Painting_a_Silhouette_Portrait_of_a_Young_Boy,_by_Jacob_Schwartzenbach_1.jpg",
+        "author": "Jacob Schwartzenbach",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "artist painting",
+        "sha256": "8e4c6c42010f349c8d70881090c0278626ace0f4735ffef4086b9a67d530db9c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "Musician",
+      "target": "/images/jobs/musician.jpg",
+      "hadImage": true,
+      "imageQuery": "musician playing guitar",
+      "image": {
+        "file": "l07/musician.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6033440/photo-image-background-public-domain-hand",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "musician playing guitar",
+        "sha256": "6898f25f8ecd4b974a8f5dc6bfdd3478f36874f2786a2dfaf29a94b7324ce9b5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
