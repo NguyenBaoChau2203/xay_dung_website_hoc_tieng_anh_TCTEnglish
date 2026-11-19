@@ -1,0 +1,1217 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B11",
+    "name": "Khoa học & vũ trụ",
+    "description": "#b1 #b2 #science #space",
+    "topic": "Khoa học & vũ trụ",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "microscope",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "kính hiển vi",
+      "meaningEn": "an instrument that makes very small things look bigger",
+      "examples": [
+        {
+          "text": "We looked at a leaf under the microscope.",
+          "vi": "Chúng tôi quan sát một chiếc lá dưới kính hiển vi."
+        },
+        {
+          "text": "The microscope is on the lab table.",
+          "vi": "Chiếc kính hiển vi nằm trên bàn thí nghiệm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "under a microscope",
+          "vi": "dưới kính hiển vi"
+        },
+        {
+          "text": "electron microscope",
+          "vi": "kính hiển vi điện tử"
+        }
+      ],
+      "imageQuery": "microscope laboratory",
+      "ipaUs": "/ˈmaɪ.kɹəˌskoʊp/",
+      "ipaUk": "/ˈmaɪ.kɹəˌskəʊp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/microscope",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/microscope.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/23408922@N07/10731246075",
+        "author": "comedy_nose",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "microscope laboratory",
+        "sha256": "243a5b91e94fa52c56e3d885523150d526a28b64c3c8525198d43e0753c7625d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "telescope",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "kính thiên văn",
+      "meaningEn": "an instrument that makes distant objects like stars look closer",
+      "examples": [
+        {
+          "text": "He watched the moon through a telescope.",
+          "vi": "Anh ấy ngắm mặt trăng qua kính thiên văn."
+        },
+        {
+          "text": "The school bought a new telescope.",
+          "vi": "Trường mua một chiếc kính thiên văn mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "look through a telescope",
+          "vi": "nhìn qua kính thiên văn"
+        },
+        {
+          "text": "powerful telescope",
+          "vi": "kính thiên văn mạnh"
+        }
+      ],
+      "imageQuery": "telescope night sky",
+      "ipaUs": "/ˈtɛl.əˌskoʊp/",
+      "ipaUk": "/ˈtɛl.ɪ.skəʊp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/telescope",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "sci",
+        "value": "telescope"
+      },
+      "image": {
+        "file": "b11/telescope.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sci:telescope",
+        "sha256": "89291a01e51a81da9948dc2c4663cfb5a92c8a47b69e1d4adea99d70627df386",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "planet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "hành tinh",
+      "meaningEn": "a large round object that moves around a star",
+      "examples": [
+        {
+          "text": "Mars is the fourth planet from the sun.",
+          "vi": "Sao Hỏa là hành tinh thứ tư tính từ mặt trời."
+        },
+        {
+          "text": "Earth is the only planet with life that we know of.",
+          "vi": "Trái Đất là hành tinh duy nhất có sự sống mà chúng ta biết."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "planet Earth",
+          "vi": "hành tinh Trái Đất"
+        },
+        {
+          "text": "distant planet",
+          "vi": "hành tinh xa xôi"
+        }
+      ],
+      "imageQuery": "planet space",
+      "ipaUs": "/ˈplænət/",
+      "ipaUk": "/ˈplænɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/planet",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/planet.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/39735679@N00/370061022",
+        "author": "pingnews.com",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "planet space",
+        "sha256": "eb65421179cd6dce526e3d9a8e8c8ffd6dc977c5f231e0190e93538fb344fe7a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "galaxy",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "thiên hà",
+      "meaningEn": "a huge group of stars, gas and dust",
+      "examples": [
+        {
+          "text": "Our galaxy is called the Milky Way.",
+          "vi": "Thiên hà của chúng ta có tên là Dải Ngân Hà."
+        },
+        {
+          "text": "There are billions of galaxies in space.",
+          "vi": "Có hàng tỷ thiên hà trong vũ trụ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "distant galaxy",
+          "vi": "thiên hà xa xôi"
+        },
+        {
+          "text": "spiral galaxy",
+          "vi": "thiên hà xoắn ốc"
+        }
+      ],
+      "imageQuery": "galaxy stars space",
+      "ipaUs": "/ˈɡæl.ək.si/",
+      "ipaUk": "/ˈɡæl.ək.si/",
+      "ipaSource": "https://en.wiktionary.org/wiki/galaxy",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/galaxy.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/stars-galaxy-Y8CKB0O8C2",
+        "author": "Greg Rakozy",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "galaxy stars space",
+        "sha256": "fdb4daa8912c38aef47a9ac15a91b0912028969461b1342dfc1b8a89fec8c38b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "astronaut",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "phi hành gia",
+      "meaningEn": "a person who travels in space",
+      "examples": [
+        {
+          "text": "The astronaut waved from the spacecraft.",
+          "vi": "Phi hành gia vẫy tay từ tàu vũ trụ."
+        },
+        {
+          "text": "Many children dream of becoming an astronaut.",
+          "vi": "Nhiều trẻ em mơ ước trở thành phi hành gia."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "become an astronaut",
+          "vi": "trở thành phi hành gia"
+        },
+        {
+          "text": "astronaut training",
+          "vi": "huấn luyện phi hành gia"
+        }
+      ],
+      "imageQuery": "astronaut spacesuit",
+      "ipaUs": "/ˈæstɹəˌnɔt/",
+      "ipaUk": "/ˈæstɹəˌnɔːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/astronaut",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/astronaut.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6290316/image-public-domain-person-astronaut",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "astronaut spacesuit",
+        "sha256": "86d89082cfb16c8a32bc096d17dec128902143b7b7e9a26c4defdb5e660a32b0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "spacecraft",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tàu vũ trụ",
+      "meaningEn": "a vehicle that travels in space",
+      "examples": [
+        {
+          "text": "The spacecraft landed safely on the moon.",
+          "vi": "Tàu vũ trụ đã hạ cánh an toàn lên mặt trăng."
+        },
+        {
+          "text": "Engineers built a new spacecraft last year.",
+          "vi": "Các kỹ sư đã chế tạo một tàu vũ trụ mới vào năm ngoái."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "launch a spacecraft",
+          "vi": "phóng tàu vũ trụ"
+        },
+        {
+          "text": "manned spacecraft",
+          "vi": "tàu vũ trụ có người lái"
+        }
+      ],
+      "imageQuery": "spacecraft space capsule",
+      "ipaUs": "/ˈspeɪsˌkɹæft/",
+      "ipaUk": "/ˈspeɪsˌkɹæft/",
+      "ipaSource": "https://en.wiktionary.org/wiki/spacecraft",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "b11/spacecraft.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:NASA_orion_space_capsule_Houston_2014.jpg",
+        "author": "Stablenode",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "spacecraft space capsule",
+        "sha256": "5778348aaccfce85d14b36bc1e3441ecc9f0ddc0eda87aeacd52be1fc49b621f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "space station",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "trạm vũ trụ",
+      "meaningEn": "a large structure in space where astronauts live and work",
+      "examples": [
+        {
+          "text": "The astronauts live on the space station for six months.",
+          "vi": "Các phi hành gia sống trên trạm vũ trụ sáu tháng."
+        },
+        {
+          "text": "You can sometimes see the space station in the night sky.",
+          "vi": "Đôi khi bạn có thể thấy trạm vũ trụ trên bầu trời đêm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "International Space Station",
+          "vi": "Trạm vũ trụ quốc tế"
+        },
+        {
+          "text": "live on a space station",
+          "vi": "sống trên trạm vũ trụ"
+        }
+      ],
+      "imageQuery": "international space station",
+      "ipaUs": "/speɪs ˈsteɪʃən/",
+      "ipaUk": "/speɪs ˈsteɪʃən/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/space + https://en.wiktionary.org/wiki/station ; https://en.wiktionary.org/wiki/space + https://en.wiktionary.org/wiki/station",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/space-station.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/39735679@N00/491421253",
+        "author": "pingnews.com",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "international space station",
+        "sha256": "a501686941503882cc92543034089747556d50c42279d2e160f8e60f49e0433d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "moon",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "mặt trăng",
+      "meaningEn": "the large round object that goes around the Earth",
+      "examples": [
+        {
+          "text": "The moon is very bright tonight.",
+          "vi": "Tối nay mặt trăng rất sáng."
+        },
+        {
+          "text": "Astronauts first walked on the moon in 1969.",
+          "vi": "Các phi hành gia lần đầu đặt chân lên mặt trăng vào năm 1969."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "full moon",
+          "vi": "trăng tròn"
+        },
+        {
+          "text": "walk on the moon",
+          "vi": "đi bộ trên mặt trăng"
+        }
+      ],
+      "imageQuery": "full moon night sky",
+      "ipaUs": "/mun/",
+      "ipaUk": "/muːn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/moon",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/moon.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3297444/free-photo-image-moon-astronomy-cc0",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "full moon night sky",
+        "sha256": "9e9583f1220e3a022362aee7ff908773f67c265ef392fcbdc02377a9dce7c9f4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "orbit",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "quỹ đạo",
+      "meaningEn": "the curved path of an object moving around a planet or star",
+      "examples": [
+        {
+          "text": "The satellite is in orbit around the Earth.",
+          "vi": "Vệ tinh đang ở trên quỹ đạo quanh Trái Đất."
+        },
+        {
+          "text": "Earth takes a year to complete its orbit.",
+          "vi": "Trái Đất mất một năm để hoàn thành quỹ đạo của nó."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "in orbit",
+          "vi": "trên quỹ đạo"
+        },
+        {
+          "text": "orbit around the sun",
+          "vi": "quỹ đạo quanh mặt trời"
+        }
+      ],
+      "imageQuery": "orbit earth space diagram",
+      "ipaUs": "/ˈɔɹ.bɪt/",
+      "ipaUk": "/ˈɔː.bɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/orbit",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "sci",
+        "value": "orbit"
+      },
+      "image": {
+        "file": "b11/orbit.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sci:orbit",
+        "sha256": "5ea2117b249a5d05f3ebe4e77f58138a61a953542d5cbfb8251e55e14aaac585",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "comet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "sao chổi",
+      "meaningEn": "a bright object in space with a long tail of light",
+      "examples": [
+        {
+          "text": "A comet crossed the night sky last week.",
+          "vi": "Một sao chổi đã băng qua bầu trời đêm tuần trước."
+        },
+        {
+          "text": "The comet is visible only for a few days.",
+          "vi": "Sao chổi chỉ nhìn thấy được trong vài ngày."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bright comet",
+          "vi": "sao chổi sáng"
+        },
+        {
+          "text": "comet tail",
+          "vi": "đuôi sao chổi"
+        }
+      ],
+      "imageQuery": "comet night sky tail",
+      "ipaUs": "/ˈkɒmɪt/",
+      "ipaUk": "/ˈkɒmɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/comet",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/comet.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/starry-night-D4JEXR84ZJ",
+        "author": "Free Nature Stock",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "comet night sky tail",
+        "sha256": "4f4e4749361f4a5aa39de49015b646bc7202e2e8abb76b76fa4af73d2f9b6b5f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "asteroid",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tiểu hành tinh",
+      "meaningEn": "a small rocky object that moves around the sun",
+      "examples": [
+        {
+          "text": "An asteroid passed close to the Earth.",
+          "vi": "Một tiểu hành tinh bay ngang qua gần Trái Đất."
+        },
+        {
+          "text": "Scientists study asteroids to learn about the solar system.",
+          "vi": "Các nhà khoa học nghiên cứu tiểu hành tinh để hiểu về hệ mặt trời."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "asteroid belt",
+          "vi": "vành đai tiểu hành tinh"
+        },
+        {
+          "text": "giant asteroid",
+          "vi": "tiểu hành tinh khổng lồ"
+        }
+      ],
+      "imageQuery": "asteroid rock space",
+      "ipaUs": "/ˈæst(ə)ɹɔɪd/",
+      "ipaUk": "/ˈæst(ə)ɹɔɪd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/asteroid",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/asteroid.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/51686021@N07/42075207904",
+        "author": "Burnt Pineapple Productions",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "asteroid rock space",
+        "sha256": "9a8f72050fbd2f0dbcdc7eef385c342f7428a364318b7d2890050b48f5a4f1ab",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "meteor",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "sao băng",
+      "meaningEn": "a small piece of rock that burns brightly as it falls through the sky",
+      "examples": [
+        {
+          "text": "We saw a meteor flash across the sky.",
+          "vi": "Chúng tôi thấy một vệt sao băng lóe qua bầu trời."
+        },
+        {
+          "text": "Make a wish when you see a meteor.",
+          "vi": "Hãy ước một điều khi bạn thấy sao băng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "meteor shower",
+          "vi": "mưa sao băng"
+        },
+        {
+          "text": "see a meteor",
+          "vi": "thấy sao băng"
+        }
+      ],
+      "imageQuery": "meteor shooting star night",
+      "ipaUs": "/ˈmi.tiɚ/",
+      "ipaUk": "/ˈmiːtɪ.ə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/meteor",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "sci",
+        "value": "meteor"
+      },
+      "image": {
+        "file": "b11/meteor.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sci:meteor",
+        "sha256": "b01c8196da227e6389a86aa8c8c08bb709520bb8f0896567b9bb5823cfdcf492",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "eclipse",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhật thực, nguyệt thực",
+      "meaningEn": "an event when the sun or moon is hidden by another object",
+      "examples": [
+        {
+          "text": "Thousands of people watched the solar eclipse.",
+          "vi": "Hàng nghìn người đã xem nhật thực."
+        },
+        {
+          "text": "The eclipse lasted about two minutes.",
+          "vi": "Hiện tượng thực kéo dài khoảng hai phút."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "solar eclipse",
+          "vi": "nhật thực"
+        },
+        {
+          "text": "lunar eclipse",
+          "vi": "nguyệt thực"
+        }
+      ],
+      "imageQuery": "solar eclipse sun moon",
+      "ipaUs": "/ɪˈklɪps/",
+      "ipaUk": "/ɪˈklɪps/",
+      "ipaSource": "https://en.wiktionary.org/wiki/eclipse",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/eclipse.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/115357548@N08/15425759437",
+        "author": "Joshua Tree National Park",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "solar eclipse sun moon",
+        "sha256": "0ce6804155f91458d36e27063aaefe4574a6b5bbdbb7d69d45c3c0b8599fe51c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "atom",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nguyên tử",
+      "meaningEn": "the smallest part of a chemical element",
+      "examples": [
+        {
+          "text": "Everything is made of atoms.",
+          "vi": "Mọi thứ đều được tạo nên từ nguyên tử."
+        },
+        {
+          "text": "A hydrogen atom is very small.",
+          "vi": "Một nguyên tử hydro rất nhỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "atom model",
+          "vi": "mô hình nguyên tử"
+        },
+        {
+          "text": "split an atom",
+          "vi": "tách nguyên tử"
+        }
+      ],
+      "imageQuery": "atom model nucleus electrons",
+      "ipaUs": "/ˈætəm/",
+      "ipaUk": "/ˈætəm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/atom",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/atom.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Atom-1222511.jpg",
+        "author": "Gerd Altmann",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "atom model nucleus electrons",
+        "sha256": "4d911f6cd149ba0df14f44973278b2c3c02bb4a28348b4f0fd672f34a5a9e8ec",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "molecule",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "phân tử",
+      "meaningEn": "a group of atoms joined together",
+      "examples": [
+        {
+          "text": "A water molecule has two hydrogen atoms.",
+          "vi": "Một phân tử nước có hai nguyên tử hydro."
+        },
+        {
+          "text": "The students built a molecule from plastic balls.",
+          "vi": "Học sinh ghép một phân tử bằng những quả bóng nhựa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "water molecule",
+          "vi": "phân tử nước"
+        },
+        {
+          "text": "molecule model",
+          "vi": "mô hình phân tử"
+        }
+      ],
+      "imageQuery": "molecule model balls sticks",
+      "ipaUs": "/ˈmɑ.lɪ.kjul/",
+      "ipaUk": "/ˈmɒl.ɪ.kjuːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/molecule",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/molecule.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=21004130",
+        "author": "Jynto (talk)",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en/",
+        "query": "molecule model balls sticks",
+        "sha256": "221a5a8736399de8617032c98584a105b3ffd812927a14c3ceee7d4473c721c5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "DNA",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "ADN",
+      "meaningEn": "the material in cells that carries the information about a living thing",
+      "examples": [
+        {
+          "text": "DNA decides the colour of your eyes.",
+          "vi": "ADN quyết định màu mắt của bạn."
+        },
+        {
+          "text": "Scientists studied the DNA from the sample.",
+          "vi": "Các nhà khoa học nghiên cứu ADN từ mẫu vật."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "DNA test",
+          "vi": "xét nghiệm ADN"
+        },
+        {
+          "text": "human DNA",
+          "vi": "ADN người"
+        }
+      ],
+      "imageQuery": "dna double helix",
+      "image": {
+        "file": "b11/dna.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:DNA_Visual_Representation_of_Double-Helix.png",
+        "author": "Unknown authorUnknown author",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "dna double helix",
+        "sha256": "97130beecdc59d42dd44499b1c0b88be9b419c933c51324605d7946c83e02e0c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˌdiː ɛn ˈeɪ/",
+      "ipaUk": "/ˌdiː en ˈeɪ/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found"
+    },
+    {
+      "term": "magnet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "nam châm",
+      "meaningEn": "a piece of metal that pulls iron towards it",
+      "examples": [
+        {
+          "text": "A magnet can pick up small iron nails.",
+          "vi": "Nam châm có thể nhặt những chiếc đinh sắt nhỏ."
+        },
+        {
+          "text": "The children played with a magnet in science class.",
+          "vi": "Bọn trẻ nghịch nam châm trong giờ khoa học."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "strong magnet",
+          "vi": "nam châm mạnh"
+        },
+        {
+          "text": "fridge magnet",
+          "vi": "nam châm dán tủ lạnh"
+        }
+      ],
+      "imageQuery": "magnet horseshoe iron filings",
+      "ipaUs": "/ˈmæɡ.nɪt/",
+      "ipaUk": "/ˈmæɡ.nɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/magnet",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "sci",
+        "value": "magnet"
+      },
+      "image": {
+        "file": "b11/magnet.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sci:magnet",
+        "sha256": "029627e207a810d9b304677235346cca6c90babbddef99d6657ccf147bce7d9c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "test tube",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "ống nghiệm",
+      "meaningEn": "a thin glass tube used in science experiments",
+      "examples": [
+        {
+          "text": "She poured the liquid into a test tube.",
+          "vi": "Cô ấy rót chất lỏng vào một ống nghiệm."
+        },
+        {
+          "text": "The test tubes stood in a row on the rack.",
+          "vi": "Những ống nghiệm đứng thành hàng trên giá."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "test tube rack",
+          "vi": "giá ống nghiệm"
+        },
+        {
+          "text": "fill a test tube",
+          "vi": "rót đầy ống nghiệm"
+        }
+      ],
+      "imageQuery": "test tubes rack laboratory",
+      "ipaUs": "/tɛst tub/",
+      "ipaUk": "/tɛst tʃuːb/",
+      "ipaSource": "https://en.wiktionary.org/wiki/test + https://en.wiktionary.org/wiki/tube",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "sci",
+        "value": "test tube"
+      },
+      "image": {
+        "file": "b11/test-tube.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sci:test tube",
+        "sha256": "9fea6a9f49d40c74114eccdffea987146c30557211adace486f6ae756020e4fe",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "beaker",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cốc thí nghiệm",
+      "meaningEn": "a glass container with a flat bottom used in a laboratory",
+      "examples": [
+        {
+          "text": "He heated the water in a beaker.",
+          "vi": "Anh ấy đun nước trong một cốc thí nghiệm."
+        },
+        {
+          "text": "The beaker is half full of blue liquid.",
+          "vi": "Chiếc cốc thí nghiệm đầy một nửa chất lỏng màu xanh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "glass beaker",
+          "vi": "cốc thủy tinh thí nghiệm"
+        },
+        {
+          "text": "fill a beaker",
+          "vi": "rót đầy cốc thí nghiệm"
+        }
+      ],
+      "imageQuery": "beaker laboratory glass",
+      "ipaUs": "/ˈbiːkɚ/",
+      "ipaUk": "/ˈbiːkə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/beaker",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/beaker.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6041561/beakers-free-public-domain-cc0-photo",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "beaker laboratory glass",
+        "sha256": "279974e91d26182c8129233e280c4eaaa1abc6c68eb6bfaf132488e45002b96f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "experiment",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "thí nghiệm",
+      "meaningEn": "a scientific test to find out if an idea is true",
+      "examples": [
+        {
+          "text": "We did an experiment with water and salt.",
+          "vi": "Chúng tôi làm một thí nghiệm với nước và muối."
+        },
+        {
+          "text": "The experiment did not work the first time.",
+          "vi": "Thí nghiệm không thành công ở lần đầu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "carry out an experiment",
+          "vi": "tiến hành thí nghiệm"
+        },
+        {
+          "text": "science experiment",
+          "vi": "thí nghiệm khoa học"
+        }
+      ],
+      "imageQuery": "science experiment students",
+      "ipaUs": "/ɪkˈspɛɹ.ə.mənt/",
+      "ipaUk": "/ɪkˈspɛɹ.ɪ.mənt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/experiment",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "sci",
+        "value": "experiment"
+      },
+      "image": {
+        "file": "b11/experiment.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sci:experiment",
+        "sha256": "069f153f433ba2d5c097e9d52b783f9480e595b3f2ba021d35cae1311703998e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fossil",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "hóa thạch",
+      "meaningEn": "the hard remains of an ancient plant or animal in rock",
+      "examples": [
+        {
+          "text": "He found a fossil of a shell on the beach.",
+          "vi": "Cậu ấy tìm thấy một hóa thạch vỏ sò trên bãi biển."
+        },
+        {
+          "text": "The museum has a dinosaur fossil.",
+          "vi": "Bảo tàng có một hóa thạch khủng long."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "dinosaur fossil",
+          "vi": "hóa thạch khủng long"
+        },
+        {
+          "text": "find a fossil",
+          "vi": "tìm thấy hóa thạch"
+        }
+      ],
+      "imageQuery": "fossil rock shell",
+      "ipaUs": "/ˈfɑsl̩/",
+      "ipaUk": "/ˈfɒsl̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fossil",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/fossil.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/96541566@N06/52144068421",
+        "author": "Juhele_CZ",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "fossil rock shell",
+        "sha256": "58aac716417217f1eb14485d0f6d70bba4be5bae5a6decbccddc5a118bcb589a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "crater",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "miệng núi lửa, hố va chạm",
+      "meaningEn": "a large round hole in the ground or on the moon",
+      "examples": [
+        {
+          "text": "The moon has thousands of craters.",
+          "vi": "Mặt trăng có hàng nghìn hố va chạm."
+        },
+        {
+          "text": "We walked to the edge of the volcano crater.",
+          "vi": "Chúng tôi đi tới mép miệng núi lửa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "volcano crater",
+          "vi": "miệng núi lửa"
+        },
+        {
+          "text": "deep crater",
+          "vi": "hố sâu"
+        }
+      ],
+      "imageQuery": "crater moon surface",
+      "ipaUs": "/ˈkɹeɪ.tɚ/",
+      "ipaUk": "/ˈkɹeɪ.tə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/crater",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/crater.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/moon-surface-LIQPPTTHWO",
+        "author": "Stephen Rahn",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "crater moon surface",
+        "sha256": "24976b86f11be761f3199dab46b6d7ced7bee1393e5da454b8b3c002a23d86bd",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "lab coat",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "áo choàng phòng thí nghiệm",
+      "meaningEn": "a white coat that scientists wear to protect their clothes",
+      "examples": [
+        {
+          "text": "The scientist put on a white lab coat.",
+          "vi": "Nhà khoa học mặc chiếc áo choàng phòng thí nghiệm màu trắng."
+        },
+        {
+          "text": "Students must wear a lab coat in the laboratory.",
+          "vi": "Học sinh phải mặc áo choàng khi ở phòng thí nghiệm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wear a lab coat",
+          "vi": "mặc áo choàng phòng thí nghiệm"
+        },
+        {
+          "text": "white lab coat",
+          "vi": "áo choàng trắng"
+        }
+      ],
+      "imageQuery": "scientist white lab coat",
+      "ipaUs": "/læːb ˈkoʊ̯t/",
+      "ipaUk": "/læːb ˈkəʊ̯t/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lab + https://en.wiktionary.org/wiki/coat",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "sci",
+        "value": "lab coat"
+      },
+      "image": {
+        "file": "b11/lab-coat.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sci:lab coat",
+        "sha256": "75b7fa1077d258969cd1a3242015fe2b8953c08a8d9bb3c554336d7dab099989",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "periodic table",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bảng tuần hoàn",
+      "meaningEn": "a chart that shows all the chemical elements",
+      "examples": [
+        {
+          "text": "There is a periodic table on the classroom wall.",
+          "vi": "Có một bảng tuần hoàn trên tường lớp học."
+        },
+        {
+          "text": "Hydrogen is the first element in the periodic table.",
+          "vi": "Hydro là nguyên tố đầu tiên trong bảng tuần hoàn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "learn the periodic table",
+          "vi": "học bảng tuần hoàn"
+        },
+        {
+          "text": "periodic table of elements",
+          "vi": "bảng tuần hoàn các nguyên tố"
+        }
+      ],
+      "imageQuery": "periodic table chart",
+      "ipaUs": "/ˌpɪɹiˈɑdɪk ˈtʰeɪb(ə)ɫ/",
+      "ipaUk": "/ˌpɪɹiˈɒdɪk ˈteɪbl̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/periodic + https://en.wiktionary.org/wiki/table",
+      "ipaVerified": true,
+      "image": {
+        "file": "b11/periodic-table.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Periodic_Table_-_Atomic_Properties_of_the_Elements.png",
+        "author": "R.A. Dragoset, A. Musgrove, C.W. Clark, and W.C. Martin — NIST, Physical Measurement Laboratory",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "periodic table chart",
+        "sha256": "d57a3785b4fef95c0de8f16c060672eaf4d92a2e9b9acb1f58c791f3eb0c23bc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "magnifying glass",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "kính lúp",
+      "meaningEn": "a lens that makes small things look bigger",
+      "examples": [
+        {
+          "text": "He used a magnifying glass to read the tiny letters.",
+          "vi": "Anh ấy dùng kính lúp để đọc những chữ nhỏ xíu."
+        },
+        {
+          "text": "The detective held up a magnifying glass.",
+          "vi": "Thám tử giơ cao chiếc kính lúp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hold a magnifying glass",
+          "vi": "cầm kính lúp"
+        },
+        {
+          "text": "use a magnifying glass",
+          "vi": "dùng kính lúp"
+        }
+      ],
+      "imageQuery": "magnifying glass",
+      "image": {
+        "file": "b11/magnifying-glass.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5904368/photo-image-public-domain-black-newspaper",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "magnifying glass",
+        "sha256": "d786b4b1e33492563a7366fe3225fa35c05066540789b96c07c55b6f76d741a6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈmæɡnəˌfaɪɪŋ ɡlæs/",
+      "ipaUk": "/ˈmaɡnɪfaɪɪŋ ɡlɑːs/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found"
+    }
+  ]
+}

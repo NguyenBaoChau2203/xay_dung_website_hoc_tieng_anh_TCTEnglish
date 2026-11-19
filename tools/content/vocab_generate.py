@@ -2867,6 +2867,90 @@ def city_icon(name: str) -> bytes:
     return finish(img)
 
 
+def sci_icon(name: str) -> bytes:
+    """Flat original drawing for a science word (kind "sci")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=5, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    if name in ("orbit", "meteor", "telescope"):
+        d.rectangle((0, 0, W * s, H * s), fill=(15, 23, 42))
+        for k in range(40):
+            x, y = (k * 97) % 480, (k * 53) % 360
+            oval(x, y, x + 3, y + 3, (226, 232, 240), 0)
+    else:
+        d.rectangle((0, 300 * s, W * s, H * s), fill=(214, 196, 160))
+    if name == "orbit":
+        oval(210, 140, 270, 200, (250, 204, 21), 3)
+        d.ellipse((60 * s, 90 * s, 420 * s, 250 * s), outline=(148, 163, 184), width=4 * s)
+        oval(380, 150, 420, 190, (59, 130, 246), 3)
+        oval(392, 160, 402, 170, (74, 222, 128), 0)
+    elif name == "meteor":
+        poly([(110, 40), (300, 190), (280, 200)], (253, 186, 116))
+        line(120, 50, 300, 192, 10, (253, 224, 71))
+        oval(280, 170, 330, 220, (180, 83, 9), 3)
+        d.rectangle((0, 290 * s, W * s, H * s), fill=(30, 41, 59))
+        poly([(0, 290), (80, 250), (160, 290)], (30, 41, 59))
+        poly([(280, 290), (360, 240), (470, 290)], (30, 41, 59))
+    elif name == "telescope":
+        line(240, 220, 170, 330, 9, (148, 163, 184))
+        line(240, 220, 310, 330, 9, (148, 163, 184))
+        line(240, 220, 240, 330, 9, (148, 163, 184))
+        poly([(130, 90), (180, 70), (330, 160), (310, 200), (260, 190)], (226, 232, 240))
+        box(320, 150, 360, 210, (59, 130, 246), 6, 3)
+        oval(110, 70, 160, 120, (147, 197, 253), 3)
+        for (x, y) in ((60, 60), (400, 60), (420, 200)):
+            d.polygon(poly_star(x * s, y * s, 10 * s, 4 * s, 5), fill=(250, 204, 21))
+    elif name == "magnet":
+        d.arc((120 * s, 70 * s, 360 * s, 310 * s), 180, 360, fill=(220, 38, 38), width=60 * s)
+        box(120, 190, 180, 290, (220, 38, 38), 0, 4)
+        box(300, 190, 360, 290, (37, 99, 235), 0, 4)
+        box(120, 270, 180, 300, (226, 232, 240), 0, 3)
+        box(300, 270, 360, 300, (226, 232, 240), 0, 3)
+        for k in range(6):
+            line(130 + k * 22, 330, 136 + k * 22, 318, 3)
+    elif name == "test tube":
+        box(60, 200, 420, 240, (180, 120, 70), 6, 4)
+        for k, c in enumerate(((220, 38, 38), (37, 99, 235), (74, 222, 128), (250, 204, 21))):
+            x = 100 + k * 80
+            box(x, 80, x + 44, 240, (226, 240, 255), 18, 4)
+            box(x + 4, 150 - k * 8, x + 40, 236, c, 14, 0)
+        line(60, 240, 60, 320, 8, (120, 72, 36))
+        line(420, 240, 420, 320, 8, (120, 72, 36))
+    elif name == "experiment":
+        poly([(200, 70), (260, 70), (260, 150), (320, 270), (140, 270), (200, 150)], (200, 230, 250))
+        poly([(170, 220), (290, 220), (320, 270), (140, 270)], (134, 239, 172))
+        for (x, y, r) in ((230, 190, 10), (250, 170, 7), (215, 160, 6), (240, 120, 8)):
+            oval(x - r, y - r, x + r, y + r, (255, 255, 255), 2)
+        box(60, 270, 420, 300, (180, 120, 70), 6, 4)
+        box(340, 180, 390, 270, (255, 255, 255), 6, 3)
+        oval(350, 150, 380, 180, (250, 204, 21), 3)
+    elif name == "lab coat":
+        poly([(160, 50), (230, 30), (250, 60), (270, 30), (340, 50), (420, 130), (380, 170), (340, 120), (340, 320), (140, 320), (140, 120), (100, 170), (60, 130)], (255, 255, 255))
+        line(250, 60, 250, 320, 4)
+        box(160, 210, 210, 260, (226, 232, 240), 4, 3)
+        box(290, 210, 340, 260, (226, 232, 240), 4, 3)
+        oval(176, 150, 192, 166, (59, 130, 246), 2)
+        line(184, 160, 184, 200, 4, (59, 130, 246))
+    else:
+        raise SystemExit(f"unknown sci icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -2933,6 +3017,8 @@ def main() -> None:
             data = art_icon(val)
         elif kind == "city":
             data = city_icon(val)
+        elif kind == "sci":
+            data = sci_icon(val)
         elif kind == "scene":
             data = scene_image(card["term"], card.get("imageQuery", ""), i, manifest["set"]["code"])
         else:

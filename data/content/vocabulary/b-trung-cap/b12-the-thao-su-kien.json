@@ -1,0 +1,1242 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B12",
+    "name": "Thể thao & sự kiện",
+    "description": "#b1 #b2 #sports #events",
+    "topic": "Thể thao & sự kiện",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "referee",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "trọng tài",
+      "meaningEn": "the person who makes sure players follow the rules",
+      "examples": [
+        {
+          "text": "The referee blew the whistle to stop the game.",
+          "vi": "Trọng tài thổi còi để dừng trận đấu."
+        },
+        {
+          "text": "Nobody agreed with the referee's decision.",
+          "vi": "Không ai đồng ý với quyết định của trọng tài."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "football referee",
+          "vi": "trọng tài bóng đá"
+        },
+        {
+          "text": "referee's decision",
+          "vi": "quyết định của trọng tài"
+        }
+      ],
+      "imageQuery": "referee football match",
+      "image": {
+        "file": "b12/referee.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8731917/photo-image-public-domain-people",
+        "author": "U.S. Naval Academy",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "referee football match",
+        "sha256": "5af7fa4270b3ea27bd0ae56d04a4160385267d23102bc476b0c0570c765b78e8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˌɹɛf.əˈɹi/",
+      "ipaUk": "/ˌɹɛf.əˈɹiː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/referee",
+      "ipaVerified": true
+    },
+    {
+      "term": "whistle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cái còi",
+      "meaningEn": "a small tool that makes a high sound when you blow it",
+      "examples": [
+        {
+          "text": "The coach blew his whistle and the team stopped.",
+          "vi": "Huấn luyện viên thổi còi và đội dừng lại."
+        },
+        {
+          "text": "She wears a whistle around her neck.",
+          "vi": "Cô ấy đeo một cái còi quanh cổ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "blow a whistle",
+          "vi": "thổi còi"
+        },
+        {
+          "text": "referee's whistle",
+          "vi": "còi của trọng tài"
+        }
+      ],
+      "imageQuery": "whistle sports",
+      "image": {
+        "file": "b12/whistle.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6755518/png-sticker-vintage",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "whistle sports",
+        "sha256": "c6e137d6b2faf224f6119fc96c262119223e02f0bd082208b078798e7bfd9ec2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/wɪsl̩/",
+      "ipaUk": "/wɪsl̩/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/whistle",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents"
+    },
+    {
+      "term": "trophy",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cúp",
+      "meaningEn": "a prize, often a metal cup, given to a winner",
+      "examples": [
+        {
+          "text": "The captain lifted the trophy above his head.",
+          "vi": "Đội trưởng giơ cao chiếc cúp qua đầu."
+        },
+        {
+          "text": "Our school won the trophy for the first time.",
+          "vi": "Trường chúng tôi lần đầu đoạt cúp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "win a trophy",
+          "vi": "giành cúp"
+        },
+        {
+          "text": "gold trophy",
+          "vi": "chiếc cúp vàng"
+        }
+      ],
+      "imageQuery": "gold trophy cup",
+      "generate": {
+        "kind": "sport",
+        "value": "trophy"
+      },
+      "image": {
+        "file": "b12/trophy.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:trophy",
+        "sha256": "acfa1ec3526bd4ef60d1dbc94fdecceb276a365133c5b7f34351267d88e41eae",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈtɹoʊfi/",
+      "ipaUk": "/ˈtɹəʊfi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/trophy",
+      "ipaVerified": true
+    },
+    {
+      "term": "medal",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "huy chương",
+      "meaningEn": "a small metal disc given as a prize",
+      "examples": [
+        {
+          "text": "She won a gold medal at the Olympics.",
+          "vi": "Cô ấy giành huy chương vàng ở Thế vận hội."
+        },
+        {
+          "text": "The swimmers wore their medals proudly.",
+          "vi": "Các vận động viên bơi lội tự hào đeo huy chương."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "gold medal",
+          "vi": "huy chương vàng"
+        },
+        {
+          "text": "win a medal",
+          "vi": "giành huy chương"
+        }
+      ],
+      "imageQuery": "gold medal athlete",
+      "generate": {
+        "kind": "sport",
+        "value": "medal"
+      },
+      "image": {
+        "file": "b12/medal.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:medal",
+        "sha256": "7194ac528533568126bbf3487552faaba9ab27a2e8ef248855c67a3bb71e8669",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈmɛɾ.ɫ̩/",
+      "ipaUk": "/ˈmɛdəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/medal",
+      "ipaVerified": true
+    },
+    {
+      "term": "podium",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bục nhận giải",
+      "meaningEn": "a small platform where winners stand to get their prizes",
+      "examples": [
+        {
+          "text": "The three runners stood on the podium.",
+          "vi": "Ba vận động viên chạy đứng trên bục nhận giải."
+        },
+        {
+          "text": "He was proud to step onto the podium.",
+          "vi": "Anh ấy tự hào bước lên bục nhận giải."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "stand on the podium",
+          "vi": "đứng trên bục nhận giải"
+        },
+        {
+          "text": "winners' podium",
+          "vi": "bục của người thắng cuộc"
+        }
+      ],
+      "imageQuery": "winners podium medals",
+      "generate": {
+        "kind": "sport",
+        "value": "podium"
+      },
+      "image": {
+        "file": "b12/podium.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:podium",
+        "sha256": "5458fb66e4f02f320dbd9ccd584bced80fcbfb16091cb56d0eeb53b5b624d868",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpoʊ.di.əm/",
+      "ipaUk": "/ˈpəʊ.di.əm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/podium",
+      "ipaVerified": true
+    },
+    {
+      "term": "scoreboard",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bảng tỷ số",
+      "meaningEn": "a large board that shows the score of a game",
+      "examples": [
+        {
+          "text": "The scoreboard shows that we are winning two to one.",
+          "vi": "Bảng tỷ số cho thấy chúng tôi đang dẫn hai một."
+        },
+        {
+          "text": "Everyone looked at the scoreboard.",
+          "vi": "Mọi người nhìn lên bảng tỷ số."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "electronic scoreboard",
+          "vi": "bảng tỷ số điện tử"
+        },
+        {
+          "text": "check the scoreboard",
+          "vi": "xem bảng tỷ số"
+        }
+      ],
+      "imageQuery": "stadium scoreboard",
+      "generate": {
+        "kind": "sport",
+        "value": "scoreboard"
+      },
+      "image": {
+        "file": "b12/scoreboard.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:scoreboard",
+        "sha256": "135fa4dbc40b8187b1b518ad961c18b32b6c38f5cf6f3bc72a6a75b20d051399",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "goalkeeper",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "thủ môn",
+      "meaningEn": "the player who stops the ball from going into the goal",
+      "examples": [
+        {
+          "text": "The goalkeeper jumped and caught the ball.",
+          "vi": "Thủ môn bật nhảy và bắt được bóng."
+        },
+        {
+          "text": "Our goalkeeper saved two penalties.",
+          "vi": "Thủ môn của chúng tôi cản phá hai quả phạt đền."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "save by the goalkeeper",
+          "vi": "pha cản phá của thủ môn"
+        },
+        {
+          "text": "goalkeeper gloves",
+          "vi": "găng tay thủ môn"
+        }
+      ],
+      "imageQuery": "goalkeeper diving ball",
+      "generate": {
+        "kind": "sport",
+        "value": "goalkeeper"
+      },
+      "image": {
+        "file": "b12/goalkeeper.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:goalkeeper",
+        "sha256": "ec164d67ab103b8a1136bd49ea63f5b7050c4359bab212e031f417630a08ca7d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈɡoʊl.kiːpɚ/",
+      "ipaUk": "/ˈɡəʊlˌkiː.pə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/goalkeeper",
+      "ipaVerified": true
+    },
+    {
+      "term": "penalty",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "quả phạt đền",
+      "meaningEn": "a free kick at the goal given after a serious foul",
+      "examples": [
+        {
+          "text": "He scored a penalty in the last minute.",
+          "vi": "Anh ấy ghi bàn từ quả phạt đền ở phút cuối."
+        },
+        {
+          "text": "The referee gave a penalty to the home team.",
+          "vi": "Trọng tài cho đội nhà hưởng quả phạt đền."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "take a penalty",
+          "vi": "đá phạt đền"
+        },
+        {
+          "text": "penalty kick",
+          "vi": "cú đá phạt đền"
+        }
+      ],
+      "imageQuery": "penalty kick football",
+      "generate": {
+        "kind": "sport",
+        "value": "penalty"
+      },
+      "image": {
+        "file": "b12/penalty.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:penalty",
+        "sha256": "90e02d85b867af9dd9918c76a60a06761a976c99c00e810a4185128caac3160e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpɛn.əl.ti/",
+      "ipaUk": "/ˈpɛn.əl.ti/",
+      "ipaSource": "https://en.wiktionary.org/wiki/penalty",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents"
+    },
+    {
+      "term": "coach",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "huấn luyện viên",
+      "meaningEn": "a person who trains a sports team or player",
+      "examples": [
+        {
+          "text": "Our coach is very strict but fair.",
+          "vi": "Huấn luyện viên của chúng tôi rất nghiêm nhưng công bằng."
+        },
+        {
+          "text": "The coach gave the players some advice.",
+          "vi": "Huấn luyện viên đưa ra vài lời khuyên cho các cầu thủ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "football coach",
+          "vi": "huấn luyện viên bóng đá"
+        },
+        {
+          "text": "head coach",
+          "vi": "huấn luyện viên trưởng"
+        }
+      ],
+      "imageQuery": "coach team training",
+      "generate": {
+        "kind": "sport",
+        "value": "coach"
+      },
+      "image": {
+        "file": "b12/coach.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:coach",
+        "sha256": "2ae89c9a5e103a9f3bff523655e7da626c3378f231bd832b46c98bc8c8e93adf",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/koʊt͡ʃ/",
+      "ipaUk": "/kəʊt͡ʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/coach",
+      "ipaVerified": true
+    },
+    {
+      "term": "tournament",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "giải đấu",
+      "meaningEn": "a competition in which many players or teams play against each other",
+      "examples": [
+        {
+          "text": "Our school is hosting a football tournament.",
+          "vi": "Trường chúng tôi đang tổ chức một giải bóng đá."
+        },
+        {
+          "text": "She won the tennis tournament in Paris.",
+          "vi": "Cô ấy vô địch giải quần vợt ở Paris."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "win a tournament",
+          "vi": "vô địch giải đấu"
+        },
+        {
+          "text": "knockout tournament",
+          "vi": "giải đấu loại trực tiếp"
+        }
+      ],
+      "imageQuery": "tournament sports bracket",
+      "generate": {
+        "kind": "sport",
+        "value": "tournament"
+      },
+      "image": {
+        "file": "b12/tournament.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:tournament",
+        "sha256": "d22c56a137d33df962e3342c2bdb96d498c27567c5a53440c39c8f606ceac9c7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈtʊɹnəmənt/",
+      "ipaUk": "/ˈtʊənəmənt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tournament",
+      "ipaVerified": true
+    },
+    {
+      "term": "champion",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhà vô địch",
+      "meaningEn": "the person or team that wins a competition",
+      "examples": [
+        {
+          "text": "The champion received a gold medal.",
+          "vi": "Nhà vô địch nhận một huy chương vàng."
+        },
+        {
+          "text": "Our team became the national champion.",
+          "vi": "Đội của chúng tôi trở thành nhà vô địch quốc gia."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "world champion",
+          "vi": "nhà vô địch thế giới"
+        },
+        {
+          "text": "defending champion",
+          "vi": "nhà đương kim vô địch"
+        }
+      ],
+      "imageQuery": "champion celebrating trophy",
+      "generate": {
+        "kind": "sport",
+        "value": "champion"
+      },
+      "image": {
+        "file": "b12/champion.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:champion",
+        "sha256": "7d1afdfae229b3d0666dc2c9b5ecb41453b6bd57ad2a6e3d138b5ad53f91017b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈt͡ʃæm.pi.ən/",
+      "ipaUk": "/ˈt͡ʃæm.pi.ən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/champion",
+      "ipaVerified": true
+    },
+    {
+      "term": "mascot",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "linh vật",
+      "meaningEn": "a person or animal costume that brings luck to a team",
+      "examples": [
+        {
+          "text": "The team mascot danced in front of the crowd.",
+          "vi": "Linh vật của đội nhảy múa trước đám đông."
+        },
+        {
+          "text": "Children love taking photos with the mascot.",
+          "vi": "Trẻ em thích chụp ảnh với linh vật."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "team mascot",
+          "vi": "linh vật của đội"
+        },
+        {
+          "text": "school mascot",
+          "vi": "linh vật của trường"
+        }
+      ],
+      "imageQuery": "team mascot costume",
+      "image": {
+        "file": "b12/mascot.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:US_Navy_051130-N-9693M-001_The_U.S._Naval_Academy_mascot_Bill_the_Goat_and_the_cheerleader_squad_performs_a_cheer_in_the_Pentagon_courtyard_during_a_Pep-Rally.jpg",
+        "author": "U.S. Navy photo by Mr. Damon Moritz",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "team mascot costume",
+        "sha256": "65c40eae03bb57a2440d56be0274cf34dafce3d3c99ecf3ef63cd6cbc6f03799",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈmæsˌkɑːt/",
+      "ipaUk": "/ˈmæsˌkɒt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mascot",
+      "ipaVerified": true
+    },
+    {
+      "term": "spectator",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "khán giả xem thi đấu",
+      "meaningEn": "a person who watches a sports event",
+      "examples": [
+        {
+          "text": "Spectators filled the seats around the pitch.",
+          "vi": "Khán giả ngồi kín các hàng ghế quanh sân."
+        },
+        {
+          "text": "Only a few spectators came to the match.",
+          "vi": "Chỉ có vài khán giả đến xem trận đấu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "thousands of spectators",
+          "vi": "hàng nghìn khán giả"
+        },
+        {
+          "text": "spectator stand",
+          "vi": "khán đài"
+        }
+      ],
+      "imageQuery": "spectators stands match",
+      "image": {
+        "file": "b12/spectator.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Spectators_at_open_stand,_TCA_Ground,_Hobart,_1960.jpg",
+        "author": "Agent-General's Office (Tasmania)",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "spectators stands match",
+        "sha256": "caae394bdd3a8f0cdfa75c42ab03540a18c69d5569d9b6c402345d3e4976f710",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈspɛkteɪtɚ/",
+      "ipaUk": "/spɛkˈteɪtə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/spectator",
+      "ipaVerified": true
+    },
+    {
+      "term": "jersey",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "áo thi đấu",
+      "meaningEn": "a shirt worn by a sports player",
+      "examples": [
+        {
+          "text": "He wore a red jersey with the number ten.",
+          "vi": "Anh ấy mặc chiếc áo thi đấu màu đỏ số mười."
+        },
+        {
+          "text": "I bought a jersey of my favourite team.",
+          "vi": "Tôi mua một chiếc áo thi đấu của đội yêu thích."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "football jersey",
+          "vi": "áo bóng đá"
+        },
+        {
+          "text": "team jersey",
+          "vi": "áo đồng phục đội"
+        }
+      ],
+      "imageQuery": "football jersey number",
+      "generate": {
+        "kind": "sport",
+        "value": "jersey"
+      },
+      "image": {
+        "file": "b12/jersey.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:jersey",
+        "sha256": "47c473b8633782d327fa154adba5f07f6c196bdfbcbc4ed602afb6f46a342aa2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈd͡ʒɝzi/",
+      "ipaUk": "/ˈd͡ʒɜːzi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/jersey",
+      "ipaVerified": true
+    },
+    {
+      "term": "helmet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "mũ bảo hiểm",
+      "meaningEn": "a hard hat that protects your head",
+      "examples": [
+        {
+          "text": "Always wear a helmet when you ride a bike.",
+          "vi": "Hãy luôn đội mũ bảo hiểm khi đi xe đạp."
+        },
+        {
+          "text": "The cyclist took off his helmet.",
+          "vi": "Vận động viên đạp xe cởi mũ bảo hiểm ra."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wear a helmet",
+          "vi": "đội mũ bảo hiểm"
+        },
+        {
+          "text": "bike helmet",
+          "vi": "mũ bảo hiểm xe đạp"
+        }
+      ],
+      "imageQuery": "bike helmet",
+      "image": {
+        "file": "b12/helmet.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6036433/photo-image-public-domain-neon-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bike helmet",
+        "sha256": "0c4ca790f8a9f674161e1ef6f4a300ccdcb82cb6978807ed35724cd846256738",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈhɛlmɪt/",
+      "ipaUk": "/ˈhɛlmɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/helmet",
+      "ipaVerified": true
+    },
+    {
+      "term": "racket",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cây vợt",
+      "meaningEn": "an object with strings used to hit a ball or shuttlecock",
+      "examples": [
+        {
+          "text": "She bought a new tennis racket yesterday.",
+          "vi": "Hôm qua cô ấy mua một cây vợt tennis mới."
+        },
+        {
+          "text": "He swung the racket and hit the ball hard.",
+          "vi": "Anh ấy vung vợt và đánh quả bóng thật mạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "tennis racket",
+          "vi": "vợt tennis"
+        },
+        {
+          "text": "swing a racket",
+          "vi": "vung vợt"
+        }
+      ],
+      "imageQuery": "tennis racket ball",
+      "image": {
+        "file": "b12/racket.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5902842/photo-image-public-domain-green-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "tennis racket ball",
+        "sha256": "6cc5651523df52f60a6cc8e430b2ade5d5a8b865488d593a4fa5f1b25f32e38f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈɹækɪt/",
+      "ipaUk": "/ˈɹækɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/racket",
+      "ipaVerified": true
+    },
+    {
+      "term": "finish line",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "vạch đích",
+      "meaningEn": "the line where a race ends",
+      "examples": [
+        {
+          "text": "She crossed the finish line first.",
+          "vi": "Cô ấy về đích đầu tiên khi băng qua vạch đích."
+        },
+        {
+          "text": "The runners were close to the finish line.",
+          "vi": "Các vận động viên chạy đã gần tới vạch đích."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cross the finish line",
+          "vi": "băng qua vạch đích"
+        },
+        {
+          "text": "reach the finish line",
+          "vi": "chạm vạch đích"
+        }
+      ],
+      "imageQuery": "finish line race runners",
+      "generate": {
+        "kind": "sport",
+        "value": "finish line"
+      },
+      "image": {
+        "file": "b12/finish-line.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:finish line",
+        "sha256": "93fbd2509ad07fa9fd24ecaadbed3cbe14de4d48a05bbf350147a8f78940ac54",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈfɪnɪʃ laɪn/",
+      "ipaUk": "/ˈfɪnɪʃ laɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/finish + https://en.wiktionary.org/wiki/line",
+      "ipaVerified": true
+    },
+    {
+      "term": "stopwatch",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đồng hồ bấm giờ",
+      "meaningEn": "a small clock that measures how long something takes",
+      "examples": [
+        {
+          "text": "The coach pressed the stopwatch when I started.",
+          "vi": "Huấn luyện viên bấm đồng hồ khi tôi bắt đầu chạy."
+        },
+        {
+          "text": "He checked the stopwatch after the race.",
+          "vi": "Anh ấy xem đồng hồ bấm giờ sau cuộc đua."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "press the stopwatch",
+          "vi": "bấm đồng hồ bấm giờ"
+        },
+        {
+          "text": "digital stopwatch",
+          "vi": "đồng hồ bấm giờ điện tử"
+        }
+      ],
+      "imageQuery": "stopwatch",
+      "image": {
+        "file": "b12/stopwatch.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6031270/photo-image-public-domain-white-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "stopwatch",
+        "sha256": "74c6813cd5a90bca2b32de2896c87099cb1f86711d7cdf1867422a34ac41dd55",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "athlete",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "vận động viên",
+      "meaningEn": "a person who is good at sport and competes in it",
+      "examples": [
+        {
+          "text": "The young athlete trains six days a week.",
+          "vi": "Vận động viên trẻ tập luyện sáu ngày mỗi tuần."
+        },
+        {
+          "text": "Athletes from many countries came to the games.",
+          "vi": "Các vận động viên từ nhiều quốc gia đến dự đại hội."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "professional athlete",
+          "vi": "vận động viên chuyên nghiệp"
+        },
+        {
+          "text": "Olympic athlete",
+          "vi": "vận động viên Olympic"
+        }
+      ],
+      "imageQuery": "athlete running track",
+      "generate": {
+        "kind": "sport",
+        "value": "athlete"
+      },
+      "image": {
+        "file": "b12/athlete.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:athlete",
+        "sha256": "13cf0dce737535ada8dfb6cf1fa465336a75232849ae728480b47d794b2693ac",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈæθ.lit/",
+      "ipaUk": "/ˈæθ.liːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/athlete",
+      "ipaVerified": true
+    },
+    {
+      "term": "running track",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đường chạy",
+      "meaningEn": "an oval path where people run races",
+      "examples": [
+        {
+          "text": "The running track is next to the football pitch.",
+          "vi": "Đường chạy nằm cạnh sân bóng."
+        },
+        {
+          "text": "We ran four laps around the running track.",
+          "vi": "Chúng tôi chạy bốn vòng quanh đường chạy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "around the running track",
+          "vi": "quanh đường chạy"
+        },
+        {
+          "text": "outdoor running track",
+          "vi": "đường chạy ngoài trời"
+        }
+      ],
+      "imageQuery": "running track stadium",
+      "image": {
+        "file": "b12/running-track.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Running_track_near_Japan_National_Stadium_2.jpg",
+        "author": "Syced",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "running track stadium",
+        "sha256": "bf1877610247f991dcd7fb637780fff7cb2356aa1eafc80e33461d4223ce158c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈɹʌnɪŋ tɹæk/",
+      "ipaUk": "/ˈɹʌnɪŋ ˈtɹæk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/running + https://api.dictionaryapi.dev/api/v2/entries/en/track ; https://en.wiktionary.org/wiki/running + https://en.wiktionary.org/wiki/track",
+      "ipaVerified": true
+    },
+    {
+      "term": "relay race",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "chạy tiếp sức",
+      "meaningEn": "a race in which team members take turns to run",
+      "examples": [
+        {
+          "text": "Our team won the relay race.",
+          "vi": "Đội chúng tôi thắng cuộc chạy tiếp sức."
+        },
+        {
+          "text": "He passed the baton in the relay race.",
+          "vi": "Anh ấy chuyền gậy trong cuộc chạy tiếp sức."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "run in a relay race",
+          "vi": "chạy tiếp sức"
+        },
+        {
+          "text": "relay race team",
+          "vi": "đội chạy tiếp sức"
+        }
+      ],
+      "imageQuery": "relay race baton runners",
+      "generate": {
+        "kind": "sport",
+        "value": "relay race"
+      },
+      "image": {
+        "file": "b12/relay-race.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:relay race",
+        "sha256": "dac22f723fee5d85e539912558c717c29a5d62d9ce938e857014cf77306b2cd7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˌɹiˈleɪ ɹeɪs/",
+      "ipaUk": "/ˌɹiːˈleɪ ɹeɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/relay + https://en.wiktionary.org/wiki/race",
+      "ipaVerified": true
+    },
+    {
+      "term": "parade",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cuộc diễu hành",
+      "meaningEn": "a public event in which people walk through the streets",
+      "examples": [
+        {
+          "text": "A colourful parade went through the town.",
+          "vi": "Một cuộc diễu hành đầy màu sắc đi qua thị trấn."
+        },
+        {
+          "text": "Children watched the parade from the pavement.",
+          "vi": "Trẻ em xem diễu hành từ vỉa hè."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "watch a parade",
+          "vi": "xem diễu hành"
+        },
+        {
+          "text": "street parade",
+          "vi": "diễu hành đường phố"
+        }
+      ],
+      "imageQuery": "street parade festival",
+      "generate": {
+        "kind": "sport",
+        "value": "parade"
+      },
+      "image": {
+        "file": "b12/parade.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:parade",
+        "sha256": "e5590c53c6071dee66972ca2ac3c868702f588a91049c9e71e6d41eabe472d4b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/pəˈrɑd/",
+      "ipaUk": "/pəˈrɑːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/parade",
+      "ipaVerified": true
+    },
+    {
+      "term": "fireworks",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "pháo hoa",
+      "meaningEn": "small explosives that make bright colours in the night sky",
+      "examples": [
+        {
+          "text": "We watched the fireworks on New Year's Eve.",
+          "vi": "Chúng tôi xem pháo hoa vào đêm giao thừa."
+        },
+        {
+          "text": "The fireworks lit up the whole sky.",
+          "vi": "Pháo hoa thắp sáng cả bầu trời."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fireworks display",
+          "vi": "màn trình diễn pháo hoa"
+        },
+        {
+          "text": "watch the fireworks",
+          "vi": "xem pháo hoa"
+        }
+      ],
+      "imageQuery": "fireworks night sky",
+      "image": {
+        "file": "b12/fireworks.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6038039/photo-image-lights-public-domain-celebration",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "fireworks night sky",
+        "sha256": "2a0caa23033d04ff31a1f1aae07aaecd5a768502b90e7ced5ed0630fa79a6e20",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈfaɪ̯.ɚ.wɝks/",
+      "ipaUk": "/ˈfaɪ̯.ə.wɜːks/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fireworks",
+      "ipaVerified": true
+    },
+    {
+      "term": "marching band",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "ban nhạc diễu hành",
+      "meaningEn": "a group of musicians who play while they walk",
+      "examples": [
+        {
+          "text": "The marching band led the parade.",
+          "vi": "Ban nhạc diễu hành dẫn đầu cuộc diễu hành."
+        },
+        {
+          "text": "The marching band practises every afternoon.",
+          "vi": "Ban nhạc diễu hành tập luyện mỗi buổi chiều."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "school marching band",
+          "vi": "ban nhạc diễu hành của trường"
+        },
+        {
+          "text": "join the marching band",
+          "vi": "tham gia ban nhạc diễu hành"
+        }
+      ],
+      "imageQuery": "marching band parade",
+      "image": {
+        "file": "b12/marching-band.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/60455048@N02/36327201332",
+        "author": "Queensland State Archives",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "marching band parade",
+        "sha256": "c83d28d2163f6266e7e9279c0ffa15e28b86a9d33000e929d46a044c6ea060c7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈmɑɹt͡ʃɪŋ bænd/",
+      "ipaUk": "/ˈmɑːt͡ʃɪŋ bænd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/marching + https://en.wiktionary.org/wiki/band",
+      "ipaVerified": true
+    },
+    {
+      "term": "birthday party",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "tiệc sinh nhật",
+      "meaningEn": "a gathering to celebrate the day someone was born",
+      "examples": [
+        {
+          "text": "Her birthday party was full of balloons.",
+          "vi": "Tiệc sinh nhật của cô ấy đầy bóng bay."
+        },
+        {
+          "text": "I am going to Tom's birthday party on Saturday.",
+          "vi": "Tôi sẽ đi dự tiệc sinh nhật của Tom vào thứ Bảy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "have a birthday party",
+          "vi": "tổ chức tiệc sinh nhật"
+        },
+        {
+          "text": "surprise birthday party",
+          "vi": "tiệc sinh nhật bất ngờ"
+        }
+      ],
+      "imageQuery": "birthday party cake balloons",
+      "generate": {
+        "kind": "sport",
+        "value": "birthday party"
+      },
+      "image": {
+        "file": "b12/birthday-party.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:sport:birthday party",
+        "sha256": "c50424e46768273856ed3ca83f31baa1b0bc1ef5532abdf39d50ffc077728eb5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈbɝθˌdeɪ ˈpɑɹti/",
+      "ipaUk": "/ˈbɜːθ.deɪ ˈpɑːti/",
+      "ipaSource": "https://en.wiktionary.org/wiki/birthday + https://en.wiktionary.org/wiki/party",
+      "ipaVerified": true
+    }
+  ]
+}
