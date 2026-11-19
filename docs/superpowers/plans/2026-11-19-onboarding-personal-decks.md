@@ -797,3 +797,24 @@ Real app (Release, port 5100), headless Chrome, new synthetic accounts registere
 ### 12.10 S9 gate record (docs)
 
 Written: `docs/features/onboarding.md` (new), tracker row "Onboarding lần đầu (pop-up)" in `docs/design-system/team-ui-workflow.md` section 6, `.ai/context/known-issues.md` entry `ONBOARDING-SHARED-FILES` (the items for Châu: the one-line Home include, the DbContext line and partial file, the two `Program.cs` DI lines, the migration, the eligibility date, the mosaic covers on every personal set, the greeting name), `docs/project-structure.md`, and a `.ai/context/bug-fix-log.md` entry for the caption contrast defect found at S7. The plan names `docs/known-issues.md`; the repository's file is `.ai/context/known-issues.md` (AGENTS.md), so that one was used. Encoding guard passed.
+
+### 12.11 S10 final gate and self-review (2026-11-20)
+
+**Commands and results (local only)**
+- Build (Debug and Release): 0 errors. `has-pending-model-changes`: none. Exactly one new migration `20261119151230_AddUserOnboarding` (one `CreateTable`, one `DropTable` in `Down`).
+- Node (`node --test scripts/tests/test_*.cjs`): **588 passed**, 0 failed (baseline 570, +18).
+- .NET: all onboarding tests **116 passed**, 0 failed (schema 3, ranking and catalogue 42, service 33, API 21, render 7 plus the catalogue endpoint, set pages 10). Bounded regression subset (Onboarding, PersonalSet, Folder, Vocabulary, SetCard, Clone; 1 thread): **540 passed, 1 skipped, 0 failed**. The **last complete .NET run** (after S3): **3723 passed**, 0 failed, 58 skipped (baseline 3645). **A complete run after S4–S9 was not obtained:** the host stopped the S6 run because the machine was critically low on memory and it was not restarted on request of that notice; it must be run once on a machine with free memory before merging.
+- Performance (G16), measured on the real app: preview 12–14 ms (5 calls, limit 300 ms); create 42 ms for 3 decks / 75 cards (limit 1.5 s). The 4 × 25 worst case was not reached because the builder merged one group; the query count of the preview is asserted constant (at most 8 SELECTs) and the set-pages mosaic query is asserted constant for 1 and 51 sets.
+- Static gates: no hex/rgb in `onboarding.css`, no `innerHTML`/`eval`/inline handler (guarded by `test_onboarding_assets.cjs`), no inline style in the new views, `git diff --check` clean (the only warning is the owner's untouched `appsettings.Development.json`), encoding guard passed.
+- Scope: no forbidden file touched; `Views/Home/Index.cshtml` +1 line, `Program.cs` +2 DI lines, `DbflashcardContext.cs` +1 line; additions to the plan's file list: `Views/Set/_FolderTile.cshtml`, `Views/Set/_StarterRefill.cshtml`, `onboarding-refill.js`, the 8th route `GET api/onboarding/catalog`, three extra columns of the same table (12.2).
+
+**Self-review against section 10**
+- [x] Section 3 implemented for laptop and phone; differences from the mockups are recorded in 12.6, 12.7 and 12.8.
+- [x] The decks are ordinary private personal sets with every study mode; cards are complete copies (0 differences in SQL over all fields on 56 real cards); the system library is unchanged.
+- [x] Eligibility, prompt and skip rules (D4, D5) are proven by `OnboardingServiceTests`.
+- [x] One clean migration; `has-pending-model-changes` none; no forbidden file; the Home include is one line.
+- [~] G1–G16: green per phase with the exceptions written in the records: G3 (a complete .NET run after S3 is missing, see above); G13 regression pages were exercised in scripted runs, the study modes in S8. Safari and Firefox were not checked.
+- [x] End-to-end S8 passes; test decks and folders deleted; 13 synthetic accounts `onb-*@tct.local` remain in the local Docker database (no sets).
+- [x] Docs written; section 12 complete.
+
+**Not verified:** the full .NET suite after S3; two requests with the same request id at the same instant on MariaDB (design relies on the InnoDB row lock); Safari and Firefox; a real teammate's machine; anything on staging or production (nothing was pushed, opened as a PR or deployed).
