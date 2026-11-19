@@ -1706,6 +1706,149 @@ def travel_icon(name: str) -> bytes:
     return finish(img)
 
 
+def shop_icon(name: str) -> bytes:
+    """Flat original drawing for a shopping or money word (kind "shop")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=6, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    def text(x, y, t, size, col=L):
+        d.text((x * s, y * s), t, fill=col, font=_big_font(size * s))
+
+    GREEN, GOLD = (22, 163, 74), (250, 204, 21)
+    if name == "coupon":
+        poly([(50, 110), (430, 110), (430, 150), (412, 170), (430, 190), (430, 250), (50, 250), (50, 190), (68, 170), (50, 150)], (254, 226, 226))
+        d.line([(300 * s, 116 * s), (300 * s, 244 * s)], fill=(220, 38, 38), width=3 * s)
+        text(80, 128, "20%", 74, (220, 38, 38))
+        text(88, 210, "OFF", 30, (220, 38, 38))
+        for k in range(5):
+            line(320, 140 + k * 22, 410, 140 + k * 22, 4, (220, 38, 38))
+    elif name == "bargain":
+        box(70, 130, 330, 290, (254, 243, 199), 8)
+        for k in range(4):
+            poly([(60 + k * 66, 90), (126 + k * 66, 90), (126 + k * 66, 130), (60 + k * 66, 130)], (220, 38, 38) if k % 2 == 0 else (255, 255, 255))
+        box(110, 190, 190, 270, (251, 146, 60), 8)
+        oval(220, 200, 290, 270, (74, 222, 128), 3)
+        poly([(350, 120), (420, 120), (440, 160), (420, 200), (350, 200), (370, 160)], (250, 204, 21))
+        text(368, 138, "$", 46)
+    elif name == "credit card":
+        box(60, 80, 420, 280, (59, 130, 246), 20, 4)
+        box(60, 120, 420, 160, (30, 41, 59), 0, 0)
+        box(90, 190, 160, 230, GOLD, 8, 3)
+        for k in range(4):
+            line(190 + k * 54, 250, 220 + k * 54, 250, 6, (219, 234, 254))
+        oval(340, 200, 380, 240, (239, 68, 68), 0)
+        oval(360, 200, 400, 240, (251, 146, 60), 0)
+    elif name == "wallet":
+        box(70, 100, 410, 290, (146, 83, 36), 22, 4)
+        box(70, 100, 410, 160, (180, 105, 50), 22, 4)
+        box(320, 180, 410, 240, (120, 70, 30), 14, 4)
+        oval(350, 200, 376, 226, GOLD, 3)
+        d.line([(90 * s, 252 * s), (300 * s, 252 * s)], fill=(250, 213, 172), width=3 * s)
+        box(160, 70, 300, 110, (74, 222, 128), 4, 3)
+        text(204, 74, "$", 34)
+    elif name == "bank account":
+        poly([(240, 40), (60, 120), (420, 120)], (226, 232, 240))
+        for k in range(5):
+            box(84 + k * 66, 130, 104 + k * 66, 250, (248, 250, 252), 2, 3)
+        box(60, 250, 420, 280, (203, 213, 225), 2, 3)
+        box(40, 280, 440, 304, (148, 163, 184), 2, 3)
+        oval(220, 70, 260, 110, GOLD, 3)
+        text(232, 70, "$", 32)
+    elif name == "ATM":
+        box(130, 40, 350, 320, (71, 85, 105), 16, 4)
+        box(160, 70, 320, 150, (96, 165, 250), 6, 3)
+        text(204, 84, "ATM", 40, (255, 255, 255))
+        for r_ in range(3):
+            for c_ in range(3):
+                box(170 + c_ * 40, 170 + r_ * 26, 198 + c_ * 40, 190 + r_ * 26, (226, 232, 240), 3, 2)
+        box(290, 200, 320, 212, (15, 23, 42), 2, 0)
+        box(170, 262, 310, 290, (15, 23, 42), 4, 0)
+        box(186, 268, 294, 284, (74, 222, 128), 2, 0)
+    elif name == "price tag":
+        poly([(110, 80), (330, 80), (420, 180), (330, 280), (110, 280)], (250, 204, 21))
+        oval(130, 160, 170, 200, BG, 3)
+        text(190, 124, "$9", 96)
+        d.line([(150 * s, 180 * s), (60 * s, 100 * s)], fill=L, width=3 * s)
+    elif name == "fitting room":
+        box(90, 50, 390, 320, (186, 230, 253), 8, 4)
+        box(110, 70, 370, 150, (226, 232, 240), 4, 0)
+        poly([(160, 140), (320, 140), (330, 320), (150, 320)], (252, 165, 165))
+        d.line([(160 * s, 140 * s), (160 * s, 320 * s)], fill=L, width=3 * s)
+        d.line([(320 * s, 140 * s), (320 * s, 320 * s)], fill=L, width=3 * s)
+        for k in range(4):
+            line(190 + k * 40, 140, 190 + k * 40, 316, 3, (239, 68, 68))
+        box(200, 40, 280, 70, GOLD, 6, 3)
+        text(214, 42, "FIT", 24)
+    elif name == "sale":
+        d.polygon(poly_star(240 * s, 180 * s, 150 * s, 118 * s, 14), fill=(220, 38, 38), outline=L)
+        text(160, 118, "SALE", 72, (255, 255, 255))
+        text(176, 218, "-50%", 50, GOLD)
+    elif name == "customer":
+        _person(d, 140, 50, 2.6, "f", (219, 39, 119))
+        box(250, 140, 400, 240, (30, 41, 59), 8, 3)
+        box(264, 154, 386, 200, (147, 197, 253), 4, 2)
+        d.rectangle((230 * s, 240 * s, 420 * s, 300 * s), fill=(148, 163, 184), outline=L, width=3 * s)
+        box(250, 250, 300, 290, (74, 222, 128), 4, 2)
+        oval(190, 220, 230, 260, GOLD, 3)
+    elif name == "gift card":
+        box(60, 90, 420, 270, (244, 114, 182), 18, 4)
+        box(60, 160, 420, 190, (255, 255, 255), 0, 0)
+        box(210, 90, 270, 270, (253, 224, 71), 0, 0)
+        box(60, 160, 420, 190, (253, 224, 71), 0, 0)
+        poly([(240, 90), (200, 50), (170, 80), (240, 90)], (253, 224, 71))
+        poly([(240, 90), (280, 50), (310, 80), (240, 90)], (253, 224, 71))
+        d.rectangle((60 * s, 90 * s, 420 * s, 270 * s), outline=L, width=4 * s)
+    elif name == "shopping list":
+        box(130, 40, 350, 320, (254, 249, 195), 10, 4)
+        for k in range(5):
+            box(158, 84 + k * 46, 180, 106 + k * 46, (255, 255, 255), 3, 3)
+            line(200, 96 + k * 46, 320 - (k % 3) * 30, 96 + k * 46, 5, (148, 163, 184))
+        line(160, 96, 174, 108, 4, GREEN)
+        line(174, 108, 184, 82, 4, GREEN)
+        line(160, 142, 174, 154, 4, GREEN)
+        line(174, 154, 184, 128, 4, GREEN)
+    elif name == "shopping bag":
+        d.arc((180 * s, 30 * s, 300 * s, 160 * s), 180, 360, fill=L, width=8 * s)
+        poly([(120, 100), (360, 100), (384, 320), (96, 320)], (251, 146, 60))
+        oval(160, 80, 184, 104, (255, 255, 255), 3)
+        oval(296, 80, 320, 104, (255, 255, 255), 3)
+        text(200, 190, "$", 80, (255, 255, 255))
+    elif name == "tip":
+        oval(150, 130, 330, 300, (203, 213, 225), 4)
+        d.rectangle((152 * s, 130 * s, 328 * s, 160 * s), fill=BG)
+        box(130, 112, 350, 144, (148, 163, 184), 8, 4)
+        for (cx, cy) in ((190, 270), (250, 276), (300, 262), (220, 236)):
+            oval(cx - 20, cy - 20, cx + 20, cy + 20, GOLD, 3)
+        text(222, 74, "TIP", 34)
+        oval(300, 40, 340, 80, GOLD, 3)
+        line(298, 64, 340, 40, 1)
+    elif name == "bill":
+        poly([(150, 40), (330, 40), (330, 320), (310, 304), (290, 320), (270, 304), (250, 320), (230, 304), (210, 320), (190, 304), (170, 320), (150, 304)], (255, 255, 255))
+        text(184, 56, "BILL", 40)
+        for k in range(5):
+            line(176, 128 + k * 30, 250, 128 + k * 30, 4, (148, 163, 184))
+            line(270, 128 + k * 30, 304, 128 + k * 30, 4, (148, 163, 184))
+        line(176, 278, 304, 278, 3)
+    else:
+        raise SystemExit(f"unknown shop icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -1756,6 +1899,8 @@ def main() -> None:
             data = eco_icon(val)
         elif kind == "travel":
             data = travel_icon(val)
+        elif kind == "shop":
+            data = shop_icon(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"

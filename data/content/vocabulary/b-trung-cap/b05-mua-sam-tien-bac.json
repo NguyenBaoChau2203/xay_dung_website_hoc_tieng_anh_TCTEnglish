@@ -1,0 +1,1264 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B05",
+    "name": "Mua sắm & tiền bạc",
+    "description": "#b1 #b2 #shopping #money",
+    "topic": "Mua sắm & tiền bạc",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "receipt",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "hóa đơn mua hàng",
+      "meaningEn": "a piece of paper that shows what you bought and paid for",
+      "examples": [
+        {
+          "text": "Keep the receipt in case you want to return it.",
+          "vi": "Hãy giữ hóa đơn phòng khi bạn muốn trả lại hàng."
+        },
+        {
+          "text": "The cashier gave me a long receipt.",
+          "vi": "Nhân viên thu ngân đưa cho tôi một tờ hóa đơn dài."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "keep the receipt",
+          "vi": "giữ hóa đơn"
+        },
+        {
+          "text": "ask for a receipt",
+          "vi": "xin hóa đơn"
+        }
+      ],
+      "imageQuery": "shop receipt paper",
+      "ipaUs": "/ɹɪˈsit/",
+      "ipaUk": "/ɹɪˈsiːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/receipt",
+      "ipaVerified": true,
+      "image": {
+        "file": "b05/receipt.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6032671/photo-image-paper-public-domain-note",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "shop receipt paper",
+        "sha256": "38bd9655f4648ce403b766bcd9bb8ce07080a5434cc84c0deb5cfac5054ef50b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "discount",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "giảm giá",
+      "meaningEn": "a lower price than usual",
+      "examples": [
+        {
+          "text": "The shop gives a ten percent discount to students.",
+          "vi": "Cửa hàng giảm giá mười phần trăm cho sinh viên."
+        },
+        {
+          "text": "I bought the jacket at a big discount.",
+          "vi": "Tôi mua chiếc áo khoác với mức giảm giá lớn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "get a discount",
+          "vi": "được giảm giá"
+        },
+        {
+          "text": "student discount",
+          "vi": "giảm giá cho sinh viên"
+        }
+      ],
+      "imageQuery": "sale discount sign shop",
+      "ipaUs": "/ˈdɪskaʊnt/",
+      "ipaUk": "/ˈdɪskaʊnt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/discount",
+      "ipaVerified": true,
+      "image": {
+        "file": "b05/discount.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6042681/photo-image-background-public-domain-banner",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "sale discount sign shop",
+        "sha256": "b2dce406ca737b0055686dfb5a148555955cd51136ace36e99a8a1eacab6e741",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "coupon",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "phiếu giảm giá",
+      "meaningEn": "a piece of paper that gives you money off when you buy something",
+      "examples": [
+        {
+          "text": "I cut out a coupon from the newspaper.",
+          "vi": "Tôi cắt một phiếu giảm giá từ tờ báo."
+        },
+        {
+          "text": "This coupon is only valid until Friday.",
+          "vi": "Phiếu giảm giá này chỉ có hiệu lực đến thứ Sáu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "use a coupon",
+          "vi": "dùng phiếu giảm giá"
+        },
+        {
+          "text": "coupon code",
+          "vi": "mã giảm giá"
+        }
+      ],
+      "imageQuery": "discount coupons",
+      "ipaUs": "/ˈkuːˌpɑn/",
+      "ipaUk": "/ˈkuːˌpɑn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/coupon",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "generate": {
+        "kind": "shop",
+        "value": "coupon"
+      },
+      "image": {
+        "file": "b05/coupon.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:coupon",
+        "sha256": "feb440e4ca94165103baed52676b84cce1ba5b0093ef48be17ea6a290e5fb92f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bargain",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "B2",
+      "definition": "món hời; mặc cả",
+      "meaningEn": "something you buy at a much lower price than normal",
+      "verbForms": {
+        "past": "bargained",
+        "pastParticiple": "bargained",
+        "ing": "bargaining",
+        "thirdPerson": "bargains"
+      },
+      "examples": [
+        {
+          "text": "At only five dollars, this bag is a bargain.",
+          "vi": "Chỉ năm đô thì chiếc túi này là một món hời."
+        },
+        {
+          "text": "You can bargain with sellers at the market.",
+          "vi": "Bạn có thể mặc cả với người bán ở chợ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a real bargain",
+          "vi": "một món hời thực sự"
+        },
+        {
+          "text": "bargain hunter",
+          "vi": "người săn hàng giá hời"
+        }
+      ],
+      "imageQuery": "market bargain stall",
+      "ipaUs": "/ˈbɑːɹɡən/",
+      "ipaUk": "/ˈbɑːɡən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bargain",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "bargain"
+      },
+      "image": {
+        "file": "b05/bargain.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:bargain",
+        "sha256": "067f917c3ebdbf8593b9de6906c5d82aeea9c0f568b95f54651ea47d2a8d75a9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cash",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "tiền mặt",
+      "meaningEn": "money in the form of notes and coins",
+      "examples": [
+        {
+          "text": "Do you accept cash or only cards?",
+          "vi": "Bạn nhận tiền mặt hay chỉ nhận thẻ?"
+        },
+        {
+          "text": "I have no cash in my wallet today.",
+          "vi": "Hôm nay trong ví tôi không có tiền mặt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pay in cash",
+          "vi": "trả bằng tiền mặt"
+        },
+        {
+          "text": "withdraw cash",
+          "vi": "rút tiền mặt"
+        }
+      ],
+      "imageQuery": "banknotes cash money",
+      "ipaUs": "/kæʃ/",
+      "ipaUk": "/kæʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cash",
+      "ipaVerified": true,
+      "image": {
+        "file": "b05/cash.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/money-bills-BEL7YED80C",
+        "author": "Alexas Fotos",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "banknotes cash money",
+        "sha256": "b60ee62552e54db73e6bdeed82b49127724ff29a953de851edaea029d0fdd856",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "credit card",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "thẻ tín dụng",
+      "meaningEn": "a plastic card that lets you buy now and pay the bank later",
+      "examples": [
+        {
+          "text": "I paid for the hotel with my credit card.",
+          "vi": "Tôi trả tiền khách sạn bằng thẻ tín dụng."
+        },
+        {
+          "text": "Do not lend your credit card to anyone.",
+          "vi": "Đừng cho ai mượn thẻ tín dụng của bạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pay by credit card",
+          "vi": "trả bằng thẻ tín dụng"
+        },
+        {
+          "text": "credit card bill",
+          "vi": "hóa đơn thẻ tín dụng"
+        }
+      ],
+      "imageQuery": "credit card payment terminal",
+      "ipaUs": "/ˈkɹɛdɪt kɑɹd/",
+      "ipaUk": "/ˈkɹɛdɪt kɑːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/credit + https://en.wiktionary.org/wiki/card",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "credit card"
+      },
+      "image": {
+        "file": "b05/credit-card.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:credit card",
+        "sha256": "c01655361a42cb18fbd124fc86a7daa1617cb149cd11e7cf05f8ae6fdbd0d724",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wallet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "ví tiền",
+      "meaningEn": "a small flat case for carrying money and cards",
+      "examples": [
+        {
+          "text": "He took out his wallet and paid the bill.",
+          "vi": "Anh ấy lấy ví ra và thanh toán hóa đơn."
+        },
+        {
+          "text": "I left my wallet on the table at the cafe.",
+          "vi": "Tôi để quên ví trên bàn ở quán cà phê."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "leather wallet",
+          "vi": "ví da"
+        },
+        {
+          "text": "lose a wallet",
+          "vi": "làm mất ví"
+        }
+      ],
+      "imageQuery": "leather wallet",
+      "ipaUs": "/ˈwɑl.ət/",
+      "ipaUk": "/ˈwɒl.ɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/wallet",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "wallet"
+      },
+      "image": {
+        "file": "b05/wallet.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:wallet",
+        "sha256": "0190ed641698f098db9ebafe4ba4ba4fd737a478af6a07267f44fe23076ec48c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "coin",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "đồng xu",
+      "meaningEn": "a small round piece of metal used as money",
+      "examples": [
+        {
+          "text": "She put a coin in the machine.",
+          "vi": "Cô ấy bỏ một đồng xu vào máy."
+        },
+        {
+          "text": "I found an old coin in the garden.",
+          "vi": "Tôi tìm thấy một đồng xu cũ trong vườn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "toss a coin",
+          "vi": "tung đồng xu"
+        },
+        {
+          "text": "gold coin",
+          "vi": "đồng xu vàng"
+        }
+      ],
+      "imageQuery": "coins",
+      "ipaUs": "/ˈkoɪ̯n/",
+      "ipaUk": "/ˈkoɪ̯n/",
+      "ipaSource": "https://en.wiktionary.org/wiki/coin",
+      "ipaVerified": true,
+      "image": {
+        "file": "b05/coin.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/44124483743@N01/60952108",
+        "author": "brownpau",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "coins",
+        "sha256": "947f086ba2c646becf473ca225eb2f2a7465c95d311b5b84865dafc7441a9152",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bank account",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "tài khoản ngân hàng",
+      "meaningEn": "an arrangement with a bank to keep and manage your money",
+      "examples": [
+        {
+          "text": "She opened a bank account when she started work.",
+          "vi": "Cô ấy mở một tài khoản ngân hàng khi bắt đầu đi làm."
+        },
+        {
+          "text": "The money goes straight into my bank account.",
+          "vi": "Tiền được chuyển thẳng vào tài khoản ngân hàng của tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open a bank account",
+          "vi": "mở tài khoản ngân hàng"
+        },
+        {
+          "text": "savings account",
+          "vi": "tài khoản tiết kiệm"
+        }
+      ],
+      "imageQuery": "bank account passbook card",
+      "ipaUs": "/ˈbæŋk əˈkaʊnt/",
+      "ipaUk": "/ˈbaŋk əˈkaʊnt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bank + https://en.wiktionary.org/wiki/account",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "bank account"
+      },
+      "image": {
+        "file": "b05/bank-account.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:bank account",
+        "sha256": "25f82f33d0b34ec0a2f818c9134a4cf2a372c2432d593c1af361f41a9f40f465",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ATM",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "máy rút tiền",
+      "meaningEn": "a machine in the street that gives you money from your account",
+      "examples": [
+        {
+          "text": "There is an ATM next to the supermarket.",
+          "vi": "Có một máy rút tiền cạnh siêu thị."
+        },
+        {
+          "text": "I need to find an ATM to get some cash.",
+          "vi": "Tôi cần tìm một máy rút tiền để lấy ít tiền mặt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "use an ATM",
+          "vi": "dùng máy rút tiền"
+        },
+        {
+          "text": "ATM card",
+          "vi": "thẻ ATM"
+        }
+      ],
+      "imageQuery": "ATM machine street",
+      "ipaUs": "/ˌeɪ tiː ˈɛm/",
+      "ipaUk": "/ˌeɪ tiː ˈem/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found",
+      "generate": {
+        "kind": "shop",
+        "value": "ATM"
+      },
+      "image": {
+        "file": "b05/atm.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:ATM",
+        "sha256": "992d4f7bf7829de9337ea1d271a1f5e5f99fa1b76d092104b8b7af3cb7c7f587",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "price tag",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhãn giá",
+      "meaningEn": "a small label that shows how much something costs",
+      "examples": [
+        {
+          "text": "I looked at the price tag and put the shirt back.",
+          "vi": "Tôi nhìn nhãn giá rồi để chiếc áo sơ mi lại."
+        },
+        {
+          "text": "The price tag says twenty dollars.",
+          "vi": "Nhãn giá ghi hai mươi đô la."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "check the price tag",
+          "vi": "xem nhãn giá"
+        },
+        {
+          "text": "remove the price tag",
+          "vi": "gỡ nhãn giá"
+        }
+      ],
+      "imageQuery": "price tag clothes",
+      "ipaUs": "/ˈpɹaɪ̯s tæɡ/",
+      "ipaUk": "/ˈpɹaɪ̯s taɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/price + https://en.wiktionary.org/wiki/tag",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "price tag"
+      },
+      "image": {
+        "file": "b05/price-tag.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:price tag",
+        "sha256": "c1ef6925dee33043a1f626da771dec9a3f5a0392269d831569c3cb148d61170e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "shopping cart",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "xe đẩy mua hàng",
+      "meaningEn": "a metal basket on wheels that you push around a shop",
+      "examples": [
+        {
+          "text": "She pushed the shopping cart down the aisle.",
+          "vi": "Cô ấy đẩy xe mua hàng dọc lối đi."
+        },
+        {
+          "text": "My shopping cart is full of vegetables.",
+          "vi": "Xe mua hàng của tôi đầy rau."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "push a shopping cart",
+          "vi": "đẩy xe mua hàng"
+        },
+        {
+          "text": "online shopping cart",
+          "vi": "giỏ hàng trực tuyến"
+        }
+      ],
+      "imageQuery": "shopping cart supermarket",
+      "ipaUs": "/ˈʃɑpɪŋ kɑɹt/",
+      "ipaUk": "/ˈʃɒpɪŋ kɑːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/shopping + https://en.wiktionary.org/wiki/cart",
+      "ipaVerified": true,
+      "image": {
+        "file": "b05/shopping-cart.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6780489/png-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "shopping cart supermarket",
+        "sha256": "a5fe7a9000711694a8eba03ee3e11dbce2c258115e1138437f07684a7d0a4fbb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "checkout",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "quầy thanh toán",
+      "meaningEn": "the place in a shop where you pay for your things",
+      "examples": [
+        {
+          "text": "There was a long queue at the checkout.",
+          "vi": "Có một hàng dài ở quầy thanh toán."
+        },
+        {
+          "text": "Please bring your basket to the checkout.",
+          "vi": "Xin hãy mang giỏ hàng của bạn đến quầy thanh toán."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "at the checkout",
+          "vi": "ở quầy thanh toán"
+        },
+        {
+          "text": "self-service checkout",
+          "vi": "quầy tự thanh toán"
+        }
+      ],
+      "imageQuery": "supermarket checkout counter",
+      "ipaUs": "/ˈt͡ʃɛkˌaʊt/",
+      "ipaUk": "/ˈt͡ʃɛkˌaʊt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/checkout",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "b05/checkout.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:SZ_%E6%B7%B1%E5%9C%B3_Shenzhen_%E9%B9%BD%E7%94%B0%E5%8D%80_Yantian_%E6%B2%99%E9%A0%AD%E8%A7%92_Shatoujiao_%E6%B5%B7%E5%B1%B1%E8%B7%AF_Haishan_Road_%E5%BB%A3%E5%AF%8C%E7%99%BE%E8%B2%A8_Guangfu_Department_Store_%E5%BB%A3%E5%AF%8C%E9%87%8C%E8%B6%85%E5%B8%82_Guang_Fu_Li_Supermarket_cashier_checkout_counters_February_2025_R12S.jpg",
+        "author": "Shwim WIAIOP 226",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "supermarket checkout counter",
+        "sha256": "61c6c609c4bcf18709c22a8622c87f85858e47c08605250faa452b9ab8a89ccc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fitting room",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "phòng thử đồ",
+      "meaningEn": "a small room in a shop where you try on clothes",
+      "examples": [
+        {
+          "text": "Can I try this dress in the fitting room?",
+          "vi": "Tôi thử chiếc váy này trong phòng thử đồ được không?"
+        },
+        {
+          "text": "There was a long queue for the fitting room.",
+          "vi": "Có một hàng dài đợi phòng thử đồ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "use the fitting room",
+          "vi": "dùng phòng thử đồ"
+        },
+        {
+          "text": "fitting room mirror",
+          "vi": "gương phòng thử đồ"
+        }
+      ],
+      "imageQuery": "fitting room clothes store",
+      "ipaUs": "/ˈfɪtɪŋ ɹum/",
+      "ipaUk": "/ˈfɪtɪŋ ɹʊm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fitting + https://en.wiktionary.org/wiki/room",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "fitting room"
+      },
+      "image": {
+        "file": "b05/fitting-room.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:fitting room",
+        "sha256": "a0e03070d7381954697888642352212b447802fb22c622bc22361623dcd3f3d8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sale",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "đợt giảm giá, việc bán hàng",
+      "meaningEn": "a time when a shop sells things at lower prices",
+      "examples": [
+        {
+          "text": "The winter sale starts on Monday.",
+          "vi": "Đợt giảm giá mùa đông bắt đầu vào thứ Hai."
+        },
+        {
+          "text": "I bought these shoes in the sale.",
+          "vi": "Tôi mua đôi giày này trong đợt giảm giá."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "on sale",
+          "vi": "đang giảm giá"
+        },
+        {
+          "text": "summer sale",
+          "vi": "đợt giảm giá mùa hè"
+        }
+      ],
+      "imageQuery": "sale banner store window",
+      "ipaUs": "/seːl/",
+      "ipaUk": "/seːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sale",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "sale"
+      },
+      "image": {
+        "file": "b05/sale.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:sale",
+        "sha256": "f9787c90a93dc467f3e34cfb646c494825f8eac9d5be34d82b47da8095609adb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "customer",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "khách hàng",
+      "meaningEn": "a person who buys things from a shop",
+      "examples": [
+        {
+          "text": "The shop assistant helped a customer find a gift.",
+          "vi": "Nhân viên cửa hàng giúp một khách hàng chọn quà."
+        },
+        {
+          "text": "We have many regular customers.",
+          "vi": "Chúng tôi có nhiều khách hàng thân thiết."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "regular customer",
+          "vi": "khách hàng thân thiết"
+        },
+        {
+          "text": "customer service",
+          "vi": "dịch vụ khách hàng"
+        }
+      ],
+      "imageQuery": "customer shop counter illustration",
+      "ipaUs": "/ˈkʌs.tə.mɚ/",
+      "ipaUk": "/ˈkʌs.tə.mə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/customer",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "customer"
+      },
+      "image": {
+        "file": "b05/customer.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:customer",
+        "sha256": "3a406d144b77ce7f8b8680d19a7765a731dff42d3ee9864672ebddc8cf81666e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "piggy bank",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "con heo đất",
+      "meaningEn": "a small container in the shape of a pig for saving coins",
+      "examples": [
+        {
+          "text": "The child put coins into her piggy bank.",
+          "vi": "Đứa trẻ bỏ những đồng xu vào con heo đất."
+        },
+        {
+          "text": "He broke the piggy bank to buy a toy.",
+          "vi": "Cậu bé đập con heo đất để mua đồ chơi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fill a piggy bank",
+          "vi": "làm đầy con heo đất"
+        },
+        {
+          "text": "save in a piggy bank",
+          "vi": "tiết kiệm trong heo đất"
+        }
+      ],
+      "imageQuery": "piggy bank coins",
+      "ipaUs": "/ˈpɪɡi ˈbæŋk/",
+      "ipaUk": "/ˈpɪɡi ˈbaŋk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/piggy + https://en.wiktionary.org/wiki/bank",
+      "ipaVerified": true,
+      "image": {
+        "file": "b05/piggy-bank.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/7664149/image-people-cartoon-pink",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "piggy bank coins",
+        "sha256": "9fa1e5d41e391e4701bddc9d854e62f9a5dec7aa9d579f51df934321b06bfc34",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "gift card",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "thẻ quà tặng",
+      "meaningEn": "a card that you give someone to spend in a shop",
+      "examples": [
+        {
+          "text": "My aunt gave me a gift card for my birthday.",
+          "vi": "Dì tặng tôi một thẻ quà tặng vào sinh nhật."
+        },
+        {
+          "text": "You can use the gift card online.",
+          "vi": "Bạn có thể dùng thẻ quà tặng trực tuyến."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "buy a gift card",
+          "vi": "mua thẻ quà tặng"
+        },
+        {
+          "text": "redeem a gift card",
+          "vi": "đổi thẻ quà tặng"
+        }
+      ],
+      "imageQuery": "gift card",
+      "ipaUs": "/ɡɪft kɑɹd/",
+      "ipaUk": "/ɡɪft kɑːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/gift + https://en.wiktionary.org/wiki/card",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "gift card"
+      },
+      "image": {
+        "file": "b05/gift-card.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:gift card",
+        "sha256": "58d1bc09b18a29f78ddbfa2be1adb6929f0d5bff62cd51939bded7b1768065a3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "shopping list",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "danh sách mua sắm",
+      "meaningEn": "a list of things that you need to buy",
+      "examples": [
+        {
+          "text": "I wrote a shopping list before I went to the market.",
+          "vi": "Tôi viết danh sách mua sắm trước khi đi chợ."
+        },
+        {
+          "text": "Milk is the first item on my shopping list.",
+          "vi": "Sữa là món đầu tiên trong danh sách mua sắm của tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "write a shopping list",
+          "vi": "viết danh sách mua sắm"
+        },
+        {
+          "text": "check the shopping list",
+          "vi": "xem lại danh sách mua sắm"
+        }
+      ],
+      "imageQuery": "shopping list paper handwritten",
+      "ipaUs": "/ˈʃɑpɪŋ lɪst/",
+      "ipaUk": "/ˈʃɒpɪŋ lɪst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/shopping + https://en.wiktionary.org/wiki/list",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "shopping list"
+      },
+      "image": {
+        "file": "b05/shopping-list.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:shopping list",
+        "sha256": "c11cc570aaaf56faccff88001a29d7e1e0866e5b87dc0d92bb9650ff49ce85c5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "shopping bag",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "túi mua sắm",
+      "meaningEn": "a bag that you use to carry the things you buy",
+      "examples": [
+        {
+          "text": "She carried two heavy shopping bags home.",
+          "vi": "Cô ấy xách hai túi mua sắm nặng về nhà."
+        },
+        {
+          "text": "Do not forget your shopping bag.",
+          "vi": "Đừng quên túi mua sắm của bạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "carry a shopping bag",
+          "vi": "xách túi mua sắm"
+        },
+        {
+          "text": "paper shopping bag",
+          "vi": "túi mua sắm bằng giấy"
+        }
+      ],
+      "imageQuery": "shopping bags paper",
+      "ipaUs": "/ˈʃɑpɪŋ bæɡ/",
+      "ipaUk": "/ˈʃɒpɪŋ baɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/shopping + https://en.wiktionary.org/wiki/bag",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "shopping bag"
+      },
+      "image": {
+        "file": "b05/shopping-bag.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:shopping bag",
+        "sha256": "4b3a3fdaa597ee85b66dd2a83fcb4cbadb92d99dfc89391d794d923f975085d1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tip",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "B2",
+      "definition": "tiền boa",
+      "meaningEn": "a small extra amount of money you give for good service",
+      "verbForms": {
+        "past": "tipped",
+        "pastParticiple": "tipped",
+        "ing": "tipping",
+        "thirdPerson": "tips"
+      },
+      "examples": [
+        {
+          "text": "We left a big tip for the waiter.",
+          "vi": "Chúng tôi để lại một khoản tiền boa lớn cho người phục vụ."
+        },
+        {
+          "text": "In some countries you do not need to tip.",
+          "vi": "Ở một số nước bạn không cần boa tiền."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "leave a tip",
+          "vi": "để lại tiền boa"
+        },
+        {
+          "text": "generous tip",
+          "vi": "tiền boa hậu hĩnh"
+        }
+      ],
+      "imageQuery": "tip jar coins restaurant",
+      "ipaUs": "/tɪp/",
+      "ipaUk": "/tɪp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tip",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "tip"
+      },
+      "image": {
+        "file": "b05/tip.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:tip",
+        "sha256": "bae287d1514343c4c0b681dd2cdfce4251226513b24efe4cf657c620a0a979ce",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bill",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "hóa đơn thanh toán",
+      "meaningEn": "a piece of paper that shows how much you must pay",
+      "examples": [
+        {
+          "text": "Could we have the bill, please?",
+          "vi": "Cho chúng tôi xin hóa đơn thanh toán nhé?"
+        },
+        {
+          "text": "The electricity bill is higher this month.",
+          "vi": "Hóa đơn tiền điện tháng này cao hơn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pay the bill",
+          "vi": "thanh toán hóa đơn"
+        },
+        {
+          "text": "electricity bill",
+          "vi": "hóa đơn tiền điện"
+        }
+      ],
+      "imageQuery": "restaurant bill paper",
+      "ipaUs": "/bɪl/",
+      "ipaUk": "/ˈbɪʊ̯/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/bill ; https://en.wiktionary.org/wiki/bill",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "shop",
+        "value": "bill"
+      },
+      "image": {
+        "file": "b05/bill.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:shop:bill",
+        "sha256": "6f2594b80647d34a1da31cca13858f6707df206445ad9e9a53da0a212fe244ea",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "vending machine",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "máy bán hàng tự động",
+      "meaningEn": "a machine that sells drinks or snacks when you put in money",
+      "examples": [
+        {
+          "text": "I bought a cold drink from the vending machine.",
+          "vi": "Tôi mua một lon nước lạnh từ máy bán hàng tự động."
+        },
+        {
+          "text": "The vending machine is out of order.",
+          "vi": "Máy bán hàng tự động đang bị hỏng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "use a vending machine",
+          "vi": "dùng máy bán hàng tự động"
+        },
+        {
+          "text": "drinks vending machine",
+          "vi": "máy bán nước tự động"
+        }
+      ],
+      "imageQuery": "vending machine drinks",
+      "ipaUs": "/ˈvɛndɪŋ məˌʃiːn/",
+      "ipaUk": "/ˈvendɪŋ məˌʃiːn/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found",
+      "image": {
+        "file": "b05/vending-machine.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Drink_vending_machine_at_Narita_Airport.jpg",
+        "author": "Chiara Coetzee",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "vending machine drinks",
+        "sha256": "c08d3f85cc773c56f7a1bb5e0e9f27c97c32c2837df0b3ea3f248d44504d8a89",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "banknote",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tờ tiền giấy",
+      "meaningEn": "a piece of paper money",
+      "examples": [
+        {
+          "text": "He paid with a large banknote.",
+          "vi": "Anh ấy trả bằng một tờ tiền mệnh giá lớn."
+        },
+        {
+          "text": "The shop does not accept torn banknotes.",
+          "vi": "Cửa hàng không nhận những tờ tiền bị rách."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a new banknote",
+          "vi": "một tờ tiền mới"
+        },
+        {
+          "text": "fake banknote",
+          "vi": "tờ tiền giả"
+        }
+      ],
+      "imageQuery": "banknotes paper money",
+      "ipaUs": "/æ/",
+      "ipaUk": "/ˈbæŋknəʊ̯t/",
+      "ipaSource": "https://en.wiktionary.org/wiki/banknote",
+      "ipaVerified": true,
+      "image": {
+        "file": "b05/banknote.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Japanese_government_small-face-value_paper_money_50_Sen_(Series_A)_-_back.jpg",
+        "author": "Eclipse2009",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "banknotes paper money",
+        "sha256": "d5f904a0af5abc0859fc68b372a66820f0856c08197210e958191ceb940eda67",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "market stall",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "gian hàng ở chợ",
+      "meaningEn": "a small open table or booth where goods are sold in a market",
+      "examples": [
+        {
+          "text": "She sells fresh flowers at a market stall.",
+          "vi": "Cô ấy bán hoa tươi ở một gian hàng ngoài chợ."
+        },
+        {
+          "text": "The market stalls open at six in the morning.",
+          "vi": "Các gian hàng ở chợ mở cửa lúc sáu giờ sáng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "run a market stall",
+          "vi": "bán hàng ở gian chợ"
+        },
+        {
+          "text": "fruit market stall",
+          "vi": "gian hàng trái cây"
+        }
+      ],
+      "imageQuery": "market stall vegetables",
+      "ipaUs": "/ˈmɑɹkɪt stɔl/",
+      "ipaUk": "/ˈmɑːkɪt stɔːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/market + https://en.wiktionary.org/wiki/stall",
+      "ipaVerified": true,
+      "image": {
+        "file": "b05/market-stall.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/57458501@N00/224542843",
+        "author": "Hillbraith",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "market stall vegetables",
+        "sha256": "44d45f37731802c5a818a9a12258b8db70b105dba842854e109eefbf43fe3c93",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
