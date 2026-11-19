@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 1,
+  "folder": "Giao tiếp hằng ngày",
+  "set": {
+    "code": "C04",
+    "name": "Hỏi và chỉ đường",
+    "description": "#a2 #b1 #directions #travel",
+    "topic": "Hỏi và chỉ đường",
+    "wordListBasis": "high-frequency spoken phrases, author-written"
+  },
+  "cards": [
+    {
+      "term": "Where is the station?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "nhà ga ở đâu?",
+      "meaningEn": "a question to ask where a place is",
+      "examples": [
+        {
+          "text": "Excuse me, where is the station?",
+          "vi": "Xin lỗi, nhà ga ở đâu ạ?"
+        },
+        {
+          "text": "Where is the nearest bank?",
+          "vi": "Ngân hàng gần nhất ở đâu?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Where can I find a bank?",
+          "vi": "Tôi tìm ngân hàng ở đâu?"
+        },
+        {
+          "text": "Is there a pharmacy nearby?",
+          "vi": "Gần đây có hiệu thuốc không?"
+        }
+      ],
+      "imageQuery": "tourist asking directions station"
+    },
+    {
+      "term": "How do I get to the airport?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi đến sân bay bằng cách nào?",
+      "meaningEn": "a question about the way to a place",
+      "examples": [
+        {
+          "text": "How do I get to the airport from here?",
+          "vi": "Từ đây tôi đến sân bay bằng cách nào?"
+        },
+        {
+          "text": "How do I get to the city centre?",
+          "vi": "Tôi đến trung tâm thành phố bằng cách nào?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Which way is the airport?",
+          "vi": "Sân bay đi hướng nào?"
+        },
+        {
+          "text": "Take the bus.",
+          "vi": "Đi bằng xe buýt."
+        }
+      ],
+      "imageQuery": "traveller asking way airport map"
+    },
+    {
+      "term": "Is it far from here?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "chỗ đó có xa đây không?",
+      "meaningEn": "a question about distance",
+      "examples": [
+        {
+          "text": "Is it far from here? I have a heavy bag.",
+          "vi": "Chỗ đó có xa đây không? Tôi có túi nặng."
+        },
+        {
+          "text": "Is the museum far from here?",
+          "vi": "Bảo tàng có xa đây không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "No, it's close.",
+          "vi": "Không, gần thôi."
+        },
+        {
+          "text": "It's quite far.",
+          "vi": "Khá xa đấy."
+        }
+      ],
+      "imageQuery": "tourist with luggage asking distance"
+    },
+    {
+      "term": "Go straight ahead.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "đi thẳng về phía trước",
+      "meaningEn": "an instruction to keep walking forward",
+      "examples": [
+        {
+          "text": "Go straight ahead for two blocks.",
+          "vi": "Đi thẳng về phía trước hai dãy nhà."
+        },
+        {
+          "text": "Go straight ahead and you'll see it.",
+          "vi": "Đi thẳng về phía trước là bạn sẽ thấy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Keep going straight.",
+          "vi": "Cứ đi thẳng."
+        },
+        {
+          "text": "Walk along this street.",
+          "vi": "Đi dọc con đường này."
+        }
+      ],
+      "imageQuery": "person pointing straight road"
+    },
+    {
+      "term": "Turn left at the corner.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "rẽ trái ở góc phố",
+      "meaningEn": "an instruction to turn left",
+      "examples": [
+        {
+          "text": "Turn left at the corner.",
+          "vi": "Rẽ trái ở góc phố."
+        },
+        {
+          "text": "Turn left at the bakery.",
+          "vi": "Rẽ trái chỗ tiệm bánh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Take a left.",
+          "vi": "Rẽ trái."
+        },
+        {
+          "text": "Then turn left.",
+          "vi": "Sau đó rẽ trái."
+        }
+      ],
+      "imageQuery": "street corner turn left sign"
+    },
+    {
+      "term": "Turn right at the traffic lights.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "rẽ phải ở chỗ đèn giao thông",
+      "meaningEn": "an instruction to turn right",
+      "examples": [
+        {
+          "text": "Turn right at the traffic lights.",
+          "vi": "Rẽ phải ở chỗ đèn giao thông."
+        },
+        {
+          "text": "Turn right at the next traffic lights.",
+          "vi": "Rẽ phải ở đèn giao thông tiếp theo."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Take a right.",
+          "vi": "Rẽ phải."
+        },
+        {
+          "text": "Then turn right.",
+          "vi": "Sau đó rẽ phải."
+        }
+      ],
+      "imageQuery": "traffic lights crossroads turn right"
+    },
+    {
+      "term": "It's on your left.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "nó ở bên trái bạn",
+      "meaningEn": "a phrase that says where something is",
+      "examples": [
+        {
+          "text": "The bank is on your left.",
+          "vi": "Ngân hàng ở bên trái bạn."
+        },
+        {
+          "text": "It's on your left, next to the cafe.",
+          "vi": "Nó ở bên trái bạn, cạnh quán cà phê."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's on your right.",
+          "vi": "Nó ở bên phải bạn."
+        },
+        {
+          "text": "It's straight ahead.",
+          "vi": "Nó ở ngay phía trước."
+        }
+      ],
+      "imageQuery": "person pointing left building"
+    },
+    {
+      "term": "It's next to the bank.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "nó ở cạnh ngân hàng",
+      "meaningEn": "a phrase that says what is beside a place",
+      "examples": [
+        {
+          "text": "The post office is next to the bank.",
+          "vi": "Bưu điện ở cạnh ngân hàng."
+        },
+        {
+          "text": "It's next to the bank, near the park.",
+          "vi": "Nó ở cạnh ngân hàng, gần công viên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's beside the school.",
+          "vi": "Nó ở bên cạnh trường học."
+        },
+        {
+          "text": "It's between the shop and the cafe.",
+          "vi": "Nó nằm giữa cửa hàng và quán cà phê."
+        }
+      ],
+      "imageQuery": "buildings next to bank street"
+    },
+    {
+      "term": "It's opposite the park.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "nó ở đối diện công viên",
+      "meaningEn": "a phrase that says what is on the other side of the road",
+      "examples": [
+        {
+          "text": "The hotel is opposite the park.",
+          "vi": "Khách sạn ở đối diện công viên."
+        },
+        {
+          "text": "It's opposite the park, across the road.",
+          "vi": "Nó ở đối diện công viên, bên kia đường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's across the street.",
+          "vi": "Nó ở bên kia đường."
+        },
+        {
+          "text": "It's in front of the school.",
+          "vi": "Nó ở phía trước trường học."
+        }
+      ],
+      "imageQuery": "hotel opposite park street"
+    },
+    {
+      "term": "Take the second street on the right.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "đi vào con phố thứ hai bên phải",
+      "meaningEn": "a direction that counts the streets",
+      "examples": [
+        {
+          "text": "Take the second street on the right.",
+          "vi": "Đi vào con phố thứ hai bên phải."
+        },
+        {
+          "text": "Take the first street on the left.",
+          "vi": "Đi vào con phố đầu tiên bên trái."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Take the third turning.",
+          "vi": "Rẽ ở ngã rẽ thứ ba."
+        },
+        {
+          "text": "Go past the school.",
+          "vi": "Đi qua trường học."
+        }
+      ],
+      "imageQuery": "street junction counting turnings"
+    },
+    {
+      "term": "Cross the bridge.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "băng qua cây cầu",
+      "meaningEn": "an instruction to go over a bridge",
+      "examples": [
+        {
+          "text": "Cross the bridge and turn left.",
+          "vi": "Băng qua cây cầu rồi rẽ trái."
+        },
+        {
+          "text": "Cross the bridge and you'll see the station.",
+          "vi": "Băng qua cây cầu là bạn sẽ thấy nhà ga."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Cross the street.",
+          "vi": "Băng qua đường."
+        },
+        {
+          "text": "Walk over the bridge.",
+          "vi": "Đi bộ qua cầu."
+        }
+      ],
+      "imageQuery": "people crossing bridge river"
+    },
+    {
+      "term": "You can't miss it.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "bạn không thể nhầm được đâu",
+      "meaningEn": "a phrase meaning the place is very easy to see",
+      "examples": [
+        {
+          "text": "The church is big. You can't miss it.",
+          "vi": "Nhà thờ rất lớn. Bạn không thể nhầm được đâu."
+        },
+        {
+          "text": "It's the red building. You can't miss it.",
+          "vi": "Đó là tòa nhà màu đỏ. Bạn không thể nhầm được đâu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's easy to find.",
+          "vi": "Rất dễ tìm."
+        },
+        {
+          "text": "You'll see it.",
+          "vi": "Bạn sẽ thấy nó."
+        }
+      ],
+      "imageQuery": "big red building street"
+    },
+    {
+      "term": "How long does it take?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "mất bao lâu?",
+      "meaningEn": "a question about travel time",
+      "examples": [
+        {
+          "text": "How long does it take to get there?",
+          "vi": "Đi đến đó mất bao lâu?"
+        },
+        {
+          "text": "How long does it take by bus?",
+          "vi": "Đi bằng xe buýt mất bao lâu?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It takes ten minutes.",
+          "vi": "Mất mười phút."
+        },
+        {
+          "text": "About half an hour.",
+          "vi": "Khoảng nửa tiếng."
+        }
+      ],
+      "imageQuery": "clock travel time bus"
+    },
+    {
+      "term": "It's about five minutes on foot.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "đi bộ khoảng năm phút",
+      "meaningEn": "a phrase for how long it takes to walk",
+      "examples": [
+        {
+          "text": "It's about five minutes on foot.",
+          "vi": "Đi bộ khoảng năm phút."
+        },
+        {
+          "text": "The park is about ten minutes on foot.",
+          "vi": "Công viên cách đây khoảng mười phút đi bộ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's a short walk.",
+          "vi": "Đi bộ một đoạn ngắn thôi."
+        },
+        {
+          "text": "It's five minutes by car.",
+          "vi": "Đi xe hơi năm phút."
+        }
+      ],
+      "imageQuery": "people walking street sign minutes"
+    },
+    {
+      "term": "Is there a bus stop near here?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "gần đây có trạm xe buýt không?",
+      "meaningEn": "a question about public transport",
+      "examples": [
+        {
+          "text": "Is there a bus stop near here?",
+          "vi": "Gần đây có trạm xe buýt không?"
+        },
+        {
+          "text": "Is there a bus stop near the hotel?",
+          "vi": "Gần khách sạn có trạm xe buýt không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Yes, over there.",
+          "vi": "Có, ở đằng kia."
+        },
+        {
+          "text": "Not far from here.",
+          "vi": "Không xa đây."
+        }
+      ],
+      "imageQuery": "bus stop sign street"
+    },
+    {
+      "term": "Which bus goes to the museum?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "xe buýt nào đi đến bảo tàng?",
+      "meaningEn": "a question about which bus to take",
+      "examples": [
+        {
+          "text": "Which bus goes to the museum?",
+          "vi": "Xe buýt nào đi đến bảo tàng?"
+        },
+        {
+          "text": "Which bus goes to the beach?",
+          "vi": "Xe buýt nào đi ra bãi biển?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Take bus number five.",
+          "vi": "Đi xe buýt số năm."
+        },
+        {
+          "text": "You need the number twelve.",
+          "vi": "Bạn cần xe số mười hai."
+        }
+      ],
+      "imageQuery": "bus numbers board passengers"
+    },
+    {
+      "term": "I'm lost.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "tôi bị lạc",
+      "meaningEn": "what you say when you do not know where you are",
+      "examples": [
+        {
+          "text": "Excuse me, I'm lost. Can you help?",
+          "vi": "Xin lỗi, tôi bị lạc. Bạn giúp tôi được không?"
+        },
+        {
+          "text": "I'm lost. Where is the hotel?",
+          "vi": "Tôi bị lạc. Khách sạn ở đâu?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I don't know where I am.",
+          "vi": "Tôi không biết mình đang ở đâu."
+        },
+        {
+          "text": "I'm looking for the station.",
+          "vi": "Tôi đang tìm nhà ga."
+        }
+      ],
+      "imageQuery": "lost tourist looking at map"
+    },
+    {
+      "term": "Can you show me on the map?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "bạn chỉ giúp tôi trên bản đồ được không?",
+      "meaningEn": "a request for help to find a place on a map",
+      "examples": [
+        {
+          "text": "Can you show me on the map?",
+          "vi": "Bạn chỉ giúp tôi trên bản đồ được không?"
+        },
+        {
+          "text": "Can you show me on the map where we are?",
+          "vi": "Bạn chỉ giúp tôi chúng ta đang ở đâu trên bản đồ được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "We are here.",
+          "vi": "Chúng ta đang ở đây."
+        },
+        {
+          "text": "It's over here.",
+          "vi": "Nó ở đây này."
+        }
+      ],
+      "imageQuery": "two people pointing city map"
+    },
+    {
+      "term": "Where can I buy a ticket?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi mua vé ở đâu?",
+      "meaningEn": "a question about where to buy a ticket",
+      "examples": [
+        {
+          "text": "Where can I buy a ticket?",
+          "vi": "Tôi mua vé ở đâu?"
+        },
+        {
+          "text": "Where can I buy a train ticket?",
+          "vi": "Tôi mua vé tàu ở đâu?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "At the ticket office.",
+          "vi": "Ở quầy vé."
+        },
+        {
+          "text": "You can use the machine.",
+          "vi": "Bạn có thể dùng máy bán vé."
+        }
+      ],
+      "imageQuery": "ticket office counter station"
+    },
+    {
+      "term": "Keep going until you see the school.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "cứ đi đến khi thấy ngôi trường",
+      "meaningEn": "a direction to walk until you reach a landmark",
+      "examples": [
+        {
+          "text": "Keep going until you see the school.",
+          "vi": "Cứ đi cho đến khi thấy ngôi trường."
+        },
+        {
+          "text": "Keep going until you see a big supermarket.",
+          "vi": "Cứ đi cho đến khi thấy một siêu thị lớn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Walk past the park.",
+          "vi": "Đi ngang qua công viên."
+        },
+        {
+          "text": "It's right there.",
+          "vi": "Nó ở ngay đó."
+        }
+      ],
+      "imageQuery": "school building road walking"
+    }
+  ]
+}

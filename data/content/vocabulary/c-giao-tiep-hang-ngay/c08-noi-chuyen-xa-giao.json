@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 1,
+  "folder": "Giao tiếp hằng ngày",
+  "set": {
+    "code": "C08",
+    "name": "Nói chuyện xã giao",
+    "description": "#a2 #b1 #smalltalk #conversation",
+    "topic": "Nói chuyện xã giao",
+    "wordListBasis": "high-frequency spoken phrases, author-written"
+  },
+  "cards": [
+    {
+      "term": "What a lovely day!",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "hôm nay thật đẹp trời!",
+      "meaningEn": "a friendly comment about nice weather",
+      "examples": [
+        {
+          "text": "What a lovely day! Let's go for a walk.",
+          "vi": "Hôm nay thật đẹp trời! Chúng ta đi dạo nhé."
+        },
+        {
+          "text": "What a lovely day it is!",
+          "vi": "Hôm nay đẹp trời thật!"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's a beautiful day.",
+          "vi": "Hôm nay trời đẹp."
+        },
+        {
+          "text": "Yes, it's perfect.",
+          "vi": "Ừ, hoàn hảo luôn."
+        }
+      ],
+      "imageQuery": "two neighbours sunny day park"
+    },
+    {
+      "term": "How was your weekend?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "cuối tuần của bạn thế nào?",
+      "meaningEn": "a question to start a chat on Monday",
+      "examples": [
+        {
+          "text": "How was your weekend? Did you relax?",
+          "vi": "Cuối tuần của bạn thế nào? Bạn có thư giãn không?"
+        },
+        {
+          "text": "How was your weekend, Sam?",
+          "vi": "Cuối tuần của bạn thế nào, Sam?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It was great, thanks.",
+          "vi": "Tuyệt lắm, cảm ơn."
+        },
+        {
+          "text": "I stayed at home.",
+          "vi": "Tôi ở nhà."
+        }
+      ],
+      "imageQuery": "colleagues chatting office coffee"
+    },
+    {
+      "term": "What do you do in your free time?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "bạn làm gì lúc rảnh?",
+      "meaningEn": "a question about hobbies",
+      "examples": [
+        {
+          "text": "What do you do in your free time?",
+          "vi": "Bạn làm gì lúc rảnh?"
+        },
+        {
+          "text": "What do you do in your free time on weekends?",
+          "vi": "Cuối tuần lúc rảnh bạn làm gì?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I like reading.",
+          "vi": "Tôi thích đọc sách."
+        },
+        {
+          "text": "I play football.",
+          "vi": "Tôi chơi bóng đá."
+        }
+      ],
+      "imageQuery": "friends talking hobbies"
+    },
+    {
+      "term": "Do you like music?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "bạn có thích âm nhạc không?",
+      "meaningEn": "a simple question about interests",
+      "examples": [
+        {
+          "text": "Do you like music? I love pop songs.",
+          "vi": "Bạn có thích âm nhạc không? Tôi mê nhạc pop."
+        },
+        {
+          "text": "Do you like music or sports more?",
+          "vi": "Bạn thích âm nhạc hay thể thao hơn?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Yes, I do.",
+          "vi": "Vâng, tôi thích."
+        },
+        {
+          "text": "Not really.",
+          "vi": "Không hẳn."
+        }
+      ],
+      "imageQuery": "friends listening music headphones"
+    },
+    {
+      "term": "I love your shirt!",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi thích áo của bạn quá!",
+      "meaningEn": "a friendly compliment on clothes",
+      "examples": [
+        {
+          "text": "I love your shirt! Where did you buy it?",
+          "vi": "Tôi thích áo của bạn quá! Bạn mua ở đâu vậy?"
+        },
+        {
+          "text": "I love your shirt! The colour is great.",
+          "vi": "Tôi thích áo của bạn quá! Màu rất đẹp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Thank you!",
+          "vi": "Cảm ơn bạn!"
+        },
+        {
+          "text": "It was a gift.",
+          "vi": "Nó là quà tặng."
+        }
+      ],
+      "imageQuery": "friends compliment clothes smiling"
+    },
+    {
+      "term": "Have you been here before?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "bạn đã từng đến đây chưa?",
+      "meaningEn": "a question to start a chat in a new place",
+      "examples": [
+        {
+          "text": "Have you been here before?",
+          "vi": "Bạn đã từng đến đây chưa?"
+        },
+        {
+          "text": "Have you been here before, or is it your first time?",
+          "vi": "Bạn đã đến đây chưa, hay đây là lần đầu?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's my first time.",
+          "vi": "Đây là lần đầu của tôi."
+        },
+        {
+          "text": "I come here often.",
+          "vi": "Tôi hay đến đây."
+        }
+      ],
+      "imageQuery": "two people waiting cafe talking"
+    },
+    {
+      "term": "What's the weather like?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "thời tiết thế nào?",
+      "meaningEn": "a question about the weather",
+      "examples": [
+        {
+          "text": "What's the weather like today?",
+          "vi": "Hôm nay thời tiết thế nào?"
+        },
+        {
+          "text": "What's the weather like in your city?",
+          "vi": "Thời tiết ở thành phố của bạn thế nào?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's sunny.",
+          "vi": "Trời nắng."
+        },
+        {
+          "text": "It's raining.",
+          "vi": "Trời đang mưa."
+        }
+      ],
+      "imageQuery": "people looking window weather"
+    },
+    {
+      "term": "It's nice weather today.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "hôm nay thời tiết đẹp",
+      "meaningEn": "a comment about nice weather",
+      "examples": [
+        {
+          "text": "It's nice weather today, isn't it?",
+          "vi": "Hôm nay thời tiết đẹp nhỉ?"
+        },
+        {
+          "text": "It's nice weather today. Let's have lunch outside.",
+          "vi": "Hôm nay thời tiết đẹp. Chúng ta ăn trưa ngoài trời nhé."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Yes, it is.",
+          "vi": "Vâng, đúng vậy."
+        },
+        {
+          "text": "It's warm.",
+          "vi": "Trời ấm."
+        }
+      ],
+      "imageQuery": "outdoor lunch sunny"
+    },
+    {
+      "term": "It's getting cold.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "trời đang lạnh dần",
+      "meaningEn": "a comment about the temperature",
+      "examples": [
+        {
+          "text": "It's getting cold. Take your coat.",
+          "vi": "Trời đang lạnh dần. Mang áo khoác đi."
+        },
+        {
+          "text": "It's getting cold in the evening.",
+          "vi": "Buổi tối trời đang lạnh dần."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'm freezing.",
+          "vi": "Tôi lạnh cóng."
+        },
+        {
+          "text": "Let's go inside.",
+          "vi": "Vào trong thôi."
+        }
+      ],
+      "imageQuery": "people scarf cold evening"
+    },
+    {
+      "term": "Do you have any plans for the weekend?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "cuối tuần bạn có kế hoạch gì không?",
+      "meaningEn": "a question about future plans",
+      "examples": [
+        {
+          "text": "Do you have any plans for the weekend?",
+          "vi": "Cuối tuần bạn có kế hoạch gì không?"
+        },
+        {
+          "text": "Do you have any plans for the weekend? I'm free.",
+          "vi": "Cuối tuần bạn có kế hoạch gì không? Tôi rảnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'm going to the beach.",
+          "vi": "Tôi sẽ đi biển."
+        },
+        {
+          "text": "Nothing special.",
+          "vi": "Chẳng có gì đặc biệt."
+        }
+      ],
+      "imageQuery": "friends planning weekend calendar"
+    },
+    {
+      "term": "How's your family?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "gia đình bạn thế nào?",
+      "meaningEn": "a polite question about someone's family",
+      "examples": [
+        {
+          "text": "How's your family? I haven't seen them for ages.",
+          "vi": "Gia đình bạn thế nào? Lâu rồi tôi chưa gặp họ."
+        },
+        {
+          "text": "How's your family these days?",
+          "vi": "Dạo này gia đình bạn thế nào?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "They're all well.",
+          "vi": "Mọi người đều khỏe."
+        },
+        {
+          "text": "Thanks for asking.",
+          "vi": "Cảm ơn bạn đã hỏi."
+        }
+      ],
+      "imageQuery": "neighbours chatting family"
+    },
+    {
+      "term": "I'm learning English.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "tôi đang học tiếng Anh",
+      "meaningEn": "a phrase for saying what you study",
+      "examples": [
+        {
+          "text": "I'm learning English at an evening class.",
+          "vi": "Tôi đang học tiếng Anh ở lớp buổi tối."
+        },
+        {
+          "text": "I'm learning English because I like travelling.",
+          "vi": "Tôi đang học tiếng Anh vì tôi thích đi du lịch."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I study English.",
+          "vi": "Tôi học tiếng Anh."
+        },
+        {
+          "text": "I want to improve my English.",
+          "vi": "Tôi muốn cải thiện tiếng Anh."
+        }
+      ],
+      "imageQuery": "adult learning English notebook"
+    },
+    {
+      "term": "Your English is very good.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tiếng Anh của bạn rất giỏi",
+      "meaningEn": "a compliment about someone's English",
+      "examples": [
+        {
+          "text": "Your English is very good.",
+          "vi": "Tiếng Anh của bạn rất giỏi."
+        },
+        {
+          "text": "Your English is very good for a beginner.",
+          "vi": "Tiếng Anh của bạn rất giỏi so với người mới học."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Thank you. I practise every day.",
+          "vi": "Cảm ơn. Tôi luyện tập mỗi ngày."
+        },
+        {
+          "text": "You're too kind.",
+          "vi": "Bạn quá khen."
+        }
+      ],
+      "imageQuery": "teacher praising student"
+    },
+    {
+      "term": "What's your favourite food?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "món ăn yêu thích của bạn là gì?",
+      "meaningEn": "a question about food preferences",
+      "examples": [
+        {
+          "text": "What's your favourite food? Mine is pizza.",
+          "vi": "Món ăn yêu thích của bạn là gì? Của tôi là pizza."
+        },
+        {
+          "text": "What's your favourite food in Vietnam?",
+          "vi": "Món ăn yêu thích của bạn ở Việt Nam là gì?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I love noodle soup.",
+          "vi": "Tôi thích mì nước."
+        },
+        {
+          "text": "I like spicy food.",
+          "vi": "Tôi thích đồ ăn cay."
+        }
+      ],
+      "imageQuery": "friends talking favourite food"
+    },
+    {
+      "term": "Let's keep in touch.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "hãy giữ liên lạc nhé",
+      "meaningEn": "what you say when you want to stay in contact",
+      "examples": [
+        {
+          "text": "Let's keep in touch. Here's my email.",
+          "vi": "Hãy giữ liên lạc nhé. Đây là email của tôi."
+        },
+        {
+          "text": "It was great to meet you. Let's keep in touch.",
+          "vi": "Rất vui được gặp bạn. Hãy giữ liên lạc nhé."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Stay in touch.",
+          "vi": "Giữ liên lạc nhé."
+        },
+        {
+          "text": "I'll message you.",
+          "vi": "Tôi sẽ nhắn tin cho bạn."
+        }
+      ],
+      "imageQuery": "friends exchanging contact phones"
+    },
+    {
+      "term": "I'm glad to hear that.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi rất vui khi nghe điều đó",
+      "meaningEn": "a reply to good news",
+      "examples": [
+        {
+          "text": "I'm glad to hear that. Congratulations!",
+          "vi": "Tôi rất vui khi nghe điều đó. Chúc mừng!"
+        },
+        {
+          "text": "I'm glad to hear that you feel better.",
+          "vi": "Tôi rất vui khi nghe bạn khỏe hơn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "That's good news.",
+          "vi": "Tin tốt đấy."
+        },
+        {
+          "text": "Well done!",
+          "vi": "Làm tốt lắm!"
+        }
+      ],
+      "imageQuery": "friends happy good news"
+    },
+    {
+      "term": "That sounds great!",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "nghe hay đấy!",
+      "meaningEn": "a reply that shows you like an idea",
+      "examples": [
+        {
+          "text": "That sounds great! I'd love to come.",
+          "vi": "Nghe hay đấy! Tôi rất muốn đến."
+        },
+        {
+          "text": "\"Let's go for a picnic.\" \"That sounds great!\"",
+          "vi": "\"Mình đi dã ngoại nhé.\" \"Nghe hay đấy!\""
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Good idea!",
+          "vi": "Ý hay đấy!"
+        },
+        {
+          "text": "Why not?",
+          "vi": "Sao lại không?"
+        }
+      ],
+      "imageQuery": "friends planning picnic excited"
+    },
+    {
+      "term": "Really?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "thật sao?",
+      "meaningEn": "a short reply that shows surprise or interest",
+      "examples": [
+        {
+          "text": "Really? I didn't know that.",
+          "vi": "Thật sao? Tôi không biết điều đó."
+        },
+        {
+          "text": "\"I'm moving to Japan.\" \"Really?\"",
+          "vi": "\"Tôi sắp chuyển đến Nhật.\" \"Thật sao?\""
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Wow!",
+          "vi": "Chà!"
+        },
+        {
+          "text": "No way!",
+          "vi": "Không thể tin được!"
+        }
+      ],
+      "imageQuery": "surprised friend listening"
+    },
+    {
+      "term": "Me too.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "tôi cũng vậy",
+      "meaningEn": "a reply that shows you feel or do the same",
+      "examples": [
+        {
+          "text": "\"I love tea.\" \"Me too.\"",
+          "vi": "\"Tôi thích trà.\" \"Tôi cũng vậy.\""
+        },
+        {
+          "text": "I'm hungry. Me too.",
+          "vi": "Tôi đói. Tôi cũng vậy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "So do I.",
+          "vi": "Tôi cũng thế."
+        },
+        {
+          "text": "Same here.",
+          "vi": "Tôi cũng vậy."
+        }
+      ],
+      "imageQuery": "two friends agreeing smiling"
+    },
+    {
+      "term": "I have to go now.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "giờ tôi phải đi rồi",
+      "meaningEn": "a polite way to end a conversation",
+      "examples": [
+        {
+          "text": "I have to go now. See you tomorrow.",
+          "vi": "Giờ tôi phải đi rồi. Hẹn mai gặp."
+        },
+        {
+          "text": "Sorry, I have to go now.",
+          "vi": "Xin lỗi, giờ tôi phải đi rồi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I must be going.",
+          "vi": "Tôi phải đi đây."
+        },
+        {
+          "text": "It was nice talking to you.",
+          "vi": "Rất vui được trò chuyện với bạn."
+        }
+      ],
+      "imageQuery": "person checking watch leaving"
+    }
+  ]
+}

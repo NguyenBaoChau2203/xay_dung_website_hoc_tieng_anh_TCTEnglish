@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 1,
+  "folder": "Giao tiếp hằng ngày",
+  "set": {
+    "code": "C07",
+    "name": "Ở sân bay & khách sạn",
+    "description": "#a2 #b1 #airport #hotel",
+    "topic": "Ở sân bay & khách sạn",
+    "wordListBasis": "high-frequency spoken phrases, author-written"
+  },
+  "cards": [
+    {
+      "term": "Where is the check-in desk?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "quầy làm thủ tục ở đâu?",
+      "meaningEn": "a question to find where to check in for a flight",
+      "examples": [
+        {
+          "text": "Excuse me, where is the check-in desk?",
+          "vi": "Xin lỗi, quầy làm thủ tục ở đâu?"
+        },
+        {
+          "text": "Where is the check-in desk for Hanoi?",
+          "vi": "Quầy làm thủ tục đi Hà Nội ở đâu?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's on the second floor.",
+          "vi": "Ở tầng hai."
+        },
+        {
+          "text": "Go to desk twelve.",
+          "vi": "Hãy đến quầy số mười hai."
+        }
+      ],
+      "imageQuery": "airport check-in desk passengers"
+    },
+    {
+      "term": "Here is my passport.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "đây là hộ chiếu của tôi",
+      "meaningEn": "what you say when you hand over your passport",
+      "examples": [
+        {
+          "text": "Here is my passport and my ticket.",
+          "vi": "Đây là hộ chiếu và vé của tôi."
+        },
+        {
+          "text": "Here is my passport, officer.",
+          "vi": "Đây là hộ chiếu của tôi, thưa nhân viên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "May I see your passport?",
+          "vi": "Cho tôi xem hộ chiếu của bạn."
+        },
+        {
+          "text": "Thank you.",
+          "vi": "Cảm ơn bạn."
+        }
+      ],
+      "imageQuery": "passport check officer desk"
+    },
+    {
+      "term": "I'd like a window seat.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi muốn ngồi cạnh cửa sổ",
+      "meaningEn": "a request for a seat next to the window",
+      "examples": [
+        {
+          "text": "I'd like a window seat, please.",
+          "vi": "Tôi muốn ngồi cạnh cửa sổ."
+        },
+        {
+          "text": "I'd like an aisle seat, please.",
+          "vi": "Tôi muốn ngồi cạnh lối đi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Window or aisle?",
+          "vi": "Cửa sổ hay lối đi?"
+        },
+        {
+          "text": "I'll check for you.",
+          "vi": "Tôi sẽ kiểm tra giúp bạn."
+        }
+      ],
+      "imageQuery": "airplane window seat view"
+    },
+    {
+      "term": "Is this my boarding gate?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "đây có phải cổng lên máy bay của tôi không?",
+      "meaningEn": "a question to check the gate for your flight",
+      "examples": [
+        {
+          "text": "Is this my boarding gate?",
+          "vi": "Đây có phải cổng lên máy bay của tôi không?"
+        },
+        {
+          "text": "Is this the boarding gate for Tokyo?",
+          "vi": "Đây có phải cổng lên máy bay đi Tokyo không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "No, it's gate twelve.",
+          "vi": "Không, là cổng mười hai."
+        },
+        {
+          "text": "Yes, it is.",
+          "vi": "Vâng, đúng rồi."
+        }
+      ],
+      "imageQuery": "airport gate sign boarding"
+    },
+    {
+      "term": "Do I need to pay for extra baggage?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi có phải trả thêm phí hành lý không?",
+      "meaningEn": "a question about the cost of heavy bags",
+      "examples": [
+        {
+          "text": "Do I need to pay for extra baggage?",
+          "vi": "Tôi có phải trả thêm phí hành lý không?"
+        },
+        {
+          "text": "Do I need to pay for extra baggage on this flight?",
+          "vi": "Chuyến bay này tôi có phải trả thêm phí hành lý không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "The limit is twenty kilos.",
+          "vi": "Giới hạn là hai mươi ký."
+        },
+        {
+          "text": "Please put your bag on the scale.",
+          "vi": "Xin hãy đặt túi lên cân."
+        }
+      ],
+      "imageQuery": "luggage scale check-in"
+    },
+    {
+      "term": "My flight has been delayed.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "chuyến bay của tôi bị hoãn",
+      "meaningEn": "what you say when a flight is late",
+      "examples": [
+        {
+          "text": "My flight has been delayed by two hours.",
+          "vi": "Chuyến bay của tôi bị hoãn hai tiếng."
+        },
+        {
+          "text": "I'm sorry, my flight has been delayed.",
+          "vi": "Xin lỗi, chuyến bay của tôi bị hoãn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "The flight is on time.",
+          "vi": "Chuyến bay đúng giờ."
+        },
+        {
+          "text": "It was cancelled.",
+          "vi": "Chuyến bay đã bị hủy."
+        }
+      ],
+      "imageQuery": "departure board delayed flight"
+    },
+    {
+      "term": "Where can I get my luggage?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi nhận hành lý ở đâu?",
+      "meaningEn": "a question about collecting bags at an airport",
+      "examples": [
+        {
+          "text": "Where can I get my luggage?",
+          "vi": "Tôi nhận hành lý ở đâu?"
+        },
+        {
+          "text": "Where can I get my luggage from this flight?",
+          "vi": "Tôi nhận hành lý của chuyến bay này ở đâu?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "At the baggage claim.",
+          "vi": "Ở khu nhận hành lý."
+        },
+        {
+          "text": "Belt number three.",
+          "vi": "Băng chuyền số ba."
+        }
+      ],
+      "imageQuery": "baggage claim carousel suitcases"
+    },
+    {
+      "term": "I have nothing to declare.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi không có gì phải khai báo",
+      "meaningEn": "what you say at customs",
+      "examples": [
+        {
+          "text": "I have nothing to declare.",
+          "vi": "Tôi không có gì phải khai báo."
+        },
+        {
+          "text": "Do you have anything to declare?",
+          "vi": "Bạn có gì cần khai báo không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I have some gifts.",
+          "vi": "Tôi có vài món quà."
+        },
+        {
+          "text": "Please open your bag.",
+          "vi": "Xin hãy mở túi của bạn."
+        }
+      ],
+      "imageQuery": "customs officer checking bag"
+    },
+    {
+      "term": "What time is boarding?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "mấy giờ bắt đầu lên máy bay?",
+      "meaningEn": "a question about boarding time",
+      "examples": [
+        {
+          "text": "What time is boarding?",
+          "vi": "Mấy giờ bắt đầu lên máy bay?"
+        },
+        {
+          "text": "What time is boarding for flight ten?",
+          "vi": "Mấy giờ bắt đầu lên máy bay chuyến mười?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Boarding is at six.",
+          "vi": "Lên máy bay lúc sáu giờ."
+        },
+        {
+          "text": "Please wait at the gate.",
+          "vi": "Xin hãy chờ ở cổng."
+        }
+      ],
+      "imageQuery": "passengers waiting gate clock"
+    },
+    {
+      "term": "I have a reservation.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi có đặt phòng trước",
+      "meaningEn": "what you say at a hotel when you booked a room",
+      "examples": [
+        {
+          "text": "Good evening. I have a reservation.",
+          "vi": "Chào buổi tối. Tôi có đặt phòng trước."
+        },
+        {
+          "text": "I have a reservation under the name Nam.",
+          "vi": "Tôi có đặt phòng dưới tên Nam."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Your name, please?",
+          "vi": "Cho tôi biết tên bạn."
+        },
+        {
+          "text": "Let me check.",
+          "vi": "Để tôi kiểm tra."
+        }
+      ],
+      "imageQuery": "hotel reception check in"
+    },
+    {
+      "term": "I'd like to check in, please.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi muốn nhận phòng",
+      "meaningEn": "what you say when you arrive at a hotel",
+      "examples": [
+        {
+          "text": "I'd like to check in, please.",
+          "vi": "Tôi muốn nhận phòng."
+        },
+        {
+          "text": "I'd like to check in, please. My name is Linh.",
+          "vi": "Tôi muốn nhận phòng. Tên tôi là Linh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Here is your key.",
+          "vi": "Chìa khóa của bạn đây."
+        },
+        {
+          "text": "Please fill in this form.",
+          "vi": "Xin điền vào mẫu này."
+        }
+      ],
+      "imageQuery": "hotel reception key guest"
+    },
+    {
+      "term": "Could I have a room with a view?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi có thể có phòng nhìn ra cảnh đẹp không?",
+      "meaningEn": "a request for a room with a good view",
+      "examples": [
+        {
+          "text": "Could I have a room with a view?",
+          "vi": "Tôi có thể có phòng nhìn ra cảnh đẹp không?"
+        },
+        {
+          "text": "Could I have a room with a sea view?",
+          "vi": "Tôi có thể có phòng nhìn ra biển không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'll see what I can do.",
+          "vi": "Tôi sẽ xem có thể làm gì."
+        },
+        {
+          "text": "A room on a high floor.",
+          "vi": "Một phòng ở tầng cao."
+        }
+      ],
+      "imageQuery": "hotel room window sea view"
+    },
+    {
+      "term": "What time is breakfast?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "bữa sáng lúc mấy giờ?",
+      "meaningEn": "a question about breakfast time",
+      "examples": [
+        {
+          "text": "What time is breakfast?",
+          "vi": "Bữa sáng lúc mấy giờ?"
+        },
+        {
+          "text": "What time is breakfast tomorrow?",
+          "vi": "Mai bữa sáng lúc mấy giờ?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "From seven to ten.",
+          "vi": "Từ bảy đến mười giờ."
+        },
+        {
+          "text": "It's on the ground floor.",
+          "vi": "Ở tầng trệt."
+        }
+      ],
+      "imageQuery": "hotel breakfast buffet"
+    },
+    {
+      "term": "Is breakfast included?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "đã bao gồm bữa sáng chưa?",
+      "meaningEn": "a question about whether breakfast is in the price",
+      "examples": [
+        {
+          "text": "Is breakfast included in the price?",
+          "vi": "Giá này đã bao gồm bữa sáng chưa?"
+        },
+        {
+          "text": "Is breakfast included?",
+          "vi": "Đã bao gồm bữa sáng chưa?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Yes, it's free.",
+          "vi": "Vâng, miễn phí."
+        },
+        {
+          "text": "It costs ten dollars.",
+          "vi": "Giá mười đô la."
+        }
+      ],
+      "imageQuery": "hotel breakfast tray price"
+    },
+    {
+      "term": "Could you call a taxi for me?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "bạn gọi giúp tôi một chiếc taxi được không?",
+      "meaningEn": "a request for the hotel to call a taxi",
+      "examples": [
+        {
+          "text": "Could you call a taxi for me?",
+          "vi": "Bạn gọi giúp tôi một chiếc taxi được không?"
+        },
+        {
+          "text": "Could you call a taxi for me at six?",
+          "vi": "Bạn gọi giúp tôi một chiếc taxi lúc sáu giờ được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Where to?",
+          "vi": "Bạn đi đâu?"
+        },
+        {
+          "text": "It'll be here in ten minutes.",
+          "vi": "Mười phút nữa xe sẽ đến."
+        }
+      ],
+      "imageQuery": "hotel reception taxi call"
+    },
+    {
+      "term": "What's the Wi-Fi password?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "mật khẩu Wi-Fi là gì?",
+      "meaningEn": "a question to connect to the internet",
+      "examples": [
+        {
+          "text": "What's the Wi-Fi password?",
+          "vi": "Mật khẩu Wi-Fi là gì?"
+        },
+        {
+          "text": "Excuse me, what's the Wi-Fi password?",
+          "vi": "Xin lỗi, mật khẩu Wi-Fi là gì?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's on this card.",
+          "vi": "Nó ở trên tấm thẻ này."
+        },
+        {
+          "text": "The network is Hotel Guest.",
+          "vi": "Mạng là Hotel Guest."
+        }
+      ],
+      "imageQuery": "wifi password card hotel"
+    },
+    {
+      "term": "The air conditioner isn't working.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "máy điều hòa không hoạt động",
+      "meaningEn": "a complaint about a broken air conditioner",
+      "examples": [
+        {
+          "text": "The air conditioner isn't working. It's very hot.",
+          "vi": "Máy điều hòa không hoạt động. Rất nóng."
+        },
+        {
+          "text": "The air conditioner isn't working in my room.",
+          "vi": "Máy điều hòa trong phòng tôi không hoạt động."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'll send someone.",
+          "vi": "Tôi sẽ cử người lên."
+        },
+        {
+          "text": "I'm sorry about that.",
+          "vi": "Tôi xin lỗi về điều đó."
+        }
+      ],
+      "imageQuery": "hotel room air conditioner remote"
+    },
+    {
+      "term": "I'd like to check out.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi muốn trả phòng",
+      "meaningEn": "what you say when you leave a hotel",
+      "examples": [
+        {
+          "text": "I'd like to check out, please.",
+          "vi": "Tôi muốn trả phòng."
+        },
+        {
+          "text": "I'd like to check out of room 305.",
+          "vi": "Tôi muốn trả phòng 305."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "How was your stay?",
+          "vi": "Kỳ nghỉ của bạn thế nào?"
+        },
+        {
+          "text": "Here is the bill.",
+          "vi": "Hóa đơn đây ạ."
+        }
+      ],
+      "imageQuery": "hotel guest check out suitcase"
+    },
+    {
+      "term": "Can I leave my bags here?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi gửi hành lý ở đây được không?",
+      "meaningEn": "a request to store luggage for a while",
+      "examples": [
+        {
+          "text": "Can I leave my bags here until three?",
+          "vi": "Tôi gửi hành lý ở đây đến ba giờ được không?"
+        },
+        {
+          "text": "Can I leave my bags here for a few hours?",
+          "vi": "Tôi gửi hành lý ở đây vài tiếng được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Yes, we have a luggage room.",
+          "vi": "Được, chúng tôi có phòng giữ hành lý."
+        },
+        {
+          "text": "Here is your ticket.",
+          "vi": "Phiếu gửi của bạn đây."
+        }
+      ],
+      "imageQuery": "luggage storage hotel lobby"
+    },
+    {
+      "term": "Could I have a wake-up call at six?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "cho tôi dịch vụ báo thức lúc sáu giờ được không?",
+      "meaningEn": "a request for the hotel to call you in the morning",
+      "examples": [
+        {
+          "text": "Could I have a wake-up call at six?",
+          "vi": "Cho tôi dịch vụ báo thức lúc sáu giờ được không?"
+        },
+        {
+          "text": "Could I have a wake-up call at half past five?",
+          "vi": "Cho tôi dịch vụ báo thức lúc năm giờ rưỡi được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Certainly.",
+          "vi": "Chắc chắn rồi."
+        },
+        {
+          "text": "What room number is it?",
+          "vi": "Số phòng của bạn là gì?"
+        }
+      ],
+      "imageQuery": "hotel phone alarm clock morning"
+    }
+  ]
+}

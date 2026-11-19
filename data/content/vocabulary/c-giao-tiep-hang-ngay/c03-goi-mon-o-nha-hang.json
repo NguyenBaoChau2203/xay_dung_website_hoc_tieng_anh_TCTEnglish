@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 1,
+  "folder": "Giao tiếp hằng ngày",
+  "set": {
+    "code": "C03",
+    "name": "Gọi món ở nhà hàng",
+    "description": "#a2 #b1 #restaurant #ordering",
+    "topic": "Gọi món ở nhà hàng",
+    "wordListBasis": "high-frequency spoken phrases, author-written"
+  },
+  "cards": [
+    {
+      "term": "A table for two, please.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "cho tôi một bàn hai người",
+      "meaningEn": "what you say when you arrive at a restaurant",
+      "examples": [
+        {
+          "text": "A table for two, please.",
+          "vi": "Cho tôi một bàn hai người."
+        },
+        {
+          "text": "We'd like a table for four, please.",
+          "vi": "Chúng tôi muốn một bàn bốn người."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Do you have a reservation?",
+          "vi": "Bạn có đặt bàn trước không?"
+        },
+        {
+          "text": "This way, please.",
+          "vi": "Mời đi lối này."
+        }
+      ],
+      "imageQuery": "couple entering restaurant host"
+    },
+    {
+      "term": "Can I see the menu, please?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "cho tôi xem thực đơn được không?",
+      "meaningEn": "a polite request to see the list of food",
+      "examples": [
+        {
+          "text": "Can I see the menu, please?",
+          "vi": "Cho tôi xem thực đơn được không?"
+        },
+        {
+          "text": "Can we see the menu, please?",
+          "vi": "Chúng tôi xem thực đơn được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Here is the menu.",
+          "vi": "Thực đơn đây ạ."
+        },
+        {
+          "text": "Take your time.",
+          "vi": "Bạn cứ từ từ."
+        }
+      ],
+      "imageQuery": "waiter handing menu"
+    },
+    {
+      "term": "What do you recommend?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "bạn gợi ý món nào?",
+      "meaningEn": "a question to ask the waiter for advice",
+      "examples": [
+        {
+          "text": "What do you recommend? I'm very hungry.",
+          "vi": "Bạn gợi ý món nào? Tôi đói lắm."
+        },
+        {
+          "text": "What do you recommend for dessert?",
+          "vi": "Bạn gợi ý món tráng miệng nào?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'd recommend the fish.",
+          "vi": "Tôi gợi ý món cá."
+        },
+        {
+          "text": "Our special today is soup.",
+          "vi": "Món đặc biệt hôm nay là súp."
+        }
+      ],
+      "imageQuery": "customer asking waiter recommendation"
+    },
+    {
+      "term": "I'd like the chicken soup.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi muốn gọi món súp gà",
+      "meaningEn": "a polite way to order a dish",
+      "examples": [
+        {
+          "text": "I'd like the chicken soup, please.",
+          "vi": "Tôi muốn gọi món súp gà."
+        },
+        {
+          "text": "I'd like the fried rice and a juice.",
+          "vi": "Tôi muốn gọi cơm chiên và một ly nước ép."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'll have the soup.",
+          "vi": "Tôi sẽ dùng món súp."
+        },
+        {
+          "text": "Anything else?",
+          "vi": "Còn gì nữa không ạ?"
+        }
+      ],
+      "imageQuery": "customer ordering soup restaurant"
+    },
+    {
+      "term": "Could I have some water, please?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "cho tôi xin ít nước được không?",
+      "meaningEn": "a polite request for water",
+      "examples": [
+        {
+          "text": "Could I have some water, please?",
+          "vi": "Cho tôi xin ít nước được không?"
+        },
+        {
+          "text": "Could I have some more water, please?",
+          "vi": "Cho tôi xin thêm nước được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Sure, right away.",
+          "vi": "Được ạ, ngay đây."
+        },
+        {
+          "text": "Still or sparkling?",
+          "vi": "Nước thường hay nước có ga?"
+        }
+      ],
+      "imageQuery": "glass of water waiter pouring"
+    },
+    {
+      "term": "Is this dish spicy?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "món này có cay không?",
+      "meaningEn": "a question about how hot a dish is",
+      "examples": [
+        {
+          "text": "Is this dish spicy? I can't eat chilli.",
+          "vi": "Món này có cay không? Tôi không ăn được ớt."
+        },
+        {
+          "text": "Is this dish very spicy?",
+          "vi": "Món này có rất cay không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's quite mild.",
+          "vi": "Món này khá nhạt."
+        },
+        {
+          "text": "It's a little spicy.",
+          "vi": "Món này hơi cay."
+        }
+      ],
+      "imageQuery": "customer asking spicy chilli dish"
+    },
+    {
+      "term": "I'm allergic to peanuts.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi bị dị ứng với đậu phộng",
+      "meaningEn": "a warning about a food allergy",
+      "examples": [
+        {
+          "text": "I'm allergic to peanuts. Is there any in this?",
+          "vi": "Tôi bị dị ứng với đậu phộng. Món này có không?"
+        },
+        {
+          "text": "Please tell the chef I'm allergic to peanuts.",
+          "vi": "Làm ơn nói với đầu bếp tôi bị dị ứng đậu phộng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I can't eat nuts.",
+          "vi": "Tôi không ăn được các loại hạt."
+        },
+        {
+          "text": "Does it contain milk?",
+          "vi": "Món này có sữa không?"
+        }
+      ],
+      "imageQuery": "allergy warning peanuts menu"
+    },
+    {
+      "term": "I'll have the same.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi sẽ dùng món giống vậy",
+      "meaningEn": "a way to order the same thing as someone else",
+      "examples": [
+        {
+          "text": "I'll have the same. It looks great.",
+          "vi": "Tôi sẽ dùng món giống vậy. Trông tuyệt quá."
+        },
+        {
+          "text": "\"I'll have the steak.\" \"I'll have the same.\"",
+          "vi": "\"Tôi dùng bít tết.\" \"Tôi dùng giống vậy.\""
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Make that two.",
+          "vi": "Cho hai phần nhé."
+        },
+        {
+          "text": "The same for me.",
+          "vi": "Cho tôi giống vậy."
+        }
+      ],
+      "imageQuery": "two friends ordering same dish"
+    },
+    {
+      "term": "Can we order, please?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "chúng tôi gọi món được chưa?",
+      "meaningEn": "a polite way to say you are ready to order",
+      "examples": [
+        {
+          "text": "Excuse me, can we order, please?",
+          "vi": "Xin lỗi, chúng tôi gọi món được chưa?"
+        },
+        {
+          "text": "Can we order now, please?",
+          "vi": "Giờ chúng tôi gọi món được chưa?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Are you ready to order?",
+          "vi": "Quý khách đã sẵn sàng gọi món chưa?"
+        },
+        {
+          "text": "Just a moment.",
+          "vi": "Xin đợi một chút."
+        }
+      ],
+      "imageQuery": "customer raising hand waiter"
+    },
+    {
+      "term": "Anything to drink?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "bạn uống gì không?",
+      "meaningEn": "a waiter's question about drinks",
+      "examples": [
+        {
+          "text": "Anything to drink? We have tea and juice.",
+          "vi": "Quý khách uống gì không? Chúng tôi có trà và nước ép."
+        },
+        {
+          "text": "Anything to drink with your meal?",
+          "vi": "Quý khách có uống gì kèm bữa ăn không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'll have an orange juice.",
+          "vi": "Cho tôi một ly cam."
+        },
+        {
+          "text": "Just water, please.",
+          "vi": "Chỉ nước lọc thôi."
+        }
+      ],
+      "imageQuery": "waiter asking drinks order"
+    },
+    {
+      "term": "Could I have the bill, please?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "cho tôi xin hóa đơn được không?",
+      "meaningEn": "a polite way to ask to pay",
+      "examples": [
+        {
+          "text": "Could I have the bill, please?",
+          "vi": "Cho tôi xin hóa đơn được không?"
+        },
+        {
+          "text": "Could we have the bill, please?",
+          "vi": "Cho chúng tôi xin hóa đơn được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Here is your bill.",
+          "vi": "Hóa đơn của bạn đây."
+        },
+        {
+          "text": "Check, please.",
+          "vi": "Cho tôi tính tiền."
+        }
+      ],
+      "imageQuery": "customer asking bill restaurant"
+    },
+    {
+      "term": "Is service included?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "đã bao gồm phí phục vụ chưa?",
+      "meaningEn": "a question about whether a tip is already in the bill",
+      "examples": [
+        {
+          "text": "Is service included in the price?",
+          "vi": "Giá này đã bao gồm phí phục vụ chưa?"
+        },
+        {
+          "text": "Is service included, or should I tip?",
+          "vi": "Đã gồm phí phục vụ chưa, hay tôi nên boa?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Service is not included.",
+          "vi": "Phí phục vụ chưa bao gồm."
+        },
+        {
+          "text": "A ten percent service charge.",
+          "vi": "Phí phục vụ mười phần trăm."
+        }
+      ],
+      "imageQuery": "bill service charge restaurant receipt"
+    },
+    {
+      "term": "Can I pay by card?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi trả bằng thẻ được không?",
+      "meaningEn": "a question about paying with a card",
+      "examples": [
+        {
+          "text": "Can I pay by card? I have no cash.",
+          "vi": "Tôi trả bằng thẻ được không? Tôi không có tiền mặt."
+        },
+        {
+          "text": "Can I pay by card here?",
+          "vi": "Ở đây tôi trả bằng thẻ được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Cash only.",
+          "vi": "Chỉ nhận tiền mặt."
+        },
+        {
+          "text": "Yes, of course.",
+          "vi": "Được, tất nhiên."
+        }
+      ],
+      "imageQuery": "paying by card terminal restaurant"
+    },
+    {
+      "term": "Keep the change.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "không cần thối lại",
+      "meaningEn": "what you say when you do not want the change back",
+      "examples": [
+        {
+          "text": "Here is twenty. Keep the change.",
+          "vi": "Đây là hai mươi. Không cần thối lại."
+        },
+        {
+          "text": "Keep the change, thank you.",
+          "vi": "Không cần thối lại, cảm ơn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "That's for you.",
+          "vi": "Đây là cho bạn."
+        },
+        {
+          "text": "Thank you, sir.",
+          "vi": "Cảm ơn ông."
+        }
+      ],
+      "imageQuery": "customer leaving tip waiter"
+    },
+    {
+      "term": "It was delicious.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "món ăn rất ngon",
+      "meaningEn": "a compliment about the food",
+      "examples": [
+        {
+          "text": "It was delicious. Thank you very much.",
+          "vi": "Món ăn rất ngon. Cảm ơn bạn nhiều."
+        },
+        {
+          "text": "The soup was delicious.",
+          "vi": "Món súp rất ngon."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It was really tasty.",
+          "vi": "Món ăn thật ngon."
+        },
+        {
+          "text": "My compliments to the chef.",
+          "vi": "Xin khen đầu bếp."
+        }
+      ],
+      "imageQuery": "happy customers finishing meal"
+    },
+    {
+      "term": "Could we have another chair?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "cho chúng tôi thêm một cái ghế được không?",
+      "meaningEn": "a request for an extra chair at the table",
+      "examples": [
+        {
+          "text": "Could we have another chair? A friend is joining us.",
+          "vi": "Cho chúng tôi thêm một cái ghế được không? Một người bạn sẽ tham gia."
+        },
+        {
+          "text": "Could we have another chair, please?",
+          "vi": "Cho chúng tôi thêm một cái ghế được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Of course.",
+          "vi": "Tất nhiên rồi."
+        },
+        {
+          "text": "I'll bring one.",
+          "vi": "Tôi sẽ mang đến một cái."
+        }
+      ],
+      "imageQuery": "extra chair restaurant table"
+    },
+    {
+      "term": "I'd like it without onions.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi muốn món này không hành",
+      "meaningEn": "a request to leave out an ingredient",
+      "examples": [
+        {
+          "text": "I'd like it without onions, please.",
+          "vi": "Tôi muốn món này không hành."
+        },
+        {
+          "text": "I'd like the burger without cheese.",
+          "vi": "Tôi muốn bánh mì kẹp thịt không phô mai."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "No problem.",
+          "vi": "Không vấn đề gì."
+        },
+        {
+          "text": "Extra sauce, please.",
+          "vi": "Cho thêm nước sốt."
+        }
+      ],
+      "imageQuery": "burger no onions order"
+    },
+    {
+      "term": "Takeaway or eat in?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "mang đi hay ăn tại chỗ?",
+      "meaningEn": "a question asked at a fast-food counter",
+      "examples": [
+        {
+          "text": "Takeaway or eat in?",
+          "vi": "Mang đi hay ăn tại chỗ?"
+        },
+        {
+          "text": "Is that takeaway or eat in?",
+          "vi": "Là mang đi hay ăn tại chỗ ạ?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Takeaway, please.",
+          "vi": "Mang đi, làm ơn."
+        },
+        {
+          "text": "I'll eat in.",
+          "vi": "Tôi ăn tại chỗ."
+        }
+      ],
+      "imageQuery": "fast food counter takeaway bag"
+    },
+    {
+      "term": "Could you wrap this up?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "bạn gói giúp tôi phần này được không?",
+      "meaningEn": "a request to pack leftover food to take home",
+      "examples": [
+        {
+          "text": "Could you wrap this up for me?",
+          "vi": "Bạn gói giúp tôi phần này được không?"
+        },
+        {
+          "text": "Could you wrap up the rest of the cake?",
+          "vi": "Bạn gói phần bánh còn lại giúp tôi được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Do you need a box?",
+          "vi": "Bạn có cần hộp không?"
+        },
+        {
+          "text": "Sure.",
+          "vi": "Được ạ."
+        }
+      ],
+      "imageQuery": "leftover food box takeaway"
+    },
+    {
+      "term": "Enjoy your meal!",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "chúc bạn ngon miệng!",
+      "meaningEn": "what a waiter says after serving food",
+      "examples": [
+        {
+          "text": "Here is your soup. Enjoy your meal!",
+          "vi": "Súp của bạn đây. Chúc bạn ngon miệng!"
+        },
+        {
+          "text": "The waiter smiled and said, \"Enjoy your meal!\"",
+          "vi": "Người phục vụ mỉm cười nói: \"Chúc quý khách ngon miệng!\""
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Thank you, you too.",
+          "vi": "Cảm ơn, bạn cũng vậy."
+        },
+        {
+          "text": "Bon appetit!",
+          "vi": "Chúc ngon miệng!"
+        }
+      ],
+      "imageQuery": "waiter serving dishes table"
+    }
+  ]
+}

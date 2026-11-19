@@ -1,0 +1,589 @@
+{
+  "schemaVersion": 1,
+  "folder": "Giao tiếp hằng ngày",
+  "set": {
+    "code": "C01",
+    "name": "Chào hỏi & giới thiệu",
+    "description": "#a1 #a2 #b1 #greetings #introductions",
+    "topic": "Chào hỏi & giới thiệu",
+    "wordListBasis": "high-frequency spoken phrases, author-written"
+  },
+  "cards": [
+    {
+      "term": "Hello!",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "lời chào thông thường",
+      "meaningEn": "a common way to greet someone",
+      "examples": [
+        {
+          "text": "Hello! How are you today?",
+          "vi": "Xin chào! Hôm nay bạn thế nào?"
+        },
+        {
+          "text": "She smiled and said, \"Hello!\"",
+          "vi": "Cô ấy mỉm cười và nói: \"Xin chào!\""
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Hello there!",
+          "vi": "Chào bạn!"
+        },
+        {
+          "text": "Hi!",
+          "vi": "Chào!"
+        }
+      ],
+      "imageQuery": "two people greeting each other"
+    },
+    {
+      "term": "Good morning!",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "chào buổi sáng",
+      "meaningEn": "a greeting you say before noon",
+      "examples": [
+        {
+          "text": "Good morning! Did you sleep well?",
+          "vi": "Chào buổi sáng! Bạn ngủ ngon không?"
+        },
+        {
+          "text": "Good morning, Mr Lee!",
+          "vi": "Chào buổi sáng, ông Lee!"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Good morning, everyone!",
+          "vi": "Chào buổi sáng mọi người!"
+        },
+        {
+          "text": "Morning!",
+          "vi": "Chào buổi sáng!"
+        }
+      ],
+      "imageQuery": "morning greeting office"
+    },
+    {
+      "term": "Good afternoon!",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "chào buổi chiều",
+      "meaningEn": "a polite greeting from noon until evening",
+      "examples": [
+        {
+          "text": "Good afternoon! Can I help you?",
+          "vi": "Chào buổi chiều! Tôi giúp được gì cho bạn?"
+        },
+        {
+          "text": "Good afternoon, class.",
+          "vi": "Chào buổi chiều cả lớp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Good afternoon, madam.",
+          "vi": "Chào buổi chiều, thưa bà."
+        }
+      ],
+      "imageQuery": "afternoon greeting reception"
+    },
+    {
+      "term": "Good evening!",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "chào buổi tối",
+      "meaningEn": "a polite greeting in the evening",
+      "examples": [
+        {
+          "text": "Good evening! Welcome to our restaurant.",
+          "vi": "Chào buổi tối! Chào mừng đến nhà hàng của chúng tôi."
+        },
+        {
+          "text": "Good evening, everyone.",
+          "vi": "Chào buổi tối mọi người."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Good evening, sir.",
+          "vi": "Chào buổi tối, thưa ông."
+        }
+      ],
+      "imageQuery": "evening greeting restaurant"
+    },
+    {
+      "term": "How are you?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "bạn khỏe không?",
+      "meaningEn": "a question to ask about someone's health or mood",
+      "examples": [
+        {
+          "text": "Hi, Anna! How are you?",
+          "vi": "Chào Anna! Bạn khỏe không?"
+        },
+        {
+          "text": "How are you feeling today?",
+          "vi": "Hôm nay bạn thấy thế nào?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'm fine, thank you.",
+          "vi": "Tôi khỏe, cảm ơn bạn."
+        },
+        {
+          "text": "Not bad.",
+          "vi": "Cũng không tệ."
+        }
+      ],
+      "imageQuery": "friends meeting street"
+    },
+    {
+      "term": "I'm fine, thank you.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "tôi khỏe, cảm ơn",
+      "meaningEn": "a polite answer to \"How are you?\"",
+      "examples": [
+        {
+          "text": "I'm fine, thank you. And you?",
+          "vi": "Tôi khỏe, cảm ơn. Còn bạn?"
+        },
+        {
+          "text": "\"How are you?\" \"I'm fine, thank you.\"",
+          "vi": "\"Bạn khỏe không?\" \"Tôi khỏe, cảm ơn.\""
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'm very well.",
+          "vi": "Tôi rất khỏe."
+        },
+        {
+          "text": "I'm okay.",
+          "vi": "Tôi ổn."
+        }
+      ],
+      "imageQuery": "polite conversation smiling"
+    },
+    {
+      "term": "Nice to meet you.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "rất vui được gặp bạn",
+      "meaningEn": "what you say when you meet someone for the first time",
+      "examples": [
+        {
+          "text": "Nice to meet you. I'm Linh.",
+          "vi": "Rất vui được gặp bạn. Tôi là Linh."
+        },
+        {
+          "text": "Nice to meet you too.",
+          "vi": "Tôi cũng rất vui được gặp bạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Pleased to meet you.",
+          "vi": "Hân hạnh được gặp bạn."
+        },
+        {
+          "text": "Nice to meet you too.",
+          "vi": "Tôi cũng rất vui được gặp bạn."
+        }
+      ],
+      "imageQuery": "two people shaking hands meeting"
+    },
+    {
+      "term": "My name is...",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "tên tôi là...",
+      "meaningEn": "a phrase for telling people your name",
+      "examples": [
+        {
+          "text": "My name is Minh. I'm from Vietnam.",
+          "vi": "Tên tôi là Minh. Tôi đến từ Việt Nam."
+        },
+        {
+          "text": "Hello, my name is Sara.",
+          "vi": "Xin chào, tên tôi là Sara."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'm Minh.",
+          "vi": "Tôi là Minh."
+        },
+        {
+          "text": "Call me Mike.",
+          "vi": "Cứ gọi tôi là Mike."
+        }
+      ],
+      "imageQuery": "self introduction classroom"
+    },
+    {
+      "term": "What's your name?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "bạn tên là gì?",
+      "meaningEn": "a question to ask someone's name",
+      "examples": [
+        {
+          "text": "What's your name? I'm Tom.",
+          "vi": "Bạn tên là gì? Tôi là Tom."
+        },
+        {
+          "text": "Excuse me, what's your name?",
+          "vi": "Xin lỗi, bạn tên là gì?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "May I ask your name?",
+          "vi": "Tôi có thể hỏi tên bạn không?"
+        }
+      ],
+      "imageQuery": "asking name new classmates"
+    },
+    {
+      "term": "Where are you from?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "bạn đến từ đâu?",
+      "meaningEn": "a question about someone's country or town",
+      "examples": [
+        {
+          "text": "Where are you from? I'm from Brazil.",
+          "vi": "Bạn đến từ đâu? Tôi đến từ Brazil."
+        },
+        {
+          "text": "Where are you from originally?",
+          "vi": "Gốc gác bạn ở đâu?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'm from Hanoi.",
+          "vi": "Tôi đến từ Hà Nội."
+        },
+        {
+          "text": "I come from Japan.",
+          "vi": "Tôi đến từ Nhật Bản."
+        }
+      ],
+      "imageQuery": "students world map talking"
+    },
+    {
+      "term": "I'm from...",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "tôi đến từ...",
+      "meaningEn": "a phrase for saying your country or city",
+      "examples": [
+        {
+          "text": "I'm from Da Nang, a city on the coast.",
+          "vi": "Tôi đến từ Đà Nẵng, một thành phố ven biển."
+        },
+        {
+          "text": "She said, \"I'm from Canada.\"",
+          "vi": "Cô ấy nói: \"Tôi đến từ Canada.\""
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I come from Peru.",
+          "vi": "Tôi đến từ Peru."
+        }
+      ],
+      "imageQuery": "person introducing country flag"
+    },
+    {
+      "term": "How old are you?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "bạn bao nhiêu tuổi?",
+      "meaningEn": "a question about someone's age",
+      "examples": [
+        {
+          "text": "How old are you, Lan?",
+          "vi": "Lan, bạn bao nhiêu tuổi?"
+        },
+        {
+          "text": "The boy asked, \"How old are you?\"",
+          "vi": "Cậu bé hỏi: \"Bạn bao nhiêu tuổi?\""
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'm twenty.",
+          "vi": "Tôi hai mươi tuổi."
+        },
+        {
+          "text": "I'll be twelve next month.",
+          "vi": "Tháng sau tôi sẽ mười hai tuổi."
+        }
+      ],
+      "imageQuery": "children talking age"
+    },
+    {
+      "term": "What do you do?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "bạn làm nghề gì?",
+      "meaningEn": "a question about someone's job",
+      "examples": [
+        {
+          "text": "What do you do for a living?",
+          "vi": "Bạn làm nghề gì để kiếm sống?"
+        },
+        {
+          "text": "What do you do? I'm a nurse.",
+          "vi": "Bạn làm nghề gì? Tôi là y tá."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I work as a teacher.",
+          "vi": "Tôi làm giáo viên."
+        },
+        {
+          "text": "I'm still a student.",
+          "vi": "Tôi vẫn còn là học sinh."
+        }
+      ],
+      "imageQuery": "people networking event talking"
+    },
+    {
+      "term": "This is my friend.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "đây là bạn của tôi",
+      "meaningEn": "a phrase for introducing a friend to someone",
+      "examples": [
+        {
+          "text": "This is my friend, Ben.",
+          "vi": "Đây là bạn tôi, Ben."
+        },
+        {
+          "text": "Mum, this is my friend Hoa.",
+          "vi": "Mẹ ơi, đây là bạn con, Hoa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Let me introduce my friend.",
+          "vi": "Để tôi giới thiệu bạn tôi."
+        },
+        {
+          "text": "Meet my friend Joe.",
+          "vi": "Đây là bạn tôi, Joe."
+        }
+      ],
+      "imageQuery": "introducing friend party"
+    },
+    {
+      "term": "Let me introduce myself.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "để tôi tự giới thiệu",
+      "meaningEn": "a polite way to start telling people who you are",
+      "examples": [
+        {
+          "text": "Let me introduce myself. I'm the new manager.",
+          "vi": "Để tôi tự giới thiệu. Tôi là quản lý mới."
+        },
+        {
+          "text": "Let me introduce myself to the class.",
+          "vi": "Để tôi tự giới thiệu với cả lớp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Allow me to introduce myself.",
+          "vi": "Cho phép tôi tự giới thiệu."
+        }
+      ],
+      "imageQuery": "person introducing himself meeting room"
+    },
+    {
+      "term": "It's a pleasure to meet you.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "rất hân hạnh được gặp bạn",
+      "meaningEn": "a formal way to say you are happy to meet someone",
+      "examples": [
+        {
+          "text": "It's a pleasure to meet you, Dr Brown.",
+          "vi": "Rất hân hạnh được gặp bác sĩ Brown."
+        },
+        {
+          "text": "It's a pleasure to meet you at last.",
+          "vi": "Rất hân hạnh cuối cùng cũng được gặp bạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "The pleasure is mine.",
+          "vi": "Hân hạnh là của tôi."
+        }
+      ],
+      "imageQuery": "formal handshake business meeting"
+    },
+    {
+      "term": "Long time no see!",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "lâu quá không gặp!",
+      "meaningEn": "what you say to a person you have not seen for a long time",
+      "examples": [
+        {
+          "text": "Long time no see! How have you been?",
+          "vi": "Lâu quá không gặp! Dạo này bạn thế nào?"
+        },
+        {
+          "text": "Long time no see, Peter!",
+          "vi": "Lâu quá không gặp, Peter!"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's been ages!",
+          "vi": "Lâu lắm rồi!"
+        },
+        {
+          "text": "How have you been?",
+          "vi": "Dạo này bạn thế nào?"
+        }
+      ],
+      "imageQuery": "old friends meeting hug"
+    },
+    {
+      "term": "See you later!",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "hẹn gặp lại sau!",
+      "meaningEn": "a friendly way to say goodbye for now",
+      "examples": [
+        {
+          "text": "See you later! I have to go to class.",
+          "vi": "Hẹn gặp lại sau! Tôi phải đi học đây."
+        },
+        {
+          "text": "See you later, Dad!",
+          "vi": "Hẹn gặp lại bố sau nhé!"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "See you soon!",
+          "vi": "Hẹn sớm gặp lại!"
+        },
+        {
+          "text": "See you tomorrow!",
+          "vi": "Hẹn mai gặp!"
+        }
+      ],
+      "imageQuery": "friends waving goodbye"
+    },
+    {
+      "term": "Goodbye!",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "tạm biệt!",
+      "meaningEn": "a common way to end a conversation",
+      "examples": [
+        {
+          "text": "Goodbye! Have a nice day.",
+          "vi": "Tạm biệt! Chúc bạn một ngày tốt lành."
+        },
+        {
+          "text": "She waved and said goodbye.",
+          "vi": "Cô ấy vẫy tay và nói tạm biệt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Bye-bye!",
+          "vi": "Tạm biệt nhé!"
+        },
+        {
+          "text": "Take care!",
+          "vi": "Bảo trọng nhé!"
+        }
+      ],
+      "imageQuery": "person waving goodbye"
+    },
+    {
+      "term": "Have a nice day!",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "chúc bạn một ngày tốt lành",
+      "meaningEn": "a friendly wish when someone leaves",
+      "examples": [
+        {
+          "text": "Thank you! Have a nice day!",
+          "vi": "Cảm ơn bạn! Chúc bạn một ngày tốt lành!"
+        },
+        {
+          "text": "The shop assistant said, \"Have a nice day!\"",
+          "vi": "Nhân viên bán hàng nói: \"Chúc bạn một ngày tốt lành!\""
+        }
+      ],
+      "collocations": [
+        {
+          "text": "You too!",
+          "vi": "Bạn cũng vậy nhé!"
+        },
+        {
+          "text": "Have a great weekend!",
+          "vi": "Chúc bạn cuối tuần vui vẻ!"
+        }
+      ],
+      "imageQuery": "shop assistant smiling customer"
+    }
+  ]
+}

@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 1,
+  "folder": "Giao tiếp hằng ngày",
+  "set": {
+    "code": "C05",
+    "name": "Mua sắm & trả giá",
+    "description": "#a2 #b1 #shopping #bargaining",
+    "topic": "Mua sắm & trả giá",
+    "wordListBasis": "high-frequency spoken phrases, author-written"
+  },
+  "cards": [
+    {
+      "term": "How much is this?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "cái này giá bao nhiêu?",
+      "meaningEn": "a question about the price of an item",
+      "examples": [
+        {
+          "text": "How much is this T-shirt?",
+          "vi": "Chiếc áo thun này giá bao nhiêu?"
+        },
+        {
+          "text": "How much is this? I can't see the price.",
+          "vi": "Cái này giá bao nhiêu? Tôi không thấy giá."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "How much are these?",
+          "vi": "Những cái này giá bao nhiêu?"
+        },
+        {
+          "text": "It's ten dollars.",
+          "vi": "Giá mười đô la."
+        }
+      ],
+      "imageQuery": "customer asking price shop"
+    },
+    {
+      "term": "It's too expensive.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "cái này đắt quá",
+      "meaningEn": "what you say when a price is too high",
+      "examples": [
+        {
+          "text": "It's too expensive. I only have twenty dollars.",
+          "vi": "Đắt quá. Tôi chỉ có hai mươi đô la."
+        },
+        {
+          "text": "It's too expensive for me.",
+          "vi": "Nó quá đắt đối với tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's a bit pricey.",
+          "vi": "Hơi đắt một chút."
+        },
+        {
+          "text": "That's more than I can pay.",
+          "vi": "Cao hơn mức tôi có thể trả."
+        }
+      ],
+      "imageQuery": "customer looking at price tag surprised"
+    },
+    {
+      "term": "Can you give me a discount?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "bạn giảm giá cho tôi được không?",
+      "meaningEn": "a request for a lower price",
+      "examples": [
+        {
+          "text": "Can you give me a discount? I'm buying two.",
+          "vi": "Bạn giảm giá cho tôi được không? Tôi mua hai cái."
+        },
+        {
+          "text": "Can you give me a discount on this bag?",
+          "vi": "Bạn giảm giá chiếc túi này cho tôi được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I can take ten percent off.",
+          "vi": "Tôi có thể giảm mười phần trăm."
+        },
+        {
+          "text": "That's my best price.",
+          "vi": "Đó là giá tốt nhất của tôi."
+        }
+      ],
+      "imageQuery": "bargaining market stall customer seller"
+    },
+    {
+      "term": "Do you have a smaller size?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "bạn có cỡ nhỏ hơn không?",
+      "meaningEn": "a question about another size",
+      "examples": [
+        {
+          "text": "Do you have a smaller size? This is too big.",
+          "vi": "Bạn có cỡ nhỏ hơn không? Cái này to quá."
+        },
+        {
+          "text": "Do you have a larger size?",
+          "vi": "Bạn có cỡ lớn hơn không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "What size are you?",
+          "vi": "Bạn mặc cỡ nào?"
+        },
+        {
+          "text": "We have medium.",
+          "vi": "Chúng tôi có cỡ vừa."
+        }
+      ],
+      "imageQuery": "clothes sizes rack customer"
+    },
+    {
+      "term": "Can I try it on?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi mặc thử được không?",
+      "meaningEn": "a request to wear clothes before buying",
+      "examples": [
+        {
+          "text": "Can I try it on? I like the colour.",
+          "vi": "Tôi mặc thử được không? Tôi thích màu này."
+        },
+        {
+          "text": "Can I try these shoes on?",
+          "vi": "Tôi thử đôi giày này được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "The fitting room is over there.",
+          "vi": "Phòng thử đồ ở đằng kia."
+        },
+        {
+          "text": "Of course.",
+          "vi": "Tất nhiên rồi."
+        }
+      ],
+      "imageQuery": "customer trying jacket mirror"
+    },
+    {
+      "term": "Where is the fitting room?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "phòng thử đồ ở đâu?",
+      "meaningEn": "a question about where to try clothes on",
+      "examples": [
+        {
+          "text": "Excuse me, where is the fitting room?",
+          "vi": "Xin lỗi, phòng thử đồ ở đâu?"
+        },
+        {
+          "text": "Where is the fitting room, please?",
+          "vi": "Làm ơn cho hỏi phòng thử đồ ở đâu?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's at the back.",
+          "vi": "Ở phía sau."
+        },
+        {
+          "text": "Next to the shoes.",
+          "vi": "Cạnh khu giày."
+        }
+      ],
+      "imageQuery": "fitting room sign clothes store"
+    },
+    {
+      "term": "I'm just looking, thanks.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi chỉ xem thôi, cảm ơn",
+      "meaningEn": "what you say when you do not want help yet",
+      "examples": [
+        {
+          "text": "I'm just looking, thanks.",
+          "vi": "Tôi chỉ xem thôi, cảm ơn."
+        },
+        {
+          "text": "I'm just looking, thank you.",
+          "vi": "Tôi chỉ xem thôi, cảm ơn bạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Let me know if you need help.",
+          "vi": "Cần gì cứ nói với tôi nhé."
+        },
+        {
+          "text": "No, thanks.",
+          "vi": "Không, cảm ơn."
+        }
+      ],
+      "imageQuery": "shop assistant customer browsing"
+    },
+    {
+      "term": "I'll take it.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi lấy cái này",
+      "meaningEn": "what you say when you decide to buy something",
+      "examples": [
+        {
+          "text": "It fits well. I'll take it.",
+          "vi": "Vừa lắm. Tôi lấy cái này."
+        },
+        {
+          "text": "I'll take it. How much is it?",
+          "vi": "Tôi lấy cái này. Bao nhiêu tiền?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'll take two.",
+          "vi": "Tôi lấy hai cái."
+        },
+        {
+          "text": "I'll think about it.",
+          "vi": "Tôi sẽ suy nghĩ thêm."
+        }
+      ],
+      "imageQuery": "customer deciding purchase smiling"
+    },
+    {
+      "term": "Do you have this in blue?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "cái này có màu xanh không?",
+      "meaningEn": "a question about another colour",
+      "examples": [
+        {
+          "text": "Do you have this in blue?",
+          "vi": "Cái này có màu xanh không?"
+        },
+        {
+          "text": "Do you have this shirt in blue?",
+          "vi": "Chiếc áo này có màu xanh không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Do you have other colours?",
+          "vi": "Bạn có màu khác không?"
+        },
+        {
+          "text": "Only in black.",
+          "vi": "Chỉ có màu đen."
+        }
+      ],
+      "imageQuery": "shirts colours rack"
+    },
+    {
+      "term": "What's the best price?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "giá tốt nhất là bao nhiêu?",
+      "meaningEn": "a question used when bargaining",
+      "examples": [
+        {
+          "text": "What's the best price you can give me?",
+          "vi": "Giá tốt nhất bạn có thể cho tôi là bao nhiêu?"
+        },
+        {
+          "text": "What's the best price for three?",
+          "vi": "Mua ba cái thì giá tốt nhất là bao nhiêu?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Final price?",
+          "vi": "Giá cuối cùng là bao nhiêu?"
+        },
+        {
+          "text": "That's my last price.",
+          "vi": "Đó là giá cuối của tôi."
+        }
+      ],
+      "imageQuery": "market bargaining haggling"
+    },
+    {
+      "term": "That's a good deal.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "giá đó hời đấy",
+      "meaningEn": "what you say when a price is good",
+      "examples": [
+        {
+          "text": "That's a good deal. I'll buy two.",
+          "vi": "Giá đó hời đấy. Tôi mua hai cái."
+        },
+        {
+          "text": "That's a good deal for the quality.",
+          "vi": "Giá đó hời so với chất lượng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's a bargain.",
+          "vi": "Đúng là món hời."
+        },
+        {
+          "text": "What a steal!",
+          "vi": "Hời quá!"
+        }
+      ],
+      "imageQuery": "customer happy cheap price tag"
+    },
+    {
+      "term": "Is there a sale?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "có đợt giảm giá nào không?",
+      "meaningEn": "a question about discounts",
+      "examples": [
+        {
+          "text": "Is there a sale this week?",
+          "vi": "Tuần này có giảm giá không?"
+        },
+        {
+          "text": "Is there a sale on shoes?",
+          "vi": "Giày có đang giảm giá không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Everything is half price.",
+          "vi": "Mọi thứ giảm nửa giá."
+        },
+        {
+          "text": "The sale ends on Sunday.",
+          "vi": "Đợt giảm giá kết thúc vào Chủ nhật."
+        }
+      ],
+      "imageQuery": "sale sign shop window"
+    },
+    {
+      "term": "Can I get a receipt?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "cho tôi xin hóa đơn được không?",
+      "meaningEn": "a request for a receipt after buying",
+      "examples": [
+        {
+          "text": "Can I get a receipt, please?",
+          "vi": "Cho tôi xin hóa đơn được không?"
+        },
+        {
+          "text": "Can I get a receipt for this?",
+          "vi": "Cho tôi xin hóa đơn cho món này được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Here is your receipt.",
+          "vi": "Hóa đơn của bạn đây."
+        },
+        {
+          "text": "Keep it for returns.",
+          "vi": "Hãy giữ lại để đổi trả."
+        }
+      ],
+      "imageQuery": "cashier handing receipt"
+    },
+    {
+      "term": "Do you accept credit cards?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "bạn có nhận thẻ tín dụng không?",
+      "meaningEn": "a question about payment by card",
+      "examples": [
+        {
+          "text": "Do you accept credit cards?",
+          "vi": "Bạn có nhận thẻ tín dụng không?"
+        },
+        {
+          "text": "Do you accept credit cards or only cash?",
+          "vi": "Bạn nhận thẻ tín dụng hay chỉ tiền mặt?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Cash only, sorry.",
+          "vi": "Xin lỗi, chỉ nhận tiền mặt."
+        },
+        {
+          "text": "Yes, all major cards.",
+          "vi": "Có, nhận các loại thẻ chính."
+        }
+      ],
+      "imageQuery": "card sign shop counter"
+    },
+    {
+      "term": "I'd like to return this.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi muốn trả lại món này",
+      "meaningEn": "a request to give back something you bought",
+      "examples": [
+        {
+          "text": "I'd like to return this. It's broken.",
+          "vi": "Tôi muốn trả lại món này. Nó bị hỏng."
+        },
+        {
+          "text": "I'd like to return this sweater.",
+          "vi": "Tôi muốn trả lại chiếc áo len này."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Do you have the receipt?",
+          "vi": "Bạn có hóa đơn không?"
+        },
+        {
+          "text": "I want a refund.",
+          "vi": "Tôi muốn được hoàn tiền."
+        }
+      ],
+      "imageQuery": "customer returning item counter"
+    },
+    {
+      "term": "It doesn't fit.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "nó không vừa",
+      "meaningEn": "what you say when clothes are the wrong size",
+      "examples": [
+        {
+          "text": "It doesn't fit. It's too tight.",
+          "vi": "Nó không vừa. Nó chật quá."
+        },
+        {
+          "text": "These trousers don't fit me.",
+          "vi": "Chiếc quần này không vừa tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It's too loose.",
+          "vi": "Nó rộng quá."
+        },
+        {
+          "text": "Can I exchange it?",
+          "vi": "Tôi đổi được không?"
+        }
+      ],
+      "imageQuery": "person trying clothes tight"
+    },
+    {
+      "term": "Could you gift-wrap it?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "bạn gói quà giúp tôi được không?",
+      "meaningEn": "a request to wrap an item as a present",
+      "examples": [
+        {
+          "text": "Could you gift-wrap it? It's for my mother.",
+          "vi": "Bạn gói quà giúp tôi được không? Đây là quà cho mẹ tôi."
+        },
+        {
+          "text": "Could you gift-wrap this book?",
+          "vi": "Bạn gói quà cuốn sách này giúp tôi được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Of course.",
+          "vi": "Tất nhiên rồi."
+        },
+        {
+          "text": "Which paper do you like?",
+          "vi": "Bạn thích giấy gói nào?"
+        }
+      ],
+      "imageQuery": "gift wrapping shop counter ribbon"
+    },
+    {
+      "term": "Do you have anything cheaper?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "bạn có cái nào rẻ hơn không?",
+      "meaningEn": "a question about lower-priced items",
+      "examples": [
+        {
+          "text": "Do you have anything cheaper?",
+          "vi": "Bạn có cái nào rẻ hơn không?"
+        },
+        {
+          "text": "Do you have anything cheaper than this?",
+          "vi": "Bạn có cái nào rẻ hơn cái này không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "This one is cheaper.",
+          "vi": "Cái này rẻ hơn."
+        },
+        {
+          "text": "It's on the shelf.",
+          "vi": "Nó ở trên kệ."
+        }
+      ],
+      "imageQuery": "customer asking cheaper product shelf"
+    },
+    {
+      "term": "Where can I pay?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi thanh toán ở đâu?",
+      "meaningEn": "a question about where to pay",
+      "examples": [
+        {
+          "text": "Where can I pay? I have my basket.",
+          "vi": "Tôi thanh toán ở đâu? Tôi có giỏ hàng rồi."
+        },
+        {
+          "text": "Where can I pay for this?",
+          "vi": "Tôi thanh toán món này ở đâu?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "At the checkout.",
+          "vi": "Ở quầy thanh toán."
+        },
+        {
+          "text": "Over there, please.",
+          "vi": "Ở đằng kia ạ."
+        }
+      ],
+      "imageQuery": "supermarket checkout customer basket"
+    },
+    {
+      "term": "I'm looking for a gift.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi đang tìm một món quà",
+      "meaningEn": "what you say when you need help choosing a present",
+      "examples": [
+        {
+          "text": "I'm looking for a gift for my friend.",
+          "vi": "Tôi đang tìm một món quà cho bạn tôi."
+        },
+        {
+          "text": "I'm looking for a gift under twenty dollars.",
+          "vi": "Tôi đang tìm một món quà dưới hai mươi đô la."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "What does she like?",
+          "vi": "Cô ấy thích gì?"
+        },
+        {
+          "text": "How about this scarf?",
+          "vi": "Chiếc khăn này thì sao?"
+        }
+      ],
+      "imageQuery": "gift shop customer assistant"
+    }
+  ]
+}

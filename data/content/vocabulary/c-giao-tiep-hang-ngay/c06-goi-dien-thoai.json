@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 1,
+  "folder": "Giao tiếp hằng ngày",
+  "set": {
+    "code": "C06",
+    "name": "Gọi điện thoại",
+    "description": "#a2 #b1 #phone #calls",
+    "topic": "Gọi điện thoại",
+    "wordListBasis": "high-frequency spoken phrases, author-written"
+  },
+  "cards": [
+    {
+      "term": "Hello, this is Anna speaking.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "xin chào, Anna đang nghe máy",
+      "meaningEn": "how you introduce yourself when you answer or make a call",
+      "examples": [
+        {
+          "text": "Hello, this is Anna speaking. How can I help?",
+          "vi": "Xin chào, Anna đang nghe máy. Tôi giúp được gì?"
+        },
+        {
+          "text": "Hello, this is Tom speaking.",
+          "vi": "Xin chào, Tom đang nghe máy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Who's calling, please?",
+          "vi": "Xin hỏi ai đang gọi?"
+        },
+        {
+          "text": "It's Anna here.",
+          "vi": "Anna đây."
+        }
+      ],
+      "imageQuery": "woman answering phone office"
+    },
+    {
+      "term": "Who's calling, please?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "xin hỏi ai đang gọi?",
+      "meaningEn": "a polite question to find out who is on the phone",
+      "examples": [
+        {
+          "text": "Who's calling, please?",
+          "vi": "Xin hỏi ai đang gọi ạ?"
+        },
+        {
+          "text": "Who's calling, please? I'll check if he is in.",
+          "vi": "Xin hỏi ai đang gọi? Tôi sẽ xem anh ấy có ở đó không."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "This is Lan from the bank.",
+          "vi": "Tôi là Lan ở ngân hàng."
+        },
+        {
+          "text": "May I ask who is calling?",
+          "vi": "Tôi có thể hỏi ai đang gọi không?"
+        }
+      ],
+      "imageQuery": "receptionist phone call"
+    },
+    {
+      "term": "Can I speak to Mr Brown?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "cho tôi nói chuyện với ông Brown được không?",
+      "meaningEn": "a polite request to talk to someone on the phone",
+      "examples": [
+        {
+          "text": "Hello, can I speak to Mr Brown?",
+          "vi": "Xin chào, cho tôi nói chuyện với ông Brown được không?"
+        },
+        {
+          "text": "Can I speak to the manager, please?",
+          "vi": "Cho tôi nói chuyện với quản lý được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Speaking.",
+          "vi": "Tôi đây."
+        },
+        {
+          "text": "One moment, please.",
+          "vi": "Xin chờ một chút."
+        }
+      ],
+      "imageQuery": "person asking phone speak manager"
+    },
+    {
+      "term": "Hold on, please.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "xin giữ máy",
+      "meaningEn": "a phrase asking the caller to wait",
+      "examples": [
+        {
+          "text": "Hold on, please. I'll get him.",
+          "vi": "Xin giữ máy. Tôi sẽ gọi anh ấy."
+        },
+        {
+          "text": "Hold on, please. He's coming.",
+          "vi": "Xin giữ máy. Anh ấy sắp đến."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Hold the line, please.",
+          "vi": "Xin giữ máy."
+        },
+        {
+          "text": "Just a moment.",
+          "vi": "Chờ một chút."
+        }
+      ],
+      "imageQuery": "receptionist telephone waiting"
+    },
+    {
+      "term": "I'll put you through.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi sẽ nối máy cho bạn",
+      "meaningEn": "what you say when you connect a caller to another person",
+      "examples": [
+        {
+          "text": "I'll put you through to the manager.",
+          "vi": "Tôi sẽ nối máy cho bạn đến quản lý."
+        },
+        {
+          "text": "Please wait. I'll put you through.",
+          "vi": "Xin chờ. Tôi sẽ nối máy cho bạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Thank you.",
+          "vi": "Cảm ơn bạn."
+        },
+        {
+          "text": "Please hold.",
+          "vi": "Xin giữ máy."
+        }
+      ],
+      "imageQuery": "switchboard operator headset"
+    },
+    {
+      "term": "He's not available right now.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "hiện giờ ông ấy không có mặt",
+      "meaningEn": "a polite way to say a person cannot take the call",
+      "examples": [
+        {
+          "text": "He's not available right now. Can I take a message?",
+          "vi": "Hiện giờ ông ấy không có mặt. Tôi ghi lại lời nhắn nhé?"
+        },
+        {
+          "text": "She's not available right now.",
+          "vi": "Hiện giờ cô ấy không rảnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "He's out of the office.",
+          "vi": "Ông ấy ra ngoài rồi."
+        },
+        {
+          "text": "He's in a meeting.",
+          "vi": "Ông ấy đang họp."
+        }
+      ],
+      "imageQuery": "empty office desk phone"
+    },
+    {
+      "term": "Can I take a message?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi ghi lại lời nhắn được không?",
+      "meaningEn": "a polite offer to write down a message",
+      "examples": [
+        {
+          "text": "Can I take a message for her?",
+          "vi": "Tôi ghi lại lời nhắn cho cô ấy được không?"
+        },
+        {
+          "text": "Can I take a message, please?",
+          "vi": "Tôi ghi lại lời nhắn được không ạ?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Yes, please tell him I called.",
+          "vi": "Vâng, hãy nói với anh ấy tôi đã gọi."
+        },
+        {
+          "text": "No, thank you.",
+          "vi": "Không, cảm ơn."
+        }
+      ],
+      "imageQuery": "receptionist writing message note"
+    },
+    {
+      "term": "Could you ask him to call me back?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "bạn nhờ anh ấy gọi lại cho tôi được không?",
+      "meaningEn": "a request to pass a message",
+      "examples": [
+        {
+          "text": "Could you ask him to call me back?",
+          "vi": "Bạn nhờ anh ấy gọi lại cho tôi được không?"
+        },
+        {
+          "text": "Could you ask her to call me back today?",
+          "vi": "Bạn nhờ cô ấy gọi lại cho tôi hôm nay được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "What's your number?",
+          "vi": "Số của bạn là gì?"
+        },
+        {
+          "text": "I'll give him the message.",
+          "vi": "Tôi sẽ chuyển lời cho anh ấy."
+        }
+      ],
+      "imageQuery": "phone message call back note"
+    },
+    {
+      "term": "What's your phone number?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "số điện thoại của bạn là gì?",
+      "meaningEn": "a question to ask for someone's number",
+      "examples": [
+        {
+          "text": "What's your phone number? I'll call you.",
+          "vi": "Số điện thoại của bạn là gì? Tôi sẽ gọi bạn."
+        },
+        {
+          "text": "What's your phone number, please?",
+          "vi": "Làm ơn cho tôi số điện thoại của bạn?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "My number is 0912 345 678.",
+          "vi": "Số của tôi là 0912 345 678."
+        },
+        {
+          "text": "Can I have your number?",
+          "vi": "Cho tôi xin số của bạn?"
+        }
+      ],
+      "imageQuery": "exchanging phone numbers smartphone"
+    },
+    {
+      "term": "I can't hear you.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi không nghe thấy bạn",
+      "meaningEn": "what you say when the call is not clear",
+      "examples": [
+        {
+          "text": "I can't hear you. The line is bad.",
+          "vi": "Tôi không nghe thấy bạn. Đường truyền kém quá."
+        },
+        {
+          "text": "Sorry, I can't hear you well.",
+          "vi": "Xin lỗi, tôi không nghe rõ bạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Can you speak up?",
+          "vi": "Bạn nói to hơn được không?"
+        },
+        {
+          "text": "You're breaking up.",
+          "vi": "Tín hiệu bị chập chờn."
+        }
+      ],
+      "imageQuery": "person holding phone cannot hear"
+    },
+    {
+      "term": "The line is busy.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "đường dây đang bận",
+      "meaningEn": "what you say when you cannot connect to the person",
+      "examples": [
+        {
+          "text": "I tried calling, but the line is busy.",
+          "vi": "Tôi đã thử gọi nhưng đường dây đang bận."
+        },
+        {
+          "text": "The line is busy. Please try later.",
+          "vi": "Đường dây đang bận. Xin hãy thử lại sau."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'll try again later.",
+          "vi": "Tôi sẽ thử lại sau."
+        },
+        {
+          "text": "Please call back.",
+          "vi": "Xin hãy gọi lại."
+        }
+      ],
+      "imageQuery": "busy telephone line phone"
+    },
+    {
+      "term": "You have the wrong number.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "bạn gọi nhầm số rồi",
+      "meaningEn": "what you say when someone calls the wrong person",
+      "examples": [
+        {
+          "text": "Sorry, you have the wrong number.",
+          "vi": "Xin lỗi, bạn gọi nhầm số rồi."
+        },
+        {
+          "text": "I think you have the wrong number.",
+          "vi": "Tôi nghĩ bạn gọi nhầm số rồi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Sorry, wrong number.",
+          "vi": "Xin lỗi, nhầm số."
+        },
+        {
+          "text": "I'm sorry to bother you.",
+          "vi": "Xin lỗi đã làm phiền."
+        }
+      ],
+      "imageQuery": "confused person phone wrong number"
+    },
+    {
+      "term": "Could you speak more slowly?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "bạn nói chậm hơn được không?",
+      "meaningEn": "a request when someone speaks too fast",
+      "examples": [
+        {
+          "text": "Could you speak more slowly, please?",
+          "vi": "Bạn nói chậm hơn được không?"
+        },
+        {
+          "text": "Could you speak more slowly? My English is basic.",
+          "vi": "Bạn nói chậm hơn được không? Tiếng Anh của tôi còn cơ bản."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Sure, no problem.",
+          "vi": "Được, không vấn đề gì."
+        },
+        {
+          "text": "I'll say it again.",
+          "vi": "Tôi sẽ nói lại."
+        }
+      ],
+      "imageQuery": "student on phone confused speaking"
+    },
+    {
+      "term": "Could you repeat that, please?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "bạn nhắc lại được không?",
+      "meaningEn": "a request to say something again",
+      "examples": [
+        {
+          "text": "Could you repeat that, please?",
+          "vi": "Bạn nhắc lại được không?"
+        },
+        {
+          "text": "Could you repeat that number, please?",
+          "vi": "Bạn nhắc lại số đó được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Sorry, what was that?",
+          "vi": "Xin lỗi, bạn nói gì cơ?"
+        },
+        {
+          "text": "I didn't catch that.",
+          "vi": "Tôi không nghe kịp."
+        }
+      ],
+      "imageQuery": "person asking repeat phone call"
+    },
+    {
+      "term": "Thanks for calling.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "cảm ơn bạn đã gọi",
+      "meaningEn": "a polite phrase to end a call",
+      "examples": [
+        {
+          "text": "Thanks for calling. Goodbye!",
+          "vi": "Cảm ơn bạn đã gọi. Tạm biệt!"
+        },
+        {
+          "text": "Thanks for calling our shop.",
+          "vi": "Cảm ơn bạn đã gọi đến cửa hàng của chúng tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Thank you for calling.",
+          "vi": "Cảm ơn bạn đã gọi."
+        },
+        {
+          "text": "Have a nice day.",
+          "vi": "Chúc bạn một ngày tốt lành."
+        }
+      ],
+      "imageQuery": "customer service ending call"
+    },
+    {
+      "term": "I'll call you back later.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "lát nữa tôi sẽ gọi lại cho bạn",
+      "meaningEn": "a phrase for promising a later call",
+      "examples": [
+        {
+          "text": "I'm busy now. I'll call you back later.",
+          "vi": "Giờ tôi bận. Lát nữa tôi sẽ gọi lại cho bạn."
+        },
+        {
+          "text": "I'll call you back later tonight.",
+          "vi": "Tối nay tôi sẽ gọi lại cho bạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Talk to you later.",
+          "vi": "Lát nói chuyện nhé."
+        },
+        {
+          "text": "Call me when you can.",
+          "vi": "Rảnh thì gọi tôi nhé."
+        }
+      ],
+      "imageQuery": "person busy putting phone away"
+    },
+    {
+      "term": "My battery is dying.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "điện thoại tôi sắp hết pin",
+      "meaningEn": "what you say when your phone is almost out of power",
+      "examples": [
+        {
+          "text": "My battery is dying. I'll call you later.",
+          "vi": "Điện thoại tôi sắp hết pin. Tôi sẽ gọi lại sau."
+        },
+        {
+          "text": "Sorry, my battery is dying.",
+          "vi": "Xin lỗi, điện thoại tôi sắp hết pin."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I need to charge my phone.",
+          "vi": "Tôi cần sạc điện thoại."
+        },
+        {
+          "text": "My phone is out of battery.",
+          "vi": "Điện thoại tôi hết pin."
+        }
+      ],
+      "imageQuery": "phone low battery icon"
+    },
+    {
+      "term": "Sorry, the signal is bad.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "xin lỗi, sóng yếu quá",
+      "meaningEn": "what you say when the mobile signal is weak",
+      "examples": [
+        {
+          "text": "Sorry, the signal is bad here.",
+          "vi": "Xin lỗi, ở đây sóng yếu quá."
+        },
+        {
+          "text": "The signal is bad in the lift.",
+          "vi": "Sóng trong thang máy yếu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'll move to another place.",
+          "vi": "Tôi sẽ đi chỗ khác."
+        },
+        {
+          "text": "You're breaking up.",
+          "vi": "Tín hiệu bị chập chờn."
+        }
+      ],
+      "imageQuery": "phone weak signal bars"
+    },
+    {
+      "term": "Please leave a message after the tone.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "xin để lại lời nhắn sau tiếng bíp",
+      "meaningEn": "a recorded phone instruction",
+      "examples": [
+        {
+          "text": "Please leave a message after the tone.",
+          "vi": "Xin để lại lời nhắn sau tiếng bíp."
+        },
+        {
+          "text": "The voicemail said, \"Please leave a message after the tone.\"",
+          "vi": "Hộp thư thoại nói: \"Xin để lại lời nhắn sau tiếng bíp.\""
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Leave a voicemail.",
+          "vi": "Để lại thư thoại."
+        },
+        {
+          "text": "I'll call back.",
+          "vi": "Tôi sẽ gọi lại."
+        }
+      ],
+      "imageQuery": "answering machine voicemail phone"
+    },
+    {
+      "term": "Speak to you soon.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "hẹn sớm nói chuyện lại",
+      "meaningEn": "a friendly way to finish a call",
+      "examples": [
+        {
+          "text": "Thanks, Mum. Speak to you soon.",
+          "vi": "Cảm ơn mẹ. Hẹn sớm nói chuyện lại."
+        },
+        {
+          "text": "Speak to you soon, bye!",
+          "vi": "Hẹn sớm nói chuyện lại, tạm biệt!"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Talk to you soon.",
+          "vi": "Hẹn nói chuyện sớm."
+        },
+        {
+          "text": "Bye for now.",
+          "vi": "Tạm biệt nhé."
+        }
+      ],
+      "imageQuery": "friend saying bye on phone"
+    }
+  ]
+}

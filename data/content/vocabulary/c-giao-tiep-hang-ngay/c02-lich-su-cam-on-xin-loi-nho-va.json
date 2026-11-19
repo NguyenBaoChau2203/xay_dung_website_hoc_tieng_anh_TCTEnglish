@@ -1,0 +1,605 @@
+{
+  "schemaVersion": 1,
+  "folder": "Giao tiếp hằng ngày",
+  "set": {
+    "code": "C02",
+    "name": "Lịch sự: cảm ơn, xin lỗi, nhờ vả",
+    "description": "#a1 #a2 #b1 #polite #requests",
+    "topic": "Lịch sự: cảm ơn, xin lỗi, nhờ vả",
+    "wordListBasis": "high-frequency spoken phrases, author-written"
+  },
+  "cards": [
+    {
+      "term": "Thank you.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "cảm ơn bạn",
+      "meaningEn": "a polite way to show you are grateful",
+      "examples": [
+        {
+          "text": "Thank you. That is very kind of you.",
+          "vi": "Cảm ơn bạn. Bạn thật tốt bụng."
+        },
+        {
+          "text": "She said, \"Thank you.\" and smiled.",
+          "vi": "Cô ấy nói \"Cảm ơn bạn.\" rồi mỉm cười."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Thanks!",
+          "vi": "Cảm ơn!"
+        },
+        {
+          "text": "Thank you very much.",
+          "vi": "Cảm ơn bạn rất nhiều."
+        }
+      ],
+      "imageQuery": "person receiving gift saying thank you"
+    },
+    {
+      "term": "Thanks a lot.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "cảm ơn nhiều",
+      "meaningEn": "a friendly way to thank someone strongly",
+      "examples": [
+        {
+          "text": "Thanks a lot for your help.",
+          "vi": "Cảm ơn nhiều vì đã giúp tôi."
+        },
+        {
+          "text": "Thanks a lot! I really needed that.",
+          "vi": "Cảm ơn nhiều! Tôi thực sự cần nó."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Many thanks.",
+          "vi": "Cảm ơn rất nhiều."
+        },
+        {
+          "text": "Thanks so much.",
+          "vi": "Cảm ơn bạn rất nhiều."
+        }
+      ],
+      "imageQuery": "friends helping each other smiling"
+    },
+    {
+      "term": "You're welcome.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "không có gì",
+      "meaningEn": "a polite answer after someone thanks you",
+      "examples": [
+        {
+          "text": "\"Thank you!\" \"You're welcome.\"",
+          "vi": "\"Cảm ơn bạn!\" \"Không có gì.\""
+        },
+        {
+          "text": "You're welcome. Come again soon.",
+          "vi": "Không có gì. Hãy lại đến sớm nhé."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "No problem.",
+          "vi": "Không sao đâu."
+        },
+        {
+          "text": "My pleasure.",
+          "vi": "Rất vui được giúp."
+        }
+      ],
+      "imageQuery": "waiter and customer polite exchange"
+    },
+    {
+      "term": "I'm sorry.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "tôi xin lỗi",
+      "meaningEn": "a common way to say you feel bad about something",
+      "examples": [
+        {
+          "text": "I'm sorry. I didn't mean to hurt you.",
+          "vi": "Tôi xin lỗi. Tôi không cố ý làm bạn đau."
+        },
+        {
+          "text": "I'm sorry I'm late.",
+          "vi": "Tôi xin lỗi vì đến muộn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'm really sorry.",
+          "vi": "Tôi thực sự xin lỗi."
+        },
+        {
+          "text": "Sorry about that.",
+          "vi": "Xin lỗi về chuyện đó."
+        }
+      ],
+      "imageQuery": "person apologising sorry"
+    },
+    {
+      "term": "Excuse me.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "xin lỗi, cho tôi hỏi",
+      "meaningEn": "a polite way to get someone's attention or pass by",
+      "examples": [
+        {
+          "text": "Excuse me. Where is the library?",
+          "vi": "Xin lỗi, thư viện ở đâu vậy?"
+        },
+        {
+          "text": "Excuse me, may I get past?",
+          "vi": "Xin lỗi, cho tôi đi qua được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Pardon me.",
+          "vi": "Xin lỗi."
+        },
+        {
+          "text": "Sorry to bother you.",
+          "vi": "Xin lỗi đã làm phiền bạn."
+        }
+      ],
+      "imageQuery": "asking stranger for directions polite"
+    },
+    {
+      "term": "Pardon?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "xin lỗi, bạn nói gì?",
+      "meaningEn": "what you say when you did not hear something",
+      "examples": [
+        {
+          "text": "Pardon? Could you say that again?",
+          "vi": "Xin lỗi? Bạn nói lại được không?"
+        },
+        {
+          "text": "\"Pardon?\" she said, because the room was noisy.",
+          "vi": "\"Xin lỗi?\" cô ấy nói vì căn phòng ồn ào."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Sorry, what did you say?",
+          "vi": "Xin lỗi, bạn nói gì?"
+        },
+        {
+          "text": "Could you repeat that?",
+          "vi": "Bạn nhắc lại được không?"
+        }
+      ],
+      "imageQuery": "person cupping ear listening"
+    },
+    {
+      "term": "Please.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "làm ơn",
+      "meaningEn": "a word that makes a request polite",
+      "examples": [
+        {
+          "text": "Water, please.",
+          "vi": "Cho tôi nước, làm ơn."
+        },
+        {
+          "text": "Please sit down.",
+          "vi": "Xin mời ngồi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Yes, please.",
+          "vi": "Vâng, làm ơn."
+        },
+        {
+          "text": "Please help me.",
+          "vi": "Làm ơn giúp tôi."
+        }
+      ],
+      "imageQuery": "polite request please cafe"
+    },
+    {
+      "term": "Can you help me, please?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "bạn giúp tôi được không?",
+      "meaningEn": "a polite request for help",
+      "examples": [
+        {
+          "text": "Can you help me, please? I'm lost.",
+          "vi": "Bạn giúp tôi được không? Tôi bị lạc."
+        },
+        {
+          "text": "Can you help me carry this box?",
+          "vi": "Bạn giúp tôi mang cái hộp này được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Could you help me?",
+          "vi": "Bạn có thể giúp tôi không?"
+        },
+        {
+          "text": "I need some help.",
+          "vi": "Tôi cần giúp đỡ."
+        }
+      ],
+      "imageQuery": "helping carry box"
+    },
+    {
+      "term": "Could you open the window?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "bạn mở cửa sổ giúp tôi được không?",
+      "meaningEn": "a polite request to open a window",
+      "examples": [
+        {
+          "text": "Could you open the window? It's hot.",
+          "vi": "Bạn mở cửa sổ giúp tôi được không? Trời nóng."
+        },
+        {
+          "text": "Could you open the window a little?",
+          "vi": "Bạn mở cửa sổ ra một chút được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Would you mind opening it?",
+          "vi": "Bạn có phiền mở nó ra không?"
+        }
+      ],
+      "imageQuery": "person opening window hot room"
+    },
+    {
+      "term": "Would you mind...?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "bạn có phiền...không?",
+      "meaningEn": "a very polite way to ask someone to do something",
+      "examples": [
+        {
+          "text": "Would you mind closing the door?",
+          "vi": "Bạn có phiền đóng cửa không?"
+        },
+        {
+          "text": "Would you mind waiting a moment?",
+          "vi": "Bạn có phiền đợi một lát không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Do you mind if I sit here?",
+          "vi": "Bạn có phiền nếu tôi ngồi đây không?"
+        }
+      ],
+      "imageQuery": "polite request office"
+    },
+    {
+      "term": "Do you mind if I...?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "bạn có phiền nếu tôi...?",
+      "meaningEn": "a polite way to ask for permission",
+      "examples": [
+        {
+          "text": "Do you mind if I sit here?",
+          "vi": "Bạn có phiền nếu tôi ngồi đây không?"
+        },
+        {
+          "text": "Do you mind if I open the window?",
+          "vi": "Bạn có phiền nếu tôi mở cửa sổ không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Not at all.",
+          "vi": "Không hề."
+        },
+        {
+          "text": "Go ahead.",
+          "vi": "Cứ tự nhiên."
+        }
+      ],
+      "imageQuery": "asking permission seat bus"
+    },
+    {
+      "term": "May I come in?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi vào được không?",
+      "meaningEn": "a polite request to enter a room",
+      "examples": [
+        {
+          "text": "May I come in? I have a question.",
+          "vi": "Tôi vào được không ạ? Em có một câu hỏi."
+        },
+        {
+          "text": "May I come in, Mrs Hill?",
+          "vi": "Thưa cô Hill, em vào được không ạ?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Come in, please.",
+          "vi": "Mời vào."
+        },
+        {
+          "text": "Sure, come in.",
+          "vi": "Được, vào đi."
+        }
+      ],
+      "imageQuery": "student knocking classroom door"
+    },
+    {
+      "term": "Can I borrow your pen?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "tôi mượn bút của bạn được không?",
+      "meaningEn": "a polite request to use someone's pen for a moment",
+      "examples": [
+        {
+          "text": "Can I borrow your pen? Mine is empty.",
+          "vi": "Tôi mượn bút của bạn được không? Bút tôi hết mực rồi."
+        },
+        {
+          "text": "Can I borrow your pen for a minute?",
+          "vi": "Tôi mượn bút của bạn một phút được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Sure, here you are.",
+          "vi": "Được, của bạn đây."
+        },
+        {
+          "text": "Thanks for lending it.",
+          "vi": "Cảm ơn vì đã cho mượn."
+        }
+      ],
+      "imageQuery": "classmates sharing pen"
+    },
+    {
+      "term": "Here you are.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "của bạn đây",
+      "meaningEn": "what you say when you give someone something",
+      "examples": [
+        {
+          "text": "Here you are. Your coffee.",
+          "vi": "Của bạn đây. Cà phê của bạn."
+        },
+        {
+          "text": "Here you are, sir.",
+          "vi": "Của ông đây, thưa ông."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Here you go.",
+          "vi": "Đây nhé."
+        },
+        {
+          "text": "Thank you.",
+          "vi": "Cảm ơn bạn."
+        }
+      ],
+      "imageQuery": "waiter giving coffee"
+    },
+    {
+      "term": "That's okay.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A1",
+      "definition": "không sao đâu",
+      "meaningEn": "a kind answer when someone says sorry",
+      "examples": [
+        {
+          "text": "That's okay. Don't worry about it.",
+          "vi": "Không sao đâu. Đừng lo về chuyện đó."
+        },
+        {
+          "text": "\"I'm sorry.\" \"That's okay.\"",
+          "vi": "\"Tôi xin lỗi.\" \"Không sao đâu.\""
+        }
+      ],
+      "collocations": [
+        {
+          "text": "It doesn't matter.",
+          "vi": "Không quan trọng đâu."
+        },
+        {
+          "text": "Never mind.",
+          "vi": "Không sao đâu."
+        }
+      ],
+      "imageQuery": "friends forgiving apology"
+    },
+    {
+      "term": "No problem.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "không vấn đề gì",
+      "meaningEn": "a friendly way to say you are happy to help",
+      "examples": [
+        {
+          "text": "No problem. I can do it now.",
+          "vi": "Không vấn đề gì. Tôi làm ngay bây giờ được."
+        },
+        {
+          "text": "\"Thanks!\" \"No problem.\"",
+          "vi": "\"Cảm ơn!\" \"Không có gì.\""
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Sure thing.",
+          "vi": "Chắc chắn rồi."
+        },
+        {
+          "text": "It's no trouble.",
+          "vi": "Không phiền gì đâu."
+        }
+      ],
+      "imageQuery": "helper smiling thumbs up"
+    },
+    {
+      "term": "After you.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "A2",
+      "definition": "mời bạn đi trước",
+      "meaningEn": "a polite way to let someone go first",
+      "examples": [
+        {
+          "text": "After you. I'll wait here.",
+          "vi": "Mời bạn đi trước. Tôi đợi ở đây."
+        },
+        {
+          "text": "\"After you,\" he said, holding the door.",
+          "vi": "\"Mời bạn đi trước,\" anh ấy nói, giữ cửa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Please go ahead.",
+          "vi": "Mời bạn đi trước."
+        },
+        {
+          "text": "Ladies first.",
+          "vi": "Mời quý cô trước."
+        }
+      ],
+      "imageQuery": "man holding door polite"
+    },
+    {
+      "term": "Sorry to keep you waiting.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "xin lỗi đã để bạn chờ",
+      "meaningEn": "a polite apology when someone has waited for you",
+      "examples": [
+        {
+          "text": "Sorry to keep you waiting. Please sit down.",
+          "vi": "Xin lỗi đã để bạn chờ. Mời ngồi."
+        },
+        {
+          "text": "Sorry to keep you waiting, madam.",
+          "vi": "Xin lỗi đã để bà phải chờ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Thank you for waiting.",
+          "vi": "Cảm ơn bạn đã chờ."
+        },
+        {
+          "text": "I apologise for the delay.",
+          "vi": "Tôi xin lỗi vì sự chậm trễ."
+        }
+      ],
+      "imageQuery": "reception welcoming visitor waiting"
+    },
+    {
+      "term": "I really appreciate it.",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi thực sự biết ơn",
+      "meaningEn": "a warm way to show you are very thankful",
+      "examples": [
+        {
+          "text": "I really appreciate it. You saved me.",
+          "vi": "Tôi thực sự biết ơn. Bạn đã cứu tôi."
+        },
+        {
+          "text": "I really appreciate your advice.",
+          "vi": "Tôi thực sự biết ơn lời khuyên của bạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "I'm very grateful.",
+          "vi": "Tôi rất biết ơn."
+        },
+        {
+          "text": "That means a lot.",
+          "vi": "Điều đó có ý nghĩa lớn với tôi."
+        }
+      ],
+      "imageQuery": "grateful person hand on heart"
+    },
+    {
+      "term": "Could I ask a favour?",
+      "partsOfSpeech": [
+        "phrase"
+      ],
+      "cefr": "B1",
+      "definition": "tôi nhờ bạn một việc được không?",
+      "meaningEn": "a polite way to start asking for help",
+      "examples": [
+        {
+          "text": "Could I ask a favour? I need a lift home.",
+          "vi": "Tôi nhờ bạn một việc được không? Tôi cần quá giang về nhà."
+        },
+        {
+          "text": "Could I ask you a favour, please?",
+          "vi": "Làm ơn cho tôi nhờ bạn một việc được không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Sure, what is it?",
+          "vi": "Được, việc gì vậy?"
+        },
+        {
+          "text": "Of course.",
+          "vi": "Tất nhiên rồi."
+        }
+      ],
+      "imageQuery": "friends asking favour polite"
+    }
+  ]
+}
