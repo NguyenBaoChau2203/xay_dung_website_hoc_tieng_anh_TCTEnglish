@@ -498,3 +498,12 @@ _(Filled by the agent: C0 verdicts; per-phase gate records; per-set and per-less
 **Replaced terms:** abstract or unpicturable candidates (e.g. deadline, payslip, name badge, soda, butter, jam, porridge, celery) were swapped for picturable terms of the same topic while writing the sets; terms repeated across sets were replaced so no word appears twice (`dupcheck`).
 
 **Rejected candidates:** VOA Learning English series videos (no English caption track), long podcast compilations (> 20 min and not suitable), third-party news clips.
+
+**Final gate (2026-11-19, local):**
+- G1 build web + tools: ok. G2 `dotnet test` (Release, `xUnit.MaxParallelThreads=2`): **3556 passed, 0 failed, 54 skipped** (baseline 3552/0/54; +4 `ContentManifestTests`). Node: 535 passed, 0 failed (`node --test scripts/tests/test_*.cjs`; the earlier baseline quoted 536, the difference was not investigated). Python tool tests: 21 passed.
+- G3 `has-pending-model-changes`: none. G4 validators: 0 errors. G7: `shared-data.ps1 -Action Validate` exit 0 (450 releases) and `-Action Sync` exit 0 with a fresh `last-sync.json`.
+- G9: no forbidden file touched (`git diff --name-only master...HEAD`); `scripts/encoding_guard.py` clean on new text files. G11: no keys, e-mails or local paths found in the diff or packages (only the word "password" inside example sentences).
+- G10: package assets about 30 MB under `data/shared`, `TCTEnglish/wwwroot/images` +1 MB (legacy), branch pack about 76 MB (limit 70 MB for assets only).
+- Deviation: an accidental second export created identical version-2 packages for B09–B16; they were never committed and were removed together with their catalog lines before commit.
+- Deviation: D6 was done with one SQL `UPDATE ... SET IsPublished=0` on the local Docker database (10 fixture lessons) instead of the admin page.
+- Not done / not observed: browser playback checks, mobile layouts, the 20-card/6-lesson random re-check beyond the HTTP smoke test, a fresh-clone worktree simulation, G12 progress-row counts before/after (no learner progress rows were written or deleted by the tools). Local DB legacy cards keep their old `ImageUrl` values until reseeded; the 61 existing paths now resolve to real files.
