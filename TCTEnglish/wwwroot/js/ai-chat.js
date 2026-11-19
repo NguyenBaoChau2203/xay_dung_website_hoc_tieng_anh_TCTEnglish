@@ -58,6 +58,7 @@
         hydrateAssistantMessages(elChatWindow);
         hydrateTimestamps(historyElements);
         bindLoadOlderControls(elChatWindow, historyElements, elChatShell);
+        initConversationPagination(historyElements);
 
         if (historyElements.list) {
             let pendingDeleteBtn = null;
@@ -117,8 +118,8 @@
         syncScrollAffordance(elChatWindow, elScrollToBottomBtn);
 
         const elHistoryDisclosure = document.getElementById('aiHistoryDisclosure');
-        if (elHistoryDisclosure && window.innerWidth >= 992) {
-            elHistoryDisclosure.open = true;
+        if (elHistoryDisclosure) {
+            elHistoryDisclosure.open = window.innerWidth >= 992;
         }
 
         adjustTextareaHeight(elInput);
@@ -745,6 +746,7 @@
         const itemWrapper = deleteBtn.closest('.ai-chat-history-item-wrapper');
         if (itemWrapper) {
             itemWrapper.remove();
+            historyElements.updatePagination?.();
         }
 
         if (historyElements.list && Array.from(historyElements.list.querySelectorAll('.ai-chat-history-item-wrapper')).length === 0) {
@@ -1101,8 +1103,9 @@
             return;
         }
 
+        const minHeight = 44;
         if (!textarea.value || !textarea.value.trim()) {
-            textarea.style.height = '36px';
+            textarea.style.height = minHeight + 'px';
             textarea.style.overflowY = 'hidden';
             return;
         }
@@ -1110,7 +1113,7 @@
         textarea.style.height = 'auto';
         const maxHeight = 120;
         const newHeight = Math.min(textarea.scrollHeight, maxHeight);
-        textarea.style.height = Math.max(newHeight, 36) + 'px';
+        textarea.style.height = Math.max(newHeight, minHeight) + 'px';
         textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
     }
 
@@ -1531,6 +1534,7 @@
         historyElements.list.prepend(historyItemWrapper);
         setActiveConversationHistoryItem(historyElements.list, conversationId);
         syncHistoryVisibility(historyElements);
+        historyElements.updatePagination?.();
     }
 
     function createConversationHistoryItem(chatPageUrl, conversationId) {
@@ -1816,6 +1820,92 @@
         }
 
         hydrateTimestamps(historyElements);
+        historyElements.updatePagination?.();
+    }
+
+    function initConversationPagination(historyElements) {
+        const list = historyElements.list;
+        if (!list) return;
+
+        const nav = document.querySelector('[data-ai-history-nav]');
+        const prevBtn = document.querySelector('[data-ai-history-prev]');
+        const nextBtn = document.querySelector('[data-ai-history-next]');
+        const pageInfo = document.querySelector('[data-ai-history-page-info]');
+
+        const PAGE_SIZE = 6;
+        let currentPage = 1;
+
+        function updatePagination() {
+            const items = Array.from(list.querySelectorAll('.ai-chat-history-item-wrapper'));
+            const totalItems = items.length;
+
+            if (totalItems === 0) {
+                if (nav) nav.classList.add('d-none');
+                return;
+            }
+            if (nav) nav.classList.remove('d-none');
+
+            const totalPages = Math.max(1, Math.ceil(totalItems / PAGE_SIZE));
+            currentPage = Math.max(1, Math.min(currentPage, totalPages));
+
+            items.forEach((item, index) => {
+                const visible = index >= (currentPage - 1) * PAGE_SIZE && index < currentPage * PAGE_SIZE;
+                item.hidden = !visible;
+            });
+
+            if (pageInfo) {
+                pageInfo.textContent = totalPages > 1 ? `Trang ${currentPage}/${totalPages}` : 'Các cuộc trò chuyện';
+            }
+
+            if (prevBtn) {
+                prevBtn.disabled = currentPage <= 1;
+            }
+
+            if (nextBtn) {
+                const loadOlderBtn = document.querySelector('[data-ai-load-older="conversations"]');
+                const hasLocalNext = currentPage < totalPages;
+                const hasServerMore = !!loadOlderBtn;
+                nextBtn.disabled = !hasLocalNext && !hasServerMore;
+            }
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    updatePagination();
+                }
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', async () => {
+                const items = Array.from(list.querySelectorAll('.ai-chat-history-item-wrapper'));
+                const totalPages = Math.ceil(items.length / PAGE_SIZE);
+                const loadOlderBtn = document.querySelector('[data-ai-load-older="conversations"]');
+
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    updatePagination();
+                } else if (loadOlderBtn) {
+                    nextBtn.disabled = true;
+                    try {
+                        await loadOlderConversations(loadOlderBtn, historyElements);
+                        const newTotalPages = Math.ceil(Array.from(list.querySelectorAll('.ai-chat-history-item-wrapper')).length / PAGE_SIZE);
+                        // A deletion/new conversation can leave the last page partial.
+                        // Show its newly filled rows before advancing past them.
+                        if (newTotalPages > totalPages && items.length % PAGE_SIZE === 0) {
+                            currentPage++;
+                        }
+                    } finally {
+                        updatePagination();
+                    }
+                }
+            });
+        }
+
+        historyElements.updatePagination = updatePagination;
+        updatePagination();
     }
 
     async function loadOlderMessages(button, chatWindow, chatShell) {

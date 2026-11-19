@@ -1,0 +1,264 @@
+@model TCTEnglish.ViewModels.AI.Voice.VoicePageVm
+@using TCTEnglish.ViewModels
+@{
+
+    var header = new PageHeaderViewModel {
+        Title = "Cùng AI luyện nói tiếng Anh",
+        Description = "Chọn tình huống và lần lượt trò chuyện cùng AI.",
+        Breadcrumbs = new[] { new PageBreadcrumbItem("Trợ lý AI", "/AI/Chat"), new PageBreadcrumbItem("Hội thoại giọng nói") },
+        Actions = new[] { new PageHeaderAction("Chat bằng chữ", "/AI/Chat", iconClass: "fas fa-comment") }
+    };
+    var unavailable = new StateMessageViewModel { Kind = StateMessageKind.Empty,
+        Title = "Hội thoại giọng nói chưa được bật", Message = "Bạn vẫn có thể xem chủ đề và lịch sử. Chat bằng chữ luôn sẵn sàng." };
+}
+<div class="tct-theme ai-voice-page @(Model.Inline ? "ai-voice-inline" : "tct-page")" id="aiVoicePage" data-available="@Model.Available.ToString().ToLowerInvariant()">
+    @if (!Model.Inline) { <partial name="_PageHeader" model="header" /> }
+    @Html.AntiForgeryToken()
+    @if (!Model.Available) { <partial name="_StateMessage" model="unavailable" /> }
+    <div id="voiceFeedback" class="alert alert-info my-3" role="status" hidden></div>
+    <div class="voice-workspace mt-4">
+        <section class="tct-card p-4 voice-topics" aria-labelledby="voiceTopicsHeading">
+            <details class="voice-topics-disclosure" open>
+                <summary class="voice-topics-summary">
+                    <h2 id="voiceTopicsHeading" class="voice-topics-heading">
+                        <span class="voice-topics-heading-copy">1. Chọn chủ đề<span id="voiceTopicSelected" class="voice-topic-selected">Đang tải chủ đề…</span></span>
+                        <i class="fas fa-chevron-down voice-topics-chevron" aria-hidden="true"></i>
+                    </h2>
+                </summary>
+                <div class="voice-topics-body mt-3">
+                    <label for="voiceTopic" class="form-label @(Model.Inline ? "visually-hidden" : "")">Tình huống luyện nói</label>
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <select id="voiceTopic" class="form-select" disabled><option>Đang tải chủ đề…</option></select>
+                        <button id="voiceReload" class="btn btn-outline-primary btn-sm" type="button" aria-label="Tải lại chủ đề"><i class="fas fa-rotate" aria-hidden="true"></i></button>
+                    </div>
+
+                    <details class="voice-disclosure voice-topic-info mb-3" open>
+                        <summary class="voice-disclosure-summary">
+                            <span class="voice-disclosure-summary-text"><i class="fas fa-compass text-primary" aria-hidden="true"></i>Tình huống và vai trò</span>
+                            <i class="fas fa-chevron-down voice-disclosure-chevron" aria-hidden="true"></i>
+                        </summary>
+                        <div id="voiceTopicDescription" class="voice-topic-description mt-2">Chọn một chủ đề để xem vai trò và mục tiêu.</div>
+                    </details>
+
+                    <div class="voice-allowance-card mb-3">
+                        <div class="voice-allowance-icon"><i class="fas fa-clock" aria-hidden="true"></i></div>
+                        <div class="voice-allowance-content">
+                            <span class="voice-allowance-label">Hạn mức đàm thoại hôm nay</span>
+                            <p id="voiceAllowance" class="voice-allowance-value small mb-0">Đang tải hạn mức…</p>
+                        </div>
+                    </div>
+
+                    <div id="voicePremiumLock" class="alert alert-info" hidden>Premium mở chủ đề riêng. <a href="/Premium">Xem gói Premium</a></div>
+
+                    <details class="voice-disclosure voice-topic-tools mb-2">
+                        <summary class="voice-disclosure-summary">
+                            <span class="voice-disclosure-summary-text"><i class="fas fa-sliders text-secondary" aria-hidden="true"></i>Tùy chỉnh chủ đề riêng</span>
+                            <i class="fas fa-chevron-down voice-disclosure-chevron" aria-hidden="true"></i>
+                        </summary>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            <button id="voiceTopicCreate" type="button" class="btn btn-outline-primary btn-sm" disabled><i class="fas fa-plus me-1" aria-hidden="true"></i>Tạo chủ đề riêng</button>
+                            <button id="voiceTopicEdit" type="button" class="btn btn-outline-secondary btn-sm" hidden>Sửa</button>
+                            <button id="voiceTopicDelete" type="button" class="btn btn-outline-danger btn-sm" hidden>Xóa chủ đề</button>
+                        </div>
+                    </details>
+                </div>
+            </details>
+        </section>
+
+        <section class="tct-card p-4 voice-session" aria-labelledby="voiceSessionHeading">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                <h2 id="voiceSessionHeading" class="h5 mb-0 d-flex align-items-center gap-2">
+                    <i class="fas fa-headset text-primary" aria-hidden="true"></i>
+                    <span>2. Bắt đầu trò chuyện</span>
+                </h2>
+                <span id="voiceTimer" class="voice-timer-badge">Chưa bắt đầu</span>
+            </div>
+
+            <div class="voice-status-panel p-4 mb-3" data-voice-state="ready">
+                <div class="voice-mascot-wrapper">
+                    <div class="voice-mascot" aria-hidden="true"></div>
+                    <div class="voice-mascot-glow" aria-hidden="true"></div>
+                </div>
+                <p id="voiceStatus" class="voice-status-heading h5 mb-2" role="status" aria-live="polite" tabindex="-1">Sẵn sàng khi bạn muốn nói</p>
+                <p class="voice-turn-help mb-0 small" id="voiceTurnHelp">Bạn và AI nói lần lượt. Khi AI đang trả lời, micro tạm ngừng gửi tiếng. Chờ “AI đang lắng nghe” rồi hãy nói; nói xong, ngừng một chút để AI trả lời.</p>
+            </div>
+
+            <!-- Floating Mascot Companion (appears when user scrolls down to read transcript) -->
+            <div class="voice-floating-mascot" id="voiceFloatingMascot" role="group" aria-label="Biểu cảm bé cáo Tico" hidden>
+                <div class="voice-floating-mascot-avatar">
+                    <div class="voice-mini-mascot" aria-hidden="true"></div>
+                    <div class="voice-mascot-live-pulse" aria-hidden="true"></div>
+                </div>
+                <div class="voice-floating-mascot-content">
+                    <div class="voice-floating-mascot-badge">
+                        <span class="voice-live-dot" aria-hidden="true"></span>
+                        <span>Tico AI</span>
+                    </div>
+                    <div class="voice-floating-mascot-status" id="voiceFloatingStatus">Sẵn sàng khi bạn muốn nói</div>
+                </div>
+                <button type="button" class="voice-floating-scroll-top" id="voiceScrollToMascot" title="Cuộn lên xem biểu cảm lớn" aria-label="Cuộn lên bé cáo">
+                    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <details class="voice-disclosure voice-live-transcript mb-3" open>
+                <summary class="voice-disclosure-summary">
+                    <span class="voice-disclosure-summary-text"><i class="fas fa-comments text-primary" aria-hidden="true"></i>Bản chép lời trực tiếp</span>
+                    <i class="fas fa-chevron-down voice-disclosure-chevron" aria-hidden="true"></i>
+                </summary>
+                <div class="voice-transcript-wrapper mt-2">
+                    <p class="small text-muted mb-2">Chỉ hiển thị lượt đã hoàn tất. Lượt AI bị ngắt có thể chứa phần bạn chưa nghe.</p>
+                    <div id="voiceTranscript" class="voice-transcript" tabindex="0" aria-label="Bản chép lời hội thoại"><p class="text-muted mb-0">Nội dung sẽ xuất hiện khi bạn trò chuyện.</p></div>
+                </div>
+            </details>
+
+            <details class="voice-disclosure voice-privacy mb-3">
+                <summary class="voice-disclosure-summary">
+                    <span class="voice-disclosure-summary-text text-muted"><i class="fas fa-shield-halved text-muted" aria-hidden="true"></i>Quyền riêng tư &amp; lưu ý âm thanh</span>
+                    <i class="fas fa-chevron-down voice-disclosure-chevron" aria-hidden="true"></i>
+                </summary>
+                <div class="voice-privacy-body mt-2">
+                    <p class="small text-muted mb-2" id="voicePrivacy">Bạn sẽ trò chuyện với AI. Micro chỉ bật sau khi nhấn Bắt đầu. TCT lưu bản chép lời riêng để bạn đọc lại và xóa; không lưu âm thanh thô. Phiên đã mở được tính theo khoảng thời gian đã dành trong hạn mức, kể cả dừng sớm.</p>
+                    <p class="small text-muted mb-0" id="voiceStopHelp">Dừng phiên kết thúc toàn bộ cuộc trò chuyện. Dùng Tắt micro nếu bạn chỉ muốn tạm ngừng thu tiếng. Nên dùng tai nghe để giảm tiếng vọng.</p>
+                </div>
+            </details>
+
+            <div class="voice-controls d-flex flex-wrap gap-2 mb-0" role="group" aria-label="Điều khiển hội thoại">
+                <button id="voiceStart" type="button" class="btn btn-primary voice-control-btn" disabled aria-describedby="voicePrivacy"><i class="fas fa-microphone me-2" aria-hidden="true"></i>Bắt đầu</button>
+                <button id="voiceMute" type="button" class="btn btn-outline-secondary voice-control-btn" disabled aria-pressed="false">Tắt micro</button>
+                <button id="voiceStop" type="button" class="btn btn-outline-danger voice-control-btn" disabled aria-describedby="voiceStopHelp">Dừng phiên</button>
+            </div>
+            <audio id="voiceAudio" autoplay></audio>
+        </section>
+
+        <details class="voice-disclosure voice-history-disclosure" open>
+            <summary class="voice-disclosure-summary voice-history-summary">
+                <span class="voice-disclosure-summary-text"><i class="fas fa-clock-rotate-left text-primary" aria-hidden="true"></i>Lịch sử luyện nói của bạn</span>
+                <i class="fas fa-chevron-down voice-disclosure-chevron" aria-hidden="true"></i>
+            </summary>
+            <section class="tct-card p-3 voice-history mt-2" aria-labelledby="voiceHistoryHeading">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                    <h2 id="voiceHistoryHeading" class="h6 mb-0 d-flex align-items-center gap-1">
+                        <span>Các phiên gần đây</span>
+                        <span id="voiceHistoryPageInfo" class="text-muted small fw-normal"></span>
+                    </h2>
+                    <div class="d-flex gap-1">
+                        <button id="voiceHistoryPrev" type="button" class="btn btn-sm voice-history-page-btn" disabled>
+                            <i class="fas fa-chevron-left me-1" aria-hidden="true"></i>Trước
+                        </button>
+                        <button id="voiceHistoryNext" type="button" class="btn btn-sm voice-history-page-btn" disabled>
+                            Tiếp<i class="fas fa-chevron-right ms-1" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="voiceHistoryList" class="voice-history-list"><p class="text-muted small mb-0">Đang tải lịch sử…</p></div>
+                <div id="voiceHistoryDetail" class="mt-3" hidden>
+                    <h3 class="h6 mb-1">Nội dung phiên đã chọn</h3>
+                    <div id="voiceHistoryTurns" class="voice-transcript mt-2" tabindex="0" aria-label="Nội dung lịch sử"></div>
+                </div>
+            </section>
+        </details>
+    </div>
+    <div class="modal fade ai-voice-modal tct-theme" id="voiceTopicModal" tabindex="-1" aria-labelledby="voiceTopicModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"><div class="modal-content">
+            <form id="voiceTopicForm">
+                <div class="modal-header">
+                    <h2 id="voiceTopicModalTitle" class="modal-title fs-5 d-flex align-items-center gap-2">
+                        <i class="fas fa-sliders text-primary" aria-hidden="true"></i>
+                        <span>Chủ đề riêng</span>
+                    </h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="voiceTopicError" class="alert alert-danger" role="alert" hidden></p>
+                    <div class="voice-modal-tip mb-3 p-2 px-3 rounded-3 d-flex align-items-start gap-2">
+                        <i class="fas fa-lightbulb text-warning mt-1" aria-hidden="true"></i>
+                        <div class="small text-muted">
+                            Thiết lập chủ đề tùy chỉnh để luyện nói theo tình huống thực tế của bạn (phỏng vấn, du lịch, công việc...).
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="voiceTopicTitle" class="form-label d-flex align-items-center gap-2 fw-medium mb-1">
+                            <i class="fas fa-tag text-primary" aria-hidden="true"></i>
+                            <span>Tên chủ đề</span>
+                        </label>
+                        <input id="voiceTopicTitle" name="title" class="form-control" required maxlength="120"
+                               placeholder="VD: Phỏng vấn xin việc tiếng Anh, Đặt phòng khách sạn..." />
+                        <div class="form-text text-muted">Tên ngắn gọn giúp bạn dễ nhận biết khi chọn chủ đề luyện tập.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="voiceTopicScenario" class="form-label d-flex align-items-center gap-2 fw-medium mb-1">
+                            <i class="fas fa-bullseye text-primary" aria-hidden="true"></i>
+                            <span>Tình huống và mục tiêu</span>
+                        </label>
+                        <textarea id="voiceTopicScenario" name="scenario" class="form-control" required maxlength="2000" rows="3"
+                                  placeholder="VD: Bạn đang phỏng vấn vị trí Software Engineer. AI sẽ hỏi về kinh nghiệm làm việc và xử lý tình huống. Mục tiêu: trả lời tự tin, mạch lạc bằng tiếng Anh."></textarea>
+                        <div class="form-text text-muted">Mô tả bối cảnh và mục tiêu để AI đối đáp và đặt câu hỏi sát thực tế.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="voiceTopicAiRole" class="form-label d-flex align-items-center gap-2 fw-medium mb-1">
+                            <i class="fas fa-robot text-primary" aria-hidden="true"></i>
+                            <span>Vai của AI</span>
+                        </label>
+                        <input id="voiceTopicAiRole" name="aiRole" class="form-control" required maxlength="120"
+                               placeholder="VD: Người phỏng vấn khó tính (Interviewer), Lễ tân khách sạn..." />
+                        <div class="form-text text-muted">Nhân vật hoặc vai trò mà AI sẽ đảm nhận trong cuộc trò chuyện.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="voiceTopicLearnerRole" class="form-label d-flex align-items-center gap-2 fw-medium mb-1">
+                            <i class="fas fa-user text-primary" aria-hidden="true"></i>
+                            <span>Vai của bạn</span>
+                        </label>
+                        <input id="voiceTopicLearnerRole" name="learnerRole" class="form-control" required maxlength="120"
+                               placeholder="VD: Ứng viên xin việc (Job applicant), Khách du lịch (Tourist)..." />
+                        <div class="form-text text-muted">Vai trò của bạn để nhập vai tương tác cùng AI.</div>
+                    </div>
+                    <div class="mb-2">
+                        <label for="voiceTopicLevel" class="form-label d-flex align-items-center gap-2 fw-medium mb-1">
+                            <i class="fas fa-layer-group text-primary" aria-hidden="true"></i>
+                            <span>Trình độ</span>
+                        </label>
+                        <select id="voiceTopicLevel" name="level" class="form-select">
+                            @foreach (var level in new[] { "A1", "A2", "B1", "B2", "C1", "C2" }) { <option>@level</option> }
+                        </select>
+                        <div class="form-text text-muted">Cấp độ CEFR phù hợp để AI điều chỉnh độ khó từ vựng và tốc độ nói.</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-xmark me-1" aria-hidden="true"></i>Hủy
+                    </button>
+                    <button type="submit" id="voiceTopicSave" class="btn btn-primary">
+                        <i class="fas fa-check me-1" aria-hidden="true"></i>Lưu chủ đề
+                    </button>
+                </div>
+            </form>
+        </div></div>
+    </div>
+    <div class="modal fade ai-voice-modal tct-theme" id="voiceConfirmModal" tabindex="-1" aria-labelledby="voiceConfirmModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h2 id="voiceConfirmModalTitle" class="modal-title fs-5 d-flex align-items-center gap-2 text-danger">
+                        <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
+                        <span>Xác nhận xóa</span>
+                    </h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body py-3">
+                    <p id="voiceConfirmMessage" class="fw-medium mb-1 fs-6 text-dark"></p>
+                    <p id="voiceConfirmSubMessage" class="text-muted small mb-0"></p>
+                    <div id="voiceConfirmError" class="alert alert-danger small mt-2 mb-0" role="alert" hidden></div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-xmark me-1" aria-hidden="true"></i>Hủy
+                    </button>
+                    <button type="button" id="voiceConfirmOkBtn" class="btn btn-danger">
+                        <i class="fas fa-trash-can me-1" aria-hidden="true"></i>Xóa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

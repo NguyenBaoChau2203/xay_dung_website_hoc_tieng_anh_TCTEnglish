@@ -38,7 +38,7 @@ public sealed record SharedEntitySpec(Type Type, string Id, string[] Fields, Sha
 
 public static class SharedDataRegistry
 {
-    public static readonly string[] Roots = ["Folder", "Set", "ReadingPassage", "ListeningLesson", "SpeakingPlaylist", "SpeakingVideo", "WritingExercise", "PremiumPlan", "Class"];
+    public static readonly string[] Roots = ["Folder", "Set", "ReadingPassage", "ListeningLesson", "SpeakingPlaylist", "SpeakingVideo", "WritingExercise", "PremiumPlan", "Class", "AiVoiceCatalogTopic"];
     private static SharedEntitySpec Spec<T>(string id, string fields, SharedReference[]? references = null, string[]? owners = null, string? optionalFields = null) where T : class
         => new(typeof(T), id, fields.Split(' ', StringSplitOptions.RemoveEmptyEntries), references ?? [], owners ?? [],
             async (db, ct) => await db.Set<T>().ToListAsync(ct),
@@ -46,6 +46,7 @@ public static class SharedDataRegistry
 
     public static readonly IReadOnlyDictionary<string, SharedEntitySpec> Entities = new Dictionary<string, SharedEntitySpec>(StringComparer.Ordinal)
     {
+        ["AiVoiceCatalogTopic"] = Spec<AiVoiceCatalogTopic>("Id", "StableKey Title Scenario AiRole LearnerRole Level IsPublished SortOrder"),
         ["Folder"] = Spec<Folder>("FolderId", "FolderName", [new("ParentFolderId", "Folder", true)], ["UserId"]),
         ["Set"] = Spec<Set>("SetId", "SetName Description", [new("FolderId", "Folder", true)], ["OwnerId"]),
         ["Card"] = Spec<Card>("CardId", "Term Definition ImageUrl Phonetic Example ExampleTranslation Topic", [new("SetId", "Set")],
@@ -86,6 +87,10 @@ public static class SharedDataRegistry
 
     public static void AssertShareable(object row)
     {
+        if (row is AiVoiceCustomTopic or AiVoiceSession or AiVoiceTurn or AiVoiceUsageDay or AiVoiceUserLease or AiVoiceReceipt)
+            throw new SharedDataException("Private voice data cannot be shared.");
+        if (row is AiVoiceCatalogTopic { IsPublished: false })
+            throw new SharedDataException("Only published voice topics can be exported.");
         if (row is ListeningLesson { OwnerUserId: not null } or SpeakingVideo { OwnerUserId: not null } or WritingExercise { UserId: not null })
             throw new SharedDataException("Private learner content cannot be exported/adopted as a shared catalog item.");
         if (row is Set { Visibility: "Private" })

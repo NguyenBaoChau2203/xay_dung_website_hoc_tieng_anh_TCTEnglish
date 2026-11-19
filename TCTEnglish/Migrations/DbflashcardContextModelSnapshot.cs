@@ -360,6 +360,364 @@ namespace TCTEnglish.Migrations
                     b.ToTable("AiUserDailyQuotas", (string)null);
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceCapacity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Revision")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AiVoiceCapacity", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Revision = 0
+                        });
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceCatalogTopic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AiRole")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("LearnerRole")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<string>("Level")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("Scenario")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StableKey")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StableKey")
+                        .IsUnique();
+
+                    b.HasIndex("IsPublished", "SortOrder");
+
+                    b.ToTable("AiVoiceCatalogTopics");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceCustomTopic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AiRole")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("LearnerRole")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<string>("Level")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("Scenario")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<DateTime>("UpdatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId", "IsDeleted");
+
+                    b.ToTable("AiVoiceCustomTopics");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceReceipt", b =>
+                {
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Kind")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("EventKey")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("SessionId", "Kind", "EventKey");
+
+                    b.ToTable("AiVoiceReceipts");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceSession", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("AccountingState")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("AgentState")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<bool>("CancelRequested")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("CleanupClaim")
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)");
+
+                    b.Property<DateTime?>("CleanupClaimUntilUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CloseReason")
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)");
+
+                    b.Property<DateTime?>("ClosedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("ExpiresAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("HangupAttempts")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("HeartbeatAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("HistoryDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("LastActivityAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
+
+                    b.Property<bool>("NeedsHangup")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("NextCleanupAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("PlayingResponseId")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("ProviderCallId")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<bool>("ProviderDispatched")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("QuotaDayUtc")
+                        .HasColumnType("date");
+
+                    b.Property<int>("ReservedSeconds")
+                        .HasColumnType("int");
+
+                    b.Property<long>("Revision")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("SetupFinished")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<int>("TopicId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TopicKind")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("TopicSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(6000)
+                        .HasColumnType("varchar(6000)");
+
+                    b.Property<string>("TopicTitle")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("State", "NextCleanupAtUtc");
+
+                    b.HasIndex("UserId", "CreatedAtUtc");
+
+                    b.ToTable("AiVoiceSessions");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceTurn", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("Interrupted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("ItemId")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("ResponseId")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Speaker")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(12000)
+                        .HasColumnType("varchar(12000)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SessionId", "ItemId", "Speaker")
+                        .IsUnique();
+
+                    b.ToTable("AiVoiceTurns");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceUsageDay", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UtcDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("ConsumedSeconds")
+                        .HasColumnType("int");
+
+                    b.Property<long>("InputAudioTokens")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("InputTextTokens")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("OutputAudioTokens")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("OutputTextTokens")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("ReservedSeconds")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "UtcDate");
+
+                    b.ToTable("AiVoiceUsageDays");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceUserLease", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("UserId");
+
+                    b.HasIndex("SessionId")
+                        .IsUnique();
+
+                    b.ToTable("AiVoiceUserLeases");
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.LearningActivitySegment", b =>
                 {
                     b.Property<long>("Id")
@@ -4330,6 +4688,65 @@ namespace TCTEnglish.Migrations
                         .HasConstraintName("FK_AiUserDailyQuotas_Users");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceCustomTopic", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceReceipt", b =>
+                {
+                    b.HasOne("TCTEnglish.Models.AiVoiceSession", null)
+                        .WithMany()
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceSession", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceTurn", b =>
+                {
+                    b.HasOne("TCTEnglish.Models.AiVoiceSession", null)
+                        .WithMany()
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceUsageDay", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiVoiceUserLease", b =>
+                {
+                    b.HasOne("TCTEnglish.Models.AiVoiceSession", null)
+                        .WithMany()
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TCTVocabulary.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TCTEnglish.Models.LearningActivitySegment", b =>

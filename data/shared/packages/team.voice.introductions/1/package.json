@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "team.voice.introductions",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.voice.introductions",
+      "kind": "AiVoiceCatalogTopic",
+      "values": {
+        "StableKey": "voice.introductions",
+        "Title": "L\u00E0m quen",
+        "Scenario": "Meet a new colleague. Introduce yourself and learn their name, job and interests.",
+        "AiRole": "New colleague",
+        "LearnerRole": "New team member",
+        "Level": "A1",
+        "IsPublished": true,
+        "SortOrder": 1
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.voice.introductions"
+}

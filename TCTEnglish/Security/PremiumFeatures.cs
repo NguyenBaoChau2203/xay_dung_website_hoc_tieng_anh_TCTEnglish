@@ -2,6 +2,7 @@ namespace TCTEnglish.Security
 {
     public static class PremiumFeatures
     {
+        public const string AiVoiceCustomTopics = "ai.voice_custom_topics";
         public const string WritingAiGeneration = "writing.ai_generation";
         public const string SpeakingPrivateImport = "speaking.private_import";
         public const string SpeakingPrivatePractice = "speaking.private_practice";
@@ -11,6 +12,7 @@ namespace TCTEnglish.Security
 
         public static readonly IReadOnlySet<string> AllFeatures = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
+            AiVoiceCustomTopics,
             WritingAiGeneration,
             SpeakingPrivateImport,
             SpeakingPrivatePractice,

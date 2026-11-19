@@ -42,6 +42,232 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Voice companion standalone visibility and reduced-motion return — 2026-11-19
+
+**Symptom/Root Cause**: Pre-merge review reproduced two new companion defects: the standalone workspace scrolled with the window, so comparing hero/window coordinates against a negative workspace top never revealed the companion; the return button always requested smooth scrolling even under reduced motion.
+
+**Solution**: Clamp the visibility threshold to the viewport and respect matchMedia reduced motion. Use existing Clay/semantic tokens, a44px return control and one primary live announcement. Existing voice lifecycle/quota and other work remain unchanged.
+
+**Verification**: Two regressions failed before correction; Node35/35 and focused .NET13/13 pass. See docs/superpowers/plans/2026-11-19-ai-voice-pr-merge.md. Owner authorized commit/push/PR/master merge; production gate remains false. No matching known issue to close.
+
+### AI Voice Conversation: Floating Mascot Companion keeping Tico expressions visible during transcript scroll — 2026-11-19
+
+**Symptom**: When users scrolled down the AI Voice workspace to read the live transcript (`#voiceTranscript`), the fox mascot ("bé cáo" Tico) hero card scrolled completely off-screen, preventing users from seeing Tico's live facial expressions and interactive feedback states (listening, speaking, thinking, muted, ready).
+
+**Root Cause**: `.voice-status-panel` was placed at the top of the session panel in normal document flow. On mobile/compact viewports or when reading long transcripts, scrolling down pushed the mascot card out of the viewport. No persistent visual companion or sticky reactive status bar was present.
+
+**Solution**:
+1. Added `#voiceFloatingMascot` companion in `TCTEnglish/Views/AiVoice/_Workspace.cshtml` placed right after `.voice-status-panel` and sticky above the transcript.
+2. In `TCTEnglish/wwwroot/css/ai-voice.css`, styled the companion with Claymorphism pill tokens (`backdrop-filter: blur(12px)`, soft clay shadow, pulsing rings, live status dots per state), mini-mascot sprite mapping (`40x40px` sprite scaling to `300% 200%` matching all 6 facial expressions), and reduced-motion fallback.
+3. In `TCTEnglish/wwwroot/js/ai-voice-page.js`, synced `page.dataset.voiceState` and `floating.dataset.voiceState`, updated `#voiceFloatingStatus`, implemented container-aware scroll checking (`checkMascotVisibility`) that smoothly reveals the companion when the hero card scrolls past and hides it when at top, and added click-to-scroll-up behavior.
+
+**Files Changed**:
+- `TCTEnglish/Views/AiVoice/_Workspace.cshtml`: Added `#voiceFloatingMascot` markup with mini mascot sprite, live pulse, status text, and scroll-to-top button.
+- `TCTEnglish/wwwroot/css/ai-voice.css`: Added sprite state mapping `:is(.voice-mascot, .voice-mini-mascot)`, sticky pill styling, state-colored live dots, pulse ring animation, and reduced-motion support.
+- `TCTEnglish/wwwroot/js/ai-voice-page.js`: Updated `renderVoiceState()` to sync states and status text; added scroll listener, toggle listener, and smooth scroll-to-top handler.
+
+**Verification**:
+- `dotnet build`: 0 errors.
+- `dotnet test` (AiVoiceInlineRenderTests): 2/2 passed.
+- Node test suite (52 tests across voice audio, session, chat mode, clay UI, submit guard): 52/52 passed.
+- Playwright verification (`verify-floating-mascot.cjs`) on mobile (390x844) and desktop (1440x900): confirmed `#voiceFloatingMascot` appears when scrolled, mirrors live expressions (speaking, listening, thinking, ready), and returns cleanly to top when clicked.
+- `uv run --no-project python scripts/agent_tooling.py`: PASS.
+- `uv run --no-project python -m unittest discover -s scripts/tests -v`: 153/153 passed (3 skipped).
+
+**Commit**: Uncommitted (preserves local working tree per owner policy).
+
+**Notes**: Follows Claymorphism system and preserves all audio/WebRTC logic.
+
+### AI Voice and AI Chat: Replaced native browser confirm() dialog with custom Claymorphism confirmation modals — 2026-11-19
+
+**Symptom**: When clicking to delete a voice conversation session or custom topic, the browser displayed a crude, dark native `window.confirm()` popup ("localhost:5107 cho biết..."), which clashed with the application's visual design. Similarly, the text chat conversation delete dialog was an unstyled basic modal.
+
+**Root Cause**: In `TCTEnglish/wwwroot/js/ai-voice-page.js`, deletion handlers called browser-native `confirm(...)` directly. In `Chat.cshtml`, `#deleteConversationModal` used standard Bootstrap markup without Claymorphism tokens or clear visual hierarchy.
+
+**Solution**:
+1. In `TCTEnglish/Views/AiVoice/_Workspace.cshtml`:
+   - Added `#voiceConfirmModal` (`.ai-voice-modal .tct-theme`) with header warning icon (`fas fa-triangle-exclamation text-danger`), clear title, informative message & sub-message, and action buttons (`Hủy` and `Xóa`).
+2. In `TCTEnglish/wwwroot/js/ai-voice-page.js`:
+   - Replaced all `window.confirm()` calls with `showVoiceConfirm(...)` helper function that dynamically populates and controls `#voiceConfirmModal`.
+   - Appended `#voiceConfirmModal` to `document.body` so it is never trapped inside overflow containers.
+3. In `TCTEnglish/Views/Ai/Chat.cshtml`:
+   - Upgraded `#deleteConversationModal` with matching Claymorphism structure, warning icon, informative sub-message, and pill action buttons (`confirmDeleteConversationBtn`).
+4. In `TCTEnglish/wwwroot/css/ai-voice.css` and `ai-chat.css`:
+   - Added `.ai-chat-modal` and `.ai-voice-modal` footer button styles, danger button hover/active depth, and backdrop shadow overlays.
+
+**Files Changed**:
+- `TCTEnglish/Views/AiVoice/_Workspace.cshtml` — Added `#voiceConfirmModal`.
+- `TCTEnglish/wwwroot/js/ai-voice-page.js` — Replaced `confirm()` with `showVoiceConfirm(...)`.
+- `TCTEnglish/Views/Ai/Chat.cshtml` — Upgraded `#deleteConversationModal` structure.
+- `TCTEnglish/wwwroot/css/ai-voice.css` — Styled modal footer action buttons.
+- `TCTEnglish/wwwroot/css/ai-chat.css` — Added `.ai-chat-modal` styling.
+
+**Verification**:
+- `dotnet build`: 0 errors.
+- `dotnet test TCTEnglish.Tests --filter "AiVoiceInlineRenderTests"`: 2/2 passed.
+- Node test suite: 49/49 passed.
+- Agent tooling verified.
+- Playwright script `verify-confirm-modal.cjs`: confirmed `Native confirm dialog called: false` across both voice and chat deletions; captured `voice-confirm-modal.png` and `chat-confirm-modal.png`.
+
+**Commit**: Uncommitted local change on `feature/ai-voice-conversation`.
+
+
+### AI Voice and AI Chat history pagination buttons: Claymorphism styling and chevron icons — 2026-11-19
+
+**Symptom**: In both Voice History (`Lịch sử luyện nói của bạn`) and AI/Chat sidebar history, the `[Trước]` and `[Tiếp]` pagination buttons used Bootstrap's default `.btn-outline-secondary` class. When active or hovered, they turned into a dark charcoal gray `#6c757d` rectangle with white text, and when disabled they had an unrefined gray outline, clashing with the soft modern Claymorphism palette of TCT English.
+
+**Root Cause**: Both `#voiceHistoryPrev`/`#voiceHistoryNext` in `_Workspace.cshtml` and `[data-ai-history-prev]`/`[data-ai-history-next]` in `Chat.cshtml` relied on generic `.btn-outline-secondary` without Claymorphism tokenized styling.
+
+**Solution**:
+1. In `_Workspace.cshtml` and `Chat.cshtml`:
+   - Updated button classes to `.voice-history-page-btn` and `.ai-chat-history-page-btn`.
+   - Added chevron icons: `<i class="fas fa-chevron-left me-1"></i>Trước` and `Tiếp<i class="fas fa-chevron-right ms-1"></i>`.
+2. In `ai-voice.css` and `ai-chat.css`:
+   - Enabled state: crisp white surface (`var(--tct-surface)`), soft border (`#e2e8f0`), brand blue text (`var(--tct-primary-strong)`), subtle clay button shadow, 10px rounded pill radius (`var(--tct-radius-md)`).
+   - Hover state: vibrant brand blue (`var(--tct-primary)`), white text, soft elevation lift (`0 3px 8px rgba(66, 85, 255, 0.25)`), `translateY(-1px)`.
+   - Active state: deep primary (`var(--tct-primary-strong)`), white text, pressed inset shadow.
+   - Disabled state: soft subtle background (`#f8fafc`), light border (`#e2e8f0`), muted gray text (`#94a3b8`), no dark charcoal background.
+
+**Files Changed**:
+- `TCTEnglish/Views/AiVoice/_Workspace.cshtml` — Updated buttons with chevrons and `.voice-history-page-btn`.
+- `TCTEnglish/Views/Ai/Chat.cshtml` — Updated buttons with chevrons and `.ai-chat-history-page-btn`.
+- `TCTEnglish/wwwroot/css/ai-voice.css` — Added Claymorphism styling for pagination buttons.
+- `TCTEnglish/wwwroot/css/ai-chat.css` — Added Claymorphism styling for pagination buttons.
+
+**Verification**:
+- `dotnet build`: 0 errors.
+- `dotnet test TCTEnglish.Tests --filter "AiVoiceInlineRenderTests"`: 2/2 passed.
+- Node suite: 49/49 passed.
+- Agent tooling verified.
+- Playwright verification: captured `voice-history-buttons-initial.png`, `voice-history-buttons-hover.png`, `text-history-buttons.png`, `voice-history-card.png`, and `voice-desktop-new-buttons.png`, confirming clean, cohesive Claymorphism appearance across states.
+
+**Commit**: Uncommitted local change on `feature/ai-voice-conversation`.
+
+
+### AI Voice custom topic modal UX guidance: icons, placeholders, and helper text added — 2026-11-19
+
+**Symptom**: In the Voice Conversation workspace, clicking "Tạo chủ đề riêng" displayed `#voiceTopicModal` with bare text labels, empty inputs, no icons, no placeholders, and no explanatory guidance. First-time users did not know what kind of scenario, roles, or CEFR levels to input.
+
+**Root Cause**: In `TCTEnglish/Views/AiVoice/_Workspace.cshtml`, the modal form fields lacked FontAwesome icons, `placeholder` attributes, introductory tip containers, and helper microcopy (`.form-text`).
+
+**Solution**:
+1. Added an introductory banner `.voice-modal-tip` with lightbulb icon (`fas fa-lightbulb`) and helpful guidance.
+2. Added FontAwesome icons to each field label:
+   - Tên chủ đề: `fas fa-tag text-primary`
+   - Tình huống và mục tiêu: `fas fa-bullseye text-primary`
+   - Vai của AI: `fas fa-robot text-primary`
+   - Vai của bạn: `fas fa-user text-primary`
+   - Trình độ: `fas fa-layer-group text-primary`
+   - Header: `fas fa-sliders text-primary`
+   - Buttons: `fas fa-xmark` (Hủy), `fas fa-check` (Lưu chủ đề).
+3. Added realistic, context-rich Vietnamese placeholders:
+   - `voiceTopicTitle`: "VD: Phỏng vấn xin việc tiếng Anh, Đặt phòng khách sạn..."
+   - `voiceTopicScenario`: "VD: Bạn đang phỏng vấn vị trí Software Engineer. AI sẽ hỏi về kinh nghiệm làm việc và xử lý tình huống. Mục tiêu: trả lời tự tin, mạch lạc bằng tiếng Anh."
+   - `voiceTopicAiRole`: "VD: Người phỏng vấn khó tính (Interviewer), Lễ tân khách sạn..."
+   - `voiceTopicLearnerRole`: "VD: Ứng viên xin việc (Job applicant), Khách du lịch (Tourist)..."
+4. Added concise `.form-text text-muted` under each field explaining its purpose and how it influences AI responses.
+5. In `TCTEnglish/wwwroot/css/ai-voice.css`: Styled `.voice-modal-tip`, `.form-label i`, textarea min-height (100px with vertical resize), and placeholder opacity/styling matching the Claymorphism design system.
+
+**Files Changed**:
+- `TCTEnglish/Views/AiVoice/_Workspace.cshtml` — Added icons, placeholders, tip box, and `.form-text` helpers.
+- `TCTEnglish/wwwroot/css/ai-voice.css` — Styled modal tip banner, label icons, textarea height, and placeholder styling.
+
+**Verification**:
+- `dotnet build TCTEnglish/TCTEnglish.csproj --no-restore` (0 errors)
+- `dotnet test TCTEnglish.Tests --filter "AiVoiceInlineRenderTests"` (2/2 passed)
+- Node test suite 49/49 passed
+- Python tooling tests 153/153 passed
+- Playwright headless Chrome verification at desktop (1440x900) and mobile (390x844): captured `voice-topic-modal-desktop.png` and `voice-topic-modal-mobile.png`, verified all icons, placeholders, tip banner, and helper texts render without overflow.
+
+**Commit**: Uncommitted local change on `feature/ai-voice-conversation`.
+
+
+### AI Voice and AI Chat history internal scrollbar replaced with page-by-page pagination — 2026-11-19
+
+**Symptom**: In the Voice History card (`Lịch sử luyện nói của bạn`), pagination buttons `[Trước]` and `[Tiếp]` existed, but the list inside had an internal scrollbar with the top item cut in half due to `max-height` constraints with `overflow-y: auto`. Similarly, in `/AI/Chat` text mode, conversation history used an endless scroll list with `overflow-y: auto` and a bottom "Tải tin nhắn cũ hơn" button instead of structured page-by-page navigation.
+
+**Root Cause**: CSS applied `overflow-y: auto` on `.voice-history-list` and `.ai-chat-history-list` with height bounds. `ai-voice-page.js` rendered all 20 API items into a single container without client-side page slicing. `ai-chat.js` appended new conversations to the DOM without page visibility slicing.
+
+**Solution**:
+1. In Voice History (`ai-voice-page.js`, `ai-voice.css`, `_Workspace.cshtml`): Enforced `VOICE_PAGE_SIZE = 4`, removed `overflow-y: auto`, set `overflow: hidden; max-height: none; min-height: 176px;`. `[Trước]` / `[Tiếp]` now advance page-by-page cleanly without any internal scrollbar, with page indicator `(Trang/Tổng)`.
+2. In AI/Chat text history (`Chat.cshtml`, `ai-chat.js`, `ai-chat.css`): Added pagination nav bar with `[Trước]` and `[Tiếp]` buttons and page info `Trang X/Y`. Enforced `CHAT_HISTORY_PAGE_SIZE = 6`, removed `overflow-y: auto`, set `overflow: hidden`. Clicking `[Tiếp]` advances pages or loads older conversations seamlessly.
+
+**Files Changed**:
+- `TCTEnglish/Views/AiVoice/_Workspace.cshtml` — Added `#voiceHistoryPageInfo` page counter.
+- `TCTEnglish/wwwroot/js/ai-voice-page.js` — Client-side 4-item pagination with `[Trước]` / `[Tiếp]` buttons.
+- `TCTEnglish/wwwroot/css/ai-voice.css` — Removed `overflow-y: auto`, set `overflow: hidden; max-height: none`.
+- `TCTEnglish/Views/Ai/Chat.cshtml` — Added pagination bar with `[Trước]` / `[Tiếp]` buttons and page info.
+- `TCTEnglish/wwwroot/js/ai-chat.js` — Client-side 6-item conversation pagination with `[Trước]` / `[Tiếp]`.
+- `TCTEnglish/wwwroot/css/ai-chat.css` — Set `.ai-chat-history-list { overflow: hidden; }` and styled page buttons.
+
+**Verification**:
+- Playwright browser execution (`verify-pagination.cjs`):
+  - Voice History: `hasScrollbar: false`, `listScrollHeight == listClientHeight == 218px`.
+  - AI/Chat Sidebar: `hasScrollbar: false`, `listScrollHeight == listClientHeight == 420px`.
+  - Full page switching verified on both components.
+- Targeted .NET suite: 2/2 passed.
+- Targeted Node suite: 49/49 passed.
+- Agent tooling verified.
+
+**Commit**: `None (local task authority only)`
+
+
+### AI Voice conversation excessive whitespace and unstyled collapsibles — 2026-11-19
+
+**Symptom**: On desktop (1440×900) in Voice Mode (`#aiVoiceMode` / `_Workspace.cshtml`), a massive empty white gap (>370px) existed below the topic card (`.voice-topics`). Essential context such as topic scenario/roles (`#voiceTopicDescription`), live transcript (`#voiceTranscript`), and history were collapsed by default (`open="@(!Model.Inline)"`), leaving the interface barren and disconnected. In addition, raw browser black chevrons were displayed, and history floated as an isolated full-width row (`grid-column: 1 / -1`). On mobile (390×844), control buttons wrapped onto 2 lines, consuming 151px height.
+
+**Root Cause**: `.voice-workspace` used basic 2-column grid without row templates or height balancing. Disclosures defaulted to closed in inline mode, hiding substantive content. Control buttons lacked flex shrinking on mobile viewports.
+
+**Solution**:
+1. Re-architected desktop layout using `grid-template-areas: "topics session" "history session"` and `grid-template-rows: auto 1fr`. Placed Topic Selection at the top left, Voice History directly below it, and Voice Session spanning both rows on the right.
+2. Balanced column heights: On desktop (1440×900), both columns end at exactly the same bottom coordinate (884.56px), eliminating the dead whitespace completely (0.00px parity).
+3. Replaced raw browser disclosure chevrons with smooth animated FontAwesome icons (`.voice-disclosure-chevron`).
+4. Opened topic details (`#voiceTopicDescription`) and live transcript (`#voiceTranscript`) by default with rich dialogue styling and Claymorphism surfaces.
+5. Wrapped allowance paragraph in a polished Clay stat card (`.voice-allowance-card`) with clock icon.
+6. Optimized mobile controls (`max-width: 480px`): single row of 3 buttons (`flex: 1 1 0`), reducing control bar height from 151px to 77px and reclaiming 74px of vertical reading height.
+
+**Files Changed**:
+- `TCTEnglish/Views/AiVoice/_Workspace.cshtml` — Structured layout, custom disclosure markup with chevrons, opened topic details and live transcript, styled allowance and history cards.
+- `TCTEnglish/wwwroot/css/ai-voice.css` — 2-column grid-template-areas layout, custom disclosure styling, Clay allowance pill, live transcript container styling, mobile single-row controls.
+
+**Verification**:
+- `AiVoiceInlineRenderTests`: 2 passed, 0 failed.
+- Targeted Node suite (`test_ai_voice_audio.cjs`, `test_ai_voice_session.cjs`, `test_ai_chat_mode.cjs`, etc.): 49 passed, 0 failed.
+- Agent tooling verified; Python unit tests: 153 passed (0 failures, 3 skipped).
+- Playwright headless Chrome metrics across desktop, tablet, and mobile: left column bottom = right column bottom = 884.56px (0.00px gap).
+- Captured screenshots: `.tmp/ai-chat-ui-ux-redesign/voice-desktop-1440x900-after.png`, `voice-tablet-768x1024-after.png`, `voice-mobile-390x844-after.png`.
+
+**Commit**: `None (local task authority only)`
+
+
+### AI Chat mobile/tablet squeezed viewport height and summary nesting — 2026-11-19
+
+**Symptom**: On mobile (390×844) and tablet (768×1024), AI Chat history disclosure consumed up to 442px above the chat window, squeezing the reading region `#chatWindow` down to 41px (tablet) and 105px (mobile) and clipping initial quick action suggestions. In addition, an interactive `<a>` ("New chat") was nested inside `<summary>`, causing invalid HTML5 nesting, and touch targets (textarea 36px, Send 40px) were below 44px.
+
+**Root Cause**: `Chat.cshtml` rendered `<details id="aiHistoryDisclosure" open>` unconditionally. On narrow viewports (< 992px), flex-direction: column stacked the open history body above the chat surface. `ai-chat.js` clamped textarea height to 36px.
+
+**Solution**:
+1. Removed unconditional `open` attribute from `#aiHistoryDisclosure` in `Chat.cshtml` and synchronized disclosure open state with `window.innerWidth >= 992` on load.
+2. Decoupled the "Đoạn chat mới" link outside `<summary>`, rendering a clean bar with valid HTML5 semantics and chevron indicator.
+3. Updated textarea default minHeight and Send/Stop buttons to 44px touch targets.
+4. Refined responsive styling in `ai-chat.css`: `#chatWindow` height gained from 41px to 549px on tablet (13.4x) and 105px to 463px on mobile (4.4x).
+
+**Files Changed**:
+- `TCTEnglish/Views/Ai/Chat.cshtml` — Decoupled new chat link outside summary; removed unconditional open on history disclosure.
+- `TCTEnglish/Views/Ai/_ChatShell.cshtml` — Warm Tico mascot empty state greeting; 44px input min-height.
+- `TCTEnglish/wwwroot/css/ai-chat.css` — Responsive height allocation, 44px touch targets, refined Claymorphism.
+- `TCTEnglish/wwwroot/js/ai-chat.js` — Updated adjustTextareaHeight to 44px minHeight; synchronized initial disclosure open state.
+
+**Verification**:
+- Targeted .NET suite: 13 passed, 0 failed.
+- Targeted Node suite: 49 passed, 0 failed.
+- Agent tooling verified, Python suite: 150 passed, 3 skipped, 0 failures.
+- Playwright browser execution across 5 viewports (1440×900, 1440×768, 768×1024, 390×844, 375×812): 0 page errors, 0 horizontal overflow, measured message height 549px (tablet) and 463px (mobile).
+
+**Commit**: `None (local task authority only)`
+
+**Notes**: Follows Direction 1 (Conversation Workspace). Preserves all existing text/voice DOM and SignalR contracts.
+
 ### PR140 Reading/Dashboard integration, access and data preservation — 2026-11-18
 
 **Symptom**: PR140 chậm 178 commit và có 30 đường dẫn xung đột với master.
@@ -5658,6 +5884,110 @@ blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 **Commit**: `feat(admin-content)` / `feat(admin-vocabulary)` / `feat(admin-listening)` series on `feature/admin-content-complete`; nothing pushed.
 
 **Notes**: Follow-ups in known-issues: `ADMIN-CONTENT-SIDEBAR-LABELS-D1`, `ADMIN-CONTENT-SEEDER-NAME-RULE`, `ADMIN-CONTENT-LEARNER-POLICY`, `ADMIN-CONTENT-PROGRAM-DI-LINES`, `ADMIN-BILLING-SECONDARY-PAGES-BOOTSTRAP`, `ADMIN-CONTENT-TEST-HOST-MEMORY`. Related: `SWEEP-ADMIN-SET-SAMPLE-IMAGES-404`, `SWEEP-LISTENING-YOUTUBE-THUMB-404`, the notifications and billing entries of 2026-11-17.
+
+### AI voice conversation pre-release regressions — 2026-11-18
+
+**Symptom**: During local feature implementation, recovery could defer its first hangup; a late setup-error continuation could account a settled call twice (180 became 360 seconds); a maximum-length Vietnamese scenario exceeded its JSON snapshot bound; deleting an active custom topic left its call running; mobile controls fell below the touch-size floor.
+
+**Root Cause**: Lifecycle state was used as the settlement idempotency guard; closing inherited the setup cleanup deadline; default JSON escaping inflated Unicode snapshots; topic deletion had no durable cancellation; rem-only touch geometry inherited the legacy mobile root font.
+
+**Solution**: Guard settlement by AccountingState, preserve closed state and recheck cancellation after sideband attach; schedule initial recovery immediately without resetting retry backoff; store compact Unicode JSON with an explicit bound; cancel topic sessions durably and stop their sideband; give scoped controls a 44px floor. Bootstrap modal focus is explicitly restored. Existing chat contracts and shared design tokens remain in use.
+
+**Files Changed**: `Services/AI/Voice/*`, `Workers/AiVoiceSessionCleanupWorker.cs`, `wwwroot/js/ai-voice-*.js`, `wwwroot/css/ai-voice.css` and new AiVoice tests. Full implementation evidence: `docs/feature-audits/2026-11-18-ai-voice-conversation-implementation-ledger.md`.
+
+**Verification**: Failing behavior regressions preceded the accounting, recovery, Unicode and topic-deletion fixes. Latest broad offline suite: 216 passed, 0 failed, 7 intentionally skipped; JavaScript chat/voice/recorder suite: 40 passed. Dedicated MariaDB 10.5.23 proofs pass for schema upgrade/repeat with preserved user/chat/subscription, public catalog import repeat, Unicode storage, independent-connection lease concurrency, UTC rollover and private-account scrub. Real voice/mic, paid latency and hosting acceptance remain unrun.
+
+**Commit**: None. Local work only on `feature/ai-voice-conversation`; no push/PR/deployment.
+
+**Notes**: New feature regressions, no prior bug fix copied. MariaDB fixture corrections (DateTime.Kind versus persisted ticks, isolated test capacity) were test-only; no production time mapping, dev-data reset or credential rewrite. Known issues do not yet contain an existing AI voice entry to close. Live/hosting limitations are in the operations document.
+
+**Browser follow-up**: A 390x500 check reproduced an unreachable modal footer (Save bottom 618px) and screenshots exposed the floating chat launcher overlapping Save. A scoped flex form restores Bootstrap body scrolling; the learner layout suppresses its launcher only on the dedicated Voice controller, following its existing full-Chat rule. Final browser run: 12 checks, zero page errors, real sidebar collapse, unobscured Save hit-test, modal Tab/Escape/focus return, full/embedded chat and Home launcher preservation. Exact native 200% zoom and paid voice remain unverified.
+
+### AI voice Stop remains pending after server closure — 2026-11-18
+
+**Symptom**: Owner saw a red cleanup-pending message after Stop and had to retry. The call inspected during diagnosis was already closed/settled; two authenticated retries returned closed=true.
+
+**Root Cause**: HTTP 202 is valid while another cleanup holds the claim, but the page treated closed=false as an immediate error and never checked again. The exact original HTTP response was not captured; the accepted-then-confirmed behavior is reproduced in the API test. Independently, CancelAsync set NeedsHangup=true on a previously closed call, leaving stale cleanup metadata after a repeated Stop.
+
+**Solution**: Confirm closure on the same session for at most 30 seconds, with informational pending copy and immediate local media teardown. Keep Start blocked until confirmation, refresh allowance/history after success, preserve the attempt for manual retry on timeout/network failure. Repeated Stop preserves NeedsHangup=false once closed.
+
+**Files Changed**: `wwwroot/js/ai-voice-session.js`, `wwwroot/js/ai-voice-page.js`, `Services/AI/Voice/AiVoiceQuotaService.cs`, `AiVoiceSessionLifecycleTests.cs`, `AiVoiceApiSecurityTests.cs`, `scripts/tests/test_ai_voice_session.cjs`. Evidence/checklist updated in the existing implementation ledger and plan.
+
+**Verification**: Repeated-Stop regression failed before the fix; final focused .NET suite 54 passed/0 failed/4 MariaDB skips. Node voice suite 19 passed. Browser five checks passed (202/202/200 automatic completion, immediate microphone teardown, blocked Start, refreshed allowance, bounded pending/manual retry, desktop and 375px), zero page errors. Actual closed-session probes twice returned HTTP 200/closed=true, reserved=0. Local launcher build/migrations succeeded and health returned 200. No additional real session creation or paid call for these checks; actual audio/latency remains unverified.
+
+**Commit**: None. Local branch only; no push, PR or deployment. No schema/protected configuration changes, quota reset or user-data deletion. No existing matching known-issues entry to close.
+
+### Local Admin voice preview exhausted after one unusable attempt — 2026-11-18
+
+**Symptom**: Owner reported no useful test completed, yet Admin saw 60/60 seconds and quota exhaustion.
+
+**Root Cause**: The task's local child-process configuration reduced both Standard and Premium/Admin daily allowances to 60 seconds. Admin entitlement was correct; the disclosed conservative reservation policy charged the full 60-second window for a dispatched call, irrespective of actual speech. This was a preview configuration issue, not proof of 60 seconds spoken or an OpenAI charge amount.
+
+**Solution**: Restore Standard=180 and Premium/Admin=900 daily seconds in the authorized local preview, retain 60 seconds/session and one concurrent session. Preserve usage and role data. No source accounting change or unlimited Admin bypass.
+
+**Verification**: Launcher build and readiness pass. Real authenticated browser/API reports Admin/Premium entitlement, 900 daily/60 used/0 reserved/840 remaining; Start enabled, Mute/Stop disabled. Zero session-create requests or paid calls. Ignored browser evidence and exact overrides recorded in the implementation ledger. No source change requiring another application unit-test run.
+
+**Commit**: None; local runtime configuration only. No protected configuration/secret edit, DB reset, usage refund, push, PR or deployment.
+
+### Voice never becomes active before Stop — 2026-11-18
+
+**Symptom**: Owner spoke then pressed Stop; pending-close UI appeared and no transcript existed. Both allocated owner calls had never advanced their activation heartbeat.
+
+**Root Cause**: Exact effective-configuration checking included optional `audio.input.transcription.language=en`. Real-provider ACK did not preserve that hint exactly, so setup waited to timeout despite matching model, transcription model and voice. Fake ACKs copied the request and did not expose this behavior. Separately, the UI did not explain that Stop ends the entire call, whereas a pause in speech triggers a response.
+
+**Solution**: Omit the optional fixed language hint and let transcription detect language. Retain exact checks for all requested fields, empty tools and model. Add safe mismatch diagnostics limited to field paths and bounded public model/voice identifiers. Clarify listening/turn instructions and label the existing Stop control Dừng phiên without changing its ID/behavior.
+
+**Verification**: New language-echo regression failed before fix; final focused .NET 56 passed/0 failed/4 MariaDB skipped; Node voice 19 passed. Two authorized silent diagnostic calls isolated the field; one real-provider virtual-microphone conversation then passed (HTTP 200, connected peer, user/assistant finalized turns, inbound audio and playing element). Stop ended the microphone and returned UI to ready; DB confirms all seven records closed/settled, reserved=0. Browser fake Stop/copy checks pass at 1440/768/390/375, zero page errors. No physical mic/listening/interruption-quality or hosting acceptance claimed. Evidence and counters in the implementation ledger; no raw ACK or private contents logged.
+
+**Commit**: None. Local-only app/runtime changes; no protected file edit, schema/data reset, refund, package addition, push, PR or deployment. No prior matching known-issues entry to close.
+
+### Inline chatbot voice mode and iframe keyboard lifecycle — 2026-11-19
+
+**Symptom**: Voice entry navigated to a dedicated page/new tab, contrary to the owner's updated inline request. Browser acceptance additionally reproduced Tab leaving the floating child frame and Escape closing the whole launcher while dismissing the inner topic modal; Tab could leave the modal at the iframe document edge.
+
+**Root Cause**: _ChatShell used a navigation anchor. The launcher filtered child elements with the parent's HTMLElement constructor, so cross-realm nodes appeared unfocusable. Bootstrap removes .show before Escape finishes bubbling; its document focusin trap cannot catch focus that has already moved outside the iframe.
+
+**Solution**: Two mode buttons, one typed reusable voice workspace, DOM-preserving text panel, confirmed cleanup before returning to text, source/origin-checked parent-close handling and microphone permission. Child-realm focus filtering, modal-target Escape guard and explicit modal edge-Tab wrap. Scoped scroll layout keeps consent and controls visible; new transparent Tico atlas reflects coordinator/playback states with reduced-motion support.
+
+**Verification**: Mode regressions initially failed; 75 .NET cases pass with 4 MariaDB skips, 66 Node cases pass. Eight Chrome browser groups pass with zero page errors: same URL/tab, unchanged draft/history, no mic/call on entry, state/mute/pending/error/retry, private CRUD/history, denial/gating, parent close and spoofed-message guards, iframe/modal keyboard/focus, footer hit-tests, 1440 open/collapsed plus 768/390/375. Three intercepted fake calls; zero real voice creates or paid Realtime calls. Native 200% zoom and physical mic/live provider acceptance for inline remain unobserved, as recorded in docs/feature-audits/2026-11-19-inline-ai-voice-chat.md. Existing standalone route still renders from the same partial.
+
+**Commit**: None. Local-only feature branch. No protected-file edit, persisted-model/schema change, data reset/refund, extra dependency, private-data export, push, PR or deployment. No matching existing known-issues entry to close.
+
+### Voice history rows wrap and squeeze delete buttons — 2026-11-19
+
+**Symptom**: In the floating voice history, combined topic/time links wrapped unpredictably and Xóa broke across lines; title and pagination crowded the small header.
+
+**Root Cause**: A flex row allowed the delete button to shrink while the complete title and locale timestamp shared one link. Header typography and wrapping were sized for the standalone page.
+
+**Solution**: Separate topic and semantic time lines, ellipsis with full-title tooltip, local date/hour/minute format, independent pending note, fixed 44px trash control with accessible name, stable grid columns and compact scoped header. Preserve APIs, ownership/antiforgery and existing read/delete/paging handlers.
+
+**Verification**: 23 existing Node mode/audio/coordinator tests pass. Browser six full/floating desktop/mobile layouts pass for alignment, overflow, long/pending/hostile titles, read by keyboard, canceled/confirmed mocked delete, paging and empty/error feedback; zero page errors and no actual delete/provider call. Source changes are static JS/CSS, no .NET rebuild required. Plan/evidence: docs/superpowers/plans/2026-11-19-voice-history-compact.md. Native zoom and hosting unobserved.
+
+**Commit**: None. No schema, protected config, dependency, credential or real history change; no push/PR/deploy. No matching known-issues entry to close.
+
+### Background noise interrupts AI voice playback — 2026-11-19
+
+**Symptom**: Owner's microphone test found incidental noise cut off AI speech. Owner requested sequential turns: AI finishes, then the learner speaks. This supersedes the original barge-in requirement.
+
+**Root Cause**: Server VAD explicitly used interrupt_response=true. Browser sent microphone input continuously. The event processor treated any speech_started during playback as proof of interruption and replaced speaking with listening, even without actual cleared/cancelled output evidence.
+
+**Solution**: Set interrupt_response=false while keeping automatic responses and strict effective-ACK validation. Independently gate WebRTC input during setup/thinking/speaking, reopen on listening/idle after output drains, and preserve the user's manual mute. Ignore residual speech activity during tracked playback; retain actual cleared/truncated/cancelled/Stop history markers. Update shared inline/standalone copy and operations; old transcript data stays unchanged.
+
+**Verification**: New regressions failed before implementation (Node3 and .NET2). Final .NET44/44 and Node26/26 pass; JS syntax and diff whitespace pass. Owned local Release launcher rebuild succeeds, MariaDB healthy/schema current and readiness HTTP200. Chrome9 full/floating/standalone desktop/tablet/mobile checks pass with0 page errors,9 fake creates/closes and0 real provider requests; covers input gating, generation-vs-playback distinction, manual mute/unmute, keyboard and Stop release. Native200% zoom, physical room-noise/audio quality and live-provider ACK for this new policy remain unobserved. See docs/superpowers/plans/2026-11-19-voice-sequential-turns.md for exact evidence.
+
+**Commit**: None. Local feature branch only; no protected file, schema, dependency, quota reset/refund, secret rewrite, private-data export, push/PR/CI/deploy. No matching existing known-issues entry to close.
+
+### Chat history pagination skips rows after deletion or a failed fetch — 2026-11-19
+
+**Symptom**: Pre-commit review found text/voice history advanced past newly filled rows on a partial last page. Voice history advanced its server page before the request succeeded, so retry skipped a batch; repeated Next clicks could request multiple pages concurrently. Local deletion also invalidated voice history's offset cache. A duplicated CSS declaration fragment preceded the text history hover rule.
+
+**Root Cause**: Pagination assumed the cached last page was full, mutated the cursor before awaiting I/O, and had no in-flight guard. Removing a cached row did not refresh the server offset boundary.
+
+**Solution**: Fill partial pages before advancing; commit the voice page cursor after a valid response, guard concurrent navigation and deduplicate rows. Refresh voice page1 after deletion and disable stale paging when reload fails. Remove the stray CSS fragment. Routes, ownership, antiforgery, quota and stored chat remain unchanged.
+
+**Verification**: One text and three voice regressions failed before fixes. Final Node70/70 pass including six pagination behaviors; .NET71 pass/4 gated MariaDB skips from the same reviewed C# state. Real Chrome with intercepted public/private-history fixtures verifies delete reload, same-page network retry and concurrent Next guard with0 page errors/provider calls. EF pending-model check and386-package validation pass. No prior matching known issue to close; evidence in docs/superpowers/plans/2026-11-19-grouped-local-commits.md.
+
+**Commit authority**: Owner explicitly authorized grouped local commits in this turn; earlier no-commit entries record historical boundaries. No push/PR/CI/deploy or private data modification.
 
 
 ### Listening catalog ignored the C2 level — 2026-11-18

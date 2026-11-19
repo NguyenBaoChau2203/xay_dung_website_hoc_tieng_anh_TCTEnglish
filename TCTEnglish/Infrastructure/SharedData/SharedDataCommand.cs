@@ -74,7 +74,8 @@ public static class SharedDataCommand
                 File.Move(temp, SharedDataFormat.SafePath(root, "production.json"), true);
                 Output("Production approval manifest prepared. Review its exact hashes in a PR; the production deployment gate and environment approval are still required."); return 0;
             }
-            if (action is not ("sync" or "status" or "export" or "map-owner" or "migrate")) throw new SharedDataException("Choose shared-data validate, status, export, map-owner or sync.");
+            if (action is not ("sync" or "status" or "export" or "map-owner" or "migrate" or "seed-voice-catalog")) throw new SharedDataException("Choose shared-data validate, status, export, map-owner or sync.");
+            if (action == "seed-voice-catalog" && target != "local") throw new SharedDataException("Voice catalog authoring is local only.");
             if (action == "migrate" && target != "local") throw new SharedDataException("Shared CLI migration is Docker-local only; hosting must use its reviewed release bundle.");
             var connection = app.Configuration.GetConnectionString("DefaultConnection") ?? "";
             AssertTarget(connection, app.Environment.EnvironmentName, target,
@@ -91,6 +92,15 @@ public static class SharedDataCommand
             foreach (var owner in owners) { SharedDataFormat.AssertKey(owner.Key); if (owner.Value < 1 || owner.Key == "system") throw new SharedDataException("Owner mappings require positive IDs; system is reserved."); }
             using var scope = app.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            if (action == "seed-voice-catalog")
+            {
+                await using var contentLock = await SharedDataDatabaseLock.AcquireAsync(db, ct);
+                await using var contentTransaction = await db.Database.BeginTransactionAsync(ct);
+                await TCTEnglish.Services.AI.Voice.AiVoiceCatalogSeed.SeedAsync(db, ct);
+                await contentTransaction.CommitAsync(ct);
+                Output("Voice catalog seeded by stable key; existing rows preserved. Export selected public roots before handoff.");
+                return 0;
+            }
             if (action == "migrate")
             {
                 await db.Database.MigrateAsync(ct);
