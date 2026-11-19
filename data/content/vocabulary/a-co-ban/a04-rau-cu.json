@@ -1,0 +1,1111 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A04",
+    "name": "Rau củ",
+    "description": "#a1 #a2 #vegetables #food",
+    "topic": "Rau củ",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "carrot",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "củ cà rốt",
+      "meaningEn": "a long orange vegetable that grows in the ground",
+      "examples": [
+        {
+          "text": "The rabbit is eating a carrot.",
+          "vi": "Con thỏ đang gặm một củ cà rốt."
+        },
+        {
+          "text": "I put carrots in the soup.",
+          "vi": "Tôi cho cà rốt vào món súp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "grated carrot",
+          "vi": "cà rốt bào"
+        }
+      ],
+      "imageQuery": "carrots",
+      "ipaUs": "/ˈkæɹ.ət/",
+      "ipaUk": "/ˈkæɹət/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/carrot ; https://en.wiktionary.org/wiki/carrot",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/carrot.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/100088253@N05/17020281571",
+        "author": "Eisbäärchen",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "carrots",
+        "sha256": "5c1ea3dbfca860a2eac5492cafb27776c3b3f2d1b8ab110620ccb715957135f7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cabbage",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bắp cải",
+      "meaningEn": "a round vegetable with thick green leaves",
+      "examples": [
+        {
+          "text": "She cut the cabbage into thin strips.",
+          "vi": "Cô ấy cắt bắp cải thành những sợi mỏng."
+        },
+        {
+          "text": "We grow cabbage behind the house.",
+          "vi": "Chúng tôi trồng bắp cải sau nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cabbage soup",
+          "vi": "canh bắp cải"
+        }
+      ],
+      "imageQuery": "green cabbage head vegetable",
+      "ipaUs": "/ˈkæbɪd͡ʒ/",
+      "ipaUk": "/ˈkæbɪd͡ʒ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cabbage",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/cabbage.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/69569e50d3/",
+        "author": "Vishnu Chandra",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "green cabbage head vegetable",
+        "sha256": "0b8c4d03912b974b9b2f34b1e84af4f00b6901a57d780c4777fa640c973fe308",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cucumber",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "dưa chuột",
+      "meaningEn": "a long green vegetable that is cool and watery",
+      "examples": [
+        {
+          "text": "I put cucumber in my salad.",
+          "vi": "Tôi cho dưa chuột vào món salad."
+        },
+        {
+          "text": "A cold cucumber is good in summer.",
+          "vi": "Dưa chuột lạnh rất ngon vào mùa hè."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "sliced cucumber",
+          "vi": "dưa chuột thái lát"
+        }
+      ],
+      "imageQuery": "cucumbers fresh green",
+      "ipaUs": "/ˈkjuˌkʌmbɚ/",
+      "ipaUk": "/ˈkjuːˌkʌmbə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cucumber",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/cucumber.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3304073/free-photo-image-animal-cc0-creative-commons",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cucumbers fresh green",
+        "sha256": "9e60edaefcd8e0990a47ffaf2f5f26923b9c75b215bd59adbaf106bce5162ce6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "garlic",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tỏi",
+      "meaningEn": "a small white bulb with a strong smell, used in cooking",
+      "examples": [
+        {
+          "text": "Add some garlic to the pan.",
+          "vi": "Hãy cho một ít tỏi vào chảo."
+        },
+        {
+          "text": "My mother crushes garlic before cooking.",
+          "vi": "Mẹ tôi đập dập tỏi trước khi nấu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "clove of garlic",
+          "vi": "tép tỏi"
+        }
+      ],
+      "imageQuery": "garlic bulb",
+      "ipaUs": "/ˈɡɑɹlɪk/",
+      "ipaUk": "/ˈɡɑːlɪk/",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/garlic.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/132795455@N08/17665945114",
+        "author": "Image Catalog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "garlic bulb",
+        "sha256": "68113c5a2ff32d708b62d23df88daa0c846abaa2e57a9511477e46872f4eacac",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaSource": "https://en.wiktionary.org/wiki/garlic"
+    },
+    {
+      "term": "onion",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hành tây",
+      "meaningEn": "a round vegetable with layers that makes your eyes water",
+      "examples": [
+        {
+          "text": "Cutting an onion makes me cry.",
+          "vi": "Cắt hành tây làm tôi chảy nước mắt."
+        },
+        {
+          "text": "She fried the onion until it was golden.",
+          "vi": "Cô ấy chiên hành tây đến khi vàng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "chopped onion",
+          "vi": "hành tây cắt nhỏ"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "spring onion",
+          "pos": "noun",
+          "vi": "hành lá"
+        }
+      ],
+      "imageQuery": "onions",
+      "ipaUs": "/ˈʌnj(ə)n/",
+      "ipaUk": "/ˈʌnjən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/onion",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/onion.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/47121680@N00/44355510981",
+        "author": "joncutrer",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "onions",
+        "sha256": "f7b517bda74d82c0d86f412caae0e388cb19b8d179545d421126d737a468b1ef",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "potato",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "khoai tây",
+      "meaningEn": "a round vegetable that grows under the ground",
+      "plural": "potatoes",
+      "examples": [
+        {
+          "text": "I like mashed potato with chicken.",
+          "vi": "Tôi thích khoai tây nghiền ăn với thịt gà."
+        },
+        {
+          "text": "The potatoes are boiling on the stove.",
+          "vi": "Những củ khoai tây đang sôi trên bếp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "boiled potato",
+          "vi": "khoai tây luộc"
+        },
+        {
+          "text": "mashed potato",
+          "vi": "khoai tây nghiền"
+        }
+      ],
+      "imageQuery": "potatoes harvest pile",
+      "image": {
+        "file": "a04/potato.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5920748/photo-image-public-domain-plant-fruit",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "potatoes harvest pile",
+        "sha256": "708604abd9cde512123cb12210becf21e2a5ae76fd2fc8ac13f78b22372b3226",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/pəˈteɪ.toʊ/",
+      "ipaUk": "/pə̥ˈtʰɛi̯tʰɜʊ̯̈/",
+      "ipaSource": "https://en.wiktionary.org/wiki/potato",
+      "ipaVerified": true
+    },
+    {
+      "term": "tomato",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "quả cà chua",
+      "meaningEn": "a soft red fruit used as a vegetable in salads and sauces",
+      "plural": "tomatoes",
+      "examples": [
+        {
+          "text": "She sliced a tomato for the sandwich.",
+          "vi": "Cô ấy thái một quả cà chua cho bánh sandwich."
+        },
+        {
+          "text": "Fresh tomatoes grow well in summer.",
+          "vi": "Cà chua tươi mọc tốt vào mùa hè."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "tomato sauce",
+          "vi": "sốt cà chua"
+        }
+      ],
+      "imageQuery": "tomatoes",
+      "ipaUs": "/təˈmeɪ.toʊ/",
+      "ipaUk": "/təˈmɑː.təʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tomato",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/tomato.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/29155878@N03/18248192205",
+        "author": "Open Grid Scheduler / Grid Engine",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "tomatoes",
+        "sha256": "aef893a602237a92c942ba6c03d8cf9ab5add427b3ff17d1189030c8ace1f2a4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "corn",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ngô, bắp",
+      "meaningEn": "a tall plant with yellow seeds that people eat",
+      "examples": [
+        {
+          "text": "We ate grilled corn at the market.",
+          "vi": "Chúng tôi ăn bắp nướng ở chợ."
+        },
+        {
+          "text": "The corn grows very tall in summer.",
+          "vi": "Cây ngô mọc rất cao vào mùa hè."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "corn on the cob",
+          "vi": "bắp nguyên trái"
+        }
+      ],
+      "imageQuery": "corn cob",
+      "ipaUs": "/ˈkoɹn/",
+      "ipaUk": "/ˈkɔːn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/corn",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/corn.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5913428/image-public-domain-leaves-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "corn cob",
+        "sha256": "c0b68ebcb109fe8c937babb0f8ed1e83a83f608b95027b8db263ea70ea6129c5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pumpkin",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bí ngô",
+      "meaningEn": "a large round orange vegetable with thick skin",
+      "examples": [
+        {
+          "text": "She made soup from a pumpkin.",
+          "vi": "Cô ấy nấu súp từ một quả bí ngô."
+        },
+        {
+          "text": "The children carved a face into the pumpkin.",
+          "vi": "Bọn trẻ khắc một khuôn mặt lên quả bí ngô."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pumpkin soup",
+          "vi": "súp bí ngô"
+        }
+      ],
+      "imageQuery": "pumpkin",
+      "ipaUs": "/ˈpʌm(p).kɪn/",
+      "ipaUk": "/ˈpʌmpkɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pumpkin",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/pumpkin.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/132795455@N08/17276326802",
+        "author": "Image Catalog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "pumpkin",
+        "sha256": "ba4d0c6ec468c91e76a6e443ede7a5aa2f253f189ff21c0dc6ae682415243ca4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "broccoli",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "súp lơ xanh",
+      "meaningEn": "a green vegetable that looks like a small tree",
+      "examples": [
+        {
+          "text": "I steam the broccoli for five minutes.",
+          "vi": "Tôi hấp súp lơ xanh trong năm phút."
+        },
+        {
+          "text": "Broccoli is good for your health.",
+          "vi": "Súp lơ xanh tốt cho sức khỏe."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "steamed broccoli",
+          "vi": "súp lơ xanh hấp"
+        }
+      ],
+      "imageQuery": "broccoli florets",
+      "ipaUs": "/ˈbɹɑ.kə.li/",
+      "ipaUk": "/ˈbɹɒk.ə.li/",
+      "ipaSource": "https://en.wiktionary.org/wiki/broccoli",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/broccoli.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Broccoli_florets_on_ice.jpg",
+        "author": "Jeffery Martin",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "broccoli florets",
+        "sha256": "1887af05cba9cecca9cd6f17302636dbc886d8e2a2160f90429f1760775f837a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "lettuce",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "rau xà lách",
+      "meaningEn": "a green leafy vegetable used in salads",
+      "examples": [
+        {
+          "text": "The burger has lettuce and tomato.",
+          "vi": "Chiếc bánh kẹp có xà lách và cà chua."
+        },
+        {
+          "text": "Wash the lettuce before you eat it.",
+          "vi": "Hãy rửa xà lách trước khi ăn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "lettuce leaf",
+          "vi": "lá xà lách"
+        }
+      ],
+      "imageQuery": "lettuce head green",
+      "ipaUs": "/ˈlɛt.ɪs/",
+      "ipaUk": "/ˈlɛt.ɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lettuce",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/lettuce.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/13967d4152/",
+        "author": "Yam B Chhetri",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "lettuce head green",
+        "sha256": "253f2759254c8164780a03180d0a5127dcbee3e7d32ccdfc0fc8f1382fcdb96f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "spinach",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "rau chân vịt",
+      "meaningEn": "a dark green leafy vegetable",
+      "examples": [
+        {
+          "text": "Spinach has a lot of iron.",
+          "vi": "Rau chân vịt có nhiều sắt."
+        },
+        {
+          "text": "She cooked spinach with garlic.",
+          "vi": "Cô ấy xào rau chân vịt với tỏi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fresh spinach",
+          "vi": "rau chân vịt tươi"
+        }
+      ],
+      "imageQuery": "spinach leaves",
+      "ipaUs": "/ˈspɪnɪt͡ʃ/",
+      "ipaUk": "/ˈspɪnɪt͡ʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/spinach",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/spinach.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/685694ddb4/",
+        "author": "appealdahal",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "spinach leaves",
+        "sha256": "b962c96096a6b9f9cf4e279230580dd2773d03483de8ee7cb9c6466ebab11d57",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pepper",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ớt chuông",
+      "meaningEn": "a hollow green, red or yellow vegetable",
+      "examples": [
+        {
+          "text": "I cut a red pepper for the salad.",
+          "vi": "Tôi cắt một quả ớt chuông đỏ cho món salad."
+        },
+        {
+          "text": "Green peppers are cheaper than red ones.",
+          "vi": "Ớt chuông xanh rẻ hơn ớt chuông đỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "red pepper",
+          "vi": "ớt chuông đỏ"
+        }
+      ],
+      "imageQuery": "bell pepper",
+      "ipaUs": "/ˈpɛp.ɚ/",
+      "ipaUk": "/ˈpɛp.ə/",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/pepper.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/126288307@N05/22412161608",
+        "author": "watts_photos",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "bell pepper",
+        "sha256": "34e21cfb62eca6c5fab3d2b9792d04d763fd73b5d4cd78fda96e9a00cf739a2c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaSource": "https://en.wiktionary.org/wiki/pepper"
+    },
+    {
+      "term": "mushroom",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nấm",
+      "meaningEn": "a soft plant with a round cap that grows in damp places",
+      "examples": [
+        {
+          "text": "She fried mushrooms in butter.",
+          "vi": "Cô ấy chiên nấm với bơ."
+        },
+        {
+          "text": "Some wild mushrooms are poisonous.",
+          "vi": "Một số loại nấm dại có độc."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "mushroom soup",
+          "vi": "súp nấm"
+        }
+      ],
+      "imageQuery": "mushrooms",
+      "ipaUs": "/ˈmʌʃˌɹum/",
+      "ipaUk": "/ˈmʌʃˌɹuːm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mushroom",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/mushroom.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/54563451@N08/8016189217",
+        "author": "Sam Droege",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "mushrooms",
+        "sha256": "558a0fe21ca9268ade5785a5b80daa5ab991b950be22116817e72ec25fd95af9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "eggplant",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cà tím",
+      "meaningEn": "a long purple vegetable with soft flesh",
+      "examples": [
+        {
+          "text": "Grandma grilled an eggplant for dinner.",
+          "vi": "Bà nướng một quả cà tím cho bữa tối."
+        },
+        {
+          "text": "An eggplant has shiny purple skin.",
+          "vi": "Quả cà tím có vỏ tím bóng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "grilled eggplant",
+          "vi": "cà tím nướng"
+        }
+      ],
+      "imageQuery": "eggplant",
+      "ipaUs": "/ˈɛɡ.plænt/",
+      "ipaUk": "/ˈɛɡ.plænt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/eggplant",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/eggplant.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/62295966@N07/8271295478",
+        "author": "Plant pests and diseases",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "eggplant",
+        "sha256": "aae4a6ae5a4e3d1f9d4824f71454890d2ed8bcca16cc43875f8ecb1160d4b7df",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bean",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hạt đậu, quả đậu",
+      "meaningEn": "a small seed or pod that people cook and eat",
+      "examples": [
+        {
+          "text": "We had rice and beans for lunch.",
+          "vi": "Chúng tôi ăn cơm với đậu vào bữa trưa."
+        },
+        {
+          "text": "The green beans are fresh today.",
+          "vi": "Hôm nay đậu que tươi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "green beans",
+          "vi": "đậu que"
+        }
+      ],
+      "imageQuery": "green beans",
+      "ipaUs": "/ˈbi(ː)n/",
+      "ipaUk": "/ˈbi(ː)n/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bean",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/bean.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/47121680@N00/29416335947",
+        "author": "joncutrer",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "green beans",
+        "sha256": "7a3cd8ebd4b4ce23061a2df42aa54bb5dc8022bb63d7b0ab6490be5e14ce8767",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pea",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hạt đậu Hà Lan",
+      "meaningEn": "a small round green seed that grows in a pod",
+      "examples": [
+        {
+          "text": "The baby likes to eat peas.",
+          "vi": "Em bé thích ăn đậu Hà Lan."
+        },
+        {
+          "text": "She opened the pod and counted the peas.",
+          "vi": "Cô ấy mở vỏ và đếm những hạt đậu Hà Lan."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "green peas",
+          "vi": "đậu Hà Lan xanh"
+        }
+      ],
+      "imageQuery": "peas pod",
+      "ipaUs": "/piː/",
+      "ipaUk": "/piː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pea",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/pea.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3282882/free-photo-image-soy-fruits-veggies-and-vegetables",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "peas pod",
+        "sha256": "dcadaea0ffde85ec0f267d5f0bacafdd48c962e5dacbc23d2f0603c113bcaa90",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "spring onion",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hành lá",
+      "meaningEn": "a thin green onion with a small white bulb",
+      "examples": [
+        {
+          "text": "She put chopped spring onion on the noodles.",
+          "vi": "Cô ấy rắc hành lá thái nhỏ lên bát mì."
+        },
+        {
+          "text": "Spring onions are cheap and fresh at the market.",
+          "vi": "Hành lá ở chợ vừa rẻ vừa tươi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "chopped spring onion",
+          "vi": "hành lá thái nhỏ"
+        }
+      ],
+      "synonyms": [
+        "green onion"
+      ],
+      "imageQuery": "spring onions green onions bunch",
+      "image": {
+        "file": "a04/spring-onion.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/7715001/vector-plant-people-leaf",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "spring onions green onions bunch",
+        "sha256": "41f4cb934fce4a37ce5a1a0a20cf32e0331ff4f370d7400e43733b3ad70756a0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈspɹɪŋ ˈʌnj(ə)n/",
+      "ipaUk": "/ˈspɹɪŋ ˈʌnjən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/spring + https://en.wiktionary.org/wiki/onion",
+      "ipaVerified": true
+    },
+    {
+      "term": "cauliflower",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "súp lơ trắng",
+      "meaningEn": "a white vegetable with a round head of small flowers",
+      "examples": [
+        {
+          "text": "She baked a whole cauliflower.",
+          "vi": "Cô ấy nướng nguyên một cây súp lơ trắng."
+        },
+        {
+          "text": "Cauliflower is white and very healthy.",
+          "vi": "Súp lơ trắng có màu trắng và rất tốt cho sức khỏe."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "roasted cauliflower",
+          "vi": "súp lơ trắng nướng"
+        }
+      ],
+      "imageQuery": "cauliflower head white",
+      "ipaUs": "/ˈkɔl.ɪˌflaʊ.ɚ/",
+      "ipaUk": "/ˈkɒl.i.flaʊ.ə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cauliflower",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/cauliflower.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5904635/photo-image-white-background-public-domain-nature",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cauliflower head white",
+        "sha256": "b24e8af2cb4459a79bba3337f16e980a0da266bfad9304f8cf4dbb903eb3d454",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "radish",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "củ cải",
+      "meaningEn": "a small round red or white root vegetable with a sharp taste",
+      "examples": [
+        {
+          "text": "The salad has a few slices of radish.",
+          "vi": "Món salad có vài lát củ cải."
+        },
+        {
+          "text": "A red radish tastes sharp and fresh.",
+          "vi": "Củ cải đỏ có vị cay nồng và tươi mát."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pickled radish",
+          "vi": "củ cải muối"
+        }
+      ],
+      "imageQuery": "radishes",
+      "ipaUs": "/ˈɹæd.ɪʃ/",
+      "ipaUk": "/ˈɹad.ɪʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/radish",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/radish.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/47121680@N00/30488576838",
+        "author": "joncutrer",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "radishes",
+        "sha256": "506019a5ef72b9c2d33f4421713cb902ad24852bd6150bd7e5cfdb0d25d61481",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ginger",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "gừng",
+      "meaningEn": "a hot-tasting root used in cooking and tea",
+      "examples": [
+        {
+          "text": "I drink ginger tea when I have a cold.",
+          "vi": "Tôi uống trà gừng khi bị cảm."
+        },
+        {
+          "text": "Add a little ginger to the soup.",
+          "vi": "Hãy cho một chút gừng vào món súp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fresh ginger",
+          "vi": "gừng tươi"
+        },
+        {
+          "text": "ginger tea",
+          "vi": "trà gừng"
+        }
+      ],
+      "imageQuery": "ginger root",
+      "ipaUs": "/ˈd͡ʒɪnd͡ʒɚ/",
+      "ipaUk": "/ˈdʒɪndʒə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ginger",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/ginger.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/74569c5422/",
+        "author": "Vishnu Chandra",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "ginger root",
+        "sha256": "8cde839a892135caa04517e294d5c309ac4714fcd487dc523abfb63c088cb160",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "chili",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả ớt",
+      "meaningEn": "a small, very hot pepper",
+      "plural": "chilies",
+      "examples": [
+        {
+          "text": "This chili is very hot.",
+          "vi": "Quả ớt này rất cay."
+        },
+        {
+          "text": "He added two red chilies to the sauce.",
+          "vi": "Anh ấy cho hai quả ớt đỏ vào nước sốt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "chili sauce",
+          "vi": "tương ớt"
+        }
+      ],
+      "imageQuery": "red chili peppers",
+      "ipaUs": "/ˈt͡ʃɪli/",
+      "ipaUk": "/ˈt͡ʃɪli/",
+      "ipaSource": "https://en.wiktionary.org/wiki/chili",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/chili.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5922616/photo-image-public-domain-tree-red",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "red chili peppers",
+        "sha256": "37a9be41f784299b23f93ae298cef7dedf0085053be832fbac2bb003fd26f786",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "zucchini",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bí ngòi",
+      "meaningEn": "a long dark green vegetable with soft flesh",
+      "examples": [
+        {
+          "text": "She sliced a zucchini for dinner.",
+          "vi": "Cô ấy thái một quả bí ngòi cho bữa tối."
+        },
+        {
+          "text": "The zucchini grows fast in warm weather.",
+          "vi": "Bí ngòi lớn nhanh khi trời ấm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "grilled zucchini",
+          "vi": "bí ngòi nướng"
+        }
+      ],
+      "imageQuery": "zucchini courgette",
+      "ipaUs": "/zuːˈkiː.ni/",
+      "ipaUk": "/zuːˈkiː.ni/",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/zucchini.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3338575/free-photo-image-cucumber-zucchini-flower",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "zucchini courgette",
+        "sha256": "fbffdbfc99f44acf11626f84d594e46d7f5ceb418fd668487052945756ea564e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaSource": "https://en.wiktionary.org/wiki/zucchini",
+      "ipaNote": "one sourced transcription used for both accents"
+    },
+    {
+      "term": "sweet potato",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "khoai lang",
+      "meaningEn": "a sweet orange or purple root vegetable",
+      "plural": "sweet potatoes",
+      "examples": [
+        {
+          "text": "We baked a sweet potato in the oven.",
+          "vi": "Chúng tôi nướng một củ khoai lang trong lò."
+        },
+        {
+          "text": "Sweet potatoes are sweet and soft.",
+          "vi": "Khoai lang ngọt và mềm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "baked sweet potato",
+          "vi": "khoai lang nướng"
+        }
+      ],
+      "imageQuery": "sweet potatoes",
+      "image": {
+        "file": "a04/sweet-potato.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/47121680@N00/30485170568",
+        "author": "joncutrer",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "sweet potatoes",
+        "sha256": "ca1f3b9ec1e5fd6dd19767124b7402cb91478915a90c4e98cc0e8596fd1bc9b0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/swit pəˈteɪ.toʊ/",
+      "ipaUk": "/swiːt pə̥ˈtʰɛi̯tʰɜʊ̯̈/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sweet + https://en.wiktionary.org/wiki/potato",
+      "ipaVerified": true
+    },
+    {
+      "term": "okra",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đậu bắp",
+      "meaningEn": "a green vegetable shaped like a finger with small seeds inside",
+      "examples": [
+        {
+          "text": "She cooked okra with tomatoes.",
+          "vi": "Cô ấy nấu đậu bắp với cà chua."
+        },
+        {
+          "text": "Okra is soft and a little sticky.",
+          "vi": "Đậu bắp mềm và hơi nhớt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fried okra",
+          "vi": "đậu bắp chiên"
+        }
+      ],
+      "imageQuery": "okra pods vegetable",
+      "ipaUs": "/ˈoʊkɹə/",
+      "ipaUk": "/ˈɒkɹə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/okra",
+      "ipaVerified": true,
+      "image": {
+        "file": "a04/okra.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/15965f9dca/",
+        "author": "Bigul Malayi",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "okra pods vegetable",
+        "sha256": "f87e1bee54493dd5d74f7b7e7eacdd22a6d71afea2f81ca1fb6e91b089e678c6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

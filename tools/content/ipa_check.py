@@ -158,17 +158,33 @@ def lookup(word: str, cache: dict) -> dict:
     return result
 
 
+def lookup_compound(parts: list[str], cache: dict) -> dict:
+    """A compound noun (ice cream, sweet potato): join the IPA of its words; every word must be sourced."""
+    rs = [lookup(w, cache) for w in parts]
+    out: dict = {"us": None, "uk": None, "usSource": None, "ukSource": None, "any": None, "anySource": None}
+    for k in ("us", "uk"):
+        vals = [(r[k] or r.get("any") or r["us" if k == "uk" else "uk"]) for r in rs]
+        if all(vals):
+            out[k] = "/" + " ".join(v.strip("/") for v in vals) + "/"
+            out[k + "Source"] = " + ".join(dict.fromkeys(r[k + "Source"] or r.get("anySource") or "" for r in rs))
+    return out
+
+
 def cmd_fill(path: Path, overwrite: bool) -> None:
     manifest = read_json(path)
     cache = load_cache()
     filled = missing = 0
     for card in manifest["cards"]:
         term = card["term"]
-        if " " in term.strip():
-            continue
         if card.get("ipaVerified") and not overwrite:
             continue
-        r = lookup(term, cache)
+        parts = [w for w in re.split(r"[ \-]+", term.strip()) if w]
+        if len(parts) > 1:
+            if manifest["set"]["code"].startswith("C"):  # sentences and phrases: IPA is optional
+                continue
+            r = lookup_compound(parts, cache)
+        else:
+            r = lookup(term, cache)
         us, uk, note = r["us"], r["uk"], None
         us_src, uk_src = r["usSource"], r["ukSource"]
         if not (us and uk):

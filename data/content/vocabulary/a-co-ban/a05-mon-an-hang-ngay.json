@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A05",
+    "name": "Món ăn hằng ngày",
+    "description": "#a1 #a2 #food #meals",
+    "topic": "Món ăn hằng ngày",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "rice",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cơm, gạo",
+      "meaningEn": "small white grains that people cook and eat",
+      "examples": [
+        {
+          "text": "We eat rice every day.",
+          "vi": "Chúng tôi ăn cơm mỗi ngày."
+        },
+        {
+          "text": "She served the fish with a bowl of rice.",
+          "vi": "Cô ấy dọn món cá cùng một bát cơm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a bowl of rice",
+          "vi": "một bát cơm"
+        },
+        {
+          "text": "steamed rice",
+          "vi": "cơm trắng"
+        }
+      ],
+      "imageQuery": "bowl of cooked rice",
+      "ipaUs": "/ɹaɪs/",
+      "ipaUk": "/ɹaɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rice",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/rice.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:A_bowl_of_rice.jpg",
+        "author": "Douglas Perkins",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "bowl of cooked rice",
+        "sha256": "65df2f421d43525a9659839179d53352ef7f2ab0b88a71e8a6e63039243a0494",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "noodles",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "mì, bún, phở",
+      "meaningEn": "long thin pieces of food made from flour",
+      "examples": [
+        {
+          "text": "I had noodles for lunch.",
+          "vi": "Tôi đã ăn mì vào bữa trưa."
+        },
+        {
+          "text": "The noodles are hot and tasty.",
+          "vi": "Món mì nóng và ngon."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "noodle soup",
+          "vi": "món mì nước"
+        },
+        {
+          "text": "instant noodles",
+          "vi": "mì ăn liền"
+        }
+      ],
+      "imageQuery": "noodle soup bowl",
+      "ipaUs": "/ˈnuːd(ə)lz/",
+      "ipaUk": "/ˈnuːd(ə)lz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/noodles",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/noodles.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/35034347371@N01/138568275",
+        "author": "roland",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "noodle soup bowl",
+        "sha256": "dff0e88bf41f94cff624eb280bd960beb592b982a781b6a8556b9c5553024948",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bread",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bánh mì",
+      "meaningEn": "a baked food made from flour, eaten with meals",
+      "examples": [
+        {
+          "text": "She buys fresh bread every morning.",
+          "vi": "Sáng nào cô ấy cũng mua bánh mì tươi."
+        },
+        {
+          "text": "I like bread with butter.",
+          "vi": "Tôi thích bánh mì phết bơ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a loaf of bread",
+          "vi": "một ổ bánh mì"
+        },
+        {
+          "text": "slice of bread",
+          "vi": "lát bánh mì"
+        }
+      ],
+      "imageQuery": "bread loaf",
+      "ipaUs": "/bɹɛd/",
+      "ipaUk": "/bɹɛd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bread",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/bread.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5970492/bread-loaf",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bread loaf",
+        "sha256": "2cf949be9c7ff4af3376195689ac16a703ea42eeda5d0836db27aa041eb0a245",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "egg",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "quả trứng",
+      "meaningEn": "an oval food from a hen, often cooked for breakfast",
+      "examples": [
+        {
+          "text": "I eat an egg for breakfast.",
+          "vi": "Tôi ăn một quả trứng vào bữa sáng."
+        },
+        {
+          "text": "He boiled two eggs in a pot.",
+          "vi": "Anh ấy luộc hai quả trứng trong nồi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "boiled egg",
+          "vi": "trứng luộc"
+        },
+        {
+          "text": "fried egg",
+          "vi": "trứng chiên"
+        }
+      ],
+      "imageQuery": "eggs",
+      "ipaUs": "/ɛɡ/",
+      "ipaUk": "/ɛɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/egg",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/egg.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/37996646802@N01/2543297739",
+        "author": "cogdogblog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "eggs",
+        "sha256": "1bc54ce5ea378ef08b2ea68fa49079f0017737ea9fd7c6dd5c35a0bb89128416",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "soup",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "súp, canh",
+      "meaningEn": "a hot liquid food made with vegetables or meat",
+      "examples": [
+        {
+          "text": "The soup is very hot.",
+          "vi": "Món súp rất nóng."
+        },
+        {
+          "text": "My mother made chicken soup for dinner.",
+          "vi": "Mẹ tôi nấu súp gà cho bữa tối."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bowl of soup",
+          "vi": "một bát súp"
+        },
+        {
+          "text": "vegetable soup",
+          "vi": "súp rau củ"
+        }
+      ],
+      "imageQuery": "bowl of soup",
+      "ipaUs": "/sup/",
+      "ipaUk": "/suːp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/soup",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/soup.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5916627/image-public-domain-food-white",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bowl of soup",
+        "sha256": "e41393e86f9fb7cc96c7dc6ad2b5850646fd99c50d060ef98f6d4c3323b1b098",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sandwich",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bánh sandwich",
+      "meaningEn": "two slices of bread with food between them",
+      "examples": [
+        {
+          "text": "I made a cheese sandwich for lunch.",
+          "vi": "Tôi làm một chiếc sandwich phô mai cho bữa trưa."
+        },
+        {
+          "text": "She ate a sandwich in the park.",
+          "vi": "Cô ấy ăn một chiếc sandwich trong công viên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ham sandwich",
+          "vi": "sandwich giăm bông"
+        }
+      ],
+      "imageQuery": "sandwich",
+      "ipaUs": "/æ/",
+      "ipaUk": "/ˈsæn(d).wɪd͡ʒ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sandwich",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/sandwich.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/57873306@N00/7346865110",
+        "author": "Kim Siever",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "sandwich",
+        "sha256": "05c00b001eec61800f0755df3168cb7306d7e1f796527fb5a1ccc9cf63057f86",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pizza",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bánh pizza",
+      "meaningEn": "a flat round bread baked with cheese and tomato on top",
+      "examples": [
+        {
+          "text": "We ordered a large pizza.",
+          "vi": "Chúng tôi gọi một chiếc pizza cỡ lớn."
+        },
+        {
+          "text": "The pizza has cheese and mushrooms.",
+          "vi": "Chiếc pizza có phô mai và nấm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "slice of pizza",
+          "vi": "một miếng pizza"
+        }
+      ],
+      "imageQuery": "pizza",
+      "ipaUs": "/ˈpi.tsə/",
+      "ipaUk": "/ˈpiː.tsə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pizza",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/pizza.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/123529748@N03/18092872879",
+        "author": "Cole Kennedy",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "pizza",
+        "sha256": "d7199e7db0cf22e5f6edf3507a2e597dc8760f0fd90c6e5eb5aae0be1418171d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hamburger",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bánh hamburger",
+      "meaningEn": "a round sandwich with a meat patty inside",
+      "examples": [
+        {
+          "text": "He ordered a hamburger and a drink.",
+          "vi": "Anh ấy gọi một chiếc hamburger và một thức uống."
+        },
+        {
+          "text": "A hamburger comes with lettuce and tomato.",
+          "vi": "Bánh hamburger có kèm xà lách và cà chua."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hamburger and fries",
+          "vi": "hamburger và khoai tây chiên"
+        }
+      ],
+      "imageQuery": "hamburger",
+      "ipaUs": "/ˈhæmˌbɜɹ.ɡɚ/",
+      "ipaUk": "/ˈhæmˌbɜː.ɡə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hamburger",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/hamburger.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Big_Mac_hamburger.jpg",
+        "author": "Evan-Amos",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "hamburger",
+        "sha256": "b4467e742283b715467f7a0a4741f58e9a5d9836699d80dfbb72173d9d2899f0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "salad",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "món salad, rau trộn",
+      "meaningEn": "a cold dish of mixed raw vegetables",
+      "examples": [
+        {
+          "text": "I eat a salad with my lunch.",
+          "vi": "Tôi ăn một đĩa salad cùng bữa trưa."
+        },
+        {
+          "text": "She made a fresh salad with tomatoes.",
+          "vi": "Cô ấy làm một đĩa salad tươi với cà chua."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fruit salad",
+          "vi": "salad trái cây"
+        },
+        {
+          "text": "green salad",
+          "vi": "salad rau xanh"
+        }
+      ],
+      "imageQuery": "salad bowl",
+      "ipaUs": "/ˈsæləd/",
+      "ipaUk": "/ˈsæləd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/salad",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/salad.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/salad-bowl-PLOA1CWIRK",
+        "author": "FOCA Stock",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "salad bowl",
+        "sha256": "e1f99e0132b6ae5cceacc5a8dea71c32b7b693c043f6e0912367393233c4e2d7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cake",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bánh ngọt",
+      "meaningEn": "a sweet baked food, often for birthdays",
+      "examples": [
+        {
+          "text": "She baked a chocolate cake for his birthday.",
+          "vi": "Cô ấy nướng một chiếc bánh sô-cô-la cho sinh nhật cậu ấy."
+        },
+        {
+          "text": "Would you like a piece of cake?",
+          "vi": "Bạn có muốn một miếng bánh không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "birthday cake",
+          "vi": "bánh sinh nhật"
+        },
+        {
+          "text": "piece of cake",
+          "vi": "miếng bánh"
+        }
+      ],
+      "imageQuery": "cake slice",
+      "ipaUs": "/keɪk/",
+      "ipaUk": "/keɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cake",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/cake.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5924587/photo-image-background-public-domain-table",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cake slice",
+        "sha256": "8ad1c9acf2397606ef9314a55d0eed79af8b1131174ee46013fc57d8c2c25bfe",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cheese",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "phô mai",
+      "meaningEn": "a solid food made from milk",
+      "examples": [
+        {
+          "text": "I like cheese on my sandwich.",
+          "vi": "Tôi thích phô mai trong bánh sandwich."
+        },
+        {
+          "text": "The mouse found a piece of cheese.",
+          "vi": "Con chuột tìm thấy một miếng phô mai."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "slice of cheese",
+          "vi": "lát phô mai"
+        }
+      ],
+      "imageQuery": "cheese",
+      "ipaUs": "/t͡ʃiz/",
+      "ipaUk": "/t͡ʃiːz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cheese",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/cheese.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/63234672@N04/19757310168",
+        "author": "Mustang Joe",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cheese",
+        "sha256": "c76e33f36599fe4838dc1ac1d0dca43a58046b79fd7e0b33e9a7217a931d532c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "toast",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bánh mì nướng",
+      "meaningEn": "slices of bread that are heated until brown",
+      "examples": [
+        {
+          "text": "I have toast and jam for breakfast.",
+          "vi": "Tôi ăn bánh mì nướng với mứt vào bữa sáng."
+        },
+        {
+          "text": "The toast is hot and crispy.",
+          "vi": "Bánh mì nướng nóng và giòn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a slice of toast",
+          "vi": "một lát bánh mì nướng"
+        }
+      ],
+      "imageQuery": "toast breakfast",
+      "image": {
+        "file": "a05/toast.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3303707/free-photo-image-coffee-sandwich-beverage-bread",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "toast breakfast",
+        "sha256": "69e7b6c8c3696ab5105cd7669a3489ffdf43ea68fdd3dd9a2172287d674d3779",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/toʊst/",
+      "ipaUk": "/təʊst/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/toast ; https://en.wiktionary.org/wiki/toast",
+      "ipaVerified": true
+    },
+    {
+      "term": "steak",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bít tết",
+      "meaningEn": "a thick flat piece of beef that is cooked",
+      "examples": [
+        {
+          "text": "He ordered a steak with potatoes.",
+          "vi": "Anh ấy gọi món bít tết với khoai tây."
+        },
+        {
+          "text": "The steak was cooked just right.",
+          "vi": "Miếng bít tết được nấu vừa chín."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "grilled steak",
+          "vi": "bít tết nướng"
+        }
+      ],
+      "imageQuery": "steak plate",
+      "ipaUs": "/steɪk/",
+      "ipaUk": "/steɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/steak",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/steak.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/35034347371@N01/180773035",
+        "author": "roland",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "steak plate",
+        "sha256": "a74de3c96a1acfcfb015370a23b99096b3f680571c7dc40d117279be762ee509",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sausage",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "xúc xích",
+      "meaningEn": "minced meat pressed into a long thin shape",
+      "examples": [
+        {
+          "text": "We cooked sausages on the grill.",
+          "vi": "Chúng tôi nướng xúc xích trên vỉ."
+        },
+        {
+          "text": "He had a sausage for breakfast.",
+          "vi": "Cậu ấy ăn một cây xúc xích vào bữa sáng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "grilled sausage",
+          "vi": "xúc xích nướng"
+        }
+      ],
+      "imageQuery": "grilled sausages",
+      "ipaUs": "/ˈsɔsɪd͡ʒ/",
+      "ipaUk": "/ˈsɒsɪd͡ʒ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sausage",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/sausage.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5917729/image-public-domain-food-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "grilled sausages",
+        "sha256": "1834b308d6946a728c35128c9c1b5e6c3fb6c24d93df40c9a56978ac51f3b2b2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pancake",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bánh kếp",
+      "meaningEn": "a thin round cake cooked in a pan",
+      "examples": [
+        {
+          "text": "Dad made pancakes on Sunday morning.",
+          "vi": "Sáng Chủ nhật bố làm bánh kếp."
+        },
+        {
+          "text": "I put honey on my pancake.",
+          "vi": "Tôi rưới mật ong lên chiếc bánh kếp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "stack of pancakes",
+          "vi": "chồng bánh kếp"
+        }
+      ],
+      "imageQuery": "pancakes",
+      "ipaUs": "/ˈpæn.keɪk/",
+      "ipaUk": "/ˈpæn.keɪk/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/pancake",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a05/pancake.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/35034347371@N01/2858854",
+        "author": "roland",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "pancakes",
+        "sha256": "885afc09c7c950a7e3cbedb64d4b2287b61c138752bfe591cef60e7ad4d86a9b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "omelette",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "trứng ốp la cuộn, trứng chiên kiểu Âu",
+      "meaningEn": "eggs mixed together and fried, often folded in half",
+      "examples": [
+        {
+          "text": "She made a cheese omelette for breakfast.",
+          "vi": "Cô ấy làm món trứng cuộn phô mai cho bữa sáng."
+        },
+        {
+          "text": "The omelette has ham and onion inside.",
+          "vi": "Món trứng cuộn có giăm bông và hành bên trong."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cheese omelette",
+          "vi": "trứng cuộn phô mai"
+        }
+      ],
+      "imageQuery": "omelette",
+      "ipaUs": "/ˈɑmlət/",
+      "ipaUk": "/ˈɒmlɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/omelette",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/omelette.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/157234067@N03/46829521764",
+        "author": "Figuer_18",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "omelette",
+        "sha256": "8eafa9c12d0d6af3d8795469f49e950e75a3c17fc96867bb56fdd1ce2ac96d12",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "spaghetti",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "mì Ý",
+      "meaningEn": "long thin pasta, usually eaten with sauce",
+      "examples": [
+        {
+          "text": "We had spaghetti with tomato sauce.",
+          "vi": "Chúng tôi ăn mì Ý với sốt cà chua."
+        },
+        {
+          "text": "The children love spaghetti.",
+          "vi": "Bọn trẻ rất thích mì Ý."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "spaghetti sauce",
+          "vi": "sốt mì Ý"
+        }
+      ],
+      "imageQuery": "spaghetti",
+      "ipaUs": "/spəˈɡɛti/",
+      "ipaUk": "/spəˈɡɛti/",
+      "ipaSource": "https://en.wiktionary.org/wiki/spaghetti",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/spaghetti.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/123529748@N03/17374832915",
+        "author": "Cole Kennedy",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "spaghetti",
+        "sha256": "02d6c098e985f280c479833c53af10642feebe4f53738840941079104924b8ac",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ice cream",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "kem",
+      "meaningEn": "a sweet frozen food made from milk and sugar",
+      "examples": [
+        {
+          "text": "I want a chocolate ice cream.",
+          "vi": "Tôi muốn một cây kem sô-cô-la."
+        },
+        {
+          "text": "The children are eating ice cream in the sun.",
+          "vi": "Bọn trẻ đang ăn kem dưới nắng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ice cream cone",
+          "vi": "kem ốc quế"
+        }
+      ],
+      "imageQuery": "ice cream cone",
+      "image": {
+        "file": "a05/ice-cream.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:It%27s_time_to_have_ice_cream_on_the_beach.jpg",
+        "author": "Andy Li",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "ice cream cone",
+        "sha256": "8af7617ff9e8d24883571ca779b0df0814c45231bd46afa6aafab977eebb05fa",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/aɪs kɹim/",
+      "ipaUk": "/aɪs kɹiːm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ice + https://en.wiktionary.org/wiki/cream",
+      "ipaVerified": true
+    },
+    {
+      "term": "chocolate",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "sô-cô-la",
+      "meaningEn": "a sweet brown food made from cocoa",
+      "examples": [
+        {
+          "text": "She gave me a bar of chocolate.",
+          "vi": "Cô ấy tặng tôi một thanh sô-cô-la."
+        },
+        {
+          "text": "Dark chocolate tastes a little bitter.",
+          "vi": "Sô-cô-la đen có vị hơi đắng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hot chocolate",
+          "vi": "sô-cô-la nóng"
+        },
+        {
+          "text": "bar of chocolate",
+          "vi": "thanh sô-cô-la"
+        }
+      ],
+      "imageQuery": "chocolate bar",
+      "ipaUs": "/ˈtʃɔk(ə)lət/",
+      "ipaUk": "/ˈtʃɒk(ə)lət/",
+      "ipaSource": "https://en.wiktionary.org/wiki/chocolate",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/chocolate.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/198895458@N04/53097224316",
+        "author": "personalgraphic.official",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "chocolate bar",
+        "sha256": "47259177b6559681bb270c04c229e3c02abbb8ed24dc96f36f704e7e9356c412",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cookie",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bánh quy",
+      "meaningEn": "a small, flat, sweet baked snack",
+      "examples": [
+        {
+          "text": "Grandma baked cookies for us.",
+          "vi": "Bà nướng bánh quy cho chúng tôi."
+        },
+        {
+          "text": "I dipped my cookie in milk.",
+          "vi": "Tôi chấm chiếc bánh quy vào sữa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "chocolate chip cookie",
+          "vi": "bánh quy sô-cô-la chip"
+        }
+      ],
+      "imageQuery": "chocolate chip cookies plate",
+      "ipaUs": "/ˈkʊki/",
+      "ipaUk": "/ˈkʊki/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cookie",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/cookie.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/133621d874/",
+        "author": "mdburnette",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "chocolate chip cookies plate",
+        "sha256": "3875c122ba7a1ef55150dc98ac66d30d801c0697be36cc03bb3674921b5357d7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fried chicken",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "gà rán",
+      "meaningEn": "pieces of chicken cooked in hot oil",
+      "examples": [
+        {
+          "text": "We ordered fried chicken for dinner.",
+          "vi": "Chúng tôi gọi gà rán cho bữa tối."
+        },
+        {
+          "text": "The fried chicken is crispy outside.",
+          "vi": "Gà rán giòn ở bên ngoài."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "crispy fried chicken",
+          "vi": "gà rán giòn"
+        }
+      ],
+      "imageQuery": "fried chicken",
+      "image": {
+        "file": "a05/fried-chicken.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Fried-Chicken-Set.jpg",
+        "author": "Evan-Amos",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "fried chicken",
+        "sha256": "86dde795f3e95b5d2fb1fbc8e3e0b58683c5443f69375ab53b4591b346f91153",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/fɹaɪd ˈt͡ʃɪkɪn/",
+      "ipaUk": "/fɹaɪd ˈt͡ʃɪkɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fried + https://en.wiktionary.org/wiki/chicken",
+      "ipaVerified": true
+    },
+    {
+      "term": "dumpling",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bánh bao, há cảo",
+      "meaningEn": "a small piece of dough filled with meat or vegetables",
+      "examples": [
+        {
+          "text": "We made dumplings together at home.",
+          "vi": "Chúng tôi cùng nhau làm há cảo ở nhà."
+        },
+        {
+          "text": "These dumplings are filled with pork.",
+          "vi": "Những chiếc há cảo này nhân thịt lợn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "steamed dumplings",
+          "vi": "há cảo hấp"
+        }
+      ],
+      "imageQuery": "dumplings",
+      "ipaUs": "/ˈdʌmp.lɪŋ/",
+      "ipaUk": "/ˈdʌmp.lɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/dumpling",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/dumpling.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/35034347371@N01/92009159",
+        "author": "roland",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "dumplings",
+        "sha256": "48faad1ff9185c8885e6de2604bf83a07afd86267f0e7529f467206f00e83428",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sushi",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sushi",
+      "meaningEn": "a Japanese dish of cold rice with fish or vegetables",
+      "examples": [
+        {
+          "text": "We ate sushi for dinner.",
+          "vi": "Chúng tôi ăn sushi vào bữa tối."
+        },
+        {
+          "text": "Sushi is served with soy sauce.",
+          "vi": "Sushi được ăn cùng nước tương."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "sushi roll",
+          "vi": "sushi cuộn"
+        }
+      ],
+      "imageQuery": "sushi",
+      "ipaUs": "/ˈsuːʃi/",
+      "ipaUk": "/ˈsuːʃi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sushi",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/sushi.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/165868022@N02/47098028862",
+        "author": "eshao5721",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "sushi",
+        "sha256": "223e4ebc22b219f112449a95082326d7ae7ab572db8c2091e09807b2c9cf7ac8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "honey",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "mật ong",
+      "meaningEn": "a sweet sticky food made by bees",
+      "examples": [
+        {
+          "text": "I put honey in my tea.",
+          "vi": "Tôi cho mật ong vào trà."
+        },
+        {
+          "text": "She spread honey on the toast.",
+          "vi": "Cô ấy phết mật ong lên bánh mì nướng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "jar of honey",
+          "vi": "một hũ mật ong"
+        }
+      ],
+      "imageQuery": "honey jar",
+      "ipaUs": "/ˈhʌni/",
+      "ipaUk": "/ˈhʌni/",
+      "ipaSource": "https://en.wiktionary.org/wiki/honey",
+      "ipaVerified": true,
+      "image": {
+        "file": "a05/honey.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5923869/photo-image-aesthetic-public-domain-sunflower",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "honey jar",
+        "sha256": "d563b1bd3dc5bd37089b4df537c1a010f0996a07f85a0970842f7e3f910ce287",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "french fries",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "khoai tây chiên",
+      "meaningEn": "thin pieces of potato fried in oil",
+      "examples": [
+        {
+          "text": "I would like a burger and french fries.",
+          "vi": "Tôi muốn một chiếc bánh kẹp và khoai tây chiên."
+        },
+        {
+          "text": "These french fries are too salty.",
+          "vi": "Khoai tây chiên này mặn quá."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a bag of french fries",
+          "vi": "một túi khoai tây chiên"
+        }
+      ],
+      "imageQuery": "french fries",
+      "image": {
+        "file": "a05/french-fries.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:French_fries_%F0%9F%8D%9F.jpg",
+        "author": "Fumikas Sagisavas",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "french fries",
+        "sha256": "769e642f5dfd767a895e6cc00fa6a3ed1621302b1aa13650b889b68d4cd76d07",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/fɹɛnt͡ʃ fɹaɪz/",
+      "ipaUk": "/fɹɛnt͡ʃ fɹaɪz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/french + https://en.wiktionary.org/wiki/fries",
+      "ipaVerified": true
+    }
+  ]
+}
