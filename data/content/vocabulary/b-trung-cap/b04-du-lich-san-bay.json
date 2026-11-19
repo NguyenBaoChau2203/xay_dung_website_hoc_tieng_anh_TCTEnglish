@@ -1,0 +1,1242 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B04",
+    "name": "Du lịch & sân bay",
+    "description": "#b1 #b2 #travel #airport",
+    "topic": "Du lịch & sân bay",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "passport",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "hộ chiếu",
+      "meaningEn": "an official document that you need to travel to other countries",
+      "examples": [
+        {
+          "text": "Do not forget your passport at the airport.",
+          "vi": "Đừng quên hộ chiếu khi ra sân bay."
+        },
+        {
+          "text": "My passport expires next year.",
+          "vi": "Hộ chiếu của tôi hết hạn vào năm sau."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "renew a passport",
+          "vi": "gia hạn hộ chiếu"
+        },
+        {
+          "text": "passport control",
+          "vi": "kiểm soát hộ chiếu"
+        }
+      ],
+      "imageQuery": "passport stamp travel",
+      "ipaUs": "/ˈpæspɔɹt/",
+      "ipaUk": "/ˈpɑːspɔːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/passport",
+      "ipaVerified": true,
+      "image": {
+        "file": "b04/passport.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6482230/png-sticker-book",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "passport stamp travel",
+        "sha256": "94fcc62d88742df4e9165aad175b14fc99bcd897179e8651374fbcce4149e5e8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "boarding pass",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "thẻ lên máy bay",
+      "meaningEn": "a card that lets you get on a plane",
+      "examples": [
+        {
+          "text": "Show your boarding pass at the gate.",
+          "vi": "Hãy xuất trình thẻ lên máy bay ở cổng."
+        },
+        {
+          "text": "I printed my boarding pass at home.",
+          "vi": "Tôi đã in thẻ lên máy bay ở nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "print a boarding pass",
+          "vi": "in thẻ lên máy bay"
+        },
+        {
+          "text": "scan a boarding pass",
+          "vi": "quét thẻ lên máy bay"
+        }
+      ],
+      "imageQuery": "boarding pass airline ticket",
+      "ipaUs": "/ˈbɔː.dɪŋ pʰas/",
+      "ipaUk": "/ˈbɔː.dɪŋ pɑːs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/boarding + https://en.wiktionary.org/wiki/pass",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "travel",
+        "value": "boarding pass"
+      },
+      "image": {
+        "file": "b04/boarding-pass.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:boarding pass",
+        "sha256": "143ce6449c8515834618652e5a5cb7b21f427abda200232d86e9a2c2c1b4a0c2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "suitcase",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "va li",
+      "meaningEn": "a large case with a handle for carrying clothes when you travel",
+      "examples": [
+        {
+          "text": "She packed her suitcase the night before the trip.",
+          "vi": "Cô ấy xếp va li vào đêm trước chuyến đi."
+        },
+        {
+          "text": "My suitcase was too heavy to lift.",
+          "vi": "Va li của tôi nặng quá không nhấc nổi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pack a suitcase",
+          "vi": "xếp va li"
+        },
+        {
+          "text": "heavy suitcase",
+          "vi": "va li nặng"
+        }
+      ],
+      "imageQuery": "suitcase luggage",
+      "ipaUs": "/ˈsutkeɪs/",
+      "ipaUk": "/ˈsutkeɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/suitcase",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "b04/suitcase.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/44124284226@N01/3134492932",
+        "author": "mlinksva",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "suitcase luggage",
+        "sha256": "55cb0d480be8419098dcab65ad5493bd6b3ab7ab0492a566c9bd7872146a2a1b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "luggage cart",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "xe đẩy hành lý",
+      "meaningEn": "a small trolley for moving bags in an airport",
+      "examples": [
+        {
+          "text": "We put all our bags on a luggage cart.",
+          "vi": "Chúng tôi để tất cả túi lên một chiếc xe đẩy hành lý."
+        },
+        {
+          "text": "You can find a luggage cart near the entrance.",
+          "vi": "Bạn có thể tìm thấy xe đẩy hành lý gần lối vào."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "push a luggage cart",
+          "vi": "đẩy xe hành lý"
+        },
+        {
+          "text": "free luggage cart",
+          "vi": "xe đẩy hành lý miễn phí"
+        }
+      ],
+      "synonyms": [
+        "luggage trolley"
+      ],
+      "imageQuery": "airport luggage trolley cart",
+      "ipaUs": "/ˈlʌɡɪd͡ʒ kɑɹt/",
+      "ipaUk": "/ˈlʌɡɪd͡ʒ kɑːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/luggage + https://en.wiktionary.org/wiki/cart",
+      "ipaVerified": true,
+      "image": {
+        "file": "b04/luggage-cart.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Broome_International_Airport,_Broome,_WA,_Australia_17.jpg",
+        "author": "Ridiculopathy",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "airport luggage trolley cart",
+        "sha256": "d599bbbeeba2858f952e3facf80f95de3339398da1342dda004b8d4018b35355",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ticket",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "vé",
+      "meaningEn": "a small piece of paper that lets you travel or enter a place",
+      "examples": [
+        {
+          "text": "I booked two train tickets online.",
+          "vi": "Tôi đã đặt hai vé tàu trực tuyến."
+        },
+        {
+          "text": "You must show your ticket to the guard.",
+          "vi": "Bạn phải xuất trình vé cho nhân viên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "buy a ticket",
+          "vi": "mua vé"
+        },
+        {
+          "text": "return ticket",
+          "vi": "vé khứ hồi"
+        }
+      ],
+      "imageQuery": "travel tickets",
+      "ipaUs": "/ˈtɪk.ɪt/",
+      "ipaUk": "/ˈtɪk.ɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ticket",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "travel",
+        "value": "ticket"
+      },
+      "image": {
+        "file": "b04/ticket.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:ticket",
+        "sha256": "7b19d6c21845b211c71317d47975526bed1ba0396abae31da4d4baa1df10eaa4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "runway",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đường băng",
+      "meaningEn": "a long strip of ground where planes take off and land",
+      "examples": [
+        {
+          "text": "The plane waited on the runway for ten minutes.",
+          "vi": "Máy bay đợi trên đường băng mười phút."
+        },
+        {
+          "text": "A long runway is needed for big aircraft.",
+          "vi": "Máy bay lớn cần có đường băng dài."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "land on a runway",
+          "vi": "hạ cánh xuống đường băng"
+        },
+        {
+          "text": "runway lights",
+          "vi": "đèn đường băng"
+        }
+      ],
+      "imageQuery": "airport runway plane",
+      "ipaUs": "/ˈɹʌnweɪ/",
+      "ipaUk": "/ˈɹʌnweɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/runway",
+      "ipaVerified": true,
+      "image": {
+        "file": "b04/runway.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5967712/airport-runway-plane",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "airport runway plane",
+        "sha256": "577b9482a50ede681f99fd0ea1d6937c60c2fb4db5bf9ec33b1ba7075e87270b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "departure board",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bảng chuyến bay khởi hành",
+      "meaningEn": "a big screen that shows the times of planes leaving",
+      "examples": [
+        {
+          "text": "Check the departure board for your gate number.",
+          "vi": "Hãy xem bảng chuyến bay khởi hành để biết số cổng."
+        },
+        {
+          "text": "The departure board says our flight is delayed.",
+          "vi": "Bảng chuyến bay cho biết chuyến của chúng tôi bị hoãn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "check the departure board",
+          "vi": "xem bảng khởi hành"
+        },
+        {
+          "text": "digital departure board",
+          "vi": "bảng khởi hành điện tử"
+        }
+      ],
+      "imageQuery": "airport departures board",
+      "ipaUs": "/dɪˈpɑː(ɹ)tjə(ɹ) boɹd/",
+      "ipaUk": "/dɪˈpɑː(ɹ)tjə(ɹ) bɔːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/departure + https://en.wiktionary.org/wiki/board",
+      "ipaVerified": true,
+      "image": {
+        "file": "b04/departure-board.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5917082/image-light-public-domain-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "airport departures board",
+        "sha256": "096530845494bf1060733528de5719c46a0a9f0b2df1a8f545f2dfcf29cb1721",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "check-in desk",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "quầy làm thủ tục",
+      "meaningEn": "the place in an airport where you show your ticket and leave your bags",
+      "examples": [
+        {
+          "text": "There was a long queue at the check-in desk.",
+          "vi": "Có một hàng dài ở quầy làm thủ tục."
+        },
+        {
+          "text": "The check-in desk closes one hour before the flight.",
+          "vi": "Quầy làm thủ tục đóng cửa một giờ trước chuyến bay."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go to the check-in desk",
+          "vi": "đến quầy làm thủ tục"
+        },
+        {
+          "text": "online check-in",
+          "vi": "làm thủ tục trực tuyến"
+        }
+      ],
+      "imageQuery": "airport check-in counter",
+      "ipaUs": "/t͡ʃɛk ɪn dɛsk/",
+      "ipaUk": "/t͡ʃɛk ən dɛsk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/check + https://api.dictionaryapi.dev/api/v2/entries/en/in + https://en.wiktionary.org/wiki/desk ; https://en.wiktionary.org/wiki/check + https://en.wiktionary.org/wiki/in + https://en.wiktionary.org/wiki/desk",
+      "ipaVerified": true,
+      "image": {
+        "file": "b04/check-in-desk.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6029330/photo-image-public-domain-check-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "airport check-in counter",
+        "sha256": "636b948ddc4721f64e08591aa54b6d5bc2989a1a60b250ec072025ba3458b5f5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "customs",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "hải quan",
+      "meaningEn": "the place at a border where officers check what you bring into a country",
+      "examples": [
+        {
+          "text": "We waited in line to go through customs.",
+          "vi": "Chúng tôi xếp hàng để qua cửa hải quan."
+        },
+        {
+          "text": "The customs officer opened my suitcase.",
+          "vi": "Nhân viên hải quan mở va li của tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go through customs",
+          "vi": "qua hải quan"
+        },
+        {
+          "text": "customs officer",
+          "vi": "nhân viên hải quan"
+        }
+      ],
+      "imageQuery": "customs border control airport",
+      "ipaUs": "/ˈkʌs.təmz/",
+      "ipaUk": "/ˈkʌs.təmz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/customs",
+      "ipaVerified": true,
+      "image": {
+        "file": "b04/customs.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8726603/photo-image-public-domain-person-fingerprint",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "customs border control airport",
+        "sha256": "fccd49806e2157e5fb203adff258f3f0b6bdaf287239e7319054842dc2f8df23",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "souvenir",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "quà lưu niệm",
+      "meaningEn": "something you buy to remember a place you visited",
+      "examples": [
+        {
+          "text": "I bought a small souvenir for my mother.",
+          "vi": "Tôi mua một món quà lưu niệm nhỏ cho mẹ."
+        },
+        {
+          "text": "The market sells many cheap souvenirs.",
+          "vi": "Khu chợ bán nhiều món quà lưu niệm giá rẻ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "buy a souvenir",
+          "vi": "mua quà lưu niệm"
+        },
+        {
+          "text": "souvenir shop",
+          "vi": "cửa hàng lưu niệm"
+        }
+      ],
+      "imageQuery": "souvenirs shop",
+      "ipaUs": "/ˈsu.vəˌnɪɹ/",
+      "ipaUk": "/ˌsuː.vəˈnɪə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/souvenir",
+      "ipaVerified": true,
+      "image": {
+        "file": "b04/souvenir.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3300506/free-photo-image-candy-store-souvenir-shop",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "souvenirs shop",
+        "sha256": "1c88314c7638d0a5a833903d16761339bb7e962524ee173f1c1e3ba9ede12e19",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tour guide",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "hướng dẫn viên du lịch",
+      "meaningEn": "a person who shows tourists around a place",
+      "examples": [
+        {
+          "text": "The tour guide told us about the history of the castle.",
+          "vi": "Hướng dẫn viên kể cho chúng tôi nghe về lịch sử của lâu đài."
+        },
+        {
+          "text": "Our tour guide speaks three languages.",
+          "vi": "Hướng dẫn viên của chúng tôi nói được ba thứ tiếng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hire a tour guide",
+          "vi": "thuê hướng dẫn viên"
+        },
+        {
+          "text": "follow the tour guide",
+          "vi": "đi theo hướng dẫn viên"
+        }
+      ],
+      "imageQuery": "tour guide group illustration",
+      "ipaUs": "/tʊɚ ɡaɪd/",
+      "ipaUk": "/tɔː(ɹ) ɡaɪd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tour + https://en.wiktionary.org/wiki/guide",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "travel",
+        "value": "tour guide"
+      },
+      "image": {
+        "file": "b04/tour-guide.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:tour guide",
+        "sha256": "1a19fd7cf895d6c41fe40b302862fa3732f06feaf29a67653ef5404e8a24a0e0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "map",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bản đồ",
+      "meaningEn": "a drawing that shows where places are",
+      "examples": [
+        {
+          "text": "We looked at the map to find the museum.",
+          "vi": "Chúng tôi xem bản đồ để tìm bảo tàng."
+        },
+        {
+          "text": "Can you show me on the map where we are?",
+          "vi": "Bạn có thể chỉ cho tôi trên bản đồ chúng ta đang ở đâu không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "read a map",
+          "vi": "đọc bản đồ"
+        },
+        {
+          "text": "city map",
+          "vi": "bản đồ thành phố"
+        }
+      ],
+      "imageQuery": "paper map travel",
+      "ipaUs": "/mæp/",
+      "ipaUk": "/mæp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/map",
+      "ipaVerified": true,
+      "image": {
+        "file": "b04/map.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/147875007@N03/32191464373",
+        "author": "Rawpixel Ltd",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "paper map travel",
+        "sha256": "19ac2bf74ad980874a3508269e275836dc76a8a80de1f37fa42bd786cee8f43b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "postcard",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bưu thiếp",
+      "meaningEn": "a card with a picture that you send from a place you visit",
+      "examples": [
+        {
+          "text": "She sent me a postcard from Paris.",
+          "vi": "Cô ấy gửi cho tôi một tấm bưu thiếp từ Paris."
+        },
+        {
+          "text": "I collect postcards from every city I visit.",
+          "vi": "Tôi sưu tầm bưu thiếp từ mọi thành phố tôi đến."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "send a postcard",
+          "vi": "gửi bưu thiếp"
+        },
+        {
+          "text": "colourful postcard",
+          "vi": "bưu thiếp nhiều màu"
+        }
+      ],
+      "imageQuery": "postcards",
+      "ipaUs": "/ˈpoʊstˌkɑɹd/",
+      "ipaUk": "/ˈpoʊstˌkɑɹd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/postcard",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "generate": {
+        "kind": "travel",
+        "value": "postcard"
+      },
+      "image": {
+        "file": "b04/postcard.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:postcard",
+        "sha256": "c143d1c1d1b2ccec53b9c38637b42ff68446dd6781942c83e02838e9ba6c1f8d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "landmark",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "địa danh nổi tiếng",
+      "meaningEn": "a famous building or place that people easily recognise",
+      "examples": [
+        {
+          "text": "The Eiffel Tower is a famous landmark.",
+          "vi": "Tháp Eiffel là một địa danh nổi tiếng."
+        },
+        {
+          "text": "Use the church as a landmark to find the hotel.",
+          "vi": "Hãy dùng nhà thờ làm mốc để tìm khách sạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "famous landmark",
+          "vi": "địa danh nổi tiếng"
+        },
+        {
+          "text": "historic landmark",
+          "vi": "di tích lịch sử"
+        }
+      ],
+      "imageQuery": "famous landmark tower city",
+      "ipaUs": "/ˈlændmɑɹk/",
+      "ipaUk": "/ˈlændmɑːk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/landmark",
+      "ipaVerified": true,
+      "image": {
+        "file": "b04/landmark.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/34409164@N06/8594428854",
+        "author": "gnuckx",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "famous landmark tower city",
+        "sha256": "4135b059943065584464f235a5dded41de3e9797907cc5bd6c12b5b6451a74e6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "resort",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "khu nghỉ dưỡng",
+      "meaningEn": "a place where people go for a holiday, with a hotel and activities",
+      "examples": [
+        {
+          "text": "We stayed at a beach resort for a week.",
+          "vi": "Chúng tôi ở một khu nghỉ dưỡng ven biển một tuần."
+        },
+        {
+          "text": "The resort has three swimming pools.",
+          "vi": "Khu nghỉ dưỡng có ba hồ bơi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "beach resort",
+          "vi": "khu nghỉ dưỡng ven biển"
+        },
+        {
+          "text": "ski resort",
+          "vi": "khu trượt tuyết"
+        }
+      ],
+      "imageQuery": "beach resort pool",
+      "ipaUs": "/ɹiˈzoɹt/",
+      "ipaUk": "/ɹɪˈzɔːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/resort",
+      "ipaVerified": true,
+      "image": {
+        "file": "b04/resort.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/37996646802@N01/251048534",
+        "author": "cogdogblog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "beach resort pool",
+        "sha256": "13597889fe9a41f88e5c720d89e1faa43ea8c8fce5e0fa593531f5a4b1b44746",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cruise ship",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tàu du lịch biển",
+      "meaningEn": "a very large ship that takes people on holiday trips",
+      "examples": [
+        {
+          "text": "The cruise ship stops at five islands.",
+          "vi": "Tàu du lịch dừng ở năm hòn đảo."
+        },
+        {
+          "text": "They spent a week on a cruise ship.",
+          "vi": "Họ dành một tuần trên một con tàu du lịch."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "board a cruise ship",
+          "vi": "lên tàu du lịch"
+        },
+        {
+          "text": "luxury cruise ship",
+          "vi": "tàu du lịch sang trọng"
+        }
+      ],
+      "imageQuery": "cruise ship sea",
+      "ipaUs": "/kɹuz ʃɪp/",
+      "ipaUk": "/kɹuːz ʃɪp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cruise + https://en.wiktionary.org/wiki/ship",
+      "ipaVerified": true,
+      "image": {
+        "file": "b04/cruise-ship.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6112791/photo-image-public-domain-sea-water",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cruise ship sea",
+        "sha256": "1308591ad87a3b697dd57b2d3b91196f0de6ec309966f8e3c8b0a74a2e5e4480",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "travel agency",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "công ty du lịch",
+      "meaningEn": "a business that arranges holidays and tickets for customers",
+      "plural": "travel agencies",
+      "examples": [
+        {
+          "text": "We booked the holiday through a travel agency.",
+          "vi": "Chúng tôi đặt kỳ nghỉ qua một công ty du lịch."
+        },
+        {
+          "text": "The travel agency offered a cheap trip to Japan.",
+          "vi": "Công ty du lịch đưa ra một chuyến đi Nhật Bản giá rẻ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "book through a travel agency",
+          "vi": "đặt qua công ty du lịch"
+        },
+        {
+          "text": "local travel agency",
+          "vi": "công ty du lịch địa phương"
+        }
+      ],
+      "imageQuery": "travel agency shop window",
+      "ipaUs": "/ˈtɹævəl ˈeɪ.d͡ʒən.si/",
+      "ipaUk": "/ˈtɹævəl ˈeɪ.d͡ʒən.si/",
+      "ipaSource": "https://en.wiktionary.org/wiki/travel + https://en.wiktionary.org/wiki/agency",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "travel",
+        "value": "travel agency"
+      },
+      "image": {
+        "file": "b04/travel-agency.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:travel agency",
+        "sha256": "5fa80dbc6c8680361946c54a897526f926dcc42522f69f12606b9dfafadf1f97",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "security check",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "kiểm tra an ninh",
+      "meaningEn": "a place at an airport where your bags and body are checked",
+      "examples": [
+        {
+          "text": "The security check took more than twenty minutes.",
+          "vi": "Việc kiểm tra an ninh mất hơn hai mươi phút."
+        },
+        {
+          "text": "Take your laptop out before the security check.",
+          "vi": "Hãy lấy máy tính ra trước khi qua kiểm tra an ninh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go through the security check",
+          "vi": "qua kiểm tra an ninh"
+        },
+        {
+          "text": "airport security check",
+          "vi": "kiểm tra an ninh sân bay"
+        }
+      ],
+      "imageQuery": "airport security scanner trays",
+      "ipaUs": "/səˈkjʊɹ.ɪti t͡ʃɛk/",
+      "ipaUk": "/sɪˈkjʊəɹɪti t͡ʃɛk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/security + https://en.wiktionary.org/wiki/check",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "travel",
+        "value": "security check"
+      },
+      "image": {
+        "file": "b04/security-check.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:security check",
+        "sha256": "600fc68aaacd536c6895d2a3769beb102ee90ed32173f47d163f97aea0282e8e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "seat belt",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "dây an toàn",
+      "meaningEn": "a strap that keeps you in your seat in a car or plane",
+      "examples": [
+        {
+          "text": "Fasten your seat belt during take-off.",
+          "vi": "Hãy thắt dây an toàn khi máy bay cất cánh."
+        },
+        {
+          "text": "A seat belt can save your life in an accident.",
+          "vi": "Dây an toàn có thể cứu mạng bạn khi có tai nạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fasten your seat belt",
+          "vi": "thắt dây an toàn"
+        },
+        {
+          "text": "wear a seat belt",
+          "vi": "cài dây an toàn"
+        }
+      ],
+      "imageQuery": "seat belt buckle",
+      "ipaUs": "/siːt ˈbɛlt/",
+      "ipaUk": "/siːt ˈbɛlt/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/seat + https://en.wiktionary.org/wiki/belt ; https://en.wiktionary.org/wiki/seat + https://en.wiktionary.org/wiki/belt",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "travel",
+        "value": "seat belt"
+      },
+      "image": {
+        "file": "b04/seat-belt.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:seat belt",
+        "sha256": "2b33929eb84061a7ca5853d26a03a45d210ef12f5d3b6d78e58ea934f83bbbf1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hostel",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "nhà nghỉ giá rẻ, ký túc xá du lịch",
+      "meaningEn": "a cheap place to stay where you share a room with other travellers",
+      "examples": [
+        {
+          "text": "We stayed at a youth hostel in Hanoi.",
+          "vi": "Chúng tôi ở một nhà nghỉ bình dân cho giới trẻ ở Hà Nội."
+        },
+        {
+          "text": "The hostel has beds for sixteen people.",
+          "vi": "Nhà nghỉ có giường cho mười sáu người."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "youth hostel",
+          "vi": "nhà nghỉ bình dân cho giới trẻ"
+        },
+        {
+          "text": "book a hostel",
+          "vi": "đặt nhà nghỉ"
+        }
+      ],
+      "imageQuery": "hostel dormitory bunk beds",
+      "ipaUs": "/ˈhɑstəl/",
+      "ipaUk": "/ˈhɒstəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hostel",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "travel",
+        "value": "hostel"
+      },
+      "image": {
+        "file": "b04/hostel.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:hostel",
+        "sha256": "dde277c14e985c63d9a592bb031ae7bc8e4c2a5110b9b4a613d736a3a221bfd5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sunscreen",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "kem chống nắng",
+      "meaningEn": "a cream that protects your skin from the sun",
+      "examples": [
+        {
+          "text": "Put on sunscreen before you go to the beach.",
+          "vi": "Hãy thoa kem chống nắng trước khi ra bãi biển."
+        },
+        {
+          "text": "I always pack sunscreen for a summer trip.",
+          "vi": "Tôi luôn mang theo kem chống nắng cho chuyến đi mùa hè."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "apply sunscreen",
+          "vi": "thoa kem chống nắng"
+        },
+        {
+          "text": "bottle of sunscreen",
+          "vi": "một lọ kem chống nắng"
+        }
+      ],
+      "imageQuery": "sunscreen bottle beach",
+      "ipaUs": "/ˈsʌn.skɹiːn/",
+      "ipaUk": "/ˈsʌn.skɹiːn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sunscreen",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "travel",
+        "value": "sunscreen"
+      },
+      "image": {
+        "file": "b04/sunscreen.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:sunscreen",
+        "sha256": "0980f1bcad0515da4c1cd524efdf43950556d4cfd33b8b065e7004c88fcb87a2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "guidebook",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "sách hướng dẫn du lịch",
+      "meaningEn": "a book with information for people who visit a place",
+      "examples": [
+        {
+          "text": "The guidebook recommends a small restaurant near the river.",
+          "vi": "Sách hướng dẫn du lịch giới thiệu một nhà hàng nhỏ gần sông."
+        },
+        {
+          "text": "I bought a guidebook before our trip to Rome.",
+          "vi": "Tôi mua một cuốn sách hướng dẫn trước chuyến đi đến Rome."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "travel guidebook",
+          "vi": "sách hướng dẫn du lịch"
+        },
+        {
+          "text": "read a guidebook",
+          "vi": "đọc sách hướng dẫn"
+        }
+      ],
+      "imageQuery": "travel guidebook",
+      "ipaUs": "/ˈɡaɪdbʊk/",
+      "ipaUk": "/ˈɡaɪdbʊk/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found",
+      "generate": {
+        "kind": "travel",
+        "value": "guidebook"
+      },
+      "image": {
+        "file": "b04/guidebook.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:guidebook",
+        "sha256": "708adbc7c527472e3fda52ce46f70891f4719495b1c5417e1fdc0b3078359dde",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "currency exchange",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "quầy đổi tiền",
+      "meaningEn": "a place where you change money from one country into another",
+      "examples": [
+        {
+          "text": "I changed some dollars at the currency exchange.",
+          "vi": "Tôi đổi ít đô la ở quầy đổi tiền."
+        },
+        {
+          "text": "The currency exchange in the airport has a bad rate.",
+          "vi": "Quầy đổi tiền ở sân bay có tỷ giá không tốt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "currency exchange rate",
+          "vi": "tỷ giá hối đoái"
+        },
+        {
+          "text": "use a currency exchange",
+          "vi": "dùng quầy đổi tiền"
+        }
+      ],
+      "imageQuery": "currency exchange banknotes",
+      "ipaUs": "/ˈkʌɹ.ən.si ɛksˈt͡ʃeɪnd͡ʒ/",
+      "ipaUk": "/ˈkʌɹ.ən.si ɛksˈt͡ʃeɪnd͡ʒ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/currency + https://en.wiktionary.org/wiki/exchange",
+      "ipaVerified": true,
+      "image": {
+        "file": "b04/currency-exchange.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5923378/photo-image-public-domain-money-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "currency exchange banknotes",
+        "sha256": "08d8e411189ea6145225b3782fa41685ab282f3d85e82b952eab11f17dd54eae",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tourist",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "khách du lịch",
+      "meaningEn": "a person who visits a place for a holiday",
+      "examples": [
+        {
+          "text": "Thousands of tourists visit the old town every summer.",
+          "vi": "Hàng nghìn khách du lịch đến thăm khu phố cổ mỗi mùa hè."
+        },
+        {
+          "text": "The tourists took photos in front of the temple.",
+          "vi": "Những du khách chụp ảnh trước ngôi đền."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "tourist attraction",
+          "vi": "điểm thu hút khách du lịch"
+        },
+        {
+          "text": "tourist season",
+          "vi": "mùa du lịch"
+        }
+      ],
+      "imageQuery": "tourists crowd illustration camera",
+      "ipaUs": "/ˈtʊɹɪst/",
+      "ipaUk": "/ˈtʊəɹɪst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tourist",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "travel",
+        "value": "tourist"
+      },
+      "image": {
+        "file": "b04/tourist.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:tourist",
+        "sha256": "29ab698699cac882401cd8f10a0f77aca766cd34ec15848238b28e35cef7daea",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "visa",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "thị thực, visa",
+      "meaningEn": "a stamp or paper that lets you enter a foreign country",
+      "examples": [
+        {
+          "text": "You need a visa to visit that country.",
+          "vi": "Bạn cần có visa để đến đất nước đó."
+        },
+        {
+          "text": "She applied for a tourist visa in May.",
+          "vi": "Cô ấy nộp đơn xin visa du lịch vào tháng Năm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "apply for a visa",
+          "vi": "xin visa"
+        },
+        {
+          "text": "tourist visa",
+          "vi": "visa du lịch"
+        }
+      ],
+      "imageQuery": "visa stamp passport page",
+      "ipaUs": "/ˈviː.zə/",
+      "ipaUk": "/ˈviː.zə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/visa",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "travel",
+        "value": "visa"
+      },
+      "image": {
+        "file": "b04/visa.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:travel:visa",
+        "sha256": "489e54b0daf45e778a0ac0fee20ab22c7b535e7bd1e737182580ffff59dbcbec",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
