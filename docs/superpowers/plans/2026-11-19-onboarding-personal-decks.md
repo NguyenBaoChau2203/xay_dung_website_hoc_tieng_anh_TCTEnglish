@@ -773,3 +773,23 @@ Scripted headless Chrome on the real app (a new synthetic account for each run; 
 | G12 | As above. |
 | G13 | Regression of Trang chủ, Vocabulary home, Bộ thẻ của tôi, a deck detail and its study links, login and register was exercised in the scripted runs (each page rendered, no console error); the study modes themselves are exercised at S8. |
 | G3, G4 | Node 588 passed; the .NET subset of S6 plus `OnboardingSetPagesTests` pass; the full suite is run at S10 (S6 note: the host reaped the full run for memory). |
+
+### 12.9 S8 gate record (end-to-end, 2026-11-20, local)
+
+Real app (Release, port 5100), headless Chrome, new synthetic accounts registered through the normal form; evidence in `.tmp/onboarding/s8/`.
+
+1. **New account, first sign-in:** the pop-up opened by itself on Trang chủ.
+2. **Flow:** goals Du lịch + Giao tiếp hằng ngày + Phim, nhạc & sở thích; five topics (Phương tiện giao thông, Địa điểm trong thành phố, Hỏi và chỉ đường, Thể thao, Đồ uống); level A2 and 10 words a day were the defaults. The preview built 3 decks (Du lịch – bộ khởi đầu 25, Sở thích & giải trí – bộ khởi đầu 25, Câu giao tiếp khi đi du lịch 20 = 70 words). One deck was switched off and 3 words marked "Đã biết": the footer read 47 words in 2 decks, and the done screen listed 22 + 25 words.
+3. **Bộ thẻ của tôi:** the banner, the folder "Lộ trình của tôi" with the route icon and "Mới", two decks with the chip and a mosaic; no duplicate term across the decks.
+4. **Cards are complete copies.** Read-only SQL on the Docker database: 56 copied cards (after the refill and one deletion); **0** copies without an exact system twin over all fields (Term, Definition, ImageUrl, Phonetic, PhoneticUk, Example, ExampleTranslation, Topic, PartsOfSpeech, MeaningEn, Cefr, Emoji, DetailsJson, ImageSourceJson, AiGenerated), 0 personal notes, 0 missing images or IPA, both sets Private and in the folder, none cloned; 0 system cards changed since the content seed; 0 learning-progress rows (the "Đã biết" words were only excluded).
+5. **All 8 study modes open for a deck:** Học, Kiểm tra, Ghép thẻ, Lật thẻ, Trắc nghiệm, Gõ từ, Nghe, Điền từ: each page loads, shows the deck's words and controls, no console error. Học was started and answered (word, IPA, image and four choices appear); Lật thẻ was flipped.
+6. **Edit and delete a card:** editing a definition through the card form saved and showed on the card page; a card was deleted (25 → 24).
+7. **Refill:** "Thêm 10 từ" took the deck from 24 to 34 words, 0 duplicate terms across the decks.
+8. **Sign out and in:** a new browser session signed in: no pop-up; state Completed.
+9. **"Để sau":** on a second new account the pop-up closed, did not return on reload (20-hour rule); the second-skip and 20-hour simulation are proven by `OnboardingServiceTests` (not by waiting).
+10. **Old account** (Premium, created 2026-11-04): no automatic pop-up on Trang chủ, state NotEligible; the "Tạo thêm từ sở thích" button opens the flow at step 1.
+11. **Double click and network failure (plan 8.3 item 7):** two clicks on the create button sent one request; with the first request failed at the network level the pop-up showed "Không kết nối được. Kiểm tra mạng rồi thử lại." and "Thử lại"; the retry reused the same request id and created exactly 2 decks and 1 folder.
+
+**Clean-up.** All test decks (14 + 2) and folders (5 + 1) of the synthetic accounts were deleted through the normal endpoints (`POST /Sets/{id}/Delete` with the confirm name, `POST /Sets/Folders/{id}/Delete`). **12 synthetic accounts `onb-*@tct.local` remain** in the local Docker database (no sets, no folders); their passwords live only in an ignored scratch folder outside the repository. The original users keep their sets (user 2: 4, 3: 3, 4: 2, 5: 56); the system library is unchanged (56 sets, 1,252 cards). No real user data was touched.
+
+**Not covered here:** a concurrent double submit at the database (two requests at the same instant) relies on the InnoDB row lock described in 12.4 and has no automated test; MariaDB behaviour of the migration was checked by applying it to the local Docker database only.
