@@ -27,6 +27,32 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
+### SYSTEM-CONTENT-FAKE-SEED — invented Listening seed lessons, 2026-11-19
+
+`Models/ListeningLessonSeedData.cs` still holds hand-written transcripts without times attached to YouTube ids that were never verified, so the lessons do not match
+their videos. The system-content run hides the local copies (`IsPublished=false` on the local Docker database) but did not edit the file (it is under `Models/**`).
+Châu: retire or replace that seeder; otherwise a fresh database shows those lessons again.
+
+### SYSTEM-CONTENT-LEGACY-NAMES — misleading names of the legacy system sets, 2026-11-19
+
+`wwwroot/data/system-vocabulary.json` has sets called "1000 từ tiếng Anh thông dụng" (20 cards) and "3000 từ vựng Oxford A1/A2" (10 cards each). Their images were repaired,
+but the names were left untouched. Châu: rename them or fill them to the advertised size.
+
+### SYSTEM-CONTENT-NO-ATTRIBUTION — image credits are shown only for Pixabay, 2026-11-19
+
+`CardDetail.cshtml` renders a credit only for provider `pixabay`, and `CardInputNormalizer` keeps only providers `pixabay` and `upload`. The system content therefore uses
+CC0/public-domain/original images only and imports them as `upload`. If CC BY images are ever wanted, the view and the normaliser need a credit for other providers.
+
+### SYSTEM-CONTENT-LISTENING-LEVELS — A1/A2 Listening is thin, 2026-11-19
+
+Only 22 lessons were added (A2 1, B1 10, B2 6, C1 3, C2 2, A1 0). Plain-speed beginner videos with retrievable captions were not found among public-domain sources
+(VOA "Let's Learn English" has no English caption track). Add a licensed beginner source with captions.
+
+### SYSTEM-CONTENT-REPO-SIZE — shared-data packages add about 30 MB, 2026-11-19
+
+About 1,160 vocabulary images (WebP, ≤ 45 KB each), 92 legacy JPEGs and 70 packages. Future content should reuse the media rules in `docs/content/system-content-sources.md`.
+
+
 ### LISTENING-DICTATION-LOCAL-ONLY — dictation results live in the browser, 2026-11-18
 
 Owner decision D3 of the Listening redesign: the new dictation tab keeps its per-sentence results in `localStorage` (`tct.listening.dictation.v1.{userId or guest}.{lessonId}`, written by `listening-core.js` `dictationStore`), not in the database, and dictation never counts toward lesson completion. Results do not follow the learner to another browser or device, and clearing site data or private browsing drops them; the progress card row and the catalog hero chip `Chép chính tả {n}/{total}` read the same store and stay empty on a new device. A server-side store would need a new table (a migration) and an owner decision. Files: `wwwroot/js/listening-core.js`, `listening-practice.js`, `listening-index.js`.
