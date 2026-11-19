@@ -1506,6 +1506,66 @@ def tech_icon(name: str) -> bytes:
     return finish(img)
 
 
+def eco_icon(name: str) -> bytes:
+    """Flat original drawing for an environment word (kind "eco")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=6, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    if name == "reusable bag":
+        d.arc((170 * s, 20 * s, 310 * s, 190 * s), 180, 360, fill=L, width=9 * s)
+        poly([(110, 120), (370, 120), (394, 330), (86, 330)], (134, 239, 172))
+        poly([(240, 190), (290, 220), (270, 276), (240, 290), (210, 276), (190, 220)], (22, 163, 74))
+        line(240, 200, 240, 292, 4, (22, 101, 52))
+        for k in (-1, 1):
+            line(240, 238, 240 + k * 22, 220, 3, (22, 101, 52))
+            line(240, 262, 240 + k * 24, 244, 3, (22, 101, 52))
+    elif name == "oil spill":
+        d.rectangle((0, 150 * s, W * s, H * s), fill=(96, 165, 250))
+        for k in range(5):
+            line(20 + k * 100, 190, 70 + k * 100, 190, 4, (191, 219, 254))
+        oval(80, 220, 400, 310, (30, 30, 36), 0)
+        oval(140, 200, 330, 270, (45, 45, 55), 0)
+        oval(260, 250, 420, 320, (24, 24, 30), 0)
+        for sx, sy in ((150, 240), (300, 268)):
+            oval(sx - 16, sy - 6, sx + 16, sy + 6, (126, 34, 206), 0)
+        # tanker
+        poly([(60, 150), (360, 150), (330, 190), (96, 190)], (71, 85, 105))
+        box(120, 112, 180, 150, (226, 232, 240), 3)
+        for k in range(4):
+            line(200 + k * 36, 150, 200 + k * 36, 130, 4)
+        line(250, 190, 250, 240, 3, (30, 30, 36))
+    elif name == "litter":
+        d.rectangle((0, 220 * s, W * s, H * s), fill=(176, 214, 160))
+        box(60, 130, 120, 230, (59, 130, 246), 14)  # bottle body
+        box(80, 96, 100, 134, (59, 130, 246), 6)
+        box(76, 84, 104, 98, (226, 232, 240), 3)
+        poly([(180, 230), (186, 270), (240, 270), (246, 230)], (203, 213, 225))  # can
+        oval(180, 220, 246, 240, (226, 232, 240), 3)
+        poly([(290, 250), (340, 236), (370, 270), (330, 292), (296, 280)], (254, 243, 199))  # paper
+        line(305, 258, 346, 250, 3)
+        line(310, 270, 352, 262, 3)
+        poly([(390, 220), (420, 250), (404, 290), (372, 270)], (252, 165, 165))
+        d.line([(215 * s, 190 * s), (215 * s, 180 * s)], fill=L, width=1 * s)
+    else:
+        raise SystemExit(f"unknown eco icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -1552,6 +1612,8 @@ def main() -> None:
             data = health_icon(val)
         elif kind == "tech":
             data = tech_icon(val)
+        elif kind == "eco":
+            data = eco_icon(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"

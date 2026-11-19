@@ -1,0 +1,1226 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B03",
+    "name": "Môi trường",
+    "description": "#b1 #b2 #environment #nature",
+    "topic": "Môi trường",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "pollution",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "sự ô nhiễm",
+      "meaningEn": "dirty or harmful things in the air, water or soil",
+      "examples": [
+        {
+          "text": "Pollution makes the air in big cities unhealthy.",
+          "vi": "Ô nhiễm làm không khí ở các thành phố lớn không trong lành."
+        },
+        {
+          "text": "The government wants to reduce river pollution.",
+          "vi": "Chính phủ muốn giảm ô nhiễm sông ngòi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "air pollution",
+          "vi": "ô nhiễm không khí"
+        },
+        {
+          "text": "reduce pollution",
+          "vi": "giảm ô nhiễm"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "pollute",
+          "pos": "verb",
+          "vi": "làm ô nhiễm"
+        }
+      ],
+      "imageQuery": "factory smoke pollution",
+      "ipaUs": "/pəˈluʃən/",
+      "ipaUk": "/pəˈljuːʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pollution",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/pollution.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3337913/free-photo-image-air-pollution-factory-smog",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "factory smoke pollution",
+        "sha256": "0831a79648578f50d2d184c1b57910157dceb3af0dc693a4ee64950c67f8db48",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "smog",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "khói bụi mù",
+      "meaningEn": "thick dirty air that hangs over a city",
+      "examples": [
+        {
+          "text": "Heavy smog covered the city this morning.",
+          "vi": "Khói bụi mù dày đặc bao phủ thành phố sáng nay."
+        },
+        {
+          "text": "Smog makes it hard to breathe outside.",
+          "vi": "Khói bụi mù khiến việc thở ngoài trời khó khăn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "thick smog",
+          "vi": "khói bụi dày đặc"
+        },
+        {
+          "text": "city smog",
+          "vi": "khói bụi thành phố"
+        }
+      ],
+      "imageQuery": "city smog skyline",
+      "ipaUs": "/smɑɡ/",
+      "ipaUk": "/smɒɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/smog",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/smog.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:EAST_RIVER_AND_MANHATTAN_SKYLINE_IN_HEAVY_SMOG_-_NARA_-_548365_(restored).jpg",
+        "author": "Chester Higgins, Jr.",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "city smog skyline",
+        "sha256": "fa609ba5753cdaee44a1aa31788d255a38462939de320110ba86813ffb0d4d53",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "recycling bin",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "thùng rác tái chế",
+      "meaningEn": "a container where you put paper, glass and plastic to be used again",
+      "examples": [
+        {
+          "text": "Put the empty bottles in the recycling bin.",
+          "vi": "Hãy bỏ những cái chai rỗng vào thùng rác tái chế."
+        },
+        {
+          "text": "Each house has a blue recycling bin.",
+          "vi": "Mỗi nhà có một thùng rác tái chế màu xanh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "empty the recycling bin",
+          "vi": "đổ thùng rác tái chế"
+        },
+        {
+          "text": "blue recycling bin",
+          "vi": "thùng tái chế màu xanh"
+        }
+      ],
+      "imageQuery": "recycling bins colours",
+      "ipaUs": "/riːˈsaɪklɪŋ bɪn/",
+      "ipaUk": "/riːˈsaɪklɪŋ bɪn/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found",
+      "image": {
+        "file": "b03/recycling-bin.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6754514/image-public-domain-illustrations-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "recycling bins colours",
+        "sha256": "f5e819fdd8312b3bb652f4e207a42f62d65ae497b0a6e400141d587b04697691",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "plastic bottle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "chai nhựa",
+      "meaningEn": "a container made of plastic for drinks",
+      "examples": [
+        {
+          "text": "Millions of plastic bottles end up in the sea.",
+          "vi": "Hàng triệu chai nhựa kết thúc trong biển."
+        },
+        {
+          "text": "She refills one plastic bottle instead of buying new ones.",
+          "vi": "Cô ấy đổ đầy lại một chai nhựa thay vì mua chai mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "recycle a plastic bottle",
+          "vi": "tái chế chai nhựa"
+        },
+        {
+          "text": "empty plastic bottle",
+          "vi": "chai nhựa rỗng"
+        }
+      ],
+      "imageQuery": "plastic bottles pile",
+      "ipaUs": "/ˈplæstɪk ˈbɑtəl/",
+      "ipaUk": "/ˈplæstɪk ˈbɒtəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/plastic + https://en.wiktionary.org/wiki/bottle",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/plastic-bottle.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5924958/photo-image-public-domain-plastic-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "plastic bottles pile",
+        "sha256": "292da531c98300bd121d67801d743d027ecaf82207e4c85db8fd8f5c0c04f6d9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "plastic bag",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "túi nhựa",
+      "meaningEn": "a thin bag made of plastic for carrying things",
+      "examples": [
+        {
+          "text": "The shop stopped giving out plastic bags.",
+          "vi": "Cửa hàng ngừng phát túi nhựa."
+        },
+        {
+          "text": "A plastic bag can stay in the soil for years.",
+          "vi": "Một chiếc túi nhựa có thể tồn tại trong đất nhiều năm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ban plastic bags",
+          "vi": "cấm túi nhựa"
+        },
+        {
+          "text": "carry a plastic bag",
+          "vi": "xách túi nhựa"
+        }
+      ],
+      "imageQuery": "plastic bags",
+      "ipaUs": "/ˈplæstɪk bæɡ/",
+      "ipaUk": "/ˈplæstɪk baɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/plastic + https://en.wiktionary.org/wiki/bag",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/plastic-bag.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Black_plastic_bag_on_white_counter.jpg",
+        "author": "999real",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "plastic bags",
+        "sha256": "082dce8f2b0874480367e60dbefa6aa720227a54f67f5665d0950e9abb84b294",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "solar panel",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tấm pin mặt trời",
+      "meaningEn": "a flat device that turns sunlight into electricity",
+      "examples": [
+        {
+          "text": "They put solar panels on the roof of the school.",
+          "vi": "Họ lắp các tấm pin mặt trời trên mái trường."
+        },
+        {
+          "text": "A solar panel works best on a sunny day.",
+          "vi": "Tấm pin mặt trời hoạt động tốt nhất vào ngày nắng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "install solar panels",
+          "vi": "lắp pin mặt trời"
+        },
+        {
+          "text": "solar panel roof",
+          "vi": "mái nhà lắp pin mặt trời"
+        }
+      ],
+      "imageQuery": "solar panels roof",
+      "ipaUs": "/ˈsoʊ.ləɹ ˈpænəl/",
+      "ipaUk": "/ˈsəʊ.lə ˈpænəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/solar + https://en.wiktionary.org/wiki/panel",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/solar-panel.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3339452/free-photo-image-solar-energy-photovoltaic-environmental",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "solar panels roof",
+        "sha256": "617d53911869983db3d5d94fd488ec126e2d24f471e3ef5e79fb0e7acd5e0322",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wind turbine",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tuabin gió",
+      "meaningEn": "a tall machine with blades that makes electricity from wind",
+      "examples": [
+        {
+          "text": "Many wind turbines stand along the coast.",
+          "vi": "Nhiều tuabin gió đứng dọc bờ biển."
+        },
+        {
+          "text": "The wind turbine turns slowly in the breeze.",
+          "vi": "Tuabin gió quay chậm trong làn gió nhẹ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wind turbine blades",
+          "vi": "cánh tuabin gió"
+        },
+        {
+          "text": "offshore wind turbine",
+          "vi": "tuabin gió ngoài khơi"
+        }
+      ],
+      "imageQuery": "wind turbines field",
+      "ipaUs": "/wɪnd ˈtɝ.baɪn/",
+      "ipaUk": "/wɪnd ˈtɜː.baɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/wind + https://en.wiktionary.org/wiki/turbine",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/wind-turbine.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/wind-turbine-JRS7H54AAV",
+        "author": "Tom Swinnen",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "wind turbines field",
+        "sha256": "f2f8c08b010cec760bbe74f6cd9bb187043c9d8a946cf953bf607eb55c0878b7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "deforestation",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nạn phá rừng",
+      "meaningEn": "the cutting down of trees over a large area",
+      "examples": [
+        {
+          "text": "Deforestation destroys the homes of many animals.",
+          "vi": "Nạn phá rừng hủy hoại nơi sống của nhiều loài vật."
+        },
+        {
+          "text": "The photos show the effects of deforestation.",
+          "vi": "Những bức ảnh cho thấy hậu quả của nạn phá rừng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "stop deforestation",
+          "vi": "ngăn chặn nạn phá rừng"
+        },
+        {
+          "text": "effects of deforestation",
+          "vi": "hậu quả của phá rừng"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "forest",
+          "pos": "noun",
+          "vi": "rừng"
+        }
+      ],
+      "imageQuery": "deforestation cleared forest",
+      "ipaUs": "/dɪˌfɒɹɪsˈteɪʃən/",
+      "ipaUk": "/dɪˌfɒɹɪsˈteɪʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/deforestation",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "b03/deforestation.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3388319/free-photo-image-cc0-clear-cutting-creative-commons",
+        "author": "U.S. Forest Service (source)",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "deforestation cleared forest",
+        "sha256": "3ad423a385732008079e5aeee90f30005777796efdadd88c9f0e137064de2893",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "glacier",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "sông băng",
+      "meaningEn": "a huge mass of ice that moves slowly down a mountain",
+      "examples": [
+        {
+          "text": "The glacier is melting faster every year.",
+          "vi": "Sông băng đang tan nhanh hơn mỗi năm."
+        },
+        {
+          "text": "We walked across a glacier with a guide.",
+          "vi": "Chúng tôi đi bộ qua một sông băng cùng người hướng dẫn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "melting glacier",
+          "vi": "sông băng đang tan"
+        },
+        {
+          "text": "glacier ice",
+          "vi": "băng của sông băng"
+        }
+      ],
+      "imageQuery": "glacier ice mountain",
+      "ipaUs": "/ˈɡleɪ.ʃɚ/",
+      "ipaUk": "/ˈɡlæs.jə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/glacier",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/glacier.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/27784370@N05/4370263101",
+        "author": "U.S. Geological Survey",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "glacier ice mountain",
+        "sha256": "aa77a66e6a8a8277897451745abd5c0cacd488f7d19605d435b9361b0d20a1b6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "landfill",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bãi chôn lấp rác",
+      "meaningEn": "a large hole in the ground where rubbish is buried",
+      "examples": [
+        {
+          "text": "Most of our rubbish goes to the landfill.",
+          "vi": "Phần lớn rác của chúng ta được đưa đến bãi chôn lấp."
+        },
+        {
+          "text": "The landfill is nearly full.",
+          "vi": "Bãi chôn lấp rác gần đầy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "landfill site",
+          "vi": "khu chôn lấp rác"
+        },
+        {
+          "text": "send to landfill",
+          "vi": "đưa đến bãi chôn lấp"
+        }
+      ],
+      "imageQuery": "landfill garbage dump",
+      "ipaUs": "/ˈlæn(d).fɪl/",
+      "ipaUk": "/ˈlæn(d).fɪl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/landfill",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/landfill.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8802732/photo-image-vintage-rust-trash",
+        "author": "U.S. National Archives",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "landfill garbage dump",
+        "sha256": "7532b606c5cd40bf587bd9b822f1b9f5ad63edc34a8329775778abd9ec14bee1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "oil spill",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "sự cố tràn dầu",
+      "meaningEn": "an accident in which oil escapes into the sea",
+      "examples": [
+        {
+          "text": "The oil spill killed thousands of sea birds.",
+          "vi": "Sự cố tràn dầu làm chết hàng nghìn con chim biển."
+        },
+        {
+          "text": "Workers cleaned the beach after the oil spill.",
+          "vi": "Công nhân dọn sạch bãi biển sau sự cố tràn dầu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "clean up an oil spill",
+          "vi": "dọn sự cố tràn dầu"
+        },
+        {
+          "text": "huge oil spill",
+          "vi": "vụ tràn dầu lớn"
+        }
+      ],
+      "imageQuery": "oil spill beach",
+      "ipaUs": "/ɔɪl spɪl/",
+      "ipaUk": "/ɔɪl spɪo̯/",
+      "ipaSource": "https://en.wiktionary.org/wiki/oil + https://en.wiktionary.org/wiki/spill",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "eco",
+        "value": "oil spill"
+      },
+      "image": {
+        "file": "b03/oil-spill.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:eco:oil spill",
+        "sha256": "438f06c22bd363550ec639025711328a646284fda64bee1648ea4055e9e14112",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wildfire",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cháy rừng",
+      "meaningEn": "a big fire that spreads quickly through forests or grass",
+      "examples": [
+        {
+          "text": "A wildfire burned across the hills last summer.",
+          "vi": "Mùa hè năm ngoái một đám cháy rừng lan khắp các ngọn đồi."
+        },
+        {
+          "text": "Dry weather increases the risk of wildfires.",
+          "vi": "Thời tiết khô làm tăng nguy cơ cháy rừng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fight a wildfire",
+          "vi": "chữa cháy rừng"
+        },
+        {
+          "text": "wildfire smoke",
+          "vi": "khói cháy rừng"
+        }
+      ],
+      "imageQuery": "wildfire forest flames",
+      "ipaUs": "/ˈwaɪldˌfaɪər/",
+      "ipaUk": "/ˈwaɪldˌfaɪər/",
+      "ipaSource": "https://en.wiktionary.org/wiki/wildfire",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/wildfire.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/107640324@N05/21429820471",
+        "author": "Intermountain Region US Forest Service",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "wildfire forest flames",
+        "sha256": "af35192970bf38e4de574191c3941b7c9ed565e6a218b7ec276eaa88b80ca753",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "compost",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "B2",
+      "definition": "phân hữu cơ; ủ phân",
+      "meaningEn": "rotted food and leaves that you put on soil to help plants grow",
+      "verbForms": {
+        "past": "composted",
+        "pastParticiple": "composted",
+        "ing": "composting",
+        "thirdPerson": "composts"
+      },
+      "examples": [
+        {
+          "text": "We make compost from vegetable waste.",
+          "vi": "Chúng tôi làm phân hữu cơ từ rác rau củ."
+        },
+        {
+          "text": "Put the old leaves on the compost heap.",
+          "vi": "Hãy đổ lá cũ lên đống phân ủ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "compost heap",
+          "vi": "đống phân ủ"
+        },
+        {
+          "text": "make compost",
+          "vi": "ủ phân"
+        }
+      ],
+      "imageQuery": "compost bin garden",
+      "ipaUs": "/ˈkɑm.poʊst/",
+      "ipaUk": "/ˈkɒm.pɒst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/compost",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/compost.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/195567181@N06/52061951623",
+        "author": "eveharms",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "compost bin garden",
+        "sha256": "abf7b5dde17906e2bf594d458b1efc0157502ac7c630867111e21125e1bfb52e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "drought",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "hạn hán",
+      "meaningEn": "a long period with very little rain",
+      "examples": [
+        {
+          "text": "The drought destroyed most of the crops.",
+          "vi": "Hạn hán hủy hoại phần lớn mùa màng."
+        },
+        {
+          "text": "Farmers suffer during a long drought.",
+          "vi": "Nông dân chịu khổ trong đợt hạn hán kéo dài."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "severe drought",
+          "vi": "hạn hán nghiêm trọng"
+        },
+        {
+          "text": "drought conditions",
+          "vi": "tình trạng hạn hán"
+        }
+      ],
+      "imageQuery": "drought cracked dry earth",
+      "ipaUs": "/dɹæʊ̯t/",
+      "ipaUk": "/dɹaʊt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/drought",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/drought.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/99768966d5/",
+        "author": "Jose Varghese",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "drought cracked dry earth",
+        "sha256": "fb65a0fc57e1c8455a3ae6f4d1088cd63e679ab95f67611ac4c29534a4fcec38",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "coral reef",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "rạn san hô",
+      "meaningEn": "a long line of coral under the sea where many fish live",
+      "examples": [
+        {
+          "text": "We saw colourful fish on the coral reef.",
+          "vi": "Chúng tôi thấy những con cá nhiều màu trên rạn san hô."
+        },
+        {
+          "text": "Warm water is damaging the coral reef.",
+          "vi": "Nước ấm đang làm hại rạn san hô."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "protect a coral reef",
+          "vi": "bảo vệ rạn san hô"
+        },
+        {
+          "text": "coral reef fish",
+          "vi": "cá rạn san hô"
+        }
+      ],
+      "imageQuery": "coral reef fish underwater",
+      "ipaUs": "/ˈkɔɹəl ɹiːf/",
+      "ipaUk": "/ˈkɒɹəl ɹiːf/",
+      "ipaSource": "https://en.wiktionary.org/wiki/coral + https://en.wiktionary.org/wiki/reef",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/coral-reef.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/40322276@N04/11177135805",
+        "author": "NOAA's National Ocean Service",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "coral reef fish underwater",
+        "sha256": "1f8ea3b1a9a3c60675fd49e7507ff20e3b99f2878a4db82a893c1eb495aac623",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "nature reserve",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "khu bảo tồn thiên nhiên",
+      "meaningEn": "an area of land where wild animals and plants are protected",
+      "examples": [
+        {
+          "text": "We visited a nature reserve near the lake.",
+          "vi": "Chúng tôi đã thăm một khu bảo tồn thiên nhiên gần hồ."
+        },
+        {
+          "text": "Hunting is not allowed in the nature reserve.",
+          "vi": "Việc săn bắn bị cấm trong khu bảo tồn thiên nhiên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "national nature reserve",
+          "vi": "khu bảo tồn thiên nhiên quốc gia"
+        },
+        {
+          "text": "visit a nature reserve",
+          "vi": "thăm khu bảo tồn"
+        }
+      ],
+      "imageQuery": "nature reserve wetland birds",
+      "ipaUs": "/ˈneɪ̯.t͡ʃəɹ ɹɪˈzɝv/",
+      "ipaUk": "/ˈneɪ̯.tʃə(ɹ) ɹɪˈzɜːv/",
+      "ipaSource": "https://en.wiktionary.org/wiki/nature + https://en.wiktionary.org/wiki/reserve",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/nature-reserve.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Rondevlei_Wetlands_Nature_Reserve_-_Cape_Town_SA_6.JPG",
+        "author": "Abu Shawka",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "nature reserve wetland birds",
+        "sha256": "e2b078bd12656ed168e2c08e106824b69158878880583c109ab489d0c103749c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "greenhouse",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhà kính",
+      "meaningEn": "a glass building where plants grow in warm air",
+      "examples": [
+        {
+          "text": "He grows tomatoes in a greenhouse.",
+          "vi": "Ông ấy trồng cà chua trong nhà kính."
+        },
+        {
+          "text": "It is warm and humid inside the greenhouse.",
+          "vi": "Bên trong nhà kính ấm và ẩm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "greenhouse gas",
+          "vi": "khí nhà kính"
+        },
+        {
+          "text": "greenhouse effect",
+          "vi": "hiệu ứng nhà kính"
+        }
+      ],
+      "imageQuery": "greenhouse plants glass",
+      "ipaUs": "/ˈɡɹːnˌ(h)aʊs/",
+      "ipaUk": "/ˈɡɹiːnhaʊs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/greenhouse",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/greenhouse.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/30684028a8/",
+        "author": "Bigul Malayi",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "greenhouse plants glass",
+        "sha256": "a576cb1d2febb2e991592a3234578b31fad7625a1870ab6004e986246578466a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "reusable bag",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "túi dùng nhiều lần",
+      "meaningEn": "a strong bag that you use many times for shopping",
+      "examples": [
+        {
+          "text": "I take a reusable bag to the market.",
+          "vi": "Tôi mang một chiếc túi dùng nhiều lần đi chợ."
+        },
+        {
+          "text": "Many shops now sell cheap reusable bags.",
+          "vi": "Nhiều cửa hàng giờ bán túi dùng nhiều lần giá rẻ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "carry a reusable bag",
+          "vi": "mang túi dùng nhiều lần"
+        },
+        {
+          "text": "cotton reusable bag",
+          "vi": "túi vải cotton dùng nhiều lần"
+        }
+      ],
+      "imageQuery": "reusable tote bag",
+      "ipaUs": "/ˌriːˈjuːzəbəl bæɡ/",
+      "ipaUk": "/ˌriːˈjuːzəbəl bæɡ/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found",
+      "generate": {
+        "kind": "eco",
+        "value": "reusable bag"
+      },
+      "image": {
+        "file": "b03/reusable-bag.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:eco:reusable bag",
+        "sha256": "3686e11401fff7a6a4817a9a40f06ca9694768b4c8c00a620e571a6a5a7106e7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "electric car",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "ô tô điện",
+      "meaningEn": "a car that runs on electricity instead of petrol",
+      "examples": [
+        {
+          "text": "My uncle bought an electric car last year.",
+          "vi": "Chú tôi mua một chiếc ô tô điện vào năm ngoái."
+        },
+        {
+          "text": "An electric car does not make exhaust fumes.",
+          "vi": "Ô tô điện không thải khói xả."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "charge an electric car",
+          "vi": "sạc ô tô điện"
+        },
+        {
+          "text": "electric car battery",
+          "vi": "pin ô tô điện"
+        }
+      ],
+      "imageQuery": "electric car charging",
+      "ipaUs": "/ɪˈlɛktɹɪk kɑɹ/",
+      "ipaUk": "/ɪˈlɛktɹɪk kɑː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/electric + https://en.wiktionary.org/wiki/car",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/electric-car.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6020562/photo-image-public-domain-space-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "electric car charging",
+        "sha256": "a27bfe6fd1c67a0ed8c1802145cf1b02a02e9fd47fce5dc3add6eea0ed7033a2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "litter",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "rác vứt bừa bãi",
+      "meaningEn": "small pieces of rubbish left on the ground in public places",
+      "examples": [
+        {
+          "text": "There is litter all over the beach.",
+          "vi": "Rác vứt bừa bãi khắp bãi biển."
+        },
+        {
+          "text": "Please do not drop litter in the park.",
+          "vi": "Vui lòng không xả rác trong công viên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "drop litter",
+          "vi": "xả rác"
+        },
+        {
+          "text": "pick up litter",
+          "vi": "nhặt rác"
+        }
+      ],
+      "imageQuery": "litter beach rubbish",
+      "ipaUs": "/ˈlɪt.ɚ/",
+      "ipaUk": "/ˈlɪɾ.ɚ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/litter",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "eco",
+        "value": "litter"
+      },
+      "image": {
+        "file": "b03/litter.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:eco:litter",
+        "sha256": "f1a733ff139955eee6f88139e915a503b3e311d33a37bc6dfe5ddb7c3db50451",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "iceberg",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tảng băng trôi",
+      "meaningEn": "a huge piece of ice floating in the sea",
+      "examples": [
+        {
+          "text": "The ship stayed away from the iceberg.",
+          "vi": "Con tàu tránh xa tảng băng trôi."
+        },
+        {
+          "text": "Only a small part of an iceberg is above the water.",
+          "vi": "Chỉ một phần nhỏ của tảng băng trôi nổi trên mặt nước."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "giant iceberg",
+          "vi": "tảng băng trôi khổng lồ"
+        },
+        {
+          "text": "tip of the iceberg",
+          "vi": "phần nổi của tảng băng"
+        }
+      ],
+      "imageQuery": "iceberg sea",
+      "ipaUs": "/ˈaɪsbɝɡ/",
+      "ipaUk": "/ˈaɪsbɜːɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/iceberg",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/iceberg.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3286386/free-photo-image-iceberg-ice-glacier-water",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "iceberg sea",
+        "sha256": "4c6597888aadea01d0bec5c203ab16a6418d890544c9c285fe6a092ff6adbc5e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "dam",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "con đập",
+      "meaningEn": "a strong wall built across a river to hold water back",
+      "examples": [
+        {
+          "text": "The new dam provides power for the whole region.",
+          "vi": "Con đập mới cung cấp điện cho cả vùng."
+        },
+        {
+          "text": "They built a dam across the river.",
+          "vi": "Họ xây một con đập ngang con sông."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "build a dam",
+          "vi": "xây đập"
+        },
+        {
+          "text": "hydroelectric dam",
+          "vi": "đập thủy điện"
+        }
+      ],
+      "imageQuery": "dam water river",
+      "ipaUs": "/ˈdæm/",
+      "ipaUk": "/ˈdæm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/dam",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/dam.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:High_water_at_Longtang_Dam_-_01.jpg",
+        "author": "Anna Frodesiak",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "dam water river",
+        "sha256": "43ae5801e31a73e4bf1411113f69aa5cf3d24f1a4655613a0782edd981404739",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "power plant",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhà máy điện",
+      "meaningEn": "a large building where electricity is made",
+      "examples": [
+        {
+          "text": "The coal power plant causes a lot of pollution.",
+          "vi": "Nhà máy nhiệt điện than gây ra nhiều ô nhiễm."
+        },
+        {
+          "text": "A new power plant opened near the coast.",
+          "vi": "Một nhà máy điện mới mở ở gần bờ biển."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "nuclear power plant",
+          "vi": "nhà máy điện hạt nhân"
+        },
+        {
+          "text": "coal power plant",
+          "vi": "nhà máy nhiệt điện than"
+        }
+      ],
+      "imageQuery": "power plant cooling towers",
+      "ipaUs": "/ˈpaʊ̯.ɚ plænt/",
+      "ipaUk": "/ˈpaʊ̯ə̯ plɑːnt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/power + https://en.wiktionary.org/wiki/plant",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/power-plant.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6019715/photo-image-public-domain-plant-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "power plant cooling towers",
+        "sha256": "a2d40eda9b444ef1bb9895b513c8e833b86e1550de5e6b8b337815f204a8a481",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rubbish",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "rác",
+      "meaningEn": "things that you throw away because you do not want them",
+      "examples": [
+        {
+          "text": "Please put your rubbish in the bin.",
+          "vi": "Vui lòng bỏ rác vào thùng."
+        },
+        {
+          "text": "The streets were full of rubbish after the festival.",
+          "vi": "Đường phố đầy rác sau lễ hội."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "throw away rubbish",
+          "vi": "vứt rác"
+        },
+        {
+          "text": "rubbish bin",
+          "vi": "thùng rác"
+        }
+      ],
+      "synonyms": [
+        "trash",
+        "garbage"
+      ],
+      "imageQuery": "rubbish bags street",
+      "ipaUs": "/ˈɹʌbɪʃ/",
+      "ipaUk": "/ˈɹʌbɪʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rubbish",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/rubbish.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/9658698/image-people-public-domain-cleaning",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "rubbish bags street",
+        "sha256": "3336c5865a341b6f3dc24d1eb30f63bffd8243d29dc42e3079daa38b1e4451d3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "charging station",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "trạm sạc",
+      "meaningEn": "a place where you can put electricity into an electric car",
+      "examples": [
+        {
+          "text": "There is a charging station in the car park.",
+          "vi": "Có một trạm sạc trong bãi đỗ xe."
+        },
+        {
+          "text": "We stopped at a charging station for half an hour.",
+          "vi": "Chúng tôi dừng ở một trạm sạc nửa tiếng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "find a charging station",
+          "vi": "tìm trạm sạc"
+        },
+        {
+          "text": "fast charging station",
+          "vi": "trạm sạc nhanh"
+        }
+      ],
+      "imageQuery": "ev charging station",
+      "ipaUs": "/ˈt͡ʃɑɹd͡ʒɪŋ ˈsteɪʃən/",
+      "ipaUk": "/ˈt͡ʃɑːd͡ʒɪŋ ˈsteɪʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/charging + https://en.wiktionary.org/wiki/station",
+      "ipaVerified": true,
+      "image": {
+        "file": "b03/charging-station.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6079397/solar-powered-charging-station",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "ev charging station",
+        "sha256": "f1f9dbe2ceb12ace450766193a5a502ede65c5867f2828e17e9b360daf2b5a25",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
