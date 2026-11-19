@@ -233,11 +233,51 @@
 
     function isAll(value) { return value == null || value === '' || value === 'all'; }
 
+    // Level bands of the catalogue pills (direction B): A1 and A2 share a pill, so do C1 and C2.
+    var BANDS = [
+        { key: 'A1–A2', levels: ['A1', 'A2'] },
+        { key: 'B1', levels: ['B1'] },
+        { key: 'B2', levels: ['B2'] },
+        { key: 'C1–C2', levels: ['C1', 'C2'] }
+    ];
+
+    function findBand(key) {
+        for (var i = 0; i < BANDS.length; i++) { if (BANDS[i].key === key) return BANDS[i]; }
+        return null;
+    }
+
+    /** The band key a CEFR level belongs to ('' for an unknown level). */
+    function bandOf(level) {
+        var value = String(level == null ? '' : level).trim().toUpperCase();
+        for (var i = 0; i < BANDS.length; i++) { if (BANDS[i].levels.indexOf(value) >= 0) return BANDS[i].key; }
+        return '';
+    }
+
+    /** The level the URL keeps for a band (its first level), or 'all' for "all" and anything unknown. */
+    function levelOfBand(band) {
+        var found = findBand(band);
+        return found ? found.levels[0] : 'all';
+    }
+
+    /** levels = [{ key, lessonCount }]. The bands that hold at least one lesson, in order, with their summed counts. */
+    function bandsWithLessons(levels) {
+        var counts = {};
+        (Array.isArray(levels) ? levels : []).forEach(function (l) {
+            var band = bandOf(l && l.key);
+            var n = Math.max(0, Math.floor(Number(l && l.lessonCount) || 0));
+            if (band) counts[band] = (counts[band] || 0) + n;
+        });
+        return BANDS.filter(function (b) { return counts[b.key] > 0; })
+            .map(function (b) { return { key: b.key, levels: b.levels.slice(), lessonCount: counts[b.key] }; });
+    }
+
     /** lessons = [{ id, title, topic, level, status }]. Returns the matching ids in input order. */
     function filterLessons(lessons, filters) {
         filters = filters || {};
         var needle = fold(String(filters.q == null ? '' : filters.q).trim());
+        var band = isAll(filters.band) ? null : findBand(filters.band);
         return (lessons || []).filter(function (l) {
+            if (band && band.levels.indexOf(l.level) < 0) return false;
             if (!isAll(filters.level) && l.level !== filters.level) return false;
             if (!isAll(filters.topic) && l.topic !== filters.topic) return false;
             if (!isAll(filters.status) && l.status !== filters.status) return false;
@@ -250,6 +290,13 @@
         var list = ids || [];
         var n = Math.max(0, Math.floor(Number(shown) || 0));
         return { visible: list.slice(0, n), hasMore: list.length > n };
+    }
+
+    /** The first n ids of a shelf and how many are left behind the "Xem cả" link: { visible, rest }. */
+    function shelfSlice(ids, n) {
+        var list = Array.isArray(ids) ? ids : [];
+        var size = Math.max(0, Math.floor(Number(n) || 0));
+        return { visible: list.slice(0, size), rest: Math.max(0, list.length - size) };
     }
 
     // ------------------------------------------------------------------ player
@@ -512,6 +559,20 @@
         return '#transcript';
     }
 
+    /**
+     * The hero hint of a lesson being continued: "Còn quiz và từ vựng". Names the unfinished steps that have content
+     * (transcript, quiz, vocab) joined with a comma and "và"; '' when nothing is left. ListeningHeroHint (C#) mirrors it.
+     */
+    function heroHint(flags, counts) {
+        var f = flags || {}, c = counts || {};
+        var names = [['transcript', 'nghe hết lời thoại'], ['quiz', 'quiz'], ['vocab', 'từ vựng']];
+        var left = [];
+        names.forEach(function (pair) { if (c[pair[0]] > 0 && !f[pair[0]]) left.push(pair[1]); });
+        if (!left.length) return '';
+        if (left.length === 1) return 'Còn ' + left[0];
+        return 'Còn ' + left.slice(0, -1).join(', ') + ' và ' + left[left.length - 1];
+    }
+
     /** lines = [{ start, end, text, vi }]. The caption for the video overlay: { en, vi } or null (mode off | en | both). */
     function activeSubtitle(lines, time, mode) {
         if (mode !== 'en' && mode !== 'both') return null;
@@ -603,6 +664,7 @@
         mulberry32: mulberry32, normalize: normalize, tokenize: tokenize, levenshtein: levenshtein,
         gradeDictation: gradeDictation, pickBlanks: pickBlanks, gradeBlank: gradeBlank,
         filterLessons: filterLessons, paginate: paginate,
+        BANDS: BANDS, bandOf: bandOf, levelOfBand: levelOfBand, bandsWithLessons: bandsWithLessons, shelfSlice: shelfSlice, heroHint: heroHint,
         lineIndexAt: lineIndexAt, formatClock: formatClock,
         requiredSteps: requiredSteps, isComplete: isComplete,
         parseFilterQuery: parseFilterQuery, buildFilterQuery: buildFilterQuery,

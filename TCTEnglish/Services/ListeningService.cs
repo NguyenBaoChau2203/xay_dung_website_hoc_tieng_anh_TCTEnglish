@@ -199,6 +199,7 @@ namespace TCTEnglish.Services
             {
                 foreach (var card in cards) ApplyProgress(card, null);
                 FinishIndexViewModel(viewModel, cards);
+                ApplyHero(viewModel, null);
                 return viewModel;
             }
 
@@ -326,7 +327,59 @@ namespace TCTEnglish.Services
             }
 
             FinishIndexViewModel(viewModel, cards, completedByLevel);
+            var lastFinishedId = completedPublic
+                .OrderByDescending(p => p.CompletedAt ?? p.LastAccessedAt)
+                .Select(p => (int?)p.LessonId)
+                .FirstOrDefault();
+            ApplyHero(viewModel, lastFinishedId);
             return viewModel;
+        }
+
+        /// <summary>
+        /// The photo hero of the catalogue (plan 2026-11-20-listening-catalog-b, 2.2): the lesson being continued, the first
+        /// unfinished public lesson, the lesson finished last when everything is finished, or the first lesson for a guest.
+        /// Uses only what the page already loaded.
+        /// </summary>
+        private static void ApplyHero(ListeningIndexViewModel viewModel, int? lastFinishedId)
+        {
+            var publicInOrder = LevelOrder
+                .SelectMany(key => viewModel.LessonsByLevel.TryGetValue(key, out var list) ? list : new List<ListeningLessonCardViewModel>())
+                .ToList();
+
+            if (publicInOrder.Count == 0)
+            {
+                viewModel.HeroMode = "none";
+                return;
+            }
+
+            if (!viewModel.IsAuthenticated)
+            {
+                viewModel.HeroMode = "guest";
+                viewModel.HeroLesson = publicInOrder[0];
+                viewModel.HeroHint = "Đăng nhập để lưu tiến độ";
+                return;
+            }
+
+            if (viewModel.ContinueLesson is { } resume)
+            {
+                viewModel.HeroMode = "continue";
+                viewModel.HeroLesson = resume;
+                viewModel.HeroHint = ListeningHeroHint.ForContinue(resume);
+                return;
+            }
+
+            var next = publicInOrder.FirstOrDefault(c => c.Status != "done");
+            if (next != null)
+            {
+                viewModel.HeroMode = "start";
+                viewModel.HeroLesson = next;
+                viewModel.HeroHint = (publicInOrder.Count - viewModel.CompletedLessons) + " bài đang chờ bạn";
+                return;
+            }
+
+            viewModel.HeroMode = "review";
+            viewModel.HeroLesson = publicInOrder.FirstOrDefault(c => c.Id == lastFinishedId) ?? publicInOrder[^1];
+            viewModel.HeroHint = "Bạn đã nghe hết các bài hiện có";
         }
 
         // CEFR levels in display order (the page itself builds its section headings from the same keys).
@@ -348,6 +401,7 @@ namespace TCTEnglish.Services
                     CompletedCount = completedByLevel != null && completedByLevel.TryGetValue(key, out var done) ? done : 0
                 })
                 .ToList();
+            viewModel.Bands = ListeningBands.WithLessons(viewModel.Levels);
         }
 
         // ----------------------------------------------------------------

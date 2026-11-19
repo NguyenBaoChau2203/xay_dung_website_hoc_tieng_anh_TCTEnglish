@@ -50,6 +50,28 @@ namespace TCTEnglish.ViewModels
 
         /// <summary>Premium or Admin: may import YouTube lessons.</summary>
         public bool CanImport { get; set; }
+
+        /// <summary>The level pills: bands that hold at least one public lesson (empty bands are hidden).</summary>
+        public List<ListeningBandViewModel> Bands { get; set; } = new();
+
+        /// <summary>The band that contains <see cref="SelectedLevel"/> ("all" when there is none).</summary>
+        public string SelectedBand
+        {
+            get
+            {
+                var band = ListeningBands.Of(SelectedLevel);
+                return band.Length == 0 ? "all" : band;
+            }
+        }
+
+        /// <summary>The lesson behind the photo hero (null when <see cref="HeroMode"/> is "none").</summary>
+        public ListeningLessonCardViewModel? HeroLesson { get; set; }
+
+        /// <summary>"continue", "start", "review" (everything finished), "guest" or "none".</summary>
+        public string HeroMode { get; set; } = "none";
+
+        /// <summary>The hint line of the hero; empty when there is nothing to say.</summary>
+        public string HeroHint { get; set; } = string.Empty;
     }
 
     // ================================================================
@@ -302,5 +324,77 @@ namespace TCTEnglish.ViewModels
 
         /// <summary>Public lessons of this level the user finished (0 for guests).</summary>
         public int CompletedCount { get; set; }
+    }
+
+    // ================================================================
+    // Catalogue direction B: level bands of the pills and the hero hint
+    // ================================================================
+
+    /// <summary>One pill of the level filter: a band of CEFR levels (listening-core.js BANDS mirrors the list).</summary>
+    public sealed class ListeningBandViewModel
+    {
+        public string Key { get; init; } = string.Empty;
+        public IReadOnlyList<string> Levels { get; init; } = Array.Empty<string>();
+        public int LessonCount { get; init; }
+        public int CompletedCount { get; init; }
+    }
+
+    public static class ListeningBands
+    {
+        public static readonly IReadOnlyList<ListeningBandViewModel> All = new[]
+        {
+            new ListeningBandViewModel { Key = "A1–A2", Levels = new[] { "A1", "A2" } },
+            new ListeningBandViewModel { Key = "B1", Levels = new[] { "B1" } },
+            new ListeningBandViewModel { Key = "B2", Levels = new[] { "B2" } },
+            new ListeningBandViewModel { Key = "C1–C2", Levels = new[] { "C1", "C2" } },
+        };
+
+        /// <summary>The band key a CEFR level belongs to, or an empty string for an unknown level.</summary>
+        public static string Of(string? level)
+        {
+            var value = level?.Trim().ToUpperInvariant();
+            if (string.IsNullOrEmpty(value)) return string.Empty;
+            foreach (var band in All)
+            {
+                if (band.Levels.Contains(value)) return band.Key;
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>The bands that hold at least one lesson, in order, with their summed counts.</summary>
+        public static List<ListeningBandViewModel> WithLessons(IEnumerable<ListeningLevelMetaViewModel> levels)
+        {
+            var list = levels.ToList();
+            return All
+                .Select(band => new ListeningBandViewModel
+                {
+                    Key = band.Key,
+                    Levels = band.Levels,
+                    LessonCount = list.Where(l => band.Levels.Contains(l.Key)).Sum(l => l.LessonCount),
+                    CompletedCount = list.Where(l => band.Levels.Contains(l.Key)).Sum(l => l.CompletedCount),
+                })
+                .Where(band => band.LessonCount > 0)
+                .ToList();
+        }
+    }
+
+    /// <summary>The "Còn quiz và từ vựng" hint of a lesson being continued (mirrors listening-core.js heroHint).</summary>
+    public static class ListeningHeroHint
+    {
+        public static string ForContinue(ListeningLessonCardViewModel card)
+        {
+            var left = new List<string>();
+            if (card.TranscriptLineCount > 0 && card.TranscriptCompleted != true) left.Add("nghe hết lời thoại");
+            if (card.QuizQuestionCount > 0 && card.QuizCompleted != true) left.Add("quiz");
+            if (card.VocabItemCount > 0 && card.VocabReviewed != true) left.Add("từ vựng");
+
+            return left.Count switch
+            {
+                0 => string.Empty,
+                1 => "Còn " + left[0],
+                _ => "Còn " + string.Join(", ", left.Take(left.Count - 1)) + " và " + left[^1],
+            };
+        }
     }
 }

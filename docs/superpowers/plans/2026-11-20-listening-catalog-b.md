@@ -316,3 +316,23 @@ _(Filled by the agent: K0 inventory and verdicts, gate records, mockup differenc
 4. `ThumbnailSrc` is the stored URL when it is https or a local path, else the YouTube thumbnail of a valid id, else null: always safe for an `<img src>`.
 
 **Existing behaviours kept** (plan section 8 and the old contracts): the controller already sends every lesson and only pre-selects `level`/`topic` (`StudyController.Listening` untouched), the filters run in the browser.
+
+### 12.2 K1 — logic (tests first)
+
+**Done:**
+- `listening-core.js`: `BANDS`, `bandOf`, `levelOfBand`, `bandsWithLessons`, `shelfSlice`, `heroHint`, and `filterLessons` accepts `band` next to `level`. Node tests `scripts/tests/test_listening_catalog_b.cjs` (7 tests, written first).
+- C# (additive): `ListeningIndexViewModel.Bands/SelectedBand/HeroLesson/HeroMode/HeroHint`, `ListeningBands`, `ListeningHeroHint` (mirror of `heroHint`), and `ListeningService.ApplyHero` (no new query: it uses the cards, the progress rows and the continue lesson already loaded). Hero modes: `guest`, `continue`, `start`, `review`, `none`. Tests `ListeningCatalogBLogicTests` (26, including `?level=C2` → band `C1–C2`, hidden empty bands, the four hero modes and the hint texts).
+- `StudyController` is untouched: it already sends every lesson and only pre-selects `level`/`topic`.
+
+**Gate record (K1)**
+
+| Gate | Result |
+| --- | --- |
+| G1 build | 0 errors |
+| G2 listening tests | pass (inside the full run; 26 new) |
+| G3 full suite | **3787 passed, 0 failed, 58 skipped** (1000 + 2787; K0 3761) |
+| G4 node | **596 passed** (K0 589) |
+| G5 | no model/migration/route file touched |
+| G6 | `git diff --check` clean for the touched files (the only hit is the owner's unstaged `appsettings.Development.json`), no new UI yet |
+| G7 | files: `ListeningService.cs`, `ListeningViewModels.cs`, `listening-core.js`, two new tests |
+| G8–G15 | not applicable yet (no UI change in this phase) |
