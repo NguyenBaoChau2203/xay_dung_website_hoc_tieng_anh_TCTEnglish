@@ -50,7 +50,7 @@ def terms_of(query: str) -> list[str]:
     return [w for w in re.findall(r"[a-z]+", query.lower()) if len(w) > 2]
 
 
-def relevance(query: str, title: str, tags: list[str]) -> int:
+def relevance(query: str, title: str, tags: list[str], illustration: bool = False) -> int:
     words = terms_of(query)
     t = (title or "").lower()
     tg = " ".join(tags).lower()
@@ -61,15 +61,18 @@ def relevance(query: str, title: str, tags: list[str]) -> int:
             score += 3
         if re.search(r"\b" + re.escape(stem), tg):
             score += 2
-    if BAD_TITLE.search(t):
+    if BAD_TITLE.search(t) and not (illustration and re.search(r"\b(icon|vector|clipart)\b", t) and not re.search(r"\b(logo|map|flag|stamp|poster|cover|screenshot|scan|diagram|banner)\b", t)):
         score -= 4
     if UNSAFE.search(t) or UNSAFE.search(tg):
         score -= 100  # never download it: this is a learning app for all ages
     return score
 
 
-def search_openverse(query: str, limit: int = 20) -> list[dict]:
-    q = urllib.parse.urlencode({"q": query, "license": "cc0,pdm", "page_size": limit, "mature": "false"})
+def search_openverse(query: str, limit: int = 20, category: str | None = None) -> list[dict]:
+    params = {"q": query, "license": "cc0,pdm", "page_size": limit, "mature": "false"}
+    if category:
+        params["category"] = category
+    q = urllib.parse.urlencode(params)
     data = http_json("https://api.openverse.org/v1/images/?" + q, "openverse", per_second=1.5)
     out = []
     for x in data.get("results", []):
@@ -172,15 +175,17 @@ def cmd_fetch(path: Path, per: int, only: set[str] | None) -> None:
             continue
         query = card.get("imageQuery") or term
         pool: list[dict] = []
-        for finder in (search_openverse, search_commons):
+        category = card.get("imageCategory")  # "illustration" for sets where photos of people are unsuitable
+        finders = [lambda q: search_openverse(q, 20, category)] + ([] if category else [search_commons])
+        for finder in finders:
             try:
                 pool += finder(query)
             except Exception as exc:
-                log(f"  {term}: {finder.__name__} failed: {type(exc).__name__}")
+                log(f"  {term}: image search failed: {type(exc).__name__}")
         seen = {c["url"] for c in have}
         pool = [c for c in pool if c["url"] not in seen and usable(c)]
         for c in pool:
-            c["score"] = relevance(query, c["title"], c["tags"])
+            c["score"] = relevance(query, c["title"], c["tags"], category == "illustration")
         pool.sort(key=lambda c: -c["score"])
         for c in pool:
             if len(have) >= per:

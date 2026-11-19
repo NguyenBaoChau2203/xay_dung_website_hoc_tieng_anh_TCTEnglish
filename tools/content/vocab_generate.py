@@ -279,6 +279,71 @@ def hand_closeup(part: str) -> bytes:
     return finish(img)
 
 
+GARMENT = {"dress": (219, 39, 119), "skirt": (37, 99, 235), "trousers": (71, 85, 105), "shorts": (14, 165, 233),
+           "sweater": (234, 88, 12), "gloves": (124, 58, 237), "belt": (120, 72, 36), "tie": (190, 24, 93)}
+
+
+def garment(name: str) -> bytes:
+    """Flat original drawing of a clothing item (kind "garment")."""
+    img, d = canvas()
+    s = S
+    cx = W * s // 2
+    fill = GARMENT[name]
+    dark = shade(fill, 0.72)
+    line = shade(fill, 0.5)
+
+    def poly(pts, col=fill):
+        pp = [(cx + x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=col)
+        d.line(pp + [pp[0]], fill=line, width=3 * s, joint="curve")
+
+    if name == "dress":
+        poly([(-30, 40), (-14, 52), (14, 52), (30, 40), (44, 70), (28, 100), (50, 320), (-50, 320), (-28, 100), (-44, 70)])
+        poly([(-28, 100), (28, 100), (24, 124), (-24, 124)], dark)
+        d.arc((cx - 14 * s, 36 * s, cx + 14 * s, 68 * s), 0, 180, fill=line, width=3 * s)
+    elif name == "skirt":
+        poly([(-46, 90), (46, 90), (110, 300), (-110, 300)])
+        poly([(-46, 90), (46, 90), (46, 112), (-46, 112)], dark)
+        for k in (-60, -20, 20, 60):
+            d.line((cx + k * s * 0.55, 116 * s, cx + k * s, 296 * s), fill=line, width=2 * s)
+    elif name == "trousers":
+        poly([(-60, 40), (60, 40), (72, 330), (14, 330), (0, 130), (-14, 330), (-72, 330)])
+        poly([(-60, 40), (60, 40), (60, 62), (-60, 62)], dark)
+        d.line((cx, 62 * s, cx, 130 * s), fill=line, width=3 * s)
+    elif name == "shorts":
+        poly([(-70, 90), (70, 90), (86, 250), (18, 250), (0, 160), (-18, 250), (-86, 250)])
+        poly([(-70, 90), (70, 90), (70, 114), (-70, 114)], dark)
+        d.line((cx, 114 * s, cx, 160 * s), fill=line, width=3 * s)
+    elif name == "sweater":
+        poly([(-60, 50), (-24, 40), (0, 62), (24, 40), (60, 50), (150, 190), (112, 214), (74, 140), (74, 300), (-74, 300), (-74, 140), (-112, 214), (-150, 190)])
+        poly([(-24, 40), (0, 62), (24, 40), (24, 56), (0, 76), (-24, 56)], dark)
+        poly([(-74, 280), (74, 280), (74, 300), (-74, 300)], dark)
+        for k in range(-3, 4):
+            d.line((cx + k * 18 * s, 90 * s, cx + k * 18 * s, 270 * s), fill=shade(fill, 0.85), width=2 * s)
+    elif name == "gloves":
+        for sign in (-1, 1):
+            ox = sign * 90
+            pts = [(ox - 40, 330), (ox - 44, 190), (ox - 52, 120), (ox - 40, 112), (ox - 26, 160), (ox - 24, 70), (ox - 10, 66), (ox - 4, 150),
+                   (ox, 54), (ox + 14, 54), (ox + 16, 150), (ox + 26, 74), (ox + 40, 78), (ox + 34, 170), (ox + 54, 150), (ox + 66, 164), (ox + 44, 230), (ox + 40, 330)]
+            if sign == 1:
+                pts = [(2 * ox - x, y) for x, y in pts]
+            poly(pts)
+            poly([(ox - 42, 290), (ox + 40, 290), (ox + 40, 330), (ox - 42, 330)], dark)
+    elif name == "belt":
+        d.rounded_rectangle((cx - 190 * s, 150 * s, cx + 190 * s, 210 * s), 12 * s, fill=fill, outline=line, width=3 * s)
+        for k in range(1, 6):
+            d.ellipse((cx + (60 + k * 22) * s - 4 * s, 180 * s - 4 * s, cx + (60 + k * 22) * s + 4 * s, 180 * s + 4 * s), fill=BG, outline=line)
+        d.rounded_rectangle((cx - 52 * s, 126 * s, cx + 20 * s, 234 * s), 14 * s, fill=None, outline=(214, 175, 55), width=14 * s)
+        d.rounded_rectangle((cx - 52 * s, 126 * s, cx + 20 * s, 234 * s), 14 * s, fill=None, outline=shade((214, 175, 55), 0.7), width=2 * s)
+        d.line((cx - 10 * s, 140 * s, cx - 10 * s, 220 * s), fill=(214, 175, 55), width=8 * s)
+    elif name == "tie":
+        poly([(-26, 40), (26, 40), (20, 84), (-20, 84)], dark)
+        poly([(-20, 84), (20, 84), (62, 280), (0, 322), (-62, 280)])
+        d.line((cx - 18 * s, 130 * s, cx - 38 * s, 270 * s), fill=shade(fill, 1.25), width=5 * s)
+        d.line((cx + 18 * s, 130 * s, cx + 38 * s, 270 * s), fill=shade(fill, 1.25), width=5 * s)
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -303,6 +368,8 @@ def main() -> None:
             data = tooth_icon()
         elif kind == "hand":
             data = hand_closeup(val)
+        elif kind == "garment":
+            data = garment(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"

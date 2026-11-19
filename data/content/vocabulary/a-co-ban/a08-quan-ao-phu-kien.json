@@ -1,0 +1,1185 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A08",
+    "name": "Quần áo & phụ kiện",
+    "description": "#a1 #a2 #clothes #fashion",
+    "topic": "Quần áo & phụ kiện",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "shirt",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "áo sơ mi",
+      "meaningEn": "a piece of clothing with a collar and buttons",
+      "examples": [
+        {
+          "text": "He wears a white shirt to work.",
+          "vi": "Anh ấy mặc áo sơ mi trắng đi làm."
+        },
+        {
+          "text": "This shirt is too small for me.",
+          "vi": "Chiếc áo sơ mi này quá nhỏ với tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "button a shirt",
+          "vi": "cài cúc áo sơ mi"
+        }
+      ],
+      "imageQuery": "shirt clipart",
+      "ipaUs": "/ʃɜɹt/",
+      "ipaUk": "/ʃɜːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/shirt",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/shirt.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/10096504/png-shirt-illustrations",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "shirt clipart",
+        "sha256": "8ef91c5e641389f87f19c60842428c5ee2d9627fbdff2b2c2c895b0936ff3bb1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "T-shirt",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "áo phông",
+      "meaningEn": "a soft short-sleeved shirt with no collar",
+      "examples": [
+        {
+          "text": "I wear a T-shirt on hot days.",
+          "vi": "Tôi mặc áo phông vào những ngày nóng."
+        },
+        {
+          "text": "She bought a blue T-shirt yesterday.",
+          "vi": "Hôm qua cô ấy mua một chiếc áo phông xanh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cotton T-shirt",
+          "vi": "áo phông cotton"
+        }
+      ],
+      "imageQuery": "t-shirt clipart",
+      "ipaUs": "/tiː ʃɜɹt/",
+      "ipaUk": "/tiː ʃɜːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/t + https://en.wiktionary.org/wiki/shirt",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/t-shirt.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/9746897/vector-people-pattern-illustrations",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "t-shirt clipart",
+        "sha256": "3b6e6e917adc8ed30cde223018b71d7c70d62cddf5ab88b41561d2e1694b3412",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "dress",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "A1",
+      "definition": "váy liền; mặc quần áo",
+      "meaningEn": "a piece of clothing for women that covers the body and legs",
+      "verbForms": {
+        "past": "dressed",
+        "pastParticiple": "dressed",
+        "ing": "dressing",
+        "thirdPerson": "dresses"
+      },
+      "examples": [
+        {
+          "text": "She wore a red dress to the party.",
+          "vi": "Cô ấy mặc một chiếc váy đỏ đến bữa tiệc."
+        },
+        {
+          "text": "The little girl loves her new dress.",
+          "vi": "Cô bé rất thích chiếc váy mới của mình."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wedding dress",
+          "vi": "váy cưới"
+        },
+        {
+          "text": "evening dress",
+          "vi": "váy dạ hội"
+        }
+      ],
+      "imageQuery": "summer dress",
+      "ipaUs": "/dɹɛs/",
+      "ipaUk": "/dɹes/",
+      "ipaSource": "https://en.wiktionary.org/wiki/dress",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "generate": {
+        "kind": "garment",
+        "value": "dress"
+      },
+      "image": {
+        "file": "a08/dress.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:garment:dress",
+        "sha256": "107e24150b61064995e637983de84be749cc47efb4c35373700ea606b5ef87d7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "skirt",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "chân váy",
+      "meaningEn": "a piece of clothing that hangs from the waist",
+      "examples": [
+        {
+          "text": "She wears a long skirt to school.",
+          "vi": "Cô ấy mặc chân váy dài đến trường."
+        },
+        {
+          "text": "The skirt is made of cotton.",
+          "vi": "Chiếc chân váy được làm bằng vải cotton."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "short skirt",
+          "vi": "váy ngắn"
+        }
+      ],
+      "imageQuery": "skirt garment",
+      "ipaUs": "/skɚt/",
+      "ipaUk": "/skɜːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/skirt",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "generate": {
+        "kind": "garment",
+        "value": "skirt"
+      },
+      "image": {
+        "file": "a08/skirt.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:garment:skirt",
+        "sha256": "3ed227b6c690d1793c726d4ded4a2a13382d737bc15029b09ac1c9045da957fd",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "trousers",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "quần dài",
+      "meaningEn": "clothing for the legs that covers each leg separately",
+      "examples": [
+        {
+          "text": "He wore black trousers and a white shirt.",
+          "vi": "Anh ấy mặc quần dài đen và áo sơ mi trắng."
+        },
+        {
+          "text": "These trousers are too long for me.",
+          "vi": "Chiếc quần dài này quá dài với tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a pair of trousers",
+          "vi": "một chiếc quần dài"
+        }
+      ],
+      "imageQuery": "pants",
+      "ipaUs": "/ˈtɹaʊzɚz/",
+      "ipaUk": "/ˈtɹaʊzəz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/trousers",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "generate": {
+        "kind": "garment",
+        "value": "trousers"
+      },
+      "image": {
+        "file": "a08/trousers.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:garment:trousers",
+        "sha256": "08e8b21ff8397aa6d129168867b1a7c1038ce19991c10ff01c6b9b4cf2778313",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "jeans",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "quần bò, quần jean",
+      "meaningEn": "strong blue trousers made of denim",
+      "examples": [
+        {
+          "text": "I wear jeans on weekends.",
+          "vi": "Tôi mặc quần jean vào cuối tuần."
+        },
+        {
+          "text": "Her jeans are blue and comfortable.",
+          "vi": "Quần jean của cô ấy màu xanh và thoải mái."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a pair of jeans",
+          "vi": "một chiếc quần jean"
+        }
+      ],
+      "imageQuery": "jeans clipart",
+      "ipaUs": "/d͡ʒiːnz/",
+      "ipaUk": "/d͡ʒiːnz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/jeans",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/jeans.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6489742/image-public-domain-blue-person",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "jeans clipart",
+        "sha256": "0c6ce323ec805dc1d3b916d57310277f298d6a4061f1b487a11aa1f55bfeab53",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "shorts",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "quần đùi, quần short",
+      "meaningEn": "short trousers that end above the knee",
+      "examples": [
+        {
+          "text": "He plays football in shorts.",
+          "vi": "Cậu ấy chơi bóng đá trong quần đùi."
+        },
+        {
+          "text": "I wear shorts in summer.",
+          "vi": "Tôi mặc quần đùi vào mùa hè."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "swimming shorts",
+          "vi": "quần bơi"
+        }
+      ],
+      "imageQuery": "shorts",
+      "ipaUs": "/ʃɔː(ɹ)ts/",
+      "ipaUk": "/ʃɔː(ɹ)ts/",
+      "ipaSource": "https://en.wiktionary.org/wiki/shorts",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "imageCategory": "illustration",
+      "generate": {
+        "kind": "garment",
+        "value": "shorts"
+      },
+      "image": {
+        "file": "a08/shorts.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:garment:shorts",
+        "sha256": "cf8a193db33cd902c7b0b00f05e255c7ca0f2a37d536dbcdbad69ce3235d95ca",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "jacket",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "áo khoác ngắn",
+      "meaningEn": "a short coat that you wear over other clothes",
+      "examples": [
+        {
+          "text": "Take a jacket because it is cold.",
+          "vi": "Hãy mang áo khoác vì trời lạnh."
+        },
+        {
+          "text": "He put his jacket on the chair.",
+          "vi": "Anh ấy để áo khoác lên ghế."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "leather jacket",
+          "vi": "áo khoác da"
+        }
+      ],
+      "imageQuery": "jacket clipart",
+      "ipaUs": "/ˈd͡ʒæk.ɪt/",
+      "ipaUk": "/ˈd͡ʒæk.ɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/jacket",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/jacket.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/11728760/image-pattern-collage-illustrations",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "jacket clipart",
+        "sha256": "9e31dbfab69c57d9a2398431ae80b982e81ebb6334d68c5651d120c81e9dcee0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "coat",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "áo khoác dài",
+      "meaningEn": "a long warm piece of clothing for cold weather",
+      "examples": [
+        {
+          "text": "She wore a warm coat in winter.",
+          "vi": "Cô ấy mặc áo khoác dày vào mùa đông."
+        },
+        {
+          "text": "Hang your coat on the hook.",
+          "vi": "Hãy treo áo khoác lên móc."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "winter coat",
+          "vi": "áo khoác mùa đông"
+        }
+      ],
+      "imageQuery": "winter coat clipart",
+      "ipaUs": "/ˈkoʊ̯t/",
+      "ipaUk": "/ˈkəʊ̯t/",
+      "ipaSource": "https://en.wiktionary.org/wiki/coat",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/coat.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6430590/vector-sticker-watercolor-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "winter coat clipart",
+        "sha256": "d1a108405d60aee127f1c71644f59b9560312be316b841afc69de8cf102056ef",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sweater",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "áo len",
+      "meaningEn": "a warm knitted piece of clothing for the upper body",
+      "examples": [
+        {
+          "text": "My grandmother knitted me a sweater.",
+          "vi": "Bà tôi đan cho tôi một chiếc áo len."
+        },
+        {
+          "text": "I wear a sweater when it is cold.",
+          "vi": "Tôi mặc áo len khi trời lạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wool sweater",
+          "vi": "áo len lông cừu"
+        }
+      ],
+      "imageQuery": "jumper pullover",
+      "ipaUs": "/ˈswɛtɚ/",
+      "ipaUk": "/ˈswɛtə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sweater",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "generate": {
+        "kind": "garment",
+        "value": "sweater"
+      },
+      "image": {
+        "file": "a08/sweater.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:garment:sweater",
+        "sha256": "b3526b94e756f148fcff7bcfdeaadbffc99ee99455d7385b346153f9517b40b2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "scarf",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "khăn quàng cổ",
+      "meaningEn": "a long piece of cloth worn around the neck",
+      "plural": "scarves",
+      "examples": [
+        {
+          "text": "She wrapped a scarf around her neck.",
+          "vi": "Cô ấy quấn một chiếc khăn quanh cổ."
+        },
+        {
+          "text": "My red scarf keeps me warm.",
+          "vi": "Chiếc khăn đỏ giữ ấm cho tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wool scarf",
+          "vi": "khăn len"
+        }
+      ],
+      "imageQuery": "scarf clipart",
+      "ipaUs": "/skɑɹf/",
+      "ipaUk": "/skɑːf/",
+      "ipaSource": "https://en.wiktionary.org/wiki/scarf",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/scarf.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/7613126/vector-cartoon-illustrations-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "scarf clipart",
+        "sha256": "f27967517f742f929d5a54c1106a4e29a88eb3920ce34576991cceff8dc2f09f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hat",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái mũ có vành",
+      "meaningEn": "something you wear on your head",
+      "examples": [
+        {
+          "text": "He wears a straw hat in the sun.",
+          "vi": "Anh ấy đội mũ rơm khi ra nắng."
+        },
+        {
+          "text": "The hat is too big for me.",
+          "vi": "Chiếc mũ này quá rộng với tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "straw hat",
+          "vi": "mũ rơm"
+        }
+      ],
+      "imageQuery": "hat clipart",
+      "ipaUs": "/hæt/",
+      "ipaUk": "/hat/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hat",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/hat.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/7267914/vector-public-domain-illustrations-fashion",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "hat clipart",
+        "sha256": "19801226e9e791e037de74658512aeea839003f11092c03da73f690227ad676c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cap",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "mũ lưỡi trai",
+      "meaningEn": "a soft hat with a flat front part called a peak",
+      "examples": [
+        {
+          "text": "He always wears a baseball cap.",
+          "vi": "Anh ấy lúc nào cũng đội mũ lưỡi trai."
+        },
+        {
+          "text": "I left my cap on the bus.",
+          "vi": "Tôi để quên mũ lưỡi trai trên xe buýt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "baseball cap",
+          "vi": "mũ bóng chày"
+        }
+      ],
+      "imageQuery": "baseball cap clipart",
+      "ipaUs": "/kæp/",
+      "ipaUk": "/kæp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cap",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/cap.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/10865536/png-cartoon-illustration",
+        "author": "Miiruuku",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "baseball cap clipart",
+        "sha256": "6078376f3293bf7f003c9ec6210f877714767beaae5c7a26ca1b141852bc5c8c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "gloves",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "găng tay",
+      "meaningEn": "clothing that covers your hands and fingers",
+      "examples": [
+        {
+          "text": "Wear gloves when it is cold.",
+          "vi": "Hãy đeo găng tay khi trời lạnh."
+        },
+        {
+          "text": "I lost one of my gloves.",
+          "vi": "Tôi làm mất một chiếc găng tay."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a pair of gloves",
+          "vi": "một đôi găng tay"
+        }
+      ],
+      "imageQuery": "winter gloves mittens",
+      "ipaUs": "/ɡlʌvz/",
+      "ipaUk": "/ɡlʌvz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/gloves",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "generate": {
+        "kind": "garment",
+        "value": "gloves"
+      },
+      "image": {
+        "file": "a08/gloves.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:garment:gloves",
+        "sha256": "a7596392373cae71fe89eaec3ec00ca0784116b28424bfdf8d6bd2db662c8186",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "socks",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "tất, vớ",
+      "meaningEn": "soft clothing worn on your feet inside shoes",
+      "examples": [
+        {
+          "text": "I put on clean socks every day.",
+          "vi": "Ngày nào tôi cũng mang tất sạch."
+        },
+        {
+          "text": "These socks are thick and warm.",
+          "vi": "Đôi tất này dày và ấm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a pair of socks",
+          "vi": "một đôi tất"
+        }
+      ],
+      "imageQuery": "socks clipart",
+      "ipaUs": "/sɑːks/",
+      "ipaUk": "/sɒks/",
+      "ipaSource": "https://en.wiktionary.org/wiki/socks",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/socks.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6479624/png-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "socks clipart",
+        "sha256": "08f26b2acd988ae26e803f60c101110bfd20c1bb2e9ecf1257ebf3d88099a6a5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "shoes",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "giày",
+      "meaningEn": "strong coverings for your feet",
+      "examples": [
+        {
+          "text": "Take off your shoes at the door.",
+          "vi": "Hãy cởi giày ở cửa."
+        },
+        {
+          "text": "She bought new shoes for school.",
+          "vi": "Cô ấy mua giày mới để đi học."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a pair of shoes",
+          "vi": "một đôi giày"
+        },
+        {
+          "text": "leather shoes",
+          "vi": "giày da"
+        }
+      ],
+      "imageQuery": "shoes clipart",
+      "ipaUs": "/ʃuːz/",
+      "ipaUk": "/ʃuːz/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/shoes",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/shoes.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6525958/image-public-domain-black-illustrations",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "shoes clipart",
+        "sha256": "52fc6cd540181de246c79d874defa97a3b2fbbcb3ad69f1ce8aec3982c590c69",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sneakers",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "giày thể thao",
+      "meaningEn": "soft shoes for sport and walking",
+      "examples": [
+        {
+          "text": "I wear sneakers for the morning run.",
+          "vi": "Tôi đi giày thể thao để chạy bộ buổi sáng."
+        },
+        {
+          "text": "His white sneakers are dirty now.",
+          "vi": "Đôi giày thể thao trắng của cậu ấy giờ đã bẩn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "running sneakers",
+          "vi": "giày chạy bộ"
+        }
+      ],
+      "imageQuery": "sneakers clipart",
+      "ipaUs": "/ˈsnikɚz/",
+      "ipaUk": "/ˈsnikɚz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sneakers",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/sneakers.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/9005051/vector-cartoon-illustrations-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "sneakers clipart",
+        "sha256": "2bdd51a45df9c8a176612b4e75b763a344e72e77a4b57f000675ff326df7c133",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "boots",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ủng, bốt",
+      "meaningEn": "strong shoes that cover the ankle",
+      "examples": [
+        {
+          "text": "She wore boots in the snow.",
+          "vi": "Cô ấy đi ủng trong tuyết."
+        },
+        {
+          "text": "My rain boots are by the door.",
+          "vi": "Đôi ủng đi mưa của tôi ở cạnh cửa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "rain boots",
+          "vi": "ủng đi mưa"
+        }
+      ],
+      "imageQuery": "boots clipart",
+      "ipaUs": "/buts/",
+      "ipaUk": "/buːts/",
+      "ipaSource": "https://en.wiktionary.org/wiki/boots",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/boots.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6754317/vector-public-domain-illustrations-fashion",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "boots clipart",
+        "sha256": "8a446658a3703874adf23b5b2c6eaf522abf199cb71cb55d906ab63323d7623e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sandals",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "dép quai hậu, xăng đan",
+      "meaningEn": "light open shoes for warm weather",
+      "examples": [
+        {
+          "text": "I wear sandals at the beach.",
+          "vi": "Tôi đi xăng đan ở bãi biển."
+        },
+        {
+          "text": "These sandals are comfortable.",
+          "vi": "Đôi xăng đan này đi rất thoải mái."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "leather sandals",
+          "vi": "xăng đan da"
+        }
+      ],
+      "imageQuery": "sandals clipart",
+      "imageCategory": "illustration",
+      "ipaUs": "/ˈsændəlz/",
+      "ipaUk": "/ˈsændəlz/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found",
+      "image": {
+        "file": "a08/sandals.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6552628/image-public-domain-blue-pink",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "sandals clipart",
+        "sha256": "cbc2db4e7137c7bb0dbef5862cda0c1af4d086e389d76a8215c8aeb94cbc3d8b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "belt",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thắt lưng",
+      "meaningEn": "a strip of leather worn around the waist",
+      "examples": [
+        {
+          "text": "He wears a black belt with his trousers.",
+          "vi": "Anh ấy thắt một chiếc thắt lưng đen với quần dài."
+        },
+        {
+          "text": "The belt is too tight.",
+          "vi": "Cái thắt lưng chặt quá."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "leather belt",
+          "vi": "thắt lưng da"
+        }
+      ],
+      "imageQuery": "belt buckle",
+      "ipaUs": "/bɛlt/",
+      "ipaUk": "/bɛlt/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/belt",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "imageCategory": "illustration",
+      "generate": {
+        "kind": "garment",
+        "value": "belt"
+      },
+      "image": {
+        "file": "a08/belt.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:garment:belt",
+        "sha256": "6bc328363c49c927a583034d200886ea78d37d0681b74a297e9513e84e54b6ae",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tie",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "A2",
+      "definition": "cà vạt; buộc",
+      "meaningEn": "a long narrow strip of cloth worn around the neck",
+      "verbForms": {
+        "past": "tied",
+        "pastParticiple": "tied",
+        "ing": "tying",
+        "thirdPerson": "ties"
+      },
+      "examples": [
+        {
+          "text": "He wears a tie to the office.",
+          "vi": "Anh ấy thắt cà vạt đến văn phòng."
+        },
+        {
+          "text": "Dad bought a blue tie for the interview.",
+          "vi": "Bố mua một chiếc cà vạt xanh cho buổi phỏng vấn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wear a tie",
+          "vi": "thắt cà vạt"
+        }
+      ],
+      "imageQuery": "necktie",
+      "ipaUs": "/taɪ/",
+      "ipaUk": "/taɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tie",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "generate": {
+        "kind": "garment",
+        "value": "tie"
+      },
+      "image": {
+        "file": "a08/tie.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:garment:tie",
+        "sha256": "43fddc30496f67ed9a33e52ede36112dc7ed68553be12f53f0ff5582047630a6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "glasses",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "kính mắt",
+      "meaningEn": "two lenses in a frame that help you see better",
+      "examples": [
+        {
+          "text": "I cannot read without my glasses.",
+          "vi": "Tôi không đọc được nếu thiếu kính."
+        },
+        {
+          "text": "She put on her glasses and smiled.",
+          "vi": "Cô ấy đeo kính lên và mỉm cười."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a pair of glasses",
+          "vi": "một chiếc kính"
+        }
+      ],
+      "imageQuery": "eyeglasses clipart",
+      "ipaUs": "/ˈɡlæsɪz/",
+      "ipaUk": "/ˈɡlɑːsɪz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/glasses",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/glasses.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/7580299/vector-pattern-illustrations-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "eyeglasses clipart",
+        "sha256": "efdbe875c80a52155f969730e8a3fe8167a398e3eac4435e92d1ed0718374af4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "watch",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "A1",
+      "definition": "đồng hồ đeo tay; xem",
+      "meaningEn": "a small clock that you wear on your wrist",
+      "verbForms": {
+        "past": "watched",
+        "pastParticiple": "watched",
+        "ing": "watching",
+        "thirdPerson": "watches"
+      },
+      "examples": [
+        {
+          "text": "He looked at his watch and left.",
+          "vi": "Anh ấy nhìn đồng hồ rồi rời đi."
+        },
+        {
+          "text": "My father gave me a new watch.",
+          "vi": "Bố tặng tôi một chiếc đồng hồ mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wrist watch",
+          "vi": "đồng hồ đeo tay"
+        }
+      ],
+      "imageQuery": "wrist watch clipart",
+      "ipaUs": "/ˈwɑt͡ʃ/",
+      "ipaUk": "/ˈwɒt͡ʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/watch",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/watch.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6283414/image-public-domain-illustrations-cute",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "wrist watch clipart",
+        "sha256": "85d90d212bd0db8650360c4d6323d4d76553fd821a4be07134fe4ab0f3af5fa5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "necklace",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "dây chuyền, vòng cổ",
+      "meaningEn": "jewellery that you wear around your neck",
+      "examples": [
+        {
+          "text": "She wore a gold necklace.",
+          "vi": "Cô ấy đeo một sợi dây chuyền vàng."
+        },
+        {
+          "text": "The necklace was a gift from her mother.",
+          "vi": "Sợi dây chuyền là quà của mẹ cô ấy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pearl necklace",
+          "vi": "vòng cổ ngọc trai"
+        }
+      ],
+      "imageQuery": "necklace jewelry clipart",
+      "ipaUs": "/ˈnɛkləs/",
+      "ipaUk": "/ˈneklɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/necklace",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/necklace.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/7568137/png-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "necklace jewelry clipart",
+        "sha256": "c33f6778e12bfa253845e237b042e89c3a2ac70363a48224272a3c0637a1d49d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ring",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "A2",
+      "definition": "chiếc nhẫn; reo",
+      "meaningEn": "a small circle of metal worn on a finger",
+      "verbForms": {
+        "past": "rang",
+        "pastParticiple": "rung",
+        "ing": "ringing",
+        "thirdPerson": "rings"
+      },
+      "examples": [
+        {
+          "text": "She has a gold ring on her finger.",
+          "vi": "Cô ấy đeo một chiếc nhẫn vàng trên ngón tay."
+        },
+        {
+          "text": "He gave her a silver ring.",
+          "vi": "Anh ấy tặng cô ấy một chiếc nhẫn bạc."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wedding ring",
+          "vi": "nhẫn cưới"
+        }
+      ],
+      "imageQuery": "gold ring jewelry clipart",
+      "ipaUs": "/ɹɪŋ/",
+      "ipaUk": "/ɹɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ring",
+      "ipaVerified": true,
+      "imageCategory": "illustration",
+      "image": {
+        "file": "a08/ring.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6330521/vector-sticker-public-domain-golden",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "gold ring jewelry clipart",
+        "sha256": "abcb21f7ace584e074d9baa49549c936853ff27fc853e798be698e2317ecf85d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
