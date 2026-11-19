@@ -1244,7 +1244,7 @@
     box-shadow: var(--tct-clay-shadow-quiet);
 }
 
-.ts-page .ts-folder-new { margin-inline-start: var(--tct-space-sm); vertical-align: middle; }
+.ts-page .ts-folder-new { margin-inline-end: var(--tct-space-xs); }
 
 .ts-page .ts-starter-banner {
     display: flex;

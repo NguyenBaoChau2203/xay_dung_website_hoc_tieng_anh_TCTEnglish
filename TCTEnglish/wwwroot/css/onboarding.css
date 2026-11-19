@@ -174,8 +174,9 @@ body.tob-open .ai-launcher { display: none; }
     position: absolute;
     inset-inline: 0;
     bottom: 0;
-    padding: var(--tct-space-xl) var(--tct-space-sm) var(--tct-space-sm);
-    background: linear-gradient(to top, color-mix(in srgb, var(--tct-text) 82%, transparent), transparent);
+    padding: var(--tct-space-lg) var(--tct-space-sm) var(--tct-space-sm);
+    /* A dark scrim behind the text (about 88%) that fades out above it: white text keeps at least 4.5:1 even on a white photo. */
+    background: linear-gradient(to top, color-mix(in srgb, var(--tct-text) 88%, transparent) 0, color-mix(in srgb, var(--tct-text) 88%, transparent) 62%, transparent 100%);
     line-height: var(--tct-leading-tight);
 }
 .tob-root .tob-tile__name { display: block; font-weight: var(--tct-weight-bold); font-size: var(--tct-text-sm); }

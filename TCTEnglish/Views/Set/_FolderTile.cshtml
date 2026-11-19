@@ -10,8 +10,12 @@
     <a class="ts-folder-link" href="@Url.Action("FolderPage", "Set", new { id = Model.FolderId })"><span class="visually-hidden">@label</span></a>
     <span class="ts-folder-icon" aria-hidden="true"><i class="fa-solid @(Model.IsStarterFolder ? "fa-route" : Model.IsOwn ? "fa-folder" : "fa-folder-open")"></i></span>
     <div class="ts-folder-body" aria-hidden="true">
-        <h3 class="ts-folder-name tct-clamp-2 tct-break" title="@Model.Name">@Model.Name@if (Model.IsNew) { <span class="tct-badge tct-badge--primary ts-folder-new">Mới</span> }</h3>
+        <h3 class="ts-folder-name tct-clamp-2 tct-break" title="@Model.Name">@Model.Name</h3>
         <p class="ts-folder-meta">
+            @if (Model.IsNew)
+            {
+                <span class="tct-badge tct-badge--primary ts-folder-new">Mới</span>
+            }
             @if (!Model.IsOwn)
             {
                 <span class="ts-folder-saved">Đã lưu</span>

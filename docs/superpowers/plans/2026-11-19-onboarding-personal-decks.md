@@ -750,3 +750,26 @@ New: `Views/Set/_StarterRefill.cshtml`, `wwwroot/js/onboarding-refill.js`, `Serv
 | G8 | Scripted Chrome on the real app (new account, full onboarding, then the pages) at 1440×900 and 390×844: banner, dismiss remembered after reload, header button opens the flow at step 1 (no Back), Esc closes, folder chip and route icon, 3 mosaics with all 12 images loaded, deck detail with badge and refill card, refill 25 → 35 words, no console error. |
 | G9 | `/Sets` matches mockup P3 (banner, button, folder chip, mosaics, chips); the detail differs from P4 as noted. |
 | G10–G12, G14–G16 | Mouse path verified above; keyboard, accessibility and contrast at S7; query count asserted; antiforgery and ownership are unchanged for the refill (S4 tests). |
+
+### 12.8 S7 gate record (phone, accessibility, polish)
+
+Scripted headless Chrome on the real app (a new synthetic account for each run; evidence in `.tmp/onboarding/s7/`).
+
+**Render matrix (real page reloads between sizes).** 1366×768, 1024×800, 768×900, 390×844 (2×), 320×640 (2×) and 200% zoom (720×450 at 2×), steps 0–4: no horizontal scroll of the page, of the pop-up or of its scroll area, no console error. At 390 and 320 px the topic tabs lie in their own horizontally scrolling row (plan 3); the element-bounds probe lists them, and nothing else, as "outside the dialog". The sheet is full screen with a sticky bottom bar and the fixed AI launcher is hidden while it is open.
+
+**Keyboard and screen reader (G10, G11).** The dialog has `role="dialog"`, `aria-modal="true"`, `aria-labelledby` pointing at the current step title, and a polite live region. The welcome screen focuses "Bắt đầu"; every later step focuses its title. Enter starts; Tab reaches the goal cards (`role="checkbox"`); Space and Enter toggle; the 4th goal is refused with the hint, which is also announced; 25 consecutive Tab presses never left the dialog (focus trap). Tabs are `role="tab"` with a roving tab index and arrow keys; topic tiles are named "Chủ đề, band"; level and pace are `role="radiogroup"` with roving focus and the arrow keys select; deck switches are `role="switch"` named "Thêm bộ …", "Đã biết" is `aria-pressed` and keeps focus after a toggle; the last deck cannot be switched off (hint). Esc acts as "Để sau" (the server counted one prompt: status stays Pending, no prompt for 20 hours), closes the pop-up and returns focus.
+
+**Contrast (G12).** Computed colours against their effective backgrounds for 121 text elements across steps 1–4: **0 below 4.5:1** (3:1 for large text), lowest 5.28:1. Text over photos: the first version of the topic captions failed (white text over a light photo or drawing, 2.22:1 at worst, 31 of 48 tiles below 4.5). Fixed by a scrim of about 88% behind the caption (`.tob-tile__caption`); re-measured on the real pixels of all 48 tiles (brightest 5% of the pixels under the text): **lowest 11.99:1**. The chips on photos ("Gợi ý", "Đã biết") and the check circles have solid backgrounds.
+
+**Reduced motion and forced colours.** With `prefers-reduced-motion: reduce` the step animation is `none` and the modal transition is effectively zero. With `forced-colors: active` a selected card has a 4 px border against 2 px for the others and a filled check in `Highlight`; the progress segments, switches and cards keep visible borders.
+
+**Fixes made in this phase:** caption scrim (above); welcome-screen focus on "Bắt đầu"; the "Mới" chip of the starter folder moved into the folder's meta row.
+
+| Gate | Result |
+| --- | --- |
+| G8 | Matrix above, 0 console errors. |
+| G9 | Compared with O0–O3, P1, P2, P6 (screenshots in `.tmp/onboarding/s5`, `s6`, `s7`). Differences, all recorded: full display name in the greeting; Back on step 1 in the first-run mode; the AI launcher is hidden while the pop-up is open; step 2 footer says "trong Bộ thẻ của tôi"; the topic caption scrim is darker than the mockup's gradient (for contrast); the refill card sits between the study modes and the word list (the page has no side column). |
+| G10, G11 | As above. |
+| G12 | As above. |
+| G13 | Regression of Trang chủ, Vocabulary home, Bộ thẻ của tôi, a deck detail and its study links, login and register was exercised in the scripted runs (each page rendered, no console error); the study modes themselves are exercised at S8. |
+| G3, G4 | Node 588 passed; the .NET subset of S6 plus `OnboardingSetPagesTests` pass; the full suite is run at S10 (S6 note: the host reaped the full run for memory). |
