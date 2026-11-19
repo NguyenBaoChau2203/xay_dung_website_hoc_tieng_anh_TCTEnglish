@@ -73,6 +73,7 @@
                 </h2>
                 <span id="voiceTimer" class="voice-timer-badge">Chưa bắt đầu</span>
             </div>
+
             <div class="voice-status-panel p-4 mb-3" data-voice-state="ready">
                 <div class="voice-mascot-wrapper">
                     <div class="voice-mascot" aria-hidden="true"></div>
@@ -80,6 +81,24 @@
                 </div>
                 <p id="voiceStatus" class="voice-status-heading h5 mb-2" role="status" aria-live="polite" tabindex="-1">Sẵn sàng khi bạn muốn nói</p>
                 <p class="voice-turn-help mb-0 small" id="voiceTurnHelp">Bạn và AI nói lần lượt. Khi AI đang trả lời, micro tạm ngừng gửi tiếng. Chờ “AI đang lắng nghe” rồi hãy nói; nói xong, ngừng một chút để AI trả lời.</p>
+            </div>
+
+            <!-- Floating Mascot Companion (appears when user scrolls down to read transcript) -->
+            <div class="voice-floating-mascot" id="voiceFloatingMascot" role="group" aria-label="Biểu cảm bé cáo Tico" hidden>
+                <div class="voice-floating-mascot-avatar">
+                    <div class="voice-mini-mascot" aria-hidden="true"></div>
+                    <div class="voice-mascot-live-pulse" aria-hidden="true"></div>
+                </div>
+                <div class="voice-floating-mascot-content">
+                    <div class="voice-floating-mascot-badge">
+                        <span class="voice-live-dot" aria-hidden="true"></span>
+                        <span>Tico AI</span>
+                    </div>
+                    <div class="voice-floating-mascot-status" id="voiceFloatingStatus">Sẵn sàng khi bạn muốn nói</div>
+                </div>
+                <button type="button" class="voice-floating-scroll-top" id="voiceScrollToMascot" title="Cuộn lên xem biểu cảm lớn" aria-label="Cuộn lên bé cáo">
+                    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                </button>
             </div>
 
             <details class="voice-disclosure voice-live-transcript mb-3" open>

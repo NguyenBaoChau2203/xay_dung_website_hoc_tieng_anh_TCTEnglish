@@ -319,7 +319,59 @@ In the initial Voice Mode release, the desktop inline view had significant empty
 
 ---
 
-## 12. Remaining Limitations
+## 12. Persistent Visual Companion: Floating Fox Mascot (Bé Cáo Tico) During Transcript Scroll
+
+### Problem Diagnosis
+* When users engaged in AI Voice conversation or scrolled down the workspace to read the live transcript (`#voiceTranscript`), the large fox mascot card (`.voice-status-panel`) scrolled completely off the top of the viewport.
+* As highlighted by user feedback, losing sight of the mascot degraded the emotional and conversational experience, because learners rely on Tico's animated facial expressions and visual cues (ready, listening, thinking, speaking, finished, muted, error) to know whether the AI is currently listening, preparing a response, or speaking.
+
+### Solution Implemented
+1. **Floating Companion Architecture (`#voiceFloatingMascot` in `_Workspace.cshtml`)**:
+   * Placed right after `.voice-status-panel` and immediately above `<details class="voice-disclosure voice-live-transcript" open>`.
+   * Statically hidden when at the top of the workspace so it never duplicates the large hero mascot card.
+   * Sticky positioned at `top: 6px; z-index: 15;` within `.voice-session`.
+2. **Claymorphism Mini Companion UI (`ai-voice.css`)**:
+   * **Pill Container**: Styled with frosted glass `background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(12px);`, soft clay shadow `0 8px 20px -4px rgba(37, 99, 235, 0.16)`, and pill radius `9999px`.
+   * **Mini Fox Mascot Sprite (`.voice-mini-mascot`)**: Rendered in a 40×40px circular avatar with exact `background-size: 300% 200%` and sprite positions matching all 6 Tico expressions (`ready`, `listening`, `thinking`, `speaking`, `muted`, `finished`).
+   * **Live Reactive Dot & Pulse Ring**:
+     * Green glowing dot during `speaking` (`#10b981`).
+     * Amber glowing dot during `listening` (`#f59e0b`).
+     * Purple glowing dot during `thinking` (`#8b5cf6`).
+     * Red dot during `muted` (`#ef4444`).
+     * Animated pulsing outer ring (`.voice-mascot-live-pulse`) during active speech turns.
+   * **Real-time Status Text (`#voiceFloatingStatus`)**: Mirrors the live voice status in real-time ("Sẵn sàng khi bạn muốn nói", "AI đang lắng nghe", "AI đang chuẩn bị trả lời...", "AI đang nói — bạn chờ nghe hết nhé").
+   * **Scroll-to-Top Button (`#voiceScrollToMascot`)**: Compact 32×32px circular clay button with up arrow icon; clicking it (or anywhere on the floating pill) smoothly scrolls the container back up to the hero mascot card (`heroPanel.scrollIntoView({ behavior: 'smooth', block: 'start' })`).
+   * **Smooth Transitions & Accessibility**: Subtle slide-down entrance animation (`voice-floating-slide-in 0.28s`), hover lift, and `@media (prefers-reduced-motion: reduce)` fallbacks.
+3. **Reactive Visibility & State Synchronization (`ai-voice-page.js`)**:
+   * In `renderVoiceState()`, synchronized `page.dataset.voiceState`, `statusPanel.dataset.voiceState`, and `floating.dataset.voiceState` to the current state.
+   * Implemented `checkMascotVisibility()` tied to container scroll, window scroll, resize, and `<details>` toggle events. Automatically reveals `#voiceFloatingMascot` when the hero card scrolls past the top, and smoothly hides it when returned to the top.
+
+### Verification Evidence (Playwright Headless Chrome)
+* **Mobile (390×844)**:
+  * At top: `floatingHidden: true`.
+  * Scrolled down to transcript (`scrollTop = 750`): `floatingHidden: false`, `statusText: 'Sẵn sàng khi bạn muốn nói'`, mini mascot sprite rendered with correct expression.
+  * Click `#voiceScrollToMascot`: smoothly scrolls back to top; `floatingHidden: true` restored.
+* **Live Facial Expressions**:
+  * Tested and captured screenshots for `speaking` (talking mouth animation, green live dot, pulse ring) and `listening` (perked ears, amber live dot).
+* **Automated Suites**:
+  * `dotnet build`: 0 errors, 24 pre-existing warnings.
+  * `AiVoiceInlineRenderTests`: 2/2 passed.
+  * Node tests: 52/52 passed.
+  * Agent tooling & Python unittests: 153/153 passed (3 skipped).
+
+---
+
+### Pre-merge companion corrections
+
+The earlier styling/measurement notes above describe the initial local version.
+The PR review now uses shared Clay/semantic tokens for the companion, a44px return
+button and a group label instead of a second status announcement. Standalone
+window scrolling clamps the workspace threshold to the viewport; reduced-motion
+users receive immediate return scrolling. Two behavior tests reproduced these
+defects before correction; the final focused Node35/35 and .NET13/13 checks pass.
+Remote CI and merge evidence are recorded through the PR/merge plan.
+
+## 13. Remaining Limitations
 
 * **Native 200% Browser Zoom**: Tested layout adaptiveness down to 375px viewport with fluid wrapping, but actual OS/native display DPI 200% scaling was not directly observed in headless Chrome.
 * **Physical Device Touch & Keyboard**: Verified viewport emulation and virtual pointer events, but physical touch scrolling inertia and on-screen virtual keyboard viewport resizing on physical iOS/Android devices remain unobserved.

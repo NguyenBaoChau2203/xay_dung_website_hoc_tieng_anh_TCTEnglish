@@ -42,6 +42,42 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Voice companion standalone visibility and reduced-motion return — 2026-11-19
+
+**Symptom/Root Cause**: Pre-merge review reproduced two new companion defects: the standalone workspace scrolled with the window, so comparing hero/window coordinates against a negative workspace top never revealed the companion; the return button always requested smooth scrolling even under reduced motion.
+
+**Solution**: Clamp the visibility threshold to the viewport and respect matchMedia reduced motion. Use existing Clay/semantic tokens, a44px return control and one primary live announcement. Existing voice lifecycle/quota and other work remain unchanged.
+
+**Verification**: Two regressions failed before correction; Node35/35 and focused .NET13/13 pass. See docs/superpowers/plans/2026-11-19-ai-voice-pr-merge.md. Owner authorized commit/push/PR/master merge; production gate remains false. No matching known issue to close.
+
+### AI Voice Conversation: Floating Mascot Companion keeping Tico expressions visible during transcript scroll — 2026-11-19
+
+**Symptom**: When users scrolled down the AI Voice workspace to read the live transcript (`#voiceTranscript`), the fox mascot ("bé cáo" Tico) hero card scrolled completely off-screen, preventing users from seeing Tico's live facial expressions and interactive feedback states (listening, speaking, thinking, muted, ready).
+
+**Root Cause**: `.voice-status-panel` was placed at the top of the session panel in normal document flow. On mobile/compact viewports or when reading long transcripts, scrolling down pushed the mascot card out of the viewport. No persistent visual companion or sticky reactive status bar was present.
+
+**Solution**:
+1. Added `#voiceFloatingMascot` companion in `TCTEnglish/Views/AiVoice/_Workspace.cshtml` placed right after `.voice-status-panel` and sticky above the transcript.
+2. In `TCTEnglish/wwwroot/css/ai-voice.css`, styled the companion with Claymorphism pill tokens (`backdrop-filter: blur(12px)`, soft clay shadow, pulsing rings, live status dots per state), mini-mascot sprite mapping (`40x40px` sprite scaling to `300% 200%` matching all 6 facial expressions), and reduced-motion fallback.
+3. In `TCTEnglish/wwwroot/js/ai-voice-page.js`, synced `page.dataset.voiceState` and `floating.dataset.voiceState`, updated `#voiceFloatingStatus`, implemented container-aware scroll checking (`checkMascotVisibility`) that smoothly reveals the companion when the hero card scrolls past and hides it when at top, and added click-to-scroll-up behavior.
+
+**Files Changed**:
+- `TCTEnglish/Views/AiVoice/_Workspace.cshtml`: Added `#voiceFloatingMascot` markup with mini mascot sprite, live pulse, status text, and scroll-to-top button.
+- `TCTEnglish/wwwroot/css/ai-voice.css`: Added sprite state mapping `:is(.voice-mascot, .voice-mini-mascot)`, sticky pill styling, state-colored live dots, pulse ring animation, and reduced-motion support.
+- `TCTEnglish/wwwroot/js/ai-voice-page.js`: Updated `renderVoiceState()` to sync states and status text; added scroll listener, toggle listener, and smooth scroll-to-top handler.
+
+**Verification**:
+- `dotnet build`: 0 errors.
+- `dotnet test` (AiVoiceInlineRenderTests): 2/2 passed.
+- Node test suite (52 tests across voice audio, session, chat mode, clay UI, submit guard): 52/52 passed.
+- Playwright verification (`verify-floating-mascot.cjs`) on mobile (390x844) and desktop (1440x900): confirmed `#voiceFloatingMascot` appears when scrolled, mirrors live expressions (speaking, listening, thinking, ready), and returns cleanly to top when clicked.
+- `uv run --no-project python scripts/agent_tooling.py`: PASS.
+- `uv run --no-project python -m unittest discover -s scripts/tests -v`: 153/153 passed (3 skipped).
+
+**Commit**: Uncommitted (preserves local working tree per owner policy).
+
+**Notes**: Follows Claymorphism system and preserves all audio/WebRTC logic.
+
 ### AI Voice and AI Chat: Replaced native browser confirm() dialog with custom Claymorphism confirmation modals — 2026-11-19
 
 **Symptom**: When clicking to delete a voice conversation session or custom topic, the browser displayed a crude, dark native `window.confirm()` popup ("localhost:5107 cho biết..."), which clashed with the application's visual design. Similarly, the text chat conversation delete dialog was an unstyled basic modal.

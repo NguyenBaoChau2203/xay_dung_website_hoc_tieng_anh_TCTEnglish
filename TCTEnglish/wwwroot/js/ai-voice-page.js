@@ -10,8 +10,15 @@
     const statusPanel = page.querySelector('[data-voice-state]');
     function renderVoiceState() {
         const state = controls.muted && voiceState !== 'speaking' ? 'muted' : voiceState;
-        if (statusPanel) statusPanel.dataset.voiceState = state === 'ready' && hadAttempt ? 'finished' : state;
-        $('voiceStatus').textContent = state === 'muted' ? 'Micro đang tắt — bạn vẫn nghe được AI.' : statuses[state] || statuses.error;
+        const displayState = state === 'ready' && hadAttempt ? 'finished' : state;
+        if (statusPanel) statusPanel.dataset.voiceState = displayState;
+        page.dataset.voiceState = displayState;
+        const floating = $('voiceFloatingMascot');
+        if (floating) floating.dataset.voiceState = displayState;
+        const statusText = state === 'muted' ? 'Micro đang tắt — bạn vẫn nghe được AI.' : statuses[state] || statuses.error;
+        $('voiceStatus').textContent = statusText;
+        const floatingStatus = $('voiceFloatingStatus');
+        if (floatingStatus) floatingStatus.textContent = statusText;
         renderVoiceTimer();
     }
     function renderVoiceTimer() {
@@ -355,6 +362,50 @@
         finally { $('voiceTopicSave').disabled = false; }
     };
     setInterval(renderVoiceTimer, 1000);
+
+    // Floating Mascot Companion (keeps fox expressions visible when transcript is scrolled)
+    const floatingMascot = $('voiceFloatingMascot');
+    const heroPanel = page.querySelector('.voice-status-panel');
+    const workspaceEl = page.querySelector('.voice-workspace');
+
+    function checkMascotVisibility() {
+        if (!floatingMascot || !heroPanel) return;
+        const heroRect = heroPanel.getBoundingClientRect();
+        const wsRect = workspaceEl ? workspaceEl.getBoundingClientRect() : { top: 0, bottom: window.innerHeight };
+        // When hero panel (mascot card) scrolls off the top of the workspace
+        const isHeroScrolledPast = heroRect.bottom <= (Math.max(0, wsRect.top) + 60);
+        if (isHeroScrolledPast) {
+            floatingMascot.removeAttribute('hidden');
+        } else {
+            floatingMascot.setAttribute('hidden', '');
+        }
+    }
+
+    function scrollToHeroMascot(e) {
+        if (e) e.preventDefault();
+        if (heroPanel) {
+            heroPanel.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        }
+    }
+
+    if (floatingMascot) {
+        floatingMascot.addEventListener('click', scrollToHeroMascot);
+        const scrollBtn = $('voiceScrollToMascot');
+        if (scrollBtn) {
+            scrollBtn.addEventListener('click', e => {
+                e.stopPropagation();
+                scrollToHeroMascot(e);
+            });
+        }
+    }
+
+    if (workspaceEl) {
+        workspaceEl.addEventListener('scroll', checkMascotVisibility, { passive: true });
+    }
+    window.addEventListener('scroll', checkMascotVisibility, { passive: true });
+    window.addEventListener('resize', checkMascotVisibility, { passive: true });
+    page.addEventListener('toggle', () => setTimeout(checkMascotVisibility, 50), true);
+    setTimeout(checkMascotVisibility, 200);
     const shell = page.closest('[data-ai-chat-shell]');
     if (shell) {
         const footer = page.querySelector('.voice-controls');
@@ -373,7 +424,7 @@
                 if (layout) layout.dataset.chatMode = next;
                 $('aiTextMode').hidden = next !== 'text'; $('aiVoiceMode').hidden = next !== 'voice';
                 for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.aiMode === next));
-                if (next === 'voice') { void loadTopics(); void loadHistory(); }
+                if (next === 'voice') { void loadTopics(); void loadHistory(); setTimeout(checkMascotVisibility, 100); }
                 else if (!firstRender) $('messageInput').focus({ preventScroll: true });
                 firstRender = false;
             }
