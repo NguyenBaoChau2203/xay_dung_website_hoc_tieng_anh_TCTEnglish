@@ -1,0 +1,1141 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A12",
+    "name": "Nhà bếp & dụng cụ nấu ăn",
+    "description": "#a1 #a2 #kitchen #cooking",
+    "topic": "Nhà bếp & dụng cụ nấu ăn",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "frying pan",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "chảo rán",
+      "meaningEn": "a flat pan with a long handle for frying food",
+      "examples": [
+        {
+          "text": "Heat some oil in the frying pan.",
+          "vi": "Hãy đun một ít dầu trong chảo."
+        },
+        {
+          "text": "The frying pan is too hot to touch.",
+          "vi": "Cái chảo nóng quá không chạm vào được."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "non-stick frying pan",
+          "vi": "chảo chống dính"
+        }
+      ],
+      "imageQuery": "frying pan",
+      "ipaUs": "/ˈfɹaɪ.ɪŋ pæn/",
+      "ipaUk": "/ˈfɹaɪ.ɪŋ pæn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/frying + https://en.wiktionary.org/wiki/pan",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "kitchen",
+        "value": "frying pan"
+      },
+      "image": {
+        "file": "a12/frying-pan.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:kitchen:frying pan",
+        "sha256": "6796e66f50c83c9c050dcbc809ba0db79e810304437b35ec4d65ea4ce1ba063a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pot",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái nồi",
+      "meaningEn": "a deep round container for cooking on a stove",
+      "examples": [
+        {
+          "text": "She put the soup in a big pot.",
+          "vi": "Cô ấy cho món súp vào một cái nồi lớn."
+        },
+        {
+          "text": "The water in the pot is boiling.",
+          "vi": "Nước trong nồi đang sôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cooking pot",
+          "vi": "nồi nấu ăn"
+        }
+      ],
+      "imageQuery": "cooking pot stove",
+      "ipaUs": "/pɑt/",
+      "ipaUk": "/pɒt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pot",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/pot.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/stove-pot-IZYP5AYVUD",
+        "author": "Pawel Kadysz",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cooking pot stove",
+        "sha256": "b6c8428f73e6e9cce239ec538cf8a9e23e95e7c70bc15ddc968fe1df30696379",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "knife",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con dao",
+      "meaningEn": "a tool with a sharp edge for cutting",
+      "plural": "knives",
+      "examples": [
+        {
+          "text": "Be careful with that sharp knife.",
+          "vi": "Hãy cẩn thận với con dao sắc đó."
+        },
+        {
+          "text": "He cut the bread with a knife.",
+          "vi": "Anh ấy cắt bánh mì bằng dao."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "knife and fork",
+          "vi": "dao và nĩa"
+        },
+        {
+          "text": "kitchen knife",
+          "vi": "dao bếp"
+        }
+      ],
+      "imageQuery": "kitchen knife",
+      "ipaUs": "/ˈnaɪ̯f/",
+      "ipaUk": "/ˈnaɪ̯f/",
+      "ipaSource": "https://en.wiktionary.org/wiki/knife",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "kitchen",
+        "value": "knife"
+      },
+      "image": {
+        "file": "a12/knife.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:kitchen:knife",
+        "sha256": "8c99c0159b6eacad569bd2acb031d615e99b5d549338f82be1aaabaead3874ed",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fork",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái nĩa",
+      "meaningEn": "a tool with points that you use to eat food",
+      "examples": [
+        {
+          "text": "I eat noodles with a fork.",
+          "vi": "Tôi ăn mì bằng nĩa."
+        },
+        {
+          "text": "Put the fork on the left of the plate.",
+          "vi": "Hãy đặt cái nĩa bên trái cái đĩa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "knife and fork",
+          "vi": "dao và nĩa"
+        }
+      ],
+      "imageQuery": "fork",
+      "ipaUs": "/fɔɹk/",
+      "ipaUk": "/fɔːk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fork",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "kitchen",
+        "value": "fork"
+      },
+      "image": {
+        "file": "a12/fork.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:kitchen:fork",
+        "sha256": "b5f35efe58afdaa4c5ad2cb0a1331e49363888147d7cfd827cf0d872ca406e57",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "spoon",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái thìa, cái muỗng",
+      "meaningEn": "a tool with a small bowl that you use to eat soup",
+      "examples": [
+        {
+          "text": "She ate the soup with a spoon.",
+          "vi": "Cô ấy ăn súp bằng thìa."
+        },
+        {
+          "text": "Add a spoon of sugar to the tea.",
+          "vi": "Cho một thìa đường vào trà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a spoon of sugar",
+          "vi": "một thìa đường"
+        }
+      ],
+      "imageQuery": "spoon",
+      "ipaUs": "/spun/",
+      "ipaUk": "/spuːn/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/spoon",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/spoon.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/123666315@N03/13988243986",
+        "author": "legopicler",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "spoon",
+        "sha256": "18d64d3b6325ae2f5fc267dccca2b9fecb082be99d8924fdd2fba332ae79f2ef",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "chopsticks",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đôi đũa",
+      "meaningEn": "two thin sticks used in Asia to pick up food",
+      "examples": [
+        {
+          "text": "My little brother learns to use chopsticks.",
+          "vi": "Em trai tôi đang học dùng đũa."
+        },
+        {
+          "text": "We eat rice with chopsticks.",
+          "vi": "Chúng tôi ăn cơm bằng đũa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a pair of chopsticks",
+          "vi": "một đôi đũa"
+        }
+      ],
+      "imageQuery": "chopsticks",
+      "ipaUs": "/ˈt͡ʃɑpstɪks/",
+      "ipaUk": "/ˈt͡ʃɒpstɪks/",
+      "ipaSource": "https://en.wiktionary.org/wiki/chopsticks",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/chopsticks.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/chopsticks-soysauce-3957479LEK",
+        "author": "Daria Nepriakhina",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "chopsticks",
+        "sha256": "7fc8fd0060c194a0e64a6f01a89dedf1e2af846a7ded69e510e78dfb432ef19a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "plate",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái đĩa",
+      "meaningEn": "a flat round dish for food",
+      "examples": [
+        {
+          "text": "She put the cake on a white plate.",
+          "vi": "Cô ấy đặt chiếc bánh lên một cái đĩa trắng."
+        },
+        {
+          "text": "Please wash the plates after dinner.",
+          "vi": "Làm ơn rửa đĩa sau bữa tối."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "paper plate",
+          "vi": "đĩa giấy"
+        }
+      ],
+      "imageQuery": "plate",
+      "ipaUs": "/ˈpleɪ̯t/",
+      "ipaUk": "/ˈpleɪ̯t/",
+      "ipaSource": "https://en.wiktionary.org/wiki/plate",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "kitchen",
+        "value": "plate"
+      },
+      "image": {
+        "file": "a12/plate.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:kitchen:plate",
+        "sha256": "2f0ab18bde27cf2d2a55347953f2126bd0598accc5e3fc31d917c7c340102e4d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bowl",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái bát, cái tô",
+      "meaningEn": "a deep round dish for soup or rice",
+      "examples": [
+        {
+          "text": "He ate a bowl of noodles.",
+          "vi": "Anh ấy ăn một bát mì."
+        },
+        {
+          "text": "The bowl is full of fruit.",
+          "vi": "Cái bát đầy trái cây."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a bowl of rice",
+          "vi": "một bát cơm"
+        }
+      ],
+      "imageQuery": "ceramic bowl",
+      "ipaUs": "/boʊl/",
+      "ipaUk": "/bəʊl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bowl",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/bowl.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/101561334@N08/9768441362",
+        "author": "Gary Lee Todd, Ph.D.",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "ceramic bowl",
+        "sha256": "ce735d5f4d1fb75b5c10c9c06c764e4cec1a0ded6f4805e89ed5ffce48dffb75",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "kettle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ấm đun nước",
+      "meaningEn": "a container with a lid and a spout for boiling water",
+      "examples": [
+        {
+          "text": "Put the kettle on, I want some tea.",
+          "vi": "Bật ấm đun nước lên đi, tôi muốn uống trà."
+        },
+        {
+          "text": "The kettle is boiling.",
+          "vi": "Ấm nước đang sôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "electric kettle",
+          "vi": "ấm đun nước điện"
+        }
+      ],
+      "imageQuery": "kettle",
+      "ipaUs": "/ˈkɛ.təl/",
+      "ipaUk": "/ˈkɛ.təl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/kettle",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "kitchen",
+        "value": "kettle"
+      },
+      "image": {
+        "file": "a12/kettle.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:kitchen:kettle",
+        "sha256": "11c796b9d110ba4be38d11378c3319168c9afdd11e210b9da161bf92bd158786",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "oven",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "lò nướng",
+      "meaningEn": "a closed box that you use to bake food",
+      "examples": [
+        {
+          "text": "She took the cake out of the oven.",
+          "vi": "Cô ấy lấy chiếc bánh ra khỏi lò nướng."
+        },
+        {
+          "text": "Heat the oven to 180 degrees.",
+          "vi": "Hãy làm nóng lò nướng đến 180 độ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "preheat the oven",
+          "vi": "làm nóng lò trước"
+        }
+      ],
+      "imageQuery": "oven kitchen",
+      "ipaUs": "/ˈʌ.vn̩/",
+      "ipaUk": "/ˈʌ.vn̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/oven",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "kitchen",
+        "value": "oven"
+      },
+      "image": {
+        "file": "a12/oven.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:kitchen:oven",
+        "sha256": "f429400c145e3f67499cdd82e3f6facc9c4fd03cacad7ca0ad0e2506b0777ee1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "stove",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bếp nấu",
+      "meaningEn": "a kitchen machine with flames or rings for cooking",
+      "examples": [
+        {
+          "text": "The soup is on the stove.",
+          "vi": "Nồi súp đang ở trên bếp."
+        },
+        {
+          "text": "Turn off the stove before you leave.",
+          "vi": "Hãy tắt bếp trước khi bạn ra khỏi nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "gas stove",
+          "vi": "bếp ga"
+        }
+      ],
+      "imageQuery": "gas stove",
+      "ipaUs": "/stoʊv/",
+      "ipaUk": "/stəʊv/",
+      "ipaSource": "https://en.wiktionary.org/wiki/stove",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/stove.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5912366/image-public-domain-house-kitchen",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "gas stove",
+        "sha256": "2c3a9bbe71f14d78aa4d05c17c02709e878903d78e4fd80c2aa7484a1de50b01",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cutting board",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái thớt",
+      "meaningEn": "a flat board for cutting food on",
+      "examples": [
+        {
+          "text": "Cut the onion on the cutting board.",
+          "vi": "Hãy cắt hành tây trên cái thớt."
+        },
+        {
+          "text": "This wooden cutting board is very old.",
+          "vi": "Cái thớt gỗ này rất cũ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wooden cutting board",
+          "vi": "thớt gỗ"
+        }
+      ],
+      "imageQuery": "cutting board",
+      "ipaUs": "/ˈkʌtɪŋ boɹd/",
+      "ipaUk": "/ˈkʌtɪŋ bɔːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cutting + https://en.wiktionary.org/wiki/board",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/cutting-board.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5913099/image-public-domain-wood-kitchen",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cutting board",
+        "sha256": "c906910fce861187cf6c9b2fcd9d5ad7e8419706f7e59c26229bdd33214947bd",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "spatula",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "xẻng lật, spatula",
+      "meaningEn": "a flat tool for turning food in a pan",
+      "examples": [
+        {
+          "text": "Use a spatula to turn the egg.",
+          "vi": "Hãy dùng xẻng lật để lật quả trứng."
+        },
+        {
+          "text": "The spatula is made of plastic.",
+          "vi": "Cái xẻng lật làm bằng nhựa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "plastic spatula",
+          "vi": "xẻng lật nhựa"
+        }
+      ],
+      "imageQuery": "spatula",
+      "ipaUs": "/ˈspætjʊlə/",
+      "ipaUk": "/ˈspætjʊlə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/spatula",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "kitchen",
+        "value": "spatula"
+      },
+      "image": {
+        "file": "a12/spatula.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:kitchen:spatula",
+        "sha256": "b135c9032c2a54b243674bab6cb7254592d4055e87830c072e60d54a4b0042ad",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ladle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái môi, muôi múc canh",
+      "meaningEn": "a large deep spoon for serving soup",
+      "examples": [
+        {
+          "text": "She served the soup with a ladle.",
+          "vi": "Cô ấy múc súp bằng cái môi."
+        },
+        {
+          "text": "Dad took a ladle of soup.",
+          "vi": "Bố múc một môi súp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "soup ladle",
+          "vi": "môi múc súp"
+        }
+      ],
+      "imageQuery": "soup ladle",
+      "ipaUs": "/ˈleɪ.dəl/",
+      "ipaUk": "/ˈleɪ.dəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ladle",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/ladle.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3368781/free-illustration-image-20th-century-antique-art",
+        "author": "nationalgalleryofart",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "soup ladle",
+        "sha256": "f0b3dfc6281b369aee2ec183bce9ab64d9a1139601709e33d7f46059c48badb2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "whisk",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "A2",
+      "definition": "cái đánh trứng; đánh (trứng)",
+      "meaningEn": "a tool for beating eggs or cream",
+      "verbForms": {
+        "past": "whisked",
+        "pastParticiple": "whisked",
+        "ing": "whisking",
+        "thirdPerson": "whisks"
+      },
+      "examples": [
+        {
+          "text": "She used a whisk to mix the eggs.",
+          "vi": "Cô ấy dùng cái đánh trứng để trộn trứng."
+        },
+        {
+          "text": "A small whisk is easy to clean.",
+          "vi": "Một cái đánh trứng nhỏ rất dễ rửa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "whisk the eggs",
+          "vi": "đánh trứng"
+        }
+      ],
+      "imageQuery": "whisk",
+      "ipaUs": "/(h)wɪsk/",
+      "ipaUk": "/(h)wɪsk/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/whisk",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a12/whisk.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5970327/kitchen-whisk",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "whisk",
+        "sha256": "40a8430c28056e9fba44272c59b15098148b41277ff7fafd4eb4de732526206b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "grater",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái bào, dụng cụ nạo",
+      "meaningEn": "a kitchen tool with sharp holes for making food into small pieces",
+      "examples": [
+        {
+          "text": "Use a grater for the cheese.",
+          "vi": "Hãy dùng dụng cụ nạo cho phần phô mai."
+        },
+        {
+          "text": "I scraped my finger on the grater.",
+          "vi": "Tôi bị trầy ngón tay vào dụng cụ nạo."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cheese grater",
+          "vi": "dụng cụ nạo phô mai"
+        }
+      ],
+      "imageQuery": "grater",
+      "ipaUs": "/ˈɡɹeɪtɚ/",
+      "ipaUk": "/ˈɡɹeɪtə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/grater",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/grater.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6023728/cheese-grater-free-public-domain-cc0-photo",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "grater",
+        "sha256": "1c5aed3b6f708a5db14523d8fa890ca726bfed390910c30fb77e049b061bedca",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "peeler",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "dụng cụ gọt vỏ",
+      "meaningEn": "a tool for taking the skin off fruit or vegetables",
+      "examples": [
+        {
+          "text": "I use a peeler for the potatoes.",
+          "vi": "Tôi dùng dụng cụ gọt vỏ cho khoai tây."
+        },
+        {
+          "text": "The peeler is in the drawer.",
+          "vi": "Dụng cụ gọt vỏ nằm trong ngăn kéo."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "potato peeler",
+          "vi": "dụng cụ gọt vỏ khoai"
+        }
+      ],
+      "imageQuery": "vegetable peeler",
+      "ipaUs": "/ˈpiːlɚ/",
+      "ipaUk": "/ˈpiːlə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/peeler",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/peeler.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:13._Peeler_and_kitchen_knife.jpg",
+        "author": "Datariumrex",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "vegetable peeler",
+        "sha256": "34fdbdba7aeea333ce5639e650ca3805cd92467cf60a0785ecc5bac849827b21",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "colander",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái rổ, cái chao",
+      "meaningEn": "a bowl with many holes for draining water from food",
+      "examples": [
+        {
+          "text": "Pour the noodles into the colander.",
+          "vi": "Hãy đổ mì vào cái rổ."
+        },
+        {
+          "text": "She washed the tomatoes in a colander.",
+          "vi": "Cô ấy rửa cà chua trong cái rổ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "metal colander",
+          "vi": "rổ kim loại"
+        }
+      ],
+      "imageQuery": "colander",
+      "ipaUs": "/ˈkɑləndɚ/",
+      "ipaUk": "/ˈkɒləndə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/colander",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/colander.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3282859/free-photo-image-cucumber-pickle-bean",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "colander",
+        "sha256": "d003868aee5e8f3d51299c065a1c8262d42d17bc894f78c046b3bc78bd33b70d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rice cooker",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nồi cơm điện",
+      "meaningEn": "an electric machine that cooks rice",
+      "examples": [
+        {
+          "text": "The rice cooker is on the kitchen counter.",
+          "vi": "Nồi cơm điện đặt trên bàn bếp."
+        },
+        {
+          "text": "I press a button on the rice cooker.",
+          "vi": "Tôi bấm một nút trên nồi cơm điện."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "electric rice cooker",
+          "vi": "nồi cơm điện"
+        }
+      ],
+      "imageQuery": "rice cooker",
+      "ipaUs": "/ɹaɪs ˈkʊkɚ/",
+      "ipaUk": "/ɹaɪs ˈkʊkə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rice + https://en.wiktionary.org/wiki/cooker",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/rice-cooker.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/9068944/image-cartoon-illustrations-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "rice cooker",
+        "sha256": "25a58b09e25e939b546c01649c950990fb84e53fdf4224c7f5fa31841bf77e54",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "blender",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "máy xay sinh tố",
+      "meaningEn": "a machine that mixes food into a liquid",
+      "examples": [
+        {
+          "text": "I make fruit smoothies in the blender.",
+          "vi": "Tôi làm sinh tố trái cây bằng máy xay."
+        },
+        {
+          "text": "The blender is very loud.",
+          "vi": "Máy xay sinh tố ồn lắm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "electric blender",
+          "vi": "máy xay điện"
+        }
+      ],
+      "imageQuery": "blender",
+      "ipaUs": "/ˈblɛn.dɚ/",
+      "ipaUk": "/ˈblɛn.də/",
+      "ipaSource": "https://en.wiktionary.org/wiki/blender",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "kitchen",
+        "value": "blender"
+      },
+      "image": {
+        "file": "a12/blender.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:kitchen:blender",
+        "sha256": "f04fbef10b7378bb1d53218ed81ba3d1d15574fa34b537a7c0de0063ab0d6e44",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "toaster",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "máy nướng bánh mì",
+      "meaningEn": "a machine that makes bread brown and crisp",
+      "examples": [
+        {
+          "text": "Put two slices of bread in the toaster.",
+          "vi": "Cho hai lát bánh mì vào máy nướng."
+        },
+        {
+          "text": "The toaster is next to the kettle.",
+          "vi": "Máy nướng bánh mì đặt cạnh ấm đun nước."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pop-up toaster",
+          "vi": "máy nướng bánh mì bật lên"
+        }
+      ],
+      "imageQuery": "toaster",
+      "ipaUs": "/ˈtoʊ̯s.tɚ/",
+      "ipaUk": "/ˈtəʊ̯s.təː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/toaster",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/toaster.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/toaster-toast-0UTZ00FWC6",
+        "author": "%u0141ukasz%20Popardowski",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "toaster",
+        "sha256": "135bab733998b06727d042ca132f66cc1045205e4d615ff1b431259659693818",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tray",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái khay",
+      "meaningEn": "a flat object for carrying food and drinks",
+      "examples": [
+        {
+          "text": "The waiter carried a tray of drinks.",
+          "vi": "Người phục vụ bưng một khay đồ uống."
+        },
+        {
+          "text": "She put the cups on a tray.",
+          "vi": "Cô ấy đặt những chiếc cốc lên một cái khay."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "baking tray",
+          "vi": "khay nướng"
+        }
+      ],
+      "imageQuery": "serving tray",
+      "ipaUs": "/tɹeɪ/",
+      "ipaUk": "/tɹeɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tray",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "kitchen",
+        "value": "tray"
+      },
+      "image": {
+        "file": "a12/tray.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:kitchen:tray",
+        "sha256": "49a0479356313a40c926e89de8f14475ee86087c6ddc0ee03791ecc5c93a5075",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "jar",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái hũ, cái lọ",
+      "meaningEn": "a glass container with a lid for food",
+      "examples": [
+        {
+          "text": "There is a jar of honey on the shelf.",
+          "vi": "Có một hũ mật ong trên kệ."
+        },
+        {
+          "text": "She opened the jar and smelled the jam.",
+          "vi": "Cô ấy mở hũ và ngửi mứt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "glass jar",
+          "vi": "hũ thủy tinh"
+        }
+      ],
+      "imageQuery": "glass jar",
+      "ipaUs": "/d͡ʒɑɹ/",
+      "ipaUk": "/d͡ʒɑː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/jar",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/jar.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/glass-jar-O04CQLRPIA",
+        "author": "Ethan Sykes",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "glass jar",
+        "sha256": "1e65870a522f931d6ec45f7450c366d584e03df58c3487e84ae42580f6fd1d07",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "apron",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tạp dề",
+      "meaningEn": "a piece of clothing you wear to keep clean when cooking",
+      "examples": [
+        {
+          "text": "He wears an apron when he cooks.",
+          "vi": "Anh ấy mặc tạp dề khi nấu ăn."
+        },
+        {
+          "text": "The chef's white apron has flour on it.",
+          "vi": "Chiếc tạp dề trắng của đầu bếp dính bột mì."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "kitchen apron",
+          "vi": "tạp dề nhà bếp"
+        }
+      ],
+      "imageQuery": "apron",
+      "ipaUs": "/ˈeɪ.pɹən/",
+      "ipaUk": "/ˈeɪ.pɹən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/apron",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "kitchen",
+        "value": "apron"
+      },
+      "image": {
+        "file": "a12/apron.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:kitchen:apron",
+        "sha256": "fb9e6ed75e58fef55f62fcaecba2b392634d17d80029898f614da90c56424ba1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "teapot",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ấm pha trà",
+      "meaningEn": "a container with a spout for making and pouring tea",
+      "examples": [
+        {
+          "text": "She poured tea from the teapot.",
+          "vi": "Cô ấy rót trà từ ấm."
+        },
+        {
+          "text": "The teapot is made of white china.",
+          "vi": "Ấm pha trà làm bằng sứ trắng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "china teapot",
+          "vi": "ấm trà sứ"
+        }
+      ],
+      "imageQuery": "teapot",
+      "ipaUs": "/ˈti.pɔt/",
+      "ipaUk": "/ˈtiː.pɒt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/teapot",
+      "ipaVerified": true,
+      "image": {
+        "file": "a12/teapot.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/132795455@N08/17106495329",
+        "author": "Image Catalog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "teapot",
+        "sha256": "ffb1bec7fa3a5502ebe151438fcc0d1cbd6da2377072921cd828a323971b5cd5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

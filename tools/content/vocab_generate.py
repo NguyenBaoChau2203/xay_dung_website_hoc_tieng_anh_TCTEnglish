@@ -483,6 +483,88 @@ def people_scene(kind: str) -> bytes:
     return finish(img)
 
 
+STEEL = (170, 178, 192)
+STEEL_D = (96, 104, 120)
+
+
+def kitchenware(name: str) -> bytes:
+    """Flat original drawing of a kitchen item (kind "kitchen")."""
+    img, d = canvas()
+    s = S
+    cx, cy = W * s // 2, H * s // 2
+    L = OUTLINE
+    w3 = 3 * s
+
+    def ell(x0, y0, x1, y1, fill, width=3):
+        d.ellipse((cx + x0 * s, cy + y0 * s, cx + x1 * s, cy + y1 * s), fill=fill, outline=L, width=width * s)
+
+    def rect(x0, y0, x1, y1, fill, r=0, width=3):
+        d.rounded_rectangle((cx + x0 * s, cy + y0 * s, cx + x1 * s, cy + y1 * s), r * s, fill=fill, outline=L, width=width * s)
+
+    def poly(pts, fill):
+        pp = [(cx + x * s, cy + y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=w3, joint="curve")
+
+    if name == "frying pan":
+        rect(40, -12, 190, 12, (120, 72, 36), 10)
+        ell(-130, -90, 50, 90, (60, 64, 76))
+        ell(-112, -72, 32, 72, (38, 40, 50))
+    elif name == "knife":
+        poly([(-170, 8), (60, -26), (90, -14), (60, 14), (-170, 24)], STEEL)
+        d.line((cx - 160 * s, cy + 8 * s, cx + 60 * s, cy - 18 * s), fill=(235, 238, 244), width=4 * s)
+        rect(60, -22, 180, 18, (120, 72, 36), 12)
+    elif name == "fork":
+        rect(-24, 20, 24, 130, STEEL, 12)
+        rect(-6, 100, 6, 100, STEEL)
+        poly([(-46, -130), (-34, -130), (-34, -40), (-20, -40), (-20, -130), (-8, -130), (-8, -40), (8, -40), (8, -130), (20, -130), (20, -40), (34, -40), (34, -130), (46, -130), (46, -20), (28, 20), (-28, 20), (-46, -20)], STEEL)
+        poly([(-18, 10), (18, 10), (14, 150), (-14, 150)], STEEL)
+    elif name == "plate":
+        ell(-140, -105, 140, 105, (248, 250, 252))
+        ell(-98, -72, 98, 72, (226, 232, 240), 2)
+    elif name == "kettle":
+        poly([(-90, 90), (90, 90), (76, -10), (40, -60), (-40, -60), (-76, -10)], STEEL)
+        poly([(-30, -60), (30, -60), (22, -86), (-22, -86)], STEEL_D)
+        ell(-12, -104, 12, -84, (60, 64, 76))
+        d.arc((cx - 90 * s, cy - 120 * s, cx + 100 * s, cy + 30 * s), 205, 335, fill=L, width=8 * s)
+        poly([(76, -8), (130, -52), (140, -40), (88, 20)], STEEL)
+        poly([(-90, 90), (90, 90), (84, 110), (-84, 110)], STEEL_D)
+    elif name == "oven":
+        rect(-130, -100, 130, 110, (226, 232, 240), 12)
+        rect(-130, -100, 130, -60, (96, 104, 120), 8)
+        for k in (-80, -40, 0, 40, 80):
+            ell(k - 9, -90, k + 9, -70, (248, 250, 252), 2)
+        rect(-104, -40, 104, 84, (38, 40, 50), 10)
+        rect(-84, -22, 84, 62, (255, 190, 90), 8)
+        rect(-70, -56, 70, -50, STEEL_D, 3)
+    elif name == "spatula":
+        rect(-14, -10, 14, 150, (120, 72, 36), 10)
+        poly([(-70, -130), (70, -130), (70, -62), (14, -16), (-14, -16), (-70, -62)], (236, 120, 40))
+        for k in (-36, 0, 36):
+            d.line((cx + k * s, cy - 120 * s, cx + k * s, cy - 70 * s), fill=L, width=3 * s)
+    elif name == "blender":
+        poly([(-70, -120), (70, -120), (52, 40), (-52, 40)], (200, 230, 250))
+        poly([(-70, -120), (70, -120), (74, -136), (-74, -136)], (60, 64, 76))
+        poly([(-52, 40), (52, 40), (80, 120), (-80, 120)], (60, 64, 76))
+        ell(-12, 66, 12, 90, (236, 120, 40), 2)
+        poly([(-60, -20), (60, -20), (52, 40), (-52, 40)], (236, 90, 90))
+        d.line((cx - 44 * s, cy + 30 * s, cx + 44 * s, cy + 30 * s), fill=L, width=3 * s)
+    elif name == "tray":
+        poly([(-170, 10), (170, 10), (140, 80), (-140, 80)], (120, 72, 36))
+        poly([(-150, 0), (150, 0), (170, 10), (-170, 10)], (170, 110, 60))
+        ell(-80, -60, 20, -2, (248, 250, 252), 2)
+        rect(40, -70, 100, -2, (200, 230, 250), 6, 2)
+    elif name == "apron":
+        poly([(-30, -130), (30, -130), (44, -60), (100, 120), (-100, 120), (-44, -60)], (37, 99, 235))
+        rect(-48, 20, 48, 84, (96, 140, 240), 8)
+        d.arc((cx - 30 * s, cy - 156 * s, cx + 30 * s, cy - 90 * s), 180, 360, fill=L, width=4 * s)
+        d.line((cx - 44 * s, cy - 60 * s, cx - 128 * s, cy - 40 * s), fill=L, width=5 * s)
+        d.line((cx + 44 * s, cy - 60 * s, cx + 128 * s, cy - 40 * s), fill=L, width=5 * s)
+    else:
+        raise SystemExit(f"unknown kitchen item: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -513,6 +595,8 @@ def main() -> None:
             data = family_tree(val)
         elif kind == "people":
             data = people_scene(val)
+        elif kind == "kitchen":
+            data = kitchenware(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"
