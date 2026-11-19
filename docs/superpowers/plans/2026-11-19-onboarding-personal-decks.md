@@ -636,3 +636,24 @@ New: `Models/UserOnboarding.cs`, `Models/DbflashcardContext.Onboarding.cs` (part
 | G13 | Not applicable yet (no behaviour change). |
 | G15 | Cascade delete only; no query exists yet. |
 | G16 | Not applicable. |
+
+### 12.3 S2 gate record (catalogue and ranking)
+
+New: `Services/Onboarding/OnboardingCatalog.cs` (6 goals, 48 topics, goal → topic map, levels, paces, `EstimateDays`, `DefaultLevel`), `Services/Onboarding/OnboardingDeckBuilder.cs` (pure ranking and deck building), `OnboardingRankingTests` (written first; 42 tests incl. the catalogue checks against the committed manifests).
+
+**Design decisions taken while building (all inside plan 4.3):**
+- The CEFR window is `[max(0, l-1), min(3, l+1)]` over A1..B2 (A1 → A1–A2, A2 → A1–B1, B1 → A2–B2, B2 → B1–B2). **A topic with no card inside the window is not empty:** the sets of folder A only hold A1–A2 cards and folder B only B1–B2, so an A1 learner who picks a B topic would otherwise get nothing. Pass 1 takes window cards; pass 2 (only when the deck is still short) takes the nearest levels first. Phrase sets ignore the window.
+- Within a pass the topics are mixed round-robin; per topic the order is images first, then level distance, then card id. The final deck is listed from easy to hard (stable).
+- A topic fitting several chosen goals goes to the first chosen goal. Phrase topics go to their own deck when `travel` or `communication` is chosen (name by `travel` first). Groups with fewer than 10 cards merge into the previous deck (the next for the first); above 4 decks the smallest merges into its neighbour; at most 30 cards per deck and 100 in total.
+- Deck names get ` (2)`, ` (3)` … against the names the user already has.
+
+| Gate | Result |
+| --- | --- |
+| G1 | Debug build, 0 errors. |
+| G2 | `OnboardingCatalogTests` + `OnboardingRankingTests` + earlier `OnboardingSchemaTests`: all pass (42 + 3). Three first-draft tests used deck sizes below the 10-card minimum; the tests were rewritten to valid sizes, not the code. |
+| G3, G4 | Full suites run at S3 (no existing code changed here). |
+| G5 | No model change. No route added. |
+| G6 | New C# only; no CSS, views or inline code. |
+| G7 | Files = section 5. |
+| G8–G14, G16 | Not applicable (no UI). |
+| G15 | Pure functions; no data access. |
