@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A11",
+    "name": "Nội thất & đồ gia dụng",
+    "description": "#a1 #a2 #furniture #home",
+    "topic": "Nội thất & đồ gia dụng",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "sofa",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "ghế sofa",
+      "meaningEn": "a long soft seat for two or three people",
+      "examples": [
+        {
+          "text": "The cat is sleeping on the sofa.",
+          "vi": "Con mèo đang ngủ trên ghế sofa."
+        },
+        {
+          "text": "We bought a new grey sofa.",
+          "vi": "Chúng tôi mua một chiếc ghế sofa màu xám mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "sit on the sofa",
+          "vi": "ngồi trên ghế sofa"
+        }
+      ],
+      "imageQuery": "sofa living room",
+      "ipaUs": "/ˈsoʊ̯fə/",
+      "ipaUk": "/ˈsəʊ̯fə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sofa",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/sofa.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/96511847@N04/9202793852",
+        "author": "Foto Miki Digital",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "sofa living room",
+        "sha256": "f6d9ec4b6d6e1c5e335f52c89cccd39125d46fa46f93f80fbddd79570bf72192",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "armchair",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ghế bành",
+      "meaningEn": "a comfortable chair with arms for one person",
+      "examples": [
+        {
+          "text": "Grandpa reads the newspaper in his armchair.",
+          "vi": "Ông đọc báo trên chiếc ghế bành của ông."
+        },
+        {
+          "text": "This armchair is soft and comfortable.",
+          "vi": "Chiếc ghế bành này mềm và thoải mái."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "leather armchair",
+          "vi": "ghế bành da"
+        }
+      ],
+      "imageQuery": "armchair",
+      "ipaUs": "/ˈɑɹmt͡ʃɛɚ/",
+      "ipaUk": "/ˈɑː(ɹ)mtʃɛə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/armchair",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/armchair.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/96511847@N04/10798324736",
+        "author": "Foto Miki Digital",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "armchair",
+        "sha256": "5aba6420776fb8aa310699c610e31b7a5e7d2466e3a5ec1ca265ff22ec093a81",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "table",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái bàn",
+      "meaningEn": "a piece of furniture with a flat top and legs",
+      "examples": [
+        {
+          "text": "Put the plates on the table.",
+          "vi": "Hãy đặt những cái đĩa lên bàn."
+        },
+        {
+          "text": "We eat dinner at a round table.",
+          "vi": "Chúng tôi ăn tối quanh một chiếc bàn tròn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "set the table",
+          "vi": "dọn bàn ăn"
+        },
+        {
+          "text": "coffee table",
+          "vi": "bàn trà"
+        }
+      ],
+      "imageQuery": "wooden table",
+      "ipaUs": "/ˈtʰeɪb(ə)ɫ/",
+      "ipaUk": "/ˈteɪbəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/table ; https://api.dictionaryapi.dev/api/v2/entries/en/table",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/table.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/190770594@N02/51335028677",
+        "author": "murlisachi",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "wooden table",
+        "sha256": "80973a285b4ad603bff0dd00ede85f184c38f14178028c91fc385027a167aaa0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "chair",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái ghế",
+      "meaningEn": "a seat for one person with a back",
+      "examples": [
+        {
+          "text": "Please sit on this chair.",
+          "vi": "Mời bạn ngồi vào chiếc ghế này."
+        },
+        {
+          "text": "There are four chairs around the table.",
+          "vi": "Có bốn chiếc ghế quanh bàn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wooden chair",
+          "vi": "ghế gỗ"
+        }
+      ],
+      "imageQuery": "chair",
+      "ipaUs": "/t͡ʃɛɚ/",
+      "ipaUk": "/t͡ʃɛː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/chair",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/chair.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/37996646802@N01/2274055016",
+        "author": "cogdogblog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "chair",
+        "sha256": "7bdd51766f271f2b8b76f65eaea12ab622867ec1c043b56ae9088a53d15ca45f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bed",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái giường",
+      "meaningEn": "a piece of furniture you sleep on",
+      "examples": [
+        {
+          "text": "I make my bed every morning.",
+          "vi": "Sáng nào tôi cũng dọn giường."
+        },
+        {
+          "text": "The baby is asleep in his bed.",
+          "vi": "Em bé đang ngủ trên giường của mình."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go to bed",
+          "vi": "đi ngủ"
+        },
+        {
+          "text": "make the bed",
+          "vi": "dọn giường"
+        }
+      ],
+      "imageQuery": "bed bedroom",
+      "ipaUs": "/bɛd/",
+      "ipaUk": "/bɛd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bed",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/bed.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/bed-bedroom-NNZ04PGNFD",
+        "author": "Matt Bango",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bed bedroom",
+        "sha256": "5d3e4b8a92773b115d1f26f999e492a2eb6dfeb0b239e9f60f2191b9a102985d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wardrobe",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tủ quần áo",
+      "meaningEn": "a tall cupboard where you hang your clothes",
+      "examples": [
+        {
+          "text": "She hung her dress in the wardrobe.",
+          "vi": "Cô ấy treo chiếc váy vào tủ quần áo."
+        },
+        {
+          "text": "My wardrobe is full of old clothes.",
+          "vi": "Tủ quần áo của tôi đầy quần áo cũ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wardrobe door",
+          "vi": "cửa tủ quần áo"
+        }
+      ],
+      "imageQuery": "wardrobe furniture",
+      "ipaUs": "/ˈwɔɹdɹoʊb/",
+      "ipaUk": "/ˈwɔːdɹəʊb/",
+      "ipaSource": "https://en.wiktionary.org/wiki/wardrobe",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/wardrobe.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3390680/free-illustration-image-antique-art-artwork",
+        "author": "nationalgalleryofart",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "wardrobe furniture",
+        "sha256": "5ff5f41c5e9f2912cd4d627c921a8e71f4e13469065c0999b6949d699d21a8c5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "shelf",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái kệ, giá sách",
+      "meaningEn": "a flat board on a wall for putting things on",
+      "plural": "shelves",
+      "examples": [
+        {
+          "text": "The books are on the top shelf.",
+          "vi": "Những quyển sách nằm trên ngăn kệ trên cùng."
+        },
+        {
+          "text": "He put the photo on the shelf.",
+          "vi": "Anh ấy đặt bức ảnh lên kệ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "top shelf",
+          "vi": "ngăn trên cùng"
+        }
+      ],
+      "imageQuery": "wall shelf",
+      "ipaUs": "/ʃɛlf/",
+      "ipaUk": "/ʃɛlf/",
+      "ipaSource": "https://en.wiktionary.org/wiki/shelf",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/shelf.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/10078012/wall-shelf-c-1937-carl-keksi",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "wall shelf",
+        "sha256": "5bc1fce261082d29fb5cb0a160e8926ae1bfa847e656479c291d2e1144b252d6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bookcase",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tủ sách",
+      "meaningEn": "a piece of furniture with shelves for books",
+      "examples": [
+        {
+          "text": "The bookcase is full of old novels.",
+          "vi": "Tủ sách đầy những cuốn tiểu thuyết cũ."
+        },
+        {
+          "text": "We built a bookcase for my room.",
+          "vi": "Chúng tôi đóng một tủ sách cho phòng tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wooden bookcase",
+          "vi": "tủ sách gỗ"
+        }
+      ],
+      "imageQuery": "bookcase",
+      "ipaUs": "/ˈbʊkˌkeɪs/",
+      "ipaUk": "/ˈbʊkˌkeɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bookcase",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a11/bookcase.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Bookcase_MET_ADA3165.jpg",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "bookcase",
+        "sha256": "d86f9f918379e08439b791a5d48d21ca1a296ca2fcadc9960d1c910e11b1ce28",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "lamp",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái đèn",
+      "meaningEn": "a light that stands on a table or the floor",
+      "examples": [
+        {
+          "text": "Turn on the lamp, please.",
+          "vi": "Làm ơn bật đèn lên."
+        },
+        {
+          "text": "A small lamp stands next to my bed.",
+          "vi": "Một chiếc đèn nhỏ đặt cạnh giường tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "desk lamp",
+          "vi": "đèn bàn"
+        }
+      ],
+      "imageQuery": "table lamp",
+      "ipaUs": "/æ/",
+      "ipaUk": "/ˈlæ̞mp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lamp",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/lamp.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/table-lamp-CGPGQOOQ4I",
+        "author": "Kristin Hardwick",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "table lamp",
+        "sha256": "b22f0dbd186c8a9d71a38a1f16901a4dc0e91c161adb05b3be2a1c912c8840fe",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "mirror",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái gương",
+      "meaningEn": "a glass in which you can see yourself",
+      "examples": [
+        {
+          "text": "She looked at herself in the mirror.",
+          "vi": "Cô ấy nhìn mình trong gương."
+        },
+        {
+          "text": "There is a big mirror in the hall.",
+          "vi": "Có một tấm gương lớn ở hành lang."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "look in the mirror",
+          "vi": "soi gương"
+        }
+      ],
+      "imageQuery": "wall mirror",
+      "ipaUs": "/ˈmiɹɚ/",
+      "ipaUk": "/ˈmɪɹə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mirror",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/mirror.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8144103/wall-mirror",
+        "author": "themet",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "wall mirror",
+        "sha256": "496b1dba90ecd6b49ce35bbc126f4cbcae76153d037a3aad2628a2bd5e009dd1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "curtain",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "rèm cửa",
+      "meaningEn": "a piece of cloth that hangs over a window",
+      "examples": [
+        {
+          "text": "Please close the curtains, it is too bright.",
+          "vi": "Làm ơn kéo rèm lại, chói quá."
+        },
+        {
+          "text": "The curtain is blue with white stars.",
+          "vi": "Tấm rèm màu xanh có những ngôi sao trắng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "draw the curtains",
+          "vi": "kéo rèm"
+        }
+      ],
+      "imageQuery": "window curtains",
+      "ipaUs": "/ˈkɜɹt(ə)n/",
+      "ipaUk": "/ˈkɜːtn̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/curtain",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/curtain.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/window-curtains-06OAHLI7B4",
+        "author": "Eduard Militaru",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "window curtains",
+        "sha256": "37063b829cb89c65f8db7db8db5cca3560e586fcf1004f411e6a0a370ea683f0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "carpet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tấm thảm trải sàn",
+      "meaningEn": "a thick soft cover for a floor",
+      "examples": [
+        {
+          "text": "The children sat on the carpet.",
+          "vi": "Bọn trẻ ngồi trên tấm thảm."
+        },
+        {
+          "text": "We bought a red carpet for the living room.",
+          "vi": "Chúng tôi mua một tấm thảm đỏ cho phòng khách."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "vacuum the carpet",
+          "vi": "hút bụi tấm thảm"
+        }
+      ],
+      "imageQuery": "carpet floor",
+      "ipaUs": "/ˈkɑɹpət/",
+      "ipaUk": "/ˈkɑːpɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/carpet",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/carpet.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:%2B15_Carpet_Floor_Example.jpg",
+        "author": "SubscribeTransport",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "carpet floor",
+        "sha256": "3c4377e133fc6a70a3cb90d31f920d73f6a83bc931f67c5246f5fa4bf140bbb2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pillow",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái gối",
+      "meaningEn": "a soft bag that supports your head in bed",
+      "examples": [
+        {
+          "text": "I need a softer pillow.",
+          "vi": "Tôi cần một cái gối mềm hơn."
+        },
+        {
+          "text": "The cat sleeps on my pillow.",
+          "vi": "Con mèo ngủ trên gối của tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "soft pillow",
+          "vi": "gối mềm"
+        }
+      ],
+      "imageQuery": "pillow bed",
+      "ipaUs": "/ˈpɛl.oʊ/",
+      "ipaUk": "/ˈpɪl.əʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pillow",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/pillow.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3284787/free-photo-image-hotel-room-linen-bed",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "pillow bed",
+        "sha256": "f3c1a68d44f2289f87440b42cf341ac12ba5a0283d4ab683f70383038cee90f2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "blanket",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái chăn, cái mền",
+      "meaningEn": "a thick cover that keeps you warm in bed",
+      "examples": [
+        {
+          "text": "She put a blanket over the baby.",
+          "vi": "Cô ấy đắp chăn cho em bé."
+        },
+        {
+          "text": "It is cold, so I need a warm blanket.",
+          "vi": "Trời lạnh nên tôi cần một chiếc chăn ấm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "warm blanket",
+          "vi": "chăn ấm"
+        }
+      ],
+      "imageQuery": "blanket",
+      "ipaUs": "/æ/",
+      "ipaUk": "/æ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/blanket",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/blanket.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/57873306@N00/6650393729",
+        "author": "Kim Siever",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "blanket",
+        "sha256": "6cb24e14cf8ea53952fc069f68207ac48ccf2de4c1dad8401818e03e3f67f645",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fan",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quạt",
+      "meaningEn": "a machine with blades that moves air to keep you cool",
+      "examples": [
+        {
+          "text": "Turn on the fan, it is hot.",
+          "vi": "Bật quạt lên đi, nóng quá."
+        },
+        {
+          "text": "The ceiling fan is very quiet.",
+          "vi": "Chiếc quạt trần rất êm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ceiling fan",
+          "vi": "quạt trần"
+        },
+        {
+          "text": "electric fan",
+          "vi": "quạt điện"
+        }
+      ],
+      "imageQuery": "electric fan",
+      "ipaUs": "/æ/",
+      "ipaUk": "/æ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fan",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/fan.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5901123/photo-image-public-domain-table-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "electric fan",
+        "sha256": "c221aace3c5a41a9be5586ede046a99cc7cfb2604ca3b1da1fc05cd5d87973bb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "air conditioner",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "máy điều hòa",
+      "meaningEn": "a machine that makes the air in a room cool",
+      "examples": [
+        {
+          "text": "The air conditioner is on in the bedroom.",
+          "vi": "Máy điều hòa đang bật trong phòng ngủ."
+        },
+        {
+          "text": "We bought a new air conditioner last summer.",
+          "vi": "Mùa hè năm ngoái chúng tôi mua một chiếc máy điều hòa mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "turn on the air conditioner",
+          "vi": "bật máy điều hòa"
+        }
+      ],
+      "imageQuery": "air conditioner wall",
+      "ipaUs": "/ɛɚ kənˈdɪʃənɚ/",
+      "ipaUk": "/ɛə̯ kənˈdɪʃənə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/air + https://en.wiktionary.org/wiki/conditioner",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/air-conditioner.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Air_conditioner_in_brick_wall.jpg",
+        "author": "HumanAdventure",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "air conditioner wall",
+        "sha256": "64ebcf47af98f0d7ff5ceb81ea27929118d24c3566e916f1e8f10dfe142b3946",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "television",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "tivi",
+      "meaningEn": "a machine with a screen that shows programmes",
+      "examples": [
+        {
+          "text": "We watch television after dinner.",
+          "vi": "Chúng tôi xem tivi sau bữa tối."
+        },
+        {
+          "text": "The television is too loud.",
+          "vi": "Cái tivi to tiếng quá."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "turn off the television",
+          "vi": "tắt tivi"
+        }
+      ],
+      "synonyms": [
+        "TV"
+      ],
+      "imageQuery": "TV screen",
+      "ipaUs": "/ˈtɛlɪˌvɪʒən/",
+      "ipaUk": "/ˈtɛlɪˌvɪʒən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/television",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/television.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/44124284226@N01/2992997518",
+        "author": "mlinksva",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "TV screen",
+        "sha256": "b4840b8adf9b9e94b845bb0cf342fe2eb5183fe0f9ba160d7bbed4ea8441fc46",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "refrigerator",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tủ lạnh",
+      "meaningEn": "a machine that keeps food cold",
+      "examples": [
+        {
+          "text": "The milk is in the refrigerator.",
+          "vi": "Sữa để trong tủ lạnh."
+        },
+        {
+          "text": "Our refrigerator is almost empty.",
+          "vi": "Tủ lạnh nhà chúng tôi gần hết đồ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open the refrigerator",
+          "vi": "mở tủ lạnh"
+        }
+      ],
+      "synonyms": [
+        "fridge"
+      ],
+      "imageQuery": "refrigerator kitchen",
+      "ipaUs": "/ɹɪˈfɹɪd͡ʒ.əˌɹeɪ.tɚ/",
+      "ipaUk": "/ɹɪˈfɹɪd͡ʒ.əˌɹeɪ.tə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/refrigerator",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/refrigerator.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Newly_renovated_kitchen_with_cabinets_refrigerator_stove_and_hardwood_floor.jpg",
+        "author": "Tomwsulcer",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "refrigerator kitchen",
+        "sha256": "d7ef652cf79bcd1501b80a2e33ad720cfee5efcd03d7ff98105998bcd6b62a8f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "washing machine",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "máy giặt",
+      "meaningEn": "a machine that washes clothes",
+      "examples": [
+        {
+          "text": "The washing machine is in the bathroom.",
+          "vi": "Máy giặt đặt trong phòng tắm."
+        },
+        {
+          "text": "I put my dirty clothes in the washing machine.",
+          "vi": "Tôi cho quần áo bẩn vào máy giặt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "use the washing machine",
+          "vi": "dùng máy giặt"
+        }
+      ],
+      "imageQuery": "washing machine appliance",
+      "ipaUs": "/ˈwɑʃ.ɪŋ məˈʃin/",
+      "ipaUk": "/ˈwɒʃ.ɪŋ məˈʃiːn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/washing + https://en.wiktionary.org/wiki/machine",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/washing-machine.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6058248/free-public-domain-cc0-photo",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "washing machine appliance",
+        "sha256": "156b1c3e06606d0072bfb5d89d6f95b590de5d0e0898cb907cfb9eb7e7dc2bb3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "microwave",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "lò vi sóng",
+      "meaningEn": "a small oven that heats food very quickly",
+      "examples": [
+        {
+          "text": "Heat the soup in the microwave.",
+          "vi": "Hãy hâm súp trong lò vi sóng."
+        },
+        {
+          "text": "The microwave stopped after two minutes.",
+          "vi": "Lò vi sóng dừng sau hai phút."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "microwave oven",
+          "vi": "lò vi sóng"
+        }
+      ],
+      "imageQuery": "microwave oven kitchen",
+      "ipaUs": "/ˈmaɪkɹoʊˌweɪv/",
+      "ipaUk": "/ˈmaɪkɹəʊˌweɪv/",
+      "ipaSource": "https://en.wiktionary.org/wiki/microwave",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/microwave.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5924482/photo-image-light-public-domain-black",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "microwave oven kitchen",
+        "sha256": "7d472c4d9b599725b80334d87f0d206849cb3ead66c5aa2c6233c930ad9f2ea6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "vacuum cleaner",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "máy hút bụi",
+      "meaningEn": "a machine that sucks dust from floors",
+      "examples": [
+        {
+          "text": "My father uses the vacuum cleaner on Sundays.",
+          "vi": "Bố tôi dùng máy hút bụi vào Chủ nhật."
+        },
+        {
+          "text": "The vacuum cleaner is very noisy.",
+          "vi": "Máy hút bụi rất ồn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "robot vacuum cleaner",
+          "vi": "robot hút bụi"
+        }
+      ],
+      "imageQuery": "vacuum cleaner",
+      "ipaUs": "/ˈvæ.kjuːm ˈkli.nɚ/",
+      "ipaUk": "/ˈvæ.kjuːm ˈkliː.nə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/vacuum + https://en.wiktionary.org/wiki/cleaner",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/vacuum-cleaner.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6711022/png-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "vacuum cleaner",
+        "sha256": "8ed36686bd58dbeac7123fcc76b063d6d1d67258d0c9de6843a8dc5ef1b5d31a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "clock",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "đồng hồ treo tường, đồng hồ để bàn",
+      "meaningEn": "a machine on a wall or table that shows the time",
+      "examples": [
+        {
+          "text": "The clock on the wall says seven.",
+          "vi": "Chiếc đồng hồ trên tường chỉ bảy giờ."
+        },
+        {
+          "text": "I set the clock for six in the morning.",
+          "vi": "Tôi đặt đồng hồ lúc sáu giờ sáng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "alarm clock",
+          "vi": "đồng hồ báo thức"
+        },
+        {
+          "text": "wall clock",
+          "vi": "đồng hồ treo tường"
+        }
+      ],
+      "imageQuery": "wall clock",
+      "ipaUs": "/klɑk/",
+      "ipaUk": "/klɒk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/clock",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/clock.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/147778363@N07/33750132165",
+        "author": "favorli",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "wall clock",
+        "sha256": "b2b26f651a173085a9f231747be4a28d7e80c1b0421b5e58b63c7cdbcc1b1b55",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "vase",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bình hoa",
+      "meaningEn": "a container for cut flowers",
+      "examples": [
+        {
+          "text": "She put the roses in a vase.",
+          "vi": "Cô ấy cắm những bông hồng vào bình."
+        },
+        {
+          "text": "The vase fell and broke.",
+          "vi": "Cái bình hoa rơi xuống và vỡ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "vase of flowers",
+          "vi": "bình hoa"
+        }
+      ],
+      "imageQuery": "flower vase",
+      "ipaUs": "/veɪ̯s/",
+      "ipaUk": "/vɑːz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/vase",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/vase.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/flower-vase-VMRKBKSM2Q",
+        "author": "Kelly Ishmael",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "flower vase",
+        "sha256": "f8f2b964e2acb784feb3bc803b148d6e3372658cf13e0fd3a656fd0d66e0a75a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "drawer",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ngăn kéo",
+      "meaningEn": "a box in a piece of furniture that slides in and out",
+      "examples": [
+        {
+          "text": "The keys are in the top drawer.",
+          "vi": "Chìa khóa ở trong ngăn kéo trên cùng."
+        },
+        {
+          "text": "He opened the drawer and took out a pen.",
+          "vi": "Anh ấy mở ngăn kéo và lấy ra một cây bút."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open a drawer",
+          "vi": "mở ngăn kéo"
+        }
+      ],
+      "imageQuery": "chest of drawers",
+      "ipaUs": "/dɹɔɹ/",
+      "ipaUk": "/dɹɔː(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/drawer",
+      "ipaVerified": true,
+      "image": {
+        "file": "a11/drawer.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Chest_of_Drawers_MET_85J_ACF3111R7.jpg",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "chest of drawers",
+        "sha256": "17f12eaaec9995345e6bd25d2f84fa3e8f6d6150befce4c84fd87b1a40148599",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "mattress",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nệm, đệm",
+      "meaningEn": "the thick soft part of a bed that you lie on",
+      "examples": [
+        {
+          "text": "This mattress is hard but comfortable.",
+          "vi": "Tấm nệm này cứng nhưng thoải mái."
+        },
+        {
+          "text": "We need to buy a new mattress.",
+          "vi": "Chúng ta cần mua một tấm nệm mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "soft mattress",
+          "vi": "nệm mềm"
+        }
+      ],
+      "imageQuery": "mattress bed",
+      "ipaUs": "/ˈmætɹɪs/",
+      "ipaUk": "/ˈmætɹɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mattress",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a11/mattress.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/60455048@N02/39243651074",
+        "author": "Queensland State Archives",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "mattress bed",
+        "sha256": "5e4420e4d40bb1b6e4eae0bad6ae855d7ab0d7f71d83d12f1f56b3edb421264a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
