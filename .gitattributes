@@ -32,6 +32,9 @@ TCTEnglish/wwwroot/lib/pinned/* -text
 # Upstream licenses retain their original EOF spacing; our manifest uses LF.
 TCTEnglish/wwwroot/lib/pinned/*-LICENSE -whitespace
 TCTEnglish/wwwroot/lib/pinned/provenance.json text eol=lf
+# Keep the pinned OpenAI reference bytes identical to their provenance hashes.
+third_party/openai-realtime-server-controlled/** -text
+third_party/openai-realtime-server-controlled/provenance.json text eol=lf
 
 ###############################################################################
 # Set default behavior for command prompt diff.

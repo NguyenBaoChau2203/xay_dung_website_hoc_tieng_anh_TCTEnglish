@@ -465,8 +465,9 @@
     <!-- ================= CREATE FOLDER DIALOG ================= -->
     <partial name="_CreateFolderDialog" />
     @{
-        var showAiLauncher = !string.Equals(currentController, "Ai", System.StringComparison.OrdinalIgnoreCase)
-            || !string.Equals(currentAction, "Chat", System.StringComparison.OrdinalIgnoreCase);
+        var showAiLauncher = !string.Equals(currentController, "AiVoice", System.StringComparison.OrdinalIgnoreCase)
+            && (!string.Equals(currentController, "Ai", System.StringComparison.OrdinalIgnoreCase)
+                || !string.Equals(currentAction, "Chat", System.StringComparison.OrdinalIgnoreCase));
     }
     @if (showAiLauncher)
     {

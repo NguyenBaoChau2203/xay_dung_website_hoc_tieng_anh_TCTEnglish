@@ -1,0 +1,96 @@
+{
+  "repository": "https://github.com/openai/openai-agents-js",
+  "revision": "1215a24fb4725742c7b88094812b7ba18c46041c",
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "969d1c8178ad9a1ae2ff1e67534151d4cc58a2626274b272f918995bccd3a6ad",
+      "bytes": 1062
+    },
+    {
+      "path": "examples/realtime-server-controlled/src/client/audioOnlyWebRtc.ts",
+      "sha256": "cf4cb3f298518ac970e5cd95814dc0d3a9b656d5090053cf735db6189a9017da",
+      "bytes": 5166
+    },
+    {
+      "path": "examples/realtime-server-controlled/src/client/closeRemoteSession.ts",
+      "sha256": "ac2f0a8e973f473b5569a0eae851f57e0eb4b0cf3a32e5c82556ab42ceaa9a0d",
+      "bytes": 1180
+    },
+    {
+      "path": "examples/realtime-server-controlled/src/client/voiceSessionCoordinator.ts",
+      "sha256": "9ef91fbb8fa53c289c5e96afcc169e29c7b9582412dc1e8436a83c0cb66400cc",
+      "bytes": 6055
+    },
+    {
+      "path": "examples/realtime-server-controlled/src/server/publicEventProjection.ts",
+      "sha256": "35c2f0b9ba7833149dc84d9f00db80e37a53b6f85abe9c29303cb9de17ed0eaf",
+      "bytes": 1407
+    },
+    {
+      "path": "examples/realtime-server-controlled/src/server/realtimeCall.ts",
+      "sha256": "e4a6f48d5cc3b776c8f6bd792885b9edbea84576ed2e4b1aaa46698ca63fb622",
+      "bytes": 2233
+    },
+    {
+      "path": "examples/realtime-server-controlled/src/server/sdpPolicy.ts",
+      "sha256": "433b7a37da0453ec1b27acc12c86872edbe3d6f9157b53d8b1b210a7f24e6194",
+      "bytes": 1888
+    },
+    {
+      "path": "examples/realtime-server-controlled/src/server/sessionManager.ts",
+      "sha256": "b917501bb10dd9b79ad35eb6c3ec56586529c8dced7a7a15b007f1cb8d0aa0f6",
+      "bytes": 8173
+    },
+    {
+      "path": "examples/realtime-server-controlled/src/server/sidebandReady.ts",
+      "sha256": "929843c60e64dc07350b1e9765b246758c26254f384973e717b958178e8d9663",
+      "bytes": 2070
+    },
+    {
+      "path": "examples/realtime-server-controlled/src/shared/publicEvents.ts",
+      "sha256": "bbd6d2878f6f242036fb43dc231f59d038469f71e65f43643dda2d27c5b7e259",
+      "bytes": 375
+    },
+    {
+      "path": "examples/realtime-server-controlled/test/audioOnlyWebRtc.test.ts",
+      "sha256": "8ea5d7e162419cfd23a2fb0fb4ea60ea7636262150643db21dfd96b9341336d3",
+      "bytes": 13744
+    },
+    {
+      "path": "examples/realtime-server-controlled/test/closeRemoteSession.test.ts",
+      "sha256": "38fb846e7ad4f122673d864c394e1cf0b68350f5c2cac5043bd2ba0d52dbe70a",
+      "bytes": 2540
+    },
+    {
+      "path": "examples/realtime-server-controlled/test/publicEventProjection.test.ts",
+      "sha256": "59c003ffe2e52f69806879149a093f0d3513a2e8e706a9466e42061d7db3756d",
+      "bytes": 1827
+    },
+    {
+      "path": "examples/realtime-server-controlled/test/realtimeCall.test.ts",
+      "sha256": "717d8cbe8b0d8796849a69f11274878f2bae581ecb4775f64887da735300b170",
+      "bytes": 5475
+    },
+    {
+      "path": "examples/realtime-server-controlled/test/sdpPolicy.test.ts",
+      "sha256": "2b872093ea7fc08101ed6302a116ae5d4184bca3c6623c3ec8ffeef198d8f239",
+      "bytes": 1639
+    },
+    {
+      "path": "examples/realtime-server-controlled/test/sessionManager.test.ts",
+      "sha256": "78283c39173bb8432cf2cf656fae974623c905535165e874dddce4debd26e125",
+      "bytes": 9390
+    },
+    {
+      "path": "examples/realtime-server-controlled/test/sidebandReady.test.ts",
+      "sha256": "8cad04efd4149da1ceccf96c5eaebafbcdb98604355cfc77485e7186cf240378",
+      "bytes": 4666
+    },
+    {
+      "path": "examples/realtime-server-controlled/test/voiceSessionCoordinator.test.ts",
+      "sha256": "a7fd9acb273b78feec7f436e77fa9b1987a7dc8e80e30fa6d3ed35f925052a0e",
+      "bytes": 16379
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+@model TCTEnglish.ViewModels.AI.Voice.VoicePageVm
+@{ ViewData["Title"] = "Hội thoại giọng nói"; }
+@section Styles {
+    <link rel="stylesheet" href="~/css/ai-voice.css" asp-append-version="true" />
+}
+<partial name="_Workspace" model="Model" />
+@section Scripts {
+    <script src="~/js/ai-voice-audio.js" asp-append-version="true"></script>
+    <script src="~/js/ai-voice-session.js" asp-append-version="true"></script>
+    <script src="~/js/ai-chat-mode.js" asp-append-version="true"></script>
+    <script src="~/js/ai-voice-page.js" asp-append-version="true"></script>
+}
