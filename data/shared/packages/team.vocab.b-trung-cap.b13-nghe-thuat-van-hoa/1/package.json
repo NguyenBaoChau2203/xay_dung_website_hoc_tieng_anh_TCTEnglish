@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa",
+      "kind": "Set",
+      "values": {
+        "SetName": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "Description": "#b1 #b2 #art #culture"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.169798aad36d43cba0bdb228da46d7f4",
+      "kind": "Card",
+      "values": {
+        "Term": "calligraphy",
+        "Definition": "th\u01B0 ph\u00E1p",
+        "ImageUrl": "asset:46d075f912b3e0c8eb1b1d12fffb0b8440dc3dd4c390f0e6f803a5f945cff4ce.webp",
+        "Phonetic": "/k\u0259\u02C8l\u026A\u0261\u0279\u0259fi/",
+        "Example": "He practises calligraphy during the New Year.",
+        "ExampleTranslation": "\u00D4ng \u1EA5y t\u1EADp th\u01B0 ph\u00E1p trong d\u1ECBp T\u1EBFt.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "beautiful handwriting made with a brush or special pen",
+        "Cefr": "B2",
+        "PhoneticUk": "/k\u0259\u02C8l\u026A\u0261\u0279\u0259fi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He practises calligraphy during the New Year.\u0022,\u0022vi\u0022:\u0022\\u00D4ng \\u1EA5y t\\u1EADp th\\u01B0 ph\\u00E1p trong d\\u1ECBp T\\u1EBFt.\u0022},{\u0022text\u0022:\u0022The calligraphy on the scroll is beautiful.\u0022,\u0022vi\u0022:\u0022N\\u00E9t th\\u01B0 ph\\u00E1p tr\\u00EAn b\\u1EE9c cu\\u1ED9n r\\u1EA5t \\u0111\\u1EB9p.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Chinese calligraphy\u0022,\u0022vi\u0022:\u0022th\\u01B0 ph\\u00E1p Trung Hoa\u0022},{\u0022text\u0022:\u0022calligraphy brush\u0022,\u0022vi\u0022:\u0022b\\u00FAt l\\u00F4ng th\\u01B0 ph\\u00E1p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3283969/free-photo-image-calligraphy-japanese-person-language\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.1d21742ad021481c8e4c19958c79cccf",
+      "kind": "Card",
+      "values": {
+        "Term": "costume",
+        "Definition": "trang ph\u1EE5c bi\u1EC3u di\u1EC5n",
+        "ImageUrl": "asset:3037fb4c24d198dd99bdcad85d5bf585756b7702bd51910bdd09c92f4273daf9.webp",
+        "Phonetic": "/\u02C8k\u0251s\u02CCt(j)um/",
+        "Example": "She wore a red costume in the school play.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y m\u1EB7c trang ph\u1EE5c \u0111\u1ECF trong v\u1EDF k\u1ECBch c\u1EE7a tr\u01B0\u1EDDng.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "special clothes worn by actors or at a party",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0252s.tju\u02D0m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She wore a red costume in the school play.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EB7c trang ph\\u1EE5c \\u0111\\u1ECF trong v\\u1EDF k\\u1ECBch c\\u1EE7a tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022The costume was made by hand.\u0022,\u0022vi\u0022:\u0022B\\u1ED9 trang ph\\u1EE5c \\u0111\\u01B0\\u1EE3c may th\\u1EE7 c\\u00F4ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wear a costume\u0022,\u0022vi\u0022:\u0022m\\u1EB7c trang ph\\u1EE5c h\\u00F3a trang\u0022},{\u0022text\u0022:\u0022costume party\u0022,\u0022vi\u0022:\u0022ti\\u1EC7c h\\u00F3a trang\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.2180758f3546494fbc42176983b6176a",
+      "kind": "Card",
+      "values": {
+        "Term": "pottery",
+        "Definition": "\u0111\u1ED3 g\u1ED1m",
+        "ImageUrl": "asset:88fb2fb242c3774da636b2706a43fc1181be85a3fd96b3a8b4f49db7cff3e7d4.webp",
+        "Phonetic": "/\u02C8p\u0251t\u0259\u0279i/",
+        "Example": "The village is famous for its pottery.",
+        "ExampleTranslation": "Ng\u00F4i l\u00E0ng n\u1ED5i ti\u1EBFng v\u1EDBi \u0111\u1ED3 g\u1ED1m.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "objects made from baked clay",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u0252t\u0259\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The village is famous for its pottery.\u0022,\u0022vi\u0022:\u0022Ng\\u00F4i l\\u00E0ng n\\u1ED5i ti\\u1EBFng v\\u1EDBi \\u0111\\u1ED3 g\\u1ED1m.\u0022},{\u0022text\u0022:\u0022She took a pottery class on Saturdays.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y h\\u1ECDc l\\u1EDBp l\\u00E0m g\\u1ED1m v\\u00E0o c\\u00E1c ng\\u00E0y th\\u1EE9 B\\u1EA3y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pottery class\u0022,\u0022vi\u0022:\u0022l\\u1EDBp l\\u00E0m g\\u1ED1m\u0022},{\u0022text\u0022:\u0022handmade pottery\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED3 g\\u1ED1m th\\u1EE7 c\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/138361426@N08/51631036025\u0022,\u0022author\u0022:\u0022East Riding Archives\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.2f6c0a8434a34223bd3e8e0782a16235",
+      "kind": "Card",
+      "values": {
+        "Term": "art studio",
+        "Definition": "x\u01B0\u1EDFng v\u1EBD",
+        "ImageUrl": "asset:f443957ec91426a056117f7cdedffeb5fcdc181888c2fac91294e1d0c684e0a3.webp",
+        "Phonetic": "/\u0251\u0279t \u02C8studi.o\u028A/",
+        "Example": "The painter spends all day in her art studio.",
+        "ExampleTranslation": "H\u1ECDa s\u0129 d\u00E0nh c\u1EA3 ng\u00E0y trong x\u01B0\u1EDFng v\u1EBD c\u1EE7a m\u00ECnh.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a room where an artist works",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0251\u02D0t \u02C8stju\u02D0di.\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The painter spends all day in her art studio.\u0022,\u0022vi\u0022:\u0022H\\u1ECDa s\\u0129 d\\u00E0nh c\\u1EA3 ng\\u00E0y trong x\\u01B0\\u1EDFng v\\u1EBD c\\u1EE7a m\\u00ECnh.\u0022},{\u0022text\u0022:\u0022The art studio smells of paint.\u0022,\u0022vi\u0022:\u0022X\\u01B0\\u1EDFng v\\u1EBD n\\u1ED3ng m\\u00F9i s\\u01A1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022rent an art studio\u0022,\u0022vi\u0022:\u0022thu\\u00EA x\\u01B0\\u1EDFng v\\u1EBD\u0022},{\u0022text\u0022:\u0022open art studio\u0022,\u0022vi\u0022:\u0022x\\u01B0\\u1EDFng v\\u1EBD m\\u1EDF c\\u1EEDa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.37c4a72ca27e46258de41f64a2a4f17c",
+      "kind": "Card",
+      "values": {
+        "Term": "palette",
+        "Definition": "b\u1EA3ng pha m\u00E0u",
+        "ImageUrl": "asset:4a2b522ad3254f47e7fc00ae14162ec034333ddfa2f110c2cea6e7ae9c7d55c4.webp",
+        "Phonetic": "/\u02C8p\u00E6l\u026At/",
+        "Example": "The artist mixed blue and yellow on her palette.",
+        "ExampleTranslation": "H\u1ECDa s\u0129 pha xanh d\u01B0\u01A1ng v\u00E0 v\u00E0ng tr\u00EAn b\u1EA3ng pha m\u00E0u.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat board on which an artist mixes colours",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u00E6l\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The artist mixed blue and yellow on her palette.\u0022,\u0022vi\u0022:\u0022H\\u1ECDa s\\u0129 pha xanh d\\u01B0\\u01A1ng v\\u00E0 v\\u00E0ng tr\\u00EAn b\\u1EA3ng pha m\\u00E0u.\u0022},{\u0022text\u0022:\u0022He held the palette in his left hand.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y c\\u1EA7m b\\u1EA3ng pha m\\u00E0u \\u1EDF tay tr\\u00E1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022artist\\u0027s palette\u0022,\u0022vi\u0022:\u0022b\\u1EA3ng pha m\\u00E0u c\\u1EE7a h\\u1ECDa s\\u0129\u0022},{\u0022text\u0022:\u0022mix colours on a palette\u0022,\u0022vi\u0022:\u0022pha m\\u00E0u tr\\u00EAn b\\u1EA3ng m\\u00E0u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.3c1adf14d792486cab962703a9c5a2ba",
+      "kind": "Card",
+      "values": {
+        "Term": "choir",
+        "Definition": "d\u00E0n h\u1EE3p x\u01B0\u1EDBng",
+        "ImageUrl": "asset:2d4da6698328f997a26d24f34a6d7ea01adfb5b4191c5dd2c5c6ac846b67fe6e.webp",
+        "Phonetic": "/kwa\u026A\u025A/",
+        "Example": "The school choir sang at the ceremony.",
+        "ExampleTranslation": "D\u00E0n h\u1EE3p x\u01B0\u1EDBng c\u1EE7a tr\u01B0\u1EDDng h\u00E1t trong bu\u1ED5i l\u1EC5.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a group of people who sing together",
+        "Cefr": "B2",
+        "PhoneticUk": "/kwa\u026A\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The school choir sang at the ceremony.\u0022,\u0022vi\u0022:\u0022D\\u00E0n h\\u1EE3p x\\u01B0\\u1EDBng c\\u1EE7a tr\\u01B0\\u1EDDng h\\u00E1t trong bu\\u1ED5i l\\u1EC5.\u0022},{\u0022text\u0022:\u0022She has been in the choir for three years.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y tham gia d\\u00E0n h\\u1EE3p x\\u01B0\\u1EDBng \\u0111\\u00E3 ba n\\u0103m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022church choir\u0022,\u0022vi\u0022:\u0022d\\u00E0n h\\u1EE3p x\\u01B0\\u1EDBng nh\\u00E0 th\\u1EDD\u0022},{\u0022text\u0022:\u0022join a choir\u0022,\u0022vi\u0022:\u0022tham gia d\\u00E0n h\\u1EE3p x\\u01B0\\u1EDBng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:The_Singing_Angels_%26_the_Gardiner_Choir_(29143776372).jpg\u0022,\u0022author\u0022:\u0022Yellowstone National Park\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.46529e3fbad1439399333d30c080a7f3",
+      "kind": "Card",
+      "values": {
+        "Term": "mural",
+        "Definition": "tranh t\u01B0\u1EDDng",
+        "ImageUrl": "asset:e6a403c1674f925f082ea3968550892abe98c650907bdf7e6f4d4898810e5932.webp",
+        "Phonetic": "/\u02C8mj\u028A\u0279\u0259l/",
+        "Example": "A colourful mural covers the school wall.",
+        "ExampleTranslation": "M\u1ED9t b\u1EE9c tranh t\u01B0\u1EDDng \u0111\u1EA7y m\u00E0u s\u1EAFc ph\u1EE7 k\u00EDn b\u1EE9c t\u01B0\u1EDDng tr\u01B0\u1EDDng.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large painting made directly on a wall",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8mj\u028A\u0259\u0279\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A colourful mural covers the school wall.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t b\\u1EE9c tranh t\\u01B0\\u1EDDng \\u0111\\u1EA7y m\\u00E0u s\\u1EAFc ph\\u1EE7 k\\u00EDn b\\u1EE9c t\\u01B0\\u1EDDng tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022The students painted a mural of the sea.\u0022,\u0022vi\u0022:\u0022H\\u1ECDc sinh v\\u1EBD m\\u1ED9t b\\u1EE9c tranh t\\u01B0\\u1EDDng v\\u1EC1 bi\\u1EC3n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022paint a mural\u0022,\u0022vi\u0022:\u0022v\\u1EBD tranh t\\u01B0\\u1EDDng\u0022},{\u0022text\u0022:\u0022wall mural\u0022,\u0022vi\u0022:\u0022tranh t\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/50193908311\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.466a3326f8ab4dd5a0740d8fc7c5800e",
+      "kind": "Card",
+      "values": {
+        "Term": "carving",
+        "Definition": "t\u00E1c ph\u1EA9m ch\u1EA1m kh\u1EAFc",
+        "ImageUrl": "asset:3b107bde0765ca376e98ae7dcf863ada7929cd717b1997c4efb3f2482fbc674a.webp",
+        "Phonetic": "/\u02C8k\u0251\u0279v\u026A\u014B/",
+        "Example": "The wooden carving shows a dragon.",
+        "ExampleTranslation": "T\u00E1c ph\u1EA9m ch\u1EA1m kh\u1EAFc g\u1ED7 th\u1EC3 hi\u1EC7n m\u1ED9t con r\u1ED3ng.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a shape or picture cut out of wood or stone",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0251\u02D0v\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The wooden carving shows a dragon.\u0022,\u0022vi\u0022:\u0022T\\u00E1c ph\\u1EA9m ch\\u1EA1m kh\\u1EAFc g\\u1ED7 th\\u1EC3 hi\\u1EC7n m\\u1ED9t con r\\u1ED3ng.\u0022},{\u0022text\u0022:\u0022He sold his carvings at the market.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y b\\u00E1n c\\u00E1c t\\u00E1c ph\\u1EA9m ch\\u1EA1m kh\\u1EAFc c\\u1EE7a m\\u00ECnh \\u1EDF ch\\u1EE3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wood carving\u0022,\u0022vi\u0022:\u0022ch\\u1EA1m kh\\u1EAFc g\\u1ED7\u0022},{\u0022text\u0022:\u0022stone carving\u0022,\u0022vi\u0022:\u0022ch\\u1EA1m kh\\u1EAFc \\u0111\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.4edc7bb1ac154a17b42dcee4cccdbef9",
+      "kind": "Card",
+      "values": {
+        "Term": "marionette",
+        "Definition": "r\u1ED1i d\u00E2y",
+        "ImageUrl": "asset:ab16691552bca81c665ecf0ed29508048b8c0c9edb87927c82231ec85fcef535.webp",
+        "Phonetic": "/\u02CCm\u00E6\u0279i.\u0259\u02C8n\u025Bt/",
+        "Example": "The marionette danced across the little stage.",
+        "ExampleTranslation": "Con r\u1ED1i d\u00E2y nh\u1EA3y m\u00FAa kh\u1EAFp s\u00E2n kh\u1EA5u nh\u1ECF.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a puppet moved by strings",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02CCm\u00E6\u0279i.\u0259\u02C8n\u025Bt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The marionette danced across the little stage.\u0022,\u0022vi\u0022:\u0022Con r\\u1ED1i d\\u00E2y nh\\u1EA3y m\\u00FAa kh\\u1EAFp s\\u00E2n kh\\u1EA5u nh\\u1ECF.\u0022},{\u0022text\u0022:\u0022He controls the marionette with wooden sticks and strings.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111i\\u1EC1u khi\\u1EC3n con r\\u1ED1i d\\u00E2y b\\u1EB1ng que g\\u1ED7 v\\u00E0 d\\u00E2y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022marionette show\u0022,\u0022vi\u0022:\u0022bu\\u1ED5i di\\u1EC5n r\\u1ED1i d\\u00E2y\u0022},{\u0022text\u0022:\u0022wooden marionette\u0022,\u0022vi\u0022:\u0022r\\u1ED1i d\\u00E2y b\\u1EB1ng g\\u1ED7\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.57215c5724c045c48f2f23eaf184c5ad",
+      "kind": "Card",
+      "values": {
+        "Term": "lantern",
+        "Definition": "\u0111\u00E8n l\u1ED3ng",
+        "ImageUrl": "asset:6a1c78b7f005dfe9538b2ab0866e1aa91d8518b0210096b87dbd6e080ec39019.webp",
+        "Phonetic": "/\u00E6/",
+        "Example": "Children carry paper lanterns at the mid-autumn festival.",
+        "ExampleTranslation": "Tr\u1EBB em x\u00E1ch \u0111\u00E8n l\u1ED3ng gi\u1EA5y trong d\u1ECBp T\u1EBFt Trung thu.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a light inside a paper or glass cover that you can hang up",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8l\u00E6nt\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Children carry paper lanterns at the mid-autumn festival.\u0022,\u0022vi\u0022:\u0022Tr\\u1EBB em x\\u00E1ch \\u0111\\u00E8n l\\u1ED3ng gi\\u1EA5y trong d\\u1ECBp T\\u1EBFt Trung thu.\u0022},{\u0022text\u0022:\u0022Red lanterns hung above the street.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng chi\\u1EBFc \\u0111\\u00E8n l\\u1ED3ng \\u0111\\u1ECF treo ph\\u00EDa tr\\u00EAn con ph\\u1ED1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022paper lantern\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E8n l\\u1ED3ng gi\\u1EA5y\u0022},{\u0022text\u0022:\u0022hang a lantern\u0022,\u0022vi\u0022:\u0022treo \\u0111\\u00E8n l\\u1ED3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3301492/free-photo-image-modern-fractal-crowd\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.67659d1a384f4f7f98eecb6966fb0a2b",
+      "kind": "Card",
+      "values": {
+        "Term": "conductor",
+        "Definition": "nh\u1EA1c tr\u01B0\u1EDFng",
+        "ImageUrl": "asset:448ac9e75b5c67d010392327df7d1979ef295d6ebab855bdf916442125e22f59.webp",
+        "Phonetic": "/k\u0259n\u02C8d\u028Ckt\u025A/",
+        "Example": "The conductor raised his baton and the music began.",
+        "ExampleTranslation": "Nh\u1EA1c tr\u01B0\u1EDFng gi\u01A1 \u0111\u0169a ch\u1EC9 huy l\u00EAn v\u00E0 b\u1EA3n nh\u1EA1c b\u1EAFt \u0111\u1EA7u.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the person who leads an orchestra",
+        "Cefr": "B2",
+        "PhoneticUk": "/k\u0259n\u02C8d\u028Ckt\u025A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The conductor raised his baton and the music began.\u0022,\u0022vi\u0022:\u0022Nh\\u1EA1c tr\\u01B0\\u1EDFng gi\\u01A1 \\u0111\\u0169a ch\\u1EC9 huy l\\u00EAn v\\u00E0 b\\u1EA3n nh\\u1EA1c b\\u1EAFt \\u0111\\u1EA7u.\u0022},{\u0022text\u0022:\u0022She is a famous conductor.\u0022,\u0022vi\u0022:\u0022B\\u00E0 l\\u00E0 m\\u1ED9t nh\\u1EA1c tr\\u01B0\\u1EDFng n\\u1ED5i ti\\u1EBFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022orchestra conductor\u0022,\u0022vi\u0022:\u0022nh\\u1EA1c tr\\u01B0\\u1EDFng d\\u00E0n nh\\u1EA1c\u0022},{\u0022text\u0022:\u0022conductor\\u0027s baton\u0022,\u0022vi\u0022:\u0022\\u0111\\u0169a ch\\u1EC9 huy\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8733983/photo-image-public-domain-room-music\u0022,\u0022author\u0022:\u0022usembassynewzealand\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.6ccf452ec85643a590cf2bb0d6745cd9",
+      "kind": "Card",
+      "values": {
+        "Term": "ballet",
+        "Definition": "m\u00FAa ba l\u00EA",
+        "ImageUrl": "asset:99a6ccffd21d021f4dd9dcf888edceeaf508cd362336fdf2260aca7bf9610139.webp",
+        "Phonetic": "/b\u00E6\u02C8le\u026A/",
+        "Example": "She has taken ballet lessons since she was five.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y h\u1ECDc m\u00FAa ba l\u00EA t\u1EEB n\u0103m tu\u1ED5i.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a type of dance with graceful movements and music",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8b\u00E6le\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She has taken ballet lessons since she was five.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y h\\u1ECDc m\\u00FAa ba l\\u00EA t\\u1EEB n\\u0103m tu\\u1ED5i.\u0022},{\u0022text\u0022:\u0022We watched a ballet about a swan.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i xem m\\u1ED9t v\\u1EDF ba l\\u00EA v\\u1EC1 con thi\\u00EAn nga.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ballet dancer\u0022,\u0022vi\u0022:\u0022di\\u1EC5n vi\\u00EAn m\\u00FAa ba l\\u00EA\u0022},{\u0022text\u0022:\u0022ballet shoes\u0022,\u0022vi\u0022:\u0022gi\\u00E0y m\\u00FAa ba l\\u00EA\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/34409164@N06/5031074747\u0022,\u0022author\u0022:\u0022gnuckx\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.800d2288c2bd498894eca433d80af751",
+      "kind": "Card",
+      "values": {
+        "Term": "handicraft",
+        "Definition": "\u0111\u1ED3 th\u1EE7 c\u00F4ng m\u1EF9 ngh\u1EC7",
+        "ImageUrl": "asset:662b7f3bd30fe449d76e2900728214fcd0c4ad240b35090b813fc33f6ff6ec9f.webp",
+        "Phonetic": "/\u02C8h\u00E6nd\u026Ak\u0279\u00E6ft/",
+        "Example": "The market sells local handicrafts.",
+        "ExampleTranslation": "Khu ch\u1EE3 b\u00E1n \u0111\u1ED3 th\u1EE7 c\u00F4ng m\u1EF9 ngh\u1EC7 \u0111\u1ECBa ph\u01B0\u01A1ng.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an object made by hand with skill, such as baskets or pottery",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8h\u00E6nd\u026Ak\u0279\u00E6ft/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The market sells local handicrafts.\u0022,\u0022vi\u0022:\u0022Khu ch\\u1EE3 b\\u00E1n \\u0111\\u1ED3 th\\u1EE7 c\\u00F4ng m\\u1EF9 ngh\\u1EC7 \\u0111\\u1ECBa ph\\u01B0\\u01A1ng.\u0022},{\u0022text\u0022:\u0022She learned to make handicrafts from her grandmother.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y h\\u1ECDc l\\u00E0m \\u0111\\u1ED3 th\\u1EE7 c\\u00F4ng t\\u1EEB b\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022traditional handicraft\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED3 th\\u1EE7 c\\u00F4ng truy\\u1EC1n th\\u1ED1ng\u0022},{\u0022text\u0022:\u0022handmade handicrafts\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED3 th\\u1EE7 c\\u00F4ng l\\u00E0m b\\u1EB1ng tay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6201534/photo-image-public-domain-wooden\u0022,\u0022author\u0022:\u0022U.S. Agency for International Development\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.80487b8f36ad479db2e1dd240f61d3b7",
+      "kind": "Card",
+      "values": {
+        "Term": "portrait",
+        "Definition": "b\u1EE9c ch\u00E2n dung",
+        "ImageUrl": "asset:af50a294a41fedde745d1a79105e5c11c3b95731195417f366ccdadd516bc571.webp",
+        "Phonetic": "/\u02C8p\u0254\u0279t\u0279\u0259t/",
+        "Example": "The artist painted a portrait of the queen.",
+        "ExampleTranslation": "H\u1ECDa s\u0129 v\u1EBD m\u1ED9t b\u1EE9c ch\u00E2n dung c\u1EE7a n\u1EEF ho\u00E0ng.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a painting or photo of a person",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u0254\u02D0t\u0279e\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The artist painted a portrait of the queen.\u0022,\u0022vi\u0022:\u0022H\\u1ECDa s\\u0129 v\\u1EBD m\\u1ED9t b\\u1EE9c ch\\u00E2n dung c\\u1EE7a n\\u1EEF ho\\u00E0ng.\u0022},{\u0022text\u0022:\u0022There is a portrait of my grandfather on the wall.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t b\\u1EE9c ch\\u00E2n dung \\u00F4ng t\\u00F4i tr\\u00EAn t\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022paint a portrait\u0022,\u0022vi\u0022:\u0022v\\u1EBD ch\\u00E2n dung\u0022},{\u0022text\u0022:\u0022family portrait\u0022,\u0022vi\u0022:\u0022ch\\u00E2n dung gia \\u0111\\u00ECnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Oval_portrait_miniature_of_Gustave_Duchesne_oil_painting_by_Valentine_Manchon_Duchesne_in_1886.jpg\u0022,\u0022author\u0022:\u0022Valentine Manchon Duchesne\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.958e8fa0fde7466a9a61fdcf1ef84173",
+      "kind": "Card",
+      "values": {
+        "Term": "festival",
+        "Definition": "l\u1EC5 h\u1ED9i",
+        "ImageUrl": "asset:cb5cba3859589a187eca50934b72da533ad93409485c7cf9e638bb2dadbca0d4.webp",
+        "Phonetic": "/\u02C8f\u025Bst\u0259v\u0259l/",
+        "Example": "The village holds a festival every spring.",
+        "ExampleTranslation": "Ng\u00F4i l\u00E0ng t\u1ED5 ch\u1EE9c l\u1EC5 h\u1ED9i v\u00E0o m\u1ED7i m\u00F9a xu\u00E2n.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a special event with music, food or traditions",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8f\u025Bst\u026Av\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The village holds a festival every spring.\u0022,\u0022vi\u0022:\u0022Ng\\u00F4i l\\u00E0ng t\\u1ED5 ch\\u1EE9c l\\u1EC5 h\\u1ED9i v\\u00E0o m\\u1ED7i m\\u00F9a xu\\u00E2n.\u0022},{\u0022text\u0022:\u0022Thousands of people attended the music festival.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng ngh\\u00ECn ng\\u01B0\\u1EDDi \\u0111\\u1EBFn d\\u1EF1 l\\u1EC5 h\\u1ED9i \\u00E2m nh\\u1EA1c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022music festival\u0022,\u0022vi\u0022:\u0022l\\u1EC5 h\\u1ED9i \\u00E2m nh\\u1EA1c\u0022},{\u0022text\u0022:\u0022traditional festival\u0022,\u0022vi\u0022:\u0022l\\u1EC5 h\\u1ED9i truy\\u1EC1n th\\u1ED1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Crowd_in_front_of_the_main_stage,_Tolpuddle_Martyrs%27_Festival_2024.jpg\u0022,\u0022author\u0022:\u0022DimiTalen\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.a09433f9fbed4f7cab5203c487700f66",
+      "kind": "Card",
+      "values": {
+        "Term": "folk dance",
+        "Definition": "\u0111i\u1EC7u m\u00FAa d\u00E2n gian",
+        "ImageUrl": "asset:291383ef9fc0ac9a6a0c91519a13925885386dc79bafbed5c1fac4a828d7b73c.webp",
+        "Phonetic": "/fo\u028Ak d\u00E6ns/",
+        "Example": "The girls performed a folk dance at the festival.",
+        "ExampleTranslation": "C\u00E1c c\u00F4 g\u00E1i bi\u1EC3u di\u1EC5n m\u1ED9t \u0111i\u1EC7u m\u00FAa d\u00E2n gian \u1EDF l\u1EC5 h\u1ED9i.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a traditional dance of a country or region",
+        "Cefr": "B2",
+        "PhoneticUk": "/f\u0259\u028Ak d\u0251\u02D0ns/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The girls performed a folk dance at the festival.\u0022,\u0022vi\u0022:\u0022C\\u00E1c c\\u00F4 g\\u00E1i bi\\u1EC3u di\\u1EC5n m\\u1ED9t \\u0111i\\u1EC7u m\\u00FAa d\\u00E2n gian \\u1EDF l\\u1EC5 h\\u1ED9i.\u0022},{\u0022text\u0022:\u0022Every region has its own folk dance.\u0022,\u0022vi\u0022:\u0022M\\u1ED7i v\\u00F9ng \\u0111\\u1EC1u c\\u00F3 \\u0111i\\u1EC7u m\\u00FAa d\\u00E2n gian ri\\u00EAng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022traditional folk dance\u0022,\u0022vi\u0022:\u0022\\u0111i\\u1EC7u m\\u00FAa d\\u00E2n gian truy\\u1EC1n th\\u1ED1ng\u0022},{\u0022text\u0022:\u0022perform a folk dance\u0022,\u0022vi\u0022:\u0022bi\\u1EC3u di\\u1EC5n m\\u00FAa d\\u00E2n gian\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/38345529@N05/14167989223\u0022,\u0022author\u0022:\u0022Presidio of Monterey: DLIFLC \\u0026 USAG\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.a5fe754ba99d45edbaee120ebab30a7c",
+      "kind": "Card",
+      "values": {
+        "Term": "exhibition",
+        "Definition": "tri\u1EC3n l\u00E3m",
+        "ImageUrl": "asset:5a87bbd8bda656510f84fb2f280ad8adb84aeb783f6eb582e0323898b68d52bb.webp",
+        "Phonetic": "/\u025Bks\u026A\u02C8b\u026A\u0283\u0259n/",
+        "Example": "The exhibition opens next Monday.",
+        "ExampleTranslation": "Tri\u1EC3n l\u00E3m s\u1EBD khai m\u1EA1c v\u00E0o th\u1EE9 Hai t\u1EDBi.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a public show of art or other interesting things",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u025Bks\u026A\u02C8b\u026A\u0283\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The exhibition opens next Monday.\u0022,\u0022vi\u0022:\u0022Tri\\u1EC3n l\\u00E3m s\\u1EBD khai m\\u1EA1c v\\u00E0o th\\u1EE9 Hai t\\u1EDBi.\u0022},{\u0022text\u0022:\u0022We saw an exhibition of old photographs.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i xem m\\u1ED9t tri\\u1EC3n l\\u00E3m \\u1EA3nh c\\u0169.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open an exhibition\u0022,\u0022vi\u0022:\u0022khai m\\u1EA1c tri\\u1EC3n l\\u00E3m\u0022},{\u0022text\u0022:\u0022art exhibition\u0022,\u0022vi\u0022:\u0022tri\\u1EC3n l\\u00E3m ngh\\u1EC7 thu\\u1EADt\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/115357548@N08/52851474625\u0022,\u0022author\u0022:\u0022Joshua Tree National Park\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.af7b5e36eadb4da38f21b61b2686ac6c",
+      "kind": "Card",
+      "values": {
+        "Term": "opera",
+        "Definition": "nh\u1EA1c k\u1ECBch opera",
+        "ImageUrl": "asset:d64056891b02665d4a3627bbc76bba1c01fe6d1ea1eb90f71ec06205b1cd9eb7.webp",
+        "Phonetic": "/\u02C8\u0251p(\u0259)\u0279\u0259/",
+        "Example": "We watched an opera at the city theatre.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i xem m\u1ED9t v\u1EDF opera \u1EDF nh\u00E0 h\u00E1t th\u00E0nh ph\u1ED1.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a play in which the actors sing all or most of the words",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0252p(\u0259)\u0279\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We watched an opera at the city theatre.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i xem m\\u1ED9t v\\u1EDF opera \\u1EDF nh\\u00E0 h\\u00E1t th\\u00E0nh ph\\u1ED1.\u0022},{\u0022text\u0022:\u0022My mother loves opera.\u0022,\u0022vi\u0022:\u0022M\\u1EB9 t\\u00F4i r\\u1EA5t th\\u00EDch opera.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022opera singer\u0022,\u0022vi\u0022:\u0022ca s\\u0129 opera\u0022},{\u0022text\u0022:\u0022opera house\u0022,\u0022vi\u0022:\u0022nh\\u00E0 h\\u00E1t opera\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8717892/photo-image-public-domain-house-room\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.b1c8d06ee11241408c9e89b8c022b99d",
+      "kind": "Card",
+      "values": {
+        "Term": "audience",
+        "Definition": "kh\u00E1n gi\u1EA3",
+        "ImageUrl": "asset:2070e151a5be90791e4bf98763cca6666bffd482e2e452b5f6ba30838fb476ae.webp",
+        "Phonetic": "/\u02C8\u0254.di.\u0259ns/",
+        "Example": "The audience clapped for a long time.",
+        "ExampleTranslation": "Kh\u00E1n gi\u1EA3 v\u1ED7 tay r\u1EA5t l\u00E2u.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the people who watch or listen to a show",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0254\u02D0di.\u0259ns/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The audience clapped for a long time.\u0022,\u0022vi\u0022:\u0022Kh\\u00E1n gi\\u1EA3 v\\u1ED7 tay r\\u1EA5t l\\u00E2u.\u0022},{\u0022text\u0022:\u0022There was a large audience in the theatre.\u0022,\u0022vi\u0022:\u0022C\\u00F3 \\u0111\\u00F4ng kh\\u00E1n gi\\u1EA3 trong nh\\u00E0 h\\u00E1t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022live audience\u0022,\u0022vi\u0022:\u0022kh\\u00E1n gi\\u1EA3 tr\\u1EF1c ti\\u1EBFp\u0022},{\u0022text\u0022:\u0022applaud the audience\u0022,\u0022vi\u0022:\u0022kh\\u00E1n gi\\u1EA3 v\\u1ED7 tay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.bac502fb06104d5e9638ed688c1fa7d9",
+      "kind": "Card",
+      "values": {
+        "Term": "traditional dress",
+        "Definition": "trang ph\u1EE5c truy\u1EC1n th\u1ED1ng",
+        "ImageUrl": "asset:f0f8adf6e591d8215214edee06c2c9afb97c86b049def512d1281602b22a5a6b.webp",
+        "Phonetic": "/t\u0279\u0259\u02C8d\u026A\u0283.\u0259.n\u0259l d\u0279\u025Bs/",
+        "Example": "She wore her traditional dress to the wedding.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y m\u1EB7c trang ph\u1EE5c truy\u1EC1n th\u1ED1ng \u0111\u1EBFn \u0111\u00E1m c\u01B0\u1EDBi.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "clothes that people in a culture wear on special occasions",
+        "Cefr": "B2",
+        "PhoneticUk": "/t\u0279\u0259\u02C8d\u026A\u0283.\u0259.n\u0259l d\u0279es/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She wore her traditional dress to the wedding.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EB7c trang ph\\u1EE5c truy\\u1EC1n th\\u1ED1ng \\u0111\\u1EBFn \\u0111\\u00E1m c\\u01B0\\u1EDBi.\u0022},{\u0022text\u0022:\u0022The ao dai is a beautiful traditional dress.\u0022,\u0022vi\u0022:\u0022\\u00C1o d\\u00E0i l\\u00E0 m\\u1ED9t b\\u1ED9 trang ph\\u1EE5c truy\\u1EC1n th\\u1ED1ng r\\u1EA5t \\u0111\\u1EB9p.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wear traditional dress\u0022,\u0022vi\u0022:\u0022m\\u1EB7c trang ph\\u1EE5c truy\\u1EC1n th\\u1ED1ng\u0022},{\u0022text\u0022:\u0022national traditional dress\u0022,\u0022vi\u0022:\u0022qu\\u1ED1c ph\\u1EE5c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.bbc0e329d07e49e297ebe03c6c19133b",
+      "kind": "Card",
+      "values": {
+        "Term": "face paint",
+        "Definition": "m\u00E0u v\u1EBD l\u00EAn m\u1EB7t",
+        "ImageUrl": "asset:b1c56ca184417b3ca14fcc83615fde5525497ea581bc15f6b6b6caa0ffef99c6.webp",
+        "Phonetic": "/fe\u026A\u032Fs pe\u026Ant/",
+        "Example": "The children wore face paint at the party.",
+        "ExampleTranslation": "B\u1ECDn tr\u1EBB v\u1EBD m\u1EB7t b\u1EB1ng m\u00E0u trong b\u1EEFa ti\u1EC7c.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "coloured paint that people put on their faces for fun",
+        "Cefr": "B2",
+        "PhoneticUk": "/fe\u026A\u032Fs pe\u026Ant/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The children wore face paint at the party.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB v\\u1EBD m\\u1EB7t b\\u1EB1ng m\\u00E0u trong b\\u1EEFa ti\\u1EC7c.\u0022},{\u0022text\u0022:\u0022She bought a box of face paint.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y mua m\\u1ED9t h\\u1ED9p m\\u00E0u v\\u1EBD m\\u1EB7t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wear face paint\u0022,\u0022vi\u0022:\u0022v\\u1EBD m\\u1EB7t b\\u1EB1ng m\\u00E0u\u0022},{\u0022text\u0022:\u0022festival face paint\u0022,\u0022vi\u0022:\u0022m\\u00E0u v\\u1EBD m\\u1EB7t d\\u1ECBp l\\u1EC5 h\\u1ED9i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.d0d10c6051434da3bde1c9dcf029604d",
+      "kind": "Card",
+      "values": {
+        "Term": "easel",
+        "Definition": "gi\u00E1 v\u1EBD",
+        "ImageUrl": "asset:2d349688a3ddb260bd96187e5a90bb992e61f8ff52aa252e743505519a1b2795.webp",
+        "Phonetic": "/\u02C8i.z\u0259l/",
+        "Example": "The painter set up her easel by the lake.",
+        "ExampleTranslation": "H\u1ECDa s\u0129 d\u1EF1ng gi\u00E1 v\u1EBD b\u00EAn h\u1ED3.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a stand that holds a painting while the artist works",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8i\u02D0.z(\u0259)l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The painter set up her easel by the lake.\u0022,\u0022vi\u0022:\u0022H\\u1ECDa s\\u0129 d\\u1EF1ng gi\\u00E1 v\\u1EBD b\\u00EAn h\\u1ED3.\u0022},{\u0022text\u0022:\u0022A half-finished picture stood on the easel.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t b\\u1EE9c tranh c\\u00F2n dang d\\u1EDF \\u0111\\u1EB7t tr\\u00EAn gi\\u00E1 v\\u1EBD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022set up an easel\u0022,\u0022vi\u0022:\u0022d\\u1EF1ng gi\\u00E1 v\\u1EBD\u0022},{\u0022text\u0022:\u0022wooden easel\u0022,\u0022vi\u0022:\u0022gi\\u00E1 v\\u1EBD b\\u1EB1ng g\\u1ED7\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Claude_Monet_-_In_the_Woods_at_Giverny-_Blanche_Hosched%C3%A9_at_Her_Easel_with_Suzanne_Hosched%C3%A9_Reading_-_Google_Art_Project.jpg\u0022,\u0022author\u0022:\u0022Claude Monet\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.e486fb30050a4d28b92af2daf7023dbb",
+      "kind": "Card",
+      "values": {
+        "Term": "lion dance",
+        "Definition": "m\u00FAa l\u00E2n",
+        "ImageUrl": "asset:e2c0ad1c36d14499119ee9989895dc58746035d0106638e687c966ee187dadc1.webp",
+        "Phonetic": "/\u02C8la\u026A\u0259n d\u00E6ns/",
+        "Example": "The lion dance began with loud drums.",
+        "ExampleTranslation": "M\u00E0n m\u00FAa l\u00E2n b\u1EAFt \u0111\u1EA7u v\u1EDBi ti\u1EBFng tr\u1ED1ng r\u1ED9n r\u00E0ng.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a traditional dance in which people move inside a lion costume",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8la\u026A\u0259n d\u0251\u02D0ns/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The lion dance began with loud drums.\u0022,\u0022vi\u0022:\u0022M\\u00E0n m\\u00FAa l\\u00E2n b\\u1EAFt \\u0111\\u1EA7u v\\u1EDBi ti\\u1EBFng tr\\u1ED1ng r\\u1ED9n r\\u00E0ng.\u0022},{\u0022text\u0022:\u0022Children followed the lion dance down the street.\u0022,\u0022vi\u0022:\u0022Tr\\u1EBB em ch\\u1EA1y theo \\u0111o\\u00E0n m\\u00FAa l\\u00E2n d\\u1ECDc con ph\\u1ED1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022watch a lion dance\u0022,\u0022vi\u0022:\u0022xem m\\u00FAa l\\u00E2n\u0022},{\u0022text\u0022:\u0022lion dance performance\u0022,\u0022vi\u0022:\u0022m\\u00E0n bi\\u1EC3u di\\u1EC5n m\\u00FAa l\\u00E2n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Lion_dance_art_object.JPG\u0022,\u0022author\u0022:\u0022Captain76.\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.ea497fbdee05414089b8d4cfe8ecbc67",
+      "kind": "Card",
+      "values": {
+        "Term": "watercolour",
+        "Definition": "tranh m\u00E0u n\u01B0\u1EDBc",
+        "ImageUrl": "asset:3bea2dbf967ea1bd50879b624d384db4697ab4f47343c1201fde2fd851badd89.webp",
+        "Phonetic": "/\u02C8w\u0254.t\u025C\u02CCk\u028C.l\u025C/",
+        "Example": "She painted a watercolour of the harbour.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y v\u1EBD m\u1ED9t b\u1EE9c tranh m\u00E0u n\u01B0\u1EDBc v\u1EC1 b\u1EBFn c\u1EA3ng.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a picture painted with colours mixed with water",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8w\u0254.t\u025C\u02CCk\u028C.l\u025C/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She painted a watercolour of the harbour.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y v\\u1EBD m\\u1ED9t b\\u1EE9c tranh m\\u00E0u n\\u01B0\\u1EDBc v\\u1EC1 b\\u1EBFn c\\u1EA3ng.\u0022},{\u0022text\u0022:\u0022The watercolour dried quickly in the sun.\u0022,\u0022vi\u0022:\u0022B\\u1EE9c tranh m\\u00E0u n\\u01B0\\u1EDBc kh\\u00F4 nhanh d\\u01B0\\u1EDBi n\\u1EAFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022paint a watercolour\u0022,\u0022vi\u0022:\u0022v\\u1EBD tranh m\\u00E0u n\\u01B0\\u1EDBc\u0022},{\u0022text\u0022:\u0022watercolour painting\u0022,\u0022vi\u0022:\u0022tranh m\\u00E0u n\\u01B0\\u1EDBc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5924921/photo-image-paper-watercolours-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa.f1fa21e8796e4836b280c97e9bfed9ca",
+      "kind": "Card",
+      "values": {
+        "Term": "backstage",
+        "Definition": "h\u1EADu tr\u01B0\u1EDDng",
+        "ImageUrl": "asset:489ffa448e0ad21112ac93161cb4686dcc513e4db901b9b1b049ed395ecf492e.webp",
+        "Phonetic": "/b\u00E6k\u02C8ste\u026Ad\u0361\u0292/",
+        "Example": "The actors waited backstage before the show.",
+        "ExampleTranslation": "C\u00E1c di\u1EC5n vi\u00EAn ch\u1EDD \u1EDF h\u1EADu tr\u01B0\u1EDDng tr\u01B0\u1EDBc bu\u1ED5i di\u1EC5n.",
+        "Topic": "Ngh\u1EC7 thu\u1EADt \u0026 v\u0103n h\u00F3a",
+        "PartsOfSpeech": "adv",
+        "MeaningEn": "in the area behind the stage where performers prepare",
+        "Cefr": "B2",
+        "PhoneticUk": "/b\u00E6k\u02C8ste\u026Ad\u0361\u0292/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The actors waited backstage before the show.\u0022,\u0022vi\u0022:\u0022C\\u00E1c di\\u1EC5n vi\\u00EAn ch\\u1EDD \\u1EDF h\\u1EADu tr\\u01B0\\u1EDDng tr\\u01B0\\u1EDBc bu\\u1ED5i di\\u1EC5n.\u0022},{\u0022text\u0022:\u0022We went backstage to meet the singer.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i v\\u00E0o h\\u1EADu tr\\u01B0\\u1EDDng \\u0111\\u1EC3 g\\u1EB7p ca s\\u0129.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go backstage\u0022,\u0022vi\u0022:\u0022v\\u00E0o h\\u1EADu tr\\u01B0\\u1EDDng\u0022},{\u0022text\u0022:\u0022backstage pass\u0022,\u0022vi\u0022:\u0022th\\u1EBB v\\u00E0o h\\u1EADu tr\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "f443957ec91426a056117f7cdedffeb5fcdc181888c2fac91294e1d0c684e0a3.webp",
+      "sha256": "f443957ec91426a056117f7cdedffeb5fcdc181888c2fac91294e1d0c684e0a3"
+    },
+    {
+      "file": "5a87bbd8bda656510f84fb2f280ad8adb84aeb783f6eb582e0323898b68d52bb.webp",
+      "sha256": "5a87bbd8bda656510f84fb2f280ad8adb84aeb783f6eb582e0323898b68d52bb"
+    },
+    {
+      "file": "3b107bde0765ca376e98ae7dcf863ada7929cd717b1997c4efb3f2482fbc674a.webp",
+      "sha256": "3b107bde0765ca376e98ae7dcf863ada7929cd717b1997c4efb3f2482fbc674a"
+    },
+    {
+      "file": "af50a294a41fedde745d1a79105e5c11c3b95731195417f366ccdadd516bc571.webp",
+      "sha256": "af50a294a41fedde745d1a79105e5c11c3b95731195417f366ccdadd516bc571"
+    },
+    {
+      "file": "3bea2dbf967ea1bd50879b624d384db4697ab4f47343c1201fde2fd851badd89.webp",
+      "sha256": "3bea2dbf967ea1bd50879b624d384db4697ab4f47343c1201fde2fd851badd89"
+    },
+    {
+      "file": "2d349688a3ddb260bd96187e5a90bb992e61f8ff52aa252e743505519a1b2795.webp",
+      "sha256": "2d349688a3ddb260bd96187e5a90bb992e61f8ff52aa252e743505519a1b2795"
+    },
+    {
+      "file": "4a2b522ad3254f47e7fc00ae14162ec034333ddfa2f110c2cea6e7ae9c7d55c4.webp",
+      "sha256": "4a2b522ad3254f47e7fc00ae14162ec034333ddfa2f110c2cea6e7ae9c7d55c4"
+    },
+    {
+      "file": "e6a403c1674f925f082ea3968550892abe98c650907bdf7e6f4d4898810e5932.webp",
+      "sha256": "e6a403c1674f925f082ea3968550892abe98c650907bdf7e6f4d4898810e5932"
+    },
+    {
+      "file": "88fb2fb242c3774da636b2706a43fc1181be85a3fd96b3a8b4f49db7cff3e7d4.webp",
+      "sha256": "88fb2fb242c3774da636b2706a43fc1181be85a3fd96b3a8b4f49db7cff3e7d4"
+    },
+    {
+      "file": "d64056891b02665d4a3627bbc76bba1c01fe6d1ea1eb90f71ec06205b1cd9eb7.webp",
+      "sha256": "d64056891b02665d4a3627bbc76bba1c01fe6d1ea1eb90f71ec06205b1cd9eb7"
+    },
+    {
+      "file": "2d4da6698328f997a26d24f34a6d7ea01adfb5b4191c5dd2c5c6ac846b67fe6e.webp",
+      "sha256": "2d4da6698328f997a26d24f34a6d7ea01adfb5b4191c5dd2c5c6ac846b67fe6e"
+    },
+    {
+      "file": "448ac9e75b5c67d010392327df7d1979ef295d6ebab855bdf916442125e22f59.webp",
+      "sha256": "448ac9e75b5c67d010392327df7d1979ef295d6ebab855bdf916442125e22f59"
+    },
+    {
+      "file": "99a6ccffd21d021f4dd9dcf888edceeaf508cd362336fdf2260aca7bf9610139.webp",
+      "sha256": "99a6ccffd21d021f4dd9dcf888edceeaf508cd362336fdf2260aca7bf9610139"
+    },
+    {
+      "file": "2070e151a5be90791e4bf98763cca6666bffd482e2e452b5f6ba30838fb476ae.webp",
+      "sha256": "2070e151a5be90791e4bf98763cca6666bffd482e2e452b5f6ba30838fb476ae"
+    },
+    {
+      "file": "489ffa448e0ad21112ac93161cb4686dcc513e4db901b9b1b049ed395ecf492e.webp",
+      "sha256": "489ffa448e0ad21112ac93161cb4686dcc513e4db901b9b1b049ed395ecf492e"
+    },
+    {
+      "file": "3037fb4c24d198dd99bdcad85d5bf585756b7702bd51910bdd09c92f4273daf9.webp",
+      "sha256": "3037fb4c24d198dd99bdcad85d5bf585756b7702bd51910bdd09c92f4273daf9"
+    },
+    {
+      "file": "b1c56ca184417b3ca14fcc83615fde5525497ea581bc15f6b6b6caa0ffef99c6.webp",
+      "sha256": "b1c56ca184417b3ca14fcc83615fde5525497ea581bc15f6b6b6caa0ffef99c6"
+    },
+    {
+      "file": "6a1c78b7f005dfe9538b2ab0866e1aa91d8518b0210096b87dbd6e080ec39019.webp",
+      "sha256": "6a1c78b7f005dfe9538b2ab0866e1aa91d8518b0210096b87dbd6e080ec39019"
+    },
+    {
+      "file": "cb5cba3859589a187eca50934b72da533ad93409485c7cf9e638bb2dadbca0d4.webp",
+      "sha256": "cb5cba3859589a187eca50934b72da533ad93409485c7cf9e638bb2dadbca0d4"
+    },
+    {
+      "file": "46d075f912b3e0c8eb1b1d12fffb0b8440dc3dd4c390f0e6f803a5f945cff4ce.webp",
+      "sha256": "46d075f912b3e0c8eb1b1d12fffb0b8440dc3dd4c390f0e6f803a5f945cff4ce"
+    },
+    {
+      "file": "ab16691552bca81c665ecf0ed29508048b8c0c9edb87927c82231ec85fcef535.webp",
+      "sha256": "ab16691552bca81c665ecf0ed29508048b8c0c9edb87927c82231ec85fcef535"
+    },
+    {
+      "file": "291383ef9fc0ac9a6a0c91519a13925885386dc79bafbed5c1fac4a828d7b73c.webp",
+      "sha256": "291383ef9fc0ac9a6a0c91519a13925885386dc79bafbed5c1fac4a828d7b73c"
+    },
+    {
+      "file": "e2c0ad1c36d14499119ee9989895dc58746035d0106638e687c966ee187dadc1.webp",
+      "sha256": "e2c0ad1c36d14499119ee9989895dc58746035d0106638e687c966ee187dadc1"
+    },
+    {
+      "file": "f0f8adf6e591d8215214edee06c2c9afb97c86b049def512d1281602b22a5a6b.webp",
+      "sha256": "f0f8adf6e591d8215214edee06c2c9afb97c86b049def512d1281602b22a5a6b"
+    },
+    {
+      "file": "662b7f3bd30fe449d76e2900728214fcd0c4ad240b35090b813fc33f6ff6ec9f.webp",
+      "sha256": "662b7f3bd30fe449d76e2900728214fcd0c4ad240b35090b813fc33f6ff6ec9f"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b13-nghe-thuat-van-hoa"
+}

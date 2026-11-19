@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi",
+      "kind": "Set",
+      "values": {
+        "SetName": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "Description": "#b1 #b2 #law #society"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.05d08cf4af974735a9aec6d1dd61e07d",
+      "kind": "Card",
+      "values": {
+        "Term": "witness",
+        "Definition": "nh\u00E2n ch\u1EE9ng",
+        "ImageUrl": "asset:a04aa114b364e78cdaf303e9b69255b70b757c0507e58fa580d91759c5bb82f9.webp",
+        "Phonetic": "/\u02C8w\u026At.n\u026As/",
+        "Example": "A witness saw the accident from her window.",
+        "ExampleTranslation": "M\u1ED9t nh\u00E2n ch\u1EE9ng nh\u00ECn th\u1EA5y v\u1EE5 tai n\u1EA1n t\u1EEB c\u1EEDa s\u1ED5 c\u1EE7a m\u00ECnh.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who saw something happen, especially a crime",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8w\u026At.n\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A witness saw the accident from her window.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t nh\\u00E2n ch\\u1EE9ng nh\\u00ECn th\\u1EA5y v\\u1EE5 tai n\\u1EA1n t\\u1EEB c\\u1EEDa s\\u1ED5 c\\u1EE7a m\\u00ECnh.\u0022},{\u0022text\u0022:\u0022The witness told the court what she saw.\u0022,\u0022vi\u0022:\u0022Nh\\u00E2n ch\\u1EE9ng k\\u1EC3 v\\u1EDBi t\\u00F2a nh\\u1EEFng g\\u00EC c\\u00F4 \\u1EA5y \\u0111\\u00E3 th\\u1EA5y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022key witness\u0022,\u0022vi\u0022:\u0022nh\\u00E2n ch\\u1EE9ng quan tr\\u1ECDng\u0022},{\u0022text\u0022:\u0022witness statement\u0022,\u0022vi\u0022:\u0022l\\u1EDDi khai c\\u1EE7a nh\\u00E2n ch\\u1EE9ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.4b9f93ac283e4af3b4f1d9ffd3aaac4b",
+      "kind": "Card",
+      "values": {
+        "Term": "donation",
+        "Definition": "kho\u1EA3n quy\u00EAn g\u00F3p",
+        "ImageUrl": "asset:4e9a82ea6f6d2f8c81a385ad9a6d8a52f5ab608fc225d05f22b375dd848768dd.webp",
+        "Phonetic": "/do\u028A\u02C8ne\u026A\u0283\u0259n/",
+        "Example": "The school received a donation of books.",
+        "ExampleTranslation": "Tr\u01B0\u1EDDng nh\u1EADn \u0111\u01B0\u1EE3c m\u1ED9t kho\u1EA3n quy\u00EAn g\u00F3p s\u00E1ch.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "money or goods given to help a person or group",
+        "Cefr": "B2",
+        "PhoneticUk": "/d\u0259\u028A\u02C8ne\u026A\u0283\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The school received a donation of books.\u0022,\u0022vi\u0022:\u0022Tr\\u01B0\\u1EDDng nh\\u1EADn \\u0111\\u01B0\\u1EE3c m\\u1ED9t kho\\u1EA3n quy\\u00EAn g\\u00F3p s\\u00E1ch.\u0022},{\u0022text\u0022:\u0022Please make a donation to the food bank.\u0022,\u0022vi\u0022:\u0022Xin h\\u00E3y quy\\u00EAn g\\u00F3p cho ng\\u00E2n h\\u00E0ng th\\u1EF1c ph\\u1EA9m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022make a donation\u0022,\u0022vi\u0022:\u0022quy\\u00EAn g\\u00F3p\u0022},{\u0022text\u0022:\u0022donation box\u0022,\u0022vi\u0022:\u0022th\\u00F9ng quy\\u00EAn g\\u00F3p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Caritas_donation_box_in_Kaunas_cathedral.jpg\u0022,\u0022author\u0022:\u0022Bdx\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.521ed58c75964347b209e4d3b7f82dc9",
+      "kind": "Card",
+      "values": {
+        "Term": "ballot box",
+        "Definition": "th\u00F9ng phi\u1EBFu",
+        "ImageUrl": "asset:82bcfcbef8348b6fde1a0171a4f1eb6c71cfbd755441be56b9aabbca66e452e3.webp",
+        "Phonetic": "/\u02C8b\u00E6l\u0259t b\u0251ks/",
+        "Example": "She put her vote in the ballot box.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y b\u1ECF phi\u1EBFu c\u1EE7a m\u00ECnh v\u00E0o th\u00F9ng phi\u1EBFu.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a box into which people put their votes",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8b\u00E6l\u0259t b\u0252ks/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She put her vote in the ballot box.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y b\\u1ECF phi\\u1EBFu c\\u1EE7a m\\u00ECnh v\\u00E0o th\\u00F9ng phi\\u1EBFu.\u0022},{\u0022text\u0022:\u0022The ballot boxes were sealed at night.\u0022,\u0022vi\u0022:\u0022C\\u00E1c th\\u00F9ng phi\\u1EBFu \\u0111\\u01B0\\u1EE3c ni\\u00EAm phong v\\u00E0o ban \\u0111\\u00EAm.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022seal the ballot box\u0022,\u0022vi\u0022:\u0022ni\\u00EAm phong th\\u00F9ng phi\\u1EBFu\u0022},{\u0022text\u0022:\u0022empty the ballot box\u0022,\u0022vi\u0022:\u0022m\\u1EDF th\\u00F9ng phi\\u1EBFu\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:ES%26S_M100_precinct-count_ballot_scanner.jpg\u0022,\u0022author\u0022:\u0022Douglas W. Jones\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.5b2a9314f2f04177907d8c0066632ea8",
+      "kind": "Card",
+      "values": {
+        "Term": "police car",
+        "Definition": "xe c\u1EA3nh s\u00E1t",
+        "ImageUrl": "asset:3d2e600347376e7d3a432004a45c421f9dcd6ccd4c39b2bbe1bf4497052aa81b.webp",
+        "Phonetic": "/p\u0259\u02C8li\u02D0s k\u0251\u0279/",
+        "Example": "A police car stopped outside the house.",
+        "ExampleTranslation": "M\u1ED9t chi\u1EBFc xe c\u1EA3nh s\u00E1t d\u1EEBng l\u1EA1i tr\u01B0\u1EDBc nh\u00E0.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a car used by the police",
+        "Cefr": "B1",
+        "PhoneticUk": "/p\u0259\u02C8li\u02D0s k\u0251\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A police car stopped outside the house.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t chi\\u1EBFc xe c\\u1EA3nh s\\u00E1t d\\u1EEBng l\\u1EA1i tr\\u01B0\\u1EDBc nh\\u00E0.\u0022},{\u0022text\u0022:\u0022The police car had its lights on.\u0022,\u0022vi\u0022:\u0022Xe c\\u1EA3nh s\\u00E1t b\\u1EADt \\u0111\\u00E8n nh\\u1EA5p nh\\u00E1y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022call a police car\u0022,\u0022vi\u0022:\u0022g\\u1ECDi xe c\\u1EA3nh s\\u00E1t\u0022},{\u0022text\u0022:\u0022police car siren\u0022,\u0022vi\u0022:\u0022c\\u00F2i xe c\\u1EA3nh s\\u00E1t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/24490288@N04/32986922168\u0022,\u0022author\u0022:\u0022Terry Kearney\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.664d8ce55edd45df8dacc09cd06c9321",
+      "kind": "Card",
+      "values": {
+        "Term": "flag",
+        "Definition": "l\u00E1 c\u1EDD",
+        "ImageUrl": "asset:b3af40ade5f6c924aab0f7768659eedff1d741aa3f1a330f5e9bfd757e555422.webp",
+        "Phonetic": "/fle\u026A\u032F\u0261/",
+        "Example": "The national flag flew above the school.",
+        "ExampleTranslation": "Qu\u1ED1c k\u1EF3 tung bay ph\u00EDa tr\u00EAn ng\u00F4i tr\u01B0\u1EDDng.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of cloth with a pattern that stands for a country",
+        "Cefr": "B1",
+        "PhoneticUk": "/fl\u00E6\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The national flag flew above the school.\u0022,\u0022vi\u0022:\u0022Qu\\u1ED1c k\\u1EF3 tung bay ph\\u00EDa tr\\u00EAn ng\\u00F4i tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022Children waved small flags at the parade.\u0022,\u0022vi\u0022:\u0022Tr\\u1EBB em v\\u1EABy nh\\u1EEFng l\\u00E1 c\\u1EDD nh\\u1ECF trong cu\\u1ED9c di\\u1EC5u h\\u00E0nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022national flag\u0022,\u0022vi\u0022:\u0022qu\\u1ED1c k\\u1EF3\u0022},{\u0022text\u0022:\u0022wave a flag\u0022,\u0022vi\u0022:\u0022v\\u1EABy c\\u1EDD\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/37585279@N03/13759793314\u0022,\u0022author\u0022:\u0022U.S. Army Europe\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.67edf8b096d24cf49bd07329ade4272c",
+      "kind": "Card",
+      "values": {
+        "Term": "CCTV camera",
+        "Definition": "camera an ninh",
+        "ImageUrl": "asset:166fe166f5a6a643a0acd458eaafab80c5726340f18c82aaea04fa141f0980e5.webp",
+        "Phonetic": "/\u02CCsi si \u02CCti\u02D0 \u02C8vi\u02D0 \u02C8k\u00E6mr\u0259/",
+        "Example": "A CCTV camera recorded the whole street.",
+        "ExampleTranslation": "M\u1ED9t camera an ninh ghi l\u1EA1i to\u00E0n b\u1ED9 con ph\u1ED1.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a camera that records an area to keep it safe",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02CCsi\u02D0 si\u02D0 \u02CCti\u02D0 \u02C8vi\u02D0 \u02C8k\u00E6m\u0259r\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A CCTV camera recorded the whole street.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t camera an ninh ghi l\\u1EA1i to\\u00E0n b\\u1ED9 con ph\\u1ED1.\u0022},{\u0022text\u0022:\u0022There are CCTV cameras in every shop.\u0022,\u0022vi\u0022:\u0022C\\u1EEDa h\\u00E0ng n\\u00E0o c\\u0169ng c\\u00F3 camera an ninh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022install a CCTV camera\u0022,\u0022vi\u0022:\u0022l\\u1EAFp camera an ninh\u0022},{\u0022text\u0022:\u0022CCTV footage\u0022,\u0022vi\u0022:\u0022h\\u00ECnh \\u1EA3nh t\\u1EEB camera an ninh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/432255/cctv-surveillance-camera\u0022,\u0022author\u0022:\u0022Markus Spiske\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.6b6b69779ddf4c1f909432430bba971f",
+      "kind": "Card",
+      "values": {
+        "Term": "prison",
+        "Definition": "nh\u00E0 t\u00F9",
+        "ImageUrl": "asset:a02ee44cb32cdf74217194ed6d7f42369182e11226e262811e386cb310d5ff1a.webp",
+        "Phonetic": "/\u02C8p\u0279\u026Az\u0259n/",
+        "Example": "He spent five years in prison.",
+        "ExampleTranslation": "Anh ta ng\u1ED3i t\u00F9 n\u0103m n\u0103m.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a building where criminals are kept as punishment",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u0279\u026Az\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He spent five years in prison.\u0022,\u0022vi\u0022:\u0022Anh ta ng\\u1ED3i t\\u00F9 n\\u0103m n\\u0103m.\u0022},{\u0022text\u0022:\u0022The prison is surrounded by a high wall.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 t\\u00F9 \\u0111\\u01B0\\u1EE3c bao quanh b\\u1EDFi m\\u1ED9t b\\u1EE9c t\\u01B0\\u1EDDng cao.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go to prison\u0022,\u0022vi\u0022:\u0022\\u0111i t\\u00F9\u0022},{\u0022text\u0022:\u0022prison guard\u0022,\u0022vi\u0022:\u0022qu\\u1EA3n gi\\u00E1o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.704f7ca0fd144cee955c7b566ea822a9",
+      "kind": "Card",
+      "values": {
+        "Term": "volunteer",
+        "Definition": "t\u00ECnh nguy\u1EC7n vi\u00EAn",
+        "ImageUrl": "asset:bea1b0966d357ba78a678f35174271e394847afb29027afa101c95144877e9ae.webp",
+        "Phonetic": "/\u02CCv\u0251l\u0259n\u02C8t\u026A(\u0259)\u0279/",
+        "Example": "Volunteers cleaned the beach on Sunday.",
+        "ExampleTranslation": "C\u00E1c t\u00ECnh nguy\u1EC7n vi\u00EAn d\u1ECDn d\u1EB9p b\u00E3i bi\u1EC3n v\u00E0o Ch\u1EE7 nh\u1EADt.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who works without pay to help others",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02CCv\u0252l(\u0259)n\u02C8t\u026A\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Volunteers cleaned the beach on Sunday.\u0022,\u0022vi\u0022:\u0022C\\u00E1c t\\u00ECnh nguy\\u1EC7n vi\\u00EAn d\\u1ECDn d\\u1EB9p b\\u00E3i bi\\u1EC3n v\\u00E0o Ch\\u1EE7 nh\\u1EADt.\u0022},{\u0022text\u0022:\u0022She is a volunteer at the animal shelter.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0 t\\u00ECnh nguy\\u1EC7n vi\\u00EAn \\u1EDF tr\\u1EA1m c\\u1EE9u h\\u1ED9 \\u0111\\u1ED9ng v\\u1EADt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022volunteer work\u0022,\u0022vi\u0022:\u0022c\\u00F4ng vi\\u1EC7c t\\u00ECnh nguy\\u1EC7n\u0022},{\u0022text\u0022:\u0022become a volunteer\u0022,\u0022vi\u0022:\u0022tr\\u1EDF th\\u00E0nh t\\u00ECnh nguy\\u1EC7n vi\\u00EAn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Beach_Clean-up_Day_in_Ha_Long_Bay_(31433201733).jpg\u0022,\u0022author\u0022:\u0022USAID Vietnam\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.7b536134f1ac436a9392c82a72ca4901",
+      "kind": "Card",
+      "values": {
+        "Term": "charity",
+        "Definition": "t\u1ED5 ch\u1EE9c t\u1EEB thi\u1EC7n",
+        "ImageUrl": "asset:3eaaae4d2d64e45b63acffa8dfc49f07174ee000f8c4c11088955fa5d0624b36.webp",
+        "Phonetic": "/\u02C8t\u0361\u0283\u025B\u0279\u0259ti/",
+        "Example": "She works for a charity that helps children.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y l\u00E0m vi\u1EC7c cho m\u1ED9t t\u1ED5 ch\u1EE9c t\u1EEB thi\u1EC7n gi\u00FAp \u0111\u1EE1 tr\u1EBB em.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an organisation that raises money to help people in need",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8t\u0283\u00E6\u0279\u026Ati/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She works for a charity that helps children.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0m vi\\u1EC7c cho m\\u1ED9t t\\u1ED5 ch\\u1EE9c t\\u1EEB thi\\u1EC7n gi\\u00FAp \\u0111\\u1EE1 tr\\u1EBB em.\u0022},{\u0022text\u0022:\u0022They ran a race to raise money for charity.\u0022,\u0022vi\u0022:\u0022H\\u1ECD ch\\u1EA1y \\u0111ua \\u0111\\u1EC3 g\\u00E2y qu\\u1EF9 t\\u1EEB thi\\u1EC7n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022raise money for charity\u0022,\u0022vi\u0022:\u0022g\\u00E2y qu\\u1EF9 t\\u1EEB thi\\u1EC7n\u0022},{\u0022text\u0022:\u0022charity shop\u0022,\u0022vi\u0022:\u0022c\\u1EEDa h\\u00E0ng t\\u1EEB thi\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.87a3cb58ea8f47d4a135f018295c25a6",
+      "kind": "Card",
+      "values": {
+        "Term": "fingerprint",
+        "Definition": "d\u1EA5u v\u00E2n tay",
+        "ImageUrl": "asset:fbd8fbcee7f04effbbcb177b9d169f3f61211b59635956b9223771342f3cf80f.webp",
+        "Phonetic": "/\u02C8f\u026A\u014B\u0261\u025A\u02CCp\u0279\u026Ant/",
+        "Example": "The police found a fingerprint on the glass.",
+        "ExampleTranslation": "C\u1EA3nh s\u00E1t t\u00ECm th\u1EA5y m\u1ED9t d\u1EA5u v\u00E2n tay tr\u00EAn chi\u1EBFc ly.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the mark that your finger leaves on a surface",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8f\u026A\u014B\u0261\u025A\u02CCp\u0279\u026Ant/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The police found a fingerprint on the glass.\u0022,\u0022vi\u0022:\u0022C\\u1EA3nh s\\u00E1t t\\u00ECm th\\u1EA5y m\\u1ED9t d\\u1EA5u v\\u00E2n tay tr\\u00EAn chi\\u1EBFc ly.\u0022},{\u0022text\u0022:\u0022You must give your fingerprint at the border.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n ph\\u1EA3i cung c\\u1EA5p v\\u00E2n tay \\u1EDF c\\u1EEDa kh\\u1EA9u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022leave a fingerprint\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EC3 l\\u1EA1i d\\u1EA5u v\\u00E2n tay\u0022},{\u0022text\u0022:\u0022fingerprint scanner\u0022,\u0022vi\u0022:\u0022m\\u00E1y qu\\u00E9t v\\u00E2n tay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5962186/free-public-domain-cc0-photo\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.91d30899a6644389bd04e11011de51ee",
+      "kind": "Card",
+      "values": {
+        "Term": "jury",
+        "Definition": "b\u1ED3i th\u1EA9m \u0111o\u00E0n",
+        "ImageUrl": "asset:19fc845c2642b702155527674e0461d3b2326dc904b067440ac19c225182a89a.webp",
+        "Phonetic": "/\u02C8d\u0361\u0292\u028A\u0279i/",
+        "Example": "The jury needed two days to decide.",
+        "ExampleTranslation": "B\u1ED3i th\u1EA9m \u0111o\u00E0n c\u1EA7n hai ng\u00E0y \u0111\u1EC3 quy\u1EBFt \u0111\u1ECBnh.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a group of ordinary people who decide if someone is guilty",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8d\u0361\u0292\u028A\u0259\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The jury needed two days to decide.\u0022,\u0022vi\u0022:\u0022B\\u1ED3i th\\u1EA9m \\u0111o\\u00E0n c\\u1EA7n hai ng\\u00E0y \\u0111\\u1EC3 quy\\u1EBFt \\u0111\\u1ECBnh.\u0022},{\u0022text\u0022:\u0022Twelve people sat on the jury.\u0022,\u0022vi\u0022:\u0022M\\u01B0\\u1EDDi hai ng\\u01B0\\u1EDDi ng\\u1ED3i trong b\\u1ED3i th\\u1EA9m \\u0111o\\u00E0n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022member of the jury\u0022,\u0022vi\u0022:\u0022th\\u00E0nh vi\\u00EAn b\\u1ED3i th\\u1EA9m \\u0111o\\u00E0n\u0022},{\u0022text\u0022:\u0022jury service\u0022,\u0022vi\u0022:\u0022ngh\\u0129a v\\u1EE5 l\\u00E0m b\\u1ED3i th\\u1EA9m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Boone_County_Courthouse_jury_box.jpg\u0022,\u0022author\u0022:\u0022Brandonrush\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.accfe251d51c4e8ab5637c40081ca375",
+      "kind": "Card",
+      "values": {
+        "Term": "parliament",
+        "Definition": "qu\u1ED1c h\u1ED9i, ngh\u1ECB vi\u1EC7n",
+        "ImageUrl": "asset:d1c303fd802bb272368b0a83072678cca822b93409429db774362c859e2c9107.webp",
+        "Phonetic": "/\u02C8p\u0251\u0279l\u0259m\u0259nt/",
+        "Example": "Parliament will discuss the new law tomorrow.",
+        "ExampleTranslation": "Qu\u1ED1c h\u1ED9i s\u1EBD th\u1EA3o lu\u1EADn v\u1EC1 lu\u1EADt m\u1EDBi v\u00E0o ng\u00E0y mai.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the group of people who make the laws of a country",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u0251\u02D0l\u0259m\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Parliament will discuss the new law tomorrow.\u0022,\u0022vi\u0022:\u0022Qu\\u1ED1c h\\u1ED9i s\\u1EBD th\\u1EA3o lu\\u1EADn v\\u1EC1 lu\\u1EADt m\\u1EDBi v\\u00E0o ng\\u00E0y mai.\u0022},{\u0022text\u0022:\u0022The parliament building is in the capital.\u0022,\u0022vi\u0022:\u0022T\\u00F2a nh\\u00E0 qu\\u1ED1c h\\u1ED9i n\\u1EB1m \\u1EDF th\\u1EE7 \\u0111\\u00F4.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022members of parliament\u0022,\u0022vi\u0022:\u0022c\\u00E1c ngh\\u1ECB s\\u0129\u0022},{\u0022text\u0022:\u0022parliament building\u0022,\u0022vi\u0022:\u0022t\\u00F2a nh\\u00E0 qu\\u1ED1c h\\u1ED9i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Hungarian_Parliament_Building_2023-9.jpg\u0022,\u0022author\u0022:\u0022Pierre Blach\\u00E9\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.bb1af1666ce94fd1b883c6f2ef2568a0",
+      "kind": "Card",
+      "values": {
+        "Term": "fine",
+        "Definition": "ti\u1EC1n ph\u1EA1t",
+        "ImageUrl": "asset:8cf534af9ef4c979af66b6d5b9e0f41f18410920e58a003253c58d2c2c1c8489.webp",
+        "Phonetic": "/\u02C8fa\u026A\u032Fn/",
+        "Example": "I got a fine for parking in the wrong place.",
+        "ExampleTranslation": "T\u00F4i b\u1ECB ph\u1EA1t ti\u1EC1n v\u00EC \u0111\u1ED7 xe sai ch\u1ED7.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "money you must pay as a punishment",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8fa\u026A\u032Fn/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I got a fine for parking in the wrong place.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB ph\\u1EA1t ti\\u1EC1n v\\u00EC \\u0111\\u1ED7 xe sai ch\\u1ED7.\u0022},{\u0022text\u0022:\u0022The fine is fifty dollars.\u0022,\u0022vi\u0022:\u0022Ti\\u1EC1n ph\\u1EA1t l\\u00E0 n\\u0103m m\\u01B0\\u01A1i \\u0111\\u00F4 la.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pay a fine\u0022,\u0022vi\u0022:\u0022n\\u1ED9p ti\\u1EC1n ph\\u1EA1t\u0022},{\u0022text\u0022:\u0022parking fine\u0022,\u0022vi\u0022:\u0022ph\\u1EA1t \\u0111\\u1ED7 xe\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.bd12eedd323f42849ac6ef28341590cb",
+      "kind": "Card",
+      "values": {
+        "Term": "judge",
+        "Definition": "th\u1EA9m ph\u00E1n",
+        "ImageUrl": "asset:9cf1ac66b188f77b82132e08f8b09e7600e58a69aba4a9794b182295911b5601.webp",
+        "Phonetic": "/d\u0361\u0292\u028Cd\u0361\u0292/",
+        "Example": "The judge listened carefully to both sides.",
+        "ExampleTranslation": "Th\u1EA9m ph\u00E1n l\u1EAFng nghe c\u1EA9n th\u1EADn c\u1EA3 hai b\u00EAn.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the person who decides what happens in a court case",
+        "Cefr": "B2",
+        "PhoneticUk": "/d\u0361\u0292\u028Cd\u0361\u0292/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The judge listened carefully to both sides.\u0022,\u0022vi\u0022:\u0022Th\\u1EA9m ph\\u00E1n l\\u1EAFng nghe c\\u1EA9n th\\u1EADn c\\u1EA3 hai b\\u00EAn.\u0022},{\u0022text\u0022:\u0022She was the youngest judge in the city.\u0022,\u0022vi\u0022:\u0022B\\u00E0 l\\u00E0 th\\u1EA9m ph\\u00E1n tr\\u1EBB nh\\u1EA5t th\\u00E0nh ph\\u1ED1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022the judge decides\u0022,\u0022vi\u0022:\u0022th\\u1EA9m ph\\u00E1n quy\\u1EBFt \\u0111\\u1ECBnh\u0022},{\u0022text\u0022:\u0022judge\\u0027s decision\u0022,\u0022vi\u0022:\u0022quy\\u1EBFt \\u0111\\u1ECBnh c\\u1EE7a th\\u1EA9m ph\\u00E1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5921176/judges-gavel-free-public-domain-cc0-photo\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.bee93696e9074d119ece11d9aab161a1",
+      "kind": "Card",
+      "values": {
+        "Term": "arrest",
+        "Definition": "b\u1EAFt gi\u1EEF",
+        "ImageUrl": "asset:0f27245fe293328bdcad3fa3453fa4bbfe609fda3618386c50d9dad6b2530fed.webp",
+        "Phonetic": "/\u0259\u02C8\u0279\u025Bst/",
+        "Example": "The police arrested two men last night.",
+        "ExampleTranslation": "C\u1EA3nh s\u00E1t \u0111\u00E3 b\u1EAFt gi\u1EEF hai ng\u01B0\u1EDDi \u0111\u00E0n \u00F4ng t\u1ED1i qua.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to take a person to a police station because of a crime",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0259\u02C8\u0279\u025Bst/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The police arrested two men last night.\u0022,\u0022vi\u0022:\u0022C\\u1EA3nh s\\u00E1t \\u0111\\u00E3 b\\u1EAFt gi\\u1EEF hai ng\\u01B0\\u1EDDi \\u0111\\u00E0n \\u00F4ng t\\u1ED1i qua.\u0022},{\u0022text\u0022:\u0022She was arrested for stealing a bag.\u0022,\u0022vi\u0022:\u0022C\\u00F4 ta b\\u1ECB b\\u1EAFt v\\u00EC l\\u1EA5y c\\u1EAFp m\\u1ED9t chi\\u1EBFc t\\u00FAi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022arrest a suspect\u0022,\u0022vi\u0022:\u0022b\\u1EAFt gi\\u1EEF nghi ph\\u1EA1m\u0022},{\u0022text\u0022:\u0022be arrested\u0022,\u0022vi\u0022:\u0022b\\u1ECB b\\u1EAFt\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022arrested\u0022,\u0022pastParticiple\u0022:\u0022arrested\u0022,\u0022ing\u0022:\u0022arresting\u0022,\u0022thirdPerson\u0022:\u0022arrests\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.bf88317e4c534e889c6a619d72bb999a",
+      "kind": "Card",
+      "values": {
+        "Term": "candidate",
+        "Definition": "\u1EE9ng c\u1EED vi\u00EAn",
+        "ImageUrl": "asset:173347e626997e098ddbbef8253ed37f21c272684b31d7fb5e61383343696a66.webp",
+        "Phonetic": "/\u02C8k\u00E6n.d\u026A.d\u026At/",
+        "Example": "The candidate shook hands with the voters.",
+        "ExampleTranslation": "\u1EE8ng c\u1EED vi\u00EAn b\u1EAFt tay c\u00E1c c\u1EED tri.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who is trying to win an election or a job",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u00E6n.d\u026A.d\u0259t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The candidate shook hands with the voters.\u0022,\u0022vi\u0022:\u0022\\u1EE8ng c\\u1EED vi\\u00EAn b\\u1EAFt tay c\\u00E1c c\\u1EED tri.\u0022},{\u0022text\u0022:\u0022Three candidates are running for mayor.\u0022,\u0022vi\u0022:\u0022Ba \\u1EE9ng c\\u1EED vi\\u00EAn \\u0111ang tranh c\\u1EED th\\u1ECB tr\\u01B0\\u1EDFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022presidential candidate\u0022,\u0022vi\u0022:\u0022\\u1EE9ng c\\u1EED vi\\u00EAn t\\u1ED5ng th\\u1ED1ng\u0022},{\u0022text\u0022:\u0022strong candidate\u0022,\u0022vi\u0022:\u0022\\u1EE9ng c\\u1EED vi\\u00EAn m\\u1EA1nh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.c1b44782490b4f5cad80faa277338f15",
+      "kind": "Card",
+      "values": {
+        "Term": "court",
+        "Definition": "t\u00F2a \u00E1n",
+        "ImageUrl": "asset:12d2526ff5d00de0b72e4f3906394515bff5f4a786036a958aa9ca5c0f1d4f55.webp",
+        "Phonetic": "/\u02C8k\u0254\u0279t/",
+        "Example": "The case will be heard in court next week.",
+        "ExampleTranslation": "V\u1EE5 \u00E1n s\u1EBD \u0111\u01B0\u1EE3c x\u00E9t x\u1EED t\u1EA1i t\u00F2a v\u00E0o tu\u1EA7n t\u1EDBi.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place where a judge decides legal cases",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0254\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The case will be heard in court next week.\u0022,\u0022vi\u0022:\u0022V\\u1EE5 \\u00E1n s\\u1EBD \\u0111\\u01B0\\u1EE3c x\\u00E9t x\\u1EED t\\u1EA1i t\\u00F2a v\\u00E0o tu\\u1EA7n t\\u1EDBi.\u0022},{\u0022text\u0022:\u0022He had to go to court for driving too fast.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y ph\\u1EA3i ra t\\u00F2a v\\u00EC l\\u00E1i xe qu\\u00E1 nhanh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go to court\u0022,\u0022vi\u0022:\u0022ra t\\u00F2a\u0022},{\u0022text\u0022:\u0022court case\u0022,\u0022vi\u0022:\u0022v\\u1EE5 \\u00E1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/7156765@N05/51626549530\u0022,\u0022author\u0022:\u0022Onasill - Bill Badzo - OFF- VACATION\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.c53f32c0e68c49d9a3adfb3717a71069",
+      "kind": "Card",
+      "values": {
+        "Term": "security guard",
+        "Definition": "nh\u00E2n vi\u00EAn b\u1EA3o v\u1EC7",
+        "ImageUrl": "asset:4d7ffd1ce3aa12587a5c9f6c890a07283d4b56323d8936129c8863478f12d39f.webp",
+        "Phonetic": "/s\u0259\u02C8kj\u028A\u0279.\u026Ati \u0261\u0251\u0279d/",
+        "Example": "The security guard checked my bag at the door.",
+        "ExampleTranslation": "Nh\u00E2n vi\u00EAn b\u1EA3o v\u1EC7 ki\u1EC3m tra t\u00FAi c\u1EE7a t\u00F4i \u1EDF c\u1EEDa.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person whose job is to protect a place",
+        "Cefr": "B2",
+        "PhoneticUk": "/s\u026A\u02C8kj\u028A\u0259\u0279\u026Ati \u0261\u0251\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The security guard checked my bag at the door.\u0022,\u0022vi\u0022:\u0022Nh\\u00E2n vi\\u00EAn b\\u1EA3o v\\u1EC7 ki\\u1EC3m tra t\\u00FAi c\\u1EE7a t\\u00F4i \\u1EDF c\\u1EEDa.\u0022},{\u0022text\u0022:\u0022A security guard stands outside the bank.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t nh\\u00E2n vi\\u00EAn b\\u1EA3o v\\u1EC7 \\u0111\\u1EE9ng b\\u00EAn ngo\\u00E0i ng\\u00E2n h\\u00E0ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022night security guard\u0022,\u0022vi\u0022:\u0022b\\u1EA3o v\\u1EC7 ca \\u0111\\u00EAm\u0022},{\u0022text\u0022:\u0022hire a security guard\u0022,\u0022vi\u0022:\u0022thu\\u00EA nh\\u00E2n vi\\u00EAn b\\u1EA3o v\\u1EC7\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.c609291b38514532bc8d479446fba8fd",
+      "kind": "Card",
+      "values": {
+        "Term": "evidence",
+        "Definition": "b\u1EB1ng ch\u1EE9ng",
+        "ImageUrl": "asset:896cecd8615b46bd7b4492f394c35010869a83b91c61278262e0a9be62d57b4d.webp",
+        "Phonetic": "/\u02C8\u025Bv.\u026A.d\u0259ns/",
+        "Example": "The police collected evidence from the scene.",
+        "ExampleTranslation": "C\u1EA3nh s\u00E1t thu th\u1EADp b\u1EB1ng ch\u1EE9ng t\u1EA1i hi\u1EC7n tr\u01B0\u1EDDng.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "facts or objects that show something is true",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u025Bv.\u026A.d\u0259ns/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The police collected evidence from the scene.\u0022,\u0022vi\u0022:\u0022C\\u1EA3nh s\\u00E1t thu th\\u1EADp b\\u1EB1ng ch\\u1EE9ng t\\u1EA1i hi\\u1EC7n tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022There was not enough evidence to prove it.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng c\\u00F3 \\u0111\\u1EE7 b\\u1EB1ng ch\\u1EE9ng \\u0111\\u1EC3 ch\\u1EE9ng minh \\u0111i\\u1EC1u \\u0111\\u00F3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022collect evidence\u0022,\u0022vi\u0022:\u0022thu th\\u1EADp b\\u1EB1ng ch\\u1EE9ng\u0022},{\u0022text\u0022:\u0022clear evidence\u0022,\u0022vi\u0022:\u0022b\\u1EB1ng ch\\u1EE9ng r\\u00F5 r\\u00E0ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.d98db8452a1d4e57a06e9e8e80672dab",
+      "kind": "Card",
+      "values": {
+        "Term": "verdict",
+        "Definition": "ph\u00E1n quy\u1EBFt",
+        "ImageUrl": "asset:ba9c2298846fa914a6bdc1fcedaf216c819b5ab829b377da4f67c7332efe1552.webp",
+        "Phonetic": "/\u02C8v\u025D.d\u026Akt/",
+        "Example": "The jury reached a verdict after three hours.",
+        "ExampleTranslation": "B\u1ED3i th\u1EA9m \u0111o\u00E0n \u0111\u01B0a ra ph\u00E1n quy\u1EBFt sau ba gi\u1EDD.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the decision of a jury or judge in a court case",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8v\u025C\u02D0.d\u026Akt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The jury reached a verdict after three hours.\u0022,\u0022vi\u0022:\u0022B\\u1ED3i th\\u1EA9m \\u0111o\\u00E0n \\u0111\\u01B0a ra ph\\u00E1n quy\\u1EBFt sau ba gi\\u1EDD.\u0022},{\u0022text\u0022:\u0022Everyone waited quietly for the verdict.\u0022,\u0022vi\u0022:\u0022M\\u1ECDi ng\\u01B0\\u1EDDi l\\u1EB7ng l\\u1EBD ch\\u1EDD ph\\u00E1n quy\\u1EBFt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022reach a verdict\u0022,\u0022vi\u0022:\u0022\\u0111\\u01B0a ra ph\\u00E1n quy\\u1EBFt\u0022},{\u0022text\u0022:\u0022guilty verdict\u0022,\u0022vi\u0022:\u0022ph\\u00E1n quy\\u1EBFt c\\u00F3 t\\u1ED9i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.eac17d07306b4993906ab5e74e3ff1da",
+      "kind": "Card",
+      "values": {
+        "Term": "crime scene",
+        "Definition": "hi\u1EC7n tr\u01B0\u1EDDng v\u1EE5 \u00E1n",
+        "ImageUrl": "asset:1036ba6094b941d1d1f1915529619a453c2bc0ca5fedf6b9edef69e46a99d0ad.webp",
+        "Phonetic": "/k\u0279a\u026Am si\u02D0n/",
+        "Example": "Police tape blocked the crime scene.",
+        "ExampleTranslation": "D\u1EA3i b\u0103ng c\u1EE7a c\u1EA3nh s\u00E1t ch\u1EB7n hi\u1EC7n tr\u01B0\u1EDDng v\u1EE5 \u00E1n.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the place where a crime happened",
+        "Cefr": "B2",
+        "PhoneticUk": "/k\u0279a\u026Am si\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Police tape blocked the crime scene.\u0022,\u0022vi\u0022:\u0022D\\u1EA3i b\\u0103ng c\\u1EE7a c\\u1EA3nh s\\u00E1t ch\\u1EB7n hi\\u1EC7n tr\\u01B0\\u1EDDng v\\u1EE5 \\u00E1n.\u0022},{\u0022text\u0022:\u0022Experts searched the crime scene for clues.\u0022,\u0022vi\u0022:\u0022C\\u00E1c chuy\\u00EAn gia t\\u00ECm ki\\u1EBFm manh m\\u1ED1i \\u1EDF hi\\u1EC7n tr\\u01B0\\u1EDDng v\\u1EE5 \\u00E1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022examine a crime scene\u0022,\u0022vi\u0022:\u0022kh\\u00E1m nghi\\u1EC7m hi\\u1EC7n tr\\u01B0\\u1EDDng\u0022},{\u0022text\u0022:\u0022crime scene tape\u0022,\u0022vi\u0022:\u0022d\\u1EA3i b\\u0103ng hi\\u1EC7n tr\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5803510/photo-image-tape-public-domain-line\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.f17b8593489c4307afe6bfae51e366c8",
+      "kind": "Card",
+      "values": {
+        "Term": "gavel",
+        "Definition": "b\u00FAa c\u1EE7a th\u1EA9m ph\u00E1n",
+        "ImageUrl": "asset:467f1098c21afa34728276d309d6a4f061f0db0892675528e2b4d65c80873095.webp",
+        "Phonetic": "/\u02C8\u0261\u00E6.v\u0259l/",
+        "Example": "The judge hit the gavel and called for silence.",
+        "ExampleTranslation": "Th\u1EA9m ph\u00E1n g\u00F5 b\u00FAa v\u00E0 y\u00EAu c\u1EA7u im l\u1EB7ng.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small wooden hammer used by a judge to get attention",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0261a.v\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The judge hit the gavel and called for silence.\u0022,\u0022vi\u0022:\u0022Th\\u1EA9m ph\\u00E1n g\\u00F5 b\\u00FAa v\\u00E0 y\\u00EAu c\\u1EA7u im l\\u1EB7ng.\u0022},{\u0022text\u0022:\u0022A wooden gavel lay on the desk.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t chi\\u1EBFc b\\u00FAa g\\u1ED7 n\\u1EB1m tr\\u00EAn b\\u00E0n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bang the gavel\u0022,\u0022vi\u0022:\u0022g\\u00F5 b\\u00FAa\u0022},{\u0022text\u0022:\u0022judge\\u0027s gavel\u0022,\u0022vi\u0022:\u0022b\\u00FAa c\\u1EE7a th\\u1EA9m ph\\u00E1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.f2e97e7917c2454eb4a90b14e009922b",
+      "kind": "Card",
+      "values": {
+        "Term": "election",
+        "Definition": "cu\u1ED9c b\u1EA7u c\u1EED",
+        "ImageUrl": "asset:3e0066aa7b869282124b4608153d7c6c21d0d0847c9e974c315c187492f67bba.webp",
+        "Phonetic": "/\u026A\u02C8l\u025Bk\u0283\u0259n/",
+        "Example": "The election will be held in March.",
+        "ExampleTranslation": "Cu\u1ED9c b\u1EA7u c\u1EED s\u1EBD \u0111\u01B0\u1EE3c t\u1ED5 ch\u1EE9c v\u00E0o th\u00E1ng Ba.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an event where people vote to choose a leader",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u026A\u02C8l\u025Bk\u0283\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The election will be held in March.\u0022,\u0022vi\u0022:\u0022Cu\\u1ED9c b\\u1EA7u c\\u1EED s\\u1EBD \\u0111\\u01B0\\u1EE3c t\\u1ED5 ch\\u1EE9c v\\u00E0o th\\u00E1ng Ba.\u0022},{\u0022text\u0022:\u0022Many young people voted in the election.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC1u b\\u1EA1n tr\\u1EBB \\u0111\\u00E3 \\u0111i b\\u1ECF phi\\u1EBFu trong cu\\u1ED9c b\\u1EA7u c\\u1EED.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022general election\u0022,\u0022vi\u0022:\u0022t\\u1ED5ng tuy\\u1EC3n c\\u1EED\u0022},{\u0022text\u0022:\u0022win an election\u0022,\u0022vi\u0022:\u0022th\\u1EAFng c\\u1EED\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8644655/image-art-vintage-hands\u0022,\u0022author\u0022:\u0022libraryofcongress\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.f578deeae0614ffa9001726c94a78aec",
+      "kind": "Card",
+      "values": {
+        "Term": "handcuffs",
+        "Definition": "c\u00F2ng tay",
+        "ImageUrl": "asset:286af4235eae293b353cd47b24758afc7941fdba765976364d501c68a58502f1.webp",
+        "Phonetic": "/\u02C8h\u00E6nd\u02CCk\u028Cfs/",
+        "Example": "The police put handcuffs on the man.",
+        "ExampleTranslation": "C\u1EA3nh s\u00E1t c\u00F2ng tay ng\u01B0\u1EDDi \u0111\u00E0n \u00F4ng.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a pair of metal rings that lock around a person\u0027s wrists",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8h\u00E6nd\u02CCk\u028Cfs/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The police put handcuffs on the man.\u0022,\u0022vi\u0022:\u0022C\\u1EA3nh s\\u00E1t c\\u00F2ng tay ng\\u01B0\\u1EDDi \\u0111\\u00E0n \\u00F4ng.\u0022},{\u0022text\u0022:\u0022He was led away in handcuffs.\u0022,\u0022vi\u0022:\u0022Anh ta b\\u1ECB d\\u1EABn \\u0111i trong t\\u00ECnh tr\\u1EA1ng b\\u1ECB c\\u00F2ng tay.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022put on handcuffs\u0022,\u0022vi\u0022:\u0022c\\u00F2ng tay\u0022},{\u0022text\u0022:\u0022in handcuffs\u0022,\u0022vi\u0022:\u0022b\\u1ECB c\\u00F2ng tay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8850017/photo-image-art-vintage-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi.fe739ef0b078416bb0c30da2462598ce",
+      "kind": "Card",
+      "values": {
+        "Term": "protest",
+        "Definition": "cu\u1ED9c bi\u1EC3u t\u00ECnh",
+        "ImageUrl": "asset:fa649727bf7f941a811fc3f065bac1c22eb60127f71882836ebc82952fe99c01.webp",
+        "Phonetic": "/\u02C8p\u0279o\u028A.t\u025Bst/",
+        "Example": "Hundreds of people joined the protest in the square.",
+        "ExampleTranslation": "H\u00E0ng tr\u0103m ng\u01B0\u1EDDi tham gia cu\u1ED9c bi\u1EC3u t\u00ECnh \u1EDF qu\u1EA3ng tr\u01B0\u1EDDng.",
+        "Topic": "Ph\u00E1p lu\u1EADt \u0026 x\u00E3 h\u1ED9i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an event where people show they disagree with something",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u0279\u0259\u028A.t\u025Bst/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Hundreds of people joined the protest in the square.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng tr\\u0103m ng\\u01B0\\u1EDDi tham gia cu\\u1ED9c bi\\u1EC3u t\\u00ECnh \\u1EDF qu\\u1EA3ng tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022The protest was peaceful.\u0022,\u0022vi\u0022:\u0022Cu\\u1ED9c bi\\u1EC3u t\\u00ECnh di\\u1EC5n ra \\u00F4n h\\u00F2a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022peaceful protest\u0022,\u0022vi\u0022:\u0022bi\\u1EC3u t\\u00ECnh \\u00F4n h\\u00F2a\u0022},{\u0022text\u0022:\u0022join a protest\u0022,\u0022vi\u0022:\u0022tham gia bi\\u1EC3u t\\u00ECnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:George_Floyd_protest_signs_at_the_Ottawa_Courthouse_on_June_5,_2020_-_49975571416_(Cropped).jpg\u0022,\u0022author\u0022:\u0022Janderson.L\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "12d2526ff5d00de0b72e4f3906394515bff5f4a786036a958aa9ca5c0f1d4f55.webp",
+      "sha256": "12d2526ff5d00de0b72e4f3906394515bff5f4a786036a958aa9ca5c0f1d4f55"
+    },
+    {
+      "file": "9cf1ac66b188f77b82132e08f8b09e7600e58a69aba4a9794b182295911b5601.webp",
+      "sha256": "9cf1ac66b188f77b82132e08f8b09e7600e58a69aba4a9794b182295911b5601"
+    },
+    {
+      "file": "19fc845c2642b702155527674e0461d3b2326dc904b067440ac19c225182a89a.webp",
+      "sha256": "19fc845c2642b702155527674e0461d3b2326dc904b067440ac19c225182a89a"
+    },
+    {
+      "file": "a04aa114b364e78cdaf303e9b69255b70b757c0507e58fa580d91759c5bb82f9.webp",
+      "sha256": "a04aa114b364e78cdaf303e9b69255b70b757c0507e58fa580d91759c5bb82f9"
+    },
+    {
+      "file": "ba9c2298846fa914a6bdc1fcedaf216c819b5ab829b377da4f67c7332efe1552.webp",
+      "sha256": "ba9c2298846fa914a6bdc1fcedaf216c819b5ab829b377da4f67c7332efe1552"
+    },
+    {
+      "file": "a02ee44cb32cdf74217194ed6d7f42369182e11226e262811e386cb310d5ff1a.webp",
+      "sha256": "a02ee44cb32cdf74217194ed6d7f42369182e11226e262811e386cb310d5ff1a"
+    },
+    {
+      "file": "286af4235eae293b353cd47b24758afc7941fdba765976364d501c68a58502f1.webp",
+      "sha256": "286af4235eae293b353cd47b24758afc7941fdba765976364d501c68a58502f1"
+    },
+    {
+      "file": "fbd8fbcee7f04effbbcb177b9d169f3f61211b59635956b9223771342f3cf80f.webp",
+      "sha256": "fbd8fbcee7f04effbbcb177b9d169f3f61211b59635956b9223771342f3cf80f"
+    },
+    {
+      "file": "896cecd8615b46bd7b4492f394c35010869a83b91c61278262e0a9be62d57b4d.webp",
+      "sha256": "896cecd8615b46bd7b4492f394c35010869a83b91c61278262e0a9be62d57b4d"
+    },
+    {
+      "file": "467f1098c21afa34728276d309d6a4f061f0db0892675528e2b4d65c80873095.webp",
+      "sha256": "467f1098c21afa34728276d309d6a4f061f0db0892675528e2b4d65c80873095"
+    },
+    {
+      "file": "0f27245fe293328bdcad3fa3453fa4bbfe609fda3618386c50d9dad6b2530fed.webp",
+      "sha256": "0f27245fe293328bdcad3fa3453fa4bbfe609fda3618386c50d9dad6b2530fed"
+    },
+    {
+      "file": "8cf534af9ef4c979af66b6d5b9e0f41f18410920e58a003253c58d2c2c1c8489.webp",
+      "sha256": "8cf534af9ef4c979af66b6d5b9e0f41f18410920e58a003253c58d2c2c1c8489"
+    },
+    {
+      "file": "fa649727bf7f941a811fc3f065bac1c22eb60127f71882836ebc82952fe99c01.webp",
+      "sha256": "fa649727bf7f941a811fc3f065bac1c22eb60127f71882836ebc82952fe99c01"
+    },
+    {
+      "file": "3e0066aa7b869282124b4608153d7c6c21d0d0847c9e974c315c187492f67bba.webp",
+      "sha256": "3e0066aa7b869282124b4608153d7c6c21d0d0847c9e974c315c187492f67bba"
+    },
+    {
+      "file": "82bcfcbef8348b6fde1a0171a4f1eb6c71cfbd755441be56b9aabbca66e452e3.webp",
+      "sha256": "82bcfcbef8348b6fde1a0171a4f1eb6c71cfbd755441be56b9aabbca66e452e3"
+    },
+    {
+      "file": "173347e626997e098ddbbef8253ed37f21c272684b31d7fb5e61383343696a66.webp",
+      "sha256": "173347e626997e098ddbbef8253ed37f21c272684b31d7fb5e61383343696a66"
+    },
+    {
+      "file": "d1c303fd802bb272368b0a83072678cca822b93409429db774362c859e2c9107.webp",
+      "sha256": "d1c303fd802bb272368b0a83072678cca822b93409429db774362c859e2c9107"
+    },
+    {
+      "file": "b3af40ade5f6c924aab0f7768659eedff1d741aa3f1a330f5e9bfd757e555422.webp",
+      "sha256": "b3af40ade5f6c924aab0f7768659eedff1d741aa3f1a330f5e9bfd757e555422"
+    },
+    {
+      "file": "bea1b0966d357ba78a678f35174271e394847afb29027afa101c95144877e9ae.webp",
+      "sha256": "bea1b0966d357ba78a678f35174271e394847afb29027afa101c95144877e9ae"
+    },
+    {
+      "file": "4e9a82ea6f6d2f8c81a385ad9a6d8a52f5ab608fc225d05f22b375dd848768dd.webp",
+      "sha256": "4e9a82ea6f6d2f8c81a385ad9a6d8a52f5ab608fc225d05f22b375dd848768dd"
+    },
+    {
+      "file": "3eaaae4d2d64e45b63acffa8dfc49f07174ee000f8c4c11088955fa5d0624b36.webp",
+      "sha256": "3eaaae4d2d64e45b63acffa8dfc49f07174ee000f8c4c11088955fa5d0624b36"
+    },
+    {
+      "file": "4d7ffd1ce3aa12587a5c9f6c890a07283d4b56323d8936129c8863478f12d39f.webp",
+      "sha256": "4d7ffd1ce3aa12587a5c9f6c890a07283d4b56323d8936129c8863478f12d39f"
+    },
+    {
+      "file": "166fe166f5a6a643a0acd458eaafab80c5726340f18c82aaea04fa141f0980e5.webp",
+      "sha256": "166fe166f5a6a643a0acd458eaafab80c5726340f18c82aaea04fa141f0980e5"
+    },
+    {
+      "file": "3d2e600347376e7d3a432004a45c421f9dcd6ccd4c39b2bbe1bf4497052aa81b.webp",
+      "sha256": "3d2e600347376e7d3a432004a45c421f9dcd6ccd4c39b2bbe1bf4497052aa81b"
+    },
+    {
+      "file": "1036ba6094b941d1d1f1915529619a453c2bc0ca5fedf6b9edef69e46a99d0ad.webp",
+      "sha256": "1036ba6094b941d1d1f1915529619a453c2bc0ca5fedf6b9edef69e46a99d0ad"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b14-phap-luat-xa-hoi"
+}

@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru",
+      "kind": "Set",
+      "values": {
+        "SetName": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "Description": "#b1 #b2 #science #space"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.04815e6c0676465086f73e4e9eb00055",
+      "kind": "Card",
+      "values": {
+        "Term": "atom",
+        "Definition": "nguy\u00EAn t\u1EED",
+        "ImageUrl": "asset:4d911f6cd149ba0df14f44973278b2c3c02bb4a28348b4f0fd672f34a5a9e8ec.webp",
+        "Phonetic": "/\u02C8\u00E6t\u0259m/",
+        "Example": "Everything is made of atoms.",
+        "ExampleTranslation": "M\u1ECDi th\u1EE9 \u0111\u1EC1u \u0111\u01B0\u1EE3c t\u1EA1o n\u00EAn t\u1EEB nguy\u00EAn t\u1EED.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the smallest part of a chemical element",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u00E6t\u0259m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Everything is made of atoms.\u0022,\u0022vi\u0022:\u0022M\\u1ECDi th\\u1EE9 \\u0111\\u1EC1u \\u0111\\u01B0\\u1EE3c t\\u1EA1o n\\u00EAn t\\u1EEB nguy\\u00EAn t\\u1EED.\u0022},{\u0022text\u0022:\u0022A hydrogen atom is very small.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t nguy\\u00EAn t\\u1EED hydro r\\u1EA5t nh\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022atom model\u0022,\u0022vi\u0022:\u0022m\\u00F4 h\\u00ECnh nguy\\u00EAn t\\u1EED\u0022},{\u0022text\u0022:\u0022split an atom\u0022,\u0022vi\u0022:\u0022t\\u00E1ch nguy\\u00EAn t\\u1EED\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Atom-1222511.jpg\u0022,\u0022author\u0022:\u0022Gerd Altmann\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.164f1cb65a434de4ae7f080babce00ca",
+      "kind": "Card",
+      "values": {
+        "Term": "moon",
+        "Definition": "m\u1EB7t tr\u0103ng",
+        "ImageUrl": "asset:9e9583f1220e3a022362aee7ff908773f67c265ef392fcbdc02377a9dce7c9f4.webp",
+        "Phonetic": "/mun/",
+        "Example": "The moon is very bright tonight.",
+        "ExampleTranslation": "T\u1ED1i nay m\u1EB7t tr\u0103ng r\u1EA5t s\u00E1ng.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the large round object that goes around the Earth",
+        "Cefr": "B1",
+        "PhoneticUk": "/mu\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The moon is very bright tonight.\u0022,\u0022vi\u0022:\u0022T\\u1ED1i nay m\\u1EB7t tr\\u0103ng r\\u1EA5t s\\u00E1ng.\u0022},{\u0022text\u0022:\u0022Astronauts first walked on the moon in 1969.\u0022,\u0022vi\u0022:\u0022C\\u00E1c phi h\\u00E0nh gia l\\u1EA7n \\u0111\\u1EA7u \\u0111\\u1EB7t ch\\u00E2n l\\u00EAn m\\u1EB7t tr\\u0103ng v\\u00E0o n\\u0103m 1969.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022full moon\u0022,\u0022vi\u0022:\u0022tr\\u0103ng tr\\u00F2n\u0022},{\u0022text\u0022:\u0022walk on the moon\u0022,\u0022vi\u0022:\u0022\\u0111i b\\u1ED9 tr\\u00EAn m\\u1EB7t tr\\u0103ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3297444/free-photo-image-moon-astronomy-cc0\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.1d8e792033194b2db6af848be4352e21",
+      "kind": "Card",
+      "values": {
+        "Term": "eclipse",
+        "Definition": "nh\u1EADt th\u1EF1c, nguy\u1EC7t th\u1EF1c",
+        "ImageUrl": "asset:0ce6804155f91458d36e27063aaefe4574a6b5bbdbb7d69d45c3c0b8599fe51c.webp",
+        "Phonetic": "/\u026A\u02C8kl\u026Aps/",
+        "Example": "Thousands of people watched the solar eclipse.",
+        "ExampleTranslation": "H\u00E0ng ngh\u00ECn ng\u01B0\u1EDDi \u0111\u00E3 xem nh\u1EADt th\u1EF1c.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an event when the sun or moon is hidden by another object",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u026A\u02C8kl\u026Aps/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Thousands of people watched the solar eclipse.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng ngh\\u00ECn ng\\u01B0\\u1EDDi \\u0111\\u00E3 xem nh\\u1EADt th\\u1EF1c.\u0022},{\u0022text\u0022:\u0022The eclipse lasted about two minutes.\u0022,\u0022vi\u0022:\u0022Hi\\u1EC7n t\\u01B0\\u1EE3ng th\\u1EF1c k\\u00E9o d\\u00E0i kho\\u1EA3ng hai ph\\u00FAt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022solar eclipse\u0022,\u0022vi\u0022:\u0022nh\\u1EADt th\\u1EF1c\u0022},{\u0022text\u0022:\u0022lunar eclipse\u0022,\u0022vi\u0022:\u0022nguy\\u1EC7t th\\u1EF1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/115357548@N08/15425759437\u0022,\u0022author\u0022:\u0022Joshua Tree National Park\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.2ec4d02419a24adf8b1cfc63d17075e3",
+      "kind": "Card",
+      "values": {
+        "Term": "space station",
+        "Definition": "tr\u1EA1m v\u0169 tr\u1EE5",
+        "ImageUrl": "asset:a501686941503882cc92543034089747556d50c42279d2e160f8e60f49e0433d.webp",
+        "Phonetic": "/spe\u026As \u02C8ste\u026A\u0283\u0259n/",
+        "Example": "The astronauts live on the space station for six months.",
+        "ExampleTranslation": "C\u00E1c phi h\u00E0nh gia s\u1ED1ng tr\u00EAn tr\u1EA1m v\u0169 tr\u1EE5 s\u00E1u th\u00E1ng.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large structure in space where astronauts live and work",
+        "Cefr": "B2",
+        "PhoneticUk": "/spe\u026As \u02C8ste\u026A\u0283\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The astronauts live on the space station for six months.\u0022,\u0022vi\u0022:\u0022C\\u00E1c phi h\\u00E0nh gia s\\u1ED1ng tr\\u00EAn tr\\u1EA1m v\\u0169 tr\\u1EE5 s\\u00E1u th\\u00E1ng.\u0022},{\u0022text\u0022:\u0022You can sometimes see the space station in the night sky.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00F4i khi b\\u1EA1n c\\u00F3 th\\u1EC3 th\\u1EA5y tr\\u1EA1m v\\u0169 tr\\u1EE5 tr\\u00EAn b\\u1EA7u tr\\u1EDDi \\u0111\\u00EAm.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022International Space Station\u0022,\u0022vi\u0022:\u0022Tr\\u1EA1m v\\u0169 tr\\u1EE5 qu\\u1ED1c t\\u1EBF\u0022},{\u0022text\u0022:\u0022live on a space station\u0022,\u0022vi\u0022:\u0022s\\u1ED1ng tr\\u00EAn tr\\u1EA1m v\\u0169 tr\\u1EE5\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/39735679@N00/491421253\u0022,\u0022author\u0022:\u0022pingnews.com\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.4011121fd2504aac96cfddb8548226fb",
+      "kind": "Card",
+      "values": {
+        "Term": "periodic table",
+        "Definition": "b\u1EA3ng tu\u1EA7n ho\u00E0n",
+        "ImageUrl": "asset:d57a3785b4fef95c0de8f16c060672eaf4d92a2e9b9acb1f58c791f3eb0c23bc.webp",
+        "Phonetic": "/\u02CCp\u026A\u0279i\u02C8\u0251d\u026Ak \u02C8t\u02B0e\u026Ab(\u0259)\u026B/",
+        "Example": "There is a periodic table on the classroom wall.",
+        "ExampleTranslation": "C\u00F3 m\u1ED9t b\u1EA3ng tu\u1EA7n ho\u00E0n tr\u00EAn t\u01B0\u1EDDng l\u1EDBp h\u1ECDc.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a chart that shows all the chemical elements",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02CCp\u026A\u0279i\u02C8\u0252d\u026Ak \u02C8te\u026Abl\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022There is a periodic table on the classroom wall.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t b\\u1EA3ng tu\\u1EA7n ho\\u00E0n tr\\u00EAn t\\u01B0\\u1EDDng l\\u1EDBp h\\u1ECDc.\u0022},{\u0022text\u0022:\u0022Hydrogen is the first element in the periodic table.\u0022,\u0022vi\u0022:\u0022Hydro l\\u00E0 nguy\\u00EAn t\\u1ED1 \\u0111\\u1EA7u ti\\u00EAn trong b\\u1EA3ng tu\\u1EA7n ho\\u00E0n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022learn the periodic table\u0022,\u0022vi\u0022:\u0022h\\u1ECDc b\\u1EA3ng tu\\u1EA7n ho\\u00E0n\u0022},{\u0022text\u0022:\u0022periodic table of elements\u0022,\u0022vi\u0022:\u0022b\\u1EA3ng tu\\u1EA7n ho\\u00E0n c\\u00E1c nguy\\u00EAn t\\u1ED1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Periodic_Table_-_Atomic_Properties_of_the_Elements.png\u0022,\u0022author\u0022:\u0022R.A. Dragoset, A. Musgrove, C.W. Clark, and W.C. Martin \\u2014 NIST, Physical Measurement Laboratory\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.4d5493680150451a86ea7308fc2ef623",
+      "kind": "Card",
+      "values": {
+        "Term": "microscope",
+        "Definition": "k\u00EDnh hi\u1EC3n vi",
+        "ImageUrl": "asset:243a5b91e94fa52c56e3d885523150d526a28b64c3c8525198d43e0753c7625d.webp",
+        "Phonetic": "/\u02C8ma\u026A.k\u0279\u0259\u02CCsko\u028Ap/",
+        "Example": "We looked at a leaf under the microscope.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i quan s\u00E1t m\u1ED9t chi\u1EBFc l\u00E1 d\u01B0\u1EDBi k\u00EDnh hi\u1EC3n vi.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an instrument that makes very small things look bigger",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8ma\u026A.k\u0279\u0259\u02CCsk\u0259\u028Ap/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We looked at a leaf under the microscope.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i quan s\\u00E1t m\\u1ED9t chi\\u1EBFc l\\u00E1 d\\u01B0\\u1EDBi k\\u00EDnh hi\\u1EC3n vi.\u0022},{\u0022text\u0022:\u0022The microscope is on the lab table.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc k\\u00EDnh hi\\u1EC3n vi n\\u1EB1m tr\\u00EAn b\\u00E0n th\\u00ED nghi\\u1EC7m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022under a microscope\u0022,\u0022vi\u0022:\u0022d\\u01B0\\u1EDBi k\\u00EDnh hi\\u1EC3n vi\u0022},{\u0022text\u0022:\u0022electron microscope\u0022,\u0022vi\u0022:\u0022k\\u00EDnh hi\\u1EC3n vi \\u0111i\\u1EC7n t\\u1EED\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/23408922@N07/10731246075\u0022,\u0022author\u0022:\u0022comedy_nose\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.547cf936e8ca41d8bc8f6e89b6d9b102",
+      "kind": "Card",
+      "values": {
+        "Term": "astronaut",
+        "Definition": "phi h\u00E0nh gia",
+        "ImageUrl": "asset:86d89082cfb16c8a32bc096d17dec128902143b7b7e9a26c4defdb5e660a32b0.webp",
+        "Phonetic": "/\u02C8\u00E6st\u0279\u0259\u02CCn\u0254t/",
+        "Example": "The astronaut waved from the spacecraft.",
+        "ExampleTranslation": "Phi h\u00E0nh gia v\u1EABy tay t\u1EEB t\u00E0u v\u0169 tr\u1EE5.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who travels in space",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u00E6st\u0279\u0259\u02CCn\u0254\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The astronaut waved from the spacecraft.\u0022,\u0022vi\u0022:\u0022Phi h\\u00E0nh gia v\\u1EABy tay t\\u1EEB t\\u00E0u v\\u0169 tr\\u1EE5.\u0022},{\u0022text\u0022:\u0022Many children dream of becoming an astronaut.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC1u tr\\u1EBB em m\\u01A1 \\u01B0\\u1EDBc tr\\u1EDF th\\u00E0nh phi h\\u00E0nh gia.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022become an astronaut\u0022,\u0022vi\u0022:\u0022tr\\u1EDF th\\u00E0nh phi h\\u00E0nh gia\u0022},{\u0022text\u0022:\u0022astronaut training\u0022,\u0022vi\u0022:\u0022hu\\u1EA5n luy\\u1EC7n phi h\\u00E0nh gia\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6290316/image-public-domain-person-astronaut\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.5752afe0514345738536f1fb93bae4de",
+      "kind": "Card",
+      "values": {
+        "Term": "test tube",
+        "Definition": "\u1ED1ng nghi\u1EC7m",
+        "ImageUrl": "asset:9fea6a9f49d40c74114eccdffea987146c30557211adace486f6ae756020e4fe.webp",
+        "Phonetic": "/t\u025Bst tub/",
+        "Example": "She poured the liquid into a test tube.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y r\u00F3t ch\u1EA5t l\u1ECFng v\u00E0o m\u1ED9t \u1ED1ng nghi\u1EC7m.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thin glass tube used in science experiments",
+        "Cefr": "B2",
+        "PhoneticUk": "/t\u025Bst t\u0283u\u02D0b/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She poured the liquid into a test tube.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y r\\u00F3t ch\\u1EA5t l\\u1ECFng v\\u00E0o m\\u1ED9t \\u1ED1ng nghi\\u1EC7m.\u0022},{\u0022text\u0022:\u0022The test tubes stood in a row on the rack.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng \\u1ED1ng nghi\\u1EC7m \\u0111\\u1EE9ng th\\u00E0nh h\\u00E0ng tr\\u00EAn gi\\u00E1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022test tube rack\u0022,\u0022vi\u0022:\u0022gi\\u00E1 \\u1ED1ng nghi\\u1EC7m\u0022},{\u0022text\u0022:\u0022fill a test tube\u0022,\u0022vi\u0022:\u0022r\\u00F3t \\u0111\\u1EA7y \\u1ED1ng nghi\\u1EC7m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.6a55ced00c14483ba50efffe12be63ce",
+      "kind": "Card",
+      "values": {
+        "Term": "lab coat",
+        "Definition": "\u00E1o cho\u00E0ng ph\u00F2ng th\u00ED nghi\u1EC7m",
+        "ImageUrl": "asset:75b7fa1077d258969cd1a3242015fe2b8953c08a8d9bb3c554336d7dab099989.webp",
+        "Phonetic": "/l\u00E6\u02D0b \u02C8ko\u028A\u032Ft/",
+        "Example": "The scientist put on a white lab coat.",
+        "ExampleTranslation": "Nh\u00E0 khoa h\u1ECDc m\u1EB7c chi\u1EBFc \u00E1o cho\u00E0ng ph\u00F2ng th\u00ED nghi\u1EC7m m\u00E0u tr\u1EAFng.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a white coat that scientists wear to protect their clothes",
+        "Cefr": "B2",
+        "PhoneticUk": "/l\u00E6\u02D0b \u02C8k\u0259\u028A\u032Ft/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The scientist put on a white lab coat.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 khoa h\\u1ECDc m\\u1EB7c chi\\u1EBFc \\u00E1o cho\\u00E0ng ph\\u00F2ng th\\u00ED nghi\\u1EC7m m\\u00E0u tr\\u1EAFng.\u0022},{\u0022text\u0022:\u0022Students must wear a lab coat in the laboratory.\u0022,\u0022vi\u0022:\u0022H\\u1ECDc sinh ph\\u1EA3i m\\u1EB7c \\u00E1o cho\\u00E0ng khi \\u1EDF ph\\u00F2ng th\\u00ED nghi\\u1EC7m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wear a lab coat\u0022,\u0022vi\u0022:\u0022m\\u1EB7c \\u00E1o cho\\u00E0ng ph\\u00F2ng th\\u00ED nghi\\u1EC7m\u0022},{\u0022text\u0022:\u0022white lab coat\u0022,\u0022vi\u0022:\u0022\\u00E1o cho\\u00E0ng tr\\u1EAFng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.6aab6f200877479883b5a6e058b6626e",
+      "kind": "Card",
+      "values": {
+        "Term": "meteor",
+        "Definition": "sao b\u0103ng",
+        "ImageUrl": "asset:b01c8196da227e6389a86aa8c8c08bb709520bb8f0896567b9bb5823cfdcf492.webp",
+        "Phonetic": "/\u02C8mi.ti\u025A/",
+        "Example": "We saw a meteor flash across the sky.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i th\u1EA5y m\u1ED9t v\u1EC7t sao b\u0103ng l\u00F3e qua b\u1EA7u tr\u1EDDi.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small piece of rock that burns brightly as it falls through the sky",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8mi\u02D0t\u026A.\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We saw a meteor flash across the sky.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i th\\u1EA5y m\\u1ED9t v\\u1EC7t sao b\\u0103ng l\\u00F3e qua b\\u1EA7u tr\\u1EDDi.\u0022},{\u0022text\u0022:\u0022Make a wish when you see a meteor.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u01B0\\u1EDBc m\\u1ED9t \\u0111i\\u1EC1u khi b\\u1EA1n th\\u1EA5y sao b\\u0103ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022meteor shower\u0022,\u0022vi\u0022:\u0022m\\u01B0a sao b\\u0103ng\u0022},{\u0022text\u0022:\u0022see a meteor\u0022,\u0022vi\u0022:\u0022th\\u1EA5y sao b\\u0103ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.6e1db90eacb64fbaa67136f353ef0c6a",
+      "kind": "Card",
+      "values": {
+        "Term": "crater",
+        "Definition": "mi\u1EC7ng n\u00FAi l\u1EEDa, h\u1ED1 va ch\u1EA1m",
+        "ImageUrl": "asset:24976b86f11be761f3199dab46b6d7ced7bee1393e5da454b8b3c002a23d86bd.webp",
+        "Phonetic": "/\u02C8k\u0279e\u026A.t\u025A/",
+        "Example": "The moon has thousands of craters.",
+        "ExampleTranslation": "M\u1EB7t tr\u0103ng c\u00F3 h\u00E0ng ngh\u00ECn h\u1ED1 va ch\u1EA1m.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large round hole in the ground or on the moon",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0279e\u026A.t\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The moon has thousands of craters.\u0022,\u0022vi\u0022:\u0022M\\u1EB7t tr\\u0103ng c\\u00F3 h\\u00E0ng ngh\\u00ECn h\\u1ED1 va ch\\u1EA1m.\u0022},{\u0022text\u0022:\u0022We walked to the edge of the volcano crater.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i t\\u1EDBi m\\u00E9p mi\\u1EC7ng n\\u00FAi l\\u1EEDa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022volcano crater\u0022,\u0022vi\u0022:\u0022mi\\u1EC7ng n\\u00FAi l\\u1EEDa\u0022},{\u0022text\u0022:\u0022deep crater\u0022,\u0022vi\u0022:\u0022h\\u1ED1 s\\u00E2u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/moon-surface-LIQPPTTHWO\u0022,\u0022author\u0022:\u0022Stephen Rahn\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.6ff43368f1d34b4496596460b61915d0",
+      "kind": "Card",
+      "values": {
+        "Term": "fossil",
+        "Definition": "h\u00F3a th\u1EA1ch",
+        "ImageUrl": "asset:58aac716417217f1eb14485d0f6d70bba4be5bae5a6decbccddc5a118bcb589a.webp",
+        "Phonetic": "/\u02C8f\u0251sl\u0329/",
+        "Example": "He found a fossil of a shell on the beach.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y t\u00ECm th\u1EA5y m\u1ED9t h\u00F3a th\u1EA1ch v\u1ECF s\u00F2 tr\u00EAn b\u00E3i bi\u1EC3n.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the hard remains of an ancient plant or animal in rock",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8f\u0252sl\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He found a fossil of a shell on the beach.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y t\\u00ECm th\\u1EA5y m\\u1ED9t h\\u00F3a th\\u1EA1ch v\\u1ECF s\\u00F2 tr\\u00EAn b\\u00E3i bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022The museum has a dinosaur fossil.\u0022,\u0022vi\u0022:\u0022B\\u1EA3o t\\u00E0ng c\\u00F3 m\\u1ED9t h\\u00F3a th\\u1EA1ch kh\\u1EE7ng long.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022dinosaur fossil\u0022,\u0022vi\u0022:\u0022h\\u00F3a th\\u1EA1ch kh\\u1EE7ng long\u0022},{\u0022text\u0022:\u0022find a fossil\u0022,\u0022vi\u0022:\u0022t\\u00ECm th\\u1EA5y h\\u00F3a th\\u1EA1ch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/96541566@N06/52144068421\u0022,\u0022author\u0022:\u0022Juhele_CZ\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.74920ca6c1eb4cdf964199a8ea4dd079",
+      "kind": "Card",
+      "values": {
+        "Term": "experiment",
+        "Definition": "th\u00ED nghi\u1EC7m",
+        "ImageUrl": "asset:069f153f433ba2d5c097e9d52b783f9480e595b3f2ba021d35cae1311703998e.webp",
+        "Phonetic": "/\u026Ak\u02C8sp\u025B\u0279.\u0259.m\u0259nt/",
+        "Example": "We did an experiment with water and salt.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i l\u00E0m m\u1ED9t th\u00ED nghi\u1EC7m v\u1EDBi n\u01B0\u1EDBc v\u00E0 mu\u1ED1i.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a scientific test to find out if an idea is true",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u026Ak\u02C8sp\u025B\u0279.\u026A.m\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We did an experiment with water and salt.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i l\\u00E0m m\\u1ED9t th\\u00ED nghi\\u1EC7m v\\u1EDBi n\\u01B0\\u1EDBc v\\u00E0 mu\\u1ED1i.\u0022},{\u0022text\u0022:\u0022The experiment did not work the first time.\u0022,\u0022vi\u0022:\u0022Th\\u00ED nghi\\u1EC7m kh\\u00F4ng th\\u00E0nh c\\u00F4ng \\u1EDF l\\u1EA7n \\u0111\\u1EA7u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022carry out an experiment\u0022,\u0022vi\u0022:\u0022ti\\u1EBFn h\\u00E0nh th\\u00ED nghi\\u1EC7m\u0022},{\u0022text\u0022:\u0022science experiment\u0022,\u0022vi\u0022:\u0022th\\u00ED nghi\\u1EC7m khoa h\\u1ECDc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.7e48495401e44462bdb0c0a62b746823",
+      "kind": "Card",
+      "values": {
+        "Term": "galaxy",
+        "Definition": "thi\u00EAn h\u00E0",
+        "ImageUrl": "asset:fdb4daa8912c38aef47a9ac15a91b0912028969461b1342dfc1b8a89fec8c38b.webp",
+        "Phonetic": "/\u02C8\u0261\u00E6l.\u0259k.si/",
+        "Example": "Our galaxy is called the Milky Way.",
+        "ExampleTranslation": "Thi\u00EAn h\u00E0 c\u1EE7a ch\u00FAng ta c\u00F3 t\u00EAn l\u00E0 D\u1EA3i Ng\u00E2n H\u00E0.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a huge group of stars, gas and dust",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0261\u00E6l.\u0259k.si/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Our galaxy is called the Milky Way.\u0022,\u0022vi\u0022:\u0022Thi\\u00EAn h\\u00E0 c\\u1EE7a ch\\u00FAng ta c\\u00F3 t\\u00EAn l\\u00E0 D\\u1EA3i Ng\\u00E2n H\\u00E0.\u0022},{\u0022text\u0022:\u0022There are billions of galaxies in space.\u0022,\u0022vi\u0022:\u0022C\\u00F3 h\\u00E0ng t\\u1EF7 thi\\u00EAn h\\u00E0 trong v\\u0169 tr\\u1EE5.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022distant galaxy\u0022,\u0022vi\u0022:\u0022thi\\u00EAn h\\u00E0 xa x\\u00F4i\u0022},{\u0022text\u0022:\u0022spiral galaxy\u0022,\u0022vi\u0022:\u0022thi\\u00EAn h\\u00E0 xo\\u1EAFn \\u1ED1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/stars-galaxy-Y8CKB0O8C2\u0022,\u0022author\u0022:\u0022Greg Rakozy\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.8dbe0bc3647840e3a193e716aa80f267",
+      "kind": "Card",
+      "values": {
+        "Term": "orbit",
+        "Definition": "qu\u1EF9 \u0111\u1EA1o",
+        "ImageUrl": "asset:5ea2117b249a5d05f3ebe4e77f58138a61a953542d5cbfb8251e55e14aaac585.webp",
+        "Phonetic": "/\u02C8\u0254\u0279.b\u026At/",
+        "Example": "The satellite is in orbit around the Earth.",
+        "ExampleTranslation": "V\u1EC7 tinh \u0111ang \u1EDF tr\u00EAn qu\u1EF9 \u0111\u1EA1o quanh Tr\u00E1i \u0110\u1EA5t.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the curved path of an object moving around a planet or star",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0254\u02D0.b\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The satellite is in orbit around the Earth.\u0022,\u0022vi\u0022:\u0022V\\u1EC7 tinh \\u0111ang \\u1EDF tr\\u00EAn qu\\u1EF9 \\u0111\\u1EA1o quanh Tr\\u00E1i \\u0110\\u1EA5t.\u0022},{\u0022text\u0022:\u0022Earth takes a year to complete its orbit.\u0022,\u0022vi\u0022:\u0022Tr\\u00E1i \\u0110\\u1EA5t m\\u1EA5t m\\u1ED9t n\\u0103m \\u0111\\u1EC3 ho\\u00E0n th\\u00E0nh qu\\u1EF9 \\u0111\\u1EA1o c\\u1EE7a n\\u00F3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022in orbit\u0022,\u0022vi\u0022:\u0022tr\\u00EAn qu\\u1EF9 \\u0111\\u1EA1o\u0022},{\u0022text\u0022:\u0022orbit around the sun\u0022,\u0022vi\u0022:\u0022qu\\u1EF9 \\u0111\\u1EA1o quanh m\\u1EB7t tr\\u1EDDi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.931b623b7e4f41f49fddf27a58292f6e",
+      "kind": "Card",
+      "values": {
+        "Term": "comet",
+        "Definition": "sao ch\u1ED5i",
+        "ImageUrl": "asset:4f4e4749361f4a5aa39de49015b646bc7202e2e8abb76b76fa4af73d2f9b6b5f.webp",
+        "Phonetic": "/\u02C8k\u0252m\u026At/",
+        "Example": "A comet crossed the night sky last week.",
+        "ExampleTranslation": "M\u1ED9t sao ch\u1ED5i \u0111\u00E3 b\u0103ng qua b\u1EA7u tr\u1EDDi \u0111\u00EAm tu\u1EA7n tr\u01B0\u1EDBc.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a bright object in space with a long tail of light",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0252m\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A comet crossed the night sky last week.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t sao ch\\u1ED5i \\u0111\\u00E3 b\\u0103ng qua b\\u1EA7u tr\\u1EDDi \\u0111\\u00EAm tu\\u1EA7n tr\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022The comet is visible only for a few days.\u0022,\u0022vi\u0022:\u0022Sao ch\\u1ED5i ch\\u1EC9 nh\\u00ECn th\\u1EA5y \\u0111\\u01B0\\u1EE3c trong v\\u00E0i ng\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bright comet\u0022,\u0022vi\u0022:\u0022sao ch\\u1ED5i s\\u00E1ng\u0022},{\u0022text\u0022:\u0022comet tail\u0022,\u0022vi\u0022:\u0022\\u0111u\\u00F4i sao ch\\u1ED5i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/starry-night-D4JEXR84ZJ\u0022,\u0022author\u0022:\u0022Free Nature Stock\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.989bc90fdf674c5394e10bd4846640b7",
+      "kind": "Card",
+      "values": {
+        "Term": "telescope",
+        "Definition": "k\u00EDnh thi\u00EAn v\u0103n",
+        "ImageUrl": "asset:89291a01e51a81da9948dc2c4663cfb5a92c8a47b69e1d4adea99d70627df386.webp",
+        "Phonetic": "/\u02C8t\u025Bl.\u0259\u02CCsko\u028Ap/",
+        "Example": "He watched the moon through a telescope.",
+        "ExampleTranslation": "Anh \u1EA5y ng\u1EAFm m\u1EB7t tr\u0103ng qua k\u00EDnh thi\u00EAn v\u0103n.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an instrument that makes distant objects like stars look closer",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8t\u025Bl.\u026A.sk\u0259\u028Ap/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He watched the moon through a telescope.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y ng\\u1EAFm m\\u1EB7t tr\\u0103ng qua k\\u00EDnh thi\\u00EAn v\\u0103n.\u0022},{\u0022text\u0022:\u0022The school bought a new telescope.\u0022,\u0022vi\u0022:\u0022Tr\\u01B0\\u1EDDng mua m\\u1ED9t chi\\u1EBFc k\\u00EDnh thi\\u00EAn v\\u0103n m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022look through a telescope\u0022,\u0022vi\u0022:\u0022nh\\u00ECn qua k\\u00EDnh thi\\u00EAn v\\u0103n\u0022},{\u0022text\u0022:\u0022powerful telescope\u0022,\u0022vi\u0022:\u0022k\\u00EDnh thi\\u00EAn v\\u0103n m\\u1EA1nh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.98b859a9bd2243f699cab62fba7dd34d",
+      "kind": "Card",
+      "values": {
+        "Term": "magnet",
+        "Definition": "nam ch\u00E2m",
+        "ImageUrl": "asset:029627e207a810d9b304677235346cca6c90babbddef99d6657ccf147bce7d9c.webp",
+        "Phonetic": "/\u02C8m\u00E6\u0261.n\u026At/",
+        "Example": "A magnet can pick up small iron nails.",
+        "ExampleTranslation": "Nam ch\u00E2m c\u00F3 th\u1EC3 nh\u1EB7t nh\u1EEFng chi\u1EBFc \u0111inh s\u1EAFt nh\u1ECF.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of metal that pulls iron towards it",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8m\u00E6\u0261.n\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A magnet can pick up small iron nails.\u0022,\u0022vi\u0022:\u0022Nam ch\\u00E2m c\\u00F3 th\\u1EC3 nh\\u1EB7t nh\\u1EEFng chi\\u1EBFc \\u0111inh s\\u1EAFt nh\\u1ECF.\u0022},{\u0022text\u0022:\u0022The children played with a magnet in science class.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB ngh\\u1ECBch nam ch\\u00E2m trong gi\\u1EDD khoa h\\u1ECDc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022strong magnet\u0022,\u0022vi\u0022:\u0022nam ch\\u00E2m m\\u1EA1nh\u0022},{\u0022text\u0022:\u0022fridge magnet\u0022,\u0022vi\u0022:\u0022nam ch\\u00E2m d\\u00E1n t\\u1EE7 l\\u1EA1nh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.a573a3a0d3aa40cc9c130e8ee2d27f9e",
+      "kind": "Card",
+      "values": {
+        "Term": "molecule",
+        "Definition": "ph\u00E2n t\u1EED",
+        "ImageUrl": "asset:221a5a8736399de8617032c98584a105b3ffd812927a14c3ceee7d4473c721c5.webp",
+        "Phonetic": "/\u02C8m\u0251.l\u026A.kjul/",
+        "Example": "A water molecule has two hydrogen atoms.",
+        "ExampleTranslation": "M\u1ED9t ph\u00E2n t\u1EED n\u01B0\u1EDBc c\u00F3 hai nguy\u00EAn t\u1EED hydro.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a group of atoms joined together",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8m\u0252l.\u026A.kju\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A water molecule has two hydrogen atoms.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t ph\\u00E2n t\\u1EED n\\u01B0\\u1EDBc c\\u00F3 hai nguy\\u00EAn t\\u1EED hydro.\u0022},{\u0022text\u0022:\u0022The students built a molecule from plastic balls.\u0022,\u0022vi\u0022:\u0022H\\u1ECDc sinh gh\\u00E9p m\\u1ED9t ph\\u00E2n t\\u1EED b\\u1EB1ng nh\\u1EEFng qu\\u1EA3 b\\u00F3ng nh\\u1EF1a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022water molecule\u0022,\u0022vi\u0022:\u0022ph\\u00E2n t\\u1EED n\\u01B0\\u1EDBc\u0022},{\u0022text\u0022:\u0022molecule model\u0022,\u0022vi\u0022:\u0022m\\u00F4 h\\u00ECnh ph\\u00E2n t\\u1EED\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/w/index.php?curid=21004130\u0022,\u0022author\u0022:\u0022Jynto (talk)\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.ba8ba4c67364473b8ff0d5cb46aae329",
+      "kind": "Card",
+      "values": {
+        "Term": "spacecraft",
+        "Definition": "t\u00E0u v\u0169 tr\u1EE5",
+        "ImageUrl": "asset:5778348aaccfce85d14b36bc1e3441ecc9f0ddc0eda87aeacd52be1fc49b621f.webp",
+        "Phonetic": "/\u02C8spe\u026As\u02CCk\u0279\u00E6ft/",
+        "Example": "The spacecraft landed safely on the moon.",
+        "ExampleTranslation": "T\u00E0u v\u0169 tr\u1EE5 \u0111\u00E3 h\u1EA1 c\u00E1nh an to\u00E0n l\u00EAn m\u1EB7t tr\u0103ng.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a vehicle that travels in space",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8spe\u026As\u02CCk\u0279\u00E6ft/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The spacecraft landed safely on the moon.\u0022,\u0022vi\u0022:\u0022T\\u00E0u v\\u0169 tr\\u1EE5 \\u0111\\u00E3 h\\u1EA1 c\\u00E1nh an to\\u00E0n l\\u00EAn m\\u1EB7t tr\\u0103ng.\u0022},{\u0022text\u0022:\u0022Engineers built a new spacecraft last year.\u0022,\u0022vi\u0022:\u0022C\\u00E1c k\\u1EF9 s\\u01B0 \\u0111\\u00E3 ch\\u1EBF t\\u1EA1o m\\u1ED9t t\\u00E0u v\\u0169 tr\\u1EE5 m\\u1EDBi v\\u00E0o n\\u0103m ngo\\u00E1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022launch a spacecraft\u0022,\u0022vi\u0022:\u0022ph\\u00F3ng t\\u00E0u v\\u0169 tr\\u1EE5\u0022},{\u0022text\u0022:\u0022manned spacecraft\u0022,\u0022vi\u0022:\u0022t\\u00E0u v\\u0169 tr\\u1EE5 c\\u00F3 ng\\u01B0\\u1EDDi l\\u00E1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:NASA_orion_space_capsule_Houston_2014.jpg\u0022,\u0022author\u0022:\u0022Stablenode\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.becda59523bc419cac06d402f2dfcbcf",
+      "kind": "Card",
+      "values": {
+        "Term": "magnifying glass",
+        "Definition": "k\u00EDnh l\u00FAp",
+        "ImageUrl": "asset:d786b4b1e33492563a7366fe3225fa35c05066540789b96c07c55b6f76d741a6.webp",
+        "Phonetic": "/\u02C8m\u00E6\u0261n\u0259\u02CCfa\u026A\u026A\u014B \u0261l\u00E6s/",
+        "Example": "He used a magnifying glass to read the tiny letters.",
+        "ExampleTranslation": "Anh \u1EA5y d\u00F9ng k\u00EDnh l\u00FAp \u0111\u1EC3 \u0111\u1ECDc nh\u1EEFng ch\u1EEF nh\u1ECF x\u00EDu.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a lens that makes small things look bigger",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8ma\u0261n\u026Afa\u026A\u026A\u014B \u0261l\u0251\u02D0s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He used a magnifying glass to read the tiny letters.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y d\\u00F9ng k\\u00EDnh l\\u00FAp \\u0111\\u1EC3 \\u0111\\u1ECDc nh\\u1EEFng ch\\u1EEF nh\\u1ECF x\\u00EDu.\u0022},{\u0022text\u0022:\u0022The detective held up a magnifying glass.\u0022,\u0022vi\u0022:\u0022Th\\u00E1m t\\u1EED gi\\u01A1 cao chi\\u1EBFc k\\u00EDnh l\\u00FAp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hold a magnifying glass\u0022,\u0022vi\u0022:\u0022c\\u1EA7m k\\u00EDnh l\\u00FAp\u0022},{\u0022text\u0022:\u0022use a magnifying glass\u0022,\u0022vi\u0022:\u0022d\\u00F9ng k\\u00EDnh l\\u00FAp\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5904368/photo-image-public-domain-black-newspaper\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.c822fff5e65a4f7494212e073399ff9a",
+      "kind": "Card",
+      "values": {
+        "Term": "DNA",
+        "Definition": "ADN",
+        "ImageUrl": "asset:97130beecdc59d42dd44499b1c0b88be9b419c933c51324605d7946c83e02e0c.webp",
+        "Phonetic": "/\u02CCdi\u02D0 \u025Bn \u02C8e\u026A/",
+        "Example": "DNA decides the colour of your eyes.",
+        "ExampleTranslation": "ADN quy\u1EBFt \u0111\u1ECBnh m\u00E0u m\u1EAFt c\u1EE7a b\u1EA1n.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the material in cells that carries the information about a living thing",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02CCdi\u02D0 en \u02C8e\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022DNA decides the colour of your eyes.\u0022,\u0022vi\u0022:\u0022ADN quy\\u1EBFt \\u0111\\u1ECBnh m\\u00E0u m\\u1EAFt c\\u1EE7a b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022Scientists studied the DNA from the sample.\u0022,\u0022vi\u0022:\u0022C\\u00E1c nh\\u00E0 khoa h\\u1ECDc nghi\\u00EAn c\\u1EE9u ADN t\\u1EEB m\\u1EABu v\\u1EADt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022DNA test\u0022,\u0022vi\u0022:\u0022x\\u00E9t nghi\\u1EC7m ADN\u0022},{\u0022text\u0022:\u0022human DNA\u0022,\u0022vi\u0022:\u0022ADN ng\\u01B0\\u1EDDi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:DNA_Visual_Representation_of_Double-Helix.png\u0022,\u0022author\u0022:\u0022Unknown authorUnknown author\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.d37bb769d21a48e8afb00b2370dca72d",
+      "kind": "Card",
+      "values": {
+        "Term": "asteroid",
+        "Definition": "ti\u1EC3u h\u00E0nh tinh",
+        "ImageUrl": "asset:9a8f72050fbd2f0dbcdc7eef385c342f7428a364318b7d2890050b48f5a4f1ab.webp",
+        "Phonetic": "/\u02C8\u00E6st(\u0259)\u0279\u0254\u026Ad/",
+        "Example": "An asteroid passed close to the Earth.",
+        "ExampleTranslation": "M\u1ED9t ti\u1EC3u h\u00E0nh tinh bay ngang qua g\u1EA7n Tr\u00E1i \u0110\u1EA5t.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small rocky object that moves around the sun",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u00E6st(\u0259)\u0279\u0254\u026Ad/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022An asteroid passed close to the Earth.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t ti\\u1EC3u h\\u00E0nh tinh bay ngang qua g\\u1EA7n Tr\\u00E1i \\u0110\\u1EA5t.\u0022},{\u0022text\u0022:\u0022Scientists study asteroids to learn about the solar system.\u0022,\u0022vi\u0022:\u0022C\\u00E1c nh\\u00E0 khoa h\\u1ECDc nghi\\u00EAn c\\u1EE9u ti\\u1EC3u h\\u00E0nh tinh \\u0111\\u1EC3 hi\\u1EC3u v\\u1EC1 h\\u1EC7 m\\u1EB7t tr\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022asteroid belt\u0022,\u0022vi\u0022:\u0022v\\u00E0nh \\u0111ai ti\\u1EC3u h\\u00E0nh tinh\u0022},{\u0022text\u0022:\u0022giant asteroid\u0022,\u0022vi\u0022:\u0022ti\\u1EC3u h\\u00E0nh tinh kh\\u1ED5ng l\\u1ED3\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/51686021@N07/42075207904\u0022,\u0022author\u0022:\u0022Burnt Pineapple Productions\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.f19318e347104dde99360f2cf6521e3c",
+      "kind": "Card",
+      "values": {
+        "Term": "beaker",
+        "Definition": "c\u1ED1c th\u00ED nghi\u1EC7m",
+        "ImageUrl": "asset:279974e91d26182c8129233e280c4eaaa1abc6c68eb6bfaf132488e45002b96f.webp",
+        "Phonetic": "/\u02C8bi\u02D0k\u025A/",
+        "Example": "He heated the water in a beaker.",
+        "ExampleTranslation": "Anh \u1EA5y \u0111un n\u01B0\u1EDBc trong m\u1ED9t c\u1ED1c th\u00ED nghi\u1EC7m.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a glass container with a flat bottom used in a laboratory",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8bi\u02D0k\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He heated the water in a beaker.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111un n\\u01B0\\u1EDBc trong m\\u1ED9t c\\u1ED1c th\\u00ED nghi\\u1EC7m.\u0022},{\u0022text\u0022:\u0022The beaker is half full of blue liquid.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc c\\u1ED1c th\\u00ED nghi\\u1EC7m \\u0111\\u1EA7y m\\u1ED9t n\\u1EEDa ch\\u1EA5t l\\u1ECFng m\\u00E0u xanh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022glass beaker\u0022,\u0022vi\u0022:\u0022c\\u1ED1c th\\u1EE7y tinh th\\u00ED nghi\\u1EC7m\u0022},{\u0022text\u0022:\u0022fill a beaker\u0022,\u0022vi\u0022:\u0022r\\u00F3t \\u0111\\u1EA7y c\\u1ED1c th\\u00ED nghi\\u1EC7m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6041561/beakers-free-public-domain-cc0-photo\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru.fe9a7bfe9dce4e5cab182d9311a70f01",
+      "kind": "Card",
+      "values": {
+        "Term": "planet",
+        "Definition": "h\u00E0nh tinh",
+        "ImageUrl": "asset:eb65421179cd6dce526e3d9a8e8c8ffd6dc977c5f231e0190e93538fb344fe7a.webp",
+        "Phonetic": "/\u02C8pl\u00E6n\u0259t/",
+        "Example": "Mars is the fourth planet from the sun.",
+        "ExampleTranslation": "Sao H\u1ECFa l\u00E0 h\u00E0nh tinh th\u1EE9 t\u01B0 t\u00EDnh t\u1EEB m\u1EB7t tr\u1EDDi.",
+        "Topic": "Khoa h\u1ECDc \u0026 v\u0169 tr\u1EE5",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large round object that moves around a star",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8pl\u00E6n\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Mars is the fourth planet from the sun.\u0022,\u0022vi\u0022:\u0022Sao H\\u1ECFa l\\u00E0 h\\u00E0nh tinh th\\u1EE9 t\\u01B0 t\\u00EDnh t\\u1EEB m\\u1EB7t tr\\u1EDDi.\u0022},{\u0022text\u0022:\u0022Earth is the only planet with life that we know of.\u0022,\u0022vi\u0022:\u0022Tr\\u00E1i \\u0110\\u1EA5t l\\u00E0 h\\u00E0nh tinh duy nh\\u1EA5t c\\u00F3 s\\u1EF1 s\\u1ED1ng m\\u00E0 ch\\u00FAng ta bi\\u1EBFt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022planet Earth\u0022,\u0022vi\u0022:\u0022h\\u00E0nh tinh Tr\\u00E1i \\u0110\\u1EA5t\u0022},{\u0022text\u0022:\u0022distant planet\u0022,\u0022vi\u0022:\u0022h\\u00E0nh tinh xa x\\u00F4i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/39735679@N00/370061022\u0022,\u0022author\u0022:\u0022pingnews.com\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "243a5b91e94fa52c56e3d885523150d526a28b64c3c8525198d43e0753c7625d.webp",
+      "sha256": "243a5b91e94fa52c56e3d885523150d526a28b64c3c8525198d43e0753c7625d"
+    },
+    {
+      "file": "89291a01e51a81da9948dc2c4663cfb5a92c8a47b69e1d4adea99d70627df386.webp",
+      "sha256": "89291a01e51a81da9948dc2c4663cfb5a92c8a47b69e1d4adea99d70627df386"
+    },
+    {
+      "file": "eb65421179cd6dce526e3d9a8e8c8ffd6dc977c5f231e0190e93538fb344fe7a.webp",
+      "sha256": "eb65421179cd6dce526e3d9a8e8c8ffd6dc977c5f231e0190e93538fb344fe7a"
+    },
+    {
+      "file": "fdb4daa8912c38aef47a9ac15a91b0912028969461b1342dfc1b8a89fec8c38b.webp",
+      "sha256": "fdb4daa8912c38aef47a9ac15a91b0912028969461b1342dfc1b8a89fec8c38b"
+    },
+    {
+      "file": "86d89082cfb16c8a32bc096d17dec128902143b7b7e9a26c4defdb5e660a32b0.webp",
+      "sha256": "86d89082cfb16c8a32bc096d17dec128902143b7b7e9a26c4defdb5e660a32b0"
+    },
+    {
+      "file": "5778348aaccfce85d14b36bc1e3441ecc9f0ddc0eda87aeacd52be1fc49b621f.webp",
+      "sha256": "5778348aaccfce85d14b36bc1e3441ecc9f0ddc0eda87aeacd52be1fc49b621f"
+    },
+    {
+      "file": "a501686941503882cc92543034089747556d50c42279d2e160f8e60f49e0433d.webp",
+      "sha256": "a501686941503882cc92543034089747556d50c42279d2e160f8e60f49e0433d"
+    },
+    {
+      "file": "9e9583f1220e3a022362aee7ff908773f67c265ef392fcbdc02377a9dce7c9f4.webp",
+      "sha256": "9e9583f1220e3a022362aee7ff908773f67c265ef392fcbdc02377a9dce7c9f4"
+    },
+    {
+      "file": "5ea2117b249a5d05f3ebe4e77f58138a61a953542d5cbfb8251e55e14aaac585.webp",
+      "sha256": "5ea2117b249a5d05f3ebe4e77f58138a61a953542d5cbfb8251e55e14aaac585"
+    },
+    {
+      "file": "4f4e4749361f4a5aa39de49015b646bc7202e2e8abb76b76fa4af73d2f9b6b5f.webp",
+      "sha256": "4f4e4749361f4a5aa39de49015b646bc7202e2e8abb76b76fa4af73d2f9b6b5f"
+    },
+    {
+      "file": "9a8f72050fbd2f0dbcdc7eef385c342f7428a364318b7d2890050b48f5a4f1ab.webp",
+      "sha256": "9a8f72050fbd2f0dbcdc7eef385c342f7428a364318b7d2890050b48f5a4f1ab"
+    },
+    {
+      "file": "b01c8196da227e6389a86aa8c8c08bb709520bb8f0896567b9bb5823cfdcf492.webp",
+      "sha256": "b01c8196da227e6389a86aa8c8c08bb709520bb8f0896567b9bb5823cfdcf492"
+    },
+    {
+      "file": "0ce6804155f91458d36e27063aaefe4574a6b5bbdbb7d69d45c3c0b8599fe51c.webp",
+      "sha256": "0ce6804155f91458d36e27063aaefe4574a6b5bbdbb7d69d45c3c0b8599fe51c"
+    },
+    {
+      "file": "4d911f6cd149ba0df14f44973278b2c3c02bb4a28348b4f0fd672f34a5a9e8ec.webp",
+      "sha256": "4d911f6cd149ba0df14f44973278b2c3c02bb4a28348b4f0fd672f34a5a9e8ec"
+    },
+    {
+      "file": "221a5a8736399de8617032c98584a105b3ffd812927a14c3ceee7d4473c721c5.webp",
+      "sha256": "221a5a8736399de8617032c98584a105b3ffd812927a14c3ceee7d4473c721c5"
+    },
+    {
+      "file": "97130beecdc59d42dd44499b1c0b88be9b419c933c51324605d7946c83e02e0c.webp",
+      "sha256": "97130beecdc59d42dd44499b1c0b88be9b419c933c51324605d7946c83e02e0c"
+    },
+    {
+      "file": "029627e207a810d9b304677235346cca6c90babbddef99d6657ccf147bce7d9c.webp",
+      "sha256": "029627e207a810d9b304677235346cca6c90babbddef99d6657ccf147bce7d9c"
+    },
+    {
+      "file": "9fea6a9f49d40c74114eccdffea987146c30557211adace486f6ae756020e4fe.webp",
+      "sha256": "9fea6a9f49d40c74114eccdffea987146c30557211adace486f6ae756020e4fe"
+    },
+    {
+      "file": "279974e91d26182c8129233e280c4eaaa1abc6c68eb6bfaf132488e45002b96f.webp",
+      "sha256": "279974e91d26182c8129233e280c4eaaa1abc6c68eb6bfaf132488e45002b96f"
+    },
+    {
+      "file": "069f153f433ba2d5c097e9d52b783f9480e595b3f2ba021d35cae1311703998e.webp",
+      "sha256": "069f153f433ba2d5c097e9d52b783f9480e595b3f2ba021d35cae1311703998e"
+    },
+    {
+      "file": "58aac716417217f1eb14485d0f6d70bba4be5bae5a6decbccddc5a118bcb589a.webp",
+      "sha256": "58aac716417217f1eb14485d0f6d70bba4be5bae5a6decbccddc5a118bcb589a"
+    },
+    {
+      "file": "24976b86f11be761f3199dab46b6d7ced7bee1393e5da454b8b3c002a23d86bd.webp",
+      "sha256": "24976b86f11be761f3199dab46b6d7ced7bee1393e5da454b8b3c002a23d86bd"
+    },
+    {
+      "file": "75b7fa1077d258969cd1a3242015fe2b8953c08a8d9bb3c554336d7dab099989.webp",
+      "sha256": "75b7fa1077d258969cd1a3242015fe2b8953c08a8d9bb3c554336d7dab099989"
+    },
+    {
+      "file": "d57a3785b4fef95c0de8f16c060672eaf4d92a2e9b9acb1f58c791f3eb0c23bc.webp",
+      "sha256": "d57a3785b4fef95c0de8f16c060672eaf4d92a2e9b9acb1f58c791f3eb0c23bc"
+    },
+    {
+      "file": "d786b4b1e33492563a7366fe3225fa35c05066540789b96c07c55b6f76d741a6.webp",
+      "sha256": "d786b4b1e33492563a7366fe3225fa35c05066540789b96c07c55b6f76d741a6"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b11-khoa-hoc-vu-tru"
+}

@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc",
+      "kind": "Set",
+      "values": {
+        "SetName": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "Description": "#b1 #b2 #media #news"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.0815fd477c00405792d6d266789a3f92",
+      "kind": "Card",
+      "values": {
+        "Term": "headline",
+        "Definition": "ti\u00EAu \u0111\u1EC1 tin",
+        "ImageUrl": "asset:8e6a910c797a1a7363419ff740bf0529881975a0d70169a510e9b103cf4fb5ab.webp",
+        "Phonetic": "/\u02C8h\u025Bd.la\u026An/",
+        "Example": "The headline said that the match was cancelled.",
+        "ExampleTranslation": "Ti\u00EAu \u0111\u1EC1 b\u00E1o cho bi\u1EBFt tr\u1EADn \u0111\u1EA5u \u0111\u00E3 b\u1ECB h\u1EE7y.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the title of a news story in large letters",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8h\u025Bd.la\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The headline said that the match was cancelled.\u0022,\u0022vi\u0022:\u0022Ti\\u00EAu \\u0111\\u1EC1 b\\u00E1o cho bi\\u1EBFt tr\\u1EADn \\u0111\\u1EA5u \\u0111\\u00E3 b\\u1ECB h\\u1EE7y.\u0022},{\u0022text\u0022:\u0022I only read the headlines this morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng nay t\\u00F4i ch\\u1EC9 \\u0111\\u1ECDc c\\u00E1c ti\\u00EAu \\u0111\\u1EC1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022front-page headline\u0022,\u0022vi\u0022:\u0022ti\\u00EAu \\u0111\\u1EC1 trang nh\\u1EA5t\u0022},{\u0022text\u0022:\u0022read the headlines\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ECDc c\\u00E1c ti\\u00EAu \\u0111\\u1EC1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6747538/image-star-newspaper-ocean\u0022,\u0022author\u0022:\u0022libraryofcongress\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.1f00aa25b04a4742aa4f550fd12af2d8",
+      "kind": "Card",
+      "values": {
+        "Term": "article",
+        "Definition": "b\u00E0i b\u00E1o",
+        "ImageUrl": "asset:bc0f4547d285a89f984f82179c1ee26d1d15693fe666b7103fc3e476e5057ab9.webp",
+        "Phonetic": "/\u02C8\u0251\u0279t\u026Ak\u0259l/",
+        "Example": "I read an interesting article about robots.",
+        "ExampleTranslation": "T\u00F4i \u0111\u00E3 \u0111\u1ECDc m\u1ED9t b\u00E0i b\u00E1o th\u00FA v\u1ECB v\u1EC1 ng\u01B0\u1EDDi m\u00E1y.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of writing in a newspaper or magazine",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u0251\u02D0t\u026Akl\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I read an interesting article about robots.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u00E3 \\u0111\\u1ECDc m\\u1ED9t b\\u00E0i b\\u00E1o th\\u00FA v\\u1ECB v\\u1EC1 ng\\u01B0\\u1EDDi m\\u00E1y.\u0022},{\u0022text\u0022:\u0022She wrote an article for the school magazine.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y vi\\u1EBFt m\\u1ED9t b\\u00E0i b\\u00E1o cho t\\u1EA1p ch\\u00ED c\\u1EE7a tr\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022newspaper article\u0022,\u0022vi\u0022:\u0022b\\u00E0i b\\u00E1o\u0022},{\u0022text\u0022:\u0022write an article\u0022,\u0022vi\u0022:\u0022vi\\u1EBFt b\\u00E0i b\\u00E1o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.1f1b3641686c426fbb6e01dfc052de5d",
+      "kind": "Card",
+      "values": {
+        "Term": "studio",
+        "Definition": "ph\u00F2ng thu, tr\u01B0\u1EDDng quay",
+        "ImageUrl": "asset:bd5bcf915c0df48c13c96101333c0eb715c9f92324e7f0a7e1a2611eabd4fccf.webp",
+        "Phonetic": "/\u02C8studi.o\u028A/",
+        "Example": "The show is recorded in a large studio.",
+        "ExampleTranslation": "Ch\u01B0\u01A1ng tr\u00ECnh \u0111\u01B0\u1EE3c ghi h\u00ECnh trong m\u1ED9t tr\u01B0\u1EDDng quay l\u1EDBn.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a room where programmes or music are recorded",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8stju\u02D0di.\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The show is recorded in a large studio.\u0022,\u0022vi\u0022:\u0022Ch\\u01B0\\u01A1ng tr\\u00ECnh \\u0111\\u01B0\\u1EE3c ghi h\\u00ECnh trong m\\u1ED9t tr\\u01B0\\u1EDDng quay l\\u1EDBn.\u0022},{\u0022text\u0022:\u0022The band spent a week in the recording studio.\u0022,\u0022vi\u0022:\u0022Ban nh\\u1EA1c \\u0111\\u00E3 d\\u00E0nh m\\u1ED9t tu\\u1EA7n trong ph\\u00F2ng thu.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022recording studio\u0022,\u0022vi\u0022:\u0022ph\\u00F2ng thu \\u00E2m\u0022},{\u0022text\u0022:\u0022TV studio\u0022,\u0022vi\u0022:\u0022tr\\u01B0\\u1EDDng quay truy\\u1EC1n h\\u00ECnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.2dafa6f9333245029f48c0baf6b06f26",
+      "kind": "Card",
+      "values": {
+        "Term": "press conference",
+        "Definition": "h\u1ECDp b\u00E1o",
+        "ImageUrl": "asset:fa483a6b9d52874e45b8d7dfb93753e2abd414eca48d0ae72d39fc46841aa73e.webp",
+        "Phonetic": "/p\u0279\u025Bs \u02C8k\u0251n.f(\u0259.)\u0279\u0259ns/",
+        "Example": "The mayor held a press conference this morning.",
+        "ExampleTranslation": "S\u00E1ng nay th\u1ECB tr\u01B0\u1EDFng t\u1ED5 ch\u1EE9c m\u1ED9t bu\u1ED5i h\u1ECDp b\u00E1o.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a meeting where people give news to journalists",
+        "Cefr": "B2",
+        "PhoneticUk": "/p\u0279\u025Bs \u02C8k\u0252n.f(\u0259.)\u0279\u0259ns/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The mayor held a press conference this morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng nay th\\u1ECB tr\\u01B0\\u1EDFng t\\u1ED5 ch\\u1EE9c m\\u1ED9t bu\\u1ED5i h\\u1ECDp b\\u00E1o.\u0022},{\u0022text\u0022:\u0022Many reporters came to the press conference.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC1u ph\\u00F3ng vi\\u00EAn \\u0111\\u1EBFn d\\u1EF1 bu\\u1ED5i h\\u1ECDp b\\u00E1o.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hold a press conference\u0022,\u0022vi\u0022:\u0022t\\u1ED5 ch\\u1EE9c h\\u1ECDp b\\u00E1o\u0022},{\u0022text\u0022:\u0022press conference room\u0022,\u0022vi\u0022:\u0022ph\\u00F2ng h\\u1ECDp b\\u00E1o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/38144472@N04/4352028668\u0022,\u0022author\u0022:\u0022US Embassy Canada\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.3d9d7921128f4e5e80fc0f6c6be17544",
+      "kind": "Card",
+      "values": {
+        "Term": "podcast",
+        "Definition": "podcast",
+        "ImageUrl": "asset:513b1631b356031436c5ed1851cd68245604890a32bae2d4c616faf1adc84b42.webp",
+        "Phonetic": "/\u02C8p\u0251d\u02CCk\u00E6st/",
+        "Example": "I listen to an English podcast on the bus.",
+        "ExampleTranslation": "T\u00F4i nghe m\u1ED9t podcast ti\u1EBFng Anh tr\u00EAn xe bu\u00FDt.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a recorded show that you can download and listen to",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u0252d\u02CCk\u0251\u02D0st/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I listen to an English podcast on the bus.\u0022,\u0022vi\u0022:\u0022T\\u00F4i nghe m\\u1ED9t podcast ti\\u1EBFng Anh tr\\u00EAn xe bu\\u00FDt.\u0022},{\u0022text\u0022:\u0022The podcast is about science.\u0022,\u0022vi\u0022:\u0022Podcast n\\u00E0y n\\u00F3i v\\u1EC1 khoa h\\u1ECDc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022listen to a podcast\u0022,\u0022vi\u0022:\u0022nghe podcast\u0022},{\u0022text\u0022:\u0022weekly podcast\u0022,\u0022vi\u0022:\u0022podcast h\\u1EB1ng tu\\u1EA7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/recording-studio-YA3HZPUFYL\u0022,\u0022author\u0022:\u0022Kristin Hardwick\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.4a939a2395f34380aca516fe0f50f899",
+      "kind": "Card",
+      "values": {
+        "Term": "reporter",
+        "Definition": "ph\u00F3ng vi\u00EAn",
+        "ImageUrl": "asset:e6a1a69b0574e06f000e8fcbd189f73bc3b024002651a16cfd9fed7c8d386111.webp",
+        "Phonetic": "/\u0279\u026A\u02C8p\u0254\u0279.t\u025A/",
+        "Example": "A reporter was standing outside the building.",
+        "ExampleTranslation": "M\u1ED9t ph\u00F3ng vi\u00EAn \u0111ang \u0111\u1EE9ng b\u00EAn ngo\u00E0i t\u00F2a nh\u00E0.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who finds out and tells news stories",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0279\u026A\u02C8p\u0254\u02D0.t\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A reporter was standing outside the building.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t ph\\u00F3ng vi\\u00EAn \\u0111ang \\u0111\\u1EE9ng b\\u00EAn ngo\\u00E0i t\\u00F2a nh\\u00E0.\u0022},{\u0022text\u0022:\u0022The reporter asked the players some questions.\u0022,\u0022vi\u0022:\u0022Ph\\u00F3ng vi\\u00EAn \\u0111\\u1EB7t v\\u00E0i c\\u00E2u h\\u1ECFi cho c\\u00E1c c\\u1EA7u th\\u1EE7.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022TV reporter\u0022,\u0022vi\u0022:\u0022ph\\u00F3ng vi\\u00EAn truy\\u1EC1n h\\u00ECnh\u0022},{\u0022text\u0022:\u0022news reporter\u0022,\u0022vi\u0022:\u0022ph\\u00F3ng vi\\u00EAn tin t\\u1EE9c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:WNYC_reporter_Pier_84_jeh.jpg\u0022,\u0022author\u0022:\u0022Jim.henderson\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.50b0bb8de6164a03bc38063f12bb83e4",
+      "kind": "Card",
+      "values": {
+        "Term": "channel",
+        "Definition": "k\u00EAnh truy\u1EC1n h\u00ECnh",
+        "ImageUrl": "asset:4cb5f5a3e4945ff37a2e179c9d7547e3e3f184e2d1c8f195581d78a6ad9fd39f.webp",
+        "Phonetic": "/\u02C8t\u0361\u0283e\u0259\u032Fn\u0259l/",
+        "Example": "Which channel is the football match on?",
+        "ExampleTranslation": "Tr\u1EADn b\u00F3ng \u0111\u00E1 chi\u1EBFu tr\u00EAn k\u00EAnh n\u00E0o?",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a television or radio station with its own programmes",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8t\u0361\u0283e\u0259\u032Fn\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Which channel is the football match on?\u0022,\u0022vi\u0022:\u0022Tr\\u1EADn b\\u00F3ng \\u0111\\u00E1 chi\\u1EBFu tr\\u00EAn k\\u00EAnh n\\u00E0o?\u0022},{\u0022text\u0022:\u0022She changed the channel to the news.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y chuy\\u1EC3n k\\u00EAnh sang b\\u1EA3n tin.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022change the channel\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED5i k\\u00EAnh\u0022},{\u0022text\u0022:\u0022news channel\u0022,\u0022vi\u0022:\u0022k\\u00EAnh tin t\\u1EE9c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.548e9ed44c024584b1658895c463bbc6",
+      "kind": "Card",
+      "values": {
+        "Term": "newspaper",
+        "Definition": "t\u1EDD b\u00E1o",
+        "ImageUrl": "asset:4b4700ab791061fa5e1dde6aec25e043209d771d8dd23c5cb5f34720ca018120.webp",
+        "Phonetic": "/\u02C8n(j)uz\u02CCpe\u026Ap\u025A/",
+        "Example": "My father reads the newspaper every morning.",
+        "ExampleTranslation": "B\u1ED1 t\u00F4i \u0111\u1ECDc b\u00E1o m\u1ED7i bu\u1ED5i s\u00E1ng.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "printed sheets with the latest news, sold daily",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8nju\u02D0z\u02CCpe\u026Ap\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My father reads the newspaper every morning.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 t\\u00F4i \\u0111\\u1ECDc b\\u00E1o m\\u1ED7i bu\\u1ED5i s\\u00E1ng.\u0022},{\u0022text\u0022:\u0022The newspaper is on the kitchen table.\u0022,\u0022vi\u0022:\u0022T\\u1EDD b\\u00E1o \\u0111ang n\\u1EB1m tr\\u00EAn b\\u00E0n b\\u1EBFp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022daily newspaper\u0022,\u0022vi\u0022:\u0022b\\u00E1o h\\u1EB1ng ng\\u00E0y\u0022},{\u0022text\u0022:\u0022read a newspaper\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ECDc b\\u00E1o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/80309306@N05/36098321632\u0022,\u0022author\u0022:\u0022tranmautritam\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.57f5d3d1b5734588b2bd49271c757105",
+      "kind": "Card",
+      "values": {
+        "Term": "billboard",
+        "Definition": "bi\u1EC3n qu\u1EA3ng c\u00E1o l\u1EDBn",
+        "ImageUrl": "asset:08bc134767911ff485fdb0dbeca78b3f15fa7375c0dc874ccbd368367953d130.webp",
+        "Phonetic": "/\u02C8b\u026Al\u02CCbo\u0279d/",
+        "Example": "There is a huge billboard next to the highway.",
+        "ExampleTranslation": "C\u00F3 m\u1ED9t bi\u1EC3n qu\u1EA3ng c\u00E1o kh\u1ED5ng l\u1ED3 c\u1EA1nh \u0111\u01B0\u1EDDng cao t\u1ED1c.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very large board by the road that shows advertisements",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8b\u026Al\u02CCbo\u0279d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022There is a huge billboard next to the highway.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t bi\\u1EC3n qu\\u1EA3ng c\\u00E1o kh\\u1ED5ng l\\u1ED3 c\\u1EA1nh \\u0111\\u01B0\\u1EDDng cao t\\u1ED1c.\u0022},{\u0022text\u0022:\u0022The billboard shows a new car.\u0022,\u0022vi\u0022:\u0022Bi\\u1EC3n qu\\u1EA3ng c\\u00E1o gi\\u1EDBi thi\\u1EC7u m\\u1ED9t chi\\u1EBFc xe m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022giant billboard\u0022,\u0022vi\u0022:\u0022bi\\u1EC3n qu\\u1EA3ng c\\u00E1o kh\\u1ED5ng l\\u1ED3\u0022},{\u0022text\u0022:\u0022roadside billboard\u0022,\u0022vi\u0022:\u0022bi\\u1EC3n qu\\u1EA3ng c\\u00E1o ven \\u0111\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.5a79aec887b449e98ff387ef428795cf",
+      "kind": "Card",
+      "values": {
+        "Term": "magazine",
+        "Definition": "t\u1EA1p ch\u00ED",
+        "ImageUrl": "asset:d1a4874cb722164822f1d3cef719d86bab8c519e8e8e27efdae3817e782afd55.webp",
+        "Phonetic": "/\u02CCme\u026A\u032F\u0261\u0259\u02C8zi\u02D0n/",
+        "Example": "She buys a fashion magazine every month.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y mua m\u1ED9t cu\u1ED1n t\u1EA1p ch\u00ED th\u1EDDi trang m\u1ED7i th\u00E1ng.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thin book with articles and photos, published weekly or monthly",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02CCme\u026A\u032F\u0261\u0259\u02C8zi\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She buys a fashion magazine every month.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y mua m\\u1ED9t cu\\u1ED1n t\\u1EA1p ch\\u00ED th\\u1EDDi trang m\\u1ED7i th\\u00E1ng.\u0022},{\u0022text\u0022:\u0022There were many magazines in the waiting room.\u0022,\u0022vi\u0022:\u0022C\\u00F3 nhi\\u1EC1u t\\u1EA1p ch\\u00ED trong ph\\u00F2ng ch\\u1EDD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fashion magazine\u0022,\u0022vi\u0022:\u0022t\\u1EA1p ch\\u00ED th\\u1EDDi trang\u0022},{\u0022text\u0022:\u0022magazine cover\u0022,\u0022vi\u0022:\u0022b\\u00ECa t\\u1EA1p ch\\u00ED\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/magazines-newspaper-G805IOD7WJ\u0022,\u0022author\u0022:\u0022Breather\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.6b6a6b25e1bb4dbca3b3474d5107af44",
+      "kind": "Card",
+      "values": {
+        "Term": "newsstand",
+        "Definition": "qu\u1EA7y b\u00E1o",
+        "ImageUrl": "asset:1c30ae44db57250fd7662c3be60eaee57f255719b22aa3111d18c2acd476cde2.webp",
+        "Phonetic": "/\u02C8nuzst\u00E6nd/",
+        "Example": "He bought a paper at the newsstand.",
+        "ExampleTranslation": "Anh \u1EA5y mua m\u1ED9t t\u1EDD b\u00E1o \u1EDF qu\u1EA7y b\u00E1o.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small shop or stand that sells newspapers and magazines",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8nju\u02D0zstand/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He bought a paper at the newsstand.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y mua m\\u1ED9t t\\u1EDD b\\u00E1o \\u1EDF qu\\u1EA7y b\\u00E1o.\u0022},{\u0022text\u0022:\u0022The newsstand opens early in the morning.\u0022,\u0022vi\u0022:\u0022Qu\\u1EA7y b\\u00E1o m\\u1EDF c\\u1EEDa s\\u1EDBm m\\u1ED7i s\\u00E1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022buy at a newsstand\u0022,\u0022vi\u0022:\u0022mua \\u1EDF qu\\u1EA7y b\\u00E1o\u0022},{\u0022text\u0022:\u0022street newsstand\u0022,\u0022vi\u0022:\u0022qu\\u1EA7y b\\u00E1o ven \\u0111\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Newsstand_at_Forty-second_Street_and_Sixth_Avenue_with_newspapers_from_all_nations8d11663v.jpg\u0022,\u0022author\u0022:\u0022Marjory Collins\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.6babde1446aa435698bc7cc235691c2a",
+      "kind": "Card",
+      "values": {
+        "Term": "advertisement",
+        "Definition": "qu\u1EA3ng c\u00E1o",
+        "ImageUrl": "asset:9f3252d1416ba2ce83295df5c29f40a08a723806b2e1b1879501de98d67c336f.webp",
+        "Phonetic": "/\u02C8\u00E6dv\u025A\u02CCta\u026Azm\u0259nt/",
+        "Example": "I saw an advertisement for a new phone.",
+        "ExampleTranslation": "T\u00F4i th\u1EA5y m\u1ED9t qu\u1EA3ng c\u00E1o \u0111i\u1EC7n tho\u1EA1i m\u1EDBi.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a notice or video that tries to make people buy something",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0259d\u02C8v\u025C\u02D0t\u026Asm\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I saw an advertisement for a new phone.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EA5y m\\u1ED9t qu\\u1EA3ng c\\u00E1o \\u0111i\\u1EC7n tho\\u1EA1i m\\u1EDBi.\u0022},{\u0022text\u0022:\u0022The advertisement was on a big screen in the street.\u0022,\u0022vi\u0022:\u0022Qu\\u1EA3ng c\\u00E1o \\u0111\\u01B0\\u1EE3c chi\\u1EBFu tr\\u00EAn m\\u1ED9t m\\u00E0n h\\u00ECnh l\\u1EDBn ngo\\u00E0i ph\\u1ED1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022TV advertisement\u0022,\u0022vi\u0022:\u0022qu\\u1EA3ng c\\u00E1o truy\\u1EC1n h\\u00ECnh\u0022},{\u0022text\u0022:\u0022place an advertisement\u0022,\u0022vi\u0022:\u0022\\u0111\\u0103ng qu\\u1EA3ng c\\u00E1o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.6be6375493204cf8bdf6034ac2368f43",
+      "kind": "Card",
+      "values": {
+        "Term": "journalist",
+        "Definition": "nh\u00E0 b\u00E1o",
+        "ImageUrl": "asset:21ad7d25b46269619fe180a40f80987086de694f39c81e5e84a61b945bf548c9.webp",
+        "Phonetic": "/\u02C8d\u0361\u0292\u025C\u02D0n\u0259l\u026Ast/",
+        "Example": "The journalist interviewed the mayor.",
+        "ExampleTranslation": "Nh\u00E0 b\u00E1o \u0111\u00E3 ph\u1ECFng v\u1EA5n th\u1ECB tr\u01B0\u1EDFng.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person whose job is to write or report the news",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8d\u0361\u0292\u025C\u02D0n\u0259l\u026Ast/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The journalist interviewed the mayor.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 b\\u00E1o \\u0111\\u00E3 ph\\u1ECFng v\\u1EA5n th\\u1ECB tr\\u01B0\\u1EDFng.\u0022},{\u0022text\u0022:\u0022She works as a journalist for a local paper.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0m nh\\u00E0 b\\u00E1o cho m\\u1ED9t t\\u1EDD b\\u00E1o \\u0111\\u1ECBa ph\\u01B0\\u01A1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022investigative journalist\u0022,\u0022vi\u0022:\u0022nh\\u00E0 b\\u00E1o \\u0111i\\u1EC1u tra\u0022},{\u0022text\u0022:\u0022TV journalist\u0022,\u0022vi\u0022:\u0022nh\\u00E0 b\\u00E1o truy\\u1EC1n h\\u00ECnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.6fa08b02e7bf450da47a69f68d98e875",
+      "kind": "Card",
+      "values": {
+        "Term": "leaflet",
+        "Definition": "t\u1EDD r\u01A1i",
+        "ImageUrl": "asset:61959ff04e0ff2e93a9d37b74e6d7f3129b0ac94b25639285769f35f6c5d0177.webp",
+        "Phonetic": "/\u02C8li\u02D0fl\u026At/",
+        "Example": "Someone handed me a leaflet about the new gym.",
+        "ExampleTranslation": "C\u00F3 ng\u01B0\u1EDDi \u0111\u01B0a t\u00F4i m\u1ED9t t\u1EDD r\u01A1i v\u1EC1 ph\u00F2ng t\u1EADp m\u1EDBi.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small printed paper that gives information or advertises",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8li\u02D0fl\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Someone handed me a leaflet about the new gym.\u0022,\u0022vi\u0022:\u0022C\\u00F3 ng\\u01B0\\u1EDDi \\u0111\\u01B0a t\\u00F4i m\\u1ED9t t\\u1EDD r\\u01A1i v\\u1EC1 ph\\u00F2ng t\\u1EADp m\\u1EDBi.\u0022},{\u0022text\u0022:\u0022The leaflet shows the opening hours.\u0022,\u0022vi\u0022:\u0022T\\u1EDD r\\u01A1i ghi gi\\u1EDD m\\u1EDF c\\u1EEDa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hand out leaflets\u0022,\u0022vi\u0022:\u0022ph\\u00E1t t\\u1EDD r\\u01A1i\u0022},{\u0022text\u0022:\u0022tourist leaflet\u0022,\u0022vi\u0022:\u0022t\\u1EDD r\\u01A1i du l\\u1ECBch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.74eeb6c249b84f279575880f76f9ee19",
+      "kind": "Card",
+      "values": {
+        "Term": "camera crew",
+        "Definition": "\u00EA-k\u00EDp quay phim",
+        "ImageUrl": "asset:8c00f8a59ff6f7e8fff726771f7553a662fffee81f6c7034cc400e99fb8be616.webp",
+        "Phonetic": "/\u02C8k\u00E6m\u0259\u0279\u0259 k\u0279u/",
+        "Example": "A camera crew arrived at the scene.",
+        "ExampleTranslation": "M\u1ED9t \u00EA-k\u00EDp quay phim \u0111\u00E3 \u0111\u1EBFn hi\u1EC7n tr\u01B0\u1EDDng.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a team of people who film a news story or show",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u00E6m\u0259\u0279\u0259 k\u0279u\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A camera crew arrived at the scene.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t \\u00EA-k\\u00EDp quay phim \\u0111\\u00E3 \\u0111\\u1EBFn hi\\u1EC7n tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022The camera crew set up near the stage.\u0022,\u0022vi\u0022:\u0022\\u00CA-k\\u00EDp quay phim d\\u1EF1ng m\\u00E1y g\\u1EA7n s\\u00E2n kh\\u1EA5u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022TV camera crew\u0022,\u0022vi\u0022:\u0022\\u00EA-k\\u00EDp quay phim truy\\u1EC1n h\\u00ECnh\u0022},{\u0022text\u0022:\u0022camera crew on location\u0022,\u0022vi\u0022:\u0022\\u00EA-k\\u00EDp quay phim t\\u1EA1i hi\\u1EC7n tr\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:TV_film_crew_shooting_on_the_beach.jpg\u0022,\u0022author\u0022:\u0022Maxfield Barbara, U.S. Fish and Wildlife Service\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.76bf118458394ba6aa4867d5b26106f0",
+      "kind": "Card",
+      "values": {
+        "Term": "presenter",
+        "Definition": "ng\u01B0\u1EDDi d\u1EABn ch\u01B0\u01A1ng tr\u00ECnh",
+        "ImageUrl": "asset:4417fc1f4b1b601c9126d2535d5bf791b1518dae53f9b1e10fbd5e96968d1740.webp",
+        "Phonetic": "/p\u0279\u026A\u02C8z\u025Bnt\u0259(\u0279)/",
+        "Example": "The presenter welcomed the audience.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi d\u1EABn ch\u01B0\u01A1ng tr\u00ECnh ch\u00E0o \u0111\u00F3n kh\u00E1n gi\u1EA3.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who introduces a TV or radio show",
+        "Cefr": "B2",
+        "PhoneticUk": "/p\u0279\u026A\u02C8z\u025Bnt\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The presenter welcomed the audience.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi d\\u1EABn ch\\u01B0\\u01A1ng tr\\u00ECnh ch\\u00E0o \\u0111\\u00F3n kh\\u00E1n gi\\u1EA3.\u0022},{\u0022text\u0022:\u0022She is a famous radio presenter.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0 m\\u1ED9t ng\\u01B0\\u1EDDi d\\u1EABn ch\\u01B0\\u01A1ng tr\\u00ECnh radio n\\u1ED5i ti\\u1EBFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022TV presenter\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi d\\u1EABn ch\\u01B0\\u01A1ng tr\\u00ECnh truy\\u1EC1n h\\u00ECnh\u0022},{\u0022text\u0022:\u0022radio presenter\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi d\\u1EABn ch\\u01B0\\u01A1ng tr\\u00ECnh ph\\u00E1t thanh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.7bddf5065ef849e09a07e47151acbffc",
+      "kind": "Card",
+      "values": {
+        "Term": "news anchor",
+        "Definition": "ng\u01B0\u1EDDi d\u1EABn b\u1EA3n tin",
+        "ImageUrl": "asset:1c82594d85ea4dbf34ec9292d53f2e803510a2db35bb56514180af2cc2e24a0c.webp",
+        "Phonetic": "/nu\u02D0z \u00E6/",
+        "Example": "The news anchor welcomed viewers to the evening show.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi d\u1EABn b\u1EA3n tin ch\u00E0o kh\u00E1n gi\u1EA3 \u0111\u1EBFn v\u1EDBi ch\u01B0\u01A1ng tr\u00ECnh bu\u1ED5i t\u1ED1i.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who reads the news on television",
+        "Cefr": "B2",
+        "PhoneticUk": "/nju\u02D0z \u02C8\u00E6\u014B.k\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The news anchor welcomed viewers to the evening show.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi d\\u1EABn b\\u1EA3n tin ch\\u00E0o kh\\u00E1n gi\\u1EA3 \\u0111\\u1EBFn v\\u1EDBi ch\\u01B0\\u01A1ng tr\\u00ECnh bu\\u1ED5i t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022She has been a news anchor for ten years.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0m ng\\u01B0\\u1EDDi d\\u1EABn b\\u1EA3n tin \\u0111\\u00E3 m\\u01B0\\u1EDDi n\\u0103m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022TV news anchor\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi d\\u1EABn b\\u1EA3n tin truy\\u1EC1n h\\u00ECnh\u0022},{\u0022text\u0022:\u0022evening news anchor\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi d\\u1EABn b\\u1EA3n tin bu\\u1ED5i t\\u1ED1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.83d4a0cb285541f19f8454e289ddfacc",
+      "kind": "Card",
+      "values": {
+        "Term": "broadcast tower",
+        "Definition": "th\u00E1p ph\u00E1t s\u00F3ng",
+        "ImageUrl": "asset:accf458db2a43d0bb5cbe8ae209f200b84230cfab9e5cb1f83e4cb93f1e94b71.webp",
+        "Phonetic": "/\u02C8b\u0279\u0254d(\u02CC)k\u00E6st \u02C8ta\u028A\u025A/",
+        "Example": "A tall broadcast tower stands on the hill.",
+        "ExampleTranslation": "M\u1ED9t th\u00E1p ph\u00E1t s\u00F3ng cao \u0111\u1EE9ng tr\u00EAn ng\u1ECDn \u0111\u1ED3i.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tall metal structure that sends radio or TV signals",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8b\u0279\u0254\u02D0d(\u02CC)k\u0251\u02D0st \u02C8ta\u028A.\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A tall broadcast tower stands on the hill.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t th\\u00E1p ph\\u00E1t s\\u00F3ng cao \\u0111\\u1EE9ng tr\\u00EAn ng\\u1ECDn \\u0111\\u1ED3i.\u0022},{\u0022text\u0022:\u0022The broadcast tower can be seen from the city.\u0022,\u0022vi\u0022:\u0022C\\u00F3 th\\u1EC3 nh\\u00ECn th\\u1EA5y th\\u00E1p ph\\u00E1t s\\u00F3ng t\\u1EEB th\\u00E0nh ph\\u1ED1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022tall broadcast tower\u0022,\u0022vi\u0022:\u0022th\\u00E1p ph\\u00E1t s\\u00F3ng cao\u0022},{\u0022text\u0022:\u0022climb a broadcast tower\u0022,\u0022vi\u0022:\u0022leo l\\u00EAn th\\u00E1p ph\\u00E1t s\\u00F3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6032852/photo-image-public-domain-technology-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.9992360b36cb4f61bd483b8a0fc82506",
+      "kind": "Card",
+      "values": {
+        "Term": "documentary",
+        "Definition": "phim t\u00E0i li\u1EC7u",
+        "ImageUrl": "asset:fc1a86c79d6cd74df8efa13a408dc6ea3733d1ccba3b5bef1110116dc18ebde6.webp",
+        "Phonetic": "/\u02CCd\u0251.kj\u0259\u02C8m\u025Bn.t\u0259.\u0279i/",
+        "Example": "We watched a documentary about wild animals.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i xem m\u1ED9t b\u1ED9 phim t\u00E0i li\u1EC7u v\u1EC1 \u0111\u1ED9ng v\u1EADt hoang d\u00E3.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a film or programme that shows real facts about a subject",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02CCd\u0252k.j\u028A\u02C8m\u025Bn.t\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We watched a documentary about wild animals.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i xem m\\u1ED9t b\\u1ED9 phim t\\u00E0i li\\u1EC7u v\\u1EC1 \\u0111\\u1ED9ng v\\u1EADt hoang d\\u00E3.\u0022},{\u0022text\u0022:\u0022The documentary lasts about one hour.\u0022,\u0022vi\u0022:\u0022B\\u1ED9 phim t\\u00E0i li\\u1EC7u d\\u00E0i kho\\u1EA3ng m\\u1ED9t ti\\u1EBFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022nature documentary\u0022,\u0022vi\u0022:\u0022phim t\\u00E0i li\\u1EC7u thi\\u00EAn nhi\\u00EAn\u0022},{\u0022text\u0022:\u0022watch a documentary\u0022,\u0022vi\u0022:\u0022xem phim t\\u00E0i li\\u1EC7u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.c5eb9c3c940944f7bc8c059e8ed165af",
+      "kind": "Card",
+      "values": {
+        "Term": "photograph",
+        "Definition": "b\u1EE9c \u1EA3nh",
+        "ImageUrl": "asset:ea3962972e32e7054e8ed18a45a6605692d2e7f65c1d35fb75870b2faa55b001.webp",
+        "Phonetic": "/\u02C8fo\u028A.t\u0259\u02CC\u0261\u0279\u00E6f/",
+        "Example": "The newspaper printed a photograph of the winner.",
+        "ExampleTranslation": "T\u1EDD b\u00E1o in m\u1ED9t b\u1EE9c \u1EA3nh c\u1EE7a ng\u01B0\u1EDDi chi\u1EBFn th\u1EAFng.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a picture taken with a camera",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8f\u0259\u028A.t\u0259\u02CC\u0261\u0279\u0251\u02D0f/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The newspaper printed a photograph of the winner.\u0022,\u0022vi\u0022:\u0022T\\u1EDD b\\u00E1o in m\\u1ED9t b\\u1EE9c \\u1EA3nh c\\u1EE7a ng\\u01B0\\u1EDDi chi\\u1EBFn th\\u1EAFng.\u0022},{\u0022text\u0022:\u0022He took a photograph of the sunset.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y ch\\u1EE5p m\\u1ED9t b\\u1EE9c \\u1EA3nh ho\\u00E0ng h\\u00F4n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022take a photograph\u0022,\u0022vi\u0022:\u0022ch\\u1EE5p \\u1EA3nh\u0022},{\u0022text\u0022:\u0022black-and-white photograph\u0022,\u0022vi\u0022:\u0022\\u1EA3nh \\u0111en tr\\u1EAFng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.c6e16a3df93247f680d62631cefee041",
+      "kind": "Card",
+      "values": {
+        "Term": "radio",
+        "Definition": "\u0111\u00E0i ph\u00E1t thanh",
+        "ImageUrl": "asset:17f22fff5503f2bfee4ada7c32d1affb744aec3219dda81758cb5fd6ffa99dad.webp",
+        "Phonetic": "/\u02C8\u0279e\u026A.di\u02CCo\u028A/",
+        "Example": "My grandmother listens to the radio in the kitchen.",
+        "ExampleTranslation": "B\u00E0 t\u00F4i nghe \u0111\u00E0i trong b\u1EBFp.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a device or system that plays programmes by sound only",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u0279e\u026A.di\u02CC\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandmother listens to the radio in the kitchen.\u0022,\u0022vi\u0022:\u0022B\\u00E0 t\\u00F4i nghe \\u0111\\u00E0i trong b\\u1EBFp.\u0022},{\u0022text\u0022:\u0022I heard the news on the radio.\u0022,\u0022vi\u0022:\u0022T\\u00F4i nghe tin t\\u1EE9c tr\\u00EAn \\u0111\\u00E0i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022turn on the radio\u0022,\u0022vi\u0022:\u0022b\\u1EADt \\u0111\\u00E0i\u0022},{\u0022text\u0022:\u0022radio station\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E0i ph\\u00E1t thanh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/37996646802@N01/26556435089\u0022,\u0022author\u0022:\u0022cogdogblog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.d7b6d49f753340498f188b01c1b20c00",
+      "kind": "Card",
+      "values": {
+        "Term": "subtitles",
+        "Definition": "ph\u1EE5 \u0111\u1EC1",
+        "ImageUrl": "asset:e6a8dbe8cb1d1d155bbe2d699deb11a848045e188cc21c443ea243c302f08519.webp",
+        "Phonetic": "/\u02C8s\u028Cb\u02CCta\u026At\u0259lz/",
+        "Example": "I watch English films with subtitles.",
+        "ExampleTranslation": "T\u00F4i xem phim ti\u1EBFng Anh c\u00F3 ph\u1EE5 \u0111\u1EC1.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "words at the bottom of a screen that show what people say",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8s\u028Cb\u02CCta\u026At\u0259lz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I watch English films with subtitles.\u0022,\u0022vi\u0022:\u0022T\\u00F4i xem phim ti\\u1EBFng Anh c\\u00F3 ph\\u1EE5 \\u0111\\u1EC1.\u0022},{\u0022text\u0022:\u0022Turn on the subtitles, please.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n b\\u1EADt ph\\u1EE5 \\u0111\\u1EC1 l\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022turn on the subtitles\u0022,\u0022vi\u0022:\u0022b\\u1EADt ph\\u1EE5 \\u0111\\u1EC1\u0022},{\u0022text\u0022:\u0022English subtitles\u0022,\u0022vi\u0022:\u0022ph\\u1EE5 \\u0111\\u1EC1 ti\\u1EBFng Anh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.ea8738eddec244518ec277b7bc9239ee",
+      "kind": "Card",
+      "values": {
+        "Term": "broadcast",
+        "Definition": "ph\u00E1t s\u00F3ng",
+        "ImageUrl": "asset:1f800becaea756ef56ba32d791db25a20d7f063bef0e43b0caa98be75e6a46a9.webp",
+        "Phonetic": "/\u02C8b\u0279\u0254dk\u00E6st/",
+        "Example": "The match will be broadcast live tonight.",
+        "ExampleTranslation": "Tr\u1EADn \u0111\u1EA5u s\u1EBD \u0111\u01B0\u1EE3c ph\u00E1t s\u00F3ng tr\u1EF1c ti\u1EBFp t\u1ED1i nay.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to send out a programme on television or radio",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8b\u0279\u0254\u02D0d(\u02CC)k\u0251\u02D0st/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The match will be broadcast live tonight.\u0022,\u0022vi\u0022:\u0022Tr\\u1EADn \\u0111\\u1EA5u s\\u1EBD \\u0111\\u01B0\\u1EE3c ph\\u00E1t s\\u00F3ng tr\\u1EF1c ti\\u1EBFp t\\u1ED1i nay.\u0022},{\u0022text\u0022:\u0022The station broadcasts news every hour.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E0i ph\\u00E1t tin t\\u1EE9c m\\u1ED7i gi\\u1EDD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022broadcast live\u0022,\u0022vi\u0022:\u0022ph\\u00E1t s\\u00F3ng tr\\u1EF1c ti\\u1EBFp\u0022},{\u0022text\u0022:\u0022broadcast the news\u0022,\u0022vi\u0022:\u0022ph\\u00E1t s\\u00F3ng tin t\\u1EE9c\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022broadcast\u0022,\u0022pastParticiple\u0022:\u0022broadcast\u0022,\u0022ing\u0022:\u0022broadcasting\u0022,\u0022thirdPerson\u0022:\u0022broadcasts\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.eab8710799694c26abd9215ab6e053cc",
+      "kind": "Card",
+      "values": {
+        "Term": "interview",
+        "Definition": "cu\u1ED9c ph\u1ECFng v\u1EA5n",
+        "ImageUrl": "asset:1f4cfd922909cf92ed45f32abb6f4c10f29de4006502d8fe42e6066dc126b502.webp",
+        "Phonetic": "/\u02C8\u026An.(t)\u025A.vju/",
+        "Example": "The singer gave an interview on the radio.",
+        "ExampleTranslation": "Ca s\u0129 \u0111\u00E3 tr\u1EA3 l\u1EDDi ph\u1ECFng v\u1EA5n tr\u00EAn \u0111\u00E0i ph\u00E1t thanh.",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a meeting where someone asks a person questions",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u026An.t\u0259.vju\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The singer gave an interview on the radio.\u0022,\u0022vi\u0022:\u0022Ca s\\u0129 \\u0111\\u00E3 tr\\u1EA3 l\\u1EDDi ph\\u1ECFng v\\u1EA5n tr\\u00EAn \\u0111\\u00E0i ph\\u00E1t thanh.\u0022},{\u0022text\u0022:\u0022I watched her interview on television.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u00E3 xem bu\\u1ED5i ph\\u1ECFng v\\u1EA5n c\\u1EE7a c\\u00F4 \\u1EA5y tr\\u00EAn truy\\u1EC1n h\\u00ECnh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022give an interview\u0022,\u0022vi\u0022:\u0022tr\\u1EA3 l\\u1EDDi ph\\u1ECFng v\\u1EA5n\u0022},{\u0022text\u0022:\u0022radio interview\u0022,\u0022vi\u0022:\u0022ph\\u1ECFng v\\u1EA5n tr\\u00EAn \\u0111\\u00E0i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:US_Navy_050326-N-9693B-010_A_reporter_from_Al_Iraqiya_TV,_one_of_only_two_national_television_stations_in_Iraq,_interviews_Commander,_Amphibious_Squadron_Seven,_Capt._Michelle_Howard.jpg\u0022,\u0022author\u0022:\u0022U.S. Navy photo by Journalist 2nd Class Sarah Bibbs\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc.eac4757231c54a0f905759f01d065cda",
+      "kind": "Card",
+      "values": {
+        "Term": "remote control",
+        "Definition": "\u0111i\u1EC1u khi\u1EC3n t\u1EEB xa",
+        "ImageUrl": "asset:18232814a1082dd74804cef42e319a90ff2acce7a94425c582941ac0764cdc58.webp",
+        "Phonetic": "/\u0279\u026A\u02C8mo\u028At k\u0259n\u02C8t\u0279o\u028Al/",
+        "Example": "Where is the remote control?",
+        "ExampleTranslation": "C\u00E1i \u0111i\u1EC1u khi\u1EC3n t\u1EEB xa \u1EDF \u0111\u00E2u r\u1ED3i?",
+        "Topic": "Truy\u1EC1n th\u00F4ng \u0026 tin t\u1EE9c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small device that you use to change a TV from a distance",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u0279\u026A\u02C8m\u0259\u028At k\u0259n\u02C8t\u0279\u0259\u028Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Where is the remote control?\u0022,\u0022vi\u0022:\u0022C\\u00E1i \\u0111i\\u1EC1u khi\\u1EC3n t\\u1EEB xa \\u1EDF \\u0111\\u00E2u r\\u1ED3i?\u0022},{\u0022text\u0022:\u0022He pressed a button on the remote control.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y b\\u1EA5m m\\u1ED9t n\\u00FAt tr\\u00EAn \\u0111i\\u1EC1u khi\\u1EC3n t\\u1EEB xa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022press the remote control\u0022,\u0022vi\u0022:\u0022b\\u1EA5m \\u0111i\\u1EC1u khi\\u1EC3n t\\u1EEB xa\u0022},{\u0022text\u0022:\u0022TV remote control\u0022,\u0022vi\u0022:\u0022\\u0111i\\u1EC1u khi\\u1EC3n tivi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5920827/photo-image-public-domain-hand-technology\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "4b4700ab791061fa5e1dde6aec25e043209d771d8dd23c5cb5f34720ca018120.webp",
+      "sha256": "4b4700ab791061fa5e1dde6aec25e043209d771d8dd23c5cb5f34720ca018120"
+    },
+    {
+      "file": "d1a4874cb722164822f1d3cef719d86bab8c519e8e8e27efdae3817e782afd55.webp",
+      "sha256": "d1a4874cb722164822f1d3cef719d86bab8c519e8e8e27efdae3817e782afd55"
+    },
+    {
+      "file": "8e6a910c797a1a7363419ff740bf0529881975a0d70169a510e9b103cf4fb5ab.webp",
+      "sha256": "8e6a910c797a1a7363419ff740bf0529881975a0d70169a510e9b103cf4fb5ab"
+    },
+    {
+      "file": "21ad7d25b46269619fe180a40f80987086de694f39c81e5e84a61b945bf548c9.webp",
+      "sha256": "21ad7d25b46269619fe180a40f80987086de694f39c81e5e84a61b945bf548c9"
+    },
+    {
+      "file": "e6a1a69b0574e06f000e8fcbd189f73bc3b024002651a16cfd9fed7c8d386111.webp",
+      "sha256": "e6a1a69b0574e06f000e8fcbd189f73bc3b024002651a16cfd9fed7c8d386111"
+    },
+    {
+      "file": "1f4cfd922909cf92ed45f32abb6f4c10f29de4006502d8fe42e6066dc126b502.webp",
+      "sha256": "1f4cfd922909cf92ed45f32abb6f4c10f29de4006502d8fe42e6066dc126b502"
+    },
+    {
+      "file": "fa483a6b9d52874e45b8d7dfb93753e2abd414eca48d0ae72d39fc46841aa73e.webp",
+      "sha256": "fa483a6b9d52874e45b8d7dfb93753e2abd414eca48d0ae72d39fc46841aa73e"
+    },
+    {
+      "file": "8c00f8a59ff6f7e8fff726771f7553a662fffee81f6c7034cc400e99fb8be616.webp",
+      "sha256": "8c00f8a59ff6f7e8fff726771f7553a662fffee81f6c7034cc400e99fb8be616"
+    },
+    {
+      "file": "1f800becaea756ef56ba32d791db25a20d7f063bef0e43b0caa98be75e6a46a9.webp",
+      "sha256": "1f800becaea756ef56ba32d791db25a20d7f063bef0e43b0caa98be75e6a46a9"
+    },
+    {
+      "file": "1c82594d85ea4dbf34ec9292d53f2e803510a2db35bb56514180af2cc2e24a0c.webp",
+      "sha256": "1c82594d85ea4dbf34ec9292d53f2e803510a2db35bb56514180af2cc2e24a0c"
+    },
+    {
+      "file": "18232814a1082dd74804cef42e319a90ff2acce7a94425c582941ac0764cdc58.webp",
+      "sha256": "18232814a1082dd74804cef42e319a90ff2acce7a94425c582941ac0764cdc58"
+    },
+    {
+      "file": "4cb5f5a3e4945ff37a2e179c9d7547e3e3f184e2d1c8f195581d78a6ad9fd39f.webp",
+      "sha256": "4cb5f5a3e4945ff37a2e179c9d7547e3e3f184e2d1c8f195581d78a6ad9fd39f"
+    },
+    {
+      "file": "17f22fff5503f2bfee4ada7c32d1affb744aec3219dda81758cb5fd6ffa99dad.webp",
+      "sha256": "17f22fff5503f2bfee4ada7c32d1affb744aec3219dda81758cb5fd6ffa99dad"
+    },
+    {
+      "file": "513b1631b356031436c5ed1851cd68245604890a32bae2d4c616faf1adc84b42.webp",
+      "sha256": "513b1631b356031436c5ed1851cd68245604890a32bae2d4c616faf1adc84b42"
+    },
+    {
+      "file": "9f3252d1416ba2ce83295df5c29f40a08a723806b2e1b1879501de98d67c336f.webp",
+      "sha256": "9f3252d1416ba2ce83295df5c29f40a08a723806b2e1b1879501de98d67c336f"
+    },
+    {
+      "file": "08bc134767911ff485fdb0dbeca78b3f15fa7375c0dc874ccbd368367953d130.webp",
+      "sha256": "08bc134767911ff485fdb0dbeca78b3f15fa7375c0dc874ccbd368367953d130"
+    },
+    {
+      "file": "61959ff04e0ff2e93a9d37b74e6d7f3129b0ac94b25639285769f35f6c5d0177.webp",
+      "sha256": "61959ff04e0ff2e93a9d37b74e6d7f3129b0ac94b25639285769f35f6c5d0177"
+    },
+    {
+      "file": "bc0f4547d285a89f984f82179c1ee26d1d15693fe666b7103fc3e476e5057ab9.webp",
+      "sha256": "bc0f4547d285a89f984f82179c1ee26d1d15693fe666b7103fc3e476e5057ab9"
+    },
+    {
+      "file": "ea3962972e32e7054e8ed18a45a6605692d2e7f65c1d35fb75870b2faa55b001.webp",
+      "sha256": "ea3962972e32e7054e8ed18a45a6605692d2e7f65c1d35fb75870b2faa55b001"
+    },
+    {
+      "file": "accf458db2a43d0bb5cbe8ae209f200b84230cfab9e5cb1f83e4cb93f1e94b71.webp",
+      "sha256": "accf458db2a43d0bb5cbe8ae209f200b84230cfab9e5cb1f83e4cb93f1e94b71"
+    },
+    {
+      "file": "1c30ae44db57250fd7662c3be60eaee57f255719b22aa3111d18c2acd476cde2.webp",
+      "sha256": "1c30ae44db57250fd7662c3be60eaee57f255719b22aa3111d18c2acd476cde2"
+    },
+    {
+      "file": "e6a8dbe8cb1d1d155bbe2d699deb11a848045e188cc21c443ea243c302f08519.webp",
+      "sha256": "e6a8dbe8cb1d1d155bbe2d699deb11a848045e188cc21c443ea243c302f08519"
+    },
+    {
+      "file": "bd5bcf915c0df48c13c96101333c0eb715c9f92324e7f0a7e1a2611eabd4fccf.webp",
+      "sha256": "bd5bcf915c0df48c13c96101333c0eb715c9f92324e7f0a7e1a2611eabd4fccf"
+    },
+    {
+      "file": "4417fc1f4b1b601c9126d2535d5bf791b1518dae53f9b1e10fbd5e96968d1740.webp",
+      "sha256": "4417fc1f4b1b601c9126d2535d5bf791b1518dae53f9b1e10fbd5e96968d1740"
+    },
+    {
+      "file": "fc1a86c79d6cd74df8efa13a408dc6ea3733d1ccba3b5bef1110116dc18ebde6.webp",
+      "sha256": "fc1a86c79d6cd74df8efa13a408dc6ea3733d1ccba3b5bef1110116dc18ebde6"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b09-truyen-thong-tin-tuc"
+}

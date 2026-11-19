@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o",
+      "kind": "Set",
+      "values": {
+        "SetName": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "Description": "#b1 #b2 #city #housing"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.04aacc5047c24619a64b5f453eb5c2be",
+      "kind": "Card",
+      "values": {
+        "Term": "tower block",
+        "Definition": "chung c\u01B0 cao t\u1EA7ng",
+        "ImageUrl": "asset:53b349ae72ceecdcd50c2e26f1950448a472cd77fd4aae54a0e68780b23e6d17.webp",
+        "Phonetic": "/\u02C8ta\u028A\u025A bl\u0251k/",
+        "Example": "Hundreds of families live in this tower block.",
+        "ExampleTranslation": "H\u00E0ng tr\u0103m gia \u0111\u00ECnh s\u1ED1ng trong t\u00F2a chung c\u01B0 cao t\u1EA7ng n\u00E0y.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very tall building with many flats",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8ta\u028A.\u0259(\u0279) bl\u0252k/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Hundreds of families live in this tower block.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng tr\\u0103m gia \\u0111\\u00ECnh s\\u1ED1ng trong t\\u00F2a chung c\\u01B0 cao t\\u1EA7ng n\\u00E0y.\u0022},{\u0022text\u0022:\u0022The tower block has two lifts.\u0022,\u0022vi\u0022:\u0022T\\u00F2a chung c\\u01B0 cao t\\u1EA7ng c\\u00F3 hai thang m\\u00E1y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022live in a tower block\u0022,\u0022vi\u0022:\u0022s\\u1ED1ng \\u1EDF chung c\\u01B0 cao t\\u1EA7ng\u0022},{\u0022text\u0022:\u0022old tower block\u0022,\u0022vi\u0022:\u0022chung c\\u01B0 cao t\\u1EA7ng c\\u0169\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Lincoln_Green_2019-07-18_(6).jpg\u0022,\u0022author\u0022:\u0022Simon Cobb\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.051f6f3639d347c3921ec98c360c827f",
+      "kind": "Card",
+      "values": {
+        "Term": "doorbell",
+        "Definition": "chu\u00F4ng c\u1EEDa",
+        "ImageUrl": "asset:21aa41473777ae10ec8c270fdc5fa1039e9f90fcae4956c9894cee3aa92173eb.webp",
+        "Phonetic": "/\u02C8d\u0254\u0279.b\u025Bl/",
+        "Example": "Someone is ringing the doorbell.",
+        "ExampleTranslation": "C\u00F3 ai \u0111\u00F3 \u0111ang b\u1EA5m chu\u00F4ng c\u1EEDa.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a button by a door that makes a sound inside",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8d\u0254\u02D0.b\u025Bl/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Someone is ringing the doorbell.\u0022,\u0022vi\u0022:\u0022C\\u00F3 ai \\u0111\\u00F3 \\u0111ang b\\u1EA5m chu\\u00F4ng c\\u1EEDa.\u0022},{\u0022text\u0022:\u0022The doorbell rang while we were eating.\u0022,\u0022vi\u0022:\u0022Chu\\u00F4ng c\\u1EEDa reo khi ch\\u00FAng t\\u00F4i \\u0111ang \\u0103n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ring the doorbell\u0022,\u0022vi\u0022:\u0022b\\u1EA5m chu\\u00F4ng c\\u1EEDa\u0022},{\u0022text\u0022:\u0022press the doorbell\u0022,\u0022vi\u0022:\u0022nh\\u1EA5n chu\\u00F4ng c\\u1EEDa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Doorbells_on_Sarah_Street,_South_Side,_2024-09-04.jpg\u0022,\u0022author\u0022:\u0022Cbaile19\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.15bbdac17ab940e2b181c4f4e59c5f47",
+      "kind": "Card",
+      "values": {
+        "Term": "traffic light",
+        "Definition": "\u0111\u00E8n giao th\u00F4ng",
+        "ImageUrl": "asset:5299fb6eff21739dbba97c4d7c61cc60306c077326c33c0becc8166906c38f8d.webp",
+        "Phonetic": "/\u02C8t\u0279\u00E6f\u026Ak \u026B\u0250\u026At/",
+        "Example": "Stop when the traffic light is red.",
+        "ExampleTranslation": "H\u00E3y d\u1EEBng l\u1EA1i khi \u0111\u00E8n giao th\u00F4ng m\u00E0u \u0111\u1ECF.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a set of red, yellow and green lights that control vehicles",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8t\u0279\u00E6f\u026Ak l\u0251jt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Stop when the traffic light is red.\u0022,\u0022vi\u0022:\u0022H\\u00E3y d\\u1EEBng l\\u1EA1i khi \\u0111\\u00E8n giao th\\u00F4ng m\\u00E0u \\u0111\\u1ECF.\u0022},{\u0022text\u0022:\u0022The traffic light turned green.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E8n giao th\\u00F4ng chuy\\u1EC3n sang m\\u00E0u xanh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wait at a traffic light\u0022,\u0022vi\u0022:\u0022ch\\u1EDD \\u1EDF \\u0111\\u00E8n giao th\\u00F4ng\u0022},{\u0022text\u0022:\u0022red traffic light\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E8n giao th\\u00F4ng \\u0111\\u1ECF\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/62518311@N00/132549916\u0022,\u0022author\u0022:\u0022Daquella manera\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.15cc53c795cc4c30b6e9ffb2c8e8e5f5",
+      "kind": "Card",
+      "values": {
+        "Term": "traffic jam",
+        "Definition": "k\u1EB9t xe",
+        "ImageUrl": "asset:ab4960661d146b2c21e244923fbc2c8ea6fd8f25312d57ffaa4fc273a07d403d.webp",
+        "Phonetic": "/\u02C8t\u0279\u00E6f\u026Ak \u02C8d\u0361\u0292\u00E6m/",
+        "Example": "We were stuck in a traffic jam for an hour.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i b\u1ECB k\u1EB9t xe c\u1EA3 ti\u1EBFng \u0111\u1ED3ng h\u1ED3.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long line of vehicles that cannot move quickly",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8t\u0279\u00E6f\u026Ak \u02C8d\u0361\u0292\u00E6m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We were stuck in a traffic jam for an hour.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i b\\u1ECB k\\u1EB9t xe c\\u1EA3 ti\\u1EBFng \\u0111\\u1ED3ng h\\u1ED3.\u0022},{\u0022text\u0022:\u0022The traffic jam was caused by an accident.\u0022,\u0022vi\u0022:\u0022V\\u1EE5 k\\u1EB9t xe do m\\u1ED9t tai n\\u1EA1n g\\u00E2y ra.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022get stuck in a traffic jam\u0022,\u0022vi\u0022:\u0022b\\u1ECB k\\u1EB9t xe\u0022},{\u0022text\u0022:\u0022heavy traffic jam\u0022,\u0022vi\u0022:\u0022k\\u1EB9t xe nghi\\u00EAm tr\\u1ECDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6042719/cars-the-road-free-public-domain-cc0-photo\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.1cb60fd8bda94bfd941680a43427d6bc",
+      "kind": "Card",
+      "values": {
+        "Term": "rent",
+        "Definition": "ti\u1EC1n thu\u00EA nh\u00E0",
+        "ImageUrl": "asset:0c5c34018439464650cd514482b82232d18a383293c267710222e7e7612daa47.webp",
+        "Phonetic": "/\u02C8\u0279\u026A\u031Fnt/",
+        "Example": "The rent for this flat is very high.",
+        "ExampleTranslation": "Ti\u1EC1n thu\u00EA c\u0103n h\u1ED9 n\u00E0y r\u1EA5t cao.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "money you pay regularly to live in a place you do not own",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u0279\u025Bnt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The rent for this flat is very high.\u0022,\u0022vi\u0022:\u0022Ti\\u1EC1n thu\\u00EA c\\u0103n h\\u1ED9 n\\u00E0y r\\u1EA5t cao.\u0022},{\u0022text\u0022:\u0022I pay the rent on the first of every month.\u0022,\u0022vi\u0022:\u0022T\\u00F4i tr\\u1EA3 ti\\u1EC1n thu\\u00EA nh\\u00E0 v\\u00E0o ng\\u00E0y \\u0111\\u1EA7u m\\u1ED7i th\\u00E1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pay the rent\u0022,\u0022vi\u0022:\u0022tr\\u1EA3 ti\\u1EC1n thu\\u00EA\u0022},{\u0022text\u0022:\u0022monthly rent\u0022,\u0022vi\u0022:\u0022ti\\u1EC1n thu\\u00EA h\\u1EB1ng th\\u00E1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.240a95d294a74d2c8777a37a82affacc",
+      "kind": "Card",
+      "values": {
+        "Term": "roundabout",
+        "Definition": "v\u00F2ng xoay",
+        "ImageUrl": "asset:40733576b93cf9422a7d39eeed5d46f9eea18bca0594e7cd1f74c997e1787697.webp",
+        "Phonetic": "/\u02C8\u0279a\u028And\u0259\u02CCba\u028At/",
+        "Example": "Take the second exit at the roundabout.",
+        "ExampleTranslation": "H\u00E3y \u0111i l\u1ED1i ra th\u1EE9 hai \u1EDF v\u00F2ng xoay.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a circular place where roads meet and traffic goes round",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0279a\u028And\u0259\u02CCba\u028At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Take the second exit at the roundabout.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111i l\\u1ED1i ra th\\u1EE9 hai \\u1EDF v\\u00F2ng xoay.\u0022},{\u0022text\u0022:\u0022There is a new roundabout near my school.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t v\\u00F2ng xoay m\\u1EDBi g\\u1EA7n tr\\u01B0\\u1EDDng t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022take the second exit\u0022,\u0022vi\u0022:\u0022\\u0111i l\\u1ED1i ra th\\u1EE9 hai\u0022},{\u0022text\u0022:\u0022busy roundabout\u0022,\u0022vi\u0022:\u0022v\\u00F2ng xoay \\u0111\\u00F4ng xe\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/64355152@N07/29235175003\u0022,\u0022author\u0022:\u0022NDDOT Photos\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.338678c9bec04e15a9c4d56ecdb9a01c",
+      "kind": "Card",
+      "values": {
+        "Term": "cottage",
+        "Definition": "nh\u00E0 tranh nh\u1ECF \u1EDF qu\u00EA",
+        "ImageUrl": "asset:2a908b93e00eaf61faaba2938a093bd9c16bd9f07e4a548ecc576efba49b6771.webp",
+        "Phonetic": "/\u02C8k\u0251t.\u026Ad\u0361\u0292/",
+        "Example": "My grandparents live in a small stone cottage.",
+        "ExampleTranslation": "\u00D4ng b\u00E0 t\u00F4i s\u1ED1ng trong m\u1ED9t c\u0103n nh\u00E0 \u0111\u00E1 nh\u1ECF \u1EDF qu\u00EA.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small house in the countryside",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0252t.\u026Ad\u0361\u0292/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandparents live in a small stone cottage.\u0022,\u0022vi\u0022:\u0022\\u00D4ng b\\u00E0 t\\u00F4i s\\u1ED1ng trong m\\u1ED9t c\\u0103n nh\\u00E0 \\u0111\\u00E1 nh\\u1ECF \\u1EDF qu\\u00EA.\u0022},{\u0022text\u0022:\u0022The cottage has a red door.\u0022,\u0022vi\u0022:\u0022C\\u0103n nh\\u00E0 nh\\u1ECF c\\u00F3 c\\u00E1nh c\\u1EEDa m\\u00E0u \\u0111\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022country cottage\u0022,\u0022vi\u0022:\u0022nh\\u00E0 nh\\u1ECF \\u1EDF v\\u00F9ng qu\\u00EA\u0022},{\u0022text\u0022:\u0022thatched cottage\u0022,\u0022vi\u0022:\u0022nh\\u00E0 m\\u00E1i tranh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6035960/photo-image-public-domain-blue-green\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.3e87a963345e4328ab06a9c32e840793",
+      "kind": "Card",
+      "values": {
+        "Term": "landlord",
+        "Definition": "ch\u1EE7 nh\u00E0 cho thu\u00EA",
+        "ImageUrl": "asset:aee308b4ff48f0cc7e5dd74c94eec8763e30aad24db5cb40542d404f072c3ecb.webp",
+        "Phonetic": "/\u02C8l\u00E6n(d).l\u0254\u0279d/",
+        "Example": "Our landlord lives on the ground floor.",
+        "ExampleTranslation": "Ch\u1EE7 nh\u00E0 c\u1EE7a ch\u00FAng t\u00F4i s\u1ED1ng \u1EDF t\u1EA7ng tr\u1EC7t.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who owns a house and rents it to others",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8l\u00E6nd.l\u0254\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Our landlord lives on the ground floor.\u0022,\u0022vi\u0022:\u0022Ch\\u1EE7 nh\\u00E0 c\\u1EE7a ch\\u00FAng t\\u00F4i s\\u1ED1ng \\u1EDF t\\u1EA7ng tr\\u1EC7t.\u0022},{\u0022text\u0022:\u0022I called the landlord about the broken heater.\u0022,\u0022vi\u0022:\u0022T\\u00F4i g\\u1ECDi cho ch\\u1EE7 nh\\u00E0 v\\u1EC1 chi\\u1EBFc l\\u00F2 s\\u01B0\\u1EDFi b\\u1ECB h\\u1ECFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022meet the landlord\u0022,\u0022vi\u0022:\u0022g\\u1EB7p ch\\u1EE7 nh\\u00E0\u0022},{\u0022text\u0022:\u0022kind landlord\u0022,\u0022vi\u0022:\u0022ch\\u1EE7 nh\\u00E0 t\\u1ED1t b\\u1EE5ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.53ae8c3e8b834b20888b0cfae0925c05",
+      "kind": "Card",
+      "values": {
+        "Term": "street lamp",
+        "Definition": "\u0111\u00E8n \u0111\u01B0\u1EDDng",
+        "ImageUrl": "asset:95127f6834d089ea7c1ab33750571072018cb7bbd16d44e3f3c3943596bd9189.webp",
+        "Phonetic": "/st\u0279it \u00E6/",
+        "Example": "The street lamps come on at six o\u0027clock.",
+        "ExampleTranslation": "\u0110\u00E8n \u0111\u01B0\u1EDDng b\u1EADt l\u00EAn l\u00FAc s\u00E1u gi\u1EDD.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tall light beside a road",
+        "Cefr": "B2",
+        "PhoneticUk": "/st\u0279i\u02D0t \u02C8l\u00E6\u031Emp/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The street lamps come on at six o\\u0027clock.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E8n \\u0111\\u01B0\\u1EDDng b\\u1EADt l\\u00EAn l\\u00FAc s\\u00E1u gi\\u1EDD.\u0022},{\u0022text\u0022:\u0022An old street lamp stood at the corner.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t chi\\u1EBFc \\u0111\\u00E8n \\u0111\\u01B0\\u1EDDng c\\u0169 \\u0111\\u1EE9ng \\u1EDF g\\u00F3c ph\\u1ED1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022light a street lamp\u0022,\u0022vi\u0022:\u0022th\\u1EAFp \\u0111\\u00E8n \\u0111\\u01B0\\u1EDDng\u0022},{\u0022text\u0022:\u0022old street lamp\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E8n \\u0111\\u01B0\\u1EDDng c\\u0169\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5910146/image-light-public-domain-trees\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.641a61153b154407add70ed9ecffb937",
+      "kind": "Card",
+      "values": {
+        "Term": "skyscraper",
+        "Definition": "t\u00F2a nh\u00E0 ch\u1ECDc tr\u1EDDi",
+        "ImageUrl": "asset:748b5890fe783f324b3a792a9a9dfbcbbd061448ced0d66f84ace61272c26b04.webp",
+        "Phonetic": "/\u02C8ska\u026A\u02CCsk\u0279e\u026Ap\u025A/",
+        "Example": "The city has more than fifty skyscrapers.",
+        "ExampleTranslation": "Th\u00E0nh ph\u1ED1 c\u00F3 h\u01A1n n\u0103m m\u01B0\u01A1i t\u00F2a nh\u00E0 ch\u1ECDc tr\u1EDDi.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very tall building in a city",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8ska\u026A\u02CCsk\u0279e\u026Ap.\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The city has more than fifty skyscrapers.\u0022,\u0022vi\u0022:\u0022Th\\u00E0nh ph\\u1ED1 c\\u00F3 h\\u01A1n n\\u0103m m\\u01B0\\u01A1i t\\u00F2a nh\\u00E0 ch\\u1ECDc tr\\u1EDDi.\u0022},{\u0022text\u0022:\u0022We had dinner on the top floor of a skyscraper.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0103n t\\u1ED1i \\u1EDF t\\u1EA7ng cao nh\\u1EA5t c\\u1EE7a m\\u1ED9t t\\u00F2a nh\\u00E0 ch\\u1ECDc tr\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022tall skyscraper\u0022,\u0022vi\u0022:\u0022t\\u00F2a nh\\u00E0 ch\\u1ECDc tr\\u1EDDi cao\u0022},{\u0022text\u0022:\u0022glass skyscraper\u0022,\u0022vi\u0022:\u0022t\\u00F2a nh\\u00E0 ch\\u1ECDc tr\\u1EDDi b\\u1EB1ng k\\u00EDnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Ho_Chi_Minh_City_Skyline_at_Night.jpg\u0022,\u0022author\u0022:\u0022Tran Van Ngoc\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.784ff451a27d47348615e924786b82c0",
+      "kind": "Card",
+      "values": {
+        "Term": "neighbourhood",
+        "Definition": "khu ph\u1ED1",
+        "ImageUrl": "asset:a4207120792e5027daa09c215544e36f82e56f6bd021528150f3d3c52e1c8bb3.webp",
+        "Phonetic": "/\u02C8ne\u026Ab\u0259.h\u028Ad/",
+        "Example": "It is a safe and friendly neighbourhood.",
+        "ExampleTranslation": "\u0110\u00E2y l\u00E0 m\u1ED9t khu ph\u1ED1 an to\u00E0n v\u00E0 th\u00E2n thi\u1EC7n.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a part of a town where people live",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8ne\u026Ab\u0259.h\u028Ad/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022It is a safe and friendly neighbourhood.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E2y l\\u00E0 m\\u1ED9t khu ph\\u1ED1 an to\\u00E0n v\\u00E0 th\\u00E2n thi\\u1EC7n.\u0022},{\u0022text\u0022:\u0022There are two parks in my neighbourhood.\u0022,\u0022vi\u0022:\u0022C\\u00F3 hai c\\u00F4ng vi\\u00EAn trong khu ph\\u1ED1 c\\u1EE7a t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022quiet neighbourhood\u0022,\u0022vi\u0022:\u0022khu ph\\u1ED1 y\\u00EAn t\\u0129nh\u0022},{\u0022text\u0022:\u0022in the neighbourhood\u0022,\u0022vi\u0022:\u0022trong khu ph\\u1ED1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.7bb0dc00a03c426cb1033c64b16c6201",
+      "kind": "Card",
+      "values": {
+        "Term": "zebra crossing",
+        "Definition": "v\u1EA1ch qua \u0111\u01B0\u1EDDng",
+        "ImageUrl": "asset:9898144c50983469de7fe2cd3e59711b94b59b6c56d92e16fe31c8d68ead6d87.webp",
+        "Phonetic": "/\u02C8zi\u02D0.b\u0279\u0259 \u02C8k\u0279\u0254s\u026A\u014B/",
+        "Example": "Always use the zebra crossing near the school.",
+        "ExampleTranslation": "H\u00E3y lu\u00F4n d\u00F9ng v\u1EA1ch qua \u0111\u01B0\u1EDDng g\u1EA7n tr\u01B0\u1EDDng h\u1ECDc.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "black and white stripes where people can cross the road",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8zi\u02D0.b\u0279\u0259 \u02C8k\u0279\u0252s\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Always use the zebra crossing near the school.\u0022,\u0022vi\u0022:\u0022H\\u00E3y lu\\u00F4n d\\u00F9ng v\\u1EA1ch qua \\u0111\\u01B0\\u1EDDng g\\u1EA7n tr\\u01B0\\u1EDDng h\\u1ECDc.\u0022},{\u0022text\u0022:\u0022The car stopped at the zebra crossing.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc xe d\\u1EEBng l\\u1EA1i \\u1EDF v\\u1EA1ch qua \\u0111\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cross at the zebra crossing\u0022,\u0022vi\u0022:\u0022qua \\u0111\\u01B0\\u1EDDng \\u1EDF v\\u1EA1ch d\\u00E0nh cho ng\\u01B0\\u1EDDi \\u0111i b\\u1ED9\u0022},{\u0022text\u0022:\u0022busy zebra crossing\u0022,\u0022vi\u0022:\u0022v\\u1EA1ch qua \\u0111\\u01B0\\u1EDDng \\u0111\\u00F4ng \\u0111\\u00FAc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6038718/photo-image-public-domain-white-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.7fa4456f04524462aff17671cd7d9def",
+      "kind": "Card",
+      "values": {
+        "Term": "key",
+        "Definition": "ch\u00ECa kh\u00F3a",
+        "ImageUrl": "asset:abcf93caaba369e21322fe9750dd532789ba148d5e1f63acb9b6f9ab51a6f328.webp",
+        "Phonetic": "/ki/",
+        "Example": "I left my house key at the office.",
+        "ExampleTranslation": "T\u00F4i \u0111\u1EC3 qu\u00EAn ch\u00ECa kh\u00F3a nh\u00E0 \u1EDF v\u0103n ph\u00F2ng.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small metal tool that opens or locks a door",
+        "Cefr": "B1",
+        "PhoneticUk": "/ki\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I left my house key at the office.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1EC3 qu\\u00EAn ch\\u00ECa kh\\u00F3a nh\\u00E0 \\u1EDF v\\u0103n ph\\u00F2ng.\u0022},{\u0022text\u0022:\u0022Do you have the key to the garage?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 ch\\u00ECa kh\\u00F3a nh\\u00E0 \\u0111\\u1EC3 xe kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022house key\u0022,\u0022vi\u0022:\u0022ch\\u00ECa kh\\u00F3a nh\\u00E0\u0022},{\u0022text\u0022:\u0022turn the key\u0022,\u0022vi\u0022:\u0022xoay ch\\u00ECa kh\\u00F3a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/keys-door-Z1TKDI29FZ\u0022,\u0022author\u0022:\u0022WDnet Studio\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.856165e5c33c4569877f1a8f1c90e6a3",
+      "kind": "Card",
+      "values": {
+        "Term": "suburb",
+        "Definition": "v\u00F9ng ngo\u1EA1i \u00F4",
+        "ImageUrl": "asset:aaaebb7ff9998b44f18769236f8544cc624eede4341c12f1ec69a08cdde16a51.webp",
+        "Phonetic": "/\u02C8s\u028Cb\u025Db/",
+        "Example": "We live in a quiet suburb.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i s\u1ED1ng \u1EDF m\u1ED9t v\u00F9ng ngo\u1EA1i \u00F4 y\u00EAn t\u0129nh.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an area of houses at the edge of a city",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8s\u028Cb\u025C\u02D0b/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We live in a quiet suburb.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i s\\u1ED1ng \\u1EDF m\\u1ED9t v\\u00F9ng ngo\\u1EA1i \\u00F4 y\\u00EAn t\\u0129nh.\u0022},{\u0022text\u0022:\u0022The suburb is twenty minutes from the centre.\u0022,\u0022vi\u0022:\u0022V\\u00F9ng ngo\\u1EA1i \\u00F4 c\\u00E1ch trung t\\u00E2m hai m\\u01B0\\u01A1i ph\\u00FAt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022quiet suburb\u0022,\u0022vi\u0022:\u0022v\\u00F9ng ngo\\u1EA1i \\u00F4 y\\u00EAn t\\u0129nh\u0022},{\u0022text\u0022:\u0022live in the suburbs\u0022,\u0022vi\u0022:\u0022s\\u1ED1ng \\u1EDF ngo\\u1EA1i \\u00F4\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.8998b930815f41febf41e0bbbd827172",
+      "kind": "Card",
+      "values": {
+        "Term": "crossroads",
+        "Definition": "ng\u00E3 t\u01B0",
+        "ImageUrl": "asset:d9e4e30626cdaea69d66372ea270c26db3bfa3ab8d096d56264313a2b2c7c78c.webp",
+        "Phonetic": "/\u02C8k\u0279\u0252s\u0279\u0259\u028Adz/",
+        "Example": "Turn left at the crossroads.",
+        "ExampleTranslation": "H\u00E3y r\u1EBD tr\u00E1i \u1EDF ng\u00E3 t\u01B0.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place where two roads cross each other",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0279\u0252s\u0279\u0259\u028Adz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Turn left at the crossroads.\u0022,\u0022vi\u0022:\u0022H\\u00E3y r\\u1EBD tr\\u00E1i \\u1EDF ng\\u00E3 t\\u01B0.\u0022},{\u0022text\u0022:\u0022There is a petrol station at the crossroads.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t tr\\u1EA1m x\\u0103ng \\u1EDF ng\\u00E3 t\\u01B0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022at the crossroads\u0022,\u0022vi\u0022:\u0022\\u1EDF ng\\u00E3 t\\u01B0\u0022},{\u0022text\u0022:\u0022busy crossroads\u0022,\u0022vi\u0022:\u0022ng\\u00E3 t\\u01B0 \\u0111\\u00F4ng \\u0111\\u00FAc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:High_Street_at_the_Ashley_Road_and_Waterloo_Road_intersection,_Epsom,_2024.jpg\u0022,\u0022author\u0022:\u0022DimiTalen\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.9efad1dd368749b0b3651a9fe04d863b",
+      "kind": "Card",
+      "values": {
+        "Term": "monument",
+        "Definition": "\u0111\u00E0i t\u01B0\u1EDFng ni\u1EC7m",
+        "ImageUrl": "asset:fda1f83512cd8cbad2d3baeaf8ed110ce3a6c8def72328f8828d4a7ae082e121.webp",
+        "Phonetic": "/\u02C8m\u0251nj\u028Am\u0259nt/",
+        "Example": "The monument stands in the middle of the square.",
+        "ExampleTranslation": "\u0110\u00E0i t\u01B0\u1EDFng ni\u1EC7m \u0111\u1EE9ng \u1EDF gi\u1EEFa qu\u1EA3ng tr\u01B0\u1EDDng.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large structure built to remember a person or event",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8m\u0252nj\u028Am\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The monument stands in the middle of the square.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E0i t\\u01B0\\u1EDFng ni\\u1EC7m \\u0111\\u1EE9ng \\u1EDF gi\\u1EEFa qu\\u1EA3ng tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022Thousands of tourists visit the monument each year.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng ngh\\u00ECn du kh\\u00E1ch \\u0111\\u1EBFn th\\u0103m \\u0111\\u00E0i t\\u01B0\\u1EDFng ni\\u1EC7m m\\u1ED7i n\\u0103m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022national monument\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E0i t\\u01B0\\u1EDFng ni\\u1EC7m qu\\u1ED1c gia\u0022},{\u0022text\u0022:\u0022visit a monument\u0022,\u0022vi\u0022:\u0022th\\u0103m \\u0111\\u00E0i t\\u01B0\\u1EDFng ni\\u1EC7m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/34409164@N06/3621833530\u0022,\u0022author\u0022:\u0022gnuckx\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.a6e9333acf394799a098c0156b97eccd",
+      "kind": "Card",
+      "values": {
+        "Term": "bus stop",
+        "Definition": "tr\u1EA1m xe bu\u00FDt",
+        "ImageUrl": "asset:d964881b50ad23613fc0366e850ca3d593415b04713d57c33faaed8a8975fa0a.webp",
+        "Phonetic": "/b\u028Cs st\u0251p/",
+        "Example": "I wait at the bus stop every morning.",
+        "ExampleTranslation": "S\u00E1ng n\u00E0o t\u00F4i c\u0169ng \u0111\u1EE3i \u1EDF tr\u1EA1m xe bu\u00FDt.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place where buses stop for passengers",
+        "Cefr": "B1",
+        "PhoneticUk": "/b\u028Cs st\u0252p/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I wait at the bus stop every morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng n\\u00E0o t\\u00F4i c\\u0169ng \\u0111\\u1EE3i \\u1EDF tr\\u1EA1m xe bu\\u00FDt.\u0022},{\u0022text\u0022:\u0022The bus stop is just across the street.\u0022,\u0022vi\u0022:\u0022Tr\\u1EA1m xe bu\\u00FDt \\u1EDF ngay b\\u00EAn kia \\u0111\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wait at the bus stop\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EE3i \\u1EDF tr\\u1EA1m xe bu\\u00FDt\u0022},{\u0022text\u0022:\u0022nearest bus stop\u0022,\u0022vi\u0022:\u0022tr\\u1EA1m xe bu\\u00FDt g\\u1EA7n nh\\u1EA5t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/25802865@N08/55296042458\u0022,\u0022author\u0022:\u0022chooyutshing\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.a771a74337594011afc984e307d876ab",
+      "kind": "Card",
+      "values": {
+        "Term": "playground equipment",
+        "Definition": "thi\u1EBFt b\u1ECB s\u00E2n ch\u01A1i",
+        "ImageUrl": "asset:60045a374f54616fe291a3d2c405a555818de2f80fe2d8d2f7be8e9f02c9461d.webp",
+        "Phonetic": "/\u02C8ple\u026A\u0261\u0279a\u028And \u026A\u02C8kw\u026Apm\u0259nt/",
+        "Example": "The playground equipment was repainted last summer.",
+        "ExampleTranslation": "Thi\u1EBFt b\u1ECB s\u00E2n ch\u01A1i \u0111\u01B0\u1EE3c s\u01A1n l\u1EA1i v\u00E0o m\u00F9a h\u00E8 n\u0103m ngo\u00E1i.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "slides and swings for children to play on",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8ple\u026A\u0261\u0279a\u028And \u026A\u02C8kw\u026Apm\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The playground equipment was repainted last summer.\u0022,\u0022vi\u0022:\u0022Thi\\u1EBFt b\\u1ECB s\\u00E2n ch\\u01A1i \\u0111\\u01B0\\u1EE3c s\\u01A1n l\\u1EA1i v\\u00E0o m\\u00F9a h\\u00E8 n\\u0103m ngo\\u00E1i.\u0022},{\u0022text\u0022:\u0022Safe playground equipment is important.\u0022,\u0022vi\u0022:\u0022Thi\\u1EBFt b\\u1ECB s\\u00E2n ch\\u01A1i an to\\u00E0n r\\u1EA5t quan tr\\u1ECDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022new playground equipment\u0022,\u0022vi\u0022:\u0022thi\\u1EBFt b\\u1ECB s\\u00E2n ch\\u01A1i m\\u1EDBi\u0022},{\u0022text\u0022:\u0022playground equipment for kids\u0022,\u0022vi\u0022:\u0022thi\\u1EBFt b\\u1ECB s\\u00E2n ch\\u01A1i cho tr\\u1EBB\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6489671/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.ad4e53331d9749a582ba9d2eab56a41e",
+      "kind": "Card",
+      "values": {
+        "Term": "garden gate",
+        "Definition": "c\u1ED5ng v\u01B0\u1EDDn",
+        "ImageUrl": "asset:cc1a90c4425301c9db05b675ede221517e50faf23a3418551bf91cc186a8629d.webp",
+        "Phonetic": "/\u02C8\u0261\u0251\u0279.d(\u0259)n \u02C8\u0261e\u026A\u032Ft/",
+        "Example": "Please close the garden gate behind you.",
+        "ExampleTranslation": "L\u00E0m \u01A1n \u0111\u00F3ng c\u1ED5ng v\u01B0\u1EDDn l\u1EA1i sau l\u01B0ng b\u1EA1n.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small door in a fence or wall around a garden",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0261\u0251\u02D0.d(\u0259)n \u02C8\u0261e\u026A\u032Ft/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Please close the garden gate behind you.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n \\u0111\\u00F3ng c\\u1ED5ng v\\u01B0\\u1EDDn l\\u1EA1i sau l\\u01B0ng b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022The dog waited at the garden gate.\u0022,\u0022vi\u0022:\u0022Con ch\\u00F3 \\u0111\\u1EE3i \\u1EDF c\\u1ED5ng v\\u01B0\\u1EDDn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open the garden gate\u0022,\u0022vi\u0022:\u0022m\\u1EDF c\\u1ED5ng v\\u01B0\\u1EDDn\u0022},{\u0022text\u0022:\u0022wooden garden gate\u0022,\u0022vi\u0022:\u0022c\\u1ED5ng v\\u01B0\\u1EDDn b\\u1EB1ng g\\u1ED7\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/56068be744/\u0022,\u0022author\u0022:\u0022Bigul Malayi\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.b449130190a545639d4988e72731135a",
+      "kind": "Card",
+      "values": {
+        "Term": "fountain",
+        "Definition": "\u0111\u00E0i phun n\u01B0\u1EDBc",
+        "ImageUrl": "asset:228d53ae27f04a72ab3331917b6cfae46f03131afae54ba25d5500df9738d130.webp",
+        "Phonetic": "/\u02C8fa\u028An.tn\u0329/",
+        "Example": "Children played near the fountain in the square.",
+        "ExampleTranslation": "Tr\u1EBB em ch\u01A1i g\u1EA7n \u0111\u00E0i phun n\u01B0\u1EDBc \u1EDF qu\u1EA3ng tr\u01B0\u1EDDng.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a structure that sends water up into the air",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8fa\u028An.t\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Children played near the fountain in the square.\u0022,\u0022vi\u0022:\u0022Tr\\u1EBB em ch\\u01A1i g\\u1EA7n \\u0111\\u00E0i phun n\\u01B0\\u1EDBc \\u1EDF qu\\u1EA3ng tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022There is a stone fountain in the park.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t \\u0111\\u00E0i phun n\\u01B0\\u1EDBc b\\u1EB1ng \\u0111\\u00E1 trong c\\u00F4ng vi\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022stone fountain\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E0i phun n\\u01B0\\u1EDBc b\\u1EB1ng \\u0111\\u00E1\u0022},{\u0022text\u0022:\u0022fountain in the square\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E0i phun n\\u01B0\\u1EDBc \\u1EDF qu\\u1EA3ng tr\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.b482494b13ec4b8f969faaaf43c0861c",
+      "kind": "Card",
+      "values": {
+        "Term": "parking lot",
+        "Definition": "b\u00E3i \u0111\u1ED7 xe",
+        "ImageUrl": "asset:7d1fba045c659d54a07ede2fcca010535fb668bb632dcd9b7d45c085271a9726.webp",
+        "Phonetic": "/\u02C8p\u0251\u0279.k\u026A\u014B l\u0251t/",
+        "Example": "I left my car in the parking lot behind the mall.",
+        "ExampleTranslation": "T\u00F4i \u0111\u1EC3 xe \u1EDF b\u00E3i \u0111\u1ED7 ph\u00EDa sau trung t\u00E2m th\u01B0\u01A1ng m\u1EA1i.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an open area where people leave their cars",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8p\u0251\u02D0.k\u026A\u014B l\u0252t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I left my car in the parking lot behind the mall.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1EC3 xe \\u1EDF b\\u00E3i \\u0111\\u1ED7 ph\\u00EDa sau trung t\\u00E2m th\\u01B0\\u01A1ng m\\u1EA1i.\u0022},{\u0022text\u0022:\u0022The parking lot is full on weekends.\u0022,\u0022vi\u0022:\u0022B\\u00E3i \\u0111\\u1ED7 xe lu\\u00F4n \\u0111\\u1EA7y v\\u00E0o cu\\u1ED1i tu\\u1EA7n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022find a parking lot\u0022,\u0022vi\u0022:\u0022t\\u00ECm b\\u00E3i \\u0111\\u1ED7 xe\u0022},{\u0022text\u0022:\u0022underground parking lot\u0022,\u0022vi\u0022:\u0022b\\u00E3i \\u0111\\u1ED7 xe ng\\u1EA7m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/43288043@N04/27812931390\u0022,\u0022author\u0022:\u0022GlacierNPS\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.ba4559bc5848456f89af1467482fb57e",
+      "kind": "Card",
+      "values": {
+        "Term": "villa",
+        "Definition": "bi\u1EC7t th\u1EF1",
+        "ImageUrl": "asset:8518d2352b6894f963d0468edb0f635945ad5d2d0497eae0817c3ab541556db3.webp",
+        "Phonetic": "/\u02C8v\u026Al\u0259/",
+        "Example": "They rented a villa near the sea.",
+        "ExampleTranslation": "H\u1ECD thu\u00EA m\u1ED9t c\u0103n bi\u1EC7t th\u1EF1 g\u1EA7n bi\u1EC3n.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large house, often with a garden, in a warm place",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8v\u026Al\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022They rented a villa near the sea.\u0022,\u0022vi\u0022:\u0022H\\u1ECD thu\\u00EA m\\u1ED9t c\\u0103n bi\\u1EC7t th\\u1EF1 g\\u1EA7n bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022The villa has a swimming pool.\u0022,\u0022vi\u0022:\u0022C\\u0103n bi\\u1EC7t th\\u1EF1 c\\u00F3 m\\u1ED9t b\\u1EC3 b\\u01A1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022rent a villa\u0022,\u0022vi\u0022:\u0022thu\\u00EA bi\\u1EC7t th\\u1EF1\u0022},{\u0022text\u0022:\u0022holiday villa\u0022,\u0022vi\u0022:\u0022bi\\u1EC7t th\\u1EF1 ngh\\u1EC9 d\\u01B0\\u1EE1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6023165/photo-image-public-domain-house-summer\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.c3117a585c21466fac883d1c57c5672c",
+      "kind": "Card",
+      "values": {
+        "Term": "mailbox",
+        "Definition": "h\u1ED9p th\u01B0",
+        "ImageUrl": "asset:977768c98abf1071eec683d6650ef0bae3b2f3fda23e2ada53519827223bf065.webp",
+        "Phonetic": "/\u02C8me\u026Al.b\u0251ks/",
+        "Example": "The postman put a letter in the mailbox.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi \u0111\u01B0a th\u01B0 b\u1ECF m\u1ED9t l\u00E1 th\u01B0 v\u00E0o h\u1ED9p th\u01B0.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a box outside a house where letters are delivered",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8me\u026Al.b\u0251ks/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The postman put a letter in the mailbox.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi \\u0111\\u01B0a th\\u01B0 b\\u1ECF m\\u1ED9t l\\u00E1 th\\u01B0 v\\u00E0o h\\u1ED9p th\\u01B0.\u0022},{\u0022text\u0022:\u0022Our mailbox is by the front gate.\u0022,\u0022vi\u0022:\u0022H\\u1ED9p th\\u01B0 c\\u1EE7a ch\\u00FAng t\\u00F4i \\u1EDF c\\u1EA1nh c\\u1ED5ng tr\\u01B0\\u1EDBc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022check the mailbox\u0022,\u0022vi\u0022:\u0022ki\\u1EC3m tra h\\u1ED9p th\\u01B0\u0022},{\u0022text\u0022:\u0022red mailbox\u0022,\u0022vi\u0022:\u0022h\\u1ED9p th\\u01B0 m\\u00E0u \\u0111\\u1ECF\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/23143602121\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.d4b37ee60a2a41cea46a80961ebc5def",
+      "kind": "Card",
+      "values": {
+        "Term": "town square",
+        "Definition": "qu\u1EA3ng tr\u01B0\u1EDDng th\u1ECB tr\u1EA5n",
+        "ImageUrl": "asset:0997d2214d41ae54ff04445bbf68a4398b404dc0d25c060ac3d62e242ab3b530.webp",
+        "Phonetic": "/\u02C8ta\u028A\u032Fn skw\u025B\u0259(\u0279)/",
+        "Example": "People meet in the town square on weekends.",
+        "ExampleTranslation": "M\u1ECDi ng\u01B0\u1EDDi g\u1EB7p nhau \u1EDF qu\u1EA3ng tr\u01B0\u1EDDng th\u1ECB tr\u1EA5n v\u00E0o cu\u1ED1i tu\u1EA7n.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an open area in the centre of a town",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8ta\u028A\u032Fn skw\u025B\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022People meet in the town square on weekends.\u0022,\u0022vi\u0022:\u0022M\\u1ECDi ng\\u01B0\\u1EDDi g\\u1EB7p nhau \\u1EDF qu\\u1EA3ng tr\\u01B0\\u1EDDng th\\u1ECB tr\\u1EA5n v\\u00E0o cu\\u1ED1i tu\\u1EA7n.\u0022},{\u0022text\u0022:\u0022The market is held in the town square.\u0022,\u0022vi\u0022:\u0022Phi\\u00EAn ch\\u1EE3 \\u0111\\u01B0\\u1EE3c t\\u1ED5 ch\\u1EE9c \\u1EDF qu\\u1EA3ng tr\\u01B0\\u1EDDng th\\u1ECB tr\\u1EA5n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022busy town square\u0022,\u0022vi\u0022:\u0022qu\\u1EA3ng tr\\u01B0\\u1EDDng th\\u1ECB tr\\u1EA5n nh\\u1ED9n nh\\u1ECBp\u0022},{\u0022text\u0022:\u0022meet in the town square\u0022,\u0022vi\u0022:\u0022g\\u1EB7p nhau \\u1EDF qu\\u1EA3ng tr\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/135396164@N05/42124261850\u0022,\u0022author\u0022:\u0022freestocks.org\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o.f62006a265b14d0da1d1d220393e5f33",
+      "kind": "Card",
+      "values": {
+        "Term": "pavement",
+        "Definition": "v\u1EC9a h\u00E8",
+        "ImageUrl": "asset:376edd9db8ca63f4d57a12a90041af6aea1b9d537b9e023c808e4f0ac457c2e5.webp",
+        "Phonetic": "/\u02C8pe\u026Avm(\u0259)nt/",
+        "Example": "Please walk on the pavement, not on the road.",
+        "ExampleTranslation": "H\u00E3y \u0111i tr\u00EAn v\u1EC9a h\u00E8, \u0111\u1EEBng \u0111i d\u01B0\u1EDBi l\u00F2ng \u0111\u01B0\u1EDDng.",
+        "Topic": "Th\u00E0nh ph\u1ED1 \u0026 nh\u00E0 \u1EDF",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the path at the side of a road for people on foot",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8pe\u026Avm(\u0259)nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Please walk on the pavement, not on the road.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111i tr\\u00EAn v\\u1EC9a h\\u00E8, \\u0111\\u1EEBng \\u0111i d\\u01B0\\u1EDBi l\\u00F2ng \\u0111\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022The pavement was wet after the rain.\u0022,\u0022vi\u0022:\u0022V\\u1EC9a h\\u00E8 \\u01B0\\u1EDBt sau c\\u01A1n m\\u01B0a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wide pavement\u0022,\u0022vi\u0022:\u0022v\\u1EC9a h\\u00E8 r\\u1ED9ng\u0022},{\u0022text\u0022:\u0022walk along the pavement\u0022,\u0022vi\u0022:\u0022\\u0111i d\\u1ECDc v\\u1EC9a h\\u00E8\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Sun_and_shadows_of_the_urban_trees_on_the_pavement,_in_Sarphatistraat;_free_photo_Amsterdam_city,_Fons_Heijnsbroek_10-2021.jpg\u0022,\u0022author\u0022:\u0022Fons Heijnsbroek\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "748b5890fe783f324b3a792a9a9dfbcbbd061448ced0d66f84ace61272c26b04.webp",
+      "sha256": "748b5890fe783f324b3a792a9a9dfbcbbd061448ced0d66f84ace61272c26b04"
+    },
+    {
+      "file": "ab4960661d146b2c21e244923fbc2c8ea6fd8f25312d57ffaa4fc273a07d403d.webp",
+      "sha256": "ab4960661d146b2c21e244923fbc2c8ea6fd8f25312d57ffaa4fc273a07d403d"
+    },
+    {
+      "file": "5299fb6eff21739dbba97c4d7c61cc60306c077326c33c0becc8166906c38f8d.webp",
+      "sha256": "5299fb6eff21739dbba97c4d7c61cc60306c077326c33c0becc8166906c38f8d"
+    },
+    {
+      "file": "9898144c50983469de7fe2cd3e59711b94b59b6c56d92e16fe31c8d68ead6d87.webp",
+      "sha256": "9898144c50983469de7fe2cd3e59711b94b59b6c56d92e16fe31c8d68ead6d87"
+    },
+    {
+      "file": "376edd9db8ca63f4d57a12a90041af6aea1b9d537b9e023c808e4f0ac457c2e5.webp",
+      "sha256": "376edd9db8ca63f4d57a12a90041af6aea1b9d537b9e023c808e4f0ac457c2e5"
+    },
+    {
+      "file": "d9e4e30626cdaea69d66372ea270c26db3bfa3ab8d096d56264313a2b2c7c78c.webp",
+      "sha256": "d9e4e30626cdaea69d66372ea270c26db3bfa3ab8d096d56264313a2b2c7c78c"
+    },
+    {
+      "file": "40733576b93cf9422a7d39eeed5d46f9eea18bca0594e7cd1f74c997e1787697.webp",
+      "sha256": "40733576b93cf9422a7d39eeed5d46f9eea18bca0594e7cd1f74c997e1787697"
+    },
+    {
+      "file": "d964881b50ad23613fc0366e850ca3d593415b04713d57c33faaed8a8975fa0a.webp",
+      "sha256": "d964881b50ad23613fc0366e850ca3d593415b04713d57c33faaed8a8975fa0a"
+    },
+    {
+      "file": "95127f6834d089ea7c1ab33750571072018cb7bbd16d44e3f3c3943596bd9189.webp",
+      "sha256": "95127f6834d089ea7c1ab33750571072018cb7bbd16d44e3f3c3943596bd9189"
+    },
+    {
+      "file": "228d53ae27f04a72ab3331917b6cfae46f03131afae54ba25d5500df9738d130.webp",
+      "sha256": "228d53ae27f04a72ab3331917b6cfae46f03131afae54ba25d5500df9738d130"
+    },
+    {
+      "file": "fda1f83512cd8cbad2d3baeaf8ed110ce3a6c8def72328f8828d4a7ae082e121.webp",
+      "sha256": "fda1f83512cd8cbad2d3baeaf8ed110ce3a6c8def72328f8828d4a7ae082e121"
+    },
+    {
+      "file": "0997d2214d41ae54ff04445bbf68a4398b404dc0d25c060ac3d62e242ab3b530.webp",
+      "sha256": "0997d2214d41ae54ff04445bbf68a4398b404dc0d25c060ac3d62e242ab3b530"
+    },
+    {
+      "file": "aaaebb7ff9998b44f18769236f8544cc624eede4341c12f1ec69a08cdde16a51.webp",
+      "sha256": "aaaebb7ff9998b44f18769236f8544cc624eede4341c12f1ec69a08cdde16a51"
+    },
+    {
+      "file": "8518d2352b6894f963d0468edb0f635945ad5d2d0497eae0817c3ab541556db3.webp",
+      "sha256": "8518d2352b6894f963d0468edb0f635945ad5d2d0497eae0817c3ab541556db3"
+    },
+    {
+      "file": "2a908b93e00eaf61faaba2938a093bd9c16bd9f07e4a548ecc576efba49b6771.webp",
+      "sha256": "2a908b93e00eaf61faaba2938a093bd9c16bd9f07e4a548ecc576efba49b6771"
+    },
+    {
+      "file": "53b349ae72ceecdcd50c2e26f1950448a472cd77fd4aae54a0e68780b23e6d17.webp",
+      "sha256": "53b349ae72ceecdcd50c2e26f1950448a472cd77fd4aae54a0e68780b23e6d17"
+    },
+    {
+      "file": "977768c98abf1071eec683d6650ef0bae3b2f3fda23e2ada53519827223bf065.webp",
+      "sha256": "977768c98abf1071eec683d6650ef0bae3b2f3fda23e2ada53519827223bf065"
+    },
+    {
+      "file": "cc1a90c4425301c9db05b675ede221517e50faf23a3418551bf91cc186a8629d.webp",
+      "sha256": "cc1a90c4425301c9db05b675ede221517e50faf23a3418551bf91cc186a8629d"
+    },
+    {
+      "file": "21aa41473777ae10ec8c270fdc5fa1039e9f90fcae4956c9894cee3aa92173eb.webp",
+      "sha256": "21aa41473777ae10ec8c270fdc5fa1039e9f90fcae4956c9894cee3aa92173eb"
+    },
+    {
+      "file": "abcf93caaba369e21322fe9750dd532789ba148d5e1f63acb9b6f9ab51a6f328.webp",
+      "sha256": "abcf93caaba369e21322fe9750dd532789ba148d5e1f63acb9b6f9ab51a6f328"
+    },
+    {
+      "file": "0c5c34018439464650cd514482b82232d18a383293c267710222e7e7612daa47.webp",
+      "sha256": "0c5c34018439464650cd514482b82232d18a383293c267710222e7e7612daa47"
+    },
+    {
+      "file": "aee308b4ff48f0cc7e5dd74c94eec8763e30aad24db5cb40542d404f072c3ecb.webp",
+      "sha256": "aee308b4ff48f0cc7e5dd74c94eec8763e30aad24db5cb40542d404f072c3ecb"
+    },
+    {
+      "file": "a4207120792e5027daa09c215544e36f82e56f6bd021528150f3d3c52e1c8bb3.webp",
+      "sha256": "a4207120792e5027daa09c215544e36f82e56f6bd021528150f3d3c52e1c8bb3"
+    },
+    {
+      "file": "60045a374f54616fe291a3d2c405a555818de2f80fe2d8d2f7be8e9f02c9461d.webp",
+      "sha256": "60045a374f54616fe291a3d2c405a555818de2f80fe2d8d2f7be8e9f02c9461d"
+    },
+    {
+      "file": "7d1fba045c659d54a07ede2fcca010535fb668bb632dcd9b7d45c085271a9726.webp",
+      "sha256": "7d1fba045c659d54a07ede2fcca010535fb668bb632dcd9b7d45c085271a9726"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b10-thanh-pho-nha-o"
+}

@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b15-cac-moi-quan-he",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he",
+      "kind": "Set",
+      "values": {
+        "SetName": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "Description": "#b1 #b2 #relationships #people"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.043e2a2e14a24ac29c2c0a5dca95042f",
+      "kind": "Card",
+      "values": {
+        "Term": "wedding cake",
+        "Definition": "b\u00E1nh c\u01B0\u1EDBi",
+        "ImageUrl": "asset:e53cb7b1047691eb124f39a1cefaaaca05d8dd8d4c3febe7d3f8e697c1aae24c.webp",
+        "Phonetic": "/\u02C8w\u025Bd\u026A\u014B ke\u026Ak/",
+        "Example": "They cut the wedding cake together.",
+        "ExampleTranslation": "H\u1ECD c\u00F9ng nhau c\u1EAFt b\u00E1nh c\u01B0\u1EDBi.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large decorated cake served at a wedding",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8w\u025Bd\u026A\u014B ke\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022They cut the wedding cake together.\u0022,\u0022vi\u0022:\u0022H\\u1ECD c\\u00F9ng nhau c\\u1EAFt b\\u00E1nh c\\u01B0\\u1EDBi.\u0022},{\u0022text\u0022:\u0022The wedding cake had three layers.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc b\\u00E1nh c\\u01B0\\u1EDBi c\\u00F3 ba t\\u1EA7ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cut the wedding cake\u0022,\u0022vi\u0022:\u0022c\\u1EAFt b\\u00E1nh c\\u01B0\\u1EDBi\u0022},{\u0022text\u0022:\u0022tall wedding cake\u0022,\u0022vi\u0022:\u0022b\\u00E1nh c\\u01B0\\u1EDBi cao nhi\\u1EC1u t\\u1EA7ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.171c0e91805849d286b59d2ae0be8cdf",
+      "kind": "Card",
+      "values": {
+        "Term": "reunion",
+        "Definition": "bu\u1ED5i h\u1ECDp m\u1EB7t",
+        "ImageUrl": "asset:23f90399764633ff39cbaa96a8d8aca64f56ec67406abc094be3eca69ba18f3f.webp",
+        "Phonetic": "/\u0279i\u02D0\u02C8ju\u02D0nj\u0259n/",
+        "Example": "We held a family reunion in the summer.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i t\u1ED5 ch\u1EE9c m\u1ED9t bu\u1ED5i h\u1ECDp m\u1EB7t gia \u0111\u00ECnh v\u00E0o m\u00F9a h\u00E8.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a meeting of people who have not seen each other for a long time",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0279i\u02D0\u02C8ju\u02D0nj\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We held a family reunion in the summer.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i t\\u1ED5 ch\\u1EE9c m\\u1ED9t bu\\u1ED5i h\\u1ECDp m\\u1EB7t gia \\u0111\\u00ECnh v\\u00E0o m\\u00F9a h\\u00E8.\u0022},{\u0022text\u0022:\u0022Her school reunion is next month.\u0022,\u0022vi\u0022:\u0022Bu\\u1ED5i h\\u1ECDp m\\u1EB7t c\\u1EF1u h\\u1ECDc sinh c\\u1EE7a c\\u00F4 \\u1EA5y di\\u1EC5n ra v\\u00E0o th\\u00E1ng sau.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022family reunion\u0022,\u0022vi\u0022:\u0022h\\u1ECDp m\\u1EB7t gia \\u0111\\u00ECnh\u0022},{\u0022text\u0022:\u0022class reunion\u0022,\u0022vi\u0022:\u0022h\\u1ECDp l\\u1EDBp\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.1b95aa438e474fd3a5161407891cb5f1",
+      "kind": "Card",
+      "values": {
+        "Term": "colleague",
+        "Definition": "\u0111\u1ED3ng nghi\u1EC7p",
+        "ImageUrl": "asset:0a7fb0f6835e1e94d0881f46a8cbff2fda9fcd19c8b8a4a89ba2ce492b683ba8.webp",
+        "Phonetic": "/\u02C8k\u0251li\u0261/",
+        "Example": "My colleague helped me finish the report.",
+        "ExampleTranslation": "\u0110\u1ED3ng nghi\u1EC7p c\u1EE7a t\u00F4i gi\u00FAp t\u00F4i ho\u00E0n th\u00E0nh b\u00E1o c\u00E1o.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person you work with",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0252li\u02D0\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My colleague helped me finish the report.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1ED3ng nghi\\u1EC7p c\\u1EE7a t\\u00F4i gi\\u00FAp t\\u00F4i ho\\u00E0n th\\u00E0nh b\\u00E1o c\\u00E1o.\u0022},{\u0022text\u0022:\u0022I had lunch with a colleague today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay t\\u00F4i \\u0103n tr\\u01B0a v\\u1EDBi m\\u1ED9t \\u0111\\u1ED3ng nghi\\u1EC7p.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022work colleague\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED3ng nghi\\u1EC7p\u0022},{\u0022text\u0022:\u0022friendly colleague\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED3ng nghi\\u1EC7p th\\u00E2n thi\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.24c410b54dda4b78999d78bd3cc53ff4",
+      "kind": "Card",
+      "values": {
+        "Term": "host",
+        "Definition": "ch\u1EE7 nh\u00E0, ch\u1EE7 ti\u1EC7c",
+        "ImageUrl": "asset:5638620c98cc5b320ac9370826092e6973d0632c12ab0b986a11a6cc05b5191f.webp",
+        "Phonetic": "/ho\u028Ast/",
+        "Example": "The host greeted everyone at the door.",
+        "ExampleTranslation": "Ch\u1EE7 nh\u00E0 ch\u00E0o \u0111\u00F3n m\u1ECDi ng\u01B0\u1EDDi \u1EDF c\u1EEDa.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who invites guests and looks after them",
+        "Cefr": "B2",
+        "PhoneticUk": "/h\u0259\u028Ast/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The host greeted everyone at the door.\u0022,\u0022vi\u0022:\u0022Ch\\u1EE7 nh\\u00E0 ch\\u00E0o \\u0111\\u00F3n m\\u1ECDi ng\\u01B0\\u1EDDi \\u1EDF c\\u1EEDa.\u0022},{\u0022text\u0022:\u0022Thank you to our kind host.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n ng\\u01B0\\u1EDDi ch\\u1EE7 nh\\u00E0 t\\u1ED1t b\\u1EE5ng c\\u1EE7a ch\\u00FAng t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022friendly host\u0022,\u0022vi\u0022:\u0022ch\\u1EE7 nh\\u00E0 th\\u00E2n thi\\u1EC7n\u0022},{\u0022text\u0022:\u0022party host\u0022,\u0022vi\u0022:\u0022ch\\u1EE7 b\\u1EEFa ti\\u1EC7c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.2a5e58f3de614cf7bb1d6cb5293cdcbd",
+      "kind": "Card",
+      "values": {
+        "Term": "anniversary",
+        "Definition": "ng\u00E0y k\u1EF7 ni\u1EC7m",
+        "ImageUrl": "asset:7addcd0c0091f8a58386f0071ea726c0289ad612aeb46dc42e1d620e280bd6e3.webp",
+        "Phonetic": "/\u02CC\u00E6n\u026A\u02C8v\u025Ds(\u0259)\u0279i/",
+        "Example": "My parents celebrated their tenth anniversary last week.",
+        "ExampleTranslation": "B\u1ED1 m\u1EB9 t\u00F4i k\u1EF7 ni\u1EC7m m\u01B0\u1EDDi n\u0103m ng\u00E0y c\u01B0\u1EDBi tu\u1EA7n tr\u01B0\u1EDBc.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a day when you remember an important event from an earlier year",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02CC\u00E6n\u026A\u02C8v\u025C\u02D0s(\u0259)\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My parents celebrated their tenth anniversary last week.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 m\\u1EB9 t\\u00F4i k\\u1EF7 ni\\u1EC7m m\\u01B0\\u1EDDi n\\u0103m ng\\u00E0y c\\u01B0\\u1EDBi tu\\u1EA7n tr\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022Happy anniversary!\u0022,\u0022vi\u0022:\u0022Ch\\u00FAc m\\u1EEBng ng\\u00E0y k\\u1EF7 ni\\u1EC7m!\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wedding anniversary\u0022,\u0022vi\u0022:\u0022k\\u1EF7 ni\\u1EC7m ng\\u00E0y c\\u01B0\\u1EDBi\u0022},{\u0022text\u0022:\u0022celebrate an anniversary\u0022,\u0022vi\u0022:\u0022k\\u1EF7 ni\\u1EC7m m\\u1ED9t ng\\u00E0y \\u0111\\u1EB7c bi\\u1EC7t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.30924790142d414ba2752f0a404e0ca5",
+      "kind": "Card",
+      "values": {
+        "Term": "guest",
+        "Definition": "kh\u00E1ch m\u1EDDi",
+        "ImageUrl": "asset:3cf6b2a3847ffdafa724ca96ade4c9b69bc5faeb178111872ced92e56e418d20.webp",
+        "Phonetic": "/\u0261\u025Bst/",
+        "Example": "We have two guests for dinner tonight.",
+        "ExampleTranslation": "T\u1ED1i nay ch\u00FAng t\u00F4i c\u00F3 hai v\u1ECB kh\u00E1ch \u0111\u1EBFn \u0103n t\u1ED1i.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who is invited to your home or event",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u0261\u025Bst/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We have two guests for dinner tonight.\u0022,\u0022vi\u0022:\u0022T\\u1ED1i nay ch\\u00FAng t\\u00F4i c\\u00F3 hai v\\u1ECB kh\\u00E1ch \\u0111\\u1EBFn \\u0103n t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022The guests arrived at seven o\\u0027clock.\u0022,\u0022vi\u0022:\u0022C\\u00E1c v\\u1ECB kh\\u00E1ch \\u0111\\u1EBFn l\\u00FAc b\\u1EA3y gi\\u1EDD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022welcome a guest\u0022,\u0022vi\u0022:\u0022\\u0111\\u00F3n kh\\u00E1ch\u0022},{\u0022text\u0022:\u0022guest room\u0022,\u0022vi\u0022:\u0022ph\\u00F2ng d\\u00E0nh cho kh\\u00E1ch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.319e4904015c453aae609484b6edb519",
+      "kind": "Card",
+      "values": {
+        "Term": "teammate",
+        "Definition": "\u0111\u1ED3ng \u0111\u1ED9i",
+        "ImageUrl": "asset:997a262572a5b16d897f250bbfc6f5aef9bff42d1dd50a86bb0931c85ac54e9a.webp",
+        "Phonetic": "/\u02C8ti\u02D0m\u02CCme\u026At/",
+        "Example": "My teammate passed me the ball.",
+        "ExampleTranslation": "\u0110\u1ED3ng \u0111\u1ED9i c\u1EE7a t\u00F4i chuy\u1EC1n b\u00F3ng cho t\u00F4i.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who plays in the same team as you",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8ti\u02D0m\u02CCme\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My teammate passed me the ball.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1ED3ng \\u0111\\u1ED9i c\\u1EE7a t\\u00F4i chuy\\u1EC1n b\\u00F3ng cho t\\u00F4i.\u0022},{\u0022text\u0022:\u0022We celebrated with our teammates after the win.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0103n m\\u1EEBng c\\u00F9ng c\\u00E1c \\u0111\\u1ED3ng \\u0111\\u1ED9i sau chi\\u1EBFn th\\u1EAFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022support your teammates\u0022,\u0022vi\u0022:\u0022\\u1EE7ng h\\u1ED9 \\u0111\\u1ED3ng \\u0111\\u1ED9i\u0022},{\u0022text\u0022:\u0022football teammate\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED3ng \\u0111\\u1ED9i b\\u00F3ng \\u0111\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.33324e64d3b94658865d5b86c978310b",
+      "kind": "Card",
+      "values": {
+        "Term": "greeting card",
+        "Definition": "thi\u1EC7p ch\u00FAc m\u1EEBng",
+        "ImageUrl": "asset:c8bd3c024da99136cdc0d4602ebb70c74c977a3f7752420fb43e4ac3cde52c12.webp",
+        "Phonetic": "/\u02C8\u0261\u0279i\u02D0t\u026A\u014B k\u0251\u0279d/",
+        "Example": "I sent my aunt a greeting card for her birthday.",
+        "ExampleTranslation": "T\u00F4i g\u1EEDi d\u00EC m\u1ED9t t\u1EA5m thi\u1EC7p ch\u00FAc m\u1EEBng sinh nh\u1EADt.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a folded card with a message for a special occasion",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0261\u0279i\u02D0t\u026A\u014B k\u0251\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I sent my aunt a greeting card for her birthday.\u0022,\u0022vi\u0022:\u0022T\\u00F4i g\\u1EEDi d\\u00EC m\\u1ED9t t\\u1EA5m thi\\u1EC7p ch\\u00FAc m\\u1EEBng sinh nh\\u1EADt.\u0022},{\u0022text\u0022:\u0022The greeting card had a picture of a cat.\u0022,\u0022vi\u0022:\u0022T\\u1EA5m thi\\u1EC7p ch\\u00FAc m\\u1EEBng c\\u00F3 h\\u00ECnh m\\u1ED9t ch\\u00FA m\\u00E8o.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022send a greeting card\u0022,\u0022vi\u0022:\u0022g\\u1EEDi thi\\u1EC7p ch\\u00FAc m\\u1EEBng\u0022},{\u0022text\u0022:\u0022birthday greeting card\u0022,\u0022vi\u0022:\u0022thi\\u1EC7p ch\\u00FAc m\\u1EEBng sinh nh\\u1EADt\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.3aad29dec24a4e0081266bc020113b4c",
+      "kind": "Card",
+      "values": {
+        "Term": "roommate",
+        "Definition": "b\u1EA1n c\u00F9ng ph\u00F2ng",
+        "ImageUrl": "asset:1937b1b4423d8f86b844105098e57e03b502dbb483d20326dbe41ed5d9e849fa.webp",
+        "Phonetic": "/\u02C8\u0279u(m)\u02CCme\u026At/",
+        "Example": "My roommate cooks dinner on Fridays.",
+        "ExampleTranslation": "B\u1EA1n c\u00F9ng ph\u00F2ng c\u1EE7a t\u00F4i n\u1EA5u b\u1EEFa t\u1ED1i v\u00E0o th\u1EE9 S\u00E1u.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who shares a room or flat with you",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0279u(m)\u02CCme\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My roommate cooks dinner on Fridays.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F9ng ph\\u00F2ng c\\u1EE7a t\\u00F4i n\\u1EA5u b\\u1EEFa t\\u1ED1i v\\u00E0o th\\u1EE9 S\\u00E1u.\u0022},{\u0022text\u0022:\u0022I share a flat with two roommates.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u1EDF chung c\\u0103n h\\u1ED9 v\\u1EDBi hai ng\\u01B0\\u1EDDi b\\u1EA1n c\\u00F9ng ph\\u00F2ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022share with a roommate\u0022,\u0022vi\u0022:\u0022\\u1EDF chung v\\u1EDBi b\\u1EA1n c\\u00F9ng ph\\u00F2ng\u0022},{\u0022text\u0022:\u0022new roommate\u0022,\u0022vi\u0022:\u0022b\\u1EA1n c\\u00F9ng ph\\u00F2ng m\\u1EDBi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.3b9c50bd54b64d26b9053ccdeaf67d1b",
+      "kind": "Card",
+      "values": {
+        "Term": "boss",
+        "Definition": "s\u1EBFp",
+        "ImageUrl": "asset:8aa0498a6fc4b87730f286b7da2cfcb039b643c24321b188466cacfc73e4f066.webp",
+        "Phonetic": "/b\u0254s/",
+        "Example": "My boss asked me to join the meeting.",
+        "ExampleTranslation": "S\u1EBFp y\u00EAu c\u1EA7u t\u00F4i tham d\u1EF1 cu\u1ED9c h\u1ECDp.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the person in charge of a workplace or team",
+        "Cefr": "B1",
+        "PhoneticUk": "/b\u0252s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My boss asked me to join the meeting.\u0022,\u0022vi\u0022:\u0022S\\u1EBFp y\\u00EAu c\\u1EA7u t\\u00F4i tham d\\u1EF1 cu\\u1ED9c h\\u1ECDp.\u0022},{\u0022text\u0022:\u0022She is a kind and fair boss.\u0022,\u0022vi\u0022:\u0022B\\u00E0 \\u1EA5y l\\u00E0 m\\u1ED9t ng\\u01B0\\u1EDDi s\\u1EBFp t\\u1ED1t b\\u1EE5ng v\\u00E0 c\\u00F4ng b\\u1EB1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ask the boss\u0022,\u0022vi\u0022:\u0022h\\u1ECFi s\\u1EBFp\u0022},{\u0022text\u0022:\u0022new boss\u0022,\u0022vi\u0022:\u0022s\\u1EBFp m\\u1EDBi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.50dfa543fd414bbb863dc9e07a2f8eb6",
+      "kind": "Card",
+      "values": {
+        "Term": "pen pal",
+        "Definition": "b\u1EA1n qua th\u01B0",
+        "ImageUrl": "asset:7f03c3082d69327a4520fce5ce81412f31fe1c90ad6bfca2870b77d59adb6d8b.webp",
+        "Phonetic": "/p\u025Bn p\u00E6l/",
+        "Example": "I have a pen pal in Japan.",
+        "ExampleTranslation": "T\u00F4i c\u00F3 m\u1ED9t ng\u01B0\u1EDDi b\u1EA1n qua th\u01B0 \u1EDF Nh\u1EADt B\u1EA3n.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a friend you write letters to but have not met",
+        "Cefr": "B2",
+        "PhoneticUk": "/p\u025Bn p\u00E6l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have a pen pal in Japan.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u00F3 m\\u1ED9t ng\\u01B0\\u1EDDi b\\u1EA1n qua th\\u01B0 \\u1EDF Nh\\u1EADt B\\u1EA3n.\u0022},{\u0022text\u0022:\u0022She writes to her pen pal every month.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y vi\\u1EBFt th\\u01B0 cho b\\u1EA1n qua th\\u01B0 m\\u1ED7i th\\u00E1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022write to a pen pal\u0022,\u0022vi\u0022:\u0022vi\\u1EBFt th\\u01B0 cho b\\u1EA1n qua th\\u01B0\u0022},{\u0022text\u0022:\u0022make a pen pal\u0022,\u0022vi\u0022:\u0022k\\u1EBFt b\\u1EA1n qua th\\u01B0\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.6dd8c512c4a4431b9cffb468987661c0",
+      "kind": "Card",
+      "values": {
+        "Term": "wedding",
+        "Definition": "\u0111\u00E1m c\u01B0\u1EDBi",
+        "ImageUrl": "asset:fd1af56b82167331e4c80b2fb86bb6de4006a1c2f60a048f3c241fd4a47e98ba.webp",
+        "Phonetic": "/\u02C8w\u025Bd\u026A\u014B/",
+        "Example": "We were invited to their wedding in June.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111\u01B0\u1EE3c m\u1EDDi \u0111\u1EBFn \u0111\u00E1m c\u01B0\u1EDBi c\u1EE7a h\u1ECD v\u00E0o th\u00E1ng S\u00E1u.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a ceremony in which two people get married",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8w\u025Bd\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We were invited to their wedding in June.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u01B0\\u1EE3c m\\u1EDDi \\u0111\\u1EBFn \\u0111\\u00E1m c\\u01B0\\u1EDBi c\\u1EE7a h\\u1ECD v\\u00E0o th\\u00E1ng S\\u00E1u.\u0022},{\u0022text\u0022:\u0022The wedding took place in a small village church.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E1m c\\u01B0\\u1EDBi di\\u1EC5n ra \\u1EDF m\\u1ED9t nh\\u00E0 th\\u1EDD nh\\u1ECF trong l\\u00E0ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wedding day\u0022,\u0022vi\u0022:\u0022ng\\u00E0y c\\u01B0\\u1EDBi\u0022},{\u0022text\u0022:\u0022attend a wedding\u0022,\u0022vi\u0022:\u0022d\\u1EF1 \\u0111\\u00E1m c\\u01B0\\u1EDBi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.75073770daec47c7b6e930677114c6cd",
+      "kind": "Card",
+      "values": {
+        "Term": "bouquet",
+        "Definition": "b\u00F3 hoa",
+        "ImageUrl": "asset:f38137648a9616d0b0e663678d6d73d3591c28cd8238fe0f80709be9568b0da1.webp",
+        "Phonetic": "/bu\u02D0\u02C8ke\u026A/",
+        "Example": "The bride held a bouquet of white roses.",
+        "ExampleTranslation": "C\u00F4 d\u00E2u c\u1EA7m m\u1ED9t b\u00F3 hoa h\u1ED3ng tr\u1EAFng.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a group of flowers held together in your hand",
+        "Cefr": "B2",
+        "PhoneticUk": "/bu\u02D0\u02C8ke\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The bride held a bouquet of white roses.\u0022,\u0022vi\u0022:\u0022C\\u00F4 d\\u00E2u c\\u1EA7m m\\u1ED9t b\\u00F3 hoa h\\u1ED3ng tr\\u1EAFng.\u0022},{\u0022text\u0022:\u0022He bought a bouquet for his mother.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y mua m\\u1ED9t b\\u00F3 hoa t\\u1EB7ng m\\u1EB9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bouquet of roses\u0022,\u0022vi\u0022:\u0022b\\u00F3 hoa h\\u1ED3ng\u0022},{\u0022text\u0022:\u0022throw the bouquet\u0022,\u0022vi\u0022:\u0022tung b\\u00F3 hoa c\\u01B0\\u1EDBi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.8df9598709fb4c1dafe0b72941b721c1",
+      "kind": "Card",
+      "values": {
+        "Term": "groom",
+        "Definition": "ch\u00FA r\u1EC3",
+        "ImageUrl": "asset:8d5cebf538e1da343fbcb51b813fa6a25f450ef7a18aa931d2b840f247a58421.webp",
+        "Phonetic": "/\u0261\u0279um/",
+        "Example": "The groom waited at the front of the church.",
+        "ExampleTranslation": "Ch\u00FA r\u1EC3 \u0111\u1EE3i \u1EDF ph\u00EDa tr\u01B0\u1EDBc nh\u00E0 th\u1EDD.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a man who is getting married",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0261\u0279u\u02D0m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The groom waited at the front of the church.\u0022,\u0022vi\u0022:\u0022Ch\\u00FA r\\u1EC3 \\u0111\\u1EE3i \\u1EDF ph\\u00EDa tr\\u01B0\\u1EDBc nh\\u00E0 th\\u1EDD.\u0022},{\u0022text\u0022:\u0022The groom wore a dark suit.\u0022,\u0022vi\u0022:\u0022Ch\\u00FA r\\u1EC3 m\\u1EB7c m\\u1ED9t b\\u1ED9 vest t\\u1ED1i m\\u00E0u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bride and groom\u0022,\u0022vi\u0022:\u0022c\\u00F4 d\\u00E2u v\\u00E0 ch\\u00FA r\\u1EC3\u0022},{\u0022text\u0022:\u0022proud groom\u0022,\u0022vi\u0022:\u0022ch\\u00FA r\\u1EC3 t\\u1EF1 h\\u00E0o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.9d33b5133bce4a85aa270831e06a18a6",
+      "kind": "Card",
+      "values": {
+        "Term": "couple",
+        "Definition": "c\u1EB7p \u0111\u00F4i",
+        "ImageUrl": "asset:ebfffaeb282938c28070d8c0b63de21083678a7737e1b8c3433d6becc9cae91e.webp",
+        "Phonetic": "/\u02C8k\u028Cp.\u0259l/",
+        "Example": "The couple walked hand in hand along the beach.",
+        "ExampleTranslation": "C\u1EB7p \u0111\u00F4i n\u1EAFm tay nhau \u0111i d\u1ECDc b\u00E3i bi\u1EC3n.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "two people who are together as partners",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8k\u028Cp.\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The couple walked hand in hand along the beach.\u0022,\u0022vi\u0022:\u0022C\\u1EB7p \\u0111\\u00F4i n\\u1EAFm tay nhau \\u0111i d\\u1ECDc b\\u00E3i bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022They have been a couple for five years.\u0022,\u0022vi\u0022:\u0022H\\u1ECD \\u0111\\u00E3 l\\u00E0 m\\u1ED9t c\\u1EB7p \\u0111\\u00F4i \\u0111\\u01B0\\u1EE3c n\\u0103m n\\u0103m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022young couple\u0022,\u0022vi\u0022:\u0022c\\u1EB7p \\u0111\\u00F4i tr\\u1EBB\u0022},{\u0022text\u0022:\u0022married couple\u0022,\u0022vi\u0022:\u0022c\\u1EB7p v\\u1EE3 ch\\u1ED3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.a1aff53183f94c73b675c6fceb0e4a6a",
+      "kind": "Card",
+      "values": {
+        "Term": "best friend",
+        "Definition": "b\u1EA1n th\u00E2n nh\u1EA5t",
+        "ImageUrl": "asset:733679edcb2dfa55df4c5ce848c16b42579e85336119ecc411ab4c73f4a1080c.webp",
+        "Phonetic": "/b\u025Bst f\u0279\u025Bnd/",
+        "Example": "She is my best friend since primary school.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y l\u00E0 b\u1EA1n th\u00E2n nh\u1EA5t c\u1EE7a t\u00F4i t\u1EEB h\u1ED3i ti\u1EC3u h\u1ECDc.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the friend you like and trust the most",
+        "Cefr": "B1",
+        "PhoneticUk": "/b\u025Bst f\u0279\u025Bnd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She is my best friend since primary school.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0 b\\u1EA1n th\\u00E2n nh\\u1EA5t c\\u1EE7a t\\u00F4i t\\u1EEB h\\u1ED3i ti\\u1EC3u h\\u1ECDc.\u0022},{\u0022text\u0022:\u0022I told my best friend the good news.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u00E1o tin vui cho ng\\u01B0\\u1EDDi b\\u1EA1n th\\u00E2n nh\\u1EA5t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022best friend forever\u0022,\u0022vi\u0022:\u0022b\\u1EA1n th\\u00E2n m\\u00E3i m\\u00E3i\u0022},{\u0022text\u0022:\u0022childhood best friend\u0022,\u0022vi\u0022:\u0022b\\u1EA1n th\\u00E2n thu\\u1EDF nh\\u1ECF\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.a473aaaa857244baa5643b3b839dab2f",
+      "kind": "Card",
+      "values": {
+        "Term": "babysitter",
+        "Definition": "ng\u01B0\u1EDDi tr\u00F4ng tr\u1EBB",
+        "ImageUrl": "asset:0ba14ebad37147254c5d47289855906eee23b8845557eeeb23f0b44b9ac85c77.webp",
+        "Phonetic": "/\u02C8be\u026A\u032Fbi\u02CCs\u026At\u025A/",
+        "Example": "The babysitter read a story to the children.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi tr\u00F4ng tr\u1EBB \u0111\u1ECDc truy\u1EC7n cho b\u1ECDn tr\u1EBB nghe.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who looks after children while their parents are out",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8be\u026A\u032Fbi\u02CCs\u026At\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The babysitter read a story to the children.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi tr\\u00F4ng tr\\u1EBB \\u0111\\u1ECDc truy\\u1EC7n cho b\\u1ECDn tr\\u1EBB nghe.\u0022},{\u0022text\u0022:\u0022We found a good babysitter for Saturday night.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i t\\u00ECm \\u0111\\u01B0\\u1EE3c m\\u1ED9t ng\\u01B0\\u1EDDi tr\\u00F4ng tr\\u1EBB t\\u1ED1t cho t\\u1ED1i th\\u1EE9 B\\u1EA3y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hire a babysitter\u0022,\u0022vi\u0022:\u0022thu\\u00EA ng\\u01B0\\u1EDDi tr\\u00F4ng tr\\u1EBB\u0022},{\u0022text\u0022:\u0022part-time babysitter\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi tr\\u00F4ng tr\\u1EBB b\\u00E1n th\\u1EDDi gian\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.a4986735a4a0484f9078a419325b21ca",
+      "kind": "Card",
+      "values": {
+        "Term": "hug",
+        "Definition": "c\u00E1i \u00F4m",
+        "ImageUrl": "asset:2117b0f056f31e08642f8a2279f25f69bfc39620be19e9d77539c00f3b87c09a.webp",
+        "Phonetic": "/h\u028C\u0261/",
+        "Example": "She gave her grandmother a big hug.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u00F4m b\u00E0 m\u1ED9t c\u00E1i th\u1EADt ch\u1EB7t.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an act of holding someone closely in your arms",
+        "Cefr": "B1",
+        "PhoneticUk": "/h\u028C\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She gave her grandmother a big hug.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u00F4m b\\u00E0 m\\u1ED9t c\\u00E1i th\\u1EADt ch\\u1EB7t.\u0022},{\u0022text\u0022:\u0022A warm hug can make you feel better.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t c\\u00E1i \\u00F4m \\u1EA5m \\u00E1p c\\u00F3 th\\u1EC3 khi\\u1EBFn b\\u1EA1n th\\u1EA5y kh\\u00E1 h\\u01A1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022give someone a hug\u0022,\u0022vi\u0022:\u0022\\u00F4m ai \\u0111\\u00F3\u0022},{\u0022text\u0022:\u0022big hug\u0022,\u0022vi\u0022:\u0022c\\u00E1i \\u00F4m th\\u1EADt ch\\u1EB7t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.bc0a15d2f25e4e2e95065a9ac0c7e7ae",
+      "kind": "Card",
+      "values": {
+        "Term": "wedding ring",
+        "Definition": "nh\u1EABn c\u01B0\u1EDBi",
+        "ImageUrl": "asset:a038de85dc4f135d3ef4db5cd7219a24af6803b9886d50a6b5d77e1be870c584.webp",
+        "Phonetic": "/\u02C8w\u025Bd\u026A\u014B \u0279\u026A\u014B/",
+        "Example": "He put the wedding ring on her finger.",
+        "ExampleTranslation": "Anh \u1EA5y \u0111eo nh\u1EABn c\u01B0\u1EDBi v\u00E0o ng\u00F3n tay c\u00F4 \u1EA5y.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a ring that a person wears after getting married",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8w\u025Bd\u026A\u014B \u0279\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He put the wedding ring on her finger.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111eo nh\\u1EABn c\\u01B0\\u1EDBi v\\u00E0o ng\\u00F3n tay c\\u00F4 \\u1EA5y.\u0022},{\u0022text\u0022:\u0022She never takes off her wedding ring.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y kh\\u00F4ng bao gi\\u1EDD th\\u00E1o nh\\u1EABn c\\u01B0\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022gold wedding ring\u0022,\u0022vi\u0022:\u0022nh\\u1EABn c\\u01B0\\u1EDBi v\\u00E0ng\u0022},{\u0022text\u0022:\u0022exchange wedding rings\u0022,\u0022vi\u0022:\u0022trao nh\\u1EABn c\\u01B0\\u1EDBi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.c2ecd714879549b4984576d38db3ccc3",
+      "kind": "Card",
+      "values": {
+        "Term": "argument",
+        "Definition": "cu\u1ED9c tranh c\u00E3i",
+        "ImageUrl": "asset:2ab32d270928231abac9090db84213c43b8f93dacae0dd1d94348cc664008c45.webp",
+        "Phonetic": "/\u02C8\u0251\u0279\u0261j\u028Am\u0259nt/",
+        "Example": "They had an argument about money.",
+        "ExampleTranslation": "H\u1ECD \u0111\u00E3 c\u00E3i nhau v\u1EC1 ti\u1EC1n b\u1EA1c.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an angry discussion between people who disagree",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0251\u02D0\u0261j\u028Am\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022They had an argument about money.\u0022,\u0022vi\u0022:\u0022H\\u1ECD \\u0111\\u00E3 c\\u00E3i nhau v\\u1EC1 ti\\u1EC1n b\\u1EA1c.\u0022},{\u0022text\u0022:\u0022The argument ended when he said sorry.\u0022,\u0022vi\u0022:\u0022Cu\\u1ED9c tranh c\\u00E3i k\\u1EBFt th\\u00FAc khi anh \\u1EA5y xin l\\u1ED7i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022have an argument\u0022,\u0022vi\u0022:\u0022c\\u00E3i nhau\u0022},{\u0022text\u0022:\u0022heated argument\u0022,\u0022vi\u0022:\u0022cu\\u1ED9c tranh c\\u00E3i n\\u1EA3y l\\u1EEDa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.ddd0d5a1752c4a5f9151c7fb5bcab1be",
+      "kind": "Card",
+      "values": {
+        "Term": "bride",
+        "Definition": "c\u00F4 d\u00E2u",
+        "ImageUrl": "asset:ce0f4411d7f528f96ee4e1451c554464853ae15cfc287d0895f93622da0bda75.webp",
+        "Phonetic": "/b\u0279a\u026Ad/",
+        "Example": "The bride wore a long white dress.",
+        "ExampleTranslation": "C\u00F4 d\u00E2u m\u1EB7c m\u1ED9t chi\u1EBFc v\u00E1y tr\u1EAFng d\u00E0i.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a woman who is getting married",
+        "Cefr": "B2",
+        "PhoneticUk": "/b\u0279a\u026Ad/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The bride wore a long white dress.\u0022,\u0022vi\u0022:\u0022C\\u00F4 d\\u00E2u m\\u1EB7c m\\u1ED9t chi\\u1EBFc v\\u00E1y tr\\u1EAFng d\\u00E0i.\u0022},{\u0022text\u0022:\u0022Everyone said the bride looked beautiful.\u0022,\u0022vi\u0022:\u0022Ai c\\u0169ng n\\u00F3i c\\u00F4 d\\u00E2u tr\\u00F4ng th\\u1EADt xinh \\u0111\\u1EB9p.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bride and groom\u0022,\u0022vi\u0022:\u0022c\\u00F4 d\\u00E2u v\\u00E0 ch\\u00FA r\\u1EC3\u0022},{\u0022text\u0022:\u0022beautiful bride\u0022,\u0022vi\u0022:\u0022c\\u00F4 d\\u00E2u xinh \\u0111\\u1EB9p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.e59d4b56951d436db087ea0710f97379",
+      "kind": "Card",
+      "values": {
+        "Term": "classmate",
+        "Definition": "b\u1EA1n c\u00F9ng l\u1EDBp",
+        "ImageUrl": "asset:ff498e2051859fc72a0553e01df0d1e9be48d7eb9e7244152b47e78858327342.webp",
+        "Phonetic": "/\u02C8kl\u00E6s.me\u026At/",
+        "Example": "My classmate lent me her notes.",
+        "ExampleTranslation": "B\u1EA1n c\u00F9ng l\u1EDBp cho t\u00F4i m\u01B0\u1EE3n ghi ch\u00FA c\u1EE7a b\u1EA1n \u1EA5y.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who is in the same class as you",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8kl\u0251\u02D0s.me\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My classmate lent me her notes.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F9ng l\\u1EDBp cho t\\u00F4i m\\u01B0\\u1EE3n ghi ch\\u00FA c\\u1EE7a b\\u1EA1n \\u1EA5y.\u0022},{\u0022text\u0022:\u0022I met an old classmate at the station.\u0022,\u0022vi\u0022:\u0022T\\u00F4i g\\u1EB7p m\\u1ED9t ng\\u01B0\\u1EDDi b\\u1EA1n h\\u1ECDc c\\u0169 \\u1EDF nh\\u00E0 ga.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022old classmate\u0022,\u0022vi\u0022:\u0022b\\u1EA1n h\\u1ECDc c\\u0169\u0022},{\u0022text\u0022:\u0022classmates at school\u0022,\u0022vi\u0022:\u0022c\\u00E1c b\\u1EA1n c\\u00F9ng l\\u1EDBp\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.ee47f255aed24bcb9ef14a0bea8b5f2f",
+      "kind": "Card",
+      "values": {
+        "Term": "invitation",
+        "Definition": "thi\u1EC7p m\u1EDDi",
+        "ImageUrl": "asset:9467ce4e502dd344e091dea7c038cf4c59ed7ef43b3aa43950dc5818ceff0363.webp",
+        "Phonetic": "/\u026Anv\u026A\u02C8te\u026A\u0283\u0259n/",
+        "Example": "I got an invitation to her birthday party.",
+        "ExampleTranslation": "T\u00F4i nh\u1EADn \u0111\u01B0\u1EE3c l\u1EDDi m\u1EDDi \u0111\u1EBFn ti\u1EC7c sinh nh\u1EADt c\u1EE7a c\u00F4 \u1EA5y.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a request or card asking someone to come to an event",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u026Anv\u026A\u02C8te\u026A\u0283\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I got an invitation to her birthday party.\u0022,\u0022vi\u0022:\u0022T\\u00F4i nh\\u1EADn \\u0111\\u01B0\\u1EE3c l\\u1EDDi m\\u1EDDi \\u0111\\u1EBFn ti\\u1EC7c sinh nh\\u1EADt c\\u1EE7a c\\u00F4 \\u1EA5y.\u0022},{\u0022text\u0022:\u0022The invitation says the party starts at six.\u0022,\u0022vi\u0022:\u0022Thi\\u1EC7p m\\u1EDDi ghi ti\\u1EC7c b\\u1EAFt \\u0111\\u1EA7u l\\u00FAc s\\u00E1u gi\\u1EDD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022accept an invitation\u0022,\u0022vi\u0022:\u0022nh\\u1EADn l\\u1EDDi m\\u1EDDi\u0022},{\u0022text\u0022:\u0022wedding invitation\u0022,\u0022vi\u0022:\u0022thi\\u1EC7p c\\u01B0\\u1EDBi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.f62ccf002b71426eb6b64d30b8f71b19",
+      "kind": "Card",
+      "values": {
+        "Term": "stranger",
+        "Definition": "ng\u01B0\u1EDDi l\u1EA1",
+        "ImageUrl": "asset:bb88d0a0ce44aa7d42a79fb12a871722aba7fa533dbc92ecd01f825fb51ffa01.webp",
+        "Phonetic": "/\u02C8st\u0279e\u026And\u0361\u0292\u025A/",
+        "Example": "A stranger asked me for directions.",
+        "ExampleTranslation": "M\u1ED9t ng\u01B0\u1EDDi l\u1EA1 h\u1ECFi t\u00F4i \u0111\u01B0\u1EDDng \u0111i.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person you do not know",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8st\u0279e\u026And\u0361\u0292\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A stranger asked me for directions.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t ng\\u01B0\\u1EDDi l\\u1EA1 h\\u1ECFi t\\u00F4i \\u0111\\u01B0\\u1EDDng \\u0111i.\u0022},{\u0022text\u0022:\u0022Never go with a stranger.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EEBng bao gi\\u1EDD \\u0111i theo ng\\u01B0\\u1EDDi l\\u1EA1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022complete stranger\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi ho\\u00E0n to\\u00E0n xa l\\u1EA1\u0022},{\u0022text\u0022:\u0022talk to a stranger\u0022,\u0022vi\u0022:\u0022n\\u00F3i chuy\\u1EC7n v\\u1EDBi ng\\u01B0\\u1EDDi l\\u1EA1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b15-cac-moi-quan-he.fc87015a9ceb40b780975b1805a72658",
+      "kind": "Card",
+      "values": {
+        "Term": "high five",
+        "Definition": "c\u00FA \u0111\u1EADp tay ch\u00FAc m\u1EEBng",
+        "ImageUrl": "asset:664eda801c48c593e6c9b1cb1def2f2e0b0d708803cb3134a4c90d01d49b61e1.webp",
+        "Phonetic": "/ha\u026A \u02C8fa\u02D0v/",
+        "Example": "The two friends gave each other a high five.",
+        "ExampleTranslation": "Hai ng\u01B0\u1EDDi b\u1EA1n \u0111\u1EADp tay ch\u00FAc m\u1EEBng nhau.",
+        "Topic": "C\u00E1c m\u1ED1i quan h\u1EC7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a greeting or celebration in which two people slap raised hands together",
+        "Cefr": "B2",
+        "PhoneticUk": "/ha\u026A \u02C8fa\u026A\u032Fv/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The two friends gave each other a high five.\u0022,\u0022vi\u0022:\u0022Hai ng\\u01B0\\u1EDDi b\\u1EA1n \\u0111\\u1EADp tay ch\\u00FAc m\\u1EEBng nhau.\u0022},{\u0022text\u0022:\u0022He raised his hand for a high five after the goal.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y gi\\u01A1 tay \\u0111\\u00F2i \\u0111\\u1EADp tay sau b\\u00E0n th\\u1EAFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022give a high five\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EADp tay ch\\u00FAc m\\u1EEBng\u0022},{\u0022text\u0022:\u0022exchange high fives\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EADp tay v\\u1EDBi nhau\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "ebfffaeb282938c28070d8c0b63de21083678a7737e1b8c3433d6becc9cae91e.webp",
+      "sha256": "ebfffaeb282938c28070d8c0b63de21083678a7737e1b8c3433d6becc9cae91e"
+    },
+    {
+      "file": "fd1af56b82167331e4c80b2fb86bb6de4006a1c2f60a048f3c241fd4a47e98ba.webp",
+      "sha256": "fd1af56b82167331e4c80b2fb86bb6de4006a1c2f60a048f3c241fd4a47e98ba"
+    },
+    {
+      "file": "ce0f4411d7f528f96ee4e1451c554464853ae15cfc287d0895f93622da0bda75.webp",
+      "sha256": "ce0f4411d7f528f96ee4e1451c554464853ae15cfc287d0895f93622da0bda75"
+    },
+    {
+      "file": "8d5cebf538e1da343fbcb51b813fa6a25f450ef7a18aa931d2b840f247a58421.webp",
+      "sha256": "8d5cebf538e1da343fbcb51b813fa6a25f450ef7a18aa931d2b840f247a58421"
+    },
+    {
+      "file": "a038de85dc4f135d3ef4db5cd7219a24af6803b9886d50a6b5d77e1be870c584.webp",
+      "sha256": "a038de85dc4f135d3ef4db5cd7219a24af6803b9886d50a6b5d77e1be870c584"
+    },
+    {
+      "file": "f38137648a9616d0b0e663678d6d73d3591c28cd8238fe0f80709be9568b0da1.webp",
+      "sha256": "f38137648a9616d0b0e663678d6d73d3591c28cd8238fe0f80709be9568b0da1"
+    },
+    {
+      "file": "e53cb7b1047691eb124f39a1cefaaaca05d8dd8d4c3febe7d3f8e697c1aae24c.webp",
+      "sha256": "e53cb7b1047691eb124f39a1cefaaaca05d8dd8d4c3febe7d3f8e697c1aae24c"
+    },
+    {
+      "file": "2117b0f056f31e08642f8a2279f25f69bfc39620be19e9d77539c00f3b87c09a.webp",
+      "sha256": "2117b0f056f31e08642f8a2279f25f69bfc39620be19e9d77539c00f3b87c09a"
+    },
+    {
+      "file": "664eda801c48c593e6c9b1cb1def2f2e0b0d708803cb3134a4c90d01d49b61e1.webp",
+      "sha256": "664eda801c48c593e6c9b1cb1def2f2e0b0d708803cb3134a4c90d01d49b61e1"
+    },
+    {
+      "file": "2ab32d270928231abac9090db84213c43b8f93dacae0dd1d94348cc664008c45.webp",
+      "sha256": "2ab32d270928231abac9090db84213c43b8f93dacae0dd1d94348cc664008c45"
+    },
+    {
+      "file": "0a7fb0f6835e1e94d0881f46a8cbff2fda9fcd19c8b8a4a89ba2ce492b683ba8.webp",
+      "sha256": "0a7fb0f6835e1e94d0881f46a8cbff2fda9fcd19c8b8a4a89ba2ce492b683ba8"
+    },
+    {
+      "file": "ff498e2051859fc72a0553e01df0d1e9be48d7eb9e7244152b47e78858327342.webp",
+      "sha256": "ff498e2051859fc72a0553e01df0d1e9be48d7eb9e7244152b47e78858327342"
+    },
+    {
+      "file": "1937b1b4423d8f86b844105098e57e03b502dbb483d20326dbe41ed5d9e849fa.webp",
+      "sha256": "1937b1b4423d8f86b844105098e57e03b502dbb483d20326dbe41ed5d9e849fa"
+    },
+    {
+      "file": "8aa0498a6fc4b87730f286b7da2cfcb039b643c24321b188466cacfc73e4f066.webp",
+      "sha256": "8aa0498a6fc4b87730f286b7da2cfcb039b643c24321b188466cacfc73e4f066"
+    },
+    {
+      "file": "733679edcb2dfa55df4c5ce848c16b42579e85336119ecc411ab4c73f4a1080c.webp",
+      "sha256": "733679edcb2dfa55df4c5ce848c16b42579e85336119ecc411ab4c73f4a1080c"
+    },
+    {
+      "file": "997a262572a5b16d897f250bbfc6f5aef9bff42d1dd50a86bb0931c85ac54e9a.webp",
+      "sha256": "997a262572a5b16d897f250bbfc6f5aef9bff42d1dd50a86bb0931c85ac54e9a"
+    },
+    {
+      "file": "bb88d0a0ce44aa7d42a79fb12a871722aba7fa533dbc92ecd01f825fb51ffa01.webp",
+      "sha256": "bb88d0a0ce44aa7d42a79fb12a871722aba7fa533dbc92ecd01f825fb51ffa01"
+    },
+    {
+      "file": "3cf6b2a3847ffdafa724ca96ade4c9b69bc5faeb178111872ced92e56e418d20.webp",
+      "sha256": "3cf6b2a3847ffdafa724ca96ade4c9b69bc5faeb178111872ced92e56e418d20"
+    },
+    {
+      "file": "5638620c98cc5b320ac9370826092e6973d0632c12ab0b986a11a6cc05b5191f.webp",
+      "sha256": "5638620c98cc5b320ac9370826092e6973d0632c12ab0b986a11a6cc05b5191f"
+    },
+    {
+      "file": "9467ce4e502dd344e091dea7c038cf4c59ed7ef43b3aa43950dc5818ceff0363.webp",
+      "sha256": "9467ce4e502dd344e091dea7c038cf4c59ed7ef43b3aa43950dc5818ceff0363"
+    },
+    {
+      "file": "c8bd3c024da99136cdc0d4602ebb70c74c977a3f7752420fb43e4ac3cde52c12.webp",
+      "sha256": "c8bd3c024da99136cdc0d4602ebb70c74c977a3f7752420fb43e4ac3cde52c12"
+    },
+    {
+      "file": "7addcd0c0091f8a58386f0071ea726c0289ad612aeb46dc42e1d620e280bd6e3.webp",
+      "sha256": "7addcd0c0091f8a58386f0071ea726c0289ad612aeb46dc42e1d620e280bd6e3"
+    },
+    {
+      "file": "23f90399764633ff39cbaa96a8d8aca64f56ec67406abc094be3eca69ba18f3f.webp",
+      "sha256": "23f90399764633ff39cbaa96a8d8aca64f56ec67406abc094be3eca69ba18f3f"
+    },
+    {
+      "file": "0ba14ebad37147254c5d47289855906eee23b8845557eeeb23f0b44b9ac85c77.webp",
+      "sha256": "0ba14ebad37147254c5d47289855906eee23b8845557eeeb23f0b44b9ac85c77"
+    },
+    {
+      "file": "7f03c3082d69327a4520fce5ce81412f31fe1c90ad6bfca2870b77d59adb6d8b.webp",
+      "sha256": "7f03c3082d69327a4520fce5ce81412f31fe1c90ad6bfca2870b77d59adb6d8b"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b15-cac-moi-quan-he"
+}

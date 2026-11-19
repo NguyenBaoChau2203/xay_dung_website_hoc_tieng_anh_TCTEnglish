@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep",
+      "kind": "Set",
+      "values": {
+        "SetName": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "Description": "#b1 #b2 #business #startup"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.0f8795247b0840498d9d0b2baca03590",
+      "kind": "Card",
+      "values": {
+        "Term": "shipment",
+        "Definition": "l\u00F4 h\u00E0ng v\u1EADn chuy\u1EC3n",
+        "ImageUrl": "asset:33554c02cca240b7f5cc5cfca979e510becec9746795655ec3a8d30ad2a1a500.webp",
+        "Phonetic": "/\u02C8\u0283\u026Apm\u0259nt/",
+        "Example": "The shipment arrived at the port yesterday.",
+        "ExampleTranslation": "L\u00F4 h\u00E0ng \u0111\u00E3 \u0111\u1EBFn c\u1EA3ng h\u00F4m qua.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a quantity of goods sent together",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0283\u026Apm\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The shipment arrived at the port yesterday.\u0022,\u0022vi\u0022:\u0022L\\u00F4 h\\u00E0ng \\u0111\\u00E3 \\u0111\\u1EBFn c\\u1EA3ng h\\u00F4m qua.\u0022},{\u0022text\u0022:\u0022We are waiting for a shipment of coffee.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111ang \\u0111\\u1EE3i m\\u1ED9t l\\u00F4 h\\u00E0ng c\\u00E0 ph\\u00EA.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022large shipment\u0022,\u0022vi\u0022:\u0022l\\u00F4 h\\u00E0ng l\\u1EDBn\u0022},{\u0022text\u0022:\u0022track a shipment\u0022,\u0022vi\u0022:\u0022theo d\\u00F5i l\\u00F4 h\\u00E0ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.1938007d6e7645c4b26c2ab25462e659",
+      "kind": "Card",
+      "values": {
+        "Term": "stock market",
+        "Definition": "th\u1ECB tr\u01B0\u1EDDng ch\u1EE9ng kho\u00E1n",
+        "ImageUrl": "asset:f97c4281cce05278555b9a3b5896e1c71f9f021e9b7bbb1a9a363308dfd3b259.webp",
+        "Phonetic": "/st\u0251k \u02C8m\u0251\u0279k\u026At/",
+        "Example": "The stock market fell sharply today.",
+        "ExampleTranslation": "H\u00F4m nay th\u1ECB tr\u01B0\u1EDDng ch\u1EE9ng kho\u00E1n gi\u1EA3m m\u1EA1nh.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place or system where company shares are bought and sold",
+        "Cefr": "B2",
+        "PhoneticUk": "/st\u0252k \u02C8m\u0251\u02D0k\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The stock market fell sharply today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay th\\u1ECB tr\\u01B0\\u1EDDng ch\\u1EE9ng kho\\u00E1n gi\\u1EA3m m\\u1EA1nh.\u0022},{\u0022text\u0022:\u0022He lost money on the stock market.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y m\\u1EA5t ti\\u1EC1n tr\\u00EAn th\\u1ECB tr\\u01B0\\u1EDDng ch\\u1EE9ng kho\\u00E1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022invest in the stock market\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EA7u t\\u01B0 v\\u00E0o ch\\u1EE9ng kho\\u00E1n\u0022},{\u0022text\u0022:\u0022stock market crash\u0022,\u0022vi\u0022:\u0022s\\u1EE5p \\u0111\\u1ED5 th\\u1ECB tr\\u01B0\\u1EDDng ch\\u1EE9ng kho\\u00E1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.1a9839a03af34d51981ef311cbfee8c5",
+      "kind": "Card",
+      "values": {
+        "Term": "cash register",
+        "Definition": "m\u00E1y t\u00EDnh ti\u1EC1n",
+        "ImageUrl": "asset:aa9284c6692fbdbbeaa79d3828e4704304a50224cdd76afbf016de6dac894d96.webp",
+        "Phonetic": "/k\u00E6\u0283 \u02C8\u0279\u025Bd\u0361\u0292.\u026A.st\u025A/",
+        "Example": "The cashier opened the cash register.",
+        "ExampleTranslation": "Nh\u00E2n vi\u00EAn thu ng\u00E2n m\u1EDF m\u00E1y t\u00EDnh ti\u1EC1n.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine in a shop that records sales and holds money",
+        "Cefr": "B2",
+        "PhoneticUk": "/k\u00E6\u0283 \u02C8\u0279\u025Bd\u0361\u0292.\u026A.st\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The cashier opened the cash register.\u0022,\u0022vi\u0022:\u0022Nh\\u00E2n vi\\u00EAn thu ng\\u00E2n m\\u1EDF m\\u00E1y t\\u00EDnh ti\\u1EC1n.\u0022},{\u0022text\u0022:\u0022The cash register is next to the door.\u0022,\u0022vi\u0022:\u0022M\\u00E1y t\\u00EDnh ti\\u1EC1n \\u1EDF c\\u1EA1nh c\\u1EEDa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open the cash register\u0022,\u0022vi\u0022:\u0022m\\u1EDF m\\u00E1y t\\u00EDnh ti\\u1EC1n\u0022},{\u0022text\u0022:\u0022old cash register\u0022,\u0022vi\u0022:\u0022m\\u00E1y t\\u00EDnh ti\\u1EC1n c\\u0169\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8765918/photo-image-vintage-retro\u0022,\u0022author\u0022:\u0022U.S. National Archives\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.1b1447b3b17043ee9df0ef0f437720d4",
+      "kind": "Card",
+      "values": {
+        "Term": "investor",
+        "Definition": "nh\u00E0 \u0111\u1EA7u t\u01B0",
+        "ImageUrl": "asset:315887f636623f0e6a344765ec39151e1a99e4c76b18fe3de456d41bf39bbd90.webp",
+        "Phonetic": "/\u026An\u02C8v\u025Bs.t\u025A/",
+        "Example": "An investor gave the company a million dollars.",
+        "ExampleTranslation": "M\u1ED9t nh\u00E0 \u0111\u1EA7u t\u01B0 r\u00F3t cho c\u00F4ng ty m\u1ED9t tri\u1EC7u \u0111\u00F4 la.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who puts money into a business to make more money",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u026An\u02C8v\u025Bs.t\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022An investor gave the company a million dollars.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t nh\\u00E0 \\u0111\\u1EA7u t\\u01B0 r\\u00F3t cho c\\u00F4ng ty m\\u1ED9t tri\\u1EC7u \\u0111\\u00F4 la.\u0022},{\u0022text\u0022:\u0022The investors listened to the plan carefully.\u0022,\u0022vi\u0022:\u0022C\\u00E1c nh\\u00E0 \\u0111\\u1EA7u t\\u01B0 l\\u1EAFng nghe k\\u1EBF ho\\u1EA1ch r\\u1EA5t ch\\u0103m ch\\u00FA.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022attract investors\u0022,\u0022vi\u0022:\u0022thu h\\u00FAt nh\\u00E0 \\u0111\\u1EA7u t\\u01B0\u0022},{\u0022text\u0022:\u0022private investor\u0022,\u0022vi\u0022:\u0022nh\\u00E0 \\u0111\\u1EA7u t\\u01B0 t\\u01B0 nh\\u00E2n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.1c664f08132b4460866797099596b697",
+      "kind": "Card",
+      "values": {
+        "Term": "bar chart",
+        "Definition": "bi\u1EC3u \u0111\u1ED3 c\u1ED9t",
+        "ImageUrl": "asset:05dedb82837549b55b61f4622c15484c1b737d707902836306d9a0e920e0605f.webp",
+        "Phonetic": "/b\u0251\u0279 t\u0361\u0283\u0251\u0279t/",
+        "Example": "The bar chart shows our sales for each month.",
+        "ExampleTranslation": "Bi\u1EC3u \u0111\u1ED3 c\u1ED9t cho th\u1EA5y doanh s\u1ED1 c\u1EE7a ch\u00FAng t\u00F4i t\u1EEBng th\u00E1ng.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a graph that uses bars to show amounts",
+        "Cefr": "B2",
+        "PhoneticUk": "/b\u0251\u02D0 t\u0283\u0251\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The bar chart shows our sales for each month.\u0022,\u0022vi\u0022:\u0022Bi\\u1EC3u \\u0111\\u1ED3 c\\u1ED9t cho th\\u1EA5y doanh s\\u1ED1 c\\u1EE7a ch\\u00FAng t\\u00F4i t\\u1EEBng th\\u00E1ng.\u0022},{\u0022text\u0022:\u0022She drew a bar chart on the board.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y v\\u1EBD m\\u1ED9t bi\\u1EC3u \\u0111\\u1ED3 c\\u1ED9t l\\u00EAn b\\u1EA3ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022draw a bar chart\u0022,\u0022vi\u0022:\u0022v\\u1EBD bi\\u1EC3u \\u0111\\u1ED3 c\\u1ED9t\u0022},{\u0022text\u0022:\u0022read a bar chart\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ECDc bi\\u1EC3u \\u0111\\u1ED3 c\\u1ED9t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.35b4ec5832104ed8acb70a531dc74d93",
+      "kind": "Card",
+      "values": {
+        "Term": "shipping container",
+        "Definition": "c\u00F4ng-ten-n\u01A1 v\u1EADn chuy\u1EC3n",
+        "ImageUrl": "asset:5f357da2e980cfec0d5b292632eb701943136f51fcaa82ad86a9150058581a62.webp",
+        "Phonetic": "/\u02C8\u0283\u026Ap\u026A\u014B k\u0259n\u02C8te\u026A.n\u0259\u0279/",
+        "Example": "Thousands of shipping containers wait at the port.",
+        "ExampleTranslation": "H\u00E0ng ngh\u00ECn c\u00F4ng-ten-n\u01A1 ch\u1EDD t\u1EA1i c\u1EA3ng.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large metal box used to carry goods by ship or truck",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0283\u026Ap\u026A\u014B k\u0259n\u02C8te\u026A.n\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Thousands of shipping containers wait at the port.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng ngh\\u00ECn c\\u00F4ng-ten-n\\u01A1 ch\\u1EDD t\\u1EA1i c\\u1EA3ng.\u0022},{\u0022text\u0022:\u0022The goods travelled in a shipping container.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng h\\u00F3a \\u0111\\u01B0\\u1EE3c v\\u1EADn chuy\\u1EC3n trong m\\u1ED9t c\\u00F4ng-ten-n\\u01A1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022stack of shipping containers\u0022,\u0022vi\u0022:\u0022ch\\u1ED3ng c\\u00F4ng-ten-n\\u01A1\u0022},{\u0022text\u0022:\u0022load a shipping container\u0022,\u0022vi\u0022:\u0022b\\u1ED1c h\\u00E0ng l\\u00EAn c\\u00F4ng-ten-n\\u01A1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8732371/photo-image-public-domain-shipping-containers\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.39a2ce1c69e24713a47a758a12bb2c13",
+      "kind": "Card",
+      "values": {
+        "Term": "pitch",
+        "Definition": "b\u00E0i gi\u1EDBi thi\u1EC7u \u00FD t\u01B0\u1EDFng",
+        "ImageUrl": "asset:a8ed3aa7b4a04a5d84e35fef7dc14f54db508e875cf8f925588fd697303c0c98.webp",
+        "Phonetic": "/p\u026At\u0361\u0283/",
+        "Example": "The founder gave a five-minute pitch to investors.",
+        "ExampleTranslation": "Nh\u00E0 s\u00E1ng l\u1EADp c\u00F3 b\u00E0i gi\u1EDBi thi\u1EC7u n\u0103m ph\u00FAt tr\u01B0\u1EDBc c\u00E1c nh\u00E0 \u0111\u1EA7u t\u01B0.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a short talk to persuade people to support your idea",
+        "Cefr": "B2",
+        "PhoneticUk": "/p\u026At\u0361\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The founder gave a five-minute pitch to investors.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 s\\u00E1ng l\\u1EADp c\\u00F3 b\\u00E0i gi\\u1EDBi thi\\u1EC7u n\\u0103m ph\\u00FAt tr\\u01B0\\u1EDBc c\\u00E1c nh\\u00E0 \\u0111\\u1EA7u t\\u01B0.\u0022},{\u0022text\u0022:\u0022Her pitch was clear and exciting.\u0022,\u0022vi\u0022:\u0022B\\u00E0i gi\\u1EDBi thi\\u1EC7u c\\u1EE7a c\\u00F4 \\u1EA5y r\\u00F5 r\\u00E0ng v\\u00E0 h\\u1EA5p d\\u1EABn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022give a pitch\u0022,\u0022vi\u0022:\u0022thuy\\u1EBFt tr\\u00ECnh g\\u1ECDi v\\u1ED1n\u0022},{\u0022text\u0022:\u0022business pitch\u0022,\u0022vi\u0022:\u0022b\\u00E0i gi\\u1EDBi thi\\u1EC7u d\\u1EF1 \\u00E1n kinh doanh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.4b8b0f7e5976413cb512b488768c9594",
+      "kind": "Card",
+      "values": {
+        "Term": "logo",
+        "Definition": "bi\u1EC3u t\u01B0\u1EE3ng th\u01B0\u01A1ng hi\u1EC7u",
+        "ImageUrl": "asset:5d393cf9c6b9895081936ab1e8b67ca049eb3f27c4d9bc65b3ec6670f29c3d6f.webp",
+        "Phonetic": "/\u02C8lo\u028A.\u0261o\u028A/",
+        "Example": "The company changed its logo last year.",
+        "ExampleTranslation": "N\u0103m ngo\u00E1i c\u00F4ng ty \u0111\u00E3 \u0111\u1ED5i bi\u1EC3u t\u01B0\u1EE3ng th\u01B0\u01A1ng hi\u1EC7u.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small design that stands for a company",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8l\u0259\u028A.\u0261\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The company changed its logo last year.\u0022,\u0022vi\u0022:\u0022N\\u0103m ngo\\u00E1i c\\u00F4ng ty \\u0111\\u00E3 \\u0111\\u1ED5i bi\\u1EC3u t\\u01B0\\u1EE3ng th\\u01B0\\u01A1ng hi\\u1EC7u.\u0022},{\u0022text\u0022:\u0022Our logo is a green leaf.\u0022,\u0022vi\u0022:\u0022Bi\\u1EC3u t\\u01B0\\u1EE3ng th\\u01B0\\u01A1ng hi\\u1EC7u c\\u1EE7a ch\\u00FAng t\\u00F4i l\\u00E0 chi\\u1EBFc l\\u00E1 xanh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022design a logo\u0022,\u0022vi\u0022:\u0022thi\\u1EBFt k\\u1EBF logo\u0022},{\u0022text\u0022:\u0022company logo\u0022,\u0022vi\u0022:\u0022logo c\\u00F4ng ty\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.58f30e4b1b024e2baac2e4f230ac06c5",
+      "kind": "Card",
+      "values": {
+        "Term": "budget",
+        "Definition": "ng\u00E2n s\u00E1ch",
+        "ImageUrl": "asset:0aab5f976abcfc557349c3502187547d79e65ddd881e3671c42223ea1e2832e0.webp",
+        "Phonetic": "/\u02C8b\u028Cd\u0361\u0292.\u026At/",
+        "Example": "We have a small budget for advertising.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i c\u00F3 m\u1ED9t ng\u00E2n s\u00E1ch nh\u1ECF cho qu\u1EA3ng c\u00E1o.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the amount of money you have available to spend",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8b\u028Cd\u0361\u0292.\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We have a small budget for advertising.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i c\\u00F3 m\\u1ED9t ng\\u00E2n s\\u00E1ch nh\\u1ECF cho qu\\u1EA3ng c\\u00E1o.\u0022},{\u0022text\u0022:\u0022The project stayed within budget.\u0022,\u0022vi\u0022:\u0022D\\u1EF1 \\u00E1n n\\u1EB1m trong ng\\u00E2n s\\u00E1ch.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022tight budget\u0022,\u0022vi\u0022:\u0022ng\\u00E2n s\\u00E1ch eo h\\u1EB9p\u0022},{\u0022text\u0022:\u0022stay within budget\u0022,\u0022vi\u0022:\u0022kh\\u00F4ng v\\u01B0\\u1EE3t ng\\u00E2n s\\u00E1ch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.60aaee3bc3124e74b78ffd2d981a4a38",
+      "kind": "Card",
+      "values": {
+        "Term": "startup",
+        "Definition": "c\u00F4ng ty kh\u1EDFi nghi\u1EC7p",
+        "ImageUrl": "asset:efd2517ab410c7a6b14e1bcd9aac26d7b93f2eb61902ceb250602590ba5a61a9.webp",
+        "Phonetic": "/\u02C8st\u0251\u0279t\u02CC\u028Cp/",
+        "Example": "She works for a technology startup.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y l\u00E0m vi\u1EC7c cho m\u1ED9t c\u00F4ng ty kh\u1EDFi nghi\u1EC7p c\u00F4ng ngh\u1EC7.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a new small company, often built around a new idea",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8st\u0251\u02D0t\u0259p/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She works for a technology startup.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0m vi\\u1EC7c cho m\\u1ED9t c\\u00F4ng ty kh\\u1EDFi nghi\\u1EC7p c\\u00F4ng ngh\\u1EC7.\u0022},{\u0022text\u0022:\u0022The startup began in a small garage.\u0022,\u0022vi\u0022:\u0022C\\u00F4ng ty kh\\u1EDFi nghi\\u1EC7p b\\u1EAFt \\u0111\\u1EA7u t\\u1EEB m\\u1ED9t ga-ra nh\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022launch a startup\u0022,\u0022vi\u0022:\u0022th\\u00E0nh l\\u1EADp c\\u00F4ng ty kh\\u1EDFi nghi\\u1EC7p\u0022},{\u0022text\u0022:\u0022tech startup\u0022,\u0022vi\u0022:\u0022c\\u00F4ng ty kh\\u1EDFi nghi\\u1EC7p c\\u00F4ng ngh\\u1EC7\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.689ef1080add429c8ab3a9cd5cc71a98",
+      "kind": "Card",
+      "values": {
+        "Term": "workshop",
+        "Definition": "x\u01B0\u1EDFng",
+        "ImageUrl": "asset:40ab0fec7f43199ccfab9a2d57ff05a2a2b1e207ad8b5d96e16710603a3dbdac.webp",
+        "Phonetic": "/\u02C8w\u025Dk.\u0283\u0251p/",
+        "Example": "He repairs bicycles in a small workshop.",
+        "ExampleTranslation": "Anh \u1EA5y s\u1EEDa xe \u0111\u1EA1p trong m\u1ED9t x\u01B0\u1EDFng nh\u1ECF.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a room or building where things are made or repaired",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8w\u025C\u02D0k.\u0283\u0252p/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He repairs bicycles in a small workshop.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y s\\u1EEDa xe \\u0111\\u1EA1p trong m\\u1ED9t x\\u01B0\\u1EDFng nh\\u1ECF.\u0022},{\u0022text\u0022:\u0022The workshop is full of tools.\u0022,\u0022vi\u0022:\u0022X\\u01B0\\u1EDFng \\u0111\\u1EA7y d\\u1EE5ng c\\u1EE5.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022woodworking workshop\u0022,\u0022vi\u0022:\u0022x\\u01B0\\u1EDFng m\\u1ED9c\u0022},{\u0022text\u0022:\u0022repair workshop\u0022,\u0022vi\u0022:\u0022x\\u01B0\\u1EDFng s\\u1EEDa ch\\u1EEFa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/workbench-machinery-RKR8CFTODQ\u0022,\u0022author\u0022:\u0022Lisa Fotios\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.754100633fbd4eeba5d8b50382227e46",
+      "kind": "Card",
+      "values": {
+        "Term": "warehouse",
+        "Definition": "nh\u00E0 kho",
+        "ImageUrl": "asset:d2e67b0a23d56237889cc58d1d56c1a3973a3d387d280a275a437e6e15f98ab0.webp",
+        "Phonetic": "/\u02C8w\u025B\u0259(\u0279)ha\u028As/",
+        "Example": "The goods are kept in a warehouse near the port.",
+        "ExampleTranslation": "H\u00E0ng h\u00F3a \u0111\u01B0\u1EE3c c\u1EA5t trong m\u1ED9t nh\u00E0 kho g\u1EA7n c\u1EA3ng.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large building where goods are stored",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8w\u025B\u0259(\u0279)ha\u028As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The goods are kept in a warehouse near the port.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng h\\u00F3a \\u0111\\u01B0\\u1EE3c c\\u1EA5t trong m\\u1ED9t nh\\u00E0 kho g\\u1EA7n c\\u1EA3ng.\u0022},{\u0022text\u0022:\u0022She drives a forklift in the warehouse.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E1i xe n\\u00E2ng trong nh\\u00E0 kho.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022warehouse worker\u0022,\u0022vi\u0022:\u0022c\\u00F4ng nh\\u00E2n nh\\u00E0 kho\u0022},{\u0022text\u0022:\u0022large warehouse\u0022,\u0022vi\u0022:\u0022nh\\u00E0 kho l\\u1EDBn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.765720ed251c4410b9b24be9f172437f",
+      "kind": "Card",
+      "values": {
+        "Term": "product launch",
+        "Definition": "bu\u1ED5i ra m\u1EAFt s\u1EA3n ph\u1EA9m",
+        "ImageUrl": "asset:8d164bf31900f80a5b74274ba64efa950592ebf85cae526efb1d2c9a379e54ff.webp",
+        "Phonetic": "/\u02C8p\u0279\u0251.d\u0259kt l\u0254nt\u0361\u0283/",
+        "Example": "The product launch was held in a big hotel.",
+        "ExampleTranslation": "Bu\u1ED5i ra m\u1EAFt s\u1EA3n ph\u1EA9m \u0111\u01B0\u1EE3c t\u1ED5 ch\u1EE9c t\u1EA1i m\u1ED9t kh\u00E1ch s\u1EA1n l\u1EDBn.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an event where a company shows a new product for the first time",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u0279\u0252d.\u0259kt l\u0254\u02D0nt\u0361\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The product launch was held in a big hotel.\u0022,\u0022vi\u0022:\u0022Bu\\u1ED5i ra m\\u1EAFt s\\u1EA3n ph\\u1EA9m \\u0111\\u01B0\\u1EE3c t\\u1ED5 ch\\u1EE9c t\\u1EA1i m\\u1ED9t kh\\u00E1ch s\\u1EA1n l\\u1EDBn.\u0022},{\u0022text\u0022:\u0022Hundreds of people came to the product launch.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng tr\\u0103m ng\\u01B0\\u1EDDi \\u0111\\u1EBFn d\\u1EF1 bu\\u1ED5i ra m\\u1EAFt s\\u1EA3n ph\\u1EA9m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hold a product launch\u0022,\u0022vi\u0022:\u0022t\\u1ED5 ch\\u1EE9c ra m\\u1EAFt s\\u1EA3n ph\\u1EA9m\u0022},{\u0022text\u0022:\u0022successful product launch\u0022,\u0022vi\u0022:\u0022bu\\u1ED5i ra m\\u1EAFt th\\u00E0nh c\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.7e992267770841b1a2875281caf18284",
+      "kind": "Card",
+      "values": {
+        "Term": "online store",
+        "Definition": "c\u1EEDa h\u00E0ng tr\u1EF1c tuy\u1EBFn",
+        "ImageUrl": "asset:d123e34f6e4519bee06cc4fd34e9ebe4bada0b51d38abf3da4e20875cd0f00b9.webp",
+        "Phonetic": "/\u02C8\u0251nla\u026An st\u0254\u0279/",
+        "Example": "She sells handmade bags in an online store.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y b\u00E1n t\u00FAi th\u1EE7 c\u00F4ng trong m\u1ED9t c\u1EEDa h\u00E0ng tr\u1EF1c tuy\u1EBFn.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a shop on the internet where you can buy goods",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0252nla\u026An st\u0254\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She sells handmade bags in an online store.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y b\\u00E1n t\\u00FAi th\\u1EE7 c\\u00F4ng trong m\\u1ED9t c\\u1EEDa h\\u00E0ng tr\\u1EF1c tuy\\u1EBFn.\u0022},{\u0022text\u0022:\u0022The online store delivers all over the country.\u0022,\u0022vi\u0022:\u0022C\\u1EEDa h\\u00E0ng tr\\u1EF1c tuy\\u1EBFn giao h\\u00E0ng kh\\u1EAFp c\\u1EA3 n\\u01B0\\u1EDBc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open an online store\u0022,\u0022vi\u0022:\u0022m\\u1EDF c\\u1EEDa h\\u00E0ng tr\\u1EF1c tuy\\u1EBFn\u0022},{\u0022text\u0022:\u0022shop at an online store\u0022,\u0022vi\u0022:\u0022mua s\\u1EAFm \\u1EDF c\\u1EEDa h\\u00E0ng tr\\u1EF1c tuy\\u1EBFn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.85bbab1216f347b3887fa36b8109890f",
+      "kind": "Card",
+      "values": {
+        "Term": "entrepreneur",
+        "Definition": "doanh nh\u00E2n kh\u1EDFi nghi\u1EC7p",
+        "ImageUrl": "asset:7009691fb4edb973cf6a3b7f9247b45d4634e512f65f8213cc39da43a6446cd3.webp",
+        "Phonetic": "/\u02CC\u0251n.t\u0279\u0259.p\u0279\u0259\u02C8n\u025D/",
+        "Example": "The young entrepreneur opened her first shop at twenty.",
+        "ExampleTranslation": "N\u1EEF doanh nh\u00E2n tr\u1EBB m\u1EDF c\u1EEDa h\u00E0ng \u0111\u1EA7u ti\u00EAn l\u00FAc hai m\u01B0\u01A1i tu\u1ED5i.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who starts a new business",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02CC\u0252n.t\u0279\u0259.p\u0279\u0259\u02C8n\u025C\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The young entrepreneur opened her first shop at twenty.\u0022,\u0022vi\u0022:\u0022N\\u1EEF doanh nh\\u00E2n tr\\u1EBB m\\u1EDF c\\u1EEDa h\\u00E0ng \\u0111\\u1EA7u ti\\u00EAn l\\u00FAc hai m\\u01B0\\u01A1i tu\\u1ED5i.\u0022},{\u0022text\u0022:\u0022Many entrepreneurs work long hours.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC1u doanh nh\\u00E2n kh\\u1EDFi nghi\\u1EC7p l\\u00E0m vi\\u1EC7c nhi\\u1EC1u gi\\u1EDD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022young entrepreneur\u0022,\u0022vi\u0022:\u0022doanh nh\\u00E2n tr\\u1EBB\u0022},{\u0022text\u0022:\u0022successful entrepreneur\u0022,\u0022vi\u0022:\u0022doanh nh\\u00E2n th\\u00E0nh \\u0111\\u1EA1t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.8697dab5f70d40a29c68497867830fe4",
+      "kind": "Card",
+      "values": {
+        "Term": "price list",
+        "Definition": "b\u1EA3ng gi\u00E1",
+        "ImageUrl": "asset:6f9f9aab967d2e4ad46229d066372a4655a30208dca8dccc8ea037e267b56184.webp",
+        "Phonetic": "/\u02C8p\u0279a\u026A\u032Fs l\u026Ast/",
+        "Example": "The price list is on the wall behind the counter.",
+        "ExampleTranslation": "B\u1EA3ng gi\u00E1 treo tr\u00EAn t\u01B0\u1EDDng sau qu\u1EA7y.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a paper that shows the prices of goods or services",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u0279a\u026A\u032Fs l\u026Ast/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The price list is on the wall behind the counter.\u0022,\u0022vi\u0022:\u0022B\\u1EA3ng gi\\u00E1 treo tr\\u00EAn t\\u01B0\\u1EDDng sau qu\\u1EA7y.\u0022},{\u0022text\u0022:\u0022Please send me your latest price list.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n g\\u1EEDi cho t\\u00F4i b\\u1EA3ng gi\\u00E1 m\\u1EDBi nh\\u1EA5t c\\u1EE7a b\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022check the price list\u0022,\u0022vi\u0022:\u0022xem b\\u1EA3ng gi\\u00E1\u0022},{\u0022text\u0022:\u0022updated price list\u0022,\u0022vi\u0022:\u0022b\\u1EA3ng gi\\u00E1 c\\u1EADp nh\\u1EADt\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.8f99adfd7a99498d8ef8677b32daa610",
+      "kind": "Card",
+      "values": {
+        "Term": "parcel",
+        "Definition": "b\u01B0u ki\u1EC7n",
+        "ImageUrl": "asset:f0576edf087c533a7d620000ff4405b7938f7d10e6077d105d80a237d160f135.webp",
+        "Phonetic": "/\u02C8p\u0251\u0279s\u0259l/",
+        "Example": "A parcel arrived for you this morning.",
+        "ExampleTranslation": "S\u00E1ng nay c\u00F3 m\u1ED9t b\u01B0u ki\u1EC7n g\u1EEDi cho b\u1EA1n.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "something wrapped in paper or a box to be sent by post",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u02B0\u0251\u02D0.s\u0259\u026B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A parcel arrived for you this morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng nay c\\u00F3 m\\u1ED9t b\\u01B0u ki\\u1EC7n g\\u1EEDi cho b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022She wrapped the parcel with brown paper.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y g\\u00F3i b\\u01B0u ki\\u1EC7n b\\u1EB1ng gi\\u1EA5y n\\u00E2u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022send a parcel\u0022,\u0022vi\u0022:\u0022g\\u1EEDi b\\u01B0u ki\\u1EC7n\u0022},{\u0022text\u0022:\u0022heavy parcel\u0022,\u0022vi\u0022:\u0022b\\u01B0u ki\\u1EC7n n\\u1EB7ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.a10abd43710e4cc8afd30ef324933bd6",
+      "kind": "Card",
+      "values": {
+        "Term": "forklift",
+        "Definition": "xe n\u00E2ng",
+        "ImageUrl": "asset:54e50d2d850c2ff482df5cbab7017e00fb7ec0fd78bb8c78998973e78a9a2e3c.webp",
+        "Phonetic": "/\u02C8f\u0254\u0279kl\u026Aft/",
+        "Example": "The worker moved the boxes with a forklift.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi c\u00F4ng nh\u00E2n chuy\u1EC3n c\u00E1c th\u00F9ng h\u00E0ng b\u1EB1ng xe n\u00E2ng.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small vehicle with two metal arms for lifting heavy goods",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8f\u0254\u0279kl\u026Aft/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The worker moved the boxes with a forklift.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi c\\u00F4ng nh\\u00E2n chuy\\u1EC3n c\\u00E1c th\\u00F9ng h\\u00E0ng b\\u1EB1ng xe n\\u00E2ng.\u0022},{\u0022text\u0022:\u0022A forklift drove through the warehouse.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t chi\\u1EBFc xe n\\u00E2ng ch\\u1EA1y qua nh\\u00E0 kho.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022drive a forklift\u0022,\u0022vi\u0022:\u0022l\\u00E1i xe n\\u00E2ng\u0022},{\u0022text\u0022:\u0022forklift truck\u0022,\u0022vi\u0022:\u0022xe n\\u00E2ng h\\u00E0ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Forklift.JPG\u0022,\u0022author\u0022:\u0022Marketing Team\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.a5b691fb9d8244cd88eebfa7637e6df5",
+      "kind": "Card",
+      "values": {
+        "Term": "assembly line",
+        "Definition": "d\u00E2y chuy\u1EC1n l\u1EAFp r\u00E1p",
+        "ImageUrl": "asset:9f907a84413b856f73bbe2734c12b4aae379eab2da73e7bb6503cee27b0bfd93.webp",
+        "Phonetic": "/\u0259\u02C8s\u025Bmb.li la\u026An/",
+        "Example": "Workers on the assembly line put the parts together.",
+        "ExampleTranslation": "C\u00F4ng nh\u00E2n tr\u00EAn d\u00E2y chuy\u1EC1n l\u1EAFp r\u00E1p gh\u00E9p c\u00E1c b\u1ED9 ph\u1EADn l\u1EA1i v\u1EDBi nhau.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a line of workers or machines that build a product step by step",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0259\u02C8s\u025Bmb.l\u026A la\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Workers on the assembly line put the parts together.\u0022,\u0022vi\u0022:\u0022C\\u00F4ng nh\\u00E2n tr\\u00EAn d\\u00E2y chuy\\u1EC1n l\\u1EAFp r\\u00E1p gh\\u00E9p c\\u00E1c b\\u1ED9 ph\\u1EADn l\\u1EA1i v\\u1EDBi nhau.\u0022},{\u0022text\u0022:\u0022The assembly line makes a car every minute.\u0022,\u0022vi\u0022:\u0022D\\u00E2y chuy\\u1EC1n l\\u1EAFp r\\u00E1p l\\u00E0m ra m\\u1ED9t chi\\u1EBFc xe m\\u1ED7i ph\\u00FAt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022work on an assembly line\u0022,\u0022vi\u0022:\u0022l\\u00E0m vi\\u1EC7c tr\\u00EAn d\\u00E2y chuy\\u1EC1n\u0022},{\u0022text\u0022:\u0022car assembly line\u0022,\u0022vi\u0022:\u0022d\\u00E2y chuy\\u1EC1n l\\u1EAFp r\\u00E1p \\u00F4 t\\u00F4\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/4051097/image-public-domain-person-building\u0022,\u0022author\u0022:\u0022U.S. Agency for International Development\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.a693fb9bcb8b481d9ea681961334a6ce",
+      "kind": "Card",
+      "values": {
+        "Term": "profit",
+        "Definition": "l\u1EE3i nhu\u1EADn",
+        "ImageUrl": "asset:7a72f5f65411a9693e5b0774beb4057ea7643d40c8d82ce994f8cc6363b692a3.webp",
+        "Phonetic": "/\u02C8p\u0279\u0251f\u026At/",
+        "Example": "The shop made a small profit last month.",
+        "ExampleTranslation": "C\u1EEDa h\u00E0ng thu \u0111\u01B0\u1EE3c m\u1ED9t kho\u1EA3n l\u1EE3i nhu\u1EADn nh\u1ECF v\u00E0o th\u00E1ng tr\u01B0\u1EDBc.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the money a business has left after paying all costs",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u0279\u0252f\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The shop made a small profit last month.\u0022,\u0022vi\u0022:\u0022C\\u1EEDa h\\u00E0ng thu \\u0111\\u01B0\\u1EE3c m\\u1ED9t kho\\u1EA3n l\\u1EE3i nhu\\u1EADn nh\\u1ECF v\\u00E0o th\\u00E1ng tr\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022Profits rose by ten percent this year.\u0022,\u0022vi\u0022:\u0022L\\u1EE3i nhu\\u1EADn n\\u0103m nay t\\u0103ng m\\u01B0\\u1EDDi ph\\u1EA7n tr\\u0103m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022make a profit\u0022,\u0022vi\u0022:\u0022thu l\\u1EE3i nhu\\u1EADn\u0022},{\u0022text\u0022:\u0022increase profits\u0022,\u0022vi\u0022:\u0022t\\u0103ng l\\u1EE3i nhu\\u1EADn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.c633328b60d244ddbdc33887beab8153",
+      "kind": "Card",
+      "values": {
+        "Term": "invoice",
+        "Definition": "h\u00F3a \u0111\u01A1n thanh to\u00E1n",
+        "ImageUrl": "asset:21177d8319b90e4b9238c5bf9976c8532f3d96219940e1275ce7d077141eb4a1.webp",
+        "Phonetic": "/\u02C8\u026An\u02CCv\u0254\u026As/",
+        "Example": "The supplier sent us an invoice for the books.",
+        "ExampleTranslation": "Nh\u00E0 cung c\u1EA5p g\u1EEDi ch\u00FAng t\u00F4i h\u00F3a \u0111\u01A1n cho s\u1ED1 s\u00E1ch.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a document that lists goods or services and shows how much to pay",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u026An\u02CCv\u0254\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The supplier sent us an invoice for the books.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 cung c\\u1EA5p g\\u1EEDi ch\\u00FAng t\\u00F4i h\\u00F3a \\u0111\\u01A1n cho s\\u1ED1 s\\u00E1ch.\u0022},{\u0022text\u0022:\u0022Please pay the invoice within thirty days.\u0022,\u0022vi\u0022:\u0022Xin h\\u00E3y thanh to\\u00E1n h\\u00F3a \\u0111\\u01A1n trong v\\u00F2ng ba m\\u01B0\\u01A1i ng\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022send an invoice\u0022,\u0022vi\u0022:\u0022g\\u1EEDi h\\u00F3a \\u0111\\u01A1n\u0022},{\u0022text\u0022:\u0022pay an invoice\u0022,\u0022vi\u0022:\u0022thanh to\\u00E1n h\\u00F3a \\u0111\\u01A1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8845230/image-wallpaper-textures-art\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.d324ca0260cc4598a2132353e3031be8",
+      "kind": "Card",
+      "values": {
+        "Term": "marketing",
+        "Definition": "ti\u1EBFp th\u1ECB",
+        "ImageUrl": "asset:b5ddb1a4e0dd0fe847acb15bb7b7bc2bba3564baf74754b63173f515e23c6177.webp",
+        "Phonetic": "/\u02C8m\u0251\u0279k\u026At\u026A\u014B/",
+        "Example": "She works in marketing for a travel company.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y l\u00E0m ti\u1EBFp th\u1ECB cho m\u1ED9t c\u00F4ng ty du l\u1ECBch.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the work of telling people about a product to sell it",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8m\u0251\u02D0k\u026At\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She works in marketing for a travel company.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0m ti\\u1EBFp th\\u1ECB cho m\\u1ED9t c\\u00F4ng ty du l\\u1ECBch.\u0022},{\u0022text\u0022:\u0022Good marketing helps a new product sell.\u0022,\u0022vi\u0022:\u0022Ti\\u1EBFp th\\u1ECB t\\u1ED1t gi\\u00FAp s\\u1EA3n ph\\u1EA9m m\\u1EDBi b\\u00E1n ch\\u1EA1y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022marketing plan\u0022,\u0022vi\u0022:\u0022k\\u1EBF ho\\u1EA1ch ti\\u1EBFp th\\u1ECB\u0022},{\u0022text\u0022:\u0022marketing team\u0022,\u0022vi\u0022:\u0022nh\\u00F3m ti\\u1EBFp th\\u1ECB\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.e15efa9efea14a17986673d23263d887",
+      "kind": "Card",
+      "values": {
+        "Term": "packaging",
+        "Definition": "bao b\u00EC",
+        "ImageUrl": "asset:f3afa0e018e3c2b7d98b10d8d7331e65551ce956c397f3f3f8786a031ecdba9d.webp",
+        "Phonetic": "/\u02C8p\u00E6.k\u0259.d\u0292\u026A\u014B/",
+        "Example": "The packaging is made of recycled paper.",
+        "ExampleTranslation": "Bao b\u00EC \u0111\u01B0\u1EE3c l\u00E0m t\u1EEB gi\u1EA5y t\u00E1i ch\u1EBF.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the box or wrapping around a product",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u00E6.k\u0259.d\u0292\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The packaging is made of recycled paper.\u0022,\u0022vi\u0022:\u0022Bao b\\u00EC \\u0111\\u01B0\\u1EE3c l\\u00E0m t\\u1EEB gi\\u1EA5y t\\u00E1i ch\\u1EBF.\u0022},{\u0022text\u0022:\u0022Good packaging protects the product.\u0022,\u0022vi\u0022:\u0022Bao b\\u00EC t\\u1ED1t b\\u1EA3o v\\u1EC7 s\\u1EA3n ph\\u1EA9m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022recycled packaging\u0022,\u0022vi\u0022:\u0022bao b\\u00EC t\\u00E1i ch\\u1EBF\u0022},{\u0022text\u0022:\u0022product packaging\u0022,\u0022vi\u0022:\u0022bao b\\u00EC s\\u1EA3n ph\\u1EA9m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.e4c02bcd47e64edeb37db1a6166a699b",
+      "kind": "Card",
+      "values": {
+        "Term": "courier",
+        "Definition": "ng\u01B0\u1EDDi chuy\u1EC3n ph\u00E1t",
+        "ImageUrl": "asset:4c20f414cc631f5b0bc1cb11986536ff4b1de979f34526e0cd8818c8bd1b553b.webp",
+        "Phonetic": "/\u02C8k\u028A\u0279.i.\u025A/",
+        "Example": "A courier delivered the parcel to my office.",
+        "ExampleTranslation": "M\u1ED9t ng\u01B0\u1EDDi chuy\u1EC3n ph\u00E1t giao b\u01B0u ki\u1EC7n \u0111\u1EBFn v\u0103n ph\u00F2ng t\u00F4i.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person whose job is to carry packages quickly",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u028A.\u0279i.\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A courier delivered the parcel to my office.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t ng\\u01B0\\u1EDDi chuy\\u1EC3n ph\\u00E1t giao b\\u01B0u ki\\u1EC7n \\u0111\\u1EBFn v\\u0103n ph\\u00F2ng t\\u00F4i.\u0022},{\u0022text\u0022:\u0022The courier rides a motorbike.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi chuy\\u1EC3n ph\\u00E1t \\u0111i xe m\\u00E1y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022motorbike courier\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi chuy\\u1EC3n ph\\u00E1t \\u0111i xe m\\u00E1y\u0022},{\u0022text\u0022:\u0022courier service\u0022,\u0022vi\u0022:\u0022d\\u1ECBch v\\u1EE5 chuy\\u1EC3n ph\\u00E1t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep.e6f30ddb2f904e1d87ba4eb8f2a8bb8b",
+      "kind": "Card",
+      "values": {
+        "Term": "brand",
+        "Definition": "th\u01B0\u01A1ng hi\u1EC7u",
+        "ImageUrl": "asset:9a8500298e61bf91fe3d14a1ce5455ec4c88ba680161306efa18811b8db01d35.webp",
+        "Phonetic": "/\u02C8b\u0279\u00E6nd/",
+        "Example": "This brand makes comfortable shoes.",
+        "ExampleTranslation": "Th\u01B0\u01A1ng hi\u1EC7u n\u00E0y l\u00E0m nh\u1EEFng \u0111\u00F4i gi\u00E0y tho\u1EA3i m\u00E1i.",
+        "Topic": "Kinh doanh \u0026 kh\u1EDFi nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a name and image that make a product easy to know",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8b\u0279\u00E6nd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022This brand makes comfortable shoes.\u0022,\u0022vi\u0022:\u0022Th\\u01B0\\u01A1ng hi\\u1EC7u n\\u00E0y l\\u00E0m nh\\u1EEFng \\u0111\\u00F4i gi\\u00E0y tho\\u1EA3i m\\u00E1i.\u0022},{\u0022text\u0022:\u0022The company built a strong brand.\u0022,\u0022vi\u0022:\u0022C\\u00F4ng ty \\u0111\\u00E3 x\\u00E2y d\\u1EF1ng m\\u1ED9t th\\u01B0\\u01A1ng hi\\u1EC7u m\\u1EA1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022famous brand\u0022,\u0022vi\u0022:\u0022th\\u01B0\\u01A1ng hi\\u1EC7u n\\u1ED5i ti\\u1EBFng\u0022},{\u0022text\u0022:\u0022brand name\u0022,\u0022vi\u0022:\u0022t\\u00EAn th\\u01B0\\u01A1ng hi\\u1EC7u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "efd2517ab410c7a6b14e1bcd9aac26d7b93f2eb61902ceb250602590ba5a61a9.webp",
+      "sha256": "efd2517ab410c7a6b14e1bcd9aac26d7b93f2eb61902ceb250602590ba5a61a9"
+    },
+    {
+      "file": "7009691fb4edb973cf6a3b7f9247b45d4634e512f65f8213cc39da43a6446cd3.webp",
+      "sha256": "7009691fb4edb973cf6a3b7f9247b45d4634e512f65f8213cc39da43a6446cd3"
+    },
+    {
+      "file": "315887f636623f0e6a344765ec39151e1a99e4c76b18fe3de456d41bf39bbd90.webp",
+      "sha256": "315887f636623f0e6a344765ec39151e1a99e4c76b18fe3de456d41bf39bbd90"
+    },
+    {
+      "file": "7a72f5f65411a9693e5b0774beb4057ea7643d40c8d82ce994f8cc6363b692a3.webp",
+      "sha256": "7a72f5f65411a9693e5b0774beb4057ea7643d40c8d82ce994f8cc6363b692a3"
+    },
+    {
+      "file": "0aab5f976abcfc557349c3502187547d79e65ddd881e3671c42223ea1e2832e0.webp",
+      "sha256": "0aab5f976abcfc557349c3502187547d79e65ddd881e3671c42223ea1e2832e0"
+    },
+    {
+      "file": "21177d8319b90e4b9238c5bf9976c8532f3d96219940e1275ce7d077141eb4a1.webp",
+      "sha256": "21177d8319b90e4b9238c5bf9976c8532f3d96219940e1275ce7d077141eb4a1"
+    },
+    {
+      "file": "54e50d2d850c2ff482df5cbab7017e00fb7ec0fd78bb8c78998973e78a9a2e3c.webp",
+      "sha256": "54e50d2d850c2ff482df5cbab7017e00fb7ec0fd78bb8c78998973e78a9a2e3c"
+    },
+    {
+      "file": "d2e67b0a23d56237889cc58d1d56c1a3973a3d387d280a275a437e6e15f98ab0.webp",
+      "sha256": "d2e67b0a23d56237889cc58d1d56c1a3973a3d387d280a275a437e6e15f98ab0"
+    },
+    {
+      "file": "4c20f414cc631f5b0bc1cb11986536ff4b1de979f34526e0cd8818c8bd1b553b.webp",
+      "sha256": "4c20f414cc631f5b0bc1cb11986536ff4b1de979f34526e0cd8818c8bd1b553b"
+    },
+    {
+      "file": "33554c02cca240b7f5cc5cfca979e510becec9746795655ec3a8d30ad2a1a500.webp",
+      "sha256": "33554c02cca240b7f5cc5cfca979e510becec9746795655ec3a8d30ad2a1a500"
+    },
+    {
+      "file": "9a8500298e61bf91fe3d14a1ce5455ec4c88ba680161306efa18811b8db01d35.webp",
+      "sha256": "9a8500298e61bf91fe3d14a1ce5455ec4c88ba680161306efa18811b8db01d35"
+    },
+    {
+      "file": "5d393cf9c6b9895081936ab1e8b67ca049eb3f27c4d9bc65b3ec6670f29c3d6f.webp",
+      "sha256": "5d393cf9c6b9895081936ab1e8b67ca049eb3f27c4d9bc65b3ec6670f29c3d6f"
+    },
+    {
+      "file": "b5ddb1a4e0dd0fe847acb15bb7b7bc2bba3564baf74754b63173f515e23c6177.webp",
+      "sha256": "b5ddb1a4e0dd0fe847acb15bb7b7bc2bba3564baf74754b63173f515e23c6177"
+    },
+    {
+      "file": "8d164bf31900f80a5b74274ba64efa950592ebf85cae526efb1d2c9a379e54ff.webp",
+      "sha256": "8d164bf31900f80a5b74274ba64efa950592ebf85cae526efb1d2c9a379e54ff"
+    },
+    {
+      "file": "9f907a84413b856f73bbe2734c12b4aae379eab2da73e7bb6503cee27b0bfd93.webp",
+      "sha256": "9f907a84413b856f73bbe2734c12b4aae379eab2da73e7bb6503cee27b0bfd93"
+    },
+    {
+      "file": "40ab0fec7f43199ccfab9a2d57ff05a2a2b1e207ad8b5d96e16710603a3dbdac.webp",
+      "sha256": "40ab0fec7f43199ccfab9a2d57ff05a2a2b1e207ad8b5d96e16710603a3dbdac"
+    },
+    {
+      "file": "aa9284c6692fbdbbeaa79d3828e4704304a50224cdd76afbf016de6dac894d96.webp",
+      "sha256": "aa9284c6692fbdbbeaa79d3828e4704304a50224cdd76afbf016de6dac894d96"
+    },
+    {
+      "file": "f97c4281cce05278555b9a3b5896e1c71f9f021e9b7bbb1a9a363308dfd3b259.webp",
+      "sha256": "f97c4281cce05278555b9a3b5896e1c71f9f021e9b7bbb1a9a363308dfd3b259"
+    },
+    {
+      "file": "05dedb82837549b55b61f4622c15484c1b737d707902836306d9a0e920e0605f.webp",
+      "sha256": "05dedb82837549b55b61f4622c15484c1b737d707902836306d9a0e920e0605f"
+    },
+    {
+      "file": "5f357da2e980cfec0d5b292632eb701943136f51fcaa82ad86a9150058581a62.webp",
+      "sha256": "5f357da2e980cfec0d5b292632eb701943136f51fcaa82ad86a9150058581a62"
+    },
+    {
+      "file": "6f9f9aab967d2e4ad46229d066372a4655a30208dca8dccc8ea037e267b56184.webp",
+      "sha256": "6f9f9aab967d2e4ad46229d066372a4655a30208dca8dccc8ea037e267b56184"
+    },
+    {
+      "file": "f0576edf087c533a7d620000ff4405b7938f7d10e6077d105d80a237d160f135.webp",
+      "sha256": "f0576edf087c533a7d620000ff4405b7938f7d10e6077d105d80a237d160f135"
+    },
+    {
+      "file": "d123e34f6e4519bee06cc4fd34e9ebe4bada0b51d38abf3da4e20875cd0f00b9.webp",
+      "sha256": "d123e34f6e4519bee06cc4fd34e9ebe4bada0b51d38abf3da4e20875cd0f00b9"
+    },
+    {
+      "file": "a8ed3aa7b4a04a5d84e35fef7dc14f54db508e875cf8f925588fd697303c0c98.webp",
+      "sha256": "a8ed3aa7b4a04a5d84e35fef7dc14f54db508e875cf8f925588fd697303c0c98"
+    },
+    {
+      "file": "f3afa0e018e3c2b7d98b10d8d7331e65551ce956c397f3f3f8786a031ecdba9d.webp",
+      "sha256": "f3afa0e018e3c2b7d98b10d8d7331e65551ce956c397f3f3f8786a031ecdba9d"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b16-kinh-doanh-khoi-nghiep"
+}
