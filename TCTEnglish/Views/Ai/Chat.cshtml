@@ -11,8 +11,17 @@
                aria-label="Lịch sử hội thoại"
                data-ai-history-root
                data-ai-chat-base-url="@chatPageUrl">
-            <details class="ai-chat-history-disclosure" id="aiHistoryDisclosure" open>
-                <summary class="ai-chat-history-header">
+            <div class="ai-chat-history-header-bar">
+                <a class="btn btn-outline-primary btn-sm ai-chat-new-chat-btn"
+                   asp-controller="Ai"
+                   asp-action="Chat"
+                   data-ai-new-chat-link>
+                    <i class="fas fa-plus me-1" aria-hidden="true"></i>Đoạn chat mới
+                </a>
+            </div>
+
+            <details class="ai-chat-history-disclosure" id="aiHistoryDisclosure">
+                <summary class="ai-chat-history-summary">
                     <span class="ai-chat-history-title">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" aria-hidden="true">
                             <circle cx="12" cy="12" r="10"></circle>
@@ -20,16 +29,33 @@
                         </svg>
                         Đoạn chat gần đây
                     </span>
-                    <a class="btn btn-outline-primary btn-sm"
-                       asp-controller="Ai"
-                       asp-action="Chat"
-                       data-ai-new-chat-link
-                       onclick="event.stopPropagation();">
-                        New chat
-                    </a>
+                    <i class="fas fa-chevron-down ai-chat-history-chevron" aria-hidden="true"></i>
                 </summary>
 
                 <div class="ai-chat-history-body">
+                    <div class="ai-chat-history-pagination d-flex justify-content-between align-items-center mb-2 @(Model.Conversations.Count == 0 ? "d-none" : string.Empty)"
+                         data-ai-history-nav>
+                        <span class="ai-chat-history-page-info small text-muted fw-semibold" data-ai-history-page-info>Các cuộc trò chuyện</span>
+                        <div class="d-flex gap-1">
+                            <button type="button"
+                                    class="btn btn-sm ai-chat-history-page-btn"
+                                    data-ai-history-prev
+                                    disabled
+                                    title="Trang trước"
+                                    aria-label="Trang hội thoại trước">
+                                <i class="fas fa-chevron-left me-1" aria-hidden="true"></i>Trước
+                            </button>
+                            <button type="button"
+                                    class="btn btn-sm ai-chat-history-page-btn"
+                                    data-ai-history-next
+                                    disabled
+                                    title="Trang tiếp"
+                                    aria-label="Trang hội thoại tiếp">
+                                Tiếp<i class="fas fa-chevron-right ms-1" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="ai-chat-history-empty @(Model.Conversations.Count == 0 ? string.Empty : "d-none")"
                          data-ai-history-empty>
                         Bạn chưa có hội thoại nào.
@@ -60,8 +86,9 @@
                                 <button type="button"
                                         class="ai-chat-history-delete-btn"
                                         data-ai-history-delete="@conversation.Id"
-                                        aria-label="Xóa hội thoại">
-                                    <i class="fas fa-trash-alt"></i>
+                                        aria-label="Xóa hội thoại"
+                                        title="Xóa hội thoại">
+                                    <i class="fas fa-trash-alt" aria-hidden="true"></i>
                                 </button>
                             </div>
                         }
@@ -70,7 +97,7 @@
                     @if (Model.HasMoreConversations)
                     {
                         <button type="button"
-                                class="btn btn-link btn-sm ai-chat-load-older"
+                                class="btn btn-link btn-sm ai-chat-load-older d-none"
                                 data-ai-load-older="conversations"
                                 data-ai-load-older-url="@(Url.Action("ConversationsPage", "Ai") ?? "/AI/Chat/Conversations")">
                             Tải tin nhắn cũ hơn / Load older
@@ -86,20 +113,30 @@
     </div>
 </div>
 
-<div class="modal fade" id="deleteConversationModal" tabindex="-1" aria-labelledby="deleteConversationModalLabel" aria-hidden="true">
+<div class="modal fade ai-chat-modal" id="deleteConversationModal" tabindex="-1" aria-labelledby="deleteConversationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content tct-theme">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteConversationModalLabel">Xóa đoạn chat</h5>
+            <div class="modal-header border-0 pb-0">
+                <h2 class="modal-title fs-5 d-flex align-items-center gap-2 text-danger" id="deleteConversationModalLabel">
+                    <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
+                    <span>Xác nhận xóa đoạn chat</span>
+                </h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
-            <div class="modal-body">
-                <p>Bạn có chắc chắn muốn xóa đoạn chat này không? Hành động này không thể hoàn tác.</p>
-                <div id="deleteConversationError" class="alert alert-danger d-none mb-0"></div>
+            <div class="modal-body py-3">
+                <p class="fw-medium mb-1 fs-6 text-dark">Bạn có chắc chắn muốn xóa đoạn chat này không?</p>
+                <p class="text-muted small mb-0">
+                    <i class="fas fa-circle-info me-1" aria-hidden="true"></i>Toàn bộ tin nhắn trong cuộc trò chuyện này sẽ bị xóa vĩnh viễn và không thể hoàn tác.
+                </p>
+                <div id="deleteConversationError" class="alert alert-danger small mt-2 d-none mb-0" role="alert"></div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-danger" id="confirmDeleteConversationBtn">Xóa đoạn chat</button>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-xmark me-1" aria-hidden="true"></i>Hủy
+                </button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteConversationBtn">
+                    <i class="fas fa-trash-can me-1" aria-hidden="true"></i>Xóa đoạn chat
+                </button>
             </div>
         </div>
     </div>
@@ -118,6 +155,7 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/css/ai-chat.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ai-voice.css" asp-append-version="true" />
 }
 
 @section Scripts {
@@ -125,6 +163,10 @@
     <script src="~/lib/pinned/purify-3.4.17.min.js" asp-append-version="true"></script>
     <script src="~/js/ai-availability.js" asp-append-version="true"></script>
     <script src="~/js/ai-chat.js" asp-append-version="true"></script>
+    <script src="~/js/ai-voice-audio.js" asp-append-version="true"></script>
+    <script src="~/js/ai-voice-session.js" asp-append-version="true"></script>
+    <script src="~/js/ai-chat-mode.js" asp-append-version="true"></script>
+    <script src="~/js/ai-voice-page.js" asp-append-version="true"></script>
     <script>
         document.querySelector('.main')?.classList.add('ai-chat-main-active');
         document.body.classList.add('ai-chat-body-active');

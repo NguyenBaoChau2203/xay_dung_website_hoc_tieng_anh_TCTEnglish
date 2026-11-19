@@ -12,6 +12,11 @@
      data-user-avatar="@userAvatar"
      data-user-initial="@userInitial"
      data-ai-avatar="@aiAvatar">
+    <div class="ai-chat-mode-switch" role="group" aria-label="Chế độ trò chuyện">
+        <button type="button" class="btn ai-chat-mode-button" data-ai-mode="text" aria-pressed="true" aria-controls="aiTextMode"><i class="fas fa-comment me-1" aria-hidden="true"></i>Chat chữ</button>
+        <button type="button" class="btn ai-chat-mode-button" data-ai-mode="voice" aria-pressed="false" aria-controls="aiVoiceMode"><i class="fas fa-microphone me-1" aria-hidden="true"></i>Luyện hội thoại</button>
+    </div>
+    <div id="aiTextMode" class="ai-chat-text-mode">
     @if (!Model.IsEmbedded)
     {
         <div class="ai-chat-shell-header">
@@ -98,7 +103,11 @@
             @if (Model.Messages.Count == 0)
             {
                 <div class="ai-chat-empty-state" data-chat-empty-state>
-                    <div class="mb-3">Hãy bắt đầu cuộc trò chuyện với AI.</div>
+                    <div class="ai-chat-empty-icon-wrap mb-2" aria-hidden="true">
+                        <img src="@aiAvatar" alt="TCT AI" class="ai-chat-empty-avatar" width="56" height="56" />
+                    </div>
+                    <h2 class="ai-chat-empty-title">Chào bạn, mình là trợ lý TCT AI!</h2>
+                    <p class="ai-chat-empty-subtitle">Hỏi mình về từ vựng, ngữ pháp, mẹo học phát âm hay lộ trình hôm nay nhé.</p>
                     <div class="ai-quick-actions d-flex flex-wrap justify-content-center gap-2"
                          data-ai-quick-actions
                          role="group"
@@ -228,7 +237,7 @@
                               rows="1"
                               placeholder="Nhập câu hỏi của bạn..."
                               autocomplete="off"
-                              style="height: 36px; min-height: 36px; overflow-y: hidden;"
+                              style="height: 44px; min-height: 44px; overflow-y: hidden;"
                               aria-label="Nhập câu hỏi của bạn cho trợ lý AI"
                               aria-describedby="chatStatus"></textarea>
 
@@ -244,5 +253,9 @@
             <span data-ai-status-text></span>
             <button type="button" id="chatRetryBtn" class="btn btn-sm btn-outline-secondary d-none">Thử lại</button>
         </div>
+    </div>
+    </div>
+    <div id="aiVoiceMode" class="ai-chat-voice-mode" hidden>
+        @await Component.InvokeAsync("AiVoiceWorkspace", new { inline = true })
     </div>
 </div>
