@@ -123,10 +123,9 @@ def check_file(path: Path, stage: str, require_images: bool, errors: list[str], 
                 err(f"{field} must be IPA between slashes: '{v}'", term)
             if not v and prefix != "C":
                 err(f"{field} missing", term)
-        if c.get("ipaVerified") is not True:
+        if c.get("ipaVerified") is not True and prefix != "C":  # phrases carry no IPA, so they are not counted
             unverified += 1
-            if prefix != "C":
-                warn("ipaVerified is not true", term)
+            warn("ipaVerified is not true", term)
         if c.get("ipaVerified") is True and not (c.get("ipaSource") or "").startswith("https://"):
             err("ipaVerified without an ipaSource URL", term)
         me = (c.get("meaningEn") or "").strip()

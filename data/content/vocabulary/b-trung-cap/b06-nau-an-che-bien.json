@@ -1,0 +1,1292 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B06",
+    "name": "Nấu ăn & chế biến",
+    "description": "#b1 #b2 #cooking #kitchen",
+    "topic": "Nấu ăn & chế biến",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "chop",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B1",
+      "definition": "thái nhỏ, băm",
+      "meaningEn": "to cut food into small pieces with a knife",
+      "examples": [
+        {
+          "text": "Please chop the onions finely before you fry them.",
+          "vi": "Hãy thái hành thật nhỏ trước khi xào."
+        },
+        {
+          "text": "He chopped the carrots for the soup.",
+          "vi": "Anh ấy thái cà rốt để nấu súp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "chop finely",
+          "vi": "thái nhỏ"
+        },
+        {
+          "text": "chop up vegetables",
+          "vi": "thái rau củ"
+        }
+      ],
+      "imageQuery": "chopping onion cutting board",
+      "verbForms": {
+        "past": "chopped",
+        "pastParticiple": "chopped",
+        "ing": "chopping",
+        "thirdPerson": "chops"
+      },
+      "ipaUs": "/t͡ʃɑp/",
+      "ipaUk": "/t͡ʃɒp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/chop",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/chop.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/447868/man-chopping-spring-onion-kitchen",
+        "author": "Jakub Kapusnak",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "chopping onion cutting board",
+        "sha256": "0837661d019bce687f3e857f4989e0cea7bbf26336c8f88a4f343dd928502c56",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "slice",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B1",
+      "definition": "cắt lát",
+      "meaningEn": "to cut food into thin flat pieces",
+      "examples": [
+        {
+          "text": "She sliced the tomato and put it in the sandwich.",
+          "vi": "Cô ấy cắt lát cà chua rồi cho vào bánh mì kẹp."
+        },
+        {
+          "text": "Slice the bread thinly, please.",
+          "vi": "Làm ơn cắt bánh mì thật mỏng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "slice thinly",
+          "vi": "cắt lát mỏng"
+        },
+        {
+          "text": "slice a loaf of bread",
+          "vi": "cắt ổ bánh mì"
+        }
+      ],
+      "imageQuery": "sliced bread knife",
+      "verbForms": {
+        "past": "sliced",
+        "pastParticiple": "sliced",
+        "ing": "slicing",
+        "thirdPerson": "slices"
+      },
+      "ipaUs": "/slaɪs/",
+      "ipaUk": "/slaɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/slice",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/slice.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6820718/png-sticker-vintage",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "sliced bread knife",
+        "sha256": "486d247b3e8ce8497797e04a1bc68c11154093ca2075a7159cd49c226effabc0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "peel",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B1",
+      "definition": "gọt vỏ, bóc vỏ",
+      "meaningEn": "to remove the skin of a fruit or vegetable",
+      "examples": [
+        {
+          "text": "Can you peel the potatoes for dinner?",
+          "vi": "Bạn gọt khoai tây cho bữa tối được không?"
+        },
+        {
+          "text": "I peeled an orange and shared it with my sister.",
+          "vi": "Tôi bóc một quả cam rồi chia cho chị gái."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "peel a potato",
+          "vi": "gọt khoai tây"
+        },
+        {
+          "text": "peel off the skin",
+          "vi": "bóc lớp vỏ"
+        }
+      ],
+      "imageQuery": "peeling apple",
+      "verbForms": {
+        "past": "peeled",
+        "pastParticiple": "peeled",
+        "ing": "peeling",
+        "thirdPerson": "peels"
+      },
+      "ipaUs": "/piːl/",
+      "ipaUk": "/piːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/peel",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "cook",
+        "value": "peel"
+      },
+      "image": {
+        "file": "b06/peel.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:cook:peel",
+        "sha256": "31586a446d4d1be176ffa2d4aab7e394bdd2fdb9b11a61b55255162cada53561",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "grate",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B2",
+      "definition": "bào, nạo",
+      "meaningEn": "to rub food against a rough tool to make small pieces",
+      "examples": [
+        {
+          "text": "Grate some cheese over the pasta.",
+          "vi": "Hãy bào ít phô mai lên mì ống."
+        },
+        {
+          "text": "She grated a carrot for the salad.",
+          "vi": "Cô ấy nạo một củ cà rốt để làm salad."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "grate cheese",
+          "vi": "bào phô mai"
+        },
+        {
+          "text": "finely grated",
+          "vi": "bào mịn"
+        }
+      ],
+      "imageQuery": "grater cheese hand",
+      "verbForms": {
+        "past": "grated",
+        "pastParticiple": "grated",
+        "ing": "grating",
+        "thirdPerson": "grates"
+      },
+      "ipaUs": "/ˈɡɹeɪt/",
+      "ipaUk": "/ˈɡɹeɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/grate",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "cook",
+        "value": "grate"
+      },
+      "image": {
+        "file": "b06/grate.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:cook:grate",
+        "sha256": "84807ec99bc2b3183460f0d44f30a56fa35b7631430769fa78c3e0767f5dd9a4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "stir",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B1",
+      "definition": "khuấy, đảo",
+      "meaningEn": "to move food or liquid round and round with a spoon",
+      "examples": [
+        {
+          "text": "Stir the soup so that it does not burn.",
+          "vi": "Hãy khuấy súp để nó không bị cháy."
+        },
+        {
+          "text": "He stirred some sugar into his tea.",
+          "vi": "Anh ấy khuấy chút đường vào trà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "stir gently",
+          "vi": "khuấy nhẹ"
+        },
+        {
+          "text": "stir in the sugar",
+          "vi": "khuấy đường vào"
+        }
+      ],
+      "imageQuery": "stirring pot wooden spoon",
+      "verbForms": {
+        "past": "stirred",
+        "pastParticiple": "stirred",
+        "ing": "stirring",
+        "thirdPerson": "stirs"
+      },
+      "ipaUs": "/stɝ/",
+      "ipaUk": "/stɜː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/stir",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "cook",
+        "value": "stir"
+      },
+      "image": {
+        "file": "b06/stir.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:cook:stir",
+        "sha256": "31dbce0c788a8256edac7ad27c4bb8eb529543d44ef2a376b18dfdfe8eacc02f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "boil",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B1",
+      "definition": "đun sôi, luộc",
+      "meaningEn": "to heat a liquid until it bubbles, or to cook food in it",
+      "examples": [
+        {
+          "text": "Boil the eggs for ten minutes.",
+          "vi": "Hãy luộc trứng trong mười phút."
+        },
+        {
+          "text": "The water is boiling, so you can add the noodles.",
+          "vi": "Nước đang sôi, nên bạn có thể cho mì vào."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "boil water",
+          "vi": "đun sôi nước"
+        },
+        {
+          "text": "boiled egg",
+          "vi": "trứng luộc"
+        }
+      ],
+      "imageQuery": "boiling water pot",
+      "verbForms": {
+        "past": "boiled",
+        "pastParticiple": "boiled",
+        "ing": "boiling",
+        "thirdPerson": "boils"
+      },
+      "ipaUs": "/bɔɪl/",
+      "ipaUk": "/bɔɪl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/boil",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/boil.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6075389/boiling-water",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "boiling water pot",
+        "sha256": "9f08148987cad9002156f3098025f49ec58eeba114a059130a9be6be9debd1f4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fry",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B1",
+      "definition": "chiên, rán",
+      "meaningEn": "to cook food in hot oil in a pan",
+      "examples": [
+        {
+          "text": "Fry the onions until they turn golden.",
+          "vi": "Hãy chiên hành cho đến khi vàng."
+        },
+        {
+          "text": "My mother fries fish in a little oil.",
+          "vi": "Mẹ tôi rán cá với một ít dầu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "deep fry",
+          "vi": "chiên ngập dầu"
+        },
+        {
+          "text": "fry until golden",
+          "vi": "chiên đến khi vàng"
+        }
+      ],
+      "imageQuery": "frying food pan",
+      "verbForms": {
+        "past": "fried",
+        "pastParticiple": "fried",
+        "ing": "frying",
+        "thirdPerson": "fries"
+      },
+      "ipaUs": "/fɹaɪ/",
+      "ipaUk": "/fɹaɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fry",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/fry.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/184594136@N08/49825786843",
+        "author": "Alabama Extension",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "frying food pan",
+        "sha256": "08838d767e2bb8ce2f6fc09ae287541d09a3d375913e556688644068cce1743a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bake",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B1",
+      "definition": "nướng (bánh)",
+      "meaningEn": "to cook food such as bread or cake in an oven",
+      "examples": [
+        {
+          "text": "We bake a cake every Sunday afternoon.",
+          "vi": "Chiều Chủ nhật nào chúng tôi cũng nướng một chiếc bánh."
+        },
+        {
+          "text": "The bread needs to bake for forty minutes.",
+          "vi": "Ổ bánh mì cần được nướng bốn mươi phút."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bake a cake",
+          "vi": "nướng bánh ngọt"
+        },
+        {
+          "text": "freshly baked",
+          "vi": "mới nướng"
+        }
+      ],
+      "imageQuery": "bread baking oven loaf",
+      "verbForms": {
+        "past": "baked",
+        "pastParticiple": "baked",
+        "ing": "baking",
+        "thirdPerson": "bakes"
+      },
+      "ipaUs": "/beɪk/",
+      "ipaUk": "/beɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bake",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "cook",
+        "value": "bake"
+      },
+      "image": {
+        "file": "b06/bake.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:cook:bake",
+        "sha256": "6f781475bfd622d8ea5a5a90ab1f0952f66493a86d1da3b2a834464ef26da6a8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "roast",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B2",
+      "definition": "quay, nướng nguyên",
+      "meaningEn": "to cook meat or vegetables in an oven with dry heat",
+      "examples": [
+        {
+          "text": "They roast a chicken for the family dinner.",
+          "vi": "Họ quay một con gà cho bữa tối gia đình."
+        },
+        {
+          "text": "Roast the potatoes until they are crispy.",
+          "vi": "Hãy nướng khoai tây cho đến khi giòn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "roast chicken",
+          "vi": "gà quay"
+        },
+        {
+          "text": "roast potatoes",
+          "vi": "khoai tây nướng"
+        }
+      ],
+      "imageQuery": "roast chicken oven",
+      "verbForms": {
+        "past": "roasted",
+        "pastParticiple": "roasted",
+        "ing": "roasting",
+        "thirdPerson": "roasts"
+      },
+      "ipaUs": "/ɹoʊst/",
+      "ipaUk": "/ɹəʊst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/roast",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/roast.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Butterfly_chicken_with_roasted_vegetables_-_Massachusetts.jpg",
+        "author": "Daderot",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "roast chicken oven",
+        "sha256": "fe35e13915462d98a8141f7a1349fedd0726b07ef9e721e25b113274e597797f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "grill",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B2",
+      "definition": "nướng vỉ",
+      "meaningEn": "to cook food over or under strong direct heat",
+      "examples": [
+        {
+          "text": "We grilled sausages in the garden last weekend.",
+          "vi": "Cuối tuần trước chúng tôi nướng xúc xích ngoài vườn."
+        },
+        {
+          "text": "Grill the fish for about five minutes on each side.",
+          "vi": "Hãy nướng cá khoảng năm phút mỗi mặt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "grilled fish",
+          "vi": "cá nướng"
+        },
+        {
+          "text": "grill on both sides",
+          "vi": "nướng cả hai mặt"
+        }
+      ],
+      "imageQuery": "grilled meat barbecue",
+      "verbForms": {
+        "past": "grilled",
+        "pastParticiple": "grilled",
+        "ing": "grilling",
+        "thirdPerson": "grills"
+      },
+      "ipaUs": "/ɡɹɪl/",
+      "ipaUk": "/ɡɹɪl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/grill",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/grill.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5925364/photo-image-public-domain-leaf-smoke",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "grilled meat barbecue",
+        "sha256": "505ce552aaa5e2261c9eba436be4e51b874dd3942533dede0d1e14dda6fd8dce",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "steam",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B2",
+      "definition": "hấp",
+      "meaningEn": "to cook food using the hot vapour from boiling water",
+      "examples": [
+        {
+          "text": "Steam the fish with ginger for ten minutes.",
+          "vi": "Hãy hấp cá với gừng trong mười phút."
+        },
+        {
+          "text": "My grandmother steams buns every morning.",
+          "vi": "Bà tôi hấp bánh bao mỗi sáng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "steamed rice",
+          "vi": "cơm hấp"
+        },
+        {
+          "text": "steam vegetables",
+          "vi": "hấp rau"
+        }
+      ],
+      "imageQuery": "steamed dumplings steamer",
+      "verbForms": {
+        "past": "steamed",
+        "pastParticiple": "steamed",
+        "ing": "steaming",
+        "thirdPerson": "steams"
+      },
+      "ipaUs": "/stiːm/",
+      "ipaUk": "/stiːm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/steam",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/steam.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/137699056e/",
+        "author": "sweekar7",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "steamed dumplings steamer",
+        "sha256": "0e577beb3c4e33665485e4276f9e7902fa7535c4fba8ce3a943588afd830b2a1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "knead",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B2",
+      "definition": "nhào (bột)",
+      "meaningEn": "to press and fold dough with your hands to make it smooth",
+      "examples": [
+        {
+          "text": "Knead the dough for ten minutes until it is soft.",
+          "vi": "Hãy nhào bột mười phút cho đến khi mềm mịn."
+        },
+        {
+          "text": "She kneaded the dough on the table.",
+          "vi": "Cô ấy nhào bột trên bàn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "knead the dough",
+          "vi": "nhào bột"
+        },
+        {
+          "text": "knead by hand",
+          "vi": "nhào bằng tay"
+        }
+      ],
+      "imageQuery": "kneading dough hands",
+      "verbForms": {
+        "past": "kneaded",
+        "pastParticiple": "kneaded",
+        "ing": "kneading",
+        "thirdPerson": "kneads"
+      },
+      "ipaUs": "/niːd/",
+      "ipaUk": "/niːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/knead",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/knead.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5904398/photo-image-public-domain-hand-person",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "kneading dough hands",
+        "sha256": "55e75043af121ed9c2237d437ba89ddb17804521b5305772472347cd62a2951a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "marinate",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B2",
+      "definition": "ướp (thịt, cá)",
+      "meaningEn": "to leave food in a flavoured liquid before cooking it",
+      "examples": [
+        {
+          "text": "You should marinate the chicken for at least an hour.",
+          "vi": "Bạn nên ướp gà ít nhất một tiếng."
+        },
+        {
+          "text": "I marinated the beef in soy sauce and garlic.",
+          "vi": "Tôi ướp thịt bò với nước tương và tỏi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "marinate overnight",
+          "vi": "ướp qua đêm"
+        },
+        {
+          "text": "marinate in soy sauce",
+          "vi": "ướp trong nước tương"
+        }
+      ],
+      "imageQuery": "marinated chicken",
+      "verbForms": {
+        "past": "marinated",
+        "pastParticiple": "marinated",
+        "ing": "marinating",
+        "thirdPerson": "marinates"
+      },
+      "ipaUs": "/ˈmæɹɪneɪt/",
+      "ipaUk": "/ˈmæɹɪneɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/marinate",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "cook",
+        "value": "marinate"
+      },
+      "image": {
+        "file": "b06/marinate.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:cook:marinate",
+        "sha256": "49cdcf8964aed118493f89b5625002ab8d0a0aa73f2545ffe4e60fa822c24589",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ingredient",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "nguyên liệu",
+      "meaningEn": "one of the foods you use to make a dish",
+      "examples": [
+        {
+          "text": "Eggs and flour are the main ingredients of pancakes.",
+          "vi": "Trứng và bột là nguyên liệu chính của bánh kếp."
+        },
+        {
+          "text": "Gather all the ingredients before you start cooking.",
+          "vi": "Hãy chuẩn bị đủ nguyên liệu trước khi bắt đầu nấu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fresh ingredients",
+          "vi": "nguyên liệu tươi"
+        },
+        {
+          "text": "main ingredient",
+          "vi": "nguyên liệu chính"
+        }
+      ],
+      "imageQuery": "cooking ingredients table",
+      "ipaUs": "/ɪnˈɡɹiːdi.ənt/",
+      "ipaUk": "/ɪnˈɡɹiːdi.ənt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ingredient",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/ingredient.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/cooking-ingredients-573HXXCQWB",
+        "author": "Tim Sullivan",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cooking ingredients table",
+        "sha256": "789e7ba6738640ae3a6a8326e009b1f76f7d6b633b2466fa5a62e2a7a923dc94",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "recipe",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "công thức nấu ăn",
+      "meaningEn": "a set of instructions for cooking a dish",
+      "examples": [
+        {
+          "text": "My aunt gave me her recipe for spring rolls.",
+          "vi": "Dì tôi cho tôi công thức làm nem cuốn của dì."
+        },
+        {
+          "text": "This recipe takes only twenty minutes.",
+          "vi": "Công thức này chỉ mất hai mươi phút."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "follow a recipe",
+          "vi": "làm theo công thức"
+        },
+        {
+          "text": "family recipe",
+          "vi": "công thức gia truyền"
+        }
+      ],
+      "imageQuery": "recipe book kitchen",
+      "ipaUs": "/ˈɹɛs.ɪ.pi/",
+      "ipaUk": "/ˈɹɛs.ɪ.pi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/recipe",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/recipe.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Recipe_book_of_Margaret_Countess_of_Moray.jpg",
+        "author": "Unoquha",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "recipe book kitchen",
+        "sha256": "ef60ee2c2f7731eb9b3d15ea89051ca18e1ec9bfbe1700d40a5a20f9ef1782f9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "dough",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bột nhào",
+      "meaningEn": "a soft thick mixture of flour and water for making bread",
+      "examples": [
+        {
+          "text": "The dough needs to rest for an hour.",
+          "vi": "Khối bột cần được ủ một tiếng."
+        },
+        {
+          "text": "She rolled out the dough on the table.",
+          "vi": "Cô ấy cán mỏng khối bột trên bàn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "roll out the dough",
+          "vi": "cán bột"
+        },
+        {
+          "text": "bread dough",
+          "vi": "bột làm bánh mì"
+        }
+      ],
+      "imageQuery": "bread dough flour",
+      "ipaUs": "/doʊ/",
+      "ipaUk": "/dəʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/dough",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/dough.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Risen_bread_dough.jpg",
+        "author": "Gageills",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "bread dough flour",
+        "sha256": "43f1b30105ac3bfc02811fafa28a2dedd5a71575bf4d05489996d86a5d56496e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sauce",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "nước sốt",
+      "meaningEn": "a thick liquid that you put on food to add flavour",
+      "examples": [
+        {
+          "text": "The pasta comes with a creamy tomato sauce.",
+          "vi": "Món mì ống đi kèm nước sốt cà chua béo ngậy."
+        },
+        {
+          "text": "Add a little sauce to the rice.",
+          "vi": "Hãy thêm chút nước sốt vào cơm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "tomato sauce",
+          "vi": "sốt cà chua"
+        },
+        {
+          "text": "soy sauce",
+          "vi": "nước tương"
+        }
+      ],
+      "imageQuery": "tomato sauce bowl",
+      "ipaUs": "/sɔs/",
+      "ipaUk": "/sɔːs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sauce",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/sauce.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3304068/free-photo-image-tomato-juice-cc0",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "tomato sauce bowl",
+        "sha256": "6b660c25c82383631db64ca9e04c8adb8fb7723ddb03ac896be92905abad2e36",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "spice",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "gia vị (khô)",
+      "meaningEn": "a dried plant substance added to food for flavour",
+      "examples": [
+        {
+          "text": "Pepper is a popular spice all over the world.",
+          "vi": "Hạt tiêu là một loại gia vị phổ biến trên khắp thế giới."
+        },
+        {
+          "text": "The market sells spices from many countries.",
+          "vi": "Khu chợ bán gia vị từ nhiều quốc gia."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "add spices",
+          "vi": "thêm gia vị"
+        },
+        {
+          "text": "hot spice",
+          "vi": "gia vị cay nóng"
+        }
+      ],
+      "imageQuery": "spices bowls market",
+      "ipaUs": "/spaɪs/",
+      "ipaUk": "/spaɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/spice",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/spice.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/77678c2215/",
+        "author": "Nilo Velez",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "spices bowls market",
+        "sha256": "2c13e7b88a65930ba9fc2b31053e8d535ccf002fc92db12fb42b031d01809038",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "herb",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "rau thơm, thảo mộc",
+      "meaningEn": "a leafy plant used to add flavour to food",
+      "examples": [
+        {
+          "text": "I grow herbs such as basil and mint on my balcony.",
+          "vi": "Tôi trồng rau thơm như húng quế và bạc hà trên ban công."
+        },
+        {
+          "text": "Fresh herbs make the soup taste better.",
+          "vi": "Rau thơm tươi làm món súp ngon hơn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fresh herbs",
+          "vi": "rau thơm tươi"
+        },
+        {
+          "text": "mixed herbs",
+          "vi": "hỗn hợp thảo mộc"
+        }
+      ],
+      "imageQuery": "fresh herbs basil mint",
+      "ipaUs": "/(h)ɝb/",
+      "ipaUk": "/hɜːb/",
+      "ipaSource": "https://en.wiktionary.org/wiki/herb",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/herb.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/463169/free-photo-image-mint-thyme-potted-rosemary",
+        "author": "Markus Spiske",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "fresh herbs basil mint",
+        "sha256": "2571ba83550be6d799b8d6054bd791d01bb3601d6063807af6af7e88f27644e2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rolling pin",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cây cán bột",
+      "meaningEn": "a long round tool that you use to flatten dough",
+      "examples": [
+        {
+          "text": "She used a rolling pin to flatten the dough.",
+          "vi": "Cô ấy dùng cây cán bột để cán phẳng khối bột."
+        },
+        {
+          "text": "My grandmother has a wooden rolling pin.",
+          "vi": "Bà tôi có một cây cán bột bằng gỗ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wooden rolling pin",
+          "vi": "cây cán bột bằng gỗ"
+        },
+        {
+          "text": "use a rolling pin",
+          "vi": "dùng cây cán bột"
+        }
+      ],
+      "imageQuery": "rolling pin dough",
+      "ipaUs": "/ˈɹol.ɪŋ pɪn/",
+      "ipaUk": "/ˈɹəʊ.lɪŋ pɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rolling + https://en.wiktionary.org/wiki/pin",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/rolling-pin.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6028931/photo-image-public-domain-hand-person",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "rolling pin dough",
+        "sha256": "8e5aeb0dd6ae230034115e3c5365917c1154dafc93a55cfb9bc0f0a898a5963e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "measuring cup",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cốc đong",
+      "meaningEn": "a cup with marks on it used to measure ingredients",
+      "examples": [
+        {
+          "text": "Use a measuring cup to add exactly two cups of flour.",
+          "vi": "Hãy dùng cốc đong để thêm đúng hai cốc bột."
+        },
+        {
+          "text": "The measuring cup was full of milk.",
+          "vi": "Chiếc cốc đong đầy sữa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fill a measuring cup",
+          "vi": "đong đầy cốc"
+        },
+        {
+          "text": "plastic measuring cup",
+          "vi": "cốc đong bằng nhựa"
+        }
+      ],
+      "imageQuery": "measuring cup kitchen",
+      "ipaUs": "/ˈmɛʒ.ə.ɹɪŋ ˈkʌp/",
+      "ipaUk": "/ˈmɛʒ.ə.ɹɪŋ ˈkʌp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/measuring + https://en.wiktionary.org/wiki/cup",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/measuring-cup.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Measuring_Cups.jpg",
+        "author": "Estabiano",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "measuring cup kitchen",
+        "sha256": "983d6d13eadb0636938acdea3954bcbc4f39f76b061139e79cc9860130a692fb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "mixing bowl",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tô trộn bột",
+      "meaningEn": "a large bowl used to mix ingredients together",
+      "examples": [
+        {
+          "text": "Put the eggs and sugar into a large mixing bowl.",
+          "vi": "Hãy cho trứng và đường vào một cái tô trộn lớn."
+        },
+        {
+          "text": "She washed the mixing bowl after baking.",
+          "vi": "Cô ấy rửa cái tô trộn sau khi nướng bánh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "large mixing bowl",
+          "vi": "tô trộn lớn"
+        },
+        {
+          "text": "glass mixing bowl",
+          "vi": "tô trộn bằng thủy tinh"
+        }
+      ],
+      "imageQuery": "mixing bowl baking",
+      "ipaUs": "/ˈmɪksɪŋ boʊl/",
+      "ipaUk": "/ˈmɪksɪŋ bəʊl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mixing + https://en.wiktionary.org/wiki/bowl",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/mixing-bowl.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5918816/image-background-public-domain-wood",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "mixing bowl baking",
+        "sha256": "94890ca1c6f14bb9764a3761fb7e85e618a988ecf3af20ac2a5d4a2b0a34b486",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "saucepan",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nồi có cán",
+      "meaningEn": "a deep pan with a long handle used on a stove",
+      "examples": [
+        {
+          "text": "Heat the milk in a small saucepan.",
+          "vi": "Hãy đun sữa trong một chiếc nồi nhỏ có cán."
+        },
+        {
+          "text": "He put a lid on the saucepan.",
+          "vi": "Anh ấy đậy nắp lên chiếc nồi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "small saucepan",
+          "vi": "nồi nhỏ"
+        },
+        {
+          "text": "heat in a saucepan",
+          "vi": "đun trong nồi"
+        }
+      ],
+      "imageQuery": "saucepan stove",
+      "ipaUs": "/ˈsɔsˌpæn/",
+      "ipaUk": "/ˈsɔːs.pən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/saucepan",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/saucepan.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Saucepan_MET_DP245760.jpg",
+        "author": "Creator:I. N.",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "saucepan stove",
+        "sha256": "9a4f121aac281b00c8ce5b337edfe268d224de3e35b43315a957929c64475ea5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pastry",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bánh ngọt, bột bánh",
+      "meaningEn": "baked dough used for pies, or a small sweet cake",
+      "examples": [
+        {
+          "text": "The bakery sells fresh pastries every morning.",
+          "vi": "Tiệm bánh bán bánh ngọt mới nướng mỗi sáng."
+        },
+        {
+          "text": "This pie has a thin, crispy pastry.",
+          "vi": "Chiếc bánh này có lớp vỏ mỏng và giòn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fresh pastry",
+          "vi": "bánh ngọt mới nướng"
+        },
+        {
+          "text": "puff pastry",
+          "vi": "bột bánh ngàn lớp"
+        }
+      ],
+      "imageQuery": "pastry bakery",
+      "ipaUs": "/ˈpeɪstɹi/",
+      "ipaUk": "/ˈpeɪstɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pastry",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/pastry.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Leek_%26_Dauphinoise_Potato_Pastry_-_The_Flour_Pot_Bakery_2026-04-06.jpg",
+        "author": "Andy Li",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "pastry bakery",
+        "sha256": "4ca1e74c2a233c987da0490a5e27746b1a88bd5d56591e61ec6fdb0f0542d564",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "garnish",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B2",
+      "definition": "trang trí món ăn",
+      "meaningEn": "to add a small item to a dish to make it look nicer",
+      "examples": [
+        {
+          "text": "She garnished the soup with fresh green onions.",
+          "vi": "Cô ấy trang trí món súp bằng hành lá tươi."
+        },
+        {
+          "text": "Garnish the cake with some strawberries.",
+          "vi": "Hãy trang trí bánh bằng vài quả dâu tây."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "garnish with herbs",
+          "vi": "trang trí bằng rau thơm"
+        },
+        {
+          "text": "garnish the dish",
+          "vi": "trang trí món ăn"
+        }
+      ],
+      "imageQuery": "garnish plate herbs",
+      "verbForms": {
+        "past": "garnished",
+        "pastParticiple": "garnished",
+        "ing": "garnishing",
+        "thirdPerson": "garnishes"
+      },
+      "ipaUs": "/ˈɡɑɹnɪʃ/",
+      "ipaUk": "/ˈɡɑːnɪʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/garnish",
+      "ipaVerified": true,
+      "image": {
+        "file": "b06/garnish.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/4286a2171c/",
+        "author": "auksainis",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "garnish plate herbs",
+        "sha256": "06cfe66c7adca5c2058b5966d673f54122eb3683b60ea2ef916a00f1049beb6e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

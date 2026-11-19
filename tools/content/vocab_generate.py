@@ -1849,6 +1849,74 @@ def shop_icon(name: str) -> bytes:
     return finish(img)
 
 
+def cook_icon(name: str) -> bytes:
+    """Flat original drawing of a cooking action (kind "cook")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=6, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    d.rectangle((0, 280 * s, W * s, H * s), fill=(214, 196, 160))
+    if name == "peel":
+        oval(150, 130, 290, 270, (180, 120, 70))
+        for k in range(4):
+            line(180 + k * 20, 150, 170 + k * 22, 250, 3, (150, 96, 54))
+        poly([(250, 120), (330, 80), (350, 100), (270, 150)], (170, 178, 192))
+        box(320, 70, 400, 96, (234, 88, 12), 10)
+        d.arc((250 * s, 200 * s, 380 * s, 300 * s), 200, 350, fill=(250, 213, 172), width=10 * s)
+        d.arc((250 * s, 200 * s, 380 * s, 300 * s), 200, 350, fill=L, width=2 * s)
+    elif name == "grate":
+        poly([(150, 80), (290, 80), (330, 300), (110, 300)], (170, 178, 192))
+        for r_ in range(5):
+            for c_ in range(4):
+                oval(158 + c_ * 36 + r_ * 4, 110 + r_ * 38, 174 + c_ * 36 + r_ * 4, 124 + r_ * 38, (96, 104, 120), 2)
+        poly([(360, 90), (420, 70), (430, 130), (370, 150)], (250, 204, 21))
+        for k in range(5):
+            oval(310 + (k % 3) * 22 + k * 3, 290 + (k % 2) * 6, 320 + (k % 3) * 22 + k * 3, 298 + (k % 2) * 6, (253, 224, 71), 1)
+    elif name == "stir":
+        box(100, 150, 380, 290, (71, 85, 105), 24)
+        oval(100, 130, 380, 190, (180, 70, 50))
+        d.arc((160 * s, 140 * s, 320 * s, 180 * s), 200, 20, fill=(254, 215, 170), width=5 * s)
+        box(236, 20, 252, 190, (160, 100, 50), 6)
+        poly([(404, 150), (430, 180), (404, 210)], (59, 130, 246))
+        d.arc((120 * s, 110 * s, 360 * s, 200 * s), 20, 120, fill=(59, 130, 246), width=5 * s)
+        box(60, 175, 100, 190, (71, 85, 105), 6)
+    elif name == "bake":
+        box(90, 60, 390, 300, (203, 213, 225), 18)
+        box(110, 100, 370, 270, (30, 41, 59), 12)
+        box(130, 120, 350, 250, (255, 190, 90), 8)
+        poly([(200, 200), (280, 200), (270, 240), (210, 240)], (180, 100, 50))
+        oval(210, 170, 270, 215, (250, 213, 172))
+        oval(230, 156, 250, 176, (220, 38, 38), 2)
+        for k in range(3):
+            oval(120 + k * 70, 70, 140 + k * 70, 90, (96, 104, 120), 2)
+    elif name == "marinate":
+        oval(90, 120, 390, 300, (226, 232, 240))
+        oval(110, 140, 370, 280, (120, 60, 30), 0)
+        for (cx, cy) in ((180, 200), (240, 220), (290, 190), (230, 170)):
+            poly([(cx - 36, cy), (cx - 10, cy - 24), (cx + 30, cy - 14), (cx + 40, cy + 14), (cx, cy + 26)], (250, 150, 130))
+        for (gx, gy) in ((150, 240), (320, 230), (260, 150)):
+            oval(gx - 8, gy - 8, gx + 8, gy + 8, (250, 250, 240), 2)
+        oval(400, 70, 450, 120, (22, 163, 74), 3)
+        box(380, 160, 440, 280, (120, 60, 30), 10)
+    else:
+        raise SystemExit(f"unknown cook icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -1901,6 +1969,8 @@ def main() -> None:
             data = travel_icon(val)
         elif kind == "shop":
             data = shop_icon(val)
+        elif kind == "cook":
+            data = cook_icon(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"
