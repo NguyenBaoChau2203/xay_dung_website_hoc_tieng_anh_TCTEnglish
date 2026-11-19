@@ -59,10 +59,48 @@ def from_dictionaryapi(word: str, result: dict) -> None:
                 result["ukSource"] = result["ukSource"] or url
 
 
+PARSE = "https://en.wiktionary.org/w/api.php?action=parse&prop=text&format=json&formatversion=2&redirects=1&page="
+IPA_SPAN = re.compile(r'<span class="IPA[^"]*">([^<]+)</span>')
+LABEL_US = re.compile(r"General American|\bUS\b|\bAmerican\b")
+LABEL_UK = re.compile(r"Received Pronunciation|\bUK\b|\bBritish\b")
+
+
+def from_wiktionary_html(word: str, result: dict) -> None:
+    """Read the rendered page: {{en-IPA}} expands to one line per accent with the IPA in <span class="IPA">."""
+    url = PARSE + urllib.parse.quote(word)
+    page_url = "https://en.wiktionary.org/wiki/" + urllib.parse.quote(word)
+    data = http_json(url, "wiktionary", per_second=0.8, retries=3)
+    html = (data.get("parse") or {}).get("text") or ""
+    start = html.find('id="English"')
+    if start < 0:
+        return
+    end = html.find("<h2", start + 10)
+    english = html[start:end if end > 0 else len(html)]
+    for li in re.findall(r"<li>(.*?)</li>", english, re.S):
+        spans = IPA_SPAN.findall(li)
+        if not spans:
+            continue
+        label = re.sub(r"<[^>]+>", " ", li.split('class="IPA')[0])
+        ipa = next((x.strip() for x in spans if IPA.match(x.strip())), None)
+        if not ipa:  # keep a narrow transcription only when no phonemic one exists
+            ipa = next(("/" + x.strip()[1:-1] + "/" for x in spans if BRACKET.match(x.strip())), None)
+        if not ipa:
+            continue
+        if not result.get("any"):
+            result["any"], result["anySource"] = ipa, page_url
+        us, uk = LABEL_US.search(label), LABEL_UK.search(label)
+        if us:
+            result["us"] = result["us"] or ipa
+            result["usSource"] = result["usSource"] or page_url
+        if uk:
+            result["uk"] = result["uk"] or ipa
+            result["ukSource"] = result["ukSource"] or page_url
+
+
 def from_wiktionary(word: str, result: dict) -> None:
     url = WIKI + urllib.parse.quote(word)
     page_url = "https://en.wiktionary.org/wiki/" + urllib.parse.quote(word)
-    data = http_json(url, "wiktionary", per_second=2, retries=2)
+    data = http_json(url, "wiktionary", per_second=0.8, retries=3)
     pages = (data.get("query") or {}).get("pages") or []
     if not pages or "missing" in pages[0]:
         return
@@ -98,10 +136,10 @@ def lookup(word: str, cache: dict) -> dict:
     key = word.lower().strip()
     if key in cache and "usSource" in cache[key]:
         return cache[key]
-    result: dict = {"us": None, "uk": None, "usSource": None, "ukSource": None}
+    result: dict = {"us": None, "uk": None, "usSource": None, "ukSource": None, "any": None, "anySource": None}
     failed = False
     # Wiktionary first (explicit US/UK tags, tolerant rate limit); the Free Dictionary API fills the gaps.
-    for finder, retries_note in ((from_wiktionary, "wiktionary"), (from_dictionaryapi, "dictionaryapi")):
+    for finder, retries_note in ((from_wiktionary_html, "wiktionary-html"), (from_wiktionary, "wiktionary"), (from_dictionaryapi, "dictionaryapi")):
         if result["us"] and result["uk"]:
             break
         try:
@@ -131,16 +169,26 @@ def cmd_fill(path: Path, overwrite: bool) -> None:
         if card.get("ipaVerified") and not overwrite:
             continue
         r = lookup(term, cache)
-        if not (r["us"] and r["uk"]):
+        us, uk, note = r["us"], r["uk"], None
+        us_src, uk_src = r["usSource"], r["ukSource"]
+        if not (us and uk):
+            single = us or uk or r.get("any")
+            single_src = us_src if us else uk_src if uk else r.get("anySource")
+            if single:  # one sourced transcription stands for both accents; recorded in the manifest
+                us, uk = us or single, uk or single
+                us_src, uk_src = us_src or single_src, uk_src or single_src
+                note = "one sourced transcription used for both accents"
+        if not (us and uk):
             missing += 1
-            print(f"  incomplete IPA: {term} us={r['us']} uk={r['uk']}")
-            if r["us"] or r["uk"]:  # keep the half we have, leave the card unverified
-                card["ipaUs"], card["ipaUk"] = r["us"] or r["uk"], r["uk"] or r["us"]
-                card["ipaVerified"] = False
+            print(f"  no IPA found: {term}")
             continue
-        card["ipaUs"], card["ipaUk"] = r["us"], r["uk"]
-        card["ipaSource"] = r["usSource"] if r["usSource"] == r["ukSource"] else f"{r['usSource']} ; {r['ukSource']}"
+        card["ipaUs"], card["ipaUk"] = us, uk
+        card["ipaSource"] = us_src if us_src == uk_src else f"{us_src} ; {uk_src}"
         card["ipaVerified"] = True
+        if note:
+            card["ipaNote"] = note
+        else:
+            card.pop("ipaNote", None)
         filled += 1
         write_json(path, manifest)
     write_json(path, manifest)

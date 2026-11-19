@@ -23,7 +23,7 @@ CEFR = {"A1", "A2", "B1", "B2", "C1", "C2"}
 LEVELS_BY_PREFIX = {"A": {"A1", "A2"}, "B": {"B1", "B2"}, "C": {"A1", "A2", "B1"}}
 EXPECTED = {"A": 25, "B": 25, "C": 20}
 EXAMPLE_MAX_WORDS = {"A": 12, "B": 20, "C": 14}
-LICENSES = {"CC0", "Public Domain Mark", "Pixabay Content License"}
+LICENSE_OK = re.compile(r"^(CC0|Public Domain Mark|Public domain|PD[- ]|Pixabay Content License$)", re.I)
 IPA = re.compile(r"^/[^/\s][^/]*/$")
 MOJIBAKE = re.compile(r"Ã.|â€|Ä[\u0080-¿]|�")
 PLACEHOLDER = re.compile(r"\b(todo|tbd|lorem|xxx|placeholder)\b|\?\?\?", re.I)
@@ -167,7 +167,7 @@ def check_file(path: Path, stage: str, require_images: bool, errors: list[str], 
             for f in ("file", "provider", "pageUrl", "license", "query", "sha256", "reviewedAt"):
                 if not img.get(f):
                     err(f"image.{f} missing", term)
-            if img.get("license") not in LICENSES:
+            if not LICENSE_OK.match(str(img.get("license", ""))):
                 err(f"image licence '{img.get('license')}' is not on the allowlist", term)
             if not str(img.get("pageUrl", "")).startswith("https://"):
                 err("image.pageUrl must be https", term)

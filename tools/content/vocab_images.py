@@ -10,6 +10,7 @@ Usage (from the repository root):
   py tools/content/vocab_images.py sheet  <manifest.json> [--rows 8]
   py tools/content/vocab_images.py pick   <manifest.json> "term=1,term=0"
   py tools/content/vocab_images.py status <manifest.json>
+  py tools/content/vocab_images.py requery <manifest.json> "term=new query;term=other" [--more 4]
 """
 from __future__ import annotations
 
@@ -267,6 +268,25 @@ def cmd_pick(path: Path, picks: str) -> None:
     print("picked", len([c for c in manifest["cards"] if c.get("image")]), "of", len(manifest["cards"]))
 
 
+def cmd_requery(path: Path, spec: str, more: int) -> None:
+    """Replace the image query of rejected terms ("term=new query;term=other query") and fetch more candidates."""
+    manifest = read_json(path)
+    by_term = {c["term"]: c for c in manifest["cards"]}
+    terms = set()
+    for item in [x for x in spec.split(";") if x.strip()]:
+        term, _, query = item.partition("=")
+        term = term.strip()
+        if term not in by_term:
+            raise SystemExit(f"unknown term: {term}")
+        by_term[term]["imageQuery"] = query.strip()
+        terms.add(term)
+    write_json(path, manifest)
+    folder = set_dir(manifest)
+    state = read_json(folder / "cands.json") if (folder / "cands.json").exists() else {}
+    per = max((len(state.get(t, [])) for t in terms), default=0) + more
+    cmd_fetch(path, per, terms)
+
+
 def cmd_status(path: Path) -> None:
     manifest = read_json(path)
     done = [c["term"] for c in manifest["cards"] if c.get("image")]
@@ -276,7 +296,7 @@ def cmd_status(path: Path) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    for name in ("fetch", "sheet", "pick", "status"):
+    for name in ("fetch", "sheet", "pick", "status", "requery"):
         p = sub.add_parser(name)
         p.add_argument("manifest", type=Path)
         if name == "fetch":
@@ -286,6 +306,9 @@ def main() -> None:
             p.add_argument("--rows", type=int, default=8)
         if name == "pick":
             p.add_argument("picks")
+        if name == "requery":
+            p.add_argument("spec")
+            p.add_argument("--more", type=int, default=4)
     a = ap.parse_args()
     if a.cmd == "fetch":
         cmd_fetch(a.manifest, a.per, {t for t in a.only.split(",") if t} or None)
@@ -293,6 +316,8 @@ def main() -> None:
         cmd_sheet(a.manifest, a.rows)
     elif a.cmd == "pick":
         cmd_pick(a.manifest, a.picks)
+    elif a.cmd == "requery":
+        cmd_requery(a.manifest, a.spec, a.more)
     else:
         cmd_status(a.manifest)
 

@@ -1,0 +1,1103 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A02",
+    "name": "Động vật hoang dã",
+    "description": "#a1 #a2 #animals #wildlife",
+    "topic": "Động vật hoang dã",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "lion",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "sư tử",
+      "meaningEn": "a large wild cat with a thick mane on the male",
+      "examples": [
+        {
+          "text": "The lion is resting under a tree.",
+          "vi": "Con sư tử đang nghỉ dưới gốc cây."
+        },
+        {
+          "text": "A lion can run very fast for a short time.",
+          "vi": "Sư tử có thể chạy rất nhanh trong thời gian ngắn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "male lion",
+          "vi": "sư tử đực"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "lioness",
+          "pos": "noun",
+          "vi": "sư tử cái"
+        }
+      ],
+      "imageQuery": "lion",
+      "ipaUs": "/ˈlaɪən/",
+      "ipaUk": "/ˈlaɪən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lion",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/lion.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/91501748@N07/26229121115",
+        "author": "Mathias Appel",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "lion",
+        "sha256": "61ce2f946a4de7ee1a8a1d7b036d8674028fef38c1605ec01e045bbfdb5735d8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tiger",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con hổ",
+      "meaningEn": "a big wild cat with orange fur and black stripes",
+      "examples": [
+        {
+          "text": "The tiger has beautiful orange stripes.",
+          "vi": "Con hổ có những sọc cam rất đẹp."
+        },
+        {
+          "text": "We saw a tiger at the zoo.",
+          "vi": "Chúng tôi đã thấy một con hổ ở sở thú."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Bengal tiger",
+          "vi": "hổ Bengal"
+        }
+      ],
+      "imageQuery": "tiger",
+      "ipaUs": "/ˈtaɪɡɚ/",
+      "ipaUk": "/ˈtaɪɡə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tiger",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/tiger.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/91501748@N07/27065384106",
+        "author": "Mathias Appel",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "tiger",
+        "sha256": "97256b12225b18534325cadd35582f9eceaf323ef88c6089603c97d644efbd19",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "elephant",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con voi",
+      "meaningEn": "the biggest land animal, with a long trunk",
+      "examples": [
+        {
+          "text": "The elephant drinks water with its trunk.",
+          "vi": "Con voi uống nước bằng vòi."
+        },
+        {
+          "text": "An elephant never forgets, people say.",
+          "vi": "Người ta nói voi không bao giờ quên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "baby elephant",
+          "vi": "voi con"
+        }
+      ],
+      "imageQuery": "elephant",
+      "ipaUs": "/ˈɛləfənt/",
+      "ipaUk": "/ˈɛlɪfənt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/elephant",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/elephant.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/50838842@N06/6987533809",
+        "author": "USFWS Headquarters",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "elephant",
+        "sha256": "94170674993f6df90655419fbef2cd2f7ed408121bb3df07cfefc59066bed15c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "giraffe",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hươu cao cổ",
+      "meaningEn": "a very tall animal with a long neck and spots",
+      "examples": [
+        {
+          "text": "The giraffe eats leaves from the top of the tree.",
+          "vi": "Hươu cao cổ ăn lá ở ngọn cây."
+        },
+        {
+          "text": "A giraffe is taller than a house door.",
+          "vi": "Hươu cao cổ cao hơn cửa nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a long-necked giraffe",
+          "vi": "con hươu cổ dài"
+        }
+      ],
+      "imageQuery": "giraffe",
+      "ipaUs": "/d͡ʒəˈɹæf/",
+      "ipaUk": "/dʒɪˈɹɑːf/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/giraffe ; https://en.wiktionary.org/wiki/giraffe",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/giraffe.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/55958070@N08/5756127053",
+        "author": "earthisthering",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "giraffe",
+        "sha256": "2daaad4784c4f1fbcd61b6ee64e39096f5d5cebfb65661debde9fecc112efe5e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "zebra",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ngựa vằn",
+      "meaningEn": "an African animal like a horse with black and white stripes",
+      "examples": [
+        {
+          "text": "The zebra has black and white stripes.",
+          "vi": "Con ngựa vằn có sọc đen trắng."
+        },
+        {
+          "text": "Zebras live together in large groups.",
+          "vi": "Ngựa vằn sống cùng nhau thành đàn lớn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "zebra crossing",
+          "vi": "vạch qua đường dành cho người đi bộ"
+        }
+      ],
+      "imageQuery": "zebra",
+      "ipaUs": "/ˈziː.bɹə/",
+      "ipaUk": "/ˈziː.bɹə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/zebra",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/zebra.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/52775988@N00/24694097565",
+        "author": "Mussi Katz",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "zebra",
+        "sha256": "d39b077622194c3f6ea0134e59d967d930c69338f41e3d13c9552c610eaee9ba",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "monkey",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con khỉ",
+      "meaningEn": "a clever animal with a long tail that climbs trees",
+      "examples": [
+        {
+          "text": "The monkey is eating a banana.",
+          "vi": "Con khỉ đang ăn một quả chuối."
+        },
+        {
+          "text": "Monkeys jump from branch to branch.",
+          "vi": "Khỉ nhảy từ cành này sang cành khác."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a troop of monkeys",
+          "vi": "một bầy khỉ"
+        }
+      ],
+      "imageQuery": "monkey",
+      "ipaUs": "/ˈmʌŋki/",
+      "ipaUk": "/ˈmʌŋki/",
+      "ipaSource": "https://en.wiktionary.org/wiki/monkey",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/monkey.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/91501748@N07/26733426676",
+        "author": "Mathias Appel",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "monkey",
+        "sha256": "cde2c0d32a53c0f643dffa65731e3f3f9ab5c8e4312f2c369ce9ea93547c99f3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bear",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con gấu",
+      "meaningEn": "a large strong animal with thick fur",
+      "examples": [
+        {
+          "text": "The bear caught a fish in the river.",
+          "vi": "Con gấu bắt được một con cá ở sông."
+        },
+        {
+          "text": "A brown bear sleeps all winter.",
+          "vi": "Gấu nâu ngủ suốt mùa đông."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "brown bear",
+          "vi": "gấu nâu"
+        },
+        {
+          "text": "polar bear",
+          "vi": "gấu Bắc Cực"
+        }
+      ],
+      "imageQuery": "brown bear",
+      "ipaUs": "/bɛɚ/",
+      "ipaUk": "/bɛə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bear",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/bear.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/54775250@N07/51942617571",
+        "author": "USFWSAlaska",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "brown bear",
+        "sha256": "824b941a644eb7780a3865e26479b2886c6848493b3d0509ec9ef496ae2bd0bf",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wolf",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con sói",
+      "meaningEn": "a wild animal like a large dog that hunts in groups",
+      "plural": "wolves",
+      "examples": [
+        {
+          "text": "The wolf howled at the moon.",
+          "vi": "Con sói tru lên với mặt trăng."
+        },
+        {
+          "text": "Wolves hunt together in a pack.",
+          "vi": "Bầy sói đi săn cùng nhau."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a pack of wolves",
+          "vi": "một bầy sói"
+        }
+      ],
+      "imageQuery": "wolf",
+      "ipaUs": "/wʊlf/",
+      "ipaUk": "/wʊlf/",
+      "ipaSource": "https://en.wiktionary.org/wiki/wolf",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/wolf.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/80223459@N05/38346221956",
+        "author": "YellowstoneNPS",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "wolf",
+        "sha256": "9455373a85f120c2c5206065302bafedcb6cbd9fac6cb7688658165153ae409c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fox",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con cáo",
+      "meaningEn": "a wild animal with red fur and a bushy tail",
+      "plural": "foxes",
+      "examples": [
+        {
+          "text": "The fox ran into the forest.",
+          "vi": "Con cáo chạy vào rừng."
+        },
+        {
+          "text": "A red fox has a long bushy tail.",
+          "vi": "Cáo đỏ có cái đuôi dài và xù."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "red fox",
+          "vi": "cáo đỏ"
+        }
+      ],
+      "imageQuery": "red fox",
+      "ipaUs": "/fɑks/",
+      "ipaUk": "/fɒks/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fox",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/fox.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/54775250@N07/51357237877",
+        "author": "USFWSAlaska",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "red fox",
+        "sha256": "844caf9c9b84bbaa6b37b19295592f38e76234fea836590eb2be6f8a0a6bb0ce",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "deer",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con nai",
+      "meaningEn": "a graceful forest animal; the male has antlers",
+      "plural": "deer",
+      "examples": [
+        {
+          "text": "A deer stood still at the edge of the forest.",
+          "vi": "Một con nai đứng yên ở bìa rừng."
+        },
+        {
+          "text": "The deer ran away when it heard a noise.",
+          "vi": "Con nai chạy đi khi nghe thấy tiếng động."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a herd of deer",
+          "vi": "một đàn nai"
+        }
+      ],
+      "imageQuery": "deer",
+      "ipaUs": "/diːɹ/",
+      "ipaUk": "/dɪə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/deer",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/deer.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/9242903035",
+        "author": "Bernard Spragg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "deer",
+        "sha256": "3857c20b4d61ef651c065cff58068a961e4a19ed7e24d474bab760c7868aaf32",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "kangaroo",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "chuột túi",
+      "meaningEn": "an Australian animal that hops and carries babies in a pouch",
+      "examples": [
+        {
+          "text": "The kangaroo carries her baby in a pouch.",
+          "vi": "Con chuột túi mang con trong chiếc túi trước bụng."
+        },
+        {
+          "text": "Kangaroos hop across the dry land.",
+          "vi": "Chuột túi nhảy qua vùng đất khô."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "baby kangaroo",
+          "vi": "chuột túi con"
+        }
+      ],
+      "imageQuery": "kangaroo Australia wildlife",
+      "ipaUs": "/ˌkæŋ.ɡəˈɹu/",
+      "ipaUk": "/ˌkæŋ.ɡəˈɹuː/",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/kangaroo.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/61021753@N02/9135311200",
+        "author": "BioDivLibrary",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "kangaroo Australia wildlife",
+        "sha256": "b19a2119111567c04bb8dbc3c92d6c525c419e784f0450630b1c18b036f40ea4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaSource": "https://en.wiktionary.org/wiki/kangaroo"
+    },
+    {
+      "term": "crocodile",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cá sấu",
+      "meaningEn": "a large reptile with strong jaws that lives in rivers",
+      "examples": [
+        {
+          "text": "The crocodile lay still in the river.",
+          "vi": "Con cá sấu nằm im dưới sông."
+        },
+        {
+          "text": "Be careful, crocodiles can be dangerous.",
+          "vi": "Hãy cẩn thận, cá sấu có thể rất nguy hiểm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "crocodile teeth",
+          "vi": "răng cá sấu"
+        }
+      ],
+      "imageQuery": "crocodile reptile river",
+      "ipaUs": "/ˈkɹɑkədaɪl/",
+      "ipaUk": "/ˈkɹɒkədaɪl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/crocodile",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/crocodile.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/439895/free-photo-image-crocodile-nasa-alligator",
+        "author": "NASA",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "crocodile reptile river",
+        "sha256": "78baabe647c2596b5cf15e591dd7d97a5321a92c9976c66cc8993f74c5ed2426",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "snake",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con rắn",
+      "meaningEn": "a long animal with no legs that moves along the ground",
+      "examples": [
+        {
+          "text": "A snake slid across the path.",
+          "vi": "Một con rắn trườn qua lối đi."
+        },
+        {
+          "text": "Some snakes are very dangerous.",
+          "vi": "Một số loài rắn rất nguy hiểm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "poisonous snake",
+          "vi": "rắn độc"
+        }
+      ],
+      "imageQuery": "snake",
+      "ipaUs": "/sneɪk/",
+      "ipaUk": "/sneɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/snake",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/snake.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/73946419@N07/6700823417",
+        "author": "ahlea",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "snake",
+        "sha256": "518634940150ddafa5a34a539cdbbcb5440dab30e7f984a1b46cbbfd14ea9efc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "eagle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "chim đại bàng",
+      "meaningEn": "a large bird that hunts and flies very high",
+      "examples": [
+        {
+          "text": "The eagle flew high above the mountain.",
+          "vi": "Đại bàng bay cao trên đỉnh núi."
+        },
+        {
+          "text": "An eagle has very good eyes.",
+          "vi": "Đại bàng có đôi mắt rất tinh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bald eagle",
+          "vi": "đại bàng đầu trắng"
+        }
+      ],
+      "imageQuery": "eagle",
+      "ipaUs": "/ˈiːɡəl/",
+      "ipaUk": "/ˈiːɡəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/eagle",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/eagle.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/43322816@N08/5277661905",
+        "author": "U. S. Fish and Wildlife Service - Northeast Region",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "eagle",
+        "sha256": "92210b6808fa87024269b6650ea6017584543c9215082b9a93c07a709b108d7e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "owl",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con cú",
+      "meaningEn": "a night bird with big round eyes",
+      "examples": [
+        {
+          "text": "The owl sat in the tree at night.",
+          "vi": "Con cú đậu trên cây vào ban đêm."
+        },
+        {
+          "text": "Owls hunt small animals in the dark.",
+          "vi": "Cú săn những con vật nhỏ trong bóng tối."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "night owl",
+          "vi": "người thích thức khuya"
+        }
+      ],
+      "imageQuery": "owl",
+      "ipaUs": "/aʊl/",
+      "ipaUk": "/aʊl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/owl",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/owl.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/43322816@N08/5710564591",
+        "author": "U. S. Fish and Wildlife Service - Northeast Region",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "owl",
+        "sha256": "a2f745dd82160957ec5825253e6de8eb793089ef17b382c9aec1999015dad41f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "dolphin",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cá heo",
+      "meaningEn": "a clever sea animal that jumps out of the water",
+      "examples": [
+        {
+          "text": "The dolphin jumped out of the water.",
+          "vi": "Con cá heo nhảy lên khỏi mặt nước."
+        },
+        {
+          "text": "Dolphins like to swim near boats.",
+          "vi": "Cá heo thích bơi gần các con thuyền."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a school of dolphins",
+          "vi": "một đàn cá heo"
+        }
+      ],
+      "imageQuery": "dolphin",
+      "ipaUs": "/ˈdɑlf.ɪn/",
+      "ipaUk": "/ˈdɒlf.ɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/dolphin",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/dolphin.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/40322276@N04/6011306163",
+        "author": "NOAA's National Ocean Service",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "dolphin",
+        "sha256": "0d3aec003dc9ff9c4ecf6d712620e1b626496809f87f852ec12d2eac3dea8f20",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "whale",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cá voi",
+      "meaningEn": "a very big sea animal that breathes air",
+      "examples": [
+        {
+          "text": "The whale came up to breathe.",
+          "vi": "Con cá voi nổi lên để thở."
+        },
+        {
+          "text": "A blue whale is bigger than any dinosaur.",
+          "vi": "Cá voi xanh lớn hơn bất kỳ con khủng long nào."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "blue whale",
+          "vi": "cá voi xanh"
+        }
+      ],
+      "imageQuery": "whale",
+      "ipaUs": "/ˈweɪl/",
+      "ipaUk": "/ˈweɪl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/whale",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/whale.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/11348448604",
+        "author": "Bernard Spragg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "whale",
+        "sha256": "e6d5ed7eec5a774295be759332b7b164c42145b4d62969a1827b5c4379d52f32",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "shark",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cá mập",
+      "meaningEn": "a large sea fish with sharp teeth",
+      "examples": [
+        {
+          "text": "The shark swam slowly near the boat.",
+          "vi": "Con cá mập bơi chậm gần con thuyền."
+        },
+        {
+          "text": "Most sharks are not dangerous to people.",
+          "vi": "Hầu hết cá mập không nguy hiểm với con người."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "great white shark",
+          "vi": "cá mập trắng lớn"
+        }
+      ],
+      "imageQuery": "great white shark",
+      "ipaUs": "/ʃɑɹk/",
+      "ipaUk": "/ʃɑːk/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/shark ; https://en.wiktionary.org/wiki/shark",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/shark.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6501486/png-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "great white shark",
+        "sha256": "56393d3b5d6bff4bf5e739fbc9c21b160c8e2245b87e0328ad496aa9777fce17",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "turtle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con rùa",
+      "meaningEn": "a slow animal with a hard shell",
+      "examples": [
+        {
+          "text": "The turtle walked slowly to the water.",
+          "vi": "Con rùa chậm chạp bò ra mặt nước."
+        },
+        {
+          "text": "A sea turtle can live for many years.",
+          "vi": "Rùa biển có thể sống nhiều năm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "sea turtle",
+          "vi": "rùa biển"
+        }
+      ],
+      "imageQuery": "turtle",
+      "ipaUs": "/ˈtɝtl̩/",
+      "ipaUk": "/ˈtɜːtl̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/turtle",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/turtle.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/41464593@N02/5840602412",
+        "author": "USFWS/Southeast",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "turtle",
+        "sha256": "00a5b8797492d51cac61295517b478aa436d6f2eaf818c652342e11358f18f85",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "frog",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con ếch",
+      "meaningEn": "a small green animal that jumps and lives near water",
+      "examples": [
+        {
+          "text": "The frog jumped into the pond.",
+          "vi": "Con ếch nhảy xuống ao."
+        },
+        {
+          "text": "Frogs sing loudly after the rain.",
+          "vi": "Ếch kêu to sau cơn mưa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "tree frog",
+          "vi": "ếch cây"
+        }
+      ],
+      "imageQuery": "frog",
+      "ipaUs": "/fɹɑɡ/",
+      "ipaUk": "/fɹɒɡ/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/frog ; https://en.wiktionary.org/wiki/frog",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/frog.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/43322816@N08/5278271076",
+        "author": "U. S. Fish and Wildlife Service - Northeast Region",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "frog",
+        "sha256": "4473d4ae02200a21585286d0fca43117fde99b670a92ec234a0e4f6cc6dc3183",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "butterfly",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con bướm",
+      "meaningEn": "an insect with large colourful wings",
+      "plural": "butterflies",
+      "examples": [
+        {
+          "text": "A butterfly landed on the red flower.",
+          "vi": "Một con bướm đậu lên bông hoa đỏ."
+        },
+        {
+          "text": "The butterfly has bright yellow wings.",
+          "vi": "Con bướm có đôi cánh vàng rực."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "colourful butterfly",
+          "vi": "bướm nhiều màu"
+        }
+      ],
+      "imageQuery": "butterfly",
+      "ipaUs": "/ˈbʌ.tə(ɹ).flaɪ/",
+      "ipaUk": "/ˈbʌ.tə(ɹ).flaɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/butterfly",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/butterfly.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/13702029713",
+        "author": "Bernard Spragg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "butterfly",
+        "sha256": "a7ee857b4c2eaa63c14db1614a82beb9f2b42491b3f14b46ba902292c575e6f5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bee",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con ong",
+      "meaningEn": "a small flying insect that makes honey",
+      "examples": [
+        {
+          "text": "The bee is flying around the flowers.",
+          "vi": "Con ong đang bay quanh những bông hoa."
+        },
+        {
+          "text": "Bees make honey from flower nectar.",
+          "vi": "Ong làm mật từ mật hoa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "honey bee",
+          "vi": "ong mật"
+        }
+      ],
+      "imageQuery": "honey bee",
+      "ipaUs": "/ˈbiː/",
+      "ipaUk": "/ˈbiː/",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/bee.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/149685850@N05/42819646921",
+        "author": "Kartlyn Earth & ArtKN",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "honey bee",
+        "sha256": "6babe5cd1c8a7952652463ee8c15fff5996179a2dfad27e7a2f55617da3f796b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaSource": "https://en.wiktionary.org/wiki/bee"
+    },
+    {
+      "term": "spider",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con nhện",
+      "meaningEn": "a small animal with eight legs that makes webs",
+      "examples": [
+        {
+          "text": "A spider made a web in the corner.",
+          "vi": "Một con nhện giăng tơ ở góc nhà."
+        },
+        {
+          "text": "The little spider is not dangerous.",
+          "vi": "Con nhện nhỏ này không nguy hiểm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "spider web",
+          "vi": "mạng nhện"
+        }
+      ],
+      "imageQuery": "spider",
+      "ipaUs": "/ˈspaɪ̯də/",
+      "ipaUk": "/ˈspaɪ̯də/",
+      "ipaSource": "https://en.wiktionary.org/wiki/spider",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/spider.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/54563451@N08/9431140262",
+        "author": "Sam Droege",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "spider",
+        "sha256": "b454c9ce9504cd878e061cb531ee9d8d0311b695bc16b4f038a8f6387cd081c0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "panda",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "gấu trúc",
+      "meaningEn": "a black and white bear from China that eats bamboo",
+      "examples": [
+        {
+          "text": "The panda is eating bamboo.",
+          "vi": "Con gấu trúc đang ăn tre."
+        },
+        {
+          "text": "Pandas spend most of the day eating.",
+          "vi": "Gấu trúc dành phần lớn thời gian trong ngày để ăn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "giant panda",
+          "vi": "gấu trúc khổng lồ"
+        }
+      ],
+      "imageQuery": "giant panda",
+      "ipaUs": "/ˈpændə/",
+      "ipaUk": "/ˈpændə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/panda",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/panda.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/49399018@N00/27135210119",
+        "author": "amanderson2",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "giant panda",
+        "sha256": "dc73586926e4832591225cdc468869b652f3fa3b6daf3bf9d7081bf0b4d9f6cf",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "penguin",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "chim cánh cụt",
+      "meaningEn": "a black and white bird that cannot fly but swims well",
+      "examples": [
+        {
+          "text": "The penguin walks across the ice.",
+          "vi": "Chú chim cánh cụt đi bộ trên băng."
+        },
+        {
+          "text": "Penguins live in very cold places.",
+          "vi": "Chim cánh cụt sống ở những nơi rất lạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "emperor penguin",
+          "vi": "chim cánh cụt hoàng đế"
+        }
+      ],
+      "imageQuery": "penguin",
+      "ipaUs": "/ˈpɛŋ.ɡwɪn/",
+      "ipaUk": "/ˈpɛŋ.ɡwɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/penguin",
+      "ipaVerified": true,
+      "image": {
+        "file": "a02/penguin.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/8670574389",
+        "author": "Bernard Spragg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "penguin",
+        "sha256": "cfff56065fb6a541aaa1e89ee335ca022f2434c87399771134089a4eebfe325e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

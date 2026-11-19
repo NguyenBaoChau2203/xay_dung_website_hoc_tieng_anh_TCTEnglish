@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A03",
+    "name": "Trái cây",
+    "description": "#a1 #a2 #fruit #food",
+    "topic": "Trái cây",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "apple",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "quả táo",
+      "meaningEn": "a round fruit with red, green or yellow skin",
+      "examples": [
+        {
+          "text": "I eat an apple every morning.",
+          "vi": "Sáng nào tôi cũng ăn một quả táo."
+        },
+        {
+          "text": "This apple is sweet and crunchy.",
+          "vi": "Quả táo này ngọt và giòn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "apple juice",
+          "vi": "nước ép táo"
+        },
+        {
+          "text": "red apple",
+          "vi": "táo đỏ"
+        }
+      ],
+      "imageQuery": "apple fruit",
+      "ipaUs": "/ˈæpəl/",
+      "ipaUk": "/ˈæpəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/apple",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/apple.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/apple-fruit-HBYTKRWJZB",
+        "author": "The World is a Stage",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "apple fruit",
+        "sha256": "e26049692ccbe72a1b30f4b05977e366bf0ae7ceada29391ab76fbabfaab0006",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "banana",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "quả chuối",
+      "meaningEn": "a long yellow fruit with soft sweet flesh",
+      "examples": [
+        {
+          "text": "He peeled a banana for breakfast.",
+          "vi": "Cậu ấy bóc một quả chuối cho bữa sáng."
+        },
+        {
+          "text": "Monkeys love to eat bananas.",
+          "vi": "Khỉ rất thích ăn chuối."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a bunch of bananas",
+          "vi": "một nải chuối"
+        }
+      ],
+      "imageQuery": "banana",
+      "ipaUs": "/bəˈnænə/",
+      "ipaUk": "/bəˈnɑːnə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/banana",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/banana.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/62295966@N07/5680832547",
+        "author": "Plant pests and diseases",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "banana",
+        "sha256": "e0da1b13519f73e21d74365f4e9917598c3bf5a29e4623a306401f4a5653bfde",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "orange",
+      "partsOfSpeech": [
+        "noun",
+        "adj"
+      ],
+      "cefr": "A1",
+      "definition": "quả cam; màu cam",
+      "meaningEn": "a round citrus fruit with orange skin",
+      "examples": [
+        {
+          "text": "She drinks a glass of orange juice.",
+          "vi": "Cô ấy uống một ly nước cam."
+        },
+        {
+          "text": "I peeled an orange and shared it.",
+          "vi": "Tôi bóc một quả cam và chia cho mọi người."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "orange juice",
+          "vi": "nước cam"
+        }
+      ],
+      "imageQuery": "orange fruit",
+      "ipaUs": "/ˈɒɹɪnd͡ʒ/",
+      "ipaUk": "/ˈɒɹɪnd͡ʒ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/orange",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/orange.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/oranges-fruits-SVKP65LN31",
+        "author": "Daria Nepriakhina",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "orange fruit",
+        "sha256": "78cd57fbf2b126deea9c7777af014693c5b37433a1a45a56c0c80fd34ccabec0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "mango",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "quả xoài",
+      "meaningEn": "a sweet tropical fruit with yellow flesh",
+      "plural": "mangoes",
+      "examples": [
+        {
+          "text": "I eat a ripe mango every summer.",
+          "vi": "Mùa hè nào tôi cũng ăn một quả xoài chín."
+        },
+        {
+          "text": "This mango is very juicy.",
+          "vi": "Quả xoài này rất mọng nước."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ripe mango",
+          "vi": "xoài chín"
+        },
+        {
+          "text": "mango tree",
+          "vi": "cây xoài"
+        }
+      ],
+      "imageQuery": "ripe mango fruit isolated",
+      "ipaUs": "/æ/",
+      "ipaUk": "/ˈmæŋɡəʊ/",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/mango.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/138016291@N03/41158284724",
+        "author": "vtc160309452",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "ripe mango fruit isolated",
+        "sha256": "3666b49bdda4156fde4e9baf646fc192d8149e6eeae6455c19ceae3cef0482b5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaSource": "https://en.wiktionary.org/wiki/mango"
+    },
+    {
+      "term": "pineapple",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả dứa",
+      "meaningEn": "a large tropical fruit with spiky skin and sweet yellow flesh",
+      "examples": [
+        {
+          "text": "We cut a pineapple into small pieces.",
+          "vi": "Chúng tôi cắt quả dứa thành những miếng nhỏ."
+        },
+        {
+          "text": "Pineapple pizza is not for everyone.",
+          "vi": "Pizza dứa không hợp với tất cả mọi người."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pineapple juice",
+          "vi": "nước ép dứa"
+        }
+      ],
+      "imageQuery": "whole ripe pineapple fruit",
+      "ipaUs": "/ˈpaɪnˌæpəl/",
+      "ipaUk": "/ˈpaɪnˌæpəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pineapple",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/pineapple.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/62295966@N07/5832862315",
+        "author": "Plant pests and diseases",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "pineapple",
+        "sha256": "3e837ef4074de3ff3c8dce5cb5232c9cc565402a7a65529061997a83ef472838",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "watermelon",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả dưa hấu",
+      "meaningEn": "a big green fruit with red juicy flesh and black seeds",
+      "examples": [
+        {
+          "text": "A cold watermelon is great on a hot day.",
+          "vi": "Dưa hấu ướp lạnh rất tuyệt vào ngày nóng."
+        },
+        {
+          "text": "The children ate watermelon in the garden.",
+          "vi": "Bọn trẻ ăn dưa hấu trong vườn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "slice of watermelon",
+          "vi": "lát dưa hấu"
+        }
+      ],
+      "imageQuery": "watermelon slice",
+      "ipaUs": "/ˈwɑtəɹˌmɛlən/",
+      "ipaUk": "/ˈwɔːtəˌmɛlən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/watermelon",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/watermelon.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5908283/image-public-domain-plant-fruit",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "watermelon slice",
+        "sha256": "13db022706868474c65ad65a13ee17dce05e7d1f24de79004607a1df985df0c4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "grape",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả nho",
+      "meaningEn": "a small round fruit that grows in bunches",
+      "examples": [
+        {
+          "text": "She put some grapes in a bowl.",
+          "vi": "Cô ấy cho vài quả nho vào một cái bát."
+        },
+        {
+          "text": "These grapes are green and sweet.",
+          "vi": "Những quả nho này xanh và ngọt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a bunch of grapes",
+          "vi": "một chùm nho"
+        }
+      ],
+      "imageQuery": "grapes bunch",
+      "ipaUs": "/ɡɹeɪp/",
+      "ipaUk": "/ɡɹeɪp/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/grape ; https://en.wiktionary.org/wiki/grape",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/grape.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:A_bunch_of_grapes_on_a_vine.jpg",
+        "author": "Ian Schneider on Unsplash",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "grapes bunch",
+        "sha256": "dd1c758c1dc948e207356d8006878914794238b1d42033e90368a76bd0fd2f00",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "strawberry",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả dâu tây",
+      "meaningEn": "a small red fruit with tiny seeds on its skin",
+      "plural": "strawberries",
+      "examples": [
+        {
+          "text": "I like strawberry ice cream.",
+          "vi": "Tôi thích kem dâu tây."
+        },
+        {
+          "text": "We picked strawberries on the farm.",
+          "vi": "Chúng tôi hái dâu tây ở nông trại."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "strawberry jam",
+          "vi": "mứt dâu tây"
+        }
+      ],
+      "imageQuery": "strawberries",
+      "ipaUs": "/ˈstɹɔˌbɛɹi/",
+      "ipaUk": "/ˈstɹɔːb(ə)ɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/strawberry",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/strawberry.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Strawberries_in_basket_2018_G1.jpg",
+        "author": "George Chernilevsky",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "strawberries",
+        "sha256": "4e5e5534f7c2f846010a90b04aa9d7a7883bd08a32f9e054ac4b57f90ffbc750",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "lemon",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả chanh vàng",
+      "meaningEn": "a yellow fruit with a very sour taste",
+      "examples": [
+        {
+          "text": "Add a slice of lemon to the tea.",
+          "vi": "Hãy cho một lát chanh vàng vào trà."
+        },
+        {
+          "text": "The lemon is too sour to eat alone.",
+          "vi": "Quả chanh vàng này chua quá không ăn riêng được."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "lemon juice",
+          "vi": "nước chanh"
+        }
+      ],
+      "imageQuery": "lemon fruit",
+      "ipaUs": "/ˈlɛmən/",
+      "ipaUk": "/ˈlɛmən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lemon",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/lemon.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/lemons-fruits-W28QPZPAK6",
+        "author": "Lauren Mancke",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "lemon fruit",
+        "sha256": "5c43ccb66d7c073360e7ced26ec1edbb404395eba52352ead8c797cd2518a245",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "peach",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả đào",
+      "meaningEn": "a soft round fruit with fuzzy skin and a large stone",
+      "examples": [
+        {
+          "text": "The peach is soft and sweet.",
+          "vi": "Quả đào mềm và ngọt."
+        },
+        {
+          "text": "My grandmother grows a peach tree.",
+          "vi": "Bà tôi trồng một cây đào."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "peach tree",
+          "vi": "cây đào"
+        }
+      ],
+      "imageQuery": "peach fruit",
+      "ipaUs": "/ˈpiːt͡ʃ/",
+      "ipaUk": "/ˈpiːt͡ʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/peach",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/peach.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6020443/photo-image-public-domain-tree-plant",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "peach fruit",
+        "sha256": "fe612483bc0833b9a360e856be7ded08e0eed0e6a8a4b29a0529ddb437817ced",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pear",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả lê",
+      "meaningEn": "a sweet fruit that is narrow at the top and wide at the bottom",
+      "examples": [
+        {
+          "text": "He ate a juicy pear after lunch.",
+          "vi": "Cậu ấy ăn một quả lê mọng nước sau bữa trưa."
+        },
+        {
+          "text": "The pear fell from the tree.",
+          "vi": "Quả lê rơi từ trên cây xuống."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ripe pear",
+          "vi": "lê chín"
+        }
+      ],
+      "imageQuery": "pear fruit",
+      "ipaUs": "/pɛɹ/",
+      "ipaUk": "/pɛə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pear",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/pear.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/pears-fruit-QIXV1AILYQ",
+        "author": "Foodie Girl",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "pear fruit",
+        "sha256": "774e94304a61096bd09b4edb559dd6b61d78206bd9f85ef9720521834502389e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cherry",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả anh đào",
+      "meaningEn": "a small round red fruit with a stone inside",
+      "plural": "cherries",
+      "examples": [
+        {
+          "text": "There is a cherry on top of the cake.",
+          "vi": "Có một quả anh đào trên mặt bánh."
+        },
+        {
+          "text": "We bought a bag of fresh cherries.",
+          "vi": "Chúng tôi mua một túi anh đào tươi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cherry tree",
+          "vi": "cây anh đào"
+        }
+      ],
+      "imageQuery": "cherries",
+      "ipaUs": "/ˈt͡ʃɛɹi/",
+      "ipaUk": "/ˈt͡ʃɛɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cherry",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/cherry.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/132795455@N08/23497502966",
+        "author": "Image Catalog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cherries",
+        "sha256": "d822585e43298d693e41c0da23dd382861005d8deb7e375cdb1eb3df357faea6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "coconut",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả dừa",
+      "meaningEn": "a large hard fruit with sweet water and white flesh inside",
+      "examples": [
+        {
+          "text": "He drank cool water from a coconut.",
+          "vi": "Anh ấy uống nước mát từ một quả dừa."
+        },
+        {
+          "text": "Coconut trees grow near the beach.",
+          "vi": "Cây dừa mọc gần bãi biển."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "coconut milk",
+          "vi": "nước cốt dừa"
+        },
+        {
+          "text": "coconut water",
+          "vi": "nước dừa"
+        }
+      ],
+      "imageQuery": "coconut",
+      "ipaUs": "/ˈkoʊ.kəˌnʌt/",
+      "ipaUk": "/ˈkəʊ.kə.nʌt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/coconut",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/coconut.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/190270151@N02/50692568958",
+        "author": "GeorgeTan#3",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "coconut",
+        "sha256": "b8ddf16da8133eb89cbd87210499a4b8db44c661ced28ea20a58bb83b9dc567f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "papaya",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả đu đủ",
+      "meaningEn": "a tropical fruit with orange flesh and black seeds",
+      "examples": [
+        {
+          "text": "She cut the papaya in half.",
+          "vi": "Cô ấy cắt quả đu đủ làm đôi."
+        },
+        {
+          "text": "Papaya is common in Vietnam.",
+          "vi": "Đu đủ rất phổ biến ở Việt Nam."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ripe papaya",
+          "vi": "đu đủ chín"
+        }
+      ],
+      "imageQuery": "papaya",
+      "ipaUs": "/pəˈpaɪ.ə/",
+      "ipaUk": "/pəˈpaɪ.ə/",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/papaya.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/97123293@N07/15223667196",
+        "author": "Swallowtail Garden Seeds",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "papaya",
+        "sha256": "2f1d8f2955173eb5b91587a3e22e56e696171586e9d7ecaeec62b12eb0732947",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaSource": "https://en.wiktionary.org/wiki/papaya",
+      "ipaNote": "one sourced transcription used for both accents"
+    },
+    {
+      "term": "lychee",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả vải",
+      "meaningEn": "a small fruit with rough red skin and sweet white flesh",
+      "examples": [
+        {
+          "text": "We eat lychee in the summer.",
+          "vi": "Chúng tôi ăn vải vào mùa hè."
+        },
+        {
+          "text": "This lychee is sweet and juicy.",
+          "vi": "Quả vải này ngọt và mọng nước."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fresh lychee",
+          "vi": "vải tươi"
+        }
+      ],
+      "imageQuery": "lychee",
+      "image": {
+        "file": "a03/lychee.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/171425013@N02/48060055446",
+        "author": "GeorgeTan#2...INACTIVE NOW",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "lychee",
+        "sha256": "ea3d9c632e0200ed79700ff5007097866e24d0b54430aa43a4cd9d16fb54c810",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈlaɪ̯t͡ʃi/",
+      "ipaUk": "/ˈlaɪ̯t͡ʃi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lychee",
+      "ipaVerified": true
+    },
+    {
+      "term": "durian",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả sầu riêng",
+      "meaningEn": "a large spiky tropical fruit with a very strong smell",
+      "examples": [
+        {
+          "text": "Durian has a very strong smell.",
+          "vi": "Sầu riêng có mùi rất nồng."
+        },
+        {
+          "text": "Some people love durian, but others hate it.",
+          "vi": "Có người rất mê sầu riêng, nhưng có người lại ghét."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "durian smell",
+          "vi": "mùi sầu riêng"
+        }
+      ],
+      "imageQuery": "durian fruit",
+      "ipaUs": "/ˈdʊə.ɹi.ən/",
+      "ipaUk": "/ˈdʊə.ɹɪən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/durian",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/durian.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/58763fce29/",
+        "author": "Raju Alam",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "durian fruit",
+        "sha256": "7d250608c08fbdc7ec769ceb5595d69b610fc6d95457821c1eef434e9582dd76",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "kiwi",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả kiwi",
+      "meaningEn": "a small fruit with brown skin and green flesh",
+      "examples": [
+        {
+          "text": "She cut a kiwi into thin slices.",
+          "vi": "Cô ấy cắt quả kiwi thành những lát mỏng."
+        },
+        {
+          "text": "A kiwi is full of vitamin C.",
+          "vi": "Quả kiwi chứa rất nhiều vitamin C."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "kiwi slices",
+          "vi": "lát kiwi"
+        }
+      ],
+      "imageQuery": "kiwi fruit",
+      "ipaUs": "/ˈkiːwi/",
+      "ipaUk": "/ˈkiːwi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/kiwi",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/kiwi.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5968899/sliced-kiwi-fruit-white-background",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "kiwi fruit",
+        "sha256": "0f3e67f673fe59da6a5f48fa0902b5dc3f4819b5d29df036d5c5b58125c2497e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "plum",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả mận",
+      "meaningEn": "a small round fruit with purple or red skin",
+      "examples": [
+        {
+          "text": "The plum is sweet and a little sour.",
+          "vi": "Quả mận ngọt và hơi chua."
+        },
+        {
+          "text": "My father picked plums from the garden.",
+          "vi": "Bố tôi hái mận trong vườn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "plum jam",
+          "vi": "mứt mận"
+        }
+      ],
+      "imageQuery": "plums fruit purple",
+      "ipaUs": "/plʌm/",
+      "ipaUk": "/plʌm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/plum",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/plum.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6033695/photo-image-public-domain-leaf-tree",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "plums fruit purple",
+        "sha256": "a8e7ec0744dec4b421a0b71f87f6220a0dfaddda76d645c4ab6041f9e9f37963",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "melon",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả dưa",
+      "meaningEn": "a large round fruit with sweet soft flesh",
+      "examples": [
+        {
+          "text": "We shared a sweet melon after dinner.",
+          "vi": "Chúng tôi chia nhau một quả dưa ngọt sau bữa tối."
+        },
+        {
+          "text": "The melon is heavy and ripe.",
+          "vi": "Quả dưa này nặng và đã chín."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a slice of melon",
+          "vi": "một lát dưa"
+        }
+      ],
+      "imageQuery": "melon fruit",
+      "ipaUs": "/ˈmɛlən/",
+      "ipaUk": "/ˈmɛlən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/melon",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/melon.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/87805257@N00/29590816515",
+        "author": "Isaszas",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "melon fruit",
+        "sha256": "01d8c5098e42ac0602be9346323530bbf2204e838ce96cf74c8dd2e89190b36f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "avocado",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả bơ",
+      "meaningEn": "a green fruit with soft creamy flesh and a large stone",
+      "plural": "avocados",
+      "examples": [
+        {
+          "text": "I put avocado on my toast.",
+          "vi": "Tôi phết bơ lên bánh mì nướng."
+        },
+        {
+          "text": "An avocado is ripe when it feels soft.",
+          "vi": "Quả bơ chín khi bóp thấy mềm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "avocado toast",
+          "vi": "bánh mì nướng bơ"
+        }
+      ],
+      "imageQuery": "avocado",
+      "ipaUs": "/ˌɑvəˈkɑdoʊ/",
+      "ipaUk": "/ˌævəˈkɑːdəʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/avocado",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/avocado.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/62295966@N07/13976016288",
+        "author": "Plant pests and diseases",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "avocado",
+        "sha256": "a3f8c2153b54a50e27425fb053598d5014897ff260996a3da029d8fde07d6709",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pomegranate",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả lựu",
+      "meaningEn": "a round red fruit full of small juicy seeds",
+      "examples": [
+        {
+          "text": "The pomegranate is full of red seeds.",
+          "vi": "Quả lựu đầy những hạt đỏ."
+        },
+        {
+          "text": "She drank a glass of pomegranate juice.",
+          "vi": "Cô ấy uống một ly nước ép lựu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pomegranate seeds",
+          "vi": "hạt lựu"
+        }
+      ],
+      "imageQuery": "pomegranate",
+      "ipaUs": "/ˈpɑmɪˌɡɹænɪt/",
+      "ipaUk": "/ˈpɒmɪ(ˌ)ɡɹænɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pomegranate",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/pomegranate.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/137705051@N07/22704826703",
+        "author": "Ms. June Franks",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "pomegranate",
+        "sha256": "8302803adcdb5eb23192a447e6484bbf033b3781375055ba6b2688be6655ca36",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "guava",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả ổi",
+      "meaningEn": "a tropical fruit with green skin and many small seeds",
+      "examples": [
+        {
+          "text": "I like to eat guava with salt.",
+          "vi": "Tôi thích ăn ổi chấm muối."
+        },
+        {
+          "text": "The guava tree is in our garden.",
+          "vi": "Cây ổi nằm trong vườn nhà chúng tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "guava tree",
+          "vi": "cây ổi"
+        }
+      ],
+      "imageQuery": "guava fruit",
+      "ipaUs": "/ˈɡwɑːvə/",
+      "ipaUk": "/ˈɡwɑːvə/",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/guava.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6019000/photo-image-public-domain-tree-plant",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "guava fruit",
+        "sha256": "5e82e100865cff6ef504fb8d7270c677d783c8eb62a9c9658f1719beae72e31c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaSource": "https://en.wiktionary.org/wiki/guava",
+      "ipaNote": "one sourced transcription used for both accents"
+    },
+    {
+      "term": "fig",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả sung, quả vả",
+      "meaningEn": "a soft sweet fruit full of tiny seeds",
+      "examples": [
+        {
+          "text": "She cut a fresh fig in half.",
+          "vi": "Cô ấy cắt đôi một quả sung tươi."
+        },
+        {
+          "text": "Dried figs are sweet and chewy.",
+          "vi": "Sung khô ngọt và dai."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "dried fig",
+          "vi": "sung khô"
+        }
+      ],
+      "imageQuery": "figs fruit",
+      "ipaUs": "/fɪɡ/",
+      "ipaUk": "/fɪɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fig",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/fig.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6037705/photo-image-public-domain-leaf-tree",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "figs fruit",
+        "sha256": "e2691b3335a2949535ed82913ac69fa8bcc2c145e63e7f38d9940fe98a89e856",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tangerine",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả quýt",
+      "meaningEn": "a small sweet orange with loose skin",
+      "examples": [
+        {
+          "text": "My grandma gave me a tangerine.",
+          "vi": "Bà cho tôi một quả quýt."
+        },
+        {
+          "text": "Tangerines are easy to peel.",
+          "vi": "Quýt rất dễ bóc vỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "tangerine peel",
+          "vi": "vỏ quýt"
+        }
+      ],
+      "imageQuery": "tangerine mandarin",
+      "image": {
+        "file": "a03/tangerine.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/194923002@N08/54028432225",
+        "author": "& WDnet Studio Creation",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "tangerine mandarin",
+        "sha256": "b14c0a2d53018fd478cb49071f0e16aec621b7830a86c471863757a173d9876d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/æ/",
+      "ipaUk": "/æ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tangerine",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents"
+    },
+    {
+      "term": "blueberry",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả việt quất",
+      "meaningEn": "a very small round blue fruit",
+      "plural": "blueberries",
+      "examples": [
+        {
+          "text": "I put blueberries on my pancakes.",
+          "vi": "Tôi cho việt quất lên bánh kếp."
+        },
+        {
+          "text": "These blueberries are fresh and sweet.",
+          "vi": "Những quả việt quất này tươi và ngọt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "blueberry jam",
+          "vi": "mứt việt quất"
+        }
+      ],
+      "imageQuery": "blueberries",
+      "ipaUs": "/ˈbluˌbɛ.ɹi/",
+      "ipaUk": "/ˈbluːb(ə)ɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/blueberry",
+      "ipaVerified": true,
+      "image": {
+        "file": "a03/blueberry.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Blueberries-In-Pack.jpg",
+        "author": "Evan-Amos",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "blueberries",
+        "sha256": "bcbecf03cd7aa9dfd4f61682f46f098c94d43226c493badba1aede7df97d8445",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
