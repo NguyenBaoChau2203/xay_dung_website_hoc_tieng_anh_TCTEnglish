@@ -1,0 +1,1244 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B08",
+    "name": "Giáo dục & học tập",
+    "description": "#b1 #b2 #education #study",
+    "topic": "Giáo dục & học tập",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "lecture hall",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "giảng đường",
+      "meaningEn": "a large room where a teacher gives a talk to many students",
+      "examples": [
+        {
+          "text": "The lecture hall was full of students.",
+          "vi": "Giảng đường chật kín sinh viên."
+        },
+        {
+          "text": "We found seats at the back of the lecture hall.",
+          "vi": "Chúng tôi tìm được chỗ ngồi ở cuối giảng đường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "crowded lecture hall",
+          "vi": "giảng đường đông đúc"
+        },
+        {
+          "text": "enter the lecture hall",
+          "vi": "bước vào giảng đường"
+        }
+      ],
+      "imageQuery": "university lecture hall",
+      "ipaUs": "/ˈlɛk.t͡ʃɚ hɔl/",
+      "ipaUk": "/ˈlɛk.t͡ʃə hɔːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lecture + https://en.wiktionary.org/wiki/hall",
+      "ipaVerified": true,
+      "image": {
+        "file": "b08/lecture-hall.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Ohio_University_Lecture_Hall.jpg",
+        "author": "Garden Sprite",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "university lecture hall",
+        "sha256": "f8674b853e41e48386cbb6707cb21e81104126accf5eeb6eb85a36c842eea0d1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "campus",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "khuôn viên trường",
+      "meaningEn": "the land and buildings of a university or college",
+      "examples": [
+        {
+          "text": "The campus has a library and a sports centre.",
+          "vi": "Khuôn viên trường có thư viện và trung tâm thể thao."
+        },
+        {
+          "text": "Many students live on campus.",
+          "vi": "Nhiều sinh viên sống trong khuôn viên trường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "live on campus",
+          "vi": "ở trong khuôn viên trường"
+        },
+        {
+          "text": "university campus",
+          "vi": "khuôn viên đại học"
+        }
+      ],
+      "imageQuery": "university campus buildings",
+      "ipaUs": "/ˈkæmpəs/",
+      "ipaUk": "/ˈkæmpəs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/campus",
+      "ipaVerified": true,
+      "image": {
+        "file": "b08/campus.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/104736837@N03/12074301105",
+        "author": "Amsterdam free photos & pictures of the Dutch city",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "university campus buildings",
+        "sha256": "cad075be88c18f98cd6d7d41e712b3667b77e150461a88ee57186108824e7344",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "dormitory",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "ký túc xá",
+      "meaningEn": "a building where students live and sleep at school",
+      "examples": [
+        {
+          "text": "My brother shares a dormitory room with two friends.",
+          "vi": "Anh trai tôi ở chung phòng ký túc xá với hai người bạn."
+        },
+        {
+          "text": "The dormitory is five minutes from the classroom.",
+          "vi": "Ký túc xá cách lớp học năm phút đi bộ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "dormitory room",
+          "vi": "phòng ký túc xá"
+        },
+        {
+          "text": "live in a dormitory",
+          "vi": "ở ký túc xá"
+        }
+      ],
+      "imageQuery": "student dormitory room",
+      "ipaUs": "/ˈdɔɹ.mɪˌtɔɹ.i/",
+      "ipaUk": "/ˈdɔː.mɪ.tɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/dormitory",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "dormitory"
+      },
+      "image": {
+        "file": "b08/dormitory.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:dormitory",
+        "sha256": "370f8013536ce2ab4e9f315a6986fac2b1d49814ead54fb00a3f5ee15cd8f42f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "diploma",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "văn bằng, bằng tốt nghiệp",
+      "meaningEn": "an official paper that shows you have finished a course",
+      "examples": [
+        {
+          "text": "She received her diploma on graduation day.",
+          "vi": "Cô ấy nhận bằng tốt nghiệp vào ngày lễ tốt nghiệp."
+        },
+        {
+          "text": "He hung his diploma on the wall.",
+          "vi": "Anh ấy treo bằng tốt nghiệp lên tường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "receive a diploma",
+          "vi": "nhận bằng tốt nghiệp"
+        },
+        {
+          "text": "high school diploma",
+          "vi": "bằng tốt nghiệp trung học"
+        }
+      ],
+      "imageQuery": "diploma certificate scroll",
+      "ipaUs": "/dɪˈploʊmə/",
+      "ipaUk": "/dɪˈpləʊmə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/diploma",
+      "ipaVerified": true,
+      "image": {
+        "file": "b08/diploma.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6535481/vector-paper-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "diploma certificate scroll",
+        "sha256": "db0a072b8e346bf8f241931fdab2c342e5685ba812cef3f6a6ef744461fc029d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "graduation",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "lễ tốt nghiệp",
+      "meaningEn": "the day or ceremony when you finish your studies",
+      "examples": [
+        {
+          "text": "Our whole family came to my graduation.",
+          "vi": "Cả gia đình tôi đến dự lễ tốt nghiệp của tôi."
+        },
+        {
+          "text": "Graduation is in June this year.",
+          "vi": "Năm nay lễ tốt nghiệp diễn ra vào tháng Sáu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "graduation ceremony",
+          "vi": "lễ tốt nghiệp"
+        },
+        {
+          "text": "graduation day",
+          "vi": "ngày tốt nghiệp"
+        }
+      ],
+      "imageQuery": "graduation ceremony students",
+      "ipaUs": "/ˌɡɹæd͡ʒuˈeɪʃən/",
+      "ipaUk": "/ˌɡɹædjuˈeɪʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/graduation",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "graduation"
+      },
+      "image": {
+        "file": "b08/graduation.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:graduation",
+        "sha256": "d6d819ece0580c4bb5be7169327ff0d552fb0c88b699199a35c9e0f5544297e5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "graduation gown",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "áo cử nhân",
+      "meaningEn": "a long loose robe worn at a graduation ceremony",
+      "examples": [
+        {
+          "text": "He wore a black graduation gown and a square cap.",
+          "vi": "Anh ấy mặc áo cử nhân đen và đội mũ vuông."
+        },
+        {
+          "text": "The graduation gowns were handed out before the ceremony.",
+          "vi": "Áo cử nhân được phát trước buổi lễ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wear a graduation gown",
+          "vi": "mặc áo cử nhân"
+        },
+        {
+          "text": "rent a graduation gown",
+          "vi": "thuê áo cử nhân"
+        }
+      ],
+      "imageQuery": "graduation gown cap",
+      "ipaUs": "/ˌɡɹæd͡ʒuˈeɪʃən ˈɡaʊ̯n/",
+      "ipaUk": "/ˌɡɹædjuˈeɪʃən ˈɡaʊ̯n/",
+      "ipaSource": "https://en.wiktionary.org/wiki/graduation + https://en.wiktionary.org/wiki/gown",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "graduation gown"
+      },
+      "image": {
+        "file": "b08/graduation-gown.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:graduation gown",
+        "sha256": "eef3ae5b62268cf9f8871a950e87c266cefe436760967f46f18dd2d4f0103a08",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "assignment",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bài tập được giao",
+      "meaningEn": "a piece of work that a teacher gives to students",
+      "examples": [
+        {
+          "text": "The teacher gave us a long assignment for the weekend.",
+          "vi": "Cô giáo giao cho chúng tôi một bài tập dài cho cuối tuần."
+        },
+        {
+          "text": "I handed in the assignment on time.",
+          "vi": "Tôi nộp bài tập đúng hạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hand in an assignment",
+          "vi": "nộp bài tập"
+        },
+        {
+          "text": "written assignment",
+          "vi": "bài tập viết"
+        }
+      ],
+      "imageQuery": "student writing assignment desk",
+      "ipaUs": "/əˈsaɪn.mənt/",
+      "ipaUk": "/əˈsaɪn.mənt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/assignment",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "assignment"
+      },
+      "image": {
+        "file": "b08/assignment.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:assignment",
+        "sha256": "f81f02d6d3ba3274a7f622f0fa958dbe6aef3b026247703713aa5fab554397be",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "group project",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "dự án nhóm",
+      "meaningEn": "school work that a small team does together",
+      "examples": [
+        {
+          "text": "Our group project is about recycling.",
+          "vi": "Dự án nhóm của chúng tôi nói về tái chế."
+        },
+        {
+          "text": "We worked on the group project after class.",
+          "vi": "Chúng tôi làm dự án nhóm sau giờ học."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "work on a group project",
+          "vi": "làm dự án nhóm"
+        },
+        {
+          "text": "finish a group project",
+          "vi": "hoàn thành dự án nhóm"
+        }
+      ],
+      "imageQuery": "students group project poster",
+      "ipaUs": "/ɡɹup ˈpɹɑˌd͡ʒɛkt/",
+      "ipaUk": "/ɡɹuːp ˈpɹɒd͡ʒ.ɛkt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/group + https://en.wiktionary.org/wiki/project",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "group project"
+      },
+      "image": {
+        "file": "b08/group-project.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:group project",
+        "sha256": "d40d353131683e0d3aa071b5ec22b924808016a0d1da09aaaa1cd1ef5e220621",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "laboratory",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "phòng thí nghiệm",
+      "meaningEn": "a room with equipment for scientific work",
+      "examples": [
+        {
+          "text": "The students do experiments in the laboratory.",
+          "vi": "Học sinh làm thí nghiệm trong phòng thí nghiệm."
+        },
+        {
+          "text": "Wear safety glasses in the laboratory.",
+          "vi": "Hãy đeo kính bảo hộ khi ở trong phòng thí nghiệm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "science laboratory",
+          "vi": "phòng thí nghiệm khoa học"
+        },
+        {
+          "text": "laboratory equipment",
+          "vi": "thiết bị phòng thí nghiệm"
+        }
+      ],
+      "imageQuery": "school laboratory equipment",
+      "ipaUs": "/ˈlæb(ə)ɹəˌtɔɹi/",
+      "ipaUk": "/ləˈbɒɹət(ə)ɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/laboratory",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "laboratory"
+      },
+      "image": {
+        "file": "b08/laboratory.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:laboratory",
+        "sha256": "acfdaf7b15eb5591cdfd980cddce8d3abee7046c87ae701e0fcc5023908edce3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tutor",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "gia sư",
+      "meaningEn": "a teacher who gives extra lessons to one student",
+      "examples": [
+        {
+          "text": "My tutor helps me with English every Tuesday.",
+          "vi": "Gia sư giúp tôi học tiếng Anh mỗi thứ Ba."
+        },
+        {
+          "text": "She works as a maths tutor.",
+          "vi": "Cô ấy làm gia sư môn toán."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "private tutor",
+          "vi": "gia sư riêng"
+        },
+        {
+          "text": "hire a tutor",
+          "vi": "thuê gia sư"
+        }
+      ],
+      "imageQuery": "tutor teaching student",
+      "ipaUs": "/ˈtutɚ/",
+      "ipaUk": "/ˈtjuːtəː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tutor",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "tutor"
+      },
+      "image": {
+        "file": "b08/tutor.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:tutor",
+        "sha256": "7ecba435e3988f8e49cad0ae66c21a80b74e1423066dc8e0a69023a0da5ad13e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "essay",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bài luận",
+      "meaningEn": "a short piece of writing on one subject",
+      "examples": [
+        {
+          "text": "I have to write an essay about my hometown.",
+          "vi": "Tôi phải viết một bài luận về quê hương mình."
+        },
+        {
+          "text": "The teacher marked our essays last night.",
+          "vi": "Cô giáo đã chấm bài luận của chúng tôi tối qua."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "write an essay",
+          "vi": "viết bài luận"
+        },
+        {
+          "text": "essay topic",
+          "vi": "đề tài bài luận"
+        }
+      ],
+      "imageQuery": "essay writing paper",
+      "ipaUs": "/ˈɛs.eɪ/",
+      "ipaUk": "/ˈɛs.eɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/essay",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "essay"
+      },
+      "image": {
+        "file": "b08/essay.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:essay",
+        "sha256": "f836fcea91b03286e4ae437afb5d0e30e688398e3f8be8807dc4ce4ef5895b47",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "timetable",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "thời khóa biểu",
+      "meaningEn": "a list that shows when lessons or events happen",
+      "examples": [
+        {
+          "text": "Check the timetable to see when the next class starts.",
+          "vi": "Hãy xem thời khóa biểu để biết khi nào lớp tiếp theo bắt đầu."
+        },
+        {
+          "text": "My timetable is very busy on Mondays.",
+          "vi": "Thời khóa biểu của tôi rất kín vào thứ Hai."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "school timetable",
+          "vi": "thời khóa biểu của trường"
+        },
+        {
+          "text": "check the timetable",
+          "vi": "xem thời khóa biểu"
+        }
+      ],
+      "imageQuery": "school timetable schedule",
+      "ipaUs": "/ˈtaɪmˌteɪbəl/",
+      "ipaUk": "/ˈtaɪmˌteɪbəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/timetable",
+      "ipaVerified": true,
+      "image": {
+        "file": "b08/timetable.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:FLHS_School_Schedule.jpg",
+        "author": "",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "school timetable schedule",
+        "sha256": "33c4219753bf30897365e05b991e1809fba98189a553dcb70d3f8bcc4a1feacc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "flashcard",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "thẻ ghi nhớ",
+      "meaningEn": "a small card with a word on one side and the meaning on the other",
+      "examples": [
+        {
+          "text": "I learn new words with flashcards.",
+          "vi": "Tôi học từ mới bằng thẻ ghi nhớ."
+        },
+        {
+          "text": "She made a flashcard for each new word.",
+          "vi": "Cô ấy làm một thẻ ghi nhớ cho mỗi từ mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "make flashcards",
+          "vi": "làm thẻ ghi nhớ"
+        },
+        {
+          "text": "study with flashcards",
+          "vi": "học bằng thẻ ghi nhớ"
+        }
+      ],
+      "imageQuery": "flashcards study",
+      "ipaUs": "/ˈflæʃˌkɑɹd/",
+      "ipaUk": "/ˈflæʃˌkɑɹd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/flashcard",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "flashcard"
+      },
+      "image": {
+        "file": "b08/flashcard.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:flashcard",
+        "sha256": "2948309a37e734be8f576cddf0776c077fad9fac4873881339b2a5ff3a61d59e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "highlighter",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bút dạ quang",
+      "meaningEn": "a bright pen used to mark important words",
+      "examples": [
+        {
+          "text": "Use a highlighter to mark the key words.",
+          "vi": "Hãy dùng bút dạ quang để đánh dấu các từ khóa."
+        },
+        {
+          "text": "My highlighter is yellow.",
+          "vi": "Bút dạ quang của tôi màu vàng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "yellow highlighter",
+          "vi": "bút dạ quang màu vàng"
+        },
+        {
+          "text": "use a highlighter",
+          "vi": "dùng bút dạ quang"
+        }
+      ],
+      "imageQuery": "highlighter pen book",
+      "ipaUs": "/ˈhaɪ.laɪt.ɚ/",
+      "ipaUk": "/ˈhaɪ.laɪt.ə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/highlighter",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "highlighter"
+      },
+      "image": {
+        "file": "b08/highlighter.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:highlighter",
+        "sha256": "f5aa03766a7378b9ee93a6943e60a7c28d37734c557a88bee6a2f818b517fa36",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hole punch",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cái đục lỗ giấy",
+      "meaningEn": "a tool that makes round holes in paper",
+      "examples": [
+        {
+          "text": "Use the hole punch to make holes in the page.",
+          "vi": "Hãy dùng cái đục lỗ để đục lỗ trên trang giấy."
+        },
+        {
+          "text": "The hole punch is on the teacher's desk.",
+          "vi": "Cái đục lỗ giấy nằm trên bàn giáo viên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "use a hole punch",
+          "vi": "dùng cái đục lỗ"
+        },
+        {
+          "text": "two-hole punch",
+          "vi": "cái đục hai lỗ"
+        }
+      ],
+      "imageQuery": "hole punch paper office",
+      "ipaUs": "/hoʊl pʌnt͡ʃ/",
+      "ipaUk": "/həʊl pʌnt͡ʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hole + https://en.wiktionary.org/wiki/punch",
+      "ipaVerified": true,
+      "image": {
+        "file": "b08/hole-punch.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Hole_Puncher_with_Paper_positioner.jpg",
+        "author": "No machine-readable author provided. Berteun assumed (based on copyright claims).",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "hole punch paper office",
+        "sha256": "0914031750ca91b762ba977cc73ea71f8219260f0482cc7f15a412ee860c63f0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "worksheet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "phiếu bài tập",
+      "meaningEn": "a printed page of questions for students to answer",
+      "examples": [
+        {
+          "text": "The teacher handed out a maths worksheet.",
+          "vi": "Cô giáo phát một phiếu bài tập toán."
+        },
+        {
+          "text": "Please finish the worksheet before the bell.",
+          "vi": "Hãy làm xong phiếu bài tập trước khi chuông reo."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "complete a worksheet",
+          "vi": "hoàn thành phiếu bài tập"
+        },
+        {
+          "text": "grammar worksheet",
+          "vi": "phiếu bài tập ngữ pháp"
+        }
+      ],
+      "imageQuery": "student worksheet paper pencil",
+      "generate": {
+        "kind": "edu",
+        "value": "worksheet"
+      },
+      "image": {
+        "file": "b08/worksheet.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:worksheet",
+        "sha256": "ac5d82b724d32754fdec2f01bf547552275b0768f1b09e8fa4c3578c377fffd2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈwɝːkʃit/",
+      "ipaUk": "/ˈwɜːkʃiːt/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found"
+    },
+    {
+      "term": "projector",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "máy chiếu",
+      "meaningEn": "a machine that shows pictures on a wall or screen",
+      "examples": [
+        {
+          "text": "The teacher turned on the projector.",
+          "vi": "Cô giáo bật máy chiếu lên."
+        },
+        {
+          "text": "The projector is connected to her laptop.",
+          "vi": "Máy chiếu được nối với máy tính xách tay của cô ấy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "turn on the projector",
+          "vi": "bật máy chiếu"
+        },
+        {
+          "text": "projector screen",
+          "vi": "màn chiếu"
+        }
+      ],
+      "imageQuery": "classroom projector screen",
+      "ipaUs": "/pɹəˈd͡ʒɛktɚ/",
+      "ipaUk": "/pɹəˈd͡ʒɛktə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/projector",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "projector"
+      },
+      "image": {
+        "file": "b08/projector.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:projector",
+        "sha256": "2b2c20b52423aedf2bd417523c02cc61ce5854dc2b8e466b368ee69e639daa19",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "certificate",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "chứng chỉ",
+      "meaningEn": "an official paper that proves you passed a course or test",
+      "examples": [
+        {
+          "text": "I got a certificate for finishing the English course.",
+          "vi": "Tôi nhận được chứng chỉ vì hoàn thành khóa tiếng Anh."
+        },
+        {
+          "text": "The certificate is on the wall.",
+          "vi": "Tấm chứng chỉ được treo trên tường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "earn a certificate",
+          "vi": "đạt chứng chỉ"
+        },
+        {
+          "text": "certificate of achievement",
+          "vi": "giấy khen"
+        }
+      ],
+      "imageQuery": "certificate award paper",
+      "ipaUs": "/sɚˈtɪf.ɪ.kət/",
+      "ipaUk": "/səˈtɪf.ɪ.kɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/certificate",
+      "ipaVerified": true,
+      "image": {
+        "file": "b08/certificate.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6482334/png-paper-sticker",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "certificate award paper",
+        "sha256": "9232dc88698b3f9d3387da7df8ac2c14b8bf4e983c3ab8ef4e81f40797d382be",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "locker",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "tủ có khóa",
+      "meaningEn": "a small cupboard with a lock for keeping your things",
+      "examples": [
+        {
+          "text": "I keep my books in my locker.",
+          "vi": "Tôi cất sách trong tủ có khóa của mình."
+        },
+        {
+          "text": "Her locker is next to the gym.",
+          "vi": "Tủ của cô ấy ở cạnh phòng tập."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "school locker",
+          "vi": "tủ khóa ở trường"
+        },
+        {
+          "text": "open a locker",
+          "vi": "mở tủ khóa"
+        }
+      ],
+      "imageQuery": "school lockers corridor",
+      "ipaUs": "/ˈlɑ.kɚ/",
+      "ipaUk": "/ˈlɒk.ə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/locker",
+      "ipaVerified": true,
+      "image": {
+        "file": "b08/locker.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5914049/photo-image-background-public-domain-orange",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "school lockers corridor",
+        "sha256": "659feca6144160c7764ff51eaf4ba238dfdb39f1fd06e3414d8ab7797338d2f4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cafeteria",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "căng tin",
+      "meaningEn": "a place in a school where you buy and eat meals",
+      "examples": [
+        {
+          "text": "We eat lunch in the school cafeteria.",
+          "vi": "Chúng tôi ăn trưa ở căng tin trường."
+        },
+        {
+          "text": "The cafeteria is crowded at noon.",
+          "vi": "Căng tin rất đông vào buổi trưa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "school cafeteria",
+          "vi": "căng tin trường"
+        },
+        {
+          "text": "cafeteria food",
+          "vi": "đồ ăn căng tin"
+        }
+      ],
+      "imageQuery": "school cafeteria tray",
+      "ipaUs": "/ˌkæf.ə.ˈtɪɹ.i.ə/",
+      "ipaUk": "/ˌkæf.ə.ˈtɪə̯.ɹi.ə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cafeteria",
+      "ipaVerified": true,
+      "image": {
+        "file": "b08/cafeteria.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Elementary_school_(2nd_grade)_students_eating_school_breakfast_in_the_cafeteria_-_20210727-FNS-UNC-0009.jpg",
+        "author": "U.S. Department of Agriculture",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "school cafeteria tray",
+        "sha256": "885a729c73f06928969503d1812d7ad51963a1396196609948a311ea538daafc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "school bus",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "xe buýt trường học",
+      "meaningEn": "a bus that takes children to and from school",
+      "examples": [
+        {
+          "text": "The school bus comes at seven o'clock.",
+          "vi": "Xe buýt trường học đến lúc bảy giờ."
+        },
+        {
+          "text": "He gets off the school bus near his house.",
+          "vi": "Cậu ấy xuống xe buýt trường học gần nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "take the school bus",
+          "vi": "đi xe buýt trường học"
+        },
+        {
+          "text": "yellow school bus",
+          "vi": "xe buýt trường học màu vàng"
+        }
+      ],
+      "imageQuery": "yellow school bus",
+      "ipaUs": "/skul bʌs/",
+      "ipaUk": "/skuːl bʌs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/school + https://en.wiktionary.org/wiki/bus",
+      "ipaVerified": true,
+      "image": {
+        "file": "b08/school-bus.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8809277/yellow-school-bus",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "yellow school bus",
+        "sha256": "741dd6c471612bae9bf52391bbb16a69d63b352d266bbe7e839b0a87e5c25484",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "science fair",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "hội chợ khoa học",
+      "meaningEn": "an event where students show their science projects",
+      "examples": [
+        {
+          "text": "She won a prize at the school science fair.",
+          "vi": "Cô ấy đoạt giải ở hội chợ khoa học của trường."
+        },
+        {
+          "text": "Our science fair takes place in the gym.",
+          "vi": "Hội chợ khoa học của chúng tôi diễn ra trong phòng tập."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "science fair project",
+          "vi": "dự án hội chợ khoa học"
+        },
+        {
+          "text": "win a prize at the science fair",
+          "vi": "đoạt giải ở hội chợ khoa học"
+        }
+      ],
+      "imageQuery": "science fair students projects",
+      "ipaUs": "/ˈsaɪ.əns ˈfɛɚ/",
+      "ipaUk": "/ˈsaɪ.əns ˈfɛə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/science + https://en.wiktionary.org/wiki/fair",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "science fair"
+      },
+      "image": {
+        "file": "b08/science-fair.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:science fair",
+        "sha256": "13caa27bfc248b69d02fcc5b2cab917eb7158ac87c61c51cf0e3a3a67f15c9d9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "quiz",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bài kiểm tra ngắn",
+      "meaningEn": "a short test with a few questions",
+      "examples": [
+        {
+          "text": "We have a spelling quiz every Friday.",
+          "vi": "Thứ Sáu nào chúng tôi cũng có một bài kiểm tra chính tả ngắn."
+        },
+        {
+          "text": "The quiz was easier than I expected.",
+          "vi": "Bài kiểm tra ngắn dễ hơn tôi nghĩ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "take a quiz",
+          "vi": "làm bài kiểm tra ngắn"
+        },
+        {
+          "text": "pop quiz",
+          "vi": "kiểm tra đột xuất"
+        }
+      ],
+      "imageQuery": "quiz test students",
+      "ipaUs": "/kwɪz/",
+      "ipaUk": "/kwɪz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/quiz",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "edu",
+        "value": "quiz"
+      },
+      "image": {
+        "file": "b08/quiz.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:edu:quiz",
+        "sha256": "85b0a0940db3f96563df622bceb4a10f0752227d945047929954bbc3e4d9ecf1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "blackboard",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bảng đen",
+      "meaningEn": "a dark board that you write on with chalk",
+      "examples": [
+        {
+          "text": "The teacher wrote the date on the blackboard.",
+          "vi": "Cô giáo viết ngày tháng lên bảng đen."
+        },
+        {
+          "text": "Please clean the blackboard after class.",
+          "vi": "Làm ơn lau bảng đen sau giờ học."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "clean the blackboard",
+          "vi": "lau bảng đen"
+        },
+        {
+          "text": "write on the blackboard",
+          "vi": "viết lên bảng đen"
+        }
+      ],
+      "imageQuery": "blackboard classroom chalk",
+      "ipaUs": "/ˈblækboɹd/",
+      "ipaUk": "/ˈblækbɔːd/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/blackboard ; https://en.wiktionary.org/wiki/blackboard",
+      "ipaVerified": true,
+      "image": {
+        "file": "b08/blackboard.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/9004448/png-white-background-frame",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "blackboard classroom chalk",
+        "sha256": "8d98e9d798f4aadbb904484bb3cbf2314d44fd93d0c1c30e6ad2a8fefe2ca508",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "chalk",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "phấn",
+      "meaningEn": "a soft white stick used for writing on a blackboard",
+      "examples": [
+        {
+          "text": "She picked up a piece of chalk and drew a circle.",
+          "vi": "Cô ấy cầm một viên phấn lên và vẽ một vòng tròn."
+        },
+        {
+          "text": "My hands were covered in chalk dust.",
+          "vi": "Tay tôi dính đầy bụi phấn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "piece of chalk",
+          "vi": "một viên phấn"
+        },
+        {
+          "text": "coloured chalk",
+          "vi": "phấn màu"
+        }
+      ],
+      "imageQuery": "chalk sticks",
+      "ipaUs": "/t͡ʃɔk/",
+      "ipaUk": "/t͡ʃɔːk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/chalk",
+      "ipaVerified": true,
+      "image": {
+        "file": "b08/chalk.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5911951/image-background-aesthetic-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "chalk sticks",
+        "sha256": "986c6d5d264bd272bf795c007bb7e32a2cc8fd48897b4a79c4f89c5907ba7d74",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
