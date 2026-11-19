@@ -1002,6 +1002,205 @@ def weather_icon(name: str) -> bytes:
     return finish(img)
 
 
+YELLOW = (250, 204, 21)
+EMOTIONS = {
+    # eyes, brows, mouth, face colour, extras
+    "happy": ("open", "up", "big", YELLOW, ["blush"]),
+    "sad": ("droop", "worry", "frown", (147, 197, 253), ["tear"]),
+    "angry": ("open", "angry", "grimace", (239, 68, 68), ["steam"]),
+    "surprised": ("wide", "high", "o", YELLOW, ["lines"]),
+    "bored": ("half", "flat", "flat", (203, 213, 225), []),
+    "tired": ("half", "flat", "wavy", (203, 213, 225), ["bags", "sweat"]),
+    "scared": ("wide_small", "worry", "grimace", (196, 181, 253), ["sweat"]),
+    "excited": ("star", "up", "big", YELLOW, ["sparkle"]),
+    "nervous": ("side", "worry", "wavy", YELLOW, ["sweat"]),
+    "worried": ("open", "worry", "frown", YELLOW, ["sweat"]),
+    "proud": ("arc", "up", "smirk", YELLOW, ["sparkle"]),
+    "shy": ("down", "up", "small", (252, 165, 165), ["blush"]),
+    "lonely": ("droop", "worry", "frown", (148, 163, 184), ["cloud"]),
+    "jealous": ("side", "angry", "smirk", (134, 239, 172), []),
+    "confused": ("open", "one", "wavy", YELLOW, ["question"]),
+    "embarrassed": ("down", "worry", "wavy", (252, 165, 165), ["blush", "sweat"]),
+    "relaxed": ("arc_down", "flat", "smile", YELLOW, ["blush"]),
+    "curious": ("side_wide", "one", "small_o", YELLOW, ["question"]),
+    "disappointed": ("down", "worry", "frown", (203, 213, 225), []),
+    "grateful": ("arc", "up", "smile", YELLOW, ["blush", "hearts"]),
+    "upset": ("droop", "worry", "frown", (252, 165, 165), ["tear", "tear2"]),
+    "calm": ("arc_down", "flat", "smile", (186, 230, 253), []),
+    "cheerful": ("arc", "up", "big", YELLOW, ["sun"]),
+    "sleepy": ("closed", "flat", "small_o", (196, 181, 253), ["zzz"]),
+    "stressed": ("wide_small", "angry", "grimace", (253, 186, 116), ["sweat", "zig"]),
+}
+
+
+def emotion_face(name: str) -> bytes:
+    """Flat original emoji-style face for an emotion word (kind "emotion")."""
+    eyes, brows, mouth, col, extras = EMOTIONS[name]
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+    cx, cy, r = 240, 190, 130
+
+    def oval(x0, y0, x1, y1, fill, w=0):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def line(x0, y0, x1, y1, w=7):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=L, width=w * s)
+
+    def arc(x0, y0, x1, y1, a0, a1, w=7):
+        d.arc((x0 * s, y0 * s, x1 * s, y1 * s), a0, a1, fill=L, width=w * s)
+
+    def star(x, y, rr, fill):
+        d.polygon(poly_star(x * s, y * s, rr * s, rr * 0.45 * s), fill=fill, outline=L)
+
+    if "cloud" in extras:
+        for dx, dy, rr in ((-40, 0, 28), (0, -12, 34), (40, 0, 28)):
+            oval(cx + dx - rr, 36 + dy - rr + 20, cx + dx + rr, 36 + dy + rr + 20, (203, 213, 225), 3)
+        for k in (-30, 0, 30):
+            line(cx + k, 86, cx + k - 6, 108, 4)
+    if "sun" in extras:
+        for k in range(12):
+            a = math.radians(k * 30)
+            d.line(((cx + math.cos(a) * (r + 12)) * s, (cy + math.sin(a) * (r + 12)) * s, (cx + math.cos(a) * (r + 32)) * s, (cy + math.sin(a) * (r + 32)) * s), fill=(245, 158, 11), width=8 * s)
+    oval(cx - r, cy - r, cx + r, cy + r, col, 5)
+    # cheeks
+    if "blush" in extras:
+        oval(cx - 100, cy + 14, cx - 56, cy + 44, (248, 113, 113))
+        oval(cx + 56, cy + 14, cx + 100, cy + 44, (248, 113, 113))
+    # eyes
+    ex = (-48, 48)
+    ey = cy - 30
+    for i, x in enumerate(ex):
+        X = cx + x
+        if eyes == "open":
+            oval(X - 12, ey - 14, X + 12, ey + 14, L)
+        elif eyes == "droop":
+            oval(X - 11, ey - 6, X + 11, ey + 20, L)
+        elif eyes == "wide":
+            oval(X - 22, ey - 24, X + 22, ey + 20, (255, 255, 255), 4)
+            oval(X - 8, ey - 8, X + 8, ey + 8, L)
+        elif eyes == "wide_small":
+            oval(X - 22, ey - 24, X + 22, ey + 20, (255, 255, 255), 4)
+            oval(X - 4, ey - 4, X + 4, ey + 4, L)
+        elif eyes == "half":
+            oval(X - 15, ey - 14, X + 15, ey + 16, (255, 255, 255), 4)
+            oval(X - 7, ey - 2, X + 7, ey + 12, L)
+            d.rectangle(((X - 18) * s, (ey - 18) * s, (X + 18) * s, (ey - 2) * s), fill=col)
+            line(X - 18, ey - 2, X + 18, ey - 2, 6)
+        elif eyes == "star":
+            star(X, ey, 22, (253, 224, 71))
+        elif eyes == "side":
+            oval(X - 16, ey - 14, X + 16, ey + 14, (255, 255, 255), 4)
+            oval(X + 2, ey - 6, X + 14, ey + 6, L)
+        elif eyes == "side_wide":
+            oval(X - 20, ey - 20, X + 20, ey + 20, (255, 255, 255), 4)
+            oval(X + 4, ey - 8, X + 16, ey + 4, L)
+        elif eyes == "down":
+            oval(X - 14, ey - 12, X + 14, ey + 14, (255, 255, 255), 4)
+            oval(X - 6, ey + 2, X + 6, ey + 12, L)
+        elif eyes == "arc":
+            arc(X - 18, ey - 12, X + 18, ey + 24, 200, 340, 8)
+        elif eyes == "arc_down":
+            arc(X - 18, ey - 20, X + 18, ey + 14, 20, 160, 8)
+        elif eyes == "closed":
+            line(X - 16, ey, X + 16, ey, 8)
+    # brows
+    by = cy - 70
+    if brows == "up":
+        arc(cx - 76, by - 6, cx - 20, by + 30, 200, 330, 6)
+        arc(cx + 20, by - 6, cx + 76, by + 30, 210, 340, 6)
+    elif brows == "high":
+        arc(cx - 76, by - 22, cx - 20, by + 14, 200, 330, 6)
+        arc(cx + 20, by - 22, cx + 76, by + 14, 210, 340, 6)
+    elif brows == "flat":
+        line(cx - 72, by + 4, cx - 24, by + 4, 6)
+        line(cx + 24, by + 4, cx + 72, by + 4, 6)
+    elif brows == "worry":
+        line(cx - 72, by + 14, cx - 24, by - 8, 6)
+        line(cx + 24, by - 8, cx + 72, by + 14, 6)
+    elif brows == "angry":
+        line(cx - 72, by - 8, cx - 24, by + 14, 7)
+        line(cx + 24, by + 14, cx + 72, by - 8, 7)
+    elif brows == "one":
+        line(cx - 72, by + 6, cx - 24, by + 6, 6)
+        arc(cx + 20, by - 26, cx + 76, by + 10, 200, 340, 6)
+    # mouth
+    my = cy + 52
+    if mouth == "smile":
+        arc(cx - 40, my - 30, cx + 40, my + 20, 20, 160, 7)
+    elif mouth == "big":
+        d.pieslice(((cx - 56) * s, (my - 40) * s, (cx + 56) * s, (my + 44) * s), 0, 180, fill=L)
+    elif mouth == "frown":
+        arc(cx - 40, my, cx + 40, my + 50, 200, 340, 7)
+    elif mouth == "flat":
+        line(cx - 32, my + 16, cx + 32, my + 16, 7)
+    elif mouth == "o":
+        oval(cx - 18, my - 4, cx + 18, my + 44, L)
+    elif mouth == "small_o":
+        oval(cx - 10, my + 4, cx + 10, my + 30, L)
+    elif mouth == "small":
+        arc(cx - 20, my - 4, cx + 20, my + 22, 20, 160, 6)
+    elif mouth == "wavy":
+        pts = [(cx - 40 + i * 8, my + 18 + math.sin(i * 1.3) * 7) for i in range(11)]
+        d.line([(x * s, y * s) for x, y in pts], fill=L, width=6 * s, joint="curve")
+    elif mouth == "smirk":
+        arc(cx - 36, my - 14, cx + 48, my + 28, 20, 150, 7)
+        line(cx + 44, my + 8, cx + 54, my - 2, 6)
+    elif mouth == "grimace":
+        d.rounded_rectangle(((cx - 44) * s, (my + 2) * s, (cx + 44) * s, (my + 38) * s), 10 * s, fill=(255, 255, 255), outline=L, width=5 * s)
+        for k in range(-30, 40, 15):
+            line(cx + k, my + 2, cx + k, my + 38, 3)
+        line(cx - 44, my + 20, cx + 44, my + 20, 3)
+    # extras
+    if "tear" in extras:
+        d.polygon([((cx - 70) * s, (ey + 22) * s), ((cx - 80) * s, (ey + 52) * s), ((cx - 60) * s, (ey + 52) * s)], fill=(96, 165, 250), outline=L)
+    if "tear2" in extras:
+        d.polygon([((cx + 70) * s, (ey + 22) * s), ((cx + 60) * s, (ey + 52) * s), ((cx + 80) * s, (ey + 52) * s)], fill=(96, 165, 250), outline=L)
+    if "sweat" in extras:
+        d.polygon([((cx + 100) * s, (cy - 100) * s), ((cx + 88) * s, (cy - 64) * s), ((cx + 112) * s, (cy - 64) * s)], fill=(147, 197, 253), outline=L)
+    if "steam" in extras:
+        for k in (-60, 60):
+            oval(cx + k - 16, 28, cx + k + 16, 60, (255, 255, 255), 3)
+    if "lines" in extras:
+        for a in (-60, -30, 30, 60):
+            x0 = cx + math.sin(math.radians(a)) * (r + 14)
+            y0 = cy - math.cos(math.radians(a)) * (r + 14)
+            x1 = cx + math.sin(math.radians(a)) * (r + 38)
+            y1 = cy - math.cos(math.radians(a)) * (r + 38)
+            line(x0, y0, x1, y1, 5)
+    if "bags" in extras:
+        arc(cx - 66, ey + 6, cx - 30, ey + 40, 20, 160, 4)
+        arc(cx + 30, ey + 6, cx + 66, ey + 40, 20, 160, 4)
+    if "sparkle" in extras:
+        star(cx + 130, 70, 18, (253, 224, 71))
+        star(cx - 140, 90, 12, (253, 224, 71))
+    if "question" in extras:
+        d.text(((cx + 100) * s, 20 * s), "?", fill=L, font=_big_font(90 * s))
+    if "hearts" in extras:
+        for hx, hy, hr in ((cx + 124, 60, 16), (cx - 130, 80, 12)):
+            oval(hx - hr, hy - hr, hx, hy, (244, 63, 94))
+            oval(hx, hy - hr, hx + hr, hy, (244, 63, 94))
+            d.polygon([((hx - hr) * s, (hy - hr * 0.4) * s), ((hx + hr) * s, (hy - hr * 0.4) * s), (hx * s, (hy + hr * 1.1) * s)], fill=(244, 63, 94))
+    if "zzz" in extras:
+        d.text(((cx + 100) * s, 20 * s), "Z", fill=L, font=_big_font(70 * s))
+        d.text(((cx + 140) * s, (-4) * s), "z", fill=L, font=_big_font(46 * s))
+    if "zig" in extras:
+        pts = [(cx - 60 + i * 20, 24 + (12 if i % 2 else 0)) for i in range(7)]
+        d.line([(x * s, y * s) for x, y in pts], fill=L, width=5 * s, joint="curve")
+    return finish(img)
+
+
+def _big_font(px: int):
+    from PIL import ImageFont
+
+    for name in ("arialbd.ttf", "arial.ttf", "DejaVuSans-Bold.ttf"):
+        try:
+            return ImageFont.truetype(name, int(px))
+        except OSError:
+            continue
+    return ImageFont.load_default()
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -1042,6 +1241,8 @@ def main() -> None:
             data = vehicle_scene(val)
         elif kind == "weather":
             data = weather_icon(val)
+        elif kind == "emotion":
+            data = emotion_face(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"

@@ -1,0 +1,1295 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A23",
+    "name": "Cảm xúc",
+    "description": "#a1 #a2 #feelings #emotions",
+    "topic": "Cảm xúc",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "happy",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A1",
+      "definition": "vui vẻ, hạnh phúc",
+      "meaningEn": "feeling pleased and full of joy",
+      "examples": [
+        {
+          "text": "I am happy to see you again.",
+          "vi": "Tôi rất vui khi gặp lại bạn."
+        },
+        {
+          "text": "The children look very happy today.",
+          "vi": "Hôm nay bọn trẻ trông rất vui."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "feel happy",
+          "vi": "cảm thấy vui"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "happiness",
+          "pos": "noun",
+          "vi": "niềm hạnh phúc"
+        }
+      ],
+      "antonyms": [
+        "sad"
+      ],
+      "imageQuery": "happy smiley face emoticon",
+      "ipaUs": "/ˈhæpi/",
+      "ipaUk": "/ˈhæpi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/happy",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "happy"
+      },
+      "image": {
+        "file": "a23/happy.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:happy",
+        "sha256": "4d6a38a921184cea505b71455d587ad752f65a41b899440a8f5d421588887833",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sad",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A1",
+      "definition": "buồn",
+      "meaningEn": "feeling unhappy about something",
+      "examples": [
+        {
+          "text": "She was sad when her friend moved away.",
+          "vi": "Cô ấy buồn khi người bạn chuyển đi."
+        },
+        {
+          "text": "It is a sad story with a happy end.",
+          "vi": "Đó là một câu chuyện buồn nhưng có kết thúc vui."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "feel sad",
+          "vi": "cảm thấy buồn"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "sadness",
+          "pos": "noun",
+          "vi": "nỗi buồn"
+        }
+      ],
+      "antonyms": [
+        "happy"
+      ],
+      "imageQuery": "sad face emoticon",
+      "ipaUs": "/ˈsæd/",
+      "ipaUk": "/ˈsæd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sad",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "sad"
+      },
+      "image": {
+        "file": "a23/sad.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:sad",
+        "sha256": "f1ac700d07c3e4f7706d80c96d7558695d2d1f56abbb8a3a2f4072a169473dc6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "angry",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A1",
+      "definition": "tức giận",
+      "meaningEn": "feeling very annoyed or cross",
+      "examples": [
+        {
+          "text": "He was angry because the bus was late.",
+          "vi": "Anh ấy tức giận vì xe buýt đến muộn."
+        },
+        {
+          "text": "Do not be angry with me.",
+          "vi": "Đừng giận tôi nhé."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "get angry",
+          "vi": "nổi giận"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "anger",
+          "pos": "noun",
+          "vi": "cơn giận"
+        }
+      ],
+      "imageQuery": "angry face emoticon",
+      "ipaUs": "/ˈæŋ.ɡɹi/",
+      "ipaUk": "/ˈæŋ.ɡɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/angry",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "angry"
+      },
+      "image": {
+        "file": "a23/angry.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:angry",
+        "sha256": "4fdc38c5621ebcb6a2404be11df2652b62c07a2e4c66436aab9386310f3b9bb5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "surprised",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "ngạc nhiên",
+      "meaningEn": "feeling shocked because something was not expected",
+      "examples": [
+        {
+          "text": "I was surprised to see him at the party.",
+          "vi": "Tôi ngạc nhiên khi thấy anh ấy ở bữa tiệc."
+        },
+        {
+          "text": "She looked surprised when she opened the gift.",
+          "vi": "Cô ấy trông ngạc nhiên khi mở món quà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "look surprised",
+          "vi": "trông ngạc nhiên"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "surprise",
+          "pos": "noun",
+          "vi": "sự bất ngờ"
+        }
+      ],
+      "imageQuery": "surprised face emoticon",
+      "ipaUs": "/səˈpɹaɪzd/",
+      "ipaUk": "/səˈpɹaɪzd/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/surprised ; https://en.wiktionary.org/wiki/surprised",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "surprised"
+      },
+      "image": {
+        "file": "a23/surprised.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:surprised",
+        "sha256": "c95e6bd370aad60fbe61bab1ac5c26ab16cc791078e41e66f2cd0d5f3eafb3d5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bored",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "chán, buồn chán",
+      "meaningEn": "feeling tired because something is not interesting",
+      "examples": [
+        {
+          "text": "I was bored during the long lesson.",
+          "vi": "Tôi thấy chán trong tiết học dài."
+        },
+        {
+          "text": "The children get bored on rainy days.",
+          "vi": "Bọn trẻ thấy chán vào những ngày mưa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "feel bored",
+          "vi": "thấy chán"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "boring",
+          "pos": "adj",
+          "vi": "nhàm chán"
+        }
+      ],
+      "imageQuery": "bored face yawning",
+      "ipaUs": "/bɔɹd/",
+      "ipaUk": "/bɔːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bored",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "bored"
+      },
+      "image": {
+        "file": "a23/bored.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:bored",
+        "sha256": "4496fb78cfceb833937cd9a8547ce01e3091aeb9f871596c673921c622bef103",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tired",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A1",
+      "definition": "mệt, mệt mỏi",
+      "meaningEn": "feeling that you need to rest or sleep",
+      "examples": [
+        {
+          "text": "I am tired after a long day at work.",
+          "vi": "Tôi mệt sau một ngày dài làm việc."
+        },
+        {
+          "text": "The baby is tired and wants to sleep.",
+          "vi": "Em bé mệt và muốn ngủ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "feel tired",
+          "vi": "cảm thấy mệt"
+        }
+      ],
+      "imageQuery": "tired yawning sleepy",
+      "ipaUs": "/ˈtaɪ̯ɚd/",
+      "ipaUk": "/ˈtaɪ̯əd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tired",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "tired"
+      },
+      "image": {
+        "file": "a23/tired.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:tired",
+        "sha256": "55302ea698ef45eaa4ff48f996c68ff613f8e25db42d82443d618e6e4847e2a3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "scared",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "sợ hãi",
+      "meaningEn": "feeling afraid of something",
+      "examples": [
+        {
+          "text": "The little girl is scared of the dark.",
+          "vi": "Cô bé sợ bóng tối."
+        },
+        {
+          "text": "I felt scared during the storm.",
+          "vi": "Tôi thấy sợ trong cơn bão."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "scared of",
+          "vi": "sợ cái gì"
+        }
+      ],
+      "synonyms": [
+        "afraid"
+      ],
+      "imageQuery": "scared face emoticon",
+      "ipaUs": "/skɛ(ə)ɹd/",
+      "ipaUk": "/skɛəd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/scared",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "scared"
+      },
+      "image": {
+        "file": "a23/scared.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:scared",
+        "sha256": "2c0f34fb7a45998c47b925f0ed44d89f3689db748d34ffa93e29d55526a158f4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "excited",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "hào hứng, phấn khích",
+      "meaningEn": "feeling very happy about something that will happen",
+      "examples": [
+        {
+          "text": "The children are excited about the trip.",
+          "vi": "Bọn trẻ rất hào hứng về chuyến đi."
+        },
+        {
+          "text": "I am so excited to meet my new friends.",
+          "vi": "Tôi rất háo hức được gặp những người bạn mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "get excited",
+          "vi": "trở nên hào hứng"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "exciting",
+          "pos": "adj",
+          "vi": "thú vị, gây phấn khích"
+        }
+      ],
+      "imageQuery": "excited cheering face",
+      "ipaUs": "/ɪkˈsaɪ.tɪd/",
+      "ipaUk": "/ɪkˈsaɪ.tɪd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/excited",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "excited"
+      },
+      "image": {
+        "file": "a23/excited.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:excited",
+        "sha256": "ecccea9f699e231a951840051f786ea187cd13190c36b7aa8fee8054b7eed965",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "nervous",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "lo lắng, hồi hộp",
+      "meaningEn": "feeling worried before something important",
+      "examples": [
+        {
+          "text": "I felt nervous before the exam.",
+          "vi": "Tôi thấy hồi hộp trước kỳ thi."
+        },
+        {
+          "text": "She is nervous about her first day at work.",
+          "vi": "Cô ấy lo lắng về ngày làm việc đầu tiên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "feel nervous",
+          "vi": "thấy hồi hộp"
+        }
+      ],
+      "imageQuery": "nervous face emoticon",
+      "ipaUs": "/ˈnɝvəs/",
+      "ipaUk": "/ˈnɜːvəs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/nervous",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "nervous"
+      },
+      "image": {
+        "file": "a23/nervous.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:nervous",
+        "sha256": "0665e25e531439641bfe7330ae64898e99b1fc55a8fd5f8c8cdc27483eeb5b17",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "worried",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "lo lắng",
+      "meaningEn": "feeling that something bad may happen",
+      "examples": [
+        {
+          "text": "My mother is worried about my health.",
+          "vi": "Mẹ tôi lo lắng về sức khỏe của tôi."
+        },
+        {
+          "text": "Do not be worried, everything is fine.",
+          "vi": "Đừng lo, mọi chuyện đều ổn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "worried about",
+          "vi": "lo lắng về"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "worry",
+          "pos": "verb",
+          "vi": "lo lắng"
+        }
+      ],
+      "imageQuery": "worried face emoticon",
+      "ipaUs": "/ˈwʌɹid/",
+      "ipaUk": "/ˈwʌɹid/",
+      "ipaSource": "https://en.wiktionary.org/wiki/worried",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "worried"
+      },
+      "image": {
+        "file": "a23/worried.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:worried",
+        "sha256": "7644a35d07eb2402d93559a61ea417696dec389ac372b48e44d3c1aa5a5f9691",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "proud",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "tự hào",
+      "meaningEn": "feeling very pleased about something good you or others did",
+      "examples": [
+        {
+          "text": "I am proud of my son.",
+          "vi": "Tôi tự hào về con trai mình."
+        },
+        {
+          "text": "She looked proud when she won the prize.",
+          "vi": "Cô ấy trông thật tự hào khi giành giải."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "proud of",
+          "vi": "tự hào về"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "pride",
+          "pos": "noun",
+          "vi": "niềm tự hào"
+        }
+      ],
+      "imageQuery": "proud smiling trophy",
+      "ipaUs": "/ˈpɹaʊ̯d/",
+      "ipaUk": "/ˈpɹaʊ̯d/",
+      "ipaSource": "https://en.wiktionary.org/wiki/proud",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "proud"
+      },
+      "image": {
+        "file": "a23/proud.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:proud",
+        "sha256": "38f305c96b744ee7cbfcab9f5d4675dce90e120502486082ca19b9126080deaf",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "shy",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "nhút nhát, ngại ngùng",
+      "meaningEn": "feeling nervous when you meet new people",
+      "examples": [
+        {
+          "text": "The shy boy did not say a word.",
+          "vi": "Cậu bé nhút nhát không nói một lời."
+        },
+        {
+          "text": "She is shy with strangers.",
+          "vi": "Cô ấy ngại người lạ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "shy smile",
+          "vi": "nụ cười e thẹn"
+        }
+      ],
+      "imageQuery": "shy face emoticon blushing",
+      "ipaUs": "/ʃaɪ/",
+      "ipaUk": "/ʃaɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/shy",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "shy"
+      },
+      "image": {
+        "file": "a23/shy.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:shy",
+        "sha256": "f03f03b8ccb48ae582e0c99917b5691056763e90d635444d62e8745758ecf395",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "lonely",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "cô đơn",
+      "meaningEn": "feeling sad because you have no friends near you",
+      "examples": [
+        {
+          "text": "He felt lonely in the big city.",
+          "vi": "Anh ấy thấy cô đơn ở thành phố lớn."
+        },
+        {
+          "text": "The old man is lonely without his wife.",
+          "vi": "Ông lão cô đơn khi không có vợ bên cạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "feel lonely",
+          "vi": "cảm thấy cô đơn"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "loneliness",
+          "pos": "noun",
+          "vi": "sự cô đơn"
+        }
+      ],
+      "imageQuery": "lonely person bench",
+      "ipaUs": "/ˈloʊnli/",
+      "ipaUk": "/ˈləʊnli/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lonely",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "lonely"
+      },
+      "image": {
+        "file": "a23/lonely.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:lonely",
+        "sha256": "e20a367840e18fd34f34e4a219b1ae9ade8444108c04d9a261f43e72a4084657",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "jealous",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "ghen tị",
+      "meaningEn": "feeling unhappy because someone has something you want",
+      "examples": [
+        {
+          "text": "She was jealous of her sister's new bike.",
+          "vi": "Cô ấy ghen tị với chiếc xe đạp mới của em gái."
+        },
+        {
+          "text": "Do not be jealous, you will get one too.",
+          "vi": "Đừng ghen tị, bạn cũng sẽ có một cái thôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "jealous of",
+          "vi": "ghen tị với"
+        }
+      ],
+      "imageQuery": "jealous face emoticon green",
+      "ipaUs": "/ˈd͡ʒɛl.əs/",
+      "ipaUk": "/ˈd͡ʒɛl.əs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/jealous",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "jealous"
+      },
+      "image": {
+        "file": "a23/jealous.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:jealous",
+        "sha256": "f4c710f830e26b09e3651053e8a35f503c93fd3018d13a57b54163638685eb26",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "confused",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "bối rối, khó hiểu",
+      "meaningEn": "not able to think clearly or understand something",
+      "examples": [
+        {
+          "text": "I am confused by these instructions.",
+          "vi": "Tôi thấy bối rối với những hướng dẫn này."
+        },
+        {
+          "text": "The tourist looked confused at the map.",
+          "vi": "Người du khách trông bối rối trước tấm bản đồ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "look confused",
+          "vi": "trông bối rối"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "confusing",
+          "pos": "adj",
+          "vi": "gây khó hiểu"
+        }
+      ],
+      "imageQuery": "confused face question marks",
+      "ipaUs": "/kənˈfjuzd/",
+      "ipaUk": "/kənˈfjuːzd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/confused",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "confused"
+      },
+      "image": {
+        "file": "a23/confused.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:confused",
+        "sha256": "315ad1988226f3aca68242f3f2423bad93654f044a00e000ef4a0ced5a4bc30d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "embarrassed",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "xấu hổ, ngượng",
+      "meaningEn": "feeling uncomfortable because of something awkward",
+      "examples": [
+        {
+          "text": "He felt embarrassed when he forgot her name.",
+          "vi": "Anh ấy thấy ngượng khi quên tên cô ấy."
+        },
+        {
+          "text": "She was embarrassed by her mistake.",
+          "vi": "Cô ấy xấu hổ vì lỗi của mình."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "feel embarrassed",
+          "vi": "cảm thấy xấu hổ"
+        }
+      ],
+      "imageQuery": "embarrassed blushing face",
+      "ipaUs": "/ɪmˈbæɹ.əst/",
+      "ipaUk": "/ɪmˈbæɹ.əst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/embarrassed",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "embarrassed"
+      },
+      "image": {
+        "file": "a23/embarrassed.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:embarrassed",
+        "sha256": "fdec6b6016b2b602538be58f4983d9bcccefb3481ea057f14874f216d1aefe52",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "relaxed",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "thư giãn, thoải mái",
+      "meaningEn": "feeling calm and free from worry",
+      "examples": [
+        {
+          "text": "I feel relaxed after a hot bath.",
+          "vi": "Tôi thấy thư giãn sau khi tắm nước nóng."
+        },
+        {
+          "text": "He looks relaxed on holiday.",
+          "vi": "Anh ấy trông thư thái trong kỳ nghỉ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "feel relaxed",
+          "vi": "thấy thư giãn"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "relax",
+          "pos": "verb",
+          "vi": "thư giãn"
+        }
+      ],
+      "imageQuery": "relaxed person hammock",
+      "ipaUs": "/ɹɪˈlækst/",
+      "ipaUk": "/ɹɪˈlækst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/relaxed",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "relaxed"
+      },
+      "image": {
+        "file": "a23/relaxed.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:relaxed",
+        "sha256": "39ceca9a16e28e31d532be4966a32c32e0bac3bba9261a48b3525ba5df514dd1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "curious",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "tò mò",
+      "meaningEn": "wanting to know or learn about something",
+      "examples": [
+        {
+          "text": "The curious child opened every box.",
+          "vi": "Đứa trẻ tò mò mở mọi chiếc hộp."
+        },
+        {
+          "text": "I am curious about your new job.",
+          "vi": "Tôi tò mò về công việc mới của bạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "curious about",
+          "vi": "tò mò về"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "curiosity",
+          "pos": "noun",
+          "vi": "sự tò mò"
+        }
+      ],
+      "imageQuery": "curious child magnifying glass",
+      "ipaUs": "/ˈkjʊɹ.i.əs/",
+      "ipaUk": "/ˈkjʊə.ɹi.əs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/curious",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "curious"
+      },
+      "image": {
+        "file": "a23/curious.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:curious",
+        "sha256": "839381f4a9271471fe7e93da017085865cb2dc4ba8a478bf5d3eea2956296c54",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "disappointed",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "thất vọng",
+      "meaningEn": "feeling sad because something was not as good as you hoped",
+      "examples": [
+        {
+          "text": "I was disappointed with the result.",
+          "vi": "Tôi thất vọng với kết quả."
+        },
+        {
+          "text": "She looked disappointed when it rained.",
+          "vi": "Cô ấy trông thất vọng khi trời đổ mưa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "disappointed with",
+          "vi": "thất vọng với"
+        }
+      ],
+      "imageQuery": "disappointed face emoticon",
+      "ipaUs": "/ˌdɪsəˈpɔɪntɪd/",
+      "ipaUk": "/ˌdɪsəˈpɔɪntɪd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/disappointed",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "disappointed"
+      },
+      "image": {
+        "file": "a23/disappointed.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:disappointed",
+        "sha256": "0e32e42e80c0979114fd60aca1c29ec7b77db3f8ce0aa13b3b6fbf61abe0c037",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "grateful",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "biết ơn",
+      "meaningEn": "feeling thankful for something someone did",
+      "examples": [
+        {
+          "text": "I am grateful for your help.",
+          "vi": "Tôi biết ơn sự giúp đỡ của bạn."
+        },
+        {
+          "text": "She gave him a grateful smile.",
+          "vi": "Cô ấy dành cho anh một nụ cười biết ơn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "grateful for",
+          "vi": "biết ơn vì"
+        }
+      ],
+      "imageQuery": "thank you gratitude hands",
+      "ipaUs": "/ˈɡɹeɪtf(ə)l/",
+      "ipaUk": "/ˈɡɹeɪtf(ʊ)l/",
+      "ipaSource": "https://en.wiktionary.org/wiki/grateful",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "grateful"
+      },
+      "image": {
+        "file": "a23/grateful.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:grateful",
+        "sha256": "c27540aa45ded3ee38ced210d3c4ae12fc062d56ed9a77a5b753650f3490e786",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "upset",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "buồn bực, khó chịu",
+      "meaningEn": "feeling unhappy or worried because of something bad",
+      "examples": [
+        {
+          "text": "He was upset about losing his phone.",
+          "vi": "Anh ấy buồn bực vì làm mất điện thoại."
+        },
+        {
+          "text": "The little girl is upset because she cannot find her doll.",
+          "vi": "Cô bé buồn vì không tìm thấy con búp bê."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "get upset",
+          "vi": "trở nên buồn bực"
+        }
+      ],
+      "imageQuery": "upset crying child",
+      "ipaUs": "/ˈʌp.sɛt/",
+      "ipaUk": "/ˈʌp.sɛt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/upset",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "upset"
+      },
+      "image": {
+        "file": "a23/upset.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:upset",
+        "sha256": "0723c6747987fe0142f1191e1545f63e57fbf4d35408199b7d647c60a1ed8822",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "calm",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "bình tĩnh",
+      "meaningEn": "quiet and not worried or angry",
+      "examples": [
+        {
+          "text": "Stay calm and listen to me.",
+          "vi": "Hãy bình tĩnh và nghe tôi nói."
+        },
+        {
+          "text": "The sea was calm this morning.",
+          "vi": "Sáng nay biển rất lặng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "keep calm",
+          "vi": "giữ bình tĩnh"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "calmly",
+          "pos": "adv",
+          "vi": "một cách bình tĩnh"
+        }
+      ],
+      "imageQuery": "calm peaceful lake",
+      "ipaUs": "/kɑm/",
+      "ipaUk": "/kɑːm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/calm",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "calm"
+      },
+      "image": {
+        "file": "a23/calm.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:calm",
+        "sha256": "b39102d748f908b38afdc60af54e16890fe5d112bf218ccba72f3e4dd88d5ea2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cheerful",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "vui vẻ, tươi tỉnh",
+      "meaningEn": "happy and full of energy",
+      "examples": [
+        {
+          "text": "My cheerful neighbour always says hello.",
+          "vi": "Người hàng xóm vui tính của tôi lúc nào cũng chào."
+        },
+        {
+          "text": "The room looks bright and cheerful.",
+          "vi": "Căn phòng trông tươi sáng và vui mắt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cheerful smile",
+          "vi": "nụ cười tươi"
+        }
+      ],
+      "imageQuery": "cheerful smile sunshine",
+      "ipaUs": "/ˈt͡ʃɪɹfl̩/",
+      "ipaUk": "/ˈt͡ʃɪəfl̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cheerful",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "cheerful"
+      },
+      "image": {
+        "file": "a23/cheerful.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:cheerful",
+        "sha256": "14be2f40e8631d384dc36ede9525d1ad7db2889cc6190eaa04267b50663bd6af",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sleepy",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "buồn ngủ",
+      "meaningEn": "feeling that you want to go to sleep",
+      "examples": [
+        {
+          "text": "I feel sleepy after lunch.",
+          "vi": "Sau bữa trưa tôi thấy buồn ngủ."
+        },
+        {
+          "text": "The sleepy baby closed her eyes.",
+          "vi": "Em bé buồn ngủ nhắm mắt lại."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "feel sleepy",
+          "vi": "thấy buồn ngủ"
+        }
+      ],
+      "imageQuery": "sleepy face emoticon",
+      "ipaUs": "/ˈsliːpi/",
+      "ipaUk": "/ˈsliːpi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sleepy",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "sleepy"
+      },
+      "image": {
+        "file": "a23/sleepy.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:sleepy",
+        "sha256": "0f37f7b935658977d4fd1e8559f36acbd0f3cb77fda1901e64b7bd434fd07ffc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "stressed",
+      "partsOfSpeech": [
+        "adj"
+      ],
+      "cefr": "A2",
+      "definition": "căng thẳng",
+      "meaningEn": "feeling worried and unable to relax because of pressure",
+      "examples": [
+        {
+          "text": "I feel stressed before every exam.",
+          "vi": "Tôi thấy căng thẳng trước mỗi kỳ thi."
+        },
+        {
+          "text": "She looked stressed at her desk.",
+          "vi": "Cô ấy trông căng thẳng khi ngồi ở bàn làm việc."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "feel stressed",
+          "vi": "cảm thấy căng thẳng"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "stress",
+          "pos": "noun",
+          "vi": "sự căng thẳng"
+        }
+      ],
+      "imageQuery": "stressed face emoticon",
+      "ipaUs": "/stɹɛst/",
+      "ipaUk": "/stɹɛst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/stressed",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "emotion",
+        "value": "stressed"
+      },
+      "image": {
+        "file": "a23/stressed.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:emotion:stressed",
+        "sha256": "bfb9eed507b80864de3a3596d086259b1bf572aa00ac5ec2f834706e41af8bd8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
