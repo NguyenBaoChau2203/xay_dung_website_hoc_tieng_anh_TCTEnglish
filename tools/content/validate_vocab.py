@@ -25,7 +25,7 @@ EXPECTED = {"A": 25, "B": 25, "C": 20}
 EXAMPLE_MAX_WORDS = {"A": 12, "B": 20, "C": 14}
 LICENSE_OK = re.compile(r"^(CC0|Public Domain Mark|Public domain|PD[- ]|Original work|Pixabay Content License$)", re.I)
 IPA = re.compile(r"^/[^/\s][^/]*/$")
-MOJIBAKE = re.compile(r"Ã.|â€|Ä[\u0080-¿]|�")
+MOJIBAKE = re.compile(r"\u00c3.|\u00e2\u20ac|\u00c4[\u0080-\u00bf]|\ufffd")
 PLACEHOLDER = re.compile(r"\b(todo|tbd|lorem|xxx|placeholder)\b|\?\?\?", re.I)
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 

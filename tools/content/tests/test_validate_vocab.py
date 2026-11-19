@@ -78,7 +78,7 @@ class ValidateVocabTests(unittest.TestCase):
         self.assertFails(lambda m: m["cards"][0].update(definition="một hai ba bốn năm sáu bảy tám chín mười mười một"), "definition has")
 
     def test_mojibake_is_rejected(self):
-        self.assertFails(lambda m: m["cards"][0].update(definition="quáº£ xoÃ i"), "corrupted")
+        self.assertFails(lambda m: m["cards"][0].update(definition="qu\u00e1\u00ba\u00a3 xo\u00c3 i"), "corrupted")
 
     def test_ipa_without_slashes(self):
         self.assertFails(lambda m: m["cards"][0].update(ipaUs="ˈmæŋɡoʊ"), "IPA between slashes")
