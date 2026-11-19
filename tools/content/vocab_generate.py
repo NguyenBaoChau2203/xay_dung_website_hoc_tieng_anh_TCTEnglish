@@ -875,6 +875,38 @@ def place_scene(name: str) -> bytes:
     return finish(img)
 
 
+def vehicle_scene(name: str) -> bytes:
+    """Flat original drawing of a vehicle (kind "vehicle")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    d.rectangle((0, 290 * s, W * s, H * s), fill=(176, 214, 160))
+    if name == "cyclo":
+        for cx in (90, 300):
+            oval(cx - 46, 244 - 46 + 36, cx + 46, 244 + 46 + 36, BG, 5)
+            oval(cx - 6, 274, cx + 6, 286, L, 1)
+        oval(360, 230, 440, 310, BG, 5)
+        poly([(130, 150), (250, 150), (262, 270), (104, 270)], (220, 38, 38))  # passenger seat in front
+        poly([(130, 150), (250, 150), (210, 110), (150, 110)], (250, 204, 21))  # canopy
+        d.line((300 * s, 280 * s, 400 * s, 270 * s), fill=L, width=5 * s)
+        d.line((400 * s, 270 * s, 392 * s, 214 * s), fill=L, width=5 * s)
+        oval(376, 150, 410, 184, (250, 213, 172))  # rider
+        poly([(372, 184), (414, 184), (408, 232), (378, 232)], (37, 99, 235))
+        d.line((250 * s, 268 * s, 300 * s, 280 * s), fill=L, width=5 * s)
+    else:
+        raise SystemExit(f"unknown vehicle: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -911,6 +943,8 @@ def main() -> None:
             data = job_scene(val)
         elif kind == "place":
             data = place_scene(val)
+        elif kind == "vehicle":
+            data = vehicle_scene(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"

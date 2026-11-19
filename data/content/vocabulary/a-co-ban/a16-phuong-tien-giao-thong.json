@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A16",
+    "name": "Phương tiện giao thông",
+    "description": "#a1 #a2 #transport #travel",
+    "topic": "Phương tiện giao thông",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "car",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "xe ô tô",
+      "meaningEn": "a road vehicle with four wheels and an engine",
+      "examples": [
+        {
+          "text": "My father drives a small car.",
+          "vi": "Bố tôi lái một chiếc ô tô nhỏ."
+        },
+        {
+          "text": "The car stopped at the red light.",
+          "vi": "Chiếc xe dừng lại ở đèn đỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "drive a car",
+          "vi": "lái xe ô tô"
+        },
+        {
+          "text": "by car",
+          "vi": "bằng ô tô"
+        }
+      ],
+      "imageQuery": "car on road",
+      "ipaUs": "/kɑɹ/",
+      "ipaUk": "/kɑː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/car",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/car.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6042661/cars-snowy-road-free-public-domain-cc0-photo",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "car on road",
+        "sha256": "fa5ea94e5f6fa08757cd7a7db6d1286afae39c932d5bc29fea1d747977628d7a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bus",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "xe buýt",
+      "meaningEn": "a large vehicle that carries many passengers",
+      "plural": "buses",
+      "examples": [
+        {
+          "text": "I go to school by bus.",
+          "vi": "Tôi đi học bằng xe buýt."
+        },
+        {
+          "text": "The bus is late this morning.",
+          "vi": "Sáng nay xe buýt đến muộn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "catch a bus",
+          "vi": "bắt xe buýt"
+        },
+        {
+          "text": "bus stop",
+          "vi": "trạm xe buýt"
+        }
+      ],
+      "imageQuery": "city bus",
+      "ipaUs": "/bʌs/",
+      "ipaUk": "/bʌs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bus",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/bus.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/37938224@N03/24104142375",
+        "author": "martin 65",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "city bus",
+        "sha256": "78b275c29bbf2e4dcef1b24dfb6c075311c081b01d0e86e57bfc3cd8b38314c1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bicycle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "xe đạp",
+      "meaningEn": "a vehicle with two wheels that you ride by pushing pedals",
+      "examples": [
+        {
+          "text": "She rides a bicycle to work.",
+          "vi": "Cô ấy đạp xe đi làm."
+        },
+        {
+          "text": "My brother got a new bicycle for his birthday.",
+          "vi": "Anh trai tôi được tặng một chiếc xe đạp mới vào sinh nhật."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ride a bicycle",
+          "vi": "đạp xe"
+        }
+      ],
+      "synonyms": [
+        "bike"
+      ],
+      "imageQuery": "bicycle",
+      "ipaUs": "/ˈbaɪsɪk(ə)l/",
+      "ipaUk": "/ˈbaɪsɪk(ə)l/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bicycle",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/bicycle.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/15655615295",
+        "author": "Bernard Spragg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bicycle",
+        "sha256": "a947daf9ae3ebc0dfeb370e4d481a0055078753cc652542e461fde71423fc0ec",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "motorbike",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "xe máy",
+      "meaningEn": "a two-wheeled vehicle with an engine",
+      "examples": [
+        {
+          "text": "Many people in Vietnam ride a motorbike.",
+          "vi": "Nhiều người ở Việt Nam đi xe máy."
+        },
+        {
+          "text": "He parked his motorbike outside the shop.",
+          "vi": "Anh ấy đỗ xe máy trước cửa hàng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ride a motorbike",
+          "vi": "đi xe máy"
+        }
+      ],
+      "imageQuery": "motorbike",
+      "ipaUs": "/ˈmoʊtɚˌbaɪk/",
+      "ipaUk": "/ˈməʊtə(ɹ)ˌbaɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/motorbike",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/motorbike.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/171425013@N02/50217836752",
+        "author": "GeorgeTan#2...INACTIVE NOW",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "motorbike",
+        "sha256": "9f016dc1195c305a61bff469e0743eae04916552d30a91a69f8a4c6fd3406e2e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "taxi",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "xe taxi",
+      "meaningEn": "a car with a driver that you pay to take you somewhere",
+      "examples": [
+        {
+          "text": "We took a taxi to the airport.",
+          "vi": "Chúng tôi đi taxi ra sân bay."
+        },
+        {
+          "text": "The taxi arrived in five minutes.",
+          "vi": "Xe taxi đến sau năm phút."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "call a taxi",
+          "vi": "gọi taxi"
+        },
+        {
+          "text": "taxi driver",
+          "vi": "tài xế taxi"
+        }
+      ],
+      "imageQuery": "taxi street",
+      "ipaUs": "/ˈtæksi/",
+      "ipaUk": "/ˈtæksi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/taxi",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/taxi.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/61765479@N08/9656653980",
+        "author": "AMISOM Public Information",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "taxi street",
+        "sha256": "6f331c62a03111a8d18905da10fe8fe5d2393ea763a717372db7224e272dc89d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "train",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "tàu hỏa",
+      "meaningEn": "a long vehicle that runs on rails and carries passengers",
+      "examples": [
+        {
+          "text": "The train leaves at nine o'clock.",
+          "vi": "Chuyến tàu khởi hành lúc chín giờ."
+        },
+        {
+          "text": "We travelled by train to the coast.",
+          "vi": "Chúng tôi đi tàu hỏa đến vùng biển."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "catch a train",
+          "vi": "bắt tàu"
+        },
+        {
+          "text": "by train",
+          "vi": "bằng tàu hỏa"
+        }
+      ],
+      "imageQuery": "passenger train",
+      "ipaUs": "/ˈtɹeɪn/",
+      "ipaUk": "/ˈtɹeɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/train",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/train.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/68618467@N03/37051956094",
+        "author": "NTSBgov",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "passenger train",
+        "sha256": "29b7830ead38035e54daa09b1f1c732e25eb8e65ddbcdb97a5f11982f1d00b72",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "plane",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "máy bay",
+      "meaningEn": "a vehicle with wings that flies in the sky",
+      "examples": [
+        {
+          "text": "The plane takes off in ten minutes.",
+          "vi": "Máy bay cất cánh sau mười phút nữa."
+        },
+        {
+          "text": "I looked out of the plane window.",
+          "vi": "Tôi nhìn ra ngoài cửa sổ máy bay."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "catch a plane",
+          "vi": "đi máy bay"
+        }
+      ],
+      "synonyms": [
+        "aeroplane",
+        "airplane"
+      ],
+      "imageQuery": "airplane in sky",
+      "ipaUs": "/pʰl̥ẽːn/",
+      "ipaUk": "/pʰlɛɪ̯n/",
+      "ipaSource": "https://en.wiktionary.org/wiki/plane",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/plane.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6029376/photo-image-public-domain-sky-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "airplane in sky",
+        "sha256": "7c550a7c2a27db95f9b5174156cdf090a9aa64c8067879dbf1a446e88780158f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ship",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con tàu thủy",
+      "meaningEn": "a very large boat that travels on the sea",
+      "examples": [
+        {
+          "text": "The ship sailed across the ocean.",
+          "vi": "Con tàu vượt qua đại dương."
+        },
+        {
+          "text": "A big ship carries goods to many countries.",
+          "vi": "Một con tàu lớn chở hàng đến nhiều nước."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cargo ship",
+          "vi": "tàu chở hàng"
+        }
+      ],
+      "imageQuery": "large ship sea",
+      "ipaUs": "/ʃɪp/",
+      "ipaUk": "/ʃɪp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ship",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/ship.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:StateLibQld_1_45499_South_Sea_Islanders_on_a_sailing_ship_at_Bundaberg.jpg",
+        "author": "",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "large ship sea",
+        "sha256": "4a618de5f8b5616feab8d8ec4d527a0689b13d794bef59ab5ddba068a6e31367",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "boat",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "chiếc thuyền",
+      "meaningEn": "a small vehicle for travelling on water",
+      "examples": [
+        {
+          "text": "We crossed the river by boat.",
+          "vi": "Chúng tôi qua sông bằng thuyền."
+        },
+        {
+          "text": "The fisherman has a small wooden boat.",
+          "vi": "Người ngư dân có một chiếc thuyền gỗ nhỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "row a boat",
+          "vi": "chèo thuyền"
+        }
+      ],
+      "imageQuery": "boat on water",
+      "ipaUs": "/boʊ̯t/",
+      "ipaUk": "/bəʊ̯t/",
+      "ipaSource": "https://en.wiktionary.org/wiki/boat",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/boat.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/132795455@N08/19029945846",
+        "author": "Image Catalog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "boat on water",
+        "sha256": "96c54fc408aa8bdef4a54f215a4ab4bc5de492a7a71dfda6ba0d8824d7c5952e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ferry",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "phà",
+      "meaningEn": "a boat that carries people and cars across water",
+      "plural": "ferries",
+      "examples": [
+        {
+          "text": "We took the ferry to the island.",
+          "vi": "Chúng tôi đi phà ra đảo."
+        },
+        {
+          "text": "The ferry leaves every hour.",
+          "vi": "Phà khởi hành mỗi giờ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "catch the ferry",
+          "vi": "đi phà"
+        }
+      ],
+      "imageQuery": "ferry boat",
+      "ipaUs": "/ˈfɛɹi/",
+      "ipaUk": "/ˈfɛɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ferry",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/ferry.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/11132272@N07/32547623984",
+        "author": "PhiloTrek",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "ferry boat",
+        "sha256": "9a391949984ad876ad57b76d77b828af64b410742425ed5d9cc0f6c995eb76b6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "helicopter",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "máy bay trực thăng",
+      "meaningEn": "an aircraft with large blades on top that lift it up",
+      "examples": [
+        {
+          "text": "A helicopter flew over the city.",
+          "vi": "Một chiếc trực thăng bay qua thành phố."
+        },
+        {
+          "text": "The helicopter landed on the roof.",
+          "vi": "Chiếc trực thăng hạ cánh trên mái nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "rescue helicopter",
+          "vi": "trực thăng cứu hộ"
+        }
+      ],
+      "imageQuery": "helicopter",
+      "ipaUs": "/ˈhɛlɪˌkɑptɜɹ/",
+      "ipaUk": "/ˈhɛl.iˌkɒp.tə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/helicopter",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/helicopter.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/14091561063",
+        "author": "Bernard Spragg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "helicopter",
+        "sha256": "87af96b6131ce8f7f92829627ea1e770bce8828293342c3da47588ca2a22b70b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "truck",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "xe tải",
+      "meaningEn": "a big road vehicle that carries goods",
+      "examples": [
+        {
+          "text": "The truck carries rice to the city.",
+          "vi": "Chiếc xe tải chở gạo lên thành phố."
+        },
+        {
+          "text": "A big truck stopped in front of the shop.",
+          "vi": "Một chiếc xe tải lớn dừng trước cửa hàng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "truck driver",
+          "vi": "tài xế xe tải"
+        }
+      ],
+      "imageQuery": "truck road",
+      "ipaUs": "/tɹʌk/",
+      "ipaUk": "/tɹʌk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/truck",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/truck.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5907543/photo-image-background-public-domain-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "truck road",
+        "sha256": "85625661c33109b2f3473aa4051b22c77acc7457ee4e8b14b699208e541130fc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "subway",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tàu điện ngầm",
+      "meaningEn": "an underground train system in a city",
+      "examples": [
+        {
+          "text": "I take the subway to work every day.",
+          "vi": "Ngày nào tôi cũng đi tàu điện ngầm đi làm."
+        },
+        {
+          "text": "The subway is faster than the bus.",
+          "vi": "Tàu điện ngầm nhanh hơn xe buýt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "subway station",
+          "vi": "ga tàu điện ngầm"
+        }
+      ],
+      "synonyms": [
+        "metro"
+      ],
+      "imageQuery": "metro underground train",
+      "ipaUs": "/ˈsʌbˌweɪ/",
+      "ipaUk": "/ˈsʌbˌweɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/subway",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/subway.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/62518311@N00/87586659",
+        "author": "Daquella manera",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "metro underground train",
+        "sha256": "4fd4bac5bcbdc24d9320be8e4e3c00a511609e6359173fe866b7f82a27ba825f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tram",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "xe điện (chạy trên ray)",
+      "meaningEn": "an electric vehicle that runs on rails in a street",
+      "examples": [
+        {
+          "text": "The tram goes along the main street.",
+          "vi": "Xe điện chạy dọc phố chính."
+        },
+        {
+          "text": "We took the tram to the old town.",
+          "vi": "Chúng tôi đi xe điện đến khu phố cổ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "tram line",
+          "vi": "tuyến xe điện"
+        }
+      ],
+      "imageQuery": "tram city street",
+      "ipaUs": "/tɹæm/",
+      "ipaUk": "/tɹam/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tram",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/tram.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/104736837@N03/10186225053",
+        "author": "Amsterdam free photos & pictures of the Dutch city",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "tram city street",
+        "sha256": "6cd505b6844a97ec2a8bd75003331e573e9973ff23e70865334dab98e224bffe",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "scooter",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "xe tay ga; xe trượt",
+      "meaningEn": "a light motorbike, or a small toy you push with one foot",
+      "examples": [
+        {
+          "text": "She rides a pink scooter to school.",
+          "vi": "Cô ấy đi xe tay ga màu hồng đến trường."
+        },
+        {
+          "text": "My scooter is easy to park.",
+          "vi": "Xe tay ga của tôi rất dễ đỗ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "electric scooter",
+          "vi": "xe điện tay ga"
+        }
+      ],
+      "imageQuery": "scooter",
+      "ipaUs": "/ˈskuːtə(ɹ)/",
+      "ipaUk": "/ˈskuːtə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/scooter",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a16/scooter.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/104736837@N03/10859689695",
+        "author": "Amsterdam free photos & pictures of the Dutch city",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "scooter",
+        "sha256": "b9dd006ca3343d5871771fac50a91943622c4e2ae8e0333474e97bf21385ec9d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ambulance",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "xe cứu thương",
+      "meaningEn": "a vehicle that takes sick or hurt people to hospital",
+      "examples": [
+        {
+          "text": "The ambulance arrived in five minutes.",
+          "vi": "Xe cứu thương đến sau năm phút."
+        },
+        {
+          "text": "Please call an ambulance quickly.",
+          "vi": "Làm ơn gọi xe cứu thương nhanh lên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "call an ambulance",
+          "vi": "gọi xe cứu thương"
+        }
+      ],
+      "imageQuery": "ambulance",
+      "ipaUs": "/ˈæm.bjəˌlæns/",
+      "ipaUk": "/ˈæm.bjə.ləns/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ambulance",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/ambulance.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/57873306@N00/3044158189",
+        "author": "Kim Siever",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "ambulance",
+        "sha256": "dc6d1f77257dfa99cda633f9439160ba72800a6124ba9d32187b7afc0810092f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fire truck",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "xe cứu hỏa",
+      "meaningEn": "a big red vehicle that carries firefighters and water",
+      "examples": [
+        {
+          "text": "The fire truck raced down the street.",
+          "vi": "Xe cứu hỏa lao nhanh xuống phố."
+        },
+        {
+          "text": "Children love to see a fire truck.",
+          "vi": "Bọn trẻ rất thích xem xe cứu hỏa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "red fire truck",
+          "vi": "xe cứu hỏa màu đỏ"
+        }
+      ],
+      "imageQuery": "fire truck",
+      "ipaUs": "/ˈfaɪ.ɚ tɹʌk/",
+      "ipaUk": "/ˈfaɪ.ə tɹʌk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fire + https://en.wiktionary.org/wiki/truck",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/fire-truck.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/98552965@N05/17196869198",
+        "author": "josbert.lonnee",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "fire truck",
+        "sha256": "8b08950bb44ed0699b442f619748a7bf41b7bac2d2f7234780d0f8978393bd10",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "van",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "xe tải nhỏ, xe van",
+      "meaningEn": "a small covered vehicle for carrying goods or people",
+      "examples": [
+        {
+          "text": "The shop delivers goods in a white van.",
+          "vi": "Cửa hàng giao hàng bằng một chiếc xe van màu trắng."
+        },
+        {
+          "text": "We went camping in a big van.",
+          "vi": "Chúng tôi đi cắm trại bằng một chiếc xe van lớn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "delivery van",
+          "vi": "xe giao hàng"
+        }
+      ],
+      "imageQuery": "delivery van",
+      "ipaUs": "/væn/",
+      "ipaUk": "/væn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/van",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/van.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/25802865@N08/55261080397",
+        "author": "chooyutshing",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "delivery van",
+        "sha256": "4841931680d2e98d449bf263817325462522a72300323a99ddf36fb9137d39bb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rocket",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tên lửa, tàu vũ trụ",
+      "meaningEn": "a tall vehicle that travels into space",
+      "examples": [
+        {
+          "text": "The rocket flew into space.",
+          "vi": "Tên lửa bay vào vũ trụ."
+        },
+        {
+          "text": "We watched the rocket launch on television.",
+          "vi": "Chúng tôi xem lễ phóng tên lửa trên tivi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "launch a rocket",
+          "vi": "phóng tên lửa"
+        }
+      ],
+      "imageQuery": "rocket launch",
+      "ipaUs": "/ˈɹɑkət/",
+      "ipaUk": "/ˈɹɒkɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rocket",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/rocket.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/rocket-launch-7V1JEO2YXQ",
+        "author": "SpaceX",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "rocket launch",
+        "sha256": "df4f697c14dffd1fb88ba3a093be8131030141e4acedd0e677b80283b58aaed6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cable car",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cáp treo",
+      "meaningEn": "a small cabin that hangs from a cable and carries people up a mountain",
+      "examples": [
+        {
+          "text": "We took the cable car up the mountain.",
+          "vi": "Chúng tôi đi cáp treo lên núi."
+        },
+        {
+          "text": "The cable car gives a wonderful view.",
+          "vi": "Cáp treo mang lại một khung cảnh tuyệt đẹp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ride the cable car",
+          "vi": "đi cáp treo"
+        }
+      ],
+      "imageQuery": "cable car mountain",
+      "ipaUs": "/ˈkeɪ.bəl kɑɹ/",
+      "ipaUk": "/ˈkeɪ.bəl kɑː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cable + https://en.wiktionary.org/wiki/car",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/cable-car.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/593175/ski-lift-the-summer",
+        "author": "Markus Spiske",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cable car mountain",
+        "sha256": "8665eb45c01e02a0b9e8c957d7e6e3e3b4c38a6432e8923e9d1c7abf6362f5fc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sailboat",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thuyền buồm",
+      "meaningEn": "a boat that moves by using the wind in its sails",
+      "examples": [
+        {
+          "text": "A white sailboat floated on the lake.",
+          "vi": "Một chiếc thuyền buồm trắng trôi trên hồ."
+        },
+        {
+          "text": "He learned to sail a small sailboat.",
+          "vi": "Anh ấy học lái một chiếc thuyền buồm nhỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "sail a sailboat",
+          "vi": "lái thuyền buồm"
+        }
+      ],
+      "imageQuery": "sailboat",
+      "ipaUs": "/ˈseɪlˌboʊt/",
+      "ipaUk": "/ˈseɪlˌbəʊt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sailboat",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/sailboat.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/11132272@N07/46651108351",
+        "author": "PhiloTrek",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "sailboat",
+        "sha256": "fc3c24687bdd76fd7f0c6327a1c342399ac5a996edde77b4952571b431fbf9f2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "canoe",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "xuồng, thuyền nhỏ chèo tay",
+      "meaningEn": "a light narrow boat that you move with a paddle",
+      "examples": [
+        {
+          "text": "We paddled a canoe down the river.",
+          "vi": "Chúng tôi chèo xuồng xuôi dòng sông."
+        },
+        {
+          "text": "The canoe is easy to carry.",
+          "vi": "Chiếc xuồng rất dễ khiêng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "paddle a canoe",
+          "vi": "chèo xuồng"
+        }
+      ],
+      "imageQuery": "canoe river",
+      "ipaUs": "/kəˈnuː/",
+      "ipaUk": "/kəˈnuː/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/canoe",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a16/canoe.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5916878/image-background-public-domain-woman",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "canoe river",
+        "sha256": "ebbdcedb4ff5d1c356c639a317dd8e53fdbb706db5cb80b13dc3b2600a6520c8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hot-air balloon",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "khinh khí cầu",
+      "meaningEn": "a very large balloon with a basket that carries people",
+      "examples": [
+        {
+          "text": "We flew in a hot-air balloon over the valley.",
+          "vi": "Chúng tôi bay bằng khinh khí cầu qua thung lũng."
+        },
+        {
+          "text": "The hot-air balloon was red and yellow.",
+          "vi": "Chiếc khinh khí cầu có màu đỏ và vàng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hot-air balloon ride",
+          "vi": "chuyến bay khinh khí cầu"
+        }
+      ],
+      "imageQuery": "hot air balloon",
+      "ipaUs": "/hɑt ɛɚ bəˈlun/",
+      "ipaUk": "/hɒt ɛə̯ bəˈluːn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hot + https://en.wiktionary.org/wiki/air + https://en.wiktionary.org/wiki/balloon",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/hot-air-balloon.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/66741228@N05/51489651141",
+        "author": "Bonnie Moreland (free images)",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "hot air balloon",
+        "sha256": "c194bbdb55cbc565237f5224454ee38d2423cf3b67db8937b6fee6eccc541cf3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cyclo",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "xích lô",
+      "meaningEn": "a three-wheeled bicycle taxi in Vietnam",
+      "examples": [
+        {
+          "text": "We rode a cyclo around the old town.",
+          "vi": "Chúng tôi đi xích lô quanh khu phố cổ."
+        },
+        {
+          "text": "The cyclo driver knows the city well.",
+          "vi": "Bác xích lô rất rành thành phố."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "take a cyclo",
+          "vi": "đi xích lô"
+        }
+      ],
+      "imageQuery": "cyclo rickshaw trishaw",
+      "ipaUs": "/ˈsaɪkloʊ/",
+      "ipaUk": "/ˈsaɪkləʊ/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found",
+      "generate": {
+        "kind": "vehicle",
+        "value": "cyclo"
+      },
+      "image": {
+        "file": "a16/cyclo.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:vehicle:cyclo",
+        "sha256": "892c6a490591531dacbb8b2fcb6cee4d0e812ad62a1f4afc1fc1f18910c0082c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "skateboard",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ván trượt",
+      "meaningEn": "a short board with four small wheels that you ride standing up",
+      "examples": [
+        {
+          "text": "He rides his skateboard to the park.",
+          "vi": "Cậu ấy trượt ván ra công viên."
+        },
+        {
+          "text": "My new skateboard has red wheels.",
+          "vi": "Chiếc ván trượt mới của tôi có bánh xe màu đỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ride a skateboard",
+          "vi": "trượt ván"
+        }
+      ],
+      "imageQuery": "skateboard",
+      "ipaUs": "/ˈskeɪt.bɔɹd/",
+      "ipaUk": "/ˈskeɪt.bɔːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/skateboard",
+      "ipaVerified": true,
+      "image": {
+        "file": "a16/skateboard.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/147875007@N03/32191466483",
+        "author": "Rawpixel Ltd",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "skateboard",
+        "sha256": "aab7cc73b195770e4dacd3bd760053027ccf73d8bfdf507d120df9b53df0760a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
