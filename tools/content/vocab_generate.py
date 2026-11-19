@@ -2411,6 +2411,126 @@ def scene_image(term: str, query: str, seed: int, code: str = "") -> bytes:
     return finish(img)
 
 
+def media_icon(name: str) -> bytes:
+    """Flat original drawing for a media or news word (kind "media")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=5, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    def text(x, y, t, size, col=L):
+        d.text((x * s, y * s), t, fill=col, font=_big_font(size * s))
+
+    def mic(x, y):
+        box(x - 12, y - 34, x + 12, y + 4, (51, 65, 85), 12, 3)
+        line(x, y + 4, x, y + 40, 6)
+
+    def tv(x0, y0, x1, y1, screen=(147, 197, 253)):
+        box(x0, y0, x1, y1, (51, 65, 85), 14, 4)
+        box(x0 + 12, y0 + 12, x1 - 12, y1 - 12, screen, 6, 0)
+
+    d.rectangle((0, 300 * s, W * s, H * s), fill=(214, 196, 160))
+    if name == "journalist":
+        _person(d, 140, 50, 2.6, "f", (37, 99, 235))
+        box(230, 160, 300, 240, (255, 255, 255), 6, 3)
+        for k in range(4):
+            line(240, 178 + k * 16, 290, 178 + k * 16, 3, (148, 163, 184))
+        line(300, 190, 360, 160, 6, (250, 204, 21))
+        mic(400, 190)
+    elif name == "news anchor":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(30, 58, 138))
+        _person(d, 240, 70, 2.3, "m", (51, 65, 85))
+        box(110, 230, 370, 300, (226, 232, 240), 10, 4)
+        box(130, 40, 230, 100, (59, 130, 246), 6, 3)
+        text(146, 56, "NEWS", 34, (255, 255, 255))
+    elif name == "channel":
+        tv(110, 60, 370, 250)
+        text(160, 100, "CH 5", 80, (255, 255, 255))
+        box(180, 260, 300, 290, (148, 163, 184), 6, 3)
+    elif name == "studio":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(30, 41, 59))
+        for k, x in enumerate((90, 240, 390)):
+            poly([(x - 30, 20), (x + 30, 20), (x + 60, 160), (x - 60, 160)], (254, 249, 195))
+            oval(x - 24, 8, x + 24, 36, (250, 204, 21), 3)
+        _person(d, 240, 150, 1.5, "f", (219, 39, 119))
+        box(160, 250, 320, 300, (226, 232, 240), 8, 3)
+    elif name == "subtitles":
+        tv(60, 40, 420, 270, (30, 41, 59))
+        box(120, 190, 360, 240, (0, 0, 0), 6, 0)
+        text(138, 198, "Hello, how are you?", 28, (255, 255, 255))
+        poly([(180, 90), (230, 70), (270, 110), (220, 150)], (74, 222, 128))
+    elif name == "broadcast":
+        tv(60, 60, 280, 230)
+        for r_ in (30, 54, 78):
+            d.arc(((330 - r_) * s, (110 - r_) * s, (330 + r_) * s, (110 + r_) * s), 300, 60, fill=(59, 130, 246), width=5 * s)
+        oval(318, 98, 342, 122, (59, 130, 246), 3)
+        line(330, 122, 330, 250, 8)
+    elif name == "presenter":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(124, 58, 237))
+        _person(d, 160, 60, 2.4, "f", (255, 255, 255))
+        box(280, 60, 440, 170, (255, 255, 255), 8, 4)
+        poly([(300, 150), (340, 100), (380, 130), (420, 80), (420, 150)], (74, 222, 128))
+        mic(250, 200)
+    elif name == "advertisement":
+        box(90, 40, 390, 230, (254, 240, 138), 10, 4)
+        text(120, 60, "NEW!", 70, (220, 38, 38))
+        text(120, 150, "Buy now", 40)
+        line(150, 230, 150, 320, 10)
+        line(330, 230, 330, 320, 10)
+    elif name == "billboard":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(186, 230, 253))
+        box(60, 40, 420, 210, (255, 255, 255), 6, 5)
+        box(76, 56, 404, 194, (250, 204, 21), 4, 0)
+        text(110, 80, "TRY IT!", 66)
+        line(160, 210, 160, 320, 12)
+        line(320, 210, 320, 320, 12)
+    elif name == "leaflet":
+        for k, (x, y, col) in enumerate(((60, 90, (254, 240, 138)), (180, 60, (187, 247, 208)), (300, 100, (186, 230, 253)))):
+            box(x, y, x + 120, y + 180, col, 6, 3)
+            line(x + 14, y + 30, x + 100, y + 30, 6)
+            for j in range(4):
+                line(x + 14, y + 60 + j * 20, x + 100 - (j % 2) * 20, y + 60 + j * 20, 3, (100, 116, 139))
+    elif name == "article":
+        box(90, 30, 390, 330, (255, 255, 255), 8, 4)
+        text(110, 40, "Local News", 36)
+        box(110, 90, 230, 190, (147, 197, 253), 4, 2)
+        for k in range(5):
+            line(246, 98 + k * 18, 372, 98 + k * 18, 3, (148, 163, 184))
+        for k in range(5):
+            line(110, 210 + k * 18, 372, 210 + k * 18, 3, (148, 163, 184))
+    elif name == "photograph":
+        box(90, 50, 390, 290, (255, 255, 255), 6, 4)
+        box(110, 70, 370, 250, (147, 197, 253), 2, 0)
+        oval(280, 90, 340, 150, (250, 204, 21), 0)
+        poly([(110, 250), (200, 150), (290, 250)], (74, 222, 128))
+        poly([(220, 250), (300, 170), (370, 250)], (22, 163, 74))
+    elif name == "documentary":
+        box(60, 50, 420, 250, (30, 41, 59), 10, 4)
+        for k in range(6):
+            box(70, 66 + k * 30, 86, 84 + k * 30, (255, 255, 255), 3, 0)
+            box(394, 66 + k * 30, 410, 84 + k * 30, (255, 255, 255), 3, 0)
+        box(110, 70, 370, 230, (147, 197, 253), 4, 0)
+        poly([(160, 210), (220, 120), (270, 180), (310, 140), (350, 210)], (74, 222, 128))
+        oval(300, 84, 340, 124, (250, 204, 21), 0)
+        text(150, 262, "DOCUMENTARY", 28)
+    else:
+        raise SystemExit(f"unknown media icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -2469,6 +2589,8 @@ def main() -> None:
             data = med_icon(val)
         elif kind == "edu":
             data = edu_icon(val)
+        elif kind == "media":
+            data = media_icon(val)
         elif kind == "scene":
             data = scene_image(card["term"], card.get("imageQuery", ""), i, manifest["set"]["code"])
         else:
