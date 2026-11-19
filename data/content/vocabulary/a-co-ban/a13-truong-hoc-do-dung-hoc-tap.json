@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A13",
+    "name": "Trường học & đồ dùng học tập",
+    "description": "#a1 #a2 #school #study",
+    "topic": "Trường học & đồ dùng học tập",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "school",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "trường học",
+      "meaningEn": "a place where children go to learn",
+      "examples": [
+        {
+          "text": "I walk to school every morning.",
+          "vi": "Sáng nào tôi cũng đi bộ đến trường."
+        },
+        {
+          "text": "Her school is near the park.",
+          "vi": "Trường của cô ấy gần công viên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go to school",
+          "vi": "đi học"
+        },
+        {
+          "text": "primary school",
+          "vi": "trường tiểu học"
+        }
+      ],
+      "imageQuery": "school building",
+      "ipaUs": "/skul/",
+      "ipaUk": "/skuːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/school",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/school.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/122654055@N06/23109388041",
+        "author": "unclibraries_commons",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "school building",
+        "sha256": "f95080e1e5d64b35e7f1a0cc62c73332e4edc470a876c587ca59fad0fc95b905",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "classroom",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "lớp học, phòng học",
+      "meaningEn": "a room where a class is taught",
+      "examples": [
+        {
+          "text": "The classroom is bright and clean.",
+          "vi": "Lớp học sáng sủa và sạch sẽ."
+        },
+        {
+          "text": "Thirty students sit in my classroom.",
+          "vi": "Ba mươi học sinh ngồi trong lớp của tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "in the classroom",
+          "vi": "trong lớp học"
+        }
+      ],
+      "imageQuery": "classroom",
+      "ipaUs": "/ˈklɑːsɹʊm/",
+      "ipaUk": "/ˈklɑːsɹʊm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/classroom",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a13/classroom.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/37996646802@N01/46702870",
+        "author": "cogdogblog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "classroom",
+        "sha256": "6d5d615ba5405881b3267ae2901b99bb1d4d2b0df9715afbe4b7ad0be90b74b1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "teacher",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "giáo viên",
+      "meaningEn": "a person whose job is to teach",
+      "examples": [
+        {
+          "text": "Our teacher explains the lesson slowly.",
+          "vi": "Cô giáo của chúng tôi giảng bài rất chậm rãi."
+        },
+        {
+          "text": "My English teacher is very kind.",
+          "vi": "Giáo viên tiếng Anh của tôi rất tốt bụng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "English teacher",
+          "vi": "giáo viên tiếng Anh"
+        }
+      ],
+      "imageQuery": "teacher classroom illustration",
+      "ipaUs": "/ˈti.t͡ʃɚ/",
+      "ipaUk": "/ˈtiː.t͡ʃəː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/teacher",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "teacher"
+      },
+      "image": {
+        "file": "a13/teacher.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:teacher",
+        "sha256": "3ca1c1f8e4f7fef58627cc6651d1e3a484fb176c66d69fa0bb66b2861d2fcd18",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "student",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "học sinh, sinh viên",
+      "meaningEn": "a person who studies at a school or university",
+      "examples": [
+        {
+          "text": "Every student has a notebook.",
+          "vi": "Học sinh nào cũng có một quyển vở."
+        },
+        {
+          "text": "She is a student at a big university.",
+          "vi": "Cô ấy là sinh viên của một trường đại học lớn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "university student",
+          "vi": "sinh viên đại học"
+        }
+      ],
+      "imageQuery": "students classroom illustration",
+      "ipaUs": "/ˈstu.dn̩t/",
+      "ipaUk": "/ˈst͡ʃuː.dn̩t/",
+      "ipaSource": "https://en.wiktionary.org/wiki/student",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "student"
+      },
+      "image": {
+        "file": "a13/student.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:student",
+        "sha256": "201b3199a877256135e4c2d0901f7d35147aa202afa079a8c5f61c007fd3e9b9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "desk",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bàn học, bàn làm việc",
+      "meaningEn": "a table where you read, write or work",
+      "examples": [
+        {
+          "text": "My desk is next to the window.",
+          "vi": "Bàn học của tôi nằm cạnh cửa sổ."
+        },
+        {
+          "text": "She keeps her books on the desk.",
+          "vi": "Cô ấy để sách trên bàn học."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "school desk",
+          "vi": "bàn học ở trường"
+        }
+      ],
+      "imageQuery": "school desk",
+      "ipaUs": "/dɛsk/",
+      "ipaUk": "/dɛsk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/desk",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/desk.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/59809888@N06/6798320581",
+        "author": "South Australian History Network",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "school desk",
+        "sha256": "c32fc15af95c921f0e4f1a36aef1d328ea99d2b4c1fb115da93e85d30c020a0f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "whiteboard",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bảng trắng",
+      "meaningEn": "a smooth white board that you write on with markers",
+      "examples": [
+        {
+          "text": "The teacher wrote a word on the whiteboard.",
+          "vi": "Cô giáo viết một từ lên bảng trắng."
+        },
+        {
+          "text": "Please clean the whiteboard after class.",
+          "vi": "Làm ơn lau bảng trắng sau giờ học."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "write on the whiteboard",
+          "vi": "viết lên bảng trắng"
+        }
+      ],
+      "imageQuery": "whiteboard classroom",
+      "ipaUs": "/ˈwaɪtbɔɹd/",
+      "ipaUk": "/ˈwaɪtbɔːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/whiteboard",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/whiteboard.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5920203/photo-image-paper-sticky-note-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "whiteboard classroom",
+        "sha256": "11cef0298b5f94197806fd018263b36e0640ab0a55e3f9fe0e93e21faba948b6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "notebook",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "quyển vở",
+      "meaningEn": "a book of empty pages for writing notes",
+      "examples": [
+        {
+          "text": "I write new words in my notebook.",
+          "vi": "Tôi ghi từ mới vào quyển vở của mình."
+        },
+        {
+          "text": "He forgot his notebook at home.",
+          "vi": "Cậu ấy quên quyển vở ở nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open your notebook",
+          "vi": "mở vở ra"
+        }
+      ],
+      "imageQuery": "spiral notebook paper",
+      "ipaUs": "/ˈnəʊtˌbʊk/",
+      "ipaUk": "/ˈnəʊtˌbʊk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/notebook",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a13/notebook.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5947048/free-public-domain-cc0-photo",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "spiral notebook paper",
+        "sha256": "2ad728b8d14469881c5933a6915e28499034d54836719a4b2922aecc864d3de1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "textbook",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sách giáo khoa",
+      "meaningEn": "a book used for studying a school subject",
+      "examples": [
+        {
+          "text": "Open your textbook to page ten.",
+          "vi": "Hãy mở sách giáo khoa ra trang mười."
+        },
+        {
+          "text": "This English textbook has many pictures.",
+          "vi": "Cuốn sách giáo khoa tiếng Anh này có nhiều hình ảnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "math textbook",
+          "vi": "sách giáo khoa toán"
+        }
+      ],
+      "imageQuery": "textbook",
+      "ipaUs": "/ˈtɛkst.bʊk/",
+      "ipaUk": "/ˈtɛkst.bʊk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/textbook",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/textbook.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/apple-textbooks-NAOWFGI5EF",
+        "author": "Michal Jarmoluk",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "textbook",
+        "sha256": "256fe05c78c4fce8fb744874015eafa156065cd0c03c94433ebb138be0d868f1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pen",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cây bút mực, bút bi",
+      "meaningEn": "a tool with ink for writing",
+      "examples": [
+        {
+          "text": "Can I borrow your pen, please?",
+          "vi": "Cho mình mượn cây bút của bạn được không?"
+        },
+        {
+          "text": "She signed the paper with a blue pen.",
+          "vi": "Cô ấy ký giấy bằng một cây bút xanh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ballpoint pen",
+          "vi": "bút bi"
+        }
+      ],
+      "imageQuery": "pen writing",
+      "ipaUs": "/pɛn/",
+      "ipaUk": "/pɛn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pen",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/pen.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/writing-drawing-8Y0EDX4VP9",
+        "author": "Green Chameleon",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "pen writing",
+        "sha256": "979a82ef4feb92c1d41e6f61336c28f98771ef55cf74d94ecbe89ba4fd0b0c7b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pencil",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bút chì",
+      "meaningEn": "a thin wooden tool with a grey point for writing or drawing",
+      "examples": [
+        {
+          "text": "I draw with a soft pencil.",
+          "vi": "Tôi vẽ bằng bút chì mềm."
+        },
+        {
+          "text": "The pencil is too short to hold.",
+          "vi": "Cây bút chì ngắn quá không cầm được."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "sharpen a pencil",
+          "vi": "gọt bút chì"
+        }
+      ],
+      "imageQuery": "pencil",
+      "ipaUs": "/ˈpɛn(t)səl/",
+      "ipaUk": "/ˈpɛnsɪl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pencil",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/pencil.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/151415985@N06/36646074744",
+        "author": "Wallboat",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "pencil",
+        "sha256": "99d14c557e72ce01a43a6bdc7680e67d36ccb0ea278fbfda2e85bca4ff0c041f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "eraser",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cục tẩy",
+      "meaningEn": "a small piece of rubber that removes pencil marks",
+      "examples": [
+        {
+          "text": "Use an eraser to fix the mistake.",
+          "vi": "Hãy dùng cục tẩy để sửa lỗi sai."
+        },
+        {
+          "text": "I lost my eraser at school.",
+          "vi": "Tôi làm mất cục tẩy ở trường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "rubber eraser",
+          "vi": "cục tẩy cao su"
+        }
+      ],
+      "imageQuery": "rubber eraser",
+      "ipaUs": "/ɪˈɹeɪsɚ/",
+      "ipaUk": "/ɪˈɹeɪzə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/eraser",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/eraser.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6588510/image-public-domain-blue-illustrations",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "rubber eraser",
+        "sha256": "c1e85ce4b2028135f082741578633666d6a8e7646dd323f62f1fc8c3a8a5688a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ruler",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cây thước kẻ",
+      "meaningEn": "a long flat tool for drawing straight lines and measuring",
+      "examples": [
+        {
+          "text": "Draw a line with a ruler.",
+          "vi": "Hãy kẻ một đường bằng thước."
+        },
+        {
+          "text": "My ruler is thirty centimetres long.",
+          "vi": "Cây thước của tôi dài ba mươi xăng-ti-mét."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "plastic ruler",
+          "vi": "thước nhựa"
+        }
+      ],
+      "imageQuery": "ruler",
+      "ipaUs": "/ˈɹulɚ/",
+      "ipaUk": "/ˈɹuːlə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ruler",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/ruler.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Ruler_image.jpg",
+        "author": "User:Goele",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "ruler",
+        "sha256": "c63f5e88760921fa51b889c7d772ea7213dcd77e487f525b83a8cab4d246065c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "scissors",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái kéo",
+      "meaningEn": "a tool with two blades for cutting paper",
+      "examples": [
+        {
+          "text": "Use scissors to cut the paper.",
+          "vi": "Hãy dùng kéo để cắt tờ giấy."
+        },
+        {
+          "text": "The children need safe scissors.",
+          "vi": "Bọn trẻ cần loại kéo an toàn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a pair of scissors",
+          "vi": "một chiếc kéo"
+        }
+      ],
+      "imageQuery": "scissors",
+      "ipaUs": "/ˈsɪzɚz/",
+      "ipaUk": "/ˈsɪzəz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/scissors",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/scissors.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/53018729@N00/217183024",
+        "author": "ani!",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "scissors",
+        "sha256": "48b614a30640df947cd6a9a91af290b0b78d7d91afdc1c8a3b837a7030b70d79",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "glue",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "A2",
+      "definition": "keo dán; dán",
+      "meaningEn": "a sticky liquid used to join things together",
+      "verbForms": {
+        "past": "glued",
+        "pastParticiple": "glued",
+        "ing": "gluing",
+        "thirdPerson": "glues"
+      },
+      "examples": [
+        {
+          "text": "She used glue to stick the picture.",
+          "vi": "Cô ấy dùng keo để dán bức tranh."
+        },
+        {
+          "text": "The bottle of glue is empty.",
+          "vi": "Lọ keo đã hết."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "glue stick",
+          "vi": "keo dán dạng thỏi"
+        }
+      ],
+      "imageQuery": "glue stick",
+      "ipaUs": "/ɡlu/",
+      "ipaUk": "/ɡluː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/glue",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/glue.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/11728613/image-collage-cartoon-logo",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "glue stick",
+        "sha256": "23001d65ee5b21a7befe6a1b0bfbac16a1f148f60b520d197e11829b92250735",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "backpack",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ba lô",
+      "meaningEn": "a bag that you carry on your back",
+      "examples": [
+        {
+          "text": "He puts his books in his backpack.",
+          "vi": "Cậu ấy cho sách vào ba lô."
+        },
+        {
+          "text": "My backpack is heavy today.",
+          "vi": "Hôm nay ba lô của tôi nặng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "school backpack",
+          "vi": "ba lô đi học"
+        }
+      ],
+      "imageQuery": "backpack",
+      "ipaUs": "/ˈbæk.pæk/",
+      "ipaUk": "/ˈbæk.pæk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/backpack",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/backpack.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/35608308@N05/28404475294",
+        "author": "megforce1",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "backpack",
+        "sha256": "cfde28767a664789e52a7f7f554e7bce59f3d2d27a683b8e036b0da84d034d68",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pencil case",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hộp bút",
+      "meaningEn": "a small bag or box for keeping pens and pencils",
+      "examples": [
+        {
+          "text": "My pencil case is full of colourful pens.",
+          "vi": "Hộp bút của tôi đầy những cây bút nhiều màu."
+        },
+        {
+          "text": "She took a pen from her pencil case.",
+          "vi": "Cô ấy lấy một cây bút từ hộp bút."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "zip the pencil case",
+          "vi": "kéo khóa hộp bút"
+        }
+      ],
+      "imageQuery": "pencil case",
+      "ipaUs": "/ˈpɛn(t)səl keɪs/",
+      "ipaUk": "/ˈpɛnsɪl keɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pencil + https://en.wiktionary.org/wiki/case",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/pencil-case.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Pencil_case_014.jpg",
+        "author": "",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "pencil case",
+        "sha256": "7007166321b2e3a9ee299612125113e131a07aead7da476449f09f2a219a607f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "calculator",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "máy tính bỏ túi",
+      "meaningEn": "a small machine that does mathematics",
+      "examples": [
+        {
+          "text": "You can use a calculator in the math test.",
+          "vi": "Bạn được dùng máy tính bỏ túi trong bài kiểm tra toán."
+        },
+        {
+          "text": "The calculator needs a new battery.",
+          "vi": "Máy tính bỏ túi cần thay pin mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "use a calculator",
+          "vi": "dùng máy tính bỏ túi"
+        }
+      ],
+      "imageQuery": "calculator",
+      "ipaUs": "/kæl.kjə.leɪ.tɚ/",
+      "ipaUk": "/ˈkæl.kjə.leɪ.tə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/calculator",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/calculator.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/91352576@N06/24217746621",
+        "author": "motazabdelazeem صور من الوطن",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "calculator",
+        "sha256": "2ff82565a6d50cbf541fc04fdad669d2475dc7c579f9116d63fe8eee7383fd17",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "dictionary",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "từ điển",
+      "meaningEn": "a book that explains the meaning of words",
+      "plural": "dictionaries",
+      "examples": [
+        {
+          "text": "I look up new words in the dictionary.",
+          "vi": "Tôi tra từ mới trong từ điển."
+        },
+        {
+          "text": "Her English dictionary is very thick.",
+          "vi": "Cuốn từ điển tiếng Anh của cô ấy rất dày."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "look up in a dictionary",
+          "vi": "tra từ điển"
+        }
+      ],
+      "imageQuery": "dictionary book",
+      "ipaUs": "/ˈdɪkʃəˌnɛɹi/",
+      "ipaUk": "/ˈdɪkʃən.ɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/dictionary",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/dictionary.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/135396164@N05/23349605895",
+        "author": "freestocks.org",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "dictionary book",
+        "sha256": "a0372fb15fb2fa6f437e60fb9fe59cd2558ae5bf7ff815c2d881e88981fc9e42",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "globe",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quả địa cầu",
+      "meaningEn": "a ball with a map of the whole Earth on it",
+      "examples": [
+        {
+          "text": "He found Vietnam on the globe.",
+          "vi": "Cậu ấy tìm thấy Việt Nam trên quả địa cầu."
+        },
+        {
+          "text": "There is a large globe in the classroom.",
+          "vi": "Có một quả địa cầu lớn trong lớp học."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "spin the globe",
+          "vi": "xoay quả địa cầu"
+        }
+      ],
+      "imageQuery": "world globe",
+      "ipaUs": "/ɡloʊb/",
+      "ipaUk": "/ɡləʊb/",
+      "ipaSource": "https://en.wiktionary.org/wiki/globe",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/globe.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5906441/photo-image-books-public-domain-wood",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "world globe",
+        "sha256": "6d18abd67765e6e86251e3381a36ca7b5a2792bdeb186370178a49fe14607fd2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "library",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "thư viện",
+      "meaningEn": "a place where you can read or borrow books",
+      "plural": "libraries",
+      "examples": [
+        {
+          "text": "I borrow books from the school library.",
+          "vi": "Tôi mượn sách từ thư viện trường."
+        },
+        {
+          "text": "The library is quiet in the afternoon.",
+          "vi": "Thư viện yên tĩnh vào buổi chiều."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "library book",
+          "vi": "sách thư viện"
+        }
+      ],
+      "imageQuery": "library interior books",
+      "ipaUs": "/ˈlaɪˌbɹɛɹ.i/",
+      "ipaUk": "/ˈlaɪ.bɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/library",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/library.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Chinese_books_in_Jubilee_Library,_Brighton_2026-09-29.jpg",
+        "author": "Andy Li",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "library interior books",
+        "sha256": "e8afd643d6426a20bb622ba0fede961f33ac1f6e4ad5ffeef50d2c9765b72b87",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "homework",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bài tập về nhà",
+      "meaningEn": "schoolwork that you do at home",
+      "examples": [
+        {
+          "text": "I do my homework after dinner.",
+          "vi": "Tôi làm bài tập về nhà sau bữa tối."
+        },
+        {
+          "text": "We have a lot of homework today.",
+          "vi": "Hôm nay chúng tôi có rất nhiều bài tập về nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "do your homework",
+          "vi": "làm bài tập về nhà"
+        }
+      ],
+      "imageQuery": "homework desk book",
+      "ipaUs": "/ˈhoʊmˌwɜɹk/",
+      "ipaUk": "/ˈhəʊmˌwɜːk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/homework",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/homework.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/7647064/png-paper-person",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "homework desk book",
+        "sha256": "27eb00ce30750864c5893bebbe4298acbdc3694d9ddde07f4755b4d6bbe491e1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "exam",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bài thi, kỳ thi",
+      "meaningEn": "an important test of what you have learned",
+      "examples": [
+        {
+          "text": "I have an English exam tomorrow.",
+          "vi": "Ngày mai tôi có một bài thi tiếng Anh."
+        },
+        {
+          "text": "She studied hard for the exam.",
+          "vi": "Cô ấy học chăm chỉ cho kỳ thi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pass an exam",
+          "vi": "thi đỗ"
+        },
+        {
+          "text": "take an exam",
+          "vi": "dự thi"
+        }
+      ],
+      "imageQuery": "exam paper",
+      "ipaUs": "/ɪɡˈzæm/",
+      "ipaUk": "/ɪɡˈzam/",
+      "ipaSource": "https://en.wiktionary.org/wiki/exam",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/exam.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5916433/image-paper-public-domain-wooden",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "exam paper",
+        "sha256": "cd8a0330384e7f734a2f6df5f0f9104db8431c34b97950b474d3e89e75affa02",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "uniform",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đồng phục",
+      "meaningEn": "special clothes that all students or workers wear",
+      "examples": [
+        {
+          "text": "Students wear a blue uniform here.",
+          "vi": "Học sinh ở đây mặc đồng phục màu xanh."
+        },
+        {
+          "text": "She ironed her school uniform.",
+          "vi": "Cô ấy ủi đồng phục đi học."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "school uniform",
+          "vi": "đồng phục học sinh"
+        }
+      ],
+      "imageQuery": "school uniform",
+      "ipaUs": "/ˈjunɪˌfɔɹm/",
+      "ipaUk": "/ˈjuːnɪfɔːm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/uniform",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/uniform.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Secondary_School_Uniform_ESM.jpg",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "school uniform",
+        "sha256": "c160ed0e51904a93d76ecfc5f284ffd535eac403a850cab4f130eb0d8cc9ed68",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "playground",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sân chơi",
+      "meaningEn": "an outdoor area where children play",
+      "examples": [
+        {
+          "text": "The children run around the playground.",
+          "vi": "Bọn trẻ chạy quanh sân chơi."
+        },
+        {
+          "text": "There is a slide in the playground.",
+          "vi": "Có một cái cầu trượt ở sân chơi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "school playground",
+          "vi": "sân chơi của trường"
+        }
+      ],
+      "imageQuery": "playground",
+      "ipaUs": "/ˈpleɪɡɹaʊnd/",
+      "ipaUk": "/ˈpleɪɡɹaʊnd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/playground",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/playground.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/60455048@N02/28164475775",
+        "author": "Queensland State Archives",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "playground",
+        "sha256": "b1665c4bf68f7fbdd4094df90fb99b40aa063cee247452c54631fb08f86a25e7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "marker",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bút lông, bút dạ",
+      "meaningEn": "a thick pen with coloured ink",
+      "examples": [
+        {
+          "text": "The teacher wrote on the board with a red marker.",
+          "vi": "Cô giáo viết lên bảng bằng bút lông đỏ."
+        },
+        {
+          "text": "My marker has run out of ink.",
+          "vi": "Cây bút lông của tôi hết mực rồi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "colour marker",
+          "vi": "bút lông màu"
+        }
+      ],
+      "imageQuery": "marker pens",
+      "ipaUs": "/ˈmɑː(ɹ)kə(ɹ)/",
+      "ipaUk": "/ˈmɑː(ɹ)kə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/marker",
+      "ipaVerified": true,
+      "image": {
+        "file": "a13/marker.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Marker_paint.jpg",
+        "author": "Flanoz",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "marker pens",
+        "sha256": "0790e1761e67dfafda1b9260d01ab6af449ff5a27a2b837a14fd2d1765cbb18d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

@@ -469,6 +469,17 @@ def people_scene(kind: str) -> bytes:
         a = _person(d, cx - 78, 40, 2.7, "m", (22, 163, 74))
         b = _person(d, cx + 78, 40, 2.7, "f", (219, 39, 119))
         d.line((a[0] + 30 * s, 205 * s, b[0] - 30 * s, 205 * s), fill=OUTLINE, width=9 * s)
+    elif kind == "teacher":
+        d.rounded_rectangle((20 * s, 30 * s, 300 * s, 250 * s), 12 * s, fill=(22, 101, 52), outline=(120, 72, 36), width=8 * s)
+        for k, wd in enumerate((200, 150, 180)):
+            d.line((50 * s, (80 + k * 40) * s, (50 + wd) * s, (80 + k * 40) * s), fill=(240, 244, 240), width=4 * s)
+        a = _person(d, 380, 40, 2.5, "f", (124, 58, 237))
+        d.line((a[0] - 48 * s, 200 * s, 270 * s, 150 * s), fill=(120, 72, 36), width=6 * s)
+    elif kind == "student":
+        _person(d, cx - 20, 30, 2.8, "m", (14, 165, 233))
+        d.rounded_rectangle(((cx + 36) * s, 130 * s, (cx + 96) * s, 230 * s), 12 * s, fill=(234, 88, 12), outline=OUTLINE, width=3 * s)
+        d.rectangle(((cx - 90) * s, 170 * s, (cx - 40) * s, 215 * s), fill=(253, 224, 71), outline=OUTLINE, width=3 * s)
+        d.line(((cx - 65) * s, 170 * s, (cx - 65) * s, 215 * s), fill=OUTLINE, width=2 * s)
     elif kind == "neighbour":
         d.rectangle((0, 280 * s, W * s, H * s), fill=(187, 222, 176))
         for x0, col in ((20, (250, 204, 21)), (330, (125, 211, 252))):
