@@ -680,3 +680,20 @@ New: `Services/Onboarding/{OnboardingModels,OnboardingService,OnboardingRequestL
 | G7 | `Program.cs` diff = 2 DI lines; the DbContext is untouched in this phase; `PersonalSetService.Write.cs` change is the helper extraction. |
 | G8–G14, G16 | Not applicable (no UI); query count of the preview is asserted in the tests (≤ 8 SELECTs, constant for 3 and 8 topics). |
 | G15 | Every query is scoped by the user id; the system vocabulary is only read (fingerprint of the system rows identical before and after). |
+
+### 12.5 S4 gate record (API)
+
+New: `Controllers/OnboardingApiController.cs` (`[Authorize]`, `[AutoValidateAntiforgeryToken]`, `api/onboarding`), `Services/Onboarding/OnboardingDtos.cs`, `OnboardingApiTests` (21 tests).
+
+Routes added (7, nothing else): `GET state`, `POST prompted`, `POST skip`, `POST preview`, `POST complete`, `POST refill/{setId:int}`, `POST banner/dismiss`. Errors: 400 `{error}` in Vietnamese, 401 guests (302 to the login for the cookie scheme), 404 for a set that is not the user's or not an onboarding deck (never 403), 409 for the same request id with another payload, 429 `{error}` from the limiter. The request id is read as a string so a bad one is a 400 with a message. The links in the answers are built from integer ids only (`/Sets/Folders/{id}`, `/Sets/{id}`, `/Practice/learn?set={id}&n={pace}&from=set`). The limiter (10 per 10 minutes per user) counts the writing calls after the request id is checked.
+
+| Gate | Result |
+| --- | --- |
+| G1 | Build, 0 errors. |
+| G2 | `OnboardingApiTests` 21/21: guests are not served; every POST needs the antiforgery token; state for a new and an existing account; preview shape and bad choices (incl. malformed JSON); complete creates two sets and one folder, a retry returns the same ids, another payload is a 409; the created set opens on the normal page; refill adds words to the owner's deck and is a 404 for another user, a missing set and a plain personal set; count and id bounds; the limiter blocks the 11th call and does not affect another user. |
+| G3, G4 | Full suites run at S6 (the only code outside new files is unchanged since the S3 run: .NET 3723 passed, node 570). |
+| G5 | `has-pending-model-changes` unchanged (no model edit). Only the seven `api/onboarding/*` routes are new. |
+| G6 | New C# only. |
+| G7 | Files = section 5. |
+| G8–G14, G16 | Not applicable (no UI). |
+| G15 | Antiforgery on every POST, `[Authorize]`, queries scoped by user id, no user emails or other users' data in any answer (asserted), idempotency and rate limit tested. |
