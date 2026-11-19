@@ -344,6 +344,145 @@ def garment(name: str) -> bytes:
     return finish(img)
 
 
+SKIN = (250, 213, 172)
+HAIR_DARK = (60, 44, 38)
+HAIR_GREY = (176, 178, 184)
+HI_FILL = (255, 159, 28)
+LO_FILL = (176, 182, 196)
+LINK = (120, 126, 142)
+
+
+def _person(d, cx, top, scale, gender, fill, hair=HAIR_DARK, grey=False, glasses=False, cane=False, bun=False, star=False):
+    """Flat cartoon person. (cx, top) is the top of the head in 1x pixels; scale 1.0 is an adult."""
+    s = S * scale
+    lw = max(2, int(2 * s))
+    r = 15 * s
+    hx, hy = cx * S, top * S + r
+    body_top = hy + r * 0.95
+    bw = 34 * s
+    bh = 44 * s
+    hair = HAIR_GREY if grey else hair
+    if gender == "f":
+        d.ellipse((hx - r * 1.12, hy - r * 1.1, hx + r * 1.12, hy + r * 1.5), fill=hair)
+        pts = [(hx - bw * 0.42, body_top), (hx + bw * 0.42, body_top), (hx + bw * 0.78, body_top + bh * 1.15), (hx - bw * 0.78, body_top + bh * 1.15)]
+        d.polygon(pts, fill=fill)
+        d.line(pts + [pts[0]], fill=OUTLINE, width=lw, joint="curve")
+    else:
+        d.rounded_rectangle((hx - bw * 0.5, body_top, hx + bw * 0.5, body_top + bh * 0.72), int(6 * s), fill=fill, outline=OUTLINE, width=lw)
+        for lx in (-0.42, 0.08):
+            d.rectangle((hx + bw * lx, body_top + bh * 0.72, hx + bw * (lx + 0.34), body_top + bh * 1.15), fill=shade(fill, 0.7), outline=OUTLINE)
+    d.ellipse((hx - r, hy - r, hx + r, hy + r), fill=SKIN, outline=OUTLINE, width=lw)
+    if gender == "f":
+        d.pieslice((hx - r * 1.05, hy - r * 1.1, hx + r * 1.05, hy + r * 1.0), 180, 360, fill=hair)
+        if bun:
+            d.ellipse((hx - r * 0.45, hy - r * 1.7, hx + r * 0.45, hy - r * 0.8), fill=hair, outline=OUTLINE)
+    else:
+        d.pieslice((hx - r * 1.02, hy - r * 1.08, hx + r * 1.02, hy + r * 0.7), 180, 360, fill=hair)
+    for ex in (-0.38, 0.38):
+        d.ellipse((hx + ex * r - 2 * s, hy - 1 * s, hx + ex * r + 2 * s, hy + 3 * s), fill=OUTLINE)
+    d.arc((hx - r * 0.4, hy + r * 0.1, hx + r * 0.4, hy + r * 0.62), 20, 160, fill=OUTLINE, width=lw)
+    if glasses:
+        for ex in (-0.4, 0.4):
+            d.ellipse((hx + ex * r - 5 * s, hy - 4 * s, hx + ex * r + 5 * s, hy + 6 * s), outline=OUTLINE, width=max(2, int(1.4 * s)))
+    if cane:
+        x = hx + bw * 0.95
+        d.line((x, body_top + bh * 0.2, x, body_top + bh * 1.2), fill=(120, 72, 36), width=int(3 * s))
+    if star:
+        d.polygon(poly_star(hx, hy - r * 2.0, 9 * s, 4 * s), fill=(250, 204, 21), outline=OUTLINE)
+    return hx, body_top + bh * 1.15
+
+
+def family_tree(role: str) -> bytes:
+    """Family tree with the relative that the word names highlighted in orange; the star marks "you"."""
+    img, d = canvas()
+    lw = 3 * S
+    ox = 60
+    nodes = {
+        "grandfather": (120 + ox, 0, "m"), "grandmother": (180 + ox, 0, "f"),
+        "aunt": (80 + ox, 1, "f"), "uncle": (150 + ox, 1, "m"), "father": (220 + ox, 1, "m"), "mother": (290 + ox, 1, "f"),
+        "cousin": (150 + ox, 2, "m"), "brother": (215 + ox, 2, "m"), "me": (255 + ox, 2, "x"), "sister": (295 + ox, 2, "f"),
+    }
+    ys = {0: 20, 1: 140, 2: 262}
+    hi = {
+        "mother": {"mother"}, "father": {"father"}, "parents": {"father", "mother"}, "brother": {"brother"}, "sister": {"sister"},
+        "grandmother": {"grandmother"}, "grandfather": {"grandfather"}, "uncle": {"uncle"}, "aunt": {"aunt"}, "cousin": {"cousin"},
+        "son": {"brother"}, "daughter": {"sister"}, "husband": {"father"}, "wife": {"mother"}, "family": set(nodes),
+    }[role]
+
+    def px(key):
+        return (240 + (nodes[key][0] - 245) * 1.7) * S
+
+    def line(x0, y0, x1, y1):
+        d.line((x0, y0, x1, y1), fill=LINK, width=lw)
+
+    line(px("grandfather"), (ys[0] + 66) * S, px("grandmother"), (ys[0] + 66) * S)
+    line(px("father"), (ys[1] + 66) * S, px("mother"), (ys[1] + 66) * S)
+    gx = (px("grandfather") + px("grandmother")) / 2
+    by = (ys[0] + 66) * S
+    bar = (ys[1] - 16) * S
+    line(gx, by, gx, bar)
+    line(px("aunt"), bar, px("father"), bar)
+    for k in ("aunt", "uncle", "father"):
+        line(px(k), bar, px(k), ys[1] * S)
+    mx = (px("father") + px("mother")) / 2
+    bar2 = (ys[2] - 14) * S
+    line(mx, (ys[1] + 66) * S, mx, bar2)
+    line(px("brother"), bar2, px("sister"), bar2)
+    for k in ("brother", "me", "sister"):
+        line(px(k), bar2, px(k), ys[2] * S)
+    line(px("uncle"), (ys[1] + 90) * S, px("uncle"), ys[2] * S)
+    for key, (x, lvl, g) in nodes.items():
+        on = key in hi
+        child = lvl == 2
+        _person(d, 240 + (x - 245) * 1.7, ys[lvl] + (6 if child else 0), 1.0 if child else 1.25, "f" if g == "f" else "m", HI_FILL if on else LO_FILL,
+                grey=(lvl == 0), glasses=(key in ("grandfather", "grandmother")), bun=(key == "grandmother"), star=(key == "me"))
+    return finish(img)
+
+
+def people_scene(kind: str) -> bytes:
+    """Single people (baby, child, boy ...) and small scenes (friend, neighbour, twins)."""
+    img, d = canvas()
+    s = S
+    cx = W // 2
+    if kind in ("man", "woman"):
+        _person(d, cx, 14, 3.0, "m" if kind == "man" else "f", (37, 99, 235) if kind == "man" else (219, 39, 119))
+    elif kind in ("boy", "girl"):
+        _person(d, cx, 40, 2.7, "m" if kind == "boy" else "f", (22, 163, 74) if kind == "boy" else (234, 88, 12))
+    elif kind == "child":
+        _person(d, cx - 75, 70, 2.3, "m", (14, 165, 233))
+        _person(d, cx + 75, 70, 2.3, "f", (234, 88, 12))
+    elif kind == "teenager":
+        _person(d, cx - 20, 18, 3.0, "m", (124, 58, 237))
+        d.rounded_rectangle(((cx + 40) * s, 130 * s, (cx + 104) * s, 230 * s), 10 * s, fill=(250, 204, 21), outline=OUTLINE, width=3 * s)
+    elif kind == "baby":
+        hx, hy, r = cx * s, 150 * s, 62 * s
+        d.ellipse((hx - 120 * s, 200 * s, hx + 120 * s, 340 * s), fill=(253, 224, 71), outline=OUTLINE, width=3 * s)
+        d.ellipse((hx - r, hy - r, hx + r, hy + r), fill=SKIN, outline=OUTLINE, width=3 * s)
+        d.arc((hx - 26 * s, hy + 6 * s, hx + 26 * s, hy + 44 * s), 20, 160, fill=OUTLINE, width=3 * s)
+        for ex in (-22, 22):
+            d.ellipse((hx + ex * s - 5 * s, hy - 12 * s, hx + ex * s + 5 * s, hy), fill=OUTLINE)
+        d.arc((hx - 14 * s, hy - 52 * s, hx + 14 * s, hy - 30 * s), 180, 330, fill=OUTLINE, width=3 * s)
+    elif kind == "twins":
+        _person(d, cx - 75, 40, 2.7, "m", (37, 99, 235))
+        _person(d, cx + 75, 40, 2.7, "m", (37, 99, 235))
+    elif kind == "friend":
+        a = _person(d, cx - 78, 40, 2.7, "m", (22, 163, 74))
+        b = _person(d, cx + 78, 40, 2.7, "f", (219, 39, 119))
+        d.line((a[0] + 30 * s, 205 * s, b[0] - 30 * s, 205 * s), fill=OUTLINE, width=9 * s)
+    elif kind == "neighbour":
+        d.rectangle((0, 280 * s, W * s, H * s), fill=(187, 222, 176))
+        for x0, col in ((20, (250, 204, 21)), (330, (125, 211, 252))):
+            d.rectangle((x0 * s, 130 * s, (x0 + 130) * s, 290 * s), fill=col, outline=OUTLINE, width=3 * s)
+            d.polygon([((x0 - 10) * s, 130 * s), ((x0 + 65) * s, 60 * s), ((x0 + 140) * s, 130 * s)], fill=(220, 38, 38), outline=OUTLINE)
+            d.rectangle(((x0 + 50) * s, 210 * s, (x0 + 82) * s, 290 * s), fill=(120, 72, 36), outline=OUTLINE, width=2 * s)
+        d.rectangle((170 * s, 240 * s, 310 * s, 252 * s), fill=(214, 175, 90), outline=OUTLINE)
+        for x in range(176, 310, 28):
+            d.rectangle((x * s, 222 * s, (x + 12) * s, 290 * s), fill=(214, 175, 90), outline=OUTLINE)
+        _person(d, 110, 150, 1.4, "m", (22, 163, 74))
+        _person(d, 370, 150, 1.4, "f", (219, 39, 119))
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -370,6 +509,10 @@ def main() -> None:
             data = hand_closeup(val)
         elif kind == "garment":
             data = garment(val)
+        elif kind == "family":
+            data = family_tree(val)
+        elif kind == "people":
+            data = people_scene(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"

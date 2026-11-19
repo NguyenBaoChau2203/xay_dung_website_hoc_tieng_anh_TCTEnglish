@@ -1,0 +1,1237 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A09",
+    "name": "Gia đình & con người",
+    "description": "#a1 #a2 #family #people",
+    "topic": "Gia đình & con người",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "mother",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "mẹ",
+      "meaningEn": "a woman who has a child",
+      "examples": [
+        {
+          "text": "My mother cooks dinner every evening.",
+          "vi": "Mẹ tôi nấu bữa tối mỗi buổi chiều."
+        },
+        {
+          "text": "She is a kind mother to her children.",
+          "vi": "Bà là một người mẹ tốt bụng với các con."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "single mother",
+          "vi": "mẹ đơn thân"
+        }
+      ],
+      "synonyms": [
+        "mum",
+        "mom"
+      ],
+      "imageQuery": "mother and child illustration",
+      "ipaUs": "/ˈmʌðɚ/",
+      "ipaUk": "/ˈmʌð.ə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mother",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "mother"
+      },
+      "image": {
+        "file": "a09/mother.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:mother",
+        "sha256": "6c58a6aababc97a1275ea6d14828038517b6b968759b3ad0e7eecee70891d247",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "father",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bố, cha",
+      "meaningEn": "a man who has a child",
+      "examples": [
+        {
+          "text": "My father drives me to school.",
+          "vi": "Bố tôi chở tôi đến trường."
+        },
+        {
+          "text": "He is a good father to his son.",
+          "vi": "Ông là một người cha tốt với con trai."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Father's Day",
+          "vi": "Ngày của Cha"
+        }
+      ],
+      "synonyms": [
+        "dad"
+      ],
+      "imageQuery": "father and child illustration",
+      "ipaUs": "/ˈfɑː.ðə(ɹ)/",
+      "ipaUk": "/ˈfɑː.ðə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/father",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "father"
+      },
+      "image": {
+        "file": "a09/father.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:father",
+        "sha256": "8df55ba1b7445269d4011c39545ba2e74dc7d2cc5b5904988ea1addc92d0c8f8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "parents",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bố mẹ, cha mẹ",
+      "meaningEn": "your mother and father",
+      "examples": [
+        {
+          "text": "My parents live in a small town.",
+          "vi": "Bố mẹ tôi sống ở một thị trấn nhỏ."
+        },
+        {
+          "text": "I call my parents every Sunday.",
+          "vi": "Chủ nhật nào tôi cũng gọi điện cho bố mẹ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "talk to your parents",
+          "vi": "nói chuyện với bố mẹ"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "parent",
+          "pos": "noun",
+          "vi": "cha hoặc mẹ"
+        }
+      ],
+      "imageQuery": "parents with child illustration",
+      "ipaUs": "/ˈpæɹənts/",
+      "ipaUk": "/ˈpɛə.ɹənts/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/parents ; https://en.wiktionary.org/wiki/parents",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "parents"
+      },
+      "image": {
+        "file": "a09/parents.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:parents",
+        "sha256": "44fc990d879bcaf43ccaccc3814058411c90a5e87f0fcb254b5410220542e57a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "brother",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "anh trai, em trai",
+      "meaningEn": "a boy or man with the same parents as you",
+      "examples": [
+        {
+          "text": "My brother plays football every day.",
+          "vi": "Anh trai tôi chơi bóng đá mỗi ngày."
+        },
+        {
+          "text": "I share a room with my little brother.",
+          "vi": "Tôi ở chung phòng với em trai."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "older brother",
+          "vi": "anh trai"
+        },
+        {
+          "text": "younger brother",
+          "vi": "em trai"
+        }
+      ],
+      "imageQuery": "two brothers illustration",
+      "ipaUs": "/ˈbɹʌðɚ/",
+      "ipaUk": "/ˈbɹʌðə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/brother",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "brother"
+      },
+      "image": {
+        "file": "a09/brother.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:brother",
+        "sha256": "74204a51f264cd54a91595b413cd03d8a3eb5312693dd9d4ac05c24313e9a69d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sister",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "chị gái, em gái",
+      "meaningEn": "a girl or woman with the same parents as you",
+      "examples": [
+        {
+          "text": "My sister is a teacher.",
+          "vi": "Chị gái tôi là giáo viên."
+        },
+        {
+          "text": "I help my little sister with her homework.",
+          "vi": "Tôi giúp em gái làm bài tập."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "older sister",
+          "vi": "chị gái"
+        },
+        {
+          "text": "younger sister",
+          "vi": "em gái"
+        }
+      ],
+      "imageQuery": "two sisters illustration",
+      "ipaUs": "/ˈsɪs.tɚ/",
+      "ipaUk": "/ˈsɪs.tə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sister",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "sister"
+      },
+      "image": {
+        "file": "a09/sister.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:sister",
+        "sha256": "aad2c2739f902d6837c7486168a231afc5d3456bdf3ec6753d8cb23a7822a9d6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "grandmother",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bà",
+      "meaningEn": "the mother of your mother or father",
+      "examples": [
+        {
+          "text": "My grandmother tells us old stories.",
+          "vi": "Bà tôi kể cho chúng tôi nghe những câu chuyện xưa."
+        },
+        {
+          "text": "We visit my grandmother every weekend.",
+          "vi": "Cuối tuần nào chúng tôi cũng thăm bà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "visit your grandmother",
+          "vi": "thăm bà"
+        }
+      ],
+      "synonyms": [
+        "grandma"
+      ],
+      "imageQuery": "grandmother illustration",
+      "ipaUs": "/ˈɡɹæn(d)ˌmʌðɚ/",
+      "ipaUk": "/ˈɡɹæn(d)ˌmʌðə(r)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/grandmother",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "grandmother"
+      },
+      "image": {
+        "file": "a09/grandmother.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:grandmother",
+        "sha256": "e6e6f72d75d0d6b8e0a9f781cc3430a62d37e2a73ef704e18301b9a136a23be2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "grandfather",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "ông",
+      "meaningEn": "the father of your mother or father",
+      "examples": [
+        {
+          "text": "My grandfather grows vegetables in his garden.",
+          "vi": "Ông tôi trồng rau trong vườn."
+        },
+        {
+          "text": "The children sat with their grandfather.",
+          "vi": "Bọn trẻ ngồi cạnh ông."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "great-grandfather",
+          "vi": "cụ ông"
+        }
+      ],
+      "synonyms": [
+        "grandpa"
+      ],
+      "imageQuery": "grandfather illustration",
+      "ipaUs": "/ˈɡɹæn(d)ˌfɑðɚ/",
+      "ipaUk": "/ˈɡɹæn(d)ˌfɑːðə(r)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/grandfather",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "grandfather"
+      },
+      "image": {
+        "file": "a09/grandfather.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:grandfather",
+        "sha256": "ea9bedb9ffdcc98165233b83009e336227ce20303768c4e28e81df9b4bd654e1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "uncle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "chú, bác, cậu, dượng",
+      "meaningEn": "the brother of your mother or father",
+      "examples": [
+        {
+          "text": "My uncle lives in another city.",
+          "vi": "Chú tôi sống ở một thành phố khác."
+        },
+        {
+          "text": "Uncle Tom gave me a book.",
+          "vi": "Chú Tom tặng tôi một quyển sách."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "visit your uncle",
+          "vi": "thăm chú"
+        }
+      ],
+      "imageQuery": "uncle illustration",
+      "ipaUs": "/ˈʌŋ.kl̩/",
+      "ipaUk": "/ˈʌŋ.kl̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/uncle",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "uncle"
+      },
+      "image": {
+        "file": "a09/uncle.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:uncle",
+        "sha256": "7c4a5df2e1f2b16265b18a1f3e0c330a1fb74eeda14255ba135da0ddad12f5ee",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "aunt",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cô, dì, thím, mợ",
+      "meaningEn": "the sister of your mother or father",
+      "examples": [
+        {
+          "text": "My aunt makes delicious cakes.",
+          "vi": "Dì tôi làm những chiếc bánh rất ngon."
+        },
+        {
+          "text": "We stayed at my aunt's house.",
+          "vi": "Chúng tôi ở nhà dì."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "your favourite aunt",
+          "vi": "người dì yêu thích của bạn"
+        }
+      ],
+      "imageQuery": "aunt illustration",
+      "ipaUs": "/ɑnt/",
+      "ipaUk": "/ɑːnt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/aunt",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "aunt"
+      },
+      "image": {
+        "file": "a09/aunt.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:aunt",
+        "sha256": "bd0cb806a15e28832e181014de1f033d1821816eccf1ed30deef44f49818effc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cousin",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "anh chị em họ",
+      "meaningEn": "the child of your uncle or aunt",
+      "examples": [
+        {
+          "text": "My cousin lives next to our house.",
+          "vi": "Anh họ tôi sống cạnh nhà chúng tôi."
+        },
+        {
+          "text": "I play games with my cousins.",
+          "vi": "Tôi chơi trò chơi với các anh chị em họ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "first cousin",
+          "vi": "anh chị em họ đời đầu"
+        }
+      ],
+      "imageQuery": "cousins children illustration",
+      "ipaUs": "/ˈkʌz(ə)n/",
+      "ipaUk": "/ˈkʌzn̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cousin",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "cousin"
+      },
+      "image": {
+        "file": "a09/cousin.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:cousin",
+        "sha256": "3c5ba55cb9513a6b2cc37848ed8c2a57be5c72c229571be9492f729411ca5a8c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "baby",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "em bé",
+      "meaningEn": "a very young child",
+      "plural": "babies",
+      "examples": [
+        {
+          "text": "The baby is sleeping in the bed.",
+          "vi": "Em bé đang ngủ trên giường."
+        },
+        {
+          "text": "She is having a baby next month.",
+          "vi": "Tháng sau cô ấy sinh em bé."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "baby girl",
+          "vi": "bé gái"
+        }
+      ],
+      "imageQuery": "baby illustration",
+      "ipaUs": "/ˈbeɪ.bi/",
+      "ipaUk": "/ˈbeɪ.bi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/baby",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "baby"
+      },
+      "image": {
+        "file": "a09/baby.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:baby",
+        "sha256": "be5e855747792a7b341cd15fa839bb47260bf9cfe54f890a0c0fad461c7ad8bb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "child",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "đứa trẻ",
+      "meaningEn": "a young person who is not yet an adult",
+      "plural": "children",
+      "examples": [
+        {
+          "text": "The child is playing in the garden.",
+          "vi": "Đứa trẻ đang chơi trong vườn."
+        },
+        {
+          "text": "Every child needs love and care.",
+          "vi": "Đứa trẻ nào cũng cần tình yêu và sự chăm sóc."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "only child",
+          "vi": "con một"
+        }
+      ],
+      "imageQuery": "child playing illustration",
+      "ipaUs": "/tʃaɪld/",
+      "ipaUk": "/tʃaɪld/",
+      "ipaSource": "https://en.wiktionary.org/wiki/child",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "child"
+      },
+      "image": {
+        "file": "a09/child.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:child",
+        "sha256": "07c306f4596d0850fe438810a747f20eacbe558d84d51b5e29a8f6c6fc770cf0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "boy",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cậu bé",
+      "meaningEn": "a male child",
+      "examples": [
+        {
+          "text": "The boy is riding a bicycle.",
+          "vi": "Cậu bé đang đạp xe."
+        },
+        {
+          "text": "A little boy asked me the time.",
+          "vi": "Một cậu bé hỏi tôi mấy giờ rồi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "little boy",
+          "vi": "cậu bé"
+        }
+      ],
+      "imageQuery": "boy illustration",
+      "ipaUs": "/bɔɪ/",
+      "ipaUk": "/bɔɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/boy",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "boy"
+      },
+      "image": {
+        "file": "a09/boy.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:boy",
+        "sha256": "ad126315ea787c82f45153b575093137a60aba9af3a2442f2ee8a534fe5629ec",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "girl",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cô bé, cô gái",
+      "meaningEn": "a female child",
+      "examples": [
+        {
+          "text": "The girl is reading a book.",
+          "vi": "Cô bé đang đọc sách."
+        },
+        {
+          "text": "A young girl waved at us.",
+          "vi": "Một cô gái nhỏ vẫy tay chào chúng tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "little girl",
+          "vi": "cô bé"
+        }
+      ],
+      "imageQuery": "girl illustration",
+      "ipaUs": "/ˈɡɜɹl/",
+      "ipaUk": "/ˈɡɜːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/girl",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "girl"
+      },
+      "image": {
+        "file": "a09/girl.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:girl",
+        "sha256": "c329ecb006f48e485f8107f4e996f4c01d65ec7c004095f05773efafd84c6a70",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "man",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "người đàn ông",
+      "meaningEn": "an adult male person",
+      "plural": "men",
+      "examples": [
+        {
+          "text": "The man is waiting at the bus stop.",
+          "vi": "Người đàn ông đang đợi ở trạm xe buýt."
+        },
+        {
+          "text": "A tall man opened the door.",
+          "vi": "Một người đàn ông cao mở cửa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "old man",
+          "vi": "ông cụ"
+        }
+      ],
+      "imageQuery": "man illustration",
+      "ipaUs": "/ˈmæn/",
+      "ipaUk": "/ˈmæn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/man",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "man"
+      },
+      "image": {
+        "file": "a09/man.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:man",
+        "sha256": "0e10926d3225556b1b33b04de9d2d8d06d47bd0600cdcf5ecd2bf2e2160c587d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "woman",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "người phụ nữ",
+      "meaningEn": "an adult female person",
+      "plural": "women",
+      "examples": [
+        {
+          "text": "The woman is carrying a heavy bag.",
+          "vi": "Người phụ nữ đang xách một chiếc túi nặng."
+        },
+        {
+          "text": "A young woman helped me find the way.",
+          "vi": "Một cô gái trẻ giúp tôi tìm đường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "young woman",
+          "vi": "phụ nữ trẻ"
+        }
+      ],
+      "imageQuery": "woman illustration",
+      "ipaUs": "/ˈwʊmən/",
+      "ipaUk": "/ˈwʊmən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/woman",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "woman"
+      },
+      "image": {
+        "file": "a09/woman.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:woman",
+        "sha256": "9baa34e8e9e39bcb28b71e0a2721ac0cc6149879bf56a52e53e28114a6eb8789",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "husband",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "chồng",
+      "meaningEn": "the man a woman is married to",
+      "examples": [
+        {
+          "text": "Her husband works in a bank.",
+          "vi": "Chồng cô ấy làm việc ở ngân hàng."
+        },
+        {
+          "text": "My husband cooks dinner on Sundays.",
+          "vi": "Chồng tôi nấu bữa tối vào Chủ nhật."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "husband and wife",
+          "vi": "vợ chồng"
+        }
+      ],
+      "imageQuery": "husband and wife illustration",
+      "ipaUs": "/ˈhʌz.bənd/",
+      "ipaUk": "/ˈhʌz.bənd/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/husband",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "husband"
+      },
+      "image": {
+        "file": "a09/husband.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:husband",
+        "sha256": "8df55ba1b7445269d4011c39545ba2e74dc7d2cc5b5904988ea1addc92d0c8f8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wife",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "vợ",
+      "meaningEn": "the woman a man is married to",
+      "plural": "wives",
+      "examples": [
+        {
+          "text": "His wife is a doctor.",
+          "vi": "Vợ anh ấy là bác sĩ."
+        },
+        {
+          "text": "He took his wife to the cinema.",
+          "vi": "Anh ấy dẫn vợ đi xem phim."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wife and children",
+          "vi": "vợ con"
+        }
+      ],
+      "imageQuery": "wife husband couple illustration",
+      "ipaUs": "/waɪf/",
+      "ipaUk": "/waɪf/",
+      "ipaSource": "https://en.wiktionary.org/wiki/wife",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "wife"
+      },
+      "image": {
+        "file": "a09/wife.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:wife",
+        "sha256": "6c58a6aababc97a1275ea6d14828038517b6b968759b3ad0e7eecee70891d247",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "son",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con trai",
+      "meaningEn": "a boy or man who is someone's child",
+      "examples": [
+        {
+          "text": "Their son is ten years old.",
+          "vi": "Con trai họ mười tuổi."
+        },
+        {
+          "text": "She is proud of her son.",
+          "vi": "Bà tự hào về con trai mình."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "eldest son",
+          "vi": "con trai cả"
+        }
+      ],
+      "imageQuery": "father and son illustration",
+      "ipaUs": "/sʌn/",
+      "ipaUk": "/sʌn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/son",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "son"
+      },
+      "image": {
+        "file": "a09/son.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:son",
+        "sha256": "74204a51f264cd54a91595b413cd03d8a3eb5312693dd9d4ac05c24313e9a69d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "daughter",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con gái",
+      "meaningEn": "a girl or woman who is someone's child",
+      "examples": [
+        {
+          "text": "Their daughter studies at university.",
+          "vi": "Con gái họ học đại học."
+        },
+        {
+          "text": "He took his daughter to the park.",
+          "vi": "Ông dẫn con gái ra công viên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "youngest daughter",
+          "vi": "con gái út"
+        }
+      ],
+      "imageQuery": "mother and daughter illustration",
+      "ipaUs": "/ˈdɔ.tɚ/",
+      "ipaUk": "/ˈdɔːtə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/daughter",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "daughter"
+      },
+      "image": {
+        "file": "a09/daughter.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:daughter",
+        "sha256": "aad2c2739f902d6837c7486168a231afc5d3456bdf3ec6753d8cb23a7822a9d6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "friend",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bạn bè",
+      "meaningEn": "a person you like and know well",
+      "examples": [
+        {
+          "text": "My best friend lives next door.",
+          "vi": "Người bạn thân nhất của tôi sống ở nhà bên."
+        },
+        {
+          "text": "I met a new friend at school.",
+          "vi": "Tôi gặp một người bạn mới ở trường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "best friend",
+          "vi": "bạn thân nhất"
+        },
+        {
+          "text": "make friends",
+          "vi": "kết bạn"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "friendly",
+          "pos": "adj",
+          "vi": "thân thiện"
+        }
+      ],
+      "imageQuery": "friends illustration",
+      "ipaUs": "/fɹɛnd/",
+      "ipaUk": "/fɹɛnd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/friend",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "friend"
+      },
+      "image": {
+        "file": "a09/friend.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:friend",
+        "sha256": "98f27d0cbf27ab7519861af4c154024c4735f00f6c5c3fe1a45b10c5d298df33",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "neighbour",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hàng xóm",
+      "meaningEn": "a person who lives near you",
+      "examples": [
+        {
+          "text": "Our neighbour has a friendly dog.",
+          "vi": "Người hàng xóm của chúng tôi có một con chó thân thiện."
+        },
+        {
+          "text": "I say hello to my neighbours every day.",
+          "vi": "Ngày nào tôi cũng chào những người hàng xóm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "next-door neighbour",
+          "vi": "hàng xóm sát vách"
+        }
+      ],
+      "imageQuery": "neighbors over fence illustration",
+      "ipaUs": "/ˈneɪbɚ/",
+      "ipaUk": "/ˈneɪbə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/neighbour",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "neighbour"
+      },
+      "image": {
+        "file": "a09/neighbour.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:neighbour",
+        "sha256": "042b6cfcdc981a6c7cb16dea469d7548aac5b1f8a1437f520e1f55212f9a77f0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "teenager",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thiếu niên",
+      "meaningEn": "a young person between thirteen and nineteen years old",
+      "examples": [
+        {
+          "text": "My brother is a teenager now.",
+          "vi": "Giờ anh trai tôi đã là một thiếu niên."
+        },
+        {
+          "text": "Many teenagers like music and games.",
+          "vi": "Nhiều thiếu niên thích âm nhạc và trò chơi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "typical teenager",
+          "vi": "một thiếu niên điển hình"
+        }
+      ],
+      "imageQuery": "teenagers illustration",
+      "ipaUs": "/ˈtinˌeɪdʒɚ/",
+      "ipaUk": "/ˈtiːnˌeɪ̯d͡ʒə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/teenager",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "teenager"
+      },
+      "image": {
+        "file": "a09/teenager.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:teenager",
+        "sha256": "369df4ef75b14f62c8cd7f942a476715bdf9097240e09469e25110673656bbe7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "twins",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cặp song sinh",
+      "meaningEn": "two children born to the same mother at the same time",
+      "examples": [
+        {
+          "text": "The twins look exactly the same.",
+          "vi": "Cặp song sinh trông giống hệt nhau."
+        },
+        {
+          "text": "She has twin sons and a daughter.",
+          "vi": "Bà có hai con trai song sinh và một con gái."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "identical twins",
+          "vi": "cặp song sinh giống hệt"
+        }
+      ],
+      "imageQuery": "twins illustration",
+      "ipaUs": "/twɪnz/",
+      "ipaUk": "/twɪnz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/twins",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "twins"
+      },
+      "image": {
+        "file": "a09/twins.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:twins",
+        "sha256": "c79351aa9e487aca189eb48ea30f445a1e0db4cfe9f5b717bcb03f96723648ac",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "family",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "gia đình",
+      "meaningEn": "a group of people who are related to each other",
+      "plural": "families",
+      "examples": [
+        {
+          "text": "My family has dinner together every evening.",
+          "vi": "Gia đình tôi ăn tối cùng nhau mỗi buổi chiều."
+        },
+        {
+          "text": "There are five people in my family.",
+          "vi": "Gia đình tôi có năm người."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "family photo",
+          "vi": "ảnh gia đình"
+        },
+        {
+          "text": "big family",
+          "vi": "gia đình đông người"
+        }
+      ],
+      "imageQuery": "family illustration",
+      "ipaUs": "/ˈfæm(ə)li/",
+      "ipaUk": "/ˈfæm(ɪ)li/",
+      "ipaSource": "https://en.wiktionary.org/wiki/family",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "family",
+        "value": "family"
+      },
+      "image": {
+        "file": "a09/family.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:family:family",
+        "sha256": "fa520c54f2934fc3f3af0edbf4a04d61492adff9c94c7d6f1525fdc54d57e391",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
