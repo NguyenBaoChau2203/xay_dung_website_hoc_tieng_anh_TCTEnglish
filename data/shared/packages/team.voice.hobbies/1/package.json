@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "team.voice.hobbies",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.voice.hobbies",
+      "kind": "AiVoiceCatalogTopic",
+      "values": {
+        "StableKey": "voice.hobbies",
+        "Title": "S\u1EDF th\u00EDch cu\u1ED1i tu\u1EA7n",
+        "Scenario": "Discuss hobbies and suggest a shared activity for next weekend.",
+        "AiRole": "Friend",
+        "LearnerRole": "Friend",
+        "Level": "B1",
+        "IsPublished": true,
+        "SortOrder": 5
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.voice.hobbies"
+}

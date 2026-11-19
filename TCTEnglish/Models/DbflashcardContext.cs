@@ -116,6 +116,7 @@ public partial class DbflashcardContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         ConfigureWritingGeneration(modelBuilder);
+        ConfigureAiVoice(modelBuilder);
         modelBuilder.Entity<Card>(entity =>
         {
             entity.HasKey(e => e.CardId).HasName("PK__Cards__55FECD8E2103FA66");

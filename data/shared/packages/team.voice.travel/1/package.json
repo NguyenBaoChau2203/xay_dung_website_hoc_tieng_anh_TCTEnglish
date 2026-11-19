@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "team.voice.travel",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.voice.travel",
+      "kind": "AiVoiceCatalogTopic",
+      "values": {
+        "StableKey": "voice.travel",
+        "Title": "H\u1ECFi \u0111\u01B0\u1EDDng khi du l\u1ECBch",
+        "Scenario": "Find a local attraction. Ask for directions and confirm the route and travel time.",
+        "AiRole": "Local resident",
+        "LearnerRole": "Visitor",
+        "Level": "A2",
+        "IsPublished": true,
+        "SortOrder": 3
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.voice.travel"
+}

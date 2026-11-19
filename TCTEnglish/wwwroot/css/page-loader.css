@@ -80,11 +80,11 @@
     }
 }
 
-/* ── Animated 3D Clay Emblem ────────────────────────────────────────── */
+/* ── Tico mascot and existing loading orbits ───────────────────────── */
 .tct-loader-emblem-wrap {
     position: relative;
-    width: 68px;
-    height: 68px;
+    width: 104px;
+    height: 104px;
     margin: 0 auto 1.25rem auto;
     display: flex;
     align-items: center;
@@ -116,30 +116,18 @@
 }
 
 .tct-loader-emblem-core {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--tct-primary, #4255ff) 0%, #2f3fe0 60%, #06b6d4 100%);
-    color: #ffffff;
+    width: 104px;
+    height: 104px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.45rem;
-    box-shadow: 0 6px 18px rgba(66, 85, 255, 0.45),
-                inset 0 2px 3px rgba(255, 255, 255, 0.6),
-                inset -2px -2px 4px rgba(0, 0, 0, 0.15);
-    animation: tctEmblemPulse 2.4s ease-in-out infinite;
 }
 
-@keyframes tctEmblemPulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 6px 18px rgba(66, 85, 255, 0.45), inset 0 2px 3px rgba(255, 255, 255, 0.6);
-    }
-    50% {
-        transform: scale(1.06);
-        box-shadow: 0 8px 24px rgba(66, 85, 255, 0.6), inset 0 2px 3px rgba(255, 255, 255, 0.7);
-    }
+.tct-loader-mascot {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 /* ── Typography & Badges ───────────────────────────────────────────── */

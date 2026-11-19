@@ -104,6 +104,24 @@
                                 return;
                             }
 
+                            if (event.defaultPrevented) return;
+                            const modal = frameDoc.querySelector('.modal.show');
+                            if (modal) {
+                                // A native Tab past the iframe's last element leaves the
+                                // document, so Bootstrap's focusin trap cannot catch it.
+                                if (event.key === 'Tab') {
+                                    const controls = getFocusableElementsInside(frameDoc, modal);
+                                    const edge = event.shiftKey ? controls[0] : controls[controls.length - 1];
+                                    if (controls.length && frameDoc.activeElement === edge) {
+                                        event.preventDefault();
+                                        (event.shiftKey ? controls[controls.length - 1] : controls[0]).focus();
+                                    }
+                                }
+                                return;
+                            }
+                            // Bootstrap may have removed .show while Escape bubbles.
+                            if (event.target?.closest?.('.modal')) return;
+
                             if (event.key === 'Escape') {
                                 event.preventDefault();
                                 closeLauncher();
@@ -173,6 +191,7 @@
         }
 
         function closeLauncher() {
+            frame?.contentWindow?.postMessage({ type: 'tct-ai-launcher-hidden' }, window.location.origin);
             root.classList.remove('is-open');
             toggleButton.setAttribute('aria-expanded', 'false');
             panel.setAttribute('aria-hidden', 'true');
@@ -213,10 +232,10 @@
             });
         }
 
-        function getFocusableElementsInside(doc) {
+        function getFocusableElementsInside(doc, scope = doc) {
             const selector = 'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
-            return Array.from(doc.querySelectorAll(selector)).filter(function (element) {
-                return element instanceof HTMLElement
+            return Array.from(scope.querySelectorAll(selector)).filter(function (element) {
+                return element instanceof doc.defaultView.HTMLElement
                     && !element.hasAttribute('disabled')
                     && element.getAttribute('aria-hidden') !== 'true'
                     && element.offsetParent !== null;

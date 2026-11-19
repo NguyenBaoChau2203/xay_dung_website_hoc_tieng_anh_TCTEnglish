@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "team.voice.daily-routine",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.voice.daily-routine",
+      "kind": "AiVoiceCatalogTopic",
+      "values": {
+        "StableKey": "voice.daily-routine",
+        "Title": "M\u1ED9t ng\u00E0y c\u1EE7a b\u1EA1n",
+        "Scenario": "Compare your daily routines and explain what you enjoy about your day.",
+        "AiRole": "Friendly classmate",
+        "LearnerRole": "English learner",
+        "Level": "A2",
+        "IsPublished": true,
+        "SortOrder": 4
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.voice.daily-routine"
+}

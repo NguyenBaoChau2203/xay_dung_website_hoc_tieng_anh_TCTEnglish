@@ -199,6 +199,7 @@ builder.Services.AddOptions<AiOptions>()
         configuration.GetSection("AI").Bind(options);
     });
 builder.Services.AddScoped<IAiConversationService, AiConversationService>();
+TCTEnglish.Services.AI.Voice.AiVoiceServiceCollectionExtensions.AddAiVoiceConversation(builder.Services);
 builder.Services.AddSingleton<TCTEnglish.Services.AI.Rag.ILearnerSourceDisplayCache>(sp =>
     new TCTEnglish.Services.AI.Rag.LearnerSourceDisplayCache(sp.GetRequiredService<TimeProvider>()));
 builder.Services.AddScoped<TCTEnglish.Services.AI.Rag.IGroundingCitationService, TCTEnglish.Services.AI.Rag.GroundingCitationService>();

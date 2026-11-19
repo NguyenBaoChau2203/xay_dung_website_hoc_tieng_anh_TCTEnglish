@@ -72,6 +72,7 @@ public sealed class AccountDeletionService : IAccountDeletionService
         }
 
         await using var transaction = await _context.Database.BeginTransactionAsync(IsolationLevel.Serializable, cancellationToken);
+        await _context.Database.ExecuteSqlRawAsync("UPDATE AiVoiceCapacity SET Revision = Revision WHERE Id = 1", cancellationToken);
         await _context.Database.ExecuteSqlInterpolatedAsync(
             $"UPDATE Users SET SecurityVersion = SecurityVersion WHERE Role = {Roles.Admin}",
             cancellationToken);
@@ -251,6 +252,7 @@ public sealed class AccountDeletionService : IAccountDeletionService
 
     private async Task DeletePersonalRowsAsync(int userId, CancellationToken cancellationToken)
     {
+        await TCTEnglish.Services.AI.Voice.AiVoiceHistoryService.ScrubAccountAsync(_context, userId, cancellationToken);
         await _context.WritingGenerationOperations.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.UserWritingExerciseVisits.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.UserSpeakingVideoVisits.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
