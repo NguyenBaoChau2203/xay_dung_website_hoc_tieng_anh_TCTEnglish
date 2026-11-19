@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b1.brushing-teeth-in-space",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Brushing Teeth in Space",
+        "Level": "B1",
+        "Topic": "Hygiene in Space",
+        "YoutubeId": "1lec-tv0uY8",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/1lec-tv0uY8/hqdefault.jpg",
+        "Duration": "1:28",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.080b5b1a02e0487d8627dc035d658dec",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "What is missing in the space station, according to the speaker?",
+        "OptionA": "A mirror",
+        "OptionB": "A toothbrush",
+        "OptionC": "A sink",
+        "OptionD": "A towel",
+        "CorrectAnswer": "C",
+        "Explanation": "\u0022And just \u0027cause, unfortunately, there\u0027s no sink around here that you can just spit the toothpaste out into. So, that\u0027s how it\u0027s done.\u0022 \u2014 01:19"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.082f77c61e7d4b72ba2767ab96250c71",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "It\u0027s kind of messy, and it\u0027s inconvenient.",
+        "VietnameseMeaning": "Th\u1EBF th\u00EC b\u1EEBa b\u1ED9n v\u00E0 b\u1EA5t ti\u1EC7n.",
+        "StartTime": 73,
+        "EndTime": 74.8
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.0b7972f3bc3f4b8eacab1a5a7298a737",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "And it\u0027s kind of fun to play around with.",
+        "VietnameseMeaning": "V\u00E0 ngh\u1ECBch v\u1EDBi n\u00F3 kh\u00E1 vui.",
+        "StartTime": 47.4,
+        "EndTime": 51.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.1462e1f71f2a4ebd9a9b1c41049da8fd",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "What do the astronauts do with the toothpaste?",
+        "OptionA": "They spit it into the sink",
+        "OptionB": "They swallow it",
+        "OptionC": "They throw it away",
+        "OptionD": "They save it for later",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022Ahh. Yes, that\u0027s right. You just swallow the toothpaste.\u0022 \u2014 01:03"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.16dfe6f0d8564da291a9f5c09ede3fa6",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "You could spit it into a napkin, but then you got a bunch of napkins around with toothpaste in it.",
+        "VietnameseMeaning": "B\u1EA1n c\u00F3 th\u1EC3 nh\u1ED5 v\u00E0o kh\u0103n gi\u1EA5y, nh\u01B0ng r\u1ED3i quanh b\u1EA1n s\u1EBD \u0111\u1EA7y kh\u0103n gi\u1EA5y d\u00EDnh kem \u0111\u00E1nh r\u0103ng.",
+        "StartTime": 68,
+        "EndTime": 73
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.1800afe5f2b443eb9571cab3ff48f29f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "And just \u0027cause, unfortunately, there\u0027s no sink around here that you can just spit the toothpaste out into. So, that\u0027s how it\u0027s done.",
+        "VietnameseMeaning": "Ch\u1EC9 v\u00EC, ti\u1EBFc l\u00E0 \u1EDF \u0111\u00E2y kh\u00F4ng c\u00F3 b\u1ED3n r\u1EEDa n\u00E0o \u0111\u1EC3 b\u1EA1n nh\u1ED5 kem \u0111\u00E1nh r\u0103ng v\u00E0o. V\u1EADy n\u00EAn \u0111\u00F3 l\u00E0 c\u00E1ch l\u00E0m.",
+        "StartTime": 79.4,
+        "EndTime": 86.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.20331ec1f0f74694a3a1261517b25a2f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "As you can tell, any liquid -- Whoa. Aah.",
+        "VietnameseMeaning": "Nh\u01B0 b\u1EA1n th\u1EA5y, b\u1EA5t k\u1EF3 ch\u1EA5t l\u1ECFng n\u00E0o \u2013 \u1ED2. \u00C1i ch\u00E0.",
+        "StartTime": 32,
+        "EndTime": 37.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.36037a65fd80425bbccaeb6fbc70c80d",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "What does the speaker say about the toothpaste after dinner?",
+        "OptionA": "It is like an after-dinner mint",
+        "OptionB": "It is dangerous",
+        "OptionC": "It tastes terrible",
+        "OptionD": "It costs a lot",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Rather to just enjoy what Clay Anderson used to call the after-dinner mint.\u0022 \u2014 01:14"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.4da15cebe7064a51b3221dac6b529797",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "Why do they not spit into a napkin?",
+        "OptionA": "Napkins are expensive",
+        "OptionB": "It makes a mess and is inconvenient",
+        "OptionC": "It is not allowed",
+        "OptionD": "There are no napkins",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022You could spit it into a napkin, but then you got a bunch of napkins around with toothpaste in it.\u0022 \u2014 01:08"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.53cc2f40754a4fa98b31089edf10e90f",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "sink",
+        "Definition": "b\u1ED3n r\u1EEDa",
+        "ExampleSentence": "And just \u0027cause, unfortunately, there\u0027s no sink around here that you can just spit the toothpaste out into. So, that\u0027s how it\u0027s done.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.545780cefe3943a5b1fda99a0f6b97de",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "Why does floating water turn into a ball?",
+        "OptionA": "Because of surface tension",
+        "OptionB": "Because it is cold",
+        "OptionC": "Because of the toothpaste",
+        "OptionD": "Because of the wind",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022If it\u0027s floating free, it turns into a sphere due to the surface tension. So, it\u0027s just a ball.\u0022 \u2014 00:40"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.60457240e06f49ce96cf3f23b78e6bc9",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "surface tension",
+        "Definition": "s\u1EE9c c\u0103ng b\u1EC1 m\u1EB7t",
+        "ExampleSentence": "If it\u0027s floating free, it turns into a sphere due to the surface tension. So, it\u0027s just a ball.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.719bb5b074b3470fbb90543093e8657a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "Ahh. Yes, that\u0027s right. You just swallow the toothpaste.",
+        "VietnameseMeaning": "\u00C0, \u0111\u00FAng r\u1ED3i. B\u1EA1n c\u1EE9 nu\u1ED1t kem \u0111\u00E1nh r\u0103ng.",
+        "StartTime": 63,
+        "EndTime": 68
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.7babe34e81254232bef18d817800226f",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "swallow",
+        "Definition": "nu\u1ED1t",
+        "ExampleSentence": "Ahh. Yes, that\u0027s right. You just swallow the toothpaste.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.836a4417f07a4b51b50298f0b3c59f39",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "Rather to just enjoy what Clay Anderson used to call the after-dinner mint.",
+        "VietnameseMeaning": "Th\u00E0 c\u1EE9 th\u01B0\u1EDFng th\u1EE9c th\u1EE9 m\u00E0 Clay Anderson t\u1EEBng g\u1ECDi l\u00E0 k\u1EB9o b\u1EA1c h\u00E0 sau b\u1EEFa t\u1ED1i.",
+        "StartTime": 74.8,
+        "EndTime": 79.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.9087de630b5449b1be4896fd80116090",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "If it\u0027s floating free, it turns into a sphere due to the surface tension. So, it\u0027s just a ball.",
+        "VietnameseMeaning": "N\u1EBFu n\u00F3 tr\u00F4i t\u1EF1 do, n\u00F3 s\u1EBD th\u00E0nh m\u1ED9t h\u00ECnh c\u1EA7u nh\u1EDD s\u1EE9c c\u0103ng b\u1EC1 m\u1EB7t. N\u00EAn n\u00F3 ch\u1EC9 l\u00E0 m\u1ED9t qu\u1EA3 b\u00F3ng nh\u1ECF.",
+        "StartTime": 40,
+        "EndTime": 47.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.9178d63615c842efa4eba6aeb380c364",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "How is brushing teeth in space different from brushing on Earth?",
+        "OptionA": "It is completely different",
+        "OptionB": "It works almost the same, but the end is different",
+        "OptionC": "Astronauts do not brush",
+        "OptionD": "They use no water or toothpaste at all",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022Next, teeth brushing. And it works pretty much the same way as down on Earth. The end is a little bit different, though.\u0022 \u2014 00:01"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.95907edadcb144ffb117517b5c2bd051",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "inconvenient",
+        "Definition": "b\u1EA5t ti\u1EC7n",
+        "ExampleSentence": "It\u0027s kind of messy, and it\u0027s inconvenient.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.bbade1062bd74bf0b7857f566de7eb50",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "Next, teeth brushing. And it works pretty much the same way as down on Earth. The end is a little bit different, though.",
+        "VietnameseMeaning": "Ti\u1EBFp theo l\u00E0 \u0111\u00E1nh r\u0103ng. C\u00E1ch l\u00E0m g\u1EA7n gi\u1ED1ng nh\u01B0 d\u01B0\u1EDBi Tr\u00E1i \u0110\u1EA5t. Ch\u1EC9 c\u00F3 ph\u1EA7n cu\u1ED1i l\u00E0 h\u01A1i kh\u00E1c m\u1ED9t ch\u00FAt.",
+        "StartTime": 1,
+        "EndTime": 8.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.c2180a43c9904c13b6d273d552567150",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "napkin",
+        "Definition": "kh\u0103n gi\u1EA5y",
+        "ExampleSentence": "You could spit it into a napkin, but then you got a bunch of napkins around with toothpaste in it.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.e4fef9553cad4a4d93ad722d591dcdf7",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "sphere",
+        "Definition": "h\u00ECnh c\u1EA7u",
+        "ExampleSentence": "If it\u0027s floating free, it turns into a sphere due to the surface tension. So, it\u0027s just a ball.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.f464b569d69b422c8bd14f7b0737ebc3",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "toothpaste",
+        "Definition": "kem \u0111\u00E1nh r\u0103ng",
+        "ExampleSentence": "Ahh. Yes, that\u0027s right. You just swallow the toothpaste.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.brushing-teeth-in-space.fea2c10b3f7b4dd0b182c8060c49ff2a",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "messy",
+        "Definition": "b\u1EEBa b\u1ED9n, l\u1ED9n x\u1ED9n",
+        "ExampleSentence": "It\u0027s kind of messy, and it\u0027s inconvenient.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.brushing-teeth-in-space"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b1.brushing-teeth-in-space"
+}

@@ -1,0 +1,1227 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B14",
+    "name": "Pháp luật & xã hội",
+    "description": "#b1 #b2 #law #society",
+    "topic": "Pháp luật & xã hội",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "court",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tòa án",
+      "meaningEn": "a place where a judge decides legal cases",
+      "examples": [
+        {
+          "text": "The case will be heard in court next week.",
+          "vi": "Vụ án sẽ được xét xử tại tòa vào tuần tới."
+        },
+        {
+          "text": "He had to go to court for driving too fast.",
+          "vi": "Anh ấy phải ra tòa vì lái xe quá nhanh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go to court",
+          "vi": "ra tòa"
+        },
+        {
+          "text": "court case",
+          "vi": "vụ án"
+        }
+      ],
+      "imageQuery": "courthouse building",
+      "image": {
+        "file": "b14/court.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/7156765@N05/51626549530",
+        "author": "Onasill - Bill Badzo - OFF- VACATION",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "courthouse building",
+        "sha256": "12d2526ff5d00de0b72e4f3906394515bff5f4a786036a958aa9ca5c0f1d4f55",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈkɔɹt/",
+      "ipaUk": "/ˈkɔːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/court",
+      "ipaVerified": true
+    },
+    {
+      "term": "judge",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "thẩm phán",
+      "meaningEn": "the person who decides what happens in a court case",
+      "examples": [
+        {
+          "text": "The judge listened carefully to both sides.",
+          "vi": "Thẩm phán lắng nghe cẩn thận cả hai bên."
+        },
+        {
+          "text": "She was the youngest judge in the city.",
+          "vi": "Bà là thẩm phán trẻ nhất thành phố."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "the judge decides",
+          "vi": "thẩm phán quyết định"
+        },
+        {
+          "text": "judge's decision",
+          "vi": "quyết định của thẩm phán"
+        }
+      ],
+      "imageQuery": "judge courtroom gavel",
+      "image": {
+        "file": "b14/judge.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5921176/judges-gavel-free-public-domain-cc0-photo",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "judge courtroom gavel",
+        "sha256": "9cf1ac66b188f77b82132e08f8b09e7600e58a69aba4a9794b182295911b5601",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/d͡ʒʌd͡ʒ/",
+      "ipaUk": "/d͡ʒʌd͡ʒ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/judge",
+      "ipaVerified": true
+    },
+    {
+      "term": "jury",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bồi thẩm đoàn",
+      "meaningEn": "a group of ordinary people who decide if someone is guilty",
+      "examples": [
+        {
+          "text": "The jury needed two days to decide.",
+          "vi": "Bồi thẩm đoàn cần hai ngày để quyết định."
+        },
+        {
+          "text": "Twelve people sat on the jury.",
+          "vi": "Mười hai người ngồi trong bồi thẩm đoàn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "member of the jury",
+          "vi": "thành viên bồi thẩm đoàn"
+        },
+        {
+          "text": "jury service",
+          "vi": "nghĩa vụ làm bồi thẩm"
+        }
+      ],
+      "imageQuery": "jury box courtroom",
+      "image": {
+        "file": "b14/jury.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Boone_County_Courthouse_jury_box.jpg",
+        "author": "Brandonrush",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "jury box courtroom",
+        "sha256": "19fc845c2642b702155527674e0461d3b2326dc904b067440ac19c225182a89a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈd͡ʒʊɹi/",
+      "ipaUk": "/ˈd͡ʒʊəɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/jury",
+      "ipaVerified": true
+    },
+    {
+      "term": "witness",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhân chứng",
+      "meaningEn": "a person who saw something happen, especially a crime",
+      "examples": [
+        {
+          "text": "A witness saw the accident from her window.",
+          "vi": "Một nhân chứng nhìn thấy vụ tai nạn từ cửa sổ của mình."
+        },
+        {
+          "text": "The witness told the court what she saw.",
+          "vi": "Nhân chứng kể với tòa những gì cô ấy đã thấy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "key witness",
+          "vi": "nhân chứng quan trọng"
+        },
+        {
+          "text": "witness statement",
+          "vi": "lời khai của nhân chứng"
+        }
+      ],
+      "imageQuery": "witness stand courtroom",
+      "generate": {
+        "kind": "law",
+        "value": "witness"
+      },
+      "image": {
+        "file": "b14/witness.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:law:witness",
+        "sha256": "a04aa114b364e78cdaf303e9b69255b70b757c0507e58fa580d91759c5bb82f9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈwɪt.nɪs/",
+      "ipaUk": "/ˈwɪt.nɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/witness",
+      "ipaVerified": true
+    },
+    {
+      "term": "verdict",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "phán quyết",
+      "meaningEn": "the decision of a jury or judge in a court case",
+      "examples": [
+        {
+          "text": "The jury reached a verdict after three hours.",
+          "vi": "Bồi thẩm đoàn đưa ra phán quyết sau ba giờ."
+        },
+        {
+          "text": "Everyone waited quietly for the verdict.",
+          "vi": "Mọi người lặng lẽ chờ phán quyết."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "reach a verdict",
+          "vi": "đưa ra phán quyết"
+        },
+        {
+          "text": "guilty verdict",
+          "vi": "phán quyết có tội"
+        }
+      ],
+      "imageQuery": "verdict courtroom decision",
+      "generate": {
+        "kind": "law",
+        "value": "verdict"
+      },
+      "image": {
+        "file": "b14/verdict.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:law:verdict",
+        "sha256": "ba9c2298846fa914a6bdc1fcedaf216c819b5ab829b377da4f67c7332efe1552",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈvɝ.dɪkt/",
+      "ipaUk": "/ˈvɜː.dɪkt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/verdict",
+      "ipaVerified": true
+    },
+    {
+      "term": "prison",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhà tù",
+      "meaningEn": "a building where criminals are kept as punishment",
+      "examples": [
+        {
+          "text": "He spent five years in prison.",
+          "vi": "Anh ta ngồi tù năm năm."
+        },
+        {
+          "text": "The prison is surrounded by a high wall.",
+          "vi": "Nhà tù được bao quanh bởi một bức tường cao."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go to prison",
+          "vi": "đi tù"
+        },
+        {
+          "text": "prison guard",
+          "vi": "quản giáo"
+        }
+      ],
+      "imageQuery": "prison building wall",
+      "generate": {
+        "kind": "law",
+        "value": "prison"
+      },
+      "image": {
+        "file": "b14/prison.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:law:prison",
+        "sha256": "a02ee44cb32cdf74217194ed6d7f42369182e11226e262811e386cb310d5ff1a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpɹɪzən/",
+      "ipaUk": "/ˈpɹɪzən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/prison",
+      "ipaVerified": true
+    },
+    {
+      "term": "handcuffs",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "còng tay",
+      "meaningEn": "a pair of metal rings that lock around a person's wrists",
+      "examples": [
+        {
+          "text": "The police put handcuffs on the man.",
+          "vi": "Cảnh sát còng tay người đàn ông."
+        },
+        {
+          "text": "He was led away in handcuffs.",
+          "vi": "Anh ta bị dẫn đi trong tình trạng bị còng tay."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "put on handcuffs",
+          "vi": "còng tay"
+        },
+        {
+          "text": "in handcuffs",
+          "vi": "bị còng tay"
+        }
+      ],
+      "imageQuery": "handcuffs",
+      "image": {
+        "file": "b14/handcuffs.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8850017/photo-image-art-vintage-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "handcuffs",
+        "sha256": "286af4235eae293b353cd47b24758afc7941fdba765976364d501c68a58502f1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈhændˌkʌfs/",
+      "ipaUk": "/ˈhændˌkʌfs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/handcuffs",
+      "ipaVerified": true
+    },
+    {
+      "term": "fingerprint",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "dấu vân tay",
+      "meaningEn": "the mark that your finger leaves on a surface",
+      "examples": [
+        {
+          "text": "The police found a fingerprint on the glass.",
+          "vi": "Cảnh sát tìm thấy một dấu vân tay trên chiếc ly."
+        },
+        {
+          "text": "You must give your fingerprint at the border.",
+          "vi": "Bạn phải cung cấp vân tay ở cửa khẩu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "leave a fingerprint",
+          "vi": "để lại dấu vân tay"
+        },
+        {
+          "text": "fingerprint scanner",
+          "vi": "máy quét vân tay"
+        }
+      ],
+      "imageQuery": "fingerprint ink",
+      "image": {
+        "file": "b14/fingerprint.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5962186/free-public-domain-cc0-photo",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "fingerprint ink",
+        "sha256": "fbd8fbcee7f04effbbcb177b9d169f3f61211b59635956b9223771342f3cf80f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈfɪŋɡɚˌpɹɪnt/",
+      "ipaUk": "/ˈfɪŋɡɚˌpɹɪnt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fingerprint",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents"
+    },
+    {
+      "term": "evidence",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bằng chứng",
+      "meaningEn": "facts or objects that show something is true",
+      "examples": [
+        {
+          "text": "The police collected evidence from the scene.",
+          "vi": "Cảnh sát thu thập bằng chứng tại hiện trường."
+        },
+        {
+          "text": "There was not enough evidence to prove it.",
+          "vi": "Không có đủ bằng chứng để chứng minh điều đó."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "collect evidence",
+          "vi": "thu thập bằng chứng"
+        },
+        {
+          "text": "clear evidence",
+          "vi": "bằng chứng rõ ràng"
+        }
+      ],
+      "imageQuery": "evidence bags police",
+      "generate": {
+        "kind": "law",
+        "value": "evidence"
+      },
+      "image": {
+        "file": "b14/evidence.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:law:evidence",
+        "sha256": "896cecd8615b46bd7b4492f394c35010869a83b91c61278262e0a9be62d57b4d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈɛv.ɪ.dəns/",
+      "ipaUk": "/ˈɛv.ɪ.dəns/",
+      "ipaSource": "https://en.wiktionary.org/wiki/evidence",
+      "ipaVerified": true
+    },
+    {
+      "term": "gavel",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "búa của thẩm phán",
+      "meaningEn": "a small wooden hammer used by a judge to get attention",
+      "examples": [
+        {
+          "text": "The judge hit the gavel and called for silence.",
+          "vi": "Thẩm phán gõ búa và yêu cầu im lặng."
+        },
+        {
+          "text": "A wooden gavel lay on the desk.",
+          "vi": "Một chiếc búa gỗ nằm trên bàn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bang the gavel",
+          "vi": "gõ búa"
+        },
+        {
+          "text": "judge's gavel",
+          "vi": "búa của thẩm phán"
+        }
+      ],
+      "imageQuery": "gavel wooden court",
+      "generate": {
+        "kind": "law",
+        "value": "gavel"
+      },
+      "image": {
+        "file": "b14/gavel.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:law:gavel",
+        "sha256": "467f1098c21afa34728276d309d6a4f061f0db0892675528e2b4d65c80873095",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈɡæ.vəl/",
+      "ipaUk": "/ˈɡa.vəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/gavel",
+      "ipaVerified": true
+    },
+    {
+      "term": "arrest",
+      "partsOfSpeech": [
+        "verb"
+      ],
+      "cefr": "B2",
+      "definition": "bắt giữ",
+      "meaningEn": "to take a person to a police station because of a crime",
+      "examples": [
+        {
+          "text": "The police arrested two men last night.",
+          "vi": "Cảnh sát đã bắt giữ hai người đàn ông tối qua."
+        },
+        {
+          "text": "She was arrested for stealing a bag.",
+          "vi": "Cô ta bị bắt vì lấy cắp một chiếc túi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "arrest a suspect",
+          "vi": "bắt giữ nghi phạm"
+        },
+        {
+          "text": "be arrested",
+          "vi": "bị bắt"
+        }
+      ],
+      "imageQuery": "police arrest man",
+      "verbForms": {
+        "past": "arrested",
+        "pastParticiple": "arrested",
+        "ing": "arresting",
+        "thirdPerson": "arrests"
+      },
+      "generate": {
+        "kind": "law",
+        "value": "arrest"
+      },
+      "image": {
+        "file": "b14/arrest.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:law:arrest",
+        "sha256": "0f27245fe293328bdcad3fa3453fa4bbfe609fda3618386c50d9dad6b2530fed",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/əˈɹɛst/",
+      "ipaUk": "/əˈɹɛst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/arrest",
+      "ipaVerified": true
+    },
+    {
+      "term": "fine",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tiền phạt",
+      "meaningEn": "money you must pay as a punishment",
+      "examples": [
+        {
+          "text": "I got a fine for parking in the wrong place.",
+          "vi": "Tôi bị phạt tiền vì đỗ xe sai chỗ."
+        },
+        {
+          "text": "The fine is fifty dollars.",
+          "vi": "Tiền phạt là năm mươi đô la."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pay a fine",
+          "vi": "nộp tiền phạt"
+        },
+        {
+          "text": "parking fine",
+          "vi": "phạt đỗ xe"
+        }
+      ],
+      "imageQuery": "parking fine ticket car",
+      "generate": {
+        "kind": "law",
+        "value": "fine"
+      },
+      "image": {
+        "file": "b14/fine.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:law:fine",
+        "sha256": "8cf534af9ef4c979af66b6d5b9e0f41f18410920e58a003253c58d2c2c1c8489",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈfaɪ̯n/",
+      "ipaUk": "/ˈfaɪ̯n/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fine",
+      "ipaVerified": true
+    },
+    {
+      "term": "protest",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cuộc biểu tình",
+      "meaningEn": "an event where people show they disagree with something",
+      "examples": [
+        {
+          "text": "Hundreds of people joined the protest in the square.",
+          "vi": "Hàng trăm người tham gia cuộc biểu tình ở quảng trường."
+        },
+        {
+          "text": "The protest was peaceful.",
+          "vi": "Cuộc biểu tình diễn ra ôn hòa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "peaceful protest",
+          "vi": "biểu tình ôn hòa"
+        },
+        {
+          "text": "join a protest",
+          "vi": "tham gia biểu tình"
+        }
+      ],
+      "imageQuery": "protest crowd signs",
+      "image": {
+        "file": "b14/protest.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:George_Floyd_protest_signs_at_the_Ottawa_Courthouse_on_June_5,_2020_-_49975571416_(Cropped).jpg",
+        "author": "Janderson.L",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "protest crowd signs",
+        "sha256": "fa649727bf7f941a811fc3f065bac1c22eb60127f71882836ebc82952fe99c01",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpɹoʊ.tɛst/",
+      "ipaUk": "/ˈpɹəʊ.tɛst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/protest",
+      "ipaVerified": true
+    },
+    {
+      "term": "election",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cuộc bầu cử",
+      "meaningEn": "an event where people vote to choose a leader",
+      "examples": [
+        {
+          "text": "The election will be held in March.",
+          "vi": "Cuộc bầu cử sẽ được tổ chức vào tháng Ba."
+        },
+        {
+          "text": "Many young people voted in the election.",
+          "vi": "Nhiều bạn trẻ đã đi bỏ phiếu trong cuộc bầu cử."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "general election",
+          "vi": "tổng tuyển cử"
+        },
+        {
+          "text": "win an election",
+          "vi": "thắng cử"
+        }
+      ],
+      "imageQuery": "election voting poster",
+      "image": {
+        "file": "b14/election.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8644655/image-art-vintage-hands",
+        "author": "libraryofcongress",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "election voting poster",
+        "sha256": "3e0066aa7b869282124b4608153d7c6c21d0d0847c9e974c315c187492f67bba",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ɪˈlɛkʃən/",
+      "ipaUk": "/ɪˈlɛkʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/election",
+      "ipaVerified": true
+    },
+    {
+      "term": "ballot box",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "thùng phiếu",
+      "meaningEn": "a box into which people put their votes",
+      "examples": [
+        {
+          "text": "She put her vote in the ballot box.",
+          "vi": "Cô ấy bỏ phiếu của mình vào thùng phiếu."
+        },
+        {
+          "text": "The ballot boxes were sealed at night.",
+          "vi": "Các thùng phiếu được niêm phong vào ban đêm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "seal the ballot box",
+          "vi": "niêm phong thùng phiếu"
+        },
+        {
+          "text": "empty the ballot box",
+          "vi": "mở thùng phiếu"
+        }
+      ],
+      "imageQuery": "ballot box voting",
+      "image": {
+        "file": "b14/ballot-box.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:ES%26S_M100_precinct-count_ballot_scanner.jpg",
+        "author": "Douglas W. Jones",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "ballot box voting",
+        "sha256": "82bcfcbef8348b6fde1a0171a4f1eb6c71cfbd755441be56b9aabbca66e452e3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈbælət bɑks/",
+      "ipaUk": "/ˈbælət bɒks/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ballot + https://en.wiktionary.org/wiki/box",
+      "ipaVerified": true
+    },
+    {
+      "term": "candidate",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "ứng cử viên",
+      "meaningEn": "a person who is trying to win an election or a job",
+      "examples": [
+        {
+          "text": "The candidate shook hands with the voters.",
+          "vi": "Ứng cử viên bắt tay các cử tri."
+        },
+        {
+          "text": "Three candidates are running for mayor.",
+          "vi": "Ba ứng cử viên đang tranh cử thị trưởng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "presidential candidate",
+          "vi": "ứng cử viên tổng thống"
+        },
+        {
+          "text": "strong candidate",
+          "vi": "ứng cử viên mạnh"
+        }
+      ],
+      "imageQuery": "candidate speech campaign",
+      "generate": {
+        "kind": "law",
+        "value": "candidate"
+      },
+      "image": {
+        "file": "b14/candidate.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:law:candidate",
+        "sha256": "173347e626997e098ddbbef8253ed37f21c272684b31d7fb5e61383343696a66",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈkæn.dɪ.dɪt/",
+      "ipaUk": "/ˈkæn.dɪ.dət/",
+      "ipaSource": "https://en.wiktionary.org/wiki/candidate",
+      "ipaVerified": true
+    },
+    {
+      "term": "parliament",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "quốc hội, nghị viện",
+      "meaningEn": "the group of people who make the laws of a country",
+      "examples": [
+        {
+          "text": "Parliament will discuss the new law tomorrow.",
+          "vi": "Quốc hội sẽ thảo luận về luật mới vào ngày mai."
+        },
+        {
+          "text": "The parliament building is in the capital.",
+          "vi": "Tòa nhà quốc hội nằm ở thủ đô."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "members of parliament",
+          "vi": "các nghị sĩ"
+        },
+        {
+          "text": "parliament building",
+          "vi": "tòa nhà quốc hội"
+        }
+      ],
+      "imageQuery": "parliament building",
+      "image": {
+        "file": "b14/parliament.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Hungarian_Parliament_Building_2023-9.jpg",
+        "author": "Pierre Blaché",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "parliament building",
+        "sha256": "d1c303fd802bb272368b0a83072678cca822b93409429db774362c859e2c9107",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpɑɹləmənt/",
+      "ipaUk": "/ˈpɑːləmənt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/parliament",
+      "ipaVerified": true
+    },
+    {
+      "term": "flag",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "lá cờ",
+      "meaningEn": "a piece of cloth with a pattern that stands for a country",
+      "examples": [
+        {
+          "text": "The national flag flew above the school.",
+          "vi": "Quốc kỳ tung bay phía trên ngôi trường."
+        },
+        {
+          "text": "Children waved small flags at the parade.",
+          "vi": "Trẻ em vẫy những lá cờ nhỏ trong cuộc diễu hành."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "national flag",
+          "vi": "quốc kỳ"
+        },
+        {
+          "text": "wave a flag",
+          "vi": "vẫy cờ"
+        }
+      ],
+      "imageQuery": "national flag pole",
+      "image": {
+        "file": "b14/flag.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/37585279@N03/13759793314",
+        "author": "U.S. Army Europe",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "national flag pole",
+        "sha256": "b3af40ade5f6c924aab0f7768659eedff1d741aa3f1a330f5e9bfd757e555422",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/fleɪ̯ɡ/",
+      "ipaUk": "/flæɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/flag",
+      "ipaVerified": true
+    },
+    {
+      "term": "volunteer",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tình nguyện viên",
+      "meaningEn": "a person who works without pay to help others",
+      "examples": [
+        {
+          "text": "Volunteers cleaned the beach on Sunday.",
+          "vi": "Các tình nguyện viên dọn dẹp bãi biển vào Chủ nhật."
+        },
+        {
+          "text": "She is a volunteer at the animal shelter.",
+          "vi": "Cô ấy là tình nguyện viên ở trạm cứu hộ động vật."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "volunteer work",
+          "vi": "công việc tình nguyện"
+        },
+        {
+          "text": "become a volunteer",
+          "vi": "trở thành tình nguyện viên"
+        }
+      ],
+      "imageQuery": "volunteers cleaning beach",
+      "image": {
+        "file": "b14/volunteer.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Beach_Clean-up_Day_in_Ha_Long_Bay_(31433201733).jpg",
+        "author": "USAID Vietnam",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "volunteers cleaning beach",
+        "sha256": "bea1b0966d357ba78a678f35174271e394847afb29027afa101c95144877e9ae",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˌvɑlənˈtɪ(ə)ɹ/",
+      "ipaUk": "/ˌvɒl(ə)nˈtɪə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/volunteer",
+      "ipaVerified": true
+    },
+    {
+      "term": "donation",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "khoản quyên góp",
+      "meaningEn": "money or goods given to help a person or group",
+      "examples": [
+        {
+          "text": "The school received a donation of books.",
+          "vi": "Trường nhận được một khoản quyên góp sách."
+        },
+        {
+          "text": "Please make a donation to the food bank.",
+          "vi": "Xin hãy quyên góp cho ngân hàng thực phẩm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "make a donation",
+          "vi": "quyên góp"
+        },
+        {
+          "text": "donation box",
+          "vi": "thùng quyên góp"
+        }
+      ],
+      "imageQuery": "donation box charity",
+      "image": {
+        "file": "b14/donation.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Caritas_donation_box_in_Kaunas_cathedral.jpg",
+        "author": "Bdx",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "donation box charity",
+        "sha256": "4e9a82ea6f6d2f8c81a385ad9a6d8a52f5ab608fc225d05f22b375dd848768dd",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/doʊˈneɪʃən/",
+      "ipaUk": "/dəʊˈneɪʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/donation",
+      "ipaVerified": true
+    },
+    {
+      "term": "charity",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tổ chức từ thiện",
+      "meaningEn": "an organisation that raises money to help people in need",
+      "examples": [
+        {
+          "text": "She works for a charity that helps children.",
+          "vi": "Cô ấy làm việc cho một tổ chức từ thiện giúp đỡ trẻ em."
+        },
+        {
+          "text": "They ran a race to raise money for charity.",
+          "vi": "Họ chạy đua để gây quỹ từ thiện."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "raise money for charity",
+          "vi": "gây quỹ từ thiện"
+        },
+        {
+          "text": "charity shop",
+          "vi": "cửa hàng từ thiện"
+        }
+      ],
+      "imageQuery": "charity shop fundraising",
+      "generate": {
+        "kind": "law",
+        "value": "charity"
+      },
+      "image": {
+        "file": "b14/charity.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:law:charity",
+        "sha256": "3eaaae4d2d64e45b63acffa8dfc49f07174ee000f8c4c11088955fa5d0624b36",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈt͡ʃɛɹəti/",
+      "ipaUk": "/ˈtʃæɹɪti/",
+      "ipaSource": "https://en.wiktionary.org/wiki/charity",
+      "ipaVerified": true
+    },
+    {
+      "term": "security guard",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhân viên bảo vệ",
+      "meaningEn": "a person whose job is to protect a place",
+      "examples": [
+        {
+          "text": "The security guard checked my bag at the door.",
+          "vi": "Nhân viên bảo vệ kiểm tra túi của tôi ở cửa."
+        },
+        {
+          "text": "A security guard stands outside the bank.",
+          "vi": "Một nhân viên bảo vệ đứng bên ngoài ngân hàng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "night security guard",
+          "vi": "bảo vệ ca đêm"
+        },
+        {
+          "text": "hire a security guard",
+          "vi": "thuê nhân viên bảo vệ"
+        }
+      ],
+      "imageQuery": "security guard uniform entrance",
+      "generate": {
+        "kind": "law",
+        "value": "security guard"
+      },
+      "image": {
+        "file": "b14/security-guard.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:law:security guard",
+        "sha256": "4d7ffd1ce3aa12587a5c9f6c890a07283d4b56323d8936129c8863478f12d39f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/səˈkjʊɹ.ɪti ɡɑɹd/",
+      "ipaUk": "/sɪˈkjʊəɹɪti ɡɑːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/security + https://en.wiktionary.org/wiki/guard",
+      "ipaVerified": true
+    },
+    {
+      "term": "CCTV camera",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "camera an ninh",
+      "meaningEn": "a camera that records an area to keep it safe",
+      "examples": [
+        {
+          "text": "A CCTV camera recorded the whole street.",
+          "vi": "Một camera an ninh ghi lại toàn bộ con phố."
+        },
+        {
+          "text": "There are CCTV cameras in every shop.",
+          "vi": "Cửa hàng nào cũng có camera an ninh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "install a CCTV camera",
+          "vi": "lắp camera an ninh"
+        },
+        {
+          "text": "CCTV footage",
+          "vi": "hình ảnh từ camera an ninh"
+        }
+      ],
+      "imageQuery": "cctv security camera wall",
+      "image": {
+        "file": "b14/cctv-camera.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/432255/cctv-surveillance-camera",
+        "author": "Markus Spiske",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cctv security camera wall",
+        "sha256": "166fe166f5a6a643a0acd458eaafab80c5726340f18c82aaea04fa141f0980e5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "police car",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "xe cảnh sát",
+      "meaningEn": "a car used by the police",
+      "examples": [
+        {
+          "text": "A police car stopped outside the house.",
+          "vi": "Một chiếc xe cảnh sát dừng lại trước nhà."
+        },
+        {
+          "text": "The police car had its lights on.",
+          "vi": "Xe cảnh sát bật đèn nhấp nháy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "call a police car",
+          "vi": "gọi xe cảnh sát"
+        },
+        {
+          "text": "police car siren",
+          "vi": "còi xe cảnh sát"
+        }
+      ],
+      "imageQuery": "police car lights",
+      "image": {
+        "file": "b14/police-car.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/24490288@N04/32986922168",
+        "author": "Terry Kearney",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "police car lights",
+        "sha256": "3d2e600347376e7d3a432004a45c421f9dcd6ccd4c39b2bbe1bf4497052aa81b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/pəˈliːs kɑɹ/",
+      "ipaUk": "/pəˈliːs kɑː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/police + https://en.wiktionary.org/wiki/car",
+      "ipaVerified": true
+    },
+    {
+      "term": "crime scene",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "hiện trường vụ án",
+      "meaningEn": "the place where a crime happened",
+      "examples": [
+        {
+          "text": "Police tape blocked the crime scene.",
+          "vi": "Dải băng của cảnh sát chặn hiện trường vụ án."
+        },
+        {
+          "text": "Experts searched the crime scene for clues.",
+          "vi": "Các chuyên gia tìm kiếm manh mối ở hiện trường vụ án."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "examine a crime scene",
+          "vi": "khám nghiệm hiện trường"
+        },
+        {
+          "text": "crime scene tape",
+          "vi": "dải băng hiện trường"
+        }
+      ],
+      "imageQuery": "police tape crime scene",
+      "image": {
+        "file": "b14/crime-scene.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5803510/photo-image-tape-public-domain-line",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "police tape crime scene",
+        "sha256": "1036ba6094b941d1d1f1915529619a453c2bc0ca5fedf6b9edef69e46a99d0ad",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

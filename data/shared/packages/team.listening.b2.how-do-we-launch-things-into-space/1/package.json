@@ -1,0 +1,605 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b2.how-do-we-launch-things-into-space",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "How Do We Launch Things into Space?",
+        "Level": "B2",
+        "Topic": "Rockets \u0026 Launch",
+        "YoutubeId": "o2FFtPPM3iY",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/o2FFtPPM3iY/hqdefault.jpg",
+        "Duration": "2:44",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.0661b2ed48a74b858ea1b02ec61aa831",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "gravity",
+        "Definition": "l\u1EF1c h\u1EA5p d\u1EABn",
+        "ExampleSentence": "Why rockets? A spacecraft \u2013 and basically everything else on Earth \u2013 is held down by Earth\u2019s gravity.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.090c844c86424bc68f80a7f15f9f2462",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 21,
+        "Speaker": "Narrator",
+        "Text": "And if you want to explore even farther planets like Saturn, plan carefully!",
+        "VietnameseMeaning": "V\u00E0 n\u1EBFu b\u1EA1n mu\u1ED1n kh\u00E1m ph\u00E1 nh\u1EEFng h\u00E0nh tinh xa h\u01A1n n\u1EEFa nh\u01B0 Sao Th\u1ED5, h\u00E3y l\u00EAn k\u1EBF ho\u1EA1ch c\u1EA9n th\u1EADn!",
+        "StartTime": 131.4,
+        "EndTime": 138
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.0f66d21d4ac94efd91da35870a3c1745",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 23,
+        "Speaker": "Narrator",
+        "Text": "But don\u2019t worry, all the planning is worth it when you end up with a view like this one.",
+        "VietnameseMeaning": "Nh\u01B0ng \u0111\u1EEBng lo, m\u1ECDi s\u1EF1 l\u00EAn k\u1EBF ho\u1EA1ch \u0111\u1EC1u x\u1EE9ng \u0111\u00E1ng khi b\u1EA1n c\u00F3 \u0111\u01B0\u1EE3c m\u1ED9t khung c\u1EA3nh nh\u01B0 th\u1EBF n\u00E0y.",
+        "StartTime": 143.5,
+        "EndTime": 150.7
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.106100549caf43a393699122fc41b3a4",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "How fast must a rocket go to stay in orbit?",
+        "OptionA": "At least 17,800 miles per hour",
+        "OptionB": "100 miles per hour",
+        "OptionC": "At least 1,000 miles per hour",
+        "OptionD": "1 million miles per hour",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022A rocket needs enough fuel \u2013 and thrust \u2013 to speed up to at least 17,800 miles per hour.\u0022 \u2014 00:42"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.14c4d92c77ae4fe181e7209411ee2a10",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "However, a rocket burns fuel \u2013 called propellant \u2013 to push away from Earth and against gravity.",
+        "VietnameseMeaning": "Tuy nhi\u00EAn, t\u00EAn l\u1EEDa \u0111\u1ED1t nhi\u00EAn li\u1EC7u \u2013 g\u1ECDi l\u00E0 ch\u1EA5t \u0111\u1EA9y \u2013 \u0111\u1EC3 \u0111\u1EA9y ra kh\u1ECFi Tr\u00E1i \u0110\u1EA5t v\u00E0 ch\u1ED1ng l\u1EA1i l\u1EF1c h\u1EA5p d\u1EABn.",
+        "StartTime": 33.7,
+        "EndTime": 40.8
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.151f25846dec4eb6b0d53424e5786ab0",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "thrust",
+        "Definition": "l\u1EF1c \u0111\u1EA9y",
+        "ExampleSentence": "This creates a force called thrust.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.2d47a6508fd44d94afa091b6613299fb",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "Those photos were often captured by spacecraft \u2013 robotic explorers doing their work far away from Earth.",
+        "VietnameseMeaning": "Nh\u1EEFng b\u1EE9c \u1EA3nh \u0111\u00F3 th\u01B0\u1EDDng do c\u00E1c t\u00E0u v\u0169 tr\u1EE5 ch\u1EE5p \u2013 nh\u1EEFng nh\u00E0 th\u00E1m hi\u1EC3m ng\u01B0\u1EDDi m\u00E1y l\u00E0m vi\u1EC7c \u1EDF r\u1EA5t xa Tr\u00E1i \u0110\u1EA5t.",
+        "StartTime": 8.6,
+        "EndTime": 15.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.2fbd56e802eb49ae8cbad0bae5844d1a",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "What is propellant?",
+        "OptionA": "Fuel burned by a rocket",
+        "OptionB": "A kind of metal",
+        "OptionC": "A type of satellite",
+        "OptionD": "A planet",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022However, a rocket burns fuel \u2013 called propellant \u2013 to push away from Earth and against gravity.\u0022 \u2014 00:33"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.32ecf094a6244b0ba0c1c6a0ddde0c1d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "Why rockets? A spacecraft \u2013 and basically everything else on Earth \u2013 is held down by Earth\u2019s gravity.",
+        "VietnameseMeaning": "V\u00EC sao l\u1EA1i l\u00E0 t\u00EAn l\u1EEDa? M\u1ED9t t\u00E0u v\u0169 tr\u1EE5 \u2013 v\u00E0 v\u1EC1 c\u01A1 b\u1EA3n m\u1ECDi th\u1EE9 kh\u00E1c tr\u00EAn Tr\u00E1i \u0110\u1EA5t \u2013 b\u1ECB gi\u1EEF l\u1EA1i b\u1EDFi l\u1EF1c h\u1EA5p d\u1EABn c\u1EE7a Tr\u00E1i \u0110\u1EA5t.",
+        "StartTime": 25.6,
+        "EndTime": 33.7
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.34aea6d5be1349d2a34cbfea29b1ad13",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "How often are Mars and Earth closest together?",
+        "OptionA": "Every two years or so",
+        "OptionB": "Every day",
+        "OptionC": "Every ten years",
+        "OptionD": "Every century",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Every two years or so, Mars and Earth are closest together.\u0022 \u2014 01:59"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.3d0cded4616841c4bf21041c2cc3c622",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 22,
+        "Speaker": "Narrator",
+        "Text": "For example, will your spacecraft want to encounter Mars or Jupiter on its way to Saturn?",
+        "VietnameseMeaning": "V\u00ED d\u1EE5, t\u00E0u v\u0169 tr\u1EE5 c\u1EE7a b\u1EA1n c\u00F3 mu\u1ED1n \u0111i ngang qua Sao H\u1ECFa hay Sao M\u1ED9c tr\u00EAn \u0111\u01B0\u1EDDng \u0111\u1EBFn Sao Th\u1ED5 kh\u00F4ng?",
+        "StartTime": 138,
+        "EndTime": 143.5
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.50bdd25e4d1d41caa49ab41884cc8772",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 17,
+        "Speaker": "Narrator",
+        "Text": "And you\u2019ll still need to release the spacecraft from the rocket.",
+        "VietnameseMeaning": "V\u00E0 b\u1EA1n v\u1EABn c\u1EA7n th\u1EA3 t\u00E0u v\u0169 tr\u1EE5 ra kh\u1ECFi t\u00EAn l\u1EEDa.",
+        "StartTime": 106.3,
+        "EndTime": 110.4
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.5de1d6f5854a460cbef21c674fd29aa7",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "Why do spacecraft need a rocket?",
+        "OptionA": "Gravity holds everything down on Earth",
+        "OptionB": "Rockets are cheap",
+        "OptionC": "Rockets are beautiful",
+        "OptionD": "Spacecraft cannot fly in air",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Why rockets? A spacecraft \u2013 and basically everything else on Earth \u2013 is held down by Earth\u2019s gravity.\u0022 \u2014 00:25"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.6206523e7d6948ad856498a25c008134",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "Why does a satellite stay in orbit?",
+        "OptionA": "A balance between its momentum and Earth\u0027s gravity",
+        "OptionB": "It has an engine that never stops",
+        "OptionC": "The Moon pulls it",
+        "OptionD": "The wind pushes it",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022This happens because there is a balance between the energy the satellite picked up from the rocket \u2013 called momentum \u2013\u0022 \u2014 01:21"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.6aea16c1998f44569d443085e917ef88",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 14,
+        "Speaker": "Narrator",
+        "Text": "The balance of these two forces can keep a satellite in orbit for many years!",
+        "VietnameseMeaning": "S\u1EF1 c\u00E2n b\u1EB1ng gi\u1EEFa hai l\u1EF1c n\u00E0y c\u00F3 th\u1EC3 gi\u1EEF m\u1ED9t v\u1EC7 tinh tr\u00EAn qu\u1EF9 \u0111\u1EA1o trong nhi\u1EC1u n\u0103m!",
+        "StartTime": 88.9,
+        "EndTime": 96
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.6f7caff058d046738ca391f138ab8913",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "There, it keeps going around Earth in a circular path \u2013 an orbit.",
+        "VietnameseMeaning": "\u1EDE \u0111\u00F3, n\u00F3 ti\u1EBFp t\u1EE5c bay v\u00F2ng quanh Tr\u00E1i \u0110\u1EA5t theo m\u1ED9t \u0111\u01B0\u1EDDng tr\u00F2n \u2013 m\u1ED9t qu\u1EF9 \u0111\u1EA1o.",
+        "StartTime": 75.3,
+        "EndTime": 81.5
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.6fb6bdfec0e24549926e5a9d22a056aa",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 15,
+        "Speaker": "Narrator",
+        "Text": "But what happens if you want to go farther than Earth?",
+        "VietnameseMeaning": "Nh\u01B0ng \u0111i\u1EC1u g\u00EC x\u1EA3y ra n\u1EBFu b\u1EA1n mu\u1ED1n \u0111i xa h\u01A1n Tr\u00E1i \u0110\u1EA5t?",
+        "StartTime": 96,
+        "EndTime": 100.1
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.7acce7e4d4d14b2faaeccabe45c2e4ba",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Narrator",
+        "Text": "and the pull of Earth\u2019s gravity.",
+        "VietnameseMeaning": "v\u00E0 l\u1EF1c k\u00E9o c\u1EE7a l\u1EF1c h\u1EA5p d\u1EABn Tr\u00E1i \u0110\u1EA5t.",
+        "StartTime": 87.3,
+        "EndTime": 88.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.7cc0d9f4063b4d3b922a52911647009e",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "spacecraft",
+        "Definition": "t\u00E0u v\u0169 tr\u1EE5",
+        "ExampleSentence": "Those photos were often captured by spacecraft \u2013 robotic explorers doing their work far away from Earth.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.7fa6b8af9f3247f58f669ff1391084ef",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "orbit",
+        "Definition": "qu\u1EF9 \u0111\u1EA1o",
+        "ExampleSentence": "That\u2019s how fast you have to get going to fly above most of Earth\u2019s atmosphere and stay in orbit.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.818e4183935f441f9a54c26107be90c5",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "rocket",
+        "Definition": "t\u00EAn l\u1EEDa",
+        "ExampleSentence": "But how exactly do we send these spacecraft so far away? Well, it all starts with a rocket. A really, really big one.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.860faf2ffbc243a3abf3359f3dc1e971",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "Next, the rocket will release the spacecraft. But when that happens depends on where you\u2019re going.",
+        "VietnameseMeaning": "Ti\u1EBFp theo, t\u00EAn l\u1EEDa s\u1EBD th\u1EA3 t\u00E0u v\u0169 tr\u1EE5 ra. Nh\u01B0ng khi n\u00E0o vi\u1EC7c \u0111\u00F3 x\u1EA3y ra th\u00EC ph\u1EE5 thu\u1ED9c v\u00E0o n\u01A1i b\u1EA1n mu\u1ED1n \u0111\u1EBFn.",
+        "StartTime": 57.9,
+        "EndTime": 65
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.8905589a6d3e4c1988a25fdf69054c83",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "A rocket needs enough fuel \u2013 and thrust \u2013 to speed up to at least 17,800 miles per hour.",
+        "VietnameseMeaning": "M\u1ED9t t\u00EAn l\u1EEDa c\u1EA7n \u0111\u1EE7 nhi\u00EAn li\u1EC7u \u2013 v\u00E0 l\u1EF1c \u0111\u1EA9y \u2013 \u0111\u1EC3 t\u0103ng t\u1ED1c l\u00EAn \u00EDt nh\u1EA5t 17.800 d\u1EB7m m\u1ED9t gi\u1EDD.",
+        "StartTime": 42.7,
+        "EndTime": 51.1
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.8f1329e6aeff4d11bab8b131dff8ecc9",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "But how exactly do we send these spacecraft so far away? Well, it all starts with a rocket. A really, really big one.",
+        "VietnameseMeaning": "Nh\u01B0ng ch\u00FAng ta g\u1EEDi nh\u1EEFng t\u00E0u v\u0169 tr\u1EE5 n\u00E0y \u0111i xa nh\u01B0 v\u1EADy b\u1EB1ng c\u00E1ch n\u00E0o? \u00C0, m\u1ECDi th\u1EE9 b\u1EAFt \u0111\u1EA7u t\u1EEB m\u1ED9t t\u00EAn l\u1EEDa. M\u1ED9t t\u00EAn l\u1EEDa r\u1EA5t, r\u1EA5t l\u1EDBn.",
+        "StartTime": 15.9,
+        "EndTime": 25.6
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.b88bd24c6f2a4204bf0f3dcc73c96f7f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "How Do We Launch Things into Space? You\u2019ve probably seen beautiful photos of Earth and other planets in our solar system.",
+        "VietnameseMeaning": "Ch\u00FAng ta ph\u00F3ng c\u00E1c v\u1EADt th\u1EC3 v\u00E0o kh\u00F4ng gian nh\u01B0 th\u1EBF n\u00E0o? C\u00F3 l\u1EBD b\u1EA1n \u0111\u00E3 th\u1EA5y nh\u1EEFng b\u1EE9c \u1EA3nh \u0111\u1EB9p v\u1EC1 Tr\u00E1i \u0110\u1EA5t v\u00E0 c\u00E1c h\u00E0nh tinh kh\u00E1c trong h\u1EC7 M\u1EB7t Tr\u1EDDi c\u1EE7a ch\u00FAng ta.",
+        "StartTime": 0,
+        "EndTime": 8.6
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.bf5f5250b2f4468dac6700f84ea921dc",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "This happens because there is a balance between the energy the satellite picked up from the rocket \u2013 called momentum \u2013",
+        "VietnameseMeaning": "\u0110i\u1EC1u n\u00E0y x\u1EA3y ra v\u00EC c\u00F3 s\u1EF1 c\u00E2n b\u1EB1ng gi\u1EEFa n\u0103ng l\u01B0\u1EE3ng m\u00E0 v\u1EC7 tinh nh\u1EADn \u0111\u01B0\u1EE3c t\u1EEB t\u00EAn l\u1EEDa \u2013 g\u1ECDi l\u00E0 \u0111\u1ED9ng l\u01B0\u1EE3ng \u2013",
+        "StartTime": 81.5,
+        "EndTime": 87.3
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.c3df535f6e374ad09f5df8ed1aedb4fd",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "This creates a force called thrust.",
+        "VietnameseMeaning": "\u0110i\u1EC1u n\u00E0y t\u1EA1o ra m\u1ED9t l\u1EF1c g\u1ECDi l\u00E0 l\u1EF1c \u0111\u1EA9y.",
+        "StartTime": 40.8,
+        "EndTime": 42.7
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.c4f83c95df8f459fb9432dcbb842e365",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "overcome",
+        "Definition": "v\u01B0\u1EE3t qua",
+        "ExampleSentence": "If you\u2019re trying to get to another planet, you\u2019ll need a fast rocket to overcome Earth\u2019s gravity.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.c8cce31f2b3b444581c71a59a430d1d6",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 16,
+        "Speaker": "Narrator",
+        "Text": "If you\u2019re trying to get to another planet, you\u2019ll need a fast rocket to overcome Earth\u2019s gravity.",
+        "VietnameseMeaning": "N\u1EBFu b\u1EA1n mu\u1ED1n \u0111\u1EBFn m\u1ED9t h\u00E0nh tinh kh\u00E1c, b\u1EA1n s\u1EBD c\u1EA7n m\u1ED9t t\u00EAn l\u1EEDa nhanh \u0111\u1EC3 v\u01B0\u1EE3t qua l\u1EF1c h\u1EA5p d\u1EABn c\u1EE7a Tr\u00E1i \u0110\u1EA5t.",
+        "StartTime": 100.1,
+        "EndTime": 106.3
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.cad26e9f7a7c4a5aa680d8e19ca142c5",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "Why is that the best time to go to Mars?",
+        "OptionA": "It needs the least fuel and time",
+        "OptionB": "The Sun is brighter",
+        "OptionC": "Mars is smaller",
+        "OptionD": "It is cold",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022This is the best time to go to Mars, since it will require the least amount of fuel and time to get there.\u0022 \u2014 02:04"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.cd53848df09c4b4bb40a327d5ef562f6",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 19,
+        "Speaker": "Narrator",
+        "Text": "Every two years or so, Mars and Earth are closest together.",
+        "VietnameseMeaning": "C\u1EE9 kho\u1EA3ng hai n\u0103m m\u1ED9t l\u1EA7n, Sao H\u1ECFa v\u00E0 Tr\u00E1i \u0110\u1EA5t \u1EDF g\u1EA7n nhau nh\u1EA5t.",
+        "StartTime": 119.2,
+        "EndTime": 124.6
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.cfe69588fcc2471f8605cfa3a80fcd76",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "momentum",
+        "Definition": "\u0111\u1ED9ng l\u01B0\u1EE3ng",
+        "ExampleSentence": "This happens because there is a balance between the energy the satellite picked up from the rocket \u2013 called momentum \u2013",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.d4fed32a93e24a84941e55f41c9e1e94",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "propellant",
+        "Definition": "ch\u1EA5t \u0111\u1EA9y (nhi\u00EAn li\u1EC7u t\u00EAn l\u1EEDa)",
+        "ExampleSentence": "However, a rocket burns fuel \u2013 called propellant \u2013 to push away from Earth and against gravity.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.ea6e009990df45b684abbbd8ba98f508",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "That\u2019s how fast you have to get going to fly above most of Earth\u2019s atmosphere and stay in orbit.",
+        "VietnameseMeaning": "\u0110\u00F3 l\u00E0 t\u1ED1c \u0111\u1ED9 b\u1EA1n ph\u1EA3i \u0111\u1EA1t \u0111\u01B0\u1EE3c \u0111\u1EC3 bay l\u00EAn tr\u00EAn ph\u1EA7n l\u1EDBn kh\u00ED quy\u1EC3n c\u1EE7a Tr\u00E1i \u0110\u1EA5t v\u00E0 \u1EDF l\u1EA1i tr\u00EAn qu\u1EF9 \u0111\u1EA1o.",
+        "StartTime": 51.1,
+        "EndTime": 57.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.f365244dd61043a18244cec000a9266b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 20,
+        "Speaker": "Narrator",
+        "Text": "This is the best time to go to Mars, since it will require the least amount of fuel and time to get there.",
+        "VietnameseMeaning": "\u0110\u00E2y l\u00E0 th\u1EDDi \u0111i\u1EC3m t\u1ED1t nh\u1EA5t \u0111\u1EC3 \u0111\u1EBFn Sao H\u1ECFa, v\u00EC khi \u0111\u00F3 c\u1EA7n \u00EDt nhi\u00EAn li\u1EC7u v\u00E0 th\u1EDDi gian nh\u1EA5t \u0111\u1EC3 t\u1EDBi n\u01A1i.",
+        "StartTime": 124.6,
+        "EndTime": 131.4
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.f77fa41b457340bf85d530d435e2d4fa",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 18,
+        "Speaker": "Narrator",
+        "Text": "But you\u2019ll also need to figure out the best time to leave Earth to get to that planet. Take Mars, for example.",
+        "VietnameseMeaning": "Nh\u01B0ng b\u1EA1n c\u0169ng c\u1EA7n t\u00ECm ra th\u1EDDi \u0111i\u1EC3m t\u1ED1t nh\u1EA5t \u0111\u1EC3 r\u1EDDi Tr\u00E1i \u0110\u1EA5t \u0111\u1EC3 \u0111\u1EBFn h\u00E0nh tinh \u0111\u00F3. L\u1EA5y Sao H\u1ECFa l\u00E0m v\u00ED d\u1EE5.",
+        "StartTime": 110.4,
+        "EndTime": 119.2
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.f9b1783740dd448187c987a82aed49ba",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "A spacecraft that orbits Earth is sometimes called a satellite. A satellite is released from a rocket at a specific distance from Earth.",
+        "VietnameseMeaning": "M\u1ED9t t\u00E0u v\u0169 tr\u1EE5 quay quanh Tr\u00E1i \u0110\u1EA5t \u0111\u00F4i khi \u0111\u01B0\u1EE3c g\u1ECDi l\u00E0 v\u1EC7 tinh. V\u1EC7 tinh \u0111\u01B0\u1EE3c th\u1EA3 ra t\u1EEB t\u00EAn l\u1EEDa \u1EDF m\u1ED9t kho\u1EA3ng c\u00E1ch c\u1EE5 th\u1EC3 so v\u1EDBi Tr\u00E1i \u0110\u1EA5t.",
+        "StartTime": 65,
+        "EndTime": 75.3
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    },
+    {
+      "key": "team.listening.b2.how-do-we-launch-things-into-space.fe21b1489be840a78df19425225fda2a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 24,
+        "Speaker": "Narrator",
+        "Text": "Find out more about our solar system at NASA Space Place.",
+        "VietnameseMeaning": "H\u00E3y t\u00ECm hi\u1EC3u th\u00EAm v\u1EC1 h\u1EC7 M\u1EB7t Tr\u1EDDi c\u1EE7a ch\u00FAng ta t\u1EA1i NASA Space Place.",
+        "StartTime": 150.7,
+        "EndTime": 154.5
+      },
+      "references": {
+        "LessonId": "team.listening.b2.how-do-we-launch-things-into-space"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b2.how-do-we-launch-things-into-space"
+}

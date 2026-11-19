@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b1.showering-in-space",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b1.showering-in-space",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Showering in Space",
+        "Level": "B1",
+        "Topic": "Hygiene in Space",
+        "YoutubeId": "tDbbJWKKQu0",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/tDbbJWKKQu0/hqdefault.jpg",
+        "Duration": "1:46",
+        "Speaker1Name": "Mike Fossum",
+        "Speaker2Name": null,
+        "Speaker1Country": "United States",
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.14029eabd1fc4a7981f6ba156a401843",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Mike Fossum",
+        "Text": "Then we add a little water to it. Get the wash towel wet.",
+        "VietnameseMeaning": "Sau \u0111\u00F3 ch\u00FAng t\u00F4i th\u00EAm m\u1ED9t \u00EDt n\u01B0\u1EDBc v\u00E0o. L\u00E0m \u01B0\u1EDBt kh\u0103n lau.",
+        "StartTime": 34,
+        "EndTime": 44.7
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.180fc1ffde8f4c98a64754195001fa8a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Mike Fossum",
+        "Text": "you know, and a wash towel of some type, a washcloth of some type.",
+        "VietnameseMeaning": "v\u00E0 m\u1ED9t chi\u1EBFc kh\u0103n lau, m\u1ED9t lo\u1EA1i kh\u0103n t\u1EAFm nh\u1ECF n\u00E0o \u0111\u00F3.",
+        "StartTime": 19,
+        "EndTime": 24
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.20e159891ffc446aa26e1650b8f247c9",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "hygiene",
+        "Definition": "v\u1EC7 sinh",
+        "ExampleSentence": "as well as maintaining health and all the other hygiene aspects of staying clean in space.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.262aedb9a8a64ec987c63cc8bbcf3efb",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "Why can astronauts not take a normal shower?",
+        "OptionA": "There is no soap",
+        "OptionB": "Water does not know how to find the drain",
+        "OptionC": "It is too cold",
+        "OptionD": "They do not like showers",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022Well, we can\u0027t take a normal shower because the water doesn\u0027t know where -- how to find the drain.\u0022 \u2014 00:07"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.310ea962a886451aa297f45b992d745e",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "camping",
+        "Definition": "c\u1EAFm tr\u1EA1i",
+        "ExampleSentence": "You know, it\u0027s a little bit like camping.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.34d25558b5294372a0ec0e68ed5f1206",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Mike Fossum",
+        "Text": "When we\u0027re working out twice a day -- very often twice a day --",
+        "VietnameseMeaning": "Khi t\u1EADp luy\u1EC7n hai l\u1EA7n m\u1ED9t ng\u00E0y \u2013 r\u1EA5t th\u01B0\u1EDDng l\u00E0 hai l\u1EA7n m\u1ED9t ng\u00E0y \u2013",
+        "StartTime": 57.6,
+        "EndTime": 62.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.3c9d3205bc2b4c79ae64db85abda4483",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Mike Fossum",
+        "Text": "Get the warm water -- And this is already premixed where it\u0027s a little bit of the special soap in the water pouch.",
+        "VietnameseMeaning": "L\u1EA5y n\u01B0\u1EDBc \u1EA5m \u2013 V\u00E0 n\u01B0\u1EDBc n\u00E0y \u0111\u00E3 \u0111\u01B0\u1EE3c pha s\u1EB5n v\u1EDBi m\u1ED9t ch\u00FAt x\u00E0 ph\u00F2ng \u0111\u1EB7c bi\u1EC7t trong t\u00FAi n\u01B0\u1EDBc.",
+        "StartTime": 26.7,
+        "EndTime": 34
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.4a83abcd90ef4a61860ff620a0e5581d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 14,
+        "Speaker": "Mike Fossum",
+        "Text": "The temperature in the space station is cool and controlled, and the humidity is also moderately low, also.",
+        "VietnameseMeaning": "Nhi\u1EC7t \u0111\u1ED9 trong tr\u1EA1m v\u0169 tr\u1EE5 m\u00E1t m\u1EBB v\u00E0 \u0111\u01B0\u1EE3c ki\u1EC3m so\u00E1t, \u0111\u1ED9 \u1EA9m c\u0169ng kh\u00E1 th\u1EA5p.",
+        "StartTime": 79,
+        "EndTime": 84.8
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.4cc8c79079ac427ea191993be061b57c",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 15,
+        "Speaker": "Mike Fossum",
+        "Text": "So it\u0027s a very comfortable place to live.",
+        "VietnameseMeaning": "V\u00EC v\u1EADy \u0111\u00E2y l\u00E0 n\u01A1i r\u1EA5t d\u1EC5 ch\u1ECBu \u0111\u1EC3 s\u1ED1ng.",
+        "StartTime": 84.8,
+        "EndTime": 87.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.4ed2e8e229ec48b6bfb778f148ecf32d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Mike Fossum",
+        "Text": "It\u0027s also good just \u0027cause you feel better to wipe off the -- Of course, we don\u0027t have -- You know, we\u0027re not working outside.",
+        "VietnameseMeaning": "Lau ng\u01B0\u1EDDi c\u0169ng t\u1ED1t v\u00EC b\u1EA1n th\u1EA5y kh\u1ECFe h\u01A1n. D\u0129 nhi\u00EAn, ch\u00FAng t\u00F4i kh\u00F4ng \u2013 B\u1EA1n bi\u1EBFt \u0111\u1EA5y, ch\u00FAng t\u00F4i kh\u00F4ng l\u00E0m vi\u1EC7c ngo\u00E0i tr\u1EDDi.",
+        "StartTime": 70.3,
+        "EndTime": 79
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.50706432f4064eae9595218fe3f62f7e",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "humidity",
+        "Definition": "\u0111\u1ED9 \u1EA9m",
+        "ExampleSentence": "The temperature in the space station is cool and controlled, and the humidity is also moderately low, also.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.546da553a5bc41f0abdc56614eec2d84",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "drain",
+        "Definition": "l\u1ED7 tho\u00E1t n\u01B0\u1EDBc",
+        "ExampleSentence": "Well, we can\u0027t take a normal shower because the water doesn\u0027t know where -- how to find the drain.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.59e1d7bb32b1440086049ebe6d7a5bd4",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "sponge bath",
+        "Definition": "lau ng\u01B0\u1EDDi b\u1EB1ng b\u1ECDt bi\u1EC3n",
+        "ExampleSentence": "You\u0027re taking a sponge bath, except it is warm water, and it feels good, and it gets you clean.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.610e844a00b34e3ca5683a11b2d05ee0",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Mike Fossum",
+        "Text": "Well, we can\u0027t take a normal shower because the water doesn\u0027t know where -- how to find the drain.",
+        "VietnameseMeaning": "Ch\u00E0, ch\u00FAng t\u00F4i kh\u00F4ng th\u1EC3 t\u1EAFm v\u00F2i sen b\u00ECnh th\u01B0\u1EDDng v\u00EC n\u01B0\u1EDBc kh\u00F4ng bi\u1EBFt t\u00ECm l\u1ED7 tho\u00E1t \u1EDF \u0111\u00E2u.",
+        "StartTime": 7,
+        "EndTime": 12.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.75b755a70d1c49f9a4ec712ffa112090",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "controlled",
+        "Definition": "\u0111\u01B0\u1EE3c ki\u1EC3m so\u00E1t",
+        "ExampleSentence": "The temperature in the space station is cool and controlled, and the humidity is also moderately low, also.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.7a919fe1763d408584df7982ad432eea",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Mike Fossum",
+        "Text": "You know, it\u0027s a little bit like camping.",
+        "VietnameseMeaning": "N\u00F3 h\u01A1i gi\u1ED1ng \u0111i c\u1EAFm tr\u1EA1i.",
+        "StartTime": 49,
+        "EndTime": 51.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.882f103a716b4da7a4faba8c4965d4dd",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Mike Fossum",
+        "Text": "You\u0027re taking a sponge bath, except it is warm water, and it feels good, and it gets you clean.",
+        "VietnameseMeaning": "B\u1EA1n \u0111ang lau ng\u01B0\u1EDDi b\u1EB1ng b\u1ECDt bi\u1EC3n, nh\u01B0ng l\u00E0 n\u01B0\u1EDBc \u1EA5m, c\u1EA3m gi\u00E1c d\u1EC5 ch\u1ECBu v\u00E0 gi\u00FAp b\u1EA1n s\u1EA1ch s\u1EBD.",
+        "StartTime": 51.4,
+        "EndTime": 57.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.8a6da3699da64d629b1efc9f90fcfe9e",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "What is the temperature in the station like?",
+        "OptionA": "Hot and humid",
+        "OptionB": "Very cold",
+        "OptionC": "Cool and controlled",
+        "OptionD": "Different every day",
+        "CorrectAnswer": "C",
+        "Explanation": "\u0022The temperature in the space station is cool and controlled, and the humidity is also moderately low, also.\u0022 \u2014 01:19"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.8da8f5bcd1bf4d1a90c834ff9894023e",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "washcloth",
+        "Definition": "kh\u0103n lau m\u1EB7t, kh\u0103n t\u1EAFm nh\u1ECF",
+        "ExampleSentence": "you know, and a wash towel of some type, a washcloth of some type.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.95e6b149a61c400694aac3e69241e716",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Mike Fossum",
+        "Text": "as well as maintaining health and all the other hygiene aspects of staying clean in space.",
+        "VietnameseMeaning": "c\u0169ng nh\u01B0 duy tr\u00EC s\u1EE9c kh\u1ECFe v\u00E0 m\u1ECDi kh\u00EDa c\u1EA1nh v\u1EC7 sinh kh\u00E1c khi \u1EDF trong kh\u00F4ng gian.",
+        "StartTime": 65,
+        "EndTime": 70.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.992dc3c6cee44e0e8139f69c76ca7055",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "What do they use instead of a shower?",
+        "OptionA": "Soapy water and a washcloth",
+        "OptionB": "Only dry towels",
+        "OptionC": "A swimming pool",
+        "OptionD": "Rain water",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022What we do instead is, you know, clean up with soapy water,\u0022 \u2014 00:14"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.9d73c0ce38d1447d98d913a21147b69b",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "Why is it important to get clean?",
+        "OptionA": "They exercise twice a day and need good hygiene",
+        "OptionB": "They have visitors",
+        "OptionC": "They work outside",
+        "OptionD": "They have a lot of water",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022you know, it is important to get clean,\u0022 \u2014 01:02"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.bb9fc1b2b1404784afc05b4330c5297e",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "What does Mike Fossum compare it to?",
+        "OptionA": "Swimming",
+        "OptionB": "Camping",
+        "OptionC": "Cooking",
+        "OptionD": "Running",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022You know, it\u0027s a little bit like camping.\u0022 \u2014 00:49"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.be6e70f14a9448b9974e6bb93cc660c7",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "sweat",
+        "Definition": "\u0111\u1ED5 m\u1ED3 h\u00F4i",
+        "ExampleSentence": "You don\u0027t sweat a lot and, you know, need extra showers because, you know, you\u0027ve been walking or working outside.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.c73d71bbc12549fea85d5f0b9324b115",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Mike Fossum",
+        "Text": "What we do instead is, you know, clean up with soapy water,",
+        "VietnameseMeaning": "Thay v\u00E0o \u0111\u00F3, ch\u00FAng t\u00F4i lau ng\u01B0\u1EDDi b\u1EB1ng n\u01B0\u1EDBc x\u00E0 ph\u00F2ng,",
+        "StartTime": 14.6,
+        "EndTime": 19
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.cefacf69248744088a86fc4be06ed1fe",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "What kind of water do they use to clean up?",
+        "OptionA": "Warm water premixed with special soap",
+        "OptionB": "Cold sea water",
+        "OptionC": "Water from a shower head",
+        "OptionD": "Only dry wipes",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Get the warm water -- And this is already premixed where it\u0027s a little bit of the special soap in the water pouch.\u0022 \u2014 00:26"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.e2906fc45a944a2090eb1e5a4b2b47fd",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Mike Fossum",
+        "Text": "you know, it is important to get clean,",
+        "VietnameseMeaning": "vi\u1EC7c gi\u1EEF s\u1EA1ch s\u1EBD l\u00E0 quan tr\u1ECDng,",
+        "StartTime": 62.3,
+        "EndTime": 65
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.eb83a95309584f1caf951c52a159bea9",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Mike Fossum",
+        "Text": "So we don\u0027t have a regular shower.",
+        "VietnameseMeaning": "N\u00EAn ch\u00FAng t\u00F4i kh\u00F4ng c\u00F3 v\u00F2i sen th\u00F4ng th\u01B0\u1EDDng.",
+        "StartTime": 12.6,
+        "EndTime": 14.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.ecc539a6e7b145aca7f897ac8f56f9d7",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Mike Fossum",
+        "Text": "And let me just show you how that works.",
+        "VietnameseMeaning": "\u0110\u1EC3 t\u00F4i ch\u1EC9 cho b\u1EA1n c\u00E1ch l\u00E0m.",
+        "StartTime": 24,
+        "EndTime": 26.7
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.showering-in-space.fbd8ff03e69d4759b4ccaa988002547f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 16,
+        "Speaker": "Mike Fossum",
+        "Text": "You don\u0027t sweat a lot and, you know, need extra showers because, you know, you\u0027ve been walking or working outside.",
+        "VietnameseMeaning": "B\u1EA1n kh\u00F4ng \u0111\u1ED5 m\u1ED3 h\u00F4i nhi\u1EC1u v\u00E0 kh\u00F4ng c\u1EA7n t\u1EAFm th\u00EAm nh\u01B0 khi b\u1EA1n \u0111\u00E3 \u0111i b\u1ED9 hay l\u00E0m vi\u1EC7c ngo\u00E0i tr\u1EDDi.",
+        "StartTime": 87.4,
+        "EndTime": 94.7
+      },
+      "references": {
+        "LessonId": "team.listening.b1.showering-in-space"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b1.showering-in-space"
+}

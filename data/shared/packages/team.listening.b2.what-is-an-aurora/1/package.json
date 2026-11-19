@@ -1,0 +1,605 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b2.what-is-an-aurora",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b2.what-is-an-aurora",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "What Is an Aurora?",
+        "Level": "B2",
+        "Topic": "Sun \u0026 Space Weather",
+        "YoutubeId": "PgIKsuZ3RZU",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/PgIKsuZ3RZU/hqdefault.jpg",
+        "Duration": "2:59",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.02b31aa869cc4ec783b08881368d5fad",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 19,
+        "Speaker": "Narrator",
+        "Text": "The particles then bump into gases in our atmosphere. These interactions result in displays of light in the sky \u2013 auroras.",
+        "VietnameseMeaning": "Sau \u0111\u00F3 c\u00E1c h\u1EA1t va v\u00E0o c\u00E1c lo\u1EA1i kh\u00ED trong kh\u00ED quy\u1EC3n. Nh\u1EEFng t\u01B0\u01A1ng t\u00E1c n\u00E0y t\u1EA1o ra c\u00E1c m\u00E0n \u00E1nh s\u00E1ng tr\u00EAn b\u1EA7u tr\u1EDDi \u2013 c\u1EF1c quang.",
+        "StartTime": 122.9,
+        "EndTime": 133
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.045b55cb8a5849dfa3a96ae81ef1f7aa",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "oxygen",
+        "Definition": "kh\u00ED oxy",
+        "ExampleSentence": "When the particles bump into oxygen in our atmosphere, the reaction makes green and red light.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.21da6c38736c4f51824c71a5fce04c2a",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "hemisphere",
+        "Definition": "b\u00E1n c\u1EA7u",
+        "ExampleSentence": "If you\u2019re in the northern hemisphere, it is called aurora borealis, or northern lights.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.2bff427faee148d98de70719e791e947",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "What is the solar wind?",
+        "OptionA": "Small electrified particles and energy from the Sun",
+        "OptionB": "Strong wind on Earth",
+        "OptionC": "A kind of cloud",
+        "OptionD": "A storm on Jupiter",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022It also sends other kinds of energy and small electrified particles, too. This is called the solar wind.\u0022 \u2014 01:03"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.31dfac717740492f9d7396a2377445df",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "What does Earth\u0027s magnetic field do?",
+        "OptionA": "It protects us from most solar wind",
+        "OptionB": "It makes the Sun hotter",
+        "OptionC": "It creates the Moon",
+        "OptionD": "It stops the rain",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Earth has a protective magnetic field, which protects us from most solar winds.\u0022 \u2014 01:11"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.324c6696596e4bfa9a59c430f040ed93",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "magnetic field",
+        "Definition": "t\u1EEB tr\u01B0\u1EDDng",
+        "ExampleSentence": "Earth has a protective magnetic field, which protects us from most solar winds.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.3eafec4d19414ba58a7564e34cce476d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "These are some auroras that were spotted in the sky over central Alaska. We can also see auroras from space!",
+        "VietnameseMeaning": "\u0110\u00E2y l\u00E0 m\u1ED9t s\u1ED1 c\u1EF1c quang \u0111\u01B0\u1EE3c ghi l\u1EA1i tr\u00EAn b\u1EA7u tr\u1EDDi mi\u1EC1n trung Alaska. Ch\u00FAng ta c\u0169ng c\u00F3 th\u1EC3 th\u1EA5y c\u1EF1c quang t\u1EEB kh\u00F4ng gian!",
+        "StartTime": 9.1,
+        "EndTime": 17.3
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.40760621bf26479d8a6fecdb4aa4341b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "If you\u2019re in the northern hemisphere, it is called aurora borealis, or northern lights.",
+        "VietnameseMeaning": "N\u1EBFu b\u1EA1n \u1EDF B\u1EAFc b\u00E1n c\u1EA7u, n\u00F3 \u0111\u01B0\u1EE3c g\u1ECDi l\u00E0 aurora borealis, hay c\u1EF1c quang ph\u01B0\u01A1ng B\u1EAFc.",
+        "StartTime": 26.3,
+        "EndTime": 33.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.4116c60608704795b41c2afde06601f8",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "What is an aurora? An aurora looks like a beautiful display of lights in the sky.",
+        "VietnameseMeaning": "C\u1EF1c quang l\u00E0 g\u00EC? C\u1EF1c quang tr\u00F4ng nh\u01B0 m\u1ED9t m\u00E0n tr\u00ECnh di\u1EC5n \u00E1nh s\u00E1ng tuy\u1EC7t \u0111\u1EB9p tr\u00EAn b\u1EA7u tr\u1EDDi.",
+        "StartTime": 0,
+        "EndTime": 9.1
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.44438cd911c24405b81c3a3f312506a2",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 20,
+        "Speaker": "Narrator",
+        "Text": "When the particles bump into oxygen in our atmosphere, the reaction makes green and red light.",
+        "VietnameseMeaning": "Khi c\u00E1c h\u1EA1t va v\u00E0o oxy trong kh\u00ED quy\u1EC3n, ph\u1EA3n \u1EE9ng t\u1EA1o ra \u00E1nh s\u00E1ng xanh l\u1EE5c v\u00E0 \u0111\u1ECF.",
+        "StartTime": 133,
+        "EndTime": 141.6
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.5750831f63e249f3b58613a30418323a",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "Which other planets have auroras?",
+        "OptionA": "Jupiter and Saturn",
+        "OptionB": "Only Mars",
+        "OptionC": "Only Venus",
+        "OptionD": "None",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022For example, NASA spacecraft have captured amazing auroras on Jupiter\u2026 and Saturn!\u0022 \u2014 02:36"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.6679f4e643ac42cd8b8b54b0377c10ce",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "So, what causes these beautiful displays of lights anyway? The Sun! That\u2019s right!",
+        "VietnameseMeaning": "V\u1EADy th\u00EC \u0111i\u1EC1u g\u00EC t\u1EA1o ra nh\u1EEFng m\u00E0n tr\u00ECnh di\u1EC5n \u00E1nh s\u00E1ng \u0111\u1EB9p \u0111\u1EBFn th\u1EBF? M\u1EB7t Tr\u1EDDi! \u0110\u00FAng v\u1EADy!",
+        "StartTime": 40.4,
+        "EndTime": 48.5
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.67c2ae946c67484bb97f462162965b3a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 17,
+        "Speaker": "Narrator",
+        "Text": "When a solar storm reaches Earth, it dances with our magnetic field,",
+        "VietnameseMeaning": "Khi m\u1ED9t c\u01A1n b\u00E3o M\u1EB7t Tr\u1EDDi \u0111\u1EBFn Tr\u00E1i \u0110\u1EA5t, n\u00F3 \u201Cnh\u1EA3y m\u00FAa\u201D v\u1EDBi t\u1EEB tr\u01B0\u1EDDng c\u1EE7a ch\u00FAng ta,",
+        "StartTime": 109.8,
+        "EndTime": 114.3
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.6a4d201e33b445fda95f5f8b76d1feb9",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "But it also traps some of the electrified particles in the space around Earth.",
+        "VietnameseMeaning": "Nh\u01B0ng n\u00F3 c\u0169ng gi\u1EEF l\u1EA1i m\u1ED9t s\u1ED1 h\u1EA1t mang \u0111i\u1EC7n trong kh\u00F4ng gian quanh Tr\u00E1i \u0110\u1EA5t.",
+        "StartTime": 76.6,
+        "EndTime": 82.2
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.6b462ba7956c47828c094d6dd80a6460",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 15,
+        "Speaker": "Narrator",
+        "Text": "During one kind of solar storm called a coronal mass ejection,",
+        "VietnameseMeaning": "Trong m\u1ED9t lo\u1EA1i b\u00E3o M\u1EB7t Tr\u1EDDi g\u1ECDi l\u00E0 phun tr\u00E0o kh\u1ED1i l\u01B0\u1EE3ng v\u00E0nh nh\u1EADt hoa,",
+        "StartTime": 97.1,
+        "EndTime": 101.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.6d4a4a44dae24951bb614455118dcb1f",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "What causes auroras?",
+        "OptionA": "The Moon",
+        "OptionB": "The Sun",
+        "OptionC": "Clouds",
+        "OptionD": "Volcanoes",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022So, what causes these beautiful displays of lights anyway? The Sun! That\u2019s right!\u0022 \u2014 00:40"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.702106c716bd4c63b838374f7002f1c7",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "aurora",
+        "Definition": "c\u1EF1c quang",
+        "ExampleSentence": "What is an aurora? An aurora looks like a beautiful display of lights in the sky.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.78edd44c53624001af2c8acd8ac5af8f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 23,
+        "Speaker": "Narrator",
+        "Text": "For example, NASA spacecraft have captured amazing auroras on Jupiter\u2026 and Saturn!",
+        "VietnameseMeaning": "V\u00ED d\u1EE5, c\u00E1c t\u00E0u v\u0169 tr\u1EE5 c\u1EE7a NASA \u0111\u00E3 ghi l\u1EA1i nh\u1EEFng c\u1EF1c quang k\u1EF3 di\u1EC7u tr\u00EAn Sao M\u1ED9c\u2026 v\u00E0 Sao Th\u1ED5!",
+        "StartTime": 156,
+        "EndTime": 165.8
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.8bc4bf6804ef4eca89784154f45fb00e",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "And if you\u2019re in the southern hemisphere, then it is called aurora australis, or southern lights.",
+        "VietnameseMeaning": "C\u00F2n n\u1EBFu b\u1EA1n \u1EDF Nam b\u00E1n c\u1EA7u, n\u00F3 \u0111\u01B0\u1EE3c g\u1ECDi l\u00E0 aurora australis, hay c\u1EF1c quang ph\u01B0\u01A1ng Nam.",
+        "StartTime": 33.9,
+        "EndTime": 40.4
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.96397674476d43a8948229bceed5e0e5",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "Earth has a protective magnetic field, which protects us from most solar winds.",
+        "VietnameseMeaning": "Tr\u00E1i \u0110\u1EA5t c\u00F3 m\u1ED9t t\u1EEB tr\u01B0\u1EDDng b\u1EA3o v\u1EC7, gi\u00FAp che ch\u1EAFn ch\u00FAng ta kh\u1ECFi ph\u1EA7n l\u1EDBn gi\u00F3 M\u1EB7t Tr\u1EDDi.",
+        "StartTime": 71.4,
+        "EndTime": 76.6
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.9672d6229cc34f6ba2f3763bf9f87c20",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 16,
+        "Speaker": "Narrator",
+        "Text": "the Sun burps a massive bubble of gas that pops and sends particles and energy zooming through space.",
+        "VietnameseMeaning": "M\u1EB7t Tr\u1EDDi \u201C\u1EE3\u201D ra m\u1ED9t bong b\u00F3ng kh\u00ED kh\u1ED5ng l\u1ED3, n\u00F3 v\u1EE1 ra v\u00E0 \u0111\u1EA9y c\u00E1c h\u1EA1t v\u00E0 n\u0103ng l\u01B0\u1EE3ng lao v\u00FAt qua kh\u00F4ng gian.",
+        "StartTime": 101.9,
+        "EndTime": 109.8
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.a3425a65051f4c6fa55343534d2c8d6b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 22,
+        "Speaker": "Narrator",
+        "Text": "If a planet has an atmosphere and a magnetic field, it probably has auroras.",
+        "VietnameseMeaning": "N\u1EBFu m\u1ED9t h\u00E0nh tinh c\u00F3 kh\u00ED quy\u1EC3n v\u00E0 t\u1EEB tr\u01B0\u1EDDng th\u00EC c\u00F3 l\u1EBD n\u00F3 c\u0169ng c\u00F3 c\u1EF1c quang.",
+        "StartTime": 150.5,
+        "EndTime": 156
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.a57e08d53c7a4175802bd6e86758186f",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "What is the aurora in the Northern Hemisphere called?",
+        "OptionA": "Aurora australis",
+        "OptionB": "Aurora borealis",
+        "OptionC": "Solar wind",
+        "OptionD": "Event horizon",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022If you\u2019re in the northern hemisphere, it is called aurora borealis, or northern lights.\u0022 \u2014 00:26"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.a854276f5d3241abad65ac42c5b88935",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 14,
+        "Speaker": "Narrator",
+        "Text": "These events are called solar storms.",
+        "VietnameseMeaning": "Nh\u1EEFng s\u1EF1 ki\u1EC7n n\u00E0y \u0111\u01B0\u1EE3c g\u1ECDi l\u00E0 b\u00E3o M\u1EB7t Tr\u1EDDi.",
+        "StartTime": 92.6,
+        "EndTime": 97.1
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.c573ecf8509d41c59b4420a52c1f57ef",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 18,
+        "Speaker": "Narrator",
+        "Text": "and some of the energy and particles that zip around the magnetic field dive into our atmosphere near the north and south poles.",
+        "VietnameseMeaning": "v\u00E0 m\u1ED9t ph\u1EA7n n\u0103ng l\u01B0\u1EE3ng c\u00F9ng c\u00E1c h\u1EA1t ch\u1EA1y quanh t\u1EEB tr\u01B0\u1EDDng lao xu\u1ED1ng kh\u00ED quy\u1EC3n g\u1EA7n hai c\u1EF1c b\u1EAFc v\u00E0 nam.",
+        "StartTime": 114.3,
+        "EndTime": 122.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.cc099167ecc44b56bc0e8489efb30cfc",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "It also sends other kinds of energy and small electrified particles, too. This is called the solar wind.",
+        "VietnameseMeaning": "N\u00F3 c\u0169ng g\u1EEDi nh\u1EEFng d\u1EA1ng n\u0103ng l\u01B0\u1EE3ng kh\u00E1c v\u00E0 nh\u1EEFng h\u1EA1t nh\u1ECF mang \u0111i\u1EC7n. \u0110\u00E2y g\u1ECDi l\u00E0 gi\u00F3 M\u1EB7t Tr\u1EDDi.",
+        "StartTime": 63.6,
+        "EndTime": 71.4
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.cf6e117f0a78459481a6df924bd0c3a2",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Narrator",
+        "Text": "Sometimes the Sun has huge outbursts, and blasts more stuff into space than the usual solar wind.",
+        "VietnameseMeaning": "\u0110\u00F4i khi M\u1EB7t Tr\u1EDDi b\u00F9ng ph\u00E1t d\u1EEF d\u1ED9i v\u00E0 ph\u00F3ng v\u00E0o kh\u00F4ng gian nhi\u1EC1u v\u1EADt ch\u1EA5t h\u01A1n gi\u00F3 M\u1EB7t Tr\u1EDDi th\u00F4ng th\u01B0\u1EDDng.",
+        "StartTime": 85.9,
+        "EndTime": 92.6
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.d1151234bf334b94a63c8d46718d672f",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "particle",
+        "Definition": "h\u1EA1t (nh\u1ECF)",
+        "ExampleSentence": "It also sends other kinds of energy and small electrified particles, too. This is called the solar wind.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.d1e52683d7a547d78c5d27eb9b14910d",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "outburst",
+        "Definition": "s\u1EF1 b\u00F9ng ph\u00E1t",
+        "ExampleSentence": "Sometimes the Sun has huge outbursts, and blasts more stuff into space than the usual solar wind.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.d48a7bb5fcb34d6fb01dbdf909d8cd82",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "How exactly does it work? Well, the Sun is constantly sending heat and light to Earth.",
+        "VietnameseMeaning": "Ch\u00EDnh x\u00E1c th\u00EC n\u00F3 ho\u1EA1t \u0111\u1ED9ng nh\u01B0 th\u1EBF n\u00E0o? \u00C0, M\u1EB7t Tr\u1EDDi li\u00EAn t\u1EE5c g\u1EEDi nhi\u1EC7t v\u00E0 \u00E1nh s\u00E1ng \u0111\u1EBFn Tr\u00E1i \u0110\u1EA5t.",
+        "StartTime": 57,
+        "EndTime": 63.6
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.d9b0821364bc4981b6b269d2fd63dd3b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 21,
+        "Speaker": "Narrator",
+        "Text": "When the particles bump into nitrogen in our atmosphere, it makes blue and purple light. Earth is not the only planet with auroras.",
+        "VietnameseMeaning": "Khi c\u00E1c h\u1EA1t va v\u00E0o nit\u01A1 trong kh\u00ED quy\u1EC3n, n\u00F3 t\u1EA1o ra \u00E1nh s\u00E1ng xanh lam v\u00E0 t\u00EDm. Tr\u00E1i \u0110\u1EA5t kh\u00F4ng ph\u1EA3i h\u00E0nh tinh duy nh\u1EA5t c\u00F3 c\u1EF1c quang.",
+        "StartTime": 141.6,
+        "EndTime": 150.5
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.e24ccf7761d84d2c9a2e6ef773fe555b",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "atmosphere",
+        "Definition": "kh\u00ED quy\u1EC3n",
+        "ExampleSentence": "and some of the energy and particles that zip around the magnetic field dive into our atmosphere near the north and south poles.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.e7f969f7f499467486daffc695312b87",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 24,
+        "Speaker": "Narrator",
+        "Text": "Learn more about our planet and our solar system at NASA Space Place!",
+        "VietnameseMeaning": "H\u00E3y t\u00ECm hi\u1EC3u th\u00EAm v\u1EC1 h\u00E0nh tinh v\u00E0 h\u1EC7 M\u1EB7t Tr\u1EDDi c\u1EE7a ch\u00FAng ta t\u1EA1i NASA Space Place!",
+        "StartTime": 165.8,
+        "EndTime": 169.5
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.f45c46ec5bf64c43a2f224e38e628454",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "solar wind",
+        "Definition": "gi\u00F3 M\u1EB7t Tr\u1EDDi",
+        "ExampleSentence": "It also sends other kinds of energy and small electrified particles, too. This is called the solar wind.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.faf81140da1e4e968d226bf97d898e12",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "The Sun does not always send the same amount of energy.",
+        "VietnameseMeaning": "M\u1EB7t Tr\u1EDDi kh\u00F4ng ph\u1EA3i l\u00FAc n\u00E0o c\u0169ng g\u1EEDi c\u00F9ng m\u1ED9t l\u01B0\u1EE3ng n\u0103ng l\u01B0\u1EE3ng.",
+        "StartTime": 82.2,
+        "EndTime": 85.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.fe08d5e2fc4f4b36aeac6e9d7557e7c1",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "Even though auroras are best seen at night, these colorful displays are caused by our ever-changing Sun.",
+        "VietnameseMeaning": "D\u00F9 c\u1EF1c quang \u0111\u01B0\u1EE3c nh\u00ECn r\u00F5 nh\u1EA5t v\u00E0o ban \u0111\u00EAm, nh\u1EEFng m\u00E0n tr\u00ECnh di\u1EC5n \u0111\u1EA7y m\u00E0u s\u1EAFc n\u00E0y l\u1EA1i do M\u1EB7t Tr\u1EDDi lu\u00F4n thay \u0111\u1ED5i c\u1EE7a ch\u00FAng ta g\u00E2y ra.",
+        "StartTime": 48.5,
+        "EndTime": 57
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.fe11a0aa996c4cb1b65cf98d338618a4",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "This is what an aurora looks like from the International Space Station. The name of an aurora changes depending on its location.",
+        "VietnameseMeaning": "\u0110\u00E2y l\u00E0 h\u00ECnh \u1EA3nh c\u1EE7a c\u1EF1c quang nh\u00ECn t\u1EEB Tr\u1EA1m V\u0169 tr\u1EE5 Qu\u1ED1c t\u1EBF. T\u00EAn c\u1EE7a c\u1EF1c quang thay \u0111\u1ED5i t\u00F9y theo v\u1ECB tr\u00ED c\u1EE7a n\u00F3.",
+        "StartTime": 17.3,
+        "EndTime": 26.3
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-an-aurora.fe5a4bb1abec42a4b111c20f7f1d1bd9",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "What colors do particles make when they hit oxygen?",
+        "OptionA": "Blue and purple",
+        "OptionB": "Green and red",
+        "OptionC": "Yellow and orange",
+        "OptionD": "White only",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022When the particles bump into oxygen in our atmosphere, the reaction makes green and red light.\u0022 \u2014 02:13"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-an-aurora"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b2.what-is-an-aurora"
+}

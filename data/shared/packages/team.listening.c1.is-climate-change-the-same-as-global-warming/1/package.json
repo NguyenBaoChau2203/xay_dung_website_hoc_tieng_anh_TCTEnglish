@@ -1,0 +1,440 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.c1.is-climate-change-the-same-as-global-warming",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Is Climate Change the Same as Global Warming?",
+        "Level": "C1",
+        "Topic": "Environment \u0026 Climate",
+        "YoutubeId": "TUinL0C_zgE",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/TUinL0C_zgE/hqdefault.jpg",
+        "Duration": "1:17",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.0152f9b433814872970712f43855a395",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "What does \u0022climate change\u0022 include?",
+        "OptionA": "Only warming",
+        "OptionB": "All types of long-term changes in typical weather",
+        "OptionC": "Only rain",
+        "OptionD": "Only sea level",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022That\u0027s global warming. Climate change is a more general term. It also refers to long term-changes over many decades or hundreds of years.\u0022 \u2014 00:35"
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.04ca59a0905840a1ab4ae1c2b30950ae",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "global warming",
+        "Definition": "s\u1EF1 n\u00F3ng l\u00EAn to\u00E0n c\u1EA7u",
+        "ExampleSentence": "Is climate change the same as global warming? We asked a NASA scientist. Not quite. They each have their own meanings, but they are related.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.13a3930019814a2c89291cdb0e3e207a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "NASA has analyzed data about the Earth\u0027s climate system from multiple sources that tell the same story.",
+        "VietnameseMeaning": "NASA \u0111\u00E3 ph\u00E2n t\u00EDch d\u1EEF li\u1EC7u v\u1EC1 h\u1EC7 th\u1ED1ng kh\u00ED h\u1EADu c\u1EE7a Tr\u00E1i \u0110\u1EA5t t\u1EEB nhi\u1EC1u ngu\u1ED3n, v\u00E0 t\u1EA5t c\u1EA3 \u0111\u1EC1u k\u1EC3 c\u00F9ng m\u1ED9t c\u00E2u chuy\u1EC7n.",
+        "StartTime": 18.4,
+        "EndTime": 24.1
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.1ca9b8602c3e46cfa844870a087395b2",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "But it includes all types of changes in the typical weather climate that can be and have been observed from regional to global scales.",
+        "VietnameseMeaning": "Nh\u01B0ng n\u00F3 bao g\u1ED3m m\u1ECDi lo\u1EA1i thay \u0111\u1ED5i trong kh\u00ED h\u1EADu v\u00E0 th\u1EDDi ti\u1EBFt \u0111i\u1EC3n h\u00ECnh m\u00E0 c\u00F3 th\u1EC3 quan s\u00E1t \u0111\u01B0\u1EE3c v\u00E0 \u0111\u00E3 \u0111\u01B0\u1EE3c quan s\u00E1t, t\u1EEB quy m\u00F4 khu v\u1EF1c \u0111\u1EBFn to\u00E0n c\u1EA7u.",
+        "StartTime": 42.3,
+        "EndTime": 49.6
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.34416671bbf34bd189bd8b91fc301d5c",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "Is climate change the same as global warming? We asked a NASA scientist. Not quite. They each have their own meanings, but they are related.",
+        "VietnameseMeaning": "Bi\u1EBFn \u0111\u1ED5i kh\u00ED h\u1EADu c\u00F3 gi\u1ED1ng s\u1EF1 n\u00F3ng l\u00EAn to\u00E0n c\u1EA7u kh\u00F4ng? Ch\u00FAng t\u00F4i \u0111\u00E3 h\u1ECFi m\u1ED9t nh\u00E0 khoa h\u1ECDc c\u1EE7a NASA. Kh\u00F4ng h\u1EB3n. M\u1ED7i kh\u00E1i ni\u1EC7m c\u00F3 \u00FD ngh\u0129a ri\u00EAng, nh\u01B0ng ch\u00FAng c\u00F3 li\u00EAn quan v\u1EDBi nhau.",
+        "StartTime": 0,
+        "EndTime": 8.8
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.4634cdf89baf46d2be6d389174daec4f",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "What is causing the Earth\u0027s surface to heat up?",
+        "OptionA": "Heat-trapping greenhouse gases from burning fossil fuels",
+        "OptionB": "Volcanic ash",
+        "OptionC": "The Moon\u0027s gravity",
+        "OptionD": "Changes in the orbit of Mars",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022On a global scale, the Earth\u0027s surface is heating up because of the increasing amounts of heat-trapping greenhouse gases\u0022 \u2014 00:24"
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.4a203cf2118e419fb463dbe63ea87295",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "fossil fuel",
+        "Definition": "nhi\u00EAn li\u1EC7u h\u00F3a th\u1EA1ch",
+        "ExampleSentence": "that have been released into the atmosphere from humans burning fossil fuels.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.4b4bf94c28574dce9cdef3770636cd70",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "surface temperature",
+        "Definition": "nhi\u1EC7t \u0111\u1ED9 b\u1EC1 m\u1EB7t",
+        "ExampleSentence": "We have seen an increase in the surface temperature averaged over the whole globe over the past century and a half,",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.56e4dbe5a70b46f0b0f8cfffb98f91d3",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "that have been released into the atmosphere from humans burning fossil fuels.",
+        "VietnameseMeaning": "\u0111\u01B0\u1EE3c th\u1EA3i v\u00E0o kh\u00ED quy\u1EC3n t\u1EEB vi\u1EC7c con ng\u01B0\u1EDDi \u0111\u1ED1t nhi\u00EAn li\u1EC7u h\u00F3a th\u1EA1ch.",
+        "StartTime": 30.6,
+        "EndTime": 34.6
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.5871aec8477f457ea1c08e3d38bb3de0",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "analyze",
+        "Definition": "ph\u00E2n t\u00EDch",
+        "ExampleSentence": "NASA has analyzed data about the Earth\u0027s climate system from multiple sources that tell the same story.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.7a232d1f633f4e62ac4612b795309a3c",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "drought",
+        "Definition": "h\u1EA1n h\u00E1n",
+        "ExampleSentence": "like decreases in ice in the Arctic, droughts, increasing wildfires and increasing surface temperatures.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.7b48a5cadfb147208c1e195b949dde8d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "On a global scale, the Earth\u0027s surface is heating up because of the increasing amounts of heat-trapping greenhouse gases",
+        "VietnameseMeaning": "\u1EDE quy m\u00F4 to\u00E0n c\u1EA7u, b\u1EC1 m\u1EB7t Tr\u00E1i \u0110\u1EA5t \u0111ang n\u00F3ng l\u00EAn do l\u01B0\u1EE3ng kh\u00ED nh\u00E0 k\u00EDnh gi\u1EEF nhi\u1EC7t ng\u00E0y c\u00E0ng t\u0103ng",
+        "StartTime": 24.1,
+        "EndTime": 30.6
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.82b87b2e13604378842c5b5e72dcb220",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "like decreases in ice in the Arctic, droughts, increasing wildfires and increasing surface temperatures.",
+        "VietnameseMeaning": "nh\u01B0 b\u0103ng \u1EDF B\u1EAFc C\u1EF1c gi\u1EA3m, h\u1EA1n h\u00E1n, ch\u00E1y r\u1EEBng gia t\u0103ng v\u00E0 nhi\u1EC7t \u0111\u1ED9 b\u1EC1 m\u1EB7t t\u0103ng.",
+        "StartTime": 56.5,
+        "EndTime": 62.5
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.93b57c65262e49d097f2ccb11fab5702",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "That\u0027s global warming. Climate change is a more general term. It also refers to long term-changes over many decades or hundreds of years.",
+        "VietnameseMeaning": "\u0110\u00F3 l\u00E0 s\u1EF1 n\u00F3ng l\u00EAn to\u00E0n c\u1EA7u. Bi\u1EBFn \u0111\u1ED5i kh\u00ED h\u1EADu l\u00E0 m\u1ED9t thu\u1EADt ng\u1EEF chung h\u01A1n. N\u00F3 c\u0169ng \u0111\u1EC1 c\u1EADp \u0111\u1EBFn nh\u1EEFng thay \u0111\u1ED5i d\u00E0i h\u1EA1n qua nhi\u1EC1u th\u1EADp k\u1EF7 ho\u1EB7c h\u00E0ng tr\u0103m n\u0103m.",
+        "StartTime": 35,
+        "EndTime": 42.3
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.acaba2c5404f4292b71fbf1f9e7c05e5",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "Which impact is mentioned as observed by NASA instruments?",
+        "OptionA": "Decreases in Arctic ice",
+        "OptionB": "More volcanic islands",
+        "OptionC": "Shorter days",
+        "OptionD": "Colder summers everywhere",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022NASA has instruments that have observed a diverse collection of the current impacts of climate change,\u0022 \u2014 00:49"
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.b1f45e83f2904f648c72b3d8e1f93cc4",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "What does \u0022global warming\u0022 refer to?",
+        "OptionA": "The Earth\u0027s surface heating up because of heat-trapping greenhouse gases",
+        "OptionB": "All kinds of weather",
+        "OptionC": "Only rain",
+        "OptionD": "Changes on the Moon",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022On a global scale, the Earth\u0027s surface is heating up because of the increasing amounts of heat-trapping greenhouse gases\u0022 \u2014 00:24"
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.ba254a607db7400d90efcec70510a3e7",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "heat-trapping",
+        "Definition": "gi\u1EEF nhi\u1EC7t",
+        "ExampleSentence": "On a global scale, the Earth\u0027s surface is heating up because of the increasing amounts of heat-trapping greenhouse gases",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.c350290511d74e3ca0631f3bd4f988b6",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "and that temperature continues to rise.",
+        "VietnameseMeaning": "v\u00E0 nhi\u1EC7t \u0111\u1ED9 \u0111\u00F3 v\u1EABn ti\u1EBFp t\u1EE5c t\u0103ng.",
+        "StartTime": 16.6,
+        "EndTime": 18.4
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.c9a8d277ad934b58b4570d12765953d7",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "indication",
+        "Definition": "d\u1EA5u hi\u1EC7u, ch\u1EC9 b\u00E1o",
+        "ExampleSentence": "These are all examples of indications of climate change. So is climate change the same as global warming? Not quite.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.cbfc5589c16b467c9da0f4ffaad3b30e",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "These are all examples of indications of climate change. So is climate change the same as global warming? Not quite.",
+        "VietnameseMeaning": "T\u1EA5t c\u1EA3 \u0111\u1EC1u l\u00E0 nh\u1EEFng v\u00ED d\u1EE5 cho th\u1EA5y d\u1EA5u hi\u1EC7u c\u1EE7a bi\u1EBFn \u0111\u1ED5i kh\u00ED h\u1EADu. V\u1EADy bi\u1EBFn \u0111\u1ED5i kh\u00ED h\u1EADu c\u00F3 gi\u1ED1ng s\u1EF1 n\u00F3ng l\u00EAn to\u00E0n c\u1EA7u kh\u00F4ng? Kh\u00F4ng h\u1EB3n.",
+        "StartTime": 62.5,
+        "EndTime": 70.1
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.ce41a67b3f6a4d6b95841ddcc27f15b2",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "What has increased over the past century and a half?",
+        "OptionA": "The surface temperature averaged over the globe",
+        "OptionB": "The number of satellites",
+        "OptionC": "The speed of the wind",
+        "OptionD": "The size of the Moon",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022We have seen an increase in the surface temperature averaged over the whole globe over the past century and a half,\u0022 \u2014 00:10"
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.d292ea0911364c46997cb979d15f9f17",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "So what\u0027s global warming?",
+        "VietnameseMeaning": "V\u1EADy s\u1EF1 n\u00F3ng l\u00EAn to\u00E0n c\u1EA7u l\u00E0 g\u00EC?",
+        "StartTime": 9,
+        "EndTime": 10.5
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.d308d841ace2480d9f277086e4f529f1",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "NASA has instruments that have observed a diverse collection of the current impacts of climate change,",
+        "VietnameseMeaning": "NASA c\u00F3 c\u00E1c thi\u1EBFt b\u1ECB \u0111\u00E3 quan s\u00E1t nhi\u1EC1u t\u00E1c \u0111\u1ED9ng hi\u1EC7n t\u1EA1i c\u1EE7a bi\u1EBFn \u0111\u1ED5i kh\u00ED h\u1EADu,",
+        "StartTime": 49.6,
+        "EndTime": 56.5
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.d53c393cba584dfba19fb5f2b5bfda6c",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "regional",
+        "Definition": "thu\u1ED9c khu v\u1EF1c",
+        "ExampleSentence": "But it includes all types of changes in the typical weather climate that can be and have been observed from regional to global scales.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.eb4a260384424d268c76baed4dcfa713",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "What is the answer to the title question?",
+        "OptionA": "Yes, exactly the same",
+        "OptionB": "Not quite",
+        "OptionC": "No, they are unrelated",
+        "OptionD": "Nobody knows",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022Is climate change the same as global warming? We asked a NASA scientist. Not quite. They each have their own meanings, but they are related.\u0022 \u2014 00:00"
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.f72ee15097824c31a91e0c43ba8be5d1",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "We have seen an increase in the surface temperature averaged over the whole globe over the past century and a half,",
+        "VietnameseMeaning": "Ch\u00FAng ta \u0111\u00E3 th\u1EA5y nhi\u1EC7t \u0111\u1ED9 b\u1EC1 m\u1EB7t trung b\u00ECnh tr\u00EAn to\u00E0n c\u1EA7u t\u0103ng l\u00EAn trong m\u1ED9t th\u1EBF k\u1EF7 r\u01B0\u1EE1i qua,",
+        "StartTime": 10.5,
+        "EndTime": 16.6
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    },
+    {
+      "key": "team.listening.c1.is-climate-change-the-same-as-global-warming.fa23b7584eec4a2ebf92cdc2100b9205",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Narrator",
+        "Text": "They have their own specific meanings, but they are related to one another. We asked a NASA scientist. NASA. A NASA 360 production.",
+        "VietnameseMeaning": "Ch\u00FAng c\u00F3 \u00FD ngh\u0129a c\u1EE5 th\u1EC3 ri\u00EAng, nh\u01B0ng li\u00EAn quan \u0111\u1EBFn nhau. Ch\u00FAng t\u00F4i \u0111\u00E3 h\u1ECFi m\u1ED9t nh\u00E0 khoa h\u1ECDc c\u1EE7a NASA. NASA. M\u1ED9t s\u1EA3n ph\u1EA9m c\u1EE7a NASA 360.",
+        "StartTime": 70.1,
+        "EndTime": 77
+      },
+      "references": {
+        "LessonId": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.c1.is-climate-change-the-same-as-global-warming"
+}

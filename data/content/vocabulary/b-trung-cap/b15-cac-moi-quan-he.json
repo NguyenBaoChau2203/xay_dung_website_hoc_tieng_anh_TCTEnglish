@@ -1,0 +1,1188 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B15",
+    "name": "Các mối quan hệ",
+    "description": "#b1 #b2 #relationships #people",
+    "topic": "Các mối quan hệ",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "couple",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "cặp đôi",
+      "meaningEn": "two people who are together as partners",
+      "examples": [
+        {
+          "text": "The couple walked hand in hand along the beach.",
+          "vi": "Cặp đôi nắm tay nhau đi dọc bãi biển."
+        },
+        {
+          "text": "They have been a couple for five years.",
+          "vi": "Họ đã là một cặp đôi được năm năm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "young couple",
+          "vi": "cặp đôi trẻ"
+        },
+        {
+          "text": "married couple",
+          "vi": "cặp vợ chồng"
+        }
+      ],
+      "imageQuery": "young couple walking park",
+      "generate": {
+        "kind": "rel",
+        "value": "couple"
+      },
+      "image": {
+        "file": "b15/couple.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:couple",
+        "sha256": "ebfffaeb282938c28070d8c0b63de21083678a7737e1b8c3433d6becc9cae91e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wedding",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "đám cưới",
+      "meaningEn": "a ceremony in which two people get married",
+      "examples": [
+        {
+          "text": "We were invited to their wedding in June.",
+          "vi": "Chúng tôi được mời đến đám cưới của họ vào tháng Sáu."
+        },
+        {
+          "text": "The wedding took place in a small village church.",
+          "vi": "Đám cưới diễn ra ở một nhà thờ nhỏ trong làng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wedding day",
+          "vi": "ngày cưới"
+        },
+        {
+          "text": "attend a wedding",
+          "vi": "dự đám cưới"
+        }
+      ],
+      "imageQuery": "wedding ceremony couple",
+      "generate": {
+        "kind": "rel",
+        "value": "wedding"
+      },
+      "image": {
+        "file": "b15/wedding.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:wedding",
+        "sha256": "fd1af56b82167331e4c80b2fb86bb6de4006a1c2f60a048f3c241fd4a47e98ba",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bride",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cô dâu",
+      "meaningEn": "a woman who is getting married",
+      "examples": [
+        {
+          "text": "The bride wore a long white dress.",
+          "vi": "Cô dâu mặc một chiếc váy trắng dài."
+        },
+        {
+          "text": "Everyone said the bride looked beautiful.",
+          "vi": "Ai cũng nói cô dâu trông thật xinh đẹp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bride and groom",
+          "vi": "cô dâu và chú rể"
+        },
+        {
+          "text": "beautiful bride",
+          "vi": "cô dâu xinh đẹp"
+        }
+      ],
+      "imageQuery": "bride white dress",
+      "generate": {
+        "kind": "rel",
+        "value": "bride"
+      },
+      "image": {
+        "file": "b15/bride.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:bride",
+        "sha256": "ce0f4411d7f528f96ee4e1451c554464853ae15cfc287d0895f93622da0bda75",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "groom",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "chú rể",
+      "meaningEn": "a man who is getting married",
+      "examples": [
+        {
+          "text": "The groom waited at the front of the church.",
+          "vi": "Chú rể đợi ở phía trước nhà thờ."
+        },
+        {
+          "text": "The groom wore a dark suit.",
+          "vi": "Chú rể mặc một bộ vest tối màu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bride and groom",
+          "vi": "cô dâu và chú rể"
+        },
+        {
+          "text": "proud groom",
+          "vi": "chú rể tự hào"
+        }
+      ],
+      "imageQuery": "groom suit wedding",
+      "generate": {
+        "kind": "rel",
+        "value": "groom"
+      },
+      "image": {
+        "file": "b15/groom.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:groom",
+        "sha256": "8d5cebf538e1da343fbcb51b813fa6a25f450ef7a18aa931d2b840f247a58421",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wedding ring",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhẫn cưới",
+      "meaningEn": "a ring that a person wears after getting married",
+      "examples": [
+        {
+          "text": "He put the wedding ring on her finger.",
+          "vi": "Anh ấy đeo nhẫn cưới vào ngón tay cô ấy."
+        },
+        {
+          "text": "She never takes off her wedding ring.",
+          "vi": "Cô ấy không bao giờ tháo nhẫn cưới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "gold wedding ring",
+          "vi": "nhẫn cưới vàng"
+        },
+        {
+          "text": "exchange wedding rings",
+          "vi": "trao nhẫn cưới"
+        }
+      ],
+      "imageQuery": "wedding rings",
+      "generate": {
+        "kind": "rel",
+        "value": "wedding ring"
+      },
+      "image": {
+        "file": "b15/wedding-ring.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:wedding ring",
+        "sha256": "a038de85dc4f135d3ef4db5cd7219a24af6803b9886d50a6b5d77e1be870c584",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bouquet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bó hoa",
+      "meaningEn": "a group of flowers held together in your hand",
+      "examples": [
+        {
+          "text": "The bride held a bouquet of white roses.",
+          "vi": "Cô dâu cầm một bó hoa hồng trắng."
+        },
+        {
+          "text": "He bought a bouquet for his mother.",
+          "vi": "Anh ấy mua một bó hoa tặng mẹ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bouquet of roses",
+          "vi": "bó hoa hồng"
+        },
+        {
+          "text": "throw the bouquet",
+          "vi": "tung bó hoa cưới"
+        }
+      ],
+      "imageQuery": "flower bouquet",
+      "generate": {
+        "kind": "rel",
+        "value": "bouquet"
+      },
+      "image": {
+        "file": "b15/bouquet.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:bouquet",
+        "sha256": "f38137648a9616d0b0e663678d6d73d3591c28cd8238fe0f80709be9568b0da1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wedding cake",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bánh cưới",
+      "meaningEn": "a large decorated cake served at a wedding",
+      "examples": [
+        {
+          "text": "They cut the wedding cake together.",
+          "vi": "Họ cùng nhau cắt bánh cưới."
+        },
+        {
+          "text": "The wedding cake had three layers.",
+          "vi": "Chiếc bánh cưới có ba tầng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cut the wedding cake",
+          "vi": "cắt bánh cưới"
+        },
+        {
+          "text": "tall wedding cake",
+          "vi": "bánh cưới cao nhiều tầng"
+        }
+      ],
+      "imageQuery": "wedding cake tiers",
+      "generate": {
+        "kind": "rel",
+        "value": "wedding cake"
+      },
+      "image": {
+        "file": "b15/wedding-cake.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:wedding cake",
+        "sha256": "e53cb7b1047691eb124f39a1cefaaaca05d8dd8d4c3febe7d3f8e697c1aae24c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hug",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "cái ôm",
+      "meaningEn": "an act of holding someone closely in your arms",
+      "examples": [
+        {
+          "text": "She gave her grandmother a big hug.",
+          "vi": "Cô ấy ôm bà một cái thật chặt."
+        },
+        {
+          "text": "A warm hug can make you feel better.",
+          "vi": "Một cái ôm ấm áp có thể khiến bạn thấy khá hơn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "give someone a hug",
+          "vi": "ôm ai đó"
+        },
+        {
+          "text": "big hug",
+          "vi": "cái ôm thật chặt"
+        }
+      ],
+      "imageQuery": "two friends hugging",
+      "generate": {
+        "kind": "rel",
+        "value": "hug"
+      },
+      "image": {
+        "file": "b15/hug.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:hug",
+        "sha256": "2117b0f056f31e08642f8a2279f25f69bfc39620be19e9d77539c00f3b87c09a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "high five",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cú đập tay chúc mừng",
+      "meaningEn": "a greeting or celebration in which two people slap raised hands together",
+      "examples": [
+        {
+          "text": "The two friends gave each other a high five.",
+          "vi": "Hai người bạn đập tay chúc mừng nhau."
+        },
+        {
+          "text": "He raised his hand for a high five after the goal.",
+          "vi": "Anh ấy giơ tay đòi đập tay sau bàn thắng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "give a high five",
+          "vi": "đập tay chúc mừng"
+        },
+        {
+          "text": "exchange high fives",
+          "vi": "đập tay với nhau"
+        }
+      ],
+      "imageQuery": "two friends high five",
+      "generate": {
+        "kind": "rel",
+        "value": "high five"
+      },
+      "image": {
+        "file": "b15/high-five.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:high five",
+        "sha256": "664eda801c48c593e6c9b1cb1def2f2e0b0d708803cb3134a4c90d01d49b61e1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "argument",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cuộc tranh cãi",
+      "meaningEn": "an angry discussion between people who disagree",
+      "examples": [
+        {
+          "text": "They had an argument about money.",
+          "vi": "Họ đã cãi nhau về tiền bạc."
+        },
+        {
+          "text": "The argument ended when he said sorry.",
+          "vi": "Cuộc tranh cãi kết thúc khi anh ấy xin lỗi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "have an argument",
+          "vi": "cãi nhau"
+        },
+        {
+          "text": "heated argument",
+          "vi": "cuộc tranh cãi nảy lửa"
+        }
+      ],
+      "imageQuery": "two people arguing",
+      "generate": {
+        "kind": "rel",
+        "value": "argument"
+      },
+      "image": {
+        "file": "b15/argument.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:argument",
+        "sha256": "2ab32d270928231abac9090db84213c43b8f93dacae0dd1d94348cc664008c45",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "colleague",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đồng nghiệp",
+      "meaningEn": "a person you work with",
+      "examples": [
+        {
+          "text": "My colleague helped me finish the report.",
+          "vi": "Đồng nghiệp của tôi giúp tôi hoàn thành báo cáo."
+        },
+        {
+          "text": "I had lunch with a colleague today.",
+          "vi": "Hôm nay tôi ăn trưa với một đồng nghiệp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "work colleague",
+          "vi": "đồng nghiệp"
+        },
+        {
+          "text": "friendly colleague",
+          "vi": "đồng nghiệp thân thiện"
+        }
+      ],
+      "imageQuery": "colleagues office talking",
+      "generate": {
+        "kind": "rel",
+        "value": "colleague"
+      },
+      "image": {
+        "file": "b15/colleague.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:colleague",
+        "sha256": "0a7fb0f6835e1e94d0881f46a8cbff2fda9fcd19c8b8a4a89ba2ce492b683ba8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "classmate",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bạn cùng lớp",
+      "meaningEn": "a person who is in the same class as you",
+      "examples": [
+        {
+          "text": "My classmate lent me her notes.",
+          "vi": "Bạn cùng lớp cho tôi mượn ghi chú của bạn ấy."
+        },
+        {
+          "text": "I met an old classmate at the station.",
+          "vi": "Tôi gặp một người bạn học cũ ở nhà ga."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "old classmate",
+          "vi": "bạn học cũ"
+        },
+        {
+          "text": "classmates at school",
+          "vi": "các bạn cùng lớp"
+        }
+      ],
+      "imageQuery": "classmates school",
+      "generate": {
+        "kind": "rel",
+        "value": "classmate"
+      },
+      "image": {
+        "file": "b15/classmate.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:classmate",
+        "sha256": "ff498e2051859fc72a0553e01df0d1e9be48d7eb9e7244152b47e78858327342",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "roommate",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bạn cùng phòng",
+      "meaningEn": "a person who shares a room or flat with you",
+      "examples": [
+        {
+          "text": "My roommate cooks dinner on Fridays.",
+          "vi": "Bạn cùng phòng của tôi nấu bữa tối vào thứ Sáu."
+        },
+        {
+          "text": "I share a flat with two roommates.",
+          "vi": "Tôi ở chung căn hộ với hai người bạn cùng phòng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "share with a roommate",
+          "vi": "ở chung với bạn cùng phòng"
+        },
+        {
+          "text": "new roommate",
+          "vi": "bạn cùng phòng mới"
+        }
+      ],
+      "imageQuery": "roommates flat sofa",
+      "generate": {
+        "kind": "rel",
+        "value": "roommate"
+      },
+      "image": {
+        "file": "b15/roommate.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:roommate",
+        "sha256": "1937b1b4423d8f86b844105098e57e03b502dbb483d20326dbe41ed5d9e849fa",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "boss",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "sếp",
+      "meaningEn": "the person in charge of a workplace or team",
+      "examples": [
+        {
+          "text": "My boss asked me to join the meeting.",
+          "vi": "Sếp yêu cầu tôi tham dự cuộc họp."
+        },
+        {
+          "text": "She is a kind and fair boss.",
+          "vi": "Bà ấy là một người sếp tốt bụng và công bằng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ask the boss",
+          "vi": "hỏi sếp"
+        },
+        {
+          "text": "new boss",
+          "vi": "sếp mới"
+        }
+      ],
+      "imageQuery": "boss office meeting",
+      "generate": {
+        "kind": "rel",
+        "value": "boss"
+      },
+      "image": {
+        "file": "b15/boss.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:boss",
+        "sha256": "8aa0498a6fc4b87730f286b7da2cfcb039b643c24321b188466cacfc73e4f066",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "best friend",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bạn thân nhất",
+      "meaningEn": "the friend you like and trust the most",
+      "examples": [
+        {
+          "text": "She is my best friend since primary school.",
+          "vi": "Cô ấy là bạn thân nhất của tôi từ hồi tiểu học."
+        },
+        {
+          "text": "I told my best friend the good news.",
+          "vi": "Tôi báo tin vui cho người bạn thân nhất."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "best friend forever",
+          "vi": "bạn thân mãi mãi"
+        },
+        {
+          "text": "childhood best friend",
+          "vi": "bạn thân thuở nhỏ"
+        }
+      ],
+      "imageQuery": "best friends laughing",
+      "generate": {
+        "kind": "rel",
+        "value": "best friend"
+      },
+      "image": {
+        "file": "b15/best-friend.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:best friend",
+        "sha256": "733679edcb2dfa55df4c5ce848c16b42579e85336119ecc411ab4c73f4a1080c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "teammate",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đồng đội",
+      "meaningEn": "a person who plays in the same team as you",
+      "examples": [
+        {
+          "text": "My teammate passed me the ball.",
+          "vi": "Đồng đội của tôi chuyền bóng cho tôi."
+        },
+        {
+          "text": "We celebrated with our teammates after the win.",
+          "vi": "Chúng tôi ăn mừng cùng các đồng đội sau chiến thắng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "support your teammates",
+          "vi": "ủng hộ đồng đội"
+        },
+        {
+          "text": "football teammate",
+          "vi": "đồng đội bóng đá"
+        }
+      ],
+      "imageQuery": "teammates celebrating",
+      "generate": {
+        "kind": "rel",
+        "value": "teammate"
+      },
+      "image": {
+        "file": "b15/teammate.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:teammate",
+        "sha256": "997a262572a5b16d897f250bbfc6f5aef9bff42d1dd50a86bb0931c85ac54e9a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "stranger",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "người lạ",
+      "meaningEn": "a person you do not know",
+      "examples": [
+        {
+          "text": "A stranger asked me for directions.",
+          "vi": "Một người lạ hỏi tôi đường đi."
+        },
+        {
+          "text": "Never go with a stranger.",
+          "vi": "Đừng bao giờ đi theo người lạ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "complete stranger",
+          "vi": "người hoàn toàn xa lạ"
+        },
+        {
+          "text": "talk to a stranger",
+          "vi": "nói chuyện với người lạ"
+        }
+      ],
+      "imageQuery": "stranger street asking directions",
+      "generate": {
+        "kind": "rel",
+        "value": "stranger"
+      },
+      "image": {
+        "file": "b15/stranger.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:stranger",
+        "sha256": "bb88d0a0ce44aa7d42a79fb12a871722aba7fa533dbc92ecd01f825fb51ffa01",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "guest",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "khách mời",
+      "meaningEn": "a person who is invited to your home or event",
+      "examples": [
+        {
+          "text": "We have two guests for dinner tonight.",
+          "vi": "Tối nay chúng tôi có hai vị khách đến ăn tối."
+        },
+        {
+          "text": "The guests arrived at seven o'clock.",
+          "vi": "Các vị khách đến lúc bảy giờ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "welcome a guest",
+          "vi": "đón khách"
+        },
+        {
+          "text": "guest room",
+          "vi": "phòng dành cho khách"
+        }
+      ],
+      "imageQuery": "guests dinner party",
+      "generate": {
+        "kind": "rel",
+        "value": "guest"
+      },
+      "image": {
+        "file": "b15/guest.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:guest",
+        "sha256": "3cf6b2a3847ffdafa724ca96ade4c9b69bc5faeb178111872ced92e56e418d20",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "host",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "chủ nhà, chủ tiệc",
+      "meaningEn": "a person who invites guests and looks after them",
+      "examples": [
+        {
+          "text": "The host greeted everyone at the door.",
+          "vi": "Chủ nhà chào đón mọi người ở cửa."
+        },
+        {
+          "text": "Thank you to our kind host.",
+          "vi": "Cảm ơn người chủ nhà tốt bụng của chúng tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "friendly host",
+          "vi": "chủ nhà thân thiện"
+        },
+        {
+          "text": "party host",
+          "vi": "chủ bữa tiệc"
+        }
+      ],
+      "imageQuery": "host welcoming guests door",
+      "generate": {
+        "kind": "rel",
+        "value": "host"
+      },
+      "image": {
+        "file": "b15/host.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:host",
+        "sha256": "5638620c98cc5b320ac9370826092e6973d0632c12ab0b986a11a6cc05b5191f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "invitation",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "thiệp mời",
+      "meaningEn": "a request or card asking someone to come to an event",
+      "examples": [
+        {
+          "text": "I got an invitation to her birthday party.",
+          "vi": "Tôi nhận được lời mời đến tiệc sinh nhật của cô ấy."
+        },
+        {
+          "text": "The invitation says the party starts at six.",
+          "vi": "Thiệp mời ghi tiệc bắt đầu lúc sáu giờ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "accept an invitation",
+          "vi": "nhận lời mời"
+        },
+        {
+          "text": "wedding invitation",
+          "vi": "thiệp cưới"
+        }
+      ],
+      "imageQuery": "invitation card envelope",
+      "generate": {
+        "kind": "rel",
+        "value": "invitation"
+      },
+      "image": {
+        "file": "b15/invitation.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:invitation",
+        "sha256": "9467ce4e502dd344e091dea7c038cf4c59ed7ef43b3aa43950dc5818ceff0363",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "greeting card",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "thiệp chúc mừng",
+      "meaningEn": "a folded card with a message for a special occasion",
+      "examples": [
+        {
+          "text": "I sent my aunt a greeting card for her birthday.",
+          "vi": "Tôi gửi dì một tấm thiệp chúc mừng sinh nhật."
+        },
+        {
+          "text": "The greeting card had a picture of a cat.",
+          "vi": "Tấm thiệp chúc mừng có hình một chú mèo."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "send a greeting card",
+          "vi": "gửi thiệp chúc mừng"
+        },
+        {
+          "text": "birthday greeting card",
+          "vi": "thiệp chúc mừng sinh nhật"
+        }
+      ],
+      "imageQuery": "greeting card flowers",
+      "generate": {
+        "kind": "rel",
+        "value": "greeting card"
+      },
+      "image": {
+        "file": "b15/greeting-card.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:greeting card",
+        "sha256": "c8bd3c024da99136cdc0d4602ebb70c74c977a3f7752420fb43e4ac3cde52c12",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "anniversary",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "ngày kỷ niệm",
+      "meaningEn": "a day when you remember an important event from an earlier year",
+      "examples": [
+        {
+          "text": "My parents celebrated their tenth anniversary last week.",
+          "vi": "Bố mẹ tôi kỷ niệm mười năm ngày cưới tuần trước."
+        },
+        {
+          "text": "Happy anniversary!",
+          "vi": "Chúc mừng ngày kỷ niệm!"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wedding anniversary",
+          "vi": "kỷ niệm ngày cưới"
+        },
+        {
+          "text": "celebrate an anniversary",
+          "vi": "kỷ niệm một ngày đặc biệt"
+        }
+      ],
+      "imageQuery": "anniversary dinner couple candles",
+      "generate": {
+        "kind": "rel",
+        "value": "anniversary"
+      },
+      "image": {
+        "file": "b15/anniversary.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:anniversary",
+        "sha256": "7addcd0c0091f8a58386f0071ea726c0289ad612aeb46dc42e1d620e280bd6e3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "reunion",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "buổi họp mặt",
+      "meaningEn": "a meeting of people who have not seen each other for a long time",
+      "examples": [
+        {
+          "text": "We held a family reunion in the summer.",
+          "vi": "Chúng tôi tổ chức một buổi họp mặt gia đình vào mùa hè."
+        },
+        {
+          "text": "Her school reunion is next month.",
+          "vi": "Buổi họp mặt cựu học sinh của cô ấy diễn ra vào tháng sau."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "family reunion",
+          "vi": "họp mặt gia đình"
+        },
+        {
+          "text": "class reunion",
+          "vi": "họp lớp"
+        }
+      ],
+      "imageQuery": "family reunion picnic",
+      "generate": {
+        "kind": "rel",
+        "value": "reunion"
+      },
+      "image": {
+        "file": "b15/reunion.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:reunion",
+        "sha256": "23f90399764633ff39cbaa96a8d8aca64f56ec67406abc094be3eca69ba18f3f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "babysitter",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "người trông trẻ",
+      "meaningEn": "a person who looks after children while their parents are out",
+      "examples": [
+        {
+          "text": "The babysitter read a story to the children.",
+          "vi": "Người trông trẻ đọc truyện cho bọn trẻ nghe."
+        },
+        {
+          "text": "We found a good babysitter for Saturday night.",
+          "vi": "Chúng tôi tìm được một người trông trẻ tốt cho tối thứ Bảy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hire a babysitter",
+          "vi": "thuê người trông trẻ"
+        },
+        {
+          "text": "part-time babysitter",
+          "vi": "người trông trẻ bán thời gian"
+        }
+      ],
+      "imageQuery": "babysitter reading children",
+      "generate": {
+        "kind": "rel",
+        "value": "babysitter"
+      },
+      "image": {
+        "file": "b15/babysitter.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:babysitter",
+        "sha256": "0ba14ebad37147254c5d47289855906eee23b8845557eeeb23f0b44b9ac85c77",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pen pal",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bạn qua thư",
+      "meaningEn": "a friend you write letters to but have not met",
+      "examples": [
+        {
+          "text": "I have a pen pal in Japan.",
+          "vi": "Tôi có một người bạn qua thư ở Nhật Bản."
+        },
+        {
+          "text": "She writes to her pen pal every month.",
+          "vi": "Cô ấy viết thư cho bạn qua thư mỗi tháng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "write to a pen pal",
+          "vi": "viết thư cho bạn qua thư"
+        },
+        {
+          "text": "make a pen pal",
+          "vi": "kết bạn qua thư"
+        }
+      ],
+      "imageQuery": "writing letter pen pal",
+      "generate": {
+        "kind": "rel",
+        "value": "pen pal"
+      },
+      "image": {
+        "file": "b15/pen-pal.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:rel:pen pal",
+        "sha256": "7f03c3082d69327a4520fce5ce81412f31fe1c90ad6bfca2870b77d59adb6d8b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

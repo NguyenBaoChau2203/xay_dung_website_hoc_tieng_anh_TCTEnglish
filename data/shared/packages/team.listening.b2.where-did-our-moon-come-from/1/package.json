@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b2.where-did-our-moon-come-from",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Where Did Our Moon Come From?",
+        "Level": "B2",
+        "Topic": "The Moon \u0026 Planets",
+        "YoutubeId": "orpycPJKe4Q",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/orpycPJKe4Q/hqdefault.jpg",
+        "Duration": "1:31",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.0026093ce98d490eb2e4ec7e091596f5",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "What happened to Earth\u0027s crust in the collision?",
+        "OptionA": "It was ripped apart and then came together to form the Moon",
+        "OptionB": "It froze",
+        "OptionC": "It disappeared",
+        "OptionD": "It became the Sun",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022And that crust then coalesced. It snowballed into a whole separate entity, which we now call the Moon.\u0022 \u2014 01:00"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.0c70cce919fa4cfbb5c53929ce6f016b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 15,
+        "Speaker": "Narrator",
+        "Text": "But once we send future astronauts to the lunar surface again, who knows? We may actually have a whole new theory in the coming decades.",
+        "VietnameseMeaning": "Nh\u01B0ng khi ch\u00FAng ta l\u1EA1i \u0111\u01B0a c\u00E1c phi h\u00E0nh gia t\u01B0\u01A1ng lai l\u00EAn b\u1EC1 m\u1EB7t M\u1EB7t Tr\u0103ng th\u00EC ai bi\u1EBFt \u0111\u01B0\u1EE3c? C\u00F3 th\u1EC3 ch\u00FAng ta s\u1EBD c\u00F3 m\u1ED9t gi\u1EA3 thuy\u1EBFt ho\u00E0n to\u00E0n m\u1EDBi trong nh\u1EEFng th\u1EADp k\u1EF7 t\u1EDBi.",
+        "StartTime": 77.4,
+        "EndTime": 86.8
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.0d2dc71d4d254b42a9cc36a3765995ed",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "decade",
+        "Definition": "th\u1EADp k\u1EF7",
+        "ExampleSentence": "We Asked a NASA Scientist. Well, actually, there have been several theories over many decades.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.0f3fcc20d00d4fd9aa068c247d7b7dd9",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "collision",
+        "Definition": "v\u1EE5 va ch\u1EA1m",
+        "ExampleSentence": "So this collision was during the late stages of planetary formation throughout our entire solar system,",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.169bbe2a72994f7881033cdca648f74f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "So this happened when Earth was just an embryo \u2014 a baby planet,",
+        "VietnameseMeaning": "V\u00EC v\u1EADy chuy\u1EC7n n\u00E0y x\u1EA3y ra khi Tr\u00E1i \u0110\u1EA5t m\u1EDBi ch\u1EC9 l\u00E0 m\u1ED9t ph\u00F4i \u2013 m\u1ED9t h\u00E0nh tinh s\u01A1 sinh,",
+        "StartTime": 45,
+        "EndTime": 49.8
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.1c26ea18cb744042a35451b5bf2fe06d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "And this collision ripped apart early Earth\u0027s crust.",
+        "VietnameseMeaning": "V\u00E0 v\u1EE5 va ch\u1EA1m n\u00E0y \u0111\u00E3 x\u00E9 to\u1EA1c l\u1EDBp v\u1ECF c\u1EE7a Tr\u00E1i \u0110\u1EA5t thu\u1EDF s\u01A1 khai.",
+        "StartTime": 55.8,
+        "EndTime": 60
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.1e72231ab6644d14a5b165affca8bd38",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "And that crust then coalesced. It snowballed into a whole separate entity, which we now call the Moon.",
+        "VietnameseMeaning": "R\u1ED3i l\u1EDBp v\u1ECF \u0111\u00F3 k\u1EBFt t\u1EE5 l\u1EA1i. N\u00F3 l\u1EDBn d\u1EA7n nh\u01B0 qu\u1EA3 c\u1EA7u tuy\u1EBFt th\u00E0nh m\u1ED9t th\u1EF1c th\u1EC3 ri\u00EAng bi\u1EC7t m\u00E0 ng\u00E0y nay ch\u00FAng ta g\u1ECDi l\u00E0 M\u1EB7t Tr\u0103ng.",
+        "StartTime": 60,
+        "EndTime": 66.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.29337da8d25d46ef960e1b94b03a44f7",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "lunar",
+        "Definition": "thu\u1ED9c M\u1EB7t Tr\u0103ng",
+        "ExampleSentence": "Earlier versions of lunar formation theories included capture, where the Moon would have been a strayed planetoid.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.2e92f155d3834591b24dc34f5decfda8",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 14,
+        "Speaker": "Narrator",
+        "Text": "Well, currently, our understanding is that the Earth had collided with a Mars-sized object named Theia.",
+        "VietnameseMeaning": "\u00C0, hi\u1EC7n nay, hi\u1EC3u bi\u1EBFt c\u1EE7a ch\u00FAng ta l\u00E0 Tr\u00E1i \u0110\u1EA5t \u0111\u00E3 va ch\u1EA1m v\u1EDBi m\u1ED9t v\u1EADt th\u1EC3 c\u1EE1 Sao H\u1ECFa t\u00EAn l\u00E0 Theia.",
+        "StartTime": 70.2,
+        "EndTime": 77.4
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.32c86b1b6aa14048896511704856e9af",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "when planets were still very new and very much forming.",
+        "VietnameseMeaning": "khi c\u00E1c h\u00E0nh tinh c\u00F2n r\u1EA5t m\u1EDBi v\u00E0 \u0111ang h\u00ECnh th\u00E0nh.",
+        "StartTime": 41.2,
+        "EndTime": 45
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.450f1130ecd248c0bfe16249a32acd32",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "theory",
+        "Definition": "gi\u1EA3 thuy\u1EBFt, l\u00FD thuy\u1EBFt",
+        "ExampleSentence": "We Asked a NASA Scientist. Well, actually, there have been several theories over many decades.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.490a119e397447a384a9daab7f48f1a5",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "We Asked a NASA Scientist. Well, actually, there have been several theories over many decades.",
+        "VietnameseMeaning": "Ch\u00FAng t\u00F4i \u0111\u00E3 h\u1ECFi m\u1ED9t nh\u00E0 khoa h\u1ECDc c\u1EE7a NASA. \u00C0, th\u1EADt ra \u0111\u00E3 c\u00F3 nhi\u1EC1u gi\u1EA3 thuy\u1EBFt qua nhi\u1EC1u th\u1EADp k\u1EF7.",
+        "StartTime": 6,
+        "EndTime": 13.3
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.499debb7ea424f7b9af01adfda965814",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Narrator",
+        "Text": "So where did our Moon come from?",
+        "VietnameseMeaning": "V\u1EADy M\u1EB7t Tr\u0103ng c\u1EE7a ch\u00FAng ta \u0111\u1EBFn t\u1EEB \u0111\u00E2u?",
+        "StartTime": 67,
+        "EndTime": 70.2
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.57a7e801db6a4de9b28879579f1e39fe",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "So this collision was during the late stages of planetary formation throughout our entire solar system,",
+        "VietnameseMeaning": "V\u1EE5 va ch\u1EA1m n\u00E0y x\u1EA3y ra trong giai \u0111o\u1EA1n cu\u1ED1i c\u1EE7a qu\u00E1 tr\u00ECnh h\u00ECnh th\u00E0nh h\u00E0nh tinh trong to\u00E0n b\u1ED9 h\u1EC7 M\u1EB7t Tr\u1EDDi c\u1EE7a ch\u00FAng ta,",
+        "StartTime": 35,
+        "EndTime": 41.2
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.591a7147373e44ad8a411d49be010157",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "What was the \u0022fission\u0022 theory?",
+        "OptionA": "Earth spun so fast that part of it flew off and formed the Moon",
+        "OptionB": "A comet hit the Moon",
+        "OptionC": "The Moon split into two",
+        "OptionD": "The Moon came from Mars",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Another version was fission,\u0022 \u2014 00:21"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.6e50e84471684201b015426ade867567",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "entity",
+        "Definition": "th\u1EF1c th\u1EC3",
+        "ExampleSentence": "So this collision was during the late stages of planetary formation throughout our entire solar system,",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.7e945a7ae87343d9ae96401dff5e0d7e",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "What was the \u0022capture\u0022 theory?",
+        "OptionA": "The Moon was a planetoid that was caught by Earth",
+        "OptionB": "The Moon came from the Sun",
+        "OptionC": "The Moon was built by astronauts",
+        "OptionD": "The Moon was made of ice",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Earlier versions of lunar formation theories included capture, where the Moon would have been a strayed planetoid.\u0022 \u2014 00:13"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.81d4dbb21e59499cacdf1049bfeabaae",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "This led to our current theory, the giant impactor theory.",
+        "VietnameseMeaning": "\u0110i\u1EC1u n\u00E0y d\u1EABn \u0111\u1EBFn gi\u1EA3 thuy\u1EBFt hi\u1EC7n nay c\u1EE7a ch\u00FAng ta, gi\u1EA3 thuy\u1EBFt va ch\u1EA1m l\u1EDBn.",
+        "StartTime": 31,
+        "EndTime": 35
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.9048cdc6f590446d8a46bb06082e7cb0",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "where the Earth was spinning so fast that it would have blorped out of the Earth and then formed its own body.",
+        "VietnameseMeaning": "trong \u0111\u00F3 Tr\u00E1i \u0110\u1EA5t quay nhanh \u0111\u1EBFn m\u1EE9c M\u1EB7t Tr\u0103ng v\u0103ng ra kh\u1ECFi Tr\u00E1i \u0110\u1EA5t r\u1ED3i t\u1EF1 h\u00ECnh th\u00E0nh m\u1ED9t thi\u00EAn th\u1EC3 ri\u00EAng.",
+        "StartTime": 22.5,
+        "EndTime": 31
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.91bbf18b56de463e89b1d159264a0d98",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "Earlier versions of lunar formation theories included capture, where the Moon would have been a strayed planetoid.",
+        "VietnameseMeaning": "C\u00E1c phi\u00EAn b\u1EA3n \u0111\u1EA7u c\u1EE7a gi\u1EA3 thuy\u1EBFt h\u00ECnh th\u00E0nh M\u1EB7t Tr\u0103ng g\u1ED3m gi\u1EA3 thuy\u1EBFt b\u1EAFt gi\u1EEF, trong \u0111\u00F3 M\u1EB7t Tr\u0103ng t\u1EEBng l\u00E0 m\u1ED9t ti\u1EC3u h\u00E0nh tinh l\u1EA1c \u0111\u01B0\u1EDDng.",
+        "StartTime": 13.3,
+        "EndTime": 20.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.956a95ec3921486ea3e097a61a18892f",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "What was Theia?",
+        "OptionA": "A Mars-size planetoid",
+        "OptionB": "A star",
+        "OptionC": "A comet",
+        "OptionD": "An astronaut",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022and this was actually in a crash course collision with Theia, which is a Mars-size planetoid.\u0022 \u2014 00:49"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.9d931aa84d034999a4f66da40f768442",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "What is the current theory called?",
+        "OptionA": "The giant impactor theory",
+        "OptionB": "The tide theory",
+        "OptionC": "The comet theory",
+        "OptionD": "The eclipse theory",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022This led to our current theory, the giant impactor theory.\u0022 \u2014 00:31"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.a4bf3e5f821d4d80b7b51582b3f06c93",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "Another version was fission,",
+        "VietnameseMeaning": "M\u1ED9t phi\u00EAn b\u1EA3n kh\u00E1c l\u00E0 gi\u1EA3 thuy\u1EBFt ph\u00E2n t\u00E1ch,",
+        "StartTime": 21,
+        "EndTime": 22.5
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.b225ec2bd67746a9bfd5ea3680e48a96",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 16,
+        "Speaker": "Narrator",
+        "Text": "We Asked a NASA Scientist. NASA. A NASA 360 Production.",
+        "VietnameseMeaning": "Ch\u00FAng t\u00F4i \u0111\u00E3 h\u1ECFi m\u1ED9t nh\u00E0 khoa h\u1ECDc c\u1EE7a NASA. NASA. M\u1ED9t s\u1EA3n ph\u1EA9m c\u1EE7a NASA 360.",
+        "StartTime": 86.8,
+        "EndTime": 90.5
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.b4b9eb3a67734bbfb0643738f3fe455a",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "embryo",
+        "Definition": "ph\u00F4i (giai \u0111o\u1EA1n s\u01A1 khai)",
+        "ExampleSentence": "So this happened when Earth was just an embryo \u2014 a baby planet,",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.cfe17e1615f645b5a1cf70da6555ed21",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "What might happen when astronauts return to the lunar surface?",
+        "OptionA": "We might develop a whole new theory",
+        "OptionB": "We will stop studying the Moon",
+        "OptionC": "The Moon will move",
+        "OptionD": "Nothing can be learned",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022But once we send future astronauts to the lunar surface again, who knows? We may actually have a whole new theory in the coming decades.\u0022 \u2014 01:17"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.d5ace2040d8c435e99b3cc5c79d594e8",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "Where did our Moon come from?",
+        "VietnameseMeaning": "M\u1EB7t Tr\u0103ng c\u1EE7a ch\u00FAng ta \u0111\u1EBFn t\u1EEB \u0111\u00E2u?",
+        "StartTime": 0,
+        "EndTime": 4.1
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.e7617ef408b74b788355ab561594cf06",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "coalesce",
+        "Definition": "k\u1EBFt t\u1EE5 l\u1EA1i",
+        "ExampleSentence": "And that crust then coalesced. It snowballed into a whole separate entity, which we now call the Moon.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.f37621a8ef744479b17f914931256fb3",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "crust",
+        "Definition": "l\u1EDBp v\u1ECF",
+        "ExampleSentence": "And this collision ripped apart early Earth\u0027s crust.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    },
+    {
+      "key": "team.listening.b2.where-did-our-moon-come-from.fc049e58bcdf41f8bf7b3b1de44705a7",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "and this was actually in a crash course collision with Theia, which is a Mars-size planetoid.",
+        "VietnameseMeaning": "v\u00E0 n\u00F3 \u0111\u00E3 va ch\u1EA1m tr\u1EF1c di\u1EC7n v\u1EDBi Theia, m\u1ED9t ti\u1EC3u h\u00E0nh tinh c\u00F3 k\u00EDch th\u01B0\u1EDBc b\u1EB1ng Sao H\u1ECFa.",
+        "StartTime": 49.8,
+        "EndTime": 55.8
+      },
+      "references": {
+        "LessonId": "team.listening.b2.where-did-our-moon-come-from"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b2.where-did-our-moon-come-from"
+}

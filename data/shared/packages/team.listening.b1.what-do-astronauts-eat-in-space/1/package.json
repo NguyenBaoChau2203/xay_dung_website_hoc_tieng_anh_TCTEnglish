@@ -1,0 +1,515 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b1.what-do-astronauts-eat-in-space",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "What Do Astronauts Eat in Space?",
+        "Level": "B1",
+        "Topic": "Food \u0026 Nutrition",
+        "YoutubeId": "0nOlFG6XEpo",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/0nOlFG6XEpo/hqdefault.jpg",
+        "Duration": "1:33",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.00f0fe123e894b52a97533e2bb3324bf",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "And astronauts get to try the available options ahead of launches and put in their top requests.",
+        "VietnameseMeaning": "Phi h\u00E0nh gia \u0111\u01B0\u1EE3c th\u1EED c\u00E1c m\u00F3n c\u00F3 s\u1EB5n tr\u01B0\u1EDBc c\u00E1c chuy\u1EBFn bay v\u00E0 \u0111\u01B0a ra y\u00EAu c\u1EA7u y\u00EAu th\u00EDch nh\u1EA5t c\u1EE7a m\u00ECnh.",
+        "StartTime": 18.4,
+        "EndTime": 24.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.077f59a6049c4155b1b1bca7b165608f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 18,
+        "Speaker": "Narrator",
+        "Text": "And really, hot sauce can only do so much.",
+        "VietnameseMeaning": "V\u00E0 th\u1EADt ra, s\u1ED1t cay c\u0169ng ch\u1EC9 gi\u00FAp \u0111\u01B0\u1EE3c \u0111\u1EBFn m\u1ED9t m\u1EE9c n\u00E0o \u0111\u00F3.",
+        "StartTime": 85.2,
+        "EndTime": 88.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.16c796624db94bc98c391d613dc271a4",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "Why do scientists ask people on Earth to taste the food?",
+        "OptionA": "Crews must keep eating it for a year",
+        "OptionB": "It is free advertising",
+        "OptionC": "The food is dangerous",
+        "OptionD": "They have no scientists",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022NASA scientists routinely enlist people on Earth to sample products in development. Why?\u0022 \u2014 01:16"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.1b695321673d41f582e6215caaf9929d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "Of course, everyone has their favorites.",
+        "VietnameseMeaning": "D\u0129 nhi\u00EAn, ai c\u0169ng c\u00F3 m\u00F3n \u01B0a th\u00EDch.",
+        "StartTime": 24.1,
+        "EndTime": 26.9
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.2371690a13ec4d5cacacaaa4573e6cb3",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "pouch",
+        "Definition": "t\u00FAi (\u0111\u1EF1ng th\u1EE9c \u0103n)",
+        "ExampleSentence": "Aboard the International Space Station, food pouches are always an option,",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.2769e0498f044829aa86367a9be99549",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "nutrition",
+        "Definition": "dinh d\u01B0\u1EE1ng",
+        "ExampleSentence": "Food scientists at NASA have created menus that offer variety, nutrition and taste.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.280ddc47b17343c8819540fbbc9a3620",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "What do astronauts eat in space?",
+        "VietnameseMeaning": "C\u00E1c phi h\u00E0nh gia \u0103n g\u00EC trong kh\u00F4ng gian?",
+        "StartTime": 0,
+        "EndTime": 2.7
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.36139bfa8f834335a4770c73fc943993",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "while other items rely on using a chiller or adding water to heat a meal.",
+        "VietnameseMeaning": "c\u00F2n c\u00E1c m\u00F3n kh\u00E1c c\u1EA7n d\u00F9ng t\u1EE7 l\u1EA1nh nh\u1ECF ho\u1EB7c th\u00EAm n\u01B0\u1EDBc \u0111\u1EC3 h\u00E2m n\u00F3ng b\u1EEFa \u0103n.",
+        "StartTime": 5.8,
+        "EndTime": 10.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.4473c8c53c7440a8a818bcfae88725c1",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "But it turns out, you can do a lot even with those limitations.",
+        "VietnameseMeaning": "Nh\u01B0ng h\u00F3a ra, d\u00F9 c\u00F3 nh\u1EEFng h\u1EA1n ch\u1EBF \u0111\u00F3, b\u1EA1n v\u1EABn c\u00F3 th\u1EC3 l\u00E0m \u0111\u01B0\u1EE3c r\u1EA5t nhi\u1EC1u th\u1EE9.",
+        "StartTime": 10.1,
+        "EndTime": 13.8
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.4aa3ed9c3c08473e8c231f98adb6670e",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "For meals, tortillas are a daily staple.",
+        "VietnameseMeaning": "Trong c\u00E1c b\u1EEFa ch\u00EDnh, b\u00E1nh tortilla l\u00E0 m\u00F3n ch\u1EE7 l\u1EF1c h\u1EB1ng ng\u00E0y.",
+        "StartTime": 33.9,
+        "EndTime": 36.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.4adf7e367fc641f3ba55a22aada8ec11",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "Food scientists at NASA have created menus that offer variety, nutrition and taste.",
+        "VietnameseMeaning": "C\u00E1c nh\u00E0 khoa h\u1ECDc th\u1EF1c ph\u1EA9m c\u1EE7a NASA \u0111\u00E3 x\u00E2y d\u1EF1ng th\u1EF1c \u0111\u01A1n \u0111a d\u1EA1ng, \u0111\u1EE7 dinh d\u01B0\u1EE1ng v\u00E0 ngon mi\u1EC7ng.",
+        "StartTime": 14,
+        "EndTime": 18.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.5a1982e64a2f4f93b9fe9d4a1d64cd31",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 15,
+        "Speaker": "Narrator",
+        "Text": "That food must fit in small spaces and meet essential safety and nutritional needs. Plus, it has to be tasty.",
+        "VietnameseMeaning": "Th\u1EE9c \u0103n \u0111\u00F3 ph\u1EA3i v\u1EEBa c\u00E1c kh\u00F4ng gian nh\u1ECF v\u00E0 \u0111\u00E1p \u1EE9ng c\u00E1c y\u00EAu c\u1EA7u thi\u1EBFt y\u1EBFu v\u1EC1 an to\u00E0n v\u00E0 dinh d\u01B0\u1EE1ng. H\u01A1n n\u1EEFa, n\u00F3 c\u00F2n ph\u1EA3i ngon.",
+        "StartTime": 69.5,
+        "EndTime": 76
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.600e762964ea43c08ec28b5ff7a5d0db",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 17,
+        "Speaker": "Narrator",
+        "Text": "Because crews have to continue eating this food even a year into a mission.",
+        "VietnameseMeaning": "V\u00EC phi h\u00E0nh \u0111o\u00E0n v\u1EABn ph\u1EA3i \u0103n th\u1EE9c \u0103n n\u00E0y su\u1ED1t c\u1EA3 m\u1ED9t n\u0103m c\u1EE7a s\u1EE9 m\u1EC7nh.",
+        "StartTime": 80.5,
+        "EndTime": 85.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.606715ed849d4b4e9f3403f9c635c386",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 14,
+        "Speaker": "Narrator",
+        "Text": "food scientists are focused on creating meals that will remain shelf stable for at least five years.",
+        "VietnameseMeaning": "c\u00E1c nh\u00E0 khoa h\u1ECDc th\u1EF1c ph\u1EA9m \u0111ang t\u1EADp trung t\u1EA1o ra nh\u1EEFng b\u1EEFa \u0103n c\u00F3 th\u1EC3 b\u1EA3o qu\u1EA3n \u1ED5n \u0111\u1ECBnh \u00EDt nh\u1EA5t n\u0103m n\u0103m.",
+        "StartTime": 63.9,
+        "EndTime": 69.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.6157fcb838a74def8d063b954c0d9298",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "How long must future food remain shelf stable?",
+        "OptionA": "At least five years",
+        "OptionB": "One month",
+        "OptionC": "Six months",
+        "OptionD": "Two weeks",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022food scientists are focused on creating meals that will remain shelf stable for at least five years.\u0022 \u2014 01:03"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.6a866d04ff9641278d87a13615db548d",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "staple",
+        "Definition": "th\u1EF1c ph\u1EA9m ch\u1EE7 l\u1EF1c, m\u00F3n ch\u00EDnh h\u1EB1ng ng\u00E0y",
+        "ExampleSentence": "Aboard the International Space Station, food pouches are always an option,",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.8600b169318c4383975c39341a6da7f4",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "Aboard the International Space Station, food pouches are always an option,",
+        "VietnameseMeaning": "Tr\u00EAn Tr\u1EA1m V\u0169 tr\u1EE5 Qu\u1ED1c t\u1EBF, th\u1EE9c \u0103n \u0111\u00F3ng t\u00FAi lu\u00F4n l\u00E0 m\u1ED9t l\u1EF1a ch\u1ECDn,",
+        "StartTime": 2.7,
+        "EndTime": 5.8
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.8659d444b3024f328110f3ee85d26a35",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "snack",
+        "Definition": "\u0111\u1ED3 \u0103n v\u1EB7t",
+        "ExampleSentence": "Crackers, dried fruit, nuts, chocolate and protein bars are also common snacks. Resupply missions also include a limited supply of fresh apples and oranges.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.86f4f009758348dd9f94aa779e2ad867",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "And to spice things up on the station, many crew members report loving strong flavors like hot sauce or curries.",
+        "VietnameseMeaning": "V\u00E0 \u0111\u1EC3 l\u00E0m b\u1EEFa \u0103n tr\u00EAn tr\u1EA1m th\u00EAm \u0111\u1EADm \u0111\u00E0, nhi\u1EC1u th\u00E0nh vi\u00EAn phi h\u00E0nh \u0111o\u00E0n cho bi\u1EBFt h\u1ECD th\u00EDch c\u00E1c v\u1ECB m\u1EA1nh nh\u01B0 s\u1ED1t cay hay c\u00E0 ri.",
+        "StartTime": 26.9,
+        "EndTime": 33.9
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.941652d007b641dab3704060377158a2",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "What do crew members often love for flavor?",
+        "OptionA": "Strong flavors like hot sauce or curries",
+        "OptionB": "Sweet cakes",
+        "OptionC": "Plain rice",
+        "OptionD": "Cold soup",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022And to spice things up on the station, many crew members report loving strong flavors like hot sauce or curries.\u0022 \u2014 00:26"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.a1496206f49e4b45a49733cf6b4460a6",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "shelf stable",
+        "Definition": "b\u1EA3o qu\u1EA3n \u0111\u01B0\u1EE3c l\u00E2u \u1EDF nhi\u1EC7t \u0111\u1ED9 th\u01B0\u1EDDng",
+        "ExampleSentence": "food scientists are focused on creating meals that will remain shelf stable for at least five years.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.a3310cce585f419d9155716373e00077",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "Bread creates crumb problems, but tortillas are less crumbly. They also last up to 18 months, and they\u0027re mold resistant.",
+        "VietnameseMeaning": "B\u00E1nh m\u00EC g\u00E2y ra v\u1EA5n \u0111\u1EC1 v\u1EE5n b\u00E1nh, nh\u01B0ng tortilla \u00EDt v\u1EE5n h\u01A1n. Ch\u00FAng c\u0169ng \u0111\u1EC3 \u0111\u01B0\u1EE3c \u0111\u1EBFn 18 th\u00E1ng v\u00E0 ch\u1ED1ng n\u1EA5m m\u1ED1c.",
+        "StartTime": 36.3,
+        "EndTime": 43.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.c154cd513d684182988405fbe7358e4b",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "crumbly",
+        "Definition": "d\u1EC5 v\u1EE5n",
+        "ExampleSentence": "Bread creates crumb problems, but tortillas are less crumbly. They also last up to 18 months, and they\u0027re mold resistant.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.c2933e282d1142a8be4d33191ceda2b7",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "Crackers, dried fruit, nuts, chocolate and protein bars are also common snacks. Resupply missions also include a limited supply of fresh apples and oranges.",
+        "VietnameseMeaning": "B\u00E1nh quy m\u1EB7n, tr\u00E1i c\u00E2y s\u1EA5y, c\u00E1c lo\u1EA1i h\u1EA1t, s\u00F4-c\u00F4-la v\u00E0 thanh protein c\u0169ng l\u00E0 \u0111\u1ED3 \u0103n v\u1EB7t ph\u1ED5 bi\u1EBFn. C\u00E1c chuy\u1EBFn ti\u1EBFp t\u1EBF c\u0169ng mang theo m\u1ED9t l\u01B0\u1EE3ng h\u1EA1n ch\u1EBF t\u00E1o v\u00E0 cam t\u01B0\u01A1i.",
+        "StartTime": 51,
+        "EndTime": 60.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.c2ba5d9ed0074f9f997bb19463e894b1",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "sample",
+        "Definition": "n\u1EBFm th\u1EED, d\u00F9ng th\u1EED",
+        "ExampleSentence": "NASA scientists routinely enlist people on Earth to sample products in development. Why?",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.c37f358026d34a8e9a4124577416cc98",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "In 2024, crew members consumed over 3,100 tortillas for tacos, space burgers, pizzas and more.",
+        "VietnameseMeaning": "N\u0103m 2024, phi h\u00E0nh \u0111o\u00E0n \u0111\u00E3 \u0103n h\u01A1n 3.100 chi\u1EBFc b\u00E1nh tortilla \u0111\u1EC3 l\u00E0m taco, b\u00E1nh m\u00EC k\u1EB9p th\u1ECBt kh\u00F4ng gian, pizza v\u00E0 nhi\u1EC1u m\u00F3n kh\u00E1c.",
+        "StartTime": 43.4,
+        "EndTime": 51
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.c8865f7026bd40f2b9987ca241547017",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "Which food is a daily staple on the station?",
+        "OptionA": "Rice",
+        "OptionB": "Bread",
+        "OptionC": "Tortillas",
+        "OptionD": "Spaghetti",
+        "CorrectAnswer": "C",
+        "Explanation": "\u0022For meals, tortillas are a daily staple.\u0022 \u2014 00:33"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.dd5c39c4d5084c25bb6bd4f96ab1df3f",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "How many tortillas did crew members eat in 2024?",
+        "OptionA": "About 310",
+        "OptionB": "Over 3,100",
+        "OptionC": "Over 31,000",
+        "OptionD": "Exactly 1,800",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022In 2024, crew members consumed over 3,100 tortillas for tacos, space burgers, pizzas and more.\u0022 \u2014 00:43"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.e22319dcfd9f4f1aac3b966e5ddef4de",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 16,
+        "Speaker": "Narrator",
+        "Text": "NASA scientists routinely enlist people on Earth to sample products in development. Why?",
+        "VietnameseMeaning": "C\u00E1c nh\u00E0 khoa h\u1ECDc NASA th\u01B0\u1EDDng xuy\u00EAn m\u1EDDi ng\u01B0\u1EDDi d\u01B0\u1EDBi Tr\u00E1i \u0110\u1EA5t n\u1EBFm th\u1EED c\u00E1c s\u1EA3n ph\u1EA9m \u0111ang ph\u00E1t tri\u1EC3n. V\u00EC sao?",
+        "StartTime": 76,
+        "EndTime": 80.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.e556f4d9032d4d83ae883449a5892d3c",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "Why are tortillas better than bread?",
+        "OptionA": "They are less crumbly and last longer",
+        "OptionB": "They are sweeter",
+        "OptionC": "They are cheaper",
+        "OptionD": "They are hotter",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Bread creates crumb problems, but tortillas are less crumbly. They also last up to 18 months, and they\u0027re mold resistant.\u0022 \u2014 00:36"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.ee1983ada57a438d900e38a8811c100b",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "mold",
+        "Definition": "n\u1EA5m m\u1ED1c",
+        "ExampleSentence": "Bread creates crumb problems, but tortillas are less crumbly. They also last up to 18 months, and they\u0027re mold resistant.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-do-astronauts-eat-in-space.f7b971b0a6d747d7831681380f0185a5",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Narrator",
+        "Text": "But as missions stretch farther to the Moon and Mars,",
+        "VietnameseMeaning": "Nh\u01B0ng khi c\u00E1c s\u1EE9 m\u1EC7nh \u0111i xa h\u01A1n t\u1EDBi M\u1EB7t Tr\u0103ng v\u00E0 Sao H\u1ECFa,",
+        "StartTime": 60.6,
+        "EndTime": 63.9
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-do-astronauts-eat-in-space"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b1.what-do-astronauts-eat-in-space"
+}

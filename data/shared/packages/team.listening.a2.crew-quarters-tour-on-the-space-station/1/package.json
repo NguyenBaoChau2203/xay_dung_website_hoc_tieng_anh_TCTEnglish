@@ -1,0 +1,528 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.a2.crew-quarters-tour-on-the-space-station",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Crew Quarters Tour on the Space Station",
+        "Level": "A2",
+        "Topic": "Space \u0026 Daily Life",
+        "YoutubeId": "JZ7n24CtEFw",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/JZ7n24CtEFw/hqdefault.jpg",
+        "Duration": "2:18",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.0d886b6ae3ce40e5b4c979b36d2e0c62",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 16,
+        "Speaker": "Narrator",
+        "Text": "And also have a headset here.",
+        "VietnameseMeaning": "V\u00E0 c\u0169ng c\u00F3 m\u1ED9t b\u1ED9 tai nghe c\u00F3 micro.",
+        "StartTime": 92.5,
+        "EndTime": 95
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.26b0936286054f93aef9714ef68ea605",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "What can he do with the headset?",
+        "OptionA": "Listen to music",
+        "OptionB": "Call his family and friends",
+        "OptionC": "Control the station",
+        "OptionD": "Talk only to the crew",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022And using this headset I can call personal calls to the ground,\u0022 \u2014 01:35"
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.36f7780284994f30b9edc2518021ad06",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 14,
+        "Speaker": "Narrator",
+        "Text": "And there is another one, same laptop, but this is for the Internet access.",
+        "VietnameseMeaning": "Chi\u1EBFc c\u00F2n l\u1EA1i c\u0169ng l\u00E0 m\u00E1y x\u00E1ch tay nh\u01B0 v\u1EADy, nh\u01B0ng d\u00F9ng \u0111\u1EC3 v\u00E0o Internet.",
+        "StartTime": 78.1,
+        "EndTime": 84.6
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.3772cb1434d049ebb826b353872b6ffc",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "gravity",
+        "Definition": "tr\u1ECDng l\u1EF1c",
+        "ExampleSentence": "And it\u0027s really comfortable to fly and float and sleep in zero gravity.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.38b7e84e62c2483f94aaf75c6578db89",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "crew quarters",
+        "Definition": "ph\u00F2ng ng\u1EE7 c\u1EE7a phi h\u00E0nh \u0111o\u00E0n",
+        "ExampleSentence": "In this module we have four crew quarters. My crew quarters are here. Rick\u0027s crew quarters.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.3acf5ed59d2d4cf8bf0d36a179b0cdd7",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "weekend",
+        "Definition": "cu\u1ED1i tu\u1EA7n",
+        "ExampleSentence": "which is very nice to be able to talk with my family and friends after hours and on weekends.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.45f9acf54504400c89fbaa3fdaed36ef",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 20,
+        "Speaker": "Narrator",
+        "Text": "And I have some small items that I use on a daily basis. This is a really neat place and very comfortable to live in.",
+        "VietnameseMeaning": "T\u00F4i c\u00F2n c\u00F3 v\u00E0i v\u1EADt d\u1EE5ng nh\u1ECF d\u00F9ng h\u1EB1ng ng\u00E0y. \u0110\u00E2y l\u00E0 m\u1ED9t n\u01A1i r\u1EA5t hay v\u00E0 r\u1EA5t d\u1EC5 ch\u1ECBu \u0111\u1EC3 s\u1ED1ng.",
+        "StartTime": 118,
+        "EndTime": 129.5
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.59d6cd5852ca4d61970533aea894f024",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "The size of the crew quarter is similar to what?",
+        "OptionA": "A telephone box",
+        "OptionB": "A small bus",
+        "OptionC": "A refrigerator",
+        "OptionD": "A bed",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022The size is similar to the old telephone box. These things do not exist.\u0022 \u2014 00:20"
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.59df249429714655837e8ca282dc18a0",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "headset",
+        "Definition": "b\u1ED9 tai nghe c\u00F3 micro",
+        "ExampleSentence": "And also have a headset here.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.618c59f63ee9453dabe0f2ab09ae5bbc",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "Why is the sleeping bag fixed to the wall?",
+        "OptionA": "To keep it warm",
+        "OptionB": "So the astronaut does not float away",
+        "OptionC": "To save space",
+        "OptionD": "Because it is heavy",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022The sleeping bag is fixed to the wall so that I don\u0027t float away or kick anything.\u0022 \u2014 00:53"
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.638e9ab1250a4d0fb88b4d40b36835ca",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "Here I have a computer, two computers here.",
+        "VietnameseMeaning": "\u1EDE \u0111\u00E2y t\u00F4i c\u00F3 m\u00E1y t\u00EDnh, hai chi\u1EBFc m\u00E1y t\u00EDnh.",
+        "StartTime": 65.9,
+        "EndTime": 71.1
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.64c6c82a01f142e5bd22a315d7def08e",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "And it\u0027s really comfortable to fly and float and sleep in zero gravity.",
+        "VietnameseMeaning": "V\u00E0 bay l\u01A1 l\u1EEDng r\u1ED3i ng\u1EE7 trong m\u00F4i tr\u01B0\u1EDDng kh\u00F4ng tr\u1ECDng l\u1EF1c th\u1EADt s\u1EF1 r\u1EA5t tho\u1EA3i m\u00E1i.",
+        "StartTime": 58.9,
+        "EndTime": 65.9
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.6b0d3f5015dc4b67b2573a572fd34bbb",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "But actually this is the place that I stayed on my first long duration flight four years ago.",
+        "VietnameseMeaning": "Nh\u01B0ng th\u1EADt ra \u0111\u00E2y l\u00E0 n\u01A1i t\u00F4i \u0111\u00E3 \u1EDF trong chuy\u1EBFn bay d\u00E0i ng\u00E0y \u0111\u1EA7u ti\u00EAn c\u1EE7a m\u00ECnh c\u00E1ch \u0111\u00E2y b\u1ED1n n\u0103m.",
+        "StartTime": 26.4,
+        "EndTime": 32
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.6b48bf6b219e44d8961a6a9914d3d484",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "float",
+        "Definition": "tr\u00F4i l\u01A1 l\u1EEDng",
+        "ExampleSentence": "The sleeping bag is fixed to the wall so that I don\u0027t float away or kick anything.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.6f35f26f61a54151b6347dd3cc521a8b",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "How does he describe the place at the end?",
+        "OptionA": "Small and uncomfortable",
+        "OptionB": "Noisy",
+        "OptionC": "Very comfortable to live in",
+        "OptionD": "Cold",
+        "CorrectAnswer": "C",
+        "Explanation": "\u0022And I have some small items that I use on a daily basis. This is a really neat place and very comfortable to live in.\u0022 \u2014 01:58"
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.7013e15780bc46bfa7f8e976d463b6d1",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "I got to sleep in the same place.",
+        "VietnameseMeaning": "T\u00F4i \u0111\u01B0\u1EE3c ng\u1EE7 \u0111\u00FAng ch\u1ED7 n\u00E0y.",
+        "StartTime": 32,
+        "EndTime": 34.4
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.79529f316f354d9e9253349061253d5b",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "What are the two computers used for?",
+        "OptionA": "Games and movies",
+        "OptionB": "One for the schedule and emails, one for the Internet",
+        "OptionC": "Both for the Internet",
+        "OptionD": "One for music, one for photos",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022And there is another one, same laptop, but this is for the Internet access.\u0022 \u2014 01:18"
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.7ee23cdd7363448085b0ec61fbe6c13a",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "schedule",
+        "Definition": "l\u1ECBch tr\u00ECnh, l\u1ECBch l\u00E0m vi\u1EC7c",
+        "ExampleSentence": "And one is to check the schedule, official emails, procedures.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.82eec75653284a47af856aa443b29e6d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "And when you open the door you can get in there.",
+        "VietnameseMeaning": "V\u00E0 khi m\u1EDF c\u1EEDa ra, b\u1EA1n c\u00F3 th\u1EC3 chui v\u00E0o trong.",
+        "StartTime": 34.4,
+        "EndTime": 43.1
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.889ef03efde248dbb2bde0572a52d9aa",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "The sleeping bag is fixed to the wall so that I don\u0027t float away or kick anything.",
+        "VietnameseMeaning": "T\u00FAi ng\u1EE7 \u0111\u01B0\u1EE3c c\u1ED1 \u0111\u1ECBnh v\u00E0o t\u01B0\u1EDDng \u0111\u1EC3 t\u00F4i kh\u00F4ng b\u1ECB tr\u00F4i \u0111i hay \u0111\u00E1 ph\u1EA3i th\u1EE9 g\u00EC.",
+        "StartTime": 53.7,
+        "EndTime": 58.9
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.89fa023ae7e0418d927735b904d17e79",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 15,
+        "Speaker": "Narrator",
+        "Text": "And actually I tweet from this Internet terminal. I have a camera here.",
+        "VietnameseMeaning": "Th\u1EADt ra t\u00F4i \u0111\u0103ng tweet t\u1EEB thi\u1EBFt b\u1ECB Internet n\u00E0y. \u1EDE \u0111\u00E2y t\u00F4i c\u00F2n c\u00F3 m\u1ED9t chi\u1EBFc m\u00E1y \u1EA3nh.",
+        "StartTime": 84.6,
+        "EndTime": 92.5
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.8b220c84dbbd4465a6cd02ae6c6a3277",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Narrator",
+        "Text": "And one is to check the schedule, official emails, procedures.",
+        "VietnameseMeaning": "M\u1ED9t chi\u1EBFc d\u00F9ng \u0111\u1EC3 xem l\u1ECBch l\u00E0m vi\u1EC7c, th\u01B0 \u0111i\u1EC7n t\u1EED ch\u00EDnh th\u1EE9c v\u00E0 c\u00E1c quy tr\u00ECnh.",
+        "StartTime": 71.1,
+        "EndTime": 78.1
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.8e8c0650f3c94c5eb1b4f7f6879ca254",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "And you can see there is a sleeping bag here, which is very comfortable.",
+        "VietnameseMeaning": "V\u00E0 b\u1EA1n th\u1EA5y \u1EDF \u0111\u00E2y c\u00F3 m\u1ED9t chi\u1EBFc t\u00FAi ng\u1EE7, r\u1EA5t d\u1EC5 ch\u1ECBu.",
+        "StartTime": 47.5,
+        "EndTime": 53.7
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.a1fb425c85ff44f282eb37dbeb29f50a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "In this module we have four crew quarters. My crew quarters are here. Rick\u0027s crew quarters.",
+        "VietnameseMeaning": "Trong khoang n\u00E0y c\u00F3 b\u1ED1n ph\u00F2ng ng\u1EE7 c\u1EE7a phi h\u00E0nh \u0111o\u00E0n. Ph\u00F2ng c\u1EE7a t\u00F4i \u1EDF \u0111\u00E2y. \u0110\u00E2y l\u00E0 ph\u00F2ng c\u1EE7a Rick.",
+        "StartTime": 1,
+        "EndTime": 8.8
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.aa624ac462834b59b68c0239447255be",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "The size is similar to the old telephone box. These things do not exist.",
+        "VietnameseMeaning": "K\u00EDch th\u01B0\u1EDBc c\u1EE7a n\u00F3 gi\u1ED1ng m\u1ED9t chi\u1EBFc b\u1ED1t \u0111i\u1EC7n tho\u1EA1i c\u0169. Nh\u1EEFng th\u1EE9 nh\u01B0 v\u1EADy b\u00E2y gi\u1EDD kh\u00F4ng c\u00F2n n\u1EEFa.",
+        "StartTime": 20.4,
+        "EndTime": 26.4
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.bd1f8e60210c47f29cc2a8bc6c11a055",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 17,
+        "Speaker": "Narrator",
+        "Text": "And using this headset I can call personal calls to the ground,",
+        "VietnameseMeaning": "Nh\u1EDD b\u1ED9 tai nghe n\u00E0y, t\u00F4i c\u00F3 th\u1EC3 g\u1ECDi \u0111i\u1EC7n c\u00E1 nh\u00E2n xu\u1ED1ng m\u1EB7t \u0111\u1EA5t,",
+        "StartTime": 95,
+        "EndTime": 99.4
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.bdd0f1fa68c047fcb73d2e67c54c8d96",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "daily basis",
+        "Definition": "h\u1EB1ng ng\u00E0y",
+        "ExampleSentence": "And I have some small items that I use on a daily basis. This is a really neat place and very comfortable to live in.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.c9b16bb3a02842e3817b42ea428d91c0",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "Sergey and the mission\u0027s crew quarters are in the service module. And this is a crew quarter.",
+        "VietnameseMeaning": "Ph\u00F2ng c\u1EE7a Sergey v\u00E0 c\u1EE7a chuy\u1EBFn bay n\u1EB1m \u1EDF khoang ph\u1EE5c v\u1EE5. V\u00E0 \u0111\u00E2y l\u00E0 m\u1ED9t ph\u00F2ng ng\u1EE7 c\u1EE7a phi h\u00E0nh \u0111o\u00E0n.",
+        "StartTime": 11,
+        "EndTime": 20.4
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.d3fd594d0e6c4a90bfd264bdf087fe14",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "sleeping bag",
+        "Definition": "t\u00FAi ng\u1EE7",
+        "ExampleSentence": "And you can see there is a sleeping bag here, which is very comfortable.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.e8eed91dc11f4ed8a16868c45cb14e1b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 19,
+        "Speaker": "Narrator",
+        "Text": "Also, using this iPad I can watch movies and look at the news program that the ground folks uplink to us.",
+        "VietnameseMeaning": "Ngo\u00E0i ra, b\u1EB1ng chi\u1EBFc iPad n\u00E0y t\u00F4i c\u00F3 th\u1EC3 xem phim v\u00E0 xem c\u00E1c b\u1EA3n tin m\u00E0 \u0111\u1ED9i d\u01B0\u1EDBi m\u1EB7t \u0111\u1EA5t g\u1EEDi l\u00EAn cho ch\u00FAng t\u00F4i.",
+        "StartTime": 106.3,
+        "EndTime": 118
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.e9b656f2a6dc485cac5f4e20f56cec72",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 18,
+        "Speaker": "Narrator",
+        "Text": "which is very nice to be able to talk with my family and friends after hours and on weekends.",
+        "VietnameseMeaning": "r\u1EA5t tuy\u1EC7t v\u00EC t\u00F4i n\u00F3i chuy\u1EC7n \u0111\u01B0\u1EE3c v\u1EDBi gia \u0111\u00ECnh v\u00E0 b\u1EA1n b\u00E8 sau gi\u1EDD l\u00E0m v\u00E0 v\u00E0o cu\u1ED1i tu\u1EA7n.",
+        "StartTime": 99.4,
+        "EndTime": 106.3
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.f32e40e6eab54fa08e83fe7d9795ce68",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "Mike and Alex\u0027s crew quarters.",
+        "VietnameseMeaning": "Ph\u00F2ng c\u1EE7a Mike v\u00E0 Alex.",
+        "StartTime": 8.8,
+        "EndTime": 11
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    },
+    {
+      "key": "team.listening.a2.crew-quarters-tour-on-the-space-station.fafb5f4bdf714794a1dbc22f2ed24aed",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "It\u0027s, you know, it\u0027s a little taller than my height. So it\u0027s very comfortable.",
+        "VietnameseMeaning": "N\u00F3 cao h\u01A1n chi\u1EC1u cao c\u1EE7a t\u00F4i m\u1ED9t ch\u00FAt. V\u00EC v\u1EADy r\u1EA5t tho\u1EA3i m\u00E1i.",
+        "StartTime": 43.1,
+        "EndTime": 47.5
+      },
+      "references": {
+        "LessonId": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.a2.crew-quarters-tour-on-the-space-station"
+}

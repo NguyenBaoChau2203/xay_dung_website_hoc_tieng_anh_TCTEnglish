@@ -1,0 +1,575 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b1.our-moon-isn-t-the-only-moon",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Our Moon Isn\u0027t the Only Moon",
+        "Level": "B1",
+        "Topic": "The Moon \u0026 Planets",
+        "YoutubeId": "o33NZIlfKys",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/o33NZIlfKys/hqdefault.jpg",
+        "Duration": "2:41",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.05bd3a3db13e453db41d6e39e282e2d8",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "volcano",
+        "Definition": "n\u00FAi l\u1EEDa",
+        "ExampleSentence": "Jupiter\u2019s moon Io is covered in volcanos.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.0d0382c2ecfe4fb1b0d51c46bade2d85",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "What is a moon?",
+        "OptionA": "A natural object that orbits something larger than itself",
+        "OptionB": "A star",
+        "OptionC": "A kind of comet",
+        "OptionD": "A planet without air",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022That\u2019s right! In fact, some planets have a lot of moons. A moon is a natural object that orbits anything larger than itself.\u0022 \u2014 00:18"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.11e6d5345f904a67b2f22acdf5d104f5",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "Our Moon isn\u2019t the only moon!",
+        "VietnameseMeaning": "M\u1EB7t Tr\u0103ng c\u1EE7a ch\u00FAng ta kh\u00F4ng ph\u1EA3i l\u00E0 m\u1EB7t tr\u0103ng duy nh\u1EA5t!",
+        "StartTime": 1,
+        "EndTime": 4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.16f2a08dc91c451ea61b0eeb91a28b80",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "That\u2019s right! In fact, some planets have a lot of moons. A moon is a natural object that orbits anything larger than itself.",
+        "VietnameseMeaning": "\u0110\u00FAng v\u1EADy! Th\u1EF1c t\u1EBF, m\u1ED9t s\u1ED1 h\u00E0nh tinh c\u00F3 r\u1EA5t nhi\u1EC1u m\u1EB7t tr\u0103ng. M\u1EB7t tr\u0103ng l\u00E0 m\u1ED9t v\u1EADt th\u1EC3 t\u1EF1 nhi\u00EAn quay quanh b\u1EA5t c\u1EE9 th\u1EE9 g\u00EC l\u1EDBn h\u01A1n n\u00F3.",
+        "StartTime": 18.4,
+        "EndTime": 27.9
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.2de91206153645a2b0d3fe5469bad0bc",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "They\u2019re dark and lumpy and at least 100 times smaller than Earth\u2019s moon. Jupiter has more than 70 moons!",
+        "VietnameseMeaning": "Ch\u00FAng t\u1ED1i v\u00E0 g\u1ED3 gh\u1EC1, nh\u1ECF h\u01A1n M\u1EB7t Tr\u0103ng c\u1EE7a Tr\u00E1i \u0110\u1EA5t \u00EDt nh\u1EA5t 100 l\u1EA7n. Sao M\u1ED9c c\u00F3 h\u01A1n 70 m\u1EB7t tr\u0103ng!",
+        "StartTime": 61.3,
+        "EndTime": 69.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.32d4bfff39bd4252aef5c318229a4075",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Narrator",
+        "Text": "Jupiter\u2019s moon Io is covered in volcanos.",
+        "VietnameseMeaning": "M\u1EB7t tr\u0103ng Io c\u1EE7a Sao M\u1ED9c ph\u1EE7 \u0111\u1EA7y n\u00FAi l\u1EEDa.",
+        "StartTime": 81.2,
+        "EndTime": 84
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.471ecfa2da3b4f25a11d34bcae39a93f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "Our Moon appears so big and bright because it\u2019s closer to Earth than any other planet or moon.",
+        "VietnameseMeaning": "M\u1EB7t Tr\u0103ng c\u1EE7a ch\u00FAng ta tr\u00F4ng to v\u00E0 s\u00E1ng v\u00EC n\u00F3 g\u1EA7n Tr\u00E1i \u0110\u1EA5t h\u01A1n b\u1EA5t k\u1EF3 h\u00E0nh tinh hay m\u1EB7t tr\u0103ng n\u00E0o kh\u00E1c.",
+        "StartTime": 10,
+        "EndTime": 15.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.5045ff4a70ca42bf8b9a9e75c4260750",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 20,
+        "Speaker": "Narrator",
+        "Text": "Scientists have discovered more than a dozen moons orbiting Neptune. It\u2019s largest moon, called Triton, has volcanoes with icy lava flows.",
+        "VietnameseMeaning": "C\u00E1c nh\u00E0 khoa h\u1ECDc \u0111\u00E3 ph\u00E1t hi\u1EC7n h\u01A1n m\u1ED9t ch\u1EE5c m\u1EB7t tr\u0103ng quay quanh Sao H\u1EA3i V\u01B0\u01A1ng. M\u1EB7t tr\u0103ng l\u1EDBn nh\u1EA5t c\u1EE7a n\u00F3, t\u00EAn l\u00E0 Triton, c\u00F3 nh\u1EEFng n\u00FAi l\u1EEDa v\u1EDBi d\u00F2ng dung nham b\u0103ng.",
+        "StartTime": 126.3,
+        "EndTime": 135.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.5455467f5b3f48a8b91f9c53fbe09135",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "No matter where you are on Earth, you can usually look up into the night sky and see the Moon.",
+        "VietnameseMeaning": "D\u00F9 b\u1EA1n \u1EDF \u0111\u00E2u tr\u00EAn Tr\u00E1i \u0110\u1EA5t, th\u01B0\u1EDDng th\u00EC b\u1EA1n c\u00F3 th\u1EC3 ng\u01B0\u1EDBc nh\u00ECn b\u1EA7u tr\u1EDDi \u0111\u00EAm v\u00E0 th\u1EA5y M\u1EB7t Tr\u0103ng.",
+        "StartTime": 4,
+        "EndTime": 10
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.57c63358cb6f457490f9858878325cf1",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "binoculars",
+        "Definition": "\u1ED1ng nh\u00F2m",
+        "ExampleSentence": "You can actually see it from Earth with just a pair or binoculars.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.681b4ea9391640cf9e89a20113fba2ea",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "What covers Jupiter\u0027s moon Io?",
+        "OptionA": "Volcanoes",
+        "OptionB": "Forests",
+        "OptionC": "Ice only",
+        "OptionD": "Sand",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Jupiter\u2019s moon Io is covered in volcanos.\u0022 \u2014 01:21"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.6bd67de7ea5e4169a2026689dbf32487",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 15,
+        "Speaker": "Narrator",
+        "Text": "NASA is planning a future mission to investigate Europa and its underground ocean. Saturn has more than 80 moons in total.",
+        "VietnameseMeaning": "NASA \u0111ang l\u00EAn k\u1EBF ho\u1EA1ch cho m\u1ED9t s\u1EE9 m\u1EC7nh trong t\u01B0\u01A1ng lai \u0111\u1EC3 kh\u00E1m ph\u00E1 Europa v\u00E0 \u0111\u1EA1i d\u01B0\u01A1ng d\u01B0\u1EDBi l\u00F2ng \u0111\u1EA5t c\u1EE7a n\u00F3. Sao Th\u1ED5 c\u00F3 t\u1ED5ng c\u1ED9ng h\u01A1n 80 m\u1EB7t tr\u0103ng.",
+        "StartTime": 91.6,
+        "EndTime": 99.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.74d7ea18f7b44da8954015acf79c4b6e",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "mission",
+        "Definition": "s\u1EE9 m\u1EC7nh, nhi\u1EC7m v\u1EE5",
+        "ExampleSentence": "NASA is planning a future mission to investigate Europa and its underground ocean. Saturn has more than 80 moons in total.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.76ef35dbd7a44e02b0f74f851a39c8d9",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "Why does our Moon look so big and bright?",
+        "OptionA": "It is closer to Earth than any other planet or moon",
+        "OptionB": "It is the biggest moon",
+        "OptionC": "It is made of light",
+        "OptionD": "It is hotter than the Sun",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Our Moon appears so big and bright because it\u2019s closer to Earth than any other planet or moon.\u0022 \u2014 00:10"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.7956ad9cc1754d6b9b49d997bd92c12b",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "lumpy",
+        "Definition": "g\u1ED3 gh\u1EC1, s\u1EA7n s\u00F9i",
+        "ExampleSentence": "They\u2019re dark and lumpy and at least 100 times smaller than Earth\u2019s moon. Jupiter has more than 70 moons!",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.8318da89e9af4c52965123c4db77bd3a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "It\u2019s about one-quarter the size of Earth. Our Moon is the only other place in our solar system where humans have set foot.",
+        "VietnameseMeaning": "N\u00F3 c\u00F3 k\u00EDch th\u01B0\u1EDBc kho\u1EA3ng m\u1ED9t ph\u1EA7n t\u01B0 Tr\u00E1i \u0110\u1EA5t. M\u1EB7t Tr\u0103ng c\u1EE7a ch\u00FAng ta l\u00E0 n\u01A1i duy nh\u1EA5t kh\u00E1c trong h\u1EC7 M\u1EB7t Tr\u1EDDi m\u00E0 con ng\u01B0\u1EDDi t\u1EEBng \u0111\u1EB7t ch\u00E2n \u0111\u1EBFn.",
+        "StartTime": 46.2,
+        "EndTime": 54.8
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.9817f93a58db4ab3aff89cb982a1483b",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "solar system",
+        "Definition": "h\u1EC7 M\u1EB7t Tr\u1EDDi",
+        "ExampleSentence": "Moons come in many shapes and sizes. Our solar system has eight planets and dozens of moons. Almost every planet has \u2018em.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.9bb5380eba2e43bc887af2c91284dc56",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "What does the underground ocean on Enceladus shoot out?",
+        "OptionA": "Jets of icy particles",
+        "OptionB": "Hot lava",
+        "OptionC": "Light beams",
+        "OptionD": "Water balloons",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022NASA\u2019s Cassini mission discovered that the underground ocean on Enceladus shoots jets of icy particles from cracks in the moon\u2019s surface and out into space!\u0022 \u2014 01:45"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.9bd1baf234ad4ed1adefc390d3189983",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 22,
+        "Speaker": "Narrator",
+        "Text": "Find out more about moons at NASA Space Place.",
+        "VietnameseMeaning": "H\u00E3y t\u00ECm hi\u1EC3u th\u00EAm v\u1EC1 c\u00E1c m\u1EB7t tr\u0103ng t\u1EA1i NASA Space Place.",
+        "StartTime": 142.5,
+        "EndTime": 145.9
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.9c1767fee90a454784e4c352fd47b257",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "Several of them have very unusual features. For example, Ganymede is the largest known moon in our solar system.",
+        "VietnameseMeaning": "M\u1ED9t v\u00E0i trong s\u1ED1 \u0111\u00F3 c\u00F3 nh\u1EEFng \u0111\u1EB7c \u0111i\u1EC3m r\u1EA5t kh\u00E1c th\u01B0\u1EDDng. V\u00ED d\u1EE5, Ganymede l\u00E0 m\u1EB7t tr\u0103ng l\u1EDBn nh\u1EA5t \u0111\u01B0\u1EE3c bi\u1EBFt \u0111\u1EBFn trong h\u1EC7 M\u1EB7t Tr\u1EDDi c\u1EE7a ch\u00FAng ta.",
+        "StartTime": 69.6,
+        "EndTime": 77.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.9e6716d529ad489987f43cd3dfd9d52d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "You can actually see it from Earth with just a pair or binoculars.",
+        "VietnameseMeaning": "Th\u1EF1c ra b\u1EA1n c\u00F3 th\u1EC3 nh\u00ECn th\u1EA5y n\u00F3 t\u1EEB Tr\u00E1i \u0110\u1EA5t ch\u1EC9 v\u1EDBi m\u1ED9t chi\u1EBFc \u1ED1ng nh\u00F2m.",
+        "StartTime": 77.2,
+        "EndTime": 81.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.9fa989f57b0f47e8b83a09ab6e4f3ecb",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 17,
+        "Speaker": "Narrator",
+        "Text": "NASA\u2019s Cassini mission discovered that the underground ocean on Enceladus shoots jets of icy particles from cracks in the moon\u2019s surface and out into space!",
+        "VietnameseMeaning": "S\u1EE9 m\u1EC7nh Cassini c\u1EE7a NASA ph\u00E1t hi\u1EC7n r\u1EB1ng \u0111\u1EA1i d\u01B0\u01A1ng d\u01B0\u1EDBi l\u00F2ng \u0111\u1EA5t tr\u00EAn Enceladus phun ra nh\u1EEFng tia h\u1EA1t b\u0103ng t\u1EEB c\u00E1c v\u1EBFt n\u1EE9t tr\u00EAn b\u1EC1 m\u1EB7t m\u1EB7t tr\u0103ng ra ngo\u00E0i kh\u00F4ng gian!",
+        "StartTime": 105.1,
+        "EndTime": 116.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.a0dd2502e0f54be6bd942c4fc8e31410",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 14,
+        "Speaker": "Narrator",
+        "Text": "And there is thought to be a giant salt water ocean under the icy surface of Jupiter\u2019s moon Europa!",
+        "VietnameseMeaning": "V\u00E0 ng\u01B0\u1EDDi ta cho r\u1EB1ng c\u00F3 m\u1ED9t \u0111\u1EA1i d\u01B0\u01A1ng n\u01B0\u1EDBc m\u1EB7n kh\u1ED5ng l\u1ED3 b\u00EAn d\u01B0\u1EDBi b\u1EC1 m\u1EB7t b\u0103ng c\u1EE7a m\u1EB7t tr\u0103ng Europa c\u1EE7a Sao M\u1ED9c!",
+        "StartTime": 84,
+        "EndTime": 91.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.ab16fb6097f149fcb91ad4b66a94adfb",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "rocky",
+        "Definition": "b\u1EB1ng \u0111\u00E1, nhi\u1EC1u \u0111\u00E1",
+        "ExampleSentence": "Mercury and Venus\u2014the two planets closest to the Sun\u2014have no moons at all. Earth, on the other hand, has one rocky and rather large Moon.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.ab6c6b75ab2c445586a5d7d92e18429e",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "surface",
+        "Definition": "b\u1EC1 m\u1EB7t",
+        "ExampleSentence": "And there is thought to be a giant salt water ocean under the icy surface of Jupiter\u2019s moon Europa!",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.b0ec54b8dfa145a799912088eaa27862",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "What are some of the other interesting moons we know about? Well, Mars has two moons named Phobos and Deimos.",
+        "VietnameseMeaning": "Nh\u1EEFng m\u1EB7t tr\u0103ng th\u00FA v\u1ECB kh\u00E1c m\u00E0 ch\u00FAng ta bi\u1EBFt l\u00E0 g\u00EC? \u00C0, Sao H\u1ECFa c\u00F3 hai m\u1EB7t tr\u0103ng t\u00EAn l\u00E0 Phobos v\u00E0 Deimos.",
+        "StartTime": 54.8,
+        "EndTime": 61.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.c15f8932103f4ff1af275fcc7eaf7f90",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "How many moons does Mars have?",
+        "OptionA": "None",
+        "OptionB": "One",
+        "OptionC": "Two",
+        "OptionD": "Seventy",
+        "CorrectAnswer": "C",
+        "Explanation": "\u0022What are some of the other interesting moons we know about? Well, Mars has two moons named Phobos and Deimos.\u0022 \u2014 00:54"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.c268b9e2cd7140bfa09159529c818a41",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "Which two planets have no moons?",
+        "OptionA": "Mars and Jupiter",
+        "OptionB": "Mercury and Venus",
+        "OptionC": "Saturn and Uranus",
+        "OptionD": "Earth and Mars",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022Mercury and Venus\u2014the two planets closest to the Sun\u2014have no moons at all. Earth, on the other hand, has one rocky and rather large Moon.\u0022 \u2014 00:36"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.c48350816da94a71b4a85294e98a1216",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "But, our Moon isn\u2019t the only moon out there.",
+        "VietnameseMeaning": "Nh\u01B0ng M\u1EB7t Tr\u0103ng c\u1EE7a ch\u00FAng ta kh\u00F4ng ph\u1EA3i l\u00E0 m\u1EB7t tr\u0103ng duy nh\u1EA5t ngo\u00E0i kia.",
+        "StartTime": 15.6,
+        "EndTime": 18.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.c7ec5c035cd14b0eb2b29933d841c746",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "orbit",
+        "Definition": "quay quanh (qu\u1EF9 \u0111\u1EA1o)",
+        "ExampleSentence": "That\u2019s right! In fact, some planets have a lot of moons. A moon is a natural object that orbits anything larger than itself.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.cf134fa040d44ac8989c115bd618d2a5",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "Moons come in many shapes and sizes. Our solar system has eight planets and dozens of moons. Almost every planet has \u2018em.",
+        "VietnameseMeaning": "C\u00E1c m\u1EB7t tr\u0103ng c\u00F3 nhi\u1EC1u h\u00ECnh d\u1EA1ng v\u00E0 k\u00EDch c\u1EE1. H\u1EC7 M\u1EB7t Tr\u1EDDi c\u1EE7a ch\u00FAng ta c\u00F3 t\u00E1m h\u00E0nh tinh v\u00E0 h\u00E0ng ch\u1EE5c m\u1EB7t tr\u0103ng. H\u1EA7u nh\u01B0 h\u00E0nh tinh n\u00E0o c\u0169ng c\u00F3.",
+        "StartTime": 27.9,
+        "EndTime": 36.7
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.d34dc9d00de3407299c8a93dc11b2ea7",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 21,
+        "Speaker": "Narrator",
+        "Text": "Brr! Volcanoes, underground oceans, and icy jets\u2014what do you think we\u2019ll discover on moons next?",
+        "VietnameseMeaning": "Brr! N\u00FAi l\u1EEDa, \u0111\u1EA1i d\u01B0\u01A1ng d\u01B0\u1EDBi l\u00F2ng \u0111\u1EA5t v\u00E0 c\u00E1c tia b\u0103ng \u2013 b\u1EA1n ngh\u0129 ti\u1EBFp theo ch\u00FAng ta s\u1EBD kh\u00E1m ph\u00E1 \u0111i\u1EC1u g\u00EC tr\u00EAn c\u00E1c m\u1EB7t tr\u0103ng?",
+        "StartTime": 135.5,
+        "EndTime": 142.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.d6b71bb4dd6943bf82b4e86cb4cc4ed6",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 19,
+        "Speaker": "Narrator",
+        "Text": "Its larger moons, like this one named Ariel, are thought to be made of half water ice and half rock.",
+        "VietnameseMeaning": "C\u00E1c m\u1EB7t tr\u0103ng l\u1EDBn h\u01A1n c\u1EE7a n\u00F3, nh\u01B0 Ariel n\u00E0y, \u0111\u01B0\u1EE3c cho l\u00E0 g\u1ED3m m\u1ED9t n\u1EEDa b\u0103ng n\u01B0\u1EDBc v\u00E0 m\u1ED9t n\u1EEDa \u0111\u00E1.",
+        "StartTime": 118.8,
+        "EndTime": 126.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.de12b71f44f6468ea484968c8f221f97",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "Mercury and Venus\u2014the two planets closest to the Sun\u2014have no moons at all. Earth, on the other hand, has one rocky and rather large Moon.",
+        "VietnameseMeaning": "Sao Th\u1EE7y v\u00E0 Sao Kim \u2013 hai h\u00E0nh tinh g\u1EA7n M\u1EB7t Tr\u1EDDi nh\u1EA5t \u2013 ho\u00E0n to\u00E0n kh\u00F4ng c\u00F3 m\u1EB7t tr\u0103ng. Ng\u01B0\u1EE3c l\u1EA1i, Tr\u00E1i \u0110\u1EA5t c\u00F3 m\u1ED9t M\u1EB7t Tr\u0103ng b\u1EB1ng \u0111\u00E1 v\u00E0 kh\u00E1 l\u1EDBn.",
+        "StartTime": 36.7,
+        "EndTime": 46.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.e041aafde12440c5acb9c76aa4ba1382",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 18,
+        "Speaker": "Narrator",
+        "Text": "Uranus has more than 20 moons.",
+        "VietnameseMeaning": "Sao Thi\u00EAn V\u01B0\u01A1ng c\u00F3 h\u01A1n 20 m\u1EB7t tr\u0103ng.",
+        "StartTime": 116.5,
+        "EndTime": 118.8
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    },
+    {
+      "key": "team.listening.b1.our-moon-isn-t-the-only-moon.e37f5351e0ce407f8f154d155b8bdd69",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 16,
+        "Speaker": "Narrator",
+        "Text": "And at least two of those are ocean moons, too! They are called Titan and Enceladus.",
+        "VietnameseMeaning": "V\u00E0 \u00EDt nh\u1EA5t hai trong s\u1ED1 \u0111\u00F3 c\u0169ng l\u00E0 c\u00E1c m\u1EB7t tr\u0103ng \u0111\u1EA1i d\u01B0\u01A1ng! Ch\u00FAng t\u00EAn l\u00E0 Titan v\u00E0 Enceladus.",
+        "StartTime": 99.6,
+        "EndTime": 105.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.our-moon-isn-t-the-only-moon"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b1.our-moon-isn-t-the-only-moon"
+}

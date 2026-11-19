@@ -1,0 +1,605 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b2.what-is-a-black-hole",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b2.what-is-a-black-hole",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "What Is a Black Hole?",
+        "Level": "B2",
+        "Topic": "Black Holes \u0026 Stars",
+        "YoutubeId": "OfMExgr_vzY",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/OfMExgr_vzY/hqdefault.jpg",
+        "Duration": "3:01",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.01d225c451a940719a518726ce66cef4",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "How do some black holes form?",
+        "OptionA": "At the end of some stars\u0027 lives",
+        "OptionB": "From melting ice",
+        "OptionC": "From comets",
+        "OptionD": "When planets collide with the Sun",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Black holes form at the end of some stars\u2019 lives.\u0022 \u2014 00:29"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.01e59b7d9e1a4d2e90e2aab12c80bcdf",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "approach",
+        "Definition": "ti\u1EBFn l\u1EA1i g\u1EA7n",
+        "ExampleSentence": "As our spacecraft approaches it,",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.05e0929fd7d046368c5d5682fe84ea55",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "and large black holes can have tens to millions of times the mass of our sun",
+        "VietnameseMeaning": "v\u00E0 c\u00E1c h\u1ED1 \u0111en l\u1EDBn c\u00F3 th\u1EC3 ch\u1EE9a kh\u1ED1i l\u01B0\u1EE3ng g\u1EA5p h\u00E0ng ch\u1EE5c \u0111\u1EBFn h\u00E0ng tri\u1EC7u l\u1EA7n M\u1EB7t Tr\u1EDDi",
+        "StartTime": 59,
+        "EndTime": 64.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.073d19fff68c4a38ac3f17dd34df13d1",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "Space is a pretty dark place. Even so, some areas are darker than others.",
+        "VietnameseMeaning": "Kh\u00F4ng gian l\u00E0 m\u1ED9t n\u01A1i kh\u00E1 t\u1ED1i. D\u00F9 v\u1EADy, c\u00F3 nh\u1EEFng v\u00F9ng c\u00F2n t\u1ED1i h\u01A1n nh\u1EEFng v\u00F9ng kh\u00E1c.",
+        "StartTime": 9,
+        "EndTime": 18.8
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.0e5ee266d76b45179facdafac4cf6572",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "The energy that held the star together disappears and it collapses in on itself producing a magnificent explosion.",
+        "VietnameseMeaning": "N\u0103ng l\u01B0\u1EE3ng gi\u1EEF ng\u00F4i sao k\u1EBFt l\u1EA1i bi\u1EBFn m\u1EA5t v\u00E0 n\u00F3 s\u1EE5p v\u00E0o ch\u00EDnh m\u00ECnh, t\u1EA1o ra m\u1ED9t v\u1EE5 n\u1ED5 ngo\u1EA1n m\u1EE5c.",
+        "StartTime": 32,
+        "EndTime": 41.6
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.0edce92f35e043a5a89af59b8f6b64fd",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "singularity",
+        "Definition": "\u0111i\u1EC3m k\u1EF3 d\u1ECB",
+        "ExampleSentence": "The point where all that mass is trapped is called a singularity.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.22a5dc3edc5f406ca1149cbb9003c858",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 22,
+        "Speaker": "Narrator",
+        "Text": "that it will get completely stretched out like a piece of spaghetti.",
+        "VietnameseMeaning": "\u0111\u1EBFn m\u1EE9c con t\u00E0u s\u1EBD b\u1ECB k\u00E9o d\u00E0i ho\u00E0n to\u00E0n nh\u01B0 m\u1ED9t s\u1EE3i m\u00EC \u1ED1ng.",
+        "StartTime": 130.9,
+        "EndTime": 134.8
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.2446f37331d4466ea445b8264fa7f506",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "Black holes form at the end of some stars\u2019 lives.",
+        "VietnameseMeaning": "H\u1ED1 \u0111en h\u00ECnh th\u00E0nh \u1EDF cu\u1ED1i v\u00F2ng \u0111\u1EDDi c\u1EE7a m\u1ED9t s\u1ED1 ng\u00F4i sao.",
+        "StartTime": 29.5,
+        "EndTime": 32
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.25ae8fb3d0de4bdfa1c55bf1997c9ed9",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 16,
+        "Speaker": "Narrator",
+        "Text": "That\u0027s why it\u0027s black! This circle is known as the event horizon.",
+        "VietnameseMeaning": "\u0110\u00F3 l\u00E0 l\u00FD do n\u00F3 c\u00F3 m\u00E0u \u0111en! V\u00F2ng tr\u00F2n n\u00E0y \u0111\u01B0\u1EE3c g\u1ECDi l\u00E0 ch\u00E2n tr\u1EDDi s\u1EF1 ki\u1EC7n.",
+        "StartTime": 97.7,
+        "EndTime": 103.2
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.26b51c205ba944238889da4f1f20930f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 21,
+        "Speaker": "Narrator",
+        "Text": "the gravity will be so much stronger on the side closer to the black hole than at the other side",
+        "VietnameseMeaning": "l\u1EF1c h\u1EA5p d\u1EABn \u1EDF ph\u00EDa g\u1EA7n h\u1ED1 \u0111en s\u1EBD m\u1EA1nh h\u01A1n r\u1EA5t nhi\u1EC1u so v\u1EDBi ph\u00EDa b\u00EAn kia,",
+        "StartTime": 124.5,
+        "EndTime": 130.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.282925cb37274da8af14eb11083bc715",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 20,
+        "Speaker": "Narrator",
+        "Text": "As our spacecraft approaches it,",
+        "VietnameseMeaning": "Khi t\u00E0u v\u0169 tr\u1EE5 ti\u1EBFn l\u1EA1i g\u1EA7n,",
+        "StartTime": 122.9,
+        "EndTime": 124.5
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.28f7fcf866cd4101b707632dd2da9937",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "A black hole is an area of such immense gravity that nothing\u2014not even light\u2014can escape from it.",
+        "VietnameseMeaning": "H\u1ED1 \u0111en l\u00E0 m\u1ED9t v\u00F9ng c\u00F3 l\u1EF1c h\u1EA5p d\u1EABn kh\u1ED5ng l\u1ED3 \u0111\u1EBFn m\u1EE9c kh\u00F4ng g\u00EC \u2013 k\u1EC3 c\u1EA3 \u00E1nh s\u00E1ng \u2013 c\u00F3 th\u1EC3 tho\u00E1t ra kh\u1ECFi n\u00F3.",
+        "StartTime": 21.1,
+        "EndTime": 29.5
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.34ecc8123e364afc958ec6454b5d6cd2",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 18,
+        "Speaker": "Narrator",
+        "Text": "What would happen, you might wonder, if we took a spacecraft near a black hole\u2019s event horizon?",
+        "VietnameseMeaning": "B\u1EA1n c\u00F3 th\u1EC3 t\u1EF1 h\u1ECFi: \u0111i\u1EC1u g\u00EC s\u1EBD x\u1EA3y ra n\u1EBFu ch\u00FAng ta \u0111\u01B0a m\u1ED9t con t\u00E0u v\u0169 tr\u1EE5 \u0111\u1EBFn g\u1EA7n ch\u00E2n tr\u1EDDi s\u1EF1 ki\u1EC7n c\u1EE7a h\u1ED1 \u0111en?",
+        "StartTime": 109.2,
+        "EndTime": 116
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.407800a384094a01a578ed2c4c91b79b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "Here\u2019s where things get crazy.",
+        "VietnameseMeaning": "\u0110\u1EBFn \u0111\u00E2y m\u1ECDi chuy\u1EC7n tr\u1EDF n\u00EAn \u0111i\u00EAn r\u1ED3.",
+        "StartTime": 41.6,
+        "EndTime": 45
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.4f2f9d079bc34ba081d50589b34ffda5",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "What is the circle around the singularity called?",
+        "OptionA": "The event horizon",
+        "OptionB": "The solar wind",
+        "OptionC": "The aurora",
+        "OptionD": "The orbit",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022That\u0027s why it\u0027s black! This circle is known as the event horizon.\u0022 \u2014 01:37"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.536567678ad04b5695d17b908542eb86",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "immense",
+        "Definition": "to l\u1EDBn, kh\u1ED5ng l\u1ED3",
+        "ExampleSentence": "A black hole is an area of such immense gravity that nothing\u2014not even light\u2014can escape from it.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.5f916a72ef474dc89c46bdd3beba9941",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "What would happen to a spacecraft near the event horizon?",
+        "OptionA": "It would turn into ice",
+        "OptionB": "It would be stretched like spaghetti",
+        "OptionC": "It would explode immediately",
+        "OptionD": "It would stop moving",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022As our spacecraft approaches it,\u0022 \u2014 02:02"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.65cec42a0d7c4861853c32a53f6078ac",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 17,
+        "Speaker": "Narrator",
+        "Text": "An event horizon is probably what you are thinking of when you think of a black hole.",
+        "VietnameseMeaning": "Ch\u00E2n tr\u1EDDi s\u1EF1 ki\u1EC7n c\u00F3 l\u1EBD l\u00E0 th\u1EE9 b\u1EA1n ngh\u0129 \u0111\u1EBFn khi ngh\u0129 v\u1EC1 m\u1ED9t h\u1ED1 \u0111en.",
+        "StartTime": 103.2,
+        "EndTime": 109.2
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.67be952dbed94e979212037f3093a7b8",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "What is a singularity?",
+        "OptionA": "The edge of the Sun",
+        "OptionB": "The point where all the mass is trapped",
+        "OptionC": "A kind of telescope",
+        "OptionD": "A spacecraft",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022The point where all that mass is trapped is called a singularity.\u0022 \u2014 01:14"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.682d5d3d8bfd463bb08f313beb5a4970",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "event horizon",
+        "Definition": "ch\u00E2n tr\u1EDDi s\u1EF1 ki\u1EC7n",
+        "ExampleSentence": "That\u0027s why it\u0027s black! This circle is known as the event horizon.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.7165f3bbf720414b8cc8507b171166fe",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "stretched out",
+        "Definition": "b\u1ECB k\u00E9o d\u00E0i ra",
+        "ExampleSentence": "that it will get completely stretched out like a piece of spaghetti.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.8990a34be0c644a192eea9052afeeb7c",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "Black holes can form in many ways though,",
+        "VietnameseMeaning": "Tuy nhi\u00EAn h\u1ED1 \u0111en c\u00F3 th\u1EC3 h\u00ECnh th\u00E0nh theo nhi\u1EC1u c\u00E1ch,",
+        "StartTime": 56,
+        "EndTime": 59
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.8aadc46a70074f9bae989b0206c4450e",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 24,
+        "Speaker": "Narrator",
+        "Text": "For a transcript of this video and a fun downloadable poster visit the Space Place.",
+        "VietnameseMeaning": "\u0110\u1EC3 xem b\u1EA3n ghi l\u1EDDi tho\u1EA1i c\u1EE7a video n\u00E0y v\u00E0 m\u1ED9t t\u1EA5m \u00E1p ph\u00EDch vui c\u00F3 th\u1EC3 t\u1EA3i v\u1EC1, h\u00E3y truy c\u1EADp Space Place.",
+        "StartTime": 172,
+        "EndTime": 178.4
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.8fa889894f4d40b9a20931fa1a1f5a2c",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "mass",
+        "Definition": "kh\u1ED1i l\u01B0\u1EE3ng",
+        "ExampleSentence": "All of that material left over from the explosion, many times the mass of our Sun, falls into an infinitely small point.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.937a2f1f461647dab27495c8ceb07726",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 19,
+        "Speaker": "Narrator",
+        "Text": "The answer\u2014spaghettification! That\u2019s the technical term, at least.",
+        "VietnameseMeaning": "C\u00E2u tr\u1EA3 l\u1EDDi l\u00E0 \u2013 s\u1EF1 m\u00EC \u1ED1ng h\u00F3a! \u00CDt nh\u1EA5t \u0111\u00F3 l\u00E0 thu\u1EADt ng\u1EEF chuy\u00EAn m\u00F4n.",
+        "StartTime": 116,
+        "EndTime": 122.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.9908e465fd1d4e4dade3db1aebf98562",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "All of that material left over from the explosion, many times the mass of our Sun, falls into an infinitely small point.",
+        "VietnameseMeaning": "To\u00E0n b\u1ED9 v\u1EADt ch\u1EA5t c\u00F2n l\u1EA1i sau v\u1EE5 n\u1ED5, n\u1EB7ng g\u1EA5p nhi\u1EC1u l\u1EA7n kh\u1ED1i l\u01B0\u1EE3ng M\u1EB7t Tr\u1EDDi c\u1EE7a ch\u00FAng ta, r\u01A1i v\u00E0o m\u1ED9t \u0111i\u1EC3m nh\u1ECF v\u00F4 h\u1EA1n.",
+        "StartTime": 45,
+        "EndTime": 53.2
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.a502c718b9584392a41b7ee55f08d017",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "Nothing is darker than a black hole.",
+        "VietnameseMeaning": "Kh\u00F4ng g\u00EC t\u1ED1i h\u01A1n m\u1ED9t h\u1ED1 \u0111en.",
+        "StartTime": 18.8,
+        "EndTime": 21.1
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.b29e396746924ef8ac5d73033496e6f2",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 15,
+        "Speaker": "Narrator",
+        "Text": "The gravity on the inside of the circle is so strong that nothing can escape\u2014it sucks in everything, even light.",
+        "VietnameseMeaning": "L\u1EF1c h\u1EA5p d\u1EABn b\u00EAn trong v\u00F2ng tr\u00F2n m\u1EA1nh \u0111\u1EBFn m\u1EE9c kh\u00F4ng g\u00EC tho\u00E1t ra \u0111\u01B0\u1EE3c \u2013 n\u00F3 h\u00FAt m\u1ECDi th\u1EE9, k\u1EC3 c\u1EA3 \u00E1nh s\u00E1ng.",
+        "StartTime": 89.2,
+        "EndTime": 97.7
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.c5e8d8019a384454bbf6211c8981669a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "trapped in a point smaller than the tip of a pin!",
+        "VietnameseMeaning": "b\u1ECB nh\u1ED1t trong m\u1ED9t \u0111i\u1EC3m nh\u1ECF h\u01A1n \u0111\u1EA7u m\u1ED9t chi\u1EBFc kim!",
+        "StartTime": 64.9,
+        "EndTime": 69
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.ccc46b20e9814d9fa8986c8ce3cfb60e",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "Why is a black hole black?",
+        "OptionA": "It is very cold",
+        "OptionB": "It sucks in everything, even light",
+        "OptionC": "It is made of dark rock",
+        "OptionD": "It is far from the Sun",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022That\u0027s why it\u0027s black! This circle is known as the event horizon.\u0022 \u2014 01:37"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.cea1e8ac57e54145bdf6828c7fcd04fb",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "collapse",
+        "Definition": "s\u1EE5p \u0111\u1ED5",
+        "ExampleSentence": "The energy that held the star together disappears and it collapses in on itself producing a magnificent explosion.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.d0d2babc89ea4747ab7474e8009c08bb",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Narrator",
+        "Text": "The point where all that mass is trapped is called a singularity.",
+        "VietnameseMeaning": "\u0110i\u1EC3m n\u01A1i to\u00E0n b\u1ED9 kh\u1ED1i l\u01B0\u1EE3ng \u0111\u00F3 b\u1ECB nh\u1ED1t \u0111\u01B0\u1EE3c g\u1ECDi l\u00E0 \u0111i\u1EC3m k\u1EF3 d\u1ECB.",
+        "StartTime": 74.3,
+        "EndTime": 80.1
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.d4b84a2dba77419ba1f1130863cfecfa",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 14,
+        "Speaker": "Narrator",
+        "Text": "It may be infinitely small, but its influence is enormous. Imagine a circle with a singularity in the middle.",
+        "VietnameseMeaning": "N\u00F3 c\u00F3 th\u1EC3 nh\u1ECF v\u00F4 h\u1EA1n, nh\u01B0ng \u1EA3nh h\u01B0\u1EDFng c\u1EE7a n\u00F3 r\u1EA5t l\u1EDBn. H\u00E3y t\u01B0\u1EDFng t\u01B0\u1EE3ng m\u1ED9t v\u00F2ng tr\u00F2n v\u1EDBi m\u1ED9t \u0111i\u1EC3m k\u1EF3 d\u1ECB \u1EDF gi\u1EEFa.",
+        "StartTime": 80.1,
+        "EndTime": 89.2
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.d5a96b4188264276ad838937f74e18b1",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 23,
+        "Speaker": "Narrator",
+        "Text": "Try as you may, you would be hard-pressed to find anything weirder or cooler than a black hole\u2026 Presented by NASA Space Place.",
+        "VietnameseMeaning": "D\u00F9 b\u1EA1n c\u1ED1 \u0111\u1EBFn \u0111\u00E2u, b\u1EA1n c\u0169ng kh\u00F3 t\u00ECm th\u1EA5y th\u1EE9 g\u00EC k\u1EF3 l\u1EA1 hay th\u00FA v\u1ECB h\u01A1n m\u1ED9t h\u1ED1 \u0111en\u2026 Do NASA Space Place th\u1EF1c hi\u1EC7n.",
+        "StartTime": 134.8,
+        "EndTime": 144.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.d6534b0c09db4aadb6659f4fb2044cf2",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "Some black holes trap more and more material as their mass increases.",
+        "VietnameseMeaning": "M\u1ED9t s\u1ED1 h\u1ED1 \u0111en gi\u1EEF l\u1EA1i ng\u00E0y c\u00E0ng nhi\u1EC1u v\u1EADt ch\u1EA5t khi kh\u1ED1i l\u01B0\u1EE3ng c\u1EE7a ch\u00FAng t\u0103ng l\u00EAn.",
+        "StartTime": 69,
+        "EndTime": 74.3
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.e4c0d28c9afe46cda70c039a1ce7ebc0",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "escape",
+        "Definition": "tho\u00E1t ra",
+        "ExampleSentence": "A black hole is an area of such immense gravity that nothing\u2014not even light\u2014can escape from it.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.f0143c97b0044dcab7b58b0938b331f5",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "What is a black hole?",
+        "OptionA": "A planet with no light",
+        "OptionB": "An area with such strong gravity that nothing, not even light, can escape",
+        "OptionC": "A hole in the Moon",
+        "OptionD": "A very dark cloud",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022A black hole is an area of such immense gravity that nothing\u2014not even light\u2014can escape from it.\u0022 \u2014 00:21"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    },
+    {
+      "key": "team.listening.b2.what-is-a-black-hole.f36877bd48064158a561d5a61c17350c",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "Space Place... in a Snap! What is a black hole?",
+        "VietnameseMeaning": "Space Place trong nh\u00E1y m\u1EAFt! H\u1ED1 \u0111en l\u00E0 g\u00EC?",
+        "StartTime": 0,
+        "EndTime": 6.4
+      },
+      "references": {
+        "LessonId": "team.listening.b2.what-is-a-black-hole"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b2.what-is-a-black-hole"
+}

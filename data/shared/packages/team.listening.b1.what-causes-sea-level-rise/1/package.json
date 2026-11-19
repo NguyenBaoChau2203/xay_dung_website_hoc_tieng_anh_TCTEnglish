@@ -1,0 +1,575 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b1.what-causes-sea-level-rise",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "What Causes Sea Level Rise?",
+        "Level": "B1",
+        "Topic": "Environment \u0026 Climate",
+        "YoutubeId": "QH-KYmRAzOA",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/QH-KYmRAzOA/hqdefault.jpg",
+        "Duration": "2:44",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.0107456859504d7db744c86aa1cc453d",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "How does NASA measure the global sea level?",
+        "OptionA": "With a ruler",
+        "OptionB": "From space",
+        "OptionC": "By boat only",
+        "OptionD": "By asking sailors",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022NASA measures the average sea level of the whole ocean from space. This measurement is called the global sea level.\u0022 \u2014 00:47"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.093988bf1a1942c7bf43347c932bba03",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "And NASA has been measuring the global sea level for almost three decades.",
+        "VietnameseMeaning": "C\u00F2n NASA \u0111\u00E3 \u0111o m\u1EF1c n\u01B0\u1EDBc bi\u1EC3n to\u00E0n c\u1EA7u g\u1EA7n ba th\u1EADp k\u1EF7.",
+        "StartTime": 63.8,
+        "EndTime": 69.7
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.17bea4903bf7449e9f7bdf14233c85ec",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 16,
+        "Speaker": "Narrator",
+        "Text": "Water expands as it gets warmer. So, warm water takes up more room in the ocean \u2013 making sea levels higher.",
+        "VietnameseMeaning": "N\u01B0\u1EDBc n\u1EDF ra khi \u1EA5m h\u01A1n. V\u00EC v\u1EADy n\u01B0\u1EDBc \u1EA5m chi\u1EBFm nhi\u1EC1u ch\u1ED7 h\u01A1n trong \u0111\u1EA1i d\u01B0\u01A1ng \u2013 l\u00E0m m\u1EF1c n\u01B0\u1EDBc bi\u1EC3n cao h\u01A1n.",
+        "StartTime": 108.1,
+        "EndTime": 117.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.24fb5a0086d540489594fd6c559a366e",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "But, we can measure the height of ocean water many times a day and figure out the water\u2019s average, or typical, height.",
+        "VietnameseMeaning": "Nh\u01B0ng ch\u00FAng ta c\u00F3 th\u1EC3 \u0111o \u0111\u1ED9 cao c\u1EE7a n\u01B0\u1EDBc bi\u1EC3n nhi\u1EC1u l\u1EA7n trong ng\u00E0y v\u00E0 t\u00ECm ra \u0111\u1ED9 cao trung b\u00ECnh, hay \u0111\u1ED9 cao \u0111i\u1EC3n h\u00ECnh, c\u1EE7a n\u01B0\u1EDBc.",
+        "StartTime": 22,
+        "EndTime": 32.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.27a2e0edca4f47f6ae0195a179d05c01",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 21,
+        "Speaker": "Narrator",
+        "Text": "By keeping an eye on Earth\u2019s oceans like this, we can measure how much sea level is rising and how quickly it is happening.",
+        "VietnameseMeaning": "B\u1EB1ng c\u00E1ch theo d\u00F5i c\u00E1c \u0111\u1EA1i d\u01B0\u01A1ng c\u1EE7a Tr\u00E1i \u0110\u1EA5t nh\u01B0 v\u1EADy, ch\u00FAng ta c\u00F3 th\u1EC3 \u0111o m\u1EF1c n\u01B0\u1EDBc bi\u1EC3n \u0111ang d\u00E2ng bao nhi\u00EAu v\u00E0 nhanh \u0111\u1EBFn m\u1EE9c n\u00E0o.",
+        "StartTime": 141.5,
+        "EndTime": 150.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.2b8f65b41cc3422caf04e057da66709c",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "measure",
+        "Definition": "\u0111o",
+        "ExampleSentence": "But, we can measure the height of ocean water many times a day and figure out the water\u2019s average, or typical, height.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.345b7c97ad0347d98f5917fbe2afd9aa",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "Why does warm water make sea levels higher?",
+        "OptionA": "Water expands as it gets warmer",
+        "OptionB": "Warm water is heavier",
+        "OptionC": "Warm water moves faster",
+        "OptionD": "Warm water has more salt",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Water expands as it gets warmer. So, warm water takes up more room in the ocean \u2013 making sea levels higher.\u0022 \u2014 01:48"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.4a51eb48020143db84187e7a50202009",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "People have been measuring local sea level at certain locations along the coasts for hundreds of years.",
+        "VietnameseMeaning": "Con ng\u01B0\u1EDDi \u0111\u00E3 \u0111o m\u1EF1c n\u01B0\u1EDBc bi\u1EC3n \u0111\u1ECBa ph\u01B0\u01A1ng t\u1EA1i m\u1ED9t s\u1ED1 \u0111\u1ECBa \u0111i\u1EC3m d\u1ECDc b\u1EDD bi\u1EC3n h\u00E0ng tr\u0103m n\u0103m nay.",
+        "StartTime": 56.3,
+        "EndTime": 63.8
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.4abe5f23b9fa4d32bc85ef8f92efdd95",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "glacier",
+        "Definition": "s\u00F4ng b\u0103ng",
+        "ExampleSentence": "Because Earth is getting warmer. Glaciers and ice sheets are large masses of ice that sit on land.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.552a2de9f4d040d8a447b6552c3d00e3",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "What is local sea level?",
+        "OptionA": "The average height of the ocean in one place",
+        "OptionB": "The depth of the ocean",
+        "OptionC": "The temperature of the water",
+        "OptionD": "The speed of waves",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022The average height of the ocean in a particular place is called the local sea level.\u0022 \u2014 00:32"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.5fbc89dd8b9a4282aac30d592b2ac491",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "How much higher is the ocean now than a century ago?",
+        "OptionA": "About 7 to 8 inches",
+        "OptionB": "About 7 to 8 feet",
+        "OptionC": "About 70 inches",
+        "OptionD": "It is the same",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022The ocean is about 7 to 8 inches higher now than it was a century ago. Why?\u0022 \u2014 01:15"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.745260b47dbe41669c65783b62dac4d0",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 22,
+        "Speaker": "Narrator",
+        "Text": "Find out more about our planet at NASA Climate Kids!",
+        "VietnameseMeaning": "H\u00E3y t\u00ECm hi\u1EC3u th\u00EAm v\u1EC1 h\u00E0nh tinh c\u1EE7a ch\u00FAng ta t\u1EA1i NASA Climate Kids!",
+        "StartTime": 150.3,
+        "EndTime": 153.9
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.74af47dc6088408bbcb1d9aff6820869",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "But the ocean covers most of our planet. So, it\u2019s way too big to measure with just a ruler.",
+        "VietnameseMeaning": "Nh\u01B0ng \u0111\u1EA1i d\u01B0\u01A1ng bao ph\u1EE7 ph\u1EA7n l\u1EDBn h\u00E0nh tinh c\u1EE7a ch\u00FAng ta. V\u00EC v\u1EADy n\u00F3 qu\u00E1 l\u1EDBn \u0111\u1EC3 \u0111o ch\u1EC9 b\u1EB1ng m\u1ED9t chi\u1EBFc th\u01B0\u1EDBc.",
+        "StartTime": 40.4,
+        "EndTime": 47.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.7c31bf92273944a1b2d2856f3f700cfb",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 15,
+        "Speaker": "Narrator",
+        "Text": "But that\u2019s not the only way seas are rising. As Earth warms, the ocean is warming, too.",
+        "VietnameseMeaning": "Nh\u01B0ng \u0111\u00F3 kh\u00F4ng ph\u1EA3i l\u00E0 c\u00E1ch duy nh\u1EA5t khi\u1EBFn bi\u1EC3n d\u00E2ng. Khi Tr\u00E1i \u0110\u1EA5t \u1EA5m l\u00EAn, \u0111\u1EA1i d\u01B0\u01A1ng c\u0169ng \u1EA5m l\u00EAn.",
+        "StartTime": 100.5,
+        "EndTime": 108.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.82baaf2f99264521be08fa9b879df171",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 19,
+        "Speaker": "Narrator",
+        "Text": "It takes approximately 10 days for the satellites to complete one global measurement.",
+        "VietnameseMeaning": "C\u00E1c v\u1EC7 tinh c\u1EA7n kho\u1EA3ng 10 ng\u00E0y \u0111\u1EC3 ho\u00E0n th\u00E0nh m\u1ED9t l\u1EA7n \u0111o to\u00E0n c\u1EA7u.",
+        "StartTime": 130.6,
+        "EndTime": 136
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.87e8b58b182540a6abfd6935f7626a59",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "Over this time, scientists have observed that the global sea level has been rising.",
+        "VietnameseMeaning": "Trong th\u1EDDi gian n\u00E0y, c\u00E1c nh\u00E0 khoa h\u1ECDc \u0111\u00E3 quan s\u00E1t th\u1EA5y m\u1EF1c n\u01B0\u1EDBc bi\u1EC3n to\u00E0n c\u1EA7u \u0111ang d\u00E2ng l\u00EAn.",
+        "StartTime": 69.7,
+        "EndTime": 75.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.8b2038293fca419d99688f1efaf1db09",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 14,
+        "Speaker": "Narrator",
+        "Text": "As our planet warms, this ice melts and flows into the ocean. More water in the ocean makes the sea level rise higher.",
+        "VietnameseMeaning": "Khi h\u00E0nh tinh c\u1EE7a ch\u00FAng ta \u1EA5m l\u00EAn, b\u0103ng n\u00E0y tan ch\u1EA3y v\u00E0 ch\u1EA3y ra \u0111\u1EA1i d\u01B0\u01A1ng. Nhi\u1EC1u n\u01B0\u1EDBc h\u01A1n trong \u0111\u1EA1i d\u01B0\u01A1ng l\u00E0m m\u1EF1c n\u01B0\u1EDBc bi\u1EC3n d\u00E2ng cao h\u01A1n.",
+        "StartTime": 90.9,
+        "EndTime": 100.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.936d7a71e64249ef80bd8aecc788f834",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 18,
+        "Speaker": "Narrator",
+        "Text": "NASA and its partners use the Jason satellites to measure global sea level.",
+        "VietnameseMeaning": "NASA v\u00E0 c\u00E1c \u0111\u1ED1i t\u00E1c d\u00F9ng c\u00E1c v\u1EC7 tinh Jason \u0111\u1EC3 \u0111o m\u1EF1c n\u01B0\u1EDBc bi\u1EC3n to\u00E0n c\u1EA7u.",
+        "StartTime": 124.5,
+        "EndTime": 130.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.9d9536da7bb2492ab112e6248b3c3beb",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "expand",
+        "Definition": "n\u1EDF ra, gi\u00E3n n\u1EDF",
+        "ExampleSentence": "Water expands as it gets warmer. So, warm water takes up more room in the ocean \u2013 making sea levels higher.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.9df2c384fb1941c69456eb57868c5d4d",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "melt",
+        "Definition": "tan ch\u1EA3y",
+        "ExampleSentence": "As our planet warms, this ice melts and flows into the ocean. More water in the ocean makes the sea level rise higher.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.9ec6f25dc6ca465bafe9a2f8a52c7dc8",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "Waves and tides cause the level of the water to rise and sink all day long.",
+        "VietnameseMeaning": "S\u00F3ng v\u00E0 th\u1EE7y tri\u1EC1u l\u00E0m m\u1EF1c n\u01B0\u1EDBc d\u00E2ng l\u00EAn r\u1ED3i h\u1EA1 xu\u1ED1ng c\u1EA3 ng\u00E0y.",
+        "StartTime": 16.1,
+        "EndTime": 22
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.9f86169e9b2e41a69c2574218337988c",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 17,
+        "Speaker": "Narrator",
+        "Text": "Rising sea levels can have an impact on how we live \u2013 especially in communities near the coasts.",
+        "VietnameseMeaning": "M\u1EF1c n\u01B0\u1EDBc bi\u1EC3n d\u00E2ng c\u00F3 th\u1EC3 \u1EA3nh h\u01B0\u1EDFng \u0111\u1EBFn c\u00E1ch ch\u00FAng ta s\u1ED1ng \u2013 \u0111\u1EB7c bi\u1EC7t l\u00E0 \u1EDF c\u00E1c c\u1ED9ng \u0111\u1ED3ng g\u1EA7n b\u1EDD bi\u1EC3n.",
+        "StartTime": 117.4,
+        "EndTime": 124.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.a9ec631bfff9484e86831774bd118850",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "What causes sea level rise?",
+        "VietnameseMeaning": "\u0110i\u1EC1u g\u00EC g\u00E2y ra m\u1EF1c n\u01B0\u1EDBc bi\u1EC3n d\u00E2ng?",
+        "StartTime": 0,
+        "EndTime": 2.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.aef20e4dbe814fe98e56416021856201",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "tide",
+        "Definition": "th\u1EE7y tri\u1EC1u",
+        "ExampleSentence": "Waves and tides cause the level of the water to rise and sink all day long.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.b0bff6dc8669434faeb62ddfe01795a3",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "average",
+        "Definition": "trung b\u00ECnh",
+        "ExampleSentence": "But, we can measure the height of ocean water many times a day and figure out the water\u2019s average, or typical, height.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.b5504b2604c94e1ab5c955b3ba6ee3e5",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "decade",
+        "Definition": "th\u1EADp k\u1EF7",
+        "ExampleSentence": "And NASA has been measuring the global sea level for almost three decades.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.b761df74cd3c45d8911f8870c34e5654",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 20,
+        "Speaker": "Narrator",
+        "Text": "And after they finish one measurement, they start measuring all over again.",
+        "VietnameseMeaning": "V\u00E0 sau khi ho\u00E0n th\u00E0nh m\u1ED9t l\u1EA7n \u0111o, ch\u00FAng b\u1EAFt \u0111\u1EA7u \u0111o l\u1EA1i t\u1EEB \u0111\u1EA7u.",
+        "StartTime": 136,
+        "EndTime": 141.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.c5ed223766e54282800e52011d989eb2",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "Of course ocean water doesn\u2019t stay at the same level all the time.",
+        "VietnameseMeaning": "D\u0129 nhi\u00EAn n\u01B0\u1EDBc bi\u1EC3n kh\u00F4ng gi\u1EEF nguy\u00EAn m\u1ED9t m\u1EF1c n\u01B0\u1EDBc su\u1ED1t c\u1EA3 ng\u00E0y.",
+        "StartTime": 11.2,
+        "EndTime": 16.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.c796c178b3be4bc88ef85b8a03a5a4ba",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "coast",
+        "Definition": "b\u1EDD bi\u1EC3n",
+        "ExampleSentence": "People have been measuring local sea level at certain locations along the coasts for hundreds of years.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.dc7e8db632c74709adbeeca8c3aa63ac",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "What makes ocean water rise and sink during the day?",
+        "OptionA": "Waves and tides",
+        "OptionB": "Wind only",
+        "OptionC": "Fish",
+        "OptionD": "The Moon is not involved",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Waves and tides cause the level of the water to rise and sink all day long.\u0022 \u2014 00:16"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.e10ace1cca7244beb1e2afe0d89acc90",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "How long does one global measurement take the Jason satellites?",
+        "OptionA": "About 10 days",
+        "OptionB": "About 10 minutes",
+        "OptionC": "About 10 months",
+        "OptionD": "One hour",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022It takes approximately 10 days for the satellites to complete one global measurement.\u0022 \u2014 02:10"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.e16a0dbbcee547e38a5444758100c62d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "The ocean is about 7 to 8 inches higher now than it was a century ago. Why?",
+        "VietnameseMeaning": "\u0110\u1EA1i d\u01B0\u01A1ng hi\u1EC7n cao h\u01A1n kho\u1EA3ng 7 \u0111\u1EBFn 8 inch so v\u1EDBi m\u1ED9t th\u1EBF k\u1EF7 tr\u01B0\u1EDBc. V\u00EC sao?",
+        "StartTime": 75.5,
+        "EndTime": 82.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.f0da0521765b4f49bd9c3a5c08f8daf3",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Narrator",
+        "Text": "Because Earth is getting warmer. Glaciers and ice sheets are large masses of ice that sit on land.",
+        "VietnameseMeaning": "V\u00EC Tr\u00E1i \u0110\u1EA5t \u0111ang \u1EA5m l\u00EAn. S\u00F4ng b\u0103ng v\u00E0 c\u00E1c l\u1EDBp b\u0103ng ph\u1EE7 l\u00E0 nh\u1EEFng kh\u1ED1i b\u0103ng l\u1EDBn n\u1EB1m tr\u00EAn \u0111\u1EA5t li\u1EC1n.",
+        "StartTime": 82.6,
+        "EndTime": 90.9
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.f21e6c3419a74111a18681598c2043b2",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "The average height of the ocean in a particular place is called the local sea level.",
+        "VietnameseMeaning": "\u0110\u1ED9 cao trung b\u00ECnh c\u1EE7a bi\u1EC3n \u1EDF m\u1ED9t n\u01A1i nh\u1EA5t \u0111\u1ECBnh \u0111\u01B0\u1EE3c g\u1ECDi l\u00E0 m\u1EF1c n\u01B0\u1EDBc bi\u1EC3n \u0111\u1ECBa ph\u01B0\u01A1ng.",
+        "StartTime": 32.4,
+        "EndTime": 40.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.f66cd585528945b9b679100e10f42275",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "If you\u2019ve been to a beach before, you\u2019ve probably noticed a sort of line where the ocean water meets the land.",
+        "VietnameseMeaning": "N\u1EBFu b\u1EA1n t\u1EEBng \u0111\u1EBFn b\u00E3i bi\u1EC3n, c\u00F3 l\u1EBD b\u1EA1n \u0111\u00E3 \u0111\u1EC3 \u00FD th\u1EA5y m\u1ED9t \u0111\u01B0\u1EDDng n\u01A1i n\u01B0\u1EDBc bi\u1EC3n g\u1EB7p \u0111\u1EA5t li\u1EC1n.",
+        "StartTime": 2.2,
+        "EndTime": 11.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-causes-sea-level-rise.f806338d7eb346068b4312867d25a178",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "NASA measures the average sea level of the whole ocean from space. This measurement is called the global sea level.",
+        "VietnameseMeaning": "NASA \u0111o m\u1EF1c n\u01B0\u1EDBc bi\u1EC3n trung b\u00ECnh c\u1EE7a to\u00E0n b\u1ED9 \u0111\u1EA1i d\u01B0\u01A1ng t\u1EEB kh\u00F4ng gian. Ph\u00E9p \u0111o n\u00E0y \u0111\u01B0\u1EE3c g\u1ECDi l\u00E0 m\u1EF1c n\u01B0\u1EDBc bi\u1EC3n to\u00E0n c\u1EA7u.",
+        "StartTime": 47.4,
+        "EndTime": 56.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-causes-sea-level-rise"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b1.what-causes-sea-level-rise"
+}

@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Exoplanets: Searching for Other Planets Like Ours",
+        "Level": "B2",
+        "Topic": "Exoplanets \u0026 Life",
+        "YoutubeId": "UDCyLAAqD9s",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/UDCyLAAqD9s/hqdefault.jpg",
+        "Duration": "1:57",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.1752dfd0fd57436e8ad3a21e0dff882b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Narrator",
+        "Text": "The planet blocks a small amount of light from the star. We can see a very small change in the star\u0027s brightness.",
+        "VietnameseMeaning": "H\u00E0nh tinh ch\u1EAFn m\u1ED9t l\u01B0\u1EE3ng nh\u1ECF \u00E1nh s\u00E1ng t\u1EEB ng\u00F4i sao. Ch\u00FAng ta c\u00F3 th\u1EC3 th\u1EA5y m\u1ED9t thay \u0111\u1ED5i r\u1EA5t nh\u1ECF v\u1EC1 \u0111\u1ED9 s\u00E1ng c\u1EE7a ng\u00F4i sao.",
+        "StartTime": 80.5,
+        "EndTime": 88.8
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.1d60aed01e864509934ef952bd71161a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "When a planet crosses in front of a star it\u0027s called a transit.",
+        "VietnameseMeaning": "Khi m\u1ED9t h\u00E0nh tinh \u0111i qua ph\u00EDa tr\u01B0\u1EDBc m\u1ED9t ng\u00F4i sao, hi\u1EC7n t\u01B0\u1EE3ng \u0111\u00F3 g\u1ECDi l\u00E0 s\u1EF1 \u0111i ngang.",
+        "StartTime": 76.8,
+        "EndTime": 80.5
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.341e70c5140b4bce9445c5e336b5a90c",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "transit",
+        "Definition": "s\u1EF1 \u0111i ngang qua (c\u1EE7a h\u00E0nh tinh tr\u01B0\u1EDBc ng\u00F4i sao)",
+        "ExampleSentence": "When a planet crosses in front of a star it\u0027s called a transit.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.3513a9b7f81943d3a8b1f257039e0716",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "What are exoplanets?",
+        "OptionA": "Planets outside our solar system",
+        "OptionB": "Moons of Mars",
+        "OptionC": "Comets",
+        "OptionD": "Stars",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Do planets outside our solar system called exoplanets also have living things? We don\u0027t know, but NASA scientists are looking.\u0022 \u2014 00:15"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.36583302cac84be9947f19e14ed087aa",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "microscope",
+        "Definition": "k\u00EDnh hi\u1EC3n vi",
+        "ExampleSentence": "and they might be so small they could only be seen with a microscope.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.388631a1320e4195a04ec0bf6cc98ec3",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "exoplanet",
+        "Definition": "ngo\u1EA1i h\u00E0nh tinh",
+        "ExampleSentence": "Do planets outside our solar system called exoplanets also have living things? We don\u0027t know, but NASA scientists are looking.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.44c97dd71b41425a9150d442d8c2106b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "So how do we find planets that could be homes for living things? We look at stars.",
+        "VietnameseMeaning": "V\u1EADy l\u00E0m sao t\u00ECm \u0111\u01B0\u1EE3c nh\u1EEFng h\u00E0nh tinh c\u00F3 th\u1EC3 l\u00E0 nh\u00E0 c\u1EE7a sinh v\u1EADt s\u1ED1ng? Ch\u00FAng ta nh\u00ECn v\u00E0o c\u00E1c ng\u00F4i sao.",
+        "StartTime": 66.3,
+        "EndTime": 73
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.5c7b0f9f2190475e931d33ee0eca900f",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "What is the habitable zone?",
+        "OptionA": "The distance from a star where a planet could have liquid water",
+        "OptionB": "The inside of the Sun",
+        "OptionC": "A kind of telescope",
+        "OptionD": "A planet\u0027s atmosphere",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Ones that are about the same size that are just the right distance from their star. We call this distance the habitable zone.\u0022 \u2014 00:34"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.5e1e08ddb28c4e95836274a640a6e760",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "We don\u0027t know what living things on other planets would look like,",
+        "VietnameseMeaning": "Ch\u00FAng ta kh\u00F4ng bi\u1EBFt sinh v\u1EADt s\u1ED1ng tr\u00EAn c\u00E1c h\u00E0nh tinh kh\u00E1c tr\u00F4ng nh\u01B0 th\u1EBF n\u00E0o,",
+        "StartTime": 56,
+        "EndTime": 60.8
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.661471e7fdf3472c84f53e50fb48dad4",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "Searching for other planets like ours Earth is the only planet we know of that has living things on it, but could there be others?",
+        "VietnameseMeaning": "T\u00ECm ki\u1EBFm nh\u1EEFng h\u00E0nh tinh gi\u1ED1ng h\u00E0nh tinh c\u1EE7a ch\u00FAng ta. Tr\u00E1i \u0110\u1EA5t l\u00E0 h\u00E0nh tinh duy nh\u1EA5t ch\u00FAng ta bi\u1EBFt c\u00F3 sinh v\u1EADt s\u1ED1ng, nh\u01B0ng li\u1EC7u c\u00F3 nh\u1EEFng h\u00E0nh tinh kh\u00E1c kh\u00F4ng?",
+        "StartTime": 4.9,
+        "EndTime": 15.2
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.66c2e27af040447997eb4111aa3da99f",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "Why is water important?",
+        "OptionA": "It is necessary for life on Earth",
+        "OptionB": "It makes planets heavier",
+        "OptionC": "It creates stars",
+        "OptionD": "It stops comets",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Water is necessary for life here on Earth, and it is probably necessary for life on other planets too.\u0022 \u2014 00:49"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.66f750c9ce6c41a5a1238800868cc70b",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "mission",
+        "Definition": "s\u1EE9 m\u1EC7nh",
+        "ExampleSentence": "Future missions will be searching too, and who knows maybe one of those exoplanets could be a home for living things!",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.688f2eaf2d2e48f7971d970845c88ab3",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "liquid",
+        "Definition": "th\u1EC3 l\u1ECFng",
+        "ExampleSentence": "It\u0027s where the temperature of the planet would be similar to Earth. A planet about this temperature could have liquid water on its surface.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.6cde898d4abc48338fb92a357bad8f21",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "habitable zone",
+        "Definition": "v\u00F9ng c\u00F3 th\u1EC3 s\u1ED1ng \u0111\u01B0\u1EE3c",
+        "ExampleSentence": "Ones that are about the same size that are just the right distance from their star. We call this distance the habitable zone.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.86018e5a39324d3283bd9b812c4f2ec4",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 14,
+        "Speaker": "Narrator",
+        "Text": "This is how we can tell there could be a planet there. A NASA spacecraft called Kepler has found thousands of exoplanets this way.",
+        "VietnameseMeaning": "\u0110\u00F3 l\u00E0 c\u00E1ch ch\u00FAng ta bi\u1EBFt c\u00F3 th\u1EC3 c\u00F3 m\u1ED9t h\u00E0nh tinh \u1EDF \u0111\u00F3. T\u00E0u v\u0169 tr\u1EE5 Kepler c\u1EE7a NASA \u0111\u00E3 t\u00ECm th\u1EA5y h\u00E0ng ngh\u00ECn ngo\u1EA1i h\u00E0nh tinh theo c\u00E1ch n\u00E0y.",
+        "StartTime": 88.8,
+        "EndTime": 98.3
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.922b4edec32b43769977ea59d05a1229",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "Water is necessary for life here on Earth, and it is probably necessary for life on other planets too.",
+        "VietnameseMeaning": "N\u01B0\u1EDBc l\u00E0 c\u1EA7n thi\u1EBFt cho s\u1EF1 s\u1ED1ng \u1EDF Tr\u00E1i \u0110\u1EA5t, v\u00E0 c\u00F3 l\u1EBD c\u0169ng c\u1EA7n thi\u1EBFt cho s\u1EF1 s\u1ED1ng tr\u00EAn c\u00E1c h\u00E0nh tinh kh\u00E1c.",
+        "StartTime": 49.6,
+        "EndTime": 56
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.9a7a5df20cd045e5a65a25a4d7b7bfeb",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "What do scientists see during a transit?",
+        "OptionA": "A small change in the star\u0027s brightness",
+        "OptionB": "A big explosion",
+        "OptionC": "A new color on Earth",
+        "OptionD": "A radio signal",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022The planet blocks a small amount of light from the star. We can see a very small change in the star\u0027s brightness.\u0022 \u2014 01:20"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.a0467a16d93d4bca93bf99fa4a0017be",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "Ones that are about the same size that are just the right distance from their star. We call this distance the habitable zone.",
+        "VietnameseMeaning": "Nh\u1EEFng h\u00E0nh tinh c\u00F3 k\u00EDch th\u01B0\u1EDBc t\u01B0\u01A1ng \u0111\u01B0\u01A1ng v\u00E0 \u1EDF \u0111\u00FAng kho\u1EA3ng c\u00E1ch v\u1EEBa ph\u1EA3i so v\u1EDBi ng\u00F4i sao c\u1EE7a ch\u00FAng. Ch\u00FAng ta g\u1ECDi kho\u1EA3ng c\u00E1ch n\u00E0y l\u00E0 v\u00F9ng c\u00F3 th\u1EC3 s\u1ED1ng \u0111\u01B0\u1EE3c.",
+        "StartTime": 34.3,
+        "EndTime": 41.5
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.ab8dd839be4e4c9cb6f817dd973018e9",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "We watch other stars closely to see planets pass in front of them.",
+        "VietnameseMeaning": "Ch\u00FAng ta theo d\u00F5i c\u00E1c ng\u00F4i sao kh\u00E1c th\u1EADt k\u1EF9 \u0111\u1EC3 th\u1EA5y c\u00E1c h\u00E0nh tinh \u0111i ngang qua ph\u00EDa tr\u01B0\u1EDBc ch\u00FAng.",
+        "StartTime": 73,
+        "EndTime": 76.8
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.af6538d30b01447eac575c91a30fc16d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 15,
+        "Speaker": "Narrator",
+        "Text": "Future missions will be searching too, and who knows maybe one of those exoplanets could be a home for living things!",
+        "VietnameseMeaning": "C\u00E1c s\u1EE9 m\u1EC7nh t\u01B0\u01A1ng lai c\u0169ng s\u1EBD t\u00ECm ki\u1EBFm, v\u00E0 bi\u1EBFt \u0111\u00E2u m\u1ED9t trong nh\u1EEFng ngo\u1EA1i h\u00E0nh tinh \u0111\u00F3 c\u00F3 th\u1EC3 l\u00E0 nh\u00E0 c\u1EE7a sinh v\u1EADt s\u1ED1ng!",
+        "StartTime": 98.3,
+        "EndTime": 106.7
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.b55b2fcbd3ef43c7b271d85c8f194ee7",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "and they might be so small they could only be seen with a microscope.",
+        "VietnameseMeaning": "v\u00E0 ch\u00FAng c\u00F3 th\u1EC3 nh\u1ECF \u0111\u1EBFn m\u1EE9c ch\u1EC9 nh\u00ECn th\u1EA5y \u0111\u01B0\u1EE3c b\u1EB1ng k\u00EDnh hi\u1EC3n vi.",
+        "StartTime": 60.8,
+        "EndTime": 66.3
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.b92d68f906a140f8b1a5ad3cb4bcead4",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 16,
+        "Speaker": "Narrator",
+        "Text": "Find out more about other stars and exoplanets at NASA Space Place.",
+        "VietnameseMeaning": "H\u00E3y t\u00ECm hi\u1EC3u th\u00EAm v\u1EC1 c\u00E1c ng\u00F4i sao kh\u00E1c v\u00E0 c\u00E1c ngo\u1EA1i h\u00E0nh tinh t\u1EA1i NASA Space Place.",
+        "StartTime": 106.7,
+        "EndTime": 116.8
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.c170db1a1aa1437b8675b7a378da17ff",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "What is a transit?",
+        "OptionA": "A planet crossing in front of a star",
+        "OptionB": "A rocket launch",
+        "OptionC": "A moon orbiting a planet",
+        "OptionD": "A star exploding",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022When a planet crosses in front of a star it\u0027s called a transit.\u0022 \u2014 01:16"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.d6cde2744eb54d7ebecdecbffe2a76b1",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "brightness",
+        "Definition": "\u0111\u1ED9 s\u00E1ng",
+        "ExampleSentence": "The planet blocks a small amount of light from the star. We can see a very small change in the star\u0027s brightness.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.e0daa5766187499ca2d46d7b565af25c",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "necessary",
+        "Definition": "c\u1EA7n thi\u1EBFt",
+        "ExampleSentence": "Water is necessary for life here on Earth, and it is probably necessary for life on other planets too.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.e3f3374d0880479e913bd2e876e38689",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "Do planets outside our solar system called exoplanets also have living things? We don\u0027t know, but NASA scientists are looking.",
+        "VietnameseMeaning": "Nh\u1EEFng h\u00E0nh tinh b\u00EAn ngo\u00E0i h\u1EC7 M\u1EB7t Tr\u1EDDi c\u1EE7a ch\u00FAng ta, g\u1ECDi l\u00E0 ngo\u1EA1i h\u00E0nh tinh, c\u00F3 sinh v\u1EADt s\u1ED1ng kh\u00F4ng? Ch\u00FAng ta kh\u00F4ng bi\u1EBFt, nh\u01B0ng c\u00E1c nh\u00E0 khoa h\u1ECDc c\u1EE7a NASA \u0111ang t\u00ECm ki\u1EBFm.",
+        "StartTime": 15.2,
+        "EndTime": 31.1
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.f15670f515d34f268f9033b6ab4ce60f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "Space Place in a Snap!",
+        "VietnameseMeaning": "Space Place trong nh\u00E1y m\u1EAFt!",
+        "StartTime": 0,
+        "EndTime": 4.9
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.f7b421739ea644dba43f2124d180882c",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "Which spacecraft found thousands of exoplanets?",
+        "OptionA": "Kepler",
+        "OptionB": "Voyager",
+        "OptionC": "Apollo",
+        "OptionD": "Cassini",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022This is how we can tell there could be a planet there. A NASA spacecraft called Kepler has found thousands of exoplanets this way.\u0022 \u2014 01:28"
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.f994ca2cd8814eba8dfe4e96cb18e65b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "They watch the starry skies for planets similar to Earth.",
+        "VietnameseMeaning": "H\u1ECD quan s\u00E1t b\u1EA7u tr\u1EDDi \u0111\u1EA7y sao \u0111\u1EC3 t\u00ECm c\u00E1c h\u00E0nh tinh gi\u1ED1ng Tr\u00E1i \u0110\u1EA5t.",
+        "StartTime": 31.1,
+        "EndTime": 34.3
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    },
+    {
+      "key": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours.fd390f04e85341a183d2349f89b4b63a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "It\u0027s where the temperature of the planet would be similar to Earth. A planet about this temperature could have liquid water on its surface.",
+        "VietnameseMeaning": "\u0110\u00F3 l\u00E0 n\u01A1i nhi\u1EC7t \u0111\u1ED9 c\u1EE7a h\u00E0nh tinh s\u1EBD gi\u1ED1ng Tr\u00E1i \u0110\u1EA5t. M\u1ED9t h\u00E0nh tinh c\u00F3 nhi\u1EC7t \u0111\u1ED9 c\u1EE1 n\u00E0y c\u00F3 th\u1EC3 c\u00F3 n\u01B0\u1EDBc l\u1ECFng tr\u00EAn b\u1EC1 m\u1EB7t.",
+        "StartTime": 41.5,
+        "EndTime": 49.6
+      },
+      "references": {
+        "LessonId": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b2.exoplanets-searching-for-other-planets-like-ours"
+}

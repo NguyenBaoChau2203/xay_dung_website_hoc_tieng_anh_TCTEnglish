@@ -9,7 +9,7 @@
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet('ValidateVocab','DryRunVocab','ImportVocab','StageCaptions')][string]$Action = 'DryRunVocab',
+    [ValidateSet('ValidateVocab','DryRunVocab','ImportVocab','DryRunListening','ImportListening','StageCaptions')][string]$Action = 'DryRunVocab',
     [string]$Only,
     [string]$Ids,
     [switch]$SkipBuild

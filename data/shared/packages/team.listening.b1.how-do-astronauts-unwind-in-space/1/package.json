@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b1.how-do-astronauts-unwind-in-space",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "How Do Astronauts Unwind in Space?",
+        "Level": "B1",
+        "Topic": "Health \u0026 Wellbeing",
+        "YoutubeId": "XQav2pNJ3AA",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/XQav2pNJ3AA/hqdefault.jpg",
+        "Duration": "1:40",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.02d527633b3b49439969c1d397fbaf4e",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "vantage point",
+        "Definition": "g\u00F3c nh\u00ECn, v\u1ECB tr\u00ED quan s\u00E1t",
+        "ExampleSentence": "There, they can refine their photography skills and reconnect with home as they peer at it from a unique vantage point.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.0c05c62adb0e4dc18bc524e4ec55f84f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "But exercising also helps maintain mental relaxation and well-being. And sometimes it\u0027s really just fun.",
+        "VietnameseMeaning": "Nh\u01B0ng t\u1EADp luy\u1EC7n c\u0169ng gi\u00FAp gi\u1EEF cho tinh th\u1EA7n th\u01B0 gi\u00E3n v\u00E0 kh\u1ECFe m\u1EA1nh. V\u00E0 \u0111\u00F4i khi n\u00F3 th\u1EADt s\u1EF1 ch\u1EC9 l\u00E0 ni\u1EC1m vui.",
+        "StartTime": 50,
+        "EndTime": 56.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.1304bc9c03bb42499aef26b45e2b6bb4",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "What\u0027s important is preserving their mental health and finding outlets to relax and de-stress.",
+        "VietnameseMeaning": "\u0110i\u1EC1u quan tr\u1ECDng l\u00E0 gi\u1EEF g\u00ECn s\u1EE9c kh\u1ECFe tinh th\u1EA7n v\u00E0 t\u00ECm nh\u1EEFng c\u00E1ch gi\u1EA3i t\u1ECFa \u0111\u1EC3 th\u01B0 gi\u00E3n v\u00E0 b\u1EDBt c\u0103ng th\u1EB3ng.",
+        "StartTime": 15.6,
+        "EndTime": 20.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.18aa3209b63c428596ab83b3ef3501c3",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "especially in the station\u0027s cupola.",
+        "VietnameseMeaning": "\u0111\u1EB7c bi\u1EC7t l\u00E0 trong khoang quan s\u00E1t c\u1EE7a tr\u1EA1m.",
+        "StartTime": 35.3,
+        "EndTime": 37
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.1908fb03db2745cba36d7fefabfba706",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 15,
+        "Speaker": "Narrator",
+        "Text": "But astronauts are experts at adapting and may find new outlets.",
+        "VietnameseMeaning": "Nh\u01B0ng phi h\u00E0nh gia l\u00E0 nh\u1EEFng chuy\u00EAn gia th\u00EDch nghi v\u00E0 c\u00F3 th\u1EC3 t\u00ECm ra nh\u1EEFng c\u00E1ch gi\u1EA3i t\u1ECFa m\u1EDBi.",
+        "StartTime": 78.1,
+        "EndTime": 81.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.1a220b06c2824582b31ea815f8d132d4",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "How long are the astronauts\u0027 workdays?",
+        "OptionA": "4 to 6 hours",
+        "OptionB": "8 hours",
+        "OptionC": "12 to 14 hours",
+        "OptionD": "20 hours",
+        "CorrectAnswer": "C",
+        "Explanation": "\u0022Aboard the International Space Station, astronauts take the idea of working from home to a new level. Their workdays typically span 12 to 14 hours.\u0022 \u2014 00:03"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.216f3e4969d64ca5a149b5d00fe0c7c0",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "mental health",
+        "Definition": "s\u1EE9c kh\u1ECFe tinh th\u1EA7n",
+        "ExampleSentence": "What\u0027s important is preserving their mental health and finding outlets to relax and de-stress.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.2c3383635c1448aaa80a4298c9aa78e1",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "confined",
+        "Definition": "b\u1ECB gi\u1EDBi h\u1EA1n trong kh\u00F4ng gian h\u1EB9p",
+        "ExampleSentence": "But when we go to the Moon and Mars, astronauts will face longer periods of time in deep space and be confined to smaller spacecraft,",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.2e67fe7c38c647afbbf027ec2d57a036",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "What is important for astronauts in their free time?",
+        "OptionA": "Preserving mental health and relaxing",
+        "OptionB": "Learning new languages",
+        "OptionC": "Cleaning the station",
+        "OptionD": "Writing reports",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022What\u0027s important is preserving their mental health and finding outlets to relax and de-stress.\u0022 \u2014 00:15"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.5172956ec7af48c4bd358f232ad390e7",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "fitness",
+        "Definition": "th\u1EC3 l\u1EF1c, vi\u1EC7c t\u1EADp th\u1EC3 d\u1EE5c",
+        "ExampleSentence": "Fitness is another staple. Crews workout for about two hours each day to maintain bone and muscle density and heart health.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.5d9c549f7c11487aa6c20e8effde4395",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "Where do many astronauts take photos of Earth?",
+        "OptionA": "In the cupola",
+        "OptionB": "In the kitchen",
+        "OptionC": "In the bathroom",
+        "OptionD": "Outside the station",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022And speaking of Earth, snapping photos of our planetary wonders or the cosmos has become a popular hobby for many astronauts,\u0022 \u2014 00:28"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.632dcc6d33fb44ffb9c73e4ce8729dc2",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "And speaking of Earth, snapping photos of our planetary wonders or the cosmos has become a popular hobby for many astronauts,",
+        "VietnameseMeaning": "V\u00E0 n\u00F3i \u0111\u1EBFn Tr\u00E1i \u0110\u1EA5t, ch\u1EE5p \u1EA3nh nh\u1EEFng k\u1EF3 quan c\u1EE7a h\u00E0nh tinh ch\u00FAng ta hay c\u1EE7a v\u0169 tr\u1EE5 \u0111\u00E3 tr\u1EDF th\u00E0nh s\u1EDF th\u00EDch ph\u1ED5 bi\u1EBFn c\u1EE7a nhi\u1EC1u phi h\u00E0nh gia,",
+        "StartTime": 28.3,
+        "EndTime": 35.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.651794fe60c54fd5a3c8100482ab4b05",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "unwind",
+        "Definition": "th\u01B0 gi\u00E3n, x\u1EA3 h\u01A1i",
+        "ExampleSentence": "What hobbies help astronauts unwind in space?",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.7cd287f664584120ae9c3f3c720bf8a1",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 16,
+        "Speaker": "Narrator",
+        "Text": "Who knows, maybe harmonicas and other pocket-sized hobbies will become new favorites.",
+        "VietnameseMeaning": "Bi\u1EBFt \u0111\u00E2u, nh\u1EEFng c\u00E2y k\u00E8n harmonica v\u00E0 c\u00E1c s\u1EDF th\u00EDch nh\u1ECF g\u1ECDn b\u1ECF t\u00FAi kh\u00E1c s\u1EBD tr\u1EDF th\u00E0nh m\u00F3n y\u00EAu th\u00EDch m\u1EDBi.",
+        "StartTime": 81.2,
+        "EndTime": 85.9
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.8dada0ffbad3468186442a9e58b7db05",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "There, they can refine their photography skills and reconnect with home as they peer at it from a unique vantage point.",
+        "VietnameseMeaning": "\u1EDE \u0111\u00F3, h\u1ECD c\u00F3 th\u1EC3 trau d\u1ED3i k\u1EF9 n\u0103ng ch\u1EE5p \u1EA3nh v\u00E0 k\u1EBFt n\u1ED1i l\u1EA1i v\u1EDBi qu\u00EA nh\u00E0 khi nh\u00ECn xu\u1ED1ng t\u1EEB m\u1ED9t g\u00F3c nh\u00ECn \u0111\u1ED9c \u0111\u00E1o.",
+        "StartTime": 37,
+        "EndTime": 43
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.8de1997ec9604efe8688c4214491a7e6",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "outlet",
+        "Definition": "c\u00E1ch gi\u1EA3i t\u1ECFa, l\u1ED1i tho\u00E1t",
+        "ExampleSentence": "What\u0027s important is preserving their mental health and finding outlets to relax and de-stress.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.8e5f7b6a9f04414990ab169794bcbf22",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "Aboard the International Space Station, astronauts take the idea of working from home to a new level. Their workdays typically span 12 to 14 hours.",
+        "VietnameseMeaning": "Tr\u00EAn Tr\u1EA1m V\u0169 tr\u1EE5 Qu\u1ED1c t\u1EBF, c\u00E1c phi h\u00E0nh gia \u0111\u01B0a \u00FD t\u01B0\u1EDFng l\u00E0m vi\u1EC7c t\u1EA1i nh\u00E0 l\u00EAn m\u1ED9t t\u1EA7m cao m\u1EDBi. Ng\u00E0y l\u00E0m vi\u1EC7c c\u1EE7a h\u1ECD th\u01B0\u1EDDng k\u00E9o d\u00E0i t\u1EEB 12 \u0111\u1EBFn 14 gi\u1EDD.",
+        "StartTime": 3.8,
+        "EndTime": 12.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.97c07de6308e4690847a8c6dd27af1c6",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "What hobbies help astronauts unwind in space?",
+        "VietnameseMeaning": "Nh\u1EEFng s\u1EDF th\u00EDch n\u00E0o gi\u00FAp phi h\u00E0nh gia th\u01B0 gi\u00E3n trong kh\u00F4ng gian?",
+        "StartTime": 0,
+        "EndTime": 3.8
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.9db97d2ed55047c888df8e1fbaf9765b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "Fitness is another staple. Crews workout for about two hours each day to maintain bone and muscle density and heart health.",
+        "VietnameseMeaning": "Th\u1EC3 d\u1EE5c l\u00E0 m\u1ED9t ho\u1EA1t \u0111\u1ED9ng thi\u1EBFt y\u1EBFu kh\u00E1c. Phi h\u00E0nh \u0111o\u00E0n t\u1EADp kho\u1EA3ng hai gi\u1EDD m\u1ED7i ng\u00E0y \u0111\u1EC3 duy tr\u00EC m\u1EADt \u0111\u1ED9 x\u01B0\u01A1ng v\u00E0 c\u01A1 c\u0169ng nh\u01B0 s\u1EE9c kh\u1ECFe tim m\u1EA1ch.",
+        "StartTime": 43,
+        "EndTime": 49.9
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.a67b73ed51d94c93bf6fdbf63bf69e04",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "What may become a new favorite hobby?",
+        "OptionA": "Pocket-sized hobbies like the harmonica",
+        "OptionB": "Large board games",
+        "OptionC": "Gardening outside",
+        "OptionD": "Painting walls",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Who knows, maybe harmonicas and other pocket-sized hobbies will become new favorites.\u0022 \u2014 01:21"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.ae89364821724a0faeb7a69014873b9a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "Some astronauts bring their musical talents to orbit, serenading colleagues and seeking harmony some 250 miles above Earth.",
+        "VietnameseMeaning": "M\u1ED9t s\u1ED1 phi h\u00E0nh gia mang t\u00E0i n\u0103ng \u00E2m nh\u1EA1c l\u00EAn qu\u1EF9 \u0111\u1EA1o, ch\u01A1i nh\u1EA1c cho \u0111\u1ED3ng nghi\u1EC7p nghe v\u00E0 t\u00ECm s\u1EF1 h\u00F2a \u0111i\u1EC7u c\u00E1ch Tr\u00E1i \u0110\u1EA5t kho\u1EA3ng 250 d\u1EB7m.",
+        "StartTime": 20.4,
+        "EndTime": 28.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.af0f8d23bac3420ca400e1b6663a908d",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "Which sport did crews try in microgravity?",
+        "OptionA": "Football and golf",
+        "OptionB": "Swimming",
+        "OptionC": "Rugby and ping pong",
+        "OptionD": "Skiing",
+        "CorrectAnswer": "C",
+        "Explanation": "\u0022In microgravity, crews have tossed around a rugby ball, attempted ping pong, and even channeled their inner Olympians.\u0022 \u2014 01:00"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.b8018d64d8b645d392c980139d745395",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Narrator",
+        "Text": "But when we go to the Moon and Mars, astronauts will face longer periods of time in deep space and be confined to smaller spacecraft,",
+        "VietnameseMeaning": "Nh\u01B0ng khi ch\u00FAng ta l\u00EAn M\u1EB7t Tr\u0103ng v\u00E0 Sao H\u1ECFa, phi h\u00E0nh gia s\u1EBD \u1EDF trong kh\u00F4ng gian s\u00E2u l\u00E2u h\u01A1n v\u00E0 b\u1ECB gi\u1EDBi h\u1EA1n trong nh\u1EEFng t\u00E0u v\u0169 tr\u1EE5 nh\u1ECF h\u01A1n,",
+        "StartTime": 68,
+        "EndTime": 75.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.bddbc090acb146f9a2f7fc2e12131f5b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 14,
+        "Speaker": "Narrator",
+        "Text": "making mental health care an even greater priority.",
+        "VietnameseMeaning": "khi\u1EBFn vi\u1EC7c ch\u0103m s\u00F3c s\u1EE9c kh\u1ECFe tinh th\u1EA7n c\u00E0ng tr\u1EDF n\u00EAn \u01B0u ti\u00EAn.",
+        "StartTime": 75.6,
+        "EndTime": 78.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.c341666441b641fe90aa1512bfde716d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "Just like on Earth, sports can foster a sense of community and break up the workday.",
+        "VietnameseMeaning": "Gi\u1ED1ng nh\u01B0 tr\u00EAn Tr\u00E1i \u0110\u1EA5t, th\u1EC3 thao c\u00F3 th\u1EC3 t\u1EA1o c\u1EA3m gi\u00E1c g\u1EAFn k\u1EBFt c\u1ED9ng \u0111\u1ED3ng v\u00E0 l\u00E0m ng\u00E0y l\u00E0m vi\u1EC7c b\u1EDBt \u0111\u01A1n \u0111i\u1EC7u.",
+        "StartTime": 56.3,
+        "EndTime": 60.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.de7a8a781d3e4f8ea1b26d3636ea10f3",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "How much time do crews exercise each day?",
+        "OptionA": "About 30 minutes",
+        "OptionB": "About two hours",
+        "OptionC": "About six hours",
+        "OptionD": "They do not exercise",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022Fitness is another staple. Crews workout for about two hours each day to maintain bone and muscle density and heart health.\u0022 \u2014 00:43"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.e0caa5b5cb1849e58bec75027190e754",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "microgravity",
+        "Definition": "vi tr\u1ECDng l\u1EF1c",
+        "ExampleSentence": "In microgravity, crews have tossed around a rugby ball, attempted ping pong, and even channeled their inner Olympians.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.f19c9f852f9a4d2da3dec4da627f255b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "But how they spend their scheduled free time is up to them.",
+        "VietnameseMeaning": "Nh\u01B0ng h\u1ECD d\u00F9ng th\u1EDDi gian r\u1EA3nh theo l\u1ECBch nh\u01B0 th\u1EBF n\u00E0o l\u00E0 do h\u1ECD quy\u1EBFt \u0111\u1ECBnh.",
+        "StartTime": 12.5,
+        "EndTime": 15.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.f552f64bb4ba48f3af69d21da810e4a6",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "In microgravity, crews have tossed around a rugby ball, attempted ping pong, and even channeled their inner Olympians.",
+        "VietnameseMeaning": "Trong m\u00F4i tr\u01B0\u1EDDng vi tr\u1ECDng l\u1EF1c, phi h\u00E0nh \u0111o\u00E0n \u0111\u00E3 tung b\u00F3ng b\u1EA7u d\u1EE5c, th\u1EED ch\u01A1i b\u00F3ng b\u00E0n v\u00E0 th\u1EADm ch\u00ED h\u00F3a th\u00E2n th\u00E0nh c\u00E1c v\u1EADn \u0111\u1ED9ng vi\u00EAn Olympic.",
+        "StartTime": 60.6,
+        "EndTime": 67.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-do-astronauts-unwind-in-space.f9560474152b4698950fc4c5a040b610",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "cupola",
+        "Definition": "khoang quan s\u00E1t c\u00F3 c\u1EEDa s\u1ED5 v\u00F2m",
+        "ExampleSentence": "especially in the station\u0027s cupola.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-do-astronauts-unwind-in-space"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b1.how-do-astronauts-unwind-in-space"
+}

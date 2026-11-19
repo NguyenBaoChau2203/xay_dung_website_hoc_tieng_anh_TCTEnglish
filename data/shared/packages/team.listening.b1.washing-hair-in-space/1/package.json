@@ -1,0 +1,395 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b1.washing-hair-in-space",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b1.washing-hair-in-space",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Washing Hair in Space",
+        "Level": "B1",
+        "Topic": "Hygiene in Space",
+        "YoutubeId": "Sa5smWsOSr4",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/Sa5smWsOSr4/hqdefault.jpg",
+        "Duration": "1:38",
+        "Speaker1Name": "Mike Fossum",
+        "Speaker2Name": null,
+        "Speaker1Country": "United States",
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.0e76380de9dd4fbe9e31ee182118d18a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Mike Fossum",
+        "Text": "Just put a little bit of that in there.",
+        "VietnameseMeaning": "Ch\u1EC9 c\u1EA7n cho m\u1ED9t ch\u00FAt v\u00E0o \u0111\u00E2y.",
+        "StartTime": 42.2,
+        "EndTime": 44.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.117477eb9aab4d4ab346e974b6e22c14",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "What does he say about his shirt at the end?",
+        "OptionA": "It is dry",
+        "OptionB": "It is very wet",
+        "OptionC": "It is dirty",
+        "OptionD": "It is new",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022All right. Get a hair brush after it -- I\u0027m done. Ready to go back to work. Shirt\u0027s still dry.\u0022 \u2014 01:18"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.2a3077ebabdf4e4d90a02028eb168f0c",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Mike Fossum",
+        "Text": "This has actually been used a while and refilled, so it\u0027s a little weak. So, here, see? I\u0027m wearing a shirt. And that\u0027s okay.",
+        "VietnameseMeaning": "Chai n\u00E0y th\u1EF1c ra \u0111\u00E3 d\u00F9ng m\u1ED9t th\u1EDDi gian v\u00E0 \u0111\u01B0\u1EE3c ch\u00E2m l\u1EA1i, n\u00EAn h\u01A1i lo\u00E3ng. \u0110\u00E2y, th\u1EA5y kh\u00F4ng? T\u00F4i \u0111ang m\u1EB7c \u00E1o s\u01A1 mi. V\u00E0 kh\u00F4ng sao c\u1EA3.",
+        "StartTime": 21.7,
+        "EndTime": 31.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.3ad8b5c8a359448b933f39c66f4f50ac",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Mike Fossum",
+        "Text": "Now, washing our hair is a little bit -- There are some surprising differences associated with washing our hair.",
+        "VietnameseMeaning": "B\u00E2y gi\u1EDD, g\u1ED9i \u0111\u1EA7u th\u00EC h\u01A1i \u2013 C\u00F3 v\u00E0i \u0111i\u1EC3m kh\u00E1c bi\u1EC7t \u0111\u00E1ng ng\u1EA1c nhi\u00EAn khi g\u1ED9i \u0111\u1EA7u.",
+        "StartTime": 7,
+        "EndTime": 16.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.3b0f05431f5b45c8a45bca37192d29af",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "finish up",
+        "Definition": "ho\u00E0n t\u1EA5t",
+        "ExampleSentence": "And finally, time to finish up my hair.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.428d9b66301d46b4906df265658f1b82",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "What does he do after finishing his hair?",
+        "OptionA": "He uses a hair brush",
+        "OptionB": "He takes a shower",
+        "OptionC": "He eats dinner",
+        "OptionD": "He goes to sleep",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022All right. Get a hair brush after it -- I\u0027m done. Ready to go back to work. Shirt\u0027s still dry.\u0022 \u2014 01:18"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.44f9c32a67cd41ada7db495060adf871",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "What does he like to use a little extra of?",
+        "OptionA": "Water",
+        "OptionB": "Shampoo",
+        "OptionC": "Soap",
+        "OptionD": "Towels",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022Get the shampoo here. Like to use a little extra.\u0022 \u2014 00:17"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.4ed4165248e14384862d4e795ff21335",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "hair brush",
+        "Definition": "l\u01B0\u1EE3c ch\u1EA3i t\u00F3c",
+        "ExampleSentence": "All right. Get a hair brush after it -- I\u0027m done. Ready to go back to work. Shirt\u0027s still dry.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.52baaecedba849429d22470f6e619327",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Mike Fossum",
+        "Text": "You can see it get a little bit of lather action going.",
+        "VietnameseMeaning": "B\u1EA1n c\u00F3 th\u1EC3 th\u1EA5y n\u00F3 b\u1EAFt \u0111\u1EA7u n\u1ED5i m\u1ED9t \u00EDt b\u1ECDt.",
+        "StartTime": 54.4,
+        "EndTime": 59.8
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.5478802b3b3a4a05983597d5771a25bd",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Mike Fossum",
+        "Text": "And finally, time to finish up my hair.",
+        "VietnameseMeaning": "V\u00E0 cu\u1ED1i c\u00F9ng, \u0111\u1EBFn l\u00FAc ho\u00E0n t\u1EA5t m\u00E1i t\u00F3c.",
+        "StartTime": 63,
+        "EndTime": 66.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.58ee26f3bb7e423ca09831d917bdf079",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Mike Fossum",
+        "Text": "Get the shampoo here. Like to use a little extra.",
+        "VietnameseMeaning": "L\u1EA5y d\u1EA7u g\u1ED9i \u1EDF \u0111\u00E2y. T\u00F4i th\u00EDch d\u00F9ng nhi\u1EC1u h\u01A1n m\u1ED9t ch\u00FAt.",
+        "StartTime": 17,
+        "EndTime": 21.7
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.5a5299b4f65d4909b4cf62b638df8d95",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "What kind of shampoo does he use first?",
+        "OptionA": "Regular shampoo with a lot of water",
+        "OptionB": "No-rinse shampoo",
+        "OptionC": "Soap",
+        "OptionD": "Toothpaste",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022It\u0027s not all wet yet because what I need to do first is get some of this no-rinse shampoo.\u0022 \u2014 00:33"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.5bffed73b798455daf02bd2736f8caca",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "lather",
+        "Definition": "b\u1ECDt x\u00E0 ph\u00F2ng",
+        "ExampleSentence": "You can see it get a little bit of lather action going.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.5faecb40a88644dc8d251cee235f2e8b",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "refilled",
+        "Definition": "\u0111\u01B0\u1EE3c ch\u00E2m \u0111\u1EA7y l\u1EA1i",
+        "ExampleSentence": "This has actually been used a while and refilled, so it\u0027s a little weak. So, here, see? I\u0027m wearing a shirt. And that\u0027s okay.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.8a08d79cc2884c2984ea8fa9e5ac3817",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Mike Fossum",
+        "Text": "It\u0027s not all wet yet because what I need to do first is get some of this no-rinse shampoo.",
+        "VietnameseMeaning": "T\u00F3c ch\u01B0a \u01B0\u1EDBt h\u1EBFt, v\u00EC vi\u1EC7c \u0111\u1EA7u ti\u00EAn t\u00F4i c\u1EA7n l\u00E0m l\u00E0 l\u1EA5y m\u1ED9t \u00EDt d\u1EA7u g\u1ED9i kh\u00F4ng c\u1EA7n x\u1EA3.",
+        "StartTime": 33.1,
+        "EndTime": 42.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.8a838988092b4b3aab5b41d3178a2bfd",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Mike Fossum",
+        "Text": "All right. Get a hair brush after it -- I\u0027m done. Ready to go back to work. Shirt\u0027s still dry.",
+        "VietnameseMeaning": "\u0110\u01B0\u1EE3c r\u1ED3i. L\u1EA5y l\u01B0\u1EE3c ch\u1EA3i sau \u0111\u00F3 \u2013 Xong r\u1ED3i. S\u1EB5n s\u00E0ng quay l\u1EA1i l\u00E0m vi\u1EC7c. \u00C1o v\u1EABn c\u00F2n kh\u00F4.",
+        "StartTime": 78,
+        "EndTime": 86.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.98e840eec5754d58998ffbb53fee0c5d",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "surprising",
+        "Definition": "\u0111\u00E1ng ng\u1EA1c nhi\u00EAn",
+        "ExampleSentence": "Now, washing our hair is a little bit -- There are some surprising differences associated with washing our hair.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.a06e7b25bd434c81be911b255e773692",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "shampoo",
+        "Definition": "d\u1EA7u g\u1ED9i \u0111\u1EA7u",
+        "ExampleSentence": "Get the shampoo here. Like to use a little extra.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.afc3ef9a8af949d4be2fc0745e14d875",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "What does he do after washing his hair?",
+        "OptionA": "He goes to sleep",
+        "OptionB": "He uses a hair brush and goes back to work",
+        "OptionC": "He takes a shower",
+        "OptionD": "He calls home",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022All right. Get a hair brush after it -- I\u0027m done. Ready to go back to work. Shirt\u0027s still dry.\u0022 \u2014 01:18"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.b9626ce5310b416baec232beff367ccf",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "spread",
+        "Definition": "d\u00E0n \u0111\u1EC1u, lan ra",
+        "ExampleSentence": "And then, I get started kind of working it around my head and getting it to spread around the whole head.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.bc64c3fa87ad47fe8938718671d3a9dd",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "Why does he say the shampoo is a little weak?",
+        "OptionA": "It is old and was refilled",
+        "OptionB": "It has no smell",
+        "OptionC": "It is too cold",
+        "OptionD": "It is too thick",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022This has actually been used a while and refilled, so it\u0027s a little weak. So, here, see? I\u0027m wearing a shirt. And that\u0027s okay.\u0022 \u2014 00:21"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.d1f76ffc701f4d298e5dc5bf5fd02555",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "no-rinse",
+        "Definition": "kh\u00F4ng c\u1EA7n x\u1EA3 n\u01B0\u1EDBc",
+        "ExampleSentence": "It\u0027s not all wet yet because what I need to do first is get some of this no-rinse shampoo.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.d89fd0e078e34fdabe88fe86021451e5",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Mike Fossum",
+        "Text": "So, I\u0027ve got that sitting there.",
+        "VietnameseMeaning": "V\u1EADy l\u00E0 t\u00F4i \u0111\u00E3 \u0111\u1EC3 n\u00F3 \u1EDF \u0111\u00F3.",
+        "StartTime": 31.1,
+        "EndTime": 33.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    },
+    {
+      "key": "team.listening.b1.washing-hair-in-space.f06247f3c8e544a08a728c90c8b462e4",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Mike Fossum",
+        "Text": "And then, I get started kind of working it around my head and getting it to spread around the whole head.",
+        "VietnameseMeaning": "R\u1ED3i t\u00F4i b\u1EAFt \u0111\u1EA7u xoa n\u00F3 quanh \u0111\u1EA7u v\u00E0 d\u00E0n \u0111\u1EC1u ra kh\u1EAFp \u0111\u1EA7u.",
+        "StartTime": 47,
+        "EndTime": 54.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.washing-hair-in-space"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b1.washing-hair-in-space"
+}

@@ -3054,6 +3054,347 @@ def law_icon(name: str) -> bytes:
     return finish(img)
 
 
+def rel_icon(name: str) -> bytes:
+    """Flat original drawing for a relationship or social word (kind "rel")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+    GOLD = (250, 204, 21)
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=5, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    def text(x, y, t, size, col=L):
+        d.text((x * s, y * s), t, fill=col, font=_big_font(size * s))
+
+    def heart(cx, cy, r, col=(244, 63, 94)):
+        oval(cx - r, cy - r, cx, cy, col, 0)
+        oval(cx, cy - r, cx + r, cy, col, 0)
+        poly([(cx - r, cy - r * 0.4), (cx + r, cy - r * 0.4), (cx, cy + r * 1.1)], col)
+
+    def pair(ca, cb, ga="m", gb="f", scale=2.5, dx=80, top=50):
+        _person(d, 240 - dx, top, scale, ga, ca)
+        _person(d, 240 + dx, top, scale, gb, cb)
+
+    BLUE, PINK, GREEN, ORANGE, PURPLE = (37, 99, 235), (219, 39, 119), (22, 163, 74), (234, 88, 12), (124, 58, 237)
+    d.rectangle((0, 300 * s, W * s, H * s), fill=(214, 196, 160))
+    if name == "couple":
+        pair(BLUE, PINK)
+        heart(240, 90, 30)
+    elif name in ("wedding", "bride", "groom"):
+        if name == "bride":
+            _person(d, 240, 20, 3.0, "f", (255, 255, 255))
+            oval(200, 20, 280, 52, (255, 255, 255), 3)
+        elif name == "groom":
+            _person(d, 240, 20, 3.0, "m", (30, 41, 59))
+            poly([(228, 150), (252, 150), (240, 180)], (220, 38, 38))
+        else:
+            pair((30, 41, 59), (255, 255, 255))
+            heart(240, 60, 28)
+            for k in range(4):
+                d.polygon(poly_star((80 + k * 106) * s, 40 * s, 12 * s, 5 * s, 5), fill=GOLD, outline=L)
+    elif name == "wedding ring":
+        for cx in (200, 290):
+            d.ellipse(((cx - 70) * s, 130 * s, (cx + 40) * s, 270 * s), outline=GOLD, width=18 * s)
+            d.ellipse(((cx - 70) * s, 130 * s, (cx + 40) * s, 270 * s), outline=L, width=2 * s)
+        poly([(240, 100), (262, 130), (240, 150), (218, 130)], (186, 230, 253))
+    elif name == "bouquet":
+        for k, (x, y, c) in enumerate(((190, 90, (244, 63, 94)), (240, 70, (250, 204, 21)), (290, 90, (219, 39, 119)), (215, 125, (255, 255, 255)), (265, 125, (244, 114, 182)))):
+            oval(x - 28, y - 28, x + 28, y + 28, c, 3)
+            oval(x - 8, y - 8, x + 8, y + 8, GOLD, 2)
+        poly([(200, 170), (280, 170), (250, 300), (230, 300)], (74, 222, 128))
+        poly([(200, 230), (280, 230), (284, 250), (196, 250)], (244, 114, 182))
+    elif name == "wedding cake":
+        for k, (w, y, c) in enumerate(((220, 230, (255, 255, 255)), (160, 170, (254, 226, 226)), (100, 110, (255, 255, 255)))):
+            box(240 - w / 2, y, 240 + w / 2, y + 60, c, 6, 4)
+            line(240 - w / 2 + 10, y + 14, 240 + w / 2 - 10, y + 14, 3, (244, 114, 182))
+        heart(240, 100, 18)
+    elif name == "hug":
+        pair(ORANGE, PURPLE, "m", "f", 2.6, 40)
+        line(200, 190, 280, 190, 14, (250, 213, 172))
+        heart(240, 60, 22)
+    elif name == "high five":
+        pair(BLUE, GREEN, "m", "f", 2.6, 80)
+        line(160, 170, 220, 120, 12, (250, 213, 172))
+        line(320, 170, 262, 120, 12, (250, 213, 172))
+        for a in (-40, 0, 40):
+            line(240, 110, 240 + a, 70, 4)
+    elif name == "argument":
+        pair(ORANGE, BLUE, "m", "f", 2.6, 90)
+        for x in (140, 340):
+            text(x - 10, 24, "!", 70, (220, 38, 38))
+        line(120, 80, 170, 60, 5, (220, 38, 38))
+        line(360, 60, 410, 80, 5, (220, 38, 38))
+    elif name == "colleague":
+        pair(BLUE, PURPLE, "m", "f", 2.4, 90)
+        box(60, 230, 420, 260, (180, 120, 70), 6, 3)
+        box(110, 190, 180, 232, (51, 65, 85), 4, 3)
+        box(300, 190, 370, 232, (51, 65, 85), 4, 3)
+    elif name == "classmate":
+        pair(GREEN, ORANGE, "m", "f", 2.4, 90)
+        box(60, 40, 220, 120, (22, 101, 52), 4, 4)
+        box(60, 230, 420, 260, (180, 120, 70), 6, 3)
+        box(250, 200, 310, 232, (254, 240, 138), 4, 3)
+    elif name == "roommate":
+        pair(PURPLE, PINK, "m", "f", 2.4, 90)
+        box(150, 220, 330, 260, (59, 130, 246), 10, 4)
+        box(150, 200, 330, 226, (147, 197, 253), 10, 3)
+    elif name == "boss":
+        _person(d, 160, 50, 2.8, "m", (30, 41, 59))
+        box(260, 150, 440, 240, (255, 255, 255), 6, 4)
+        line(280, 180, 420, 180, 3, (148, 163, 184))
+        line(280, 200, 400, 200, 3, (148, 163, 184))
+        line(200, 200, 270, 190, 8, (250, 213, 172))
+        text(120, 20, "BOSS", 28, (220, 38, 38))
+    elif name == "best friend":
+        pair(ORANGE, GREEN, "f", "f", 2.6, 60)
+        heart(240, 70, 26)
+        line(215, 180, 265, 180, 10, (250, 213, 172))
+    elif name == "teammate":
+        pair((220, 38, 38), (220, 38, 38), "m", "f", 2.5, 70)
+        text(150, 136, "7", 46, (255, 255, 255))
+        text(300, 160, "9", 46, (255, 255, 255))
+        oval(210, 270, 270, 330, (255, 255, 255), 3)
+    elif name == "stranger":
+        _person(d, 240, 30, 3.0, "m", (71, 85, 105))
+        text(330, 40, "?", 140, (220, 38, 38))
+    elif name == "guest":
+        _person(d, 130, 50, 2.5, "f", PINK)
+        box(250, 110, 440, 300, (254, 215, 170), 6, 4)
+        box(320, 180, 380, 300, (120, 72, 36), 4, 3)
+        box(262, 130, 300, 170, (147, 197, 253), 3, 2)
+        line(195, 170, 250, 160, 8, (250, 213, 172))
+        text(255, 76, "WELCOME", 26)
+    elif name == "host":
+        _person(d, 130, 50, 2.5, "m", (22, 163, 74))
+        box(260, 190, 440, 260, (180, 120, 70), 6, 3)
+        oval(290, 160, 340, 190, (255, 255, 255), 3)
+        box(380, 150, 410, 190, (200, 230, 250), 4, 2)
+        line(195, 180, 260, 190, 8, (250, 213, 172))
+    elif name == "invitation":
+        box(90, 60, 390, 300, (255, 255, 255), 10, 4)
+        text(140, 80, "You're", 44)
+        text(140, 130, "invited!", 56, (220, 38, 38))
+        line(140, 214, 340, 214, 3, (148, 163, 184))
+        line(140, 240, 300, 240, 3, (148, 163, 184))
+        heart(360, 80, 18)
+    elif name == "greeting card":
+        poly([(110, 60), (370, 60), (370, 300), (110, 300)], (254, 226, 226))
+        line(240, 60, 240, 300, 3)
+        d.polygon(poly_star(305 * s, 150 * s, 40 * s, 17 * s, 5), fill=GOLD, outline=L)
+        heart(175, 150, 28)
+        text(135, 230, "Hi!", 36)
+    elif name == "anniversary":
+        pair((30, 41, 59), PINK)
+        text(176, 20, "10", 56, (220, 38, 38))
+        heart(240, 120, 22)
+        for k in range(2):
+            line(195 + k * 90, 250, 195 + k * 90, 200, 6, (59, 130, 246))
+            oval(190 + k * 90, 190, 200 + k * 90, 210, GOLD, 2)
+    elif name == "reunion":
+        for k in range(5):
+            _person(d, 60 + k * 85, 90, 1.6, "m" if k % 2 else "f", [BLUE, PINK, GREEN, ORANGE, PURPLE][k])
+        box(60, 40, 420, 70, (254, 240, 138), 6, 3)
+        text(88, 44, "WELCOME BACK", 22)
+    elif name == "babysitter":
+        _person(d, 140, 40, 2.8, "f", PURPLE)
+        _person(d, 320, 130, 1.4, "m", (14, 165, 233))
+        _person(d, 400, 150, 1.1, "f", (234, 88, 12))
+        box(230, 160, 330, 210, (254, 215, 170), 4, 3)
+        line(210, 190, 250, 180, 8, (250, 213, 172))
+    elif name == "pen pal":
+        _person(d, 120, 60, 2.2, "f", PINK)
+        _person(d, 360, 60, 2.2, "m", BLUE)
+        poly([(190, 190), (290, 190), (290, 250), (190, 250)], (255, 255, 255))
+        line(190, 190, 240, 225, 3)
+        line(290, 190, 240, 225, 3)
+    else:
+        raise SystemExit(f"unknown rel icon: {name}")
+    return finish(img)
+
+
+def biz_icon(name: str) -> bytes:
+    """Flat original drawing for a business word (kind "biz")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+    GOLD = (250, 204, 21)
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=5, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    def text(x, y, t, size, col=L):
+        d.text((x * s, y * s), t, fill=col, font=_big_font(size * s))
+
+    BLUE, PINK, GREEN, ORANGE, PURPLE = (37, 99, 235), (219, 39, 119), (22, 163, 74), (234, 88, 12), (124, 58, 237)
+    d.rectangle((0, 300 * s, W * s, H * s), fill=(214, 196, 160))
+    if name == "startup":
+        poly([(240, 30), (290, 120), (290, 220), (190, 220), (190, 120)], (226, 232, 240))
+        oval(214, 100, 266, 152, (147, 197, 253), 3)
+        poly([(190, 180), (150, 240), (190, 220)], (220, 38, 38))
+        poly([(290, 180), (330, 240), (290, 220)], (220, 38, 38))
+        poly([(215, 220), (265, 220), (240, 290)], (253, 186, 116))
+        for (x, y) in ((90, 80), (390, 100), (370, 40)):
+            d.polygon(poly_star(x * s, y * s, 10 * s, 4 * s, 5), fill=GOLD, outline=L)
+    elif name == "entrepreneur":
+        _person(d, 140, 50, 2.7, "f", PURPLE)
+        box(280, 130, 440, 270, (254, 215, 170), 6, 4)
+        box(300, 160, 360, 210, (147, 197, 253), 3, 2)
+        box(370, 190, 420, 270, (120, 72, 36), 4, 3)
+        poly([(270, 130), (360, 80), (450, 130)], (220, 38, 38))
+        text(300, 100, "OPEN", 22, (255, 255, 255))
+    elif name == "investor":
+        _person(d, 120, 50, 2.7, "m", (30, 41, 59))
+        for k in range(3):
+            oval(270 + k * 50, 220 - k * 20, 330 + k * 50, 250 - k * 20, GOLD, 3)
+            oval(270 + k * 50, 200 - k * 20, 330 + k * 50, 230 - k * 20, GOLD, 3)
+        text(280, 60, "$$$", 70, (22, 163, 74))
+        line(200, 190, 270, 200, 8, (250, 213, 172))
+    elif name == "profit":
+        line(60, 300, 60, 40, 6)
+        line(60, 300, 440, 300, 6)
+        pts = [(90, 260), (170, 210), (240, 230), (320, 130), (410, 70)]
+        d.line([(x * s, y * s) for x, y in pts], fill=GREEN, width=9 * s, joint="curve")
+        poly([(410, 70), (380, 78), (400, 100)], GREEN)
+        oval(380, 150, 440, 210, GOLD, 4)
+        text(402, 158, "$", 44)
+    elif name == "budget":
+        box(110, 40, 370, 300, (226, 232, 240), 14, 4)
+        box(130, 60, 350, 120, (186, 230, 253), 6, 3)
+        text(150, 66, "$1,200", 40)
+        for r in range(4):
+            for c in range(3):
+                box(130 + c * 76, 140 + r * 38, 190 + c * 76, 170 + r * 38, (255, 255, 255), 4, 2)
+    elif name == "courier":
+        _person(d, 130, 50, 2.6, "m", (220, 38, 38))
+        box(250, 150, 360, 250, (180, 120, 70), 6, 4)
+        line(250, 195, 360, 195, 4)
+        line(305, 150, 305, 250, 4)
+        oval(380, 220, 440, 280, (30, 41, 59), 3)
+        oval(400, 240, 420, 260, (148, 163, 184), 2)
+        line(200, 190, 250, 190, 8, (250, 213, 172))
+    elif name == "shipment":
+        for k in range(3):
+            box(60 + k * 130, 190, 170 + k * 130, 300, [(220, 38, 38), (37, 99, 235), (234, 88, 12)][k], 4, 4)
+            for j in range(5):
+                line(70 + k * 130 + j * 20, 196, 70 + k * 130 + j * 20, 294, 2, (255, 255, 255))
+        poly([(60, 150), (400, 150), (380, 190), (80, 190)], (71, 85, 105))
+        line(120, 150, 120, 100, 6)
+        line(120, 100, 190, 100, 6)
+        line(190, 100, 190, 140, 3)
+    elif name == "brand":
+        box(110, 80, 370, 280, (255, 255, 255), 14, 4)
+        d.polygon(poly_star(240 * s, 170 * s, 70 * s, 30 * s, 5), fill=GOLD, outline=L)
+        text(166, 232, "BRAND", 34)
+        d.ellipse((90 * s, 50 * s, 120 * s, 80 * s), outline=L, width=3 * s)
+    elif name == "logo":
+        oval(150, 60, 330, 240, (255, 255, 255), 5)
+        oval(180, 90, 300, 210, BLUE, 0)
+        poly([(240, 100), (275, 190), (205, 190)], (255, 255, 255))
+        text(170, 260, "YOUR LOGO", 28)
+    elif name == "marketing":
+        poly([(100, 190), (320, 90), (320, 250)], (250, 204, 21))
+        box(80, 170, 130, 230, (234, 88, 12), 6, 3)
+        for k, r in enumerate((30, 56, 82)):
+            d.arc(((330 - r + 20) * s, (170 - r) * s, (330 + r + 20) * s, (170 + r) * s), 300, 60, fill=(59, 130, 246), width=5 * s)
+        text(350, 40, "SALE", 36, (220, 38, 38))
+    elif name == "product launch":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(76, 29, 149))
+        box(60, 40, 420, 190, (30, 41, 59), 8, 4)
+        poly([(240, 70), (270, 150), (240, 170), (210, 150)], (226, 232, 240))
+        poly([(215, 140), (190, 170), (215, 165)], (220, 38, 38))
+        poly([(265, 140), (290, 170), (265, 165)], (220, 38, 38))
+        for k in range(6):
+            _person(d, 70 + k * 68, 200, 0.85, "m" if k % 2 else "f", [BLUE, PINK, GREEN, ORANGE, PURPLE, (14, 165, 233)][k])
+    elif name == "stock market":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(15, 23, 42))
+        box(60, 40, 420, 250, (30, 41, 59), 8, 4)
+        for k, (h, up) in enumerate(((60, True), (90, False), (110, True), (80, True), (140, True), (120, False), (170, True))):
+            x = 90 + k * 46
+            box(x, 230 - h, x + 24, 230, (74, 222, 128) if up else (239, 68, 68), 2, 0)
+            line(x + 12, 230 - h - 16, x + 12, 230 + 10, 3, (226, 232, 240))
+        text(80, 56, "STOCKS", 28, (255, 255, 255))
+    elif name == "bar chart":
+        box(70, 40, 410, 280, (255, 255, 255), 8, 4)
+        for k, (h, c) in enumerate(((60, BLUE), (110, GREEN), (150, ORANGE), (90, PURPLE), (190, PINK))):
+            box(100 + k * 62, 260 - h, 148 + k * 62, 260, c, 2, 2)
+        line(90, 260, 390, 260, 4)
+        line(90, 60, 90, 260, 4)
+    elif name == "price list":
+        box(120, 30, 360, 330, (255, 255, 255), 10, 4)
+        text(150, 44, "PRICES", 34)
+        for k in range(6):
+            line(150, 110 + k * 36, 240, 110 + k * 36, 4, (148, 163, 184))
+            text(280, 96 + k * 36, f"${k + 2}", 24)
+    elif name == "parcel":
+        box(110, 110, 370, 280, (180, 120, 70), 8, 4)
+        line(240, 110, 240, 280, 14, (214, 175, 100))
+        line(110, 195, 370, 195, 14, (214, 175, 100))
+        poly([(200, 110), (240, 70), (280, 110)], (214, 175, 100))
+        box(300, 220, 360, 262, (255, 255, 255), 3, 2)
+        line(310, 234, 350, 234, 2)
+        line(310, 246, 340, 246, 2)
+    elif name == "online store":
+        box(60, 50, 420, 250, (51, 65, 85), 14, 4)
+        box(78, 68, 402, 232, (255, 255, 255), 6, 0)
+        for k in range(3):
+            box(96 + k * 104, 100, 176 + k * 104, 170, [(254, 226, 226), (219, 234, 254), (220, 252, 231)][k], 6, 2)
+            text(110 + k * 104, 180, f"${9 + k * 5}", 22)
+        box(270, 205, 390, 226, ORANGE, 8, 0)
+        text(286, 205, "BUY", 18, (255, 255, 255))
+        box(160, 250, 320, 270, (148, 163, 184), 6, 3)
+    elif name == "pitch":
+        _person(d, 120, 50, 2.7, "f", PURPLE)
+        box(250, 50, 440, 200, (255, 255, 255), 8, 4)
+        poly([(270, 170), (320, 110), (360, 140), (410, 80)], GREEN)
+        line(190, 190, 270, 120, 8, (250, 213, 172))
+        for k in range(3):
+            _person(d, 270 + k * 60, 230, 0.7, "m" if k % 2 else "f", [BLUE, ORANGE, GREEN][k])
+    elif name == "warehouse":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(226, 232, 240))
+        for k in range(3):
+            line(50 + k * 160, 60, 50 + k * 160, 300, 8, (59, 130, 246))
+        for r in range(4):
+            line(50, 100 + r * 55, 370, 100 + r * 55, 8, (234, 88, 12))
+            for k in range(5):
+                box(62 + k * 62, 62 + r * 55, 108 + k * 62, 100 + r * 55, (214, 175, 100), 3, 2)
+        box(380, 190, 460, 300, (148, 163, 184), 4, 3)
+        for k in range(4):
+            line(386, 210 + k * 24, 454, 210 + k * 24, 3)
+    elif name == "packaging":
+        box(110, 130, 370, 290, (214, 175, 100), 8, 4)
+        poly([(110, 130), (240, 90), (370, 130)], (234, 196, 120))
+        poly([(240, 90), (240, 130), (110, 130)], (200, 160, 85))
+        box(190, 160, 290, 230, (255, 255, 255), 4, 2)
+        text(200, 170, "FRAGILE", 20, (220, 38, 38))
+        line(110, 195, 370, 195, 6, (160, 120, 60))
+    else:
+        raise SystemExit(f"unknown biz icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -3124,6 +3465,10 @@ def main() -> None:
             data = sci_icon(val)
         elif kind == "law":
             data = law_icon(val)
+        elif kind == "rel":
+            data = rel_icon(val)
+        elif kind == "biz":
+            data = biz_icon(val)
         elif kind == "scene":
             data = scene_image(card["term"], card.get("imageQuery", ""), i, manifest["set"]["code"])
         else:

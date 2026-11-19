@@ -1,0 +1,560 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b1.what-is-a-nebula",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b1.what-is-a-nebula",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "What Is a Nebula?",
+        "Level": "B1",
+        "Topic": "Space Science",
+        "YoutubeId": "0MzWiKjSr9I",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/0MzWiKjSr9I/hqdefault.jpg",
+        "Duration": "2:49",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.0c4106473d204206a1ca0d7600a5baea",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "supernova",
+        "Definition": "si\u00EAu t\u00E2n tinh",
+        "ExampleSentence": "When a massive star explodes, it\u2019s called a supernova. This is an example of what that looks like.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.241c5ade997c4583899414ce134cce6a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 21,
+        "Speaker": "Narrator",
+        "Text": "Learn more about our universe at NASA Space Place!",
+        "VietnameseMeaning": "H\u00E3y t\u00ECm hi\u1EC3u th\u00EAm v\u1EC1 v\u0169 tr\u1EE5 c\u1EE7a ch\u00FAng ta t\u1EA1i NASA Space Place!",
+        "StartTime": 156.4,
+        "EndTime": 158.8
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.2fb68023b1854b589b06d761caefe158",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 20,
+        "Speaker": "Narrator",
+        "Text": "including our Sun--the most important star to our life here on Earth.",
+        "VietnameseMeaning": "trong \u0111\u00F3 c\u00F3 M\u1EB7t Tr\u1EDDi c\u1EE7a ch\u00FAng ta \u2013 ng\u00F4i sao quan tr\u1ECDng nh\u1EA5t \u0111\u1ED1i v\u1EDBi s\u1EF1 s\u1ED1ng \u1EDF Tr\u00E1i \u0110\u1EA5t.",
+        "StartTime": 151,
+        "EndTime": 156.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.38891d76296746c7add186f12d5ec04f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "We know what they look like because scientists use powerful telescopes to capture images of them.",
+        "VietnameseMeaning": "Ch\u00FAng ta bi\u1EBFt ch\u00FAng tr\u00F4ng nh\u01B0 th\u1EBF n\u00E0o v\u00EC c\u00E1c nh\u00E0 khoa h\u1ECDc d\u00F9ng k\u00EDnh thi\u00EAn v\u0103n m\u1EA1nh \u0111\u1EC3 ch\u1EE5p \u1EA3nh ch\u00FAng.",
+        "StartTime": 17.3,
+        "EndTime": 23.7
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.3e4133d1dc6f40f3b952b5a200b07c41",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "It may look like a colorful work of art, but it\u2019s really a giant cloud of dust and gas in space.",
+        "VietnameseMeaning": "N\u00F3 c\u00F3 th\u1EC3 tr\u00F4ng nh\u01B0 m\u1ED9t t\u00E1c ph\u1EA9m ngh\u1EC7 thu\u1EADt \u0111\u1EA7y m\u00E0u s\u1EAFc, nh\u01B0ng th\u1EF1c ra l\u00E0 m\u1ED9t \u0111\u00E1m m\u00E2y b\u1EE5i v\u00E0 kh\u00ED kh\u1ED5ng l\u1ED3 trong kh\u00F4ng gian.",
+        "StartTime": 5.4,
+        "EndTime": 12.7
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.3fe0491af12a41339bc75e7f7cd6b4db",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "Other nebulae are regions where new stars are beginning to form, called \u0022star nurseries.\u0022 How does a nebula make stars?",
+        "VietnameseMeaning": "Nh\u1EEFng tinh v\u00E2n kh\u00E1c l\u00E0 c\u00E1c v\u00F9ng n\u01A1i sao m\u1EDBi b\u1EAFt \u0111\u1EA7u h\u00ECnh th\u00E0nh, g\u1ECDi l\u00E0 \u201Cv\u01B0\u1EDDn \u01B0\u01A1m sao\u201D. L\u00E0m th\u1EBF n\u00E0o m\u1ED9t tinh v\u00E2n t\u1EA1o ra sao?",
+        "StartTime": 51.1,
+        "EndTime": 61.9
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.4aabfa9e878a4f6a9910a56d7cda07ba",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "But where did these stunning dust clouds come from?",
+        "VietnameseMeaning": "Nh\u01B0ng nh\u1EEFng \u0111\u00E1m m\u00E2y b\u1EE5i tuy\u1EC7t \u0111\u1EB9p n\u00E0y \u0111\u1EBFn t\u1EEB \u0111\u00E2u?",
+        "StartTime": 29.9,
+        "EndTime": 35.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.599b2b1997bd41d79413bdd06fc616a5",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "A nebula can take many different forms and shapes.",
+        "VietnameseMeaning": "M\u1ED9t tinh v\u00E2n c\u00F3 th\u1EC3 c\u00F3 nhi\u1EC1u d\u1EA1ng v\u00E0 h\u00ECnh d\u00E1ng kh\u00E1c nhau.",
+        "StartTime": 23.7,
+        "EndTime": 29.9
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.5a8798de7e1f46f8b0400efaa0f159d9",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 18,
+        "Speaker": "Narrator",
+        "Text": "It will be able to look through the dust to see stars forming planetary systems.",
+        "VietnameseMeaning": "N\u00F3 s\u1EBD c\u00F3 th\u1EC3 nh\u00ECn xuy\u00EAn qua l\u1EDBp b\u1EE5i \u0111\u1EC3 th\u1EA5y c\u00E1c ng\u00F4i sao \u0111ang h\u00ECnh th\u00E0nh h\u1EC7 h\u00E0nh tinh.",
+        "StartTime": 136.1,
+        "EndTime": 144.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.63ecffb928b54aaaab245012d06be092",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "Gravity begins to pull clumps of dust and gas together inside the nebula. Then, as those clumps grow larger, their gravity gets stronger and stronger.",
+        "VietnameseMeaning": "L\u1EF1c h\u1EA5p d\u1EABn b\u1EAFt \u0111\u1EA7u k\u00E9o c\u00E1c c\u1EE5m b\u1EE5i v\u00E0 kh\u00ED l\u1EA1i v\u1EDBi nhau b\u00EAn trong tinh v\u00E2n. R\u1ED3i khi c\u00E1c c\u1EE5m \u0111\u00F3 l\u1EDBn d\u1EA7n, l\u1EF1c h\u1EA5p d\u1EABn c\u1EE7a ch\u00FAng c\u00E0ng l\u00FAc c\u00E0ng m\u1EA1nh.",
+        "StartTime": 73,
+        "EndTime": 83.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.695daccf241b4601a964fc522a30798a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "Well, nebulae are made of very spread out dust particles and gases -- mostly hydrogen and helium.",
+        "VietnameseMeaning": "\u00C0, c\u00E1c tinh v\u00E2n \u0111\u01B0\u1EE3c t\u1EA1o th\u00E0nh t\u1EEB nh\u1EEFng h\u1EA1t b\u1EE5i v\u00E0 kh\u00ED r\u1EA5t th\u01B0a \u2013 ch\u1EE7 y\u1EBFu l\u00E0 hydro v\u00E0 heli.",
+        "StartTime": 61.9,
+        "EndTime": 73
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.72eef1bd94514c1e9e52d2bc7f94232f",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "When a massive star explodes, it\u2019s called a supernova. This is an example of what that looks like.",
+        "VietnameseMeaning": "Khi m\u1ED9t ng\u00F4i sao kh\u1ED5ng l\u1ED3 ph\u00E1t n\u1ED5, ng\u01B0\u1EDDi ta g\u1ECDi \u0111\u00F3 l\u00E0 si\u00EAu t\u00E2n tinh. \u0110\u00E2y l\u00E0 m\u1ED9t v\u00ED d\u1EE5 v\u1EC1 hi\u1EC7n t\u01B0\u1EE3ng \u0111\u00F3.",
+        "StartTime": 41.4,
+        "EndTime": 51.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.73707738d5bd4ec2b21f28fbf0b63265",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "Nebulae are far away from Earth.",
+        "VietnameseMeaning": "C\u00E1c tinh v\u00E2n n\u1EB1m r\u1EA5t xa Tr\u00E1i \u0110\u1EA5t.",
+        "StartTime": 12.7,
+        "EndTime": 17.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.7ad4abca17054fbd81192941c290f888",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 14,
+        "Speaker": "Narrator",
+        "Text": "The closest known nebula to Earth is approximately 700 light-years away. It is called the Helix Nebula.",
+        "VietnameseMeaning": "Tinh v\u00E2n g\u1EA7n Tr\u00E1i \u0110\u1EA5t nh\u1EA5t \u0111\u01B0\u1EE3c bi\u1EBFt \u0111\u1EBFn c\u00E1ch ch\u00FAng ta kho\u1EA3ng 700 n\u0103m \u00E1nh s\u00E1ng. N\u00F3 c\u00F3 t\u00EAn l\u00E0 Tinh v\u00E2n Xo\u1EAFn \u1ED1c.",
+        "StartTime": 101.5,
+        "EndTime": 110.7
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.7c3469322f9946f18d98e36523be338d",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 19,
+        "Speaker": "Narrator",
+        "Text": "Learning more about these far away nebulae help us better understand the lifecycle of stars,",
+        "VietnameseMeaning": "T\u00ECm hi\u1EC3u th\u00EAm v\u1EC1 c\u00E1c tinh v\u00E2n xa x\u00F4i n\u00E0y gi\u00FAp ch\u00FAng ta hi\u1EC3u r\u00F5 h\u01A1n v\u00F2ng \u0111\u1EDDi c\u1EE7a c\u00E1c ng\u00F4i sao,",
+        "StartTime": 144.3,
+        "EndTime": 151
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.7c81ec1cf5b34900aff07b0073b13473",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "What is a nebula mostly made of?",
+        "OptionA": "Water and ice",
+        "OptionB": "Hydrogen and helium",
+        "OptionC": "Iron and gold",
+        "OptionD": "Oxygen and nitrogen",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022Well, nebulae are made of very spread out dust particles and gases -- mostly hydrogen and helium.\u0022 \u2014 01:01"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.86ae0883ad404ec89987c096bcfc78cd",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 17,
+        "Speaker": "Narrator",
+        "Text": "Scientists will learn more about nebulae with NASA\u0027s James Webb Space Telescope.",
+        "VietnameseMeaning": "C\u00E1c nh\u00E0 khoa h\u1ECDc s\u1EBD t\u00ECm hi\u1EC3u th\u00EAm v\u1EC1 tinh v\u00E2n b\u1EB1ng K\u00EDnh thi\u00EAn v\u0103n James Webb c\u1EE7a NASA.",
+        "StartTime": 131.6,
+        "EndTime": 136.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.8c1667f6d48045bcbc25001b57c0002e",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "What is a supernova?",
+        "OptionA": "A new planet",
+        "OptionB": "An exploding massive star",
+        "OptionC": "A kind of cloud",
+        "OptionD": "A space station",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022When a massive star explodes, it\u2019s called a supernova. This is an example of what that looks like.\u0022 \u2014 00:41"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.921869bb524f43f8bbe6e5e41527be18",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "collapse",
+        "Definition": "s\u1EE5p \u0111\u1ED5",
+        "ExampleSentence": "Eventually, a clump of dust and gas gets so big that it collapses from its own gravity.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.9543e51d605845739c428b85207556eb",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "gravity",
+        "Definition": "l\u1EF1c h\u1EA5p d\u1EABn",
+        "ExampleSentence": "Gravity begins to pull clumps of dust and gas together inside the nebula. Then, as those clumps grow larger, their gravity gets stronger and stronger.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.a408683014c74fb88e0257cedab0fdeb",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "hydrogen",
+        "Definition": "kh\u00ED hydro",
+        "ExampleSentence": "Well, nebulae are made of very spread out dust particles and gases -- mostly hydrogen and helium.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.ab57750dd22b49489052be8122b8705c",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 15,
+        "Speaker": "Narrator",
+        "Text": "The Helix Nebula is the remnant of a dying star\u2014like what will happen to our own Sun in a few billion years.",
+        "VietnameseMeaning": "Tinh v\u00E2n Xo\u1EAFn \u1ED1c l\u00E0 t\u00E0n t\u00EDch c\u1EE7a m\u1ED9t ng\u00F4i sao \u0111ang ch\u1EBFt \u2013 gi\u1ED1ng nh\u01B0 \u0111i\u1EC1u s\u1EBD x\u1EA3y ra v\u1EDBi M\u1EB7t Tr\u1EDDi c\u1EE7a ch\u00FAng ta trong v\u00E0i t\u1EF7 n\u0103m n\u1EEFa.",
+        "StartTime": 110.7,
+        "EndTime": 119.7
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.b25a1ea1ee9b4131bf9f14a76fdda9e6",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "What Is a Nebula? This is a nebula.",
+        "VietnameseMeaning": "Tinh v\u00E2n l\u00E0 g\u00EC? \u0110\u00E2y l\u00E0 m\u1ED9t tinh v\u00E2n.",
+        "StartTime": 0,
+        "EndTime": 5.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.b2eebaff1ce54e84b4d6f8681fad628b",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "nebula",
+        "Definition": "tinh v\u00E2n",
+        "ExampleSentence": "What Is a Nebula? This is a nebula.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.b80d1fb8dd0a4b6cb08efc24e42abb4b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "Eventually, a clump of dust and gas gets so big that it collapses from its own gravity.",
+        "VietnameseMeaning": "Cu\u1ED1i c\u00F9ng, m\u1ED9t c\u1EE5m b\u1EE5i v\u00E0 kh\u00ED l\u1EDBn \u0111\u1EBFn m\u1EE9c n\u00F3 s\u1EE5p xu\u1ED1ng do ch\u00EDnh l\u1EF1c h\u1EA5p d\u1EABn c\u1EE7a m\u00ECnh.",
+        "StartTime": 83.6,
+        "EndTime": 92.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.c2049ebac5344c768a53dc51675384ef",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "What are star nurseries?",
+        "OptionA": "Places where stars are forming",
+        "OptionB": "Schools for astronauts",
+        "OptionC": "Telescopes",
+        "OptionD": "Gardens on the Moon",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Other nebulae are regions where new stars are beginning to form, called \u0022star nurseries.\u0022 How does a nebula make stars?\u0022 \u2014 00:51"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.c3a75b3f14294de69b717013e66361f8",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "Some nebulae come from the gas and dust thrown out when a dying star explodes.",
+        "VietnameseMeaning": "M\u1ED9t s\u1ED1 tinh v\u00E2n \u0111\u1EBFn t\u1EEB kh\u00ED v\u00E0 b\u1EE5i b\u1ECB tung ra khi m\u1ED9t ng\u00F4i sao s\u1EAFp ch\u1EBFt ph\u00E1t n\u1ED5.",
+        "StartTime": 35.1,
+        "EndTime": 41.4
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.cc373022b0c945ac91487649069ed305",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "light-year",
+        "Definition": "n\u0103m \u00E1nh s\u00E1ng",
+        "ExampleSentence": "The closest known nebula to Earth is approximately 700 light-years away. It is called the Helix Nebula.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.ceead324f2484bdd96a5b8d56312339e",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "telescope",
+        "Definition": "k\u00EDnh thi\u00EAn v\u0103n",
+        "ExampleSentence": "We know what they look like because scientists use powerful telescopes to capture images of them.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.dce81c4fcf7b4a9f860ed12d37353b97",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 16,
+        "Speaker": "Narrator",
+        "Text": "Using powerful space telescopes like NASA\u0027s Spitzer Space Telescope and Hubble Space Telescope, we have captured images of the Helix Nebula and many others.",
+        "VietnameseMeaning": "Nh\u1EDD c\u00E1c k\u00EDnh thi\u00EAn v\u0103n kh\u00F4ng gian m\u1EA1nh nh\u01B0 K\u00EDnh Spitzer v\u00E0 K\u00EDnh Hubble c\u1EE7a NASA, ch\u00FAng ta \u0111\u00E3 ch\u1EE5p \u0111\u01B0\u1EE3c \u1EA3nh Tinh v\u00E2n Xo\u1EAFn \u1ED1c v\u00E0 nhi\u1EC1u tinh v\u00E2n kh\u00E1c.",
+        "StartTime": 119.7,
+        "EndTime": 131.6
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.e92dcddbdf524801a72063bf5cff4dcc",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "How far away is the Helix Nebula?",
+        "OptionA": "About 7 light-years",
+        "OptionB": "About 700 light-years",
+        "OptionC": "About 70,000 light-years",
+        "OptionD": "About 7 million light-years",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022The closest known nebula to Earth is approximately 700 light-years away. It is called the Helix Nebula.\u0022 \u2014 01:41"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.ebc002f2fac44d6fa019b37cf5d00d81",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "How do we know what nebulae look like?",
+        "OptionA": "Astronauts walk inside them",
+        "OptionB": "Scientists use powerful telescopes",
+        "OptionC": "People draw them from memory",
+        "OptionD": "They are visible from Earth every night",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022We know what they look like because scientists use powerful telescopes to capture images of them.\u0022 \u2014 00:17"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.ed23eaf44d7d40d090b33200c739d19f",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "What is a nebula?",
+        "OptionA": "A giant cloud of dust and gas in space",
+        "OptionB": "A very bright planet",
+        "OptionC": "A kind of telescope",
+        "OptionD": "A frozen moon",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022It may look like a colorful work of art, but it\u2019s really a giant cloud of dust and gas in space.\u0022 \u2014 00:05"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.f2a6d83c64aa497b94e590d4bcb47cf2",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 13,
+        "Speaker": "Narrator",
+        "Text": "This collapse causes the material at the center of the cloud to heat up, causing the beginning of a star!",
+        "VietnameseMeaning": "S\u1EF1 s\u1EE5p \u0111\u1ED5 n\u00E0y l\u00E0m v\u1EADt ch\u1EA5t \u1EDF trung t\u00E2m \u0111\u00E1m m\u00E2y n\u00F3ng l\u00EAn, kh\u1EDFi \u0111\u1EA7u cho s\u1EF1 h\u00ECnh th\u00E0nh c\u1EE7a m\u1ED9t ng\u00F4i sao!",
+        "StartTime": 92.3,
+        "EndTime": 101.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    },
+    {
+      "key": "team.listening.b1.what-is-a-nebula.fc91e95a75564440a18f2f0f97f30602",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "remnant",
+        "Definition": "t\u00E0n t\u00EDch",
+        "ExampleSentence": "The Helix Nebula is the remnant of a dying star\u2014like what will happen to our own Sun in a few billion years.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.what-is-a-nebula"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b1.what-is-a-nebula"
+}

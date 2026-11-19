@@ -18,6 +18,9 @@ var only = args.SkipWhile(a => a != "--only").Skip(1).FirstOrDefault()?
 if (action == "ValidateVocab")
 {
     // Offline: every manifest must deserialize and have unique codes and counts the contract expects.
+    var listening = new ListeningImporter(null!, repo).Read();
+    foreach (var lesson in listening.Lessons) ListeningImporter.Validate(lesson);
+    Console.WriteLine($"{listening.Lessons.Count} listening lessons validated.");
     var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     var total = 0;
     foreach (var file in VocabImporter.ManifestFiles(repo))
@@ -95,8 +98,23 @@ switch (action)
         Console.WriteLine($"{(write ? "Imported" : "Dry run")}: created={created} updated={updated} unchanged={unchanged} imagesCopied={images}");
         break;
     }
+    case "DryRunListening":
+    case "ImportListening":
+    {
+        var write = action == "ImportListening";
+        var importer = new ListeningImporter(db, repo);
+        var manifest = importer.Read();
+        foreach (var lesson in manifest.Lessons)
+        {
+            var r = await importer.ImportOneAsync(lesson, write);
+            Console.WriteLine($"{lesson.Level} {r.YoutubeId} {r.Action}{(r.LessonId.HasValue ? " id=" + r.LessonId : "")} - {r.Title}");
+            db.ChangeTracker.Clear();
+        }
+        Console.WriteLine($"{(write ? "Imported" : "Dry run")}: {manifest.Lessons.Count} lessons in the manifest");
+        break;
+    }
     default:
-        throw new InvalidOperationException("Unknown action. Use ValidateVocab, DryRunVocab or ImportVocab.");
+        throw new InvalidOperationException("Unknown action. Use ValidateVocab, DryRunVocab, ImportVocab, DryRunListening or ImportListening.");
 }
 
 sealed class BlockAudio : IAudioTranscriptImporter

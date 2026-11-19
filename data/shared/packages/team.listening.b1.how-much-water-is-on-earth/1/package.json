@@ -1,0 +1,425 @@
+{
+  "schemaVersion": 1,
+  "id": "team.listening.b1.how-much-water-is-on-earth",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "How Much Water Is on Earth?",
+        "Level": "B1",
+        "Topic": "Environment \u0026 Climate",
+        "YoutubeId": "wZK2xTNzgq8",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/wZK2xTNzgq8/hqdefault.jpg",
+        "Duration": "1:24",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": "youtube-captions\u002Breviewed"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.107df4cc5a2e4a05b3eefcc03f348044",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 5,
+        "QuestionText": "What do we call the fresh water in the ground?",
+        "OptionA": "Groundwater",
+        "OptionB": "Seawater",
+        "OptionC": "Rainwater",
+        "OptionD": "Water vapor",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022A third of the fresh water is in the ground. We call it groundwater.\u0022 \u2014 00:50"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.11567103543d45f4abe72b68aa01b91d",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 6,
+        "QuestionText": "If all the water were put together, what would it look like?",
+        "OptionA": "A ball 860 miles wide",
+        "OptionB": "A river as long as the Earth",
+        "OptionC": "A lake the size of a country",
+        "OptionD": "A cube",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022If you took all the water on Earth and put it together it would be a ball 860 miles wide. That\u2019s a lot of water!\u0022 \u2014 01:07"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.132012de83e249a2a8e5693687acdc2a",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 5,
+        "Speaker": "Narrator",
+        "Text": "Salt water has different kinds of salt in it, but it mostly has sodium chloride, the same salt we add to our food.",
+        "VietnameseMeaning": "N\u01B0\u1EDBc m\u1EB7n ch\u1EE9a nhi\u1EC1u lo\u1EA1i mu\u1ED1i kh\u00E1c nhau, nh\u01B0ng ch\u1EE7 y\u1EBFu l\u00E0 natri clorua, lo\u1EA1i mu\u1ED1i ch\u00FAng ta cho v\u00E0o th\u1EE9c \u0103n.",
+        "StartTime": 31.5,
+        "EndTime": 40
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.14df9e1790b84b3faa4a62c34fc7cab4",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 3,
+        "Speaker": "Narrator",
+        "Text": "Your body is made up mostly of water. Water covers 71 percent of Earth\u2019s surface.",
+        "VietnameseMeaning": "C\u01A1 th\u1EC3 b\u1EA1n ch\u1EE7 y\u1EBFu \u0111\u01B0\u1EE3c c\u1EA5u t\u1EA1o t\u1EEB n\u01B0\u1EDBc. N\u01B0\u1EDBc ph\u1EE7 71 ph\u1EA7n tr\u0103m b\u1EC1 m\u1EB7t Tr\u00E1i \u0110\u1EA5t.",
+        "StartTime": 18.3,
+        "EndTime": 25.7
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.17e82c75ec0141fabfedfea33354e4b5",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 5,
+        "Word": "glacier",
+        "Definition": "s\u00F4ng b\u0103ng",
+        "ExampleSentence": "And most of that fresh water, 68 percent, is trapped in ice and glaciers.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.24f6df5958df4daf97b8bdc62c3915f8",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 1,
+        "QuestionText": "How much of Earth\u0027s surface is covered by water?",
+        "OptionA": "21 percent",
+        "OptionB": "50 percent",
+        "OptionC": "71 percent",
+        "OptionD": "96 percent",
+        "CorrectAnswer": "C",
+        "Explanation": "\u0022Your body is made up mostly of water. Water covers 71 percent of Earth\u2019s surface.\u0022 \u2014 00:18"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.2baf6e5735f54ecdb30454e1bfd3a029",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 4,
+        "Speaker": "Narrator",
+        "Text": "And almost all of it\u201496.5 percent\u2014is salt water.",
+        "VietnameseMeaning": "V\u00E0 g\u1EA7n nh\u01B0 t\u1EA5t c\u1EA3 \u2013 96,5 ph\u1EA7n tr\u0103m \u2013 l\u00E0 n\u01B0\u1EDBc m\u1EB7n.",
+        "StartTime": 25.7,
+        "EndTime": 31.5
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.2d86d08b90204317a7a186275c37fc84",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 10,
+        "Speaker": "Narrator",
+        "Text": "A very small amount is in our atmosphere, where it exists as water vapor. That\u2019s what clouds are made of.",
+        "VietnameseMeaning": "M\u1ED9t l\u01B0\u1EE3ng r\u1EA5t nh\u1ECF n\u1EB1m trong kh\u00ED quy\u1EC3n, \u1EDF d\u1EA1ng h\u01A1i n\u01B0\u1EDBc. \u0110\u00F3 l\u00E0 th\u1EE9 t\u1EA1o n\u00EAn nh\u1EEFng \u0111\u00E1m m\u00E2y.",
+        "StartTime": 60.2,
+        "EndTime": 67.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.311e3586e43441ab9aa0f3eacf1d63f6",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 4,
+        "QuestionText": "Where is most of the fresh water?",
+        "OptionA": "In rivers",
+        "OptionB": "In ice and glaciers",
+        "OptionC": "In clouds",
+        "OptionD": "In lakes",
+        "CorrectAnswer": "B",
+        "Explanation": "\u0022And most of that fresh water, 68 percent, is trapped in ice and glaciers.\u0022 \u2014 00:45"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.3661bf33977a4461a59ab3534f4868a5",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 7,
+        "Word": "water vapor",
+        "Definition": "h\u01A1i n\u01B0\u1EDBc",
+        "ExampleSentence": "A very small amount is in our atmosphere, where it exists as water vapor. That\u2019s what clouds are made of.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.4a8020756b6542d08a24f6351fda8da2",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 2,
+        "Word": "surface",
+        "Definition": "b\u1EC1 m\u1EB7t",
+        "ExampleSentence": "Your body is made up mostly of water. Water covers 71 percent of Earth\u2019s surface.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.4df4a1f83ddb44768f226e56c9cf9404",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 1,
+        "Speaker": "Narrator",
+        "Text": "Space Place... in a snap! How much water is on Earth? Earth is special because it has so much water.",
+        "VietnameseMeaning": "Space Place trong nh\u00E1y m\u1EAFt! Tr\u00EAn Tr\u00E1i \u0110\u1EA5t c\u00F3 bao nhi\u00EAu n\u01B0\u1EDBc? Tr\u00E1i \u0110\u1EA5t \u0111\u1EB7c bi\u1EC7t v\u00EC n\u00F3 c\u00F3 r\u1EA5t nhi\u1EC1u n\u01B0\u1EDBc.",
+        "StartTime": 0,
+        "EndTime": 9.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.6bf5a43db7e94aa79fa26adcccdac0e5",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 3,
+        "QuestionText": "What salt is mostly in salt water?",
+        "OptionA": "Sodium chloride",
+        "OptionB": "Sugar",
+        "OptionC": "Calcium",
+        "OptionD": "Iron",
+        "CorrectAnswer": "A",
+        "Explanation": "\u0022Salt water has different kinds of salt in it, but it mostly has sodium chloride, the same salt we add to our food.\u0022 \u2014 00:31"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.943ada61dabf4751aeafa880b6ff48ef",
+      "kind": "ListeningQuizQuestion",
+      "values": {
+        "OrderIndex": 2,
+        "QuestionText": "How much of the water on Earth is salt water?",
+        "OptionA": "3.5 percent",
+        "OptionB": "50 percent",
+        "OptionC": "75 percent",
+        "OptionD": "96.5 percent",
+        "CorrectAnswer": "D",
+        "Explanation": "\u0022And almost all of it\u201496.5 percent\u2014is salt water.\u0022 \u2014 00:25"
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.970c8cdd825549a5946bdacf056c5e6b",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 11,
+        "Speaker": "Narrator",
+        "Text": "If you took all the water on Earth and put it together it would be a ball 860 miles wide. That\u2019s a lot of water!",
+        "VietnameseMeaning": "N\u1EBFu b\u1EA1n gom t\u1EA5t c\u1EA3 n\u01B0\u1EDBc tr\u00EAn Tr\u00E1i \u0110\u1EA5t l\u1EA1i v\u1EDBi nhau, n\u00F3 s\u1EBD th\u00E0nh m\u1ED9t qu\u1EA3 c\u1EA7u r\u1ED9ng 860 d\u1EB7m. Th\u1EADt l\u00E0 nhi\u1EC1u n\u01B0\u1EDBc!",
+        "StartTime": 67.2,
+        "EndTime": 76.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.a5c0478c0d9f4edcb0633ec0d9cf4ff6",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 6,
+        "Word": "groundwater",
+        "Definition": "n\u01B0\u1EDBc ng\u1EA7m",
+        "ExampleSentence": "A third of the fresh water is in the ground. We call it groundwater.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.a6413d82b455415fae9c768b4fde82d3",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 7,
+        "Speaker": "Narrator",
+        "Text": "And most of that fresh water, 68 percent, is trapped in ice and glaciers.",
+        "VietnameseMeaning": "V\u00E0 ph\u1EA7n l\u1EDBn n\u01B0\u1EDBc ng\u1ECDt \u0111\u00F3, 68 ph\u1EA7n tr\u0103m, b\u1ECB gi\u1EEF trong b\u0103ng v\u00E0 s\u00F4ng b\u0103ng.",
+        "StartTime": 45,
+        "EndTime": 50.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.aa64be2ccfbf49bab04c5a665c9a6ed1",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 8,
+        "Word": "stream",
+        "Definition": "su\u1ED1i, d\u00F2ng n\u01B0\u1EDBc nh\u1ECF",
+        "ExampleSentence": "The last two percent of fresh water is in the rivers, lakes, and streams.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.acd81e5d5da041ad8ab8411e4a0e9dce",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 1,
+        "Word": "atmosphere",
+        "Definition": "kh\u00ED quy\u1EC3n",
+        "ExampleSentence": "It\u2019s in the ground, forms big oceans, and it\u2019s in our atmosphere. It\u2019s also in living things.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.b0218ffb2e654d09b4f6232c90ebaedf",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 6,
+        "Speaker": "Narrator",
+        "Text": "Just 3.5 percent of the water on Earth is fresh water we can drink.",
+        "VietnameseMeaning": "Ch\u1EC9 3,5 ph\u1EA7n tr\u0103m l\u01B0\u1EE3ng n\u01B0\u1EDBc tr\u00EAn Tr\u00E1i \u0110\u1EA5t l\u00E0 n\u01B0\u1EDBc ng\u1ECDt m\u00E0 ch\u00FAng ta c\u00F3 th\u1EC3 u\u1ED1ng.",
+        "StartTime": 40,
+        "EndTime": 45
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.b6ac25b7e0a144118963f7c58af5e492",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 8,
+        "Speaker": "Narrator",
+        "Text": "A third of the fresh water is in the ground. We call it groundwater.",
+        "VietnameseMeaning": "M\u1ED9t ph\u1EA7n ba n\u01B0\u1EDBc ng\u1ECDt n\u1EB1m trong l\u00F2ng \u0111\u1EA5t. Ch\u00FAng ta g\u1ECDi \u0111\u00F3 l\u00E0 n\u01B0\u1EDBc ng\u1EA7m.",
+        "StartTime": 50.1,
+        "EndTime": 55.1
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.bfe474d0bdce4edbb51a233e40ab5eab",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 12,
+        "Speaker": "Narrator",
+        "Text": "Find out more about our home planet at NASA Space Place.",
+        "VietnameseMeaning": "H\u00E3y t\u00ECm hi\u1EC3u th\u00EAm v\u1EC1 h\u00E0nh tinh qu\u00EA h\u01B0\u01A1ng c\u1EE7a ch\u00FAng ta t\u1EA1i NASA Space Place.",
+        "StartTime": 76.2,
+        "EndTime": 79.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.c479ecd07fcc484fa410e85f7bdc12fe",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 4,
+        "Word": "fresh water",
+        "Definition": "n\u01B0\u1EDBc ng\u1ECDt",
+        "ExampleSentence": "Just 3.5 percent of the water on Earth is fresh water we can drink.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.ca4b24952cd345299cc1938002069bd3",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 2,
+        "Speaker": "Narrator",
+        "Text": "It\u2019s in the ground, forms big oceans, and it\u2019s in our atmosphere. It\u2019s also in living things.",
+        "VietnameseMeaning": "N\u01B0\u1EDBc n\u1EB1m trong l\u00F2ng \u0111\u1EA5t, t\u1EA1o th\u00E0nh c\u00E1c \u0111\u1EA1i d\u01B0\u01A1ng l\u1EDBn v\u00E0 c\u00F3 trong kh\u00ED quy\u1EC3n c\u1EE7a ch\u00FAng ta. N\u01B0\u1EDBc c\u0169ng c\u00F3 trong c\u00E1c sinh v\u1EADt s\u1ED1ng.",
+        "StartTime": 9.3,
+        "EndTime": 18.3
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.ef85333896154aa0aaacaaf8fc3ae303",
+      "kind": "ListeningVocabItem",
+      "values": {
+        "OrderIndex": 3,
+        "Word": "salt water",
+        "Definition": "n\u01B0\u1EDBc m\u1EB7n",
+        "ExampleSentence": "And almost all of it\u201496.5 percent\u2014is salt water.",
+        "ImageUrl": null
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    },
+    {
+      "key": "team.listening.b1.how-much-water-is-on-earth.f9fcee2df4be4b0d9d6636b3dbb550db",
+      "kind": "ListeningTranscriptLine",
+      "values": {
+        "OrderIndex": 9,
+        "Speaker": "Narrator",
+        "Text": "The last two percent of fresh water is in the rivers, lakes, and streams.",
+        "VietnameseMeaning": "Hai ph\u1EA7n tr\u0103m n\u01B0\u1EDBc ng\u1ECDt c\u00F2n l\u1EA1i n\u1EB1m trong s\u00F4ng, h\u1ED3 v\u00E0 su\u1ED1i.",
+        "StartTime": 55.1,
+        "EndTime": 60.2
+      },
+      "references": {
+        "LessonId": "team.listening.b1.how-much-water-is-on-earth"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.listening.b1.how-much-water-is-on-earth"
+}

@@ -1,0 +1,1164 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B16",
+    "name": "Kinh doanh & khởi nghiệp",
+    "description": "#b1 #b2 #business #startup",
+    "topic": "Kinh doanh & khởi nghiệp",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "startup",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "công ty khởi nghiệp",
+      "meaningEn": "a new small company, often built around a new idea",
+      "examples": [
+        {
+          "text": "She works for a technology startup.",
+          "vi": "Cô ấy làm việc cho một công ty khởi nghiệp công nghệ."
+        },
+        {
+          "text": "The startup began in a small garage.",
+          "vi": "Công ty khởi nghiệp bắt đầu từ một ga-ra nhỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "launch a startup",
+          "vi": "thành lập công ty khởi nghiệp"
+        },
+        {
+          "text": "tech startup",
+          "vi": "công ty khởi nghiệp công nghệ"
+        }
+      ],
+      "imageQuery": "startup team office laptops",
+      "generate": {
+        "kind": "biz",
+        "value": "startup"
+      },
+      "image": {
+        "file": "b16/startup.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:startup",
+        "sha256": "efd2517ab410c7a6b14e1bcd9aac26d7b93f2eb61902ceb250602590ba5a61a9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "entrepreneur",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "doanh nhân khởi nghiệp",
+      "meaningEn": "a person who starts a new business",
+      "examples": [
+        {
+          "text": "The young entrepreneur opened her first shop at twenty.",
+          "vi": "Nữ doanh nhân trẻ mở cửa hàng đầu tiên lúc hai mươi tuổi."
+        },
+        {
+          "text": "Many entrepreneurs work long hours.",
+          "vi": "Nhiều doanh nhân khởi nghiệp làm việc nhiều giờ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "young entrepreneur",
+          "vi": "doanh nhân trẻ"
+        },
+        {
+          "text": "successful entrepreneur",
+          "vi": "doanh nhân thành đạt"
+        }
+      ],
+      "imageQuery": "entrepreneur business owner",
+      "generate": {
+        "kind": "biz",
+        "value": "entrepreneur"
+      },
+      "image": {
+        "file": "b16/entrepreneur.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:entrepreneur",
+        "sha256": "7009691fb4edb973cf6a3b7f9247b45d4634e512f65f8213cc39da43a6446cd3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "investor",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhà đầu tư",
+      "meaningEn": "a person who puts money into a business to make more money",
+      "examples": [
+        {
+          "text": "An investor gave the company a million dollars.",
+          "vi": "Một nhà đầu tư rót cho công ty một triệu đô la."
+        },
+        {
+          "text": "The investors listened to the plan carefully.",
+          "vi": "Các nhà đầu tư lắng nghe kế hoạch rất chăm chú."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "attract investors",
+          "vi": "thu hút nhà đầu tư"
+        },
+        {
+          "text": "private investor",
+          "vi": "nhà đầu tư tư nhân"
+        }
+      ],
+      "imageQuery": "investors meeting presentation",
+      "generate": {
+        "kind": "biz",
+        "value": "investor"
+      },
+      "image": {
+        "file": "b16/investor.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:investor",
+        "sha256": "315887f636623f0e6a344765ec39151e1a99e4c76b18fe3de456d41bf39bbd90",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "profit",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "lợi nhuận",
+      "meaningEn": "the money a business has left after paying all costs",
+      "examples": [
+        {
+          "text": "The shop made a small profit last month.",
+          "vi": "Cửa hàng thu được một khoản lợi nhuận nhỏ vào tháng trước."
+        },
+        {
+          "text": "Profits rose by ten percent this year.",
+          "vi": "Lợi nhuận năm nay tăng mười phần trăm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "make a profit",
+          "vi": "thu lợi nhuận"
+        },
+        {
+          "text": "increase profits",
+          "vi": "tăng lợi nhuận"
+        }
+      ],
+      "imageQuery": "profit chart money",
+      "generate": {
+        "kind": "biz",
+        "value": "profit"
+      },
+      "image": {
+        "file": "b16/profit.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:profit",
+        "sha256": "7a72f5f65411a9693e5b0774beb4057ea7643d40c8d82ce994f8cc6363b692a3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "budget",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "ngân sách",
+      "meaningEn": "the amount of money you have available to spend",
+      "examples": [
+        {
+          "text": "We have a small budget for advertising.",
+          "vi": "Chúng tôi có một ngân sách nhỏ cho quảng cáo."
+        },
+        {
+          "text": "The project stayed within budget.",
+          "vi": "Dự án nằm trong ngân sách."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "tight budget",
+          "vi": "ngân sách eo hẹp"
+        },
+        {
+          "text": "stay within budget",
+          "vi": "không vượt ngân sách"
+        }
+      ],
+      "imageQuery": "budget spreadsheet calculator",
+      "generate": {
+        "kind": "biz",
+        "value": "budget"
+      },
+      "image": {
+        "file": "b16/budget.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:budget",
+        "sha256": "0aab5f976abcfc557349c3502187547d79e65ddd881e3671c42223ea1e2832e0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "invoice",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "hóa đơn thanh toán",
+      "meaningEn": "a document that lists goods or services and shows how much to pay",
+      "examples": [
+        {
+          "text": "The supplier sent us an invoice for the books.",
+          "vi": "Nhà cung cấp gửi chúng tôi hóa đơn cho số sách."
+        },
+        {
+          "text": "Please pay the invoice within thirty days.",
+          "vi": "Xin hãy thanh toán hóa đơn trong vòng ba mươi ngày."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "send an invoice",
+          "vi": "gửi hóa đơn"
+        },
+        {
+          "text": "pay an invoice",
+          "vi": "thanh toán hóa đơn"
+        }
+      ],
+      "imageQuery": "invoice paper",
+      "image": {
+        "file": "b16/invoice.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8845230/image-wallpaper-textures-art",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "invoice paper",
+        "sha256": "21177d8319b90e4b9238c5bf9976c8532f3d96219940e1275ce7d077141eb4a1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "forklift",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "xe nâng",
+      "meaningEn": "a small vehicle with two metal arms for lifting heavy goods",
+      "examples": [
+        {
+          "text": "The worker moved the boxes with a forklift.",
+          "vi": "Người công nhân chuyển các thùng hàng bằng xe nâng."
+        },
+        {
+          "text": "A forklift drove through the warehouse.",
+          "vi": "Một chiếc xe nâng chạy qua nhà kho."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "drive a forklift",
+          "vi": "lái xe nâng"
+        },
+        {
+          "text": "forklift truck",
+          "vi": "xe nâng hàng"
+        }
+      ],
+      "imageQuery": "forklift warehouse pallet",
+      "image": {
+        "file": "b16/forklift.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Forklift.JPG",
+        "author": "Marketing Team",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "forklift warehouse pallet",
+        "sha256": "54e50d2d850c2ff482df5cbab7017e00fb7ec0fd78bb8c78998973e78a9a2e3c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "warehouse",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhà kho",
+      "meaningEn": "a large building where goods are stored",
+      "examples": [
+        {
+          "text": "The goods are kept in a warehouse near the port.",
+          "vi": "Hàng hóa được cất trong một nhà kho gần cảng."
+        },
+        {
+          "text": "She drives a forklift in the warehouse.",
+          "vi": "Cô ấy lái xe nâng trong nhà kho."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "warehouse worker",
+          "vi": "công nhân nhà kho"
+        },
+        {
+          "text": "large warehouse",
+          "vi": "nhà kho lớn"
+        }
+      ],
+      "imageQuery": "warehouse interior shelves pallets",
+      "generate": {
+        "kind": "biz",
+        "value": "warehouse"
+      },
+      "image": {
+        "file": "b16/warehouse.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:warehouse",
+        "sha256": "d2e67b0a23d56237889cc58d1d56c1a3973a3d387d280a275a437e6e15f98ab0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "courier",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "người chuyển phát",
+      "meaningEn": "a person whose job is to carry packages quickly",
+      "examples": [
+        {
+          "text": "A courier delivered the parcel to my office.",
+          "vi": "Một người chuyển phát giao bưu kiện đến văn phòng tôi."
+        },
+        {
+          "text": "The courier rides a motorbike.",
+          "vi": "Người chuyển phát đi xe máy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "motorbike courier",
+          "vi": "người chuyển phát đi xe máy"
+        },
+        {
+          "text": "courier service",
+          "vi": "dịch vụ chuyển phát"
+        }
+      ],
+      "imageQuery": "courier delivery package",
+      "generate": {
+        "kind": "biz",
+        "value": "courier"
+      },
+      "image": {
+        "file": "b16/courier.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:courier",
+        "sha256": "4c20f414cc631f5b0bc1cb11986536ff4b1de979f34526e0cd8818c8bd1b553b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "shipment",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "lô hàng vận chuyển",
+      "meaningEn": "a quantity of goods sent together",
+      "examples": [
+        {
+          "text": "The shipment arrived at the port yesterday.",
+          "vi": "Lô hàng đã đến cảng hôm qua."
+        },
+        {
+          "text": "We are waiting for a shipment of coffee.",
+          "vi": "Chúng tôi đang đợi một lô hàng cà phê."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "large shipment",
+          "vi": "lô hàng lớn"
+        },
+        {
+          "text": "track a shipment",
+          "vi": "theo dõi lô hàng"
+        }
+      ],
+      "imageQuery": "cargo shipment containers port",
+      "generate": {
+        "kind": "biz",
+        "value": "shipment"
+      },
+      "image": {
+        "file": "b16/shipment.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:shipment",
+        "sha256": "33554c02cca240b7f5cc5cfca979e510becec9746795655ec3a8d30ad2a1a500",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "brand",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "thương hiệu",
+      "meaningEn": "a name and image that make a product easy to know",
+      "examples": [
+        {
+          "text": "This brand makes comfortable shoes.",
+          "vi": "Thương hiệu này làm những đôi giày thoải mái."
+        },
+        {
+          "text": "The company built a strong brand.",
+          "vi": "Công ty đã xây dựng một thương hiệu mạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "famous brand",
+          "vi": "thương hiệu nổi tiếng"
+        },
+        {
+          "text": "brand name",
+          "vi": "tên thương hiệu"
+        }
+      ],
+      "imageQuery": "brand shelf products",
+      "generate": {
+        "kind": "biz",
+        "value": "brand"
+      },
+      "image": {
+        "file": "b16/brand.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:brand",
+        "sha256": "9a8500298e61bf91fe3d14a1ce5455ec4c88ba680161306efa18811b8db01d35",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "logo",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "biểu tượng thương hiệu",
+      "meaningEn": "a small design that stands for a company",
+      "examples": [
+        {
+          "text": "The company changed its logo last year.",
+          "vi": "Năm ngoái công ty đã đổi biểu tượng thương hiệu."
+        },
+        {
+          "text": "Our logo is a green leaf.",
+          "vi": "Biểu tượng thương hiệu của chúng tôi là chiếc lá xanh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "design a logo",
+          "vi": "thiết kế logo"
+        },
+        {
+          "text": "company logo",
+          "vi": "logo công ty"
+        }
+      ],
+      "imageQuery": "logo design sketch",
+      "generate": {
+        "kind": "biz",
+        "value": "logo"
+      },
+      "image": {
+        "file": "b16/logo.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:logo",
+        "sha256": "5d393cf9c6b9895081936ab1e8b67ca049eb3f27c4d9bc65b3ec6670f29c3d6f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "marketing",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tiếp thị",
+      "meaningEn": "the work of telling people about a product to sell it",
+      "examples": [
+        {
+          "text": "She works in marketing for a travel company.",
+          "vi": "Cô ấy làm tiếp thị cho một công ty du lịch."
+        },
+        {
+          "text": "Good marketing helps a new product sell.",
+          "vi": "Tiếp thị tốt giúp sản phẩm mới bán chạy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "marketing plan",
+          "vi": "kế hoạch tiếp thị"
+        },
+        {
+          "text": "marketing team",
+          "vi": "nhóm tiếp thị"
+        }
+      ],
+      "imageQuery": "marketing team meeting",
+      "generate": {
+        "kind": "biz",
+        "value": "marketing"
+      },
+      "image": {
+        "file": "b16/marketing.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:marketing",
+        "sha256": "b5ddb1a4e0dd0fe847acb15bb7b7bc2bba3564baf74754b63173f515e23c6177",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "product launch",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "buổi ra mắt sản phẩm",
+      "meaningEn": "an event where a company shows a new product for the first time",
+      "examples": [
+        {
+          "text": "The product launch was held in a big hotel.",
+          "vi": "Buổi ra mắt sản phẩm được tổ chức tại một khách sạn lớn."
+        },
+        {
+          "text": "Hundreds of people came to the product launch.",
+          "vi": "Hàng trăm người đến dự buổi ra mắt sản phẩm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hold a product launch",
+          "vi": "tổ chức ra mắt sản phẩm"
+        },
+        {
+          "text": "successful product launch",
+          "vi": "buổi ra mắt thành công"
+        }
+      ],
+      "imageQuery": "product launch stage audience",
+      "generate": {
+        "kind": "biz",
+        "value": "product launch"
+      },
+      "image": {
+        "file": "b16/product-launch.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:product launch",
+        "sha256": "8d164bf31900f80a5b74274ba64efa950592ebf85cae526efb1d2c9a379e54ff",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "assembly line",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "dây chuyền lắp ráp",
+      "meaningEn": "a line of workers or machines that build a product step by step",
+      "examples": [
+        {
+          "text": "Workers on the assembly line put the parts together.",
+          "vi": "Công nhân trên dây chuyền lắp ráp ghép các bộ phận lại với nhau."
+        },
+        {
+          "text": "The assembly line makes a car every minute.",
+          "vi": "Dây chuyền lắp ráp làm ra một chiếc xe mỗi phút."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "work on an assembly line",
+          "vi": "làm việc trên dây chuyền"
+        },
+        {
+          "text": "car assembly line",
+          "vi": "dây chuyền lắp ráp ô tô"
+        }
+      ],
+      "imageQuery": "factory assembly line workers",
+      "image": {
+        "file": "b16/assembly-line.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/4051097/image-public-domain-person-building",
+        "author": "U.S. Agency for International Development",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "factory assembly line workers",
+        "sha256": "9f907a84413b856f73bbe2734c12b4aae379eab2da73e7bb6503cee27b0bfd93",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "workshop",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "xưởng",
+      "meaningEn": "a room or building where things are made or repaired",
+      "examples": [
+        {
+          "text": "He repairs bicycles in a small workshop.",
+          "vi": "Anh ấy sửa xe đạp trong một xưởng nhỏ."
+        },
+        {
+          "text": "The workshop is full of tools.",
+          "vi": "Xưởng đầy dụng cụ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "woodworking workshop",
+          "vi": "xưởng mộc"
+        },
+        {
+          "text": "repair workshop",
+          "vi": "xưởng sửa chữa"
+        }
+      ],
+      "imageQuery": "workshop tools bench",
+      "image": {
+        "file": "b16/workshop.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/workbench-machinery-RKR8CFTODQ",
+        "author": "Lisa Fotios",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "workshop tools bench",
+        "sha256": "40ab0fec7f43199ccfab9a2d57ff05a2a2b1e207ad8b5d96e16710603a3dbdac",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cash register",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "máy tính tiền",
+      "meaningEn": "a machine in a shop that records sales and holds money",
+      "examples": [
+        {
+          "text": "The cashier opened the cash register.",
+          "vi": "Nhân viên thu ngân mở máy tính tiền."
+        },
+        {
+          "text": "The cash register is next to the door.",
+          "vi": "Máy tính tiền ở cạnh cửa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open the cash register",
+          "vi": "mở máy tính tiền"
+        },
+        {
+          "text": "old cash register",
+          "vi": "máy tính tiền cũ"
+        }
+      ],
+      "imageQuery": "cash register shop",
+      "image": {
+        "file": "b16/cash-register.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8765918/photo-image-vintage-retro",
+        "author": "U.S. National Archives",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cash register shop",
+        "sha256": "aa9284c6692fbdbbeaa79d3828e4704304a50224cdd76afbf016de6dac894d96",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "stock market",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "thị trường chứng khoán",
+      "meaningEn": "a place or system where company shares are bought and sold",
+      "examples": [
+        {
+          "text": "The stock market fell sharply today.",
+          "vi": "Hôm nay thị trường chứng khoán giảm mạnh."
+        },
+        {
+          "text": "He lost money on the stock market.",
+          "vi": "Anh ấy mất tiền trên thị trường chứng khoán."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "invest in the stock market",
+          "vi": "đầu tư vào chứng khoán"
+        },
+        {
+          "text": "stock market crash",
+          "vi": "sụp đổ thị trường chứng khoán"
+        }
+      ],
+      "imageQuery": "stock market screen traders",
+      "generate": {
+        "kind": "biz",
+        "value": "stock market"
+      },
+      "image": {
+        "file": "b16/stock-market.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:stock market",
+        "sha256": "f97c4281cce05278555b9a3b5896e1c71f9f021e9b7bbb1a9a363308dfd3b259",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bar chart",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "biểu đồ cột",
+      "meaningEn": "a graph that uses bars to show amounts",
+      "examples": [
+        {
+          "text": "The bar chart shows our sales for each month.",
+          "vi": "Biểu đồ cột cho thấy doanh số của chúng tôi từng tháng."
+        },
+        {
+          "text": "She drew a bar chart on the board.",
+          "vi": "Cô ấy vẽ một biểu đồ cột lên bảng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "draw a bar chart",
+          "vi": "vẽ biểu đồ cột"
+        },
+        {
+          "text": "read a bar chart",
+          "vi": "đọc biểu đồ cột"
+        }
+      ],
+      "imageQuery": "bar chart presentation",
+      "generate": {
+        "kind": "biz",
+        "value": "bar chart"
+      },
+      "image": {
+        "file": "b16/bar-chart.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:bar chart",
+        "sha256": "05dedb82837549b55b61f4622c15484c1b737d707902836306d9a0e920e0605f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "shipping container",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "công-ten-nơ vận chuyển",
+      "meaningEn": "a large metal box used to carry goods by ship or truck",
+      "examples": [
+        {
+          "text": "Thousands of shipping containers wait at the port.",
+          "vi": "Hàng nghìn công-ten-nơ chờ tại cảng."
+        },
+        {
+          "text": "The goods travelled in a shipping container.",
+          "vi": "Hàng hóa được vận chuyển trong một công-ten-nơ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "stack of shipping containers",
+          "vi": "chồng công-ten-nơ"
+        },
+        {
+          "text": "load a shipping container",
+          "vi": "bốc hàng lên công-ten-nơ"
+        }
+      ],
+      "imageQuery": "shipping containers port stacked",
+      "image": {
+        "file": "b16/shipping-container.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8732371/photo-image-public-domain-shipping-containers",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "shipping containers port stacked",
+        "sha256": "5f357da2e980cfec0d5b292632eb701943136f51fcaa82ad86a9150058581a62",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "price list",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bảng giá",
+      "meaningEn": "a paper that shows the prices of goods or services",
+      "examples": [
+        {
+          "text": "The price list is on the wall behind the counter.",
+          "vi": "Bảng giá treo trên tường sau quầy."
+        },
+        {
+          "text": "Please send me your latest price list.",
+          "vi": "Làm ơn gửi cho tôi bảng giá mới nhất của bạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "check the price list",
+          "vi": "xem bảng giá"
+        },
+        {
+          "text": "updated price list",
+          "vi": "bảng giá cập nhật"
+        }
+      ],
+      "imageQuery": "price list menu board",
+      "generate": {
+        "kind": "biz",
+        "value": "price list"
+      },
+      "image": {
+        "file": "b16/price-list.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:price list",
+        "sha256": "6f9f9aab967d2e4ad46229d066372a4655a30208dca8dccc8ea037e267b56184",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "parcel",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bưu kiện",
+      "meaningEn": "something wrapped in paper or a box to be sent by post",
+      "examples": [
+        {
+          "text": "A parcel arrived for you this morning.",
+          "vi": "Sáng nay có một bưu kiện gửi cho bạn."
+        },
+        {
+          "text": "She wrapped the parcel with brown paper.",
+          "vi": "Cô ấy gói bưu kiện bằng giấy nâu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "send a parcel",
+          "vi": "gửi bưu kiện"
+        },
+        {
+          "text": "heavy parcel",
+          "vi": "bưu kiện nặng"
+        }
+      ],
+      "imageQuery": "parcel brown paper string",
+      "generate": {
+        "kind": "biz",
+        "value": "parcel"
+      },
+      "image": {
+        "file": "b16/parcel.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:parcel",
+        "sha256": "f0576edf087c533a7d620000ff4405b7938f7d10e6077d105d80a237d160f135",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "online store",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cửa hàng trực tuyến",
+      "meaningEn": "a shop on the internet where you can buy goods",
+      "examples": [
+        {
+          "text": "She sells handmade bags in an online store.",
+          "vi": "Cô ấy bán túi thủ công trong một cửa hàng trực tuyến."
+        },
+        {
+          "text": "The online store delivers all over the country.",
+          "vi": "Cửa hàng trực tuyến giao hàng khắp cả nước."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open an online store",
+          "vi": "mở cửa hàng trực tuyến"
+        },
+        {
+          "text": "shop at an online store",
+          "vi": "mua sắm ở cửa hàng trực tuyến"
+        }
+      ],
+      "imageQuery": "online store laptop shopping",
+      "generate": {
+        "kind": "biz",
+        "value": "online store"
+      },
+      "image": {
+        "file": "b16/online-store.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:online store",
+        "sha256": "d123e34f6e4519bee06cc4fd34e9ebe4bada0b51d38abf3da4e20875cd0f00b9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pitch",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bài giới thiệu ý tưởng",
+      "meaningEn": "a short talk to persuade people to support your idea",
+      "examples": [
+        {
+          "text": "The founder gave a five-minute pitch to investors.",
+          "vi": "Nhà sáng lập có bài giới thiệu năm phút trước các nhà đầu tư."
+        },
+        {
+          "text": "Her pitch was clear and exciting.",
+          "vi": "Bài giới thiệu của cô ấy rõ ràng và hấp dẫn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "give a pitch",
+          "vi": "thuyết trình gọi vốn"
+        },
+        {
+          "text": "business pitch",
+          "vi": "bài giới thiệu dự án kinh doanh"
+        }
+      ],
+      "imageQuery": "startup pitch presentation stage",
+      "generate": {
+        "kind": "biz",
+        "value": "pitch"
+      },
+      "image": {
+        "file": "b16/pitch.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:pitch",
+        "sha256": "a8ed3aa7b4a04a5d84e35fef7dc14f54db508e875cf8f925588fd697303c0c98",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "packaging",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bao bì",
+      "meaningEn": "the box or wrapping around a product",
+      "examples": [
+        {
+          "text": "The packaging is made of recycled paper.",
+          "vi": "Bao bì được làm từ giấy tái chế."
+        },
+        {
+          "text": "Good packaging protects the product.",
+          "vi": "Bao bì tốt bảo vệ sản phẩm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "recycled packaging",
+          "vi": "bao bì tái chế"
+        },
+        {
+          "text": "product packaging",
+          "vi": "bao bì sản phẩm"
+        }
+      ],
+      "imageQuery": "product packaging boxes",
+      "generate": {
+        "kind": "biz",
+        "value": "packaging"
+      },
+      "image": {
+        "file": "b16/packaging.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:biz:packaging",
+        "sha256": "f3afa0e018e3c2b7d98b10d8d7331e65551ce956c397f3f3f8786a031ecdba9d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
