@@ -1201,6 +1201,197 @@ def _big_font(px: int):
     return ImageFont.load_default()
 
 
+def health_icon(name: str) -> bytes:
+    """Flat original drawing for a health or illness word (kind "health")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+    RED = (220, 38, 38)
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=6, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    def arc(x0, y0, x1, y1, a0, a1, w=6):
+        d.arc((x0 * s, y0 * s, x1 * s, y1 * s), a0, a1, fill=L, width=w * s)
+
+    def face(cx, cy, r, col, mood):
+        oval(cx - r, cy - r, cx + r, cy + r, col, 5)
+        ey = cy - r * 0.2
+        for sx in (-1, 1):
+            if mood in ("sneeze",):
+                line(cx + sx * r * 0.4 - 10, ey, cx + sx * r * 0.4 + 10, ey, 6)
+            else:
+                oval(cx + sx * r * 0.4 - 8, ey - 9, cx + sx * r * 0.4 + 8, ey + 9, L, 0)
+        if mood in ("sad", "hot", "cold", "ill", "pain"):
+            arc(cx - r * 0.3, cy + r * 0.35, cx + r * 0.3, cy + r * 0.75, 200, 340, 6)
+            line(cx - r * 0.7, cy - r * 0.55, cx - r * 0.2, cy - r * 0.4, 6)
+            line(cx + r * 0.2, cy - r * 0.4, cx + r * 0.7, cy - r * 0.55, 6)
+        elif mood == "open":
+            oval(cx - r * 0.25, cy + r * 0.3, cx + r * 0.25, cy + r * 0.75, L, 0)
+        elif mood == "sneeze":
+            oval(cx - r * 0.3, cy + r * 0.3, cx + r * 0.3, cy + r * 0.8, L, 0)
+        elif mood == "smile":
+            arc(cx - r * 0.35, cy + r * 0.1, cx + r * 0.35, cy + r * 0.65, 20, 160, 6)
+
+    SK = (253, 224, 71)
+    if name == "fever":
+        face(210, 170, 110, (252, 165, 165), "hot")
+        box(210, 244, 320, 258, (255, 255, 255), 6, 3)
+        oval(300, 238, 328, 266, RED, 3)
+        poly([(120, 40), (108, 70), (132, 70)], (147, 197, 253))
+        poly([(300, 56), (288, 86), (312, 86)], (147, 197, 253))
+    elif name == "cough":
+        face(200, 170, 110, SK, "open")
+        oval(280, 200, 340, 260, (250, 213, 172), 3)
+        for k, (dx, dy) in enumerate(((60, -30), (90, 0), (60, 30))):
+            line(350 + 0 * dx, 190 + dy * 1.2, 350 + dx, 190 + dy * 1.2, 5)
+    elif name == "headache":
+        face(240, 190, 110, SK, "pain")
+        poly([(220, 30), (180, 90), (214, 84), (186, 140), (256, 70), (222, 76), (250, 30)], RED)
+    elif name == "toothache":
+        face(220, 180, 110, SK, "pain")
+        oval(280, 190, 340, 250, (252, 165, 165), 3)
+        poly([(380, 80), (400, 80), (404, 130), (394, 160), (386, 130), (376, 160), (366, 130), (370, 80)], (255, 255, 255))
+        line(350, 60, 340, 40, 5, RED)
+        line(410, 56, 420, 36, 5, RED)
+    elif name == "cold":
+        face(240, 180, 110, (186, 230, 253), "cold")
+        oval(228, 190, 252, 214, (248, 113, 113), 3)
+        box(130, 250, 350, 290, (220, 38, 38), 10)
+        for k in range(5):
+            line(150 + k * 44, 252, 150 + k * 44, 288, 4, (248, 113, 113))
+        for sx, sy in ((80, 70), (400, 80)):
+            for a in range(0, 180, 60):
+                dx, dy = math.cos(math.radians(a)) * 24, math.sin(math.radians(a)) * 24
+                line(sx - dx, sy - dy, sx + dx, sy + dy, 4, (59, 130, 246))
+    elif name == "flu":
+        face(220, 180, 110, (134, 239, 172), "ill")
+        box(300, 236, 410, 250, (255, 255, 255), 6, 3)
+        oval(390, 230, 418, 258, RED, 3)
+        for (vx, vy) in ((80, 60), (390, 80), (70, 260)):
+            oval(vx - 14, vy - 14, vx + 14, vy + 14, (74, 222, 128), 3)
+            for a in range(0, 360, 45):
+                line(vx + math.cos(math.radians(a)) * 14, vy + math.sin(math.radians(a)) * 14, vx + math.cos(math.radians(a)) * 22, vy + math.sin(math.radians(a)) * 22, 3)
+    elif name == "stomachache":
+        _person(d, 240, 30, 2.6, "m", (37, 99, 235))
+        oval(214, 210, 266, 254, (253, 224, 71), 3)
+        for a in range(0, 360, 45):
+            line(240 + math.cos(math.radians(a)) * 34, 232 + math.sin(math.radians(a)) * 34, 240 + math.cos(math.radians(a)) * 52, 232 + math.sin(math.radians(a)) * 52, 5, RED)
+        oval(222, 218, 258, 246, RED, 0)
+    elif name == "sore throat":
+        face(220, 150, 100, SK, "open")
+        box(190, 250, 250, 316, (250, 213, 172), 12)
+        oval(205, 262, 235, 296, RED, 3)
+        for k in (-1, 1):
+            line(260 + k * 0 + 10, 270 + k * 14, 300, 270 + k * 24, 5, RED)
+    elif name == "sneeze":
+        face(200, 170, 110, SK, "sneeze")
+        box(300, 190, 400, 260, (255, 255, 255), 10)
+        line(310, 215, 390, 215, 3)
+        line(310, 235, 390, 235, 3)
+        for k, (dx, dy) in enumerate(((50, -24), (62, 0), (50, 24))):
+            oval(300 + dx * 0 - 6 + 10 * k, 120 + dy + 40, 300 + 6 + 10 * k, 132 + dy + 40, (147, 197, 253), 2)
+    elif name == "allergy":
+        face(220, 180, 110, SK, "sneeze")
+        oval(210, 182, 236, 208, (248, 113, 113), 3)
+        for (fx, fy) in ((360, 90), (410, 150), (350, 220), (90, 70)):
+            for a in range(0, 360, 72):
+                oval(fx + math.cos(math.radians(a)) * 16 - 9, fy + math.sin(math.radians(a)) * 16 - 9, fx + math.cos(math.radians(a)) * 16 + 9, fy + math.sin(math.radians(a)) * 16 + 9, (244, 114, 182), 2)
+            oval(fx - 8, fy - 8, fx + 8, fy + 8, (250, 204, 21), 2)
+    elif name == "rash":
+        box(60, 120, 420, 240, (250, 213, 172), 50)
+        for (px, py) in ((120, 150), (170, 200), (220, 150), (270, 205), (320, 150), (360, 200), (190, 175), (300, 175), (140, 215)):
+            oval(px - 9, py - 9, px + 9, py + 9, (239, 68, 68), 2)
+    elif name == "wound":
+        box(60, 130, 420, 250, (250, 213, 172), 50)
+        poly([(180, 170), (240, 156), (300, 176), (250, 194)], (239, 68, 68))
+        for k in range(5):
+            line(196 + k * 20, 160 + (k % 2) * 8, 204 + k * 20, 190 + (k % 2) * 4, 3)
+    elif name == "bruise":
+        box(60, 130, 420, 250, (250, 213, 172), 50)
+        oval(170, 150, 310, 234, (126, 34, 206), 0)
+        oval(200, 164, 290, 220, (91, 33, 182), 0)
+        oval(150, 140, 330, 244, (167, 139, 250), 0)
+        oval(190, 156, 300, 228, (109, 40, 217), 0)
+    elif name == "bandage":
+        box(60, 140, 420, 220, (250, 200, 150), 36)
+        box(180, 140, 300, 220, (254, 226, 190), 0)
+        for r_ in range(3):
+            for c_ in range(5):
+                oval(200 + c_ * 20 - 3, 156 + r_ * 20 - 3, 200 + c_ * 20 + 3, 156 + r_ * 20 + 3, (240, 180, 130), 0)
+        line(60, 180, 70, 180, 1)
+    elif name == "medicine":
+        box(160, 90, 290, 290, (253, 186, 116), 16)
+        box(190, 50, 260, 100, (255, 255, 255), 8)
+        box(180, 150, 270, 240, (255, 255, 255), 6)
+        line(200, 170, 250, 170, 4)
+        line(200, 190, 250, 190, 4)
+        line(200, 210, 240, 210, 4)
+        oval(330, 220, 410, 280, (226, 232, 240), 4)
+        line(370, 240, 420, 130, 10, (170, 178, 192))
+    elif name == "patient":
+        box(40, 200, 440, 280, (147, 197, 253), 12)
+        box(40, 180, 120, 220, (255, 255, 255), 14)
+        oval(60, 150, 130, 215, (250, 213, 172), 3)
+        box(120, 200, 440, 260, (134, 239, 172), 22)
+        line(40, 280, 40, 320, 8)
+        line(440, 280, 440, 320, 8)
+        box(330, 60, 370, 130, (255, 255, 255), 6)
+        line(350, 130, 350, 190, 4)
+    elif name == "first aid kit":
+        box(110, 120, 370, 290, (255, 255, 255), 18, 5)
+        box(190, 78, 290, 124, (255, 255, 255), 14, 5)
+        box(222, 160, 258, 250, RED, 4, 1)
+        box(195, 187, 285, 223, RED, 4, 1)
+    elif name == "wheelchair":
+        oval(130, 160, 310, 340, BG, 10)
+        oval(210, 232, 230, 252, L, 0)
+        oval(330, 280, 390, 340, BG, 6)
+        line(220, 90, 220, 220, 10)
+        line(220, 220, 340, 220, 10)
+        line(340, 220, 360, 290, 8)
+        box(190, 70, 232, 150, (59, 130, 246), 8)
+        oval(204, 36, 240, 72, (250, 213, 172), 3)
+    elif name == "sunburn":
+        face(220, 190, 110, (248, 113, 113), "hot")
+        for k in range(12):
+            a = math.radians(k * 30)
+            line(390 + math.cos(a) * 38, 90 + math.sin(a) * 38, 390 + math.cos(a) * 62, 90 + math.sin(a) * 62, 6, (245, 158, 11))
+        oval(352, 52, 428, 128, (250, 204, 21), 3)
+    elif name == "health":
+        pts = []
+        for i in range(120):
+            t = i / 119
+            ang = math.pi * 2 * t
+            x = 16 * math.sin(ang) ** 3
+            y = -(13 * math.cos(ang) - 5 * math.cos(2 * ang) - 2 * math.cos(3 * ang) - math.cos(4 * ang))
+            pts.append((240 + x * 9, 170 + y * 9))
+        poly(pts, (244, 63, 94))
+        d.line([(120 * s, 180 * s), (190 * s, 180 * s), (210 * s, 130 * s), (240 * s, 230 * s), (265 * s, 160 * s), (285 * s, 180 * s), (360 * s, 180 * s)], fill=(255, 255, 255), width=8 * s, joint="curve")
+    elif name == "vitamin":
+        box(170, 110, 300, 300, (251, 146, 60), 18)
+        box(190, 74, 280, 116, (255, 255, 255), 8)
+        box(186, 170, 284, 250, (255, 255, 255), 6)
+        d.text((209 * s, 188 * s), "VIT", fill=L, font=_big_font(34 * s))
+        oval(330, 220, 380, 270, (250, 204, 21), 3)
+        oval(100, 230, 150, 280, (251, 146, 60), 3)
+        oval(330, 250, 350, 280, (74, 222, 128), 2)
+    else:
+        raise SystemExit(f"unknown health icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -1243,6 +1434,8 @@ def main() -> None:
             data = weather_icon(val)
         elif kind == "emotion":
             data = emotion_face(val)
+        elif kind == "health":
+            data = health_icon(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"

@@ -1,0 +1,1204 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A24",
+    "name": "Sức khỏe & bệnh thường gặp",
+    "description": "#a1 #a2 #health #illness",
+    "topic": "Sức khỏe & bệnh thường gặp",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "fever",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sốt",
+      "meaningEn": "a high body temperature when you are ill",
+      "examples": [
+        {
+          "text": "The child has a high fever.",
+          "vi": "Đứa trẻ bị sốt cao."
+        },
+        {
+          "text": "I had a fever for two days.",
+          "vi": "Tôi bị sốt trong hai ngày."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "high fever",
+          "vi": "sốt cao"
+        }
+      ],
+      "imageQuery": "thermometer fever",
+      "ipaUs": "/ˈfivɚ/",
+      "ipaUk": "/ˈfiːvə/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/fever ; https://en.wiktionary.org/wiki/fever",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "fever"
+      },
+      "image": {
+        "file": "a24/fever.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:fever",
+        "sha256": "3801a1acf50c301d75062d96ba7fecf0b1493f7a9a34b284d29d8c3794f36ae4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cough",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "A2",
+      "definition": "ho; cơn ho",
+      "meaningEn": "a sudden noise you make when you push air out of your throat",
+      "verbForms": {
+        "past": "coughed",
+        "pastParticiple": "coughed",
+        "ing": "coughing",
+        "thirdPerson": "coughs"
+      },
+      "examples": [
+        {
+          "text": "I have a bad cough at night.",
+          "vi": "Ban đêm tôi bị ho nặng."
+        },
+        {
+          "text": "He coughed all night because of the cold.",
+          "vi": "Anh ấy ho suốt đêm vì bị cảm lạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "dry cough",
+          "vi": "ho khan"
+        }
+      ],
+      "imageQuery": "cough sick",
+      "ipaUs": "/kɔf/",
+      "ipaUk": "/kɒf/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cough",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "cough"
+      },
+      "image": {
+        "file": "a24/cough.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:cough",
+        "sha256": "336715b575e36a275f8796814e5c3507d116edd70ae3117bf10093442d15f848",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "headache",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đau đầu",
+      "meaningEn": "a pain in your head",
+      "examples": [
+        {
+          "text": "I have a headache and I need to rest.",
+          "vi": "Tôi bị đau đầu và cần nghỉ ngơi."
+        },
+        {
+          "text": "Too much noise gives me a headache.",
+          "vi": "Tiếng ồn quá nhiều làm tôi đau đầu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bad headache",
+          "vi": "đau đầu dữ dội"
+        }
+      ],
+      "imageQuery": "headache pain illustration",
+      "ipaUs": "/ˈhɛdeɪk/",
+      "ipaUk": "/ˈhɛdeɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/headache",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "headache"
+      },
+      "image": {
+        "file": "a24/headache.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:headache",
+        "sha256": "5477d8357721cecb7c59dcc0057c1bdc1a72929854cf1614be5afbf94031ac21",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "toothache",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đau răng",
+      "meaningEn": "a pain in a tooth",
+      "examples": [
+        {
+          "text": "He went to the dentist because of a toothache.",
+          "vi": "Anh ấy đi khám nha sĩ vì bị đau răng."
+        },
+        {
+          "text": "Sweet food gives me a toothache.",
+          "vi": "Đồ ngọt làm tôi đau răng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "have a toothache",
+          "vi": "bị đau răng"
+        }
+      ],
+      "imageQuery": "toothache",
+      "ipaUs": "/ˈtuθˌeɪk/",
+      "ipaUk": "/ˈtuθˌeɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/toothache",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "toothache"
+      },
+      "image": {
+        "file": "a24/toothache.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:toothache",
+        "sha256": "56829651e37eb0edec22c9c22666622338bb73e8d112af89815ff094c2240c4a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cold",
+      "partsOfSpeech": [
+        "noun",
+        "adj"
+      ],
+      "cefr": "A1",
+      "definition": "cảm lạnh; lạnh",
+      "meaningEn": "a common illness with a runny nose and a sore throat",
+      "examples": [
+        {
+          "text": "I have a cold, so I stay at home.",
+          "vi": "Tôi bị cảm lạnh nên ở nhà."
+        },
+        {
+          "text": "She caught a cold in the rain.",
+          "vi": "Cô ấy bị cảm lạnh vì đi mưa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "catch a cold",
+          "vi": "bị cảm lạnh"
+        }
+      ],
+      "imageQuery": "common cold sneezing tissue",
+      "ipaUs": "/koʊld/",
+      "ipaUk": "/kəʊld/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cold",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "cold"
+      },
+      "image": {
+        "file": "a24/cold.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:cold",
+        "sha256": "027f6f42c73957b43e21e372109f19625993aede1960219a6aa1948b8233b7d6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "flu",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bệnh cúm",
+      "meaningEn": "an illness like a bad cold with fever and body pain",
+      "examples": [
+        {
+          "text": "Half of my class has the flu.",
+          "vi": "Một nửa lớp tôi bị cúm."
+        },
+        {
+          "text": "He stayed in bed with the flu for a week.",
+          "vi": "Anh ấy nằm nghỉ một tuần vì cúm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "flu shot",
+          "vi": "mũi tiêm phòng cúm"
+        }
+      ],
+      "imageQuery": "flu sick in bed",
+      "ipaUs": "/fluː/",
+      "ipaUk": "/fluː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/flu",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "generate": {
+        "kind": "health",
+        "value": "flu"
+      },
+      "image": {
+        "file": "a24/flu.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:flu",
+        "sha256": "000fa66c1022c1b17bd3ebc1a4961a11f617fa91b1ec4c4e9d361522419c7241",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "stomachache",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đau bụng",
+      "meaningEn": "a pain in your stomach",
+      "examples": [
+        {
+          "text": "I have a stomachache after eating too much.",
+          "vi": "Tôi bị đau bụng sau khi ăn quá nhiều."
+        },
+        {
+          "text": "The child has a stomachache and cannot eat.",
+          "vi": "Đứa trẻ bị đau bụng và không ăn được."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "have a stomachache",
+          "vi": "bị đau bụng"
+        }
+      ],
+      "imageQuery": "stomach pain",
+      "ipaUs": "/ˈstʌməkˌeɪk/",
+      "ipaUk": "/ˈstʌməkˌeɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/stomachache",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "stomachache"
+      },
+      "image": {
+        "file": "a24/stomachache.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:stomachache",
+        "sha256": "3701d8968720db3fe03db9e1204e3ccf9443294b1af03583d501bd02659bdaa2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sore throat",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đau họng",
+      "meaningEn": "a painful throat that hurts when you swallow",
+      "examples": [
+        {
+          "text": "I have a sore throat and cannot talk much.",
+          "vi": "Tôi bị đau họng và không nói nhiều được."
+        },
+        {
+          "text": "Warm tea is good for a sore throat.",
+          "vi": "Trà ấm rất tốt cho cổ họng bị đau."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "have a sore throat",
+          "vi": "bị đau họng"
+        }
+      ],
+      "imageQuery": "sore throat",
+      "ipaUs": "/soɹ ˈθɹoʊt/",
+      "ipaUk": "/sɔː ˈθɹəʊt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sore + https://en.wiktionary.org/wiki/throat",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "sore throat"
+      },
+      "image": {
+        "file": "a24/sore-throat.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:sore throat",
+        "sha256": "204dcc49116c090ab09117983150bf861ad22ca2ed7c97aa66cb55411f95f96a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sneeze",
+      "partsOfSpeech": [
+        "verb",
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hắt hơi",
+      "meaningEn": "to blow air suddenly out of your nose and mouth",
+      "verbForms": {
+        "past": "sneezed",
+        "pastParticiple": "sneezed",
+        "ing": "sneezing",
+        "thirdPerson": "sneezes"
+      },
+      "examples": [
+        {
+          "text": "He sneezed three times in a row.",
+          "vi": "Anh ấy hắt hơi ba lần liên tiếp."
+        },
+        {
+          "text": "Cover your mouth when you sneeze.",
+          "vi": "Hãy che miệng khi bạn hắt hơi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "sneeze loudly",
+          "vi": "hắt hơi to"
+        }
+      ],
+      "imageQuery": "sneezing tissue",
+      "ipaUs": "/sniːz/",
+      "ipaUk": "/sniːz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sneeze",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "sneeze"
+      },
+      "image": {
+        "file": "a24/sneeze.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:sneeze",
+        "sha256": "c98cc380114a79f85a696a69eb557e9b5c009c46de544afe8c42098f2c4eaab0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "medicine",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thuốc",
+      "meaningEn": "something you take to treat an illness",
+      "examples": [
+        {
+          "text": "Take this medicine three times a day.",
+          "vi": "Hãy uống thuốc này ba lần một ngày."
+        },
+        {
+          "text": "The doctor gave me some medicine for my cough.",
+          "vi": "Bác sĩ cho tôi ít thuốc trị ho."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "take medicine",
+          "vi": "uống thuốc"
+        }
+      ],
+      "imageQuery": "medicine bottle spoon",
+      "ipaUs": "/ˈmɛd.ɪ.sɪn/",
+      "ipaUk": "/ˈmɛd.ɪ.s(ɪ)n/",
+      "ipaSource": "https://en.wiktionary.org/wiki/medicine",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "medicine"
+      },
+      "image": {
+        "file": "a24/medicine.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:medicine",
+        "sha256": "330ef32a9aa6a064268926d0e075a606bc1eaa96c1462f43fc0c8313b3321034",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pill",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "viên thuốc",
+      "meaningEn": "a small round piece of medicine that you swallow",
+      "examples": [
+        {
+          "text": "She takes a pill every morning.",
+          "vi": "Mỗi sáng cô ấy uống một viên thuốc."
+        },
+        {
+          "text": "The pill is difficult to swallow.",
+          "vi": "Viên thuốc này khó nuốt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "take a pill",
+          "vi": "uống một viên thuốc"
+        }
+      ],
+      "imageQuery": "pills tablets",
+      "ipaUs": "/pɪl/",
+      "ipaUk": "/pɪl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pill",
+      "ipaVerified": true,
+      "image": {
+        "file": "a24/pill.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/pills-medicine-S5WGVL18A9",
+        "author": "Freestocks.org",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "pills tablets",
+        "sha256": "8b9770cd7ea088da010481b045b65bb83780499dbd4f298a131535d1de45bba5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "injection",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "mũi tiêm",
+      "meaningEn": "a way of putting medicine into your body with a needle",
+      "examples": [
+        {
+          "text": "The nurse gave me an injection.",
+          "vi": "Cô y tá tiêm cho tôi một mũi."
+        },
+        {
+          "text": "Children often cry before an injection.",
+          "vi": "Trẻ em thường khóc trước khi tiêm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "have an injection",
+          "vi": "tiêm một mũi"
+        }
+      ],
+      "synonyms": [
+        "shot"
+      ],
+      "imageQuery": "syringe injection",
+      "ipaUs": "/ɪnˈd͡ʒɛk.ʃən/",
+      "ipaUk": "/ɪnˈd͡ʒɛk.ʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/injection",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a24/injection.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5923937/photo-image-public-domain-medicine-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "syringe injection",
+        "sha256": "44276f697e447cb1d3ef28b874c7fcd10815ca9c00e9308db41c96c8b469e9e5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bandage",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "băng gạc",
+      "meaningEn": "a long piece of cloth that covers a wound",
+      "examples": [
+        {
+          "text": "The nurse put a bandage on my knee.",
+          "vi": "Cô y tá băng đầu gối cho tôi."
+        },
+        {
+          "text": "He wore a bandage on his hand.",
+          "vi": "Anh ấy quấn băng ở tay."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wrap a bandage",
+          "vi": "quấn băng"
+        }
+      ],
+      "imageQuery": "bandage roll",
+      "ipaUs": "/ˈbæn.dɪd͡ʒ/",
+      "ipaUk": "/ˈbæn.dɪd͡ʒ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bandage",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "bandage"
+      },
+      "image": {
+        "file": "a24/bandage.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:bandage",
+        "sha256": "69e4053ce97949d6ec9c6a75d088ea111a11132b3553d9f543e4c3afabe163f1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "patient",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bệnh nhân",
+      "meaningEn": "a person who is being treated by a doctor",
+      "examples": [
+        {
+          "text": "The doctor is talking to a patient.",
+          "vi": "Bác sĩ đang nói chuyện với một bệnh nhân."
+        },
+        {
+          "text": "The hospital has many patients today.",
+          "vi": "Hôm nay bệnh viện có rất nhiều bệnh nhân."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hospital patient",
+          "vi": "bệnh nhân nằm viện"
+        }
+      ],
+      "imageQuery": "patient hospital bed",
+      "ipaUs": "/ˈpeɪ̯ʃənt/",
+      "ipaUk": "/ˈpɛjʃənt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/patient",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "patient"
+      },
+      "image": {
+        "file": "a24/patient.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:patient",
+        "sha256": "527c821de8d2d02f0a7a61cd3fd8580b9dbe807abe9ac8d7565094a608d12fa6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "allergy",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "dị ứng",
+      "meaningEn": "a bad reaction of your body to food, dust or animals",
+      "plural": "allergies",
+      "examples": [
+        {
+          "text": "I have an allergy to peanuts.",
+          "vi": "Tôi bị dị ứng đậu phộng."
+        },
+        {
+          "text": "Her allergy gets worse in spring.",
+          "vi": "Chứng dị ứng của cô ấy nặng hơn vào mùa xuân."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "food allergy",
+          "vi": "dị ứng thực phẩm"
+        }
+      ],
+      "imageQuery": "allergy pollen sneezing",
+      "ipaUs": "/ˈæl.ɚ.d͡ʒi/",
+      "ipaUk": "/ˈæl.əɹ.d͡ʒi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/allergy",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "allergy"
+      },
+      "image": {
+        "file": "a24/allergy.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:allergy",
+        "sha256": "234ad0d2d0cbad6552465737804a5f2f6c5d37a9a70adbfb4c5390cf02b8956f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rash",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "phát ban",
+      "meaningEn": "a lot of small red spots on the skin",
+      "examples": [
+        {
+          "text": "He has a red rash on his arm.",
+          "vi": "Cậu ấy bị phát ban đỏ ở cánh tay."
+        },
+        {
+          "text": "The rash is itchy.",
+          "vi": "Chỗ phát ban rất ngứa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "skin rash",
+          "vi": "phát ban trên da"
+        }
+      ],
+      "imageQuery": "skin rash",
+      "ipaUs": "/ɹæʃ/",
+      "ipaUk": "/ɹæʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rash",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "rash"
+      },
+      "image": {
+        "file": "a24/rash.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:rash",
+        "sha256": "29cc658c4405fdf557b26e7547f72695e080458d7f6ea6211b7f6dcb8d73557f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wound",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "vết thương",
+      "meaningEn": "an injury where the skin is cut or broken",
+      "examples": [
+        {
+          "text": "Clean the wound with water.",
+          "vi": "Hãy rửa vết thương bằng nước."
+        },
+        {
+          "text": "The wound on his leg is healing.",
+          "vi": "Vết thương ở chân anh ấy đang lành."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "clean a wound",
+          "vi": "rửa vết thương"
+        }
+      ],
+      "imageQuery": "wound bandage first aid",
+      "ipaUs": "/ˈwund/",
+      "ipaUk": "/ˈwuːnd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/wound",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "wound"
+      },
+      "image": {
+        "file": "a24/wound.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:wound",
+        "sha256": "b19786eb822ee5fde798dddbe4ea630debff40ac71075674258551439253099b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bruise",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "vết bầm tím",
+      "meaningEn": "a dark mark on the skin after you hit it",
+      "examples": [
+        {
+          "text": "I have a big bruise on my knee.",
+          "vi": "Tôi có một vết bầm lớn ở đầu gối."
+        },
+        {
+          "text": "The bruise turned purple after two days.",
+          "vi": "Vết bầm chuyển sang màu tím sau hai ngày."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a dark bruise",
+          "vi": "vết bầm sẫm"
+        }
+      ],
+      "imageQuery": "bruise skin",
+      "ipaUs": "/bɹuz/",
+      "ipaUk": "/bɹuːz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bruise",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "bruise"
+      },
+      "image": {
+        "file": "a24/bruise.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:bruise",
+        "sha256": "15f56e8a3dc5f4676aa9315276c604df301e5b9403e7c03b4fbc3ce1ae3976aa",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "crutches",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cây nạng",
+      "meaningEn": "two sticks that help you walk when your leg is hurt",
+      "examples": [
+        {
+          "text": "He walks with crutches after the accident.",
+          "vi": "Sau tai nạn anh ấy đi bằng nạng."
+        },
+        {
+          "text": "She needs crutches for six weeks.",
+          "vi": "Cô ấy cần dùng nạng trong sáu tuần."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "walk on crutches",
+          "vi": "đi bằng nạng"
+        }
+      ],
+      "imageQuery": "crutches",
+      "ipaUs": "/ˈkrʌtʃɪz/",
+      "ipaUk": "/ˈkrʌtʃɪz/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found",
+      "image": {
+        "file": "a24/crutches.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/196708439@N04/52424413859",
+        "author": "We, the Disabled People of India",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "crutches",
+        "sha256": "bef50855426ec1c0761cd9ede5823f1893b5ae0acd2d294b4155f26736e75bb2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "face mask",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "khẩu trang",
+      "meaningEn": "a cover for your nose and mouth that protects you from germs",
+      "examples": [
+        {
+          "text": "Wear a face mask on the bus.",
+          "vi": "Hãy đeo khẩu trang khi đi xe buýt."
+        },
+        {
+          "text": "The nurse changes her face mask often.",
+          "vi": "Cô y tá thay khẩu trang thường xuyên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wear a face mask",
+          "vi": "đeo khẩu trang"
+        }
+      ],
+      "imageQuery": "surgical face mask",
+      "ipaUs": "/feɪ̯s mæsk/",
+      "ipaUk": "/feɪ̯s mɑːsk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/face + https://en.wiktionary.org/wiki/mask",
+      "ipaVerified": true,
+      "image": {
+        "file": "a24/face-mask.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5909614/image-face-mask-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "surgical face mask",
+        "sha256": "82c13514999c7573e40ada5bdd0cc8ffd8e5b838f89d60239d98e9230b856638",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "vitamin",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "vi-ta-min",
+      "meaningEn": "a natural substance in food that keeps your body healthy",
+      "examples": [
+        {
+          "text": "Oranges are full of vitamin C.",
+          "vi": "Cam chứa rất nhiều vi-ta-min C."
+        },
+        {
+          "text": "She takes a vitamin every morning.",
+          "vi": "Sáng nào cô ấy cũng uống một viên vi-ta-min."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "vitamin C",
+          "vi": "vi-ta-min C"
+        }
+      ],
+      "imageQuery": "vitamin supplements fruit",
+      "ipaUs": "/ˈvaɪ.tə.mɪn/",
+      "ipaUk": "/ˈvɪt.ə.mɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/vitamin",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "vitamin"
+      },
+      "image": {
+        "file": "a24/vitamin.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:vitamin",
+        "sha256": "038ece2999d88a16a2f87e9244aaccbaedc77a5ac462a01664653c5ae0082c1f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "first aid kit",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hộp sơ cứu",
+      "meaningEn": "a box with bandages and medicine for small injuries",
+      "examples": [
+        {
+          "text": "We keep a first aid kit in the kitchen.",
+          "vi": "Chúng tôi để một hộp sơ cứu trong bếp."
+        },
+        {
+          "text": "The teacher took the first aid kit to the field.",
+          "vi": "Cô giáo mang hộp sơ cứu ra sân."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pack a first aid kit",
+          "vi": "chuẩn bị hộp sơ cứu"
+        }
+      ],
+      "imageQuery": "first aid kit",
+      "ipaUs": "/fɚst eɪd kɪt/",
+      "ipaUk": "/fɜːst eɪd kɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/first + https://en.wiktionary.org/wiki/aid + https://en.wiktionary.org/wiki/kit",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "first aid kit"
+      },
+      "image": {
+        "file": "a24/first-aid-kit.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:first aid kit",
+        "sha256": "087b63c525308439fab01666edc90b16f81d6792054c637a27bfd9556b326eea",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wheelchair",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "xe lăn",
+      "meaningEn": "a chair with wheels for a person who cannot walk",
+      "examples": [
+        {
+          "text": "The hospital has a ramp for wheelchairs.",
+          "vi": "Bệnh viện có đường dốc dành cho xe lăn."
+        },
+        {
+          "text": "He moves around in a wheelchair.",
+          "vi": "Anh ấy di chuyển bằng xe lăn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wheelchair ramp",
+          "vi": "dốc cho xe lăn"
+        }
+      ],
+      "imageQuery": "wheelchair",
+      "ipaUs": "/ˈ(h)wilt͡ʃɛɹ/",
+      "ipaUk": "/ˈwiːlt͡ʃɛə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/wheelchair",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "wheelchair"
+      },
+      "image": {
+        "file": "a24/wheelchair.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:wheelchair",
+        "sha256": "a03f21b1de383207ac030686d615fd198b8998f9679701c0a3cbd110d05387c2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sunburn",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cháy nắng",
+      "meaningEn": "red painful skin caused by too much sun",
+      "examples": [
+        {
+          "text": "Use cream to avoid sunburn.",
+          "vi": "Hãy dùng kem để tránh bị cháy nắng."
+        },
+        {
+          "text": "He got a bad sunburn at the beach.",
+          "vi": "Cậu ấy bị cháy nắng nặng ở bãi biển."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "get sunburn",
+          "vi": "bị cháy nắng"
+        }
+      ],
+      "imageQuery": "sunburn skin sunscreen",
+      "ipaUs": "/ˈsʌnˌbɝn/",
+      "ipaUk": "/ˈsʌnˌbɜːn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sunburn",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "sunburn"
+      },
+      "image": {
+        "file": "a24/sunburn.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:sunburn",
+        "sha256": "579e3a03b1834e99635e4a4f0eac275844d2158b852ce53ae3b1eae5e6b5a992",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "health",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sức khỏe",
+      "meaningEn": "the condition of your body and whether you are well",
+      "examples": [
+        {
+          "text": "Good food is important for your health.",
+          "vi": "Thức ăn tốt rất quan trọng cho sức khỏe của bạn."
+        },
+        {
+          "text": "My grandmother is in good health.",
+          "vi": "Bà tôi có sức khỏe tốt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "good health",
+          "vi": "sức khỏe tốt"
+        },
+        {
+          "text": "health care",
+          "vi": "chăm sóc sức khỏe"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "healthy",
+          "pos": "adj",
+          "vi": "khỏe mạnh"
+        }
+      ],
+      "imageQuery": "healthy food exercise",
+      "ipaUs": "/ˈhɛlθ/",
+      "ipaUk": "/ˈhɛlθ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/health",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "health",
+        "value": "health"
+      },
+      "image": {
+        "file": "a24/health.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:health:health",
+        "sha256": "cad85ba5378052bfe9bfb881af65b25c180e7e5d3970cb5ab936b201521a99b9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
