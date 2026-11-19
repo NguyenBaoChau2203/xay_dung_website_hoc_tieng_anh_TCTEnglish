@@ -572,6 +572,19 @@
 
 .tv-page .tv-course__cover.tv-cover { height: auto; }
 
+/* Photo cover: the course's own card image (480x360) fills the box at its own 4:3 ratio, so nothing is cropped
+   (speech bubbles and drawings reach the edges); the level and status badges keep their solid backgrounds. */
+.tv-page .tv-cover.tv-cover--photo { aspect-ratio: 4 / 3; background: var(--tct-surface-muted); }
+/* On a photo the badges sit on the bottom edge: speech bubbles and titles in the pictures are at the top. */
+.tv-page .tv-cover--photo :is(.tv-course__level, .tv-course__status) { top: auto; bottom: var(--tct-space-sm); }
+.tv-page .tv-cover__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tv-page .tv-cover__art { display: block; width: 100%; height: 100%; }
+.tv-page .tv-cover__art[hidden] { display: none; }
+
+@media (forced-colors: active) {
+    .tv-page .tv-cover--photo { border: 1px solid CanvasText; }
+}
+
 /* ---------------------------------------------------------------- chips on course covers and rows */
 .tv-page .tv-chipdue {
     display: inline-flex;

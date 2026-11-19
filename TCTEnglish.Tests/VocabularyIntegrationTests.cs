@@ -253,13 +253,13 @@ public sealed class VocabularyIntegrationTests
         Assert.Equal(40, second.ProgressPercent);
         Assert.Equal("progress", second.Status);
         Assert.Equal("A1", second.Level);
-        Assert.Equal("jobs", second.ArtKey); // no keyword in the name: set id 390 % 7
+        Assert.Equal("star", second.ArtKey); // no keyword in the name: the neutral art, never one picked by set id
 
         var first = courses[TestDataIds.SystemSetId];
         Assert.Equal(21, first.WordCount);
         Assert.Equal(4, first.LessonCount);
         Assert.Null(first.Level);
-        Assert.Equal("talk", first.ArtKey); // no keyword in the name: set id 302 % 7
+        Assert.Equal("star", first.ArtKey); // no keyword in the name: the neutral art, never one picked by set id
         Assert.Equal("new", first.Status);
 
         var empty = courses[EmptySetId];

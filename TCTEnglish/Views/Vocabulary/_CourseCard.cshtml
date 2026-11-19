@@ -2,6 +2,8 @@
 @*
     One system course on the Vocabulary home: illustrated cover with level and status, name, real counts, due chip, progress.
     The whole card is one stretched link; data-* attributes feed the client-side filters (vocabulary-home.js).
+    The cover is a photo from the course's own card images when it has one (the illustration sits next to it,
+    hidden, and vocabulary-home.js swaps to it if the photo fails to load); otherwise the illustration only.
 *@
 @{
     var (statusClass, statusIcon, statusText) = Model.Status switch
@@ -14,7 +16,12 @@
 <article class="tct-card tct-card--interactive k-card tv-course tv-hue-@Model.Hue"
          data-tv-course data-level="@Model.Level" data-status="@Model.Status" data-name="@Model.SetName">
     <a class="tv-course__link" href="@Url.Action("Detail", "Vocabulary", new { setId = Model.SetId })" aria-label="Mở khóa @Model.SetName"></a>
-    <div class="k-art-box tv-course__cover tv-cover tv-cover--@Model.ArtKey" aria-hidden="true">
+    @{ var hasPhoto = !string.IsNullOrEmpty(Model.CoverImageUrl); }
+    <div class="k-art-box tv-course__cover tv-cover tv-cover--@Model.ArtKey@(hasPhoto ? " tv-cover--photo" : "")" aria-hidden="true">
+        @if (hasPhoto)
+        {
+            <img class="tv-cover__photo" data-tv-cover-photo src="@Model.CoverImageUrl" alt="" width="480" height="360" loading="lazy" decoding="async" />
+        }
         @if (!string.IsNullOrEmpty(Model.Level))
         {
             <span class="tct-badge tv-course__level">@Model.Level</span>
@@ -26,7 +33,14 @@
             }
             @statusText
         </span>
-        <partial name="_CourseArt" model="Model.ArtKey" />
+        @if (hasPhoto)
+        {
+            <span class="tv-cover__art" data-tv-cover-art hidden><partial name="_CourseArt" model="Model.ArtKey" /></span>
+        }
+        else
+        {
+            <partial name="_CourseArt" model="Model.ArtKey" />
+        }
     </div>
     <h3 class="tv-course__name tct-clamp-2 tct-break">@Model.SetName</h3>
     <p class="tv-meta tv-course__meta">

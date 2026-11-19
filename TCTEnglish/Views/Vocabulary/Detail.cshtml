@@ -37,7 +37,18 @@
 
 <div class="tct-theme tct-page tv-page tv-page--course" data-active-tab="@Model.ActiveTab" data-topic-filter="@Model.TopicFilter">
     <section class="tv-hero tv-hue-@course.Hue">
-        <div class="tv-hero__art k-art-box tv-cover tv-cover--@course.ArtKey" aria-hidden="true"><partial name="_CourseArt" model="course.ArtKey" /></div>
+        @{ var hasCoverPhoto = !string.IsNullOrEmpty(course.CoverImageUrl); }
+        <div class="tv-hero__art k-art-box tv-cover tv-cover--@course.ArtKey@(hasCoverPhoto ? " tv-cover--photo" : "")" aria-hidden="true">
+            @if (hasCoverPhoto)
+            {
+                <img class="tv-cover__photo" data-tv-cover-photo src="@course.CoverImageUrl" alt="" width="480" height="360" loading="eager" decoding="async" />
+                <span class="tv-cover__art" data-tv-cover-art hidden><partial name="_CourseArt" model="course.ArtKey" /></span>
+            }
+            else
+            {
+                <partial name="_CourseArt" model="course.ArtKey" />
+            }
+        </div>
         <div class="tv-hero__main">
             <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
             <p class="tv-meta tv-hero__meta">

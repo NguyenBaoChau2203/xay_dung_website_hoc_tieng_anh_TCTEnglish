@@ -119,3 +119,28 @@
     readUrl();
     apply();
 }());
+
+
+/* A cover photo that fails to load is replaced by the illustration rendered next to it (hidden). */
+(function () {
+    'use strict';
+
+    function useIllustration(img) {
+        if (!img || !img.hasAttribute('data-tv-cover-photo') || img.hidden) { return; }
+        var box = img.parentNode;
+        img.hidden = true;
+        if (box) {
+            box.classList.remove('tv-cover--photo');
+            var art = box.querySelector('[data-tv-cover-art]');
+            if (art) { art.hidden = false; }
+        }
+    }
+
+    // error events do not bubble: listen in the capture phase
+    document.addEventListener('error', function (event) {
+        if (event.target && event.target.tagName === 'IMG') { useIllustration(event.target); }
+    }, true);
+    Array.prototype.forEach.call(document.querySelectorAll('img[data-tv-cover-photo]'), function (img) {
+        if (img.complete && img.naturalWidth === 0) { useIllustration(img); }
+    });
+})();

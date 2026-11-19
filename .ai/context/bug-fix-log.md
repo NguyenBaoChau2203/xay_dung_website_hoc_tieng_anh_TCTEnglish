@@ -5677,3 +5677,23 @@ blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 **Commit**: `feat(listening)` series on `feature/listening-redesign`; nothing pushed.
 
 **Notes**: Follow-ups in known-issues: `LISTENING-DICTATION-LOCAL-ONLY`, `LISTENING-SUBTITLES-NOT-IN-FULLSCREEN`, `LISTENING-WORD-LOOKUP-COST`, `LISTENING-PROGRAM-DI-LINE`.
+
+
+### Vocabulary course covers showed another topic's picture — 2026-11-19
+
+**Symptom**: On the Vocabulary page the cover of a course did not match its topic: "Động vật hoang dã" showed the briefcase (jobs) art, "Cơ thể người" a bowl of noodles (food), "Quần áo & phụ kiện" a suitcase (travel).
+
+**Root Cause**: `VocabularyLessonBuilder.ArtKeyFor` matched only a few Vietnamese keywords and otherwise returned `ArtKeys[setId % 7]`, so every course without a keyword got a themed illustration chosen by its id. The 48 new system sets (no keyword in most names) all fell into that fallback.
+
+**Solution**: A course now shows a photo from its own reviewed card images. `VocabularyCoverCatalog` (mirrored in `data/content/vocabulary-covers.json`, kept in sync by a test; kept outside `data/content/vocabulary/` because the importer and content tools read every `*.json` in that folder as a set manifest) names one cover word per course, chosen by looking at the images; a course that is not listed uses its first card with a safe image; generic courses (Oxford, "1000 từ") keep an illustration. The illustration fallback is now the neutral `star` art (the `setId % 7` rule is removed, keyword rules were extended). Images load in one grouped query on the home page and from the already loaded cards on the detail page. The photo keeps its own 4:3 ratio (no crop) and the badges move to the bottom edge on photos; a broken photo falls back to the hidden illustration next to it (`vocabulary-home.js`, `vocabulary-course.js`).
+
+**Files Changed**:
+- `Services/Vocabulary/{VocabularyCoverCatalog,VocabularyLessonBuilder}.cs`, `Services/StudyService.Vocabulary.cs` (cover resolution only), `ViewModels/VocabularyPageViewModels.cs` (`CoverImageUrl`, `CoverAlt`)
+- `Views/Vocabulary/{_CourseCard,Detail}.cshtml`, `wwwroot/css/vocabulary.css`, `wwwroot/js/{vocabulary-home,vocabulary-course}.js`, `data/content/vocabulary-covers.json`
+- Tests: new `VocabularyCoverTests`; `VocabularyArtKeyTests` rewritten for the neutral fallback; two modulo expectations in `VocabularyIntegrationTests` changed to `star`
+
+**Verification**: no migration, no model or card data change. Scripted Chrome on the real app at 1440, 1366, 1024, 768, 390 and 200% zoom: 52 of 56 courses show a photo, 0 broken images, 0 overflow, 0 console errors; every cover checked by eye against its course name (0 mismatches); badge contrast on photos at least 6.8:1; every cover falls back to the illustration when its image is made to fail.
+
+**Commit**: `fix(vocabulary)` series on `fix/vocabulary-course-covers`; nothing pushed.
+
+**Notes**: To set the cover of a new system set, add its exact name and a card term that has an image to `VocabularyCoverCatalog.Terms` and to `data/content/vocabulary-covers.json` (a test fails if the two differ or the term is not a card of the set with an image). Pick a single clear subject; the image is shown at 4:3 and about 265 px wide.
