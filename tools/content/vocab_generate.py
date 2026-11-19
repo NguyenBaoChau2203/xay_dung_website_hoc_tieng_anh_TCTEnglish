@@ -907,6 +907,93 @@ def vehicle_scene(name: str) -> bytes:
     return finish(img)
 
 
+def weather_icon(name: str) -> bytes:
+    """Flat original weather icon (kind "weather")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+    d.rectangle((0, 0, W * s, H * s), fill=(214, 236, 252))
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def sun(cx, cy, r, rays=True):
+        if rays:
+            for k in range(12):
+                a = math.radians(k * 30)
+                d.line(((cx + math.cos(a) * (r + 12)) * s, (cy + math.sin(a) * (r + 12)) * s, (cx + math.cos(a) * (r + 40)) * s, (cy + math.sin(a) * (r + 40)) * s), fill=(245, 158, 11), width=8 * s)
+        oval(cx - r, cy - r, cx + r, cy + r, (250, 204, 21))
+
+    def cloud(cx, cy, k=1.0, col=(255, 255, 255)):
+        for dx, dy, rr in ((-50, 10, 38), (0, -14, 50), (52, 8, 40), (14, 22, 36), (-22, 24, 34)):
+            oval(cx + (dx - rr) * k, cy + (dy - rr) * k, cx + (dx + rr) * k, cy + (dy + rr) * k, col)
+        d.rounded_rectangle(((cx - 74 * k) * s, (cy + 4 * k) * s, (cx + 84 * k) * s, (cy + 54 * k) * s), int(24 * k * s), fill=col)
+
+    def drops(cx, cy, n=5, col=(37, 99, 235)):
+        for i in range(n):
+            x = cx - 70 + i * 36
+            y = cy + (i % 2) * 22
+            poly([(x, y), (x - 8, y + 18), (x + 8, y + 18)], col)
+
+    def bolt(cx, cy, k=1.0):
+        poly([(cx + 10 * k, cy - 50 * k), (cx - 30 * k, cy + 6 * k), (cx - 2 * k, cy + 6 * k), (cx - 16 * k, cy + 52 * k), (cx + 30 * k, cy - 8 * k), (cx + 2 * k, cy - 8 * k)], (250, 204, 21))
+
+    cx, cy = 240, 150
+    if name == "sun":
+        sun(cx, 180, 70)
+    elif name == "weather":
+        sun(190, 130, 56)
+        cloud(280, 190, 1.2)
+    elif name == "rain":
+        cloud(cx, 120, 1.3, (203, 213, 225))
+        drops(cx, 220, 6)
+    elif name == "storm":
+        cloud(cx, 100, 1.4, (100, 116, 139))
+        drops(cx - 20, 230, 5)
+        bolt(cx + 70, 200, 1.3)
+    elif name == "thunder":
+        cloud(cx, 90, 1.3, (148, 163, 184))
+        bolt(cx, 215, 1.8)
+    elif name == "wind":
+        for k, (y, ln) in enumerate(((120, 260), (180, 320), (240, 220))):
+            x0 = 80
+            d.line((x0 * s, y * s, (x0 + ln) * s, y * s), fill=(100, 116, 139), width=10 * s)
+            d.arc(((x0 + ln - 34) * s, (y - 54) * s, (x0 + ln + 34) * s, (y + 14) * s), 270, 450, fill=(100, 116, 139), width=10 * s)
+    elif name == "breeze":
+        for k, y in enumerate((140, 200, 250)):
+            pts = [(70 + i * 12, y + math.sin(i / 2.2 + k) * 14) for i in range(32)]
+            d.line([(x * s, yy * s) for x, yy in pts], fill=(100, 116, 139), width=7 * s, joint="curve")
+        poly([(330, 120), (380, 90), (400, 130), (360, 160)], (74, 222, 128))
+        d.line((340 * s, 150 * s, 392 * s, 104 * s), fill=L, width=3 * s)
+    elif name == "temperature":
+        d.rounded_rectangle((210 * s, 40 * s, 270 * s, 250 * s), 30 * s, fill=(255, 255, 255), outline=L, width=4 * s)
+        oval(190, 220, 290, 320, (255, 255, 255), 4)
+        oval(204, 234, 276, 306, (220, 38, 38), 2)
+        d.rounded_rectangle((232 * s, 110 * s, 248 * s, 250 * s), 8 * s, fill=(220, 38, 38))
+        for k in range(6):
+            d.line((276 * s, (70 + k * 28) * s, 300 * s, (70 + k * 28) * s), fill=L, width=4 * s)
+    elif name == "puddle":
+        d.rectangle((0, 150 * s, W * s, H * s), fill=(203, 213, 225))
+        oval(90, 210, 390, 310, (147, 197, 253), 4)
+        oval(160, 232, 320, 290, (186, 220, 253), 2)
+        oval(205, 246, 275, 276, (219, 234, 254), 2)
+        poly([(240, 70), (222, 112), (258, 112)], (37, 99, 235))
+        d.line((120 * s, 70 * s, 100 * s, 130 * s), fill=(37, 99, 235), width=5 * s)
+        d.line((370 * s, 60 * s, 350 * s, 120 * s), fill=(37, 99, 235), width=5 * s)
+    elif name == "season":
+        for k, (col, a0) in enumerate(((  (74, 222, 128), 180), ((250, 204, 21), 270), ((251, 146, 60), 0), ((147, 197, 253), 90))):
+            d.pieslice((140 * s, 40 * s, 340 * s, 240 * s), a0, a0 + 90, fill=col, outline=L, width=4 * s)
+        oval(210, 110, 270, 170, (255, 255, 255), 4)
+    else:
+        raise SystemExit(f"unknown weather icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -945,6 +1032,8 @@ def main() -> None:
             data = place_scene(val)
         elif kind == "vehicle":
             data = vehicle_scene(val)
+        elif kind == "weather":
+            data = weather_icon(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"

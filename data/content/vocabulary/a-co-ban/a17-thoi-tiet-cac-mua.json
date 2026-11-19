@@ -1,0 +1,1203 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A17",
+    "name": "Thời tiết & các mùa",
+    "description": "#a1 #a2 #weather #seasons",
+    "topic": "Thời tiết & các mùa",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "weather",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "thời tiết",
+      "meaningEn": "the conditions outside, such as sun, rain or wind",
+      "examples": [
+        {
+          "text": "The weather is lovely today.",
+          "vi": "Hôm nay thời tiết thật đẹp."
+        },
+        {
+          "text": "What is the weather like in Hanoi?",
+          "vi": "Thời tiết ở Hà Nội thế nào?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "weather forecast",
+          "vi": "dự báo thời tiết"
+        },
+        {
+          "text": "good weather",
+          "vi": "thời tiết đẹp"
+        }
+      ],
+      "imageQuery": "weather icons sun cloud rain",
+      "ipaUs": "/ˈwɛðɚ/",
+      "ipaUk": "/ˈwɛðə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/weather",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "weather",
+        "value": "weather"
+      },
+      "image": {
+        "file": "a17/weather.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:weather:weather",
+        "sha256": "5370033837002044c46afafb64d43cf610d0950cd6be63b78277de4c93b212a5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sun",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "mặt trời",
+      "meaningEn": "the bright star that gives us light and heat",
+      "examples": [
+        {
+          "text": "The sun rises in the east.",
+          "vi": "Mặt trời mọc ở phía đông."
+        },
+        {
+          "text": "We sat in the sun and ate lunch.",
+          "vi": "Chúng tôi ngồi dưới nắng và ăn trưa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "in the sun",
+          "vi": "dưới ánh nắng"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "sunny",
+          "pos": "adj",
+          "vi": "có nắng"
+        }
+      ],
+      "imageQuery": "sun sky",
+      "ipaUs": "/sʌn/",
+      "ipaUk": "/sʌn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sun",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "weather",
+        "value": "sun"
+      },
+      "image": {
+        "file": "a17/sun.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:weather:sun",
+        "sha256": "1310cd828d13aa00499a3b0db1353352788e041354576cd6708623e4e79bb652",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rain",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "A1",
+      "definition": "mưa; trời mưa",
+      "meaningEn": "water that falls from the clouds",
+      "verbForms": {
+        "past": "rained",
+        "pastParticiple": "rained",
+        "ing": "raining",
+        "thirdPerson": "rains"
+      },
+      "examples": [
+        {
+          "text": "The rain started in the afternoon.",
+          "vi": "Cơn mưa bắt đầu vào buổi chiều."
+        },
+        {
+          "text": "We stayed home because of the heavy rain.",
+          "vi": "Chúng tôi ở nhà vì mưa to."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "heavy rain",
+          "vi": "mưa lớn"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "rainy",
+          "pos": "adj",
+          "vi": "có mưa"
+        }
+      ],
+      "imageQuery": "rain falling street",
+      "ipaUs": "/ɹeɪn/",
+      "ipaUk": "/ɹeɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rain",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "weather",
+        "value": "rain"
+      },
+      "image": {
+        "file": "a17/rain.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:weather:rain",
+        "sha256": "bc26a3bba1d637c9aed26a516f985ef971df651a2845b8abd54085d9ac16b6a6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cloud",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "đám mây",
+      "meaningEn": "a white or grey mass floating in the sky",
+      "examples": [
+        {
+          "text": "A dark cloud covered the sun.",
+          "vi": "Một đám mây đen che mất mặt trời."
+        },
+        {
+          "text": "There is not a single cloud in the sky.",
+          "vi": "Trên trời không có lấy một đám mây."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "dark clouds",
+          "vi": "mây đen"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "cloudy",
+          "pos": "adj",
+          "vi": "nhiều mây"
+        }
+      ],
+      "imageQuery": "clouds blue sky",
+      "ipaUs": "/ˈklaʊ̯d/",
+      "ipaUk": "/ˈklaʊ̯d/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cloud",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/cloud.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3299072/free-photo-image-heaven-cloudscape-azure-sky",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "clouds blue sky",
+        "sha256": "b62766a73e689efba7109fb1921dafc68b72608227104a6389349d87e7556a56",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wind",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "gió",
+      "meaningEn": "air that moves across the land",
+      "examples": [
+        {
+          "text": "The wind blew my hat away.",
+          "vi": "Gió thổi bay mũ của tôi."
+        },
+        {
+          "text": "There is a strong wind today.",
+          "vi": "Hôm nay có gió mạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "strong wind",
+          "vi": "gió mạnh"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "windy",
+          "pos": "adj",
+          "vi": "có gió"
+        }
+      ],
+      "imageQuery": "wind blowing trees",
+      "ipaUs": "/wɪnd/",
+      "ipaUk": "/wɪnd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/wind",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "weather",
+        "value": "wind"
+      },
+      "image": {
+        "file": "a17/wind.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:weather:wind",
+        "sha256": "583a71d8547fde1895ab44442a00118192589057e2ca64f594acb368472a6de6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "storm",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cơn bão, cơn giông",
+      "meaningEn": "very bad weather with strong wind and heavy rain",
+      "examples": [
+        {
+          "text": "A big storm is coming tonight.",
+          "vi": "Một cơn giông lớn sắp đến vào tối nay."
+        },
+        {
+          "text": "The storm broke many trees.",
+          "vi": "Cơn bão làm gãy nhiều cây."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "thunder storm",
+          "vi": "bão có sấm sét"
+        }
+      ],
+      "imageQuery": "storm clouds",
+      "ipaUs": "/stoɹm/",
+      "ipaUk": "/stɔːm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/storm",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "weather",
+        "value": "storm"
+      },
+      "image": {
+        "file": "a17/storm.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:weather:storm",
+        "sha256": "17fad83d1d62a0224fb55ee1ed90c4504f1bd85a8577fe1c693fc145b4fa16a4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "snow",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "A1",
+      "definition": "tuyết; có tuyết rơi",
+      "meaningEn": "soft white pieces of frozen water that fall from the sky",
+      "verbForms": {
+        "past": "snowed",
+        "pastParticiple": "snowed",
+        "ing": "snowing",
+        "thirdPerson": "snows"
+      },
+      "examples": [
+        {
+          "text": "The children played in the snow.",
+          "vi": "Bọn trẻ chơi đùa trong tuyết."
+        },
+        {
+          "text": "It snows a lot in January.",
+          "vi": "Tháng Một tuyết rơi rất nhiều."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "heavy snow",
+          "vi": "tuyết dày"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "snowy",
+          "pos": "adj",
+          "vi": "có tuyết"
+        }
+      ],
+      "imageQuery": "snow covered trees",
+      "ipaUs": "/snoʊ̯/",
+      "ipaUk": "/snəʊ̯/",
+      "ipaSource": "https://en.wiktionary.org/wiki/snow",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/snow.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/135886671@N08/32106484915",
+        "author": "Forest Service Pacific Northwest Region",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "snow covered trees",
+        "sha256": "6cd6b365b8de35adecf0dd5fd996fd23145a02da3fb614f44fd9bd36d51d8229",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fog",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sương mù",
+      "meaningEn": "thick cloud near the ground that makes it hard to see",
+      "examples": [
+        {
+          "text": "The fog was so thick that we could not see the road.",
+          "vi": "Sương mù dày đến mức chúng tôi không thấy đường."
+        },
+        {
+          "text": "There was fog over the lake this morning.",
+          "vi": "Sáng nay có sương mù trên hồ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "thick fog",
+          "vi": "sương mù dày"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "foggy",
+          "pos": "adj",
+          "vi": "có sương mù"
+        }
+      ],
+      "imageQuery": "fog morning landscape",
+      "ipaUs": "/fɔɡ/",
+      "ipaUk": "/fɒɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fog",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/fog.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/80223459@N05/36499082851",
+        "author": "YellowstoneNPS",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "fog morning landscape",
+        "sha256": "81089ee27e6460f5622a595974a6ff8fa66dd6b398c224607398546c4b952454",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "thunder",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sấm",
+      "meaningEn": "the loud noise you hear after lightning",
+      "examples": [
+        {
+          "text": "The dog is afraid of thunder.",
+          "vi": "Con chó sợ tiếng sấm."
+        },
+        {
+          "text": "We heard loud thunder at night.",
+          "vi": "Ban đêm chúng tôi nghe thấy tiếng sấm lớn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a clap of thunder",
+          "vi": "một tiếng sấm rền"
+        }
+      ],
+      "imageQuery": "thunderstorm sky",
+      "ipaUs": "/ˈθʌndɚ/",
+      "ipaUk": "/ˈθʌndə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/thunder",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "weather",
+        "value": "thunder"
+      },
+      "image": {
+        "file": "a17/thunder.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:weather:thunder",
+        "sha256": "56cdcbd5c53c3222266a774ba2f66d80bee5ccef9734602a7b27fd8398c21b75",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "lightning",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tia chớp, sét",
+      "meaningEn": "a bright flash of light in the sky during a storm",
+      "examples": [
+        {
+          "text": "A flash of lightning lit up the sky.",
+          "vi": "Một tia chớp làm sáng cả bầu trời."
+        },
+        {
+          "text": "Lightning hit the old tree.",
+          "vi": "Sét đánh vào cái cây già."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "flash of lightning",
+          "vi": "tia chớp"
+        }
+      ],
+      "imageQuery": "lightning bolt night",
+      "ipaUs": "/ˈlaɪ̯t.nɪŋ/",
+      "ipaUk": "/ˈlaɪ̯t.nɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lightning",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/lightning.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Lightning_Ground_Storm_(Unsplash).jpg",
+        "author": "Brandon Morgan littleppl85",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "lightning bolt night",
+        "sha256": "1a93a4496007e16ee0026e3c7c83817b5ed64306fca51fb6db4de6a52cce9cda",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rainbow",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cầu vồng",
+      "meaningEn": "a curve of seven colours in the sky after rain",
+      "examples": [
+        {
+          "text": "We saw a beautiful rainbow after the rain.",
+          "vi": "Chúng tôi thấy một chiếc cầu vồng tuyệt đẹp sau cơn mưa."
+        },
+        {
+          "text": "A rainbow has seven colours.",
+          "vi": "Cầu vồng có bảy màu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "double rainbow",
+          "vi": "cầu vồng đôi"
+        }
+      ],
+      "imageQuery": "rainbow sky",
+      "ipaUs": "/ˈɹeɪnboʊ/",
+      "ipaUk": "/ˈɹeɪnbəʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rainbow",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/rainbow.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/rainbow-sky-PAQC3Z5YDJ",
+        "author": "Ian Livesey",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "rainbow sky",
+        "sha256": "a58f205f77037f7122c13e6e02e85f3a1a8d85dd8f01a6e764b401b75b42de8a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "umbrella",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái ô, cái dù",
+      "meaningEn": "a round cover you hold over your head in the rain",
+      "examples": [
+        {
+          "text": "Take an umbrella because it may rain.",
+          "vi": "Hãy mang theo ô vì trời có thể mưa."
+        },
+        {
+          "text": "She opened her red umbrella.",
+          "vi": "Cô ấy mở chiếc ô đỏ của mình."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open an umbrella",
+          "vi": "mở ô"
+        }
+      ],
+      "imageQuery": "umbrella rain",
+      "ipaUs": "/ʌmˈbɹɛl.ə/",
+      "ipaUk": "/ʌmˈbɹɛl.ə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/umbrella",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/umbrella.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/umbrella-rain-L7X3V4PRUI",
+        "author": "Sajjad Ghanavati",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "umbrella rain",
+        "sha256": "e1c6a2844541b097324017b90555957da083f27a73443dded2a59589e1ee11bb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "raincoat",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "áo mưa",
+      "meaningEn": "a waterproof coat that keeps you dry in the rain",
+      "examples": [
+        {
+          "text": "He wears a yellow raincoat to school.",
+          "vi": "Cậu ấy mặc áo mưa vàng đến trường."
+        },
+        {
+          "text": "I forgot my raincoat and got wet.",
+          "vi": "Tôi quên áo mưa nên bị ướt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wear a raincoat",
+          "vi": "mặc áo mưa"
+        }
+      ],
+      "imageQuery": "yellow raincoat",
+      "ipaUs": "/ˈɹeɪnkoʊt/",
+      "ipaUk": "/ˈɹeɪnkəʊt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/raincoat",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/raincoat.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/yellow-jacket-C6J16TFD75",
+        "author": "Justin Luebke",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "yellow raincoat",
+        "sha256": "73e416610da454e56fb2678b375bc974ba7a3388e14118809b7b8f3bf4c5f151",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "spring",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "mùa xuân",
+      "meaningEn": "the season after winter when flowers begin to grow",
+      "examples": [
+        {
+          "text": "Flowers bloom in spring.",
+          "vi": "Hoa nở vào mùa xuân."
+        },
+        {
+          "text": "The weather is warm in spring.",
+          "vi": "Thời tiết ấm áp vào mùa xuân."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "in spring",
+          "vi": "vào mùa xuân"
+        }
+      ],
+      "imageQuery": "spring flowers blossom",
+      "ipaUs": "/ˈspɹɪŋ/",
+      "ipaUk": "/ˈspɹɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/spring",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/spring.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Bunches-blossom-spring_(Unsplash).jpg",
+        "author": "Joshua Reddekopp joshuaryanphoto",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "spring flowers blossom",
+        "sha256": "af84f4a8d287656a02bc9d808cb6c1b4860eed156be7df02da4d3fe66a3e9d65",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "summer",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "mùa hè",
+      "meaningEn": "the hottest season of the year",
+      "examples": [
+        {
+          "text": "We go to the beach every summer.",
+          "vi": "Mùa hè nào chúng tôi cũng đi biển."
+        },
+        {
+          "text": "Summer is very hot in my city.",
+          "vi": "Mùa hè ở thành phố tôi rất nóng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "summer holiday",
+          "vi": "kỳ nghỉ hè"
+        }
+      ],
+      "imageQuery": "summer beach",
+      "ipaUs": "/ˈsʌmɚ/",
+      "ipaUk": "/ˈsʌmə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/summer",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/summer.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5917100/image-public-domain-ocean-nature",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "summer beach",
+        "sha256": "d03480ad4c3be40ce40572bcffc7715e2bbc64c09a51774c89715de55ec9a08d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "autumn",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "mùa thu",
+      "meaningEn": "the season when leaves change colour and fall",
+      "examples": [
+        {
+          "text": "The leaves turn red in autumn.",
+          "vi": "Lá chuyển sang màu đỏ vào mùa thu."
+        },
+        {
+          "text": "Autumn is my favourite season.",
+          "vi": "Mùa thu là mùa tôi yêu thích nhất."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "autumn leaves",
+          "vi": "lá mùa thu"
+        }
+      ],
+      "synonyms": [
+        "fall"
+      ],
+      "imageQuery": "autumn leaves forest",
+      "ipaUs": "/ˈɔtəm/",
+      "ipaUk": "/ˈɔːtəm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/autumn",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/autumn.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/66741228@N05/50561182987",
+        "author": "Bonnie Moreland (free images)",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "autumn leaves forest",
+        "sha256": "7dc3dbf242bee0ca34cf68b1eff8c0f50684cc4dd2639ab7da7cce9d78e77478",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "winter",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "mùa đông",
+      "meaningEn": "the coldest season of the year",
+      "examples": [
+        {
+          "text": "It is very cold in winter.",
+          "vi": "Mùa đông trời rất lạnh."
+        },
+        {
+          "text": "We wear warm coats in winter.",
+          "vi": "Chúng tôi mặc áo ấm vào mùa đông."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "winter holiday",
+          "vi": "kỳ nghỉ đông"
+        }
+      ],
+      "imageQuery": "winter snow landscape",
+      "ipaUs": "/ˈwɪntɚ/",
+      "ipaUk": "/ˈwɪntə/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/winter ; https://en.wiktionary.org/wiki/winter",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/winter.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Gustaf_Fj%C3%A6stad_-_Winter_road_in_a_snow-laden_landscape_1896.jpg",
+        "author": "Gustaf Fjæstad",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "winter snow landscape",
+        "sha256": "acbc79547872b121610eb19c3125678c8dd459787e04d788db3f9e4c0bc49e44",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "season",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "mùa (trong năm)",
+      "meaningEn": "one of the four parts of the year",
+      "examples": [
+        {
+          "text": "Which season do you like best?",
+          "vi": "Bạn thích mùa nào nhất?"
+        },
+        {
+          "text": "There are four seasons in a year.",
+          "vi": "Một năm có bốn mùa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "rainy season",
+          "vi": "mùa mưa"
+        },
+        {
+          "text": "dry season",
+          "vi": "mùa khô"
+        }
+      ],
+      "imageQuery": "four seasons tree",
+      "ipaUs": "/ˈsi.zn̩/",
+      "ipaUk": "/ˈsiː.zn̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/season",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "weather",
+        "value": "season"
+      },
+      "image": {
+        "file": "a17/season.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:weather:season",
+        "sha256": "dd8d038fca034a33d8ac5a6dee8dc6d5c9008351bc1f0f4a174b82a950ffa7f0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "temperature",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nhiệt độ",
+      "meaningEn": "how hot or cold something is",
+      "examples": [
+        {
+          "text": "The temperature is thirty degrees today.",
+          "vi": "Hôm nay nhiệt độ là ba mươi độ."
+        },
+        {
+          "text": "The temperature drops at night.",
+          "vi": "Nhiệt độ giảm vào ban đêm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "high temperature",
+          "vi": "nhiệt độ cao"
+        }
+      ],
+      "imageQuery": "thermometer temperature",
+      "ipaUs": "/ˈtɛm.pəɹ.ə.t͡ʃə(ɹ)/",
+      "ipaUk": "/ˈtɛm.pəɹ.ə.t͡ʃə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/temperature",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "weather",
+        "value": "temperature"
+      },
+      "image": {
+        "file": "a17/temperature.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:weather:temperature",
+        "sha256": "afe2189f03f82fb8a53f9e1257e1f287bcf3fd938329095209ed463c64ab9c1b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "flood",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "A2",
+      "definition": "lũ lụt; làm ngập",
+      "meaningEn": "a large amount of water covering dry land",
+      "verbForms": {
+        "past": "flooded",
+        "pastParticiple": "flooded",
+        "ing": "flooding",
+        "thirdPerson": "floods"
+      },
+      "examples": [
+        {
+          "text": "The flood covered the whole village.",
+          "vi": "Trận lụt nhấn chìm cả ngôi làng."
+        },
+        {
+          "text": "Heavy rain caused a flood in the city.",
+          "vi": "Mưa lớn gây ra lũ lụt trong thành phố."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "flood water",
+          "vi": "nước lũ"
+        }
+      ],
+      "imageQuery": "flooded street",
+      "ipaUs": "/flʌd/",
+      "ipaUk": "/flʌd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/flood",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/flood.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8723819/photo-image-border-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "flooded street",
+        "sha256": "d9d5d165a2b1f242c07d1bd94c186e9848f4fd2ea39fd1fd93902a187ff2db50",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "frost",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sương giá",
+      "meaningEn": "a thin white layer of ice on the ground on cold mornings",
+      "examples": [
+        {
+          "text": "There was frost on the grass this morning.",
+          "vi": "Sáng nay có sương giá trên cỏ."
+        },
+        {
+          "text": "The frost killed the flowers.",
+          "vi": "Sương giá làm chết những bông hoa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "morning frost",
+          "vi": "sương giá buổi sáng"
+        }
+      ],
+      "imageQuery": "frost on grass",
+      "ipaUs": "/fɹɔst/",
+      "ipaUk": "/fɹɒst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/frost",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/frost.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Dry_grass_with_frost_1.jpg",
+        "author": "W.carter",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "frost on grass",
+        "sha256": "e3157508f611268290d756ebbd7f591e1d4e553cd6e471fd70be883bd203ac1d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "puddle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "vũng nước",
+      "meaningEn": "a small pool of water on the ground after rain",
+      "examples": [
+        {
+          "text": "The child jumped in a puddle.",
+          "vi": "Đứa bé nhảy vào một vũng nước."
+        },
+        {
+          "text": "Be careful, there is a big puddle.",
+          "vi": "Cẩn thận nhé, có một vũng nước lớn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "jump in a puddle",
+          "vi": "nhảy vào vũng nước"
+        }
+      ],
+      "imageQuery": "puddle rain",
+      "ipaUs": "/ˈpʌdəl/",
+      "ipaUk": "/ˈpʌdəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/puddle",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "weather",
+        "value": "puddle"
+      },
+      "image": {
+        "file": "a17/puddle.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:weather:puddle",
+        "sha256": "09f5a5e0e6454c32a78c57a55c397726966953bf3b58fc841c8c5a42467dfb30",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "snowman",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "người tuyết",
+      "meaningEn": "a figure of a person made from snow",
+      "plural": "snowmen",
+      "examples": [
+        {
+          "text": "The children built a snowman in the garden.",
+          "vi": "Bọn trẻ làm một người tuyết trong vườn."
+        },
+        {
+          "text": "The snowman has a carrot for a nose.",
+          "vi": "Người tuyết có một củ cà rốt làm mũi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "build a snowman",
+          "vi": "đắp người tuyết"
+        }
+      ],
+      "imageQuery": "snowman",
+      "ipaUs": "/ˈsnoʊ.mæn/",
+      "ipaUk": "/ˈsnəʊ.mæn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/snowman",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/snowman.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/37996646802@N01/339182350",
+        "author": "cogdogblog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "snowman",
+        "sha256": "febe3b6f573bb5a046bc14f613c626ad040a48aa57d9355f22c3b2e8a65a7d97",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "typhoon",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bão nhiệt đới",
+      "meaningEn": "a very strong storm that starts over the sea",
+      "examples": [
+        {
+          "text": "A typhoon is coming to the coast.",
+          "vi": "Một cơn bão đang tiến vào bờ biển."
+        },
+        {
+          "text": "The typhoon destroyed many houses.",
+          "vi": "Cơn bão đã phá hủy nhiều ngôi nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "typhoon warning",
+          "vi": "cảnh báo bão"
+        }
+      ],
+      "imageQuery": "typhoon satellite image",
+      "ipaUs": "/taɪˈfun/",
+      "ipaUk": "/taɪˈfuːn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/typhoon",
+      "ipaVerified": true,
+      "image": {
+        "file": "a17/typhoon.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/39735679@N00/298167837",
+        "author": "pingnews.com",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "typhoon satellite image",
+        "sha256": "a80993feb1169a32ce0c8f3f8288f27839cdc68a971af6c51e1cd5c418793f8b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "breeze",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "làn gió nhẹ",
+      "meaningEn": "a light, pleasant wind",
+      "examples": [
+        {
+          "text": "A cool breeze came from the sea.",
+          "vi": "Một làn gió mát thổi từ biển vào."
+        },
+        {
+          "text": "We sat outside and enjoyed the breeze.",
+          "vi": "Chúng tôi ngồi ngoài trời tận hưởng làn gió nhẹ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "gentle breeze",
+          "vi": "làn gió nhẹ"
+        }
+      ],
+      "imageQuery": "sea breeze",
+      "ipaUs": "/bɹiːz/",
+      "ipaUk": "/bɹiːz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/breeze",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "weather",
+        "value": "breeze"
+      },
+      "image": {
+        "file": "a17/breeze.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:weather:breeze",
+        "sha256": "e16f70fd6caaa9bf2ee78ef4c58299856e84be515073e0e4eea1af31d411c259",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
