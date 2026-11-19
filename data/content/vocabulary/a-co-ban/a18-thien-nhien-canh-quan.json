@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A18",
+    "name": "Thiên nhiên & cảnh quan",
+    "description": "#a1 #a2 #nature #landscape",
+    "topic": "Thiên nhiên & cảnh quan",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "river",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "dòng sông",
+      "meaningEn": "a long stream of water that flows to the sea",
+      "examples": [
+        {
+          "text": "The river is wide and slow here.",
+          "vi": "Dòng sông ở đây rộng và chảy chậm."
+        },
+        {
+          "text": "We had a picnic by the river.",
+          "vi": "Chúng tôi đi dã ngoại bên bờ sông."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cross a river",
+          "vi": "qua sông"
+        },
+        {
+          "text": "river bank",
+          "vi": "bờ sông"
+        }
+      ],
+      "imageQuery": "river landscape",
+      "ipaUs": "/ˈɹɪvɚ/",
+      "ipaUk": "/ˈɹɪvə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/river",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/river.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/river-landscape-4POJPLIIEE",
+        "author": "Mike Moloney",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "river landscape",
+        "sha256": "25999140ef8318ac9c1215cb412765b2877d677a90ba0981b77edca154a44a47",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "lake",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái hồ",
+      "meaningEn": "a large area of water with land all around it",
+      "examples": [
+        {
+          "text": "The children swim in the lake in summer.",
+          "vi": "Mùa hè bọn trẻ bơi ở hồ."
+        },
+        {
+          "text": "There is a quiet lake near our village.",
+          "vi": "Có một cái hồ yên tĩnh gần làng chúng tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "by the lake",
+          "vi": "cạnh hồ"
+        }
+      ],
+      "imageQuery": "lake mountains",
+      "ipaUs": "/leɪk/",
+      "ipaUk": "/leɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lake",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/lake.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/lake-mountains-ZJCT5H4VXR",
+        "author": "Sam Jotham Sutharson",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "lake mountains",
+        "sha256": "6107cd34e4a93d10932c159f3b28fe8f84702116629860a463f567e7f7ab1a2c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sea",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "biển",
+      "meaningEn": "a large area of salt water",
+      "examples": [
+        {
+          "text": "We spent the summer by the sea.",
+          "vi": "Chúng tôi đã nghỉ hè ở bên bờ biển."
+        },
+        {
+          "text": "The sea is calm and blue today.",
+          "vi": "Hôm nay biển lặng và xanh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "swim in the sea",
+          "vi": "bơi ở biển"
+        }
+      ],
+      "imageQuery": "sea blue horizon",
+      "ipaUs": "/siː/",
+      "ipaUk": "/siː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sea",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/sea.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/132795455@N08/20520693421",
+        "author": "Image Catalog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "sea blue horizon",
+        "sha256": "247fa1e098d59a8b18c5b66467a677a8aeb6503dc801ede8b7346182543cd04b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "beach",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bãi biển",
+      "meaningEn": "an area of sand or small stones next to the sea",
+      "examples": [
+        {
+          "text": "We walk on the beach every morning.",
+          "vi": "Sáng nào chúng tôi cũng đi dạo trên bãi biển."
+        },
+        {
+          "text": "The children built a sandcastle on the beach.",
+          "vi": "Bọn trẻ xây một lâu đài cát trên bãi biển."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "sandy beach",
+          "vi": "bãi biển cát"
+        }
+      ],
+      "imageQuery": "tropical beach",
+      "ipaUs": "/biːt͡ʃ/",
+      "ipaUk": "/biːt͡ʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/beach",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/beach.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/tropical-beach-9FM2TZZYP4",
+        "author": "Joe deSousa",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "tropical beach",
+        "sha256": "5e11ab15a7d13b2b0e0b99f0e0efee08b721aa6990ca4987eb18c64299dd7548",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "island",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hòn đảo",
+      "meaningEn": "a piece of land with water all around it",
+      "examples": [
+        {
+          "text": "We took a boat to a small island.",
+          "vi": "Chúng tôi đi thuyền ra một hòn đảo nhỏ."
+        },
+        {
+          "text": "Phu Quoc is a beautiful island.",
+          "vi": "Phú Quốc là một hòn đảo đẹp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "tropical island",
+          "vi": "đảo nhiệt đới"
+        }
+      ],
+      "imageQuery": "tropical island sea",
+      "ipaUs": "/ˈaɪ.lənd/",
+      "ipaUk": "/ˈaɪ.lənd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/island",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/island.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/34409164@N06/3811740720",
+        "author": "gnuckx",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "tropical island sea",
+        "sha256": "2c1a6bcd6c07e2fd29c4fa515fa2207376392225d72a91d77c551dc1bcdb40ba",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "mountain",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "ngọn núi",
+      "meaningEn": "a very high hill, often with snow on top",
+      "examples": [
+        {
+          "text": "We climbed the mountain last summer.",
+          "vi": "Mùa hè năm ngoái chúng tôi leo ngọn núi đó."
+        },
+        {
+          "text": "The mountain is covered with snow.",
+          "vi": "Ngọn núi phủ đầy tuyết."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "climb a mountain",
+          "vi": "leo núi"
+        }
+      ],
+      "imageQuery": "mountain peak",
+      "ipaUs": "/ˈmaʊn.t(ə)n/",
+      "ipaUk": "/ˈmaʊn.tɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mountain",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/mountain.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/151415985@N06/36748616474",
+        "author": "Wallboat",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "mountain peak",
+        "sha256": "2634968ce47b43e0f34070f72c64f4c56fe9d625e37b099177d4850dfd89273a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hill",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ngọn đồi",
+      "meaningEn": "a high area of land that is smaller than a mountain",
+      "examples": [
+        {
+          "text": "The village is on top of a green hill.",
+          "vi": "Ngôi làng nằm trên đỉnh một ngọn đồi xanh."
+        },
+        {
+          "text": "We rode our bikes up the hill.",
+          "vi": "Chúng tôi đạp xe lên đồi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "top of the hill",
+          "vi": "đỉnh đồi"
+        }
+      ],
+      "imageQuery": "green hills",
+      "ipaUs": "/hɪl/",
+      "ipaUk": "/hɪl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hill",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/hill.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/143413219@N06/45789877372",
+        "author": "onejeet",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "green hills",
+        "sha256": "f1cc7e90b2f76ba18d444895c2723d182f1f722914e7ec81a164c26c5ac42536",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "valley",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thung lũng",
+      "meaningEn": "a low area of land between two hills or mountains",
+      "examples": [
+        {
+          "text": "A small river runs through the valley.",
+          "vi": "Một con sông nhỏ chảy qua thung lũng."
+        },
+        {
+          "text": "The valley is full of flowers in spring.",
+          "vi": "Thung lũng đầy hoa vào mùa xuân."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "green valley",
+          "vi": "thung lũng xanh"
+        }
+      ],
+      "imageQuery": "valley landscape",
+      "ipaUs": "/ˈvæli/",
+      "ipaUk": "/ˈvæli/",
+      "ipaSource": "https://en.wiktionary.org/wiki/valley",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/valley.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/131546502@N04/52550469280",
+        "author": "plastigffantastig88",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "valley landscape",
+        "sha256": "3184596f805b1aef2a391061e9bab40e6e3cbd549dd8a58f2215d2dd3b9f22d2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "forest",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "khu rừng",
+      "meaningEn": "a large area covered with trees",
+      "examples": [
+        {
+          "text": "We walked through the forest on Sunday.",
+          "vi": "Chủ nhật chúng tôi đi bộ xuyên qua khu rừng."
+        },
+        {
+          "text": "Many animals live in the forest.",
+          "vi": "Nhiều loài vật sống trong rừng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "rain forest",
+          "vi": "rừng nhiệt đới"
+        }
+      ],
+      "imageQuery": "forest trees path",
+      "ipaUs": "/ˈfɔɹɪst/",
+      "ipaUk": "/ˈfɒɹɪst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/forest",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/forest.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Forest_path_surrounded_by_green_trees.jpg",
+        "author": "Zed Can77",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "forest trees path",
+        "sha256": "d3d6588250e70bcc0151ec5c9bf65a2f51236512d83801fcc7f4ea73e72c3e5e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "jungle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "rừng rậm nhiệt đới",
+      "meaningEn": "a thick hot forest with many plants and animals",
+      "examples": [
+        {
+          "text": "Tigers live in the jungle.",
+          "vi": "Hổ sống trong rừng rậm."
+        },
+        {
+          "text": "The jungle was hot and very wet.",
+          "vi": "Khu rừng rậm vừa nóng vừa ẩm ướt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "deep jungle",
+          "vi": "rừng sâu"
+        }
+      ],
+      "imageQuery": "jungle",
+      "ipaUs": "/ˈd͡ʒʌŋ.ɡ(ə)l/",
+      "ipaUk": "/ˈd͡ʒʌŋ.ɡ(ə)l/",
+      "ipaSource": "https://en.wiktionary.org/wiki/jungle",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/jungle.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/60455048@N02/30398245503",
+        "author": "Queensland State Archives",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "jungle",
+        "sha256": "d58ec44f0d3f56cdd461a3d88ba4c481e51702f18cf81dbe185cdc835f3af493",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "desert",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sa mạc",
+      "meaningEn": "a very dry area with sand and few plants",
+      "examples": [
+        {
+          "text": "It almost never rains in the desert.",
+          "vi": "Ở sa mạc hầu như không bao giờ mưa."
+        },
+        {
+          "text": "We crossed the desert on camels.",
+          "vi": "Chúng tôi băng qua sa mạc bằng lạc đà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hot desert",
+          "vi": "sa mạc nóng"
+        }
+      ],
+      "imageQuery": "desert dunes",
+      "ipaUs": "/ˈdɛz.ɚt/",
+      "ipaUk": "/ˈdɛz.ət/",
+      "ipaSource": "https://en.wiktionary.org/wiki/desert",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/desert.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/3596a7eaf0/",
+        "author": "Anushila Basnet",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "desert dunes",
+        "sha256": "e2f5faec466d3f9295e25be9a3fd0a221c8086abf07cbac47a095fec641014af",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "waterfall",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thác nước",
+      "meaningEn": "water that falls from a high place down a cliff",
+      "examples": [
+        {
+          "text": "We swam below the waterfall.",
+          "vi": "Chúng tôi bơi bên dưới thác nước."
+        },
+        {
+          "text": "The waterfall is more than fifty metres high.",
+          "vi": "Thác nước cao hơn năm mươi mét."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "visit a waterfall",
+          "vi": "thăm thác nước"
+        }
+      ],
+      "imageQuery": "waterfall",
+      "ipaUs": "/ˈwɔtɚfɔl/",
+      "ipaUk": "/ˈwɔːtəfɔːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/waterfall",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/waterfall.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/46583370@N04/15726379042",
+        "author": "Blarvar",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "waterfall",
+        "sha256": "71bd1bcb6561184390cdef05d59d5102509f242b9418572c36a12d80ebe23389",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cave",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hang động",
+      "meaningEn": "a large hole in the side of a hill or under the ground",
+      "examples": [
+        {
+          "text": "We explored a dark cave with a torch.",
+          "vi": "Chúng tôi khám phá một hang động tối bằng đèn pin."
+        },
+        {
+          "text": "Bats sleep in the cave all day.",
+          "vi": "Dơi ngủ trong hang cả ngày."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "explore a cave",
+          "vi": "khám phá hang động"
+        }
+      ],
+      "imageQuery": "cave entrance",
+      "ipaUs": "/keɪv/",
+      "ipaUk": "/keɪv/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cave",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/cave.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/130826934@N07/24672448785",
+        "author": "naturenps",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "cave entrance",
+        "sha256": "ffc6bc1ab48d0fccb70250c4e10e35a3371009d271470adf40db00dba7cf7548",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "volcano",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "núi lửa",
+      "meaningEn": "a mountain that sometimes throws out hot melted rock",
+      "plural": "volcanoes",
+      "examples": [
+        {
+          "text": "The volcano erupted last year.",
+          "vi": "Ngọn núi lửa đã phun trào vào năm ngoái."
+        },
+        {
+          "text": "Smoke rises from the top of the volcano.",
+          "vi": "Khói bốc lên từ đỉnh núi lửa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "active volcano",
+          "vi": "núi lửa đang hoạt động"
+        }
+      ],
+      "imageQuery": "volcano",
+      "ipaUs": "/vɑlˈkeɪ.noʊ/",
+      "ipaUk": "/vɒlˈkeɪ.nəʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/volcano",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/volcano.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/34409164@N06/5711827176",
+        "author": "gnuckx",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "volcano",
+        "sha256": "e45583897a4c5d4689e7925aac94286f15ad09980f2b0da0127d7e7d148515dd",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "field",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cánh đồng",
+      "meaningEn": "a large area of land used for crops or animals",
+      "examples": [
+        {
+          "text": "The farmer works in the rice field.",
+          "vi": "Người nông dân làm việc trên cánh đồng lúa."
+        },
+        {
+          "text": "Cows are eating grass in the field.",
+          "vi": "Những con bò đang ăn cỏ trên cánh đồng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "rice field",
+          "vi": "ruộng lúa"
+        }
+      ],
+      "imageQuery": "green field",
+      "ipaUs": "/ˈfi(ː)ld/",
+      "ipaUk": "/ˈfi(ː)ld/",
+      "ipaSource": "https://en.wiktionary.org/wiki/field",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/field.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/green-field-IW4TR0PI04",
+        "author": "Benjamin Davies",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "green field",
+        "sha256": "a7dde7273af8d2cf31a0a8be78616d34006016391ecc575c381b29cdbc6f1fde",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "grass",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cỏ",
+      "meaningEn": "a green plant with thin leaves that covers the ground",
+      "examples": [
+        {
+          "text": "The children are sitting on the grass.",
+          "vi": "Bọn trẻ đang ngồi trên bãi cỏ."
+        },
+        {
+          "text": "The grass is wet after the rain.",
+          "vi": "Cỏ ướt sau cơn mưa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cut the grass",
+          "vi": "cắt cỏ"
+        }
+      ],
+      "imageQuery": "green grass",
+      "ipaUs": "/ɡɹɑːs/",
+      "ipaUk": "/ɡɹɑːs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/grass",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/grass.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/135371437@N04/23163935546",
+        "author": "StockyPics",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "green grass",
+        "sha256": "c35dad1816bf3d00e859fa392ff9ac0a9d6a2bf817d3070fe76fe27eb27897fc",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tree",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái cây",
+      "meaningEn": "a tall plant with a thick trunk and branches",
+      "examples": [
+        {
+          "text": "There is a big tree in front of our house.",
+          "vi": "Có một cái cây lớn trước nhà chúng tôi."
+        },
+        {
+          "text": "The cat climbed up the tree.",
+          "vi": "Con mèo trèo lên cây."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "plant a tree",
+          "vi": "trồng cây"
+        },
+        {
+          "text": "climb a tree",
+          "vi": "trèo cây"
+        }
+      ],
+      "imageQuery": "tree",
+      "ipaUs": "/tɹiː/",
+      "ipaUk": "/t͡ʃɹɪj/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tree",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/tree.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/115357548@N08/12525899013",
+        "author": "Joshua Tree National Park",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "tree",
+        "sha256": "78c93a1baeb02c6c287c852bd68a69b195138a6fe32dccdbc2c632907864737f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "flower",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bông hoa",
+      "meaningEn": "the colourful part of a plant",
+      "examples": [
+        {
+          "text": "She gave me a red flower.",
+          "vi": "Cô ấy tặng tôi một bông hoa đỏ."
+        },
+        {
+          "text": "The garden is full of beautiful flowers.",
+          "vi": "Khu vườn đầy những bông hoa đẹp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pick a flower",
+          "vi": "hái hoa"
+        },
+        {
+          "text": "bunch of flowers",
+          "vi": "bó hoa"
+        }
+      ],
+      "imageQuery": "flower",
+      "ipaUs": "/ˈflaʊ̯.ɚ/",
+      "ipaUk": "/ˈflaʊ̯.ə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/flower",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/flower.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/92253640@N03/13830016943",
+        "author": "joejungmann",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "flower",
+        "sha256": "6b2e438def5da27163f5c7a5e5d87bd53101f9851e2077d347cccec3aae73e4e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "leaf",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "chiếc lá",
+      "meaningEn": "a flat green part that grows on a plant",
+      "plural": "leaves",
+      "examples": [
+        {
+          "text": "A yellow leaf fell on my desk.",
+          "vi": "Một chiếc lá vàng rơi xuống bàn tôi."
+        },
+        {
+          "text": "The leaves change colour in autumn.",
+          "vi": "Lá đổi màu vào mùa thu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "green leaf",
+          "vi": "lá xanh"
+        }
+      ],
+      "imageQuery": "green leaf",
+      "ipaUs": "/lif/",
+      "ipaUk": "/liːf/",
+      "ipaSource": "https://en.wiktionary.org/wiki/leaf",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/leaf.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/132795455@N08/17501205836",
+        "author": "Image Catalog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "green leaf",
+        "sha256": "ea1b09c701ec7d9c11751cb01caca18cd87a0473d1b5a964a046597f348e1dcb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rock",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tảng đá, hòn đá",
+      "meaningEn": "a large piece of hard stone",
+      "examples": [
+        {
+          "text": "He sat on a big rock by the river.",
+          "vi": "Anh ấy ngồi trên một tảng đá lớn bên sông."
+        },
+        {
+          "text": "The path was full of sharp rocks.",
+          "vi": "Con đường đầy những tảng đá sắc nhọn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "climb the rocks",
+          "vi": "trèo lên đá"
+        }
+      ],
+      "imageQuery": "boulder stone",
+      "ipaUs": "/ɹɑk/",
+      "ipaUk": "/ɹɒk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rock",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/rock.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/52230569826",
+        "author": "Bernard Spragg",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "boulder stone",
+        "sha256": "58bca869146948065fa2842b7a1ca66522ddee9aa112c9b7d59d532d50b6069f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sand",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cát",
+      "meaningEn": "tiny pieces of rock that cover beaches and deserts",
+      "examples": [
+        {
+          "text": "The sand was hot under my feet.",
+          "vi": "Cát nóng dưới chân tôi."
+        },
+        {
+          "text": "The children played in the sand.",
+          "vi": "Bọn trẻ chơi đùa trong cát."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "sand dune",
+          "vi": "đụn cát"
+        }
+      ],
+      "imageQuery": "sand beach close",
+      "ipaUs": "/sænd/",
+      "ipaUk": "/sænd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sand",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/sand.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Cromer_beach_sand_2016_01.JPG",
+        "author": "Annajohepworth",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "sand beach close",
+        "sha256": "3b079a266a2df0a84f8622c1b270bd6f9b7087a87b032681e5d89103004d9710",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wave",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "A2",
+      "definition": "con sóng; vẫy tay",
+      "meaningEn": "a line of water that moves across the sea",
+      "verbForms": {
+        "past": "waved",
+        "pastParticiple": "waved",
+        "ing": "waving",
+        "thirdPerson": "waves"
+      },
+      "examples": [
+        {
+          "text": "A big wave hit the rocks.",
+          "vi": "Một con sóng lớn đập vào ghềnh đá."
+        },
+        {
+          "text": "The waves are high today.",
+          "vi": "Hôm nay sóng cao."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "big wave",
+          "vi": "sóng lớn"
+        }
+      ],
+      "imageQuery": "ocean wave",
+      "ipaUs": "/weɪv/",
+      "ipaUk": "/weɪv/",
+      "ipaSource": "https://en.wiktionary.org/wiki/wave",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/wave.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/132795455@N08/19368541060",
+        "author": "Image Catalog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "ocean wave",
+        "sha256": "6d6814d8ede0413be8e60cd60929714558e95d9f0304e2dae41ce7e3ea31d32f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cliff",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "vách đá, vách núi",
+      "meaningEn": "a high steep rock face next to the sea",
+      "examples": [
+        {
+          "text": "We stood on the cliff and watched the sea.",
+          "vi": "Chúng tôi đứng trên vách đá nhìn ra biển."
+        },
+        {
+          "text": "Be careful near the edge of the cliff.",
+          "vi": "Hãy cẩn thận gần mép vách đá."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cliff edge",
+          "vi": "mép vách đá"
+        }
+      ],
+      "imageQuery": "sea cliff",
+      "ipaUs": "/klɪf/",
+      "ipaUk": "/klɪf/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cliff",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/cliff.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Cliffed_coast_with_resting_man_near_sunset.JPG",
+        "author": "Cartoffel",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "sea cliff",
+        "sha256": "37cf483965be9c91615e1117af3a2bd0ad77d5bdc79c10372ce2abb5e8d7f3c1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sunset",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hoàng hôn",
+      "meaningEn": "the time in the evening when the sun goes down",
+      "examples": [
+        {
+          "text": "We watched the sunset from the beach.",
+          "vi": "Chúng tôi ngắm hoàng hôn từ bãi biển."
+        },
+        {
+          "text": "The sunset turned the sky orange.",
+          "vi": "Hoàng hôn nhuộm bầu trời thành màu cam."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "watch the sunset",
+          "vi": "ngắm hoàng hôn"
+        }
+      ],
+      "imageQuery": "sunset sea",
+      "ipaUs": "/ˈsʌnˌsɛt/",
+      "ipaUk": "/ˈsʌnˌsɛt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sunset",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/sunset.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/sunset-sea-PGYAOPFXVN",
+        "author": "Sergei Gussev",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "sunset sea",
+        "sha256": "72282a5495bbded189428a3e4a106e32aaa6e7ca83ff2da99c41359b4989c990",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sky",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bầu trời",
+      "meaningEn": "the space above the Earth where you see clouds and the sun",
+      "examples": [
+        {
+          "text": "The sky is clear and blue today.",
+          "vi": "Hôm nay bầu trời trong và xanh."
+        },
+        {
+          "text": "Birds are flying across the sky.",
+          "vi": "Những con chim đang bay ngang bầu trời."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "blue sky",
+          "vi": "bầu trời xanh"
+        },
+        {
+          "text": "night sky",
+          "vi": "bầu trời đêm"
+        }
+      ],
+      "imageQuery": "blue sky white clouds",
+      "ipaUs": "/skaɪ/",
+      "ipaUk": "/skaɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sky",
+      "ipaVerified": true,
+      "image": {
+        "file": "a18/sky.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/132795455@N08/17866167810",
+        "author": "Image Catalog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "blue sky white clouds",
+        "sha256": "165b81ae0eabc627ac9885d3e99d7b3436056699e687f839292a2d7a974ed553",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
