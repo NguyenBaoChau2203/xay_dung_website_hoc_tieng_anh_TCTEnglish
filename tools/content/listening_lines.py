@@ -22,6 +22,7 @@ from lib.common import BUILD, read_json, write_json  # noqa: E402
 TAG = re.compile(r"[\[\(♪][^\]\)]*[\]\)♪]")
 SPEAKER = re.compile(r"^\s*\[([A-Z][A-Za-z.' -]{1,40})\]\s*")
 MUSIC = re.compile(r"\b(?:Music|Silence|Applause)\b")
+LABEL = re.compile(r"^\s*([A-Z][A-Za-z.' -]{2,30}):\s+")
 END = re.compile(r"[.?!][\"')\]]?$")
 
 
@@ -35,6 +36,12 @@ def build(video_id: str) -> list[dict]:
         if m:
             speaker = m.group(1)
         text = TAG.sub(" ", text)
+        text = re.sub(r"^\s*>>\s*", "", text)
+        lab = LABEL.match(text)
+        if lab:
+            name = lab.group(1)
+            speaker = None if name.upper() in ("MAN", "WOMAN", "NARRATOR") else name.title() if name.isupper() else name
+            text = text[lab.end():]
         text = MUSIC.sub(" ", text)
         text = re.sub(r"\s+", " ", text).strip()
         if not text:
