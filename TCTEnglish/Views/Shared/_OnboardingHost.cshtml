@@ -1,0 +1,72 @@
+@using System.Text.Json
+@using TCTEnglish.Models
+@using TCTEnglish.Services.Onboarding
+@using TCTVocabulary.Security
+@inject IOnboardingService Onboarding
+@inject IWebHostEnvironment Environment
+@*
+    First-run onboarding host (plan 2026-11-19-onboarding-personal-decks, 4.5). Renders nothing for guests and nothing
+    when anything fails, so the page that includes it is never affected. The pop-up itself is built by onboarding.js
+    from the JSON below; the topic catalogue is only embedded when the pop-up opens by itself (otherwise the script
+    asks GET api/onboarding/catalog when a "data-tob-open" button is pressed).
+*@
+@{
+    string? onboardingConfig = null;
+    if (User.Identity?.IsAuthenticated == true && User.TryGetUserId(out var onboardingUserId))
+    {
+        try
+        {
+            var onboardingState = await Onboarding.GetStateAsync(onboardingUserId, Context.RequestAborted);
+            object? onboardingCatalog = null;
+            if (onboardingState.ShouldPrompt)
+            {
+                var view = await Onboarding.GetCatalogAsync(Context.RequestAborted);
+                onboardingCatalog = new
+                {
+                    goals = view.Goals.Select(goal => new { key = goal.Key, title = goal.Title, description = goal.Description, icon = goal.Icon }),
+                    topics = view.Topics.Select(topic => new { key = topic.Key, name = topic.Name, band = topic.Band, goals = topic.Goals, cover = topic.CoverUrl }),
+                    welcome = view.WelcomeCovers
+                };
+            }
+
+            onboardingConfig = JsonSerializer.Serialize(new
+            {
+                shouldPrompt = onboardingState.ShouldPrompt,
+                mode = onboardingState.Status == OnboardingStatus.Pending ? "first" : "again",
+                hasDecks = onboardingState.HasDecks,
+                fullName = User.Identity?.Name,
+                development = Environment.IsDevelopment(),
+                api = new
+                {
+                    state = "/api/onboarding/state",
+                    catalog = "/api/onboarding/catalog",
+                    prompted = "/api/onboarding/prompted",
+                    skip = "/api/onboarding/skip",
+                    preview = "/api/onboarding/preview",
+                    complete = "/api/onboarding/complete"
+                },
+                catalog = onboardingCatalog
+            }, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+        }
+        catch (Exception)
+        {
+            onboardingConfig = null;
+        }
+    }
+}
+@if (onboardingConfig != null)
+{
+    <div class="tct-theme tob-root" id="tobRoot">
+        @Html.AntiForgeryToken()
+        <script type="application/json" id="tobConfig">@Html.Raw(onboardingConfig)</script>
+        <div class="visually-hidden" id="tobLive" aria-live="polite" role="status"></div>
+        <div class="modal fade tob-modal" id="tobModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="tobTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered tob-dialog" id="tobDialog" data-step="0">
+                <div class="modal-content tob-content" id="tobBody"></div>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="~/css/onboarding.css" asp-append-version="true" />
+    <script src="~/js/onboarding-core.js" asp-append-version="true" defer></script>
+    <script src="~/js/onboarding.js" asp-append-version="true" defer></script>
+}

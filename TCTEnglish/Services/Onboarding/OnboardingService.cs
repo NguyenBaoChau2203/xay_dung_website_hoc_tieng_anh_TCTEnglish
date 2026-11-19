@@ -6,6 +6,7 @@ using TCTEnglish.Models;
 using TCTEnglish.Services.Sets;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
+using TCTVocabulary.Services.Vocabulary;
 
 namespace TCTEnglish.Services.Onboarding;
 
@@ -159,6 +160,77 @@ public sealed class OnboardingService : IOnboardingService
         }
 
         return row;
+    }
+
+    // =====================================================================================
+    // Catalogue (step 0 and step 2)
+    // =====================================================================================
+
+    /// <summary>The topics shown on the welcome screen: five sets that show the range of the library.</summary>
+    private static readonly string[] WelcomeTopicKeys = { "A03", "C01", "B04", "A21", "A06" };
+
+    public async Task<OnboardingCatalogView> GetCatalogAsync(CancellationToken ct = default)
+    {
+        var covers = await LoadCoversAsync(ct);
+        var topics = OnboardingCatalog.Topics
+            .Select(topic => new CatalogTopicView(
+                topic.Key, topic.SetName, topic.Band, OnboardingCatalog.GoalsOfTopic(topic.Key), covers.GetValueOrDefault(topic.Key)))
+            .ToList();
+        var welcome = WelcomeTopicKeys.Select(key => covers.GetValueOrDefault(key)).Where(url => url != null).Select(url => url!).ToList();
+        return new OnboardingCatalogView(OnboardingCatalog.Goals, topics, welcome);
+    }
+
+    /// <summary>The cover of each topic: the same rule as the Vocabulary courses (<see cref="VocabularyCoverCatalog"/>), two queries in all.</summary>
+    private async Task<IReadOnlyDictionary<string, string>> LoadCoversAsync(CancellationToken ct)
+    {
+        var result = new Dictionary<string, string>(StringComparer.Ordinal);
+        var systemId = await _db.Users.AsNoTracking()
+            .Where(u => u.Email == PersonalSetService.SystemOwnerEmail)
+            .Select(u => (int?)u.UserId)
+            .FirstOrDefaultAsync(ct);
+        if (systemId == null)
+        {
+            return result;
+        }
+
+        var keyByName = OnboardingCatalog.Topics.ToDictionary(topic => topic.SetName, topic => topic.Key, StringComparer.Ordinal);
+        var names = keyByName.Keys.ToList();
+        var sets = await _db.Sets.AsNoTracking()
+            .Where(s => s.OwnerId == systemId && names.Contains(s.SetName))
+            .Select(s => new { s.SetId, s.SetName, Cards = s.Cards.Count })
+            .ToListAsync(ct);
+        var chosen = sets
+            .GroupBy(s => s.SetName)
+            .Select(group => group.OrderByDescending(s => s.Cards).ThenBy(s => s.SetId).First())
+            .ToDictionary(s => s.SetId, s => s.SetName);
+        if (chosen.Count == 0)
+        {
+            return result;
+        }
+
+        var setIds = chosen.Keys.ToList();
+        var rows = await _db.Cards.AsNoTracking()
+            .Where(card => setIds.Contains(card.SetId) && card.ImageUrl != null && card.ImageUrl != string.Empty)
+            .OrderBy(card => card.CardId)
+            .Select(card => new { card.SetId, card.CardId, card.Term, card.ImageUrl })
+            .ToListAsync(ct);
+
+        foreach (var group in rows.GroupBy(row => row.SetId))
+        {
+            var candidates = group
+                .Select(row => (Row: row, Url: StudyService.SafeVocabularyImageUrl(row.ImageUrl)))
+                .Where(item => item.Url != null)
+                .Select(item => new CoverCandidate(item.Row.CardId, item.Row.Term ?? string.Empty, item.Url!))
+                .ToList();
+            var name = chosen[group.Key];
+            var choice = VocabularyCoverCatalog.Pick(name, candidates);
+            if (choice != null)
+            {
+                result[keyByName[name]] = choice.ImageUrl;
+            }
+        }
+
+        return result;
     }
 
     // =====================================================================================

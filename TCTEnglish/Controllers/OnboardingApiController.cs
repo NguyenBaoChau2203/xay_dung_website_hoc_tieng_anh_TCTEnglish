@@ -45,6 +45,26 @@ namespace TCTVocabulary.Controllers
             });
         }
 
+        [HttpGet("catalog")]
+        public async Task<IActionResult> Catalog(CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out _))
+            {
+                return Unauthorized();
+            }
+
+            var catalog = await _onboarding.GetCatalogAsync(ct);
+            return Json(new
+            {
+                goals = catalog.Goals.Select(goal => new { key = goal.Key, title = goal.Title, description = goal.Description, icon = goal.Icon }),
+                topics = catalog.Topics.Select(topic => new
+                {
+                    key = topic.Key, name = topic.Name, band = topic.Band, goals = topic.Goals, cover = topic.CoverUrl
+                }),
+                welcome = catalog.WelcomeCovers
+            });
+        }
+
         [HttpPost("prompted")]
         public async Task<IActionResult> Prompted(CancellationToken ct)
         {

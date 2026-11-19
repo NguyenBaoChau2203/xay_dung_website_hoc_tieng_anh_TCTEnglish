@@ -55,8 +55,17 @@ public sealed record RefillResult(int Added, bool Exhausted);
 /// <summary>The decks an onboarding created, as stored in <c>UserOnboarding.DecksJson</c>.</summary>
 public sealed record OnboardingDeckRef(int SetId, string Goal, IReadOnlyList<string> TopicKeys);
 
+/// <summary>One topic tile of step 2: the system set, its band, the goals it fits and the cover photo (a safe URL, or null).</summary>
+public sealed record CatalogTopicView(string Key, string Name, string Band, IReadOnlyList<string> Goals, string? CoverUrl);
+
+/// <summary>Everything the pop-up needs besides the user's own state.</summary>
+public sealed record OnboardingCatalogView(IReadOnlyList<OnboardingGoal> Goals, IReadOnlyList<CatalogTopicView> Topics, IReadOnlyList<string> WelcomeCovers);
+
 public interface IOnboardingService
 {
+    /// <summary>The goals, the 48 topics with their cover photos (one grouped query) and the welcome thumbnails.</summary>
+    Task<OnboardingCatalogView> GetCatalogAsync(CancellationToken ct = default);
+
     /// <summary>Creates the user's row on first call (Pending if eligible, NotEligible otherwise) and says whether to prompt now.</summary>
     Task<OnboardingState> GetStateAsync(int userId, CancellationToken ct = default);
 

@@ -697,3 +697,31 @@ Routes added (7, nothing else): `GET state`, `POST prompted`, `POST skip`, `POST
 | G7 | Files = section 5. |
 | G8–G14, G16 | Not applicable (no UI). |
 | G15 | Antiforgery on every POST, `[Authorize]`, queries scoped by user id, no user emails or other users' data in any answer (asserted), idempotency and rate limit tested. |
+
+### 12.6 S5 gate record (pop-up UI)
+
+New: `Views/Shared/_OnboardingHost.cshtml`, `wwwroot/js/onboarding-core.js` (pure logic), `wwwroot/js/onboarding.js` (dialog), `wwwroot/css/onboarding.css`, `GET api/onboarding/catalog` (8th route), `GetCatalogAsync` (goals, the 48 topics with the Vocabulary cover rule, welcome thumbnails; two queries), tests `OnboardingRenderTests` (7), `test_onboarding_core.cjs` (12), `test_onboarding_assets.cjs` (6). Edited: one added line `<partial name="_OnboardingHost" />` in each of `Views/Home/Index.cshtml`, `Views/Vocabulary/Index.cshtml`, `Views/Set/Index.cshtml`.
+
+**How it works.** The host asks the service for the user's state on every render of the three pages (one row read; the first call creates the row). It embeds the topic catalogue only when the pop-up opens by itself; the "again" mode loads it from `GET api/onboarding/catalog`. Any exception while building the config renders nothing. The dialog is a Bootstrap modal (`data-bs-backdrop="static"`, Esc handled by the script as "Để sau") built from `createElement`/`textContent`; requests carry the antiforgery token from the hidden input as the `RequestVerificationToken` header; a new request id is generated whenever the payload changes, so a retry of the same payload is idempotent and a changed one never conflicts.
+
+**Differences from the plan / mockups (recorded, not hidden)**
+- The greeting uses the display name as the dashboard does ("Minh Anh"), not only its last word; plan 3 says "first name", the mockup and the dashboard show the full name.
+- Step 1 has "Quay lại" (back to the welcome screen) in the first-run mode, which mockup O1 does not show; plan principle 1 asks for Back on every step. In the "again" mode step 1 has no Back.
+- While the pop-up is open the fixed AI launcher is hidden (`body.tob-open .ai-launcher`, the only rule outside `.tob-root`): on a phone it covered the main button of the sheet.
+- The footer of step 2 says "trong Bộ thẻ của tôi" (plan copy), not "trong Cài đặt" as the mockup does.
+- The preview's deck list also works as a row of chips under 992 px (plan 3 asks for chips on phones).
+
+| Gate | Result |
+| --- | --- |
+| G1 | Debug and Release build, 0 errors. |
+| G2 | `OnboardingRenderTests`, `OnboardingApiTests` 28/28 (host on the three pages once, scripts in order, role/aria shell, no inline code, config for a new and an existing account, the catalogue endpoint, a display name with `</script>` cannot break out). |
+| G3 | Full .NET suite is run at S6 (S5 changes only new files, three one-line includes and the catalogue method; last full run 3723 passed). |
+| G4 | Node: **588 passed**, 0 failed (baseline 570 + 18 new). |
+| G5 | One new route (`GET api/onboarding/catalog`), no model change. |
+| G6 | No hex/rgb/hsl and no `:root` in `onboarding.css`; no `innerHTML`, `eval` or inline handler/style (also guarded by `test_onboarding_assets.cjs`); no `bi bi-`; encoding guard passed. |
+| G7 | Each of the three views has exactly one added line; `Program.cs` unchanged in S5; no forbidden file. |
+| G8 | Scripted Chrome through the whole flow (register a new account in the UI, auto-open, 6 screens, create) at 1440×900 and 390×844 (2×): no console error, no failed request. The other widths, 200% zoom and the contrast script run at S7. |
+| G9 | Compared with O0–O3, P1, P2, P6: layout, copy and states match; differences listed above; refined at S7. |
+| G10–G12, G13, G16 | Mouse path verified in the run above; keyboard, accessibility, contrast, regression pages and timings at S7/S8/S10. |
+| G14 | Copy checked against plan section 3; asserted in `test_onboarding_assets.cjs`. |
+| G15 | No `innerHTML` with server data; antiforgery header on every POST; markup-in-name test. |
