@@ -151,17 +151,21 @@ public sealed class VocabImporter(DbflashcardContext db, string repoRoot)
         { Past = c.VerbForms.Past, PastParticiple = c.VerbForms.PastParticiple, Ing = c.VerbForms.Ing, ThirdPerson = c.VerbForms.ThirdPerson },
     };
 
+    private static bool Managed(Card c, CardData d) => c.ImageUrl?.StartsWith("/uploads/shared/", StringComparison.Ordinal) == true && d.ImageUrl != null;
+
     private static void Apply(Card card, CardData d)
     {
+        // A shared-data package already owns this card's image (/uploads/shared/<hash>); keep that URL.
+        var keepImage = Managed(card, d) ? card.ImageUrl : d.ImageUrl;
         card.Term = d.Term; card.Definition = d.Definition; card.Phonetic = d.Phonetic; card.PhoneticUk = d.PhoneticUk;
         card.MeaningEn = d.MeaningEn; card.PartsOfSpeech = d.PartsOfSpeech; card.Topic = d.Topic; card.Cefr = d.Cefr;
-        card.ImageUrl = d.ImageUrl; card.ImageSourceJson = d.ImageSourceJson; card.Example = d.Example;
+        card.ImageUrl = keepImage; card.ImageSourceJson = d.ImageSourceJson; card.Example = d.Example;
         card.ExampleTranslation = d.ExampleTranslation; card.DetailsJson = d.DetailsJson; card.Emoji = d.Emoji; card.AiGenerated = false;
     }
 
     private static bool Differs(Card c, CardData d)
         => c.Term != d.Term || c.Definition != d.Definition || c.Phonetic != d.Phonetic || c.PhoneticUk != d.PhoneticUk
            || c.MeaningEn != d.MeaningEn || c.PartsOfSpeech != d.PartsOfSpeech || c.Topic != d.Topic || c.Cefr != d.Cefr
-           || c.ImageUrl != d.ImageUrl || c.ImageSourceJson != d.ImageSourceJson || c.Example != d.Example
+           || (!Managed(c, d) && c.ImageUrl != d.ImageUrl) || c.ImageSourceJson != d.ImageSourceJson || c.Example != d.Example
            || c.ExampleTranslation != d.ExampleTranslation || c.DetailsJson != d.DetailsJson;
 }
