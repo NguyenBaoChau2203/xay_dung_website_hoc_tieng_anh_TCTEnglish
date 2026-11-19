@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "team.voice.interview",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.voice.interview",
+      "kind": "AiVoiceCatalogTopic",
+      "values": {
+        "StableKey": "voice.interview",
+        "Title": "Ph\u1ECFng v\u1EA5n c\u00F4ng vi\u1EC7c",
+        "Scenario": "Practise an interview. Discuss strengths, experience and one challenging work situation.",
+        "AiRole": "Interviewer",
+        "LearnerRole": "Job applicant",
+        "Level": "B2",
+        "IsPublished": true,
+        "SortOrder": 6
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.voice.interview"
+}
