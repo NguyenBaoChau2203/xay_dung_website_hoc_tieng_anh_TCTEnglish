@@ -576,6 +576,173 @@ def kitchenware(name: str) -> bytes:
     return finish(img)
 
 
+JOBS = {
+    # name: (gender, body colour, headgear, prop)
+    "nurse": ("f", (248, 250, 252), "nurse", "cross"), "doctor": ("m", (248, 250, 252), "none", "stethoscope"),
+    "farmer": ("m", (22, 163, 74), "straw", "wheat"), "chef": ("m", (248, 250, 252), "chef", "pan"),
+    "pilot": ("m", (30, 58, 138), "cap", "plane"), "mechanic": ("m", (14, 116, 144), "cap", "wrench"),
+    "driver": ("m", (71, 85, 105), "cap", "wheel"), "police officer": ("m", (30, 58, 138), "cap", "badge"),
+    "firefighter": ("m", (185, 28, 28), "helmet_red", "flame"), "dentist": ("f", (14, 165, 233), "none", "tooth"),
+    "engineer": ("m", (234, 88, 12), "helmet_white", "blueprint"), "lawyer": ("f", (51, 65, 85), "none", "scales"),
+    "waiter": ("m", (248, 250, 252), "none", "tray"), "cashier": ("f", (219, 39, 119), "none", "register"),
+    "soldier": ("m", (77, 102, 56), "helmet_green", "flag"), "builder": ("m", (250, 204, 21), "helmet_yellow", "brick"),
+    "electrician": ("m", (37, 99, 235), "helmet_yellow", "bolt"), "fisherman": ("m", (14, 116, 144), "bucket", "fish"),
+    "baker": ("f", (248, 250, 252), "chef", "bread"), "photographer": ("f", (71, 85, 105), "none", "camera"),
+    "tailor": ("f", (124, 58, 237), "none", "scissors"), "scientist": ("f", (248, 250, 252), "none", "flask"),
+    "barber": ("m", (51, 65, 85), "none", "scissors"), "vet": ("f", (22, 163, 74), "none", "paw"),
+    "postman": ("m", (220, 38, 38), "cap", "letter"),
+}
+
+
+def job_scene(name: str) -> bytes:
+    """Cartoon person with the headgear and tool of a job (kind "job")."""
+    gender, body, hat, prop = JOBS[name]
+    img, d = canvas()
+    s = S
+    cx = 170
+    _person(d, cx, 50, 2.6, gender, body)
+    hx, hy, r = cx * s, (50 + 39) * s, 39 * s
+    L = OUTLINE
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L, width=w * s)
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    # headgear
+    top = 89 - 39
+    if hat == "chef":
+        box(cx - 34, top - 36, cx + 34, top + 6, (255, 255, 255), 16)
+        box(cx - 38, top, cx + 38, top + 14, (255, 255, 255), 5)
+    elif hat == "nurse":
+        box(cx - 30, top - 6, cx + 30, top + 14, (255, 255, 255), 5)
+        box(cx - 3, top - 2, cx + 3, top + 10, (220, 38, 38), 1, 1)
+        box(cx - 8, top + 2, cx + 8, top + 6, (220, 38, 38), 1, 1)
+    elif hat == "cap":
+        d.pieslice((hx - r * 1.08, hy - r * 1.25, hx + r * 1.08, hy + r * 0.55), 180, 360, fill=body if body != (248, 250, 252) else (51, 65, 85), outline=L, width=3 * s)
+        box(cx - 44, top + 12, cx + 44, top + 24, (30, 41, 59), 5)
+    elif hat.startswith("helmet"):
+        col = {"helmet_red": (220, 38, 38), "helmet_white": (255, 255, 255), "helmet_green": (77, 102, 56), "helmet_yellow": (250, 204, 21)}[hat]
+        d.pieslice((hx - r * 1.12, hy - r * 1.3, hx + r * 1.12, hy + r * 0.7), 180, 360, fill=col, outline=L, width=3 * s)
+        box(cx - 46, top + 14, cx + 46, top + 26, col, 5)
+    elif hat == "straw":
+        oval(cx - 62, top + 4, cx + 62, top + 30, (234, 179, 8))
+        d.pieslice((hx - r * 0.85, hy - r * 1.3, hx + r * 0.85, hy + r * 0.2), 180, 360, fill=(250, 204, 21), outline=L, width=3 * s)
+    elif hat == "bucket":
+        poly([(cx - 40, top + 24), (cx - 32, top - 6), (cx + 32, top - 6), (cx + 40, top + 24)], (253, 224, 71))
+        box(cx - 52, top + 20, cx + 52, top + 30, (253, 224, 71), 5)
+    # tools
+    px, py = 330, 190
+    if prop == "stethoscope":
+        d.arc((cx * s - 34 * s, 118 * s, cx * s + 34 * s, 190 * s), 0, 180, fill=(40, 44, 60), width=5 * s)
+        oval(cx - 8, 186, cx + 8, 202, (170, 178, 192))
+        return finish(img)
+    if prop == "cross":
+        box(px - 60, py - 50, px + 60, py + 50, (255, 255, 255), 8)
+        box(px - 8, py - 34, px + 8, py + 34, (220, 38, 38), 2, 1)
+        box(px - 34, py - 8, px + 34, py + 8, (220, 38, 38), 2, 1)
+    elif prop == "wheat":
+        for k in (-30, 0, 30):
+            d.line(((px + k) * s, 120 * s, (px + k) * s, 260 * s), fill=(120, 72, 36), width=4 * s)
+            for j in range(5):
+                oval(px + k - 9, 110 + j * 14, px + k + 9, 126 + j * 14, (250, 204, 21), 2)
+    elif prop == "pan":
+        oval(px - 70, py - 40, px + 70, py + 40, (60, 64, 76))
+        oval(px - 56, py - 30, px + 56, py + 30, (38, 40, 50), 2)
+        box(px + 60, py - 7, px + 130, py + 7, (120, 72, 36), 6)
+    elif prop == "plane":
+        poly([(px - 90, py), (px + 80, py - 12), (px + 100, py), (px + 80, py + 12)], (226, 232, 240))
+        poly([(px - 10, py - 4), (px + 30, py - 70), (px + 50, py - 70), (px + 30, py - 4)], (148, 163, 184))
+        poly([(px - 10, py + 4), (px + 30, py + 70), (px + 50, py + 70), (px + 30, py + 4)], (148, 163, 184))
+        poly([(px - 90, py), (px - 100, py - 34), (px - 76, py - 6)], (220, 38, 38))
+    elif prop == "wrench":
+        d.line((px - 60 * s, (py + 60) * s, (px + 50) * s, (py - 50) * s), fill=L, width=22 * s)
+        d.line((px - 60 * s, (py + 60) * s, (px + 50) * s, (py - 50) * s), fill=(170, 178, 192), width=14 * s)
+        oval(px + 28, py - 80, px + 82, py - 26, (170, 178, 192))
+        oval(px + 44, py - 64, px + 66, py - 42, BG, 2)
+    elif prop == "wheel":
+        oval(px - 70, py - 70, px + 70, py + 70, BG, 12)
+        oval(px - 16, py - 16, px + 16, py + 16, (71, 85, 105))
+        for ang in (90, 210, 330):
+            x2 = px + 62 * math.cos(math.radians(ang)); y2 = py + 62 * math.sin(math.radians(ang))
+            d.line((px * s, py * s, x2 * s, y2 * s), fill=L, width=8 * s)
+    elif prop == "badge":
+        poly([(px + dx, py + dy) for dx, dy in [(0, -70), (20, -22), (70, -22), (30, 10), (44, 60), (0, 30), (-44, 60), (-30, 10), (-70, -22), (-20, -22)]], (250, 204, 21))
+    elif prop == "flame":
+        poly([(px, py - 80), (px + 50, py - 10), (px + 36, py + 50), (px - 36, py + 50), (px - 50, py - 10), (px - 20, py - 30)], (249, 115, 22))
+        poly([(px, py - 20), (px + 24, py + 14), (px + 14, py + 50), (px - 14, py + 50), (px - 24, py + 14)], (253, 224, 71))
+    elif prop == "tooth":
+        poly([(px - 50, py - 50), (px - 20, py - 62), (px, py - 46), (px + 20, py - 62), (px + 50, py - 50), (px + 56, py), (px + 36, py + 50), (px + 22, py + 80), (px + 8, py + 80), (px, py + 30), (px - 8, py + 80), (px - 22, py + 80), (px - 36, py + 50), (px - 56, py)], (255, 255, 255))
+    elif prop == "blueprint":
+        box(px - 90, py - 50, px + 90, py + 50, (59, 130, 246), 6)
+        for k in (-26, 0, 26):
+            d.line(((px - 70) * s, (py + k) * s, (px + 70) * s, (py + k) * s), fill=(255, 255, 255), width=3 * s)
+        box(px - 94, py - 56, px - 78, py + 56, (226, 232, 240), 8)
+    elif prop == "scales":
+        d.line((px * s, (py - 70) * s, px * s, (py + 70) * s), fill=L, width=6 * s)
+        d.line(((px - 70) * s, (py - 56) * s, (px + 70) * s, (py - 56) * s), fill=L, width=6 * s)
+        for sx in (-70, 70):
+            poly([(px + sx - 30, py - 6), (px + sx + 30, py - 6), (px + sx, py + 20)], (250, 204, 21))
+            d.line(((px + sx) * s, (py - 56) * s, (px + sx - 30) * s, (py - 6) * s), fill=L, width=2 * s)
+            d.line(((px + sx) * s, (py - 56) * s, (px + sx + 30) * s, (py - 6) * s), fill=L, width=2 * s)
+        box(px - 36, py + 64, px + 36, py + 76, (120, 72, 36), 4)
+    elif prop == "tray":
+        poly([(px - 100, py), (px + 100, py), (px + 80, py + 24), (px - 80, py + 24)], (170, 178, 192))
+        oval(px - 50, py - 40, px + 10, py - 6, (255, 255, 255), 2)
+        box(px + 28, py - 52, px + 68, py - 2, (200, 230, 250), 6, 2)
+    elif prop == "register":
+        box(px - 80, py - 10, px + 80, py + 60, (71, 85, 105), 8)
+        box(px - 56, py - 60, px + 30, py - 10, (200, 230, 250), 4)
+        for k in range(4):
+            box(px - 60 + k * 34, py + 14, px - 36 + k * 34, py + 32, (226, 232, 240), 3, 2)
+    elif prop == "flag":
+        d.line((px * s, (py - 90) * s, px * s, (py + 80) * s), fill=L, width=6 * s)
+        poly([(px, py - 90), (px + 100, py - 70), (px, py - 36)], (220, 38, 38))
+    elif prop == "brick":
+        for row in range(3):
+            for col in range(2 + (row % 2)):
+                x0 = px - 70 + col * 62 + (row % 2) * -31
+                box(x0, py - 20 + row * 30, x0 + 58, py + 4 + row * 30, (194, 65, 12), 3, 2)
+    elif prop == "bolt":
+        poly([(px + 10, py - 90), (px - 50, py + 6), (px - 6, py + 6), (px - 22, py + 80), (px + 50, py - 20), (px + 4, py - 20)], (250, 204, 21))
+    elif prop == "fish":
+        poly([(px - 80, py), (px - 20, py - 40), (px + 50, py), (px - 20, py + 40)], (96, 165, 250))
+        poly([(px + 50, py), (px + 96, py - 36), (px + 96, py + 36)], (59, 130, 246))
+        oval(px - 62, py - 10, px - 50, py + 2, (255, 255, 255), 2)
+    elif prop == "bread":
+        oval(px - 90, py - 34, px + 90, py + 40, (217, 119, 6))
+        for k in (-40, 0, 40):
+            d.line(((px + k - 10) * s, (py - 22) * s, (px + k + 10) * s, (py + 10) * s), fill=(146, 64, 14), width=5 * s)
+    elif prop == "camera":
+        box(px - 80, py - 40, px + 80, py + 50, (51, 65, 85), 10)
+        oval(px - 36, py - 34, px + 36, py + 38, (30, 41, 59))
+        oval(px - 22, py - 20, px + 22, py + 24, (96, 165, 250))
+        box(px - 70, py - 52, px - 30, py - 38, (51, 65, 85), 4)
+    elif prop == "scissors":
+        for sx in (-1, 1):
+            d.line((px * s, py * s, (px + sx * 40) * s, (py - 80) * s), fill=(170, 178, 192), width=10 * s)
+        oval(px - 50, py + 8, px - 8, py + 50, BG, 7)
+        oval(px + 8, py + 8, px + 50, py + 50, BG, 7)
+    elif prop == "flask":
+        poly([(px - 24, py - 80), (px + 24, py - 80), (px + 24, py - 30), (px + 70, py + 50), (px - 70, py + 50), (px - 24, py - 30)], (200, 230, 250))
+        poly([(px - 46, py + 10), (px + 46, py + 10), (px + 70, py + 50), (px - 70, py + 50)], (74, 222, 128))
+    elif prop == "paw":
+        oval(px - 40, py - 6, px + 40, py + 60, (120, 72, 36))
+        for dx, dy in ((-52, -22), (-20, -52), (20, -52), (52, -22)):
+            oval(px + dx - 14, py + dy - 16, px + dx + 14, py + dy + 16, (120, 72, 36))
+    elif prop == "letter":
+        box(px - 80, py - 50, px + 80, py + 50, (255, 255, 255), 6)
+        d.line(((px - 78) * s, (py - 48) * s, px * s, (py + 6) * s), fill=L, width=3 * s)
+        d.line(((px + 78) * s, (py - 48) * s, px * s, (py + 6) * s), fill=L, width=3 * s)
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -608,6 +775,8 @@ def main() -> None:
             data = people_scene(val)
         elif kind == "kitchen":
             data = kitchenware(val)
+        elif kind == "job":
+            data = job_scene(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"

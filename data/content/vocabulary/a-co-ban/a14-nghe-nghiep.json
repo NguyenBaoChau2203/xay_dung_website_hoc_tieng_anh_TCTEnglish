@@ -1,0 +1,1203 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A14",
+    "name": "Nghề nghiệp",
+    "description": "#a1 #a2 #jobs #work",
+    "topic": "Nghề nghiệp",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "nurse",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "y tá",
+      "meaningEn": "a person who looks after sick people in a hospital",
+      "examples": [
+        {
+          "text": "The nurse took my temperature.",
+          "vi": "Cô y tá đo nhiệt độ cho tôi."
+        },
+        {
+          "text": "My aunt works as a nurse at a hospital.",
+          "vi": "Dì tôi làm y tá ở một bệnh viện."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "night nurse",
+          "vi": "y tá trực đêm"
+        }
+      ],
+      "imageQuery": "nurse illustration",
+      "ipaUs": "/nɝs/",
+      "ipaUk": "/nɜːs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/nurse",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "nurse"
+      },
+      "image": {
+        "file": "a14/nurse.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:nurse",
+        "sha256": "d094ad59dd58f149e69a65b93f866a7bdbdd179450a89ac03c264e3dcd2fd42c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "doctor",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bác sĩ",
+      "meaningEn": "a person whose job is to treat sick people",
+      "examples": [
+        {
+          "text": "I need to see a doctor today.",
+          "vi": "Hôm nay tôi cần đi khám bác sĩ."
+        },
+        {
+          "text": "The doctor gave her some medicine.",
+          "vi": "Bác sĩ cho cô ấy một ít thuốc."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "see a doctor",
+          "vi": "đi khám bác sĩ"
+        }
+      ],
+      "imageQuery": "doctor illustration stethoscope",
+      "ipaUs": "/ˈdɑktɚ/",
+      "ipaUk": "/ˈdɒktə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/doctor",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "doctor"
+      },
+      "image": {
+        "file": "a14/doctor.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:doctor",
+        "sha256": "79952a2d9a59c8051cf090a0f1d5efe74d7780a5d38ce8d6c55a2a143d6afceb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "farmer",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "nông dân",
+      "meaningEn": "a person who grows crops or keeps animals",
+      "examples": [
+        {
+          "text": "The farmer gets up at five every morning.",
+          "vi": "Người nông dân dậy lúc năm giờ mỗi sáng."
+        },
+        {
+          "text": "My uncle is a rice farmer.",
+          "vi": "Chú tôi là một nông dân trồng lúa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "rice farmer",
+          "vi": "nông dân trồng lúa"
+        }
+      ],
+      "imageQuery": "farmer working field",
+      "ipaUs": "/fɑɹmɚ/",
+      "ipaUk": "/ˈfɑː.mə/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/farmer ; https://en.wiktionary.org/wiki/farmer",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "farmer"
+      },
+      "image": {
+        "file": "a14/farmer.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:farmer",
+        "sha256": "2c20fcc65faad9d78423b5405c28ecc811faca2f01b50aa1152f9bb4ce1f4c89",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "chef",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đầu bếp",
+      "meaningEn": "a professional cook in a restaurant",
+      "examples": [
+        {
+          "text": "The chef cooks very good fish.",
+          "vi": "Đầu bếp nấu món cá rất ngon."
+        },
+        {
+          "text": "She wants to become a chef one day.",
+          "vi": "Cô ấy muốn trở thành đầu bếp vào một ngày nào đó."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "head chef",
+          "vi": "bếp trưởng"
+        }
+      ],
+      "imageQuery": "chef cooking kitchen",
+      "ipaUs": "/ʃɛf/",
+      "ipaUk": "/ʃɛf/",
+      "ipaSource": "https://en.wiktionary.org/wiki/chef",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "chef"
+      },
+      "image": {
+        "file": "a14/chef.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:chef",
+        "sha256": "10d93a65dd4fdf27cf206e415dd54e60c3e27dcb8505fd4c899b05faa331a13e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pilot",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "phi công",
+      "meaningEn": "a person who flies an aeroplane",
+      "examples": [
+        {
+          "text": "The pilot said hello to the passengers.",
+          "vi": "Phi công chào hành khách."
+        },
+        {
+          "text": "My brother wants to be a pilot.",
+          "vi": "Anh trai tôi muốn trở thành phi công."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "airline pilot",
+          "vi": "phi công hàng không"
+        }
+      ],
+      "imageQuery": "pilot aircraft cockpit",
+      "ipaUs": "/ˈpaɪ.lət/",
+      "ipaUk": "/ˈpaɪ.lət/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pilot",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "pilot"
+      },
+      "image": {
+        "file": "a14/pilot.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:pilot",
+        "sha256": "f1f734e0b19c84d7f1d9c400b584cfce8881d9ad6a40b56018e9edca1bb0a70f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "mechanic",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thợ máy",
+      "meaningEn": "a person whose job is to repair machines and cars",
+      "examples": [
+        {
+          "text": "The mechanic fixed my motorbike quickly.",
+          "vi": "Người thợ máy sửa xe máy của tôi rất nhanh."
+        },
+        {
+          "text": "A good mechanic can find the problem easily.",
+          "vi": "Một thợ máy giỏi có thể tìm ra lỗi dễ dàng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "car mechanic",
+          "vi": "thợ sửa ô tô"
+        }
+      ],
+      "imageQuery": "mechanic repairing car",
+      "ipaUs": "/mɪˈkænɪk/",
+      "ipaUk": "/mɪˈkænɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mechanic",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "mechanic"
+      },
+      "image": {
+        "file": "a14/mechanic.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:mechanic",
+        "sha256": "c05792ed660c62200d2aa25cb51dd186e561dd245633563426dbf277c57b0d77",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "driver",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "tài xế",
+      "meaningEn": "a person who drives a car, bus or truck",
+      "examples": [
+        {
+          "text": "The bus driver was very friendly.",
+          "vi": "Bác tài xế xe buýt rất thân thiện."
+        },
+        {
+          "text": "My father is a taxi driver.",
+          "vi": "Bố tôi là tài xế taxi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "taxi driver",
+          "vi": "tài xế taxi"
+        },
+        {
+          "text": "bus driver",
+          "vi": "tài xế xe buýt"
+        }
+      ],
+      "imageQuery": "bus driver illustration",
+      "ipaUs": "/ˈdɹaɪvɚ/",
+      "ipaUk": "/ˈdɹaɪ.və/",
+      "ipaSource": "https://en.wiktionary.org/wiki/driver",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "driver"
+      },
+      "image": {
+        "file": "a14/driver.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:driver",
+        "sha256": "fe732a2dbc9d6c4ffed76b066d0df88e5de8f0a1cb8ba246dbe288e4e723f3e0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "police officer",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cảnh sát",
+      "meaningEn": "a person whose job is to keep order and catch criminals",
+      "examples": [
+        {
+          "text": "The police officer helped us cross the road.",
+          "vi": "Chú cảnh sát giúp chúng tôi qua đường."
+        },
+        {
+          "text": "She wants to become a police officer.",
+          "vi": "Cô ấy muốn trở thành một cảnh sát."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "call a police officer",
+          "vi": "gọi cảnh sát"
+        }
+      ],
+      "imageQuery": "police officer illustration",
+      "ipaUs": "/pəˈliːs ˈɔfɪsɚ/",
+      "ipaUk": "/pəˈliːs ˈɒf.ɪ.sə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/police + https://api.dictionaryapi.dev/api/v2/entries/en/officer ; https://en.wiktionary.org/wiki/police + https://en.wiktionary.org/wiki/officer",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "police officer"
+      },
+      "image": {
+        "file": "a14/police-officer.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:police officer",
+        "sha256": "cb1e1b10a344e799ff17cc65ed580704382f0ace45a8538ab985fa18e8e1fe1b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "firefighter",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "lính cứu hỏa",
+      "meaningEn": "a person whose job is to put out fires",
+      "examples": [
+        {
+          "text": "The firefighter saved the cat from the tree.",
+          "vi": "Anh lính cứu hỏa cứu con mèo khỏi cái cây."
+        },
+        {
+          "text": "Firefighters wear heavy clothes and helmets.",
+          "vi": "Lính cứu hỏa mặc quần áo dày và đội mũ bảo hiểm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "brave firefighter",
+          "vi": "người lính cứu hỏa dũng cảm"
+        }
+      ],
+      "imageQuery": "firefighter",
+      "ipaUs": "/ˈfaɪ.ɚˌfaɪ.tɚ/",
+      "ipaUk": "/ˈfaɪə(ɹ)ˌfaɪ.tə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/firefighter",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "firefighter"
+      },
+      "image": {
+        "file": "a14/firefighter.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:firefighter",
+        "sha256": "7f234ea6deacc1fa70b57d9310d84f9b1b30ec0e66cb9ebb92f160e9918bc78b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "dentist",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nha sĩ",
+      "meaningEn": "a doctor who looks after your teeth",
+      "examples": [
+        {
+          "text": "I go to the dentist twice a year.",
+          "vi": "Tôi đi khám nha sĩ hai lần một năm."
+        },
+        {
+          "text": "The dentist said my teeth are healthy.",
+          "vi": "Nha sĩ nói răng tôi khỏe mạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "visit the dentist",
+          "vi": "đi khám nha sĩ"
+        }
+      ],
+      "imageQuery": "dentist",
+      "ipaUs": "/ˈdɛntɪst/",
+      "ipaUk": "/ˈdɛntɪst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/dentist",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "dentist"
+      },
+      "image": {
+        "file": "a14/dentist.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:dentist",
+        "sha256": "f3e4643c80fce3e4e8a7c7db4c4491f7ff8c04568f088a0b38ca2fc9df38c32f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "engineer",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "kỹ sư",
+      "meaningEn": "a person who designs and builds machines, roads or bridges",
+      "examples": [
+        {
+          "text": "My sister is an engineer.",
+          "vi": "Chị gái tôi là một kỹ sư."
+        },
+        {
+          "text": "The engineer drew a plan for the bridge.",
+          "vi": "Kỹ sư vẽ bản thiết kế cho cây cầu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "software engineer",
+          "vi": "kỹ sư phần mềm"
+        }
+      ],
+      "imageQuery": "engineer hard hat blueprint",
+      "ipaUs": "/ˌɛnd͡ʒɪˈnɪɹ/",
+      "ipaUk": "/ˌɛn(d)ʒɪˈnɪə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/engineer",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "engineer"
+      },
+      "image": {
+        "file": "a14/engineer.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:engineer",
+        "sha256": "f86fccd77a1590be796b6868b49559841a3a34e30cf37a9fea0aeb2a668f6822",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "lawyer",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "luật sư",
+      "meaningEn": "a person who gives advice about the law and speaks in court",
+      "examples": [
+        {
+          "text": "The lawyer explained the contract to us.",
+          "vi": "Luật sư giải thích hợp đồng cho chúng tôi."
+        },
+        {
+          "text": "He studied law to become a lawyer.",
+          "vi": "Anh ấy học luật để trở thành luật sư."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hire a lawyer",
+          "vi": "thuê luật sư"
+        }
+      ],
+      "imageQuery": "lawyer courtroom illustration",
+      "ipaUs": "/ˈlɔɪ.ɚ/",
+      "ipaUk": "/ˈlɔːjə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lawyer",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "lawyer"
+      },
+      "image": {
+        "file": "a14/lawyer.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:lawyer",
+        "sha256": "9be59d62206cdf1ae9f722d49d4c8c963afb00f05e7d5cc1e04d9a191b0a9c2d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "waiter",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "người phục vụ nam",
+      "meaningEn": "a man who brings food to people in a restaurant",
+      "examples": [
+        {
+          "text": "The waiter brought us the menu.",
+          "vi": "Người phục vụ mang thực đơn cho chúng tôi."
+        },
+        {
+          "text": "Our waiter was polite and quick.",
+          "vi": "Người phục vụ của chúng tôi lịch sự và nhanh nhẹn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "call the waiter",
+          "vi": "gọi phục vụ"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "waitress",
+          "pos": "noun",
+          "vi": "nữ phục vụ"
+        }
+      ],
+      "imageQuery": "waiter restaurant serving",
+      "ipaUs": "/ˈweɪ̯tɚ/",
+      "ipaUk": "/ˈweɪ̯təː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/waiter",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "waiter"
+      },
+      "image": {
+        "file": "a14/waiter.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:waiter",
+        "sha256": "3c97368f135b3592f8598b05f62e361356cff92f1858381eb6c8f1d2906e1851",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cashier",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thu ngân",
+      "meaningEn": "a person who takes payment in a shop",
+      "examples": [
+        {
+          "text": "The cashier gave me my change.",
+          "vi": "Nhân viên thu ngân đưa tiền thừa cho tôi."
+        },
+        {
+          "text": "She works as a cashier in a supermarket.",
+          "vi": "Cô ấy làm thu ngân ở siêu thị."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pay the cashier",
+          "vi": "trả tiền cho thu ngân"
+        }
+      ],
+      "imageQuery": "cashier checkout",
+      "ipaUs": "/kəˈʃɪə/",
+      "ipaUk": "/kəˈʃɪə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cashier",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "generate": {
+        "kind": "job",
+        "value": "cashier"
+      },
+      "image": {
+        "file": "a14/cashier.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:cashier",
+        "sha256": "8ddf877a1d262384787b3101d38e1bda343a794b06d3a33846cca5bc18203d8c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "soldier",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "người lính",
+      "meaningEn": "a person who serves in an army",
+      "examples": [
+        {
+          "text": "The soldier stood at the gate all night.",
+          "vi": "Người lính đứng gác ở cổng suốt đêm."
+        },
+        {
+          "text": "Her grandfather was a soldier.",
+          "vi": "Ông của cô ấy từng là một người lính."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "young soldier",
+          "vi": "người lính trẻ"
+        }
+      ],
+      "imageQuery": "soldier illustration",
+      "ipaUs": "/ˈsoʊld͡ʒɚ/",
+      "ipaUk": "/ˈsəʊld͡ʒə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/soldier",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "soldier"
+      },
+      "image": {
+        "file": "a14/soldier.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:soldier",
+        "sha256": "08fd71fd33025c65952288850b840e6561a8ca5dd990a5036b3a2a9419fbbf23",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "builder",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thợ xây",
+      "meaningEn": "a person whose job is to build houses",
+      "examples": [
+        {
+          "text": "The builder is working on the new house.",
+          "vi": "Người thợ xây đang làm ngôi nhà mới."
+        },
+        {
+          "text": "Builders wear helmets to stay safe.",
+          "vi": "Thợ xây đội mũ bảo hộ để được an toàn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "building site",
+          "vi": "công trường xây dựng"
+        }
+      ],
+      "imageQuery": "construction worker building",
+      "ipaUs": "/ˈbɪl.dɚ/",
+      "ipaUk": "/ˈbɪl.də/",
+      "ipaSource": "https://en.wiktionary.org/wiki/builder",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "builder"
+      },
+      "image": {
+        "file": "a14/builder.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:builder",
+        "sha256": "5a1dfa0cbff9c39895cedceb09b8e305796ae08e835b7918a08eca839c3f458f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "electrician",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thợ điện",
+      "meaningEn": "a person whose job is to fix electrical things",
+      "examples": [
+        {
+          "text": "We called an electrician to fix the lights.",
+          "vi": "Chúng tôi gọi thợ điện đến sửa đèn."
+        },
+        {
+          "text": "The electrician checked the wires carefully.",
+          "vi": "Thợ điện kiểm tra dây điện cẩn thận."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "call an electrician",
+          "vi": "gọi thợ điện"
+        }
+      ],
+      "imageQuery": "electrician working",
+      "ipaUs": "/ɪˌlɛkˈtɹɪʃən/",
+      "ipaUk": "/ɪˌlɛkˈtɹɪʃ(ə)n/",
+      "ipaSource": "https://en.wiktionary.org/wiki/electrician",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "electrician"
+      },
+      "image": {
+        "file": "a14/electrician.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:electrician",
+        "sha256": "0466daa8e56609caa5d42c1e509649246540e4d6cbac67e9266518ae0e0d3856",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fisherman",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ngư dân",
+      "meaningEn": "a man whose job is to catch fish",
+      "plural": "fishermen",
+      "examples": [
+        {
+          "text": "The fisherman goes out to sea early.",
+          "vi": "Ngư dân ra khơi từ sáng sớm."
+        },
+        {
+          "text": "A fisherman sold fresh fish at the market.",
+          "vi": "Một ngư dân bán cá tươi ở chợ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "local fisherman",
+          "vi": "ngư dân địa phương"
+        }
+      ],
+      "imageQuery": "fisherman boat net",
+      "ipaUs": "/ˈfɪʃ.ɚ.mən/",
+      "ipaUk": "/ˈfɪʃ.ə.mən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fisherman",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "fisherman"
+      },
+      "image": {
+        "file": "a14/fisherman.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:fisherman",
+        "sha256": "7c6f20c42bc48f1e35f04dc23d152e96402d4be28c1c2a21cf0c4d3b63494a94",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "baker",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thợ làm bánh",
+      "meaningEn": "a person who makes bread and cakes",
+      "examples": [
+        {
+          "text": "The baker gets up at four to make bread.",
+          "vi": "Người thợ làm bánh dậy lúc bốn giờ để nướng bánh mì."
+        },
+        {
+          "text": "My neighbour is a baker.",
+          "vi": "Hàng xóm của tôi là thợ làm bánh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "local baker",
+          "vi": "thợ làm bánh địa phương"
+        }
+      ],
+      "imageQuery": "baker bread bakery",
+      "ipaUs": "/ˈbeɪ.kɚ/",
+      "ipaUk": "/ˈbeɪ.kə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/baker",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "baker"
+      },
+      "image": {
+        "file": "a14/baker.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:baker",
+        "sha256": "f3fd06e73144fce87e58b9fcec9959870fedd9605c326b80f9a18edc3f53b687",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "photographer",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nhiếp ảnh gia",
+      "meaningEn": "a person who takes photos as a job",
+      "examples": [
+        {
+          "text": "The photographer took many pictures at the wedding.",
+          "vi": "Nhiếp ảnh gia chụp rất nhiều ảnh trong đám cưới."
+        },
+        {
+          "text": "She dreams of becoming a photographer.",
+          "vi": "Cô ấy mơ ước trở thành nhiếp ảnh gia."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "professional photographer",
+          "vi": "nhiếp ảnh gia chuyên nghiệp"
+        }
+      ],
+      "imageQuery": "photographer camera",
+      "ipaUs": "/fəˈtɑ.ɡɹə.fɚ/",
+      "ipaUk": "/fəˈtɒɡ.ɹə.fə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/photographer",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "photographer"
+      },
+      "image": {
+        "file": "a14/photographer.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:photographer",
+        "sha256": "de2d047e4f374e8fe1f60caa9846bc442256726946233a8a14604464b0448f10",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tailor",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thợ may",
+      "meaningEn": "a person who makes or repairs clothes",
+      "examples": [
+        {
+          "text": "The tailor made me a new suit.",
+          "vi": "Thợ may may cho tôi một bộ vest mới."
+        },
+        {
+          "text": "I took my trousers to the tailor.",
+          "vi": "Tôi mang chiếc quần đến thợ may."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "visit a tailor",
+          "vi": "đến tiệm may"
+        }
+      ],
+      "imageQuery": "tailor sewing",
+      "ipaUs": "/ˈteɪlɚ/",
+      "ipaUk": "/ˈteɪlə/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/tailor ; https://en.wiktionary.org/wiki/tailor",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "tailor"
+      },
+      "image": {
+        "file": "a14/tailor.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:tailor",
+        "sha256": "feeb075bbb97d326be95b3229379d88e3580a8292168275c693605ec350a3a03",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "scientist",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nhà khoa học",
+      "meaningEn": "a person who studies nature using experiments",
+      "examples": [
+        {
+          "text": "The scientist works in a laboratory.",
+          "vi": "Nhà khoa học làm việc trong phòng thí nghiệm."
+        },
+        {
+          "text": "A scientist found a new kind of frog.",
+          "vi": "Một nhà khoa học đã tìm ra một loài ếch mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "famous scientist",
+          "vi": "nhà khoa học nổi tiếng"
+        }
+      ],
+      "imageQuery": "scientist laboratory",
+      "ipaUs": "/ˈsaɪəntəst/",
+      "ipaUk": "/ˈsaɪəntɪst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/scientist",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "scientist"
+      },
+      "image": {
+        "file": "a14/scientist.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:scientist",
+        "sha256": "cd7d2bebc723d56c2fb4ee7f25e5da832ce63a6c1c8eb7d1a07768dabdc9882c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "barber",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thợ cắt tóc nam",
+      "meaningEn": "a person who cuts men's hair",
+      "examples": [
+        {
+          "text": "The barber cut my hair short.",
+          "vi": "Thợ cắt tóc cắt tóc tôi ngắn."
+        },
+        {
+          "text": "My father goes to the barber every month.",
+          "vi": "Bố tôi đi cắt tóc mỗi tháng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go to the barber",
+          "vi": "đi cắt tóc"
+        }
+      ],
+      "imageQuery": "barber shop",
+      "ipaUs": "/ˈbɑɹ.bɚ/",
+      "ipaUk": "/ˈbɑːbə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/barber",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "barber"
+      },
+      "image": {
+        "file": "a14/barber.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:barber",
+        "sha256": "154a38861c0602628e3114950bd58580752f23c535df8331c0fa1e3ac94507e6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "vet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bác sĩ thú y",
+      "meaningEn": "a doctor who treats sick animals",
+      "examples": [
+        {
+          "text": "The vet looked at our sick puppy.",
+          "vi": "Bác sĩ thú y khám con chó con bị ốm của chúng tôi."
+        },
+        {
+          "text": "She wants to be a vet because she loves animals.",
+          "vi": "Cô ấy muốn làm bác sĩ thú y vì yêu động vật."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "take a pet to the vet",
+          "vi": "đưa thú cưng đi khám thú y"
+        }
+      ],
+      "imageQuery": "veterinarian animal",
+      "ipaUs": "/vɛt/",
+      "ipaUk": "/vɛt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/vet",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "job",
+        "value": "vet"
+      },
+      "image": {
+        "file": "a14/vet.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:vet",
+        "sha256": "094457094534236e07a0b089a5079a4052de1ff96c7195b6bf9fa528b13315c3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "postman",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "người đưa thư",
+      "meaningEn": "a person who brings letters to your home",
+      "plural": "postmen",
+      "examples": [
+        {
+          "text": "The postman brings letters every morning.",
+          "vi": "Người đưa thư mang thư đến mỗi buổi sáng."
+        },
+        {
+          "text": "Our dog barks at the postman.",
+          "vi": "Con chó của chúng tôi sủa người đưa thư."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "friendly postman",
+          "vi": "người đưa thư thân thiện"
+        }
+      ],
+      "imageQuery": "postman letters",
+      "ipaUs": "/ˈpəʊs(t)mən/",
+      "ipaUk": "/ˈpəʊs(t)mən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/postman",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "generate": {
+        "kind": "job",
+        "value": "postman"
+      },
+      "image": {
+        "file": "a14/postman.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:job:postman",
+        "sha256": "91d514ae687695c1c3d9281ca1b1eaeb6a6e02dee2976884b40ce0543fc8f1e2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
