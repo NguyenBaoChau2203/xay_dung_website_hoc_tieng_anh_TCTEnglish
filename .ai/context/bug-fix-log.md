@@ -5988,3 +5988,22 @@ blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 **Verification**: One text and three voice regressions failed before fixes. Final Node70/70 pass including six pagination behaviors; .NET71 pass/4 gated MariaDB skips from the same reviewed C# state. Real Chrome with intercepted public/private-history fixtures verifies delete reload, same-page network retry and concurrent Next guard with0 page errors/provider calls. EF pending-model check and386-package validation pass. No prior matching known issue to close; evidence in docs/superpowers/plans/2026-11-19-grouped-local-commits.md.
 
 **Commit authority**: Owner explicitly authorized grouped local commits in this turn; earlier no-commit entries record historical boundaries. No push/PR/CI/deploy or private data modification.
+
+
+### Listening catalog ignored the C2 level — 2026-11-18
+
+**Symptom**: `/Home/Listening?level=C2` showed every lesson as if no level was selected, and C2 lessons could not be reached by a level link, although the catalog already listed a C2 shelf.
+
+**Root Cause**: `StudyController.NormalizeListeningLevel` accepted only A1, A2, B1, B2 and C1, so a C2 query value normalized to null and the filter was dropped.
+
+**Solution**: `C2` added to the accepted set (one-token change in that method; nothing else in the controller). The catalog level row now has seven cards (Tất cả plus A1–C2) and the practice breadcrumb links to `?level={Level}`.
+
+**Files Changed**:
+- `TCTEnglish/Controllers/StudyController.cs` (`NormalizeListeningLevel` only)
+- Tests: `ListeningWordServiceTests` (the C2 filter test), `ListeningRedesignRenderTests`
+
+**Verification**: Full gate records in `docs/superpowers/plans/2026-11-18-listening-redesign.md` section 12. `?level=C2` verified live in a browser for guest and Premium; a disabled level (C1 has no lesson) falls back to all.
+
+**Commit**: `feat(listening)` series on `feature/listening-redesign`; nothing pushed.
+
+**Notes**: Follow-ups in known-issues: `LISTENING-DICTATION-LOCAL-ONLY`, `LISTENING-SUBTITLES-NOT-IN-FULLSCREEN`, `LISTENING-WORD-LOOKUP-COST`, `LISTENING-PROGRAM-DI-LINE`.

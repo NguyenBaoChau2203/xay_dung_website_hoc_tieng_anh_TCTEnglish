@@ -27,6 +27,26 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
+### LISTENING-DICTATION-LOCAL-ONLY — dictation results live in the browser, 2026-11-18
+
+Owner decision D3 of the Listening redesign: the new dictation tab keeps its per-sentence results in `localStorage` (`tct.listening.dictation.v1.{userId or guest}.{lessonId}`, written by `listening-core.js` `dictationStore`), not in the database, and dictation never counts toward lesson completion. Results do not follow the learner to another browser or device, and clearing site data or private browsing drops them; the progress card row and the catalog hero chip `Chép chính tả {n}/{total}` read the same store and stay empty on a new device. A server-side store would need a new table (a migration) and an owner decision. Files: `wwwroot/js/listening-core.js`, `listening-practice.js`, `listening-index.js`.
+
+### LISTENING-SUBTITLES-NOT-IN-FULLSCREEN — subtitle overlay is hidden in native fullscreen, 2026-11-18
+
+The Vietnamese/English subtitle overlay is a layer inside the page's video frame, so it cannot appear while the YouTube iframe is in native fullscreen (the browser shows only the iframe). The toggle's tooltip says so (`Phụ đề không hiện khi xem toàn màn hình.`). Showing subtitles in fullscreen would need the page to own a custom fullscreen container instead of the iframe's own control.
+
+### LISTENING-WORD-LOOKUP-COST — AI word lookup cost and rate limit, 2026-11-18
+
+Tap-a-word lookups outside the lesson vocabulary call `IVocabSuggestService` (the AI) for Premium and Admin only. Guards: lesson vocabulary is answered from page data with no request, results are cached for 24 hours per term, and each user is limited to 30 lookups per 10 minutes. The cache and the limiter are static inside `ListeningWordService` (in-memory, per app instance, reset on restart and not shared between instances) because the plan allowed a single DI line. The live AI path was not exercised in the local acceptance run (no paid request was made); the dictionary and error states were verified through a stubbed endpoint and the service tests.
+
+### LISTENING-QUIZ-COMPLETES-ON-ANY-SCORE — a submitted quiz counts as done at any score, 2026-11-18 (existing behaviour)
+
+`ListeningService` marks `QuizCompleted = true` for every graded attempt, so a 0 % attempt completes the quiz step and, with the other steps, the lesson; `Đạt` / `Chưa đạt` (pass mark 60 %) is only the remark on the result. Found in the Listening redesign end-to-end run (a 0/5 attempt turned the step row to `0%` with a check and the catalog counted the lesson as done). The redesign did not change this rule; changing it is a product decision for the owner.
+
+### LISTENING-PROGRAM-DI-LINE — one DI registration added for the word service, 2026-11-18
+
+`Program.cs` gained one line, `AddScoped<IListeningWordService, ListeningWordService>`, authorized by the Listening redesign plan. It is the only change to that file; the next owner of `Program.cs` should keep it when merging.
+
 ### CONTACT-REFRESH-ACCEPTANCE — backend repaired & Claymorphism UI completed locally, remaining scope 2026-11-17
 
 - Contact step 01 repaired backend contracts, preserved failed/unknown forms, and added abuse guards.

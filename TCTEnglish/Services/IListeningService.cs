@@ -49,6 +49,27 @@ namespace TCTEnglish.Services
         /// Translates the transcript to Vietnamese using AI if not already translated.
         /// </summary>
         Task<OperationResult> TranslateTranscriptAsync(int lessonId, int userId, CancellationToken ct = default);
+
+        /// <summary>
+        /// What the tap-a-word lookup needs about a lesson: its level, topic, vocabulary and whether the caller may look up
+        /// any word. Null when the caller may not use the lesson (the same rule as the practice page), so callers answer 404.
+        /// </summary>
+        Task<ListeningWordContext?> GetWordContextAsync(int lessonId, int? userId, CancellationToken ct = default);
+    }
+
+    /// <summary>One vocabulary row of a lesson, as the word lookup sees it.</summary>
+    public sealed record ListeningWordVocab(string Word, string Definition, string? ExampleSentence);
+
+    public sealed class ListeningWordContext
+    {
+        public int LessonId { get; init; }
+        public string Level { get; init; } = string.Empty;
+        public string Topic { get; init; } = string.Empty;
+
+        /// <summary>Premium or Admin: any word may be looked up through the dictionary.</summary>
+        public bool CanLookupAnyWord { get; init; }
+
+        public IReadOnlyList<ListeningWordVocab> Vocab { get; init; } = new List<ListeningWordVocab>();
     }
 
     public class ListeningImportResult

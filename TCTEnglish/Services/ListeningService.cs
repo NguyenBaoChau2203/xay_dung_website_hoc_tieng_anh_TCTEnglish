@@ -10,6 +10,7 @@ using TCTEnglish.ViewModels;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 using TCTEnglish.Services.AI;
+using TCTEnglish.Services.Listening;
 
 namespace TCTEnglish.Services
 {
@@ -205,6 +206,7 @@ namespace TCTEnglish.Services
             var currentRole = await GetNormalizedRoleAsync(uid);
             var isLocked = currentRole == Roles.Standard;
             viewModel.CanImport = currentRole is Roles.Admin or Roles.Premium;
+            Dictionary<string, int>? completedByLevel = null;
 
             // One query for every progress row of the user on lessons they may see
             // (public published lessons and their own private ones).
@@ -222,6 +224,7 @@ namespace TCTEnglish.Services
                     p.VocabReviewed,
                     p.CompletedAt,
                     p.LastAccessedAt,
+                    Level = p.Lesson.Level,
                     TranscriptCount = p.Lesson.TranscriptLines.Count,
                     QuizCount = p.Lesson.QuizQuestions.Count,
                     VocabCount = p.Lesson.VocabItems.Count,
@@ -237,9 +240,15 @@ namespace TCTEnglish.Services
 
             // Overview numbers use every public lesson, never the level/topic filter.
             var publicProgress = progressRows.Where(p => !p.IsPrivate).ToList();
-            viewModel.CompletedLessons = publicProgress.Count(p => p.CompletedAt != null
-                || IsLessonComplete(p.TranscriptCompleted, p.QuizCompleted, p.VocabReviewed, p.TranscriptCount, p.QuizCount, p.VocabCount));
+            var completedPublic = publicProgress.Where(p => p.CompletedAt != null
+                || IsLessonComplete(p.TranscriptCompleted, p.QuizCompleted, p.VocabReviewed, p.TranscriptCount, p.QuizCount, p.VocabCount)).ToList();
+            viewModel.CompletedLessons = completedPublic.Count;
             viewModel.InProgressLessons = publicProgress.Count - viewModel.CompletedLessons;
+
+            // Same snapshot, no extra query: the average stored quiz score of the finished lessons and the per-level counts.
+            var scores = completedPublic.Where(p => p.QuizScore.HasValue).Select(p => p.QuizScore!.Value).ToList();
+            viewModel.AverageQuizScore = scores.Count > 0 ? (int)Math.Round(scores.Average(), MidpointRounding.AwayFromZero) : null;
+            completedByLevel = completedPublic.GroupBy(p => p.Level).ToDictionary(g => g.Key, g => g.Count());
 
             var myLessons = await _context.ListeningLessons
                 .AsNoTracking()
@@ -316,14 +325,17 @@ namespace TCTEnglish.Services
                 viewModel.ContinueLesson = continueCard;
             }
 
-            FinishIndexViewModel(viewModel, cards);
+            FinishIndexViewModel(viewModel, cards, completedByLevel);
             return viewModel;
         }
 
         // CEFR levels in display order (the page itself builds its section headings from the same keys).
         private static readonly string[] LevelOrder = { "A1", "A2", "B1", "B2", "C1", "C2" };
 
-        private static void FinishIndexViewModel(ListeningIndexViewModel viewModel, List<ListeningLessonCardViewModel> cards)
+        private static void FinishIndexViewModel(
+            ListeningIndexViewModel viewModel,
+            List<ListeningLessonCardViewModel> cards,
+            IReadOnlyDictionary<string, int>? completedByLevel = null)
         {
             viewModel.LessonsByLevel = cards
                 .GroupBy(c => c.Level)
@@ -332,7 +344,8 @@ namespace TCTEnglish.Services
                 .Select(key => new ListeningLevelMetaViewModel
                 {
                     Key = key,
-                    LessonCount = viewModel.LessonsByLevel.TryGetValue(key, out var inLevel) ? inLevel.Count : 0
+                    LessonCount = viewModel.LessonsByLevel.TryGetValue(key, out var inLevel) ? inLevel.Count : 0,
+                    CompletedCount = completedByLevel != null && completedByLevel.TryGetValue(key, out var done) ? done : 0
                 })
                 .ToList();
         }
@@ -371,6 +384,20 @@ namespace TCTEnglish.Services
 
             var isPremiumOrAdmin = role is Roles.Admin or Roles.Premium;
             var isOwnLesson = lesson.OwnerUserId.HasValue && lesson.OwnerUserId == userId;
+
+            // Read-only: the link to the word set appears once the user has saved a word; opening the page never creates it.
+            string? wordSetUrl = null;
+            if (userId.HasValue)
+            {
+                var wordSetId = await _context.Sets
+                    .AsNoTracking()
+                    .Where(s => s.OwnerId == userId.Value && s.SetName == ListeningWordSet.Name)
+                    .OrderBy(s => s.SetId)
+                    .Select(s => (int?)s.SetId)
+                    .FirstOrDefaultAsync(ct);
+                if (wordSetId.HasValue)
+                    wordSetUrl = ListeningWordSet.UrlFor(wordSetId.Value);
+            }
 
             return new ListeningPracticeViewModel
             {
@@ -436,9 +463,48 @@ namespace TCTEnglish.Services
                 IsOwnLesson = isOwnLesson,
                 IsCompleted = progress != null && (progress.CompletedAt != null || IsLessonComplete(progress, access)),
                 CanUseSpeed = isPremiumOrAdmin,
+                CanLookupAnyWord = isPremiumOrAdmin,
+                WordSetUrl = wordSetUrl,
                 CanTranslate = isPremiumOrAdmin,
                 // Quiz generation on a shared (public) lesson is Admin-only; Premium users keep it for their own lessons.
                 CanUseAi = isPremiumOrAdmin && (isOwnLesson || role == Roles.Admin),
+            };
+        }
+
+        // ----------------------------------------------------------------
+        // GetWordContextAsync (tap-a-word lookup and save)
+        // ----------------------------------------------------------------
+
+        public async Task<ListeningWordContext?> GetWordContextAsync(int lessonId, int? userId, CancellationToken ct = default)
+        {
+            // The one access rule of the module: published and (public, or the caller's own and still allowed).
+            var access = await GetUsableLessonAsync(lessonId, userId, ct);
+            if (access == null)
+                return null;
+
+            var lesson = await _context.ListeningLessons
+                .AsNoTracking()
+                .Where(l => l.Id == lessonId)
+                .Select(l => new { l.Level, l.Topic })
+                .FirstOrDefaultAsync(ct);
+            if (lesson == null)
+                return null;
+
+            var role = userId.HasValue ? await GetNormalizedRoleAsync(userId.Value) : Roles.Standard;
+            var vocab = await _context.ListeningVocabItems
+                .AsNoTracking()
+                .Where(v => v.LessonId == lessonId)
+                .OrderBy(v => v.OrderIndex)
+                .Select(v => new { v.Word, v.Definition, v.ExampleSentence })
+                .ToListAsync(ct);
+
+            return new ListeningWordContext
+            {
+                LessonId = lessonId,
+                Level = lesson.Level,
+                Topic = lesson.Topic,
+                CanLookupAnyWord = role is Roles.Admin or Roles.Premium,
+                Vocab = vocab.Select(v => new ListeningWordVocab(v.Word, v.Definition, v.ExampleSentence)).ToList(),
             };
         }
 

@@ -1,0 +1,40 @@
+@model TCTEnglish.ViewModels.ListeningIndexViewModel
+@*
+    Level row of /Home/Listening (plan 5.1, mockup F1): "Tất cả" plus A1-C2 as seven toggle cards inside one radiogroup.
+    Signed in: "{done}/{total}" and a progress bar; guest: "{total} bài". A level with no lesson is disabled ("0 bài").
+    listening-index.js moves the selection with the arrow keys and keeps ?level= in sync (roving tabindex).
+*@
+@{
+    var signedIn = Model.IsAuthenticated;
+    var selected = Model.SelectedLevel ?? "all";
+    var total = Model.Levels.Sum(l => l.LessonCount);
+    var completed = Model.Levels.Sum(l => l.CompletedCount);
+
+    string Count(int done, int count) => count == 0 ? "0 bài" : signedIn ? done + "/" + count : count + " bài";
+    int Percent(int done, int count) => count == 0 ? 0 : (int)Math.Round(100.0 * done / count);
+}
+<div class="tl-levels" id="tlLevels" role="radiogroup" aria-label="Lọc theo trình độ">
+    <button type="button" role="radio" class="tl-level-card" data-level="all"
+            aria-checked="@(selected == "all" ? "true" : "false")" tabindex="@(selected == "all" ? "0" : "-1")"
+            disabled="@(total == 0 ? "disabled" : null)">
+        <span class="tl-level-card__top">
+            <span class="tl-level-card__key">Tất cả</span>
+            <span class="tl-level-card__count">@Count(completed, total)</span>
+        </span>
+        <progress class="tl-bar@(signedIn && total > 0 && completed == total ? " tl-bar--done" : string.Empty)" max="100" value="@(signedIn ? Percent(completed, total) : 0)" aria-hidden="true"></progress>
+    </button>
+    @foreach (var level in Model.Levels)
+    {
+        var done = level.CompletedCount;
+        var isChecked = selected == level.Key;
+        <button type="button" role="radio" class="tl-level-card" data-level="@level.Key"
+                aria-checked="@(isChecked ? "true" : "false")" tabindex="@(isChecked ? "0" : "-1")"
+                disabled="@(level.LessonCount == 0 ? "disabled" : null)">
+            <span class="tl-level-card__top">
+                <span class="tl-level-card__key">@level.Key</span>
+                <span class="tl-level-card__count">@Count(done, level.LessonCount)</span>
+            </span>
+            <progress class="tl-bar@(signedIn && level.LessonCount > 0 && done == level.LessonCount ? " tl-bar--done" : string.Empty)" max="100" value="@(signedIn ? Percent(done, level.LessonCount) : 0)" aria-hidden="true"></progress>
+        </button>
+    }
+</div>

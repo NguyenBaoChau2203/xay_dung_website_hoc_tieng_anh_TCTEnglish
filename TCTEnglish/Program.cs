@@ -162,6 +162,7 @@ builder.Services.AddScoped<IWritingService, WritingService>();
 builder.Services.AddScoped<IWritingAiEvaluationService, WritingAiEvaluationService>();
 builder.Services.AddSingleton<IWritingRequestRateLimiter, WritingRequestRateLimiter>();
 builder.Services.AddScoped<TCTEnglish.Services.IListeningService, TCTEnglish.Services.ListeningService>();
+builder.Services.AddScoped<TCTEnglish.Services.Listening.IListeningWordService, TCTEnglish.Services.Listening.ListeningWordService>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IYoutubeTranscriptService, YoutubeTranscriptService>();
 builder.Services.AddScoped<IVocabSuggestService, VocabSuggestService>();

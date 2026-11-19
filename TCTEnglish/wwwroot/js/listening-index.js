@@ -1,5 +1,6 @@
 /*
- * /Home/Listening: client-side filters, "Xem thêm" per level, thumbnail fallback.
+ * /Home/Listening: level row, status chips, topic select and search (client-side filters), level shelves,
+ * hero dictation chip, import tile and delete modal, thumbnail fallback.
  * Needs window.TctSets (personal-sets-common.js) and window.TctListening.core (listening-core.js).
  * DOM is built with createElement and textContent only; server data is never turned into markup.
  */
@@ -13,8 +14,8 @@
 
     var config = {};
     try { config = JSON.parse(document.getElementById('tlConfig').textContent) || {}; } catch (e) { config = {}; }
-    var pageSize = config.pageSize > 0 ? config.pageSize : 6;
-    var TOPICS_COLLAPSED = 8;
+    var shelfSize = config.shelfSize > 0 ? config.shelfSize : 4;
+    var gridSize = config.gridSize > 0 ? config.gridSize : 8;
 
     // ------------------------------------------------------------------ thumbnails
 
@@ -38,14 +39,31 @@
         if (img.complete && img.naturalWidth === 0) { swapBrokenThumb(img); }
     });
 
-    // ------------------------------------------------------------------ filters
+    // ------------------------------------------------------------------ hero: dictation chip (results live in this browser only)
+
+    (function initHeroDictation() {
+        var chips = page.querySelectorAll('[data-tl-hero-dict]');
+        if (!chips.length) { return; }
+        var storage = null;
+        try { storage = window.localStorage; } catch (e) { storage = null; }
+        Array.prototype.forEach.call(chips, function (chip) {
+            var total = Number(chip.getAttribute('data-total')) || 0;
+            var summary = core.dictationStore(storage, config.userKey, chip.getAttribute('data-lesson')).summary(total);
+            if (summary.done > 0) {
+                var count = chip.querySelector('[data-tl-hero-dict-count]');
+                if (count) { count.textContent = summary.done + '/' + total; }
+                chip.hidden = false;
+            }
+        });
+    }());
+
+    // ------------------------------------------------------------------ filters, shelves
 
     var host = document.getElementById('tlLevelsHost');
     var searchInput = document.getElementById('tlSearch');
     var levelsGroup = document.getElementById('tlLevels');
     var statusGroup = document.getElementById('tlStatuses');
-    var topicsGroup = document.getElementById('tlTopics');
-    var topicsToggle = document.getElementById('tlTopicsToggle');
+    var topicSelect = document.getElementById('tlTopic');
     var countEl = document.getElementById('tlCount');
     var emptyEl = document.getElementById('tlEmpty');
     var clearBtn = document.getElementById('tlClearFilters');
@@ -67,21 +85,34 @@
             return {
                 level: section.getAttribute('data-level-section'),
                 el: section,
+                heading: section.querySelector('.tl-section-title'),
                 count: section.querySelector('[data-level-count]'),
+                all: section.querySelector('[data-level-all]'),
                 more: section.querySelector('[data-level-more]')
             };
         });
         var lessons = items.map(function (it) { return { id: it.id, title: it.title, topic: it.topic, level: it.level, status: it.status }; });
         var byId = {};
         items.forEach(function (it) { byId[it.id] = it; });
+        var radios = Array.prototype.slice.call(levelsGroup.querySelectorAll('[role="radio"]'));
 
         var state = core.parseFilterQuery(window.location.search, config.topics);
         if (!config.isAuthenticated) { state.status = 'all'; }
+        // a level without lessons is a disabled card: never start on it
+        var startRadio = radios.filter(function (r) { return r.getAttribute('data-level') === state.level; })[0];
+        if (state.level !== 'all' && (!startRadio || startRadio.disabled)) { state.level = 'all'; }
         var shown = {};
-        var topicsExpanded = false;
 
-        function resetShown() { sections.forEach(function (s) { shown[s.level] = pageSize; }); }
+        function resetShown() { sections.forEach(function (s) { shown[s.level] = gridSize; }); }
         resetShown();
+
+        function syncRadios() {
+            radios.forEach(function (radio) {
+                var on = radio.getAttribute('data-level') === state.level;
+                radio.setAttribute('aria-checked', on ? 'true' : 'false');
+                radio.tabIndex = on ? 0 : -1;
+            });
+        }
 
         function syncPressed(group, attr, value) {
             if (!group) { return; }
@@ -90,21 +121,7 @@
             });
         }
 
-        function syncTopicsCollapse() {
-            if (!topicsGroup || !topicsToggle) { return; }
-            var buttons = Array.prototype.slice.call(topicsGroup.querySelectorAll('button[data-topic]')).filter(function (b) {
-                return b.getAttribute('data-topic') !== 'all';
-            });
-            if (buttons.length <= TOPICS_COLLAPSED) { topicsToggle.hidden = true; return; }
-            var activeIndex = buttons.findIndex(function (b) { return b.getAttribute('data-topic') === state.topic; });
-            var expanded = topicsExpanded || activeIndex >= TOPICS_COLLAPSED;
-            buttons.forEach(function (b, i) { b.hidden = !expanded && i >= TOPICS_COLLAPSED; });
-            topicsToggle.hidden = false;
-            topicsToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-            topicsToggle.textContent = expanded ? 'Thu gọn chủ đề' : 'Xem thêm chủ đề';
-        }
-
-        function render(revealFrom) {
+        function render(reveal) {
             var matching = {};
             var matchIds = core.filterLessons(lessons, state);
             matchIds.forEach(function (id) {
@@ -112,20 +129,27 @@
                 (matching[it.level] = matching[it.level] || []).push(id);
             });
 
+            var shelves = state.level === 'all';
             var focusTarget = null;
             sections.forEach(function (s) {
                 var ids = matching[s.level] || [];
-                var page_ = core.paginate(ids, shown[s.level]);
+                var inScope = shelves || s.level === state.level;
+                var limit = shelves ? shelfSize : shown[s.level];
+                var slice = core.paginate(ids, limit);
                 var visible = {};
-                page_.visible.forEach(function (id) { visible[id] = true; });
+                slice.visible.forEach(function (id) { visible[id] = true; });
                 items.forEach(function (it) {
-                    if (it.level === s.level) { it.el.hidden = !visible[it.id]; }
+                    if (it.level === s.level) { it.el.hidden = !(inScope && visible[it.id]); }
                 });
-                s.el.hidden = ids.length === 0;
-                if (s.count) { s.count.textContent = ids.length + ' bài'; }
-                if (s.more) { s.more.hidden = !page_.hasMore; }
-                if (revealFrom && revealFrom.level === s.level && ids.length > revealFrom.index) {
-                    var first = byId[ids[revealFrom.index]];
+                s.el.hidden = !inScope || ids.length === 0;
+                if (s.count && !config.isAuthenticated) { s.count.textContent = ids.length + ' bài'; }
+                if (s.all) {
+                    s.all.hidden = !(shelves && ids.length > shelfSize);
+                    s.all.textContent = 'Xem cả ' + ids.length + ' bài';
+                }
+                if (s.more) { s.more.hidden = !(!shelves && inScope && slice.hasMore); }
+                if (reveal && reveal.level === s.level && ids.length > reveal.index) {
+                    var first = byId[ids[reveal.index]];
                     focusTarget = first && first.el.querySelector('a');
                 }
             });
@@ -133,10 +157,9 @@
             countEl.textContent = matchIds.length + ' bài nghe';
             if (emptyEl) { emptyEl.hidden = matchIds.length > 0; }
 
-            syncPressed(levelsGroup, 'data-level', state.level);
+            syncRadios();
             syncPressed(statusGroup, 'data-status', state.status);
-            syncPressed(topicsGroup, 'data-topic', state.topic);
-            syncTopicsCollapse();
+            if (topicSelect) { topicSelect.value = state.topic; }
 
             var query = core.buildFilterQuery(state);
             try { window.history.replaceState(null, '', window.location.pathname + query); } catch (e) { /* ignore */ }
@@ -150,35 +173,57 @@
         }
 
         levelsGroup.addEventListener('click', function (event) {
-            var btn = event.target.closest('button[data-level]');
-            if (btn) { change({ level: btn.getAttribute('data-level') }); }
+            var radio = event.target.closest('[role="radio"]');
+            if (radio && !radio.disabled) { change({ level: radio.getAttribute('data-level') }); }
         });
+
+        // radiogroup: arrows move the selection to the next enabled card, Home/End jump to the ends
+        levelsGroup.addEventListener('keydown', function (event) {
+            var enabled = radios.filter(function (r) { return !r.disabled; });
+            var current = enabled.indexOf(document.activeElement);
+            if (current < 0) { return; }
+            var next = -1;
+            if (event.key === 'ArrowRight' || event.key === 'ArrowDown') { next = (current + 1) % enabled.length; }
+            else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') { next = (current - 1 + enabled.length) % enabled.length; }
+            else if (event.key === 'Home') { next = 0; }
+            else if (event.key === 'End') { next = enabled.length - 1; }
+            if (next < 0) { return; }
+            event.preventDefault();
+            change({ level: enabled[next].getAttribute('data-level') });
+            enabled[next].focus();
+        });
+
         if (statusGroup) {
             statusGroup.addEventListener('click', function (event) {
                 var btn = event.target.closest('button[data-status]');
                 if (btn) { change({ status: btn.getAttribute('data-status') }); }
             });
         }
-        if (topicsGroup) {
-            topicsGroup.addEventListener('click', function (event) {
-                var btn = event.target.closest('button[data-topic]');
-                if (btn) { change({ topic: btn.getAttribute('data-topic') }); }
-            });
-        }
-        if (topicsToggle) {
-            topicsToggle.addEventListener('click', function () { topicsExpanded = !topicsExpanded; syncTopicsCollapse(); });
+        if (topicSelect) {
+            topicSelect.addEventListener('change', function () { change({ topic: topicSelect.value }); });
         }
         if (searchInput) {
             searchInput.value = state.q;
             searchInput.addEventListener('input', Sets.debounce(function () { change({ q: searchInput.value.trim() }); }, 150));
         }
         sections.forEach(function (s) {
-            if (!s.more) { return; }
-            s.more.addEventListener('click', function () {
-                var from = shown[s.level];
-                shown[s.level] = from + pageSize;
-                render({ level: s.level, index: from });
-            });
+            if (s.all) {
+                s.all.addEventListener('click', function () {
+                    change({ level: s.level });
+                    if (s.heading) {
+                        s.heading.tabIndex = -1;
+                        s.heading.focus();
+                        s.heading.scrollIntoView({ block: 'start', behavior: 'auto' });
+                    }
+                });
+            }
+            if (s.more) {
+                s.more.addEventListener('click', function () {
+                    var from = shown[s.level];
+                    shown[s.level] = from + gridSize;
+                    render({ level: s.level, index: from });
+                });
+            }
         });
         if (clearBtn) {
             clearBtn.addEventListener('click', function () {
@@ -201,11 +246,41 @@
     if (deleteModalEl) { initDelete(); }
 
     function initImport() {
+        var panel = document.getElementById('tlImportPanel');
         var urlInput = document.getElementById('tlImportUrl');
         var submit = document.getElementById('tlImportSubmit');
         var errorEl = document.getElementById('tlImportError');
         var statusEl = document.getElementById('tlImportStatus');
+        var openers = [document.getElementById('tlImportOpen'), document.getElementById('tlImportTile')].filter(Boolean);
         var busy = false;
+
+        function setExpanded(on) {
+            if (panel) { panel.hidden = !on; }
+            openers.forEach(function (btn) { btn.setAttribute('aria-expanded', on ? 'true' : 'false'); });
+        }
+
+        // the header link and the dashed tile both reveal the form and move focus into it
+        openers.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var open = panel && panel.hidden;
+                setExpanded(open);
+                if (open) {
+                    panel.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+                    urlInput.focus();
+                } else {
+                    btn.focus();
+                }
+            });
+        });
+        if (panel) {
+            panel.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && !busy) {
+                    setExpanded(false);
+                    var back = openers[0];
+                    if (back) { back.focus(); }
+                }
+            });
+        }
 
         function setError(text) {
             errorEl.textContent = text || '';
@@ -278,7 +353,6 @@
         var bodyEl = document.getElementById('tlDeleteBody');
         var confirmBtn = document.getElementById('tlDeleteConfirm');
         var countEl = document.getElementById('tlMineCount');
-        var emptyEl = document.getElementById('tlMineEmpty');
         var heading = document.getElementById('tl-mine-title');
         var current = null;
         var modal = null;
@@ -305,15 +379,12 @@
             m.show(trigger);
         });
 
+        // The dashed import tile stays in the grid, so the grid is never removed; only the card and the count change.
         function removeCard(id) {
             var item = mineGrid && mineGrid.querySelector('[data-mine-id="' + id + '"]');
             if (item) { item.remove(); }
             var left = mineGrid ? mineGrid.querySelectorAll('[data-mine-id]').length : 0;
             if (countEl) { countEl.textContent = left + ' bài'; }
-            if (left === 0) {
-                if (mineGrid) { mineGrid.remove(); mineGrid = null; }
-                if (emptyEl) { emptyEl.hidden = false; }
-            }
         }
 
         confirmBtn.addEventListener('click', function () {

@@ -283,6 +283,245 @@
         return m + ':' + ss;
     }
 
+    // ------------------------------------------------------------------ transcript words (tap-a-word lookup)
+
+    var APOSTROPHES = /[‘’ʼ]/g;
+    var WORD_RUN = /[\p{L}\p{N}]+(?:['’ʼ\-][\p{L}\p{N}]+)*/gu;
+    var LOOKUP_WORD = /^\p{L}[\p{L}'’ʼ\-]*$/u;
+
+    /** Lower-case, NFC, curly apostrophes to a straight one. */
+    function wordKey(word) {
+        return String(word == null ? '' : word).normalize('NFC').toLowerCase().replace(APOSTROPHES, "'");
+    }
+
+    /**
+     * Splits a line into [{ t: 'word', v, key } | { t: 'sep', v }]. A word is letters only (inner apostrophes and hyphens
+     * allowed), so numbers and mixed tokens such as 3pm stay separators. Joining every v returns the input unchanged.
+     */
+    function wordSpans(text) {
+        var source = String(text == null ? '' : text);
+        var spans = [];
+        var cursor = 0;
+        var re = new RegExp(WORD_RUN.source, 'gu');
+        var match;
+        function pushSep(value) {
+            if (!value) return;
+            var last = spans[spans.length - 1];
+            if (last && last.t === 'sep') { last.v += value; } else { spans.push({ t: 'sep', v: value }); }
+        }
+        while ((match = re.exec(source)) !== null) {
+            pushSep(source.slice(cursor, match.index));
+            if (LOOKUP_WORD.test(match[0])) { spans.push({ t: 'word', v: match[0], key: wordKey(match[0]) }); } else { pushSep(match[0]); }
+            cursor = match.index + match[0].length;
+        }
+        pushSep(source.slice(cursor));
+        return spans;
+    }
+
+    /**
+     * The word and its simple de-inflections (-'s, -s, -es, -ies, -ed, -ied, -ing, doubled consonant), unique, at most six.
+     * ListeningWordForms.BaseForms (C#) mirrors this exactly; both are checked against Fixtures/listening-base-forms.json.
+     */
+    function baseForms(input) {
+        var key = wordKey(input);
+        var out = [];
+        function add(form) { if (form && form.length >= 2 && form.trim().length > 0 && out.indexOf(form) < 0) out.push(form); }
+        function doubled(stem) { if (/([bdgmnprt])\1$/.test(stem)) add(stem.slice(0, -1)); }
+        add(key);
+        var w = key;
+        if (key.length > 3 && /'s$/.test(key)) { w = key.slice(0, -2); add(w); }
+        var n = w.length;
+        if (n > 4 && /ies$/.test(w)) add(w.slice(0, -3) + 'y');
+        if (n > 4 && /(?:ch|sh|ss|x|z|o)es$/.test(w)) add(w.slice(0, -2));
+        if (n > 3 && /[^s']s$/.test(w)) add(w.slice(0, -1));
+        if (n > 4 && /ied$/.test(w)) add(w.slice(0, -3) + 'y');
+        if (n > 4 && /ed$/.test(w)) { var edStem = w.slice(0, -2); add(edStem); add(w.slice(0, -1)); doubled(edStem); }
+        if (n > 5 && /ing$/.test(w)) { var ingStem = w.slice(0, -3); add(ingStem); add(ingStem + 'e'); doubled(ingStem); }
+        return out.slice(0, 6);
+    }
+
+    /**
+     * items = [{ word, definition, example }]. A Map of every base form of a one-word item to that item. Multi-word
+     * items go to index.phrases = [{ words: [key, ...], item }], longest first (ties keep the lesson order).
+     */
+    function vocabIndex(items) {
+        var map = new Map();
+        var phrases = [];
+        (Array.isArray(items) ? items : []).forEach(function (item) {
+            if (!item || typeof item.word !== 'string') return;
+            var parts = wordSpans(item.word).filter(function (s) { return s.t === 'word'; }).map(function (s) { return s.key; });
+            if (!parts.length) return;
+            if (parts.length === 1) {
+                baseForms(parts[0]).forEach(function (form) { if (!map.has(form)) map.set(form, item); });
+            } else {
+                phrases.push({ words: parts, item: item, order: phrases.length });
+            }
+        });
+        phrases.sort(function (a, b) { return (b.words.length - a.words.length) || (a.order - b.order); });
+        map.phrases = phrases;
+        return map;
+    }
+
+    function sameWord(a, b) {
+        var left = baseForms(a), right = baseForms(b);
+        return left.some(function (form) { return right.indexOf(form) >= 0; });
+    }
+
+    function onlyPlainGap(spans, from, to) {
+        for (var i = from + 1; i < to; i++) { if (!/^[\s\-]+$/.test(spans[i].v)) return false; }
+        return true;
+    }
+
+    /**
+     * Copy of the spans with { vocab: item } on every word the index knows (inflections included) and, for a phrase,
+     * { vocab: item, phrase: n } on each of its words. The longest phrase wins; a phrase cannot cross punctuation.
+     */
+    function markVocab(spans, index) {
+        var out = (Array.isArray(spans) ? spans : []).map(function (s) { return Object.assign({}, s); });
+        if (!index || typeof index.get !== 'function') return out;
+        var phrases = index.phrases || [];
+        var positions = [];
+        out.forEach(function (s, i) { if (s.t === 'word') positions.push(i); });
+        var phraseId = 0;
+        for (var p = 0; p < positions.length; p++) {
+            var matched = false;
+            for (var k = 0; k < phrases.length && !matched; k++) {
+                var phrase = phrases[k];
+                var length = phrase.words.length;
+                if (p + length > positions.length) continue;
+                var ok = true;
+                for (var j = 0; j < length && ok; j++) {
+                    var at = positions[p + j];
+                    if (!sameWord(out[at].key, phrase.words[j])) { ok = false; }
+                    else if (j > 0 && !onlyPlainGap(out, positions[p + j - 1], at)) { ok = false; }
+                }
+                if (!ok) continue;
+                for (var m = 0; m < length; m++) { out[positions[p + m]].vocab = phrase.item; out[positions[p + m]].phrase = phraseId; }
+                phraseId += 1;
+                p += length - 1;
+                matched = true;
+            }
+            if (matched) continue;
+            var forms = baseForms(out[positions[p]].key);
+            for (var f = 0; f < forms.length; f++) {
+                if (index.has(forms[f])) { out[positions[p]].vocab = index.get(forms[f]); break; }
+            }
+        }
+        return out;
+    }
+
+    // ------------------------------------------------------------------ dictation: saved results and verdict
+
+    var DICTATION_PREFIX = 'tct.listening.dictation.v1.';
+    var DICTATION_STATUSES = ['correct', 'near', 'wrong', 'skipped'];
+
+    /**
+     * Per-line dictation results kept by the caller's storage (anything with getItem/setItem/removeItem; a missing or
+     * throwing store simply remembers nothing). Key: tct.listening.dictation.v1.{userKey or guest}.{lessonId}.
+     */
+    function dictationStore(storage, userKey, lessonId) {
+        var key = DICTATION_PREFIX + (userKey === null || userKey === undefined || userKey === '' ? 'guest' : userKey) + '.' + lessonId;
+
+        function load() {
+            if (!storage) return {};
+            var raw, data;
+            try { raw = storage.getItem(key); } catch (e) { return {}; }
+            if (!raw) return {};
+            try { data = JSON.parse(raw); } catch (e) { return {}; }
+            if (!data || data.v !== 1 || !data.results || typeof data.results !== 'object') return {};
+            var out = {};
+            Object.keys(data.results).forEach(function (k) {
+                var r = data.results[k];
+                if (!/^\d+$/.test(k) || !r || DICTATION_STATUSES.indexOf(r.status) < 0) return;
+                if (typeof r.score !== 'number' || !isFinite(r.score) || r.score < 0 || r.score > 1) return;
+                var clean = { status: r.status, score: r.score };
+                if (typeof r.text === 'string') clean.text = r.text.slice(0, 500);
+                out[k] = clean;
+            });
+            return out;
+        }
+
+        function save(index, result) {
+            var i = Math.floor(Number(index));
+            if (!storage || !isFinite(i) || i < 0 || !result || DICTATION_STATUSES.indexOf(result.status) < 0) return false;
+            var score = Number(result.score);
+            if (!isFinite(score)) return false;
+            var results = load();
+            var clean = { status: result.status, score: Math.min(1, Math.max(0, score)) };
+            if (typeof result.text === 'string') clean.text = result.text.slice(0, 500);
+            results[i] = clean;
+            try { storage.setItem(key, JSON.stringify({ v: 1, results: results })); return true; } catch (e) { return false; }
+        }
+
+        function clear() {
+            if (!storage) return;
+            try { storage.removeItem(key); } catch (e) { /* nothing to clear */ }
+        }
+
+        /** Only lines 0..n-1 count. accuracy = mean score of the checked (not skipped) lines, 0-100. */
+        function summary(n) {
+            var limit = Math.max(0, Math.floor(Number(n) || 0));
+            var results = load();
+            var done = 0, correct = 0, skipped = 0, sum = 0;
+            Object.keys(results).forEach(function (k) {
+                if (Number(k) >= limit) return;
+                var r = results[k];
+                if (r.status === 'skipped') { skipped += 1; return; }
+                done += 1; sum += r.score;
+                if (r.status === 'correct') correct += 1;
+            });
+            return { done: done, correct: correct, skipped: skipped, accuracy: done ? Math.round(sum * 100 / done) : 0 };
+        }
+
+        return { key: key, load: load, save: save, clear: clear, summary: summary };
+    }
+
+    /** { tone: 'correct'|'near'|'wrong', percent } for a gradeDictation result: near from 70%, 100% only when exact. */
+    function dictationVerdict(grade) {
+        if (!grade || typeof grade.score !== 'number' || !isFinite(grade.score)) return { tone: 'wrong', percent: 0 };
+        if (grade.status === 'correct') return { tone: 'correct', percent: 100 };
+        var percent = Math.min(99, Math.max(0, Math.round(grade.score * 100)));
+        return { tone: percent >= 70 ? 'near' : 'wrong', percent: percent };
+    }
+
+    // ------------------------------------------------------------------ catalogue: levels, next step, subtitles
+
+    /** levels = [{ key, lessonCount, completedCount }]. Totals and 0-100 integer percentages for the level cards. */
+    function levelSummary(levels) {
+        var list = Array.isArray(levels) ? levels : [];
+        var total = 0, completed = 0;
+        var out = list.map(function (l) {
+            var count = Math.max(0, Math.floor(Number(l && l.lessonCount) || 0));
+            var done = Math.min(count, Math.max(0, Math.floor(Number(l && l.completedCount) || 0)));
+            total += count; completed += done;
+            return {
+                key: String((l && l.key) || ''), lessonCount: count, completedCount: done,
+                percent: count ? Math.round(done * 100 / count) : 0, complete: count > 0 && done === count, disabled: count === 0
+            };
+        });
+        return { total: total, completed: completed, percent: total ? Math.round(completed * 100 / total) : 0, levels: out };
+    }
+
+    /** The tab hash of the first unfinished step that has content (transcript, quiz, vocab), else #transcript. */
+    function nextStepHash(flags, counts) {
+        var f = flags || {}, c = counts || {};
+        var order = [['transcript', '#transcript'], ['quiz', '#quiz'], ['vocab', '#vocab']];
+        for (var i = 0; i < order.length; i++) {
+            if (c[order[i][0]] > 0 && !f[order[i][0]]) return order[i][1];
+        }
+        return '#transcript';
+    }
+
+    /** lines = [{ start, end, text, vi }]. The caption for the video overlay: { en, vi } or null (mode off | en | both). */
+    function activeSubtitle(lines, time, mode) {
+        if (mode !== 'en' && mode !== 'both') return null;
+        var timedLines = (Array.isArray(lines) ? lines : []).filter(function (l) { return l && typeof l.start === 'number' && isFinite(l.start); });
+        var index = lineIndexAt(timedLines, time);
+        if (index < 0) return null;
+        var line = timedLines[index];
+        return { en: String(line.text == null ? '' : line.text), vi: mode === 'both' && line.vi ? String(line.vi) : null };
+    }
+
     // ------------------------------------------------------------------ completion (mirrors ListeningService.IsLessonComplete)
 
     /** counts = { transcript, quiz, vocab } -> the required step keys, in the order the page shows them. */
@@ -367,6 +606,9 @@
         lineIndexAt: lineIndexAt, formatClock: formatClock,
         requiredSteps: requiredSteps, isComplete: isComplete,
         parseFilterQuery: parseFilterQuery, buildFilterQuery: buildFilterQuery,
-        isYoutubeUrl: isYoutubeUrl
+        isYoutubeUrl: isYoutubeUrl,
+        wordKey: wordKey, wordSpans: wordSpans, baseForms: baseForms, vocabIndex: vocabIndex, markVocab: markVocab,
+        dictationStore: dictationStore, dictationVerdict: dictationVerdict,
+        levelSummary: levelSummary, nextStepHash: nextStepHash, activeSubtitle: activeSubtitle
     };
 }));

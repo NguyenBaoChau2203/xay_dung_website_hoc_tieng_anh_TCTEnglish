@@ -124,7 +124,7 @@ namespace TCTVocabulary.Controllers
         private static string? NormalizeListeningLevel(string? level)
         {
             var key = level?.Trim().ToUpperInvariant();
-            return key is "A1" or "A2" or "B1" or "B2" or "C1" ? key : null;
+            return key is "A1" or "A2" or "B1" or "B2" or "C1" or "C2" ? key : null;
         }
 
         [HttpGet("Listening/Practice/{id:int}")]
