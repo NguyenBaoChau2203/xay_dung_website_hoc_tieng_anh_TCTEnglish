@@ -507,3 +507,7 @@ _(Filled by the agent: C0 verdicts; per-phase gate records; per-set and per-less
 - Deviation: an accidental second export created identical version-2 packages for B09–B16; they were never committed and were removed together with their catalog lines before commit.
 - Deviation: D6 was done with one SQL `UPDATE ... SET IsPublished=0` on the local Docker database (10 fixture lessons) instead of the admin page.
 - Not done / not observed: browser playback checks, mobile layouts, the 20-card/6-lesson random re-check beyond the HTTP smoke test, a fresh-clone worktree simulation, G12 progress-row counts before/after (no learner progress rows were written or deleted by the tools). Local DB legacy cards keep their old `ImageUrl` values until reseeded; the 61 existing paths now resolve to real files.
+
+**Browser check (2026-11-19, local, headless Chrome, Premium test account, Release app on port 5100):**
+- Observed at 1440x900 and 390x844: `/Home/Listening` (22 lessons, featured card, level chips), `/Home/Listening/Practice/130` (YouTube embed, transport, speed, tabs), `/Vocabulary/Index` and `/Sets/57` (23 images). No broken image, no console error, no page-level horizontal overflow. The elements reported as wider than the viewport are the intended horizontal scrollers (`.tl-levels`, `.k-seg`, both `overflow-x: auto`).
+- Still not observed: audio/video playback, highlight sync, dictation, quiz submit, subtitle overlay, tablet width (768), keyboard-only and zoom passes. These remain open for the owner or a later session.
