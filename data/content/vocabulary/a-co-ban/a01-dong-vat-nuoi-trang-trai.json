@@ -1,0 +1,1184 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A01",
+    "name": "Động vật nuôi & trang trại",
+    "description": "#a1 #a2 #animals #farm",
+    "topic": "Động vật nuôi & trang trại",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "cow",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con bò cái",
+      "meaningEn": "a large farm animal that gives milk",
+      "examples": [
+        {
+          "text": "The cow is eating grass in the field.",
+          "vi": "Con bò đang ăn cỏ ngoài đồng."
+        },
+        {
+          "text": "We get fresh milk from our cow every morning.",
+          "vi": "Sáng nào chúng tôi cũng lấy sữa tươi từ con bò của nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "milk a cow",
+          "vi": "vắt sữa bò"
+        },
+        {
+          "text": "dairy cow",
+          "vi": "bò sữa"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "cattle",
+          "pos": "noun",
+          "vi": "gia súc (bò)"
+        }
+      ],
+      "imageQuery": "cow",
+      "ipaUs": "/kaʊ/",
+      "ipaUk": "/kaʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cow ; https://api.dictionaryapi.dev/api/v2/entries/en/cow",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/cow.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/85825630@N00/4813130909",
+        "author": "boklm",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cow",
+        "sha256": "493697481bccde8fc2d615c9fee205c6234604fa5f7fbd5d84df256fffdbc5a9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pig",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con lợn",
+      "meaningEn": "a pink or black farm animal kept for its meat",
+      "examples": [
+        {
+          "text": "The pig is sleeping in the mud.",
+          "vi": "Con lợn đang ngủ trong bùn."
+        },
+        {
+          "text": "My uncle keeps ten pigs on his farm.",
+          "vi": "Chú tôi nuôi mười con lợn ở trang trại."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "feed the pigs",
+          "vi": "cho lợn ăn"
+        }
+      ],
+      "synonyms": [
+        "hog"
+      ],
+      "imageQuery": "domestic pig farm",
+      "ipaUs": "/pɪɡ/",
+      "ipaUk": "/pɪɡ/",
+      "ipaVerified": true,
+      "ipaSource": "https://en.wiktionary.org/wiki/pig",
+      "image": {
+        "file": "a01/pig.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/pig-animal-I1CNCRXDYR",
+        "author": "Ian Livesey",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "domestic pig farm",
+        "sha256": "0bfb5f6d7a25cf8e799e78dbd082f11d1c86543d9e89ba0f190bc9bf529e0b5d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "goat",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con dê",
+      "meaningEn": "a farm animal with horns that climbs well",
+      "examples": [
+        {
+          "text": "The goat jumped over the small fence.",
+          "vi": "Con dê nhảy qua hàng rào nhỏ."
+        },
+        {
+          "text": "They make cheese from goat milk.",
+          "vi": "Họ làm phô mai từ sữa dê."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "goat milk",
+          "vi": "sữa dê"
+        }
+      ],
+      "imageQuery": "goat farm",
+      "ipaUs": "/ɡoʊt/",
+      "ipaUk": "/ɡəʊt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/goat",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/goat.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3296984/free-photo-image-cow-goat-cattle-animal",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "goat farm",
+        "sha256": "478c92824b14b141063da0dbd2729834ccd18d24e96b28a36544e4a9314bacf3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sheep",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con cừu",
+      "meaningEn": "a farm animal with thick wool",
+      "plural": "sheep",
+      "examples": [
+        {
+          "text": "A sheep has thick white wool.",
+          "vi": "Một con cừu có bộ lông dày màu trắng."
+        },
+        {
+          "text": "The farmer has fifty sheep on the hill.",
+          "vi": "Người nông dân có năm mươi con cừu trên đồi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a flock of sheep",
+          "vi": "một đàn cừu"
+        }
+      ],
+      "imageQuery": "sheep flock wool grazing",
+      "ipaUs": "/ˈʃiːp/",
+      "ipaUk": "/ˈʃiːp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/sheep",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/sheep.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/96541566@N06/51861989798",
+        "author": "Juhele_CZ",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "sheep flock wool grazing",
+        "sha256": "4112c2bc81031ef66d61065c9d4428b8f0cd22ac8342d41654701ac43d301783",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "horse",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con ngựa",
+      "meaningEn": "a large animal people ride or use to pull things",
+      "examples": [
+        {
+          "text": "She rides a brown horse every weekend.",
+          "vi": "Cuối tuần nào cô ấy cũng cưỡi một con ngựa nâu."
+        },
+        {
+          "text": "The horse ran fast across the field.",
+          "vi": "Con ngựa chạy nhanh qua cánh đồng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ride a horse",
+          "vi": "cưỡi ngựa"
+        },
+        {
+          "text": "horse race",
+          "vi": "cuộc đua ngựa"
+        }
+      ],
+      "imageQuery": "horse",
+      "ipaUs": "/hoɹs/",
+      "ipaUk": "/hɔːs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/horse",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/horse.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/126064386@N03/20129028816",
+        "author": "swallowedtail",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "horse",
+        "sha256": "7033a5a5c0da35d0c72032c85878baf53f74a8c69095bc499d82f0552584124c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "chicken",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con gà",
+      "meaningEn": "a farm bird kept for eggs and meat",
+      "examples": [
+        {
+          "text": "The chicken is walking around the yard.",
+          "vi": "Con gà đang đi lại quanh sân."
+        },
+        {
+          "text": "We keep six chickens behind the house.",
+          "vi": "Chúng tôi nuôi sáu con gà sau nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "free-range chicken",
+          "vi": "gà thả vườn"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "chick",
+          "pos": "noun",
+          "vi": "gà con"
+        }
+      ],
+      "imageQuery": "chicken bird farm",
+      "ipaUs": "/ˈt͡ʃɪkɪn/",
+      "ipaUk": "/ˈt͡ʃɪkɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/chicken",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/chicken.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/82242140@N05/27457151663",
+        "author": "LandBetweentheLakesKYTN",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "chicken bird farm",
+        "sha256": "f9781f54882f09616c29278947f3abeaf066ef4d0fb61009099bde02811334ed",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "duck",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con vịt",
+      "meaningEn": "a water bird with a flat beak",
+      "examples": [
+        {
+          "text": "The duck is swimming on the pond.",
+          "vi": "Con vịt đang bơi trên ao."
+        },
+        {
+          "text": "Ducks like to play in the water.",
+          "vi": "Vịt thích nghịch nước."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a flock of ducks",
+          "vi": "một đàn vịt"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "duckling",
+          "pos": "noun",
+          "vi": "vịt con"
+        }
+      ],
+      "imageQuery": "duck",
+      "ipaUs": "/dʌk/",
+      "ipaUk": "/dʌk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/duck",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/duck.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/15035592304",
+        "author": "Bernard Spragg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "duck",
+        "sha256": "8d5dec6e5958b0e7e1c75f998a6f7f04cc98e80a3c319188bc493cd9ca894893",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rabbit",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con thỏ",
+      "meaningEn": "a small animal with long ears that hops",
+      "examples": [
+        {
+          "text": "The rabbit is eating a carrot.",
+          "vi": "Con thỏ đang ăn một củ cà rốt."
+        },
+        {
+          "text": "My sister has a white pet rabbit.",
+          "vi": "Em gái tôi có một con thỏ cảnh màu trắng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pet rabbit",
+          "vi": "thỏ cảnh"
+        }
+      ],
+      "imageQuery": "rabbit",
+      "ipaUs": "/ˈɹæbət/",
+      "ipaUk": "/ˈɹæbɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rabbit",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/rabbit.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/8398907@N02/5251390861",
+        "author": "moonjazz",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "rabbit",
+        "sha256": "335afcc5ebaaad0a1f9eacd06e0ddc41f6bdf09df9479cf0bbc0ab131e1a9b88",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "puppy",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "chó con",
+      "meaningEn": "a young dog",
+      "plural": "puppies",
+      "examples": [
+        {
+          "text": "The puppy wants to play with me.",
+          "vi": "Chú chó con muốn chơi với tôi."
+        },
+        {
+          "text": "Our puppy sleeps in a small basket.",
+          "vi": "Chó con nhà tôi ngủ trong một cái giỏ nhỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cute puppy",
+          "vi": "chó con dễ thương"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "dog",
+          "pos": "noun",
+          "vi": "con chó"
+        }
+      ],
+      "imageQuery": "puppy",
+      "ipaUs": "/ˈpʌpi/",
+      "ipaUk": "/ˈpʌpi/",
+      "ipaVerified": true,
+      "ipaSource": "https://en.wiktionary.org/wiki/puppy",
+      "image": {
+        "file": "a01/puppy.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/11234074@N05/14013137587",
+        "author": "Philippe Vieux-Jeanton",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "puppy",
+        "sha256": "9a7ef767f9567b3be7366344bde1278fe2df3dcf2a1d21f5105720ab6c9f5087",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "kitten",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "mèo con",
+      "meaningEn": "a young cat",
+      "examples": [
+        {
+          "text": "The kitten is sleeping on the sofa.",
+          "vi": "Chú mèo con đang ngủ trên ghế sofa."
+        },
+        {
+          "text": "She found a tiny kitten near the barn.",
+          "vi": "Cô ấy tìm thấy một chú mèo con bé xíu gần chuồng trại."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a litter of kittens",
+          "vi": "một lứa mèo con"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "cat",
+          "pos": "noun",
+          "vi": "con mèo"
+        }
+      ],
+      "imageQuery": "kitten",
+      "ipaUs": "/ˈkɪtən̩/",
+      "ipaUk": "/ˈkɪtən̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/kitten",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/kitten.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/38709274@N02/14582884739",
+        "author": "iDapinder",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "kitten",
+        "sha256": "a120e143e08c236e088149580c73c030c90ede06d76faf0d1b1d24c9d78fe02a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "goose",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con ngỗng",
+      "meaningEn": "a large water bird with a long neck",
+      "plural": "geese",
+      "examples": [
+        {
+          "text": "The goose walked slowly to the water.",
+          "vi": "Con ngỗng chậm rãi đi về phía mặt nước."
+        },
+        {
+          "text": "Many geese live near the lake.",
+          "vi": "Nhiều con ngỗng sống gần hồ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a flock of geese",
+          "vi": "một đàn ngỗng"
+        }
+      ],
+      "imageQuery": "goose bird",
+      "ipaUs": "/ɡus/",
+      "ipaUk": "/ɡuːs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/goose",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/goose.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/277435/free-illustration-image-audubon-goose-vintage-animal",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "goose bird",
+        "sha256": "a273807c078aac00e673d70002992317fe062ed05b03b385f05422fce276adc4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "donkey",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con lừa",
+      "meaningEn": "an animal like a small horse with long ears",
+      "examples": [
+        {
+          "text": "The donkey carries our bags up the hill.",
+          "vi": "Con lừa chở túi của chúng tôi lên đồi."
+        },
+        {
+          "text": "A donkey stood quietly beside the road.",
+          "vi": "Một con lừa đứng yên lặng bên đường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ride a donkey",
+          "vi": "cưỡi lừa"
+        }
+      ],
+      "imageQuery": "donkey",
+      "ipaUs": "/ˈdɑŋ.ki/",
+      "ipaUk": "/ˈdɒŋ.ki/",
+      "ipaSource": "https://en.wiktionary.org/wiki/donkey",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/donkey.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/89918055@N05/51578147148",
+        "author": "JOHN K THORNE",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "donkey",
+        "sha256": "277b58a8180c3748ba795de869d64b332c049bd882fcfd8f907ffd7bd6c08cda",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rooster",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "gà trống",
+      "meaningEn": "a male chicken that crows in the morning",
+      "examples": [
+        {
+          "text": "The rooster wakes us up at five o'clock.",
+          "vi": "Con gà trống đánh thức chúng tôi lúc năm giờ."
+        },
+        {
+          "text": "A red rooster stood on the fence.",
+          "vi": "Một con gà trống đỏ đứng trên hàng rào."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "the rooster crows",
+          "vi": "gà trống gáy"
+        }
+      ],
+      "synonyms": [
+        "cock"
+      ],
+      "wordFamily": [
+        {
+          "text": "hen",
+          "pos": "noun",
+          "vi": "gà mái"
+        }
+      ],
+      "imageQuery": "rooster",
+      "ipaUs": "/ˈɹustɚ/",
+      "ipaUk": "/ˈɹuːstə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rooster",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/rooster.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/75983291@N07/17358552512",
+        "author": "tu.finamore",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "rooster",
+        "sha256": "0c57e8ec6fe8aa5e858833e9adab2eb2fbc744bbbc8d3ed00a1858c41feec710",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "turkey",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "gà tây",
+      "meaningEn": "a big farm bird often eaten at festivals",
+      "examples": [
+        {
+          "text": "The turkey has a big colourful tail.",
+          "vi": "Con gà tây có cái đuôi to nhiều màu."
+        },
+        {
+          "text": "They keep a few turkeys on the farm.",
+          "vi": "Họ nuôi vài con gà tây ở trang trại."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "roast turkey",
+          "vi": "gà tây nướng"
+        }
+      ],
+      "imageQuery": "turkey bird",
+      "ipaUs": "/ˈtɝki/",
+      "ipaUk": "/ˈtɜːki/",
+      "ipaSource": "https://en.wiktionary.org/wiki/turkey",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/turkey.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6016105/photo-image-public-domain-nature-bird",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "turkey bird",
+        "sha256": "49d004e395b26b80698658997d9d00ba78208831a8cf7e97cfcda806960b417c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "buffalo",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "con trâu",
+      "meaningEn": "a strong animal with curved horns used on farms",
+      "plural": "buffaloes",
+      "examples": [
+        {
+          "text": "The buffalo pulls the plough in the rice field.",
+          "vi": "Con trâu kéo cày trong ruộng lúa."
+        },
+        {
+          "text": "Children ride on the back of the buffalo.",
+          "vi": "Bọn trẻ cưỡi trên lưng con trâu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "water buffalo",
+          "vi": "trâu nước"
+        }
+      ],
+      "imageQuery": "water buffalo",
+      "ipaUs": "/ˈbʌf.ə.loʊ/",
+      "ipaUk": "/ˈbʌf.əl.əʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/buffalo",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/buffalo.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/9391143988",
+        "author": "Bernard Spragg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "water buffalo",
+        "sha256": "39595ef1500a4c07204b9986b336ca189a73ca7375ea44dd2a5c01a556661dc7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "lamb",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cừu con",
+      "meaningEn": "a young sheep",
+      "examples": [
+        {
+          "text": "The lamb follows its mother everywhere.",
+          "vi": "Cừu con đi theo mẹ khắp nơi."
+        },
+        {
+          "text": "A newborn lamb stood up on shaky legs.",
+          "vi": "Một chú cừu con mới sinh đứng dậy trên đôi chân run rẩy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "spring lamb",
+          "vi": "cừu non mùa xuân"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "sheep",
+          "pos": "noun",
+          "vi": "con cừu"
+        }
+      ],
+      "imageQuery": "baby lamb sheep",
+      "ipaUs": "/ˈlæm/",
+      "ipaUk": "/ˈlæm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lamb",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/lamb.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/baby-sheep-MPETRILKHN",
+        "author": "Ian Livesey",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "baby lamb sheep",
+        "sha256": "d1729a04639cf41d1897edd33715839594f6f4d6c583b19d73e0c947c29287a8",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "calf",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bê con",
+      "meaningEn": "a young cow",
+      "plural": "calves",
+      "examples": [
+        {
+          "text": "The calf drinks milk from its mother.",
+          "vi": "Bê con bú sữa từ mẹ."
+        },
+        {
+          "text": "A calf was born in the barn last night.",
+          "vi": "Một chú bê con ra đời trong chuồng đêm qua."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a newborn calf",
+          "vi": "một chú bê mới sinh"
+        }
+      ],
+      "imageQuery": "Holstein calf cattle",
+      "ipaUs": "/kɑːf/",
+      "ipaUk": "/kɑːf/",
+      "ipaVerified": true,
+      "ipaSource": "https://en.wiktionary.org/wiki/calf",
+      "image": {
+        "file": "a01/calf.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Holstein_Cow_by_Roshan_Patel.jpg",
+        "author": "Roshan Patel",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "Holstein calf cattle",
+        "sha256": "3337f38f45b43e0f2199c64c6aecd88e4a6318cc50e6ecf3d0c4c2b97c871c67",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "farm",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "A1",
+      "definition": "trang trại",
+      "meaningEn": "land and buildings where people grow food and keep animals",
+      "verbForms": {
+        "past": "farmed",
+        "pastParticiple": "farmed",
+        "ing": "farming",
+        "thirdPerson": "farms"
+      },
+      "examples": [
+        {
+          "text": "My grandparents live on a big farm.",
+          "vi": "Ông bà tôi sống ở một trang trại lớn."
+        },
+        {
+          "text": "We visited a farm during the school trip.",
+          "vi": "Chúng tôi đã thăm một trang trại trong chuyến đi của trường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "work on a farm",
+          "vi": "làm việc ở trang trại"
+        },
+        {
+          "text": "farm animals",
+          "vi": "động vật nuôi ở trang trại"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "farmer",
+          "pos": "noun",
+          "vi": "nông dân"
+        },
+        {
+          "text": "farming",
+          "pos": "noun",
+          "vi": "nghề nông"
+        }
+      ],
+      "imageQuery": "farm landscape",
+      "ipaUs": "/ˈfɑɹm/",
+      "ipaUk": "/ˈfɑːm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/farm",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/farm.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6478694/vector-public-domain-blue-nature",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "farm landscape",
+        "sha256": "7ed5d700997338c2b79a358aed74d757b7ba362b4dc65e02627e9aa4e6cfa436",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "barn",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "chuồng trại, kho nông trại",
+      "meaningEn": "a large farm building for animals or crops",
+      "examples": [
+        {
+          "text": "The cows sleep in the barn at night.",
+          "vi": "Ban đêm những con bò ngủ trong chuồng."
+        },
+        {
+          "text": "There is hay in the old barn.",
+          "vi": "Trong cái chuồng cũ có rơm khô."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "red barn",
+          "vi": "nhà kho màu đỏ"
+        }
+      ],
+      "imageQuery": "barn",
+      "ipaUs": "/ˈbɑɹn/",
+      "ipaUk": "/ˈbɑːn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/barn",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/barn.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/66741228@N05/25810965467",
+        "author": "Bonnie Moreland (free images)",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "barn",
+        "sha256": "0932127846960412025494822e43e830dfe3f58007d3b1fcd97e3e28827ce586",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tractor",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "máy kéo",
+      "meaningEn": "a strong farm vehicle that pulls heavy machines",
+      "examples": [
+        {
+          "text": "The farmer drives a green tractor.",
+          "vi": "Người nông dân lái một chiếc máy kéo màu xanh."
+        },
+        {
+          "text": "The tractor is ploughing the field.",
+          "vi": "Chiếc máy kéo đang cày ruộng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "drive a tractor",
+          "vi": "lái máy kéo"
+        }
+      ],
+      "imageQuery": "tractor",
+      "ipaUs": "/ˈtɹæktɚ/",
+      "ipaUk": "/ˈtɹæktə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tractor",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/tractor.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/12360520514",
+        "author": "Bernard Spragg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "tractor",
+        "sha256": "48bae48bf646d28b24c8127ed96f32c35479a98475c5088060af7fb9ac82d8a1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fence",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hàng rào",
+      "meaningEn": "a barrier around a field or garden",
+      "examples": [
+        {
+          "text": "A white fence goes around the field.",
+          "vi": "Một hàng rào trắng bao quanh cánh đồng."
+        },
+        {
+          "text": "The sheep cannot jump over this fence.",
+          "vi": "Đàn cừu không thể nhảy qua hàng rào này."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wooden fence",
+          "vi": "hàng rào gỗ"
+        },
+        {
+          "text": "climb over a fence",
+          "vi": "trèo qua hàng rào"
+        }
+      ],
+      "imageQuery": "wooden fence",
+      "ipaUs": "/fɛns/",
+      "ipaUk": "/fɛns/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fence",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/fence.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/39068d114b/",
+        "author": "Bigul Malayi",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "wooden fence",
+        "sha256": "4fa58c447e02882ba2433087453a312701a918a3d5f3beeed8c588327199590d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hay",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cỏ khô, rơm khô",
+      "meaningEn": "dry grass used as food for farm animals",
+      "examples": [
+        {
+          "text": "The horses are eating fresh hay.",
+          "vi": "Những con ngựa đang ăn cỏ khô mới."
+        },
+        {
+          "text": "The farmer carried hay to the barn.",
+          "vi": "Người nông dân chở cỏ khô vào chuồng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a bale of hay",
+          "vi": "một kiện cỏ khô"
+        }
+      ],
+      "imageQuery": "hay bales",
+      "ipaUs": "/heɪ/",
+      "ipaUk": "/heɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hay",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/hay.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/142289055@N04/29534114843",
+        "author": "sbmeaper1",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "hay bales",
+        "sha256": "3d53091504afb0be3c8fd27c233fac993dc475d25711da413ef7e15b6103c3b2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pond",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái ao",
+      "meaningEn": "a small area of still water",
+      "examples": [
+        {
+          "text": "The ducks are swimming in the pond.",
+          "vi": "Những con vịt đang bơi trong ao."
+        },
+        {
+          "text": "There is a small pond behind our farm.",
+          "vi": "Có một cái ao nhỏ phía sau trang trại của chúng tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fish pond",
+          "vi": "ao cá"
+        }
+      ],
+      "imageQuery": "pond",
+      "ipaUs": "/pɒnd/",
+      "ipaUk": "/pɒnd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pond",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/pond.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/147755034@N05/43627491511",
+        "author": "angelobrathot",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "pond",
+        "sha256": "325070de726ffbeb1d7da15fe6ad0a5532ca5311b2e8cf38109388ec26b02902",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "goldfish",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cá vàng",
+      "meaningEn": "a small orange fish kept as a pet",
+      "plural": "goldfish",
+      "examples": [
+        {
+          "text": "My goldfish lives in a round glass bowl.",
+          "vi": "Con cá vàng của tôi sống trong một cái bình thủy tinh tròn."
+        },
+        {
+          "text": "He feeds the goldfish twice a day.",
+          "vi": "Cậu ấy cho cá vàng ăn hai lần một ngày."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "goldfish bowl",
+          "vi": "bình nuôi cá vàng"
+        }
+      ],
+      "imageQuery": "goldfish",
+      "ipaUs": "/ˈɡoʊldfɪʃ/",
+      "ipaUk": "/ˈɡoʊldfɪʃ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/goldfish",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/goldfish.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/26002238@N05/2570634950",
+        "author": "C_K_L",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "goldfish",
+        "sha256": "8c9023d7aff0d627071abe914936924f2dc130f6097e69e3dbec6c5d314a33c0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hamster",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "chuột đồng (thú cảnh)",
+      "meaningEn": "a small furry pet that keeps food in its cheeks",
+      "examples": [
+        {
+          "text": "The hamster runs on its wheel at night.",
+          "vi": "Con chuột đồng chạy trên bánh xe của nó vào ban đêm."
+        },
+        {
+          "text": "I bought a hamster and a small cage.",
+          "vi": "Tôi đã mua một con chuột đồng và một cái lồng nhỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hamster cage",
+          "vi": "lồng chuột đồng"
+        }
+      ],
+      "imageQuery": "hamster",
+      "ipaUs": "/ˈhæm(p)stɚ/",
+      "ipaUk": "/ˈhæm(p)stə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hamster",
+      "ipaVerified": true,
+      "image": {
+        "file": "a01/hamster.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/36943025@N07/3402519358",
+        "author": "Lottie's pets & stuff",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "hamster",
+        "sha256": "f5799a0bf6fa32ec0c5f30cebaab40869b8ec67dd5332a905543deb3633580ca",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

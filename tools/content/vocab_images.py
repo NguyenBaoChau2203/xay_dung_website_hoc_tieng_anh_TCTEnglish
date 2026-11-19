@@ -206,7 +206,7 @@ def cmd_fetch(path: Path, per: int, only: set[str] | None) -> None:
         write_json(state_path, state)
 
 
-def cmd_sheet(path: Path, rows: int, cols: int = 3) -> None:
+def cmd_sheet(path: Path, rows: int, cols: int = 4) -> None:
     manifest = read_json(path)
     folder = set_dir(manifest)
     state = read_json(folder / "cands.json") if (folder / "cands.json").exists() else {}
@@ -216,7 +216,7 @@ def cmd_sheet(path: Path, rows: int, cols: int = 3) -> None:
     if not cards:
         log("nothing to review")
         return
-    tw, th, label_w, pad = 240, 180, 250, 6
+    tw, th, label_w, pad = 220, 165, 230, 6
     f_big, f_small = font(17), font(13)
     pages = [cards[i:i + rows] for i in range(0, len(cards), rows)]
     for n, page in enumerate(pages, 1):
@@ -228,8 +228,11 @@ def cmd_sheet(path: Path, rows: int, cols: int = 3) -> None:
             d.text((8, y + 8), card["term"], fill="black", font=f_big)
             d.text((8, y + 34), (card.get("definition") or "")[:28], fill=(60, 60, 60), font=f_small)
             d.text((8, y + 54), (card.get("imageQuery") or "")[:30], fill=(110, 110, 110), font=f_small)
-            for k, cand in enumerate(state.get(card["term"], [])[:cols]):
-                x = label_w + k * (tw + pad)
+            cands = state.get(card["term"], [])
+            first = max(0, len(cands) - cols)  # always show the newest candidates, labelled with their real index
+            for slot, cand in enumerate(cands[first:]):
+                k = first + slot
+                x = label_w + slot * (tw + pad)
                 im = Image.open(folder / cand["file"]).convert("RGB").resize((tw, th))
                 sheet.paste(im, (x, y))
                 d.rectangle((x, y, x + 78, y + 22), fill="black")

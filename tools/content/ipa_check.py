@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+import time
 import urllib.error
 import urllib.parse
 from pathlib import Path
@@ -24,6 +25,7 @@ from lib.common import BUILD, http_json, read_json, write_json  # noqa: E402
 CACHE = BUILD / "ipa-cache.json"
 API = "https://api.dictionaryapi.dev/api/v2/entries/en/"
 IPA = re.compile(r"^/[^/\s][^/]*/$")
+BRACKET = re.compile(r"^\[[^\[\]\s][^\[\]]*\]$")
 
 
 def load_cache() -> dict:
@@ -74,16 +76,19 @@ def from_wiktionary(word: str, result: dict) -> None:
         for tpl in re.findall(r"\{\{IPA\|en\|([^}]*)\}\}", line):
             parts = tpl.split("|")
             ipas = [x.strip() for x in parts if IPA.match(x.strip())]
+            if not ipas:  # narrow transcription [..]: keep the symbols, show them as /../
+                ipas = ["/" + x.strip()[1:-1] + "/" for x in parts if BRACKET.match(x.strip())]
             if not ipas:
                 continue
             tags = " ".join(re.findall(r"\{\{(?:a|accent|qualifier)\|([^}]*)\}\}", line)) + " " + " ".join(x for x in parts if x.startswith("a="))
-            if US_TAGS.search(tags) and not UK_TAGS.search(tags):
+            us_tag, uk_tag = US_TAGS.search(tags), UK_TAGS.search(tags)
+            if us_tag:
                 result["us"] = result["us"] or ipas[0]
                 result["usSource"] = result["usSource"] or page_url
-            elif UK_TAGS.search(tags) and not US_TAGS.search(tags):
+            if uk_tag:
                 result["uk"] = result["uk"] or ipas[0]
                 result["ukSource"] = result["ukSource"] or page_url
-            elif not tags.strip():  # untagged: shared by both accents
+            if not tags.strip():  # untagged: shared by both accents
                 for k in ("us", "uk"):
                     result[k] = result[k] or ipas[0]
                     result[k + "Source"] = result[k + "Source"] or page_url
@@ -94,11 +99,24 @@ def lookup(word: str, cache: dict) -> dict:
     if key in cache and "usSource" in cache[key]:
         return cache[key]
     result: dict = {"us": None, "uk": None, "usSource": None, "ukSource": None}
-    from_dictionaryapi(key, result)
-    if not (result["us"] and result["uk"]):
-        from_wiktionary(key, result)
-    cache[key] = result
-    write_json(CACHE, cache)
+    failed = False
+    # Wiktionary first (explicit US/UK tags, tolerant rate limit); the Free Dictionary API fills the gaps.
+    for finder, retries_note in ((from_wiktionary, "wiktionary"), (from_dictionaryapi, "dictionaryapi")):
+        if result["us"] and result["uk"]:
+            break
+        try:
+            finder(key, result)
+        except urllib.error.HTTPError as exc:
+            failed = True
+            print(f"  {retries_note} HTTP {exc.code} for {key}", file=sys.stderr)
+            if exc.code == 429:
+                time.sleep(30)
+        except Exception as exc:  # noqa: BLE001 - one word must not stop the run
+            failed = True
+            print(f"  {retries_note} {type(exc).__name__} for {key}", file=sys.stderr)
+    if not failed:  # never cache an answer that came from a failed request
+        cache[key] = result
+        write_json(CACHE, cache)
     return result
 
 
@@ -124,6 +142,7 @@ def cmd_fill(path: Path, overwrite: bool) -> None:
         card["ipaSource"] = r["usSource"] if r["usSource"] == r["ukSource"] else f"{r['usSource']} ; {r['ukSource']}"
         card["ipaVerified"] = True
         filled += 1
+        write_json(path, manifest)
     write_json(path, manifest)
     print(f"{manifest['set']['code']}: {filled} filled, {missing} without a source")
 
