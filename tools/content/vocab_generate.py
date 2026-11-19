@@ -743,6 +743,138 @@ def job_scene(name: str) -> bytes:
     return finish(img)
 
 
+def place_scene(name: str) -> bytes:
+    """Flat original drawing of a building or place (kind "place")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+    d.rectangle((0, 0, W * s, 270 * s), fill=(214, 236, 252))  # sky
+    d.rectangle((0, 270 * s, W * s, H * s), fill=(176, 214, 160))  # grass
+    d.rectangle((0, 296 * s, W * s, H * s), fill=(150, 156, 168))  # road
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L, width=w * s)
+
+    def windows(x0, y0, cols, rows, gx=44, gy=44, ww=26, wh=28, col=(147, 197, 253)):
+        for r_ in range(rows):
+            for c_ in range(cols):
+                box(x0 + c_ * gx, y0 + r_ * gy, x0 + c_ * gx + ww, y0 + r_ * gy + wh, col, 2, 2)
+
+    def door(x, w=34, h=56, col=(120, 72, 36)):
+        box(x, 270 - h, x + w, 270, col, 3, 2)
+
+    def cross(cx_, cy_, size, col):
+        box(cx_ - size, cy_ - size * 0.32, cx_ + size, cy_ + size * 0.32, col, 1, 1)
+        box(cx_ - size * 0.32, cy_ - size, cx_ + size * 0.32, cy_ + size, col, 1, 1)
+
+    if name == "hospital":
+        box(80, 60, 400, 270, (248, 250, 252), 4)
+        windows(110, 140, 6, 2, 50, 46)
+        door(223, 34, 56, (147, 197, 253))
+        box(190, 30, 290, 70, (248, 250, 252), 6)
+        cross(240, 50, 16, (220, 38, 38))
+    elif name == "pharmacy":
+        box(90, 110, 390, 270, (254, 243, 199), 4)
+        poly([(80, 110), (400, 110), (400, 150), (80, 150)], (22, 163, 74))
+        for k in range(8):
+            if k % 2 == 0:
+                poly([(80 + k * 40, 110), (120 + k * 40, 110), (120 + k * 40, 150), (80 + k * 40, 150)], (248, 250, 252))
+        box(120, 170, 220, 250, (147, 197, 253), 3, 2)
+        door(300, 40, 70, (147, 197, 253))
+        cross(240, 80, 22, (22, 163, 74))
+    elif name == "post office":
+        box(80, 90, 400, 270, (254, 226, 226), 4)
+        poly([(70, 90), (240, 40), (410, 90)], (185, 28, 28))
+        windows(110, 140, 3, 1, 56, 40, 36, 44)
+        door(300, 40, 66, (120, 72, 36))
+        box(214, 58, 266, 86, (255, 255, 255), 3, 2)
+        d.line((214 * s, 58 * s, 240 * s, 74 * s), fill=L, width=2 * s)
+        d.line((266 * s, 58 * s, 240 * s, 74 * s), fill=L, width=2 * s)
+        box(414, 220, 446, 270, (220, 38, 38), 6)
+        box(420, 232, 440, 238, L, 1, 1)
+    elif name == "police station":
+        box(80, 90, 400, 270, (203, 213, 225), 4)
+        box(80, 90, 400, 120, (30, 58, 138), 3)
+        windows(110, 150, 6, 1, 50, 40, 32, 36)
+        door(223, 34, 60, (30, 58, 138))
+        pts = [(240 + dx * 0.55, 105 + dy * 0.55) for dx, dy in [(0, -28), (8, -9), (28, -9), (12, 3), (18, 24), (0, 11), (-18, 24), (-12, 3), (-28, -9), (-8, -9)]]
+        poly(pts, (250, 204, 21))
+    elif name == "hotel":
+        box(150, 30, 330, 270, (253, 230, 138), 4)
+        windows(164, 70, 4, 4, 40, 44, 28, 30)
+        door(222, 36, 52, (120, 72, 36))
+        box(214, 40, 266, 60, (255, 255, 255), 3, 2)
+        box(222, 44, 226, 56, L, 1, 1)
+        box(254, 44, 258, 56, L, 1, 1)
+        box(222, 48, 258, 52, L, 1, 1)
+    elif name == "cafe":
+        box(120, 120, 360, 270, (254, 215, 170), 4)
+        for k in range(6):
+            poly([(110 + k * 42, 120), (152 + k * 42, 120), (152 + k * 42, 162), (110 + k * 42, 162)], (220, 38, 38) if k % 2 == 0 else (255, 255, 255))
+        box(150, 180, 250, 250, (147, 197, 253), 3, 2)
+        door(280, 40, 70, (120, 72, 36))
+        oval(190, 70, 240, 108, (255, 255, 255))
+        box(238, 80, 252, 98, (255, 255, 255), 6, 3)
+        for k in (0, 1):
+            d.line(((205 + k * 18) * s, 56 * s, (209 + k * 18) * s, 40 * s), fill=(150, 156, 168), width=3 * s)
+    elif name == "museum":
+        poly([(70, 90), (240, 30), (410, 90)], (226, 232, 240))
+        for k in range(6):
+            box(100 + k * 52, 96, 120 + k * 52, 250, (248, 250, 252), 2)
+        box(70, 90, 410, 100, (226, 232, 240), 1)
+        for k in range(3):
+            box(60 - k * 6, 250 + k * 7, 420 + k * 6, 257 + k * 7, (203, 213, 225), 1, 2)
+    elif name == "temple":
+        d.rectangle((0, 270 * s, W * s, H * s), fill=(176, 214, 160))
+        box(150, 200, 330, 270, (220, 38, 38), 3)
+        door(222, 36, 52, (120, 72, 36))
+        for k, (y, w) in enumerate(((200, 110), (140, 90), (88, 70))):
+            poly([(240 - w - 20, y), (240 + w + 20, y), (240 + w, y - 14), (240 - w, y - 14)], (180, 83, 9))
+            if k < 2:
+                box(240 - w + 20, y - 54, 240 + w - 20, y - 14, (220, 38, 38), 2, 2)
+        poly([(236, 74), (244, 74), (244, 44), (240, 36), (236, 44)], (250, 204, 21))
+    elif name == "shopping mall":
+        box(50, 100, 430, 270, (226, 232, 240), 4)
+        box(70, 130, 410, 250, (147, 197, 253), 3)
+        for k in range(1, 8):
+            d.line(((70 + k * 42.5) * s, 130 * s, (70 + k * 42.5) * s, 250 * s), fill=L, width=2 * s)
+        box(50, 100, 430, 126, (124, 58, 237), 3)
+        box(214, 140, 266, 250, (200, 230, 250), 3, 2)
+        box(208, 68, 272, 100, (250, 204, 21), 6)
+        poly([(226, 78), (254, 78), (258, 96), (222, 96)], (255, 255, 255))
+        d.arc((231 * s, 66 * s, 249 * s, 84 * s), 180, 360, fill=L, width=3 * s)
+    elif name == "market":
+        d.rectangle((0, 270 * s, W * s, H * s), fill=(214, 196, 160))
+        for k, col in enumerate(((220, 38, 38), (22, 163, 74), (37, 99, 235))):
+            x0 = 40 + k * 142
+            for j in range(4):
+                poly([(x0 + j * 26, 130), (x0 + j * 26 + 26, 130), (x0 + j * 26 + 26, 166), (x0 + j * 26, 166)], col if j % 2 == 0 else (255, 255, 255))
+            d.line((x0 * s, 166 * s, x0 * s, 270 * s), fill=L, width=4 * s)
+            d.line(((x0 + 104) * s, 166 * s, (x0 + 104) * s, 270 * s), fill=L, width=4 * s)
+            box(x0 - 4, 220, x0 + 108, 270, (180, 120, 60), 3)
+            for j in range(4):
+                oval(x0 + 6 + j * 26, 198, x0 + 28 + j * 26, 220, [(239, 68, 68), (250, 204, 21), (74, 222, 128), (251, 146, 60)][(j + k) % 4], 2)
+    elif name == "gas station":
+        box(60, 70, 420, 96, (220, 38, 38), 4)
+        for x in (110, 350):
+            box(x, 96, x + 14, 270, (203, 213, 225), 2)
+        for x in (200, 250):
+            box(x, 160, x + 40, 270, (22, 163, 74), 6)
+            box(x + 6, 172, x + 34, 196, (255, 255, 255), 3, 2)
+            d.line(((x + 40) * s, 190 * s, (x + 62) * s, 210 * s), fill=L, width=5 * s)
+    else:
+        raise SystemExit(f"unknown place: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -777,6 +909,8 @@ def main() -> None:
             data = kitchenware(val)
         elif kind == "job":
             data = job_scene(val)
+        elif kind == "place":
+            data = place_scene(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"

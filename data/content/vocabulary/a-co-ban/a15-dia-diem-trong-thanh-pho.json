@@ -1,0 +1,1139 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A15",
+    "name": "Địa điểm trong thành phố",
+    "description": "#a1 #a2 #city #places",
+    "topic": "Địa điểm trong thành phố",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "bakery",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tiệm bánh",
+      "meaningEn": "a shop that makes and sells bread and cakes",
+      "plural": "bakeries",
+      "examples": [
+        {
+          "text": "I buy fresh bread at the bakery.",
+          "vi": "Tôi mua bánh mì tươi ở tiệm bánh."
+        },
+        {
+          "text": "The bakery opens at six o'clock.",
+          "vi": "Tiệm bánh mở cửa lúc sáu giờ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "local bakery",
+          "vi": "tiệm bánh địa phương"
+        }
+      ],
+      "imageQuery": "bakery shop",
+      "ipaUs": "/ˈbeɪ.kə.ɹi/",
+      "ipaUk": "/ˈbeɪ.kə.ɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bakery",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/bakery.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5901216/photo-image-public-domain-food-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bakery shop",
+        "sha256": "fa9c26ea5dcd8965a41dd3561e4305b65597032cfc826fab944fc6059ecf7ea7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pharmacy",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hiệu thuốc",
+      "meaningEn": "a shop where you buy medicine",
+      "plural": "pharmacies",
+      "examples": [
+        {
+          "text": "I went to the pharmacy for some medicine.",
+          "vi": "Tôi đến hiệu thuốc mua thuốc."
+        },
+        {
+          "text": "The pharmacy is next to the bank.",
+          "vi": "Hiệu thuốc nằm cạnh ngân hàng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pharmacy shop",
+          "vi": "cửa hàng thuốc"
+        }
+      ],
+      "imageQuery": "pharmacy shop",
+      "ipaUs": "/ˈfɑɹməsi/",
+      "ipaUk": "/ˈfɑːməsi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pharmacy",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "place",
+        "value": "pharmacy"
+      },
+      "image": {
+        "file": "a15/pharmacy.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:place:pharmacy",
+        "sha256": "96fb7754fd8d94af1c959aae51403ebb1ad059bc9df38e3e1842cb50d27a8906",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hospital",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bệnh viện",
+      "meaningEn": "a place where doctors and nurses treat sick people",
+      "examples": [
+        {
+          "text": "My mother works in a hospital.",
+          "vi": "Mẹ tôi làm việc ở bệnh viện."
+        },
+        {
+          "text": "He was taken to hospital after the accident.",
+          "vi": "Anh ấy được đưa đến bệnh viện sau vụ tai nạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go to hospital",
+          "vi": "đi bệnh viện"
+        }
+      ],
+      "imageQuery": "hospital building",
+      "ipaUs": "/ˈhɑs.pɪ.tl̩/",
+      "ipaUk": "/ˈhɒs.pɪ.tl̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hospital",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "place",
+        "value": "hospital"
+      },
+      "image": {
+        "file": "a15/hospital.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:place:hospital",
+        "sha256": "7e501928d07938c6978b3666e88d6b807ac9cd4363630df658d5f715434633f1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "market",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái chợ",
+      "meaningEn": "a place where people buy and sell food and goods",
+      "examples": [
+        {
+          "text": "My grandmother buys vegetables at the market.",
+          "vi": "Bà tôi mua rau ở chợ."
+        },
+        {
+          "text": "The market is busy on Sunday mornings.",
+          "vi": "Chợ rất đông vào sáng Chủ nhật."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "night market",
+          "vi": "chợ đêm"
+        },
+        {
+          "text": "fruit market",
+          "vi": "chợ trái cây"
+        }
+      ],
+      "imageQuery": "street market",
+      "ipaUs": "/ˈmɑɹkɪt/",
+      "ipaUk": "/ˈmɑːkɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/market",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "place",
+        "value": "market"
+      },
+      "image": {
+        "file": "a15/market.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:place:market",
+        "sha256": "0ee2799700e16a6c147163528b559d20046b73c824e2b4f204153fcd38ef6fd1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "supermarket",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "siêu thị",
+      "meaningEn": "a big shop where you take what you need and pay at the end",
+      "examples": [
+        {
+          "text": "We do our shopping at the supermarket.",
+          "vi": "Chúng tôi đi mua sắm ở siêu thị."
+        },
+        {
+          "text": "The supermarket closes at ten at night.",
+          "vi": "Siêu thị đóng cửa lúc mười giờ tối."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "supermarket trolley",
+          "vi": "xe đẩy siêu thị"
+        }
+      ],
+      "imageQuery": "supermarket aisle",
+      "ipaUs": "/ˌsupɚˈmɑɹkət/",
+      "ipaUk": "/ˌsuːpəˈmɑːkɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/supermarket",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/supermarket.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Rimi_supermarket_at_Kaunas_Mega_mall,_2025_aisle.jpg",
+        "author": "Bdx",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "supermarket aisle",
+        "sha256": "fc920aac23871aff12b5c4e103044d7e743a74b0f169836f51b5cc3ce3bdb0d5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bank",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "ngân hàng",
+      "meaningEn": "a place where people keep their money",
+      "examples": [
+        {
+          "text": "I need to go to the bank today.",
+          "vi": "Hôm nay tôi cần đến ngân hàng."
+        },
+        {
+          "text": "She has a small account at this bank.",
+          "vi": "Cô ấy có một tài khoản nhỏ ở ngân hàng này."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bank account",
+          "vi": "tài khoản ngân hàng"
+        }
+      ],
+      "imageQuery": "bank building",
+      "ipaUs": "/ˈbæŋk/",
+      "ipaUk": "/ˈbaŋk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bank",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/bank.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/82134796@N03/44043913335",
+        "author": "denisbin",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bank building",
+        "sha256": "1fe8d48a6090750185739242e16ae1bd3a7239d91c98405b57dfa6a5a0a5a22f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "post office",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bưu điện",
+      "meaningEn": "a place where you send letters and parcels",
+      "examples": [
+        {
+          "text": "I sent a parcel at the post office.",
+          "vi": "Tôi gửi một bưu kiện ở bưu điện."
+        },
+        {
+          "text": "The post office is open until five.",
+          "vi": "Bưu điện mở cửa đến năm giờ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "post office box",
+          "vi": "hộp thư bưu điện"
+        }
+      ],
+      "imageQuery": "post office building",
+      "ipaUs": "/poʊst ˈɑfəs/",
+      "ipaUk": "/pəʊst ˈɒfɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/post + https://en.wiktionary.org/wiki/office",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "place",
+        "value": "post office"
+      },
+      "image": {
+        "file": "a15/post-office.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:place:post office",
+        "sha256": "d28ccfb67e4fe38fc558eb930825590b85c561101336a4db98e45fbb853b512a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "police station",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đồn cảnh sát",
+      "meaningEn": "the building where police officers work",
+      "examples": [
+        {
+          "text": "He went to the police station to report the problem.",
+          "vi": "Anh ấy đến đồn cảnh sát để báo sự việc."
+        },
+        {
+          "text": "The police station is on the main street.",
+          "vi": "Đồn cảnh sát nằm trên đường chính."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "report to the police station",
+          "vi": "trình báo ở đồn cảnh sát"
+        }
+      ],
+      "imageQuery": "police station building",
+      "ipaUs": "/pəˈliːs ˈsteɪʃən/",
+      "ipaUk": "/pəˈliːs ˈsteɪʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/police + https://en.wiktionary.org/wiki/station",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "place",
+        "value": "police station"
+      },
+      "image": {
+        "file": "a15/police-station.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:place:police station",
+        "sha256": "afc43b8571c53c215be6d30923f68cb4c3879da97376dd2aeed2bc37df4d7913",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fire station",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "trạm cứu hỏa",
+      "meaningEn": "the building where firefighters and fire trucks wait",
+      "examples": [
+        {
+          "text": "The fire station is near our school.",
+          "vi": "Trạm cứu hỏa nằm gần trường chúng tôi."
+        },
+        {
+          "text": "Children visited the fire station last week.",
+          "vi": "Tuần trước bọn trẻ đến thăm trạm cứu hỏa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "local fire station",
+          "vi": "trạm cứu hỏa địa phương"
+        }
+      ],
+      "imageQuery": "fire station building",
+      "ipaUs": "/ˈfaɪ.ɚ ˈsteɪʃən/",
+      "ipaUk": "/ˈfaɪ.ə ˈsteɪʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fire + https://en.wiktionary.org/wiki/station",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/fire-station.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/59081381@N03/45811486125",
+        "author": "w_lemay",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "fire station building",
+        "sha256": "1a2eaeab168fdd3f3d21e4a3149d6b5ea689f06c12a3b0b9a3d61203969f935f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "restaurant",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "nhà hàng",
+      "meaningEn": "a place where you pay to eat a meal",
+      "examples": [
+        {
+          "text": "We had dinner at a small restaurant.",
+          "vi": "Chúng tôi ăn tối ở một nhà hàng nhỏ."
+        },
+        {
+          "text": "The restaurant is full on Saturday nights.",
+          "vi": "Nhà hàng đông kín vào tối thứ Bảy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "book a table at a restaurant",
+          "vi": "đặt bàn ở nhà hàng"
+        }
+      ],
+      "imageQuery": "restaurant interior",
+      "ipaUs": "/ˈɹɛs.t(əˌ)ɹɑnt/",
+      "ipaUk": "/ˈɹɛs.t(ə.)ɹɒnt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/restaurant",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/restaurant.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5905263/photo-image-public-domain-table-room",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "restaurant interior",
+        "sha256": "65807f245112bc7779f63c71931ce8635a98a4d09a7424d106cb5b5b3db00579",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cafe",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "quán cà phê",
+      "meaningEn": "a small place where you can drink coffee and have snacks",
+      "examples": [
+        {
+          "text": "We met at a cafe near the park.",
+          "vi": "Chúng tôi gặp nhau ở một quán cà phê gần công viên."
+        },
+        {
+          "text": "This cafe sells very good cake.",
+          "vi": "Quán cà phê này bán bánh rất ngon."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "coffee cafe",
+          "vi": "quán cà phê"
+        }
+      ],
+      "imageQuery": "cafe exterior",
+      "ipaUs": "/ˌkæˈfeɪ/",
+      "ipaUk": "/ˈkæfeɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cafe",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "place",
+        "value": "cafe"
+      },
+      "image": {
+        "file": "a15/cafe.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:place:cafe",
+        "sha256": "35b53f6a89e35722074c2b62901908fcb286aebf45ebf7a4a1665d630780fe6e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cinema",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "rạp chiếu phim",
+      "meaningEn": "a place where you go to watch films",
+      "examples": [
+        {
+          "text": "We go to the cinema every Friday.",
+          "vi": "Thứ Sáu nào chúng tôi cũng đi xem phim."
+        },
+        {
+          "text": "The new cinema has six big screens.",
+          "vi": "Rạp chiếu phim mới có sáu màn hình lớn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go to the cinema",
+          "vi": "đi xem phim"
+        }
+      ],
+      "imageQuery": "cinema theater",
+      "ipaUs": "/ˈsɪn.ə.mə/",
+      "ipaUk": "/ˈsɪn.ɪ.mə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cinema",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/cinema.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/7156765@N05/51540583264",
+        "author": "Onasill - Bill Badzo - 149 Million Views - Thank Y",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "cinema theater",
+        "sha256": "a7a2c4f19b7dbb620489455db6cf46a6c7acdacdbc9f72bd571f59a79969049f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "museum",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bảo tàng",
+      "meaningEn": "a building where you can see old or important objects",
+      "examples": [
+        {
+          "text": "We visited the history museum on Sunday.",
+          "vi": "Chủ nhật chúng tôi đã thăm bảo tàng lịch sử."
+        },
+        {
+          "text": "The museum has many old paintings.",
+          "vi": "Bảo tàng có nhiều bức tranh cổ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "art museum",
+          "vi": "bảo tàng nghệ thuật"
+        }
+      ],
+      "imageQuery": "museum building",
+      "ipaUs": "/mjuˈziəm/",
+      "ipaUk": "/mjuːˈziːəm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/museum",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "place",
+        "value": "museum"
+      },
+      "image": {
+        "file": "a15/museum.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:place:museum",
+        "sha256": "8bac1c4bfaee473033720112d50ffeb727de91673340ae551d9dd057a5de8183",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "park",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "công viên",
+      "meaningEn": "a green public place with trees and grass",
+      "examples": [
+        {
+          "text": "The children are playing in the park.",
+          "vi": "Bọn trẻ đang chơi trong công viên."
+        },
+        {
+          "text": "We walk in the park every evening.",
+          "vi": "Chúng tôi đi dạo trong công viên mỗi buổi tối."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "city park",
+          "vi": "công viên thành phố"
+        }
+      ],
+      "imageQuery": "city park",
+      "ipaUs": "/pɑɹk/",
+      "ipaUk": "/pɑɹk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/park",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/park.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/104736837@N03/10171195183",
+        "author": "Amsterdam free photos & pictures of the Dutch city",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "city park",
+        "sha256": "48a8e4c31f66797d00a2da79efe3ec091b39491488c00644e3d720c5c39b74e0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "zoo",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sở thú",
+      "meaningEn": "a place where wild animals are kept for people to see",
+      "examples": [
+        {
+          "text": "We saw a lion at the zoo.",
+          "vi": "Chúng tôi đã thấy một con sư tử ở sở thú."
+        },
+        {
+          "text": "The zoo is open every day.",
+          "vi": "Sở thú mở cửa mỗi ngày."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "visit the zoo",
+          "vi": "thăm sở thú"
+        }
+      ],
+      "imageQuery": "zoo entrance",
+      "ipaUs": "/zuː/",
+      "ipaUk": "/zʉw/",
+      "ipaSource": "https://en.wiktionary.org/wiki/zoo",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/zoo.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/196406308@N04/53796057360",
+        "author": "The Fun Chronicles",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "zoo entrance",
+        "sha256": "ae2004205f2fcc7f26b3b93355252c4c43c6ee2f3db2e3d98fa3547614838397",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "stadium",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sân vận động",
+      "meaningEn": "a large place with seats where people watch sport",
+      "examples": [
+        {
+          "text": "Thousands of fans came to the stadium.",
+          "vi": "Hàng nghìn cổ động viên đến sân vận động."
+        },
+        {
+          "text": "The football stadium is very big.",
+          "vi": "Sân vận động bóng đá rất lớn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "football stadium",
+          "vi": "sân vận động bóng đá"
+        }
+      ],
+      "imageQuery": "stadium",
+      "ipaUs": "/ˈsteɪ.di.əm/",
+      "ipaUk": "/ˈsteɪ.di.əm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/stadium",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/stadium.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/151415985@N06/37404924252",
+        "author": "Wallboat",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "stadium",
+        "sha256": "f8dc179cfe2d9362dad7631c92e65b264de686a2fb7958e6e099308e51ff09d1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bus station",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bến xe buýt",
+      "meaningEn": "a place where buses start and stop",
+      "examples": [
+        {
+          "text": "I wait for my bus at the bus station.",
+          "vi": "Tôi đợi xe buýt ở bến xe."
+        },
+        {
+          "text": "The bus station is near the market.",
+          "vi": "Bến xe buýt nằm gần chợ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "main bus station",
+          "vi": "bến xe chính"
+        }
+      ],
+      "imageQuery": "bus station",
+      "ipaUs": "/bʌs ˈsteɪʃən/",
+      "ipaUk": "/bʌs ˈsteɪʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bus + https://en.wiktionary.org/wiki/station",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/bus-station.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/104736837@N03/30427121631",
+        "author": "Amsterdam free photos & pictures of the Dutch city",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bus station",
+        "sha256": "6e9afa8f09c6d7c893cd0cddb4ae1caf4e098407cc7e1a18f0b7fdc1058b9434",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "train station",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ga tàu hỏa",
+      "meaningEn": "a place where trains stop for passengers",
+      "examples": [
+        {
+          "text": "We met at the train station at noon.",
+          "vi": "Chúng tôi gặp nhau ở ga tàu lúc trưa."
+        },
+        {
+          "text": "The train station is very busy in the morning.",
+          "vi": "Ga tàu rất đông vào buổi sáng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "railway station",
+          "vi": "nhà ga đường sắt"
+        }
+      ],
+      "imageQuery": "train station platform",
+      "ipaUs": "/ˈtɹeɪn ˈsteɪʃən/",
+      "ipaUk": "/ˈtɹeɪn ˈsteɪʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/train + https://en.wiktionary.org/wiki/station",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/train-station.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Ruse_Central_train_station,_platform_1.jpg",
+        "author": "Gymate",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "train station platform",
+        "sha256": "ee9b658a210f7a8028a3388cd50a7fbe2a2820f9343f7b17c9daf84545bf9742",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "airport",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "sân bay",
+      "meaningEn": "a place where planes take off and land",
+      "examples": [
+        {
+          "text": "We arrived at the airport two hours early.",
+          "vi": "Chúng tôi đến sân bay sớm hai tiếng."
+        },
+        {
+          "text": "My uncle works at the airport.",
+          "vi": "Chú tôi làm việc ở sân bay."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "airport terminal",
+          "vi": "nhà ga sân bay"
+        }
+      ],
+      "imageQuery": "airport terminal",
+      "ipaUs": "/ˈɛɹ.pɔɹt/",
+      "ipaUk": "/ˈɛə.pɔːt/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/airport ; https://en.wiktionary.org/wiki/airport",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/airport.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/132795455@N08/16664376403",
+        "author": "Image Catalog",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "airport terminal",
+        "sha256": "27bfa777784c7c3d9f38e8a646dc5b6aabbe4e3d882020ed061fbcfd8aaacf69",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hotel",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "khách sạn",
+      "meaningEn": "a building where travellers pay to sleep",
+      "examples": [
+        {
+          "text": "We stayed at a small hotel by the sea.",
+          "vi": "Chúng tôi ở một khách sạn nhỏ cạnh biển."
+        },
+        {
+          "text": "The hotel has a swimming pool.",
+          "vi": "Khách sạn có một hồ bơi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "book a hotel",
+          "vi": "đặt khách sạn"
+        }
+      ],
+      "imageQuery": "hotel building",
+      "ipaUs": "/hoʊˈtɛl/",
+      "ipaUk": "/həʊˈtɛl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hotel",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "place",
+        "value": "hotel"
+      },
+      "image": {
+        "file": "a15/hotel.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:place:hotel",
+        "sha256": "705e1b8099700af9e28a134b866405572bf8ad8253df4a5c7f36e5beceaae3a2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "temple",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ngôi đền, ngôi chùa",
+      "meaningEn": "a building where people go to pray",
+      "examples": [
+        {
+          "text": "We visited an old temple in the mountains.",
+          "vi": "Chúng tôi đã thăm một ngôi chùa cổ trên núi."
+        },
+        {
+          "text": "People bring flowers to the temple.",
+          "vi": "Mọi người mang hoa đến chùa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Buddhist temple",
+          "vi": "chùa Phật giáo"
+        }
+      ],
+      "imageQuery": "temple",
+      "ipaUs": "/tɪm.pl̩/",
+      "ipaUk": "/ˈtɛm.pl̩/",
+      "ipaSource": "https://en.wiktionary.org/wiki/temple",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "place",
+        "value": "temple"
+      },
+      "image": {
+        "file": "a15/temple.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:place:temple",
+        "sha256": "e16fb5d999b94ecf253e5adf157e97ae9f9a2684843ad5d2435671e1f3c8da5c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bridge",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cây cầu",
+      "meaningEn": "a structure that carries a road or path over water",
+      "examples": [
+        {
+          "text": "We walked across the old bridge.",
+          "vi": "Chúng tôi đi bộ qua cây cầu cũ."
+        },
+        {
+          "text": "The bridge is over one kilometre long.",
+          "vi": "Cây cầu dài hơn một ki-lô-mét."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cross a bridge",
+          "vi": "đi qua cầu"
+        }
+      ],
+      "imageQuery": "bridge over river",
+      "ipaUs": "/bɹɪd͡ʒ/",
+      "ipaUk": "/bɹɪd͡ʒ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bridge",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/bridge.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/90268453@N02/10695607355",
+        "author": "City of Thunder Bay Archives",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "bridge over river",
+        "sha256": "73d954bfdc54f8b60d420c772d2238e49b9c9245e236b291ed57e0bf2e3bc969",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "shopping mall",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "trung tâm mua sắm",
+      "meaningEn": "a large building with many shops inside",
+      "examples": [
+        {
+          "text": "My friends and I go to the shopping mall on Saturday.",
+          "vi": "Tôi và các bạn đi trung tâm mua sắm vào thứ Bảy."
+        },
+        {
+          "text": "The shopping mall has a big cinema.",
+          "vi": "Trung tâm mua sắm có một rạp chiếu phim lớn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "visit the shopping mall",
+          "vi": "đi trung tâm mua sắm"
+        }
+      ],
+      "imageQuery": "shopping mall interior",
+      "ipaUs": "/ˈʃɑpɪŋ mɔːl/",
+      "ipaUk": "/ˈʃɒpɪŋ mɔːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/shopping + https://en.wiktionary.org/wiki/mall",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "place",
+        "value": "shopping mall"
+      },
+      "image": {
+        "file": "a15/shopping-mall.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:place:shopping mall",
+        "sha256": "c13898893f2530b6e51c4145f23a0fb1eafdbe46c2b8d7d8b67a98898e6fb8b0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "gas station",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "trạm xăng",
+      "meaningEn": "a place where you buy fuel for your car",
+      "examples": [
+        {
+          "text": "We stopped at a gas station to fill the tank.",
+          "vi": "Chúng tôi dừng ở một trạm xăng để đổ đầy bình."
+        },
+        {
+          "text": "There is a gas station near my house.",
+          "vi": "Có một trạm xăng gần nhà tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "gas station attendant",
+          "vi": "nhân viên trạm xăng"
+        }
+      ],
+      "imageQuery": "gas station",
+      "ipaUs": "/ɡæs ˈsteɪʃən/",
+      "ipaUk": "/ɡæs ˈsteɪʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/gas + https://en.wiktionary.org/wiki/station",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "place",
+        "value": "gas station"
+      },
+      "image": {
+        "file": "a15/gas-station.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:place:gas station",
+        "sha256": "b75735ce706d5fc4b2462702acbae067ce768448f422325852916247ff846f41",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "factory",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nhà máy",
+      "meaningEn": "a large building where goods are made by machines",
+      "plural": "factories",
+      "examples": [
+        {
+          "text": "My father works in a shoe factory.",
+          "vi": "Bố tôi làm việc trong một nhà máy giày."
+        },
+        {
+          "text": "The factory makes thousands of cars a year.",
+          "vi": "Nhà máy sản xuất hàng nghìn chiếc xe mỗi năm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "factory worker",
+          "vi": "công nhân nhà máy"
+        }
+      ],
+      "imageQuery": "factory building",
+      "ipaUs": "/ˈfæk.tɚ.i/",
+      "ipaUk": "/ˈfæk.tə.ɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/factory",
+      "ipaVerified": true,
+      "image": {
+        "file": "a15/factory.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/89918055@N05/51994778863",
+        "author": "JOHN K THORNE",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "factory building",
+        "sha256": "069bf5c2854e67c5c1654d508790123e56a168b7473ef6cbfe53cb6bfddd8c45",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
