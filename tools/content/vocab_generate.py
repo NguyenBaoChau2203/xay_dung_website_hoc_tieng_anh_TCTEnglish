@@ -1392,6 +1392,120 @@ def health_icon(name: str) -> bytes:
     return finish(img)
 
 
+def tech_icon(name: str) -> bytes:
+    """Flat original drawing of a technology item (kind "tech")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=6, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    def phone(x0, y0, x1, y1):
+        box(x0, y0, x1, y1, (30, 41, 59), 22, 4)
+        box(x0 + 10, y0 + 22, x1 - 10, y1 - 22, (241, 245, 249), 6, 0)
+
+    if name == "drone":
+        for sx in (-1, 1):
+            for sy in (-1, 1):
+                line(240, 180, 240 + sx * 130, 180 + sy * 70, 10)
+                oval(240 + sx * 130 - 26, 180 + sy * 70 - 8, 240 + sx * 130 + 26, 180 + sy * 70 + 8, (148, 163, 184), 3)
+                line(240 + sx * 130, 180 + sy * 70, 240 + sx * 130, 180 + sy * 70 - 14, 4)
+        box(200, 150, 280, 210, (51, 65, 85), 18)
+        oval(222, 206, 258, 242, (30, 41, 59), 3)
+        oval(232, 216, 248, 232, (96, 165, 250), 0)
+    elif name == "website":
+        box(50, 50, 430, 300, (255, 255, 255), 12, 4)
+        box(50, 50, 430, 88, (203, 213, 225), 12, 4)
+        for k, c in enumerate(((239, 68, 68), (250, 204, 21), (74, 222, 128))):
+            oval(66 + k * 24, 62, 84 + k * 24, 78, c, 2)
+        box(150, 58, 410, 80, (255, 255, 255), 10, 2)
+        box(70, 108, 410, 170, (147, 197, 253), 6, 2)
+        for k in range(3):
+            box(70 + k * 116, 186, 170 + k * 116, 280, (226, 232, 240), 6, 2)
+            line(80 + k * 116, 204, 160 + k * 116, 204, 4, (148, 163, 184))
+            line(80 + k * 116, 222, 150 + k * 116, 222, 4, (148, 163, 184))
+    elif name == "app":
+        phone(170, 30, 310, 330)
+        cols = [(239, 68, 68), (250, 204, 21), (74, 222, 128), (59, 130, 246), (168, 85, 247), (249, 115, 22), (20, 184, 166), (236, 72, 153), (100, 116, 139)]
+        for k, c in enumerate(cols):
+            box(188 + (k % 3) * 36, 78 + (k // 3) * 56, 212 + (k % 3) * 36, 102 + (k // 3) * 56, c, 7, 2)
+    elif name == "social media":
+        phone(170, 30, 310, 330)
+        oval(190, 70, 222, 102, (250, 204, 21), 2)
+        line(232, 80, 292, 80, 5, (148, 163, 184))
+        line(232, 94, 272, 94, 4, (203, 213, 225))
+        box(190, 118, 292, 190, (147, 197, 253), 6, 2)
+        for hx, hy, hr, col in ((120, 90, 22, (244, 63, 94)), (360, 140, 18, (244, 63, 94))):
+            oval(hx - hr, hy - hr, hx, hy, col, 0)
+            oval(hx, hy - hr, hx + hr, hy, col, 0)
+            poly([(hx - hr, hy - hr * 0.35), (hx + hr, hy - hr * 0.35), (hx, hy + hr * 1.1)], col)
+        box(330, 220, 420, 270, (255, 255, 255), 12, 3)
+        poly([(350, 270), (344, 292), (372, 270)], (255, 255, 255))
+        for k in range(3):
+            oval(350 + k * 22, 240, 362 + k * 22, 252, (148, 163, 184), 0)
+        box(50, 200, 140, 250, (59, 130, 246), 12, 3)
+        poly([(120, 250), (130, 272), (100, 250)], (59, 130, 246))
+    elif name == "satellite":
+        for sx in (-1, 1):
+            for k in range(3):
+                box(240 + sx * (62 + k * 36) - 17, 150, 240 + sx * (62 + k * 36) + 17, 220, (37, 99, 235), 2, 3)
+        line(240, 185, 240 + 62, 185, 6)
+        line(240, 185, 240 - 62, 185, 6)
+        box(200, 140, 280, 230, (203, 213, 225), 12)
+        box(208, 150, 272, 176, (250, 204, 21), 4, 2)
+        line(240, 140, 240, 108, 5)
+        oval(228, 92, 252, 116, (226, 232, 240), 3)
+        for r_ in (30, 50):
+            d.arc(((240 - r_) * s, (92 - r_) * s, (240 + r_) * s, (92 + r_) * s), 220, 320, fill=(59, 130, 246), width=4 * s)
+    elif name == "QR code":
+        box(120, 20, 360, 340, (255, 255, 255), 10, 4)
+        rnd = [(0, 0)]
+        import random as _r
+        rng = _r.Random(7)
+        n, cell, x0, y0 = 17, 12, 138, 38
+        for i in range(n):
+            for j in range(n):
+                finder = (i < 7 and j < 7) or (i < 7 and j >= n - 7) or (i >= n - 7 and j < 7)
+                if finder:
+                    continue
+                if rng.random() < 0.5:
+                    d.rectangle(((x0 + j * cell) * s, (y0 + i * cell) * s, (x0 + j * cell + cell) * s, (y0 + i * cell + cell) * s), fill=L)
+        for fi, fj in ((0, 0), (0, n - 7), (n - 7, 0)):
+            fx, fy = x0 + fj * cell, y0 + fi * cell
+            d.rectangle((fx * s, fy * s, (fx + 7 * cell) * s, (fy + 7 * cell) * s), fill=L)
+            d.rectangle(((fx + cell) * s, (fy + cell) * s, (fx + 6 * cell) * s, (fy + 6 * cell) * s), fill=(255, 255, 255))
+            d.rectangle(((fx + 2 * cell) * s, (fy + 2 * cell) * s, (fx + 5 * cell) * s, (fy + 5 * cell) * s), fill=L)
+    elif name == "earbuds":
+        for sx in (-1, 1):
+            cx = 240 + sx * 80
+            oval(cx - 34, 80, cx + 34, 150, (248, 250, 252), 4)
+            box(cx - 10 + sx * 8, 140, cx + 10 + sx * 8, 250, (248, 250, 252), 9, 4)
+            oval(cx - 14, 100, cx + 14, 128, (203, 213, 225), 2)
+        box(150, 266, 330, 330, (226, 232, 240), 26, 4)
+        line(150, 298, 330, 298, 2)
+    elif name == "charger":
+        box(160, 70, 320, 190, (248, 250, 252), 14, 4)
+        box(188, 40, 206, 72, (170, 178, 192), 3, 3)
+        box(274, 40, 292, 72, (170, 178, 192), 3, 3)
+        d.line([(240 * s, 190 * s), (240 * s, 250 * s), (300 * s, 290 * s), (360 * s, 290 * s)], fill=L, width=7 * s, joint="curve")
+        box(350, 274, 400, 306, (51, 65, 85), 6, 3)
+    else:
+        raise SystemExit(f"unknown tech icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -1436,6 +1550,8 @@ def main() -> None:
             data = emotion_face(val)
         elif kind == "health":
             data = health_icon(val)
+        elif kind == "tech":
+            data = tech_icon(val)
         else:
             raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"

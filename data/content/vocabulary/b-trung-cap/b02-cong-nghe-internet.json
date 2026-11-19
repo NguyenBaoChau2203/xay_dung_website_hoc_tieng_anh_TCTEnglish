@@ -1,0 +1,1224 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B02",
+    "name": "Công nghệ & internet",
+    "description": "#b1 #b2 #technology #internet",
+    "topic": "Công nghệ & internet",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "smartphone",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "điện thoại thông minh",
+      "meaningEn": "a mobile phone that can use the internet and apps",
+      "examples": [
+        {
+          "text": "She checks her smartphone every few minutes.",
+          "vi": "Cô ấy xem điện thoại thông minh vài phút một lần."
+        },
+        {
+          "text": "My smartphone battery lasts only one day.",
+          "vi": "Pin điện thoại của tôi chỉ dùng được một ngày."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "charge a smartphone",
+          "vi": "sạc điện thoại"
+        },
+        {
+          "text": "smartphone screen",
+          "vi": "màn hình điện thoại"
+        }
+      ],
+      "imageQuery": "smartphone",
+      "ipaUs": "/ˈsmɑɹtfoʊn/",
+      "ipaUk": "/ˈsmɑːtfəʊn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/smartphone",
+      "ipaVerified": true,
+      "image": {
+        "file": "b02/smartphone.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/135371437@N04/22389367255",
+        "author": "StockyPics",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "smartphone",
+        "sha256": "909eb5b01df0d35ee49390d252e71fc0382a880d870c6c9cf1dbe787ef2bb64c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tablet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "máy tính bảng",
+      "meaningEn": "a flat computer that you control by touching the screen",
+      "examples": [
+        {
+          "text": "The children watch cartoons on a tablet.",
+          "vi": "Bọn trẻ xem hoạt hình trên máy tính bảng."
+        },
+        {
+          "text": "He reads the news on his tablet every morning.",
+          "vi": "Sáng nào anh ấy cũng đọc tin tức trên máy tính bảng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "touch screen tablet",
+          "vi": "máy tính bảng cảm ứng"
+        },
+        {
+          "text": "tablet case",
+          "vi": "bao máy tính bảng"
+        }
+      ],
+      "imageQuery": "tablet computer",
+      "ipaUs": "/ˈtæblət/",
+      "ipaUk": "/ˈtæblɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tablet",
+      "ipaVerified": true,
+      "image": {
+        "file": "b02/tablet.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/tablet-computer-KCEVT4PCQ1",
+        "author": "Birch Landing Home",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "tablet computer",
+        "sha256": "ef3b0349f410cc67cd856c76d7902e1f2a8ad7d2de224e31fe31fa3cda31861d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "keyboard",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bàn phím",
+      "meaningEn": "a set of keys that you press to type on a computer",
+      "examples": [
+        {
+          "text": "I spilled coffee on my keyboard.",
+          "vi": "Tôi làm đổ cà phê lên bàn phím."
+        },
+        {
+          "text": "A wireless keyboard keeps the desk tidy.",
+          "vi": "Bàn phím không dây giúp bàn làm việc gọn gàng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wireless keyboard",
+          "vi": "bàn phím không dây"
+        },
+        {
+          "text": "type on a keyboard",
+          "vi": "gõ phím"
+        }
+      ],
+      "imageQuery": "computer keyboard",
+      "ipaUs": "/ˈki.bɔɹd/",
+      "ipaUk": "/ˈkiːbɔːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/keyboard",
+      "ipaVerified": true,
+      "image": {
+        "file": "b02/keyboard.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/135396164@N05/40623300100",
+        "author": "freestocks.org",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "computer keyboard",
+        "sha256": "f598a257be105d497a946f06ad5e08b3b8e876c70cfc0c64fc47fb5db1745315",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "computer mouse",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "chuột máy tính",
+      "meaningEn": "a small device you move to control a cursor on a screen",
+      "examples": [
+        {
+          "text": "My computer mouse stopped working this morning.",
+          "vi": "Chuột máy tính của tôi ngừng hoạt động sáng nay."
+        },
+        {
+          "text": "Click the file with the computer mouse.",
+          "vi": "Hãy nhấp vào tệp bằng chuột máy tính."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wireless computer mouse",
+          "vi": "chuột không dây"
+        },
+        {
+          "text": "click a mouse",
+          "vi": "nhấp chuột"
+        }
+      ],
+      "imageQuery": "computer mouse",
+      "ipaUs": "/kəmˈpju.tɚ maʊs/",
+      "ipaUk": "/kəmˈpjuː.tə maʊs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/computer + https://en.wiktionary.org/wiki/mouse",
+      "ipaVerified": true,
+      "image": {
+        "file": "b02/computer-mouse.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6020645/photo-image-public-domain-hand-person",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "computer mouse",
+        "sha256": "c85d8b4dcad14f49602f032e2cb2d65e73822d82f400f765107e53686f9f7426",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "screen",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "màn hình",
+      "meaningEn": "the flat surface where you see pictures and words on a device",
+      "examples": [
+        {
+          "text": "The screen of my phone is cracked.",
+          "vi": "Màn hình điện thoại của tôi bị nứt."
+        },
+        {
+          "text": "Too much time in front of a screen hurts your eyes.",
+          "vi": "Nhìn màn hình quá lâu làm hại mắt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "touch screen",
+          "vi": "màn hình cảm ứng"
+        },
+        {
+          "text": "screen time",
+          "vi": "thời gian dùng màn hình"
+        }
+      ],
+      "imageQuery": "computer screen monitor desk",
+      "ipaUs": "/ˈskɹiːn/",
+      "ipaUk": "/ˈskɹiːn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/screen",
+      "ipaVerified": true,
+      "image": {
+        "file": "b02/screen.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/seo-computer-959IURDRGJ",
+        "author": "Serpstat",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "computer screen monitor desk",
+        "sha256": "b35da212d8789028aadfe462036c7325fb15f1f6f24aa216a87ede4d5f1413e3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "charger",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bộ sạc",
+      "meaningEn": "a device that puts electricity into a battery",
+      "examples": [
+        {
+          "text": "Can I borrow your phone charger?",
+          "vi": "Mình mượn bộ sạc điện thoại của bạn được không?"
+        },
+        {
+          "text": "I always carry a charger in my bag.",
+          "vi": "Tôi luôn mang theo bộ sạc trong túi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "phone charger",
+          "vi": "bộ sạc điện thoại"
+        },
+        {
+          "text": "portable charger",
+          "vi": "sạc dự phòng"
+        }
+      ],
+      "imageQuery": "phone charger cable plug",
+      "ipaUs": "/ˈtʃɑɹdʒəɹ/",
+      "ipaUk": "/ˈtʃɑːdʒə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/charger",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "tech",
+        "value": "charger"
+      },
+      "image": {
+        "file": "b02/charger.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:tech:charger",
+        "sha256": "c0b032a5a719f37b3e63175f8657397e6ea73536ee24962d74115cc15a58793d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "battery",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "pin",
+      "meaningEn": "a small object that stores power for a device",
+      "plural": "batteries",
+      "examples": [
+        {
+          "text": "The battery died during the call.",
+          "vi": "Pin hết trong lúc đang gọi."
+        },
+        {
+          "text": "This camera uses two small batteries.",
+          "vi": "Chiếc máy ảnh này dùng hai viên pin nhỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "low battery",
+          "vi": "pin yếu"
+        },
+        {
+          "text": "replace the battery",
+          "vi": "thay pin"
+        }
+      ],
+      "imageQuery": "batteries",
+      "ipaUs": "/ˈbæt.əɹi/",
+      "ipaUk": "/ˈbæt.(ə)ɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/battery",
+      "ipaVerified": true,
+      "image": {
+        "file": "b02/battery.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/38451115@N04/5261323540",
+        "author": "pasukaru76",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "batteries",
+        "sha256": "47cf9a3a575628bf62332d113e663eaa43de4f483bb45cf7b3446cf865945c3b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "headphones",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "tai nghe chụp tai",
+      "meaningEn": "a pair of speakers that you wear over your ears",
+      "examples": [
+        {
+          "text": "She listens to music with her headphones on.",
+          "vi": "Cô ấy nghe nhạc bằng tai nghe."
+        },
+        {
+          "text": "I need noise-cancelling headphones for the train.",
+          "vi": "Tôi cần tai nghe chống ồn để đi tàu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wireless headphones",
+          "vi": "tai nghe không dây"
+        },
+        {
+          "text": "put on headphones",
+          "vi": "đeo tai nghe"
+        }
+      ],
+      "imageQuery": "headphones",
+      "ipaUs": "/ˈhɛdfoʊnz/",
+      "ipaUk": "/ˈhɛdfəʊnz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/headphones",
+      "ipaVerified": true,
+      "image": {
+        "file": "b02/headphones.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/57866029@N00/52459692877",
+        "author": "Abdulla Al Muhairi",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "headphones",
+        "sha256": "c02230ff982d50ffeb734c13acc571ede516b9d84355de04b47282d34a40ca39",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "webcam",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "camera máy tính",
+      "meaningEn": "a small camera on a computer used for video calls",
+      "examples": [
+        {
+          "text": "Please turn on your webcam for the meeting.",
+          "vi": "Vui lòng bật camera máy tính cho cuộc họp."
+        },
+        {
+          "text": "The webcam on my laptop is not working.",
+          "vi": "Camera trên máy tính xách tay của tôi không hoạt động."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "turn on the webcam",
+          "vi": "bật camera"
+        },
+        {
+          "text": "built-in webcam",
+          "vi": "camera tích hợp"
+        }
+      ],
+      "imageQuery": "webcam",
+      "ipaUs": "/ˈwɛbˌkæm/",
+      "ipaUk": "/ˈwɛbˌkæm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/webcam",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "b02/webcam.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5907091/photo-image-public-domain-technology-computer",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "webcam",
+        "sha256": "1b8a62bb66b0cd04b57f1c1ab718475ddcf56e5a1e1b4df37e2ee34a3cd70613",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "drone",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "máy bay không người lái, flycam",
+      "meaningEn": "a small aircraft with no pilot that you control from the ground",
+      "examples": [
+        {
+          "text": "He filmed the beach with a drone.",
+          "vi": "Anh ấy quay phim bãi biển bằng flycam."
+        },
+        {
+          "text": "A drone delivered the package to our door.",
+          "vi": "Một chiếc flycam đã giao gói hàng đến cửa nhà chúng tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fly a drone",
+          "vi": "điều khiển flycam"
+        },
+        {
+          "text": "drone camera",
+          "vi": "camera gắn flycam"
+        }
+      ],
+      "imageQuery": "drone flying",
+      "ipaUs": "/dɹoʊn/",
+      "ipaUk": "/dɹəʊn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/drone",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "tech",
+        "value": "drone"
+      },
+      "image": {
+        "file": "b02/drone.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:tech:drone",
+        "sha256": "1d4b30592cc5ba77df2dc1dfbeb99977116e3d50c64eb6c6434617cde10b8d7d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "robot",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "người máy, rô-bốt",
+      "meaningEn": "a machine that can do tasks by itself",
+      "examples": [
+        {
+          "text": "A robot cleans the floor in our house.",
+          "vi": "Một con rô-bốt lau sàn trong nhà chúng tôi."
+        },
+        {
+          "text": "Robots now build cars in the factory.",
+          "vi": "Giờ đây rô-bốt lắp ráp ô tô trong nhà máy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "industrial robot",
+          "vi": "rô-bốt công nghiệp"
+        },
+        {
+          "text": "robot arm",
+          "vi": "cánh tay rô-bốt"
+        }
+      ],
+      "imageQuery": "robot",
+      "ipaUs": "/ˈɹoʊ.bɑt/",
+      "ipaUk": "/ˈɹəʊ.bɒt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/robot",
+      "ipaVerified": true,
+      "image": {
+        "file": "b02/robot.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/38451115@N04/3959355664",
+        "author": "pasukaru76",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "robot",
+        "sha256": "544ae5891ccc3b3795108bf603435f760312d24d6660104f5160ee5fd5f3164e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "router",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bộ phát wifi, bộ định tuyến",
+      "meaningEn": "a device that sends internet to the computers in a building",
+      "examples": [
+        {
+          "text": "Turn the router off and on again.",
+          "vi": "Hãy tắt rồi bật lại bộ phát wifi."
+        },
+        {
+          "text": "The router is in the living room.",
+          "vi": "Bộ phát wifi đặt trong phòng khách."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wifi router",
+          "vi": "bộ phát wifi"
+        },
+        {
+          "text": "restart the router",
+          "vi": "khởi động lại bộ phát wifi"
+        }
+      ],
+      "imageQuery": "wifi router",
+      "ipaUs": "/ˈɹaʊ.tɚ/",
+      "ipaUk": "/ˈɹuː.tə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/router",
+      "ipaVerified": true,
+      "image": {
+        "file": "b02/router.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:ELECOM_WRC-300FEBK_WPS_WiFi_router.jpg",
+        "author": "Syced",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "wifi router",
+        "sha256": "620ec08db3a1761cb414b607ff39762891503a5c78cacd535ab147bcfe0c2191",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "password",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "mật khẩu",
+      "meaningEn": "a secret word that you use to open your account",
+      "examples": [
+        {
+          "text": "I forgot my password again.",
+          "vi": "Tôi lại quên mật khẩu rồi."
+        },
+        {
+          "text": "Choose a long password that is hard to guess.",
+          "vi": "Hãy chọn một mật khẩu dài và khó đoán."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "enter a password",
+          "vi": "nhập mật khẩu"
+        },
+        {
+          "text": "reset your password",
+          "vi": "đặt lại mật khẩu"
+        }
+      ],
+      "imageQuery": "password lock keyboard",
+      "ipaUs": "/ˈpæs.wɜɹd/",
+      "ipaUk": "/ˈpæs.wɜɹd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/password",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "b02/password.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5908216/image-background-public-domain-laptop",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "password lock keyboard",
+        "sha256": "dcf5295f3bf6b63232139388a415c8df3536dae0e1552c93353ed6f7f7d07a11",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "website",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "trang web",
+      "meaningEn": "a place on the internet with pages about one subject",
+      "examples": [
+        {
+          "text": "The school has a new website.",
+          "vi": "Trường có một trang web mới."
+        },
+        {
+          "text": "You can find the schedule on our website.",
+          "vi": "Bạn có thể xem lịch trên trang web của chúng tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "visit a website",
+          "vi": "truy cập trang web"
+        },
+        {
+          "text": "company website",
+          "vi": "trang web công ty"
+        }
+      ],
+      "imageQuery": "website browser laptop",
+      "ipaUs": "/ˈwɛb(ˌ)saɪt/",
+      "ipaUk": "/ˈwɛb(ˌ)saɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/website",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "tech",
+        "value": "website"
+      },
+      "image": {
+        "file": "b02/website.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:tech:website",
+        "sha256": "7ce1020ec5da87caa9796bdb61787a0170f3b7dad5dfb7f2edf39292e95d79c7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "app",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "ứng dụng",
+      "meaningEn": "a small program that you use on a phone or tablet",
+      "examples": [
+        {
+          "text": "I use an app to learn English every day.",
+          "vi": "Ngày nào tôi cũng dùng một ứng dụng để học tiếng Anh."
+        },
+        {
+          "text": "Download the app before the trip.",
+          "vi": "Hãy tải ứng dụng trước chuyến đi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "download an app",
+          "vi": "tải ứng dụng"
+        },
+        {
+          "text": "mobile app",
+          "vi": "ứng dụng di động"
+        }
+      ],
+      "imageQuery": "mobile apps icons phone screen",
+      "ipaUs": "/æp/",
+      "ipaUk": "/æp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/app",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "tech",
+        "value": "app"
+      },
+      "image": {
+        "file": "b02/app.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:tech:app",
+        "sha256": "6a65bdb71f43634814e91e49a6f312b31b787b6b73f0b412b56aa1e45ec2f917",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "social media",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "mạng xã hội",
+      "meaningEn": "websites and apps where people share photos and messages",
+      "examples": [
+        {
+          "text": "Many teenagers spend hours on social media.",
+          "vi": "Nhiều thiếu niên dành hàng giờ trên mạng xã hội."
+        },
+        {
+          "text": "She shares her travel photos on social media.",
+          "vi": "Cô ấy chia sẻ ảnh du lịch trên mạng xã hội."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "post on social media",
+          "vi": "đăng lên mạng xã hội"
+        },
+        {
+          "text": "social media account",
+          "vi": "tài khoản mạng xã hội"
+        }
+      ],
+      "imageQuery": "social media icons phone",
+      "ipaUs": "/ˈsoʊ.ʃəl ˈmi.di.ə/",
+      "ipaUk": "/ˈsəʊ.ʃəl ˈmiː.di.ə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/social + https://en.wiktionary.org/wiki/media",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "tech",
+        "value": "social media"
+      },
+      "image": {
+        "file": "b02/social-media.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:tech:social media",
+        "sha256": "a44e3ecb83fe39fbc951db6eb398d8ac2c97e62c4de618914f21411b471d3433",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "USB drive",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "ổ USB",
+      "meaningEn": "a small device for carrying files from one computer to another",
+      "examples": [
+        {
+          "text": "I saved the report on a USB drive.",
+          "vi": "Tôi lưu bản báo cáo vào một ổ USB."
+        },
+        {
+          "text": "Please plug the USB drive into the laptop.",
+          "vi": "Làm ơn cắm ổ USB vào máy tính xách tay."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "plug in a USB drive",
+          "vi": "cắm ổ USB"
+        },
+        {
+          "text": "copy to a USB drive",
+          "vi": "sao chép vào ổ USB"
+        }
+      ],
+      "imageQuery": "usb flash drive",
+      "ipaUs": "/ˌjuː ɛs ˈbiː draɪv/",
+      "ipaUk": "/ˌjuː es ˈbiː draɪv/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found",
+      "image": {
+        "file": "b02/usb-drive.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/7267945/png-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "usb flash drive",
+        "sha256": "2b58ba91a6efa786f3dbb1c5e31d3e01197e8ceee76ddd9bbd645db52becabe9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hard drive",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "ổ cứng",
+      "meaningEn": "the part of a computer that stores all your files",
+      "examples": [
+        {
+          "text": "My hard drive is almost full.",
+          "vi": "Ổ cứng của tôi gần đầy."
+        },
+        {
+          "text": "He bought an external hard drive for his photos.",
+          "vi": "Anh ấy mua một ổ cứng ngoài để lưu ảnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "external hard drive",
+          "vi": "ổ cứng gắn ngoài"
+        },
+        {
+          "text": "back up to a hard drive",
+          "vi": "sao lưu vào ổ cứng"
+        }
+      ],
+      "imageQuery": "hard drive disk",
+      "ipaUs": "/hɑɹd dɹaɪv/",
+      "ipaUk": "/hɑːd dɹaɪv/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hard + https://en.wiktionary.org/wiki/drive",
+      "ipaVerified": true,
+      "image": {
+        "file": "b02/hard-drive.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5906336/photo-image-public-domain-technology-computer",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "hard drive disk",
+        "sha256": "6b9734d0a322ef978baa28dc373cdaf4e9d8c086c1788d4ffd086ddaefe1f3bf",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "server",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "máy chủ",
+      "meaningEn": "a powerful computer that provides data to other computers",
+      "examples": [
+        {
+          "text": "The website is down because the server crashed.",
+          "vi": "Trang web ngừng hoạt động vì máy chủ bị sập."
+        },
+        {
+          "text": "The company keeps its files on a secure server.",
+          "vi": "Công ty lưu tệp trên một máy chủ an toàn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "web server",
+          "vi": "máy chủ web"
+        },
+        {
+          "text": "server room",
+          "vi": "phòng máy chủ"
+        }
+      ],
+      "imageQuery": "server room racks",
+      "ipaUs": "/ˈsɝvɚ/",
+      "ipaUk": "/ˈsɜːvə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/server",
+      "ipaVerified": true,
+      "image": {
+        "file": "b02/server.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5906639/photo-image-light-desktop-wallpapers-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "server room racks",
+        "sha256": "c03bae973b4476b8d5e606d89e15c25180409698e5c7f31a61aec0364438b700",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cable",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "dây cáp",
+      "meaningEn": "a long wire covered in plastic that carries electricity or data",
+      "examples": [
+        {
+          "text": "Connect the screen with this cable.",
+          "vi": "Hãy nối màn hình bằng sợi cáp này."
+        },
+        {
+          "text": "I tripped over a cable on the floor.",
+          "vi": "Tôi vấp phải một sợi dây cáp trên sàn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "USB cable",
+          "vi": "dây cáp USB"
+        },
+        {
+          "text": "power cable",
+          "vi": "dây nguồn"
+        }
+      ],
+      "imageQuery": "cables wires",
+      "ipaUs": "/ˈkeɪ.bəl/",
+      "ipaUk": "/ˈkeɪ.bəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cable",
+      "ipaVerified": true,
+      "image": {
+        "file": "b02/cable.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6040523/photo-image-white-background-public-domain-technology",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cables wires",
+        "sha256": "9462516eaa3e00a67026ef0b134e738ae86b527794e347f8ab3e2f0185ebc276",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "smartwatch",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đồng hồ thông minh",
+      "meaningEn": "a watch that connects to your phone and counts your steps",
+      "examples": [
+        {
+          "text": "My smartwatch counts my steps every day.",
+          "vi": "Đồng hồ thông minh của tôi đếm số bước chân mỗi ngày."
+        },
+        {
+          "text": "She got a message on her smartwatch.",
+          "vi": "Cô ấy nhận được một tin nhắn trên đồng hồ thông minh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wear a smartwatch",
+          "vi": "đeo đồng hồ thông minh"
+        },
+        {
+          "text": "smartwatch strap",
+          "vi": "dây đồng hồ thông minh"
+        }
+      ],
+      "imageQuery": "smartwatch wrist",
+      "ipaUs": "/ˈsmɑːrtwɑːtʃ/",
+      "ipaUk": "/ˈsmɑːtwɒtʃ/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found",
+      "image": {
+        "file": "b02/smartwatch.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5921716/photo-image-background-public-domain-blue",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "smartwatch wrist",
+        "sha256": "e6dc767a82b4768866b21fe7951947cab2cbdf0273c58c0c6e5e1ee9c5367e9e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "microchip",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "vi mạch, chip",
+      "meaningEn": "a very small piece of silicon that controls a machine",
+      "examples": [
+        {
+          "text": "Every phone has a small microchip inside.",
+          "vi": "Điện thoại nào cũng có một con chip nhỏ bên trong."
+        },
+        {
+          "text": "The microchip is smaller than a coin.",
+          "vi": "Con chip nhỏ hơn một đồng xu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "install a microchip",
+          "vi": "gắn vi mạch"
+        },
+        {
+          "text": "computer microchip",
+          "vi": "vi mạch máy tính"
+        }
+      ],
+      "imageQuery": "microchip circuit board",
+      "ipaUs": "/ˈmaɪkɹoʊˌt͡ʃɪp/",
+      "ipaUk": "/ˈmaɪkɹoʊˌt͡ʃɪp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/microchip",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "b02/microchip.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/computer-board-DWVHX92TAL",
+        "author": "Lenharth Systems",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "microchip circuit board",
+        "sha256": "3c3cf81dbf89dae51a3b34e2804b57a4b1e223ab879c36e75b5844638ae8f114",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "satellite",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "vệ tinh",
+      "meaningEn": "a machine that goes around the Earth and sends signals",
+      "examples": [
+        {
+          "text": "A satellite sends pictures of the weather.",
+          "vi": "Một vệ tinh gửi những bức ảnh về thời tiết."
+        },
+        {
+          "text": "The satellite orbits the Earth every ninety minutes.",
+          "vi": "Vệ tinh quay quanh Trái Đất mỗi chín mươi phút."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "launch a satellite",
+          "vi": "phóng vệ tinh"
+        },
+        {
+          "text": "satellite dish",
+          "vi": "chảo ăng-ten vệ tinh"
+        }
+      ],
+      "imageQuery": "satellite space earth",
+      "ipaUs": "/ˈsætəlaɪ̯t/",
+      "ipaUk": "/ˈsætəlaɪ̯t/",
+      "ipaSource": "https://en.wiktionary.org/wiki/satellite",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "tech",
+        "value": "satellite"
+      },
+      "image": {
+        "file": "b02/satellite.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:tech:satellite",
+        "sha256": "241c2fbbf9a43f26323dffbba99c78175e21626501e7791ad3465c58f64ae727",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "QR code",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "mã QR",
+      "meaningEn": "a square pattern of black dots that a phone can read",
+      "examples": [
+        {
+          "text": "Scan the QR code to see the menu.",
+          "vi": "Hãy quét mã QR để xem thực đơn."
+        },
+        {
+          "text": "There is a QR code on the ticket.",
+          "vi": "Có một mã QR trên vé."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "scan a QR code",
+          "vi": "quét mã QR"
+        },
+        {
+          "text": "QR code payment",
+          "vi": "thanh toán bằng mã QR"
+        }
+      ],
+      "imageQuery": "QR code",
+      "ipaUs": "/ˌkjuː ˈɑːr koʊd/",
+      "ipaUk": "/ˌkjuː ˈɑː kəʊd/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found",
+      "generate": {
+        "kind": "tech",
+        "value": "QR code"
+      },
+      "image": {
+        "file": "b02/qr-code.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:tech:QR code",
+        "sha256": "ce05f0ee6f8d6d4ad0a444d46a0e1391c9834aac668b57e04f6847640a582805",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "earbuds",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tai nghe nhét tai",
+      "meaningEn": "very small headphones that fit inside your ears",
+      "examples": [
+        {
+          "text": "I lost one of my wireless earbuds on the bus.",
+          "vi": "Tôi làm mất một bên tai nghe không dây trên xe buýt."
+        },
+        {
+          "text": "She runs with earbuds in her ears.",
+          "vi": "Cô ấy chạy bộ với tai nghe nhét tai."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wireless earbuds",
+          "vi": "tai nghe nhét tai không dây"
+        },
+        {
+          "text": "charge the earbuds",
+          "vi": "sạc tai nghe"
+        }
+      ],
+      "imageQuery": "wireless earbuds case",
+      "ipaUs": "/ˈɪrbʌdz/",
+      "ipaUk": "/ˈɪəbʌdz/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found",
+      "generate": {
+        "kind": "tech",
+        "value": "earbuds"
+      },
+      "image": {
+        "file": "b02/earbuds.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:tech:earbuds",
+        "sha256": "7b668acda5f7e079937f0ff8eb3e662e13ea89eee2e8345928439d26e5605f8f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
