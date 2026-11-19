@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A10",
+    "name": "Nhà cửa & các phòng",
+    "description": "#a1 #a2 #home #rooms",
+    "topic": "Nhà cửa & các phòng",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "house",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "ngôi nhà",
+      "meaningEn": "a building where a family lives",
+      "examples": [
+        {
+          "text": "We live in a small house near the river.",
+          "vi": "Chúng tôi sống trong một ngôi nhà nhỏ gần sông."
+        },
+        {
+          "text": "Their house has a red door.",
+          "vi": "Ngôi nhà của họ có cánh cửa màu đỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "at my house",
+          "vi": "ở nhà tôi"
+        },
+        {
+          "text": "buy a house",
+          "vi": "mua nhà"
+        }
+      ],
+      "imageQuery": "house",
+      "ipaUs": "/haʊ̯s/",
+      "ipaUk": "/haʊ̯s/",
+      "ipaSource": "https://en.wiktionary.org/wiki/house",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/house.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/7156765@N05/51583014763",
+        "author": "Onasill - Bill Badzo - 149 Million Views - Thank Y",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "house",
+        "sha256": "02dc25b3646105bf40464be6b4ccee6494aa48d345daded6e53c2ca88c33df81",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "apartment",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "căn hộ",
+      "meaningEn": "a set of rooms for living in, on one floor of a building",
+      "examples": [
+        {
+          "text": "She rents an apartment in the city.",
+          "vi": "Cô ấy thuê một căn hộ trong thành phố."
+        },
+        {
+          "text": "Our apartment is on the fifth floor.",
+          "vi": "Căn hộ của chúng tôi ở tầng năm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "apartment building",
+          "vi": "tòa nhà chung cư"
+        }
+      ],
+      "imageQuery": "apartment building",
+      "ipaUs": "/əˈpɑɹt.mənt/",
+      "ipaUk": "/əˈpɑːt.mənt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/apartment",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/apartment.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/14674348@N04/14996764996",
+        "author": "DennisM2",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "apartment building",
+        "sha256": "dc2a147c92b2fb57e7bb2506653dfb5ac3fe835041d7c0cdb9badbbdab0beabd",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bedroom",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "phòng ngủ",
+      "meaningEn": "a room where you sleep",
+      "examples": [
+        {
+          "text": "My bedroom is on the second floor.",
+          "vi": "Phòng ngủ của tôi ở tầng hai."
+        },
+        {
+          "text": "She cleans her bedroom every Saturday.",
+          "vi": "Thứ Bảy nào cô ấy cũng dọn phòng ngủ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "master bedroom",
+          "vi": "phòng ngủ chính"
+        }
+      ],
+      "imageQuery": "bedroom interior",
+      "ipaUs": "/ˈbɛdˌɹum/",
+      "ipaUk": "/ˈbɛdɹuːm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bedroom",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/bedroom.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5903851/photo-image-public-domain-interior-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bedroom interior",
+        "sha256": "30513d04788c2ebe0d6adf4100d4ee59e7182d59483d00fbcdf8cd87bbb5024c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "living room",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "phòng khách",
+      "meaningEn": "the room where people sit and relax together",
+      "examples": [
+        {
+          "text": "We watch television in the living room.",
+          "vi": "Chúng tôi xem tivi trong phòng khách."
+        },
+        {
+          "text": "The living room has a big sofa.",
+          "vi": "Phòng khách có một chiếc ghế sofa lớn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "in the living room",
+          "vi": "trong phòng khách"
+        }
+      ],
+      "imageQuery": "living room interior",
+      "ipaUs": "/ˈlɪvɪŋ ɹum/",
+      "ipaUk": "/ˈlɪvɪŋ ɹʊm/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/living + https://en.wiktionary.org/wiki/room",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/living-room.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/96511847@N04/9200481377",
+        "author": "Foto Miki Digital",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "living room interior",
+        "sha256": "1ded0f20bd8d705fdeab9abf2348e173044212513a08ebf795d33e4bd50e0dc7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "kitchen",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "nhà bếp",
+      "meaningEn": "the room where food is cooked",
+      "examples": [
+        {
+          "text": "My mother is cooking in the kitchen.",
+          "vi": "Mẹ tôi đang nấu ăn trong bếp."
+        },
+        {
+          "text": "The kitchen smells like fresh bread.",
+          "vi": "Nhà bếp thơm mùi bánh mì mới nướng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "kitchen table",
+          "vi": "bàn ăn trong bếp"
+        }
+      ],
+      "imageQuery": "kitchen interior",
+      "ipaUs": "/ˈkɪt͡ʃ(ə)n/",
+      "ipaUk": "/ˈkɪt͡ʃ(ɪ)n/",
+      "ipaSource": "https://en.wiktionary.org/wiki/kitchen",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/kitchen.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6043001/photo-image-public-domain-house-kitchen",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "kitchen interior",
+        "sha256": "afb6f12fce4cfd2c9ed06848371e413f5ec2341e399a31cc8dbd68f9b94e553c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bathroom",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "phòng tắm",
+      "meaningEn": "a room with a bath or shower and a sink",
+      "examples": [
+        {
+          "text": "The bathroom is next to my bedroom.",
+          "vi": "Phòng tắm nằm cạnh phòng ngủ của tôi."
+        },
+        {
+          "text": "He brushes his teeth in the bathroom.",
+          "vi": "Cậu ấy đánh răng trong phòng tắm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bathroom mirror",
+          "vi": "gương phòng tắm"
+        }
+      ],
+      "imageQuery": "bathroom interior",
+      "ipaUs": "/ˈbæθˌɹum/",
+      "ipaUk": "/ˈbɑːθɹʊm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bathroom",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/bathroom.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6042963/photo-image-public-domain-house-red",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bathroom interior",
+        "sha256": "f881201f5f9ca884bf4b7520beaa361c374ba1755fdb9b517b3331f3f37668f3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "toilet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "nhà vệ sinh, bồn cầu",
+      "meaningEn": "a seat or small room used for getting rid of body waste",
+      "examples": [
+        {
+          "text": "Excuse me, where is the toilet?",
+          "vi": "Xin lỗi, nhà vệ sinh ở đâu ạ?"
+        },
+        {
+          "text": "The toilet is at the end of the hall.",
+          "vi": "Nhà vệ sinh ở cuối hành lang."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "public toilet",
+          "vi": "nhà vệ sinh công cộng"
+        }
+      ],
+      "imageQuery": "toilet bathroom",
+      "ipaUs": "/ˈtɔɪ.lət/",
+      "ipaUk": "/ˈtɔɪ.lət/",
+      "ipaSource": "https://en.wiktionary.org/wiki/toilet",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/toilet.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/29507259@N02/3553015733",
+        "author": "D Coetzee",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "toilet bathroom",
+        "sha256": "858352be5e9b15cf0a57a9219a67c7f1a5698ca5dace2f52f1ce85d2c3e0e7ca",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "garden",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "khu vườn",
+      "meaningEn": "a piece of land near a house with flowers or plants",
+      "examples": [
+        {
+          "text": "My father grows roses in the garden.",
+          "vi": "Bố tôi trồng hoa hồng trong vườn."
+        },
+        {
+          "text": "The children are playing in the garden.",
+          "vi": "Bọn trẻ đang chơi trong vườn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "back garden",
+          "vi": "vườn sau nhà"
+        }
+      ],
+      "imageQuery": "flower garden",
+      "ipaUs": "/ˈɡɑɹ.d(ə)n/",
+      "ipaUk": "/ˈɡɑː.d(ə)n/",
+      "ipaSource": "https://en.wiktionary.org/wiki/garden",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/garden.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/12070225@N03/48030717673",
+        "author": "judy dean",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "flower garden",
+        "sha256": "25b78e767b5d76ad756e59aa6ec237b7d519f582a49762998cf126dac5cf5507",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "garage",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nhà để xe",
+      "meaningEn": "a building or room where you keep a car",
+      "examples": [
+        {
+          "text": "He parked the car in the garage.",
+          "vi": "Anh ấy đỗ xe trong nhà để xe."
+        },
+        {
+          "text": "Our garage is full of old boxes.",
+          "vi": "Nhà để xe của chúng tôi chứa đầy thùng cũ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "garage door",
+          "vi": "cửa nhà để xe"
+        }
+      ],
+      "imageQuery": "garage door",
+      "ipaUs": "/ɡəˈɹɑʒ/",
+      "ipaUk": "/ˈɡæ.ɹɪdʒ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/garage",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/garage.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Garage_Door.png",
+        "author": "Pikoshak",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "garage door",
+        "sha256": "39cb4311d678280f8962677925d5a3445d619c2ed4718548dab8e2bd56c475b9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "balcony",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ban công",
+      "meaningEn": "a small platform outside an upper window with a rail",
+      "plural": "balconies",
+      "examples": [
+        {
+          "text": "She drinks tea on the balcony.",
+          "vi": "Cô ấy uống trà ngoài ban công."
+        },
+        {
+          "text": "The apartment has a small balcony.",
+          "vi": "Căn hộ có một ban công nhỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "on the balcony",
+          "vi": "ngoài ban công"
+        }
+      ],
+      "imageQuery": "balcony",
+      "ipaUs": "/ˈbælkəni/",
+      "ipaUk": "/ˈbælkəni/",
+      "ipaSource": "https://en.wiktionary.org/wiki/balcony",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/balcony.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/171425013@N02/48245119207",
+        "author": "GeorgeTan#2...INACTIVE NOW",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "balcony",
+        "sha256": "f6a42000d021e77fb3fdcd74df158f5349f4cf511bed6fcd36f1b6de11e74893",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "stairs",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cầu thang",
+      "meaningEn": "a set of steps that go up or down inside a building",
+      "examples": [
+        {
+          "text": "He ran up the stairs.",
+          "vi": "Cậu ấy chạy lên cầu thang."
+        },
+        {
+          "text": "Be careful on the stairs.",
+          "vi": "Hãy cẩn thận trên cầu thang."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go up the stairs",
+          "vi": "đi lên cầu thang"
+        },
+        {
+          "text": "go down the stairs",
+          "vi": "đi xuống cầu thang"
+        }
+      ],
+      "imageQuery": "staircase interior",
+      "ipaUs": "/ˈstɛɹz/",
+      "ipaUk": "/ˈstɛəz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/stairs",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/stairs.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/staircase-interior-HRFCE1Y4MY",
+        "author": "Matt Bango",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "staircase interior",
+        "sha256": "006a42a2fe6109e3cd0cb6c5c4a024db61d3c97044134d504f1cb4d0f8712227",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "roof",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "mái nhà",
+      "meaningEn": "the top outside part of a building",
+      "examples": [
+        {
+          "text": "A cat is sitting on the roof.",
+          "vi": "Một con mèo đang ngồi trên mái nhà."
+        },
+        {
+          "text": "The rain made a loud noise on the roof.",
+          "vi": "Mưa làm mái nhà kêu to."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "roof tile",
+          "vi": "ngói lợp mái"
+        }
+      ],
+      "imageQuery": "house roof",
+      "ipaUs": "/ɹuːf/",
+      "ipaUk": "/ɹuːf/",
+      "ipaSource": "https://en.wiktionary.org/wiki/roof",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/roof.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/house-roof-SQQD7NUGYO",
+        "author": "The Building Envelope",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "house roof",
+        "sha256": "99040b7dbd044ca60418d15468f8c9c1bb23d2948ddea655f8baa19d2044a41f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wall",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bức tường",
+      "meaningEn": "a side of a room or building made of brick or stone",
+      "examples": [
+        {
+          "text": "There is a picture on the wall.",
+          "vi": "Có một bức tranh trên tường."
+        },
+        {
+          "text": "They painted the wall white.",
+          "vi": "Họ sơn bức tường màu trắng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "brick wall",
+          "vi": "tường gạch"
+        }
+      ],
+      "imageQuery": "brick wall",
+      "ipaUs": "/wɔl/",
+      "ipaUk": "/wɔːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/wall",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/wall.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/68782296@N04/6343992973",
+        "author": "bartoszjanusz",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "brick wall",
+        "sha256": "7bd2f69487fba303571bffdc5071301a593c7c83120554260acd4872a4557987",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "floor",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "sàn nhà; tầng",
+      "meaningEn": "the surface you walk on inside a room",
+      "examples": [
+        {
+          "text": "The floor is clean and shiny.",
+          "vi": "Sàn nhà sạch và bóng."
+        },
+        {
+          "text": "My room is on the third floor.",
+          "vi": "Phòng của tôi ở tầng ba."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wooden floor",
+          "vi": "sàn gỗ"
+        },
+        {
+          "text": "ground floor",
+          "vi": "tầng trệt"
+        }
+      ],
+      "imageQuery": "wooden floor",
+      "ipaUs": "/floɹ/",
+      "ipaUk": "/flɔː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/floor",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/floor.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6032920/photo-image-public-domain-wooden-house",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "wooden floor",
+        "sha256": "b54883cb46a8739a1982d4fe299b2a29de3a50749cd9eb833ae3ce46f1034cf3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ceiling",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "trần nhà",
+      "meaningEn": "the inside surface at the top of a room",
+      "examples": [
+        {
+          "text": "The ceiling in this room is very high.",
+          "vi": "Trần nhà của căn phòng này rất cao."
+        },
+        {
+          "text": "A small light hangs from the ceiling.",
+          "vi": "Một chiếc đèn nhỏ treo trên trần nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "high ceiling",
+          "vi": "trần nhà cao"
+        }
+      ],
+      "imageQuery": "ceiling lights",
+      "ipaUs": "/ˈsilɪŋ/",
+      "ipaUk": "/ˈsiːlɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ceiling",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/ceiling.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/27168d27ee/",
+        "author": "Bigul Malayi",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "ceiling lights",
+        "sha256": "fc79a5e1828193eea2d09634bc45713b36c7492d416ce5477f77e39d57876735",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "door",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cánh cửa",
+      "meaningEn": "a flat object you open to go in or out of a room",
+      "examples": [
+        {
+          "text": "Please close the door behind you.",
+          "vi": "Làm ơn đóng cửa lại sau lưng bạn."
+        },
+        {
+          "text": "Someone is knocking on the door.",
+          "vi": "Có ai đó đang gõ cửa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "front door",
+          "vi": "cửa trước"
+        },
+        {
+          "text": "open the door",
+          "vi": "mở cửa"
+        }
+      ],
+      "imageQuery": "wooden door",
+      "ipaUs": "/do(ː)ɹ/",
+      "ipaUk": "/do(ː)ɹ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/door",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/door.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/97107718@N08/9014442199",
+        "author": "omerify",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "wooden door",
+        "sha256": "2774cb19833fa65aacaa0e24c08262bfdcf6d43065b0a6c20dcdfa3e850c90a1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "window",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cửa sổ",
+      "meaningEn": "an opening with glass in a wall that lets in light",
+      "examples": [
+        {
+          "text": "She looked out of the window.",
+          "vi": "Cô ấy nhìn ra ngoài cửa sổ."
+        },
+        {
+          "text": "Please open the window for some fresh air.",
+          "vi": "Làm ơn mở cửa sổ cho thoáng khí."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open the window",
+          "vi": "mở cửa sổ"
+        }
+      ],
+      "imageQuery": "house window",
+      "ipaUs": "/ˈwɪndoʊ/",
+      "ipaUk": "/ˈwɪndəʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/window",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/window.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/house-windows-RSFIEDZDKO",
+        "author": "Rob Bye",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "house window",
+        "sha256": "fc20e757c7cbd41deea7d54cb46da639a08dc867b5566a5c7a4e2503dd122eae",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "gate",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cổng",
+      "meaningEn": "a door in a fence or wall outside a building",
+      "examples": [
+        {
+          "text": "The gate is open, so please come in.",
+          "vi": "Cổng đang mở, mời bạn vào."
+        },
+        {
+          "text": "A dog waits at the garden gate.",
+          "vi": "Một con chó đợi ở cổng vườn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "front gate",
+          "vi": "cổng trước"
+        }
+      ],
+      "imageQuery": "garden gate",
+      "ipaUs": "/ˈɡeɪ̯t/",
+      "ipaUk": "/ˈɡeɪ̯t/",
+      "ipaSource": "https://en.wiktionary.org/wiki/gate",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/gate.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/89918055@N05/51777033435",
+        "author": "JOHN K THORNE",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "garden gate",
+        "sha256": "75eddb1dd9861017b76098e4944181d466acd55eb7ff23bddcbaca91314769b3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "yard",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sân",
+      "meaningEn": "an open area next to a house",
+      "examples": [
+        {
+          "text": "The kids play in the yard after school.",
+          "vi": "Bọn trẻ chơi ngoài sân sau giờ học."
+        },
+        {
+          "text": "We have a big yard behind the house.",
+          "vi": "Chúng tôi có một cái sân lớn sau nhà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "back yard",
+          "vi": "sân sau"
+        }
+      ],
+      "imageQuery": "house backyard",
+      "ipaUs": "/ˈjɑɹd/",
+      "ipaUk": "/ˈjɑːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/yard",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/yard.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Integral_Urban_House_Backyard.jpg",
+        "author": "U.S. Department of Energy",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "house backyard",
+        "sha256": "11392746f1a0beb4292b200fa64424459fb15a2b3bd4d9f3dfb725b02064ab24",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "attic",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "gác mái",
+      "meaningEn": "a room under the roof of a house",
+      "examples": [
+        {
+          "text": "We keep old boxes in the attic.",
+          "vi": "Chúng tôi cất những cái thùng cũ trên gác mái."
+        },
+        {
+          "text": "The attic is dusty and dark.",
+          "vi": "Gác mái đầy bụi và tối."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "attic room",
+          "vi": "phòng gác mái"
+        }
+      ],
+      "imageQuery": "attic room",
+      "ipaUs": "/ˈætɪk/",
+      "ipaUk": "/ˈætɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/attic",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/attic.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/96511847@N04/10560655534",
+        "author": "Foto Miki Digital",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "attic room",
+        "sha256": "3a8ecb7590559ba195ce8e0fff744079d77f88082120a2b4404dc8d9944b9740",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "basement",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "tầng hầm",
+      "meaningEn": "a floor of a building below the ground",
+      "examples": [
+        {
+          "text": "The washing machine is in the basement.",
+          "vi": "Máy giặt đặt ở tầng hầm."
+        },
+        {
+          "text": "It is cool and quiet in the basement.",
+          "vi": "Dưới tầng hầm mát và yên tĩnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "basement floor",
+          "vi": "tầng hầm"
+        }
+      ],
+      "imageQuery": "basement room",
+      "ipaUs": "/ˈbeɪsmənt/",
+      "ipaUk": "/ˈbeɪsmənt/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/basement",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a10/basement.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/193428582@N06/51297598319",
+        "author": "yvthzwli86",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "basement room",
+        "sha256": "204f57ae73e4ec04b6a8b75bd92c9352ae39d8d79edcaed7ddfb61026c8ec435",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hallway",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "hành lang",
+      "meaningEn": "a narrow space inside a building that leads to rooms",
+      "examples": [
+        {
+          "text": "The coats are hanging in the hallway.",
+          "vi": "Những chiếc áo khoác được treo ở hành lang."
+        },
+        {
+          "text": "Do not run in the hallway.",
+          "vi": "Đừng chạy trong hành lang."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "long hallway",
+          "vi": "hành lang dài"
+        }
+      ],
+      "imageQuery": "hallway interior",
+      "ipaUs": "/ˈhɔlˌweɪ/",
+      "ipaUk": "/ˈhɔːlweɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hallway",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/hallway.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3297625/free-photo-image-alone-architecture-bannister",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "hallway interior",
+        "sha256": "c6323039b391ba5d9021ec273ee8c5d4adea5436ae51d708f81a37bb8ebb8cc4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "dining room",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "phòng ăn",
+      "meaningEn": "a room where people eat their meals",
+      "examples": [
+        {
+          "text": "The whole family eats in the dining room.",
+          "vi": "Cả nhà ăn cơm trong phòng ăn."
+        },
+        {
+          "text": "The dining room has a long wooden table.",
+          "vi": "Phòng ăn có một chiếc bàn gỗ dài."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "dining room table",
+          "vi": "bàn phòng ăn"
+        }
+      ],
+      "imageQuery": "dining room",
+      "ipaUs": "/ˈdaɪnɪŋ(ɡ) ɹum/",
+      "ipaUk": "/ˈdaɪnɪŋ(ɡ) ɹʊm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/dining + https://en.wiktionary.org/wiki/room",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/dining-room.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/80223459@N05/17158604515",
+        "author": "YellowstoneNPS",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "dining room",
+        "sha256": "06e1afb261597d778f8aab9604e4138d9cdf237e2025364cf05291924339ac56",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "chimney",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ống khói",
+      "meaningEn": "a tall pipe on a roof that lets smoke out",
+      "examples": [
+        {
+          "text": "Smoke is coming out of the chimney.",
+          "vi": "Khói đang bay ra từ ống khói."
+        },
+        {
+          "text": "A bird made a nest in the chimney.",
+          "vi": "Một con chim làm tổ trong ống khói."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "chimney smoke",
+          "vi": "khói từ ống khói"
+        }
+      ],
+      "imageQuery": "chimney roof",
+      "ipaUs": "/ˈt͡ʃɪmni/",
+      "ipaUk": "/ˈt͡ʃɪmni/",
+      "ipaSource": "https://en.wiktionary.org/wiki/chimney",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/chimney.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6027141/photo-image-public-domain-home-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "chimney roof",
+        "sha256": "8e4b31fd5f22b2c48fd13f6197bdbdb4108ab50d95b9c2eecaea88edc08d5d80",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "elevator",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "thang máy",
+      "meaningEn": "a machine that carries people up and down in a building",
+      "examples": [
+        {
+          "text": "Take the elevator to the tenth floor.",
+          "vi": "Hãy đi thang máy lên tầng mười."
+        },
+        {
+          "text": "The elevator is broken today.",
+          "vi": "Hôm nay thang máy bị hỏng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "take the elevator",
+          "vi": "đi thang máy"
+        }
+      ],
+      "synonyms": [
+        "lift"
+      ],
+      "imageQuery": "elevator lift",
+      "ipaUs": "/ˈɛləˌveɪtɚ/",
+      "ipaUk": "/ˈɛləˌveɪtə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/elevator",
+      "ipaVerified": true,
+      "image": {
+        "file": "a10/elevator.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/62518311@N00/140627317",
+        "author": "Daquella manera",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "elevator lift",
+        "sha256": "50c41d9c3d4173954fdc06b281078f10090258f40498fdf5d8d936b6838f7dd4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
