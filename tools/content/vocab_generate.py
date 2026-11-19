@@ -2695,6 +2695,178 @@ def sport_icon(name: str) -> bytes:
     return finish(img)
 
 
+def art_icon(name: str) -> bytes:
+    """Flat original drawing for an art or culture word (kind "art")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+    GOLD = (250, 204, 21)
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=5, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    d.rectangle((0, 300 * s, W * s, H * s), fill=(214, 196, 160))
+    if name == "art studio":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(254, 249, 195))
+        box(300, 40, 440, 160, (186, 230, 253), 4, 4)
+        line(150, 100, 90, 310, 8, (120, 72, 36))
+        line(190, 100, 250, 310, 8, (120, 72, 36))
+        box(100, 40, 240, 170, (255, 255, 255), 4, 4)
+        poly([(110, 160), (160, 90), (200, 130), (230, 100), (230, 160)], (74, 222, 128))
+        _person(d, 330, 150, 1.5, "f", (124, 58, 237))
+        for k, c in enumerate(((220, 38, 38), (250, 204, 21), (37, 99, 235))):
+            oval(40 + k * 36, 262, 66 + k * 36, 288, c, 3)
+    elif name == "carving":
+        poly([(150, 100), (330, 100), (350, 280), (130, 280)], (180, 120, 70))
+        for k in range(5):
+            line(150 + k * 10, 120 + k * 36, 330 - k * 6, 130 + k * 36, 3, (120, 72, 36))
+        poly([(200, 140), (240, 110), (280, 140), (270, 220), (210, 220)], (214, 160, 100))
+        oval(218, 150, 232, 164, L, 0)
+        oval(248, 150, 262, 164, L, 0)
+        poly([(380, 80), (440, 40), (450, 60), (396, 110)], (170, 178, 192))
+        box(370, 100, 410, 140, (120, 72, 36), 6, 3)
+    elif name == "palette":
+        poly([(70, 160), (110, 70), (230, 40), (370, 70), (430, 160), (390, 260), (290, 300), (220, 250), (150, 270), (80, 230)], (254, 215, 170))
+        oval(210, 190, 270, 250, (214, 196, 160), 3)
+        for (x, y, c) in ((130, 110, (220, 38, 38)), (200, 80, (250, 204, 21)), (280, 76, (37, 99, 235)), (350, 110, (22, 163, 74)), (390, 170, (219, 39, 119))):
+            oval(x - 22, y - 22, x + 22, y + 22, c, 3)
+        line(380, 250, 440, 190, 10, (120, 72, 36))
+    elif name == "audience":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(76, 29, 149))
+        box(60, 20, 420, 110, (30, 41, 59), 4, 3)
+        for row in range(2):
+            for k in range(6):
+                _person(d, 50 + k * 76 + row * 38, 130 + row * 66, 1.0, "m" if (k + row) % 2 else "f", [(220, 38, 38), (250, 204, 21), (37, 99, 235), (22, 163, 74), (219, 39, 119), (234, 88, 12)][k % 6])
+    elif name == "backstage":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(51, 65, 85))
+        box(60, 40, 220, 200, (255, 255, 255), 6, 4)
+        for k in range(6):
+            oval(66 + (k % 3) * 52 + 6, 46 + (k // 3) * 150, 90 + (k % 3) * 52, 66 + (k // 3) * 150, (254, 240, 138), 2)
+        box(250, 80, 440, 130, (148, 163, 184), 4, 3)
+        for k in range(4):
+            poly([(270 + k * 44, 130), (300 + k * 44, 130), (310 + k * 44, 270), (260 + k * 44, 270)], [(219, 39, 119), (37, 99, 235), (250, 204, 21), (22, 163, 74)][k])
+        _person(d, 130, 140, 1.4, "f", (124, 58, 237))
+    elif name == "costume":
+        poly([(180, 90), (300, 90), (390, 300), (90, 300)], (124, 58, 237))
+        poly([(180, 90), (240, 130), (300, 90), (270, 60), (210, 60)], (250, 204, 21))
+        oval(190, 10, 290, 70, (250, 213, 172))
+        for k in range(5):
+            d.polygon(poly_star((140 + k * 50) * s, (200 + (k % 2) * 40) * s, 14 * s, 6 * s, 5), fill=GOLD, outline=L)
+    elif name == "face paint":
+        oval(130, 40, 350, 300, (250, 213, 172), 5)
+        for sx in (-1, 1):
+            oval(240 + sx * 56 - 14, 130, 240 + sx * 56 + 14, 160, L, 0)
+            poly([(240 + sx * 90, 190), (240 + sx * 60, 210), (240 + sx * 100, 230)], (220, 38, 38))
+        d.arc((190 * s, 190 * s, 290 * s, 250 * s), 20, 160, fill=L, width=6 * s)
+        for k, c in enumerate(((37, 99, 235), (250, 204, 21), (22, 163, 74))):
+            line(190 + k * 50, 90, 210 + k * 50, 70, 8, c)
+        d.polygon(poly_star(240 * s, 190 * s, 16 * s, 7 * s, 5), fill=(219, 39, 119), outline=L)
+    elif name == "marionette":
+        box(160, 20, 320, 40, (120, 72, 36), 4, 3)
+        for x in (190, 240, 290):
+            line(x, 40, x, 120 if x == 240 else 150, 2)
+        oval(214, 110, 266, 160, (250, 213, 172))
+        poly([(210, 165), (270, 165), (284, 250), (196, 250)], (220, 38, 38))
+        for sx in (-1, 1):
+            line(240 + sx * 36, 175, 240 + sx * 70, 220, 7, (250, 213, 172))
+            line(240 + sx * 14, 250, 240 + sx * 24, 320, 8, (37, 99, 235))
+        line(190, 40, 170, 190, 2)
+        line(290, 40, 310, 190, 2)
+    elif name == "traditional dress":
+        poly([(210, 40), (270, 40), (290, 120), (310, 320), (170, 320), (190, 120)], (219, 39, 119))
+        poly([(210, 40), (240, 80), (270, 40)], (255, 255, 255))
+        poly([(190, 130), (290, 130), (300, 150), (180, 150)], (250, 204, 21))
+        poly([(110, 320), (170, 140), (190, 140), (200, 320)], (255, 255, 255))
+        poly([(280, 320), (290, 140), (310, 140), (370, 320)], (255, 255, 255))
+        oval(215, 0, 265, 40, (250, 213, 172))
+    else:
+        raise SystemExit(f"unknown art icon: {name}")
+    return finish(img)
+
+
+def city_icon(name: str) -> bytes:
+    """Flat original drawing for a city or housing word (kind "city")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=5, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    def text(x, y, t, size, col=L):
+        d.text((x * s, y * s), t, fill=col, font=_big_font(size * s))
+
+    def house(x, y, w, h, col):
+        box(x, y, x + w, y + h, col, 2, 3)
+        poly([(x - 8, y), (x + w / 2, y - h * 0.55), (x + w + 8, y)], (220, 38, 38))
+        box(x + w / 2 - 12, y + h - 40, x + w / 2 + 12, y + h, (120, 72, 36), 2, 2)
+        box(x + 10, y + 16, x + 34, y + 40, (147, 197, 253), 2, 2)
+
+    d.rectangle((0, 0, W * s, 280 * s), fill=(186, 230, 253))
+    d.rectangle((0, 280 * s, W * s, H * s), fill=(134, 239, 172))
+    if name == "fountain":
+        box(110, 250, 370, 290, (203, 213, 225), 14, 4)
+        box(210, 180, 270, 252, (203, 213, 225), 6, 4)
+        box(150, 170, 330, 190, (203, 213, 225), 10, 4)
+        for sx in (-1, 1):
+            d.arc(((240 - 90 + sx * 0) * s, 40 * s, 330 * s, 200 * s), 200 if sx < 0 else 270, 270 if sx < 0 else 340, fill=(59, 130, 246), width=6 * s)
+        line(240, 70, 240, 180, 7, (59, 130, 246))
+        for k in range(5):
+            oval(130 + k * 50, 262, 150 + k * 50, 278, (147, 197, 253), 0)
+    elif name == "suburb":
+        for k, c in enumerate(((254, 215, 170), (187, 247, 208), (221, 214, 254), (254, 240, 138))):
+            house(30 + k * 110, 170 + (k % 2) * 20, 90, 80, c)
+        line(0, 290, 480, 290, 4, (148, 163, 184))
+        oval(400, 20, 450, 70, (250, 204, 21), 3)
+    elif name == "rent":
+        house(60, 130, 170, 130, (254, 215, 170))
+        box(290, 90, 440, 240, (255, 255, 255), 8, 4)
+        text(312, 104, "FOR RENT", 28, (220, 38, 38))
+        text(312, 150, "$500", 60)
+        line(365, 240, 365, 300, 8)
+    elif name == "landlord":
+        house(50, 130, 170, 130, (254, 215, 170))
+        _person(d, 330, 110, 1.6, "m", (30, 58, 138))
+        for k in range(3):
+            oval(400 + k * 0, 150 + k * 16, 424, 170 + k * 16, (250, 204, 21), 3)
+        line(350, 215, 420, 205, 7, (250, 213, 172))
+        oval(404, 190, 440, 224, (250, 204, 21), 3)
+        line(414, 204, 430, 204, 3)
+    elif name == "neighbourhood":
+        line(0, 262, 480, 262, 10, (148, 163, 184))
+        for k, c in enumerate(((254, 215, 170), (187, 247, 208), (221, 214, 254), (254, 240, 138))):
+            house(24 + k * 116, 150, 96, 90, c)
+        for x in (60, 300):
+            line(x, 260, x, 230, 8, (120, 72, 36))
+            oval(x - 26, 180, x + 26, 240, (74, 222, 128), 3)
+        _person(d, 250, 200, 0.9, "f", (219, 39, 119))
+    else:
+        raise SystemExit(f"unknown city icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -2757,6 +2929,10 @@ def main() -> None:
             data = media_icon(val)
         elif kind == "sport":
             data = sport_icon(val)
+        elif kind == "art":
+            data = art_icon(val)
+        elif kind == "city":
+            data = city_icon(val)
         elif kind == "scene":
             data = scene_image(card["term"], card.get("imageQuery", ""), i, manifest["set"]["code"])
         else:

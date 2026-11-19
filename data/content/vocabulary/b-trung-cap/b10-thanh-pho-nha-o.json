@@ -1,0 +1,1210 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B10",
+    "name": "Thành phố & nhà ở",
+    "description": "#b1 #b2 #city #housing",
+    "topic": "Thành phố & nhà ở",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "skyscraper",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tòa nhà chọc trời",
+      "meaningEn": "a very tall building in a city",
+      "examples": [
+        {
+          "text": "The city has more than fifty skyscrapers.",
+          "vi": "Thành phố có hơn năm mươi tòa nhà chọc trời."
+        },
+        {
+          "text": "We had dinner on the top floor of a skyscraper.",
+          "vi": "Chúng tôi ăn tối ở tầng cao nhất của một tòa nhà chọc trời."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "tall skyscraper",
+          "vi": "tòa nhà chọc trời cao"
+        },
+        {
+          "text": "glass skyscraper",
+          "vi": "tòa nhà chọc trời bằng kính"
+        }
+      ],
+      "imageQuery": "skyscrapers city skyline",
+      "ipaUs": "/ˈskaɪˌskɹeɪpɚ/",
+      "ipaUk": "/ˈskaɪˌskɹeɪp.ə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/skyscraper",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/skyscraper.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Ho_Chi_Minh_City_Skyline_at_Night.jpg",
+        "author": "Tran Van Ngoc",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "skyscrapers city skyline",
+        "sha256": "748b5890fe783f324b3a792a9a9dfbcbbd061448ced0d66f84ace61272c26b04",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "traffic jam",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "kẹt xe",
+      "meaningEn": "a long line of vehicles that cannot move quickly",
+      "examples": [
+        {
+          "text": "We were stuck in a traffic jam for an hour.",
+          "vi": "Chúng tôi bị kẹt xe cả tiếng đồng hồ."
+        },
+        {
+          "text": "The traffic jam was caused by an accident.",
+          "vi": "Vụ kẹt xe do một tai nạn gây ra."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "get stuck in a traffic jam",
+          "vi": "bị kẹt xe"
+        },
+        {
+          "text": "heavy traffic jam",
+          "vi": "kẹt xe nghiêm trọng"
+        }
+      ],
+      "imageQuery": "traffic jam cars road",
+      "ipaUs": "/ˈtɹæfɪk ˈd͡ʒæm/",
+      "ipaUk": "/ˈtɹæfɪk ˈd͡ʒæm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/traffic + https://en.wiktionary.org/wiki/jam",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/traffic-jam.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6042719/cars-the-road-free-public-domain-cc0-photo",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "traffic jam cars road",
+        "sha256": "ab4960661d146b2c21e244923fbc2c8ea6fd8f25312d57ffaa4fc273a07d403d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "traffic light",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "đèn giao thông",
+      "meaningEn": "a set of red, yellow and green lights that control vehicles",
+      "examples": [
+        {
+          "text": "Stop when the traffic light is red.",
+          "vi": "Hãy dừng lại khi đèn giao thông màu đỏ."
+        },
+        {
+          "text": "The traffic light turned green.",
+          "vi": "Đèn giao thông chuyển sang màu xanh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wait at a traffic light",
+          "vi": "chờ ở đèn giao thông"
+        },
+        {
+          "text": "red traffic light",
+          "vi": "đèn giao thông đỏ"
+        }
+      ],
+      "imageQuery": "traffic light intersection",
+      "ipaUs": "/ˈtɹæfɪk ɫɐɪt/",
+      "ipaUk": "/ˈtɹæfɪk lɑjt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/traffic + https://en.wiktionary.org/wiki/light",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/traffic-light.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/62518311@N00/132549916",
+        "author": "Daquella manera",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "traffic light intersection",
+        "sha256": "5299fb6eff21739dbba97c4d7c61cc60306c077326c33c0becc8166906c38f8d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "zebra crossing",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "vạch qua đường",
+      "meaningEn": "black and white stripes where people can cross the road",
+      "examples": [
+        {
+          "text": "Always use the zebra crossing near the school.",
+          "vi": "Hãy luôn dùng vạch qua đường gần trường học."
+        },
+        {
+          "text": "The car stopped at the zebra crossing.",
+          "vi": "Chiếc xe dừng lại ở vạch qua đường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cross at the zebra crossing",
+          "vi": "qua đường ở vạch dành cho người đi bộ"
+        },
+        {
+          "text": "busy zebra crossing",
+          "vi": "vạch qua đường đông đúc"
+        }
+      ],
+      "imageQuery": "zebra crossing street",
+      "ipaUs": "/ˈziː.bɹə ˈkɹɔsɪŋ/",
+      "ipaUk": "/ˈziː.bɹə ˈkɹɒsɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/zebra + https://en.wiktionary.org/wiki/crossing",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/zebra-crossing.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6038718/photo-image-public-domain-white-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "zebra crossing street",
+        "sha256": "9898144c50983469de7fe2cd3e59711b94b59b6c56d92e16fe31c8d68ead6d87",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "pavement",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "vỉa hè",
+      "meaningEn": "the path at the side of a road for people on foot",
+      "examples": [
+        {
+          "text": "Please walk on the pavement, not on the road.",
+          "vi": "Hãy đi trên vỉa hè, đừng đi dưới lòng đường."
+        },
+        {
+          "text": "The pavement was wet after the rain.",
+          "vi": "Vỉa hè ướt sau cơn mưa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wide pavement",
+          "vi": "vỉa hè rộng"
+        },
+        {
+          "text": "walk along the pavement",
+          "vi": "đi dọc vỉa hè"
+        }
+      ],
+      "imageQuery": "pavement sidewalk street",
+      "ipaUs": "/ˈpeɪvm(ə)nt/",
+      "ipaUk": "/ˈpeɪvm(ə)nt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pavement",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/pavement.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Sun_and_shadows_of_the_urban_trees_on_the_pavement,_in_Sarphatistraat;_free_photo_Amsterdam_city,_Fons_Heijnsbroek_10-2021.jpg",
+        "author": "Fons Heijnsbroek",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "pavement sidewalk street",
+        "sha256": "376edd9db8ca63f4d57a12a90041af6aea1b9d537b9e023c808e4f0ac457c2e5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "crossroads",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "ngã tư",
+      "meaningEn": "a place where two roads cross each other",
+      "examples": [
+        {
+          "text": "Turn left at the crossroads.",
+          "vi": "Hãy rẽ trái ở ngã tư."
+        },
+        {
+          "text": "There is a petrol station at the crossroads.",
+          "vi": "Có một trạm xăng ở ngã tư."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "at the crossroads",
+          "vi": "ở ngã tư"
+        },
+        {
+          "text": "busy crossroads",
+          "vi": "ngã tư đông đúc"
+        }
+      ],
+      "imageQuery": "crossroads road intersection",
+      "ipaUs": "/ˈkɹɒsɹəʊdz/",
+      "ipaUk": "/ˈkɹɒsɹəʊdz/",
+      "ipaSource": "https://en.wiktionary.org/wiki/crossroads",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "b10/crossroads.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:High_Street_at_the_Ashley_Road_and_Waterloo_Road_intersection,_Epsom,_2024.jpg",
+        "author": "DimiTalen",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "crossroads road intersection",
+        "sha256": "d9e4e30626cdaea69d66372ea270c26db3bfa3ab8d096d56264313a2b2c7c78c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "roundabout",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "vòng xoay",
+      "meaningEn": "a circular place where roads meet and traffic goes round",
+      "examples": [
+        {
+          "text": "Take the second exit at the roundabout.",
+          "vi": "Hãy đi lối ra thứ hai ở vòng xoay."
+        },
+        {
+          "text": "There is a new roundabout near my school.",
+          "vi": "Có một vòng xoay mới gần trường tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "take the second exit",
+          "vi": "đi lối ra thứ hai"
+        },
+        {
+          "text": "busy roundabout",
+          "vi": "vòng xoay đông xe"
+        }
+      ],
+      "imageQuery": "roundabout road traffic",
+      "ipaUs": "/ˈɹaʊndəˌbaʊt/",
+      "ipaUk": "/ˈɹaʊndəˌbaʊt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/roundabout",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/roundabout.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/64355152@N07/29235175003",
+        "author": "NDDOT Photos",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "roundabout road traffic",
+        "sha256": "40733576b93cf9422a7d39eeed5d46f9eea18bca0594e7cd1f74c997e1787697",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bus stop",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "trạm xe buýt",
+      "meaningEn": "a place where buses stop for passengers",
+      "examples": [
+        {
+          "text": "I wait at the bus stop every morning.",
+          "vi": "Sáng nào tôi cũng đợi ở trạm xe buýt."
+        },
+        {
+          "text": "The bus stop is just across the street.",
+          "vi": "Trạm xe buýt ở ngay bên kia đường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wait at the bus stop",
+          "vi": "đợi ở trạm xe buýt"
+        },
+        {
+          "text": "nearest bus stop",
+          "vi": "trạm xe buýt gần nhất"
+        }
+      ],
+      "imageQuery": "bus stop shelter",
+      "ipaUs": "/bʌs stɑp/",
+      "ipaUk": "/bʌs stɒp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bus + https://en.wiktionary.org/wiki/stop",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/bus-stop.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/25802865@N08/55296042458",
+        "author": "chooyutshing",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "bus stop shelter",
+        "sha256": "d964881b50ad23613fc0366e850ca3d593415b04713d57c33faaed8a8975fa0a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "street lamp",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đèn đường",
+      "meaningEn": "a tall light beside a road",
+      "examples": [
+        {
+          "text": "The street lamps come on at six o'clock.",
+          "vi": "Đèn đường bật lên lúc sáu giờ."
+        },
+        {
+          "text": "An old street lamp stood at the corner.",
+          "vi": "Một chiếc đèn đường cũ đứng ở góc phố."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "light a street lamp",
+          "vi": "thắp đèn đường"
+        },
+        {
+          "text": "old street lamp",
+          "vi": "đèn đường cũ"
+        }
+      ],
+      "imageQuery": "street lamp evening",
+      "ipaUs": "/stɹit æ/",
+      "ipaUk": "/stɹiːt ˈlæ̞mp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/street + https://en.wiktionary.org/wiki/lamp",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/street-lamp.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5910146/image-light-public-domain-trees",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "street lamp evening",
+        "sha256": "95127f6834d089ea7c1ab33750571072018cb7bbd16d44e3f3c3943596bd9189",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "fountain",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đài phun nước",
+      "meaningEn": "a structure that sends water up into the air",
+      "examples": [
+        {
+          "text": "Children played near the fountain in the square.",
+          "vi": "Trẻ em chơi gần đài phun nước ở quảng trường."
+        },
+        {
+          "text": "There is a stone fountain in the park.",
+          "vi": "Có một đài phun nước bằng đá trong công viên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "stone fountain",
+          "vi": "đài phun nước bằng đá"
+        },
+        {
+          "text": "fountain in the square",
+          "vi": "đài phun nước ở quảng trường"
+        }
+      ],
+      "imageQuery": "city fountain square",
+      "ipaUs": "/ˈfaʊn.tn̩/",
+      "ipaUk": "/ˈfaʊn.tɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/fountain",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "city",
+        "value": "fountain"
+      },
+      "image": {
+        "file": "b10/fountain.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:city:fountain",
+        "sha256": "228d53ae27f04a72ab3331917b6cfae46f03131afae54ba25d5500df9738d130",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "monument",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đài tưởng niệm",
+      "meaningEn": "a large structure built to remember a person or event",
+      "examples": [
+        {
+          "text": "The monument stands in the middle of the square.",
+          "vi": "Đài tưởng niệm đứng ở giữa quảng trường."
+        },
+        {
+          "text": "Thousands of tourists visit the monument each year.",
+          "vi": "Hàng nghìn du khách đến thăm đài tưởng niệm mỗi năm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "national monument",
+          "vi": "đài tưởng niệm quốc gia"
+        },
+        {
+          "text": "visit a monument",
+          "vi": "thăm đài tưởng niệm"
+        }
+      ],
+      "imageQuery": "monument city square",
+      "ipaUs": "/ˈmɑnjʊmənt/",
+      "ipaUk": "/ˈmɒnjʊmənt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/monument",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/monument.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/34409164@N06/3621833530",
+        "author": "gnuckx",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "monument city square",
+        "sha256": "fda1f83512cd8cbad2d3baeaf8ed110ce3a6c8def72328f8828d4a7ae082e121",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "town square",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "quảng trường thị trấn",
+      "meaningEn": "an open area in the centre of a town",
+      "examples": [
+        {
+          "text": "People meet in the town square on weekends.",
+          "vi": "Mọi người gặp nhau ở quảng trường thị trấn vào cuối tuần."
+        },
+        {
+          "text": "The market is held in the town square.",
+          "vi": "Phiên chợ được tổ chức ở quảng trường thị trấn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "busy town square",
+          "vi": "quảng trường thị trấn nhộn nhịp"
+        },
+        {
+          "text": "meet in the town square",
+          "vi": "gặp nhau ở quảng trường"
+        }
+      ],
+      "imageQuery": "town square people",
+      "ipaUs": "/ˈtaʊ̯n skwɛə(ɹ)/",
+      "ipaUk": "/ˈtaʊ̯n skwɛə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/town + https://en.wiktionary.org/wiki/square",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/town-square.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/135396164@N05/42124261850",
+        "author": "freestocks.org",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "town square people",
+        "sha256": "0997d2214d41ae54ff04445bbf68a4398b404dc0d25c060ac3d62e242ab3b530",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "suburb",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "vùng ngoại ô",
+      "meaningEn": "an area of houses at the edge of a city",
+      "examples": [
+        {
+          "text": "We live in a quiet suburb.",
+          "vi": "Chúng tôi sống ở một vùng ngoại ô yên tĩnh."
+        },
+        {
+          "text": "The suburb is twenty minutes from the centre.",
+          "vi": "Vùng ngoại ô cách trung tâm hai mươi phút."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "quiet suburb",
+          "vi": "vùng ngoại ô yên tĩnh"
+        },
+        {
+          "text": "live in the suburbs",
+          "vi": "sống ở ngoại ô"
+        }
+      ],
+      "imageQuery": "suburb houses street",
+      "ipaUs": "/ˈsʌbɝb/",
+      "ipaUk": "/ˈsʌbɜːb/",
+      "ipaSource": "https://en.wiktionary.org/wiki/suburb",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "city",
+        "value": "suburb"
+      },
+      "image": {
+        "file": "b10/suburb.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:city:suburb",
+        "sha256": "aaaebb7ff9998b44f18769236f8544cc624eede4341c12f1ec69a08cdde16a51",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "villa",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "biệt thự",
+      "meaningEn": "a large house, often with a garden, in a warm place",
+      "examples": [
+        {
+          "text": "They rented a villa near the sea.",
+          "vi": "Họ thuê một căn biệt thự gần biển."
+        },
+        {
+          "text": "The villa has a swimming pool.",
+          "vi": "Căn biệt thự có một bể bơi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "rent a villa",
+          "vi": "thuê biệt thự"
+        },
+        {
+          "text": "holiday villa",
+          "vi": "biệt thự nghỉ dưỡng"
+        }
+      ],
+      "imageQuery": "villa swimming pool house",
+      "ipaUs": "/ˈvɪlə/",
+      "ipaUk": "/ˈvɪlə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/villa",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/villa.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6023165/photo-image-public-domain-house-summer",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "villa swimming pool house",
+        "sha256": "8518d2352b6894f963d0468edb0f635945ad5d2d0497eae0817c3ab541556db3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cottage",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhà tranh nhỏ ở quê",
+      "meaningEn": "a small house in the countryside",
+      "examples": [
+        {
+          "text": "My grandparents live in a small stone cottage.",
+          "vi": "Ông bà tôi sống trong một căn nhà đá nhỏ ở quê."
+        },
+        {
+          "text": "The cottage has a red door.",
+          "vi": "Căn nhà nhỏ có cánh cửa màu đỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "country cottage",
+          "vi": "nhà nhỏ ở vùng quê"
+        },
+        {
+          "text": "thatched cottage",
+          "vi": "nhà mái tranh"
+        }
+      ],
+      "imageQuery": "cottage countryside house",
+      "ipaUs": "/ˈkɑt.ɪd͡ʒ/",
+      "ipaUk": "/ˈkɒt.ɪd͡ʒ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cottage",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/cottage.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6035960/photo-image-public-domain-blue-green",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cottage countryside house",
+        "sha256": "2a908b93e00eaf61faaba2938a093bd9c16bd9f07e4a548ecc576efba49b6771",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tower block",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "chung cư cao tầng",
+      "meaningEn": "a very tall building with many flats",
+      "examples": [
+        {
+          "text": "Hundreds of families live in this tower block.",
+          "vi": "Hàng trăm gia đình sống trong tòa chung cư cao tầng này."
+        },
+        {
+          "text": "The tower block has two lifts.",
+          "vi": "Tòa chung cư cao tầng có hai thang máy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "live in a tower block",
+          "vi": "sống ở chung cư cao tầng"
+        },
+        {
+          "text": "old tower block",
+          "vi": "chung cư cao tầng cũ"
+        }
+      ],
+      "imageQuery": "tower block flats",
+      "ipaUs": "/ˈtaʊɚ blɑk/",
+      "ipaUk": "/ˈtaʊ.ə(ɹ) blɒk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tower + https://api.dictionaryapi.dev/api/v2/entries/en/block ; https://en.wiktionary.org/wiki/tower + https://en.wiktionary.org/wiki/block",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/tower-block.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Lincoln_Green_2019-07-18_(6).jpg",
+        "author": "Simon Cobb",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "tower block flats",
+        "sha256": "53b349ae72ceecdcd50c2e26f1950448a472cd77fd4aae54a0e68780b23e6d17",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "mailbox",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "hộp thư",
+      "meaningEn": "a box outside a house where letters are delivered",
+      "examples": [
+        {
+          "text": "The postman put a letter in the mailbox.",
+          "vi": "Người đưa thư bỏ một lá thư vào hộp thư."
+        },
+        {
+          "text": "Our mailbox is by the front gate.",
+          "vi": "Hộp thư của chúng tôi ở cạnh cổng trước."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "check the mailbox",
+          "vi": "kiểm tra hộp thư"
+        },
+        {
+          "text": "red mailbox",
+          "vi": "hộp thư màu đỏ"
+        }
+      ],
+      "imageQuery": "mailbox house street",
+      "ipaUs": "/ˈmeɪl.bɑks/",
+      "ipaUk": "/ˈmeɪl.bɑks/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mailbox",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/mailbox.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/23143602121",
+        "author": "Bernard Spragg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "mailbox house street",
+        "sha256": "977768c98abf1071eec683d6650ef0bae3b2f3fda23e2ada53519827223bf065",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "garden gate",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cổng vườn",
+      "meaningEn": "a small door in a fence or wall around a garden",
+      "examples": [
+        {
+          "text": "Please close the garden gate behind you.",
+          "vi": "Làm ơn đóng cổng vườn lại sau lưng bạn."
+        },
+        {
+          "text": "The dog waited at the garden gate.",
+          "vi": "Con chó đợi ở cổng vườn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open the garden gate",
+          "vi": "mở cổng vườn"
+        },
+        {
+          "text": "wooden garden gate",
+          "vi": "cổng vườn bằng gỗ"
+        }
+      ],
+      "imageQuery": "garden gate wooden",
+      "ipaUs": "/ˈɡɑɹ.d(ə)n ˈɡeɪ̯t/",
+      "ipaUk": "/ˈɡɑː.d(ə)n ˈɡeɪ̯t/",
+      "ipaSource": "https://en.wiktionary.org/wiki/garden + https://en.wiktionary.org/wiki/gate",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/garden-gate.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/56068be744/",
+        "author": "Bigul Malayi",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "garden gate wooden",
+        "sha256": "cc1a90c4425301c9db05b675ede221517e50faf23a3418551bf91cc186a8629d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "doorbell",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "chuông cửa",
+      "meaningEn": "a button by a door that makes a sound inside",
+      "examples": [
+        {
+          "text": "Someone is ringing the doorbell.",
+          "vi": "Có ai đó đang bấm chuông cửa."
+        },
+        {
+          "text": "The doorbell rang while we were eating.",
+          "vi": "Chuông cửa reo khi chúng tôi đang ăn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ring the doorbell",
+          "vi": "bấm chuông cửa"
+        },
+        {
+          "text": "press the doorbell",
+          "vi": "nhấn chuông cửa"
+        }
+      ],
+      "imageQuery": "doorbell front door",
+      "ipaUs": "/ˈdɔɹ.bɛl/",
+      "ipaUk": "/ˈdɔː.bɛl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/doorbell",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/doorbell.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Doorbells_on_Sarah_Street,_South_Side,_2024-09-04.jpg",
+        "author": "Cbaile19",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "doorbell front door",
+        "sha256": "21aa41473777ae10ec8c270fdc5fa1039e9f90fcae4956c9894cee3aa92173eb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "key",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "chìa khóa",
+      "meaningEn": "a small metal tool that opens or locks a door",
+      "examples": [
+        {
+          "text": "I left my house key at the office.",
+          "vi": "Tôi để quên chìa khóa nhà ở văn phòng."
+        },
+        {
+          "text": "Do you have the key to the garage?",
+          "vi": "Bạn có chìa khóa nhà để xe không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "house key",
+          "vi": "chìa khóa nhà"
+        },
+        {
+          "text": "turn the key",
+          "vi": "xoay chìa khóa"
+        }
+      ],
+      "imageQuery": "house key lock",
+      "ipaUs": "/ki/",
+      "ipaUk": "/kiː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/key",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/key.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/keys-door-Z1TKDI29FZ",
+        "author": "WDnet Studio",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "house key lock",
+        "sha256": "abcf93caaba369e21322fe9750dd532789ba148d5e1f63acb9b6f9ab51a6f328",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rent",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "tiền thuê nhà",
+      "meaningEn": "money you pay regularly to live in a place you do not own",
+      "examples": [
+        {
+          "text": "The rent for this flat is very high.",
+          "vi": "Tiền thuê căn hộ này rất cao."
+        },
+        {
+          "text": "I pay the rent on the first of every month.",
+          "vi": "Tôi trả tiền thuê nhà vào ngày đầu mỗi tháng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pay the rent",
+          "vi": "trả tiền thuê"
+        },
+        {
+          "text": "monthly rent",
+          "vi": "tiền thuê hằng tháng"
+        }
+      ],
+      "imageQuery": "rent money keys apartment",
+      "ipaUs": "/ˈɹɪ̟nt/",
+      "ipaUk": "/ˈɹɛnt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rent",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "city",
+        "value": "rent"
+      },
+      "image": {
+        "file": "b10/rent.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:city:rent",
+        "sha256": "0c5c34018439464650cd514482b82232d18a383293c267710222e7e7612daa47",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "landlord",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "chủ nhà cho thuê",
+      "meaningEn": "a person who owns a house and rents it to others",
+      "examples": [
+        {
+          "text": "Our landlord lives on the ground floor.",
+          "vi": "Chủ nhà của chúng tôi sống ở tầng trệt."
+        },
+        {
+          "text": "I called the landlord about the broken heater.",
+          "vi": "Tôi gọi cho chủ nhà về chiếc lò sưởi bị hỏng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "meet the landlord",
+          "vi": "gặp chủ nhà"
+        },
+        {
+          "text": "kind landlord",
+          "vi": "chủ nhà tốt bụng"
+        }
+      ],
+      "imageQuery": "landlord tenant keys handover",
+      "ipaUs": "/ˈlæn(d).lɔɹd/",
+      "ipaUk": "/ˈlænd.lɔːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/landlord",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "city",
+        "value": "landlord"
+      },
+      "image": {
+        "file": "b10/landlord.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:city:landlord",
+        "sha256": "aee308b4ff48f0cc7e5dd74c94eec8763e30aad24db5cb40542d404f072c3ecb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "neighbourhood",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "khu phố",
+      "meaningEn": "a part of a town where people live",
+      "examples": [
+        {
+          "text": "It is a safe and friendly neighbourhood.",
+          "vi": "Đây là một khu phố an toàn và thân thiện."
+        },
+        {
+          "text": "There are two parks in my neighbourhood.",
+          "vi": "Có hai công viên trong khu phố của tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "quiet neighbourhood",
+          "vi": "khu phố yên tĩnh"
+        },
+        {
+          "text": "in the neighbourhood",
+          "vi": "trong khu phố"
+        }
+      ],
+      "imageQuery": "neighbourhood street houses",
+      "ipaUs": "/ˈneɪbə.hʊd/",
+      "ipaUk": "/ˈneɪbə.hʊd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/neighbourhood",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "generate": {
+        "kind": "city",
+        "value": "neighbourhood"
+      },
+      "image": {
+        "file": "b10/neighbourhood.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:city:neighbourhood",
+        "sha256": "a4207120792e5027daa09c215544e36f82e56f6bd021528150f3d3c52e1c8bb3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "playground equipment",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "thiết bị sân chơi",
+      "meaningEn": "slides and swings for children to play on",
+      "examples": [
+        {
+          "text": "The playground equipment was repainted last summer.",
+          "vi": "Thiết bị sân chơi được sơn lại vào mùa hè năm ngoái."
+        },
+        {
+          "text": "Safe playground equipment is important.",
+          "vi": "Thiết bị sân chơi an toàn rất quan trọng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "new playground equipment",
+          "vi": "thiết bị sân chơi mới"
+        },
+        {
+          "text": "playground equipment for kids",
+          "vi": "thiết bị sân chơi cho trẻ"
+        }
+      ],
+      "imageQuery": "playground slide swings",
+      "ipaUs": "/ˈpleɪɡɹaʊnd ɪˈkwɪpmənt/",
+      "ipaUk": "/ˈpleɪɡɹaʊnd ɪˈkwɪpmənt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/playground + https://api.dictionaryapi.dev/api/v2/entries/en/equipment ; https://en.wiktionary.org/wiki/playground + https://en.wiktionary.org/wiki/equipment",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/playground-equipment.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6489671/png-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "playground slide swings",
+        "sha256": "60045a374f54616fe291a3d2c405a555818de2f80fe2d8d2f7be8e9f02c9461d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "parking lot",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bãi đỗ xe",
+      "meaningEn": "an open area where people leave their cars",
+      "examples": [
+        {
+          "text": "I left my car in the parking lot behind the mall.",
+          "vi": "Tôi để xe ở bãi đỗ phía sau trung tâm thương mại."
+        },
+        {
+          "text": "The parking lot is full on weekends.",
+          "vi": "Bãi đỗ xe luôn đầy vào cuối tuần."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "find a parking lot",
+          "vi": "tìm bãi đỗ xe"
+        },
+        {
+          "text": "underground parking lot",
+          "vi": "bãi đỗ xe ngầm"
+        }
+      ],
+      "imageQuery": "parking lot cars",
+      "ipaUs": "/ˈpɑɹ.kɪŋ lɑt/",
+      "ipaUk": "/ˈpɑː.kɪŋ lɒt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/parking + https://en.wiktionary.org/wiki/lot",
+      "ipaVerified": true,
+      "image": {
+        "file": "b10/parking-lot.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/43288043@N04/27812931390",
+        "author": "GlacierNPS",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "parking lot cars",
+        "sha256": "7d1fba045c659d54a07ede2fcca010535fb668bb632dcd9b7d45c085271a9726",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
