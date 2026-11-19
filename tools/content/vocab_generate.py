@@ -480,6 +480,14 @@ def people_scene(kind: str) -> bytes:
         d.rounded_rectangle(((cx + 36) * s, 130 * s, (cx + 96) * s, 230 * s), 12 * s, fill=(234, 88, 12), outline=OUTLINE, width=3 * s)
         d.rectangle(((cx - 90) * s, 170 * s, (cx - 40) * s, 215 * s), fill=(253, 224, 71), outline=OUTLINE, width=3 * s)
         d.line(((cx - 65) * s, 170 * s, (cx - 65) * s, 215 * s), fill=OUTLINE, width=2 * s)
+    elif kind == "gymnast":
+        _person(d, cx - 40, 40, 2.6, "f", (124, 58, 237))
+        pts = []
+        for i in range(60):
+            t = i / 59
+            pts.append(((cx + 20 + t * 150) * s, (120 - math.sin(t * 9) * 36 * (1 - t * 0.4) - t * 30) * s))
+        d.line(pts, fill=(236, 72, 153), width=7 * s, joint="curve")
+        d.line((((cx + 20) * s, 128 * s, (cx - 4) * s, 160 * s)), fill=OUTLINE, width=4 * s)
     elif kind == "neighbour":
         d.rectangle((0, 280 * s, W * s, H * s), fill=(187, 222, 176))
         for x0, col in ((20, (250, 204, 21)), (330, (125, 211, 252))):

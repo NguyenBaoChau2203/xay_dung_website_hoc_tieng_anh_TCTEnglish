@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A19",
+    "name": "Thể thao",
+    "description": "#a1 #a2 #sports #hobbies",
+    "topic": "Thể thao",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "football",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bóng đá",
+      "meaningEn": "a team sport where players kick a ball into a goal",
+      "examples": [
+        {
+          "text": "My brother plays football every weekend.",
+          "vi": "Anh trai tôi chơi bóng đá vào mỗi cuối tuần."
+        },
+        {
+          "text": "We watched a football match on television.",
+          "vi": "Chúng tôi xem một trận bóng đá trên tivi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play football",
+          "vi": "chơi bóng đá"
+        },
+        {
+          "text": "football match",
+          "vi": "trận bóng đá"
+        }
+      ],
+      "synonyms": [
+        "soccer"
+      ],
+      "imageQuery": "football soccer ball pitch",
+      "ipaUs": "/ˈfʊt.bɔl/",
+      "ipaUk": "/ˈfʊt.bɔːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/football",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/football.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Adidas_soccer_ball_on_a_grass_pitch_(Unsplash).jpg",
+        "author": "Peter Glaser baraida",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "football soccer ball pitch",
+        "sha256": "c201ae40b8bed35c3ad389ad70e78a7bf19f3c329b212f42c7af378d83fd526e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "basketball",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bóng rổ",
+      "meaningEn": "a game where players throw a ball through a high net",
+      "examples": [
+        {
+          "text": "He is very tall and plays basketball.",
+          "vi": "Cậu ấy rất cao và chơi bóng rổ."
+        },
+        {
+          "text": "We play basketball after school.",
+          "vi": "Chúng tôi chơi bóng rổ sau giờ học."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "basketball court",
+          "vi": "sân bóng rổ"
+        }
+      ],
+      "imageQuery": "basketball hoop court",
+      "ipaUs": "/ˈbæs.kɪt.bɔl/",
+      "ipaUk": "/ˈbɑːs.kɪt.bɔːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/basketball",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/basketball.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/basketball-hoop-JEUPMB2AF7",
+        "author": "Marcin Milewski",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "basketball hoop court",
+        "sha256": "250014a991b6bc93e146558dd846ce993e19decb447a77e94201e22104da7142",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tennis",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "quần vợt",
+      "meaningEn": "a game where two players hit a ball over a net with rackets",
+      "examples": [
+        {
+          "text": "She plays tennis on Saturdays.",
+          "vi": "Cô ấy chơi quần vợt vào các ngày thứ Bảy."
+        },
+        {
+          "text": "We booked a tennis court for two hours.",
+          "vi": "Chúng tôi đặt một sân quần vợt trong hai tiếng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "tennis court",
+          "vi": "sân quần vợt"
+        },
+        {
+          "text": "tennis racket",
+          "vi": "vợt tennis"
+        }
+      ],
+      "imageQuery": "tennis court racket",
+      "ipaUs": "/ˈtɛn.ɪs/",
+      "ipaUk": "/ˈtɛn.ɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tennis",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/tennis.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/tennis-racket-8ODE0WIMD9",
+        "author": "Krzysztof%20Puszczy%u0144ski",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "tennis court racket",
+        "sha256": "a9cfa6b6b8e24cd3aa9b89e0c52e4d770525ea6a1c04fe63ffd510ce2ff82f11",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "badminton",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cầu lông",
+      "meaningEn": "a game where players hit a small feathered shuttlecock over a net",
+      "examples": [
+        {
+          "text": "We play badminton in the park.",
+          "vi": "Chúng tôi chơi cầu lông trong công viên."
+        },
+        {
+          "text": "Badminton is very popular in Vietnam.",
+          "vi": "Cầu lông rất phổ biến ở Việt Nam."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "play badminton",
+          "vi": "chơi cầu lông"
+        }
+      ],
+      "imageQuery": "badminton racket shuttlecock",
+      "ipaUs": "/ˈbæd.mɪn.tən/",
+      "ipaUk": "/ˈbæd.mɪn.tən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/badminton",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/badminton.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3338061/free-photo-image-badminton-cc0-creative-commons",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "badminton racket shuttlecock",
+        "sha256": "9729dea1ecb3a3effe44685b3d4af3da149f3c884d2c776c06a79f5d11587b94",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "volleyball",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bóng chuyền",
+      "meaningEn": "a game where two teams hit a ball over a high net",
+      "examples": [
+        {
+          "text": "We play volleyball on the beach.",
+          "vi": "Chúng tôi chơi bóng chuyền trên bãi biển."
+        },
+        {
+          "text": "The volleyball team practises every Monday.",
+          "vi": "Đội bóng chuyền tập luyện vào mỗi thứ Hai."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "beach volleyball",
+          "vi": "bóng chuyền bãi biển"
+        }
+      ],
+      "imageQuery": "volleyball net ball",
+      "ipaUs": "/ˈvɑlibɔl/",
+      "ipaUk": "/ˈvɒlibɔːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/volleyball",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/volleyball.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5905222/photo-image-public-domain-free-game",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "volleyball net ball",
+        "sha256": "7b18a736b5e17a2d69ed1bd8e5c9d838cb0af75398b3fb7255510f3f44045679",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "swimming",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "môn bơi lội",
+      "meaningEn": "the sport of moving through water using your arms and legs",
+      "examples": [
+        {
+          "text": "I go swimming every Tuesday.",
+          "vi": "Thứ Ba nào tôi cũng đi bơi."
+        },
+        {
+          "text": "Swimming is good for your whole body.",
+          "vi": "Bơi lội tốt cho toàn bộ cơ thể."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "swimming pool",
+          "vi": "hồ bơi"
+        },
+        {
+          "text": "go swimming",
+          "vi": "đi bơi"
+        }
+      ],
+      "imageQuery": "swimming pool lanes",
+      "ipaUs": "/ˈswɪmɪŋ/",
+      "ipaUk": "/ˈswɪmɪŋ/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/swimming",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a19/swimming.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/156869144@N02/52127012983",
+        "author": "Greenville, NC",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "swimming pool lanes",
+        "sha256": "e77556789f79c4f7d2e9cb20b03a08c054378fb6b1c2db16376a329012665a69",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "running",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "môn chạy bộ",
+      "meaningEn": "the activity of moving fast on foot for exercise",
+      "examples": [
+        {
+          "text": "Running in the morning makes me feel fresh.",
+          "vi": "Chạy bộ buổi sáng làm tôi thấy sảng khoái."
+        },
+        {
+          "text": "Running is a cheap sport.",
+          "vi": "Chạy bộ là một môn thể thao rẻ tiền."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go running",
+          "vi": "đi chạy bộ"
+        }
+      ],
+      "imageQuery": "running track shoes",
+      "ipaUs": "/ˈɹʌnɪŋ/",
+      "ipaUk": "/ˈɹʌnɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/running",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/running.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5920547/photo-image-public-domain-people-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "running track shoes",
+        "sha256": "5f91de2ff851f67aaf7436d36e6ec6c96dac8d9b17101a7d88547c0c548886b2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cycling",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn đạp xe",
+      "meaningEn": "the sport or activity of riding a bicycle",
+      "examples": [
+        {
+          "text": "Cycling is my favourite sport.",
+          "vi": "Đạp xe là môn thể thao yêu thích của tôi."
+        },
+        {
+          "text": "We go cycling along the river on Sundays.",
+          "vi": "Chủ nhật chúng tôi đạp xe dọc bờ sông."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go cycling",
+          "vi": "đi đạp xe"
+        }
+      ],
+      "imageQuery": "cycling road bike",
+      "ipaUs": "/ˈsaɪk(ə)lɪŋ/",
+      "ipaUk": "/ˈsaɪk(ə)lɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cycling",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/cycling.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/43288043@N04/50047948161",
+        "author": "GlacierNPS",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "cycling road bike",
+        "sha256": "52931103267ebb1c3a695e5217ce5df4bb1c1f8a201c1403b67577e54f74d1cb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "golf",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn đánh gôn",
+      "meaningEn": "a game where you hit a small ball into holes with a club",
+      "examples": [
+        {
+          "text": "My grandfather plays golf on Sundays.",
+          "vi": "Ông tôi chơi gôn vào các ngày Chủ nhật."
+        },
+        {
+          "text": "The golf course is very green.",
+          "vi": "Sân gôn rất xanh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "golf course",
+          "vi": "sân gôn"
+        }
+      ],
+      "imageQuery": "golf club ball",
+      "ipaUs": "/ɡɑlf/",
+      "ipaUk": "/ɡɒlf/",
+      "ipaSource": "https://en.wiktionary.org/wiki/golf",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/golf.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Golf_ball_on_tee.jpg",
+        "author": "Stefanschenkon",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "golf club ball",
+        "sha256": "cfa42c66a3c7103ba46ba4e9c7ba36724449fb41a5940e3b92658df3e4ba6838",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "table tennis",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bóng bàn",
+      "meaningEn": "a game where players hit a light ball across a table",
+      "examples": [
+        {
+          "text": "We play table tennis after lunch.",
+          "vi": "Chúng tôi chơi bóng bàn sau bữa trưa."
+        },
+        {
+          "text": "He is very good at table tennis.",
+          "vi": "Cậu ấy chơi bóng bàn rất giỏi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "table tennis bat",
+          "vi": "vợt bóng bàn"
+        }
+      ],
+      "synonyms": [
+        "ping-pong"
+      ],
+      "imageQuery": "table tennis",
+      "ipaUs": "/ˈtʰeɪb(ə)ɫ ˈtɛn.ɪs/",
+      "ipaUk": "/ˈteɪbl̩ ˈtɛn.ɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/table + https://en.wiktionary.org/wiki/tennis",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/table-tennis.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5914671/image-public-domain-free-game",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "table tennis",
+        "sha256": "c3d13c27a934b650f9c4981756bd6f4ace9b89236f832261dbae3d67d9a6989b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "boxing",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn đấm bốc",
+      "meaningEn": "a sport where two people fight with their fists",
+      "examples": [
+        {
+          "text": "He trains boxing three times a week.",
+          "vi": "Anh ấy tập đấm bốc ba lần mỗi tuần."
+        },
+        {
+          "text": "Boxing needs a lot of strength.",
+          "vi": "Đấm bốc cần rất nhiều sức mạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "boxing gloves",
+          "vi": "găng đấm bốc"
+        }
+      ],
+      "imageQuery": "boxing gloves",
+      "ipaUs": "/ˈbɑːksɪŋ/",
+      "ipaUk": "/ˈbɒksɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/boxing",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/boxing.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6027844/photo-image-public-domain-blue-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "boxing gloves",
+        "sha256": "3f3476c59761eb864c70cb4e3e57355cad16960db76540f2ba6335edd1141a22",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "yoga",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn yoga",
+      "meaningEn": "gentle exercises that stretch the body and calm the mind",
+      "examples": [
+        {
+          "text": "My mother does yoga every morning.",
+          "vi": "Mẹ tôi tập yoga mỗi buổi sáng."
+        },
+        {
+          "text": "Yoga helps me relax after work.",
+          "vi": "Yoga giúp tôi thư giãn sau giờ làm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "yoga class",
+          "vi": "lớp yoga"
+        },
+        {
+          "text": "yoga mat",
+          "vi": "thảm tập yoga"
+        }
+      ],
+      "imageQuery": "yoga mat",
+      "ipaUs": "/ˈjoʊ.ɡə/",
+      "ipaUk": "/ˈjoʊ.ɡə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/yoga",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a19/yoga.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/11515776/rolled-teal-yoga-mat-its-side",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "yoga mat",
+        "sha256": "899c5dbf1547e610defcd4108f23b7f450e68e3f92765a861c740197ffbba232",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "skiing",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn trượt tuyết",
+      "meaningEn": "the sport of sliding over snow on long thin boards",
+      "examples": [
+        {
+          "text": "We go skiing in the mountains every winter.",
+          "vi": "Mùa đông nào chúng tôi cũng đi trượt tuyết ở trên núi."
+        },
+        {
+          "text": "Skiing is fun but difficult at first.",
+          "vi": "Trượt tuyết rất vui nhưng lúc đầu khá khó."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go skiing",
+          "vi": "đi trượt tuyết"
+        }
+      ],
+      "imageQuery": "skiing snow slope",
+      "ipaUs": "/ˈski.ɪŋ/",
+      "ipaUk": "/ˈski.ɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/skiing",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/skiing.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5901625/photo-image-public-domain-tree-plant",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "skiing snow slope",
+        "sha256": "58187a8318238761d055b4fff2a56beb291fe6a10607b1acb7b518acd9f1ce9b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "skating",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn trượt băng, trượt patin",
+      "meaningEn": "the sport of moving on ice or hard ground with wheels or blades",
+      "examples": [
+        {
+          "text": "Ice skating is popular in winter.",
+          "vi": "Trượt băng được ưa chuộng vào mùa đông."
+        },
+        {
+          "text": "My sister loves skating in the park.",
+          "vi": "Chị tôi rất thích trượt patin trong công viên."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ice skating",
+          "vi": "trượt băng"
+        }
+      ],
+      "imageQuery": "ice skating rink",
+      "ipaUs": "/ˈskeɪtɪŋ/",
+      "ipaUk": "/ˈskeɪtɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/skating",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/skating.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/62518311@N00/8485071687",
+        "author": "Daquella manera",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "ice skating rink",
+        "sha256": "35bcecb5842ba9d83ac464f9f345b72e9c1a6c01a87f66c6f80b31f9ba873395",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "surfing",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn lướt sóng",
+      "meaningEn": "the sport of riding waves on a board",
+      "examples": [
+        {
+          "text": "Surfing is popular on this beach.",
+          "vi": "Lướt sóng rất được ưa chuộng ở bãi biển này."
+        },
+        {
+          "text": "He learned surfing during the summer.",
+          "vi": "Cậu ấy học lướt sóng trong mùa hè."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go surfing",
+          "vi": "đi lướt sóng"
+        }
+      ],
+      "imageQuery": "surfing wave board",
+      "ipaUs": "/ˈsɝfɪŋ/",
+      "ipaUk": "/ˈsɝfɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/surfing",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a19/surfing.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/126288307@N05/20681677698",
+        "author": "watts_photos",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "surfing wave board",
+        "sha256": "9bec043982891325e40648928317a0313fb423f54aad25dd438ae6cd047ff19b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "gymnastics",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn thể dục dụng cụ",
+      "meaningEn": "a sport of exercises that need balance and strength",
+      "examples": [
+        {
+          "text": "She practises gymnastics every afternoon.",
+          "vi": "Cô bé tập thể dục dụng cụ mỗi buổi chiều."
+        },
+        {
+          "text": "Gymnastics needs a lot of balance.",
+          "vi": "Thể dục dụng cụ cần rất nhiều sự thăng bằng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "gymnastics class",
+          "vi": "lớp thể dục dụng cụ"
+        }
+      ],
+      "imageQuery": "gymnast",
+      "ipaUs": "/d͡ʒɪmˈnæs.tɪks/",
+      "ipaUk": "/d͡ʒɪmˈnæs.tɪks/",
+      "ipaSource": "https://en.wiktionary.org/wiki/gymnastics",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "people",
+        "value": "gymnast"
+      },
+      "image": {
+        "file": "a19/gymnastics.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:people:gymnast",
+        "sha256": "7826610913893a3b838d2a1044eb712673f25155f24e3f5b8459d35915719697",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "baseball",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bóng chày",
+      "meaningEn": "a game where a player hits a ball with a bat and runs around bases",
+      "examples": [
+        {
+          "text": "They play baseball in the summer.",
+          "vi": "Họ chơi bóng chày vào mùa hè."
+        },
+        {
+          "text": "My father took me to a baseball game.",
+          "vi": "Bố đưa tôi đi xem một trận bóng chày."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "baseball bat",
+          "vi": "gậy bóng chày"
+        }
+      ],
+      "imageQuery": "baseball glove ball",
+      "ipaUs": "/ˈbeɪs.bɔl/",
+      "ipaUk": "/ˈbeɪs.bɔːl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/baseball",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/baseball.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5922332/photo-image-public-domain-green-black",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "baseball glove ball",
+        "sha256": "a77f862975dab25852603268cf31b3ea194f0c34aba6a79e0424774906de6a19",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hockey",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn khúc côn cầu",
+      "meaningEn": "a game where players hit a ball or puck with a curved stick",
+      "examples": [
+        {
+          "text": "He plays ice hockey in the winter.",
+          "vi": "Anh ấy chơi khúc côn cầu trên băng vào mùa đông."
+        },
+        {
+          "text": "Hockey is a fast and exciting game.",
+          "vi": "Khúc côn cầu là môn nhanh và hấp dẫn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ice hockey",
+          "vi": "khúc côn cầu trên băng"
+        }
+      ],
+      "imageQuery": "hockey stick puck",
+      "ipaUs": "/ˈhɑki/",
+      "ipaUk": "/ˈhɒki/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hockey",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/hockey.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/90949166@N00/4491063392",
+        "author": "davidgsteadman",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "hockey stick puck",
+        "sha256": "e559aa45244e1cbdd1bb8b8ed9160339cdc915d57074abdcbede645b1ffbd409",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rugby",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bóng bầu dục",
+      "meaningEn": "a team game played with an oval ball that players carry and throw",
+      "examples": [
+        {
+          "text": "Rugby is a very strong and fast game.",
+          "vi": "Bóng bầu dục là môn rất mạnh và nhanh."
+        },
+        {
+          "text": "He broke his arm playing rugby.",
+          "vi": "Cậu ấy bị gãy tay khi chơi bóng bầu dục."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "rugby ball",
+          "vi": "quả bóng bầu dục"
+        }
+      ],
+      "imageQuery": "rugby ball",
+      "ipaUs": "/ˈɹʌɡbi/",
+      "ipaUk": "/ˈɹʌɡbi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rugby",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/rugby.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6771192/vector-sticker-public-domain-illustration",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "rugby ball",
+        "sha256": "c56d79dd39ae6396d4fa663777eba10c8e4a1c3d011be7556f2cdb9daeb6f4da",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "karate",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn karate",
+      "meaningEn": "a Japanese fighting sport using hands and feet",
+      "examples": [
+        {
+          "text": "My cousin learns karate at the club.",
+          "vi": "Anh họ tôi học karate ở câu lạc bộ."
+        },
+        {
+          "text": "He has a black belt in karate.",
+          "vi": "Cậu ấy có đai đen karate."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "karate class",
+          "vi": "lớp karate"
+        }
+      ],
+      "imageQuery": "karate",
+      "ipaUs": "/kəˈɹɑ.ti/",
+      "ipaUk": "/kəˈɹɑː.ti/",
+      "ipaSource": "https://en.wiktionary.org/wiki/karate",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/karate.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/30611184@N00/2096700130",
+        "author": "kelannfuller",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "karate",
+        "sha256": "bdb31ab4a47f5a16b4a803711ef33bb407d8d95b16835497ca0afc23b8de0546",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "climbing",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn leo núi, leo vách",
+      "meaningEn": "the sport of going up mountains or walls using hands and feet",
+      "examples": [
+        {
+          "text": "Climbing is hard work but great fun.",
+          "vi": "Leo núi vất vả nhưng rất vui."
+        },
+        {
+          "text": "We go climbing every autumn.",
+          "vi": "Mùa thu nào chúng tôi cũng đi leo núi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "rock climbing",
+          "vi": "leo vách đá"
+        }
+      ],
+      "imageQuery": "rock climbing wall",
+      "ipaUs": "/ˈklaɪ̯mɪŋ/",
+      "ipaUk": "/ˈklaɪ̯mɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/climbing",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a19/climbing.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/136737541@N05/51323491277",
+        "author": "U.S. Army ROTC",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "rock climbing wall",
+        "sha256": "8ad974fd7e0fa4d8ac424ed0c83a3a3811e82e87b3110de9502dd2a4c138761d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "rowing",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn chèo thuyền",
+      "meaningEn": "the sport of moving a boat with long oars",
+      "examples": [
+        {
+          "text": "Rowing makes your arms strong.",
+          "vi": "Chèo thuyền làm đôi tay bạn khỏe lên."
+        },
+        {
+          "text": "The rowing race starts at nine.",
+          "vi": "Cuộc đua chèo thuyền bắt đầu lúc chín giờ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "rowing boat",
+          "vi": "thuyền chèo"
+        }
+      ],
+      "imageQuery": "rowing boat river",
+      "ipaUs": "/ˈɹoʊɪŋ/",
+      "ipaUk": "/ˈɹəʊɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/rowing",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/rowing.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/49196928776",
+        "author": "Bernard Spragg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "rowing boat river",
+        "sha256": "7f8e0facd6d38bf54ae69cbf0d609a6e03dd6054b45ca7b587a400ed6e1d0af9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "archery",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn bắn cung",
+      "meaningEn": "the sport of shooting arrows with a bow",
+      "examples": [
+        {
+          "text": "Archery needs a steady hand.",
+          "vi": "Bắn cung cần một bàn tay vững."
+        },
+        {
+          "text": "She won a prize in archery.",
+          "vi": "Cô ấy giành giải ở môn bắn cung."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "archery target",
+          "vi": "bia bắn cung"
+        }
+      ],
+      "imageQuery": "archery target arrow",
+      "ipaUs": "/ˈɑɹt͡ʃəɹiː/",
+      "ipaUk": "/ˈɑɹt͡ʃəɹiː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/archery",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/archery.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6042094/photo-image-public-domain-arrow-free",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "archery target arrow",
+        "sha256": "47ad76c94331b5ff0bbdbe6c30f04a59e4a972d85de94b4abe04bc4c2fb8e0ac",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "diving",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "môn lặn, môn nhảy cầu",
+      "meaningEn": "the sport of jumping into water or swimming under it",
+      "examples": [
+        {
+          "text": "Diving is popular on this island.",
+          "vi": "Lặn biển rất phổ biến ở hòn đảo này."
+        },
+        {
+          "text": "He took a diving course last summer.",
+          "vi": "Mùa hè năm ngoái cậu ấy học một khóa lặn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "scuba diving",
+          "vi": "lặn có bình khí"
+        }
+      ],
+      "imageQuery": "scuba diving underwater",
+      "ipaUs": "/ˈdaɪ.vɪŋ/",
+      "ipaUk": "/ˈdaɪ.vɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/diving",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a19/diving.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Scuba_Diving_Samaesan_Island.jpg",
+        "author": "Ryland.cairns",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "scuba diving underwater",
+        "sha256": "ff32b2d5701d77598fb925db8e4b5fcdf29cff3b38c34c340facd1d5a45ea715",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "marathon",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cuộc chạy ma-ra-tông",
+      "meaningEn": "a very long running race of about forty-two kilometres",
+      "examples": [
+        {
+          "text": "He ran a marathon last year.",
+          "vi": "Năm ngoái anh ấy đã chạy một cuộc ma-ra-tông."
+        },
+        {
+          "text": "Thousands of people join the marathon.",
+          "vi": "Hàng nghìn người tham gia cuộc chạy ma-ra-tông."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "run a marathon",
+          "vi": "chạy ma-ra-tông"
+        }
+      ],
+      "imageQuery": "marathon runners crowd",
+      "ipaUs": "/ˈmæɹəˌθɑn/",
+      "ipaUk": "/ˈmæɹəθən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/marathon",
+      "ipaVerified": true,
+      "image": {
+        "file": "a19/marathon.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/37585279@N03/14282334315",
+        "author": "U.S. Army Europe",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "marathon runners crowd",
+        "sha256": "fb9f7e81e64f4d357a37b97dcfd2f369734579025f27f97e73a41572c4eb409b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
