@@ -73,6 +73,10 @@ namespace TCTVocabulary.ViewModels
         public string Hue { get; set; } = "primary";
         /// <summary>One of star, talk, book, food, travel, jobs, colors: the cover illustration.</summary>
         public string ArtKey { get; set; } = "star";
+        /// <summary>Safe image URL of the course's own cover card, or null: the illustration is shown instead.</summary>
+        public string? CoverImageUrl { get; set; }
+        /// <summary>The cover word (the image itself stays decorative).</summary>
+        public string CoverAlt { get; set; } = string.Empty;
     }
 
     public class VocabularyCollectionViewModel

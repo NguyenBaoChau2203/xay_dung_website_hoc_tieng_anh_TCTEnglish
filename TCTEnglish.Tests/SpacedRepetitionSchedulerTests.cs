@@ -362,55 +362,81 @@ public sealed class VocabularyEmojiMapTests
 
 public sealed class VocabularyArtKeyTests
 {
+    private static string Key(string? name) => TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor(name);
+
     [Theory]
-    [InlineData("Từ vựng tiếng Anh giao tiếp", 11, "talk")]
-    [InlineData("3000 từ vựng Oxford A1", 13, "book")]
-    [InlineData("3000 từ vựng OXFORD A2", 14, "book")]
-    [InlineData("Đồ ăn & Thức uống", 15, "food")]
-    [InlineData("Thực phẩm hằng ngày", 15, "food")]
-    [InlineData("Du lịch & Địa điểm", 16, "travel")]
-    [InlineData("Nghề nghiệp", 17, "jobs")]
-    [InlineData("Công việc văn phòng", 17, "jobs")]
-    [InlineData("Màu sắc", 18, "colors")]
-    [InlineData("1000 từ tiếng Anh thông dụng", 12, "star")]
-    [InlineData("Từ vựng thông dụng", 12, "star")]
-    public void ArtKeyFor_PicksTheFirstMatchingKeyword(string name, int setId, string expected)
+    [InlineData("Từ vựng tiếng Anh giao tiếp", "talk")]
+    [InlineData("3000 từ vựng Oxford A1", "book")]
+    [InlineData("3000 từ vựng OXFORD A2", "book")]
+    [InlineData("Đồ ăn & Thức uống", "food")]
+    [InlineData("Thực phẩm hằng ngày", "food")]
+    [InlineData("Du lịch & Địa điểm", "travel")]
+    [InlineData("Nghề nghiệp", "jobs")]
+    [InlineData("Công việc văn phòng", "jobs")]
+    [InlineData("Màu sắc", "colors")]
+    [InlineData("1000 từ tiếng Anh thông dụng", "star")]
+    [InlineData("Từ vựng thông dụng", "star")]
+    // keywords added with the cover fix
+    [InlineData("Trái cây", "food")]
+    [InlineData("Rau củ", "food")]
+    [InlineData("Món ăn hằng ngày", "food")]
+    [InlineData("Nấu ăn & chế biến", "food")]
+    [InlineData("Nhà bếp & dụng cụ nấu ăn", "food")]
+    [InlineData("Phương tiện giao thông", "travel")]
+    [InlineData("Du lịch & sân bay", "travel")]
+    [InlineData("Ở sân bay & khách sạn", "travel")]
+    [InlineData("Công việc & văn phòng", "jobs")]
+    [InlineData("Kinh doanh & khởi nghiệp", "jobs")]
+    [InlineData("Màu sắc & hình dạng", "colors")]
+    [InlineData("Nghệ thuật & văn hóa", "colors")]
+    [InlineData("Nhạc cụ & nghệ thuật", "colors")]
+    [InlineData("Chào hỏi & giới thiệu", "talk")]
+    [InlineData("Lịch sự: cảm ơn, xin lỗi, nhờ vả", "talk")]
+    [InlineData("Gọi điện thoại", "talk")]
+    [InlineData("Nói chuyện xã giao", "talk")]
+    [InlineData("Trường học & đồ dùng học tập", "book")]
+    [InlineData("Giáo dục & học tập", "book")]
+    public void ArtKeyFor_PicksTheFirstMatchingKeyword(string name, string expected)
     {
-        Assert.Equal(expected, TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor(name, setId));
+        Assert.Equal(expected, Key(name));
     }
 
     [Fact]
     public void ArtKeyFor_DoesNotMatchInsideAWord()
     {
-        // "Văn hóa" contains the letters "ăn" but is not the word "ăn": the set id (4) decides.
-        var key = TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor("Văn hóa", 4);
-        Assert.Equal("travel", key);
+        // "Văn hóa" contains the letters "ăn" but is not the word "ăn": no rule matches, so the neutral art.
+        Assert.Equal("star", Key("Văn hóa"));
     }
 
     [Theory]
-    [InlineData(0, "star")]
-    [InlineData(1, "talk")]
-    [InlineData(2, "book")]
-    [InlineData(3, "food")]
-    [InlineData(4, "travel")]
-    [InlineData(5, "jobs")]
-    [InlineData(6, "colors")]
-    [InlineData(7, "star")]
-    [InlineData(20, "colors")]
-    public void ArtKeyFor_FallsBackToSetIdModuloSeven(int setId, string expected)
+    [InlineData("Unrelated name")]
+    [InlineData("Động vật hoang dã")]
+    [InlineData("Cơ thể người")]
+    [InlineData("Quần áo & phụ kiện")]
+    [InlineData("Thể thao")]
+    [InlineData("")]
+    [InlineData(null)]
+    public void ArtKeyFor_UnknownNamesGetTheNeutralArt_NeverAThemedOne(string? name)
     {
-        Assert.Equal(expected, TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor("Unrelated name", setId));
-        Assert.Equal(expected, TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor(null, setId));
+        // Regression: the old fallback was setId % 7, which gave wild animals a briefcase and body parts a bowl of noodles.
+        Assert.Equal("star", Key(name));
     }
 
     [Fact]
-    public void ArtKeyFor_IsStableAndAlwaysOneOfTheSevenKeys()
+    public void ArtKeyFor_IsStableAndAlwaysOneOfTheSevenKeys_ForRandomNames()
     {
-        for (var id = -3; id < 50; id++)
+        var random = new Random(20261119);
+        for (var i = 0; i < 300; i++)
         {
-            var key = TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor("x", id);
+            var name = new string(Enumerable.Range(0, random.Next(0, 24)).Select(_ => (char)random.Next('a', 'z' + 1)).ToArray());
+            var key = Key(name);
             Assert.Contains(key, TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeys);
-            Assert.Equal(key, TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor("x", id));
+            Assert.Equal(key, Key(name));
+            // a random Latin string never contains a Vietnamese keyword or "oxford"/digits, so it must be neutral
+            if (!name.Contains("oxford", StringComparison.Ordinal))
+            {
+                Assert.Equal("star", key);
+            }
         }
     }
 }

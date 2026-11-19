@@ -193,6 +193,7 @@ namespace TCTVocabulary.Services
                 .Select(card => new VocabularyCardKeyRow(card.CardId, card.SetId, card.Topic))
                 .ToListAsync();
 
+            var coverCandidates = await LoadVocabularyCoverCandidatesAsync(sys);
             var progress = await LoadSystemProgressAsync(userId, sys);
             var cardsBySet = cardKeys
                 .GroupBy(card => card.SetId)
@@ -217,6 +218,7 @@ namespace TCTVocabulary.Services
                     var card = BuildVocabularyCourseCard(
                         set.SetId, set.SetName, set.Description,
                         keys.Select(key => key.CardId).ToList(), plans.Count, progress, utcNow);
+                    ApplyVocabularyCover(card, coverCandidates.GetValueOrDefault(set.SetId));
                     courses.Add((folder.FolderId, card, plans));
                 }
             }
@@ -309,6 +311,11 @@ namespace TCTVocabulary.Services
             var summary = BuildVocabularyCourseCard(
                 set.SetId, set.SetName, set.Description,
                 cards.Select(card => card.CardId).ToList(), plans.Count, progress, utcNow);
+            ApplyVocabularyCover(summary, cards
+                .Select(card => (Card: card, Url: SafeVocabularyImageUrl(card.ImageUrl)))
+                .Where(item => item.Url != null)
+                .Select(item => new CoverCandidate(item.Card.CardId, item.Card.Term, item.Url!))
+                .ToList());
 
             var nextPlan = plans.FirstOrDefault(plan => !IsLessonDone(plan, progress));
             var termById = cards.ToDictionary(card => card.CardId, card => card.Term);
@@ -827,8 +834,51 @@ namespace TCTVocabulary.Services
                 ProgressPercent = words > 0 ? learned * 100 / words : 0,
                 Status = words > 0 && learned == words ? "done" : learned > 0 ? "progress" : "new",
                 Hue = VocabularyHues[setId % VocabularyHues.Length],
-                ArtKey = VocabularyLessonBuilder.ArtKeyFor(setName, setId)
+                ArtKey = VocabularyLessonBuilder.ArtKeyFor(setName)
             };
+        }
+
+        /// <summary>
+        /// Sets the photo cover of a course from its own card images (see <see cref="VocabularyCoverCatalog"/>).
+        /// Callers load the candidates of all listed courses in one query.
+        /// </summary>
+        private static void ApplyVocabularyCover(VocabularyCourseCardViewModel card, IReadOnlyList<CoverCandidate>? candidates)
+        {
+            var choice = VocabularyCoverCatalog.Pick(card.SetName, candidates ?? Array.Empty<CoverCandidate>());
+            card.CoverImageUrl = choice?.ImageUrl;
+            card.CoverAlt = choice?.Term ?? string.Empty;
+        }
+
+        /// <summary>Cards that have a safe image, of the given system sets (or all system sets), in one query.</summary>
+        private async Task<Dictionary<int, List<CoverCandidate>>> LoadVocabularyCoverCandidatesAsync(int systemUserId, int? setId = null)
+        {
+            var rows = await _context.Cards
+                .AsNoTracking()
+                .Where(card => card.Set.OwnerId == systemUserId
+                    && (!setId.HasValue || card.SetId == setId.Value)
+                    && card.ImageUrl != null && card.ImageUrl != string.Empty)
+                .OrderBy(card => card.CardId)
+                .Select(card => new { card.SetId, card.CardId, card.Term, card.ImageUrl })
+                .ToListAsync();
+
+            var bySet = new Dictionary<int, List<CoverCandidate>>();
+            foreach (var row in rows)
+            {
+                var safe = SafeVocabularyImageUrl(row.ImageUrl);
+                if (safe == null)
+                {
+                    continue;
+                }
+
+                if (!bySet.TryGetValue(row.SetId, out var list))
+                {
+                    bySet[row.SetId] = list = new List<CoverCandidate>();
+                }
+
+                list.Add(new CoverCandidate(row.CardId, row.Term ?? string.Empty, safe));
+            }
+
+            return bySet;
         }
 
         /// <summary>

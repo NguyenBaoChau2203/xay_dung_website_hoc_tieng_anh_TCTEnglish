@@ -73,27 +73,30 @@ namespace TCTVocabulary.Services.Vocabulary
             return string.IsNullOrWhiteSpace(topic) ? DefaultTopic : topic.Trim();
         }
 
-        /// <summary>The seven cover illustrations, in the order used for the stable fallback.</summary>
+        /// <summary>The seven cover illustrations. <c>star</c> is the neutral one.</summary>
         public static readonly IReadOnlyList<string> ArtKeys =
             new[] { "star", "talk", "book", "food", "travel", "jobs", "colors" };
+
+        public const string NeutralArtKey = "star";
 
         // First match wins. Keywords are whole words or word sequences, lower case.
         private static readonly (string Key, string[] Keywords)[] ArtRules =
         {
-            ("talk", new[] { "giao tiếp" }),
-            ("book", new[] { "oxford" }),
-            ("food", new[] { "ăn", "uống", "thực phẩm" }),
-            ("travel", new[] { "du lịch", "địa điểm" }),
-            ("jobs", new[] { "nghề", "công việc" }),
-            ("colors", new[] { "màu" }),
+            ("talk", new[] { "giao tiếp", "chào hỏi", "lịch sự", "điện thoại", "xã giao", "hỏi đường" }),
+            ("book", new[] { "oxford", "trường học", "giáo dục", "học tập" }),
+            ("food", new[] { "ăn", "uống", "thực phẩm", "trái cây", "rau", "món", "nấu", "bếp" }),
+            ("travel", new[] { "du lịch", "địa điểm", "giao thông", "sân bay", "khách sạn", "phương tiện" }),
+            ("jobs", new[] { "nghề", "công việc", "văn phòng", "kinh doanh" }),
+            ("colors", new[] { "màu", "hình dạng", "nghệ thuật", "nhạc cụ" }),
             ("star", new[] { "thông dụng", "1000" })
         };
 
         /// <summary>
-        /// The cover illustration key of a course: by words in its name, otherwise by <c>setId % 7</c>
-        /// so a course keeps the same cover.
+        /// The cover illustration key of a course, by words in its name. A name that matches no rule gets the
+        /// neutral <c>star</c> art, never a themed one: a wrong illustration is worse than a general one.
+        /// (Courses that have card images show a photo instead; see <see cref="VocabularyCoverCatalog"/>.)
         /// </summary>
-        public static string ArtKeyFor(string? setName, int setId)
+        public static string ArtKeyFor(string? setName)
         {
             var padded = " " + string.Join(' ', SplitWords(setName)) + " ";
             foreach (var (key, keywords) in ArtRules)
@@ -107,7 +110,7 @@ namespace TCTVocabulary.Services.Vocabulary
                 }
             }
 
-            return ArtKeys[((setId % ArtKeys.Count) + ArtKeys.Count) % ArtKeys.Count];
+            return NeutralArtKey;
         }
 
         private static IEnumerable<string> SplitWords(string? text)
