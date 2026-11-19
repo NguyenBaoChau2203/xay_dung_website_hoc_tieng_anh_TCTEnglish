@@ -1,0 +1,1218 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B01",
+    "name": "Công việc & văn phòng",
+    "description": "#b1 #b2 #work #office",
+    "topic": "Công việc & văn phòng",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "meeting",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "cuộc họp",
+      "meaningEn": "an organised time when people discuss work together",
+      "examples": [
+        {
+          "text": "The team has a meeting every Monday morning.",
+          "vi": "Cả nhóm họp vào sáng thứ Hai hằng tuần."
+        },
+        {
+          "text": "I was late for the meeting because of the traffic.",
+          "vi": "Tôi đến họp muộn vì kẹt xe."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hold a meeting",
+          "vi": "tổ chức cuộc họp"
+        },
+        {
+          "text": "attend a meeting",
+          "vi": "tham dự cuộc họp"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "meet",
+          "pos": "verb",
+          "vi": "gặp, họp"
+        }
+      ],
+      "imageQuery": "business meeting table",
+      "image": {
+        "file": "b01/meeting.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Deputy_Secretary_of_Defense_Kathleen_Hicks_greets_members_of_the_Defense_Business_Board_during_a_meeting_at_the_Pentagon,_Washington,_D.C.,_August_2,_2023_-_230802-D-PM193-1010.jpg",
+        "author": "U.S. Deputy Secretary of Defense Kathleen H. Hicks",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "business meeting table",
+        "sha256": "224f4ba8647852c9364af960f7225d350b113542171084dfffa41f2fc1f49aa9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈmitɪŋ/",
+      "ipaUk": "/ˈmiːtɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/meeting",
+      "ipaVerified": true
+    },
+    {
+      "term": "folder",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "tập hồ sơ, thư mục giấy",
+      "meaningEn": "a flat cover for keeping loose papers together",
+      "examples": [
+        {
+          "text": "She put the contract in a blue folder.",
+          "vi": "Cô ấy cho hợp đồng vào một tập hồ sơ màu xanh."
+        },
+        {
+          "text": "The folder on my desk is full of invoices.",
+          "vi": "Tập hồ sơ trên bàn tôi đầy hóa đơn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open a folder",
+          "vi": "mở tập hồ sơ"
+        },
+        {
+          "text": "file folder",
+          "vi": "bìa đựng hồ sơ"
+        }
+      ],
+      "imageQuery": "file folder office",
+      "image": {
+        "file": "b01/folder.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:A4_swing_clip_folder_-_purple_-_A-.jpg",
+        "author": "Fructibus",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "file folder office",
+        "sha256": "c41865e8e41fa54b6cd9e5dc3725e78e9ca0df0bb9693c2594fe080dcb17f72a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈfoʊldɚ/",
+      "ipaUk": "/ˈfəʊldə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/folder",
+      "ipaVerified": true
+    },
+    {
+      "term": "clipboard",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bảng kẹp giấy",
+      "meaningEn": "a small board with a clip for holding papers while you write",
+      "examples": [
+        {
+          "text": "The inspector wrote notes on a clipboard.",
+          "vi": "Người kiểm tra ghi chú lên một bảng kẹp giấy."
+        },
+        {
+          "text": "Please sign the form on the clipboard.",
+          "vi": "Vui lòng ký vào mẫu đơn trên bảng kẹp giấy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hold a clipboard",
+          "vi": "cầm bảng kẹp giấy"
+        },
+        {
+          "text": "clipboard and pen",
+          "vi": "bảng kẹp giấy và bút"
+        }
+      ],
+      "imageQuery": "clipboard paper",
+      "image": {
+        "file": "b01/clipboard.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/yellow-paper-QFVXJDCYKP",
+        "author": "Artsy Crafty",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "clipboard paper",
+        "sha256": "52a14ef1049ed082005f0f8950ab038cacae1d511384982bb76d763903b1a5c7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈklɪpbɔɹd/",
+      "ipaUk": "/ˈklɪpbɔːd/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found"
+    },
+    {
+      "term": "paper clip",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "cái kẹp giấy",
+      "meaningEn": "a small bent piece of wire that holds sheets of paper together",
+      "examples": [
+        {
+          "text": "Attach the form to the letter with a paper clip.",
+          "vi": "Hãy kẹp mẫu đơn vào lá thư bằng một cái kẹp giấy."
+        },
+        {
+          "text": "There is a box of paper clips in the drawer.",
+          "vi": "Có một hộp kẹp giấy trong ngăn kéo."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "use a paper clip",
+          "vi": "dùng kẹp giấy"
+        },
+        {
+          "text": "box of paper clips",
+          "vi": "hộp kẹp giấy"
+        }
+      ],
+      "imageQuery": "paper clips",
+      "image": {
+        "file": "b01/paper-clip.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/paper-clip-NHBIJ8NGTB",
+        "author": "Matt Moloney",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "paper clips",
+        "sha256": "30009319879d622b9311447fe318c74b80ced4149d20a15e66d69c416dd9546c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpeɪ̯.pəɹ klɪp/",
+      "ipaUk": "/ˈpeɪ̯.pə klɪp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/paper + https://en.wiktionary.org/wiki/clip",
+      "ipaVerified": true
+    },
+    {
+      "term": "contract",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "hợp đồng",
+      "meaningEn": "a legal agreement that you sign",
+      "examples": [
+        {
+          "text": "She signed a two-year contract with the company.",
+          "vi": "Cô ấy ký hợp đồng hai năm với công ty."
+        },
+        {
+          "text": "Read the contract carefully before you sign it.",
+          "vi": "Hãy đọc kỹ hợp đồng trước khi ký."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "sign a contract",
+          "vi": "ký hợp đồng"
+        },
+        {
+          "text": "permanent contract",
+          "vi": "hợp đồng không thời hạn"
+        }
+      ],
+      "imageQuery": "contract signing pen document",
+      "image": {
+        "file": "b01/contract.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5904897/photo-image-public-domain-hand-person",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "contract signing pen document",
+        "sha256": "37d727649200837b0342d5d5e5cf125d0a426a7451f197f30128fd4a09cf4f6f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈkɑntɹækt/",
+      "ipaUk": "/ˈkɒntɹækt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/contract",
+      "ipaVerified": true
+    },
+    {
+      "term": "office",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "văn phòng",
+      "meaningEn": "a place where people work at desks",
+      "examples": [
+        {
+          "text": "I take the bus to the office every day.",
+          "vi": "Ngày nào tôi cũng đi xe buýt đến văn phòng."
+        },
+        {
+          "text": "Their new office is on the tenth floor.",
+          "vi": "Văn phòng mới của họ ở tầng mười."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "office hours",
+          "vi": "giờ làm việc"
+        },
+        {
+          "text": "head office",
+          "vi": "trụ sở chính"
+        }
+      ],
+      "imageQuery": "open office desks computers",
+      "image": {
+        "file": "b01/office.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:GX-226_-_Wooden_desk_with_computer_lamp_and_statuettes_overlooking_lush_tropical_garden_through_large_windows.jpg",
+        "author": "Palm Beach Police Department",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "open office desks computers",
+        "sha256": "29c8c5b6336476d071684d4da2669b8d8738bf517b4ecd32a4e7e73bcb6ae5d7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈɔfɪs/",
+      "ipaUk": "/ˈɒfɪs/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/office ; https://en.wiktionary.org/wiki/office",
+      "ipaVerified": true
+    },
+    {
+      "term": "coffee machine",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "máy pha cà phê",
+      "meaningEn": "a machine that makes coffee",
+      "examples": [
+        {
+          "text": "The coffee machine in our office is broken again.",
+          "vi": "Chiếc máy pha cà phê ở văn phòng chúng tôi lại hỏng."
+        },
+        {
+          "text": "He got a cup from the coffee machine.",
+          "vi": "Anh ấy lấy một tách từ máy pha cà phê."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "use the coffee machine",
+          "vi": "dùng máy pha cà phê"
+        },
+        {
+          "text": "automatic coffee machine",
+          "vi": "máy pha cà phê tự động"
+        }
+      ],
+      "imageQuery": "coffee machine",
+      "image": {
+        "file": "b01/coffee-machine.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3283560/free-photo-image-restaurant-espresso-cafe",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "coffee machine",
+        "sha256": "3ab68666874e5a28f8577da0a0f3008a459ecae5a885bc9f3c2d5dceda8b19fb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈkɔfi məˈʃin/",
+      "ipaUk": "/ˈkɒfi məˈʃiːn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/coffee + https://en.wiktionary.org/wiki/machine",
+      "ipaVerified": true
+    },
+    {
+      "term": "report",
+      "partsOfSpeech": [
+        "noun",
+        "verb"
+      ],
+      "cefr": "B1",
+      "definition": "bản báo cáo; báo cáo",
+      "meaningEn": "a document that gives information about something",
+      "verbForms": {
+        "past": "reported",
+        "pastParticiple": "reported",
+        "ing": "reporting",
+        "thirdPerson": "reports"
+      },
+      "examples": [
+        {
+          "text": "I have to finish the sales report today.",
+          "vi": "Hôm nay tôi phải hoàn thành báo cáo doanh số."
+        },
+        {
+          "text": "He reported the problem to his manager.",
+          "vi": "Anh ấy báo vấn đề cho quản lý."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "write a report",
+          "vi": "viết báo cáo"
+        },
+        {
+          "text": "annual report",
+          "vi": "báo cáo thường niên"
+        }
+      ],
+      "imageQuery": "business report charts",
+      "image": {
+        "file": "b01/report.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/book-report-G0V362YTA5",
+        "author": "Negative Space",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "business report charts",
+        "sha256": "02e27310a0f10f34b08d76c557308baabace3e6d03d36ce75b272dd101d0be3a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ɹɪˈpoɹt/",
+      "ipaUk": "/ɹɪˈpɔːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/report",
+      "ipaVerified": true
+    },
+    {
+      "term": "presentation",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "bài thuyết trình",
+      "meaningEn": "a talk that shows information to a group",
+      "examples": [
+        {
+          "text": "She gave a clear presentation to the clients.",
+          "vi": "Cô ấy có bài thuyết trình rõ ràng trước khách hàng."
+        },
+        {
+          "text": "I am nervous about tomorrow's presentation.",
+          "vi": "Tôi thấy hồi hộp về bài thuyết trình ngày mai."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "give a presentation",
+          "vi": "thuyết trình"
+        },
+        {
+          "text": "presentation slides",
+          "vi": "slide thuyết trình"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "present",
+          "pos": "verb",
+          "vi": "trình bày"
+        }
+      ],
+      "imageQuery": "presentation projector screen",
+      "image": {
+        "file": "b01/presentation.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6643424/png-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "presentation projector screen",
+        "sha256": "3d0e8034abcad1a97930ba80bc2e7b22fc354529dedbb689a23c5609ed30d1cb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˌpɹɛzənˈteɪʃən/",
+      "ipaUk": "/ˌpɹɛzənˈteɪʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/presentation",
+      "ipaVerified": true
+    },
+    {
+      "term": "office chair",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "ghế văn phòng",
+      "meaningEn": "a chair with wheels that you sit on at a desk",
+      "examples": [
+        {
+          "text": "My office chair is very comfortable.",
+          "vi": "Chiếc ghế văn phòng của tôi rất thoải mái."
+        },
+        {
+          "text": "He spun round on his office chair.",
+          "vi": "Anh ấy xoay vòng trên chiếc ghế văn phòng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "adjust the office chair",
+          "vi": "chỉnh ghế văn phòng"
+        },
+        {
+          "text": "swivel office chair",
+          "vi": "ghế văn phòng xoay"
+        }
+      ],
+      "imageQuery": "office chair",
+      "image": {
+        "file": "b01/office-chair.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/office-desk-N7FUTW0RY5",
+        "author": "Bench Accounting",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "office chair",
+        "sha256": "4e5f2bfe10b29a2f5fe6431c499e363a54ce960da1297828f7ad8e10cf4b007c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈɔfɪs t͡ʃɛɚ/",
+      "ipaUk": "/ˈɒfɪs t͡ʃɛː/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/office + https://en.wiktionary.org/wiki/chair ; https://en.wiktionary.org/wiki/office + https://en.wiktionary.org/wiki/chair",
+      "ipaVerified": true
+    },
+    {
+      "term": "photocopier",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "máy photocopy",
+      "meaningEn": "a machine that makes copies of documents",
+      "examples": [
+        {
+          "text": "The photocopier is jammed again.",
+          "vi": "Máy photocopy lại bị kẹt giấy."
+        },
+        {
+          "text": "He made ten copies on the photocopier.",
+          "vi": "Anh ấy photo mười bản bằng máy photocopy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "use the photocopier",
+          "vi": "dùng máy photocopy"
+        },
+        {
+          "text": "photocopier paper",
+          "vi": "giấy photocopy"
+        }
+      ],
+      "imageQuery": "photocopier office machine",
+      "image": {
+        "file": "b01/photocopier.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6537997/png-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "photocopier office machine",
+        "sha256": "34ff22841bbda42a0810cee69003b62232aae1585159fcc7bf0194863ee5d9f0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈfoʊtoʊˌkɑpiɚ/",
+      "ipaUk": "/ˈfəʊtəʊˌkɒpiə/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found"
+    },
+    {
+      "term": "stapler",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "cái dập ghim",
+      "meaningEn": "a small tool that joins papers with a metal staple",
+      "examples": [
+        {
+          "text": "Can I borrow your stapler for a moment?",
+          "vi": "Mình mượn cái dập ghim của bạn một lát được không?"
+        },
+        {
+          "text": "The stapler is on the shelf next to the pens.",
+          "vi": "Cái dập ghim đặt trên kệ cạnh những cây bút."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "use a stapler",
+          "vi": "dùng dập ghim"
+        },
+        {
+          "text": "staple papers together",
+          "vi": "ghim các tờ giấy lại"
+        }
+      ],
+      "imageQuery": "stapler",
+      "image": {
+        "file": "b01/stapler.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/2761dcbf26/",
+        "author": "Darryl",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "stapler",
+        "sha256": "e1635bf06d4299a88410fff80b25b7d8bf3aca3359fb0813865a97e37954b696",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈsteɪplɚ/",
+      "ipaUk": "/ˈsteɪplə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/stapler",
+      "ipaVerified": true
+    },
+    {
+      "term": "envelope",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "phong bì",
+      "meaningEn": "a paper cover in which you send a letter",
+      "examples": [
+        {
+          "text": "She put the letter in an envelope.",
+          "vi": "Cô ấy cho lá thư vào một cái phong bì."
+        },
+        {
+          "text": "Write the address clearly on the envelope.",
+          "vi": "Hãy viết địa chỉ rõ ràng lên phong bì."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "seal an envelope",
+          "vi": "dán phong bì"
+        },
+        {
+          "text": "brown envelope",
+          "vi": "phong bì màu nâu"
+        }
+      ],
+      "imageQuery": "white envelope",
+      "image": {
+        "file": "b01/envelope.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6330256/png-sticker-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "white envelope",
+        "sha256": "2a34f87b76bf8d24e805cbde62926217b8b7b5b0b76e8baa212eb997e7ab7b69",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈɛnvə(ˌ)loʊp/",
+      "ipaUk": "/ˈɛnvə(ˌ)ləʊp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/envelope",
+      "ipaVerified": true
+    },
+    {
+      "term": "calendar",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "cuốn lịch",
+      "meaningEn": "a chart that shows the days and months of the year",
+      "examples": [
+        {
+          "text": "I marked the meeting on my calendar.",
+          "vi": "Tôi đánh dấu cuộc họp trên cuốn lịch của mình."
+        },
+        {
+          "text": "There is a big calendar on the office wall.",
+          "vi": "Có một cuốn lịch lớn trên tường văn phòng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wall calendar",
+          "vi": "lịch treo tường"
+        },
+        {
+          "text": "check the calendar",
+          "vi": "xem lịch"
+        }
+      ],
+      "imageQuery": "wall calendar",
+      "image": {
+        "file": "b01/calendar.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Manual_scrollable_wooden_wall_calendar.jpg",
+        "author": "Amitbalani",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "wall calendar",
+        "sha256": "535d8dfccf404e6f4dafa5b0189f92555c54d570ef74d1c87b88d790134f0a91",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈkæləndɚ/",
+      "ipaUk": "/ˈkælɪndə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/calendar",
+      "ipaVerified": true
+    },
+    {
+      "term": "business card",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "danh thiếp",
+      "meaningEn": "a small card with your name, job and contact details",
+      "examples": [
+        {
+          "text": "He gave me his business card at the meeting.",
+          "vi": "Anh ấy đưa danh thiếp cho tôi trong cuộc họp."
+        },
+        {
+          "text": "I need to print new business cards.",
+          "vi": "Tôi cần in danh thiếp mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "exchange business cards",
+          "vi": "trao đổi danh thiếp"
+        },
+        {
+          "text": "hand out a business card",
+          "vi": "đưa danh thiếp"
+        }
+      ],
+      "imageQuery": "business cards",
+      "image": {
+        "file": "b01/business-card.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/182378525@N02/48371288526",
+        "author": "FINTOC",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "business cards",
+        "sha256": "0cc0ddf34685599bf1acad396943ab8fe193317df3a7a9566e7d3994efcc915d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈbɪz.nɪs kɑɹd/",
+      "ipaUk": "/ˈbɪz.nɪs kɑːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/business + https://en.wiktionary.org/wiki/card",
+      "ipaVerified": true
+    },
+    {
+      "term": "briefcase",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cặp tài liệu",
+      "meaningEn": "a flat case for carrying papers to work",
+      "examples": [
+        {
+          "text": "He carried a leather briefcase to the office.",
+          "vi": "Anh ấy xách một chiếc cặp da đến văn phòng."
+        },
+        {
+          "text": "She left her briefcase on the train.",
+          "vi": "Cô ấy bỏ quên chiếc cặp tài liệu trên tàu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "leather briefcase",
+          "vi": "cặp da"
+        },
+        {
+          "text": "carry a briefcase",
+          "vi": "xách cặp tài liệu"
+        }
+      ],
+      "imageQuery": "briefcase",
+      "image": {
+        "file": "b01/briefcase.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6030259/vintage-briefcase-free-public-domain-cc0-photo",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "briefcase",
+        "sha256": "6370ac4bf7062a5bcd313dc9ce1b533c78f00a857799bd2bb30927c7b111c323",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈbɹiːfˌkeɪs/",
+      "ipaUk": "/ˈbɹiːfˌkeɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/briefcase",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents"
+    },
+    {
+      "term": "water cooler",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "máy nước uống",
+      "meaningEn": "a machine in an office that gives cool drinking water",
+      "examples": [
+        {
+          "text": "The staff talk by the water cooler at break time.",
+          "vi": "Nhân viên trò chuyện bên máy nước uống trong giờ nghỉ."
+        },
+        {
+          "text": "The water cooler needs a new bottle.",
+          "vi": "Máy nước uống cần thay bình mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fill a cup at the water cooler",
+          "vi": "rót nước ở máy nước uống"
+        },
+        {
+          "text": "office water cooler",
+          "vi": "máy nước uống văn phòng"
+        }
+      ],
+      "imageQuery": "water cooler office",
+      "image": {
+        "file": "b01/water-cooler.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:G._I._Mix_Water-Cooler_-_DPLA_-_ee77d7c40c75f5280a669b3838e8f347_(page_3).jpg",
+        "author": "Department of the Interior. Patent Office. (1849 - 1925)",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "water cooler office",
+        "sha256": "9e847117a82c60cf25661384e37652b32695ad1f6bf0e4368c9b19df565f1ed9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈwɔ.tɚ ˈku.lɚ/",
+      "ipaUk": "/ˈwɔː.tə ˈkuː.lə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/water + https://en.wiktionary.org/wiki/cooler",
+      "ipaVerified": true
+    },
+    {
+      "term": "filing cabinet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tủ đựng hồ sơ",
+      "meaningEn": "a metal cupboard with drawers for keeping documents",
+      "examples": [
+        {
+          "text": "The old contracts are in the filing cabinet.",
+          "vi": "Những hợp đồng cũ nằm trong tủ đựng hồ sơ."
+        },
+        {
+          "text": "She locked the filing cabinet before she left.",
+          "vi": "Cô ấy khóa tủ hồ sơ trước khi ra về."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open a filing cabinet",
+          "vi": "mở tủ hồ sơ"
+        },
+        {
+          "text": "metal filing cabinet",
+          "vi": "tủ hồ sơ bằng kim loại"
+        }
+      ],
+      "imageQuery": "filing cabinet drawers",
+      "image": {
+        "file": "b01/filing-cabinet.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6314596/png-paper-vintage",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "filing cabinet drawers",
+        "sha256": "aca71915d7e14041218c16fdd3a6e46925deccf5adc8b9f17072ebb3fe8cfeea",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈfaɪ.lɪŋ ˈkæbɪnɪt/",
+      "ipaUk": "/ˈfaɪ.lɪŋ ˈkæbɪnɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/filing + https://en.wiktionary.org/wiki/cabinet",
+      "ipaVerified": true
+    },
+    {
+      "term": "conference room",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "phòng họp",
+      "meaningEn": "a large room used for meetings",
+      "examples": [
+        {
+          "text": "The team is waiting in the conference room.",
+          "vi": "Cả nhóm đang đợi trong phòng họp."
+        },
+        {
+          "text": "We booked the conference room for two o'clock.",
+          "vi": "Chúng tôi đã đặt phòng họp lúc hai giờ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "book a conference room",
+          "vi": "đặt phòng họp"
+        },
+        {
+          "text": "large conference room",
+          "vi": "phòng họp lớn"
+        }
+      ],
+      "imageQuery": "conference room table chairs",
+      "image": {
+        "file": "b01/conference-room.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3337630/free-photo-image-boardroom-conference-office-background",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "conference room table chairs",
+        "sha256": "8f38d4716f54c5a04d8b6aab0d906b9ab47d9645edcf23574e36e4a3004d9ebf",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈkɑn.f(ə.)ɹəns ɹum/",
+      "ipaUk": "/ˈkɒn.f(ə.)ɹəns ɹʊm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/conference + https://en.wiktionary.org/wiki/room",
+      "ipaVerified": true
+    },
+    {
+      "term": "cubicle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "ngăn làm việc",
+      "meaningEn": "a small part of an office separated by low walls",
+      "examples": [
+        {
+          "text": "Her cubicle is next to the window.",
+          "vi": "Ngăn làm việc của cô ấy ở cạnh cửa sổ."
+        },
+        {
+          "text": "He decorated his cubicle with family photos.",
+          "vi": "Anh ấy trang trí ngăn làm việc bằng những bức ảnh gia đình."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "work in a cubicle",
+          "vi": "làm việc trong ngăn làm việc"
+        },
+        {
+          "text": "office cubicle",
+          "vi": "ngăn làm việc văn phòng"
+        }
+      ],
+      "imageQuery": "office cubicles",
+      "image": {
+        "file": "b01/cubicle.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Cubicle_land.jpg",
+        "author": "Larsinio at English Wikipedia",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "office cubicles",
+        "sha256": "2352a34dde301b12ae34225d4cde36a81d3633555ea82f673a86d2e6ae40a470",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈkjubɪkəl/",
+      "ipaUk": "/ˈkjuːbɪkəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cubicle",
+      "ipaVerified": true
+    },
+    {
+      "term": "handshake",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "cái bắt tay",
+      "meaningEn": "the act of holding someone's hand to greet them",
+      "examples": [
+        {
+          "text": "They closed the deal with a handshake.",
+          "vi": "Họ chốt thỏa thuận bằng một cái bắt tay."
+        },
+        {
+          "text": "He has a firm handshake.",
+          "vi": "Anh ấy có cái bắt tay chắc chắn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "firm handshake",
+          "vi": "cái bắt tay chắc"
+        },
+        {
+          "text": "shake hands",
+          "vi": "bắt tay"
+        }
+      ],
+      "imageQuery": "handshake business",
+      "image": {
+        "file": "b01/handshake.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/9004444/image-person-handshake-cartoon",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "handshake business",
+        "sha256": "83d5274d9f14babf77e5f2b287744eb4c8cbfbed6ecf8bf141a533c5470c6e49",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈhæn(d)ˌʃeɪk/",
+      "ipaUk": "/ˈhæn(d)ˌʃeɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/handshake",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents"
+    },
+    {
+      "term": "signature",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "chữ ký",
+      "meaningEn": "your name written in your own way",
+      "examples": [
+        {
+          "text": "I need your signature at the bottom of the page.",
+          "vi": "Tôi cần chữ ký của bạn ở cuối trang."
+        },
+        {
+          "text": "The signature on the letter looks very familiar.",
+          "vi": "Chữ ký trên lá thư trông rất quen."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "sign with a signature",
+          "vi": "ký bằng chữ ký"
+        },
+        {
+          "text": "digital signature",
+          "vi": "chữ ký số"
+        }
+      ],
+      "wordFamily": [
+        {
+          "text": "sign",
+          "pos": "verb",
+          "vi": "ký"
+        }
+      ],
+      "imageQuery": "signature pen paper",
+      "image": {
+        "file": "b01/signature.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/paper-steno-A6BMDPM394",
+        "author": "energepic.com",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "signature pen paper",
+        "sha256": "f26ab170578fccb4d3ee904966d5510b5533f9ca1768543e00577b44e0789e8f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈsɪɡ.nə.t͡ʃɚ/",
+      "ipaUk": "/ˈsɪɡ.nə.t͡ʃə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/signature",
+      "ipaVerified": true
+    },
+    {
+      "term": "notice board",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bảng thông báo",
+      "meaningEn": "a board on a wall where people put up messages and notes",
+      "examples": [
+        {
+          "text": "A new timetable is pinned to the notice board.",
+          "vi": "Một thời gian biểu mới được ghim lên bảng thông báo."
+        },
+        {
+          "text": "Please read the notice board before you leave.",
+          "vi": "Vui lòng đọc bảng thông báo trước khi ra về."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pin a note on the notice board",
+          "vi": "ghim giấy lên bảng thông báo"
+        },
+        {
+          "text": "staff notice board",
+          "vi": "bảng thông báo nhân viên"
+        }
+      ],
+      "imageQuery": "notice board cork pins",
+      "image": {
+        "file": "b01/notice-board.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6324535/png-paper-frame-sticker",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "notice board cork pins",
+        "sha256": "863f0cd377cf6ad6d1525b38b7f7e07c8aa56938a4568f89751119c42ac61646",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈnoʊ.tɪs boɹd/",
+      "ipaUk": "/ˈnəʊ.tɪs bɔːd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/notice + https://en.wiktionary.org/wiki/board",
+      "ipaVerified": true
+    },
+    {
+      "term": "desk lamp",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "đèn bàn",
+      "meaningEn": "a small light that stands on a desk",
+      "examples": [
+        {
+          "text": "She turned on the desk lamp and kept working.",
+          "vi": "Cô ấy bật đèn bàn lên và tiếp tục làm việc."
+        },
+        {
+          "text": "This desk lamp has a flexible neck.",
+          "vi": "Chiếc đèn bàn này có cổ uốn được."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "switch on the desk lamp",
+          "vi": "bật đèn bàn"
+        },
+        {
+          "text": "LED desk lamp",
+          "vi": "đèn bàn LED"
+        }
+      ],
+      "imageQuery": "desk lamp",
+      "image": {
+        "file": "b01/desk-lamp.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/135396164@N05/42381074432",
+        "author": "freestocks.org",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "desk lamp",
+        "sha256": "7179d3581fe539eafda0c0a18263d7f43c9d651ea9abee0bc056b6a81d770330",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/dɛsk æ/",
+      "ipaUk": "/dɛsk ˈlæ̞mp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/desk + https://en.wiktionary.org/wiki/lamp",
+      "ipaVerified": true
+    },
+    {
+      "term": "laptop",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "máy tính xách tay",
+      "meaningEn": "a small computer that you can carry",
+      "examples": [
+        {
+          "text": "She works on her laptop at the cafe.",
+          "vi": "Cô ấy làm việc trên máy tính xách tay ở quán cà phê."
+        },
+        {
+          "text": "The company gave every employee a new laptop.",
+          "vi": "Công ty tặng mỗi nhân viên một chiếc máy tính xách tay mới."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open a laptop",
+          "vi": "mở máy tính xách tay"
+        },
+        {
+          "text": "laptop bag",
+          "vi": "túi đựng laptop"
+        }
+      ],
+      "imageQuery": "laptop desk",
+      "image": {
+        "file": "b01/laptop.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/laptop-desk-JCXQS3IVWD",
+        "author": "Lisa Fotios",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "laptop desk",
+        "sha256": "be605b23c0dc2627776e271f512044ad52bc0d6ec53631c75acdd6758de070e9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈlæp.tɑp/",
+      "ipaUk": "/ˈlæp.tɒp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/laptop",
+      "ipaVerified": true
+    }
+  ]
+}

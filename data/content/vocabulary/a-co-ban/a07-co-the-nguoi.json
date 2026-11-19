@@ -1,0 +1,1183 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A07",
+    "name": "Cơ thể người",
+    "description": "#a1 #a2 #body #health",
+    "topic": "Cơ thể người",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "head",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái đầu",
+      "meaningEn": "the top part of the body that holds the brain",
+      "examples": [
+        {
+          "text": "She shook her head and smiled.",
+          "vi": "Cô ấy lắc đầu và mỉm cười."
+        },
+        {
+          "text": "I hit my head on the door.",
+          "vi": "Tôi bị đập đầu vào cánh cửa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "shake your head",
+          "vi": "lắc đầu"
+        }
+      ],
+      "imageQuery": "human head anatomy diagram",
+      "ipaUs": "/hɛd/",
+      "ipaUk": "/hɛd/",
+      "ipaSource": "https://api.dictionaryapi.dev/api/v2/entries/en/head",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "body",
+        "value": "head"
+      },
+      "image": {
+        "file": "a07/head.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:body:head",
+        "sha256": "e6800651b5035b84d992816c1ab4ff30634d1b4e6fd53e7ae84e52d65b226e3f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hair",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "tóc",
+      "meaningEn": "the thin threads that grow on your head",
+      "examples": [
+        {
+          "text": "She has long black hair.",
+          "vi": "Cô ấy có mái tóc đen dài."
+        },
+        {
+          "text": "I wash my hair every morning.",
+          "vi": "Sáng nào tôi cũng gội tóc."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "brush your hair",
+          "vi": "chải tóc"
+        },
+        {
+          "text": "long hair",
+          "vi": "tóc dài"
+        }
+      ],
+      "imageQuery": "long hair",
+      "ipaUs": "/ˈhɛɚ/",
+      "ipaUk": "/ˈhɛə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hair",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "face",
+        "value": "hair"
+      },
+      "image": {
+        "file": "a07/hair.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:face:hair",
+        "sha256": "28e6fb285cbd6eb8027441df7f58b30fb22a9d87bafe36d2ab96f353dd82b230",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "face",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "khuôn mặt",
+      "meaningEn": "the front part of the head with eyes, nose and mouth",
+      "examples": [
+        {
+          "text": "He washed his face with cold water.",
+          "vi": "Cậu ấy rửa mặt bằng nước lạnh."
+        },
+        {
+          "text": "The baby has a round happy face.",
+          "vi": "Em bé có khuôn mặt tròn vui vẻ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wash your face",
+          "vi": "rửa mặt"
+        }
+      ],
+      "imageQuery": "face drawing",
+      "ipaUs": "/feɪ̯s/",
+      "ipaUk": "/feɪ̯s/",
+      "ipaSource": "https://en.wiktionary.org/wiki/face",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "face",
+        "value": "face"
+      },
+      "image": {
+        "file": "a07/face.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:face:face",
+        "sha256": "62f2c44d97499a9852da8ea530d2b1ff37603ab6aa329c3ba6fc193fc8b2674e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "eye",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "con mắt",
+      "meaningEn": "the part of the face you see with",
+      "examples": [
+        {
+          "text": "She closed her eyes and made a wish.",
+          "vi": "Cô ấy nhắm mắt lại và ước một điều."
+        },
+        {
+          "text": "My brother has bright blue eyes.",
+          "vi": "Anh trai tôi có đôi mắt xanh sáng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "close your eyes",
+          "vi": "nhắm mắt"
+        },
+        {
+          "text": "blue eyes",
+          "vi": "mắt xanh"
+        }
+      ],
+      "imageQuery": "human eye close up",
+      "ipaUs": "/ˈaː/",
+      "ipaUk": "/ˈaː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/eye",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents",
+      "image": {
+        "file": "a07/eye.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Close_up_shot_of_the_human_eye,_9_August_2024.jpg",
+        "author": "Kookaaa",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "human eye close up",
+        "sha256": "51e561128f5035e5b469daea5c0ae0f5e465219ef9d59be078892130330750b5",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ear",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái tai",
+      "meaningEn": "the part of the head you hear with",
+      "examples": [
+        {
+          "text": "The dog has two big ears.",
+          "vi": "Con chó có hai cái tai to."
+        },
+        {
+          "text": "He whispered in my ear.",
+          "vi": "Anh ấy thì thầm vào tai tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pierced ear",
+          "vi": "tai xỏ khuyên"
+        }
+      ],
+      "imageQuery": "human ear",
+      "ipaUs": "/ɪɚ/",
+      "ipaUk": "/ɪə̯/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ear",
+      "ipaVerified": true,
+      "image": {
+        "file": "a07/ear.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6258121/image-vintage-public-domain-art",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "human ear",
+        "sha256": "fde697063918d1ab7b9a6f497d2763e3b744eea3ed1d0b123a59ba4dce4a140e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "nose",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái mũi",
+      "meaningEn": "the part of the face you smell with",
+      "examples": [
+        {
+          "text": "My nose is cold today.",
+          "vi": "Hôm nay mũi tôi lạnh."
+        },
+        {
+          "text": "She has a small nose.",
+          "vi": "Cô ấy có chiếc mũi nhỏ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "blow your nose",
+          "vi": "xì mũi"
+        },
+        {
+          "text": "runny nose",
+          "vi": "sổ mũi"
+        }
+      ],
+      "imageQuery": "human nose",
+      "ipaUs": "/noʊ̯z/",
+      "ipaUk": "/nəʊ̯z/",
+      "ipaSource": "https://en.wiktionary.org/wiki/nose",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "face",
+        "value": "nose"
+      },
+      "image": {
+        "file": "a07/nose.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:face:nose",
+        "sha256": "619064fb6ce23a799cce3e06325a2178ee72a9bb51d64ccb2d52a7736a2f767a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "mouth",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái miệng",
+      "meaningEn": "the opening in the face used for eating and speaking",
+      "examples": [
+        {
+          "text": "Open your mouth, please.",
+          "vi": "Làm ơn há miệng ra."
+        },
+        {
+          "text": "The baby put the toy in his mouth.",
+          "vi": "Em bé cho món đồ chơi vào miệng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open your mouth",
+          "vi": "há miệng"
+        }
+      ],
+      "imageQuery": "mouth smile",
+      "ipaUs": "/maʊθ/",
+      "ipaUk": "/maʊθ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mouth",
+      "ipaVerified": true,
+      "image": {
+        "file": "a07/mouth.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/150210070@N05/38551450035",
+        "author": "Smiles7676",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "mouth smile",
+        "sha256": "1eb2e7212aebaa3e389bfee4d6c58e17faffce3f40dcc0a57f2023870c23f319",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tooth",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái răng",
+      "meaningEn": "one of the hard white parts in the mouth used for biting",
+      "plural": "teeth",
+      "examples": [
+        {
+          "text": "The child lost a tooth today.",
+          "vi": "Hôm nay đứa trẻ bị rụng một cái răng."
+        },
+        {
+          "text": "I brush my teeth twice a day.",
+          "vi": "Tôi đánh răng hai lần một ngày."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "brush your teeth",
+          "vi": "đánh răng"
+        }
+      ],
+      "imageQuery": "teeth smile dental",
+      "ipaUs": "/tuːθ/",
+      "ipaUk": "/tuːθ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tooth",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "tooth",
+        "value": "tooth"
+      },
+      "image": {
+        "file": "a07/tooth.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:tooth:tooth",
+        "sha256": "d9ff813b3a4c8729750fb0a8c5a1b15fd383b57794bf91a774b513da5b5ac191",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tongue",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái lưỡi",
+      "meaningEn": "the soft part inside the mouth used for tasting and speaking",
+      "examples": [
+        {
+          "text": "I burned my tongue on the hot soup.",
+          "vi": "Tôi bị bỏng lưỡi vì món súp nóng."
+        },
+        {
+          "text": "The cat has a rough tongue.",
+          "vi": "Con mèo có cái lưỡi nhám."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "stick out your tongue",
+          "vi": "lè lưỡi"
+        }
+      ],
+      "imageQuery": "tongue",
+      "ipaUs": "/tʌŋ/",
+      "ipaUk": "/tʌŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tongue",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "face",
+        "value": "tongue"
+      },
+      "image": {
+        "file": "a07/tongue.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:face:tongue",
+        "sha256": "1ced1c1ee6c8ebc091a32441891d6ce69514b0eb431bc3f1cf9208c0c154eda9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "neck",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cái cổ",
+      "meaningEn": "the part of the body between the head and the shoulders",
+      "examples": [
+        {
+          "text": "A giraffe has a very long neck.",
+          "vi": "Hươu cao cổ có cái cổ rất dài."
+        },
+        {
+          "text": "She wore a scarf around her neck.",
+          "vi": "Cô ấy quấn khăn quanh cổ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a sore neck",
+          "vi": "cổ bị đau"
+        }
+      ],
+      "imageQuery": "neck",
+      "ipaUs": "/nɛk/",
+      "ipaUk": "/nɛk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/neck",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "body",
+        "value": "neck"
+      },
+      "image": {
+        "file": "a07/neck.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:body:neck",
+        "sha256": "70ded397862d2e51637bc9499e2e1439a0de8f593f49683f9d25f0d504562c04",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "shoulder",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bờ vai",
+      "meaningEn": "the part of the body where the arm joins the body",
+      "examples": [
+        {
+          "text": "He carried the bag on his shoulder.",
+          "vi": "Anh ấy đeo chiếc túi trên vai."
+        },
+        {
+          "text": "My shoulder hurts after swimming.",
+          "vi": "Vai tôi đau sau khi đi bơi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "shoulder bag",
+          "vi": "túi đeo vai"
+        }
+      ],
+      "imageQuery": "shoulder",
+      "ipaUs": "/ˈʃoʊldɚ/",
+      "ipaUk": "/ˈʃəʊldə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/shoulder",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "body",
+        "value": "shoulder"
+      },
+      "image": {
+        "file": "a07/shoulder.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:body:shoulder",
+        "sha256": "f31349fd0d152eb907ac2fa05927516f837b2d7db83833c632d434194a34c970",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "arm",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cánh tay",
+      "meaningEn": "the part of the body from the shoulder to the hand",
+      "examples": [
+        {
+          "text": "She broke her arm last week.",
+          "vi": "Tuần trước cô ấy bị gãy tay."
+        },
+        {
+          "text": "He held the baby in his arms.",
+          "vi": "Anh ấy bế em bé trong tay."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fold your arms",
+          "vi": "khoanh tay"
+        }
+      ],
+      "imageQuery": "arm",
+      "ipaUs": "/ɑɹm/",
+      "ipaUk": "/ɑːm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/arm",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "body",
+        "value": "arm"
+      },
+      "image": {
+        "file": "a07/arm.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:body:arm",
+        "sha256": "24cd0e60af0058644d0cc688fd4090830efb6f4cc2010fc310c6ae30fa24be56",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "elbow",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "khuỷu tay",
+      "meaningEn": "the joint in the middle of the arm",
+      "examples": [
+        {
+          "text": "I hurt my elbow when I fell.",
+          "vi": "Tôi bị đau khuỷu tay khi ngã."
+        },
+        {
+          "text": "Do not put your elbows on the table.",
+          "vi": "Đừng chống khuỷu tay lên bàn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bend your elbow",
+          "vi": "gập khuỷu tay"
+        }
+      ],
+      "imageQuery": "elbow",
+      "ipaUs": "/ˈɛlboʊ̯/",
+      "ipaUk": "/ˈɛlbəʊ̯/",
+      "ipaSource": "https://en.wiktionary.org/wiki/elbow",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "body",
+        "value": "elbow"
+      },
+      "image": {
+        "file": "a07/elbow.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:body:elbow",
+        "sha256": "73a9d793b19f5319f7d60e8d003cb62643292eb24d6a6c8cd19d7b47e64433e2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "hand",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bàn tay",
+      "meaningEn": "the part at the end of the arm with fingers",
+      "examples": [
+        {
+          "text": "Wash your hands before you eat.",
+          "vi": "Hãy rửa tay trước khi ăn."
+        },
+        {
+          "text": "She held my hand and smiled.",
+          "vi": "Cô ấy nắm tay tôi và mỉm cười."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wash your hands",
+          "vi": "rửa tay"
+        },
+        {
+          "text": "hold hands",
+          "vi": "nắm tay"
+        }
+      ],
+      "imageQuery": "open hand",
+      "ipaUs": "/hænd/",
+      "ipaUk": "/hænd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/hand",
+      "ipaVerified": true,
+      "image": {
+        "file": "a07/hand.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6036898/photo-image-public-domain-hand-child",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "open hand",
+        "sha256": "19e8777dbfef548974fc54555337c71d103196ca0510ffbac635a4617b4900e3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "finger",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "ngón tay",
+      "meaningEn": "one of the five long parts at the end of the hand",
+      "examples": [
+        {
+          "text": "He cut his finger with a knife.",
+          "vi": "Anh ấy bị dao cắt vào ngón tay."
+        },
+        {
+          "text": "She has a ring on her finger.",
+          "vi": "Cô ấy đeo một chiếc nhẫn trên ngón tay."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "point a finger",
+          "vi": "chỉ tay"
+        }
+      ],
+      "imageQuery": "fingers",
+      "ipaUs": "/ˈfiŋɡɚ/",
+      "ipaUk": "/ˈfɪŋɡə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/finger",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "hand",
+        "value": "finger"
+      },
+      "image": {
+        "file": "a07/finger.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:hand:finger",
+        "sha256": "2412f69ff2fe8905aa0aa70f03b78674a5a7a1f4698deac848864ccdc49e4a1e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "thumb",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ngón tay cái",
+      "meaningEn": "the short thick finger next to the others",
+      "examples": [
+        {
+          "text": "The child sucks his thumb.",
+          "vi": "Đứa bé mút ngón tay cái."
+        },
+        {
+          "text": "She gave me a thumbs up.",
+          "vi": "Cô ấy giơ ngón tay cái lên với tôi."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "thumbs up",
+          "vi": "giơ ngón tay cái (đồng ý)"
+        }
+      ],
+      "imageQuery": "thumbs up",
+      "ipaUs": "/ˈθʌm/",
+      "ipaUk": "/ˈθʌm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/thumb",
+      "ipaVerified": true,
+      "image": {
+        "file": "a07/thumb.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/153404739@N04/27146523518",
+        "author": "dudemanwuzhere",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "thumbs up",
+        "sha256": "81aa7e7e7be40b1f30ab5b348b948403f3090e832c41b61ce2aa9078798fc897",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "chest",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ngực",
+      "meaningEn": "the front part of the body between the neck and the stomach",
+      "examples": [
+        {
+          "text": "He felt a pain in his chest.",
+          "vi": "Anh ấy thấy đau ở ngực."
+        },
+        {
+          "text": "The baby slept on her father's chest.",
+          "vi": "Em bé ngủ trên ngực bố."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "chest pain",
+          "vi": "đau ngực"
+        }
+      ],
+      "imageQuery": "chest anatomy",
+      "ipaUs": "/t͡ʃɛst/",
+      "ipaUk": "/t͡ʃɛst/",
+      "ipaSource": "https://en.wiktionary.org/wiki/chest",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "body",
+        "value": "chest"
+      },
+      "image": {
+        "file": "a07/chest.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:body:chest",
+        "sha256": "b1670f0edd9c47536361a15a41ca98def0554ac540d303083fbebe12efec0824",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "back",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái lưng",
+      "meaningEn": "the part of the body behind the chest",
+      "examples": [
+        {
+          "text": "My back hurts after a long trip.",
+          "vi": "Lưng tôi đau sau chuyến đi dài."
+        },
+        {
+          "text": "The cat is lying on its back.",
+          "vi": "Con mèo đang nằm ngửa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "back pain",
+          "vi": "đau lưng"
+        }
+      ],
+      "imageQuery": "human back",
+      "ipaUs": "/bæk/",
+      "ipaUk": "/bæk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/back",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "body",
+        "value": "back"
+      },
+      "image": {
+        "file": "a07/back.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:body:back",
+        "sha256": "67e1d82e8997dfa1d149a293b58ece9bdfda4b94ce898cff6dc8906e8ecb7925",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "stomach",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bụng, dạ dày",
+      "meaningEn": "the part of the body where food goes after you eat",
+      "examples": [
+        {
+          "text": "My stomach hurts after dinner.",
+          "vi": "Bụng tôi đau sau bữa tối."
+        },
+        {
+          "text": "Do not exercise on a full stomach.",
+          "vi": "Đừng tập thể dục khi bụng đang no."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "stomach ache",
+          "vi": "đau bụng"
+        }
+      ],
+      "imageQuery": "stomach anatomy",
+      "ipaUs": "/ˈstʌmək/",
+      "ipaUk": "/ˈstʌmək/",
+      "ipaSource": "https://en.wiktionary.org/wiki/stomach",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "body",
+        "value": "stomach"
+      },
+      "image": {
+        "file": "a07/stomach.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:body:stomach",
+        "sha256": "47cf4bd328e792bafce5d461a4914670c0fd191372ffce185c321bb4362114df",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "leg",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái chân (từ hông đến bàn chân)",
+      "meaningEn": "the long part of the body you use to walk",
+      "examples": [
+        {
+          "text": "He broke his leg in a football game.",
+          "vi": "Cậu ấy bị gãy chân trong một trận bóng đá."
+        },
+        {
+          "text": "A spider has eight legs.",
+          "vi": "Con nhện có tám chân."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cross your legs",
+          "vi": "bắt chéo chân"
+        }
+      ],
+      "imageQuery": "legs",
+      "ipaUs": "/lɛɡ/",
+      "ipaUk": "/lɛɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/leg",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "body",
+        "value": "leg"
+      },
+      "image": {
+        "file": "a07/leg.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:body:leg",
+        "sha256": "37910adf5517263558a2d78a27608e030c2ddd71e3638bb9ef6de96c0fe78a9a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "knee",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "đầu gối",
+      "meaningEn": "the joint in the middle of the leg",
+      "examples": [
+        {
+          "text": "She fell and hurt her knee.",
+          "vi": "Cô ấy ngã và bị đau đầu gối."
+        },
+        {
+          "text": "The baby sat on his mother's knee.",
+          "vi": "Em bé ngồi trên đầu gối mẹ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bend your knees",
+          "vi": "gập đầu gối"
+        }
+      ],
+      "imageQuery": "knee",
+      "ipaUs": "/ni/",
+      "ipaUk": "/niː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/knee",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "body",
+        "value": "knee"
+      },
+      "image": {
+        "file": "a07/knee.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:body:knee",
+        "sha256": "0c7ba1251b78308e7b5479ac46e90498e6ac98c85dd58414896d1f7a90cc754a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "foot",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "bàn chân",
+      "meaningEn": "the part at the end of the leg that you stand on",
+      "plural": "feet",
+      "examples": [
+        {
+          "text": "My left foot hurts when I walk.",
+          "vi": "Bàn chân trái của tôi đau khi đi bộ."
+        },
+        {
+          "text": "We walked on foot to the market.",
+          "vi": "Chúng tôi đi bộ đến chợ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "on foot",
+          "vi": "đi bộ"
+        }
+      ],
+      "imageQuery": "bare foot",
+      "ipaUs": "/fʊt/",
+      "ipaUk": "/fʊt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/foot",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "body",
+        "value": "foot"
+      },
+      "image": {
+        "file": "a07/foot.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:body:foot",
+        "sha256": "c3a0eb7de03e7c96d3516bdbf6e8725290314ccb550306e0ddb7d2d77d075f88",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "toe",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ngón chân",
+      "meaningEn": "one of the five small parts at the end of the foot",
+      "examples": [
+        {
+          "text": "I hit my toe on the table.",
+          "vi": "Tôi bị va ngón chân vào bàn."
+        },
+        {
+          "text": "She stood on her toes to see.",
+          "vi": "Cô ấy kiễng chân lên để nhìn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "big toe",
+          "vi": "ngón chân cái"
+        }
+      ],
+      "imageQuery": "toes",
+      "ipaUs": "/toʊ/",
+      "ipaUk": "/təʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/toe",
+      "ipaVerified": true,
+      "generate": {
+        "kind": "hand",
+        "value": "toe"
+      },
+      "image": {
+        "file": "a07/toe.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:hand:toe",
+        "sha256": "3f322c53ab93ffefc852bc73530a4a188f1a883ed9d3c84aff78f6799ff9a5d0",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "heart",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "trái tim",
+      "meaningEn": "the organ in the chest that pumps blood",
+      "examples": [
+        {
+          "text": "His heart beats fast when he runs.",
+          "vi": "Tim cậu ấy đập nhanh khi chạy."
+        },
+        {
+          "text": "Exercise is good for your heart.",
+          "vi": "Tập thể dục tốt cho tim."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "heart attack",
+          "vi": "cơn đau tim"
+        }
+      ],
+      "imageQuery": "human heart anatomy",
+      "ipaUs": "/hɑɹt/",
+      "ipaUk": "/hɑːt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/heart",
+      "ipaVerified": true,
+      "image": {
+        "file": "a07/heart.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6478752/vector-sticker-heart-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "human heart anatomy",
+        "sha256": "99dd06d33f946fe573029ebf01e3f313b4a3ffc7134495ec2729eaa2140d58b2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "skin",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "da",
+      "meaningEn": "the outer layer that covers the body",
+      "examples": [
+        {
+          "text": "Use cream if your skin is dry.",
+          "vi": "Hãy dùng kem nếu da bạn bị khô."
+        },
+        {
+          "text": "The sun can hurt your skin.",
+          "vi": "Ánh nắng có thể làm hại da của bạn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "dry skin",
+          "vi": "da khô"
+        },
+        {
+          "text": "sensitive skin",
+          "vi": "da nhạy cảm"
+        }
+      ],
+      "imageQuery": "skin close up",
+      "ipaUs": "/skɪn/",
+      "ipaUk": "/skɪn/",
+      "ipaSource": "https://en.wiktionary.org/wiki/skin",
+      "ipaVerified": true,
+      "image": {
+        "file": "a07/skin.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Human_skin_close-up.jpg",
+        "author": "Montavius Howard (TongCreator), from Pixabay",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "skin close up",
+        "sha256": "d30fe4ce33a39b7e67bbb6f93184d37320081c3892c85872be79eac4fc2a106b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}

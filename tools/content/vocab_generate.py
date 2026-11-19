@@ -154,6 +154,131 @@ def shape_image(name: str) -> bytes:
     return finish(img)
 
 
+
+# ---------------------------------------------------------------- body diagrams (set A07)
+FIG = (205, 214, 232)
+HI = (255, 159, 28)
+SKIN = (246, 214, 184)
+FIG_LINE = (40, 44, 60)
+
+
+def _cap(d, x0, y0, x1, y1, w, fill, line=True):
+    """A capsule (thick rounded line) from (x0,y0) to (x1,y1) with width w, drawn in supersampled pixels."""
+    if line:
+        d.line([(x0, y0), (x1, y1)], fill=FIG_LINE, width=w + 2 * S)
+    r = w // 2
+    for (x, y) in ((x0, y0), (x1, y1)):
+        d.ellipse((x - r - (S if line else 0), y - r - (S if line else 0), x + r + (S if line else 0), y + r + (S if line else 0)), fill=FIG_LINE if line else fill)
+    d.line([(x0, y0), (x1, y1)], fill=fill, width=w)
+    for (x, y) in ((x0, y0), (x1, y1)):
+        d.ellipse((x - r, y - r, x + r, y + r), fill=fill)
+
+
+def figure(part: str, back: bool = False) -> bytes:
+    img, d = canvas()
+    s = S
+    cx = W * s // 2
+    def c(name):
+        return HI if name in part.split("+") else FIG
+    # legs
+    for sx in (-1, 1):
+        _cap(d, cx + sx * 24 * s, 200 * s, cx + sx * 26 * s, 318 * s, 40 * s, c("leg"))
+    # knees
+    for sx in (-1, 1):
+        kx, ky = cx + sx * 25 * s, 268 * s
+        d.ellipse((kx - 17 * s, ky - 17 * s, kx + 17 * s, ky + 17 * s), fill=c("knee"), outline=FIG_LINE, width=2 * s)
+    # feet
+    for sx in (-1, 1):
+        fx = cx + sx * 30 * s
+        d.ellipse((fx - 28 * s, 322 * s, fx + 28 * s, 346 * s), fill=c("foot"), outline=FIG_LINE, width=2 * s)
+    # arms
+    for sx in (-1, 1):
+        _cap(d, cx + sx * 58 * s, 98 * s, cx + sx * 84 * s, 160 * s, 24 * s, c("arm"))
+        _cap(d, cx + sx * 84 * s, 160 * s, cx + sx * 96 * s, 222 * s, 22 * s, c("arm"))
+        ex, ey = cx + sx * 84 * s, 160 * s
+        d.ellipse((ex - 13 * s, ey - 13 * s, ex + 13 * s, ey + 13 * s), fill=c("elbow"), outline=FIG_LINE, width=2 * s)
+        hx, hy = cx + sx * 98 * s, 236 * s
+        d.ellipse((hx - 14 * s, hy - 14 * s, hx + 14 * s, hy + 14 * s), fill=FIG, outline=FIG_LINE, width=2 * s)
+    # torso: upper part (chest) and lower part (stomach)
+    d.rounded_rectangle((cx - 58 * s, 90 * s, cx + 58 * s, 205 * s), 22 * s, fill=FIG, outline=FIG_LINE, width=2 * s)
+    d.rounded_rectangle((cx - 56 * s, 92 * s, cx + 56 * s, 146 * s), 20 * s, fill=c("chest") if not back else c("back"))
+    d.rounded_rectangle((cx - 56 * s, 146 * s, cx + 56 * s, 203 * s), 18 * s, fill=c("stomach") if not back else c("back"))
+    d.line([(cx - 56 * s, 146 * s), (cx + 56 * s, 146 * s)], fill=FIG_LINE if part not in ("chest", "stomach") else FIG_LINE, width=1)
+    # shoulders
+    for sx in (-1, 1):
+        shx, shy = cx + sx * 56 * s, 102 * s
+        d.ellipse((shx - 17 * s, shy - 17 * s, shx + 17 * s, shy + 17 * s), fill=c("shoulder"), outline=FIG_LINE, width=2 * s)
+    # neck and head
+    d.rectangle((cx - 12 * s, 66 * s, cx + 12 * s, 92 * s), fill=c("neck"), outline=FIG_LINE, width=2 * s)
+    d.ellipse((cx - 30 * s, 20 * s, cx + 30 * s, 76 * s), fill=c("head"), outline=FIG_LINE, width=2 * s)
+    if back:  # spine and shoulder blades tell the viewer this is the back
+        d.line([(cx, 94 * s), (cx, 200 * s)], fill=FIG_LINE, width=2 * s)
+        for sx in (-1, 1):
+            d.ellipse((cx + sx * 30 * s - 14 * s, 104 * s, cx + sx * 30 * s + 14 * s, 140 * s), outline=FIG_LINE, width=2 * s)
+    else:
+        for sx in (-1, 1):
+            d.ellipse((cx + sx * 11 * s - 3 * s, 42 * s, cx + sx * 11 * s + 3 * s, 48 * s), fill=FIG_LINE)
+        d.arc((cx - 10 * s, 52 * s, cx + 10 * s, 64 * s), 20, 160, fill=FIG_LINE, width=2 * s)
+    return finish(img)
+
+
+def face_closeup(part: str) -> bytes:
+    img, d = canvas()
+    s = S
+    cx, cy, r = W * s // 2, 186 * s, 150 * s
+    on = lambda name: HI if name == part else None
+    # ears
+    for sx in (-1, 1):
+        d.ellipse((cx + sx * r - 26 * s, cy - 30 * s, cx + sx * r + 26 * s, cy + 40 * s), fill=on("ear") or SKIN, outline=FIG_LINE, width=3 * s)
+    d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=on("face") or SKIN, outline=FIG_LINE, width=3 * s)
+    # hair
+    hair = HI if part == "hair" else (70, 52, 44)
+    d.chord((cx - r - 4 * s, cy - r - 4 * s, cx + r + 4 * s, cy + r + 4 * s), 196, 344, fill=hair, outline=FIG_LINE, width=3 * s)
+    # eyes
+    for sx in (-1, 1):
+        ex, ey = cx + sx * 55 * s, cy - 20 * s
+        d.ellipse((ex - 22 * s, ey - 14 * s, ex + 22 * s, ey + 14 * s), fill="white", outline=FIG_LINE, width=3 * s)
+        d.ellipse((ex - 8 * s, ey - 8 * s, ex + 8 * s, ey + 8 * s), fill=FIG_LINE)
+    # nose
+    d.polygon([(cx, cy - 12 * s), (cx - 16 * s, cy + 38 * s), (cx + 16 * s, cy + 38 * s)], fill=on("nose") or SKIN, outline=FIG_LINE, width=3 * s)
+    # mouth
+    if part in ("tongue",):
+        d.pieslice((cx - 48 * s, cy + 52 * s, cx + 48 * s, cy + 118 * s), 0, 180, fill=(120, 40, 50), outline=FIG_LINE, width=3 * s)
+        d.pieslice((cx - 24 * s, cy + 84 * s, cx + 24 * s, cy + 124 * s), 0, 180, fill=(240, 120, 140), outline=FIG_LINE, width=3 * s)
+    else:
+        d.arc((cx - 52 * s, cy + 46 * s, cx + 52 * s, cy + 100 * s), 20, 160, fill=FIG_LINE, width=5 * s)
+    return finish(img)
+
+
+def tooth_icon() -> bytes:
+    img, d = canvas()
+    s = S
+    cx = W * s // 2
+    pts = [(cx - 70 * s, 70 * s), (cx - 30 * s, 50 * s), (cx, 66 * s), (cx + 30 * s, 50 * s), (cx + 70 * s, 70 * s),
+           (cx + 78 * s, 140 * s), (cx + 55 * s, 200 * s), (cx + 40 * s, 300 * s), (cx + 14 * s, 300 * s), (cx + 6 * s, 220 * s),
+           (cx - 6 * s, 220 * s), (cx - 14 * s, 300 * s), (cx - 40 * s, 300 * s), (cx - 55 * s, 200 * s), (cx - 78 * s, 140 * s)]
+    d.polygon(pts, fill="white", outline=FIG_LINE)
+    d.line(pts + [pts[0]], fill=FIG_LINE, width=5 * s, joint="curve")
+    return finish(img)
+
+
+def hand_closeup(part: str) -> bytes:
+    """Stylised hand (finger) or foot (toe) with the digits highlighted."""
+    img, d = canvas()
+    s = S
+    cx = W * s // 2
+    if part == "finger":
+        d.rounded_rectangle((cx - 80 * s, 190 * s, cx + 80 * s, 330 * s), 30 * s, fill=FIG, outline=FIG_LINE, width=3 * s)
+        for i, (dx, top) in enumerate(((-66, 110), (-30, 60), (6, 48), (42, 62), (78, 118))):
+            _cap(d, cx + dx * s, 200 * s, cx + dx * s, top * s + 18 * s, 28 * s, HI)
+        _cap(d, cx - 95 * s, 250 * s, cx - 140 * s, 200 * s, 30 * s, FIG)
+    else:  # toe: a foot seen from above with five highlighted toes
+        d.ellipse((cx - 70 * s, 122 * s, cx + 70 * s, 330 * s), fill=FIG, outline=FIG_LINE, width=3 * s)
+        for dx, dy, rr in ((-48, 120, 20), (-20, 100, 17), (8, 94, 15), (34, 100, 14), (56, 114, 12)):
+            d.ellipse((cx + (dx - rr) * s, (dy - rr + 20) * s, cx + (dx + rr) * s, (dy + rr + 20) * s), fill=HI, outline=FIG_LINE, width=3 * s)
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -165,7 +290,21 @@ def main() -> None:
         spec = card.get("generate")
         if not spec or card.get("image"):
             continue
-        data = color_swatch(spec["value"]) if spec["kind"] == "color" else shape_image(spec["value"])
+        kind, val = spec["kind"], spec["value"]
+        if kind == "color":
+            data = color_swatch(val)
+        elif kind == "shape":
+            data = shape_image(val)
+        elif kind == "body":
+            data = figure(val, back=(val == "back"))
+        elif kind == "face":
+            data = face_closeup(val)
+        elif kind == "tooth":
+            data = tooth_icon()
+        elif kind == "hand":
+            data = hand_closeup(val)
+        else:
+            raise SystemExit(f"unknown generate kind: {kind}")
         name = f"{slug(card['term'])}.webp"
         (final / name).write_bytes(data)
         card["image"] = {

@@ -32,6 +32,7 @@ SOFT_CAP, HARD_CAP = 45_000, 80_000
 MIN_SHORT_SIDE = 640
 RAW_LIMIT = 12_000_000
 BAD_TITLE = re.compile(r"\b(logo|icon|vector|diagram|map|flag|stamp|poster|cover|screenshot|scan|clipart|drawing of|coat of arms|signature|banner)\b", re.I)
+UNSAFE = re.compile(r"\b(nude|naked|nsfw|sexy|erotic|lingerie|bikini|topless|fetish|feet\s*(pics|worship)|sole|adult|porn|gore|corpse|dead body|bloody|weapon|gun|rifle)\b", re.I)
 OPENVERSE_ALLOWED = {"cc0": "CC0", "pdm": "Public Domain Mark"}
 COMMONS_OK = re.compile(r"^(cc0|public domain|pd[- ])", re.I)
 
@@ -62,6 +63,8 @@ def relevance(query: str, title: str, tags: list[str]) -> int:
             score += 2
     if BAD_TITLE.search(t):
         score -= 4
+    if UNSAFE.search(t) or UNSAFE.search(tg):
+        score -= 100  # never download it: this is a learning app for all ages
     return score
 
 

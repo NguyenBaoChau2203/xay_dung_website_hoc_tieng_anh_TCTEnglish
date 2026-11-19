@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Cơ bản (A1–A2)",
+  "set": {
+    "code": "A06",
+    "name": "Đồ uống",
+    "description": "#a1 #a2 #drinks #food",
+    "topic": "Đồ uống",
+    "wordListBasis": "NGSL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "water",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "nước",
+      "meaningEn": "the clear liquid that people drink",
+      "examples": [
+        {
+          "text": "I drink a glass of water every morning.",
+          "vi": "Sáng nào tôi cũng uống một ly nước."
+        },
+        {
+          "text": "Please bring me some cold water.",
+          "vi": "Làm ơn mang cho tôi ít nước lạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "glass of water",
+          "vi": "một ly nước"
+        },
+        {
+          "text": "drinking water",
+          "vi": "nước uống"
+        }
+      ],
+      "imageQuery": "glass of water",
+      "ipaUs": "/ˈwɔ.tɚ/",
+      "ipaUk": "/ˈwɔː.tə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/water",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/water.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8812231/glass-water",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "glass of water",
+        "sha256": "4fee4247cb7a871a9b4c0624abdd2a28a040838b4d4042f494028236bc0d5136",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "juice",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "nước ép trái cây",
+      "meaningEn": "a drink made from the liquid of fruit",
+      "examples": [
+        {
+          "text": "She drinks orange juice for breakfast.",
+          "vi": "Cô ấy uống nước cam vào bữa sáng."
+        },
+        {
+          "text": "The juice is fresh and sweet.",
+          "vi": "Nước ép này tươi và ngọt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fruit juice",
+          "vi": "nước ép trái cây"
+        }
+      ],
+      "imageQuery": "glass of fruit juice",
+      "ipaUs": "/d͡ʒus/",
+      "ipaUk": "/d͡ʒuːs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/juice",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/juice.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/157635012@N07/28164605967",
+        "author": "Artem Beliaikin",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "glass of fruit juice",
+        "sha256": "568278c11c02265d0d418722c95c6ee100e447e93187ab03c37b8c5fd9e7ab8d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "milk",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "sữa",
+      "meaningEn": "a white drink from cows that children often have",
+      "examples": [
+        {
+          "text": "The baby drinks a bottle of milk.",
+          "vi": "Em bé uống một bình sữa."
+        },
+        {
+          "text": "I put some milk in my coffee.",
+          "vi": "Tôi cho một chút sữa vào cà phê."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "glass of milk",
+          "vi": "một ly sữa"
+        },
+        {
+          "text": "fresh milk",
+          "vi": "sữa tươi"
+        }
+      ],
+      "imageQuery": "glass of milk",
+      "ipaUs": "/mɛlk/",
+      "ipaUk": "/mɪlk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/milk",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/milk.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/184594136@N08/52633675811",
+        "author": "Alabama Extension",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "glass of milk",
+        "sha256": "bfa4f1d343a4adb87dd03c76bdfa83a8424d8956ef915790b784d3d72760fcae",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "tea",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "trà",
+      "meaningEn": "a hot drink made from dried leaves and water",
+      "examples": [
+        {
+          "text": "My grandfather drinks green tea every day.",
+          "vi": "Ông tôi uống trà xanh mỗi ngày."
+        },
+        {
+          "text": "Would you like a cup of tea?",
+          "vi": "Bạn có muốn một tách trà không?"
+        }
+      ],
+      "collocations": [
+        {
+          "text": "green tea",
+          "vi": "trà xanh"
+        },
+        {
+          "text": "cup of tea",
+          "vi": "một tách trà"
+        }
+      ],
+      "imageQuery": "cup of tea",
+      "ipaUs": "/ti/",
+      "ipaUk": "/tiː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/tea",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/tea.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/135396164@N05/29364151550",
+        "author": "freestocks.org",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cup of tea",
+        "sha256": "01beecc829e513bd6896bffa7058704cdedfa09046868b6c6d5dc2a9816673f6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "coffee",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cà phê",
+      "meaningEn": "a hot brown drink made from roasted beans",
+      "examples": [
+        {
+          "text": "I need a cup of coffee in the morning.",
+          "vi": "Buổi sáng tôi cần một tách cà phê."
+        },
+        {
+          "text": "He likes strong black coffee.",
+          "vi": "Anh ấy thích cà phê đen đậm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "black coffee",
+          "vi": "cà phê đen"
+        },
+        {
+          "text": "iced coffee",
+          "vi": "cà phê đá"
+        }
+      ],
+      "imageQuery": "cup of coffee",
+      "ipaUs": "/ˈkɔfi/",
+      "ipaUk": "/ˈkɒfi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/coffee",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/coffee.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/135396164@N05/31512220131",
+        "author": "freestocks.org",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "cup of coffee",
+        "sha256": "0dbdabe34e74b62cdcc5a4a905e46c025a73724739a122e0bcb9d24385374e27",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "milk tea",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "trà sữa",
+      "meaningEn": "a sweet drink of tea mixed with milk",
+      "examples": [
+        {
+          "text": "My friends and I love milk tea.",
+          "vi": "Tôi và các bạn rất thích trà sữa."
+        },
+        {
+          "text": "She ordered a milk tea with pearls.",
+          "vi": "Cô ấy gọi một ly trà sữa thêm trân châu."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bubble milk tea",
+          "vi": "trà sữa trân châu"
+        }
+      ],
+      "imageQuery": "bubble milk tea",
+      "ipaUs": "/mɛlk ti/",
+      "ipaUk": "/mɪlk tiː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/milk + https://en.wiktionary.org/wiki/tea",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/milk-tea.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Pearl_Milk_Tea_in_Chun_Shui_Tang.jpg",
+        "author": "Battlesnake1",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "bubble milk tea",
+        "sha256": "960ab61ba490906c3ccafd40982308a265e05f972c82a7b0f3fac79ed2adb9d4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "smoothie",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sinh tố",
+      "meaningEn": "a thick cold drink made by blending fruit",
+      "examples": [
+        {
+          "text": "I made a banana smoothie for breakfast.",
+          "vi": "Tôi làm một ly sinh tố chuối cho bữa sáng."
+        },
+        {
+          "text": "This strawberry smoothie is very thick.",
+          "vi": "Ly sinh tố dâu tây này rất đặc."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fruit smoothie",
+          "vi": "sinh tố trái cây"
+        }
+      ],
+      "imageQuery": "fruit smoothie glass",
+      "ipaUs": "/ˈsmuːði/",
+      "ipaUk": "/ˈsmuːði/",
+      "ipaSource": "https://en.wiktionary.org/wiki/smoothie",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/smoothie.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6031658/photo-image-public-domain-fruit-water",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "fruit smoothie glass",
+        "sha256": "6c05c913307259bf3175f7761adf7ce9156dd2ed16fe67a862e23845ab8cb2c4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "lemonade",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nước chanh",
+      "meaningEn": "a sweet drink made from lemons, sugar and water",
+      "examples": [
+        {
+          "text": "We drank cold lemonade on the hot day.",
+          "vi": "Chúng tôi uống nước chanh lạnh vào ngày nóng."
+        },
+        {
+          "text": "The children sold lemonade outside.",
+          "vi": "Bọn trẻ bán nước chanh ngoài cửa."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "glass of lemonade",
+          "vi": "một ly nước chanh"
+        }
+      ],
+      "imageQuery": "lemonade",
+      "ipaUs": "/ˈlɛməˌneɪd/",
+      "ipaUk": "/ˌlɛməˈneɪd/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lemonade",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/lemonade.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/144218922@N07/31896469500",
+        "author": "Bildflut85",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "lemonade",
+        "sha256": "e2880849d7706bb39ad09fe99294323d169a20cbd3288208760dae0ffd5303f4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "jug",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bình rót, cái ca",
+      "meaningEn": "a container with a handle for pouring liquids",
+      "examples": [
+        {
+          "text": "She filled the jug with cold water.",
+          "vi": "Cô ấy rót đầy nước lạnh vào cái bình."
+        },
+        {
+          "text": "There is a jug of juice on the table.",
+          "vi": "Có một bình nước ép trên bàn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a jug of water",
+          "vi": "một bình nước"
+        }
+      ],
+      "imageQuery": "glass jug water",
+      "image": {
+        "file": "a06/jug.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/151415985@N06/36743625773",
+        "author": "Wallboat",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "glass jug water",
+        "sha256": "2f956e7cc2824ee707d9b2417c71935ea8bee861b8da24b8c0103e286c7ddfd7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/d͡ʒʌɡ/",
+      "ipaUk": "/d͡ʒʌɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/jug",
+      "ipaVerified": true
+    },
+    {
+      "term": "beer",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "bia",
+      "meaningEn": "a yellow alcoholic drink made from grain",
+      "examples": [
+        {
+          "text": "My father drinks a beer after work.",
+          "vi": "Bố tôi uống một cốc bia sau giờ làm."
+        },
+        {
+          "text": "The beer is served very cold.",
+          "vi": "Bia được phục vụ rất lạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bottle of beer",
+          "vi": "một chai bia"
+        }
+      ],
+      "imageQuery": "glass of beer",
+      "ipaUs": "/ˈbɪɚ/",
+      "ipaUk": "/ˈbɪə̯/",
+      "ipaSource": "https://en.wiktionary.org/wiki/beer",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/beer.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/151732499@N04/37326619712",
+        "author": "JohannPiber",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "glass of beer",
+        "sha256": "974d90dd4ed63f564a4bdfc0148f9a816bc0ac80c9e29ca94b0dbf22a7dfd206",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "wine",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "rượu vang",
+      "meaningEn": "an alcoholic drink made from grapes",
+      "examples": [
+        {
+          "text": "They ordered a bottle of red wine.",
+          "vi": "Họ gọi một chai rượu vang đỏ."
+        },
+        {
+          "text": "She does not drink wine.",
+          "vi": "Cô ấy không uống rượu vang."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "red wine",
+          "vi": "rượu vang đỏ"
+        },
+        {
+          "text": "glass of wine",
+          "vi": "một ly rượu vang"
+        }
+      ],
+      "imageQuery": "glass of red wine",
+      "ipaUs": "/ˈwaɪ̯n/",
+      "ipaUk": "/ˈwaɪ̯n/",
+      "ipaSource": "https://en.wiktionary.org/wiki/wine",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/wine.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/431874/free-photo-image-wine-red-glass",
+        "author": "Markus Spiske",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "glass of red wine",
+        "sha256": "322bdb817f3d050c195f680de59c4d25434db9488b9a36d779ed121fc597c4a6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cocoa",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ca cao",
+      "meaningEn": "a hot chocolate drink made from brown powder",
+      "examples": [
+        {
+          "text": "I drink hot cocoa on cold nights.",
+          "vi": "Tôi uống ca cao nóng vào những đêm lạnh."
+        },
+        {
+          "text": "She made cocoa for the children.",
+          "vi": "Cô ấy pha ca cao cho bọn trẻ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hot cocoa",
+          "vi": "ca cao nóng"
+        }
+      ],
+      "imageQuery": "hot cocoa mug",
+      "ipaUs": "/ˈkoʊ.koʊ/",
+      "ipaUk": "/ˈkəʊ.kəʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cocoa",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/cocoa.webp",
+        "provider": "stocksnap",
+        "pageUrl": "https://stocksnap.io/photo/cozy-mug-DSBPDFSB3H",
+        "author": "Travel Photographer",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "hot cocoa mug",
+        "sha256": "5ac36f7c41f2469e0279d1ef2910020cd9144a297b54e6865a44a3ef0ed10c7b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "coconut water",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nước dừa",
+      "meaningEn": "the clear sweet liquid inside a young coconut",
+      "examples": [
+        {
+          "text": "We drank fresh coconut water at the beach.",
+          "vi": "Chúng tôi uống nước dừa tươi ở bãi biển."
+        },
+        {
+          "text": "Coconut water is cool and sweet.",
+          "vi": "Nước dừa mát và ngọt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "fresh coconut water",
+          "vi": "nước dừa tươi"
+        }
+      ],
+      "imageQuery": "coconut drink straw",
+      "ipaUs": "/ˈkoʊ.kəˌnʌt ˈwɔ.tɚ/",
+      "ipaUk": "/ˈkəʊ.kə.nʌt ˈwɔː.tə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/coconut + https://en.wiktionary.org/wiki/water",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/coconut-water.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/5626a69528/",
+        "author": "wbadilla",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "coconut drink straw",
+        "sha256": "845a0c573c0d7e16af11a976e6561ba8d921b442730a319a7590954ca2162719",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "sugarcane juice",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nước mía",
+      "meaningEn": "a sweet juice pressed from sugarcane",
+      "examples": [
+        {
+          "text": "The street seller makes sugarcane juice.",
+          "vi": "Người bán hàng rong ép nước mía."
+        },
+        {
+          "text": "I like sugarcane juice with ice.",
+          "vi": "Tôi thích nước mía có đá."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "cold sugarcane juice",
+          "vi": "nước mía lạnh"
+        }
+      ],
+      "imageQuery": "sugarcane juice",
+      "image": {
+        "file": "a06/sugarcane-juice.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/2696a77280/",
+        "author": "Fiza Adil",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "sugarcane juice",
+        "sha256": "f36b2f179e4d8d777a062d9fd5366533727f9affb225dae77a31e8772244489e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈʃʊɡɚˌkeɪn dʒus/",
+      "ipaUk": "/ˈʃʊɡəkeɪn dʒuːs/",
+      "ipaVerified": false,
+      "ipaNote": "written by the author; no source entry was found"
+    },
+    {
+      "term": "yogurt",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sữa chua",
+      "meaningEn": "a thick sour food made from milk, sometimes drunk",
+      "examples": [
+        {
+          "text": "She eats yogurt with fruit every morning.",
+          "vi": "Sáng nào cô ấy cũng ăn sữa chua với trái cây."
+        },
+        {
+          "text": "I like strawberry yogurt the best.",
+          "vi": "Tôi thích sữa chua dâu tây nhất."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "plain yogurt",
+          "vi": "sữa chua không đường"
+        }
+      ],
+      "imageQuery": "yogurt cup",
+      "ipaUs": "/ˈjɒɡ.ət/",
+      "ipaUk": "/ˈjɒɡ.ət/",
+      "ipaSource": "https://en.wiktionary.org/wiki/yogurt",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/yogurt.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8735111/photo-image-public-domain-food",
+        "author": "U.S. Department of Agriculture",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "yogurt cup",
+        "sha256": "5795ebb4d1213eee1a276d7d238c818d29c01fdc659a4949a9a44723f952a4ca",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "espresso",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cà phê espresso",
+      "meaningEn": "a small, very strong coffee",
+      "examples": [
+        {
+          "text": "He ordered a double espresso.",
+          "vi": "Anh ấy gọi một ly espresso đôi."
+        },
+        {
+          "text": "An espresso is small but very strong.",
+          "vi": "Espresso nhỏ nhưng rất đậm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "double espresso",
+          "vi": "espresso đôi"
+        }
+      ],
+      "imageQuery": "espresso cup",
+      "ipaUs": "/ɛˈspɹɛsoʊ/",
+      "ipaUk": "/ɛˈspɹɛsəʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/espresso",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/espresso.webp",
+        "provider": "wordpress",
+        "pageUrl": "https://wordpress.org/photos/photo/279694bfaa/",
+        "author": "Ludwig You",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "espresso cup",
+        "sha256": "21c277e129c3a232dc2973985379d503dc01f80361f1be02a75a8c972f3d2d5b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cappuccino",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cà phê cappuccino",
+      "meaningEn": "coffee with hot milk and a lot of foam",
+      "examples": [
+        {
+          "text": "I would like a cappuccino, please.",
+          "vi": "Làm ơn cho tôi một ly cappuccino."
+        },
+        {
+          "text": "The cappuccino has a thick layer of foam.",
+          "vi": "Ly cappuccino có một lớp bọt dày."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "hot cappuccino",
+          "vi": "cappuccino nóng"
+        }
+      ],
+      "imageQuery": "cappuccino",
+      "ipaUs": "/ˌkæpəˈt͡ʃinoʊ/",
+      "ipaUk": "/ˌkæpʊˈtʃiːnəʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cappuccino",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/cappuccino.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/41819661@N04/16469731327",
+        "author": "Ananda La Vita",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "cappuccino",
+        "sha256": "9f991c0f2edd4d649631c3ee1d58a8ce0e22e7a1faf0ab973e91e2041c446b82",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "milkshake",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "sữa lắc",
+      "meaningEn": "a cold thick drink of milk, ice cream and flavour",
+      "examples": [
+        {
+          "text": "He ordered a chocolate milkshake.",
+          "vi": "Cậu ấy gọi một ly sữa lắc sô-cô-la."
+        },
+        {
+          "text": "A milkshake is sweet and cold.",
+          "vi": "Sữa lắc vừa ngọt vừa lạnh."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "chocolate milkshake",
+          "vi": "sữa lắc sô-cô-la"
+        }
+      ],
+      "imageQuery": "milkshake",
+      "ipaUs": "/ˈmɪlk.ʃeɪk/",
+      "ipaUk": "/ˈmɪlk.ʃeɪk/",
+      "ipaSource": "https://en.wiktionary.org/wiki/milkshake",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/milkshake.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/144218922@N07/32367360645",
+        "author": "Bildflut85",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "milkshake",
+        "sha256": "4e25fa8cffa7a93a7ab74ce5a777e256e78fdfbeab7456e4e30e84538bff3bdf",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "mineral water",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "nước khoáng",
+      "meaningEn": "bottled water that comes from a natural spring",
+      "examples": [
+        {
+          "text": "I bought a bottle of mineral water.",
+          "vi": "Tôi mua một chai nước khoáng."
+        },
+        {
+          "text": "Mineral water is sold in every shop here.",
+          "vi": "Cửa hàng nào ở đây cũng bán nước khoáng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "bottle of mineral water",
+          "vi": "một chai nước khoáng"
+        }
+      ],
+      "imageQuery": "mineral water bottle",
+      "ipaUs": "/ˈmɪn.ə.ɹəl ˈwɔ.tɚ/",
+      "ipaUk": "/ˈmɪn.ə.ɹəl ˈwɔː.tə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mineral + https://en.wiktionary.org/wiki/water",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/mineral-water.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5970544/mineral-water-drink",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "mineral water bottle",
+        "sha256": "73e2dbe3de62dd2eb0512040fb817f69ee2a0e94ff31f0ed11c90dc0e03d030d",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "ice",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "nước đá, đá lạnh",
+      "meaningEn": "frozen water used to make drinks cold",
+      "examples": [
+        {
+          "text": "Can I have some ice in my drink?",
+          "vi": "Cho tôi thêm đá vào đồ uống được không?"
+        },
+        {
+          "text": "The ice melted in the hot sun.",
+          "vi": "Cục đá tan chảy dưới nắng nóng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ice cube",
+          "vi": "viên đá"
+        },
+        {
+          "text": "with ice",
+          "vi": "có đá"
+        }
+      ],
+      "imageQuery": "ice cubes glass",
+      "ipaUs": "/aɪs/",
+      "ipaUk": "/aɪs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ice",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/ice.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5916924/photo-image-public-domain-glass-ice",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "ice cubes glass",
+        "sha256": "3d18e484d32a44cac64134c30c272e99f74d4b36a4aea94a36e29395331d6e50",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "straw",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "ống hút",
+      "meaningEn": "a thin tube used to drink from a cup",
+      "examples": [
+        {
+          "text": "She drank her juice with a straw.",
+          "vi": "Cô ấy uống nước ép bằng ống hút."
+        },
+        {
+          "text": "The shop uses paper straws.",
+          "vi": "Cửa hàng dùng ống hút giấy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "paper straw",
+          "vi": "ống hút giấy"
+        }
+      ],
+      "imageQuery": "drinking straws colourful",
+      "ipaUs": "/stɹɔ/",
+      "ipaUk": "/stɹɔː/",
+      "ipaSource": "https://en.wiktionary.org/wiki/straw",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/straw.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5912958/image-public-domain-pink-blue",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "drinking straws colourful",
+        "sha256": "ef9fb0174dfd540b81ace42cd6865208c723224ea7ae3fe08dfb7316e9d8fa55",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "bottle",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái chai",
+      "meaningEn": "a container with a narrow neck for liquids",
+      "examples": [
+        {
+          "text": "He drank a bottle of water after the game.",
+          "vi": "Cậu ấy uống một chai nước sau trận đấu."
+        },
+        {
+          "text": "The bottle is empty now.",
+          "vi": "Cái chai giờ đã hết sạch."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "water bottle",
+          "vi": "chai nước"
+        },
+        {
+          "text": "plastic bottle",
+          "vi": "chai nhựa"
+        }
+      ],
+      "imageQuery": "bottle",
+      "ipaUs": "/ˈbɑtəl/",
+      "ipaUk": "/ˈbɒtəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/bottle",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/bottle.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/40632439@N00/16466809032",
+        "author": "Thad Zajdowicz",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "bottle",
+        "sha256": "9c8cd2cd9544afbaf76461d78525cb57854b4b91ef7aa5ccedbfb3591ab24fcd",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "cup",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "tách, cốc",
+      "meaningEn": "a small round container for hot drinks",
+      "examples": [
+        {
+          "text": "She put the cup on the table.",
+          "vi": "Cô ấy đặt cái tách lên bàn."
+        },
+        {
+          "text": "I would like a cup of hot tea.",
+          "vi": "Tôi muốn một tách trà nóng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "paper cup",
+          "vi": "cốc giấy"
+        },
+        {
+          "text": "cup of tea",
+          "vi": "một tách trà"
+        }
+      ],
+      "imageQuery": "white tea cup saucer",
+      "ipaUs": "/ˈkʌp/",
+      "ipaUk": "/ˈkʌp/",
+      "ipaSource": "https://en.wiktionary.org/wiki/cup",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/cup.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5975261/photo-image-public-domain-black-tea",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "white tea cup saucer",
+        "sha256": "dea3fd94194d9445ff24fd3058a6482d6c8d6d8a83c6d4b9eb791c33bbd8525f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "glass",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A1",
+      "definition": "cái ly, ly thủy tinh",
+      "meaningEn": "a clear container for cold drinks",
+      "examples": [
+        {
+          "text": "He poured a glass of milk.",
+          "vi": "Cậu ấy rót một ly sữa."
+        },
+        {
+          "text": "The glass is full of orange juice.",
+          "vi": "Cái ly đầy nước cam."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "a glass of water",
+          "vi": "một ly nước"
+        }
+      ],
+      "imageQuery": "empty drinking glass tumbler",
+      "ipaUs": "/ɡlæs/",
+      "ipaUk": "/ɡlɑːs/",
+      "ipaSource": "https://en.wiktionary.org/wiki/glass",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/glass.webp",
+        "provider": "clevelandmuseum",
+        "pageUrl": "https://clevelandart.org/art/1952.94",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "empty drinking glass tumbler",
+        "sha256": "86b5cf431c1fb9d15656a4a0e59aeccebcde2eb31cf849ba63dfa0204c4f1101",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    },
+    {
+      "term": "mug",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "A2",
+      "definition": "cốc có quai",
+      "meaningEn": "a large cup with a handle for hot drinks",
+      "examples": [
+        {
+          "text": "She held a warm mug of tea.",
+          "vi": "Cô ấy cầm một chiếc cốc trà ấm."
+        },
+        {
+          "text": "My mug has a picture of a cat.",
+          "vi": "Cái cốc của tôi có hình một chú mèo."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "coffee mug",
+          "vi": "cốc cà phê"
+        }
+      ],
+      "imageQuery": "mug",
+      "ipaUs": "/mʌɡ/",
+      "ipaUk": "/mʌɡ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mug",
+      "ipaVerified": true,
+      "image": {
+        "file": "a06/mug.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/135396164@N05/44381116112",
+        "author": "freestocks.org",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "mug",
+        "sha256": "7deab695288419153e720488abbd6ee127d104808ee71182e84764ed2e901de2",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      }
+    }
+  ]
+}
