@@ -1,0 +1,1225 @@
+{
+  "schemaVersion": 1,
+  "folder": "Từ vựng theo chủ đề – Trung cấp (B1–B2)",
+  "set": {
+    "code": "B13",
+    "name": "Nghệ thuật & văn hóa",
+    "description": "#b1 #b2 #art #culture",
+    "topic": "Nghệ thuật & văn hóa",
+    "wordListBasis": "NGSL + NAWL + CEFR-J, topic judgement"
+  },
+  "cards": [
+    {
+      "term": "art studio",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "xưởng vẽ",
+      "meaningEn": "a room where an artist works",
+      "examples": [
+        {
+          "text": "The painter spends all day in her art studio.",
+          "vi": "Họa sĩ dành cả ngày trong xưởng vẽ của mình."
+        },
+        {
+          "text": "The art studio smells of paint.",
+          "vi": "Xưởng vẽ nồng mùi sơn."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "rent an art studio",
+          "vi": "thuê xưởng vẽ"
+        },
+        {
+          "text": "open art studio",
+          "vi": "xưởng vẽ mở cửa"
+        }
+      ],
+      "imageQuery": "art studio painter",
+      "generate": {
+        "kind": "art",
+        "value": "art studio"
+      },
+      "image": {
+        "file": "b13/art-studio.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:art:art studio",
+        "sha256": "f443957ec91426a056117f7cdedffeb5fcdc181888c2fac91294e1d0c684e0a3",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ɑɹt ˈstudi.oʊ/",
+      "ipaUk": "/ɑːt ˈstjuːdi.əʊ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/art + https://en.wiktionary.org/wiki/studio",
+      "ipaVerified": true
+    },
+    {
+      "term": "exhibition",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "triển lãm",
+      "meaningEn": "a public show of art or other interesting things",
+      "examples": [
+        {
+          "text": "The exhibition opens next Monday.",
+          "vi": "Triển lãm sẽ khai mạc vào thứ Hai tới."
+        },
+        {
+          "text": "We saw an exhibition of old photographs.",
+          "vi": "Chúng tôi xem một triển lãm ảnh cũ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "open an exhibition",
+          "vi": "khai mạc triển lãm"
+        },
+        {
+          "text": "art exhibition",
+          "vi": "triển lãm nghệ thuật"
+        }
+      ],
+      "imageQuery": "exhibition visitors hall",
+      "image": {
+        "file": "b13/exhibition.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/115357548@N08/52851474625",
+        "author": "Joshua Tree National Park",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "exhibition visitors hall",
+        "sha256": "5a87bbd8bda656510f84fb2f280ad8adb84aeb783f6eb582e0323898b68d52bb",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ɛksɪˈbɪʃən/",
+      "ipaUk": "/ɛksɪˈbɪʃən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/exhibition",
+      "ipaVerified": true
+    },
+    {
+      "term": "carving",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tác phẩm chạm khắc",
+      "meaningEn": "a shape or picture cut out of wood or stone",
+      "examples": [
+        {
+          "text": "The wooden carving shows a dragon.",
+          "vi": "Tác phẩm chạm khắc gỗ thể hiện một con rồng."
+        },
+        {
+          "text": "He sold his carvings at the market.",
+          "vi": "Anh ấy bán các tác phẩm chạm khắc của mình ở chợ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wood carving",
+          "vi": "chạm khắc gỗ"
+        },
+        {
+          "text": "stone carving",
+          "vi": "chạm khắc đá"
+        }
+      ],
+      "imageQuery": "wood carving craft",
+      "generate": {
+        "kind": "art",
+        "value": "carving"
+      },
+      "image": {
+        "file": "b13/carving.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:art:carving",
+        "sha256": "3b107bde0765ca376e98ae7dcf863ada7929cd717b1997c4efb3f2482fbc674a",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈkɑɹvɪŋ/",
+      "ipaUk": "/ˈkɑːvɪŋ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/carving",
+      "ipaVerified": true
+    },
+    {
+      "term": "portrait",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bức chân dung",
+      "meaningEn": "a painting or photo of a person",
+      "examples": [
+        {
+          "text": "The artist painted a portrait of the queen.",
+          "vi": "Họa sĩ vẽ một bức chân dung của nữ hoàng."
+        },
+        {
+          "text": "There is a portrait of my grandfather on the wall.",
+          "vi": "Có một bức chân dung ông tôi trên tường."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "paint a portrait",
+          "vi": "vẽ chân dung"
+        },
+        {
+          "text": "family portrait",
+          "vi": "chân dung gia đình"
+        }
+      ],
+      "imageQuery": "portrait painting frame",
+      "image": {
+        "file": "b13/portrait.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Oval_portrait_miniature_of_Gustave_Duchesne_oil_painting_by_Valentine_Manchon_Duchesne_in_1886.jpg",
+        "author": "Valentine Manchon Duchesne",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "portrait painting frame",
+        "sha256": "af50a294a41fedde745d1a79105e5c11c3b95731195417f366ccdadd516bc571",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpɔɹtɹət/",
+      "ipaUk": "/ˈpɔːtɹeɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/portrait",
+      "ipaVerified": true
+    },
+    {
+      "term": "watercolour",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tranh màu nước",
+      "meaningEn": "a picture painted with colours mixed with water",
+      "examples": [
+        {
+          "text": "She painted a watercolour of the harbour.",
+          "vi": "Cô ấy vẽ một bức tranh màu nước về bến cảng."
+        },
+        {
+          "text": "The watercolour dried quickly in the sun.",
+          "vi": "Bức tranh màu nước khô nhanh dưới nắng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "paint a watercolour",
+          "vi": "vẽ tranh màu nước"
+        },
+        {
+          "text": "watercolour painting",
+          "vi": "tranh màu nước"
+        }
+      ],
+      "imageQuery": "watercolour painting",
+      "image": {
+        "file": "b13/watercolour.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/5924921/photo-image-paper-watercolours-public-domain",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "watercolour painting",
+        "sha256": "3bea2dbf967ea1bd50879b624d384db4697ab4f47343c1201fde2fd851badd89",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈwɔ.tɜˌkʌ.lɜ/",
+      "ipaUk": "/ˈwɔ.tɜˌkʌ.lɜ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/watercolour",
+      "ipaVerified": true,
+      "ipaNote": "one sourced transcription used for both accents"
+    },
+    {
+      "term": "easel",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "giá vẽ",
+      "meaningEn": "a stand that holds a painting while the artist works",
+      "examples": [
+        {
+          "text": "The painter set up her easel by the lake.",
+          "vi": "Họa sĩ dựng giá vẽ bên hồ."
+        },
+        {
+          "text": "A half-finished picture stood on the easel.",
+          "vi": "Một bức tranh còn dang dở đặt trên giá vẽ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "set up an easel",
+          "vi": "dựng giá vẽ"
+        },
+        {
+          "text": "wooden easel",
+          "vi": "giá vẽ bằng gỗ"
+        }
+      ],
+      "imageQuery": "easel painter outdoors",
+      "image": {
+        "file": "b13/easel.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Claude_Monet_-_In_the_Woods_at_Giverny-_Blanche_Hosched%C3%A9_at_Her_Easel_with_Suzanne_Hosched%C3%A9_Reading_-_Google_Art_Project.jpg",
+        "author": "Claude Monet",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "easel painter outdoors",
+        "sha256": "2d349688a3ddb260bd96187e5a90bb992e61f8ff52aa252e743505519a1b2795",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈi.zəl/",
+      "ipaUk": "/ˈiː.z(ə)l/",
+      "ipaSource": "https://en.wiktionary.org/wiki/easel",
+      "ipaVerified": true
+    },
+    {
+      "term": "palette",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "bảng pha màu",
+      "meaningEn": "a flat board on which an artist mixes colours",
+      "examples": [
+        {
+          "text": "The artist mixed blue and yellow on her palette.",
+          "vi": "Họa sĩ pha xanh dương và vàng trên bảng pha màu."
+        },
+        {
+          "text": "He held the palette in his left hand.",
+          "vi": "Anh ấy cầm bảng pha màu ở tay trái."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "artist's palette",
+          "vi": "bảng pha màu của họa sĩ"
+        },
+        {
+          "text": "mix colours on a palette",
+          "vi": "pha màu trên bảng màu"
+        }
+      ],
+      "imageQuery": "paint palette brushes",
+      "generate": {
+        "kind": "art",
+        "value": "palette"
+      },
+      "image": {
+        "file": "b13/palette.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:art:palette",
+        "sha256": "4a2b522ad3254f47e7fc00ae14162ec034333ddfa2f110c2cea6e7ae9c7d55c4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpælɪt/",
+      "ipaUk": "/ˈpælɪt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/palette",
+      "ipaVerified": true
+    },
+    {
+      "term": "mural",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "tranh tường",
+      "meaningEn": "a large painting made directly on a wall",
+      "examples": [
+        {
+          "text": "A colourful mural covers the school wall.",
+          "vi": "Một bức tranh tường đầy màu sắc phủ kín bức tường trường."
+        },
+        {
+          "text": "The students painted a mural of the sea.",
+          "vi": "Học sinh vẽ một bức tranh tường về biển."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "paint a mural",
+          "vi": "vẽ tranh tường"
+        },
+        {
+          "text": "wall mural",
+          "vi": "tranh tường"
+        }
+      ],
+      "imageQuery": "street mural wall",
+      "image": {
+        "file": "b13/mural.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/88123769@N02/50193908311",
+        "author": "Bernard Spragg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "street mural wall",
+        "sha256": "e6a403c1674f925f082ea3968550892abe98c650907bdf7e6f4d4898810e5932",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈmjʊɹəl/",
+      "ipaUk": "/ˈmjʊəɹəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/mural",
+      "ipaVerified": true
+    },
+    {
+      "term": "pottery",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đồ gốm",
+      "meaningEn": "objects made from baked clay",
+      "examples": [
+        {
+          "text": "The village is famous for its pottery.",
+          "vi": "Ngôi làng nổi tiếng với đồ gốm."
+        },
+        {
+          "text": "She took a pottery class on Saturdays.",
+          "vi": "Cô ấy học lớp làm gốm vào các ngày thứ Bảy."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "pottery class",
+          "vi": "lớp làm gốm"
+        },
+        {
+          "text": "handmade pottery",
+          "vi": "đồ gốm thủ công"
+        }
+      ],
+      "imageQuery": "pottery clay pots",
+      "image": {
+        "file": "b13/pottery.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/138361426@N08/51631036025",
+        "author": "East Riding Archives",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "pottery clay pots",
+        "sha256": "88fb2fb242c3774da636b2706a43fc1181be85a3fd96b3a8b4f49db7cff3e7d4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈpɑtəɹi/",
+      "ipaUk": "/ˈpɒtəɹi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/pottery",
+      "ipaVerified": true
+    },
+    {
+      "term": "opera",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhạc kịch opera",
+      "meaningEn": "a play in which the actors sing all or most of the words",
+      "examples": [
+        {
+          "text": "We watched an opera at the city theatre.",
+          "vi": "Chúng tôi xem một vở opera ở nhà hát thành phố."
+        },
+        {
+          "text": "My mother loves opera.",
+          "vi": "Mẹ tôi rất thích opera."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "opera singer",
+          "vi": "ca sĩ opera"
+        },
+        {
+          "text": "opera house",
+          "vi": "nhà hát opera"
+        }
+      ],
+      "imageQuery": "opera house stage",
+      "image": {
+        "file": "b13/opera.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8717892/photo-image-public-domain-house-room",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "opera house stage",
+        "sha256": "d64056891b02665d4a3627bbc76bba1c01fe6d1ea1eb90f71ec06205b1cd9eb7",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈɑp(ə)ɹə/",
+      "ipaUk": "/ˈɒp(ə)ɹə/",
+      "ipaSource": "https://en.wiktionary.org/wiki/opera",
+      "ipaVerified": true
+    },
+    {
+      "term": "choir",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "dàn hợp xướng",
+      "meaningEn": "a group of people who sing together",
+      "examples": [
+        {
+          "text": "The school choir sang at the ceremony.",
+          "vi": "Dàn hợp xướng của trường hát trong buổi lễ."
+        },
+        {
+          "text": "She has been in the choir for three years.",
+          "vi": "Cô ấy tham gia dàn hợp xướng đã ba năm."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "church choir",
+          "vi": "dàn hợp xướng nhà thờ"
+        },
+        {
+          "text": "join a choir",
+          "vi": "tham gia dàn hợp xướng"
+        }
+      ],
+      "imageQuery": "choir singing",
+      "image": {
+        "file": "b13/choir.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:The_Singing_Angels_%26_the_Gardiner_Choir_(29143776372).jpg",
+        "author": "Yellowstone National Park",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "choir singing",
+        "sha256": "2d4da6698328f997a26d24f34a6d7ea01adfb5b4191c5dd2c5c6ac846b67fe6e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/kwaɪɚ/",
+      "ipaUk": "/kwaɪə(ɹ)/",
+      "ipaSource": "https://en.wiktionary.org/wiki/choir",
+      "ipaVerified": true
+    },
+    {
+      "term": "conductor",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "nhạc trưởng",
+      "meaningEn": "the person who leads an orchestra",
+      "examples": [
+        {
+          "text": "The conductor raised his baton and the music began.",
+          "vi": "Nhạc trưởng giơ đũa chỉ huy lên và bản nhạc bắt đầu."
+        },
+        {
+          "text": "She is a famous conductor.",
+          "vi": "Bà là một nhạc trưởng nổi tiếng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "orchestra conductor",
+          "vi": "nhạc trưởng dàn nhạc"
+        },
+        {
+          "text": "conductor's baton",
+          "vi": "đũa chỉ huy"
+        }
+      ],
+      "imageQuery": "conductor orchestra baton",
+      "image": {
+        "file": "b13/conductor.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/8733983/photo-image-public-domain-room-music",
+        "author": "usembassynewzealand",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "conductor orchestra baton",
+        "sha256": "448ac9e75b5c67d010392327df7d1979ef295d6ebab855bdf916442125e22f59",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/kənˈdʌktɚ/",
+      "ipaUk": "/kənˈdʌktɚ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/conductor",
+      "ipaVerified": true
+    },
+    {
+      "term": "ballet",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "múa ba lê",
+      "meaningEn": "a type of dance with graceful movements and music",
+      "examples": [
+        {
+          "text": "She has taken ballet lessons since she was five.",
+          "vi": "Cô ấy học múa ba lê từ năm tuổi."
+        },
+        {
+          "text": "We watched a ballet about a swan.",
+          "vi": "Chúng tôi xem một vở ba lê về con thiên nga."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "ballet dancer",
+          "vi": "diễn viên múa ba lê"
+        },
+        {
+          "text": "ballet shoes",
+          "vi": "giày múa ba lê"
+        }
+      ],
+      "imageQuery": "ballet dancers stage",
+      "image": {
+        "file": "b13/ballet.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/34409164@N06/5031074747",
+        "author": "gnuckx",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "ballet dancers stage",
+        "sha256": "99a6ccffd21d021f4dd9dcf888edceeaf508cd362336fdf2260aca7bf9610139",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/bæˈleɪ/",
+      "ipaUk": "/ˈbæleɪ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/ballet",
+      "ipaVerified": true
+    },
+    {
+      "term": "audience",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "khán giả",
+      "meaningEn": "the people who watch or listen to a show",
+      "examples": [
+        {
+          "text": "The audience clapped for a long time.",
+          "vi": "Khán giả vỗ tay rất lâu."
+        },
+        {
+          "text": "There was a large audience in the theatre.",
+          "vi": "Có đông khán giả trong nhà hát."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "live audience",
+          "vi": "khán giả trực tiếp"
+        },
+        {
+          "text": "applaud the audience",
+          "vi": "khán giả vỗ tay"
+        }
+      ],
+      "imageQuery": "theatre audience applause",
+      "generate": {
+        "kind": "art",
+        "value": "audience"
+      },
+      "image": {
+        "file": "b13/audience.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:art:audience",
+        "sha256": "2070e151a5be90791e4bf98763cca6666bffd482e2e452b5f6ba30838fb476ae",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈɔ.di.əns/",
+      "ipaUk": "/ˈɔːdi.əns/",
+      "ipaSource": "https://en.wiktionary.org/wiki/audience",
+      "ipaVerified": true
+    },
+    {
+      "term": "backstage",
+      "partsOfSpeech": [
+        "adv"
+      ],
+      "cefr": "B2",
+      "definition": "hậu trường",
+      "meaningEn": "in the area behind the stage where performers prepare",
+      "examples": [
+        {
+          "text": "The actors waited backstage before the show.",
+          "vi": "Các diễn viên chờ ở hậu trường trước buổi diễn."
+        },
+        {
+          "text": "We went backstage to meet the singer.",
+          "vi": "Chúng tôi vào hậu trường để gặp ca sĩ."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "go backstage",
+          "vi": "vào hậu trường"
+        },
+        {
+          "text": "backstage pass",
+          "vi": "thẻ vào hậu trường"
+        }
+      ],
+      "imageQuery": "backstage theatre dressing room",
+      "generate": {
+        "kind": "art",
+        "value": "backstage"
+      },
+      "image": {
+        "file": "b13/backstage.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:art:backstage",
+        "sha256": "489ffa448e0ad21112ac93161cb4686dcc513e4db901b9b1b049ed395ecf492e",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/bækˈsteɪd͡ʒ/",
+      "ipaUk": "/bækˈsteɪd͡ʒ/",
+      "ipaSource": "https://en.wiktionary.org/wiki/backstage",
+      "ipaVerified": true
+    },
+    {
+      "term": "costume",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "trang phục biểu diễn",
+      "meaningEn": "special clothes worn by actors or at a party",
+      "examples": [
+        {
+          "text": "She wore a red costume in the school play.",
+          "vi": "Cô ấy mặc trang phục đỏ trong vở kịch của trường."
+        },
+        {
+          "text": "The costume was made by hand.",
+          "vi": "Bộ trang phục được may thủ công."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wear a costume",
+          "vi": "mặc trang phục hóa trang"
+        },
+        {
+          "text": "costume party",
+          "vi": "tiệc hóa trang"
+        }
+      ],
+      "imageQuery": "costume party kids",
+      "generate": {
+        "kind": "art",
+        "value": "costume"
+      },
+      "image": {
+        "file": "b13/costume.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:art:costume",
+        "sha256": "3037fb4c24d198dd99bdcad85d5bf585756b7702bd51910bdd09c92f4273daf9",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈkɑsˌt(j)um/",
+      "ipaUk": "/ˈkɒs.tjuːm/",
+      "ipaSource": "https://en.wiktionary.org/wiki/costume",
+      "ipaVerified": true
+    },
+    {
+      "term": "face paint",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "màu vẽ lên mặt",
+      "meaningEn": "coloured paint that people put on their faces for fun",
+      "examples": [
+        {
+          "text": "The children wore face paint at the party.",
+          "vi": "Bọn trẻ vẽ mặt bằng màu trong bữa tiệc."
+        },
+        {
+          "text": "She bought a box of face paint.",
+          "vi": "Cô ấy mua một hộp màu vẽ mặt."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wear face paint",
+          "vi": "vẽ mặt bằng màu"
+        },
+        {
+          "text": "festival face paint",
+          "vi": "màu vẽ mặt dịp lễ hội"
+        }
+      ],
+      "imageQuery": "face paint child festival",
+      "generate": {
+        "kind": "art",
+        "value": "face paint"
+      },
+      "image": {
+        "file": "b13/face-paint.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:art:face paint",
+        "sha256": "b1c56ca184417b3ca14fcc83615fde5525497ea581bc15f6b6b6caa0ffef99c6",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/feɪ̯s peɪnt/",
+      "ipaUk": "/feɪ̯s peɪnt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/face + https://en.wiktionary.org/wiki/paint",
+      "ipaVerified": true
+    },
+    {
+      "term": "lantern",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đèn lồng",
+      "meaningEn": "a light inside a paper or glass cover that you can hang up",
+      "examples": [
+        {
+          "text": "Children carry paper lanterns at the mid-autumn festival.",
+          "vi": "Trẻ em xách đèn lồng giấy trong dịp Tết Trung thu."
+        },
+        {
+          "text": "Red lanterns hung above the street.",
+          "vi": "Những chiếc đèn lồng đỏ treo phía trên con phố."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "paper lantern",
+          "vi": "đèn lồng giấy"
+        },
+        {
+          "text": "hang a lantern",
+          "vi": "treo đèn lồng"
+        }
+      ],
+      "imageQuery": "paper lanterns festival",
+      "image": {
+        "file": "b13/lantern.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3301492/free-photo-image-modern-fractal-crowd",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "paper lanterns festival",
+        "sha256": "6a1c78b7f005dfe9538b2ab0866e1aa91d8518b0210096b87dbd6e080ec39019",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/æ/",
+      "ipaUk": "/ˈlæntən/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lantern",
+      "ipaVerified": true
+    },
+    {
+      "term": "festival",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B1",
+      "definition": "lễ hội",
+      "meaningEn": "a special event with music, food or traditions",
+      "examples": [
+        {
+          "text": "The village holds a festival every spring.",
+          "vi": "Ngôi làng tổ chức lễ hội vào mỗi mùa xuân."
+        },
+        {
+          "text": "Thousands of people attended the music festival.",
+          "vi": "Hàng nghìn người đến dự lễ hội âm nhạc."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "music festival",
+          "vi": "lễ hội âm nhạc"
+        },
+        {
+          "text": "traditional festival",
+          "vi": "lễ hội truyền thống"
+        }
+      ],
+      "imageQuery": "festival crowd street",
+      "image": {
+        "file": "b13/festival.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Crowd_in_front_of_the_main_stage,_Tolpuddle_Martyrs%27_Festival_2024.jpg",
+        "author": "DimiTalen",
+        "license": "CC0",
+        "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "query": "festival crowd street",
+        "sha256": "cb5cba3859589a187eca50934b72da533ad93409485c7cf9e638bb2dadbca0d4",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈfɛstəvəl/",
+      "ipaUk": "/ˈfɛstɪvəl/",
+      "ipaSource": "https://en.wiktionary.org/wiki/festival",
+      "ipaVerified": true
+    },
+    {
+      "term": "calligraphy",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "thư pháp",
+      "meaningEn": "beautiful handwriting made with a brush or special pen",
+      "examples": [
+        {
+          "text": "He practises calligraphy during the New Year.",
+          "vi": "Ông ấy tập thư pháp trong dịp Tết."
+        },
+        {
+          "text": "The calligraphy on the scroll is beautiful.",
+          "vi": "Nét thư pháp trên bức cuộn rất đẹp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "Chinese calligraphy",
+          "vi": "thư pháp Trung Hoa"
+        },
+        {
+          "text": "calligraphy brush",
+          "vi": "bút lông thư pháp"
+        }
+      ],
+      "imageQuery": "calligraphy brush ink",
+      "image": {
+        "file": "b13/calligraphy.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/3283969/free-photo-image-calligraphy-japanese-person-language",
+        "author": "",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "calligraphy brush ink",
+        "sha256": "46d075f912b3e0c8eb1b1d12fffb0b8440dc3dd4c390f0e6f803a5f945cff4ce",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/kəˈlɪɡɹəfi/",
+      "ipaUk": "/kəˈlɪɡɹəfi/",
+      "ipaSource": "https://en.wiktionary.org/wiki/calligraphy",
+      "ipaVerified": true
+    },
+    {
+      "term": "marionette",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "rối dây",
+      "meaningEn": "a puppet moved by strings",
+      "examples": [
+        {
+          "text": "The marionette danced across the little stage.",
+          "vi": "Con rối dây nhảy múa khắp sân khấu nhỏ."
+        },
+        {
+          "text": "He controls the marionette with wooden sticks and strings.",
+          "vi": "Anh ấy điều khiển con rối dây bằng que gỗ và dây."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "marionette show",
+          "vi": "buổi diễn rối dây"
+        },
+        {
+          "text": "wooden marionette",
+          "vi": "rối dây bằng gỗ"
+        }
+      ],
+      "imageQuery": "marionette puppet strings",
+      "generate": {
+        "kind": "art",
+        "value": "marionette"
+      },
+      "image": {
+        "file": "b13/marionette.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:art:marionette",
+        "sha256": "ab16691552bca81c665ecf0ed29508048b8c0c9edb87927c82231ec85fcef535",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˌmæɹi.əˈnɛt/",
+      "ipaUk": "/ˌmæɹi.əˈnɛt/",
+      "ipaSource": "https://en.wiktionary.org/wiki/marionette",
+      "ipaVerified": true
+    },
+    {
+      "term": "folk dance",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "điệu múa dân gian",
+      "meaningEn": "a traditional dance of a country or region",
+      "examples": [
+        {
+          "text": "The girls performed a folk dance at the festival.",
+          "vi": "Các cô gái biểu diễn một điệu múa dân gian ở lễ hội."
+        },
+        {
+          "text": "Every region has its own folk dance.",
+          "vi": "Mỗi vùng đều có điệu múa dân gian riêng."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "traditional folk dance",
+          "vi": "điệu múa dân gian truyền thống"
+        },
+        {
+          "text": "perform a folk dance",
+          "vi": "biểu diễn múa dân gian"
+        }
+      ],
+      "imageQuery": "folk dance costume",
+      "image": {
+        "file": "b13/folk-dance.webp",
+        "provider": "flickr",
+        "pageUrl": "https://www.flickr.com/photos/38345529@N05/14167989223",
+        "author": "Presidio of Monterey: DLIFLC & USAG",
+        "license": "Public Domain Mark",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "query": "folk dance costume",
+        "sha256": "291383ef9fc0ac9a6a0c91519a13925885386dc79bafbed5c1fac4a828d7b73c",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/foʊk dæns/",
+      "ipaUk": "/fəʊk dɑːns/",
+      "ipaSource": "https://en.wiktionary.org/wiki/folk + https://en.wiktionary.org/wiki/dance",
+      "ipaVerified": true
+    },
+    {
+      "term": "lion dance",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "múa lân",
+      "meaningEn": "a traditional dance in which people move inside a lion costume",
+      "examples": [
+        {
+          "text": "The lion dance began with loud drums.",
+          "vi": "Màn múa lân bắt đầu với tiếng trống rộn ràng."
+        },
+        {
+          "text": "Children followed the lion dance down the street.",
+          "vi": "Trẻ em chạy theo đoàn múa lân dọc con phố."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "watch a lion dance",
+          "vi": "xem múa lân"
+        },
+        {
+          "text": "lion dance performance",
+          "vi": "màn biểu diễn múa lân"
+        }
+      ],
+      "imageQuery": "lion dance festival",
+      "image": {
+        "file": "b13/lion-dance.webp",
+        "provider": "wikimedia",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Lion_dance_art_object.JPG",
+        "author": "Captain76.",
+        "license": "Public domain",
+        "licenseUrl": "",
+        "query": "lion dance festival",
+        "sha256": "e2c0ad1c36d14499119ee9989895dc58746035d0106638e687c966ee187dadc1",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈlaɪən dæns/",
+      "ipaUk": "/ˈlaɪən dɑːns/",
+      "ipaSource": "https://en.wiktionary.org/wiki/lion + https://en.wiktionary.org/wiki/dance",
+      "ipaVerified": true
+    },
+    {
+      "term": "traditional dress",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "trang phục truyền thống",
+      "meaningEn": "clothes that people in a culture wear on special occasions",
+      "examples": [
+        {
+          "text": "She wore her traditional dress to the wedding.",
+          "vi": "Cô ấy mặc trang phục truyền thống đến đám cưới."
+        },
+        {
+          "text": "The ao dai is a beautiful traditional dress.",
+          "vi": "Áo dài là một bộ trang phục truyền thống rất đẹp."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "wear traditional dress",
+          "vi": "mặc trang phục truyền thống"
+        },
+        {
+          "text": "national traditional dress",
+          "vi": "quốc phục"
+        }
+      ],
+      "imageQuery": "ao dai traditional dress",
+      "generate": {
+        "kind": "art",
+        "value": "traditional dress"
+      },
+      "image": {
+        "file": "b13/traditional-dress.webp",
+        "provider": "generated",
+        "pageUrl": "https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish",
+        "author": "TCT English content tool",
+        "license": "Original work (generated)",
+        "licenseUrl": "",
+        "query": "generate:art:traditional dress",
+        "sha256": "f0f8adf6e591d8215214edee06c2c9afb97c86b049def512d1281602b22a5a6b",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/tɹəˈdɪʃ.ə.nəl dɹɛs/",
+      "ipaUk": "/tɹəˈdɪʃ.ə.nəl dɹes/",
+      "ipaSource": "https://en.wiktionary.org/wiki/traditional + https://en.wiktionary.org/wiki/dress",
+      "ipaVerified": true
+    },
+    {
+      "term": "handicraft",
+      "partsOfSpeech": [
+        "noun"
+      ],
+      "cefr": "B2",
+      "definition": "đồ thủ công mỹ nghệ",
+      "meaningEn": "an object made by hand with skill, such as baskets or pottery",
+      "examples": [
+        {
+          "text": "The market sells local handicrafts.",
+          "vi": "Khu chợ bán đồ thủ công mỹ nghệ địa phương."
+        },
+        {
+          "text": "She learned to make handicrafts from her grandmother.",
+          "vi": "Cô ấy học làm đồ thủ công từ bà."
+        }
+      ],
+      "collocations": [
+        {
+          "text": "traditional handicraft",
+          "vi": "đồ thủ công truyền thống"
+        },
+        {
+          "text": "handmade handicrafts",
+          "vi": "đồ thủ công làm bằng tay"
+        }
+      ],
+      "imageQuery": "handicrafts market baskets",
+      "image": {
+        "file": "b13/handicraft.webp",
+        "provider": "rawpixel",
+        "pageUrl": "https://www.rawpixel.com/image/6201534/photo-image-public-domain-wooden",
+        "author": "U.S. Agency for International Development",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "query": "handicrafts market baskets",
+        "sha256": "662b7f3bd30fe449d76e2900728214fcd0c4ad240b35090b813fc33f6ff6ec9f",
+        "width": 480,
+        "height": 360,
+        "reviewedAt": "2026-11-19"
+      },
+      "ipaUs": "/ˈhændɪkɹæft/",
+      "ipaUk": "/ˈhændɪkɹæft/",
+      "ipaSource": "https://en.wiktionary.org/wiki/handicraft",
+      "ipaVerified": true
+    }
+  ]
+}

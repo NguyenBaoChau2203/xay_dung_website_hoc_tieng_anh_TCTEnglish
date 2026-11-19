@@ -2951,6 +2951,109 @@ def sci_icon(name: str) -> bytes:
     return finish(img)
 
 
+def law_icon(name: str) -> bytes:
+    """Flat original drawing for a law or society word (kind "law")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+    GOLD = (250, 204, 21)
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=5, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    def text(x, y, t, size, col=L):
+        d.text((x * s, y * s), t, fill=col, font=_big_font(size * s))
+
+    d.rectangle((0, 300 * s, W * s, H * s), fill=(214, 196, 160))
+    if name == "witness":
+        box(250, 150, 430, 300, (146, 83, 36), 6, 4)
+        box(230, 130, 450, 160, (180, 105, 50), 4, 4)
+        _person(d, 340, 40, 1.6, "f", (124, 58, 237))
+        box(40, 110, 200, 300, (180, 120, 70), 6, 4)
+        oval(100, 80, 140, 120, (250, 213, 172))
+        poly([(90, 130), (150, 130), (160, 250), (80, 250)], (51, 65, 85))
+    elif name == "prison":
+        box(100, 40, 380, 300, (148, 163, 184), 4, 4)
+        for k in range(7):
+            line(130 + k * 36, 60, 130 + k * 36, 290, 10, (51, 65, 85))
+        line(110, 120, 370, 120, 8, (51, 65, 85))
+        line(110, 220, 370, 220, 8, (51, 65, 85))
+        box(200, 300, 280, 320, (51, 65, 85), 2, 0)
+    elif name == "evidence":
+        box(80, 150, 280, 290, (255, 255, 255), 12, 4)
+        text(112, 170, "EVIDENCE", 30)
+        line(110, 220, 250, 220, 3, (148, 163, 184))
+        box(300, 120, 440, 280, (226, 232, 240), 8, 4)
+        oval(330, 160, 410, 240, (255, 255, 255), 3)
+        for k in range(5):
+            d.arc(((340 + k * 4) * s, (170 + k * 4) * s, (400 - k * 4) * s, (230 - k * 4) * s), 20, 200, fill=L, width=2 * s)
+        oval(340, 20, 440, 100, (186, 230, 253), 4)
+        line(430, 90, 470, 130, 12, (120, 72, 36))
+    elif name == "gavel":
+        box(100, 90, 280, 150, (146, 83, 36), 10, 4)
+        line(180, 150, 330, 260, 18, (180, 105, 50))
+        box(260, 280, 440, 300, (146, 83, 36), 4, 4)
+        box(280, 300, 420, 320, (120, 72, 36), 4, 4)
+    elif name == "candidate":
+        box(160, 160, 340, 300, (30, 58, 138), 6, 4)
+        text(194, 190, "VOTE", 50, (255, 255, 255))
+        _person(d, 250, 30, 1.8, "m", (22, 163, 74))
+        box(370, 40, 460, 120, (250, 204, 21), 6, 3)
+        d.polygon(poly_star(415 * s, 80 * s, 26 * s, 11 * s, 5), fill=(220, 38, 38), outline=L)
+        line(415, 120, 415, 290, 6)
+    elif name == "charity":
+        oval(190, 170, 290, 270, (254, 226, 226), 4)
+        for (x, y, r) in ((100, 200, 28), (380, 200, 28)):
+            oval(x - r, y - r, x + r, y + r, (250, 213, 172), 3)
+        poly([(240, 120), (200, 90), (170, 130), (240, 210), (310, 130), (280, 90)], (244, 63, 94))
+        box(80, 230, 400, 300, (255, 255, 255), 10, 3)
+        text(120, 244, "CHARITY", 36)
+    elif name == "security guard":
+        _person(d, 140, 40, 2.6, "m", (30, 41, 59))
+        poly([(100, 60), (190, 60), (180, 40), (110, 40)], (30, 41, 59))
+        box(300, 120, 420, 300, (148, 163, 184), 6, 4)
+        box(318, 140, 402, 220, (186, 230, 253), 4, 3)
+        text(322, 236, "GATE", 36)
+        d.polygon(poly_star(150 * s, 170 * s, 14 * s, 6 * s, 5), fill=GOLD, outline=L)
+    elif name == "arrest":
+        _person(d, 130, 40, 2.6, "m", (30, 58, 138))
+        _person(d, 330, 60, 2.4, "m", (234, 88, 12))
+        line(200, 190, 290, 200, 8, (250, 213, 172))
+        oval(280, 190, 310, 220, (170, 178, 192), 3)
+        oval(302, 190, 332, 220, (170, 178, 192), 3)
+    elif name == "fine":
+        box(120, 40, 360, 300, (255, 255, 255), 8, 4)
+        text(160, 56, "FINE", 56, (220, 38, 38))
+        for k in range(4):
+            line(150, 140 + k * 24, 330 - (k % 2) * 40, 140 + k * 24, 3, (148, 163, 184))
+        text(150, 240, "$50", 44)
+        box(380, 180, 450, 280, (59, 130, 246), 8, 3)
+    elif name == "verdict":
+        line(240, 50, 240, 300, 8)
+        line(110, 90, 370, 90, 8)
+        for sx in (-1, 1):
+            cx = 240 + sx * 130
+            line(cx, 90, cx - 40, 170, 3)
+            line(cx, 90, cx + 40, 170, 3)
+            poly([(cx - 50, 170), (cx + 50, 170), (cx + 30, 200), (cx - 30, 200)], GOLD)
+        box(180, 300, 300, 320, (120, 72, 36), 4, 3)
+        text(172, 22, "GUILTY?", 28)
+    else:
+        raise SystemExit(f"unknown law icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -3019,6 +3122,8 @@ def main() -> None:
             data = city_icon(val)
         elif kind == "sci":
             data = sci_icon(val)
+        elif kind == "law":
+            data = law_icon(val)
         elif kind == "scene":
             data = scene_image(card["term"], card.get("imageQuery", ""), i, manifest["set"]["code"])
         else:
