@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b03-moi-truong",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong",
+      "kind": "Set",
+      "values": {
+        "SetName": "M\u00F4i tr\u01B0\u1EDDng",
+        "Description": "#b1 #b2 #environment #nature"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.0cd288e538464f5ea33a0a12d2405a72",
+      "kind": "Card",
+      "values": {
+        "Term": "plastic bottle",
+        "Definition": "chai nh\u1EF1a",
+        "ImageUrl": "asset:292da531c98300bd121d67801d743d027ecaf82207e4c85db8fd8f5c0c04f6d9.webp",
+        "Phonetic": "/\u02C8pl\u00E6st\u026Ak \u02C8b\u0251t\u0259l/",
+        "Example": "Millions of plastic bottles end up in the sea.",
+        "ExampleTranslation": "H\u00E0ng tri\u1EC7u chai nh\u1EF1a k\u1EBFt th\u00FAc trong bi\u1EC3n.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a container made of plastic for drinks",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8pl\u00E6st\u026Ak \u02C8b\u0252t\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Millions of plastic bottles end up in the sea.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng tri\\u1EC7u chai nh\\u1EF1a k\\u1EBFt th\\u00FAc trong bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022She refills one plastic bottle instead of buying new ones.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111\\u1ED5 \\u0111\\u1EA7y l\\u1EA1i m\\u1ED9t chai nh\\u1EF1a thay v\\u00EC mua chai m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022recycle a plastic bottle\u0022,\u0022vi\u0022:\u0022t\\u00E1i ch\\u1EBF chai nh\\u1EF1a\u0022},{\u0022text\u0022:\u0022empty plastic bottle\u0022,\u0022vi\u0022:\u0022chai nh\\u1EF1a r\\u1ED7ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5924958/photo-image-public-domain-plastic-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.13440ba110f5403dad9c742f3569fe94",
+      "kind": "Card",
+      "values": {
+        "Term": "nature reserve",
+        "Definition": "khu b\u1EA3o t\u1ED3n thi\u00EAn nhi\u00EAn",
+        "ImageUrl": "asset:e2b078bd12656ed168e2c08e106824b69158878880583c109ab489d0c103749c.webp",
+        "Phonetic": "/\u02C8ne\u026A\u032F.t\u0361\u0283\u0259\u0279 \u0279\u026A\u02C8z\u025Dv/",
+        "Example": "We visited a nature reserve near the lake.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111\u00E3 th\u0103m m\u1ED9t khu b\u1EA3o t\u1ED3n thi\u00EAn nhi\u00EAn g\u1EA7n h\u1ED3.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an area of land where wild animals and plants are protected",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8ne\u026A\u032F.t\u0283\u0259(\u0279) \u0279\u026A\u02C8z\u025C\u02D0v/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We visited a nature reserve near the lake.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u00E3 th\\u0103m m\\u1ED9t khu b\\u1EA3o t\\u1ED3n thi\\u00EAn nhi\\u00EAn g\\u1EA7n h\\u1ED3.\u0022},{\u0022text\u0022:\u0022Hunting is not allowed in the nature reserve.\u0022,\u0022vi\u0022:\u0022Vi\\u1EC7c s\\u0103n b\\u1EAFn b\\u1ECB c\\u1EA5m trong khu b\\u1EA3o t\\u1ED3n thi\\u00EAn nhi\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022national nature reserve\u0022,\u0022vi\u0022:\u0022khu b\\u1EA3o t\\u1ED3n thi\\u00EAn nhi\\u00EAn qu\\u1ED1c gia\u0022},{\u0022text\u0022:\u0022visit a nature reserve\u0022,\u0022vi\u0022:\u0022th\\u0103m khu b\\u1EA3o t\\u1ED3n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Rondevlei_Wetlands_Nature_Reserve_-_Cape_Town_SA_6.JPG\u0022,\u0022author\u0022:\u0022Abu Shawka\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.2de7bc4d14f940d082f4c7ee6fa5cc32",
+      "kind": "Card",
+      "values": {
+        "Term": "landfill",
+        "Definition": "b\u00E3i ch\u00F4n l\u1EA5p r\u00E1c",
+        "ImageUrl": "asset:7532b606c5cd40bf587bd9b822f1b9f5ad63edc34a8329775778abd9ec14bee1.webp",
+        "Phonetic": "/\u02C8l\u00E6n(d).f\u026Al/",
+        "Example": "Most of our rubbish goes to the landfill.",
+        "ExampleTranslation": "Ph\u1EA7n l\u1EDBn r\u00E1c c\u1EE7a ch\u00FAng ta \u0111\u01B0\u1EE3c \u0111\u01B0a \u0111\u1EBFn b\u00E3i ch\u00F4n l\u1EA5p.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large hole in the ground where rubbish is buried",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8l\u00E6n(d).f\u026Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Most of our rubbish goes to the landfill.\u0022,\u0022vi\u0022:\u0022Ph\\u1EA7n l\\u1EDBn r\\u00E1c c\\u1EE7a ch\\u00FAng ta \\u0111\\u01B0\\u1EE3c \\u0111\\u01B0a \\u0111\\u1EBFn b\\u00E3i ch\\u00F4n l\\u1EA5p.\u0022},{\u0022text\u0022:\u0022The landfill is nearly full.\u0022,\u0022vi\u0022:\u0022B\\u00E3i ch\\u00F4n l\\u1EA5p r\\u00E1c g\\u1EA7n \\u0111\\u1EA7y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022landfill site\u0022,\u0022vi\u0022:\u0022khu ch\\u00F4n l\\u1EA5p r\\u00E1c\u0022},{\u0022text\u0022:\u0022send to landfill\u0022,\u0022vi\u0022:\u0022\\u0111\\u01B0a \\u0111\\u1EBFn b\\u00E3i ch\\u00F4n l\\u1EA5p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8802732/photo-image-vintage-rust-trash\u0022,\u0022author\u0022:\u0022U.S. National Archives\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.334d1c6dee5540a38bc3734abbb64297",
+      "kind": "Card",
+      "values": {
+        "Term": "pollution",
+        "Definition": "s\u1EF1 \u00F4 nhi\u1EC5m",
+        "ImageUrl": "asset:0831a79648578f50d2d184c1b57910157dceb3af0dc693a4ee64950c67f8db48.webp",
+        "Phonetic": "/p\u0259\u02C8lu\u0283\u0259n/",
+        "Example": "Pollution makes the air in big cities unhealthy.",
+        "ExampleTranslation": "\u00D4 nhi\u1EC5m l\u00E0m kh\u00F4ng kh\u00ED \u1EDF c\u00E1c th\u00E0nh ph\u1ED1 l\u1EDBn kh\u00F4ng trong l\u00E0nh.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "dirty or harmful things in the air, water or soil",
+        "Cefr": "B1",
+        "PhoneticUk": "/p\u0259\u02C8lju\u02D0\u0283\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Pollution makes the air in big cities unhealthy.\u0022,\u0022vi\u0022:\u0022\\u00D4 nhi\\u1EC5m l\\u00E0m kh\\u00F4ng kh\\u00ED \\u1EDF c\\u00E1c th\\u00E0nh ph\\u1ED1 l\\u1EDBn kh\\u00F4ng trong l\\u00E0nh.\u0022},{\u0022text\u0022:\u0022The government wants to reduce river pollution.\u0022,\u0022vi\u0022:\u0022Ch\\u00EDnh ph\\u1EE7 mu\\u1ED1n gi\\u1EA3m \\u00F4 nhi\\u1EC5m s\\u00F4ng ng\\u00F2i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022air pollution\u0022,\u0022vi\u0022:\u0022\\u00F4 nhi\\u1EC5m kh\\u00F4ng kh\\u00ED\u0022},{\u0022text\u0022:\u0022reduce pollution\u0022,\u0022vi\u0022:\u0022gi\\u1EA3m \\u00F4 nhi\\u1EC5m\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022pollute\u0022,\u0022pos\u0022:\u0022verb\u0022,\u0022vi\u0022:\u0022l\\u00E0m \\u00F4 nhi\\u1EC5m\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3337913/free-photo-image-air-pollution-factory-smog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.3e2cca3e0b6948c4ab5e9b3f0837a16a",
+      "kind": "Card",
+      "values": {
+        "Term": "smog",
+        "Definition": "kh\u00F3i b\u1EE5i m\u00F9",
+        "ImageUrl": "asset:fa609ba5753cdaee44a1aa31788d255a38462939de320110ba86813ffb0d4d53.webp",
+        "Phonetic": "/sm\u0251\u0261/",
+        "Example": "Heavy smog covered the city this morning.",
+        "ExampleTranslation": "Kh\u00F3i b\u1EE5i m\u00F9 d\u00E0y \u0111\u1EB7c bao ph\u1EE7 th\u00E0nh ph\u1ED1 s\u00E1ng nay.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "thick dirty air that hangs over a city",
+        "Cefr": "B2",
+        "PhoneticUk": "/sm\u0252\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Heavy smog covered the city this morning.\u0022,\u0022vi\u0022:\u0022Kh\\u00F3i b\\u1EE5i m\\u00F9 d\\u00E0y \\u0111\\u1EB7c bao ph\\u1EE7 th\\u00E0nh ph\\u1ED1 s\\u00E1ng nay.\u0022},{\u0022text\u0022:\u0022Smog makes it hard to breathe outside.\u0022,\u0022vi\u0022:\u0022Kh\\u00F3i b\\u1EE5i m\\u00F9 khi\\u1EBFn vi\\u1EC7c th\\u1EDF ngo\\u00E0i tr\\u1EDDi kh\\u00F3 kh\\u0103n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022thick smog\u0022,\u0022vi\u0022:\u0022kh\\u00F3i b\\u1EE5i d\\u00E0y \\u0111\\u1EB7c\u0022},{\u0022text\u0022:\u0022city smog\u0022,\u0022vi\u0022:\u0022kh\\u00F3i b\\u1EE5i th\\u00E0nh ph\\u1ED1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:EAST_RIVER_AND_MANHATTAN_SKYLINE_IN_HEAVY_SMOG_-_NARA_-_548365_(restored).jpg\u0022,\u0022author\u0022:\u0022Chester Higgins, Jr.\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.41621e379a6d4d53800fe26d8a4f7241",
+      "kind": "Card",
+      "values": {
+        "Term": "charging station",
+        "Definition": "tr\u1EA1m s\u1EA1c",
+        "ImageUrl": "asset:f1f9dbe2ceb12ace450766193a5a502ede65c5867f2828e17e9b360daf2b5a25.webp",
+        "Phonetic": "/\u02C8t\u0361\u0283\u0251\u0279d\u0361\u0292\u026A\u014B \u02C8ste\u026A\u0283\u0259n/",
+        "Example": "There is a charging station in the car park.",
+        "ExampleTranslation": "C\u00F3 m\u1ED9t tr\u1EA1m s\u1EA1c trong b\u00E3i \u0111\u1ED7 xe.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place where you can put electricity into an electric car",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8t\u0361\u0283\u0251\u02D0d\u0361\u0292\u026A\u014B \u02C8ste\u026A\u0283\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022There is a charging station in the car park.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t tr\\u1EA1m s\\u1EA1c trong b\\u00E3i \\u0111\\u1ED7 xe.\u0022},{\u0022text\u0022:\u0022We stopped at a charging station for half an hour.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i d\\u1EEBng \\u1EDF m\\u1ED9t tr\\u1EA1m s\\u1EA1c n\\u1EEDa ti\\u1EBFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022find a charging station\u0022,\u0022vi\u0022:\u0022t\\u00ECm tr\\u1EA1m s\\u1EA1c\u0022},{\u0022text\u0022:\u0022fast charging station\u0022,\u0022vi\u0022:\u0022tr\\u1EA1m s\\u1EA1c nhanh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6079397/solar-powered-charging-station\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.41e0392dc300463dbd74b30025ab70da",
+      "kind": "Card",
+      "values": {
+        "Term": "dam",
+        "Definition": "con \u0111\u1EADp",
+        "ImageUrl": "asset:43ae5801e31a73e4bf1411113f69aa5cf3d24f1a4655613a0782edd981404739.webp",
+        "Phonetic": "/\u02C8d\u00E6m/",
+        "Example": "The new dam provides power for the whole region.",
+        "ExampleTranslation": "Con \u0111\u1EADp m\u1EDBi cung c\u1EA5p \u0111i\u1EC7n cho c\u1EA3 v\u00F9ng.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a strong wall built across a river to hold water back",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8d\u00E6m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The new dam provides power for the whole region.\u0022,\u0022vi\u0022:\u0022Con \\u0111\\u1EADp m\\u1EDBi cung c\\u1EA5p \\u0111i\\u1EC7n cho c\\u1EA3 v\\u00F9ng.\u0022},{\u0022text\u0022:\u0022They built a dam across the river.\u0022,\u0022vi\u0022:\u0022H\\u1ECD x\\u00E2y m\\u1ED9t con \\u0111\\u1EADp ngang con s\\u00F4ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022build a dam\u0022,\u0022vi\u0022:\u0022x\\u00E2y \\u0111\\u1EADp\u0022},{\u0022text\u0022:\u0022hydroelectric dam\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EADp th\\u1EE7y \\u0111i\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:High_water_at_Longtang_Dam_-_01.jpg\u0022,\u0022author\u0022:\u0022Anna Frodesiak\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.45b411b0f0184604aad0279f5a3e378a",
+      "kind": "Card",
+      "values": {
+        "Term": "coral reef",
+        "Definition": "r\u1EA1n san h\u00F4",
+        "ImageUrl": "asset:1f8ea3b1a9a3c60675fd49e7507ff20e3b99f2878a4db82a893c1eb495aac623.webp",
+        "Phonetic": "/\u02C8k\u0254\u0279\u0259l \u0279i\u02D0f/",
+        "Example": "We saw colourful fish on the coral reef.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i th\u1EA5y nh\u1EEFng con c\u00E1 nhi\u1EC1u m\u00E0u tr\u00EAn r\u1EA1n san h\u00F4.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long line of coral under the sea where many fish live",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0252\u0279\u0259l \u0279i\u02D0f/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We saw colourful fish on the coral reef.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i th\\u1EA5y nh\\u1EEFng con c\\u00E1 nhi\\u1EC1u m\\u00E0u tr\\u00EAn r\\u1EA1n san h\\u00F4.\u0022},{\u0022text\u0022:\u0022Warm water is damaging the coral reef.\u0022,\u0022vi\u0022:\u0022N\\u01B0\\u1EDBc \\u1EA5m \\u0111ang l\\u00E0m h\\u1EA1i r\\u1EA1n san h\\u00F4.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022protect a coral reef\u0022,\u0022vi\u0022:\u0022b\\u1EA3o v\\u1EC7 r\\u1EA1n san h\\u00F4\u0022},{\u0022text\u0022:\u0022coral reef fish\u0022,\u0022vi\u0022:\u0022c\\u00E1 r\\u1EA1n san h\\u00F4\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/40322276@N04/11177135805\u0022,\u0022author\u0022:\u0022NOAA\\u0027s National Ocean Service\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.4cd350f3dd1a4c2898057cd59adc2196",
+      "kind": "Card",
+      "values": {
+        "Term": "plastic bag",
+        "Definition": "t\u00FAi nh\u1EF1a",
+        "ImageUrl": "asset:082dce8f2b0874480367e60dbefa6aa720227a54f67f5665d0950e9abb84b294.webp",
+        "Phonetic": "/\u02C8pl\u00E6st\u026Ak b\u00E6\u0261/",
+        "Example": "The shop stopped giving out plastic bags.",
+        "ExampleTranslation": "C\u1EEDa h\u00E0ng ng\u1EEBng ph\u00E1t t\u00FAi nh\u1EF1a.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thin bag made of plastic for carrying things",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8pl\u00E6st\u026Ak ba\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The shop stopped giving out plastic bags.\u0022,\u0022vi\u0022:\u0022C\\u1EEDa h\\u00E0ng ng\\u1EEBng ph\\u00E1t t\\u00FAi nh\\u1EF1a.\u0022},{\u0022text\u0022:\u0022A plastic bag can stay in the soil for years.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t chi\\u1EBFc t\\u00FAi nh\\u1EF1a c\\u00F3 th\\u1EC3 t\\u1ED3n t\\u1EA1i trong \\u0111\\u1EA5t nhi\\u1EC1u n\\u0103m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ban plastic bags\u0022,\u0022vi\u0022:\u0022c\\u1EA5m t\\u00FAi nh\\u1EF1a\u0022},{\u0022text\u0022:\u0022carry a plastic bag\u0022,\u0022vi\u0022:\u0022x\\u00E1ch t\\u00FAi nh\\u1EF1a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Black_plastic_bag_on_white_counter.jpg\u0022,\u0022author\u0022:\u0022999real\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.5b750753ccbe4d739c1653b910cb490d",
+      "kind": "Card",
+      "values": {
+        "Term": "electric car",
+        "Definition": "\u00F4 t\u00F4 \u0111i\u1EC7n",
+        "ImageUrl": "asset:a27bfe6fd1c67a0ed8c1802145cf1b02a02e9fd47fce5dc3add6eea0ed7033a2.webp",
+        "Phonetic": "/\u026A\u02C8l\u025Bkt\u0279\u026Ak k\u0251\u0279/",
+        "Example": "My uncle bought an electric car last year.",
+        "ExampleTranslation": "Ch\u00FA t\u00F4i mua m\u1ED9t chi\u1EBFc \u00F4 t\u00F4 \u0111i\u1EC7n v\u00E0o n\u0103m ngo\u00E1i.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a car that runs on electricity instead of petrol",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u026A\u02C8l\u025Bkt\u0279\u026Ak k\u0251\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My uncle bought an electric car last year.\u0022,\u0022vi\u0022:\u0022Ch\\u00FA t\\u00F4i mua m\\u1ED9t chi\\u1EBFc \\u00F4 t\\u00F4 \\u0111i\\u1EC7n v\\u00E0o n\\u0103m ngo\\u00E1i.\u0022},{\u0022text\u0022:\u0022An electric car does not make exhaust fumes.\u0022,\u0022vi\u0022:\u0022\\u00D4 t\\u00F4 \\u0111i\\u1EC7n kh\\u00F4ng th\\u1EA3i kh\\u00F3i x\\u1EA3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022charge an electric car\u0022,\u0022vi\u0022:\u0022s\\u1EA1c \\u00F4 t\\u00F4 \\u0111i\\u1EC7n\u0022},{\u0022text\u0022:\u0022electric car battery\u0022,\u0022vi\u0022:\u0022pin \\u00F4 t\\u00F4 \\u0111i\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6020562/photo-image-public-domain-space-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.5d6e6f8dc098449497a4c9f3a6ecd57f",
+      "kind": "Card",
+      "values": {
+        "Term": "deforestation",
+        "Definition": "n\u1EA1n ph\u00E1 r\u1EEBng",
+        "ImageUrl": "asset:3ad423a385732008079e5aeee90f30005777796efdadd88c9f0e137064de2893.webp",
+        "Phonetic": "/d\u026A\u02CCf\u0252\u0279\u026As\u02C8te\u026A\u0283\u0259n/",
+        "Example": "Deforestation destroys the homes of many animals.",
+        "ExampleTranslation": "N\u1EA1n ph\u00E1 r\u1EEBng h\u1EE7y ho\u1EA1i n\u01A1i s\u1ED1ng c\u1EE7a nhi\u1EC1u lo\u00E0i v\u1EADt.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the cutting down of trees over a large area",
+        "Cefr": "B2",
+        "PhoneticUk": "/d\u026A\u02CCf\u0252\u0279\u026As\u02C8te\u026A\u0283\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Deforestation destroys the homes of many animals.\u0022,\u0022vi\u0022:\u0022N\\u1EA1n ph\\u00E1 r\\u1EEBng h\\u1EE7y ho\\u1EA1i n\\u01A1i s\\u1ED1ng c\\u1EE7a nhi\\u1EC1u lo\\u00E0i v\\u1EADt.\u0022},{\u0022text\u0022:\u0022The photos show the effects of deforestation.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng b\\u1EE9c \\u1EA3nh cho th\\u1EA5y h\\u1EADu qu\\u1EA3 c\\u1EE7a n\\u1EA1n ph\\u00E1 r\\u1EEBng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022stop deforestation\u0022,\u0022vi\u0022:\u0022ng\\u0103n ch\\u1EB7n n\\u1EA1n ph\\u00E1 r\\u1EEBng\u0022},{\u0022text\u0022:\u0022effects of deforestation\u0022,\u0022vi\u0022:\u0022h\\u1EADu qu\\u1EA3 c\\u1EE7a ph\\u00E1 r\\u1EEBng\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022forest\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022r\\u1EEBng\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3388319/free-photo-image-cc0-clear-cutting-creative-commons\u0022,\u0022author\u0022:\u0022U.S. Forest Service (source)\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.5e76bf2e91cd447f85ea2044791c64be",
+      "kind": "Card",
+      "values": {
+        "Term": "compost",
+        "Definition": "ph\u00E2n h\u1EEFu c\u01A1; \u1EE7 ph\u00E2n",
+        "ImageUrl": "asset:abf7b5dde17906e2bf594d458b1efc0157502ac7c630867111e21125e1bfb52e.webp",
+        "Phonetic": "/\u02C8k\u0251m.po\u028Ast/",
+        "Example": "We make compost from vegetable waste.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i l\u00E0m ph\u00E2n h\u1EEFu c\u01A1 t\u1EEB r\u00E1c rau c\u1EE7.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "rotted food and leaves that you put on soil to help plants grow",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0252m.p\u0252st/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We make compost from vegetable waste.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i l\\u00E0m ph\\u00E2n h\\u1EEFu c\\u01A1 t\\u1EEB r\\u00E1c rau c\\u1EE7.\u0022},{\u0022text\u0022:\u0022Put the old leaves on the compost heap.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111\\u1ED5 l\\u00E1 c\\u0169 l\\u00EAn \\u0111\\u1ED1ng ph\\u00E2n \\u1EE7.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022compost heap\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED1ng ph\\u00E2n \\u1EE7\u0022},{\u0022text\u0022:\u0022make compost\u0022,\u0022vi\u0022:\u0022\\u1EE7 ph\\u00E2n\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022composted\u0022,\u0022pastParticiple\u0022:\u0022composted\u0022,\u0022ing\u0022:\u0022composting\u0022,\u0022thirdPerson\u0022:\u0022composts\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/195567181@N06/52061951623\u0022,\u0022author\u0022:\u0022eveharms\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.66afcbb6aeb541bca1dc728345714394",
+      "kind": "Card",
+      "values": {
+        "Term": "solar panel",
+        "Definition": "t\u1EA5m pin m\u1EB7t tr\u1EDDi",
+        "ImageUrl": "asset:617d53911869983db3d5d94fd488ec126e2d24f471e3ef5e79fb0e7acd5e0322.webp",
+        "Phonetic": "/\u02C8so\u028A.l\u0259\u0279 \u02C8p\u00E6n\u0259l/",
+        "Example": "They put solar panels on the roof of the school.",
+        "ExampleTranslation": "H\u1ECD l\u1EAFp c\u00E1c t\u1EA5m pin m\u1EB7t tr\u1EDDi tr\u00EAn m\u00E1i tr\u01B0\u1EDDng.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat device that turns sunlight into electricity",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8s\u0259\u028A.l\u0259 \u02C8p\u00E6n\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022They put solar panels on the roof of the school.\u0022,\u0022vi\u0022:\u0022H\\u1ECD l\\u1EAFp c\\u00E1c t\\u1EA5m pin m\\u1EB7t tr\\u1EDDi tr\\u00EAn m\\u00E1i tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022A solar panel works best on a sunny day.\u0022,\u0022vi\u0022:\u0022T\\u1EA5m pin m\\u1EB7t tr\\u1EDDi ho\\u1EA1t \\u0111\\u1ED9ng t\\u1ED1t nh\\u1EA5t v\\u00E0o ng\\u00E0y n\\u1EAFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022install solar panels\u0022,\u0022vi\u0022:\u0022l\\u1EAFp pin m\\u1EB7t tr\\u1EDDi\u0022},{\u0022text\u0022:\u0022solar panel roof\u0022,\u0022vi\u0022:\u0022m\\u00E1i nh\\u00E0 l\\u1EAFp pin m\\u1EB7t tr\\u1EDDi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3339452/free-photo-image-solar-energy-photovoltaic-environmental\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.7209bb0aca25487e98720d2cd761cdbf",
+      "kind": "Card",
+      "values": {
+        "Term": "recycling bin",
+        "Definition": "th\u00F9ng r\u00E1c t\u00E1i ch\u1EBF",
+        "ImageUrl": "asset:f5e819fdd8312b3bb652f4e207a42f62d65ae497b0a6e400141d587b04697691.webp",
+        "Phonetic": "/ri\u02D0\u02C8sa\u026Akl\u026A\u014B b\u026An/",
+        "Example": "Put the empty bottles in the recycling bin.",
+        "ExampleTranslation": "H\u00E3y b\u1ECF nh\u1EEFng c\u00E1i chai r\u1ED7ng v\u00E0o th\u00F9ng r\u00E1c t\u00E1i ch\u1EBF.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a container where you put paper, glass and plastic to be used again",
+        "Cefr": "B1",
+        "PhoneticUk": "/ri\u02D0\u02C8sa\u026Akl\u026A\u014B b\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Put the empty bottles in the recycling bin.\u0022,\u0022vi\u0022:\u0022H\\u00E3y b\\u1ECF nh\\u1EEFng c\\u00E1i chai r\\u1ED7ng v\\u00E0o th\\u00F9ng r\\u00E1c t\\u00E1i ch\\u1EBF.\u0022},{\u0022text\u0022:\u0022Each house has a blue recycling bin.\u0022,\u0022vi\u0022:\u0022M\\u1ED7i nh\\u00E0 c\\u00F3 m\\u1ED9t th\\u00F9ng r\\u00E1c t\\u00E1i ch\\u1EBF m\\u00E0u xanh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022empty the recycling bin\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED5 th\\u00F9ng r\\u00E1c t\\u00E1i ch\\u1EBF\u0022},{\u0022text\u0022:\u0022blue recycling bin\u0022,\u0022vi\u0022:\u0022th\\u00F9ng t\\u00E1i ch\\u1EBF m\\u00E0u xanh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6754514/image-public-domain-illustrations-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.a8bbdb380a994c34abb608a75edd2dbb",
+      "kind": "Card",
+      "values": {
+        "Term": "wildfire",
+        "Definition": "ch\u00E1y r\u1EEBng",
+        "ImageUrl": "asset:af35192970bf38e4de574191c3941b7c9ed565e6a218b7ec276eaa88b80ca753.webp",
+        "Phonetic": "/\u02C8wa\u026Ald\u02CCfa\u026A\u0259r/",
+        "Example": "A wildfire burned across the hills last summer.",
+        "ExampleTranslation": "M\u00F9a h\u00E8 n\u0103m ngo\u00E1i m\u1ED9t \u0111\u00E1m ch\u00E1y r\u1EEBng lan kh\u1EAFp c\u00E1c ng\u1ECDn \u0111\u1ED3i.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a big fire that spreads quickly through forests or grass",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8wa\u026Ald\u02CCfa\u026A\u0259r/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A wildfire burned across the hills last summer.\u0022,\u0022vi\u0022:\u0022M\\u00F9a h\\u00E8 n\\u0103m ngo\\u00E1i m\\u1ED9t \\u0111\\u00E1m ch\\u00E1y r\\u1EEBng lan kh\\u1EAFp c\\u00E1c ng\\u1ECDn \\u0111\\u1ED3i.\u0022},{\u0022text\u0022:\u0022Dry weather increases the risk of wildfires.\u0022,\u0022vi\u0022:\u0022Th\\u1EDDi ti\\u1EBFt kh\\u00F4 l\\u00E0m t\\u0103ng nguy c\\u01A1 ch\\u00E1y r\\u1EEBng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fight a wildfire\u0022,\u0022vi\u0022:\u0022ch\\u1EEFa ch\\u00E1y r\\u1EEBng\u0022},{\u0022text\u0022:\u0022wildfire smoke\u0022,\u0022vi\u0022:\u0022kh\\u00F3i ch\\u00E1y r\\u1EEBng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/107640324@N05/21429820471\u0022,\u0022author\u0022:\u0022Intermountain Region US Forest Service\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.aa84219ad182459ea0beed7e4986fd3c",
+      "kind": "Card",
+      "values": {
+        "Term": "wind turbine",
+        "Definition": "tuabin gi\u00F3",
+        "ImageUrl": "asset:f2f8c08b010cec760bbe74f6cd9bb187043c9d8a946cf953bf607eb55c0878b7.webp",
+        "Phonetic": "/w\u026And \u02C8t\u025D.ba\u026An/",
+        "Example": "Many wind turbines stand along the coast.",
+        "ExampleTranslation": "Nhi\u1EC1u tuabin gi\u00F3 \u0111\u1EE9ng d\u1ECDc b\u1EDD bi\u1EC3n.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tall machine with blades that makes electricity from wind",
+        "Cefr": "B2",
+        "PhoneticUk": "/w\u026And \u02C8t\u025C\u02D0.ba\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Many wind turbines stand along the coast.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC1u tuabin gi\\u00F3 \\u0111\\u1EE9ng d\\u1ECDc b\\u1EDD bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022The wind turbine turns slowly in the breeze.\u0022,\u0022vi\u0022:\u0022Tuabin gi\\u00F3 quay ch\\u1EADm trong l\\u00E0n gi\\u00F3 nh\\u1EB9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wind turbine blades\u0022,\u0022vi\u0022:\u0022c\\u00E1nh tuabin gi\\u00F3\u0022},{\u0022text\u0022:\u0022offshore wind turbine\u0022,\u0022vi\u0022:\u0022tuabin gi\\u00F3 ngo\\u00E0i kh\\u01A1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/wind-turbine-JRS7H54AAV\u0022,\u0022author\u0022:\u0022Tom Swinnen\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.adaef9cb5b59410180a4c89d89930202",
+      "kind": "Card",
+      "values": {
+        "Term": "litter",
+        "Definition": "r\u00E1c v\u1EE9t b\u1EEBa b\u00E3i",
+        "ImageUrl": "asset:f1a733ff139955eee6f88139e915a503b3e311d33a37bc6dfe5ddb7c3db50451.webp",
+        "Phonetic": "/\u02C8l\u026At.\u025A/",
+        "Example": "There is litter all over the beach.",
+        "ExampleTranslation": "R\u00E1c v\u1EE9t b\u1EEBa b\u00E3i kh\u1EAFp b\u00E3i bi\u1EC3n.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "small pieces of rubbish left on the ground in public places",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8l\u026A\u027E.\u025A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022There is litter all over the beach.\u0022,\u0022vi\u0022:\u0022R\\u00E1c v\\u1EE9t b\\u1EEBa b\\u00E3i kh\\u1EAFp b\\u00E3i bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022Please do not drop litter in the park.\u0022,\u0022vi\u0022:\u0022Vui l\\u00F2ng kh\\u00F4ng x\\u1EA3 r\\u00E1c trong c\\u00F4ng vi\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022drop litter\u0022,\u0022vi\u0022:\u0022x\\u1EA3 r\\u00E1c\u0022},{\u0022text\u0022:\u0022pick up litter\u0022,\u0022vi\u0022:\u0022nh\\u1EB7t r\\u00E1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.b53b3ba4d5c8438aa697c351b854f069",
+      "kind": "Card",
+      "values": {
+        "Term": "iceberg",
+        "Definition": "t\u1EA3ng b\u0103ng tr\u00F4i",
+        "ImageUrl": "asset:4c6597888aadea01d0bec5c203ab16a6418d890544c9c285fe6a092ff6adbc5e.webp",
+        "Phonetic": "/\u02C8a\u026Asb\u025D\u0261/",
+        "Example": "The ship stayed away from the iceberg.",
+        "ExampleTranslation": "Con t\u00E0u tr\u00E1nh xa t\u1EA3ng b\u0103ng tr\u00F4i.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a huge piece of ice floating in the sea",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8a\u026Asb\u025C\u02D0\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The ship stayed away from the iceberg.\u0022,\u0022vi\u0022:\u0022Con t\\u00E0u tr\\u00E1nh xa t\\u1EA3ng b\\u0103ng tr\\u00F4i.\u0022},{\u0022text\u0022:\u0022Only a small part of an iceberg is above the water.\u0022,\u0022vi\u0022:\u0022Ch\\u1EC9 m\\u1ED9t ph\\u1EA7n nh\\u1ECF c\\u1EE7a t\\u1EA3ng b\\u0103ng tr\\u00F4i n\\u1ED5i tr\\u00EAn m\\u1EB7t n\\u01B0\\u1EDBc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022giant iceberg\u0022,\u0022vi\u0022:\u0022t\\u1EA3ng b\\u0103ng tr\\u00F4i kh\\u1ED5ng l\\u1ED3\u0022},{\u0022text\u0022:\u0022tip of the iceberg\u0022,\u0022vi\u0022:\u0022ph\\u1EA7n n\\u1ED5i c\\u1EE7a t\\u1EA3ng b\\u0103ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3286386/free-photo-image-iceberg-ice-glacier-water\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.b90c75ed58d0448aaf88035db5aee4ad",
+      "kind": "Card",
+      "values": {
+        "Term": "rubbish",
+        "Definition": "r\u00E1c",
+        "ImageUrl": "asset:3336c5865a341b6f3dc24d1eb30f63bffd8243d29dc42e3079daa38b1e4451d3.webp",
+        "Phonetic": "/\u02C8\u0279\u028Cb\u026A\u0283/",
+        "Example": "Please put your rubbish in the bin.",
+        "ExampleTranslation": "Vui l\u00F2ng b\u1ECF r\u00E1c v\u00E0o th\u00F9ng.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "things that you throw away because you do not want them",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u0279\u028Cb\u026A\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Please put your rubbish in the bin.\u0022,\u0022vi\u0022:\u0022Vui l\\u00F2ng b\\u1ECF r\\u00E1c v\\u00E0o th\\u00F9ng.\u0022},{\u0022text\u0022:\u0022The streets were full of rubbish after the festival.\u0022,\u0022vi\u0022:\u0022\\u0110\\u01B0\\u1EDDng ph\\u1ED1 \\u0111\\u1EA7y r\\u00E1c sau l\\u1EC5 h\\u1ED9i.\u0022}],\u0022synonyms\u0022:[\u0022trash\u0022,\u0022garbage\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022throw away rubbish\u0022,\u0022vi\u0022:\u0022v\\u1EE9t r\\u00E1c\u0022},{\u0022text\u0022:\u0022rubbish bin\u0022,\u0022vi\u0022:\u0022th\\u00F9ng r\\u00E1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/9658698/image-people-public-domain-cleaning\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.c66f295a8d1a46678c473fd3eccc91c7",
+      "kind": "Card",
+      "values": {
+        "Term": "power plant",
+        "Definition": "nh\u00E0 m\u00E1y \u0111i\u1EC7n",
+        "ImageUrl": "asset:a2d40eda9b444ef1bb9895b513c8e833b86e1550de5e6b8b337815f204a8a481.webp",
+        "Phonetic": "/\u02C8pa\u028A\u032F.\u025A pl\u00E6nt/",
+        "Example": "The coal power plant causes a lot of pollution.",
+        "ExampleTranslation": "Nh\u00E0 m\u00E1y nhi\u1EC7t \u0111i\u1EC7n than g\u00E2y ra nhi\u1EC1u \u00F4 nhi\u1EC5m.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large building where electricity is made",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8pa\u028A\u032F\u0259\u032F pl\u0251\u02D0nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The coal power plant causes a lot of pollution.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 m\\u00E1y nhi\\u1EC7t \\u0111i\\u1EC7n than g\\u00E2y ra nhi\\u1EC1u \\u00F4 nhi\\u1EC5m.\u0022},{\u0022text\u0022:\u0022A new power plant opened near the coast.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t nh\\u00E0 m\\u00E1y \\u0111i\\u1EC7n m\\u1EDBi m\\u1EDF \\u1EDF g\\u1EA7n b\\u1EDD bi\\u1EC3n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022nuclear power plant\u0022,\u0022vi\u0022:\u0022nh\\u00E0 m\\u00E1y \\u0111i\\u1EC7n h\\u1EA1t nh\\u00E2n\u0022},{\u0022text\u0022:\u0022coal power plant\u0022,\u0022vi\u0022:\u0022nh\\u00E0 m\\u00E1y nhi\\u1EC7t \\u0111i\\u1EC7n than\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6019715/photo-image-public-domain-plant-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.d44ca1e13f654cf180cbe8cece8521fc",
+      "kind": "Card",
+      "values": {
+        "Term": "reusable bag",
+        "Definition": "t\u00FAi d\u00F9ng nhi\u1EC1u l\u1EA7n",
+        "ImageUrl": "asset:3686e11401fff7a6a4817a9a40f06ca9694768b4c8c00a620e571a6a5a7106e7.webp",
+        "Phonetic": "/\u02CCri\u02D0\u02C8ju\u02D0z\u0259b\u0259l b\u00E6\u0261/",
+        "Example": "I take a reusable bag to the market.",
+        "ExampleTranslation": "T\u00F4i mang m\u1ED9t chi\u1EBFc t\u00FAi d\u00F9ng nhi\u1EC1u l\u1EA7n \u0111i ch\u1EE3.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a strong bag that you use many times for shopping",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02CCri\u02D0\u02C8ju\u02D0z\u0259b\u0259l b\u00E6\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I take a reusable bag to the market.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mang m\\u1ED9t chi\\u1EBFc t\\u00FAi d\\u00F9ng nhi\\u1EC1u l\\u1EA7n \\u0111i ch\\u1EE3.\u0022},{\u0022text\u0022:\u0022Many shops now sell cheap reusable bags.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC1u c\\u1EEDa h\\u00E0ng gi\\u1EDD b\\u00E1n t\\u00FAi d\\u00F9ng nhi\\u1EC1u l\\u1EA7n gi\\u00E1 r\\u1EBB.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022carry a reusable bag\u0022,\u0022vi\u0022:\u0022mang t\\u00FAi d\\u00F9ng nhi\\u1EC1u l\\u1EA7n\u0022},{\u0022text\u0022:\u0022cotton reusable bag\u0022,\u0022vi\u0022:\u0022t\\u00FAi v\\u1EA3i cotton d\\u00F9ng nhi\\u1EC1u l\\u1EA7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.f698c1674ec44d618b2789d8b56a696a",
+      "kind": "Card",
+      "values": {
+        "Term": "greenhouse",
+        "Definition": "nh\u00E0 k\u00EDnh",
+        "ImageUrl": "asset:a576cb1d2febb2e991592a3234578b31fad7625a1870ab6004e986246578466a.webp",
+        "Phonetic": "/\u02C8\u0261\u0279\u02D0n\u02CC(h)a\u028As/",
+        "Example": "He grows tomatoes in a greenhouse.",
+        "ExampleTranslation": "\u00D4ng \u1EA5y tr\u1ED3ng c\u00E0 chua trong nh\u00E0 k\u00EDnh.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a glass building where plants grow in warm air",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0261\u0279i\u02D0nha\u028As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He grows tomatoes in a greenhouse.\u0022,\u0022vi\u0022:\u0022\\u00D4ng \\u1EA5y tr\\u1ED3ng c\\u00E0 chua trong nh\\u00E0 k\\u00EDnh.\u0022},{\u0022text\u0022:\u0022It is warm and humid inside the greenhouse.\u0022,\u0022vi\u0022:\u0022B\\u00EAn trong nh\\u00E0 k\\u00EDnh \\u1EA5m v\\u00E0 \\u1EA9m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022greenhouse gas\u0022,\u0022vi\u0022:\u0022kh\\u00ED nh\\u00E0 k\\u00EDnh\u0022},{\u0022text\u0022:\u0022greenhouse effect\u0022,\u0022vi\u0022:\u0022hi\\u1EC7u \\u1EE9ng nh\\u00E0 k\\u00EDnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/30684028a8/\u0022,\u0022author\u0022:\u0022Bigul Malayi\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.f84f40e6993d4c41a69fd4500d250e56",
+      "kind": "Card",
+      "values": {
+        "Term": "drought",
+        "Definition": "h\u1EA1n h\u00E1n",
+        "ImageUrl": "asset:fb65a0fc57e1c8455a3ae6f4d1088cd63e679ab95f67611ac4c29534a4fcec38.webp",
+        "Phonetic": "/d\u0279\u00E6\u028A\u032Ft/",
+        "Example": "The drought destroyed most of the crops.",
+        "ExampleTranslation": "H\u1EA1n h\u00E1n h\u1EE7y ho\u1EA1i ph\u1EA7n l\u1EDBn m\u00F9a m\u00E0ng.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long period with very little rain",
+        "Cefr": "B2",
+        "PhoneticUk": "/d\u0279a\u028At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The drought destroyed most of the crops.\u0022,\u0022vi\u0022:\u0022H\\u1EA1n h\\u00E1n h\\u1EE7y ho\\u1EA1i ph\\u1EA7n l\\u1EDBn m\\u00F9a m\\u00E0ng.\u0022},{\u0022text\u0022:\u0022Farmers suffer during a long drought.\u0022,\u0022vi\u0022:\u0022N\\u00F4ng d\\u00E2n ch\\u1ECBu kh\\u1ED5 trong \\u0111\\u1EE3t h\\u1EA1n h\\u00E1n k\\u00E9o d\\u00E0i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022severe drought\u0022,\u0022vi\u0022:\u0022h\\u1EA1n h\\u00E1n nghi\\u00EAm tr\\u1ECDng\u0022},{\u0022text\u0022:\u0022drought conditions\u0022,\u0022vi\u0022:\u0022t\\u00ECnh tr\\u1EA1ng h\\u1EA1n h\\u00E1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/99768966d5/\u0022,\u0022author\u0022:\u0022Jose Varghese\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.f99757f5f00148faa0e87c2b706a7d58",
+      "kind": "Card",
+      "values": {
+        "Term": "oil spill",
+        "Definition": "s\u1EF1 c\u1ED1 tr\u00E0n d\u1EA7u",
+        "ImageUrl": "asset:438f06c22bd363550ec639025711328a646284fda64bee1648ea4055e9e14112.webp",
+        "Phonetic": "/\u0254\u026Al sp\u026Al/",
+        "Example": "The oil spill killed thousands of sea birds.",
+        "ExampleTranslation": "S\u1EF1 c\u1ED1 tr\u00E0n d\u1EA7u l\u00E0m ch\u1EBFt h\u00E0ng ngh\u00ECn con chim bi\u1EC3n.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an accident in which oil escapes into the sea",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0254\u026Al sp\u026Ao\u032F/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The oil spill killed thousands of sea birds.\u0022,\u0022vi\u0022:\u0022S\\u1EF1 c\\u1ED1 tr\\u00E0n d\\u1EA7u l\\u00E0m ch\\u1EBFt h\\u00E0ng ngh\\u00ECn con chim bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022Workers cleaned the beach after the oil spill.\u0022,\u0022vi\u0022:\u0022C\\u00F4ng nh\\u00E2n d\\u1ECDn s\\u1EA1ch b\\u00E3i bi\\u1EC3n sau s\\u1EF1 c\\u1ED1 tr\\u00E0n d\\u1EA7u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022clean up an oil spill\u0022,\u0022vi\u0022:\u0022d\\u1ECDn s\\u1EF1 c\\u1ED1 tr\\u00E0n d\\u1EA7u\u0022},{\u0022text\u0022:\u0022huge oil spill\u0022,\u0022vi\u0022:\u0022v\\u1EE5 tr\\u00E0n d\\u1EA7u l\\u1EDBn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b03-moi-truong.f9ba743c39994cfaa6157c19d358dc5c",
+      "kind": "Card",
+      "values": {
+        "Term": "glacier",
+        "Definition": "s\u00F4ng b\u0103ng",
+        "ImageUrl": "asset:aa77a66e6a8a8277897451745abd5c0cacd488f7d19605d435b9361b0d20a1b6.webp",
+        "Phonetic": "/\u02C8\u0261le\u026A.\u0283\u025A/",
+        "Example": "The glacier is melting faster every year.",
+        "ExampleTranslation": "S\u00F4ng b\u0103ng \u0111ang tan nhanh h\u01A1n m\u1ED7i n\u0103m.",
+        "Topic": "M\u00F4i tr\u01B0\u1EDDng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a huge mass of ice that moves slowly down a mountain",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0261l\u00E6s.j\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The glacier is melting faster every year.\u0022,\u0022vi\u0022:\u0022S\\u00F4ng b\\u0103ng \\u0111ang tan nhanh h\\u01A1n m\\u1ED7i n\\u0103m.\u0022},{\u0022text\u0022:\u0022We walked across a glacier with a guide.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i b\\u1ED9 qua m\\u1ED9t s\\u00F4ng b\\u0103ng c\\u00F9ng ng\\u01B0\\u1EDDi h\\u01B0\\u1EDBng d\\u1EABn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022melting glacier\u0022,\u0022vi\u0022:\u0022s\\u00F4ng b\\u0103ng \\u0111ang tan\u0022},{\u0022text\u0022:\u0022glacier ice\u0022,\u0022vi\u0022:\u0022b\\u0103ng c\\u1EE7a s\\u00F4ng b\\u0103ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/27784370@N05/4370263101\u0022,\u0022author\u0022:\u0022U.S. Geological Survey\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b03-moi-truong"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "0831a79648578f50d2d184c1b57910157dceb3af0dc693a4ee64950c67f8db48.webp",
+      "sha256": "0831a79648578f50d2d184c1b57910157dceb3af0dc693a4ee64950c67f8db48"
+    },
+    {
+      "file": "fa609ba5753cdaee44a1aa31788d255a38462939de320110ba86813ffb0d4d53.webp",
+      "sha256": "fa609ba5753cdaee44a1aa31788d255a38462939de320110ba86813ffb0d4d53"
+    },
+    {
+      "file": "f5e819fdd8312b3bb652f4e207a42f62d65ae497b0a6e400141d587b04697691.webp",
+      "sha256": "f5e819fdd8312b3bb652f4e207a42f62d65ae497b0a6e400141d587b04697691"
+    },
+    {
+      "file": "292da531c98300bd121d67801d743d027ecaf82207e4c85db8fd8f5c0c04f6d9.webp",
+      "sha256": "292da531c98300bd121d67801d743d027ecaf82207e4c85db8fd8f5c0c04f6d9"
+    },
+    {
+      "file": "082dce8f2b0874480367e60dbefa6aa720227a54f67f5665d0950e9abb84b294.webp",
+      "sha256": "082dce8f2b0874480367e60dbefa6aa720227a54f67f5665d0950e9abb84b294"
+    },
+    {
+      "file": "617d53911869983db3d5d94fd488ec126e2d24f471e3ef5e79fb0e7acd5e0322.webp",
+      "sha256": "617d53911869983db3d5d94fd488ec126e2d24f471e3ef5e79fb0e7acd5e0322"
+    },
+    {
+      "file": "f2f8c08b010cec760bbe74f6cd9bb187043c9d8a946cf953bf607eb55c0878b7.webp",
+      "sha256": "f2f8c08b010cec760bbe74f6cd9bb187043c9d8a946cf953bf607eb55c0878b7"
+    },
+    {
+      "file": "3ad423a385732008079e5aeee90f30005777796efdadd88c9f0e137064de2893.webp",
+      "sha256": "3ad423a385732008079e5aeee90f30005777796efdadd88c9f0e137064de2893"
+    },
+    {
+      "file": "aa77a66e6a8a8277897451745abd5c0cacd488f7d19605d435b9361b0d20a1b6.webp",
+      "sha256": "aa77a66e6a8a8277897451745abd5c0cacd488f7d19605d435b9361b0d20a1b6"
+    },
+    {
+      "file": "7532b606c5cd40bf587bd9b822f1b9f5ad63edc34a8329775778abd9ec14bee1.webp",
+      "sha256": "7532b606c5cd40bf587bd9b822f1b9f5ad63edc34a8329775778abd9ec14bee1"
+    },
+    {
+      "file": "438f06c22bd363550ec639025711328a646284fda64bee1648ea4055e9e14112.webp",
+      "sha256": "438f06c22bd363550ec639025711328a646284fda64bee1648ea4055e9e14112"
+    },
+    {
+      "file": "af35192970bf38e4de574191c3941b7c9ed565e6a218b7ec276eaa88b80ca753.webp",
+      "sha256": "af35192970bf38e4de574191c3941b7c9ed565e6a218b7ec276eaa88b80ca753"
+    },
+    {
+      "file": "abf7b5dde17906e2bf594d458b1efc0157502ac7c630867111e21125e1bfb52e.webp",
+      "sha256": "abf7b5dde17906e2bf594d458b1efc0157502ac7c630867111e21125e1bfb52e"
+    },
+    {
+      "file": "fb65a0fc57e1c8455a3ae6f4d1088cd63e679ab95f67611ac4c29534a4fcec38.webp",
+      "sha256": "fb65a0fc57e1c8455a3ae6f4d1088cd63e679ab95f67611ac4c29534a4fcec38"
+    },
+    {
+      "file": "1f8ea3b1a9a3c60675fd49e7507ff20e3b99f2878a4db82a893c1eb495aac623.webp",
+      "sha256": "1f8ea3b1a9a3c60675fd49e7507ff20e3b99f2878a4db82a893c1eb495aac623"
+    },
+    {
+      "file": "e2b078bd12656ed168e2c08e106824b69158878880583c109ab489d0c103749c.webp",
+      "sha256": "e2b078bd12656ed168e2c08e106824b69158878880583c109ab489d0c103749c"
+    },
+    {
+      "file": "a576cb1d2febb2e991592a3234578b31fad7625a1870ab6004e986246578466a.webp",
+      "sha256": "a576cb1d2febb2e991592a3234578b31fad7625a1870ab6004e986246578466a"
+    },
+    {
+      "file": "3686e11401fff7a6a4817a9a40f06ca9694768b4c8c00a620e571a6a5a7106e7.webp",
+      "sha256": "3686e11401fff7a6a4817a9a40f06ca9694768b4c8c00a620e571a6a5a7106e7"
+    },
+    {
+      "file": "a27bfe6fd1c67a0ed8c1802145cf1b02a02e9fd47fce5dc3add6eea0ed7033a2.webp",
+      "sha256": "a27bfe6fd1c67a0ed8c1802145cf1b02a02e9fd47fce5dc3add6eea0ed7033a2"
+    },
+    {
+      "file": "f1a733ff139955eee6f88139e915a503b3e311d33a37bc6dfe5ddb7c3db50451.webp",
+      "sha256": "f1a733ff139955eee6f88139e915a503b3e311d33a37bc6dfe5ddb7c3db50451"
+    },
+    {
+      "file": "4c6597888aadea01d0bec5c203ab16a6418d890544c9c285fe6a092ff6adbc5e.webp",
+      "sha256": "4c6597888aadea01d0bec5c203ab16a6418d890544c9c285fe6a092ff6adbc5e"
+    },
+    {
+      "file": "43ae5801e31a73e4bf1411113f69aa5cf3d24f1a4655613a0782edd981404739.webp",
+      "sha256": "43ae5801e31a73e4bf1411113f69aa5cf3d24f1a4655613a0782edd981404739"
+    },
+    {
+      "file": "a2d40eda9b444ef1bb9895b513c8e833b86e1550de5e6b8b337815f204a8a481.webp",
+      "sha256": "a2d40eda9b444ef1bb9895b513c8e833b86e1550de5e6b8b337815f204a8a481"
+    },
+    {
+      "file": "3336c5865a341b6f3dc24d1eb30f63bffd8243d29dc42e3079daa38b1e4451d3.webp",
+      "sha256": "3336c5865a341b6f3dc24d1eb30f63bffd8243d29dc42e3079daa38b1e4451d3"
+    },
+    {
+      "file": "f1f9dbe2ceb12ace450766193a5a502ede65c5867f2828e17e9b360daf2b5a25.webp",
+      "sha256": "f1f9dbe2ceb12ace450766193a5a502ede65c5867f2828e17e9b360daf2b5a25"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b03-moi-truong"
+}

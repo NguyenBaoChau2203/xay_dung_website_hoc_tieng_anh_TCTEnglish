@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a07-co-the-nguoi",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi",
+      "kind": "Set",
+      "values": {
+        "SetName": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "Description": "#a1 #a2 #body #health"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.03a8b534b9a94c6699d04050167ce323",
+      "kind": "Card",
+      "values": {
+        "Term": "hand",
+        "Definition": "b\u00E0n tay",
+        "ImageUrl": "asset:19e8777dbfef548974fc54555337c71d103196ca0510ffbac635a4617b4900e3.webp",
+        "Phonetic": "/h\u00E6nd/",
+        "Example": "Wash your hands before you eat.",
+        "ExampleTranslation": "H\u00E3y r\u1EEDa tay tr\u01B0\u1EDBc khi \u0103n.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the part at the end of the arm with fingers",
+        "Cefr": "A1",
+        "PhoneticUk": "/h\u00E6nd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Wash your hands before you eat.\u0022,\u0022vi\u0022:\u0022H\\u00E3y r\\u1EEDa tay tr\\u01B0\\u1EDBc khi \\u0103n.\u0022},{\u0022text\u0022:\u0022She held my hand and smiled.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y n\\u1EAFm tay t\\u00F4i v\\u00E0 m\\u1EC9m c\\u01B0\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wash your hands\u0022,\u0022vi\u0022:\u0022r\\u1EEDa tay\u0022},{\u0022text\u0022:\u0022hold hands\u0022,\u0022vi\u0022:\u0022n\\u1EAFm tay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6036898/photo-image-public-domain-hand-child\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.085c7ae3cd484999b37a8969d11d4802",
+      "kind": "Card",
+      "values": {
+        "Term": "nose",
+        "Definition": "c\u00E1i m\u0169i",
+        "ImageUrl": "asset:619064fb6ce23a799cce3e06325a2178ee72a9bb51d64ccb2d52a7736a2f767a.webp",
+        "Phonetic": "/no\u028A\u032Fz/",
+        "Example": "My nose is cold today.",
+        "ExampleTranslation": "H\u00F4m nay m\u0169i t\u00F4i l\u1EA1nh.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the part of the face you smell with",
+        "Cefr": "A1",
+        "PhoneticUk": "/n\u0259\u028A\u032Fz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My nose is cold today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay m\\u0169i t\\u00F4i l\\u1EA1nh.\u0022},{\u0022text\u0022:\u0022She has a small nose.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y c\\u00F3 chi\\u1EBFc m\\u0169i nh\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022blow your nose\u0022,\u0022vi\u0022:\u0022x\\u00EC m\\u0169i\u0022},{\u0022text\u0022:\u0022runny nose\u0022,\u0022vi\u0022:\u0022s\\u1ED5 m\\u0169i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.0bc0d26315ca4a7a9a4d0658c8318b67",
+      "kind": "Card",
+      "values": {
+        "Term": "foot",
+        "Definition": "b\u00E0n ch\u00E2n",
+        "ImageUrl": "asset:c3a0eb7de03e7c96d3516bdbf6e8725290314ccb550306e0ddb7d2d77d075f88.webp",
+        "Phonetic": "/f\u028At/",
+        "Example": "My left foot hurts when I walk.",
+        "ExampleTranslation": "B\u00E0n ch\u00E2n tr\u00E1i c\u1EE7a t\u00F4i \u0111au khi \u0111i b\u1ED9.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the part at the end of the leg that you stand on",
+        "Cefr": "A1",
+        "PhoneticUk": "/f\u028At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My left foot hurts when I walk.\u0022,\u0022vi\u0022:\u0022B\\u00E0n ch\\u00E2n tr\\u00E1i c\\u1EE7a t\\u00F4i \\u0111au khi \\u0111i b\\u1ED9.\u0022},{\u0022text\u0022:\u0022We walked on foot to the market.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i b\\u1ED9 \\u0111\\u1EBFn ch\\u1EE3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022on foot\u0022,\u0022vi\u0022:\u0022\\u0111i b\\u1ED9\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022feet\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.0f5a7af6b4fc4296bbc998ac10208e8e",
+      "kind": "Card",
+      "values": {
+        "Term": "head",
+        "Definition": "c\u00E1i \u0111\u1EA7u",
+        "ImageUrl": "asset:e6800651b5035b84d992816c1ab4ff30634d1b4e6fd53e7ae84e52d65b226e3f.webp",
+        "Phonetic": "/h\u025Bd/",
+        "Example": "She shook her head and smiled.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y l\u1EAFc \u0111\u1EA7u v\u00E0 m\u1EC9m c\u01B0\u1EDDi.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the top part of the body that holds the brain",
+        "Cefr": "A1",
+        "PhoneticUk": "/h\u025Bd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She shook her head and smiled.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u1EAFc \\u0111\\u1EA7u v\\u00E0 m\\u1EC9m c\\u01B0\\u1EDDi.\u0022},{\u0022text\u0022:\u0022I hit my head on the door.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB \\u0111\\u1EADp \\u0111\\u1EA7u v\\u00E0o c\\u00E1nh c\\u1EEDa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022shake your head\u0022,\u0022vi\u0022:\u0022l\\u1EAFc \\u0111\\u1EA7u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.10e53513989e4ba4872f868eb00b001d",
+      "kind": "Card",
+      "values": {
+        "Term": "leg",
+        "Definition": "c\u00E1i ch\u00E2n (t\u1EEB h\u00F4ng \u0111\u1EBFn b\u00E0n ch\u00E2n)",
+        "ImageUrl": "asset:37910adf5517263558a2d78a27608e030c2ddd71e3638bb9ef6de96c0fe78a9a.webp",
+        "Phonetic": "/l\u025B\u0261/",
+        "Example": "He broke his leg in a football game.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y b\u1ECB g\u00E3y ch\u00E2n trong m\u1ED9t tr\u1EADn b\u00F3ng \u0111\u00E1.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the long part of the body you use to walk",
+        "Cefr": "A1",
+        "PhoneticUk": "/l\u025B\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He broke his leg in a football game.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y b\\u1ECB g\\u00E3y ch\\u00E2n trong m\\u1ED9t tr\\u1EADn b\\u00F3ng \\u0111\\u00E1.\u0022},{\u0022text\u0022:\u0022A spider has eight legs.\u0022,\u0022vi\u0022:\u0022Con nh\\u1EC7n c\\u00F3 t\\u00E1m ch\\u00E2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cross your legs\u0022,\u0022vi\u0022:\u0022b\\u1EAFt ch\\u00E9o ch\\u00E2n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.15b4c6ea8b574a4998e4da6f24799a62",
+      "kind": "Card",
+      "values": {
+        "Term": "chest",
+        "Definition": "ng\u1EF1c",
+        "ImageUrl": "asset:b1670f0edd9c47536361a15a41ca98def0554ac540d303083fbebe12efec0824.webp",
+        "Phonetic": "/t\u0361\u0283\u025Bst/",
+        "Example": "He felt a pain in his chest.",
+        "ExampleTranslation": "Anh \u1EA5y th\u1EA5y \u0111au \u1EDF ng\u1EF1c.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the front part of the body between the neck and the stomach",
+        "Cefr": "A2",
+        "PhoneticUk": "/t\u0361\u0283\u025Bst/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He felt a pain in his chest.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y th\\u1EA5y \\u0111au \\u1EDF ng\\u1EF1c.\u0022},{\u0022text\u0022:\u0022The baby slept on her father\\u0027s chest.\u0022,\u0022vi\u0022:\u0022Em b\\u00E9 ng\\u1EE7 tr\\u00EAn ng\\u1EF1c b\\u1ED1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022chest pain\u0022,\u0022vi\u0022:\u0022\\u0111au ng\\u1EF1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.2ebe2e5c157c46bcb232994bc1ac4ae7",
+      "kind": "Card",
+      "values": {
+        "Term": "ear",
+        "Definition": "c\u00E1i tai",
+        "ImageUrl": "asset:fde697063918d1ab7b9a6f497d2763e3b744eea3ed1d0b123a59ba4dce4a140e.webp",
+        "Phonetic": "/\u026A\u025A/",
+        "Example": "The dog has two big ears.",
+        "ExampleTranslation": "Con ch\u00F3 c\u00F3 hai c\u00E1i tai to.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the part of the head you hear with",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u026A\u0259\u032F/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The dog has two big ears.\u0022,\u0022vi\u0022:\u0022Con ch\\u00F3 c\\u00F3 hai c\\u00E1i tai to.\u0022},{\u0022text\u0022:\u0022He whispered in my ear.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y th\\u00EC th\\u1EA7m v\\u00E0o tai t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pierced ear\u0022,\u0022vi\u0022:\u0022tai x\\u1ECF khuy\\u00EAn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6258121/image-vintage-public-domain-art\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.43acffd848cb4b8ba23980beac3edcef",
+      "kind": "Card",
+      "values": {
+        "Term": "back",
+        "Definition": "c\u00E1i l\u01B0ng",
+        "ImageUrl": "asset:67e1d82e8997dfa1d149a293b58ece9bdfda4b94ce898cff6dc8906e8ecb7925.webp",
+        "Phonetic": "/b\u00E6k/",
+        "Example": "My back hurts after a long trip.",
+        "ExampleTranslation": "L\u01B0ng t\u00F4i \u0111au sau chuy\u1EBFn \u0111i d\u00E0i.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the part of the body behind the chest",
+        "Cefr": "A1",
+        "PhoneticUk": "/b\u00E6k/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My back hurts after a long trip.\u0022,\u0022vi\u0022:\u0022L\\u01B0ng t\\u00F4i \\u0111au sau chuy\\u1EBFn \\u0111i d\\u00E0i.\u0022},{\u0022text\u0022:\u0022The cat is lying on its back.\u0022,\u0022vi\u0022:\u0022Con m\\u00E8o \\u0111ang n\\u1EB1m ng\\u1EEDa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022back pain\u0022,\u0022vi\u0022:\u0022\\u0111au l\\u01B0ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.5753c9e405994d84b4108bd95e8da11f",
+      "kind": "Card",
+      "values": {
+        "Term": "skin",
+        "Definition": "da",
+        "ImageUrl": "asset:d30fe4ce33a39b7e67bbb6f93184d37320081c3892c85872be79eac4fc2a106b.webp",
+        "Phonetic": "/sk\u026An/",
+        "Example": "Use cream if your skin is dry.",
+        "ExampleTranslation": "H\u00E3y d\u00F9ng kem n\u1EBFu da b\u1EA1n b\u1ECB kh\u00F4.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the outer layer that covers the body",
+        "Cefr": "A2",
+        "PhoneticUk": "/sk\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Use cream if your skin is dry.\u0022,\u0022vi\u0022:\u0022H\\u00E3y d\\u00F9ng kem n\\u1EBFu da b\\u1EA1n b\\u1ECB kh\\u00F4.\u0022},{\u0022text\u0022:\u0022The sun can hurt your skin.\u0022,\u0022vi\u0022:\u0022\\u00C1nh n\\u1EAFng c\\u00F3 th\\u1EC3 l\\u00E0m h\\u1EA1i da c\\u1EE7a b\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022dry skin\u0022,\u0022vi\u0022:\u0022da kh\\u00F4\u0022},{\u0022text\u0022:\u0022sensitive skin\u0022,\u0022vi\u0022:\u0022da nh\\u1EA1y c\\u1EA3m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Human_skin_close-up.jpg\u0022,\u0022author\u0022:\u0022Montavius Howard (TongCreator), from Pixabay\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.585ce86cb0d14bb9ab45bbde6a4c3853",
+      "kind": "Card",
+      "values": {
+        "Term": "eye",
+        "Definition": "con m\u1EAFt",
+        "ImageUrl": "asset:51e561128f5035e5b469daea5c0ae0f5e465219ef9d59be078892130330750b5.webp",
+        "Phonetic": "/\u02C8a\u02D0/",
+        "Example": "She closed her eyes and made a wish.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y nh\u1EAFm m\u1EAFt l\u1EA1i v\u00E0 \u01B0\u1EDBc m\u1ED9t \u0111i\u1EC1u.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the part of the face you see with",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8a\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She closed her eyes and made a wish.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y nh\\u1EAFm m\\u1EAFt l\\u1EA1i v\\u00E0 \\u01B0\\u1EDBc m\\u1ED9t \\u0111i\\u1EC1u.\u0022},{\u0022text\u0022:\u0022My brother has bright blue eyes.\u0022,\u0022vi\u0022:\u0022Anh trai t\\u00F4i c\\u00F3 \\u0111\\u00F4i m\\u1EAFt xanh s\\u00E1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022close your eyes\u0022,\u0022vi\u0022:\u0022nh\\u1EAFm m\\u1EAFt\u0022},{\u0022text\u0022:\u0022blue eyes\u0022,\u0022vi\u0022:\u0022m\\u1EAFt xanh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Close_up_shot_of_the_human_eye,_9_August_2024.jpg\u0022,\u0022author\u0022:\u0022Kookaaa\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.5b1f903e435b4de0bb3c5a70388e6696",
+      "kind": "Card",
+      "values": {
+        "Term": "knee",
+        "Definition": "\u0111\u1EA7u g\u1ED1i",
+        "ImageUrl": "asset:0c7ba1251b78308e7b5479ac46e90498e6ac98c85dd58414896d1f7a90cc754a.webp",
+        "Phonetic": "/ni/",
+        "Example": "She fell and hurt her knee.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y ng\u00E3 v\u00E0 b\u1ECB \u0111au \u0111\u1EA7u g\u1ED1i.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the joint in the middle of the leg",
+        "Cefr": "A2",
+        "PhoneticUk": "/ni\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She fell and hurt her knee.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y ng\\u00E3 v\\u00E0 b\\u1ECB \\u0111au \\u0111\\u1EA7u g\\u1ED1i.\u0022},{\u0022text\u0022:\u0022The baby sat on his mother\\u0027s knee.\u0022,\u0022vi\u0022:\u0022Em b\\u00E9 ng\\u1ED3i tr\\u00EAn \\u0111\\u1EA7u g\\u1ED1i m\\u1EB9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bend your knees\u0022,\u0022vi\u0022:\u0022g\\u1EADp \\u0111\\u1EA7u g\\u1ED1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.6b81e9fc67b94037afe4519758ffd1a1",
+      "kind": "Card",
+      "values": {
+        "Term": "toe",
+        "Definition": "ng\u00F3n ch\u00E2n",
+        "ImageUrl": "asset:3f322c53ab93ffefc852bc73530a4a188f1a883ed9d3c84aff78f6799ff9a5d0.webp",
+        "Phonetic": "/to\u028A/",
+        "Example": "I hit my toe on the table.",
+        "ExampleTranslation": "T\u00F4i b\u1ECB va ng\u00F3n ch\u00E2n v\u00E0o b\u00E0n.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "one of the five small parts at the end of the foot",
+        "Cefr": "A2",
+        "PhoneticUk": "/t\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I hit my toe on the table.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB va ng\\u00F3n ch\\u00E2n v\\u00E0o b\\u00E0n.\u0022},{\u0022text\u0022:\u0022She stood on her toes to see.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y ki\\u1EC5ng ch\\u00E2n l\\u00EAn \\u0111\\u1EC3 nh\\u00ECn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022big toe\u0022,\u0022vi\u0022:\u0022ng\\u00F3n ch\\u00E2n c\\u00E1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.7ae8ca0dc78e4f2aa241739ac4d26052",
+      "kind": "Card",
+      "values": {
+        "Term": "finger",
+        "Definition": "ng\u00F3n tay",
+        "ImageUrl": "asset:2412f69ff2fe8905aa0aa70f03b78674a5a7a1f4698deac848864ccdc49e4a1e.webp",
+        "Phonetic": "/\u02C8fi\u014B\u0261\u025A/",
+        "Example": "He cut his finger with a knife.",
+        "ExampleTranslation": "Anh \u1EA5y b\u1ECB dao c\u1EAFt v\u00E0o ng\u00F3n tay.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "one of the five long parts at the end of the hand",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8f\u026A\u014B\u0261\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He cut his finger with a knife.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y b\\u1ECB dao c\\u1EAFt v\\u00E0o ng\\u00F3n tay.\u0022},{\u0022text\u0022:\u0022She has a ring on her finger.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111eo m\\u1ED9t chi\\u1EBFc nh\\u1EABn tr\\u00EAn ng\\u00F3n tay.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022point a finger\u0022,\u0022vi\u0022:\u0022ch\\u1EC9 tay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.90f69611ae194ea8b04ec098fb22b095",
+      "kind": "Card",
+      "values": {
+        "Term": "face",
+        "Definition": "khu\u00F4n m\u1EB7t",
+        "ImageUrl": "asset:62f2c44d97499a9852da8ea530d2b1ff37603ab6aa329c3ba6fc193fc8b2674e.webp",
+        "Phonetic": "/fe\u026A\u032Fs/",
+        "Example": "He washed his face with cold water.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y r\u1EEDa m\u1EB7t b\u1EB1ng n\u01B0\u1EDBc l\u1EA1nh.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the front part of the head with eyes, nose and mouth",
+        "Cefr": "A1",
+        "PhoneticUk": "/fe\u026A\u032Fs/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He washed his face with cold water.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y r\\u1EEDa m\\u1EB7t b\\u1EB1ng n\\u01B0\\u1EDBc l\\u1EA1nh.\u0022},{\u0022text\u0022:\u0022The baby has a round happy face.\u0022,\u0022vi\u0022:\u0022Em b\\u00E9 c\\u00F3 khu\\u00F4n m\\u1EB7t tr\\u00F2n vui v\\u1EBB.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wash your face\u0022,\u0022vi\u0022:\u0022r\\u1EEDa m\\u1EB7t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.91f66ff6b72e4997a3bf8b9f402e5f0d",
+      "kind": "Card",
+      "values": {
+        "Term": "tooth",
+        "Definition": "c\u00E1i r\u0103ng",
+        "ImageUrl": "asset:d9ff813b3a4c8729750fb0a8c5a1b15fd383b57794bf91a774b513da5b5ac191.webp",
+        "Phonetic": "/tu\u02D0\u03B8/",
+        "Example": "The child lost a tooth today.",
+        "ExampleTranslation": "H\u00F4m nay \u0111\u1EE9a tr\u1EBB b\u1ECB r\u1EE5ng m\u1ED9t c\u00E1i r\u0103ng.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "one of the hard white parts in the mouth used for biting",
+        "Cefr": "A1",
+        "PhoneticUk": "/tu\u02D0\u03B8/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The child lost a tooth today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay \\u0111\\u1EE9a tr\\u1EBB b\\u1ECB r\\u1EE5ng m\\u1ED9t c\\u00E1i r\\u0103ng.\u0022},{\u0022text\u0022:\u0022I brush my teeth twice a day.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u00E1nh r\\u0103ng hai l\\u1EA7n m\\u1ED9t ng\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022brush your teeth\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E1nh r\\u0103ng\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022teeth\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.95422891b3854e8fbfadd902eca263f3",
+      "kind": "Card",
+      "values": {
+        "Term": "hair",
+        "Definition": "t\u00F3c",
+        "ImageUrl": "asset:28e6fb285cbd6eb8027441df7f58b30fb22a9d87bafe36d2ab96f353dd82b230.webp",
+        "Phonetic": "/\u02C8h\u025B\u025A/",
+        "Example": "She has long black hair.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y c\u00F3 m\u00E1i t\u00F3c \u0111en d\u00E0i.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the thin threads that grow on your head",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8h\u025B\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She has long black hair.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y c\\u00F3 m\\u00E1i t\\u00F3c \\u0111en d\\u00E0i.\u0022},{\u0022text\u0022:\u0022I wash my hair every morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng n\\u00E0o t\\u00F4i c\\u0169ng g\\u1ED9i t\\u00F3c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022brush your hair\u0022,\u0022vi\u0022:\u0022ch\\u1EA3i t\\u00F3c\u0022},{\u0022text\u0022:\u0022long hair\u0022,\u0022vi\u0022:\u0022t\\u00F3c d\\u00E0i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.9b6518655f0640d9b3626608098c2372",
+      "kind": "Card",
+      "values": {
+        "Term": "arm",
+        "Definition": "c\u00E1nh tay",
+        "ImageUrl": "asset:24cd0e60af0058644d0cc688fd4090830efb6f4cc2010fc310c6ae30fa24be56.webp",
+        "Phonetic": "/\u0251\u0279m/",
+        "Example": "She broke her arm last week.",
+        "ExampleTranslation": "Tu\u1EA7n tr\u01B0\u1EDBc c\u00F4 \u1EA5y b\u1ECB g\u00E3y tay.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the part of the body from the shoulder to the hand",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u0251\u02D0m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She broke her arm last week.\u0022,\u0022vi\u0022:\u0022Tu\\u1EA7n tr\\u01B0\\u1EDBc c\\u00F4 \\u1EA5y b\\u1ECB g\\u00E3y tay.\u0022},{\u0022text\u0022:\u0022He held the baby in his arms.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y b\\u1EBF em b\\u00E9 trong tay.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fold your arms\u0022,\u0022vi\u0022:\u0022khoanh tay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.a0817da3407442e08fcd132f61384e1b",
+      "kind": "Card",
+      "values": {
+        "Term": "tongue",
+        "Definition": "c\u00E1i l\u01B0\u1EE1i",
+        "ImageUrl": "asset:1ced1c1ee6c8ebc091a32441891d6ce69514b0eb431bc3f1cf9208c0c154eda9.webp",
+        "Phonetic": "/t\u028C\u014B/",
+        "Example": "I burned my tongue on the hot soup.",
+        "ExampleTranslation": "T\u00F4i b\u1ECB b\u1ECFng l\u01B0\u1EE1i v\u00EC m\u00F3n s\u00FAp n\u00F3ng.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the soft part inside the mouth used for tasting and speaking",
+        "Cefr": "A2",
+        "PhoneticUk": "/t\u028C\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I burned my tongue on the hot soup.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB b\\u1ECFng l\\u01B0\\u1EE1i v\\u00EC m\\u00F3n s\\u00FAp n\\u00F3ng.\u0022},{\u0022text\u0022:\u0022The cat has a rough tongue.\u0022,\u0022vi\u0022:\u0022Con m\\u00E8o c\\u00F3 c\\u00E1i l\\u01B0\\u1EE1i nh\\u00E1m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022stick out your tongue\u0022,\u0022vi\u0022:\u0022l\\u00E8 l\\u01B0\\u1EE1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.a1e89f47e8ae4403941d6e5feb71cc3b",
+      "kind": "Card",
+      "values": {
+        "Term": "elbow",
+        "Definition": "khu\u1EF7u tay",
+        "ImageUrl": "asset:73a9d793b19f5319f7d60e8d003cb62643292eb24d6a6c8cd19d7b47e64433e2.webp",
+        "Phonetic": "/\u02C8\u025Blbo\u028A\u032F/",
+        "Example": "I hurt my elbow when I fell.",
+        "ExampleTranslation": "T\u00F4i b\u1ECB \u0111au khu\u1EF7u tay khi ng\u00E3.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the joint in the middle of the arm",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u025Blb\u0259\u028A\u032F/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I hurt my elbow when I fell.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB \\u0111au khu\\u1EF7u tay khi ng\\u00E3.\u0022},{\u0022text\u0022:\u0022Do not put your elbows on the table.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EEBng ch\\u1ED1ng khu\\u1EF7u tay l\\u00EAn b\\u00E0n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bend your elbow\u0022,\u0022vi\u0022:\u0022g\\u1EADp khu\\u1EF7u tay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.a567f535ed4944a2bdcd8be45a7e6e5d",
+      "kind": "Card",
+      "values": {
+        "Term": "shoulder",
+        "Definition": "b\u1EDD vai",
+        "ImageUrl": "asset:f31349fd0d152eb907ac2fa05927516f837b2d7db83833c632d434194a34c970.webp",
+        "Phonetic": "/\u02C8\u0283o\u028Ald\u025A/",
+        "Example": "He carried the bag on his shoulder.",
+        "ExampleTranslation": "Anh \u1EA5y \u0111eo chi\u1EBFc t\u00FAi tr\u00EAn vai.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the part of the body where the arm joins the body",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0283\u0259\u028Ald\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He carried the bag on his shoulder.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111eo chi\\u1EBFc t\\u00FAi tr\\u00EAn vai.\u0022},{\u0022text\u0022:\u0022My shoulder hurts after swimming.\u0022,\u0022vi\u0022:\u0022Vai t\\u00F4i \\u0111au sau khi \\u0111i b\\u01A1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022shoulder bag\u0022,\u0022vi\u0022:\u0022t\\u00FAi \\u0111eo vai\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.ae5b21cca1784eb4b393ab6eeea3e6ab",
+      "kind": "Card",
+      "values": {
+        "Term": "neck",
+        "Definition": "c\u00E1i c\u1ED5",
+        "ImageUrl": "asset:70ded397862d2e51637bc9499e2e1439a0de8f593f49683f9d25f0d504562c04.webp",
+        "Phonetic": "/n\u025Bk/",
+        "Example": "A giraffe has a very long neck.",
+        "ExampleTranslation": "H\u01B0\u01A1u cao c\u1ED5 c\u00F3 c\u00E1i c\u1ED5 r\u1EA5t d\u00E0i.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the part of the body between the head and the shoulders",
+        "Cefr": "A2",
+        "PhoneticUk": "/n\u025Bk/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A giraffe has a very long neck.\u0022,\u0022vi\u0022:\u0022H\\u01B0\\u01A1u cao c\\u1ED5 c\\u00F3 c\\u00E1i c\\u1ED5 r\\u1EA5t d\\u00E0i.\u0022},{\u0022text\u0022:\u0022She wore a scarf around her neck.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y qu\\u1EA5n kh\\u0103n quanh c\\u1ED5.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a sore neck\u0022,\u0022vi\u0022:\u0022c\\u1ED5 b\\u1ECB \\u0111au\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.af9c4346c6534f868c29b1f6a28fb8a5",
+      "kind": "Card",
+      "values": {
+        "Term": "mouth",
+        "Definition": "c\u00E1i mi\u1EC7ng",
+        "ImageUrl": "asset:1eb2e7212aebaa3e389bfee4d6c58e17faffce3f40dcc0a57f2023870c23f319.webp",
+        "Phonetic": "/ma\u028A\u03B8/",
+        "Example": "Open your mouth, please.",
+        "ExampleTranslation": "L\u00E0m \u01A1n h\u00E1 mi\u1EC7ng ra.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the opening in the face used for eating and speaking",
+        "Cefr": "A1",
+        "PhoneticUk": "/ma\u028A\u03B8/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Open your mouth, please.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n h\\u00E1 mi\\u1EC7ng ra.\u0022},{\u0022text\u0022:\u0022The baby put the toy in his mouth.\u0022,\u0022vi\u0022:\u0022Em b\\u00E9 cho m\\u00F3n \\u0111\\u1ED3 ch\\u01A1i v\\u00E0o mi\\u1EC7ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open your mouth\u0022,\u0022vi\u0022:\u0022h\\u00E1 mi\\u1EC7ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/150210070@N05/38551450035\u0022,\u0022author\u0022:\u0022Smiles7676\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.aff78264b2464878ac9a99b4c3d140d4",
+      "kind": "Card",
+      "values": {
+        "Term": "heart",
+        "Definition": "tr\u00E1i tim",
+        "ImageUrl": "asset:99dd06d33f946fe573029ebf01e3f313b4a3ffc7134495ec2729eaa2140d58b2.webp",
+        "Phonetic": "/h\u0251\u0279t/",
+        "Example": "His heart beats fast when he runs.",
+        "ExampleTranslation": "Tim c\u1EADu \u1EA5y \u0111\u1EADp nhanh khi ch\u1EA1y.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the organ in the chest that pumps blood",
+        "Cefr": "A2",
+        "PhoneticUk": "/h\u0251\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022His heart beats fast when he runs.\u0022,\u0022vi\u0022:\u0022Tim c\\u1EADu \\u1EA5y \\u0111\\u1EADp nhanh khi ch\\u1EA1y.\u0022},{\u0022text\u0022:\u0022Exercise is good for your heart.\u0022,\u0022vi\u0022:\u0022T\\u1EADp th\\u1EC3 d\\u1EE5c t\\u1ED1t cho tim.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022heart attack\u0022,\u0022vi\u0022:\u0022c\\u01A1n \\u0111au tim\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6478752/vector-sticker-heart-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.dfe5f1a9ea4c463e8f214f1c1f5811d6",
+      "kind": "Card",
+      "values": {
+        "Term": "stomach",
+        "Definition": "b\u1EE5ng, d\u1EA1 d\u00E0y",
+        "ImageUrl": "asset:47cf4bd328e792bafce5d461a4914670c0fd191372ffce185c321bb4362114df.webp",
+        "Phonetic": "/\u02C8st\u028Cm\u0259k/",
+        "Example": "My stomach hurts after dinner.",
+        "ExampleTranslation": "B\u1EE5ng t\u00F4i \u0111au sau b\u1EEFa t\u1ED1i.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the part of the body where food goes after you eat",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8st\u028Cm\u0259k/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My stomach hurts after dinner.\u0022,\u0022vi\u0022:\u0022B\\u1EE5ng t\\u00F4i \\u0111au sau b\\u1EEFa t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022Do not exercise on a full stomach.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EEBng t\\u1EADp th\\u1EC3 d\\u1EE5c khi b\\u1EE5ng \\u0111ang no.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022stomach ache\u0022,\u0022vi\u0022:\u0022\\u0111au b\\u1EE5ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a07-co-the-nguoi.fe964cf122ee415c9a2ab3fee33f6ff7",
+      "kind": "Card",
+      "values": {
+        "Term": "thumb",
+        "Definition": "ng\u00F3n tay c\u00E1i",
+        "ImageUrl": "asset:81aa7e7e7be40b1f30ab5b348b948403f3090e832c41b61ce2aa9078798fc897.webp",
+        "Phonetic": "/\u02C8\u03B8\u028Cm/",
+        "Example": "The child sucks his thumb.",
+        "ExampleTranslation": "\u0110\u1EE9a b\u00E9 m\u00FAt ng\u00F3n tay c\u00E1i.",
+        "Topic": "C\u01A1 th\u1EC3 ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the short thick finger next to the others",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u03B8\u028Cm/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The child sucks his thumb.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EE9a b\\u00E9 m\\u00FAt ng\\u00F3n tay c\\u00E1i.\u0022},{\u0022text\u0022:\u0022She gave me a thumbs up.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y gi\\u01A1 ng\\u00F3n tay c\\u00E1i l\\u00EAn v\\u1EDBi t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022thumbs up\u0022,\u0022vi\u0022:\u0022gi\\u01A1 ng\\u00F3n tay c\\u00E1i (\\u0111\\u1ED3ng \\u00FD)\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/153404739@N04/27146523518\u0022,\u0022author\u0022:\u0022dudemanwuzhere\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a07-co-the-nguoi"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "e6800651b5035b84d992816c1ab4ff30634d1b4e6fd53e7ae84e52d65b226e3f.webp",
+      "sha256": "e6800651b5035b84d992816c1ab4ff30634d1b4e6fd53e7ae84e52d65b226e3f"
+    },
+    {
+      "file": "28e6fb285cbd6eb8027441df7f58b30fb22a9d87bafe36d2ab96f353dd82b230.webp",
+      "sha256": "28e6fb285cbd6eb8027441df7f58b30fb22a9d87bafe36d2ab96f353dd82b230"
+    },
+    {
+      "file": "62f2c44d97499a9852da8ea530d2b1ff37603ab6aa329c3ba6fc193fc8b2674e.webp",
+      "sha256": "62f2c44d97499a9852da8ea530d2b1ff37603ab6aa329c3ba6fc193fc8b2674e"
+    },
+    {
+      "file": "51e561128f5035e5b469daea5c0ae0f5e465219ef9d59be078892130330750b5.webp",
+      "sha256": "51e561128f5035e5b469daea5c0ae0f5e465219ef9d59be078892130330750b5"
+    },
+    {
+      "file": "fde697063918d1ab7b9a6f497d2763e3b744eea3ed1d0b123a59ba4dce4a140e.webp",
+      "sha256": "fde697063918d1ab7b9a6f497d2763e3b744eea3ed1d0b123a59ba4dce4a140e"
+    },
+    {
+      "file": "619064fb6ce23a799cce3e06325a2178ee72a9bb51d64ccb2d52a7736a2f767a.webp",
+      "sha256": "619064fb6ce23a799cce3e06325a2178ee72a9bb51d64ccb2d52a7736a2f767a"
+    },
+    {
+      "file": "1eb2e7212aebaa3e389bfee4d6c58e17faffce3f40dcc0a57f2023870c23f319.webp",
+      "sha256": "1eb2e7212aebaa3e389bfee4d6c58e17faffce3f40dcc0a57f2023870c23f319"
+    },
+    {
+      "file": "d9ff813b3a4c8729750fb0a8c5a1b15fd383b57794bf91a774b513da5b5ac191.webp",
+      "sha256": "d9ff813b3a4c8729750fb0a8c5a1b15fd383b57794bf91a774b513da5b5ac191"
+    },
+    {
+      "file": "1ced1c1ee6c8ebc091a32441891d6ce69514b0eb431bc3f1cf9208c0c154eda9.webp",
+      "sha256": "1ced1c1ee6c8ebc091a32441891d6ce69514b0eb431bc3f1cf9208c0c154eda9"
+    },
+    {
+      "file": "70ded397862d2e51637bc9499e2e1439a0de8f593f49683f9d25f0d504562c04.webp",
+      "sha256": "70ded397862d2e51637bc9499e2e1439a0de8f593f49683f9d25f0d504562c04"
+    },
+    {
+      "file": "f31349fd0d152eb907ac2fa05927516f837b2d7db83833c632d434194a34c970.webp",
+      "sha256": "f31349fd0d152eb907ac2fa05927516f837b2d7db83833c632d434194a34c970"
+    },
+    {
+      "file": "24cd0e60af0058644d0cc688fd4090830efb6f4cc2010fc310c6ae30fa24be56.webp",
+      "sha256": "24cd0e60af0058644d0cc688fd4090830efb6f4cc2010fc310c6ae30fa24be56"
+    },
+    {
+      "file": "73a9d793b19f5319f7d60e8d003cb62643292eb24d6a6c8cd19d7b47e64433e2.webp",
+      "sha256": "73a9d793b19f5319f7d60e8d003cb62643292eb24d6a6c8cd19d7b47e64433e2"
+    },
+    {
+      "file": "19e8777dbfef548974fc54555337c71d103196ca0510ffbac635a4617b4900e3.webp",
+      "sha256": "19e8777dbfef548974fc54555337c71d103196ca0510ffbac635a4617b4900e3"
+    },
+    {
+      "file": "2412f69ff2fe8905aa0aa70f03b78674a5a7a1f4698deac848864ccdc49e4a1e.webp",
+      "sha256": "2412f69ff2fe8905aa0aa70f03b78674a5a7a1f4698deac848864ccdc49e4a1e"
+    },
+    {
+      "file": "81aa7e7e7be40b1f30ab5b348b948403f3090e832c41b61ce2aa9078798fc897.webp",
+      "sha256": "81aa7e7e7be40b1f30ab5b348b948403f3090e832c41b61ce2aa9078798fc897"
+    },
+    {
+      "file": "b1670f0edd9c47536361a15a41ca98def0554ac540d303083fbebe12efec0824.webp",
+      "sha256": "b1670f0edd9c47536361a15a41ca98def0554ac540d303083fbebe12efec0824"
+    },
+    {
+      "file": "67e1d82e8997dfa1d149a293b58ece9bdfda4b94ce898cff6dc8906e8ecb7925.webp",
+      "sha256": "67e1d82e8997dfa1d149a293b58ece9bdfda4b94ce898cff6dc8906e8ecb7925"
+    },
+    {
+      "file": "47cf4bd328e792bafce5d461a4914670c0fd191372ffce185c321bb4362114df.webp",
+      "sha256": "47cf4bd328e792bafce5d461a4914670c0fd191372ffce185c321bb4362114df"
+    },
+    {
+      "file": "37910adf5517263558a2d78a27608e030c2ddd71e3638bb9ef6de96c0fe78a9a.webp",
+      "sha256": "37910adf5517263558a2d78a27608e030c2ddd71e3638bb9ef6de96c0fe78a9a"
+    },
+    {
+      "file": "0c7ba1251b78308e7b5479ac46e90498e6ac98c85dd58414896d1f7a90cc754a.webp",
+      "sha256": "0c7ba1251b78308e7b5479ac46e90498e6ac98c85dd58414896d1f7a90cc754a"
+    },
+    {
+      "file": "c3a0eb7de03e7c96d3516bdbf6e8725290314ccb550306e0ddb7d2d77d075f88.webp",
+      "sha256": "c3a0eb7de03e7c96d3516bdbf6e8725290314ccb550306e0ddb7d2d77d075f88"
+    },
+    {
+      "file": "3f322c53ab93ffefc852bc73530a4a188f1a883ed9d3c84aff78f6799ff9a5d0.webp",
+      "sha256": "3f322c53ab93ffefc852bc73530a4a188f1a883ed9d3c84aff78f6799ff9a5d0"
+    },
+    {
+      "file": "99dd06d33f946fe573029ebf01e3f313b4a3ffc7134495ec2729eaa2140d58b2.webp",
+      "sha256": "99dd06d33f946fe573029ebf01e3f313b4a3ffc7134495ec2729eaa2140d58b2"
+    },
+    {
+      "file": "d30fe4ce33a39b7e67bbb6f93184d37320081c3892c85872be79eac4fc2a106b.webp",
+      "sha256": "d30fe4ce33a39b7e67bbb6f93184d37320081c3892c85872be79eac4fc2a106b"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a07-co-the-nguoi"
+}

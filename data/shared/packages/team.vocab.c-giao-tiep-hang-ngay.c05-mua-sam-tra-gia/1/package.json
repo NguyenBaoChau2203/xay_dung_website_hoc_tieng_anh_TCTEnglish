@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia",
+      "kind": "Set",
+      "values": {
+        "SetName": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "Description": "#a2 #b1 #shopping #bargaining"
+      },
+      "references": {
+        "FolderId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.69eb25c500b84f00ab2dc9c4b8036467",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.0528f18d9e0848b6b8cc6ab86e97b29f",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027m just looking, thanks.",
+        "Definition": "t\u00F4i ch\u1EC9 xem th\u00F4i, c\u1EA3m \u01A1n",
+        "ImageUrl": "asset:484ac94b47f5869f46494e23352d051a3d7a557dc9791e93b9122707558f136d.webp",
+        "Phonetic": null,
+        "Example": "I\u0027m just looking, thanks.",
+        "ExampleTranslation": "T\u00F4i ch\u1EC9 xem th\u00F4i, c\u1EA3m \u01A1n.",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you do not want help yet",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027m just looking, thanks.\u0022,\u0022vi\u0022:\u0022T\\u00F4i ch\\u1EC9 xem th\\u00F4i, c\\u1EA3m \\u01A1n.\u0022},{\u0022text\u0022:\u0022I\\u0027m just looking, thank you.\u0022,\u0022vi\u0022:\u0022T\\u00F4i ch\\u1EC9 xem th\\u00F4i, c\\u1EA3m \\u01A1n b\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Let me know if you need help.\u0022,\u0022vi\u0022:\u0022C\\u1EA7n g\\u00EC c\\u1EE9 n\\u00F3i v\\u1EDBi t\\u00F4i nh\\u00E9.\u0022},{\u0022text\u0022:\u0022No, thanks.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng, c\\u1EA3m \\u01A1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.22225243e9ab48989426c595f57548dd",
+      "kind": "Card",
+      "values": {
+        "Term": "Do you have a smaller size?",
+        "Definition": "b\u1EA1n c\u00F3 c\u1EE1 nh\u1ECF h\u01A1n kh\u00F4ng?",
+        "ImageUrl": "asset:2e21da96b9ab087225fce272b0b4b6b838b23fc3da53f43a47b4ada4c769e5b5.webp",
+        "Phonetic": null,
+        "Example": "Do you have a smaller size? This is too big.",
+        "ExampleTranslation": "B\u1EA1n c\u00F3 c\u1EE1 nh\u1ECF h\u01A1n kh\u00F4ng? C\u00E1i n\u00E0y to qu\u00E1.",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about another size",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Do you have a smaller size? This is too big.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 c\\u1EE1 nh\\u1ECF h\\u01A1n kh\\u00F4ng? C\\u00E1i n\\u00E0y to qu\\u00E1.\u0022},{\u0022text\u0022:\u0022Do you have a larger size?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 c\\u1EE1 l\\u1EDBn h\\u01A1n kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022What size are you?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n m\\u1EB7c c\\u1EE1 n\\u00E0o?\u0022},{\u0022text\u0022:\u0022We have medium.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i c\\u00F3 c\\u1EE1 v\\u1EEBa.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.23107a2715cf4f2db62bd57edb520475",
+      "kind": "Card",
+      "values": {
+        "Term": "What\u0027s the best price?",
+        "Definition": "gi\u00E1 t\u1ED1t nh\u1EA5t l\u00E0 bao nhi\u00EAu?",
+        "ImageUrl": "asset:cce121e4e4094225f30e344ad445f35fa411c900303ff189d826be41e0dad025.webp",
+        "Phonetic": null,
+        "Example": "What\u0027s the best price you can give me?",
+        "ExampleTranslation": "Gi\u00E1 t\u1ED1t nh\u1EA5t b\u1EA1n c\u00F3 th\u1EC3 cho t\u00F4i l\u00E0 bao nhi\u00EAu?",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question used when bargaining",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022What\\u0027s the best price you can give me?\u0022,\u0022vi\u0022:\u0022Gi\\u00E1 t\\u1ED1t nh\\u1EA5t b\\u1EA1n c\\u00F3 th\\u1EC3 cho t\\u00F4i l\\u00E0 bao nhi\\u00EAu?\u0022},{\u0022text\u0022:\u0022What\\u0027s the best price for three?\u0022,\u0022vi\u0022:\u0022Mua ba c\\u00E1i th\\u00EC gi\\u00E1 t\\u1ED1t nh\\u1EA5t l\\u00E0 bao nhi\\u00EAu?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Final price?\u0022,\u0022vi\u0022:\u0022Gi\\u00E1 cu\\u1ED1i c\\u00F9ng l\\u00E0 bao nhi\\u00EAu?\u0022},{\u0022text\u0022:\u0022That\\u0027s my last price.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00F3 l\\u00E0 gi\\u00E1 cu\\u1ED1i c\\u1EE7a t\\u00F4i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.33260bf94279469888693652cb93c639",
+      "kind": "Card",
+      "values": {
+        "Term": "Can you give me a discount?",
+        "Definition": "b\u1EA1n gi\u1EA3m gi\u00E1 cho t\u00F4i \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:cfdf2e6ee7bffed0915c8a894c06cd7afb993dbd44446b2063eeea6c0b9374b8.webp",
+        "Phonetic": null,
+        "Example": "Can you give me a discount? I\u0027m buying two.",
+        "ExampleTranslation": "B\u1EA1n gi\u1EA3m gi\u00E1 cho t\u00F4i \u0111\u01B0\u1EE3c kh\u00F4ng? T\u00F4i mua hai c\u00E1i.",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request for a lower price",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can you give me a discount? I\\u0027m buying two.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n gi\\u1EA3m gi\\u00E1 cho t\\u00F4i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng? T\\u00F4i mua hai c\\u00E1i.\u0022},{\u0022text\u0022:\u0022Can you give me a discount on this bag?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n gi\\u1EA3m gi\\u00E1 chi\\u1EBFc t\\u00FAi n\\u00E0y cho t\\u00F4i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I can take ten percent off.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u00F3 th\\u1EC3 gi\\u1EA3m m\\u01B0\\u1EDDi ph\\u1EA7n tr\\u0103m.\u0022},{\u0022text\u0022:\u0022That\\u0027s my best price.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00F3 l\\u00E0 gi\\u00E1 t\\u1ED1t nh\\u1EA5t c\\u1EE7a t\\u00F4i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.36ff56018783425298f44878c23b64ba",
+      "kind": "Card",
+      "values": {
+        "Term": "Do you accept credit cards?",
+        "Definition": "b\u1EA1n c\u00F3 nh\u1EADn th\u1EBB t\u00EDn d\u1EE5ng kh\u00F4ng?",
+        "ImageUrl": "asset:534c1b2da7bf0da1ecccfb7364cfa01bf219fe0a6910e0229abcec8fe48375fd.webp",
+        "Phonetic": null,
+        "Example": "Do you accept credit cards?",
+        "ExampleTranslation": "B\u1EA1n c\u00F3 nh\u1EADn th\u1EBB t\u00EDn d\u1EE5ng kh\u00F4ng?",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about payment by card",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Do you accept credit cards?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 nh\\u1EADn th\\u1EBB t\\u00EDn d\\u1EE5ng kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Do you accept credit cards or only cash?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n nh\\u1EADn th\\u1EBB t\\u00EDn d\\u1EE5ng hay ch\\u1EC9 ti\\u1EC1n m\\u1EB7t?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Cash only, sorry.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, ch\\u1EC9 nh\\u1EADn ti\\u1EC1n m\\u1EB7t.\u0022},{\u0022text\u0022:\u0022Yes, all major cards.\u0022,\u0022vi\u0022:\u0022C\\u00F3, nh\\u1EADn c\\u00E1c lo\\u1EA1i th\\u1EBB ch\\u00EDnh.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.4210a81c220c410f868e6fe6a731fa9c",
+      "kind": "Card",
+      "values": {
+        "Term": "Is there a sale?",
+        "Definition": "c\u00F3 \u0111\u1EE3t gi\u1EA3m gi\u00E1 n\u00E0o kh\u00F4ng?",
+        "ImageUrl": "asset:1d0fe9d7305c26dc113283e8afe786f0a234b3ce3b2ba406015ab08bea9c5f80.webp",
+        "Phonetic": null,
+        "Example": "Is there a sale this week?",
+        "ExampleTranslation": "Tu\u1EA7n n\u00E0y c\u00F3 gi\u1EA3m gi\u00E1 kh\u00F4ng?",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about discounts",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Is there a sale this week?\u0022,\u0022vi\u0022:\u0022Tu\\u1EA7n n\\u00E0y c\\u00F3 gi\\u1EA3m gi\\u00E1 kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Is there a sale on shoes?\u0022,\u0022vi\u0022:\u0022Gi\\u00E0y c\\u00F3 \\u0111ang gi\\u1EA3m gi\\u00E1 kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Everything is half price.\u0022,\u0022vi\u0022:\u0022M\\u1ECDi th\\u1EE9 gi\\u1EA3m n\\u1EEDa gi\\u00E1.\u0022},{\u0022text\u0022:\u0022The sale ends on Sunday.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EE3t gi\\u1EA3m gi\\u00E1 k\\u1EBFt th\\u00FAc v\\u00E0o Ch\\u1EE7 nh\\u1EADt.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.44cad19000d948a7ad7e959be0b4080d",
+      "kind": "Card",
+      "values": {
+        "Term": "Could you gift-wrap it?",
+        "Definition": "b\u1EA1n g\u00F3i qu\u00E0 gi\u00FAp t\u00F4i \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:f3dd2446fbc1486866592bb116b8a6d1df3a2d704025b1a2dd610226efb90565.webp",
+        "Phonetic": null,
+        "Example": "Could you gift-wrap it? It\u0027s for my mother.",
+        "ExampleTranslation": "B\u1EA1n g\u00F3i qu\u00E0 gi\u00FAp t\u00F4i \u0111\u01B0\u1EE3c kh\u00F4ng? \u0110\u00E2y l\u00E0 qu\u00E0 cho m\u1EB9 t\u00F4i.",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request to wrap an item as a present",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could you gift-wrap it? It\\u0027s for my mother.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n g\\u00F3i qu\\u00E0 gi\\u00FAp t\\u00F4i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng? \\u0110\\u00E2y l\\u00E0 qu\\u00E0 cho m\\u1EB9 t\\u00F4i.\u0022},{\u0022text\u0022:\u0022Could you gift-wrap this book?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n g\\u00F3i qu\\u00E0 cu\\u1ED1n s\\u00E1ch n\\u00E0y gi\\u00FAp t\\u00F4i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Of course.\u0022,\u0022vi\u0022:\u0022T\\u1EA5t nhi\\u00EAn r\\u1ED3i.\u0022},{\u0022text\u0022:\u0022Which paper do you like?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n th\\u00EDch gi\\u1EA5y g\\u00F3i n\\u00E0o?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.627af00bb4e6483287314fc314279057",
+      "kind": "Card",
+      "values": {
+        "Term": "That\u0027s a good deal.",
+        "Definition": "gi\u00E1 \u0111\u00F3 h\u1EDDi \u0111\u1EA5y",
+        "ImageUrl": "asset:1a41e295ccd63d44b62ac4a3664689f2e6381ba35ff9a07c7fcdf3a940954786.webp",
+        "Phonetic": null,
+        "Example": "That\u0027s a good deal. I\u0027ll buy two.",
+        "ExampleTranslation": "Gi\u00E1 \u0111\u00F3 h\u1EDDi \u0111\u1EA5y. T\u00F4i mua hai c\u00E1i.",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when a price is good",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022That\\u0027s a good deal. I\\u0027ll buy two.\u0022,\u0022vi\u0022:\u0022Gi\\u00E1 \\u0111\\u00F3 h\\u1EDDi \\u0111\\u1EA5y. T\\u00F4i mua hai c\\u00E1i.\u0022},{\u0022text\u0022:\u0022That\\u0027s a good deal for the quality.\u0022,\u0022vi\u0022:\u0022Gi\\u00E1 \\u0111\\u00F3 h\\u1EDDi so v\\u1EDBi ch\\u1EA5t l\\u01B0\\u1EE3ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s a bargain.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00FAng l\\u00E0 m\\u00F3n h\\u1EDDi.\u0022},{\u0022text\u0022:\u0022What a steal!\u0022,\u0022vi\u0022:\u0022H\\u1EDDi qu\\u00E1!\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.63d0396f1fd74497aa8d35da5fc79d8e",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027d like to return this.",
+        "Definition": "t\u00F4i mu\u1ED1n tr\u1EA3 l\u1EA1i m\u00F3n n\u00E0y",
+        "ImageUrl": "asset:77155858d5001cae136594420cfeee087e2e594b0d74d99933e91b55946c529f.webp",
+        "Phonetic": null,
+        "Example": "I\u0027d like to return this. It\u0027s broken.",
+        "ExampleTranslation": "T\u00F4i mu\u1ED1n tr\u1EA3 l\u1EA1i m\u00F3n n\u00E0y. N\u00F3 b\u1ECB h\u1ECFng.",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request to give back something you bought",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027d like to return this. It\\u0027s broken.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n tr\\u1EA3 l\\u1EA1i m\\u00F3n n\\u00E0y. N\\u00F3 b\\u1ECB h\\u1ECFng.\u0022},{\u0022text\u0022:\u0022I\\u0027d like to return this sweater.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n tr\\u1EA3 l\\u1EA1i chi\\u1EBFc \\u00E1o len n\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Do you have the receipt?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 h\\u00F3a \\u0111\\u01A1n kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022I want a refund.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n \\u0111\\u01B0\\u1EE3c ho\\u00E0n ti\\u1EC1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.8a99872ea3f24ad4b507601cf4666885",
+      "kind": "Card",
+      "values": {
+        "Term": "Can I try it on?",
+        "Definition": "t\u00F4i m\u1EB7c th\u1EED \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:fbe75ef597e26df140138da7c76e4c171d77acc936aefd04310c6eb32731be68.webp",
+        "Phonetic": null,
+        "Example": "Can I try it on? I like the colour.",
+        "ExampleTranslation": "T\u00F4i m\u1EB7c th\u1EED \u0111\u01B0\u1EE3c kh\u00F4ng? T\u00F4i th\u00EDch m\u00E0u n\u00E0y.",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request to wear clothes before buying",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can I try it on? I like the colour.\u0022,\u0022vi\u0022:\u0022T\\u00F4i m\\u1EB7c th\\u1EED \\u0111\\u01B0\\u1EE3c kh\\u00F4ng? T\\u00F4i th\\u00EDch m\\u00E0u n\\u00E0y.\u0022},{\u0022text\u0022:\u0022Can I try these shoes on?\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EED \\u0111\\u00F4i gi\\u00E0y n\\u00E0y \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022The fitting room is over there.\u0022,\u0022vi\u0022:\u0022Ph\\u00F2ng th\\u1EED \\u0111\\u1ED3 \\u1EDF \\u0111\\u1EB1ng kia.\u0022},{\u0022text\u0022:\u0022Of course.\u0022,\u0022vi\u0022:\u0022T\\u1EA5t nhi\\u00EAn r\\u1ED3i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.9178a28891dd477094187e3a58728975",
+      "kind": "Card",
+      "values": {
+        "Term": "It doesn\u0027t fit.",
+        "Definition": "n\u00F3 kh\u00F4ng v\u1EEBa",
+        "ImageUrl": "asset:c74b282609443d159318041e928d52f2e04b374dea9ee951cfc57a36e2f83d4d.webp",
+        "Phonetic": null,
+        "Example": "It doesn\u0027t fit. It\u0027s too tight.",
+        "ExampleTranslation": "N\u00F3 kh\u00F4ng v\u1EEBa. N\u00F3 ch\u1EADt qu\u00E1.",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when clothes are the wrong size",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022It doesn\\u0027t fit. It\\u0027s too tight.\u0022,\u0022vi\u0022:\u0022N\\u00F3 kh\\u00F4ng v\\u1EEBa. N\\u00F3 ch\\u1EADt qu\\u00E1.\u0022},{\u0022text\u0022:\u0022These trousers don\\u0027t fit me.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc qu\\u1EA7n n\\u00E0y kh\\u00F4ng v\\u1EEBa t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s too loose.\u0022,\u0022vi\u0022:\u0022N\\u00F3 r\\u1ED9ng qu\\u00E1.\u0022},{\u0022text\u0022:\u0022Can I exchange it?\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1ED5i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.a00d8d53ccc14a808b47aa6174c99b9d",
+      "kind": "Card",
+      "values": {
+        "Term": "Where is the fitting room?",
+        "Definition": "ph\u00F2ng th\u1EED \u0111\u1ED3 \u1EDF \u0111\u00E2u?",
+        "ImageUrl": "asset:c39d035763b9ed60b25fda31d51b0a31ca97d86f32960559a32c6c2b0fea6823.webp",
+        "Phonetic": null,
+        "Example": "Excuse me, where is the fitting room?",
+        "ExampleTranslation": "Xin l\u1ED7i, ph\u00F2ng th\u1EED \u0111\u1ED3 \u1EDF \u0111\u00E2u?",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about where to try clothes on",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Excuse me, where is the fitting room?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, ph\\u00F2ng th\\u1EED \\u0111\\u1ED3 \\u1EDF \\u0111\\u00E2u?\u0022},{\u0022text\u0022:\u0022Where is the fitting room, please?\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n cho h\\u1ECFi ph\\u00F2ng th\\u1EED \\u0111\\u1ED3 \\u1EDF \\u0111\\u00E2u?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s at the back.\u0022,\u0022vi\u0022:\u0022\\u1EDE ph\\u00EDa sau.\u0022},{\u0022text\u0022:\u0022Next to the shoes.\u0022,\u0022vi\u0022:\u0022C\\u1EA1nh khu gi\\u00E0y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.bd6db6f30119454c9601135b29e52361",
+      "kind": "Card",
+      "values": {
+        "Term": "Do you have this in blue?",
+        "Definition": "c\u00E1i n\u00E0y c\u00F3 m\u00E0u xanh kh\u00F4ng?",
+        "ImageUrl": "asset:b2d8f972d16a8d09250a4e96b06e0bf8de28f6d10bc9daeb54e4cc0d34cc23e1.webp",
+        "Phonetic": null,
+        "Example": "Do you have this in blue?",
+        "ExampleTranslation": "C\u00E1i n\u00E0y c\u00F3 m\u00E0u xanh kh\u00F4ng?",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about another colour",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Do you have this in blue?\u0022,\u0022vi\u0022:\u0022C\\u00E1i n\\u00E0y c\\u00F3 m\\u00E0u xanh kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Do you have this shirt in blue?\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc \\u00E1o n\\u00E0y c\\u00F3 m\\u00E0u xanh kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Do you have other colours?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 m\\u00E0u kh\\u00E1c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Only in black.\u0022,\u0022vi\u0022:\u0022Ch\\u1EC9 c\\u00F3 m\\u00E0u \\u0111en.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.ccb90787e03949c7bd95c7922d89733a",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027ll take it.",
+        "Definition": "t\u00F4i l\u1EA5y c\u00E1i n\u00E0y",
+        "ImageUrl": "asset:a0a8a5e17da44cc3d0c402c98e621587b22739c0a37d494a5551b9efd3b17ab8.webp",
+        "Phonetic": null,
+        "Example": "It fits well. I\u0027ll take it.",
+        "ExampleTranslation": "V\u1EEBa l\u1EAFm. T\u00F4i l\u1EA5y c\u00E1i n\u00E0y.",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you decide to buy something",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022It fits well. I\\u0027ll take it.\u0022,\u0022vi\u0022:\u0022V\\u1EEBa l\\u1EAFm. T\\u00F4i l\\u1EA5y c\\u00E1i n\\u00E0y.\u0022},{\u0022text\u0022:\u0022I\\u0027ll take it. How much is it?\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u1EA5y c\\u00E1i n\\u00E0y. Bao nhi\\u00EAu ti\\u1EC1n?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027ll take two.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u1EA5y hai c\\u00E1i.\u0022},{\u0022text\u0022:\u0022I\\u0027ll think about it.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD suy ngh\\u0129 th\\u00EAm.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.d025a5d541ad4d83b543f09805f2717a",
+      "kind": "Card",
+      "values": {
+        "Term": "Can I get a receipt?",
+        "Definition": "cho t\u00F4i xin h\u00F3a \u0111\u01A1n \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:5a0581659070381888585f4860300935eb3065d6c6e9b5ea73837b827730b88a.webp",
+        "Phonetic": null,
+        "Example": "Can I get a receipt, please?",
+        "ExampleTranslation": "Cho t\u00F4i xin h\u00F3a \u0111\u01A1n \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request for a receipt after buying",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can I get a receipt, please?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i xin h\\u00F3a \\u0111\\u01A1n \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Can I get a receipt for this?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i xin h\\u00F3a \\u0111\\u01A1n cho m\\u00F3n n\\u00E0y \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Here is your receipt.\u0022,\u0022vi\u0022:\u0022H\\u00F3a \\u0111\\u01A1n c\\u1EE7a b\\u1EA1n \\u0111\\u00E2y.\u0022},{\u0022text\u0022:\u0022Keep it for returns.\u0022,\u0022vi\u0022:\u0022H\\u00E3y gi\\u1EEF l\\u1EA1i \\u0111\\u1EC3 \\u0111\\u1ED5i tr\\u1EA3.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.d1b6220e3be14546b44cddfb172d1e22",
+      "kind": "Card",
+      "values": {
+        "Term": "It\u0027s too expensive.",
+        "Definition": "c\u00E1i n\u00E0y \u0111\u1EAFt qu\u00E1",
+        "ImageUrl": "asset:2267b3e551155e5e12801d8bd786fe4b15b41fc474729752a9a33887e6faedf5.webp",
+        "Phonetic": null,
+        "Example": "It\u0027s too expensive. I only have twenty dollars.",
+        "ExampleTranslation": "\u0110\u1EAFt qu\u00E1. T\u00F4i ch\u1EC9 c\u00F3 hai m\u01B0\u01A1i \u0111\u00F4 la.",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when a price is too high",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022It\\u0027s too expensive. I only have twenty dollars.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EAFt qu\\u00E1. T\\u00F4i ch\\u1EC9 c\\u00F3 hai m\\u01B0\\u01A1i \\u0111\\u00F4 la.\u0022},{\u0022text\u0022:\u0022It\\u0027s too expensive for me.\u0022,\u0022vi\u0022:\u0022N\\u00F3 qu\\u00E1 \\u0111\\u1EAFt \\u0111\\u1ED1i v\\u1EDBi t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s a bit pricey.\u0022,\u0022vi\u0022:\u0022H\\u01A1i \\u0111\\u1EAFt m\\u1ED9t ch\\u00FAt.\u0022},{\u0022text\u0022:\u0022That\\u0027s more than I can pay.\u0022,\u0022vi\u0022:\u0022Cao h\\u01A1n m\\u1EE9c t\\u00F4i c\\u00F3 th\\u1EC3 tr\\u1EA3.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.d9959b9f21b749dba8db6451ee68e05a",
+      "kind": "Card",
+      "values": {
+        "Term": "Do you have anything cheaper?",
+        "Definition": "b\u1EA1n c\u00F3 c\u00E1i n\u00E0o r\u1EBB h\u01A1n kh\u00F4ng?",
+        "ImageUrl": "asset:dff0f81c6c7f55868b909b54f8cd60eb005394ea827feee59b4c0a4eee2cde23.webp",
+        "Phonetic": null,
+        "Example": "Do you have anything cheaper?",
+        "ExampleTranslation": "B\u1EA1n c\u00F3 c\u00E1i n\u00E0o r\u1EBB h\u01A1n kh\u00F4ng?",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about lower-priced items",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Do you have anything cheaper?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 c\\u00E1i n\\u00E0o r\\u1EBB h\\u01A1n kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Do you have anything cheaper than this?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 c\\u00E1i n\\u00E0o r\\u1EBB h\\u01A1n c\\u00E1i n\\u00E0y kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022This one is cheaper.\u0022,\u0022vi\u0022:\u0022C\\u00E1i n\\u00E0y r\\u1EBB h\\u01A1n.\u0022},{\u0022text\u0022:\u0022It\\u0027s on the shelf.\u0022,\u0022vi\u0022:\u0022N\\u00F3 \\u1EDF tr\\u00EAn k\\u1EC7.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.db728fd068a745e1a6003e57e05ec3e7",
+      "kind": "Card",
+      "values": {
+        "Term": "How much is this?",
+        "Definition": "c\u00E1i n\u00E0y gi\u00E1 bao nhi\u00EAu?",
+        "ImageUrl": "asset:40a118a9d8fa0c1c4426ddd1a05201f8f568ff8d47a479aa419f55831fbc2712.webp",
+        "Phonetic": null,
+        "Example": "How much is this T-shirt?",
+        "ExampleTranslation": "Chi\u1EBFc \u00E1o thun n\u00E0y gi\u00E1 bao nhi\u00EAu?",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about the price of an item",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022How much is this T-shirt?\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc \\u00E1o thun n\\u00E0y gi\\u00E1 bao nhi\\u00EAu?\u0022},{\u0022text\u0022:\u0022How much is this? I can\\u0027t see the price.\u0022,\u0022vi\u0022:\u0022C\\u00E1i n\\u00E0y gi\\u00E1 bao nhi\\u00EAu? T\\u00F4i kh\\u00F4ng th\\u1EA5y gi\\u00E1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022How much are these?\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng c\\u00E1i n\\u00E0y gi\\u00E1 bao nhi\\u00EAu?\u0022},{\u0022text\u0022:\u0022It\\u0027s ten dollars.\u0022,\u0022vi\u0022:\u0022Gi\\u00E1 m\\u01B0\\u1EDDi \\u0111\\u00F4 la.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.e52e913c1cc34f76ac9a110fb71571a7",
+      "kind": "Card",
+      "values": {
+        "Term": "Where can I pay?",
+        "Definition": "t\u00F4i thanh to\u00E1n \u1EDF \u0111\u00E2u?",
+        "ImageUrl": "asset:a37fb141b107f24096ab3487dd63db2e2ca9ae083240c650809e59ee32f0b343.webp",
+        "Phonetic": null,
+        "Example": "Where can I pay? I have my basket.",
+        "ExampleTranslation": "T\u00F4i thanh to\u00E1n \u1EDF \u0111\u00E2u? T\u00F4i c\u00F3 gi\u1ECF h\u00E0ng r\u1ED3i.",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about where to pay",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Where can I pay? I have my basket.\u0022,\u0022vi\u0022:\u0022T\\u00F4i thanh to\\u00E1n \\u1EDF \\u0111\\u00E2u? T\\u00F4i c\\u00F3 gi\\u1ECF h\\u00E0ng r\\u1ED3i.\u0022},{\u0022text\u0022:\u0022Where can I pay for this?\u0022,\u0022vi\u0022:\u0022T\\u00F4i thanh to\\u00E1n m\\u00F3n n\\u00E0y \\u1EDF \\u0111\\u00E2u?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022At the checkout.\u0022,\u0022vi\u0022:\u0022\\u1EDE qu\\u1EA7y thanh to\\u00E1n.\u0022},{\u0022text\u0022:\u0022Over there, please.\u0022,\u0022vi\u0022:\u0022\\u1EDE \\u0111\\u1EB1ng kia \\u1EA1.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia.fb9a35c31b4448b1a45db8c1502de4e9",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027m looking for a gift.",
+        "Definition": "t\u00F4i \u0111ang t\u00ECm m\u1ED9t m\u00F3n qu\u00E0",
+        "ImageUrl": "asset:f425d59ec26941ebf8c7f2f3444944aa37bd9d6d8353e57cc1fa8200e8efb36e.webp",
+        "Phonetic": null,
+        "Example": "I\u0027m looking for a gift for my friend.",
+        "ExampleTranslation": "T\u00F4i \u0111ang t\u00ECm m\u1ED9t m\u00F3n qu\u00E0 cho b\u1EA1n t\u00F4i.",
+        "Topic": "Mua s\u1EAFm \u0026 tr\u1EA3 gi\u00E1",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you need help choosing a present",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027m looking for a gift for my friend.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111ang t\\u00ECm m\\u1ED9t m\\u00F3n qu\\u00E0 cho b\\u1EA1n t\\u00F4i.\u0022},{\u0022text\u0022:\u0022I\\u0027m looking for a gift under twenty dollars.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111ang t\\u00ECm m\\u1ED9t m\\u00F3n qu\\u00E0 d\\u01B0\\u1EDBi hai m\\u01B0\\u01A1i \\u0111\\u00F4 la.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022What does she like?\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y th\\u00EDch g\\u00EC?\u0022},{\u0022text\u0022:\u0022How about this scarf?\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc kh\\u0103n n\\u00E0y th\\u00EC sao?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "40a118a9d8fa0c1c4426ddd1a05201f8f568ff8d47a479aa419f55831fbc2712.webp",
+      "sha256": "40a118a9d8fa0c1c4426ddd1a05201f8f568ff8d47a479aa419f55831fbc2712"
+    },
+    {
+      "file": "2267b3e551155e5e12801d8bd786fe4b15b41fc474729752a9a33887e6faedf5.webp",
+      "sha256": "2267b3e551155e5e12801d8bd786fe4b15b41fc474729752a9a33887e6faedf5"
+    },
+    {
+      "file": "cfdf2e6ee7bffed0915c8a894c06cd7afb993dbd44446b2063eeea6c0b9374b8.webp",
+      "sha256": "cfdf2e6ee7bffed0915c8a894c06cd7afb993dbd44446b2063eeea6c0b9374b8"
+    },
+    {
+      "file": "2e21da96b9ab087225fce272b0b4b6b838b23fc3da53f43a47b4ada4c769e5b5.webp",
+      "sha256": "2e21da96b9ab087225fce272b0b4b6b838b23fc3da53f43a47b4ada4c769e5b5"
+    },
+    {
+      "file": "fbe75ef597e26df140138da7c76e4c171d77acc936aefd04310c6eb32731be68.webp",
+      "sha256": "fbe75ef597e26df140138da7c76e4c171d77acc936aefd04310c6eb32731be68"
+    },
+    {
+      "file": "c39d035763b9ed60b25fda31d51b0a31ca97d86f32960559a32c6c2b0fea6823.webp",
+      "sha256": "c39d035763b9ed60b25fda31d51b0a31ca97d86f32960559a32c6c2b0fea6823"
+    },
+    {
+      "file": "484ac94b47f5869f46494e23352d051a3d7a557dc9791e93b9122707558f136d.webp",
+      "sha256": "484ac94b47f5869f46494e23352d051a3d7a557dc9791e93b9122707558f136d"
+    },
+    {
+      "file": "a0a8a5e17da44cc3d0c402c98e621587b22739c0a37d494a5551b9efd3b17ab8.webp",
+      "sha256": "a0a8a5e17da44cc3d0c402c98e621587b22739c0a37d494a5551b9efd3b17ab8"
+    },
+    {
+      "file": "b2d8f972d16a8d09250a4e96b06e0bf8de28f6d10bc9daeb54e4cc0d34cc23e1.webp",
+      "sha256": "b2d8f972d16a8d09250a4e96b06e0bf8de28f6d10bc9daeb54e4cc0d34cc23e1"
+    },
+    {
+      "file": "cce121e4e4094225f30e344ad445f35fa411c900303ff189d826be41e0dad025.webp",
+      "sha256": "cce121e4e4094225f30e344ad445f35fa411c900303ff189d826be41e0dad025"
+    },
+    {
+      "file": "1a41e295ccd63d44b62ac4a3664689f2e6381ba35ff9a07c7fcdf3a940954786.webp",
+      "sha256": "1a41e295ccd63d44b62ac4a3664689f2e6381ba35ff9a07c7fcdf3a940954786"
+    },
+    {
+      "file": "1d0fe9d7305c26dc113283e8afe786f0a234b3ce3b2ba406015ab08bea9c5f80.webp",
+      "sha256": "1d0fe9d7305c26dc113283e8afe786f0a234b3ce3b2ba406015ab08bea9c5f80"
+    },
+    {
+      "file": "5a0581659070381888585f4860300935eb3065d6c6e9b5ea73837b827730b88a.webp",
+      "sha256": "5a0581659070381888585f4860300935eb3065d6c6e9b5ea73837b827730b88a"
+    },
+    {
+      "file": "534c1b2da7bf0da1ecccfb7364cfa01bf219fe0a6910e0229abcec8fe48375fd.webp",
+      "sha256": "534c1b2da7bf0da1ecccfb7364cfa01bf219fe0a6910e0229abcec8fe48375fd"
+    },
+    {
+      "file": "77155858d5001cae136594420cfeee087e2e594b0d74d99933e91b55946c529f.webp",
+      "sha256": "77155858d5001cae136594420cfeee087e2e594b0d74d99933e91b55946c529f"
+    },
+    {
+      "file": "c74b282609443d159318041e928d52f2e04b374dea9ee951cfc57a36e2f83d4d.webp",
+      "sha256": "c74b282609443d159318041e928d52f2e04b374dea9ee951cfc57a36e2f83d4d"
+    },
+    {
+      "file": "f3dd2446fbc1486866592bb116b8a6d1df3a2d704025b1a2dd610226efb90565.webp",
+      "sha256": "f3dd2446fbc1486866592bb116b8a6d1df3a2d704025b1a2dd610226efb90565"
+    },
+    {
+      "file": "dff0f81c6c7f55868b909b54f8cd60eb005394ea827feee59b4c0a4eee2cde23.webp",
+      "sha256": "dff0f81c6c7f55868b909b54f8cd60eb005394ea827feee59b4c0a4eee2cde23"
+    },
+    {
+      "file": "a37fb141b107f24096ab3487dd63db2e2ca9ae083240c650809e59ee32f0b343.webp",
+      "sha256": "a37fb141b107f24096ab3487dd63db2e2ca9ae083240c650809e59ee32f0b343"
+    },
+    {
+      "file": "f425d59ec26941ebf8c7f2f3444944aa37bd9d6d8353e57cc1fa8200e8efb36e.webp",
+      "sha256": "f425d59ec26941ebf8c7f2f3444944aa37bd9d6d8353e57cc1fa8200e8efb36e"
+    }
+  ],
+  "rootKey": "team.vocab.c-giao-tiep-hang-ngay.c05-mua-sam-tra-gia"
+}

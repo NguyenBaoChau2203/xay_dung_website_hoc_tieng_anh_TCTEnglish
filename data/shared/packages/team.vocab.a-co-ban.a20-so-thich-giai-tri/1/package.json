@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a20-so-thich-giai-tri",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri",
+      "kind": "Set",
+      "values": {
+        "SetName": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "Description": "#a1 #a2 #hobbies #free-time"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.05637c0f2c964dfb8e72f660fd5c7335",
+      "kind": "Card",
+      "values": {
+        "Term": "chess",
+        "Definition": "c\u1EDD vua",
+        "ImageUrl": "asset:94c375f5a7585cdfa85e7d67a2d6a1f497b2e01cd6d7461de76467812530f8dc.webp",
+        "Phonetic": "/t\u0361\u0283\u025Bs/",
+        "Example": "My grandfather taught me to play chess.",
+        "ExampleTranslation": "\u00D4ng d\u1EA1y t\u00F4i ch\u01A1i c\u1EDD vua.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a board game for two players with sixteen pieces each",
+        "Cefr": "A2",
+        "PhoneticUk": "/t\u0361\u0283\u025Bs/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandfather taught me to play chess.\u0022,\u0022vi\u0022:\u0022\\u00D4ng d\\u1EA1y t\\u00F4i ch\\u01A1i c\\u1EDD vua.\u0022},{\u0022text\u0022:\u0022We play chess after dinner.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i ch\\u01A1i c\\u1EDD vua sau b\\u1EEFa t\\u1ED1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play chess\u0022,\u0022vi\u0022:\u0022ch\\u01A1i c\\u1EDD vua\u0022},{\u0022text\u0022:\u0022chess board\u0022,\u0022vi\u0022:\u0022b\\u00E0n c\\u1EDD vua\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5914376/image-public-domain-free-game\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.1bf3053fdc7648118992e52c6c7ff99d",
+      "kind": "Card",
+      "values": {
+        "Term": "hobby",
+        "Definition": "s\u1EDF th\u00EDch",
+        "ImageUrl": "asset:c198b0e34bd8194d49018ea4519af336fe1a4be6a398e667ce0356ce414f9731.webp",
+        "Phonetic": "/\u02C8h\u0251.bi/",
+        "Example": "My hobby is collecting old stamps.",
+        "ExampleTranslation": "S\u1EDF th\u00EDch c\u1EE7a t\u00F4i l\u00E0 s\u01B0u t\u1EA7m tem c\u0169.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an activity you enjoy doing in your free time",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8h\u0252.bi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My hobby is collecting old stamps.\u0022,\u0022vi\u0022:\u0022S\\u1EDF th\\u00EDch c\\u1EE7a t\\u00F4i l\\u00E0 s\\u01B0u t\\u1EA7m tem c\\u0169.\u0022},{\u0022text\u0022:\u0022Do you have any hobbies?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 s\\u1EDF th\\u00EDch n\\u00E0o kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a favourite hobby\u0022,\u0022vi\u0022:\u0022s\\u1EDF th\\u00EDch y\\u00EAu th\\u00EDch\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022hobbies\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5924474/photo-image-paper-public-domain-stamps\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.1f197a66c66f4e64b0c373610a290304",
+      "kind": "Card",
+      "values": {
+        "Term": "singing",
+        "Definition": "vi\u1EC7c ca h\u00E1t",
+        "ImageUrl": "asset:1ca138665d87bd9edf618b9baac2ece163306930120af6f7b2b99423d238b0f5.webp",
+        "Phonetic": "/\u02C8s\u026A\u014B\u026A\u014B/",
+        "Example": "Singing makes me happy.",
+        "ExampleTranslation": "Ca h\u00E1t l\u00E0m t\u00F4i vui.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of making music with your voice",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8s\u026A\u014B\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Singing makes me happy.\u0022,\u0022vi\u0022:\u0022Ca h\\u00E1t l\\u00E0m t\\u00F4i vui.\u0022},{\u0022text\u0022:\u0022His singing is wonderful.\u0022,\u0022vi\u0022:\u0022Gi\\u1ECDng h\\u00E1t c\\u1EE7a anh \\u1EA5y th\\u1EADt tuy\\u1EC7t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022singing contest\u0022,\u0022vi\u0022:\u0022cu\\u1ED9c thi h\\u00E1t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/135396164@N05/25862728632\u0022,\u0022author\u0022:\u0022freestocks.org\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.22dbb15d9348420c827283b50c33b6fa",
+      "kind": "Card",
+      "values": {
+        "Term": "gardening",
+        "Definition": "l\u00E0m v\u01B0\u1EDDn",
+        "ImageUrl": "asset:82ae8ccddc6c9f1003c498a5a57c25f4cc958bd2fce971568984f1d55b351ac5.webp",
+        "Phonetic": "/\u02C8\u0261\u0251\u0279.d\u0259n.\u026A\u014B/",
+        "Example": "My grandmother loves gardening.",
+        "ExampleTranslation": "B\u00E0 t\u00F4i r\u1EA5t th\u00EDch l\u00E0m v\u01B0\u1EDDn.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of growing flowers and vegetables",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0261\u0251\u02D0.d\u0259n.\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandmother loves gardening.\u0022,\u0022vi\u0022:\u0022B\\u00E0 t\\u00F4i r\\u1EA5t th\\u00EDch l\\u00E0m v\\u01B0\\u1EDDn.\u0022},{\u0022text\u0022:\u0022Gardening gives you fresh air and exercise.\u0022,\u0022vi\u0022:\u0022L\\u00E0m v\\u01B0\\u1EDDn mang l\\u1EA1i kh\\u00F4ng kh\\u00ED trong l\\u00E0nh v\\u00E0 v\\u1EADn \\u0111\\u1ED9ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022gardening tools\u0022,\u0022vi\u0022:\u0022d\\u1EE5ng c\\u1EE5 l\\u00E0m v\\u01B0\\u1EDDn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:WaterAid_Garden_-_Chelsea_Flower_Show_2024_-_DSC01984.jpg\u0022,\u0022author\u0022:\u0022Daderot\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.318397240dac468abf05504ca36556dc",
+      "kind": "Card",
+      "values": {
+        "Term": "collecting",
+        "Definition": "vi\u1EC7c s\u01B0u t\u1EA7m",
+        "ImageUrl": "asset:1fcf60ff1ba803c6f5574258809857d4a9973afeeaac939f03e1af8edd643193.webp",
+        "Phonetic": "/k\u0259\u02C8l\u025Bkt\u026A\u014B/",
+        "Example": "Collecting coins is his hobby.",
+        "ExampleTranslation": "S\u01B0u t\u1EA7m ti\u1EC1n xu l\u00E0 s\u1EDF th\u00EDch c\u1EE7a anh \u1EA5y.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of keeping things of one kind that you like",
+        "Cefr": "A2",
+        "PhoneticUk": "/k\u0259\u02C8l\u025Bkt\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Collecting coins is his hobby.\u0022,\u0022vi\u0022:\u0022S\\u01B0u t\\u1EA7m ti\\u1EC1n xu l\\u00E0 s\\u1EDF th\\u00EDch c\\u1EE7a anh \\u1EA5y.\u0022},{\u0022text\u0022:\u0022Her collecting started with a few shells.\u0022,\u0022vi\u0022:\u0022Vi\\u1EC7c s\\u01B0u t\\u1EA7m c\\u1EE7a c\\u00F4 \\u1EA5y b\\u1EAFt \\u0111\\u1EA7u t\\u1EEB v\\u00E0i chi\\u1EBFc v\\u1ECF s\\u00F2.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022stamp collecting\u0022,\u0022vi\u0022:\u0022s\\u01B0u t\\u1EA7m tem\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/196406308@N04/52917044301\u0022,\u0022author\u0022:\u0022The Fun Chronicles\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.33ec6dea14c14f88a50a161e66a00ab7",
+      "kind": "Card",
+      "values": {
+        "Term": "dancing",
+        "Definition": "khi\u00EAu v\u0169, nh\u1EA3y m\u00FAa",
+        "ImageUrl": "asset:248e0298a1990412ac17aa24e88a10c0140e794fa4dd83d9612693603d250b77.webp",
+        "Phonetic": "/\u02C8d\u00E6ns.\u026A\u014B/",
+        "Example": "Dancing is a great way to keep fit.",
+        "ExampleTranslation": "Nh\u1EA3y m\u00FAa l\u00E0 m\u1ED9t c\u00E1ch hay \u0111\u1EC3 gi\u1EEF d\u00E1ng.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of moving your body to music",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8d\u0251\u02D0ns.\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Dancing is a great way to keep fit.\u0022,\u0022vi\u0022:\u0022Nh\\u1EA3y m\\u00FAa l\\u00E0 m\\u1ED9t c\\u00E1ch hay \\u0111\\u1EC3 gi\\u1EEF d\\u00E1ng.\u0022},{\u0022text\u0022:\u0022She takes dancing lessons on Fridays.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y h\\u1ECDc nh\\u1EA3y v\\u00E0o c\\u00E1c ng\\u00E0y th\\u1EE9 S\\u00E1u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022dancing lesson\u0022,\u0022vi\u0022:\u0022bu\\u1ED5i h\\u1ECDc nh\\u1EA3y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:The_Modern_Dances_-_How_to_Dance_Them_(1914)_-_Illustration_02_HQ_-_One_Step.jpg\u0022,\u0022author\u0022:\u0022Archibald Studio, Chicago, published by Saul Brothers, Chicago\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.38b5ef327c44421d9a957e78080cd5b9",
+      "kind": "Card",
+      "values": {
+        "Term": "drawing",
+        "Definition": "b\u1EE9c v\u1EBD, vi\u1EC7c v\u1EBD",
+        "ImageUrl": "asset:ca55ef542342b935bd86a5d1db5236f78357a1235c6edd95b77a1afef37f9fe4.webp",
+        "Phonetic": "/\u02C8d\u0279\u0251.\u026A\u014B/",
+        "Example": "My little sister loves drawing animals.",
+        "ExampleTranslation": "Em g\u00E1i t\u00F4i th\u00EDch v\u1EBD c\u00E1c con v\u1EADt.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a picture made with a pencil or pen",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8d\u0279\u0254\u02D0.\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My little sister loves drawing animals.\u0022,\u0022vi\u0022:\u0022Em g\\u00E1i t\\u00F4i th\\u00EDch v\\u1EBD c\\u00E1c con v\\u1EADt.\u0022},{\u0022text\u0022:\u0022He gave me a drawing of our house.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y t\\u1EB7ng t\\u00F4i m\\u1ED9t b\\u1EE9c v\\u1EBD ng\\u00F4i nh\\u00E0 c\\u1EE7a ch\\u00FAng t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pencil drawing\u0022,\u0022vi\u0022:\u0022tranh v\\u1EBD b\\u00FAt ch\\u00EC\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3399661/free-photo-image-panther-jaguar-illustration\u0022,\u0022author\u0022:\u0022National Park Service\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.619e2a637f044cbab9dde17ed55a0628",
+      "kind": "Card",
+      "values": {
+        "Term": "puzzle",
+        "Definition": "tr\u00F2 x\u1EBFp h\u00ECnh, c\u00E2u \u0111\u1ED1",
+        "ImageUrl": "asset:af20c55bd617143df842fb0a7dfa2d42167b346047bafcf8164cd2c40236e87b.webp",
+        "Phonetic": "/\u02C8p\u028Cz\u0259l/",
+        "Example": "The children finished the puzzle in an hour.",
+        "ExampleTranslation": "B\u1ECDn tr\u1EBB gh\u00E9p xong b\u1EE9c tranh trong m\u1ED9t ti\u1EBFng.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a game where you put pieces together or solve a problem",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u028Cz\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The children finished the puzzle in an hour.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB gh\\u00E9p xong b\\u1EE9c tranh trong m\\u1ED9t ti\\u1EBFng.\u0022},{\u0022text\u0022:\u0022This puzzle has five hundred pieces.\u0022,\u0022vi\u0022:\u0022B\\u1ED9 x\\u1EBFp h\\u00ECnh n\\u00E0y c\\u00F3 n\\u0103m tr\\u0103m m\\u1EA3nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022jigsaw puzzle\u0022,\u0022vi\u0022:\u0022tranh gh\\u00E9p h\\u00ECnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Red_jigsaw_puzzle_piece_on_green_pieces.jpg\u0022,\u0022author\u0022:\u0022Profpcde\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.622a1112f4ad4f899f920c1842cc6b43",
+      "kind": "Card",
+      "values": {
+        "Term": "shopping",
+        "Definition": "vi\u1EC7c mua s\u1EAFm",
+        "ImageUrl": "asset:994a6443b9f4b5178acfcdfd7c8a17de9e1939fd5c569376edcab9d0de0e28b4.webp",
+        "Phonetic": "/\u02C8\u0283\u0251p\u026A\u014B/",
+        "Example": "We go shopping on Saturday afternoons.",
+        "ExampleTranslation": "Chi\u1EC1u th\u1EE9 B\u1EA3y ch\u00FAng t\u00F4i \u0111i mua s\u1EAFm.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of going to shops to buy things",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u0283\u0252p\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We go shopping on Saturday afternoons.\u0022,\u0022vi\u0022:\u0022Chi\\u1EC1u th\\u1EE9 B\\u1EA3y ch\\u00FAng t\\u00F4i \\u0111i mua s\\u1EAFm.\u0022},{\u0022text\u0022:\u0022Shopping with friends is fun.\u0022,\u0022vi\u0022:\u0022\\u0110i mua s\\u1EAFm c\\u00F9ng b\\u1EA1n b\\u00E8 r\\u1EA5t vui.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go shopping\u0022,\u0022vi\u0022:\u0022\\u0111i mua s\\u1EAFm\u0022},{\u0022text\u0022:\u0022shopping bag\u0022,\u0022vi\u0022:\u0022t\\u00FAi mua s\\u1EAFm\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6710922/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.6dad78f508204ade8b5d93ecc524ecb9",
+      "kind": "Card",
+      "values": {
+        "Term": "video game",
+        "Definition": "tr\u00F2 ch\u01A1i \u0111i\u1EC7n t\u1EED",
+        "ImageUrl": "asset:5d9f7a0e5eabc84c65e136fd923834c6df6bb0994ee44d91a949214d7dbda524.webp",
+        "Phonetic": "/\u02C8v\u026Ad.i.o\u028A \u0261e\u026Am/",
+        "Example": "My brother plays video games after homework.",
+        "ExampleTranslation": "Anh trai t\u00F4i ch\u01A1i tr\u00F2 ch\u01A1i \u0111i\u1EC7n t\u1EED sau khi l\u00E0m b\u00E0i t\u1EADp.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a game you play on a screen with a controller",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8v\u026Ad.i.\u0259\u028A \u0261e\u026Am/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My brother plays video games after homework.\u0022,\u0022vi\u0022:\u0022Anh trai t\\u00F4i ch\\u01A1i tr\\u00F2 ch\\u01A1i \\u0111i\\u1EC7n t\\u1EED sau khi l\\u00E0m b\\u00E0i t\\u1EADp.\u0022},{\u0022text\u0022:\u0022This video game is too difficult for me.\u0022,\u0022vi\u0022:\u0022Tr\\u00F2 ch\\u01A1i \\u0111i\\u1EC7n t\\u1EED n\\u00E0y qu\\u00E1 kh\\u00F3 v\\u1EDBi t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play a video game\u0022,\u0022vi\u0022:\u0022ch\\u01A1i tr\\u00F2 ch\\u01A1i \\u0111i\\u1EC7n t\\u1EED\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/gamer-controller-BA8GFCHSCB\u0022,\u0022author\u0022:\u0022EVG Photos\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.72ed0f84608b43c685ea82914d6c19f7",
+      "kind": "Card",
+      "values": {
+        "Term": "picnic",
+        "Definition": "bu\u1ED5i d\u00E3 ngo\u1EA1i",
+        "ImageUrl": "asset:53a5f6d2ecfc0c3fdeb868117f12a299b85ffae55f9e08cace9b35a6a09f7d5e.webp",
+        "Phonetic": "/\u02C8p\u026Akn\u026Ak/",
+        "Example": "We had a picnic by the lake.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i d\u00E3 ngo\u1EA1i b\u00EAn h\u1ED3.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a meal that you eat outside, often in a park",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u026Akn\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We had a picnic by the lake.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i d\\u00E3 ngo\\u1EA1i b\\u00EAn h\\u1ED3.\u0022},{\u0022text\u0022:\u0022The picnic basket is full of food.\u0022,\u0022vi\u0022:\u0022Gi\\u1ECF d\\u00E3 ngo\\u1EA1i \\u0111\\u1EA7y \\u0111\\u1ED3 \\u0103n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022have a picnic\u0022,\u0022vi\u0022:\u0022\\u0111i d\\u00E3 ngo\\u1EA1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/outdoor-picnic-KOOJZRUJRZ\u0022,\u0022author\u0022:\u0022Travel Adventures\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.74b0c7bc78624afd87c6d9fbcf84c2a6",
+      "kind": "Card",
+      "values": {
+        "Term": "cooking",
+        "Definition": "vi\u1EC7c n\u1EA5u \u0103n",
+        "ImageUrl": "asset:a6c3d40056d1c8483296b69b4a03f7e090f5331ad21e417a6fa3b1e55988ee00.webp",
+        "Phonetic": "/\u02C8k\u028Ak\u026A\u014B/",
+        "Example": "Cooking is a fun hobby.",
+        "ExampleTranslation": "N\u1EA5u \u0103n l\u00E0 m\u1ED9t s\u1EDF th\u00EDch th\u00FA v\u1ECB.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of making food",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8k\u028Ak\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Cooking is a fun hobby.\u0022,\u0022vi\u0022:\u0022N\\u1EA5u \\u0103n l\\u00E0 m\\u1ED9t s\\u1EDF th\\u00EDch th\\u00FA v\\u1ECB.\u0022},{\u0022text\u0022:\u0022He learned cooking from his father.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y h\\u1ECDc n\\u1EA5u \\u0103n t\\u1EEB b\\u1ED1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cooking class\u0022,\u0022vi\u0022:\u0022l\\u1EDBp n\\u1EA5u \\u0103n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/57088020@N04/39383319095\u0022,\u0022author\u0022:\u0022packermann\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.790bd093ee2d4d638018ec35a1833001",
+      "kind": "Card",
+      "values": {
+        "Term": "origami",
+        "Definition": "ngh\u1EC7 thu\u1EADt g\u1EA5p gi\u1EA5y",
+        "ImageUrl": "asset:c25e612d6d5e40bd23c1c8d58bc2e2af94c4af623208efa9def2ce4059f49098.webp",
+        "Phonetic": "/\u02CCo\u0279\u0259\u02C8\u0261\u0251mi/",
+        "Example": "She made a paper crane with origami.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y g\u1EA5p m\u1ED9t con h\u1EA1c gi\u1EA5y b\u1EB1ng origami.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the Japanese art of folding paper into shapes",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02CC\u0252\u0279\u026A\u02C8\u0261\u0251\u02D0mi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She made a paper crane with origami.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y g\\u1EA5p m\\u1ED9t con h\\u1EA1c gi\\u1EA5y b\\u1EB1ng origami.\u0022},{\u0022text\u0022:\u0022Origami needs patience and clever fingers.\u0022,\u0022vi\u0022:\u0022G\\u1EA5p gi\\u1EA5y origami c\\u1EA7n s\\u1EF1 ki\\u00EAn nh\\u1EABn v\\u00E0 \\u0111\\u00F4i tay kh\\u00E9o l\\u00E9o.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022origami paper\u0022,\u0022vi\u0022:\u0022gi\\u1EA5y g\\u1EA5p origami\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8844895/red-and-gold-origami-crane-ira-blount\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.84bd4286bca64bb1b64faa2b13a741e1",
+      "kind": "Card",
+      "values": {
+        "Term": "reading",
+        "Definition": "vi\u1EC7c \u0111\u1ECDc s\u00E1ch",
+        "ImageUrl": "asset:6c04c1173c93e7fb006a9414f42efc39d24f3c9de5b71dcf6e6089ba16832401.webp",
+        "Phonetic": "/\u02C8\u0279i\u02D0d\u026A\u014B/",
+        "Example": "Reading is my favourite hobby.",
+        "ExampleTranslation": "\u0110\u1ECDc s\u00E1ch l\u00E0 s\u1EDF th\u00EDch y\u00EAu th\u00EDch c\u1EE7a t\u00F4i.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of looking at words and understanding them",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u0279i\u02D0d\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Reading is my favourite hobby.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1ECDc s\\u00E1ch l\\u00E0 s\\u1EDF th\\u00EDch y\\u00EAu th\\u00EDch c\\u1EE7a t\\u00F4i.\u0022},{\u0022text\u0022:\u0022She spends an hour reading before bed.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y d\\u00E0nh m\\u1ED9t ti\\u1EBFng \\u0111\\u1ECDc s\\u00E1ch tr\\u01B0\\u1EDBc khi \\u0111i ng\\u1EE7.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022reading a book\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ECDc m\\u1ED9t cu\\u1ED1n s\\u00E1ch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5926283/photo-image-book-public-domain-hands\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.869ab913d5ac4c01b1543268709a23f3",
+      "kind": "Card",
+      "values": {
+        "Term": "movie",
+        "Definition": "b\u1ED9 phim",
+        "ImageUrl": "asset:bbf018aedd54c4e406bf94161be09c46725c70fd377fb2b84d9aecb5deec99da.webp",
+        "Phonetic": "/\u02C8mu\u02D0vi/",
+        "Example": "We watched a funny movie last night.",
+        "ExampleTranslation": "T\u1ED1i qua ch\u00FAng t\u00F4i xem m\u1ED9t b\u1ED9 phim h\u00E0i.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a story told with moving pictures, shown in a cinema or on TV",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8mu\u02D0vi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We watched a funny movie last night.\u0022,\u0022vi\u0022:\u0022T\\u1ED1i qua ch\\u00FAng t\\u00F4i xem m\\u1ED9t b\\u1ED9 phim h\\u00E0i.\u0022},{\u0022text\u0022:\u0022What is your favourite movie?\u0022,\u0022vi\u0022:\u0022B\\u1ED9 phim y\\u00EAu th\\u00EDch c\\u1EE7a b\\u1EA1n l\\u00E0 g\\u00EC?\u0022}],\u0022synonyms\u0022:[\u0022film\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022watch a movie\u0022,\u0022vi\u0022:\u0022xem phim\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6431101/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.880e6c49076a4b01a911fb8a4fccf7f7",
+      "kind": "Card",
+      "values": {
+        "Term": "photography",
+        "Definition": "nhi\u1EBFp \u1EA3nh",
+        "ImageUrl": "asset:c9e519f4d83a26a5f0fd22a01af87ca1c24697064f3347ea0b8b38adc68bf060.webp",
+        "Phonetic": "/f\u0259\u02C8t\u0252\u0261.\u0279\u0259.fi/",
+        "Example": "Photography is her favourite hobby.",
+        "ExampleTranslation": "Nhi\u1EBFp \u1EA3nh l\u00E0 s\u1EDF th\u00EDch y\u00EAu th\u00EDch c\u1EE7a c\u00F4 \u1EA5y.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of taking photographs",
+        "Cefr": "A2",
+        "PhoneticUk": "/f\u0259\u02C8t\u0252\u0261.\u0279\u0259.fi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Photography is her favourite hobby.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EBFp \\u1EA3nh l\\u00E0 s\\u1EDF th\\u00EDch y\\u00EAu th\\u00EDch c\\u1EE7a c\\u00F4 \\u1EA5y.\u0022},{\u0022text\u0022:\u0022He bought a camera for his photography.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y mua m\\u1ED9t chi\\u1EBFc m\\u00E1y \\u1EA3nh \\u0111\\u1EC3 ch\\u1EE5p \\u1EA3nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022photography lesson\u0022,\u0022vi\u0022:\u0022bu\\u1ED5i h\\u1ECDc nhi\\u1EBFp \\u1EA3nh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/132795455@N08/18535344600\u0022,\u0022author\u0022:\u0022Image Catalog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.953c237e548946f4b2f9b9ec19e118ec",
+      "kind": "Card",
+      "values": {
+        "Term": "music",
+        "Definition": "\u00E2m nh\u1EA1c",
+        "ImageUrl": "asset:b702c5c6e7e992bd67ec13a347d1ba172262c0e28a4feca3c215c95afe281d6f.webp",
+        "Phonetic": "/\u02C8mju.z\u026Ak/",
+        "Example": "I listen to music on the bus.",
+        "ExampleTranslation": "T\u00F4i nghe nh\u1EA1c tr\u00EAn xe bu\u00FDt.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "sounds that are sung or played to sound pleasant",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8mju\u02D0z\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I listen to music on the bus.\u0022,\u0022vi\u0022:\u0022T\\u00F4i nghe nh\\u1EA1c tr\\u00EAn xe bu\\u00FDt.\u0022},{\u0022text\u0022:\u0022She plays soft music in the evening.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EDF nh\\u1EA1c nh\\u1EB9 v\\u00E0o bu\\u1ED5i t\\u1ED1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022listen to music\u0022,\u0022vi\u0022:\u0022nghe nh\\u1EA1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/headphones-music-3YOVALG5DX\u0022,\u0022author\u0022:\u0022JESHOOTS.com\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.b276b4f3d53e4a7dab9cf0acad3cad38",
+      "kind": "Card",
+      "values": {
+        "Term": "painting",
+        "Definition": "h\u1ED9i h\u1ECDa, b\u1EE9c tranh",
+        "ImageUrl": "asset:0d5d7c55ef1cee177be1db717bd87286897591422cfe696bb08841cd34bde9e2.webp",
+        "Phonetic": "/\u02C8pe\u026An.t\u026A\u014B/",
+        "Example": "Painting helps me relax after school.",
+        "ExampleTranslation": "V\u1EBD tranh gi\u00FAp t\u00F4i th\u01B0 gi\u00E3n sau gi\u1EDD h\u1ECDc.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of making pictures with paint",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8pe\u026An.t\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Painting helps me relax after school.\u0022,\u0022vi\u0022:\u0022V\\u1EBD tranh gi\\u00FAp t\\u00F4i th\\u01B0 gi\\u00E3n sau gi\\u1EDD h\\u1ECDc.\u0022},{\u0022text\u0022:\u0022She hung a painting of the sea on the wall.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y treo m\\u1ED9t b\\u1EE9c tranh bi\\u1EC3n l\\u00EAn t\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022oil painting\u0022,\u0022vi\u0022:\u0022tranh s\\u01A1n d\\u1EA7u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/90768ac81d/\u0022,\u0022author\u0022:\u0022Alina Kakshapati\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.b64345f8c8994796b425774f2bdcf4ec",
+      "kind": "Card",
+      "values": {
+        "Term": "fishing",
+        "Definition": "c\u00E2u c\u00E1",
+        "ImageUrl": "asset:8c93dd875bf97f6ff28b5889f6ab39f24e0eee06154850bd69377af2b5bd9df7.webp",
+        "Phonetic": "/\u02C8f\u026A\u0283\u026A\u014B/",
+        "Example": "My grandfather goes fishing every Sunday.",
+        "ExampleTranslation": "\u00D4ng t\u00F4i \u0111i c\u00E2u c\u00E1 m\u1ED7i Ch\u1EE7 nh\u1EADt.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of catching fish with a rod",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8f\u026A\u0283\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandfather goes fishing every Sunday.\u0022,\u0022vi\u0022:\u0022\\u00D4ng t\\u00F4i \\u0111i c\\u00E2u c\\u00E1 m\\u1ED7i Ch\\u1EE7 nh\\u1EADt.\u0022},{\u0022text\u0022:\u0022Fishing needs a lot of patience.\u0022,\u0022vi\u0022:\u0022C\\u00E2u c\\u00E1 c\\u1EA7n r\\u1EA5t nhi\\u1EC1u s\\u1EF1 ki\\u00EAn nh\\u1EABn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go fishing\u0022,\u0022vi\u0022:\u0022\\u0111i c\\u00E2u c\\u00E1\u0022},{\u0022text\u0022:\u0022fishing rod\u0022,\u0022vi\u0022:\u0022c\\u1EA7n c\\u00E2u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5921657/photo-image-public-domain-shape-summer\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.b8e0c321f2744152a46cdfe0ef3a8ad1",
+      "kind": "Card",
+      "values": {
+        "Term": "cards",
+        "Definition": "b\u00E0i (ch\u01A1i b\u00E0i)",
+        "ImageUrl": "asset:78a9fb5c3cc57e541e09a5fea12a4f96907a8c34bc9b7e859a8cc3854919abbf.webp",
+        "Phonetic": "/k\u0251\u0279dz/",
+        "Example": "We play cards on rainy days.",
+        "ExampleTranslation": "V\u00E0o nh\u1EEFng ng\u00E0y m\u01B0a ch\u00FAng t\u00F4i ch\u01A1i b\u00E0i.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a set of small papers with pictures or numbers used for games",
+        "Cefr": "A2",
+        "PhoneticUk": "/k\u0251\u02D0dz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We play cards on rainy days.\u0022,\u0022vi\u0022:\u0022V\\u00E0o nh\\u1EEFng ng\\u00E0y m\\u01B0a ch\\u00FAng t\\u00F4i ch\\u01A1i b\\u00E0i.\u0022},{\u0022text\u0022:\u0022She shuffled the cards and gave one to each person.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y x\\u00E1o b\\u00E0i r\\u1ED3i chia cho m\\u1ED7i ng\\u01B0\\u1EDDi m\\u1ED9t l\\u00E1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a pack of cards\u0022,\u0022vi\u0022:\u0022m\\u1ED9t b\\u1ED9 b\\u00E0i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Cards_-Deck_Playing.jpg\u0022,\u0022author\u0022:\u0022tookapic on Pixabay\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.c25261fd5d9f494aa455ac1029532e46",
+      "kind": "Card",
+      "values": {
+        "Term": "camping",
+        "Definition": "c\u1EAFm tr\u1EA1i",
+        "ImageUrl": "asset:82b59b080f649b62364edf9a9854758d2ae67c5ebd0ad1373f54555d321c6043.webp",
+        "Phonetic": "/\u02C8k\u00E6mp.\u026A\u014B/",
+        "Example": "We go camping in the mountains every summer.",
+        "ExampleTranslation": "M\u00F9a h\u00E8 n\u00E0o ch\u00FAng t\u00F4i c\u0169ng \u0111i c\u1EAFm tr\u1EA1i tr\u00EAn n\u00FAi.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of sleeping outside in a tent",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u00E6mp.\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We go camping in the mountains every summer.\u0022,\u0022vi\u0022:\u0022M\\u00F9a h\\u00E8 n\\u00E0o ch\\u00FAng t\\u00F4i c\\u0169ng \\u0111i c\\u1EAFm tr\\u1EA1i tr\\u00EAn n\\u00FAi.\u0022},{\u0022text\u0022:\u0022Camping is cheap and fun.\u0022,\u0022vi\u0022:\u0022C\\u1EAFm tr\\u1EA1i r\\u1EBB v\\u00E0 vui.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go camping\u0022,\u0022vi\u0022:\u0022\\u0111i c\\u1EAFm tr\\u1EA1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:White_and_yellow_camping_tent_in_the_middle_of_forest.jpg\u0022,\u0022author\u0022:\u0022Andrew Scofield\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.cad88fc7c48441729692b2cc2f5220bc",
+      "kind": "Card",
+      "values": {
+        "Term": "knitting",
+        "Definition": "vi\u1EC7c \u0111an len",
+        "ImageUrl": "asset:fa47fe8852b1359b8be3d4cdc0da88bbbf41eadf55f05ce932a2f427a5bfcb02.webp",
+        "Phonetic": "/\u02C8n\u026At\u026A\u014B/",
+        "Example": "My grandmother enjoys knitting in the evening.",
+        "ExampleTranslation": "B\u00E0 t\u00F4i th\u00EDch \u0111an len v\u00E0o bu\u1ED5i t\u1ED1i.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of making clothes from wool with two long needles",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8n\u026At\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandmother enjoys knitting in the evening.\u0022,\u0022vi\u0022:\u0022B\\u00E0 t\\u00F4i th\\u00EDch \\u0111an len v\\u00E0o bu\\u1ED5i t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022Knitting a scarf takes about a week.\u0022,\u0022vi\u0022:\u0022\\u0110an m\\u1ED9t chi\\u1EBFc kh\\u0103n m\\u1EA5t kho\\u1EA3ng m\\u1ED9t tu\\u1EA7n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022knitting needles\u0022,\u0022vi\u0022:\u0022kim \\u0111an len\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/9226466641/\u0022,\u0022author\u0022:\u0022Davinder Singh Kainth\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.de4b49b085c84ff6beca1c490358015c",
+      "kind": "Card",
+      "values": {
+        "Term": "board game",
+        "Definition": "tr\u00F2 ch\u01A1i b\u00E0n c\u1EDD",
+        "ImageUrl": "asset:31249d50bb8ae3effdf9722c219c7d2909c68cb5a9a48af2259803d655eab2f1.webp",
+        "Phonetic": "/bo\u0279d \u0261e\u026Am/",
+        "Example": "We play a board game every Sunday evening.",
+        "ExampleTranslation": "T\u1ED1i Ch\u1EE7 nh\u1EADt n\u00E0o ch\u00FAng t\u00F4i c\u0169ng ch\u01A1i m\u1ED9t tr\u00F2 ch\u01A1i b\u00E0n c\u1EDD.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a game played on a special board with pieces or cards",
+        "Cefr": "A2",
+        "PhoneticUk": "/b\u0254\u02D0d \u0261e\u026Am/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We play a board game every Sunday evening.\u0022,\u0022vi\u0022:\u0022T\\u1ED1i Ch\\u1EE7 nh\\u1EADt n\\u00E0o ch\\u00FAng t\\u00F4i c\\u0169ng ch\\u01A1i m\\u1ED9t tr\\u00F2 ch\\u01A1i b\\u00E0n c\\u1EDD.\u0022},{\u0022text\u0022:\u0022This board game is good for the whole family.\u0022,\u0022vi\u0022:\u0022Tr\\u00F2 ch\\u01A1i b\\u00E0n c\\u1EDD n\\u00E0y h\\u1EE3p v\\u1EDBi c\\u1EA3 gia \\u0111\\u00ECnh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play a board game\u0022,\u0022vi\u0022:\u0022ch\\u01A1i tr\\u00F2 ch\\u01A1i b\\u00E0n c\\u1EDD\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Castles_of_Burgundy_(Board_Game).jpg\u0022,\u0022author\u0022:\u0022Mshuang2\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.f536554c095e41528dc4c51a95e1ee91",
+      "kind": "Card",
+      "values": {
+        "Term": "karaoke",
+        "Definition": "h\u00E1t karaoke",
+        "ImageUrl": "asset:e283b7801676d008f7ea6d46fc2451f59970a19b01b7dc91b1fa7dbd525e8242.webp",
+        "Phonetic": "/\u02CCk\u00E6.\u0279i\u02C8o\u028A.ki/",
+        "Example": "We sang karaoke at my cousin\u0027s birthday.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i h\u00E1t karaoke trong sinh nh\u1EADt anh h\u1ECD t\u00F4i.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a way of singing popular songs with the words on a screen",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u00E6.\u0279i\u02CC\u0259\u028A.ki/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We sang karaoke at my cousin\\u0027s birthday.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i h\\u00E1t karaoke trong sinh nh\\u1EADt anh h\\u1ECD t\\u00F4i.\u0022},{\u0022text\u0022:\u0022Karaoke is very popular in Vietnam.\u0022,\u0022vi\u0022:\u0022Karaoke r\\u1EA5t ph\\u1ED5 bi\\u1EBFn \\u1EDF Vi\\u1EC7t Nam.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022karaoke party\u0022,\u0022vi\u0022:\u0022bu\\u1ED5i ti\\u1EC7c karaoke\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Microphone_on_a_karaoke_night_(Unsplash).jpg\u0022,\u0022author\u0022:\u0022Kane Reinholdtsen kanereinholdtsen\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a20-so-thich-giai-tri.fdd95eb2f8294f519a7cd7ec79e6dfec",
+      "kind": "Card",
+      "values": {
+        "Term": "hiking",
+        "Definition": "\u0111i b\u1ED9 \u0111\u01B0\u1EDDng d\u00E0i",
+        "ImageUrl": "asset:0d697ac03531fbc874344a0a8b1e21ddfc51221f286e44f2bdfedbb868fd2664.webp",
+        "Phonetic": "/\u02C8ha\u026Ak\u026A\u014B/",
+        "Example": "We went hiking in the hills on Saturday.",
+        "ExampleTranslation": "Th\u1EE9 B\u1EA3y ch\u00FAng t\u00F4i \u0111i b\u1ED9 \u0111\u01B0\u1EDDng d\u00E0i tr\u00EAn \u0111\u1ED3i.",
+        "Topic": "S\u1EDF th\u00EDch \u0026 gi\u1EA3i tr\u00ED",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of taking a long walk in the countryside",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8ha\u026Ak\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We went hiking in the hills on Saturday.\u0022,\u0022vi\u0022:\u0022Th\\u1EE9 B\\u1EA3y ch\\u00FAng t\\u00F4i \\u0111i b\\u1ED9 \\u0111\\u01B0\\u1EDDng d\\u00E0i tr\\u00EAn \\u0111\\u1ED3i.\u0022},{\u0022text\u0022:\u0022Good boots are important for hiking.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00F4i gi\\u00E0y t\\u1ED1t r\\u1EA5t quan tr\\u1ECDng khi \\u0111i b\\u1ED9 \\u0111\\u01B0\\u1EDDng d\\u00E0i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hiking trail\u0022,\u0022vi\u0022:\u0022\\u0111\\u01B0\\u1EDDng m\\u00F2n \\u0111i b\\u1ED9\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Mountaineering_Man_Trail_Path_Mountains.jpg\u0022,\u0022author\u0022:\u0022Hermann\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "c198b0e34bd8194d49018ea4519af336fe1a4be6a398e667ce0356ce414f9731.webp",
+      "sha256": "c198b0e34bd8194d49018ea4519af336fe1a4be6a398e667ce0356ce414f9731"
+    },
+    {
+      "file": "0d5d7c55ef1cee177be1db717bd87286897591422cfe696bb08841cd34bde9e2.webp",
+      "sha256": "0d5d7c55ef1cee177be1db717bd87286897591422cfe696bb08841cd34bde9e2"
+    },
+    {
+      "file": "ca55ef542342b935bd86a5d1db5236f78357a1235c6edd95b77a1afef37f9fe4.webp",
+      "sha256": "ca55ef542342b935bd86a5d1db5236f78357a1235c6edd95b77a1afef37f9fe4"
+    },
+    {
+      "file": "8c93dd875bf97f6ff28b5889f6ab39f24e0eee06154850bd69377af2b5bd9df7.webp",
+      "sha256": "8c93dd875bf97f6ff28b5889f6ab39f24e0eee06154850bd69377af2b5bd9df7"
+    },
+    {
+      "file": "82b59b080f649b62364edf9a9854758d2ae67c5ebd0ad1373f54555d321c6043.webp",
+      "sha256": "82b59b080f649b62364edf9a9854758d2ae67c5ebd0ad1373f54555d321c6043"
+    },
+    {
+      "file": "0d697ac03531fbc874344a0a8b1e21ddfc51221f286e44f2bdfedbb868fd2664.webp",
+      "sha256": "0d697ac03531fbc874344a0a8b1e21ddfc51221f286e44f2bdfedbb868fd2664"
+    },
+    {
+      "file": "94c375f5a7585cdfa85e7d67a2d6a1f497b2e01cd6d7461de76467812530f8dc.webp",
+      "sha256": "94c375f5a7585cdfa85e7d67a2d6a1f497b2e01cd6d7461de76467812530f8dc"
+    },
+    {
+      "file": "78a9fb5c3cc57e541e09a5fea12a4f96907a8c34bc9b7e859a8cc3854919abbf.webp",
+      "sha256": "78a9fb5c3cc57e541e09a5fea12a4f96907a8c34bc9b7e859a8cc3854919abbf"
+    },
+    {
+      "file": "af20c55bd617143df842fb0a7dfa2d42167b346047bafcf8164cd2c40236e87b.webp",
+      "sha256": "af20c55bd617143df842fb0a7dfa2d42167b346047bafcf8164cd2c40236e87b"
+    },
+    {
+      "file": "5d9f7a0e5eabc84c65e136fd923834c6df6bb0994ee44d91a949214d7dbda524.webp",
+      "sha256": "5d9f7a0e5eabc84c65e136fd923834c6df6bb0994ee44d91a949214d7dbda524"
+    },
+    {
+      "file": "bbf018aedd54c4e406bf94161be09c46725c70fd377fb2b84d9aecb5deec99da.webp",
+      "sha256": "bbf018aedd54c4e406bf94161be09c46725c70fd377fb2b84d9aecb5deec99da"
+    },
+    {
+      "file": "b702c5c6e7e992bd67ec13a347d1ba172262c0e28a4feca3c215c95afe281d6f.webp",
+      "sha256": "b702c5c6e7e992bd67ec13a347d1ba172262c0e28a4feca3c215c95afe281d6f"
+    },
+    {
+      "file": "248e0298a1990412ac17aa24e88a10c0140e794fa4dd83d9612693603d250b77.webp",
+      "sha256": "248e0298a1990412ac17aa24e88a10c0140e794fa4dd83d9612693603d250b77"
+    },
+    {
+      "file": "1ca138665d87bd9edf618b9baac2ece163306930120af6f7b2b99423d238b0f5.webp",
+      "sha256": "1ca138665d87bd9edf618b9baac2ece163306930120af6f7b2b99423d238b0f5"
+    },
+    {
+      "file": "6c04c1173c93e7fb006a9414f42efc39d24f3c9de5b71dcf6e6089ba16832401.webp",
+      "sha256": "6c04c1173c93e7fb006a9414f42efc39d24f3c9de5b71dcf6e6089ba16832401"
+    },
+    {
+      "file": "82ae8ccddc6c9f1003c498a5a57c25f4cc958bd2fce971568984f1d55b351ac5.webp",
+      "sha256": "82ae8ccddc6c9f1003c498a5a57c25f4cc958bd2fce971568984f1d55b351ac5"
+    },
+    {
+      "file": "a6c3d40056d1c8483296b69b4a03f7e090f5331ad21e417a6fa3b1e55988ee00.webp",
+      "sha256": "a6c3d40056d1c8483296b69b4a03f7e090f5331ad21e417a6fa3b1e55988ee00"
+    },
+    {
+      "file": "c9e519f4d83a26a5f0fd22a01af87ca1c24697064f3347ea0b8b38adc68bf060.webp",
+      "sha256": "c9e519f4d83a26a5f0fd22a01af87ca1c24697064f3347ea0b8b38adc68bf060"
+    },
+    {
+      "file": "fa47fe8852b1359b8be3d4cdc0da88bbbf41eadf55f05ce932a2f427a5bfcb02.webp",
+      "sha256": "fa47fe8852b1359b8be3d4cdc0da88bbbf41eadf55f05ce932a2f427a5bfcb02"
+    },
+    {
+      "file": "1fcf60ff1ba803c6f5574258809857d4a9973afeeaac939f03e1af8edd643193.webp",
+      "sha256": "1fcf60ff1ba803c6f5574258809857d4a9973afeeaac939f03e1af8edd643193"
+    },
+    {
+      "file": "994a6443b9f4b5178acfcdfd7c8a17de9e1939fd5c569376edcab9d0de0e28b4.webp",
+      "sha256": "994a6443b9f4b5178acfcdfd7c8a17de9e1939fd5c569376edcab9d0de0e28b4"
+    },
+    {
+      "file": "e283b7801676d008f7ea6d46fc2451f59970a19b01b7dc91b1fa7dbd525e8242.webp",
+      "sha256": "e283b7801676d008f7ea6d46fc2451f59970a19b01b7dc91b1fa7dbd525e8242"
+    },
+    {
+      "file": "53a5f6d2ecfc0c3fdeb868117f12a299b85ffae55f9e08cace9b35a6a09f7d5e.webp",
+      "sha256": "53a5f6d2ecfc0c3fdeb868117f12a299b85ffae55f9e08cace9b35a6a09f7d5e"
+    },
+    {
+      "file": "31249d50bb8ae3effdf9722c219c7d2909c68cb5a9a48af2259803d655eab2f1.webp",
+      "sha256": "31249d50bb8ae3effdf9722c219c7d2909c68cb5a9a48af2259803d655eab2f1"
+    },
+    {
+      "file": "c25e612d6d5e40bd23c1c8d58bc2e2af94c4af623208efa9def2ce4059f49098.webp",
+      "sha256": "c25e612d6d5e40bd23c1c8d58bc2e2af94c4af623208efa9def2ce4059f49098"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a20-so-thich-giai-tri"
+}

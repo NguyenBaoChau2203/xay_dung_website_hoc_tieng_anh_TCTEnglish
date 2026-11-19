@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va",
+      "kind": "Set",
+      "values": {
+        "SetName": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "Description": "#a1 #a2 #b1 #polite #requests"
+      },
+      "references": {
+        "FolderId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.69eb25c500b84f00ab2dc9c4b8036467",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.0977df369b8448fc9bd762dba2836072",
+      "kind": "Card",
+      "values": {
+        "Term": "Sorry to keep you waiting.",
+        "Definition": "xin l\u1ED7i \u0111\u00E3 \u0111\u1EC3 b\u1EA1n ch\u1EDD",
+        "ImageUrl": "asset:e925c696318454da40544e034675dd8e9d16a07b862c3260122e58d294eb4b57.webp",
+        "Phonetic": null,
+        "Example": "Sorry to keep you waiting. Please sit down.",
+        "ExampleTranslation": "Xin l\u1ED7i \u0111\u00E3 \u0111\u1EC3 b\u1EA1n ch\u1EDD. M\u1EDDi ng\u1ED3i.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite apology when someone has waited for you",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Sorry to keep you waiting. Please sit down.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i \\u0111\\u00E3 \\u0111\\u1EC3 b\\u1EA1n ch\\u1EDD. M\\u1EDDi ng\\u1ED3i.\u0022},{\u0022text\u0022:\u0022Sorry to keep you waiting, madam.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i \\u0111\\u00E3 \\u0111\\u1EC3 b\\u00E0 ph\\u1EA3i ch\\u1EDD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Thank you for waiting.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n \\u0111\\u00E3 ch\\u1EDD.\u0022},{\u0022text\u0022:\u0022I apologise for the delay.\u0022,\u0022vi\u0022:\u0022T\\u00F4i xin l\\u1ED7i v\\u00EC s\\u1EF1 ch\\u1EADm tr\\u1EC5.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.28867111c9024e148e218aab735e786f",
+      "kind": "Card",
+      "values": {
+        "Term": "I really appreciate it.",
+        "Definition": "t\u00F4i th\u1EF1c s\u1EF1 bi\u1EBFt \u01A1n",
+        "ImageUrl": "asset:f6b9af2d1dcd482d160026ab11ebc8e01396c7348380945d30ea17924a79dde4.webp",
+        "Phonetic": null,
+        "Example": "I really appreciate it. You saved me.",
+        "ExampleTranslation": "T\u00F4i th\u1EF1c s\u1EF1 bi\u1EBFt \u01A1n. B\u1EA1n \u0111\u00E3 c\u1EE9u t\u00F4i.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a warm way to show you are very thankful",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I really appreciate it. You saved me.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EF1c s\\u1EF1 bi\\u1EBFt \\u01A1n. B\\u1EA1n \\u0111\\u00E3 c\\u1EE9u t\\u00F4i.\u0022},{\u0022text\u0022:\u0022I really appreciate your advice.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EF1c s\\u1EF1 bi\\u1EBFt \\u01A1n l\\u1EDDi khuy\\u00EAn c\\u1EE7a b\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027m very grateful.\u0022,\u0022vi\u0022:\u0022T\\u00F4i r\\u1EA5t bi\\u1EBFt \\u01A1n.\u0022},{\u0022text\u0022:\u0022That means a lot.\u0022,\u0022vi\u0022:\u0022\\u0110i\\u1EC1u \\u0111\\u00F3 c\\u00F3 \\u00FD ngh\\u0129a l\\u1EDBn v\\u1EDBi t\\u00F4i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.3cdf48ec9c174e6a8604e2deac17619e",
+      "kind": "Card",
+      "values": {
+        "Term": "May I come in?",
+        "Definition": "t\u00F4i v\u00E0o \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:f101bac6261a7ab0fc3601abb033cda304f6823c24b52b3ad6fc4a62d122be40.webp",
+        "Phonetic": null,
+        "Example": "May I come in? I have a question.",
+        "ExampleTranslation": "T\u00F4i v\u00E0o \u0111\u01B0\u1EE3c kh\u00F4ng \u1EA1? Em c\u00F3 m\u1ED9t c\u00E2u h\u1ECFi.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite request to enter a room",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022May I come in? I have a question.\u0022,\u0022vi\u0022:\u0022T\\u00F4i v\\u00E0o \\u0111\\u01B0\\u1EE3c kh\\u00F4ng \\u1EA1? Em c\\u00F3 m\\u1ED9t c\\u00E2u h\\u1ECFi.\u0022},{\u0022text\u0022:\u0022May I come in, Mrs Hill?\u0022,\u0022vi\u0022:\u0022Th\\u01B0a c\\u00F4 Hill, em v\\u00E0o \\u0111\\u01B0\\u1EE3c kh\\u00F4ng \\u1EA1?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Come in, please.\u0022,\u0022vi\u0022:\u0022M\\u1EDDi v\\u00E0o.\u0022},{\u0022text\u0022:\u0022Sure, come in.\u0022,\u0022vi\u0022:\u0022\\u0110\\u01B0\\u1EE3c, v\\u00E0o \\u0111i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.4666ae3e64e04aa9babc31c54fdaec8a",
+      "kind": "Card",
+      "values": {
+        "Term": "Thank you.",
+        "Definition": "c\u1EA3m \u01A1n b\u1EA1n",
+        "ImageUrl": "asset:3363999ae73e9596f5f1756fca85d5267279ed1fdbac814fc9f8ce38c57f7dc8.webp",
+        "Phonetic": null,
+        "Example": "Thank you. That is very kind of you.",
+        "ExampleTranslation": "C\u1EA3m \u01A1n b\u1EA1n. B\u1EA1n th\u1EADt t\u1ED1t b\u1EE5ng.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite way to show you are grateful",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Thank you. That is very kind of you.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n. B\\u1EA1n th\\u1EADt t\\u1ED1t b\\u1EE5ng.\u0022},{\u0022text\u0022:\u0022She said, \\u0022Thank you.\\u0022 and smiled.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y n\\u00F3i \\u0022C\\u1EA3m \\u01A1n b\\u1EA1n.\\u0022 r\\u1ED3i m\\u1EC9m c\\u01B0\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Thanks!\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n!\u0022},{\u0022text\u0022:\u0022Thank you very much.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n r\\u1EA5t nhi\\u1EC1u.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.491867aaaad946cf907ee26891420198",
+      "kind": "Card",
+      "values": {
+        "Term": "That\u0027s okay.",
+        "Definition": "kh\u00F4ng sao \u0111\u00E2u",
+        "ImageUrl": "asset:39470b3ac1e933972201b6354c993683917ae652c4bf1da053a3c544323003ff.webp",
+        "Phonetic": null,
+        "Example": "That\u0027s okay. Don\u0027t worry about it.",
+        "ExampleTranslation": "Kh\u00F4ng sao \u0111\u00E2u. \u0110\u1EEBng lo v\u1EC1 chuy\u1EC7n \u0111\u00F3.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a kind answer when someone says sorry",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022That\\u0027s okay. Don\\u0027t worry about it.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng sao \\u0111\\u00E2u. \\u0110\\u1EEBng lo v\\u1EC1 chuy\\u1EC7n \\u0111\\u00F3.\u0022},{\u0022text\u0022:\u0022\\u0022I\\u0027m sorry.\\u0022 \\u0022That\\u0027s okay.\\u0022\u0022,\u0022vi\u0022:\u0022\\u0022T\\u00F4i xin l\\u1ED7i.\\u0022 \\u0022Kh\\u00F4ng sao \\u0111\\u00E2u.\\u0022\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It doesn\\u0027t matter.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng quan tr\\u1ECDng \\u0111\\u00E2u.\u0022},{\u0022text\u0022:\u0022Never mind.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng sao \\u0111\\u00E2u.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.5090868d14cb4cfeb8182d2569189b16",
+      "kind": "Card",
+      "values": {
+        "Term": "You\u0027re welcome.",
+        "Definition": "kh\u00F4ng c\u00F3 g\u00EC",
+        "ImageUrl": "asset:964d0a470c968fe1388ee4578e62a820798f3d39f0ab23d109bbcbc4e6165e4e.webp",
+        "Phonetic": null,
+        "Example": "\u0022Thank you!\u0022 \u0022You\u0027re welcome.\u0022",
+        "ExampleTranslation": "\u0022C\u1EA3m \u01A1n b\u1EA1n!\u0022 \u0022Kh\u00F4ng c\u00F3 g\u00EC.\u0022",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite answer after someone thanks you",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022\\u0022Thank you!\\u0022 \\u0022You\\u0027re welcome.\\u0022\u0022,\u0022vi\u0022:\u0022\\u0022C\\u1EA3m \\u01A1n b\\u1EA1n!\\u0022 \\u0022Kh\\u00F4ng c\\u00F3 g\\u00EC.\\u0022\u0022},{\u0022text\u0022:\u0022You\\u0027re welcome. Come again soon.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng c\\u00F3 g\\u00EC. H\\u00E3y l\\u1EA1i \\u0111\\u1EBFn s\\u1EDBm nh\\u00E9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022No problem.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng sao \\u0111\\u00E2u.\u0022},{\u0022text\u0022:\u0022My pleasure.\u0022,\u0022vi\u0022:\u0022R\\u1EA5t vui \\u0111\\u01B0\\u1EE3c gi\\u00FAp.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.5167f411a53f4fb4834dc503ef24e28a",
+      "kind": "Card",
+      "values": {
+        "Term": "Can you help me, please?",
+        "Definition": "b\u1EA1n gi\u00FAp t\u00F4i \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:1ea46bc3e4f9f2db7f51f9aa2e48f210f39691e91c0dcc60a0bb2b403f4fa5a7.webp",
+        "Phonetic": null,
+        "Example": "Can you help me, please? I\u0027m lost.",
+        "ExampleTranslation": "B\u1EA1n gi\u00FAp t\u00F4i \u0111\u01B0\u1EE3c kh\u00F4ng? T\u00F4i b\u1ECB l\u1EA1c.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite request for help",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can you help me, please? I\\u0027m lost.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n gi\\u00FAp t\\u00F4i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng? T\\u00F4i b\\u1ECB l\\u1EA1c.\u0022},{\u0022text\u0022:\u0022Can you help me carry this box?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n gi\\u00FAp t\\u00F4i mang c\\u00E1i h\\u1ED9p n\\u00E0y \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Could you help me?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 th\\u1EC3 gi\\u00FAp t\\u00F4i kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022I need some help.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u1EA7n gi\\u00FAp \\u0111\\u1EE1.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.5545758abaf04eff93109f0ec03c8809",
+      "kind": "Card",
+      "values": {
+        "Term": "Pardon?",
+        "Definition": "xin l\u1ED7i, b\u1EA1n n\u00F3i g\u00EC?",
+        "ImageUrl": "asset:6acb2cbea56053ea8f9c0b911e8c26e47c52eceb47e28ad5dd97a69b15f1afd0.webp",
+        "Phonetic": null,
+        "Example": "Pardon? Could you say that again?",
+        "ExampleTranslation": "Xin l\u1ED7i? B\u1EA1n n\u00F3i l\u1EA1i \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you did not hear something",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Pardon? Could you say that again?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i? B\\u1EA1n n\\u00F3i l\\u1EA1i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022\\u0022Pardon?\\u0022 she said, because the room was noisy.\u0022,\u0022vi\u0022:\u0022\\u0022Xin l\\u1ED7i?\\u0022 c\\u00F4 \\u1EA5y n\\u00F3i v\\u00EC c\\u0103n ph\\u00F2ng \\u1ED3n \\u00E0o.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Sorry, what did you say?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, b\\u1EA1n n\\u00F3i g\\u00EC?\u0022},{\u0022text\u0022:\u0022Could you repeat that?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n nh\\u1EAFc l\\u1EA1i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.563169efa44041f882fe151a0032544f",
+      "kind": "Card",
+      "values": {
+        "Term": "Can I borrow your pen?",
+        "Definition": "t\u00F4i m\u01B0\u1EE3n b\u00FAt c\u1EE7a b\u1EA1n \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:d3cd44ae65f107f60ee795df9f34972cf20c9ce2ec64f0e83fc936eabdf0b154.webp",
+        "Phonetic": null,
+        "Example": "Can I borrow your pen? Mine is empty.",
+        "ExampleTranslation": "T\u00F4i m\u01B0\u1EE3n b\u00FAt c\u1EE7a b\u1EA1n \u0111\u01B0\u1EE3c kh\u00F4ng? B\u00FAt t\u00F4i h\u1EBFt m\u1EF1c r\u1ED3i.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite request to use someone\u0027s pen for a moment",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can I borrow your pen? Mine is empty.\u0022,\u0022vi\u0022:\u0022T\\u00F4i m\\u01B0\\u1EE3n b\\u00FAt c\\u1EE7a b\\u1EA1n \\u0111\\u01B0\\u1EE3c kh\\u00F4ng? B\\u00FAt t\\u00F4i h\\u1EBFt m\\u1EF1c r\\u1ED3i.\u0022},{\u0022text\u0022:\u0022Can I borrow your pen for a minute?\u0022,\u0022vi\u0022:\u0022T\\u00F4i m\\u01B0\\u1EE3n b\\u00FAt c\\u1EE7a b\\u1EA1n m\\u1ED9t ph\\u00FAt \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Sure, here you are.\u0022,\u0022vi\u0022:\u0022\\u0110\\u01B0\\u1EE3c, c\\u1EE7a b\\u1EA1n \\u0111\\u00E2y.\u0022},{\u0022text\u0022:\u0022Thanks for lending it.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n v\\u00EC \\u0111\\u00E3 cho m\\u01B0\\u1EE3n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.6355ba7c9a3641b8916028c2bad23139",
+      "kind": "Card",
+      "values": {
+        "Term": "Here you are.",
+        "Definition": "c\u1EE7a b\u1EA1n \u0111\u00E2y",
+        "ImageUrl": "asset:472b5ab92a2ddd5e4e43026ba9cd1f2ed928c3434c7444e55edc4d684d50b766.webp",
+        "Phonetic": null,
+        "Example": "Here you are. Your coffee.",
+        "ExampleTranslation": "C\u1EE7a b\u1EA1n \u0111\u00E2y. C\u00E0 ph\u00EA c\u1EE7a b\u1EA1n.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you give someone something",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Here you are. Your coffee.\u0022,\u0022vi\u0022:\u0022C\\u1EE7a b\\u1EA1n \\u0111\\u00E2y. C\\u00E0 ph\\u00EA c\\u1EE7a b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022Here you are, sir.\u0022,\u0022vi\u0022:\u0022C\\u1EE7a \\u00F4ng \\u0111\\u00E2y, th\\u01B0a \\u00F4ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Here you go.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E2y nh\\u00E9.\u0022},{\u0022text\u0022:\u0022Thank you.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.7201f668c9b54fadbcf4b186cf334084",
+      "kind": "Card",
+      "values": {
+        "Term": "No problem.",
+        "Definition": "kh\u00F4ng v\u1EA5n \u0111\u1EC1 g\u00EC",
+        "ImageUrl": "asset:13d4d479ea01fe4224fff1790e789afb65f5edf77455bcee7c959153e1e2c2b3.webp",
+        "Phonetic": null,
+        "Example": "No problem. I can do it now.",
+        "ExampleTranslation": "Kh\u00F4ng v\u1EA5n \u0111\u1EC1 g\u00EC. T\u00F4i l\u00E0m ngay b\u00E2y gi\u1EDD \u0111\u01B0\u1EE3c.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a friendly way to say you are happy to help",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022No problem. I can do it now.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng v\\u1EA5n \\u0111\\u1EC1 g\\u00EC. T\\u00F4i l\\u00E0m ngay b\\u00E2y gi\\u1EDD \\u0111\\u01B0\\u1EE3c.\u0022},{\u0022text\u0022:\u0022\\u0022Thanks!\\u0022 \\u0022No problem.\\u0022\u0022,\u0022vi\u0022:\u0022\\u0022C\\u1EA3m \\u01A1n!\\u0022 \\u0022Kh\\u00F4ng c\\u00F3 g\\u00EC.\\u0022\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Sure thing.\u0022,\u0022vi\u0022:\u0022Ch\\u1EAFc ch\\u1EAFn r\\u1ED3i.\u0022},{\u0022text\u0022:\u0022It\\u0027s no trouble.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng phi\\u1EC1n g\\u00EC \\u0111\\u00E2u.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.74b3b51923a44daa95d4c4edc99a1a60",
+      "kind": "Card",
+      "values": {
+        "Term": "After you.",
+        "Definition": "m\u1EDDi b\u1EA1n \u0111i tr\u01B0\u1EDBc",
+        "ImageUrl": "asset:b207686ad8b71453f95e1310fcee3457c94e75331d7ec9a81cdc715d45da5538.webp",
+        "Phonetic": null,
+        "Example": "After you. I\u0027ll wait here.",
+        "ExampleTranslation": "M\u1EDDi b\u1EA1n \u0111i tr\u01B0\u1EDBc. T\u00F4i \u0111\u1EE3i \u1EDF \u0111\u00E2y.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite way to let someone go first",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022After you. I\\u0027ll wait here.\u0022,\u0022vi\u0022:\u0022M\\u1EDDi b\\u1EA1n \\u0111i tr\\u01B0\\u1EDBc. T\\u00F4i \\u0111\\u1EE3i \\u1EDF \\u0111\\u00E2y.\u0022},{\u0022text\u0022:\u0022\\u0022After you,\\u0022 he said, holding the door.\u0022,\u0022vi\u0022:\u0022\\u0022M\\u1EDDi b\\u1EA1n \\u0111i tr\\u01B0\\u1EDBc,\\u0022 anh \\u1EA5y n\\u00F3i, gi\\u1EEF c\\u1EEDa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Please go ahead.\u0022,\u0022vi\u0022:\u0022M\\u1EDDi b\\u1EA1n \\u0111i tr\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022Ladies first.\u0022,\u0022vi\u0022:\u0022M\\u1EDDi qu\\u00FD c\\u00F4 tr\\u01B0\\u1EDBc.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.816492f3372d4c6ea3edfd0eebd9faa8",
+      "kind": "Card",
+      "values": {
+        "Term": "Thanks a lot.",
+        "Definition": "c\u1EA3m \u01A1n nhi\u1EC1u",
+        "ImageUrl": "asset:cd35b5218ea4a1e46c157cca12441b02f7251870bebe22d73906176022654d49.webp",
+        "Phonetic": null,
+        "Example": "Thanks a lot for your help.",
+        "ExampleTranslation": "C\u1EA3m \u01A1n nhi\u1EC1u v\u00EC \u0111\u00E3 gi\u00FAp t\u00F4i.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a friendly way to thank someone strongly",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Thanks a lot for your help.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n nhi\\u1EC1u v\\u00EC \\u0111\\u00E3 gi\\u00FAp t\\u00F4i.\u0022},{\u0022text\u0022:\u0022Thanks a lot! I really needed that.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n nhi\\u1EC1u! T\\u00F4i th\\u1EF1c s\\u1EF1 c\\u1EA7n n\\u00F3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Many thanks.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n r\\u1EA5t nhi\\u1EC1u.\u0022},{\u0022text\u0022:\u0022Thanks so much.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n r\\u1EA5t nhi\\u1EC1u.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.8dfaedc6bed3484ca3979e49635adaa9",
+      "kind": "Card",
+      "values": {
+        "Term": "Excuse me.",
+        "Definition": "xin l\u1ED7i, cho t\u00F4i h\u1ECFi",
+        "ImageUrl": "asset:436c981b36c3b7799c0a7bee678ca7377fbee70ce25d22d17ba82eee297c5965.webp",
+        "Phonetic": null,
+        "Example": "Excuse me. Where is the library?",
+        "ExampleTranslation": "Xin l\u1ED7i, th\u01B0 vi\u1EC7n \u1EDF \u0111\u00E2u v\u1EADy?",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite way to get someone\u0027s attention or pass by",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Excuse me. Where is the library?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, th\\u01B0 vi\\u1EC7n \\u1EDF \\u0111\\u00E2u v\\u1EADy?\u0022},{\u0022text\u0022:\u0022Excuse me, may I get past?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, cho t\\u00F4i \\u0111i qua \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Pardon me.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i.\u0022},{\u0022text\u0022:\u0022Sorry to bother you.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i \\u0111\\u00E3 l\\u00E0m phi\\u1EC1n b\\u1EA1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.9cdef214ad4a4714aef64bf8f730c5db",
+      "kind": "Card",
+      "values": {
+        "Term": "Could you open the window?",
+        "Definition": "b\u1EA1n m\u1EDF c\u1EEDa s\u1ED5 gi\u00FAp t\u00F4i \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:e06dbac34ccea1017e0c1a9c6cb25325e6952f98337bd0cc1aaa89cb094b4ead.webp",
+        "Phonetic": null,
+        "Example": "Could you open the window? It\u0027s hot.",
+        "ExampleTranslation": "B\u1EA1n m\u1EDF c\u1EEDa s\u1ED5 gi\u00FAp t\u00F4i \u0111\u01B0\u1EE3c kh\u00F4ng? Tr\u1EDDi n\u00F3ng.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite request to open a window",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could you open the window? It\\u0027s hot.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n m\\u1EDF c\\u1EEDa s\\u1ED5 gi\\u00FAp t\\u00F4i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng? Tr\\u1EDDi n\\u00F3ng.\u0022},{\u0022text\u0022:\u0022Could you open the window a little?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n m\\u1EDF c\\u1EEDa s\\u1ED5 ra m\\u1ED9t ch\\u00FAt \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Would you mind opening it?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 phi\\u1EC1n m\\u1EDF n\\u00F3 ra kh\\u00F4ng?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.a02507f5c4804be08e24726a81f679b9",
+      "kind": "Card",
+      "values": {
+        "Term": "Please.",
+        "Definition": "l\u00E0m \u01A1n",
+        "ImageUrl": "asset:2e20cb0a8aa57428521dec82857da70398a83f18c0fb79dfdd142104f2fedf3b.webp",
+        "Phonetic": null,
+        "Example": "Water, please.",
+        "ExampleTranslation": "Cho t\u00F4i n\u01B0\u1EDBc, l\u00E0m \u01A1n.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a word that makes a request polite",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Water, please.\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i n\\u01B0\\u1EDBc, l\\u00E0m \\u01A1n.\u0022},{\u0022text\u0022:\u0022Please sit down.\u0022,\u0022vi\u0022:\u0022Xin m\\u1EDDi ng\\u1ED3i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Yes, please.\u0022,\u0022vi\u0022:\u0022V\\u00E2ng, l\\u00E0m \\u01A1n.\u0022},{\u0022text\u0022:\u0022Please help me.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n gi\\u00FAp t\\u00F4i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.ab5cf18a35ce4b13aecac59c5f1fe37c",
+      "kind": "Card",
+      "values": {
+        "Term": "Do you mind if I...?",
+        "Definition": "b\u1EA1n c\u00F3 phi\u1EC1n n\u1EBFu t\u00F4i...?",
+        "ImageUrl": "asset:01a19b897565beadae8b7a6e64f98a25243a1b951a6fff9fa2fde49503d58e89.webp",
+        "Phonetic": null,
+        "Example": "Do you mind if I sit here?",
+        "ExampleTranslation": "B\u1EA1n c\u00F3 phi\u1EC1n n\u1EBFu t\u00F4i ng\u1ED3i \u0111\u00E2y kh\u00F4ng?",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite way to ask for permission",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Do you mind if I sit here?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 phi\\u1EC1n n\\u1EBFu t\\u00F4i ng\\u1ED3i \\u0111\\u00E2y kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Do you mind if I open the window?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 phi\\u1EC1n n\\u1EBFu t\\u00F4i m\\u1EDF c\\u1EEDa s\\u1ED5 kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Not at all.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng h\\u1EC1.\u0022},{\u0022text\u0022:\u0022Go ahead.\u0022,\u0022vi\u0022:\u0022C\\u1EE9 t\\u1EF1 nhi\\u00EAn.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.acd1f72b52b540388146c236f96da6b9",
+      "kind": "Card",
+      "values": {
+        "Term": "Would you mind...?",
+        "Definition": "b\u1EA1n c\u00F3 phi\u1EC1n...kh\u00F4ng?",
+        "ImageUrl": "asset:d96702688b5ae9fe723a27dc075518020278d7aaa6ec95f52a08053bd88a6634.webp",
+        "Phonetic": null,
+        "Example": "Would you mind closing the door?",
+        "ExampleTranslation": "B\u1EA1n c\u00F3 phi\u1EC1n \u0111\u00F3ng c\u1EEDa kh\u00F4ng?",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a very polite way to ask someone to do something",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Would you mind closing the door?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 phi\\u1EC1n \\u0111\\u00F3ng c\\u1EEDa kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Would you mind waiting a moment?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 phi\\u1EC1n \\u0111\\u1EE3i m\\u1ED9t l\\u00E1t kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Do you mind if I sit here?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 phi\\u1EC1n n\\u1EBFu t\\u00F4i ng\\u1ED3i \\u0111\\u00E2y kh\\u00F4ng?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.b2ffdb033c044a519bbcba5b7c8e9609",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027m sorry.",
+        "Definition": "t\u00F4i xin l\u1ED7i",
+        "ImageUrl": "asset:6dc37b3bc717ff2a613461084cce5ed7a015e6c64d25a1239ad7cc8009cd193e.webp",
+        "Phonetic": null,
+        "Example": "I\u0027m sorry. I didn\u0027t mean to hurt you.",
+        "ExampleTranslation": "T\u00F4i xin l\u1ED7i. T\u00F4i kh\u00F4ng c\u1ED1 \u00FD l\u00E0m b\u1EA1n \u0111au.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a common way to say you feel bad about something",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027m sorry. I didn\\u0027t mean to hurt you.\u0022,\u0022vi\u0022:\u0022T\\u00F4i xin l\\u1ED7i. T\\u00F4i kh\\u00F4ng c\\u1ED1 \\u00FD l\\u00E0m b\\u1EA1n \\u0111au.\u0022},{\u0022text\u0022:\u0022I\\u0027m sorry I\\u0027m late.\u0022,\u0022vi\u0022:\u0022T\\u00F4i xin l\\u1ED7i v\\u00EC \\u0111\\u1EBFn mu\\u1ED9n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027m really sorry.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EF1c s\\u1EF1 xin l\\u1ED7i.\u0022},{\u0022text\u0022:\u0022Sorry about that.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i v\\u1EC1 chuy\\u1EC7n \\u0111\\u00F3.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va.f44165c8ef744379b3a0b807c5e27d25",
+      "kind": "Card",
+      "values": {
+        "Term": "Could I ask a favour?",
+        "Definition": "t\u00F4i nh\u1EDD b\u1EA1n m\u1ED9t vi\u1EC7c \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:123d435077a91d0302c8512ed608e04731cf28c9465e109680be52bef84f9e71.webp",
+        "Phonetic": null,
+        "Example": "Could I ask a favour? I need a lift home.",
+        "ExampleTranslation": "T\u00F4i nh\u1EDD b\u1EA1n m\u1ED9t vi\u1EC7c \u0111\u01B0\u1EE3c kh\u00F4ng? T\u00F4i c\u1EA7n qu\u00E1 giang v\u1EC1 nh\u00E0.",
+        "Topic": "L\u1ECBch s\u1EF1: c\u1EA3m \u01A1n, xin l\u1ED7i, nh\u1EDD v\u1EA3",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite way to start asking for help",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could I ask a favour? I need a lift home.\u0022,\u0022vi\u0022:\u0022T\\u00F4i nh\\u1EDD b\\u1EA1n m\\u1ED9t vi\\u1EC7c \\u0111\\u01B0\\u1EE3c kh\\u00F4ng? T\\u00F4i c\\u1EA7n qu\\u00E1 giang v\\u1EC1 nh\\u00E0.\u0022},{\u0022text\u0022:\u0022Could I ask you a favour, please?\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n cho t\\u00F4i nh\\u1EDD b\\u1EA1n m\\u1ED9t vi\\u1EC7c \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Sure, what is it?\u0022,\u0022vi\u0022:\u0022\\u0110\\u01B0\\u1EE3c, vi\\u1EC7c g\\u00EC v\\u1EADy?\u0022},{\u0022text\u0022:\u0022Of course.\u0022,\u0022vi\u0022:\u0022T\\u1EA5t nhi\\u00EAn r\\u1ED3i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "3363999ae73e9596f5f1756fca85d5267279ed1fdbac814fc9f8ce38c57f7dc8.webp",
+      "sha256": "3363999ae73e9596f5f1756fca85d5267279ed1fdbac814fc9f8ce38c57f7dc8"
+    },
+    {
+      "file": "cd35b5218ea4a1e46c157cca12441b02f7251870bebe22d73906176022654d49.webp",
+      "sha256": "cd35b5218ea4a1e46c157cca12441b02f7251870bebe22d73906176022654d49"
+    },
+    {
+      "file": "964d0a470c968fe1388ee4578e62a820798f3d39f0ab23d109bbcbc4e6165e4e.webp",
+      "sha256": "964d0a470c968fe1388ee4578e62a820798f3d39f0ab23d109bbcbc4e6165e4e"
+    },
+    {
+      "file": "6dc37b3bc717ff2a613461084cce5ed7a015e6c64d25a1239ad7cc8009cd193e.webp",
+      "sha256": "6dc37b3bc717ff2a613461084cce5ed7a015e6c64d25a1239ad7cc8009cd193e"
+    },
+    {
+      "file": "436c981b36c3b7799c0a7bee678ca7377fbee70ce25d22d17ba82eee297c5965.webp",
+      "sha256": "436c981b36c3b7799c0a7bee678ca7377fbee70ce25d22d17ba82eee297c5965"
+    },
+    {
+      "file": "6acb2cbea56053ea8f9c0b911e8c26e47c52eceb47e28ad5dd97a69b15f1afd0.webp",
+      "sha256": "6acb2cbea56053ea8f9c0b911e8c26e47c52eceb47e28ad5dd97a69b15f1afd0"
+    },
+    {
+      "file": "2e20cb0a8aa57428521dec82857da70398a83f18c0fb79dfdd142104f2fedf3b.webp",
+      "sha256": "2e20cb0a8aa57428521dec82857da70398a83f18c0fb79dfdd142104f2fedf3b"
+    },
+    {
+      "file": "1ea46bc3e4f9f2db7f51f9aa2e48f210f39691e91c0dcc60a0bb2b403f4fa5a7.webp",
+      "sha256": "1ea46bc3e4f9f2db7f51f9aa2e48f210f39691e91c0dcc60a0bb2b403f4fa5a7"
+    },
+    {
+      "file": "e06dbac34ccea1017e0c1a9c6cb25325e6952f98337bd0cc1aaa89cb094b4ead.webp",
+      "sha256": "e06dbac34ccea1017e0c1a9c6cb25325e6952f98337bd0cc1aaa89cb094b4ead"
+    },
+    {
+      "file": "d96702688b5ae9fe723a27dc075518020278d7aaa6ec95f52a08053bd88a6634.webp",
+      "sha256": "d96702688b5ae9fe723a27dc075518020278d7aaa6ec95f52a08053bd88a6634"
+    },
+    {
+      "file": "01a19b897565beadae8b7a6e64f98a25243a1b951a6fff9fa2fde49503d58e89.webp",
+      "sha256": "01a19b897565beadae8b7a6e64f98a25243a1b951a6fff9fa2fde49503d58e89"
+    },
+    {
+      "file": "f101bac6261a7ab0fc3601abb033cda304f6823c24b52b3ad6fc4a62d122be40.webp",
+      "sha256": "f101bac6261a7ab0fc3601abb033cda304f6823c24b52b3ad6fc4a62d122be40"
+    },
+    {
+      "file": "d3cd44ae65f107f60ee795df9f34972cf20c9ce2ec64f0e83fc936eabdf0b154.webp",
+      "sha256": "d3cd44ae65f107f60ee795df9f34972cf20c9ce2ec64f0e83fc936eabdf0b154"
+    },
+    {
+      "file": "472b5ab92a2ddd5e4e43026ba9cd1f2ed928c3434c7444e55edc4d684d50b766.webp",
+      "sha256": "472b5ab92a2ddd5e4e43026ba9cd1f2ed928c3434c7444e55edc4d684d50b766"
+    },
+    {
+      "file": "39470b3ac1e933972201b6354c993683917ae652c4bf1da053a3c544323003ff.webp",
+      "sha256": "39470b3ac1e933972201b6354c993683917ae652c4bf1da053a3c544323003ff"
+    },
+    {
+      "file": "13d4d479ea01fe4224fff1790e789afb65f5edf77455bcee7c959153e1e2c2b3.webp",
+      "sha256": "13d4d479ea01fe4224fff1790e789afb65f5edf77455bcee7c959153e1e2c2b3"
+    },
+    {
+      "file": "b207686ad8b71453f95e1310fcee3457c94e75331d7ec9a81cdc715d45da5538.webp",
+      "sha256": "b207686ad8b71453f95e1310fcee3457c94e75331d7ec9a81cdc715d45da5538"
+    },
+    {
+      "file": "e925c696318454da40544e034675dd8e9d16a07b862c3260122e58d294eb4b57.webp",
+      "sha256": "e925c696318454da40544e034675dd8e9d16a07b862c3260122e58d294eb4b57"
+    },
+    {
+      "file": "f6b9af2d1dcd482d160026ab11ebc8e01396c7348380945d30ea17924a79dde4.webp",
+      "sha256": "f6b9af2d1dcd482d160026ab11ebc8e01396c7348380945d30ea17924a79dde4"
+    },
+    {
+      "file": "123d435077a91d0302c8512ed608e04731cf28c9465e109680be52bef84f9e71.webp",
+      "sha256": "123d435077a91d0302c8512ed608e04731cf28c9465e109680be52bef84f9e71"
+    }
+  ],
+  "rootKey": "team.vocab.c-giao-tiep-hang-ngay.c02-lich-su-cam-on-xin-loi-nho-va"
+}

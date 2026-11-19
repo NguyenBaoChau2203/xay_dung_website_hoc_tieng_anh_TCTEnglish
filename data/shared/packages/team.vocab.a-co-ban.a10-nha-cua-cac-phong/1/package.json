@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a10-nha-cua-cac-phong",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong",
+      "kind": "Set",
+      "values": {
+        "SetName": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "Description": "#a1 #a2 #home #rooms"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.15cd9ade0d314f66ab74a075fdcc6619",
+      "kind": "Card",
+      "values": {
+        "Term": "wall",
+        "Definition": "b\u1EE9c t\u01B0\u1EDDng",
+        "ImageUrl": "asset:7bd2f69487fba303571bffdc5071301a593c7c83120554260acd4872a4557987.webp",
+        "Phonetic": "/w\u0254l/",
+        "Example": "There is a picture on the wall.",
+        "ExampleTranslation": "C\u00F3 m\u1ED9t b\u1EE9c tranh tr\u00EAn t\u01B0\u1EDDng.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a side of a room or building made of brick or stone",
+        "Cefr": "A1",
+        "PhoneticUk": "/w\u0254\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022There is a picture on the wall.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t b\\u1EE9c tranh tr\\u00EAn t\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022They painted the wall white.\u0022,\u0022vi\u0022:\u0022H\\u1ECD s\\u01A1n b\\u1EE9c t\\u01B0\\u1EDDng m\\u00E0u tr\\u1EAFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022brick wall\u0022,\u0022vi\u0022:\u0022t\\u01B0\\u1EDDng g\\u1EA1ch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/68782296@N04/6343992973\u0022,\u0022author\u0022:\u0022bartoszjanusz\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.350d7c3c600a4e4fa72ad0f86990d49c",
+      "kind": "Card",
+      "values": {
+        "Term": "bedroom",
+        "Definition": "ph\u00F2ng ng\u1EE7",
+        "ImageUrl": "asset:30513d04788c2ebe0d6adf4100d4ee59e7182d59483d00fbcdf8cd87bbb5024c.webp",
+        "Phonetic": "/\u02C8b\u025Bd\u02CC\u0279um/",
+        "Example": "My bedroom is on the second floor.",
+        "ExampleTranslation": "Ph\u00F2ng ng\u1EE7 c\u1EE7a t\u00F4i \u1EDF t\u1EA7ng hai.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a room where you sleep",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8b\u025Bd\u0279u\u02D0m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My bedroom is on the second floor.\u0022,\u0022vi\u0022:\u0022Ph\\u00F2ng ng\\u1EE7 c\\u1EE7a t\\u00F4i \\u1EDF t\\u1EA7ng hai.\u0022},{\u0022text\u0022:\u0022She cleans her bedroom every Saturday.\u0022,\u0022vi\u0022:\u0022Th\\u1EE9 B\\u1EA3y n\\u00E0o c\\u00F4 \\u1EA5y c\\u0169ng d\\u1ECDn ph\\u00F2ng ng\\u1EE7.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022master bedroom\u0022,\u0022vi\u0022:\u0022ph\\u00F2ng ng\\u1EE7 ch\\u00EDnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5903851/photo-image-public-domain-interior-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.5232d7555d564976a74e72db2cd8b211",
+      "kind": "Card",
+      "values": {
+        "Term": "garage",
+        "Definition": "nh\u00E0 \u0111\u1EC3 xe",
+        "ImageUrl": "asset:39cb4311d678280f8962677925d5a3445d619c2ed4718548dab8e2bd56c475b9.webp",
+        "Phonetic": "/\u0261\u0259\u02C8\u0279\u0251\u0292/",
+        "Example": "He parked the car in the garage.",
+        "ExampleTranslation": "Anh \u1EA5y \u0111\u1ED7 xe trong nh\u00E0 \u0111\u1EC3 xe.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a building or room where you keep a car",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0261\u00E6.\u0279\u026Ad\u0292/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He parked the car in the garage.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111\\u1ED7 xe trong nh\\u00E0 \\u0111\\u1EC3 xe.\u0022},{\u0022text\u0022:\u0022Our garage is full of old boxes.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 \\u0111\\u1EC3 xe c\\u1EE7a ch\\u00FAng t\\u00F4i ch\\u1EE9a \\u0111\\u1EA7y th\\u00F9ng c\\u0169.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022garage door\u0022,\u0022vi\u0022:\u0022c\\u1EEDa nh\\u00E0 \\u0111\\u1EC3 xe\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Garage_Door.png\u0022,\u0022author\u0022:\u0022Pikoshak\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.64fc2c35ec4142cf93b49a0941bdd24a",
+      "kind": "Card",
+      "values": {
+        "Term": "window",
+        "Definition": "c\u1EEDa s\u1ED5",
+        "ImageUrl": "asset:fc20e757c7cbd41deea7d54cb46da639a08dc867b5566a5c7a4e2503dd122eae.webp",
+        "Phonetic": "/\u02C8w\u026Ando\u028A/",
+        "Example": "She looked out of the window.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y nh\u00ECn ra ngo\u00E0i c\u1EEDa s\u1ED5.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an opening with glass in a wall that lets in light",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8w\u026And\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She looked out of the window.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y nh\\u00ECn ra ngo\\u00E0i c\\u1EEDa s\\u1ED5.\u0022},{\u0022text\u0022:\u0022Please open the window for some fresh air.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n m\\u1EDF c\\u1EEDa s\\u1ED5 cho tho\\u00E1ng kh\\u00ED.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open the window\u0022,\u0022vi\u0022:\u0022m\\u1EDF c\\u1EEDa s\\u1ED5\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/house-windows-RSFIEDZDKO\u0022,\u0022author\u0022:\u0022Rob Bye\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.68b3ef9b4c9a4bc2ae60645adf3cc4fc",
+      "kind": "Card",
+      "values": {
+        "Term": "living room",
+        "Definition": "ph\u00F2ng kh\u00E1ch",
+        "ImageUrl": "asset:1ded0f20bd8d705fdeab9abf2348e173044212513a08ebf795d33e4bd50e0dc7.webp",
+        "Phonetic": "/\u02C8l\u026Av\u026A\u014B \u0279um/",
+        "Example": "We watch television in the living room.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i xem tivi trong ph\u00F2ng kh\u00E1ch.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the room where people sit and relax together",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8l\u026Av\u026A\u014B \u0279\u028Am/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We watch television in the living room.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i xem tivi trong ph\\u00F2ng kh\\u00E1ch.\u0022},{\u0022text\u0022:\u0022The living room has a big sofa.\u0022,\u0022vi\u0022:\u0022Ph\\u00F2ng kh\\u00E1ch c\\u00F3 m\\u1ED9t chi\\u1EBFc gh\\u1EBF sofa l\\u1EDBn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022in the living room\u0022,\u0022vi\u0022:\u0022trong ph\\u00F2ng kh\\u00E1ch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/96511847@N04/9200481377\u0022,\u0022author\u0022:\u0022Foto Miki Digital\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.69e3ca09a0b440cd9ab0a5fbce26ce0c",
+      "kind": "Card",
+      "values": {
+        "Term": "hallway",
+        "Definition": "h\u00E0nh lang",
+        "ImageUrl": "asset:c6323039b391ba5d9021ec273ee8c5d4adea5436ae51d708f81a37bb8ebb8cc4.webp",
+        "Phonetic": "/\u02C8h\u0254l\u02CCwe\u026A/",
+        "Example": "The coats are hanging in the hallway.",
+        "ExampleTranslation": "Nh\u1EEFng chi\u1EBFc \u00E1o kho\u00E1c \u0111\u01B0\u1EE3c treo \u1EDF h\u00E0nh lang.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a narrow space inside a building that leads to rooms",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8h\u0254\u02D0lwe\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The coats are hanging in the hallway.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng chi\\u1EBFc \\u00E1o kho\\u00E1c \\u0111\\u01B0\\u1EE3c treo \\u1EDF h\\u00E0nh lang.\u0022},{\u0022text\u0022:\u0022Do not run in the hallway.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EEBng ch\\u1EA1y trong h\\u00E0nh lang.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022long hallway\u0022,\u0022vi\u0022:\u0022h\\u00E0nh lang d\\u00E0i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3297625/free-photo-image-alone-architecture-bannister\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.6ccc9e44259649cb9387f299636a476b",
+      "kind": "Card",
+      "values": {
+        "Term": "stairs",
+        "Definition": "c\u1EA7u thang",
+        "ImageUrl": "asset:006a42a2fe6109e3cd0cb6c5c4a024db61d3c97044134d504f1cb4d0f8712227.webp",
+        "Phonetic": "/\u02C8st\u025B\u0279z/",
+        "Example": "He ran up the stairs.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y ch\u1EA1y l\u00EAn c\u1EA7u thang.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a set of steps that go up or down inside a building",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8st\u025B\u0259z/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He ran up the stairs.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y ch\\u1EA1y l\\u00EAn c\\u1EA7u thang.\u0022},{\u0022text\u0022:\u0022Be careful on the stairs.\u0022,\u0022vi\u0022:\u0022H\\u00E3y c\\u1EA9n th\\u1EADn tr\\u00EAn c\\u1EA7u thang.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go up the stairs\u0022,\u0022vi\u0022:\u0022\\u0111i l\\u00EAn c\\u1EA7u thang\u0022},{\u0022text\u0022:\u0022go down the stairs\u0022,\u0022vi\u0022:\u0022\\u0111i xu\\u1ED1ng c\\u1EA7u thang\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/staircase-interior-HRFCE1Y4MY\u0022,\u0022author\u0022:\u0022Matt Bango\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.6d0256d46ee54a2d8d4c484cc6544f1f",
+      "kind": "Card",
+      "values": {
+        "Term": "kitchen",
+        "Definition": "nh\u00E0 b\u1EBFp",
+        "ImageUrl": "asset:afb6f12fce4cfd2c9ed06848371e413f5ec2341e399a31cc8dbd68f9b94e553c.webp",
+        "Phonetic": "/\u02C8k\u026At\u0361\u0283(\u0259)n/",
+        "Example": "My mother is cooking in the kitchen.",
+        "ExampleTranslation": "M\u1EB9 t\u00F4i \u0111ang n\u1EA5u \u0103n trong b\u1EBFp.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the room where food is cooked",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8k\u026At\u0361\u0283(\u026A)n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My mother is cooking in the kitchen.\u0022,\u0022vi\u0022:\u0022M\\u1EB9 t\\u00F4i \\u0111ang n\\u1EA5u \\u0103n trong b\\u1EBFp.\u0022},{\u0022text\u0022:\u0022The kitchen smells like fresh bread.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 b\\u1EBFp th\\u01A1m m\\u00F9i b\\u00E1nh m\\u00EC m\\u1EDBi n\\u01B0\\u1EDBng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022kitchen table\u0022,\u0022vi\u0022:\u0022b\\u00E0n \\u0103n trong b\\u1EBFp\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6043001/photo-image-public-domain-house-kitchen\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.70757a5c353449a6a8a768290ddb360e",
+      "kind": "Card",
+      "values": {
+        "Term": "house",
+        "Definition": "ng\u00F4i nh\u00E0",
+        "ImageUrl": "asset:02dc25b3646105bf40464be6b4ccee6494aa48d345daded6e53c2ca88c33df81.webp",
+        "Phonetic": "/ha\u028A\u032Fs/",
+        "Example": "We live in a small house near the river.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i s\u1ED1ng trong m\u1ED9t ng\u00F4i nh\u00E0 nh\u1ECF g\u1EA7n s\u00F4ng.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a building where a family lives",
+        "Cefr": "A1",
+        "PhoneticUk": "/ha\u028A\u032Fs/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We live in a small house near the river.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i s\\u1ED1ng trong m\\u1ED9t ng\\u00F4i nh\\u00E0 nh\\u1ECF g\\u1EA7n s\\u00F4ng.\u0022},{\u0022text\u0022:\u0022Their house has a red door.\u0022,\u0022vi\u0022:\u0022Ng\\u00F4i nh\\u00E0 c\\u1EE7a h\\u1ECD c\\u00F3 c\\u00E1nh c\\u1EEDa m\\u00E0u \\u0111\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022at my house\u0022,\u0022vi\u0022:\u0022\\u1EDF nh\\u00E0 t\\u00F4i\u0022},{\u0022text\u0022:\u0022buy a house\u0022,\u0022vi\u0022:\u0022mua nh\\u00E0\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/7156765@N05/51583014763\u0022,\u0022author\u0022:\u0022Onasill - Bill Badzo - 149 Million Views - Thank Y\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.74e330a1ccd64d35ade60ff9d805f43c",
+      "kind": "Card",
+      "values": {
+        "Term": "attic",
+        "Definition": "g\u00E1c m\u00E1i",
+        "ImageUrl": "asset:3a8ecb7590559ba195ce8e0fff744079d77f88082120a2b4404dc8d9944b9740.webp",
+        "Phonetic": "/\u02C8\u00E6t\u026Ak/",
+        "Example": "We keep old boxes in the attic.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i c\u1EA5t nh\u1EEFng c\u00E1i th\u00F9ng c\u0169 tr\u00EAn g\u00E1c m\u00E1i.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a room under the roof of a house",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u00E6t\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We keep old boxes in the attic.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i c\\u1EA5t nh\\u1EEFng c\\u00E1i th\\u00F9ng c\\u0169 tr\\u00EAn g\\u00E1c m\\u00E1i.\u0022},{\u0022text\u0022:\u0022The attic is dusty and dark.\u0022,\u0022vi\u0022:\u0022G\\u00E1c m\\u00E1i \\u0111\\u1EA7y b\\u1EE5i v\\u00E0 t\\u1ED1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022attic room\u0022,\u0022vi\u0022:\u0022ph\\u00F2ng g\\u00E1c m\\u00E1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/96511847@N04/10560655534\u0022,\u0022author\u0022:\u0022Foto Miki Digital\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.810d30be95664ed9a3d931791c235f1b",
+      "kind": "Card",
+      "values": {
+        "Term": "basement",
+        "Definition": "t\u1EA7ng h\u1EA7m",
+        "ImageUrl": "asset:204f57ae73e4ec04b6a8b75bd92c9352ae39d8d79edcaed7ddfb61026c8ec435.webp",
+        "Phonetic": "/\u02C8be\u026Asm\u0259nt/",
+        "Example": "The washing machine is in the basement.",
+        "ExampleTranslation": "M\u00E1y gi\u1EB7t \u0111\u1EB7t \u1EDF t\u1EA7ng h\u1EA7m.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a floor of a building below the ground",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8be\u026Asm\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The washing machine is in the basement.\u0022,\u0022vi\u0022:\u0022M\\u00E1y gi\\u1EB7t \\u0111\\u1EB7t \\u1EDF t\\u1EA7ng h\\u1EA7m.\u0022},{\u0022text\u0022:\u0022It is cool and quiet in the basement.\u0022,\u0022vi\u0022:\u0022D\\u01B0\\u1EDBi t\\u1EA7ng h\\u1EA7m m\\u00E1t v\\u00E0 y\\u00EAn t\\u0129nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022basement floor\u0022,\u0022vi\u0022:\u0022t\\u1EA7ng h\\u1EA7m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/193428582@N06/51297598319\u0022,\u0022author\u0022:\u0022yvthzwli86\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.88170e4637c042bcaa7b5a4551a1322c",
+      "kind": "Card",
+      "values": {
+        "Term": "apartment",
+        "Definition": "c\u0103n h\u1ED9",
+        "ImageUrl": "asset:dc2a147c92b2fb57e7bb2506653dfb5ac3fe835041d7c0cdb9badbbdab0beabd.webp",
+        "Phonetic": "/\u0259\u02C8p\u0251\u0279t.m\u0259nt/",
+        "Example": "She rents an apartment in the city.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y thu\u00EA m\u1ED9t c\u0103n h\u1ED9 trong th\u00E0nh ph\u1ED1.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a set of rooms for living in, on one floor of a building",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0259\u02C8p\u0251\u02D0t.m\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She rents an apartment in the city.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y thu\\u00EA m\\u1ED9t c\\u0103n h\\u1ED9 trong th\\u00E0nh ph\\u1ED1.\u0022},{\u0022text\u0022:\u0022Our apartment is on the fifth floor.\u0022,\u0022vi\u0022:\u0022C\\u0103n h\\u1ED9 c\\u1EE7a ch\\u00FAng t\\u00F4i \\u1EDF t\\u1EA7ng n\\u0103m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022apartment building\u0022,\u0022vi\u0022:\u0022t\\u00F2a nh\\u00E0 chung c\\u01B0\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/14674348@N04/14996764996\u0022,\u0022author\u0022:\u0022DennisM2\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.8962d8d6e6564b94bae110429b91a0da",
+      "kind": "Card",
+      "values": {
+        "Term": "elevator",
+        "Definition": "thang m\u00E1y",
+        "ImageUrl": "asset:50c41d9c3d4173954fdc06b281078f10090258f40498fdf5d8d936b6838f7dd4.webp",
+        "Phonetic": "/\u02C8\u025Bl\u0259\u02CCve\u026At\u025A/",
+        "Example": "Take the elevator to the tenth floor.",
+        "ExampleTranslation": "H\u00E3y \u0111i thang m\u00E1y l\u00EAn t\u1EA7ng m\u01B0\u1EDDi.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that carries people up and down in a building",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u025Bl\u0259\u02CCve\u026At\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Take the elevator to the tenth floor.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111i thang m\\u00E1y l\\u00EAn t\\u1EA7ng m\\u01B0\\u1EDDi.\u0022},{\u0022text\u0022:\u0022The elevator is broken today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay thang m\\u00E1y b\\u1ECB h\\u1ECFng.\u0022}],\u0022synonyms\u0022:[\u0022lift\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022take the elevator\u0022,\u0022vi\u0022:\u0022\\u0111i thang m\\u00E1y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/62518311@N00/140627317\u0022,\u0022author\u0022:\u0022Daquella manera\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.94d983aca07a4f4f99457b7835cb78ee",
+      "kind": "Card",
+      "values": {
+        "Term": "gate",
+        "Definition": "c\u1ED5ng",
+        "ImageUrl": "asset:75eddb1dd9861017b76098e4944181d466acd55eb7ff23bddcbaca91314769b3.webp",
+        "Phonetic": "/\u02C8\u0261e\u026A\u032Ft/",
+        "Example": "The gate is open, so please come in.",
+        "ExampleTranslation": "C\u1ED5ng \u0111ang m\u1EDF, m\u1EDDi b\u1EA1n v\u00E0o.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a door in a fence or wall outside a building",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0261e\u026A\u032Ft/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The gate is open, so please come in.\u0022,\u0022vi\u0022:\u0022C\\u1ED5ng \\u0111ang m\\u1EDF, m\\u1EDDi b\\u1EA1n v\\u00E0o.\u0022},{\u0022text\u0022:\u0022A dog waits at the garden gate.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con ch\\u00F3 \\u0111\\u1EE3i \\u1EDF c\\u1ED5ng v\\u01B0\\u1EDDn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022front gate\u0022,\u0022vi\u0022:\u0022c\\u1ED5ng tr\\u01B0\\u1EDBc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/89918055@N05/51777033435\u0022,\u0022author\u0022:\u0022JOHN K THORNE\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.978cc5f79d23472880bd71ecd6b5adfc",
+      "kind": "Card",
+      "values": {
+        "Term": "chimney",
+        "Definition": "\u1ED1ng kh\u00F3i",
+        "ImageUrl": "asset:8e4b31fd5f22b2c48fd13f6197bdbdb4108ab50d95b9c2eecaea88edc08d5d80.webp",
+        "Phonetic": "/\u02C8t\u0361\u0283\u026Amni/",
+        "Example": "Smoke is coming out of the chimney.",
+        "ExampleTranslation": "Kh\u00F3i \u0111ang bay ra t\u1EEB \u1ED1ng kh\u00F3i.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tall pipe on a roof that lets smoke out",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8t\u0361\u0283\u026Amni/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Smoke is coming out of the chimney.\u0022,\u0022vi\u0022:\u0022Kh\\u00F3i \\u0111ang bay ra t\\u1EEB \\u1ED1ng kh\\u00F3i.\u0022},{\u0022text\u0022:\u0022A bird made a nest in the chimney.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con chim l\\u00E0m t\\u1ED5 trong \\u1ED1ng kh\\u00F3i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022chimney smoke\u0022,\u0022vi\u0022:\u0022kh\\u00F3i t\\u1EEB \\u1ED1ng kh\\u00F3i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6027141/photo-image-public-domain-home-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.9ca7649e44e042a5a37463779d5e6c88",
+      "kind": "Card",
+      "values": {
+        "Term": "garden",
+        "Definition": "khu v\u01B0\u1EDDn",
+        "ImageUrl": "asset:25b78e767b5d76ad756e59aa6ec237b7d519f582a49762998cf126dac5cf5507.webp",
+        "Phonetic": "/\u02C8\u0261\u0251\u0279.d(\u0259)n/",
+        "Example": "My father grows roses in the garden.",
+        "ExampleTranslation": "B\u1ED1 t\u00F4i tr\u1ED3ng hoa h\u1ED3ng trong v\u01B0\u1EDDn.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of land near a house with flowers or plants",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u0261\u0251\u02D0.d(\u0259)n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My father grows roses in the garden.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 t\\u00F4i tr\\u1ED3ng hoa h\\u1ED3ng trong v\\u01B0\\u1EDDn.\u0022},{\u0022text\u0022:\u0022The children are playing in the garden.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB \\u0111ang ch\\u01A1i trong v\\u01B0\\u1EDDn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022back garden\u0022,\u0022vi\u0022:\u0022v\\u01B0\\u1EDDn sau nh\\u00E0\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/12070225@N03/48030717673\u0022,\u0022author\u0022:\u0022judy dean\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.a967631cd7e145c0a9de383e8e1b4a84",
+      "kind": "Card",
+      "values": {
+        "Term": "toilet",
+        "Definition": "nh\u00E0 v\u1EC7 sinh, b\u1ED3n c\u1EA7u",
+        "ImageUrl": "asset:858352be5e9b15cf0a57a9219a67c7f1a5698ca5dace2f52f1ce85d2c3e0e7ca.webp",
+        "Phonetic": "/\u02C8t\u0254\u026A.l\u0259t/",
+        "Example": "Excuse me, where is the toilet?",
+        "ExampleTranslation": "Xin l\u1ED7i, nh\u00E0 v\u1EC7 sinh \u1EDF \u0111\u00E2u \u1EA1?",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a seat or small room used for getting rid of body waste",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8t\u0254\u026A.l\u0259t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Excuse me, where is the toilet?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, nh\\u00E0 v\\u1EC7 sinh \\u1EDF \\u0111\\u00E2u \\u1EA1?\u0022},{\u0022text\u0022:\u0022The toilet is at the end of the hall.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 v\\u1EC7 sinh \\u1EDF cu\\u1ED1i h\\u00E0nh lang.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022public toilet\u0022,\u0022vi\u0022:\u0022nh\\u00E0 v\\u1EC7 sinh c\\u00F4ng c\\u1ED9ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/29507259@N02/3553015733\u0022,\u0022author\u0022:\u0022D Coetzee\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.b0ce7712419e424aa73d3f939131cbd4",
+      "kind": "Card",
+      "values": {
+        "Term": "bathroom",
+        "Definition": "ph\u00F2ng t\u1EAFm",
+        "ImageUrl": "asset:f881201f5f9ca884bf4b7520beaa361c374ba1755fdb9b517b3331f3f37668f3.webp",
+        "Phonetic": "/\u02C8b\u00E6\u03B8\u02CC\u0279um/",
+        "Example": "The bathroom is next to my bedroom.",
+        "ExampleTranslation": "Ph\u00F2ng t\u1EAFm n\u1EB1m c\u1EA1nh ph\u00F2ng ng\u1EE7 c\u1EE7a t\u00F4i.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a room with a bath or shower and a sink",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8b\u0251\u02D0\u03B8\u0279\u028Am/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The bathroom is next to my bedroom.\u0022,\u0022vi\u0022:\u0022Ph\\u00F2ng t\\u1EAFm n\\u1EB1m c\\u1EA1nh ph\\u00F2ng ng\\u1EE7 c\\u1EE7a t\\u00F4i.\u0022},{\u0022text\u0022:\u0022He brushes his teeth in the bathroom.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y \\u0111\\u00E1nh r\\u0103ng trong ph\\u00F2ng t\\u1EAFm.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bathroom mirror\u0022,\u0022vi\u0022:\u0022g\\u01B0\\u01A1ng ph\\u00F2ng t\\u1EAFm\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6042963/photo-image-public-domain-house-red\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.b0ea80bc9e2c40aab56e8b0b91fa24ff",
+      "kind": "Card",
+      "values": {
+        "Term": "ceiling",
+        "Definition": "tr\u1EA7n nh\u00E0",
+        "ImageUrl": "asset:fc79a5e1828193eea2d09634bc45713b36c7492d416ce5477f77e39d57876735.webp",
+        "Phonetic": "/\u02C8sil\u026A\u014B/",
+        "Example": "The ceiling in this room is very high.",
+        "ExampleTranslation": "Tr\u1EA7n nh\u00E0 c\u1EE7a c\u0103n ph\u00F2ng n\u00E0y r\u1EA5t cao.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the inside surface at the top of a room",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8si\u02D0l\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The ceiling in this room is very high.\u0022,\u0022vi\u0022:\u0022Tr\\u1EA7n nh\\u00E0 c\\u1EE7a c\\u0103n ph\\u00F2ng n\\u00E0y r\\u1EA5t cao.\u0022},{\u0022text\u0022:\u0022A small light hangs from the ceiling.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t chi\\u1EBFc \\u0111\\u00E8n nh\\u1ECF treo tr\\u00EAn tr\\u1EA7n nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022high ceiling\u0022,\u0022vi\u0022:\u0022tr\\u1EA7n nh\\u00E0 cao\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/27168d27ee/\u0022,\u0022author\u0022:\u0022Bigul Malayi\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.c87619c54c234020a48e0902159a6e69",
+      "kind": "Card",
+      "values": {
+        "Term": "dining room",
+        "Definition": "ph\u00F2ng \u0103n",
+        "ImageUrl": "asset:06e1afb261597d778f8aab9604e4138d9cdf237e2025364cf05291924339ac56.webp",
+        "Phonetic": "/\u02C8da\u026An\u026A\u014B(\u0261) \u0279um/",
+        "Example": "The whole family eats in the dining room.",
+        "ExampleTranslation": "C\u1EA3 nh\u00E0 \u0103n c\u01A1m trong ph\u00F2ng \u0103n.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a room where people eat their meals",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8da\u026An\u026A\u014B(\u0261) \u0279\u028Am/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The whole family eats in the dining room.\u0022,\u0022vi\u0022:\u0022C\\u1EA3 nh\\u00E0 \\u0103n c\\u01A1m trong ph\\u00F2ng \\u0103n.\u0022},{\u0022text\u0022:\u0022The dining room has a long wooden table.\u0022,\u0022vi\u0022:\u0022Ph\\u00F2ng \\u0103n c\\u00F3 m\\u1ED9t chi\\u1EBFc b\\u00E0n g\\u1ED7 d\\u00E0i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022dining room table\u0022,\u0022vi\u0022:\u0022b\\u00E0n ph\\u00F2ng \\u0103n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/80223459@N05/17158604515\u0022,\u0022author\u0022:\u0022YellowstoneNPS\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.c9a6ab3f956f4e7f9ba32206c7bc4230",
+      "kind": "Card",
+      "values": {
+        "Term": "yard",
+        "Definition": "s\u00E2n",
+        "ImageUrl": "asset:11392746f1a0beb4292b200fa64424459fb15a2b3bd4d9f3dfb725b02064ab24.webp",
+        "Phonetic": "/\u02C8j\u0251\u0279d/",
+        "Example": "The kids play in the yard after school.",
+        "ExampleTranslation": "B\u1ECDn tr\u1EBB ch\u01A1i ngo\u00E0i s\u00E2n sau gi\u1EDD h\u1ECDc.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an open area next to a house",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8j\u0251\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The kids play in the yard after school.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB ch\\u01A1i ngo\\u00E0i s\\u00E2n sau gi\\u1EDD h\\u1ECDc.\u0022},{\u0022text\u0022:\u0022We have a big yard behind the house.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i c\\u00F3 m\\u1ED9t c\\u00E1i s\\u00E2n l\\u1EDBn sau nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022back yard\u0022,\u0022vi\u0022:\u0022s\\u00E2n sau\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Integral_Urban_House_Backyard.jpg\u0022,\u0022author\u0022:\u0022U.S. Department of Energy\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.db5ff8fa27064642a1b0d42d8ee35020",
+      "kind": "Card",
+      "values": {
+        "Term": "roof",
+        "Definition": "m\u00E1i nh\u00E0",
+        "ImageUrl": "asset:99040b7dbd044ca60418d15468f8c9c1bb23d2948ddea655f8baa19d2044a41f.webp",
+        "Phonetic": "/\u0279u\u02D0f/",
+        "Example": "A cat is sitting on the roof.",
+        "ExampleTranslation": "M\u1ED9t con m\u00E8o \u0111ang ng\u1ED3i tr\u00EAn m\u00E1i nh\u00E0.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the top outside part of a building",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0279u\u02D0f/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A cat is sitting on the roof.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con m\\u00E8o \\u0111ang ng\\u1ED3i tr\\u00EAn m\\u00E1i nh\\u00E0.\u0022},{\u0022text\u0022:\u0022The rain made a loud noise on the roof.\u0022,\u0022vi\u0022:\u0022M\\u01B0a l\\u00E0m m\\u00E1i nh\\u00E0 k\\u00EAu to.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022roof tile\u0022,\u0022vi\u0022:\u0022ng\\u00F3i l\\u1EE3p m\\u00E1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/house-roof-SQQD7NUGYO\u0022,\u0022author\u0022:\u0022The Building Envelope\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.e1d2d0408723464d9a0eb6b7568b7e3f",
+      "kind": "Card",
+      "values": {
+        "Term": "floor",
+        "Definition": "s\u00E0n nh\u00E0; t\u1EA7ng",
+        "ImageUrl": "asset:b54883cb46a8739a1982d4fe299b2a29de3a50749cd9eb833ae3ce46f1034cf3.webp",
+        "Phonetic": "/flo\u0279/",
+        "Example": "The floor is clean and shiny.",
+        "ExampleTranslation": "S\u00E0n nh\u00E0 s\u1EA1ch v\u00E0 b\u00F3ng.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the surface you walk on inside a room",
+        "Cefr": "A1",
+        "PhoneticUk": "/fl\u0254\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The floor is clean and shiny.\u0022,\u0022vi\u0022:\u0022S\\u00E0n nh\\u00E0 s\\u1EA1ch v\\u00E0 b\\u00F3ng.\u0022},{\u0022text\u0022:\u0022My room is on the third floor.\u0022,\u0022vi\u0022:\u0022Ph\\u00F2ng c\\u1EE7a t\\u00F4i \\u1EDF t\\u1EA7ng ba.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wooden floor\u0022,\u0022vi\u0022:\u0022s\\u00E0n g\\u1ED7\u0022},{\u0022text\u0022:\u0022ground floor\u0022,\u0022vi\u0022:\u0022t\\u1EA7ng tr\\u1EC7t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6032920/photo-image-public-domain-wooden-house\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.f16de985c23b4f50b4e7254ed16cc4ff",
+      "kind": "Card",
+      "values": {
+        "Term": "balcony",
+        "Definition": "ban c\u00F4ng",
+        "ImageUrl": "asset:f6a42000d021e77fb3fdcd74df158f5349f4cf511bed6fcd36f1b6de11e74893.webp",
+        "Phonetic": "/\u02C8b\u00E6lk\u0259ni/",
+        "Example": "She drinks tea on the balcony.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y u\u1ED1ng tr\u00E0 ngo\u00E0i ban c\u00F4ng.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small platform outside an upper window with a rail",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u00E6lk\u0259ni/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She drinks tea on the balcony.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y u\\u1ED1ng tr\\u00E0 ngo\\u00E0i ban c\\u00F4ng.\u0022},{\u0022text\u0022:\u0022The apartment has a small balcony.\u0022,\u0022vi\u0022:\u0022C\\u0103n h\\u1ED9 c\\u00F3 m\\u1ED9t ban c\\u00F4ng nh\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022on the balcony\u0022,\u0022vi\u0022:\u0022ngo\\u00E0i ban c\\u00F4ng\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022balconies\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/171425013@N02/48245119207\u0022,\u0022author\u0022:\u0022GeorgeTan#2...INACTIVE NOW\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a10-nha-cua-cac-phong.f2b601a90ea747c2a4062d96ed3da836",
+      "kind": "Card",
+      "values": {
+        "Term": "door",
+        "Definition": "c\u00E1nh c\u1EEDa",
+        "ImageUrl": "asset:2774cb19833fa65aacaa0e24c08262bfdcf6d43065b0a6c20dcdfa3e850c90a1.webp",
+        "Phonetic": "/do(\u02D0)\u0279/",
+        "Example": "Please close the door behind you.",
+        "ExampleTranslation": "L\u00E0m \u01A1n \u0111\u00F3ng c\u1EEDa l\u1EA1i sau l\u01B0ng b\u1EA1n.",
+        "Topic": "Nh\u00E0 c\u1EEDa \u0026 c\u00E1c ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat object you open to go in or out of a room",
+        "Cefr": "A1",
+        "PhoneticUk": "/do(\u02D0)\u0279/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Please close the door behind you.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n \\u0111\\u00F3ng c\\u1EEDa l\\u1EA1i sau l\\u01B0ng b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022Someone is knocking on the door.\u0022,\u0022vi\u0022:\u0022C\\u00F3 ai \\u0111\\u00F3 \\u0111ang g\\u00F5 c\\u1EEDa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022front door\u0022,\u0022vi\u0022:\u0022c\\u1EEDa tr\\u01B0\\u1EDBc\u0022},{\u0022text\u0022:\u0022open the door\u0022,\u0022vi\u0022:\u0022m\\u1EDF c\\u1EEDa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/97107718@N08/9014442199\u0022,\u0022author\u0022:\u0022omerify\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "02dc25b3646105bf40464be6b4ccee6494aa48d345daded6e53c2ca88c33df81.webp",
+      "sha256": "02dc25b3646105bf40464be6b4ccee6494aa48d345daded6e53c2ca88c33df81"
+    },
+    {
+      "file": "dc2a147c92b2fb57e7bb2506653dfb5ac3fe835041d7c0cdb9badbbdab0beabd.webp",
+      "sha256": "dc2a147c92b2fb57e7bb2506653dfb5ac3fe835041d7c0cdb9badbbdab0beabd"
+    },
+    {
+      "file": "30513d04788c2ebe0d6adf4100d4ee59e7182d59483d00fbcdf8cd87bbb5024c.webp",
+      "sha256": "30513d04788c2ebe0d6adf4100d4ee59e7182d59483d00fbcdf8cd87bbb5024c"
+    },
+    {
+      "file": "1ded0f20bd8d705fdeab9abf2348e173044212513a08ebf795d33e4bd50e0dc7.webp",
+      "sha256": "1ded0f20bd8d705fdeab9abf2348e173044212513a08ebf795d33e4bd50e0dc7"
+    },
+    {
+      "file": "afb6f12fce4cfd2c9ed06848371e413f5ec2341e399a31cc8dbd68f9b94e553c.webp",
+      "sha256": "afb6f12fce4cfd2c9ed06848371e413f5ec2341e399a31cc8dbd68f9b94e553c"
+    },
+    {
+      "file": "f881201f5f9ca884bf4b7520beaa361c374ba1755fdb9b517b3331f3f37668f3.webp",
+      "sha256": "f881201f5f9ca884bf4b7520beaa361c374ba1755fdb9b517b3331f3f37668f3"
+    },
+    {
+      "file": "858352be5e9b15cf0a57a9219a67c7f1a5698ca5dace2f52f1ce85d2c3e0e7ca.webp",
+      "sha256": "858352be5e9b15cf0a57a9219a67c7f1a5698ca5dace2f52f1ce85d2c3e0e7ca"
+    },
+    {
+      "file": "25b78e767b5d76ad756e59aa6ec237b7d519f582a49762998cf126dac5cf5507.webp",
+      "sha256": "25b78e767b5d76ad756e59aa6ec237b7d519f582a49762998cf126dac5cf5507"
+    },
+    {
+      "file": "39cb4311d678280f8962677925d5a3445d619c2ed4718548dab8e2bd56c475b9.webp",
+      "sha256": "39cb4311d678280f8962677925d5a3445d619c2ed4718548dab8e2bd56c475b9"
+    },
+    {
+      "file": "f6a42000d021e77fb3fdcd74df158f5349f4cf511bed6fcd36f1b6de11e74893.webp",
+      "sha256": "f6a42000d021e77fb3fdcd74df158f5349f4cf511bed6fcd36f1b6de11e74893"
+    },
+    {
+      "file": "006a42a2fe6109e3cd0cb6c5c4a024db61d3c97044134d504f1cb4d0f8712227.webp",
+      "sha256": "006a42a2fe6109e3cd0cb6c5c4a024db61d3c97044134d504f1cb4d0f8712227"
+    },
+    {
+      "file": "99040b7dbd044ca60418d15468f8c9c1bb23d2948ddea655f8baa19d2044a41f.webp",
+      "sha256": "99040b7dbd044ca60418d15468f8c9c1bb23d2948ddea655f8baa19d2044a41f"
+    },
+    {
+      "file": "7bd2f69487fba303571bffdc5071301a593c7c83120554260acd4872a4557987.webp",
+      "sha256": "7bd2f69487fba303571bffdc5071301a593c7c83120554260acd4872a4557987"
+    },
+    {
+      "file": "b54883cb46a8739a1982d4fe299b2a29de3a50749cd9eb833ae3ce46f1034cf3.webp",
+      "sha256": "b54883cb46a8739a1982d4fe299b2a29de3a50749cd9eb833ae3ce46f1034cf3"
+    },
+    {
+      "file": "fc79a5e1828193eea2d09634bc45713b36c7492d416ce5477f77e39d57876735.webp",
+      "sha256": "fc79a5e1828193eea2d09634bc45713b36c7492d416ce5477f77e39d57876735"
+    },
+    {
+      "file": "2774cb19833fa65aacaa0e24c08262bfdcf6d43065b0a6c20dcdfa3e850c90a1.webp",
+      "sha256": "2774cb19833fa65aacaa0e24c08262bfdcf6d43065b0a6c20dcdfa3e850c90a1"
+    },
+    {
+      "file": "fc20e757c7cbd41deea7d54cb46da639a08dc867b5566a5c7a4e2503dd122eae.webp",
+      "sha256": "fc20e757c7cbd41deea7d54cb46da639a08dc867b5566a5c7a4e2503dd122eae"
+    },
+    {
+      "file": "75eddb1dd9861017b76098e4944181d466acd55eb7ff23bddcbaca91314769b3.webp",
+      "sha256": "75eddb1dd9861017b76098e4944181d466acd55eb7ff23bddcbaca91314769b3"
+    },
+    {
+      "file": "11392746f1a0beb4292b200fa64424459fb15a2b3bd4d9f3dfb725b02064ab24.webp",
+      "sha256": "11392746f1a0beb4292b200fa64424459fb15a2b3bd4d9f3dfb725b02064ab24"
+    },
+    {
+      "file": "3a8ecb7590559ba195ce8e0fff744079d77f88082120a2b4404dc8d9944b9740.webp",
+      "sha256": "3a8ecb7590559ba195ce8e0fff744079d77f88082120a2b4404dc8d9944b9740"
+    },
+    {
+      "file": "204f57ae73e4ec04b6a8b75bd92c9352ae39d8d79edcaed7ddfb61026c8ec435.webp",
+      "sha256": "204f57ae73e4ec04b6a8b75bd92c9352ae39d8d79edcaed7ddfb61026c8ec435"
+    },
+    {
+      "file": "c6323039b391ba5d9021ec273ee8c5d4adea5436ae51d708f81a37bb8ebb8cc4.webp",
+      "sha256": "c6323039b391ba5d9021ec273ee8c5d4adea5436ae51d708f81a37bb8ebb8cc4"
+    },
+    {
+      "file": "06e1afb261597d778f8aab9604e4138d9cdf237e2025364cf05291924339ac56.webp",
+      "sha256": "06e1afb261597d778f8aab9604e4138d9cdf237e2025364cf05291924339ac56"
+    },
+    {
+      "file": "8e4b31fd5f22b2c48fd13f6197bdbdb4108ab50d95b9c2eecaea88edc08d5d80.webp",
+      "sha256": "8e4b31fd5f22b2c48fd13f6197bdbdb4108ab50d95b9c2eecaea88edc08d5d80"
+    },
+    {
+      "file": "50c41d9c3d4173954fdc06b281078f10090258f40498fdf5d8d936b6838f7dd4.webp",
+      "sha256": "50c41d9c3d4173954fdc06b281078f10090258f40498fdf5d8d936b6838f7dd4"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a10-nha-cua-cac-phong"
+}

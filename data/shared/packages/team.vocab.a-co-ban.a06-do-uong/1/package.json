@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a06-do-uong",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong",
+      "kind": "Set",
+      "values": {
+        "SetName": "\u0110\u1ED3 u\u1ED1ng",
+        "Description": "#a1 #a2 #drinks #food"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.0df00eeb37734fd8977f228f7243a554",
+      "kind": "Card",
+      "values": {
+        "Term": "water",
+        "Definition": "n\u01B0\u1EDBc",
+        "ImageUrl": "asset:4fee4247cb7a871a9b4c0624abdd2a28a040838b4d4042f494028236bc0d5136.webp",
+        "Phonetic": "/\u02C8w\u0254.t\u025A/",
+        "Example": "I drink a glass of water every morning.",
+        "ExampleTranslation": "S\u00E1ng n\u00E0o t\u00F4i c\u0169ng u\u1ED1ng m\u1ED9t ly n\u01B0\u1EDBc.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the clear liquid that people drink",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8w\u0254\u02D0.t\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I drink a glass of water every morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng n\\u00E0o t\\u00F4i c\\u0169ng u\\u1ED1ng m\\u1ED9t ly n\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022Please bring me some cold water.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n mang cho t\\u00F4i \\u00EDt n\\u01B0\\u1EDBc l\\u1EA1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022glass of water\u0022,\u0022vi\u0022:\u0022m\\u1ED9t ly n\\u01B0\\u1EDBc\u0022},{\u0022text\u0022:\u0022drinking water\u0022,\u0022vi\u0022:\u0022n\\u01B0\\u1EDBc u\\u1ED1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8812231/glass-water\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.12cdd553b399475995ea13fd2f0d93e5",
+      "kind": "Card",
+      "values": {
+        "Term": "mineral water",
+        "Definition": "n\u01B0\u1EDBc kho\u00E1ng",
+        "ImageUrl": "asset:73e2dbe3de62dd2eb0512040fb817f69ee2a0e94ff31f0ed11c90dc0e03d030d.webp",
+        "Phonetic": "/\u02C8m\u026An.\u0259.\u0279\u0259l \u02C8w\u0254.t\u025A/",
+        "Example": "I bought a bottle of mineral water.",
+        "ExampleTranslation": "T\u00F4i mua m\u1ED9t chai n\u01B0\u1EDBc kho\u00E1ng.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "bottled water that comes from a natural spring",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8m\u026An.\u0259.\u0279\u0259l \u02C8w\u0254\u02D0.t\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I bought a bottle of mineral water.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mua m\\u1ED9t chai n\\u01B0\\u1EDBc kho\\u00E1ng.\u0022},{\u0022text\u0022:\u0022Mineral water is sold in every shop here.\u0022,\u0022vi\u0022:\u0022C\\u1EEDa h\\u00E0ng n\\u00E0o \\u1EDF \\u0111\\u00E2y c\\u0169ng b\\u00E1n n\\u01B0\\u1EDBc kho\\u00E1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bottle of mineral water\u0022,\u0022vi\u0022:\u0022m\\u1ED9t chai n\\u01B0\\u1EDBc kho\\u00E1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5970544/mineral-water-drink\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.1a6ff7a06a8043f6a1283a50789fca4b",
+      "kind": "Card",
+      "values": {
+        "Term": "coconut water",
+        "Definition": "n\u01B0\u1EDBc d\u1EEBa",
+        "ImageUrl": "asset:845a0c573c0d7e16af11a976e6561ba8d921b442730a319a7590954ca2162719.webp",
+        "Phonetic": "/\u02C8ko\u028A.k\u0259\u02CCn\u028Ct \u02C8w\u0254.t\u025A/",
+        "Example": "We drank fresh coconut water at the beach.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i u\u1ED1ng n\u01B0\u1EDBc d\u1EEBa t\u01B0\u01A1i \u1EDF b\u00E3i bi\u1EC3n.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the clear sweet liquid inside a young coconut",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u0259\u028A.k\u0259.n\u028Ct \u02C8w\u0254\u02D0.t\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We drank fresh coconut water at the beach.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i u\\u1ED1ng n\\u01B0\\u1EDBc d\\u1EEBa t\\u01B0\\u01A1i \\u1EDF b\\u00E3i bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022Coconut water is cool and sweet.\u0022,\u0022vi\u0022:\u0022N\\u01B0\\u1EDBc d\\u1EEBa m\\u00E1t v\\u00E0 ng\\u1ECDt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fresh coconut water\u0022,\u0022vi\u0022:\u0022n\\u01B0\\u1EDBc d\\u1EEBa t\\u01B0\\u01A1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/5626a69528/\u0022,\u0022author\u0022:\u0022wbadilla\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.2404213a67d4424d83ef77c19ebf9485",
+      "kind": "Card",
+      "values": {
+        "Term": "espresso",
+        "Definition": "c\u00E0 ph\u00EA espresso",
+        "ImageUrl": "asset:21c277e129c3a232dc2973985379d503dc01f80361f1be02a75a8c972f3d2d5b.webp",
+        "Phonetic": "/\u025B\u02C8sp\u0279\u025Bso\u028A/",
+        "Example": "He ordered a double espresso.",
+        "ExampleTranslation": "Anh \u1EA5y g\u1ECDi m\u1ED9t ly espresso \u0111\u00F4i.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small, very strong coffee",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u025B\u02C8sp\u0279\u025Bs\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He ordered a double espresso.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y g\\u1ECDi m\\u1ED9t ly espresso \\u0111\\u00F4i.\u0022},{\u0022text\u0022:\u0022An espresso is small but very strong.\u0022,\u0022vi\u0022:\u0022Espresso nh\\u1ECF nh\\u01B0ng r\\u1EA5t \\u0111\\u1EADm.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022double espresso\u0022,\u0022vi\u0022:\u0022espresso \\u0111\\u00F4i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/279694bfaa/\u0022,\u0022author\u0022:\u0022Ludwig You\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.35554a21f2d3448fbc2fd98844c65740",
+      "kind": "Card",
+      "values": {
+        "Term": "tea",
+        "Definition": "tr\u00E0",
+        "ImageUrl": "asset:01beecc829e513bd6896bffa7058704cdedfa09046868b6c6d5dc2a9816673f6.webp",
+        "Phonetic": "/ti/",
+        "Example": "My grandfather drinks green tea every day.",
+        "ExampleTranslation": "\u00D4ng t\u00F4i u\u1ED1ng tr\u00E0 xanh m\u1ED7i ng\u00E0y.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a hot drink made from dried leaves and water",
+        "Cefr": "A1",
+        "PhoneticUk": "/ti\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandfather drinks green tea every day.\u0022,\u0022vi\u0022:\u0022\\u00D4ng t\\u00F4i u\\u1ED1ng tr\\u00E0 xanh m\\u1ED7i ng\\u00E0y.\u0022},{\u0022text\u0022:\u0022Would you like a cup of tea?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 mu\\u1ED1n m\\u1ED9t t\\u00E1ch tr\\u00E0 kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022green tea\u0022,\u0022vi\u0022:\u0022tr\\u00E0 xanh\u0022},{\u0022text\u0022:\u0022cup of tea\u0022,\u0022vi\u0022:\u0022m\\u1ED9t t\\u00E1ch tr\\u00E0\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/135396164@N05/29364151550\u0022,\u0022author\u0022:\u0022freestocks.org\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.3b4f1bd5b7f84c2bac803c94cee1cb6f",
+      "kind": "Card",
+      "values": {
+        "Term": "glass",
+        "Definition": "c\u00E1i ly, ly th\u1EE7y tinh",
+        "ImageUrl": "asset:86b5cf431c1fb9d15656a4a0e59aeccebcde2eb31cf849ba63dfa0204c4f1101.webp",
+        "Phonetic": "/\u0261l\u00E6s/",
+        "Example": "He poured a glass of milk.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y r\u00F3t m\u1ED9t ly s\u1EEFa.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a clear container for cold drinks",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u0261l\u0251\u02D0s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He poured a glass of milk.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y r\\u00F3t m\\u1ED9t ly s\\u1EEFa.\u0022},{\u0022text\u0022:\u0022The glass is full of orange juice.\u0022,\u0022vi\u0022:\u0022C\\u00E1i ly \\u0111\\u1EA7y n\\u01B0\\u1EDBc cam.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a glass of water\u0022,\u0022vi\u0022:\u0022m\\u1ED9t ly n\\u01B0\\u1EDBc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://clevelandart.org/art/1952.94\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.3d4c9d05e4924e979579d0739a87ca61",
+      "kind": "Card",
+      "values": {
+        "Term": "bottle",
+        "Definition": "c\u00E1i chai",
+        "ImageUrl": "asset:9c8cd2cd9544afbaf76461d78525cb57854b4b91ef7aa5ccedbfb3591ab24fcd.webp",
+        "Phonetic": "/\u02C8b\u0251t\u0259l/",
+        "Example": "He drank a bottle of water after the game.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y u\u1ED1ng m\u1ED9t chai n\u01B0\u1EDBc sau tr\u1EADn \u0111\u1EA5u.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a container with a narrow neck for liquids",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8b\u0252t\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He drank a bottle of water after the game.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y u\\u1ED1ng m\\u1ED9t chai n\\u01B0\\u1EDBc sau tr\\u1EADn \\u0111\\u1EA5u.\u0022},{\u0022text\u0022:\u0022The bottle is empty now.\u0022,\u0022vi\u0022:\u0022C\\u00E1i chai gi\\u1EDD \\u0111\\u00E3 h\\u1EBFt s\\u1EA1ch.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022water bottle\u0022,\u0022vi\u0022:\u0022chai n\\u01B0\\u1EDBc\u0022},{\u0022text\u0022:\u0022plastic bottle\u0022,\u0022vi\u0022:\u0022chai nh\\u1EF1a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/40632439@N00/16466809032\u0022,\u0022author\u0022:\u0022Thad Zajdowicz\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.4bf8b685742d449493cf6ba79cdae83c",
+      "kind": "Card",
+      "values": {
+        "Term": "milkshake",
+        "Definition": "s\u1EEFa l\u1EAFc",
+        "ImageUrl": "asset:4e25fa8cffa7a93a7ab74ce5a777e256e78fdfbeab7456e4e30e84538bff3bdf.webp",
+        "Phonetic": "/\u02C8m\u026Alk.\u0283e\u026Ak/",
+        "Example": "He ordered a chocolate milkshake.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y g\u1ECDi m\u1ED9t ly s\u1EEFa l\u1EAFc s\u00F4-c\u00F4-la.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a cold thick drink of milk, ice cream and flavour",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8m\u026Alk.\u0283e\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He ordered a chocolate milkshake.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y g\\u1ECDi m\\u1ED9t ly s\\u1EEFa l\\u1EAFc s\\u00F4-c\\u00F4-la.\u0022},{\u0022text\u0022:\u0022A milkshake is sweet and cold.\u0022,\u0022vi\u0022:\u0022S\\u1EEFa l\\u1EAFc v\\u1EEBa ng\\u1ECDt v\\u1EEBa l\\u1EA1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022chocolate milkshake\u0022,\u0022vi\u0022:\u0022s\\u1EEFa l\\u1EAFc s\\u00F4-c\\u00F4-la\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/144218922@N07/32367360645\u0022,\u0022author\u0022:\u0022Bildflut85\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.59883e2b83e94a3ca850e644d0e8fea7",
+      "kind": "Card",
+      "values": {
+        "Term": "milk",
+        "Definition": "s\u1EEFa",
+        "ImageUrl": "asset:bfa4f1d343a4adb87dd03c76bdfa83a8424d8956ef915790b784d3d72760fcae.webp",
+        "Phonetic": "/m\u025Blk/",
+        "Example": "The baby drinks a bottle of milk.",
+        "ExampleTranslation": "Em b\u00E9 u\u1ED1ng m\u1ED9t b\u00ECnh s\u1EEFa.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a white drink from cows that children often have",
+        "Cefr": "A1",
+        "PhoneticUk": "/m\u026Alk/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The baby drinks a bottle of milk.\u0022,\u0022vi\u0022:\u0022Em b\\u00E9 u\\u1ED1ng m\\u1ED9t b\\u00ECnh s\\u1EEFa.\u0022},{\u0022text\u0022:\u0022I put some milk in my coffee.\u0022,\u0022vi\u0022:\u0022T\\u00F4i cho m\\u1ED9t ch\\u00FAt s\\u1EEFa v\\u00E0o c\\u00E0 ph\\u00EA.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022glass of milk\u0022,\u0022vi\u0022:\u0022m\\u1ED9t ly s\\u1EEFa\u0022},{\u0022text\u0022:\u0022fresh milk\u0022,\u0022vi\u0022:\u0022s\\u1EEFa t\\u01B0\\u01A1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/184594136@N08/52633675811\u0022,\u0022author\u0022:\u0022Alabama Extension\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.5ee7ef3dedcc491fb0ecef0b4af85cd3",
+      "kind": "Card",
+      "values": {
+        "Term": "milk tea",
+        "Definition": "tr\u00E0 s\u1EEFa",
+        "ImageUrl": "asset:960ab61ba490906c3ccafd40982308a265e05f972c82a7b0f3fac79ed2adb9d4.webp",
+        "Phonetic": "/m\u025Blk ti/",
+        "Example": "My friends and I love milk tea.",
+        "ExampleTranslation": "T\u00F4i v\u00E0 c\u00E1c b\u1EA1n r\u1EA5t th\u00EDch tr\u00E0 s\u1EEFa.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a sweet drink of tea mixed with milk",
+        "Cefr": "A2",
+        "PhoneticUk": "/m\u026Alk ti\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My friends and I love milk tea.\u0022,\u0022vi\u0022:\u0022T\\u00F4i v\\u00E0 c\\u00E1c b\\u1EA1n r\\u1EA5t th\\u00EDch tr\\u00E0 s\\u1EEFa.\u0022},{\u0022text\u0022:\u0022She ordered a milk tea with pearls.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y g\\u1ECDi m\\u1ED9t ly tr\\u00E0 s\\u1EEFa th\\u00EAm tr\\u00E2n ch\\u00E2u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bubble milk tea\u0022,\u0022vi\u0022:\u0022tr\\u00E0 s\\u1EEFa tr\\u00E2n ch\\u00E2u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Pearl_Milk_Tea_in_Chun_Shui_Tang.jpg\u0022,\u0022author\u0022:\u0022Battlesnake1\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.6049902e535040f8a6e9032558b7ffe6",
+      "kind": "Card",
+      "values": {
+        "Term": "juice",
+        "Definition": "n\u01B0\u1EDBc \u00E9p tr\u00E1i c\u00E2y",
+        "ImageUrl": "asset:568278c11c02265d0d418722c95c6ee100e447e93187ab03c37b8c5fd9e7ab8d.webp",
+        "Phonetic": "/d\u0361\u0292us/",
+        "Example": "She drinks orange juice for breakfast.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y u\u1ED1ng n\u01B0\u1EDBc cam v\u00E0o b\u1EEFa s\u00E1ng.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a drink made from the liquid of fruit",
+        "Cefr": "A1",
+        "PhoneticUk": "/d\u0361\u0292u\u02D0s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She drinks orange juice for breakfast.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y u\\u1ED1ng n\\u01B0\\u1EDBc cam v\\u00E0o b\\u1EEFa s\\u00E1ng.\u0022},{\u0022text\u0022:\u0022The juice is fresh and sweet.\u0022,\u0022vi\u0022:\u0022N\\u01B0\\u1EDBc \\u00E9p n\\u00E0y t\\u01B0\\u01A1i v\\u00E0 ng\\u1ECDt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fruit juice\u0022,\u0022vi\u0022:\u0022n\\u01B0\\u1EDBc \\u00E9p tr\\u00E1i c\\u00E2y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/157635012@N07/28164605967\u0022,\u0022author\u0022:\u0022Artem Beliaikin\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.60def430c4974569be01c845f4fdab02",
+      "kind": "Card",
+      "values": {
+        "Term": "mug",
+        "Definition": "c\u1ED1c c\u00F3 quai",
+        "ImageUrl": "asset:7deab695288419153e720488abbd6ee127d104808ee71182e84764ed2e901de2.webp",
+        "Phonetic": "/m\u028C\u0261/",
+        "Example": "She held a warm mug of tea.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y c\u1EA7m m\u1ED9t chi\u1EBFc c\u1ED1c tr\u00E0 \u1EA5m.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large cup with a handle for hot drinks",
+        "Cefr": "A2",
+        "PhoneticUk": "/m\u028C\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She held a warm mug of tea.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y c\\u1EA7m m\\u1ED9t chi\\u1EBFc c\\u1ED1c tr\\u00E0 \\u1EA5m.\u0022},{\u0022text\u0022:\u0022My mug has a picture of a cat.\u0022,\u0022vi\u0022:\u0022C\\u00E1i c\\u1ED1c c\\u1EE7a t\\u00F4i c\\u00F3 h\\u00ECnh m\\u1ED9t ch\\u00FA m\\u00E8o.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022coffee mug\u0022,\u0022vi\u0022:\u0022c\\u1ED1c c\\u00E0 ph\\u00EA\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/135396164@N05/44381116112\u0022,\u0022author\u0022:\u0022freestocks.org\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.61c8337e964442ff8efdd37028eacef0",
+      "kind": "Card",
+      "values": {
+        "Term": "wine",
+        "Definition": "r\u01B0\u1EE3u vang",
+        "ImageUrl": "asset:322bdb817f3d050c195f680de59c4d25434db9488b9a36d779ed121fc597c4a6.webp",
+        "Phonetic": "/\u02C8wa\u026A\u032Fn/",
+        "Example": "They ordered a bottle of red wine.",
+        "ExampleTranslation": "H\u1ECD g\u1ECDi m\u1ED9t chai r\u01B0\u1EE3u vang \u0111\u1ECF.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an alcoholic drink made from grapes",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8wa\u026A\u032Fn/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022They ordered a bottle of red wine.\u0022,\u0022vi\u0022:\u0022H\\u1ECD g\\u1ECDi m\\u1ED9t chai r\\u01B0\\u1EE3u vang \\u0111\\u1ECF.\u0022},{\u0022text\u0022:\u0022She does not drink wine.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y kh\\u00F4ng u\\u1ED1ng r\\u01B0\\u1EE3u vang.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022red wine\u0022,\u0022vi\u0022:\u0022r\\u01B0\\u1EE3u vang \\u0111\\u1ECF\u0022},{\u0022text\u0022:\u0022glass of wine\u0022,\u0022vi\u0022:\u0022m\\u1ED9t ly r\\u01B0\\u1EE3u vang\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/431874/free-photo-image-wine-red-glass\u0022,\u0022author\u0022:\u0022Markus Spiske\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.8616c978cef14cbb8a33695cc5d41472",
+      "kind": "Card",
+      "values": {
+        "Term": "beer",
+        "Definition": "bia",
+        "ImageUrl": "asset:974d90dd4ed63f564a4bdfc0148f9a816bc0ac80c9e29ca94b0dbf22a7dfd206.webp",
+        "Phonetic": "/\u02C8b\u026A\u025A/",
+        "Example": "My father drinks a beer after work.",
+        "ExampleTranslation": "B\u1ED1 t\u00F4i u\u1ED1ng m\u1ED9t c\u1ED1c bia sau gi\u1EDD l\u00E0m.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a yellow alcoholic drink made from grain",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u026A\u0259\u032F/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My father drinks a beer after work.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 t\\u00F4i u\\u1ED1ng m\\u1ED9t c\\u1ED1c bia sau gi\\u1EDD l\\u00E0m.\u0022},{\u0022text\u0022:\u0022The beer is served very cold.\u0022,\u0022vi\u0022:\u0022Bia \\u0111\\u01B0\\u1EE3c ph\\u1EE5c v\\u1EE5 r\\u1EA5t l\\u1EA1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bottle of beer\u0022,\u0022vi\u0022:\u0022m\\u1ED9t chai bia\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/151732499@N04/37326619712\u0022,\u0022author\u0022:\u0022JohannPiber\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.864b9d68ac804751b1d45cd02ba3aa20",
+      "kind": "Card",
+      "values": {
+        "Term": "cup",
+        "Definition": "t\u00E1ch, c\u1ED1c",
+        "ImageUrl": "asset:dea3fd94194d9445ff24fd3058a6482d6c8d6d8a83c6d4b9eb791c33bbd8525f.webp",
+        "Phonetic": "/\u02C8k\u028Cp/",
+        "Example": "She put the cup on the table.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111\u1EB7t c\u00E1i t\u00E1ch l\u00EAn b\u00E0n.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small round container for hot drinks",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8k\u028Cp/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She put the cup on the table.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111\\u1EB7t c\\u00E1i t\\u00E1ch l\\u00EAn b\\u00E0n.\u0022},{\u0022text\u0022:\u0022I would like a cup of hot tea.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n m\\u1ED9t t\\u00E1ch tr\\u00E0 n\\u00F3ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022paper cup\u0022,\u0022vi\u0022:\u0022c\\u1ED1c gi\\u1EA5y\u0022},{\u0022text\u0022:\u0022cup of tea\u0022,\u0022vi\u0022:\u0022m\\u1ED9t t\\u00E1ch tr\\u00E0\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5975261/photo-image-public-domain-black-tea\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.87877a36d07a479f8f1ab52b9c0e95df",
+      "kind": "Card",
+      "values": {
+        "Term": "sugarcane juice",
+        "Definition": "n\u01B0\u1EDBc m\u00EDa",
+        "ImageUrl": "asset:f36b2f179e4d8d777a062d9fd5366533727f9affb225dae77a31e8772244489e.webp",
+        "Phonetic": "/\u02C8\u0283\u028A\u0261\u025A\u02CCke\u026An d\u0292us/",
+        "Example": "The street seller makes sugarcane juice.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi b\u00E1n h\u00E0ng rong \u00E9p n\u01B0\u1EDBc m\u00EDa.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a sweet juice pressed from sugarcane",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0283\u028A\u0261\u0259ke\u026An d\u0292u\u02D0s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The street seller makes sugarcane juice.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi b\\u00E1n h\\u00E0ng rong \\u00E9p n\\u01B0\\u1EDBc m\\u00EDa.\u0022},{\u0022text\u0022:\u0022I like sugarcane juice with ice.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u00EDch n\\u01B0\\u1EDBc m\\u00EDa c\\u00F3 \\u0111\\u00E1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cold sugarcane juice\u0022,\u0022vi\u0022:\u0022n\\u01B0\\u1EDBc m\\u00EDa l\\u1EA1nh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/2696a77280/\u0022,\u0022author\u0022:\u0022Fiza Adil\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.a0237e76a24541279ee5097686739e55",
+      "kind": "Card",
+      "values": {
+        "Term": "smoothie",
+        "Definition": "sinh t\u1ED1",
+        "ImageUrl": "asset:6c05c913307259bf3175f7761adf7ce9156dd2ed16fe67a862e23845ab8cb2c4.webp",
+        "Phonetic": "/\u02C8smu\u02D0\u00F0i/",
+        "Example": "I made a banana smoothie for breakfast.",
+        "ExampleTranslation": "T\u00F4i l\u00E0m m\u1ED9t ly sinh t\u1ED1 chu\u1ED1i cho b\u1EEFa s\u00E1ng.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thick cold drink made by blending fruit",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8smu\u02D0\u00F0i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I made a banana smoothie for breakfast.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u00E0m m\\u1ED9t ly sinh t\\u1ED1 chu\\u1ED1i cho b\\u1EEFa s\\u00E1ng.\u0022},{\u0022text\u0022:\u0022This strawberry smoothie is very thick.\u0022,\u0022vi\u0022:\u0022Ly sinh t\\u1ED1 d\\u00E2u t\\u00E2y n\\u00E0y r\\u1EA5t \\u0111\\u1EB7c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fruit smoothie\u0022,\u0022vi\u0022:\u0022sinh t\\u1ED1 tr\\u00E1i c\\u00E2y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6031658/photo-image-public-domain-fruit-water\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.b17f4cdc63514739b14deeec860dd7f9",
+      "kind": "Card",
+      "values": {
+        "Term": "ice",
+        "Definition": "n\u01B0\u1EDBc \u0111\u00E1, \u0111\u00E1 l\u1EA1nh",
+        "ImageUrl": "asset:3d18e484d32a44cac64134c30c272e99f74d4b36a4aea94a36e29395331d6e50.webp",
+        "Phonetic": "/a\u026As/",
+        "Example": "Can I have some ice in my drink?",
+        "ExampleTranslation": "Cho t\u00F4i th\u00EAm \u0111\u00E1 v\u00E0o \u0111\u1ED3 u\u1ED1ng \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "frozen water used to make drinks cold",
+        "Cefr": "A1",
+        "PhoneticUk": "/a\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can I have some ice in my drink?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i th\\u00EAm \\u0111\\u00E1 v\\u00E0o \\u0111\\u1ED3 u\\u1ED1ng \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022The ice melted in the hot sun.\u0022,\u0022vi\u0022:\u0022C\\u1EE5c \\u0111\\u00E1 tan ch\\u1EA3y d\\u01B0\\u1EDBi n\\u1EAFng n\\u00F3ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ice cube\u0022,\u0022vi\u0022:\u0022vi\\u00EAn \\u0111\\u00E1\u0022},{\u0022text\u0022:\u0022with ice\u0022,\u0022vi\u0022:\u0022c\\u00F3 \\u0111\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5916924/photo-image-public-domain-glass-ice\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.d7f702cde2ba4e809e6de2a9acf530a1",
+      "kind": "Card",
+      "values": {
+        "Term": "coffee",
+        "Definition": "c\u00E0 ph\u00EA",
+        "ImageUrl": "asset:0dbdabe34e74b62cdcc5a4a905e46c025a73724739a122e0bcb9d24385374e27.webp",
+        "Phonetic": "/\u02C8k\u0254fi/",
+        "Example": "I need a cup of coffee in the morning.",
+        "ExampleTranslation": "Bu\u1ED5i s\u00E1ng t\u00F4i c\u1EA7n m\u1ED9t t\u00E1ch c\u00E0 ph\u00EA.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a hot brown drink made from roasted beans",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8k\u0252fi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I need a cup of coffee in the morning.\u0022,\u0022vi\u0022:\u0022Bu\\u1ED5i s\\u00E1ng t\\u00F4i c\\u1EA7n m\\u1ED9t t\\u00E1ch c\\u00E0 ph\\u00EA.\u0022},{\u0022text\u0022:\u0022He likes strong black coffee.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y th\\u00EDch c\\u00E0 ph\\u00EA \\u0111en \\u0111\\u1EADm.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022black coffee\u0022,\u0022vi\u0022:\u0022c\\u00E0 ph\\u00EA \\u0111en\u0022},{\u0022text\u0022:\u0022iced coffee\u0022,\u0022vi\u0022:\u0022c\\u00E0 ph\\u00EA \\u0111\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/135396164@N05/31512220131\u0022,\u0022author\u0022:\u0022freestocks.org\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.e608381ab36e40318cd5f57f770ac5c4",
+      "kind": "Card",
+      "values": {
+        "Term": "cocoa",
+        "Definition": "ca cao",
+        "ImageUrl": "asset:5ac36f7c41f2469e0279d1ef2910020cd9144a297b54e6865a44a3ef0ed10c7b.webp",
+        "Phonetic": "/\u02C8ko\u028A.ko\u028A/",
+        "Example": "I drink hot cocoa on cold nights.",
+        "ExampleTranslation": "T\u00F4i u\u1ED1ng ca cao n\u00F3ng v\u00E0o nh\u1EEFng \u0111\u00EAm l\u1EA1nh.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a hot chocolate drink made from brown powder",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u0259\u028A.k\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I drink hot cocoa on cold nights.\u0022,\u0022vi\u0022:\u0022T\\u00F4i u\\u1ED1ng ca cao n\\u00F3ng v\\u00E0o nh\\u1EEFng \\u0111\\u00EAm l\\u1EA1nh.\u0022},{\u0022text\u0022:\u0022She made cocoa for the children.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y pha ca cao cho b\\u1ECDn tr\\u1EBB.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hot cocoa\u0022,\u0022vi\u0022:\u0022ca cao n\\u00F3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/cozy-mug-DSBPDFSB3H\u0022,\u0022author\u0022:\u0022Travel Photographer\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.e6fb13deb05c48a6945377fd5240a30e",
+      "kind": "Card",
+      "values": {
+        "Term": "straw",
+        "Definition": "\u1ED1ng h\u00FAt",
+        "ImageUrl": "asset:ef9fb0174dfd540b81ace42cd6865208c723224ea7ae3fe08dfb7316e9d8fa55.webp",
+        "Phonetic": "/st\u0279\u0254/",
+        "Example": "She drank her juice with a straw.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y u\u1ED1ng n\u01B0\u1EDBc \u00E9p b\u1EB1ng \u1ED1ng h\u00FAt.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thin tube used to drink from a cup",
+        "Cefr": "A2",
+        "PhoneticUk": "/st\u0279\u0254\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She drank her juice with a straw.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y u\\u1ED1ng n\\u01B0\\u1EDBc \\u00E9p b\\u1EB1ng \\u1ED1ng h\\u00FAt.\u0022},{\u0022text\u0022:\u0022The shop uses paper straws.\u0022,\u0022vi\u0022:\u0022C\\u1EEDa h\\u00E0ng d\\u00F9ng \\u1ED1ng h\\u00FAt gi\\u1EA5y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022paper straw\u0022,\u0022vi\u0022:\u0022\\u1ED1ng h\\u00FAt gi\\u1EA5y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5912958/image-public-domain-pink-blue\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.e8461c893dd049f293b2724a6dd167d3",
+      "kind": "Card",
+      "values": {
+        "Term": "yogurt",
+        "Definition": "s\u1EEFa chua",
+        "ImageUrl": "asset:5795ebb4d1213eee1a276d7d238c818d29c01fdc659a4949a9a44723f952a4ca.webp",
+        "Phonetic": "/\u02C8j\u0252\u0261.\u0259t/",
+        "Example": "She eats yogurt with fruit every morning.",
+        "ExampleTranslation": "S\u00E1ng n\u00E0o c\u00F4 \u1EA5y c\u0169ng \u0103n s\u1EEFa chua v\u1EDBi tr\u00E1i c\u00E2y.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thick sour food made from milk, sometimes drunk",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8j\u0252\u0261.\u0259t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She eats yogurt with fruit every morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng n\\u00E0o c\\u00F4 \\u1EA5y c\\u0169ng \\u0103n s\\u1EEFa chua v\\u1EDBi tr\\u00E1i c\\u00E2y.\u0022},{\u0022text\u0022:\u0022I like strawberry yogurt the best.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u00EDch s\\u1EEFa chua d\\u00E2u t\\u00E2y nh\\u1EA5t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022plain yogurt\u0022,\u0022vi\u0022:\u0022s\\u1EEFa chua kh\\u00F4ng \\u0111\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8735111/photo-image-public-domain-food\u0022,\u0022author\u0022:\u0022U.S. Department of Agriculture\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.ea2e876d4b9d4b40bf430899e5351b3b",
+      "kind": "Card",
+      "values": {
+        "Term": "cappuccino",
+        "Definition": "c\u00E0 ph\u00EA cappuccino",
+        "ImageUrl": "asset:9f991c0f2edd4d649631c3ee1d58a8ce0e22e7a1faf0ab973e91e2041c446b82.webp",
+        "Phonetic": "/\u02CCk\u00E6p\u0259\u02C8t\u0361\u0283ino\u028A/",
+        "Example": "I would like a cappuccino, please.",
+        "ExampleTranslation": "L\u00E0m \u01A1n cho t\u00F4i m\u1ED9t ly cappuccino.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "coffee with hot milk and a lot of foam",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02CCk\u00E6p\u028A\u02C8t\u0283i\u02D0n\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I would like a cappuccino, please.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n cho t\\u00F4i m\\u1ED9t ly cappuccino.\u0022},{\u0022text\u0022:\u0022The cappuccino has a thick layer of foam.\u0022,\u0022vi\u0022:\u0022Ly cappuccino c\\u00F3 m\\u1ED9t l\\u1EDBp b\\u1ECDt d\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hot cappuccino\u0022,\u0022vi\u0022:\u0022cappuccino n\\u00F3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/41819661@N04/16469731327\u0022,\u0022author\u0022:\u0022Ananda La Vita\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.f262801f23f34f1e9e7f0174752015d5",
+      "kind": "Card",
+      "values": {
+        "Term": "jug",
+        "Definition": "b\u00ECnh r\u00F3t, c\u00E1i ca",
+        "ImageUrl": "asset:2f956e7cc2824ee707d9b2417c71935ea8bee861b8da24b8c0103e286c7ddfd7.webp",
+        "Phonetic": "/d\u0361\u0292\u028C\u0261/",
+        "Example": "She filled the jug with cold water.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y r\u00F3t \u0111\u1EA7y n\u01B0\u1EDBc l\u1EA1nh v\u00E0o c\u00E1i b\u00ECnh.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a container with a handle for pouring liquids",
+        "Cefr": "A2",
+        "PhoneticUk": "/d\u0361\u0292\u028C\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She filled the jug with cold water.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y r\\u00F3t \\u0111\\u1EA7y n\\u01B0\\u1EDBc l\\u1EA1nh v\\u00E0o c\\u00E1i b\\u00ECnh.\u0022},{\u0022text\u0022:\u0022There is a jug of juice on the table.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t b\\u00ECnh n\\u01B0\\u1EDBc \\u00E9p tr\\u00EAn b\\u00E0n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a jug of water\u0022,\u0022vi\u0022:\u0022m\\u1ED9t b\\u00ECnh n\\u01B0\\u1EDBc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/151415985@N06/36743625773\u0022,\u0022author\u0022:\u0022Wallboat\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a06-do-uong.f5d63d2953f54b279e4a8d440def07de",
+      "kind": "Card",
+      "values": {
+        "Term": "lemonade",
+        "Definition": "n\u01B0\u1EDBc chanh",
+        "ImageUrl": "asset:e2880849d7706bb39ad09fe99294323d169a20cbd3288208760dae0ffd5303f4.webp",
+        "Phonetic": "/\u02C8l\u025Bm\u0259\u02CCne\u026Ad/",
+        "Example": "We drank cold lemonade on the hot day.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i u\u1ED1ng n\u01B0\u1EDBc chanh l\u1EA1nh v\u00E0o ng\u00E0y n\u00F3ng.",
+        "Topic": "\u0110\u1ED3 u\u1ED1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a sweet drink made from lemons, sugar and water",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02CCl\u025Bm\u0259\u02C8ne\u026Ad/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We drank cold lemonade on the hot day.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i u\\u1ED1ng n\\u01B0\\u1EDBc chanh l\\u1EA1nh v\\u00E0o ng\\u00E0y n\\u00F3ng.\u0022},{\u0022text\u0022:\u0022The children sold lemonade outside.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB b\\u00E1n n\\u01B0\\u1EDBc chanh ngo\\u00E0i c\\u1EEDa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022glass of lemonade\u0022,\u0022vi\u0022:\u0022m\\u1ED9t ly n\\u01B0\\u1EDBc chanh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/144218922@N07/31896469500\u0022,\u0022author\u0022:\u0022Bildflut85\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a06-do-uong"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "4fee4247cb7a871a9b4c0624abdd2a28a040838b4d4042f494028236bc0d5136.webp",
+      "sha256": "4fee4247cb7a871a9b4c0624abdd2a28a040838b4d4042f494028236bc0d5136"
+    },
+    {
+      "file": "568278c11c02265d0d418722c95c6ee100e447e93187ab03c37b8c5fd9e7ab8d.webp",
+      "sha256": "568278c11c02265d0d418722c95c6ee100e447e93187ab03c37b8c5fd9e7ab8d"
+    },
+    {
+      "file": "bfa4f1d343a4adb87dd03c76bdfa83a8424d8956ef915790b784d3d72760fcae.webp",
+      "sha256": "bfa4f1d343a4adb87dd03c76bdfa83a8424d8956ef915790b784d3d72760fcae"
+    },
+    {
+      "file": "01beecc829e513bd6896bffa7058704cdedfa09046868b6c6d5dc2a9816673f6.webp",
+      "sha256": "01beecc829e513bd6896bffa7058704cdedfa09046868b6c6d5dc2a9816673f6"
+    },
+    {
+      "file": "0dbdabe34e74b62cdcc5a4a905e46c025a73724739a122e0bcb9d24385374e27.webp",
+      "sha256": "0dbdabe34e74b62cdcc5a4a905e46c025a73724739a122e0bcb9d24385374e27"
+    },
+    {
+      "file": "960ab61ba490906c3ccafd40982308a265e05f972c82a7b0f3fac79ed2adb9d4.webp",
+      "sha256": "960ab61ba490906c3ccafd40982308a265e05f972c82a7b0f3fac79ed2adb9d4"
+    },
+    {
+      "file": "6c05c913307259bf3175f7761adf7ce9156dd2ed16fe67a862e23845ab8cb2c4.webp",
+      "sha256": "6c05c913307259bf3175f7761adf7ce9156dd2ed16fe67a862e23845ab8cb2c4"
+    },
+    {
+      "file": "e2880849d7706bb39ad09fe99294323d169a20cbd3288208760dae0ffd5303f4.webp",
+      "sha256": "e2880849d7706bb39ad09fe99294323d169a20cbd3288208760dae0ffd5303f4"
+    },
+    {
+      "file": "2f956e7cc2824ee707d9b2417c71935ea8bee861b8da24b8c0103e286c7ddfd7.webp",
+      "sha256": "2f956e7cc2824ee707d9b2417c71935ea8bee861b8da24b8c0103e286c7ddfd7"
+    },
+    {
+      "file": "974d90dd4ed63f564a4bdfc0148f9a816bc0ac80c9e29ca94b0dbf22a7dfd206.webp",
+      "sha256": "974d90dd4ed63f564a4bdfc0148f9a816bc0ac80c9e29ca94b0dbf22a7dfd206"
+    },
+    {
+      "file": "322bdb817f3d050c195f680de59c4d25434db9488b9a36d779ed121fc597c4a6.webp",
+      "sha256": "322bdb817f3d050c195f680de59c4d25434db9488b9a36d779ed121fc597c4a6"
+    },
+    {
+      "file": "5ac36f7c41f2469e0279d1ef2910020cd9144a297b54e6865a44a3ef0ed10c7b.webp",
+      "sha256": "5ac36f7c41f2469e0279d1ef2910020cd9144a297b54e6865a44a3ef0ed10c7b"
+    },
+    {
+      "file": "845a0c573c0d7e16af11a976e6561ba8d921b442730a319a7590954ca2162719.webp",
+      "sha256": "845a0c573c0d7e16af11a976e6561ba8d921b442730a319a7590954ca2162719"
+    },
+    {
+      "file": "f36b2f179e4d8d777a062d9fd5366533727f9affb225dae77a31e8772244489e.webp",
+      "sha256": "f36b2f179e4d8d777a062d9fd5366533727f9affb225dae77a31e8772244489e"
+    },
+    {
+      "file": "5795ebb4d1213eee1a276d7d238c818d29c01fdc659a4949a9a44723f952a4ca.webp",
+      "sha256": "5795ebb4d1213eee1a276d7d238c818d29c01fdc659a4949a9a44723f952a4ca"
+    },
+    {
+      "file": "21c277e129c3a232dc2973985379d503dc01f80361f1be02a75a8c972f3d2d5b.webp",
+      "sha256": "21c277e129c3a232dc2973985379d503dc01f80361f1be02a75a8c972f3d2d5b"
+    },
+    {
+      "file": "9f991c0f2edd4d649631c3ee1d58a8ce0e22e7a1faf0ab973e91e2041c446b82.webp",
+      "sha256": "9f991c0f2edd4d649631c3ee1d58a8ce0e22e7a1faf0ab973e91e2041c446b82"
+    },
+    {
+      "file": "4e25fa8cffa7a93a7ab74ce5a777e256e78fdfbeab7456e4e30e84538bff3bdf.webp",
+      "sha256": "4e25fa8cffa7a93a7ab74ce5a777e256e78fdfbeab7456e4e30e84538bff3bdf"
+    },
+    {
+      "file": "73e2dbe3de62dd2eb0512040fb817f69ee2a0e94ff31f0ed11c90dc0e03d030d.webp",
+      "sha256": "73e2dbe3de62dd2eb0512040fb817f69ee2a0e94ff31f0ed11c90dc0e03d030d"
+    },
+    {
+      "file": "3d18e484d32a44cac64134c30c272e99f74d4b36a4aea94a36e29395331d6e50.webp",
+      "sha256": "3d18e484d32a44cac64134c30c272e99f74d4b36a4aea94a36e29395331d6e50"
+    },
+    {
+      "file": "ef9fb0174dfd540b81ace42cd6865208c723224ea7ae3fe08dfb7316e9d8fa55.webp",
+      "sha256": "ef9fb0174dfd540b81ace42cd6865208c723224ea7ae3fe08dfb7316e9d8fa55"
+    },
+    {
+      "file": "9c8cd2cd9544afbaf76461d78525cb57854b4b91ef7aa5ccedbfb3591ab24fcd.webp",
+      "sha256": "9c8cd2cd9544afbaf76461d78525cb57854b4b91ef7aa5ccedbfb3591ab24fcd"
+    },
+    {
+      "file": "dea3fd94194d9445ff24fd3058a6482d6c8d6d8a83c6d4b9eb791c33bbd8525f.webp",
+      "sha256": "dea3fd94194d9445ff24fd3058a6482d6c8d6d8a83c6d4b9eb791c33bbd8525f"
+    },
+    {
+      "file": "86b5cf431c1fb9d15656a4a0e59aeccebcde2eb31cf849ba63dfa0204c4f1101.webp",
+      "sha256": "86b5cf431c1fb9d15656a4a0e59aeccebcde2eb31cf849ba63dfa0204c4f1101"
+    },
+    {
+      "file": "7deab695288419153e720488abbd6ee127d104808ee71182e84764ed2e901de2.webp",
+      "sha256": "7deab695288419153e720488abbd6ee127d104808ee71182e84764ed2e901de2"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a06-do-uong"
+}

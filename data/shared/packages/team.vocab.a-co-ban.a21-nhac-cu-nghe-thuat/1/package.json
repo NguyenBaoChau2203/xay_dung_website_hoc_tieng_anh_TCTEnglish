@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat",
+      "kind": "Set",
+      "values": {
+        "SetName": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "Description": "#a1 #a2 #music #art"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.036f0ef72b384fdd8ffcea3c440f6705",
+      "kind": "Card",
+      "values": {
+        "Term": "statue",
+        "Definition": "b\u1EE9c t\u01B0\u1EE3ng",
+        "ImageUrl": "asset:656ed6ca5019584c630bc573eba29a710a66d6053e01892459168faad44fbefa.webp",
+        "Phonetic": "/\u02C8st\u00E6t\u0361\u0283u/",
+        "Example": "A statue of a king stands in the square.",
+        "ExampleTranslation": "M\u1ED9t b\u1EE9c t\u01B0\u1EE3ng nh\u00E0 vua \u0111\u1EE9ng \u1EDF qu\u1EA3ng tr\u01B0\u1EDDng.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a figure of a person or animal made from stone or metal",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8st\u00E6t\u0361\u0283.u\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A statue of a king stands in the square.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t b\\u1EE9c t\\u01B0\\u1EE3ng nh\\u00E0 vua \\u0111\\u1EE9ng \\u1EDF qu\\u1EA3ng tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022Tourists take photos next to the statue.\u0022,\u0022vi\u0022:\u0022Kh\\u00E1ch du l\\u1ECBch ch\\u1EE5p \\u1EA3nh c\\u1EA1nh b\\u1EE9c t\\u01B0\\u1EE3ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bronze statue\u0022,\u0022vi\u0022:\u0022t\\u01B0\\u1EE3ng \\u0111\\u1ED3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/7156765@N05/51600261440\u0022,\u0022author\u0022:\u0022Onasill - Bill Badzo - 149 Million Views - Thank Y\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.05f9120128a24501a38d1a9e7c8b44f9",
+      "kind": "Card",
+      "values": {
+        "Term": "flute",
+        "Definition": "c\u00E2y s\u00E1o",
+        "ImageUrl": "asset:9625bee487674f048f8be0e62d9234d5c41337eaa7fc734b8c1ef7f4958165f4.webp",
+        "Phonetic": "/flu(\u02D0)t/",
+        "Example": "She plays the flute in the school band.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y th\u1ED5i s\u00E1o trong ban nh\u1EA1c c\u1EE7a tr\u01B0\u1EDDng.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long thin instrument that you blow across",
+        "Cefr": "A2",
+        "PhoneticUk": "/flu(\u02D0)t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She plays the flute in the school band.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y th\\u1ED5i s\\u00E1o trong ban nh\\u1EA1c c\\u1EE7a tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022The sound of the flute is light and clear.\u0022,\u0022vi\u0022:\u0022Ti\\u1EBFng s\\u00E1o nh\\u1EB9 nh\\u00E0ng v\\u00E0 trong tr\\u1EBBo.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play the flute\u0022,\u0022vi\u0022:\u0022th\\u1ED5i s\\u00E1o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6290349/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.06c5b07830ba445a8bc2d1b35b918e48",
+      "kind": "Card",
+      "values": {
+        "Term": "saxophone",
+        "Definition": "k\u00E8n saxophone",
+        "ImageUrl": "asset:0d682c5c0eb40d99f2cb90b6903838c3343420b00481591a90dd5065c38a9434.webp",
+        "Phonetic": "/\u02C8s\u00E6ks\u0259\u02CCfo\u028A\u032Fn/",
+        "Example": "The man played the saxophone on the street.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi \u0111\u00E0n \u00F4ng th\u1ED5i k\u00E8n saxophone tr\u00EAn ph\u1ED1.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a curved metal instrument used in jazz",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8s\u00E6ks\u0259\u02CCf\u0259\u028A\u032Fn/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The man played the saxophone on the street.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi \\u0111\\u00E0n \\u00F4ng th\\u1ED5i k\\u00E8n saxophone tr\\u00EAn ph\\u1ED1.\u0022},{\u0022text\u0022:\u0022A saxophone has a warm, deep sound.\u0022,\u0022vi\u0022:\u0022K\\u00E8n saxophone c\\u00F3 \\u00E2m thanh \\u1EA5m v\\u00E0 tr\\u1EA7m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play the saxophone\u0022,\u0022vi\u0022:\u0022th\\u1ED5i k\\u00E8n saxophone\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/132795455@N08/20311658263\u0022,\u0022author\u0022:\u0022Image Catalog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.1461a01858c14a048230157c86a023fb",
+      "kind": "Card",
+      "values": {
+        "Term": "orchestra",
+        "Definition": "d\u00E0n nh\u1EA1c giao h\u01B0\u1EDFng",
+        "ImageUrl": "asset:7dc526ad1661b462943b32a4931262cc0c919dfcba1b82bc83655390dc856675.webp",
+        "Phonetic": "/\u02C8o\u0279.k\u026As.t\u0279\u0259/",
+        "Example": "The orchestra played a beautiful song.",
+        "ExampleTranslation": "D\u00E0n nh\u1EA1c \u0111\u00E3 ch\u01A1i m\u1ED9t b\u1EA3n nh\u1EA1c tuy\u1EC7t \u0111\u1EB9p.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large group of musicians who play together",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0254\u02D0.k\u026As.t\u0279\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The orchestra played a beautiful song.\u0022,\u0022vi\u0022:\u0022D\\u00E0n nh\\u1EA1c \\u0111\\u00E3 ch\\u01A1i m\\u1ED9t b\\u1EA3n nh\\u1EA1c tuy\\u1EC7t \\u0111\\u1EB9p.\u0022},{\u0022text\u0022:\u0022My sister plays the violin in the school orchestra.\u0022,\u0022vi\u0022:\u0022Ch\\u1ECB t\\u00F4i ch\\u01A1i vi-\\u00F4-l\\u00F4ng trong d\\u00E0n nh\\u1EA1c c\\u1EE7a tr\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022symphony orchestra\u0022,\u0022vi\u0022:\u0022d\\u00E0n nh\\u1EA1c giao h\\u01B0\\u1EDFng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/43686761@N04/29175342525\u0022,\u0022author\u0022:\u0022Sinf\\u00F3n\\u00EDuhlj\\u00F3msveit \\u00CDslands\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.33a29ce492bd49669812bbdf96e05b1a",
+      "kind": "Card",
+      "values": {
+        "Term": "cello",
+        "Definition": "\u0111\u00E0n cello",
+        "ImageUrl": "asset:593536c83c272b0cc417df21e836560bff1ba169ced768427119d7e8eef8089b.webp",
+        "Phonetic": "/\u02C8t\u0361\u0283\u025Blo\u028A/",
+        "Example": "He sits down to play the cello.",
+        "ExampleTranslation": "Anh \u1EA5y ng\u1ED3i xu\u1ED1ng ch\u01A1i \u0111\u00E0n cello.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a big string instrument that you play sitting down",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8t\u0283\u025Bl\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He sits down to play the cello.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y ng\\u1ED3i xu\\u1ED1ng ch\\u01A1i \\u0111\\u00E0n cello.\u0022},{\u0022text\u0022:\u0022The cello is much bigger than a violin.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E0n cello to h\\u01A1n \\u0111\\u00E0n vi-\\u00F4-l\\u00F4ng r\\u1EA5t nhi\\u1EC1u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play the cello\u0022,\u0022vi\u0022:\u0022ch\\u01A1i \\u0111\\u00E0n cello\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5908151/image-public-domain-art-hand\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.3424a7a231bc4fef98f51ce379e11f21",
+      "kind": "Card",
+      "values": {
+        "Term": "harmonica",
+        "Definition": "k\u00E8n harmonica",
+        "ImageUrl": "asset:c0b11a5b3e52e37677208a22542b23ae3b1212ebd2a88e2f0e49e74ad03c97a7.webp",
+        "Phonetic": "/\u02CCh\u0251\u0279\u02C8m\u0251n\u026Ak\u0259/",
+        "Example": "My grandfather plays the harmonica.",
+        "ExampleTranslation": "\u00D4ng t\u00F4i ch\u01A1i k\u00E8n harmonica.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small instrument that you blow and suck air through",
+        "Cefr": "A2",
+        "PhoneticUk": "/h\u0251\u02D0\u02C8m\u0252n\u026Ak\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandfather plays the harmonica.\u0022,\u0022vi\u0022:\u0022\\u00D4ng t\\u00F4i ch\\u01A1i k\\u00E8n harmonica.\u0022},{\u0022text\u0022:\u0022A harmonica fits in your pocket.\u0022,\u0022vi\u0022:\u0022K\\u00E8n harmonica nh\\u00E9t v\\u1EEBa t\\u00FAi \\u00E1o.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play the harmonica\u0022,\u0022vi\u0022:\u0022th\\u1ED5i k\\u00E8n harmonica\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/harmonica-music-Q22SIY7HA6\u0022,\u0022author\u0022:\u0022AJ Montpetit\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.348ce5255f0d4f27b7dcf738b6e230de",
+      "kind": "Card",
+      "values": {
+        "Term": "accordion",
+        "Definition": "\u0111\u00E0n accordion",
+        "ImageUrl": "asset:fa6fcfa52795c1abe463a895a6420739568ae9b0f1a89566606113c997b072e6.webp",
+        "Phonetic": "/\u0259\u02C8ko\u0279.di.\u0259n/",
+        "Example": "The old man plays the accordion in the square.",
+        "ExampleTranslation": "\u00D4ng l\u00E3o ch\u01A1i \u0111\u00E0n accordion \u1EDF qu\u1EA3ng tr\u01B0\u1EDDng.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an instrument that you squeeze open and shut while pressing keys",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0259\u02C8k\u0254\u02D0.di\u02D0.\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The old man plays the accordion in the square.\u0022,\u0022vi\u0022:\u0022\\u00D4ng l\\u00E3o ch\\u01A1i \\u0111\\u00E0n accordion \\u1EDF qu\\u1EA3ng tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022An accordion makes a lively sound.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E0n accordion t\\u1EA1o ra \\u00E2m thanh s\\u00F4i n\\u1ED5i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play the accordion\u0022,\u0022vi\u0022:\u0022ch\\u01A1i \\u0111\\u00E0n accordion\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6449440/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.381382e289664a68ac3cae4d94b870ff",
+      "kind": "Card",
+      "values": {
+        "Term": "canvas",
+        "Definition": "t\u1EA5m toan v\u1EBD",
+        "ImageUrl": "asset:0e3a7d00201e0c96bcd44209470fc76ae657238d0d610a3b780b5c0109446ef1.webp",
+        "Phonetic": "/\u02C8k\u00E6n.v\u0259s/",
+        "Example": "He painted a mountain on the canvas.",
+        "ExampleTranslation": "Anh \u1EA5y v\u1EBD m\u1ED9t ng\u1ECDn n\u00FAi l\u00EAn t\u1EA5m toan.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "strong cloth that artists paint on",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u00E6n.v\u0259s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He painted a mountain on the canvas.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y v\\u1EBD m\\u1ED9t ng\\u1ECDn n\\u00FAi l\\u00EAn t\\u1EA5m toan.\u0022},{\u0022text\u0022:\u0022The empty canvas is waiting for colour.\u0022,\u0022vi\u0022:\u0022T\\u1EA5m toan tr\\u1ED1ng \\u0111ang ch\\u1EDD nh\\u1EEFng m\\u1EA3ng m\\u00E0u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022blank canvas\u0022,\u0022vi\u0022:\u0022t\\u1EA5m toan tr\\u1ED1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/96511847@N04/9203623490\u0022,\u0022author\u0022:\u0022Foto Miki Digital\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.5eab949fcdae4a0993f732a0c966a162",
+      "kind": "Card",
+      "values": {
+        "Term": "poster",
+        "Definition": "\u00E1p ph\u00EDch",
+        "ImageUrl": "asset:5189e197cb7b54dd8eff430b82b72c40f52815036a574c61983da172155fcca9.webp",
+        "Phonetic": "/\u02C8po\u028Ast\u025A/",
+        "Example": "I put a music poster on my wall.",
+        "ExampleTranslation": "T\u00F4i d\u00E1n m\u1ED9t t\u1EA5m \u00E1p ph\u00EDch \u00E2m nh\u1EA1c l\u00EAn t\u01B0\u1EDDng.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large printed picture or notice that you put on a wall",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8po\u028Ast\u025A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I put a music poster on my wall.\u0022,\u0022vi\u0022:\u0022T\\u00F4i d\\u00E1n m\\u1ED9t t\\u1EA5m \\u00E1p ph\\u00EDch \\u00E2m nh\\u1EA1c l\\u00EAn t\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022The poster says the concert is on Friday.\u0022,\u0022vi\u0022:\u0022T\\u1EA5m \\u00E1p ph\\u00EDch cho bi\\u1EBFt bu\\u1ED5i h\\u00F2a nh\\u1EA1c di\\u1EC5n ra v\\u00E0o th\\u1EE9 S\\u00E1u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022film poster\u0022,\u0022vi\u0022:\u0022\\u00E1p ph\\u00EDch phim\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6030881/photo-image-paper-texture-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.6d2538c5e18b4ca3a8cebe35123d0c15",
+      "kind": "Card",
+      "values": {
+        "Term": "puppet",
+        "Definition": "con r\u1ED1i",
+        "ImageUrl": "asset:a46f6e663ad34563d49d1e07c3823ec17b18c4aa814a6c2aba4493696e89c351.webp",
+        "Phonetic": "/\u02C8p\u028Cp\u026At/",
+        "Example": "The children watched a puppet show.",
+        "ExampleTranslation": "B\u1ECDn tr\u1EBB xem m\u1ED9t bu\u1ED5i bi\u1EC3u di\u1EC5n m\u00FAa r\u1ED1i.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small figure that you move with your hand or with strings",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u028Cp\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The children watched a puppet show.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB xem m\\u1ED9t bu\\u1ED5i bi\\u1EC3u di\\u1EC5n m\\u00FAa r\\u1ED1i.\u0022},{\u0022text\u0022:\u0022She made a puppet from an old sock.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0m m\\u1ED9t con r\\u1ED1i t\\u1EEB chi\\u1EBFc t\\u1EA5t c\\u0169.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022water puppet\u0022,\u0022vi\u0022:\u0022m\\u00FAa r\\u1ED1i n\\u01B0\\u1EDBc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/94006243@N08/15407241810\u0022,\u0022author\u0022:\u0022STUDIO ALIJN\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.869ce7922d8f48fe85e9f3445e99b13d",
+      "kind": "Card",
+      "values": {
+        "Term": "piano",
+        "Definition": "\u0111\u00E0n piano",
+        "ImageUrl": "asset:b280e6e273a527bf63b5727342745c325168105f42f9b6cadd1310d0533bd849.webp",
+        "Phonetic": "/pi\u02C8\u00E6no\u028A/",
+        "Example": "She practises the piano every evening.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y luy\u1EC7n \u0111\u00E0n piano m\u1ED7i bu\u1ED5i t\u1ED1i.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a big musical instrument with black and white keys",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8pj\u00E6n\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She practises the piano every evening.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y luy\\u1EC7n \\u0111\\u00E0n piano m\\u1ED7i bu\\u1ED5i t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022There is an old piano in our living room.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t c\\u00E2y \\u0111\\u00E0n piano c\\u0169 trong ph\\u00F2ng kh\\u00E1ch nh\\u00E0 t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play the piano\u0022,\u0022vi\u0022:\u0022ch\\u01A1i piano\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/piano-keys-DPYMRMG50T\u0022,\u0022author\u0022:\u0022Freestocks.org\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.87448d01843b4377a58c67cd96ef673e",
+      "kind": "Card",
+      "values": {
+        "Term": "trumpet",
+        "Definition": "k\u00E8n trumpet",
+        "ImageUrl": "asset:8ec3b78bccf477269c94512e7dd9aa302d1a6ebddb8776aba186946b6a37c03f.webp",
+        "Phonetic": "/\u02C8t\u0279\u028Cmp\u026At/",
+        "Example": "He plays the trumpet in a jazz band.",
+        "ExampleTranslation": "Anh \u1EA5y th\u1ED5i trumpet trong m\u1ED9t ban nh\u1EA1c jazz.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a loud brass instrument that you blow into",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8t\u0279\u028Cmp\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He plays the trumpet in a jazz band.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y th\\u1ED5i trumpet trong m\\u1ED9t ban nh\\u1EA1c jazz.\u0022},{\u0022text\u0022:\u0022The trumpet is very loud.\u0022,\u0022vi\u0022:\u0022Ti\\u1EBFng k\\u00E8n trumpet r\\u1EA5t to.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play the trumpet\u0022,\u0022vi\u0022:\u0022th\\u1ED5i k\\u00E8n trumpet\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Dynacord_PowerMate_600_powered_mixer_%26_trumpet_(brass_instrument,_trumpet,_electronics,_audio,_equipment)_(2015-09-25_21.14.30_by_hpgruesen_@PIXNIO_251311).jpg\u0022,\u0022author\u0022:\u0022hpgruesen\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.908afc675fb44c1f9425054a0f74c594",
+      "kind": "Card",
+      "values": {
+        "Term": "harp",
+        "Definition": "\u0111\u00E0n h\u1EA1c",
+        "ImageUrl": "asset:30dad38415d90361f2af835656bd528a41b9e9b50cf61b0bb389c96491e4327a.webp",
+        "Phonetic": "/h\u0251\u0279p/",
+        "Example": "She plays the harp very gently.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y ch\u01A1i \u0111\u00E0n h\u1EA1c r\u1EA5t nh\u1EB9 nh\u00E0ng.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large instrument with many strings that you pull with your fingers",
+        "Cefr": "A2",
+        "PhoneticUk": "/h\u0251\u02D0p/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She plays the harp very gently.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y ch\\u01A1i \\u0111\\u00E0n h\\u1EA1c r\\u1EA5t nh\\u1EB9 nh\\u00E0ng.\u0022},{\u0022text\u0022:\u0022A harp has many long strings.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E0n h\\u1EA1c c\\u00F3 r\\u1EA5t nhi\\u1EC1u d\\u00E2y d\\u00E0i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play the harp\u0022,\u0022vi\u0022:\u0022ch\\u01A1i \\u0111\\u00E0n h\\u1EA1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/70125105@N06/32266826342\u0022,\u0022author\u0022:\u0022Carlo Raso\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.91eb92e5ee5046db8b57d66f31332776",
+      "kind": "Card",
+      "values": {
+        "Term": "violin",
+        "Definition": "\u0111\u00E0n vi-\u00F4-l\u00F4ng",
+        "ImageUrl": "asset:a5ee98f5665929c2c4596ad348eb0ec29fb52e2086821a154763a44fd2dc7c47.webp",
+        "Phonetic": "/\u02CCva\u026A.\u0259\u02C8l\u026An/",
+        "Example": "He learns to play the violin.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y \u0111ang h\u1ECDc ch\u01A1i vi-\u00F4-l\u00F4ng.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small musical instrument with four strings played with a bow",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02CCva\u026A.\u0259\u02C8l\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He learns to play the violin.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y \\u0111ang h\\u1ECDc ch\\u01A1i vi-\\u00F4-l\\u00F4ng.\u0022},{\u0022text\u0022:\u0022The violin sounds sweet and soft.\u0022,\u0022vi\u0022:\u0022Ti\\u1EBFng vi-\\u00F4-l\\u00F4ng nghe ng\\u1ECDt ng\\u00E0o v\\u00E0 nh\\u1EB9 nh\\u00E0ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play the violin\u0022,\u0022vi\u0022:\u0022ch\\u01A1i vi-\\u00F4-l\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/70125105@N06/26651708507\u0022,\u0022author\u0022:\u0022Carlo Raso\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.92e00d2307e846ebac0180d104c55785",
+      "kind": "Card",
+      "values": {
+        "Term": "microphone",
+        "Definition": "micro",
+        "ImageUrl": "asset:e852b09dd74596f808ccf425b19d96f54e1a5c61015a9621f02548614c1a2e26.webp",
+        "Phonetic": "/\u02C8ma\u026A.k\u0279\u0259\u02CCfo\u028An/",
+        "Example": "The singer held the microphone in her hand.",
+        "ExampleTranslation": "Ca s\u0129 c\u1EA7m micro trong tay.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a device that makes your voice louder",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8ma\u026A.k\u0279\u0259\u02CCf\u0259\u028An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The singer held the microphone in her hand.\u0022,\u0022vi\u0022:\u0022Ca s\\u0129 c\\u1EA7m micro trong tay.\u0022},{\u0022text\u0022:\u0022The microphone is not working.\u0022,\u0022vi\u0022:\u0022C\\u00E1i micro kh\\u00F4ng ho\\u1EA1t \\u0111\\u1ED9ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022speak into the microphone\u0022,\u0022vi\u0022:\u0022n\\u00F3i v\\u00E0o micro\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/23408922@N07/15601584309\u0022,\u0022author\u0022:\u0022comedy_nose\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.97979ccf733c4c198c88b0f79a79404f",
+      "kind": "Card",
+      "values": {
+        "Term": "concert",
+        "Definition": "bu\u1ED5i h\u00F2a nh\u1EA1c",
+        "ImageUrl": "asset:799be63331155bee9b1c25528d22f1a90f1ca74e9bcab959a5cfc0a232a1e468.webp",
+        "Phonetic": "/k\u0259n\u02C8s\u025Dt/",
+        "Example": "We went to a rock concert on Friday.",
+        "ExampleTranslation": "Th\u1EE9 S\u00E1u ch\u00FAng t\u00F4i \u0111\u00E3 \u0111i xem m\u1ED9t bu\u1ED5i h\u00F2a nh\u1EA1c rock.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a show where musicians play for an audience",
+        "Cefr": "A2",
+        "PhoneticUk": "/k\u0259n\u02C8s\u025C\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We went to a rock concert on Friday.\u0022,\u0022vi\u0022:\u0022Th\\u1EE9 S\\u00E1u ch\\u00FAng t\\u00F4i \\u0111\\u00E3 \\u0111i xem m\\u1ED9t bu\\u1ED5i h\\u00F2a nh\\u1EA1c rock.\u0022},{\u0022text\u0022:\u0022The concert starts at eight o\\u0027clock.\u0022,\u0022vi\u0022:\u0022Bu\\u1ED5i h\\u00F2a nh\\u1EA1c b\\u1EAFt \\u0111\\u1EA7u l\\u00FAc t\\u00E1m gi\\u1EDD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go to a concert\u0022,\u0022vi\u0022:\u0022\\u0111i xem h\\u00F2a nh\\u1EA1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/135396164@N05/25545258533\u0022,\u0022author\u0022:\u0022freestocks.org\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.9e3df5a5a5434287aa5f4a3b5a11b9b3",
+      "kind": "Card",
+      "values": {
+        "Term": "ukulele",
+        "Definition": "\u0111\u00E0n ukulele",
+        "ImageUrl": "asset:485e2ab55078078a17a015cef943543d1b59b2832b8d121d022a6732892056c8.webp",
+        "Phonetic": "/ju\u02D0.k\u0259\u02C8le\u026A.li/",
+        "Example": "She plays a ukulele at the beach.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y ch\u01A1i \u0111\u00E0n ukulele \u1EDF b\u00E3i bi\u1EC3n.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small guitar with four strings",
+        "Cefr": "A2",
+        "PhoneticUk": "/ju\u02D0.k\u0259\u02C8le\u026A.li/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She plays a ukulele at the beach.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y ch\\u01A1i \\u0111\\u00E0n ukulele \\u1EDF b\\u00E3i bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022A ukulele is easy to learn.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E0n ukulele r\\u1EA5t d\\u1EC5 h\\u1ECDc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play the ukulele\u0022,\u0022vi\u0022:\u0022ch\\u01A1i ukulele\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/128433076@N04/19141103336\u0022,\u0022author\u0022:\u0022Will Anderson Photographs\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.b09c0d3ec03d443dbd01ff77ea4f1ad0",
+      "kind": "Card",
+      "values": {
+        "Term": "theatre",
+        "Definition": "nh\u00E0 h\u00E1t",
+        "ImageUrl": "asset:c3c2f409dbe94534e25af1552e80aeb6fe3a49a4c67fa44a7a9e91c69b6c1361.webp",
+        "Phonetic": "/\u02C8\u03B8i\u02D0\u0259t\u0259r/",
+        "Example": "We saw a play at the theatre last night.",
+        "ExampleTranslation": "T\u1ED1i qua ch\u00FAng t\u00F4i xem m\u1ED9t v\u1EDF k\u1ECBch \u1EDF nh\u00E0 h\u00E1t.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a building where people watch plays",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u03B8\u026A\u0259t\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We saw a play at the theatre last night.\u0022,\u0022vi\u0022:\u0022T\\u1ED1i qua ch\\u00FAng t\\u00F4i xem m\\u1ED9t v\\u1EDF k\\u1ECBch \\u1EDF nh\\u00E0 h\\u00E1t.\u0022},{\u0022text\u0022:\u0022The old theatre has red velvet seats.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 h\\u00E1t c\\u0169 c\\u00F3 nh\\u1EEFng chi\\u1EBFc gh\\u1EBF nhung \\u0111\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go to the theatre\u0022,\u0022vi\u0022:\u0022\\u0111i xem k\\u1ECBch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/153295164@N05/51909739971\u0022,\u0022author\u0022:\u0022theatretalks\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.b98545bbf498486898412577926a186b",
+      "kind": "Card",
+      "values": {
+        "Term": "paintbrush",
+        "Definition": "c\u1ECD v\u1EBD",
+        "ImageUrl": "asset:6c32cb1bfe82149f5f17080fd310289516d5f296c494b6912d39e27c4b285f77.webp",
+        "Phonetic": "/\u02C8pe\u026Ant\u02CCb\u0279\u028C\u0283/",
+        "Example": "She washed her paintbrush in the water.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y r\u1EEDa c\u00E2y c\u1ECD v\u1EBD trong n\u01B0\u1EDBc.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a brush used for painting",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8pe\u026Ant\u02CCb\u0279\u028C\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She washed her paintbrush in the water.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y r\\u1EEDa c\\u00E2y c\\u1ECD v\\u1EBD trong n\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022A thin paintbrush is good for small details.\u0022,\u0022vi\u0022:\u0022C\\u1ECD v\\u1EBD nh\\u1ECF r\\u1EA5t t\\u1ED1t cho nh\\u1EEFng chi ti\\u1EBFt nh\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wet paintbrush\u0022,\u0022vi\u0022:\u0022c\\u1ECD v\\u1EBD \\u01B0\\u1EDBt\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6338193/png-sticker-art\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.cc80789ab8294abbb388c9412a7ad351",
+      "kind": "Card",
+      "values": {
+        "Term": "mask",
+        "Definition": "chi\u1EBFc m\u1EB7t n\u1EA1",
+        "ImageUrl": "asset:720136ba5f5cfcaccd9bda9c78de38f62b02ec20782f5a5a641046fa303cb020.webp",
+        "Phonetic": "/m\u00E6sk/",
+        "Example": "The dancer wore a colourful mask.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi m\u00FAa \u0111eo m\u1ED9t chi\u1EBFc m\u1EB7t n\u1EA1 nhi\u1EC1u m\u00E0u.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a cover that you wear over your face",
+        "Cefr": "A2",
+        "PhoneticUk": "/m\u0251\u02D0sk/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The dancer wore a colourful mask.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi m\\u00FAa \\u0111eo m\\u1ED9t chi\\u1EBFc m\\u1EB7t n\\u1EA1 nhi\\u1EC1u m\\u00E0u.\u0022},{\u0022text\u0022:\u0022The children made paper masks at school.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB l\\u00E0m m\\u1EB7t n\\u1EA1 gi\\u1EA5y \\u1EDF tr\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022paper mask\u0022,\u0022vi\u0022:\u0022m\\u1EB7t n\\u1EA1 gi\\u1EA5y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/34409164@N06/5022285453\u0022,\u0022author\u0022:\u0022gnuckx\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.d5f6a9eb42c24138848c764fc252d8de",
+      "kind": "Card",
+      "values": {
+        "Term": "gallery",
+        "Definition": "ph\u00F2ng tranh",
+        "ImageUrl": "asset:3ec3b7a81450ea5ff4b20923c43d3c1f7494040426a841432de308a2597f2b71.webp",
+        "Phonetic": "/\u02C8\u0261\u00E6l\u0259\u0279i/",
+        "Example": "We visited an art gallery on Sunday.",
+        "ExampleTranslation": "Ch\u1EE7 nh\u1EADt ch\u00FAng t\u00F4i \u0111\u00E3 th\u0103m m\u1ED9t ph\u00F2ng tranh.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a building or room where paintings are shown",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0261\u00E6l\u0259\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We visited an art gallery on Sunday.\u0022,\u0022vi\u0022:\u0022Ch\\u1EE7 nh\\u1EADt ch\\u00FAng t\\u00F4i \\u0111\\u00E3 th\\u0103m m\\u1ED9t ph\\u00F2ng tranh.\u0022},{\u0022text\u0022:\u0022The gallery has paintings from many countries.\u0022,\u0022vi\u0022:\u0022Ph\\u00F2ng tranh c\\u00F3 nh\\u1EEFng b\\u1EE9c tranh t\\u1EEB nhi\\u1EC1u qu\\u1ED1c gia.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022art gallery\u0022,\u0022vi\u0022:\u0022ph\\u00F2ng tr\\u01B0ng b\\u00E0y ngh\\u1EC7 thu\\u1EADt\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022galleries\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Interior_view_of_the_art_studio_or_gallery_of_the_Paul_deLongpre_residence,_Hollywood_Boulevard_and_Cahuenga_Avenue,_Hollywood,_ca.1905_(CHS-5048).jpg\u0022,\u0022author\u0022:\u0022C. C. Pierce\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.d7b541154f084347a37263289ecfd713",
+      "kind": "Card",
+      "values": {
+        "Term": "guitar",
+        "Definition": "\u0111\u00E0n ghi-ta",
+        "ImageUrl": "asset:112c8c641a3ee4e1e06d72b1a65b43365424d75314e3d5f58c7662ea28cf6100.webp",
+        "Phonetic": "/\u0261\u026A\u02C8t\u0251\u0279/",
+        "Example": "He plays the guitar in a small band.",
+        "ExampleTranslation": "Anh \u1EA5y ch\u01A1i ghi-ta trong m\u1ED9t ban nh\u1EA1c nh\u1ECF.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a musical instrument with six strings",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u0261\u026A\u02C8t\u0251\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He plays the guitar in a small band.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y ch\\u01A1i ghi-ta trong m\\u1ED9t ban nh\\u1EA1c nh\\u1ECF.\u0022},{\u0022text\u0022:\u0022My guitar is old but sounds beautiful.\u0022,\u0022vi\u0022:\u0022C\\u00E2y \\u0111\\u00E0n ghi-ta c\\u1EE7a t\\u00F4i \\u0111\\u00E3 c\\u0169 nh\\u01B0ng nghe r\\u1EA5t hay.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play the guitar\u0022,\u0022vi\u0022:\u0022ch\\u01A1i ghi-ta\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/acoustic-guitar-LBCPMZCQPT\u0022,\u0022author\u0022:\u0022Pawel Kadysz\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.dcc8d2d613f94cb8bc77c9eec166d90e",
+      "kind": "Card",
+      "values": {
+        "Term": "drum",
+        "Definition": "c\u00E1i tr\u1ED1ng",
+        "ImageUrl": "asset:4017ea9db5fdbb81be4e80838ef920182fc8448432cbd3aec12ab80d21ef2bff.webp",
+        "Phonetic": "/d\u0279\u028Cm/",
+        "Example": "The boy is playing the drum loudly.",
+        "ExampleTranslation": "C\u1EADu b\u00E9 \u0111ang \u0111\u00E1nh tr\u1ED1ng r\u1EA5t to.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a musical instrument that you hit with sticks",
+        "Cefr": "A2",
+        "PhoneticUk": "/d\u0279\u028Cm/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The boy is playing the drum loudly.\u0022,\u0022vi\u0022:\u0022C\\u1EADu b\\u00E9 \\u0111ang \\u0111\\u00E1nh tr\\u1ED1ng r\\u1EA5t to.\u0022},{\u0022text\u0022:\u0022We heard a drum from the street.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i nghe th\\u1EA5y ti\\u1EBFng tr\\u1ED1ng t\\u1EEB ngo\\u00E0i ph\\u1ED1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022beat a drum\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E1nh tr\\u1ED1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6266849/png-public-domain-black\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.eb45e039e8d34a109bf610f020ef42d1",
+      "kind": "Card",
+      "values": {
+        "Term": "sculpture",
+        "Definition": "t\u00E1c ph\u1EA9m \u0111i\u00EAu kh\u1EAFc",
+        "ImageUrl": "asset:83bbcbfbc7669b90acb0ee841ac6bf935497af78b2b1bb8a052235bb1b0e4cc5.webp",
+        "Phonetic": "/\u02C8sk\u028Clpt\u0361\u0283\u025A/",
+        "Example": "There is a large sculpture in the park.",
+        "ExampleTranslation": "C\u00F3 m\u1ED9t t\u00E1c ph\u1EA9m \u0111i\u00EAu kh\u1EAFc l\u1EDBn trong c\u00F4ng vi\u00EAn.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a work of art made from stone, metal or clay",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8sk\u028Clptj(\u028A)\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022There is a large sculpture in the park.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t t\\u00E1c ph\\u1EA9m \\u0111i\\u00EAu kh\\u1EAFc l\\u1EDBn trong c\\u00F4ng vi\\u00EAn.\u0022},{\u0022text\u0022:\u0022He made a small sculpture from clay.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y l\\u00E0m m\\u1ED9t t\\u00E1c ph\\u1EA9m \\u0111i\\u00EAu kh\\u1EAFc nh\\u1ECF t\\u1EEB \\u0111\\u1EA5t s\\u00E9t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022stone sculpture\u0022,\u0022vi\u0022:\u0022t\\u01B0\\u1EE3ng \\u0111\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/48125931@N00/5722949355\u0022,\u0022author\u0022:\u0022puffin11uk\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat.f395b06286a040519e2670c4d85f7770",
+      "kind": "Card",
+      "values": {
+        "Term": "stage",
+        "Definition": "s\u00E2n kh\u1EA5u",
+        "ImageUrl": "asset:8d16982eedf82790a985073df05a1f7a12c05adbc83d18c1511ef8e4e8ba8d53.webp",
+        "Phonetic": "/ste\u026Ad\u0361\u0292/",
+        "Example": "The singer walked onto the stage.",
+        "ExampleTranslation": "Ca s\u0129 b\u01B0\u1EDBc l\u00EAn s\u00E2n kh\u1EA5u.",
+        "Topic": "Nh\u1EA1c c\u1EE5 \u0026 ngh\u1EC7 thu\u1EADt",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the raised floor where actors and singers perform",
+        "Cefr": "A2",
+        "PhoneticUk": "/ste\u026Ad\u0361\u0292/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The singer walked onto the stage.\u0022,\u0022vi\u0022:\u0022Ca s\\u0129 b\\u01B0\\u1EDBc l\\u00EAn s\\u00E2n kh\\u1EA5u.\u0022},{\u0022text\u0022:\u0022There are bright lights on the stage.\u0022,\u0022vi\u0022:\u0022Tr\\u00EAn s\\u00E2n kh\\u1EA5u c\\u00F3 nh\\u1EEFng \\u00E1nh \\u0111\\u00E8n s\\u00E1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022on stage\u0022,\u0022vi\u0022:\u0022tr\\u00EAn s\\u00E2n kh\\u1EA5u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Harrogate_Theatre_pit_and_curtain.jpg\u0022,\u0022author\u0022:\u0022Celia Perry\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "112c8c641a3ee4e1e06d72b1a65b43365424d75314e3d5f58c7662ea28cf6100.webp",
+      "sha256": "112c8c641a3ee4e1e06d72b1a65b43365424d75314e3d5f58c7662ea28cf6100"
+    },
+    {
+      "file": "b280e6e273a527bf63b5727342745c325168105f42f9b6cadd1310d0533bd849.webp",
+      "sha256": "b280e6e273a527bf63b5727342745c325168105f42f9b6cadd1310d0533bd849"
+    },
+    {
+      "file": "a5ee98f5665929c2c4596ad348eb0ec29fb52e2086821a154763a44fd2dc7c47.webp",
+      "sha256": "a5ee98f5665929c2c4596ad348eb0ec29fb52e2086821a154763a44fd2dc7c47"
+    },
+    {
+      "file": "4017ea9db5fdbb81be4e80838ef920182fc8448432cbd3aec12ab80d21ef2bff.webp",
+      "sha256": "4017ea9db5fdbb81be4e80838ef920182fc8448432cbd3aec12ab80d21ef2bff"
+    },
+    {
+      "file": "9625bee487674f048f8be0e62d9234d5c41337eaa7fc734b8c1ef7f4958165f4.webp",
+      "sha256": "9625bee487674f048f8be0e62d9234d5c41337eaa7fc734b8c1ef7f4958165f4"
+    },
+    {
+      "file": "8ec3b78bccf477269c94512e7dd9aa302d1a6ebddb8776aba186946b6a37c03f.webp",
+      "sha256": "8ec3b78bccf477269c94512e7dd9aa302d1a6ebddb8776aba186946b6a37c03f"
+    },
+    {
+      "file": "0d682c5c0eb40d99f2cb90b6903838c3343420b00481591a90dd5065c38a9434.webp",
+      "sha256": "0d682c5c0eb40d99f2cb90b6903838c3343420b00481591a90dd5065c38a9434"
+    },
+    {
+      "file": "30dad38415d90361f2af835656bd528a41b9e9b50cf61b0bb389c96491e4327a.webp",
+      "sha256": "30dad38415d90361f2af835656bd528a41b9e9b50cf61b0bb389c96491e4327a"
+    },
+    {
+      "file": "593536c83c272b0cc417df21e836560bff1ba169ced768427119d7e8eef8089b.webp",
+      "sha256": "593536c83c272b0cc417df21e836560bff1ba169ced768427119d7e8eef8089b"
+    },
+    {
+      "file": "c0b11a5b3e52e37677208a22542b23ae3b1212ebd2a88e2f0e49e74ad03c97a7.webp",
+      "sha256": "c0b11a5b3e52e37677208a22542b23ae3b1212ebd2a88e2f0e49e74ad03c97a7"
+    },
+    {
+      "file": "485e2ab55078078a17a015cef943543d1b59b2832b8d121d022a6732892056c8.webp",
+      "sha256": "485e2ab55078078a17a015cef943543d1b59b2832b8d121d022a6732892056c8"
+    },
+    {
+      "file": "fa6fcfa52795c1abe463a895a6420739568ae9b0f1a89566606113c997b072e6.webp",
+      "sha256": "fa6fcfa52795c1abe463a895a6420739568ae9b0f1a89566606113c997b072e6"
+    },
+    {
+      "file": "e852b09dd74596f808ccf425b19d96f54e1a5c61015a9621f02548614c1a2e26.webp",
+      "sha256": "e852b09dd74596f808ccf425b19d96f54e1a5c61015a9621f02548614c1a2e26"
+    },
+    {
+      "file": "7dc526ad1661b462943b32a4931262cc0c919dfcba1b82bc83655390dc856675.webp",
+      "sha256": "7dc526ad1661b462943b32a4931262cc0c919dfcba1b82bc83655390dc856675"
+    },
+    {
+      "file": "799be63331155bee9b1c25528d22f1a90f1ca74e9bcab959a5cfc0a232a1e468.webp",
+      "sha256": "799be63331155bee9b1c25528d22f1a90f1ca74e9bcab959a5cfc0a232a1e468"
+    },
+    {
+      "file": "8d16982eedf82790a985073df05a1f7a12c05adbc83d18c1511ef8e4e8ba8d53.webp",
+      "sha256": "8d16982eedf82790a985073df05a1f7a12c05adbc83d18c1511ef8e4e8ba8d53"
+    },
+    {
+      "file": "c3c2f409dbe94534e25af1552e80aeb6fe3a49a4c67fa44a7a9e91c69b6c1361.webp",
+      "sha256": "c3c2f409dbe94534e25af1552e80aeb6fe3a49a4c67fa44a7a9e91c69b6c1361"
+    },
+    {
+      "file": "83bbcbfbc7669b90acb0ee841ac6bf935497af78b2b1bb8a052235bb1b0e4cc5.webp",
+      "sha256": "83bbcbfbc7669b90acb0ee841ac6bf935497af78b2b1bb8a052235bb1b0e4cc5"
+    },
+    {
+      "file": "656ed6ca5019584c630bc573eba29a710a66d6053e01892459168faad44fbefa.webp",
+      "sha256": "656ed6ca5019584c630bc573eba29a710a66d6053e01892459168faad44fbefa"
+    },
+    {
+      "file": "6c32cb1bfe82149f5f17080fd310289516d5f296c494b6912d39e27c4b285f77.webp",
+      "sha256": "6c32cb1bfe82149f5f17080fd310289516d5f296c494b6912d39e27c4b285f77"
+    },
+    {
+      "file": "0e3a7d00201e0c96bcd44209470fc76ae657238d0d610a3b780b5c0109446ef1.webp",
+      "sha256": "0e3a7d00201e0c96bcd44209470fc76ae657238d0d610a3b780b5c0109446ef1"
+    },
+    {
+      "file": "5189e197cb7b54dd8eff430b82b72c40f52815036a574c61983da172155fcca9.webp",
+      "sha256": "5189e197cb7b54dd8eff430b82b72c40f52815036a574c61983da172155fcca9"
+    },
+    {
+      "file": "3ec3b7a81450ea5ff4b20923c43d3c1f7494040426a841432de308a2597f2b71.webp",
+      "sha256": "3ec3b7a81450ea5ff4b20923c43d3c1f7494040426a841432de308a2597f2b71"
+    },
+    {
+      "file": "720136ba5f5cfcaccd9bda9c78de38f62b02ec20782f5a5a641046fa303cb020.webp",
+      "sha256": "720136ba5f5cfcaccd9bda9c78de38f62b02ec20782f5a5a641046fa303cb020"
+    },
+    {
+      "file": "a46f6e663ad34563d49d1e07c3823ec17b18c4aa814a6c2aba4493696e89c351.webp",
+      "sha256": "a46f6e663ad34563d49d1e07c3823ec17b18c4aa814a6c2aba4493696e89c351"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a21-nhac-cu-nghe-thuat"
+}

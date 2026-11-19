@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san",
+      "kind": "Set",
+      "values": {
+        "SetName": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "Description": "#a2 #b1 #airport #hotel"
+      },
+      "references": {
+        "FolderId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.69eb25c500b84f00ab2dc9c4b8036467",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.056b18c62e5642b0af2f48228b5d13a4",
+      "kind": "Card",
+      "values": {
+        "Term": "Here is my passport.",
+        "Definition": "\u0111\u00E2y l\u00E0 h\u1ED9 chi\u1EBFu c\u1EE7a t\u00F4i",
+        "ImageUrl": "asset:90ec3b6d3a20e1124ebe2980e2abfcdf0ac59b9bbee9c111afd1d4b624e6ac56.webp",
+        "Phonetic": null,
+        "Example": "Here is my passport and my ticket.",
+        "ExampleTranslation": "\u0110\u00E2y l\u00E0 h\u1ED9 chi\u1EBFu v\u00E0 v\u00E9 c\u1EE7a t\u00F4i.",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you hand over your passport",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Here is my passport and my ticket.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E2y l\\u00E0 h\\u1ED9 chi\\u1EBFu v\\u00E0 v\\u00E9 c\\u1EE7a t\\u00F4i.\u0022},{\u0022text\u0022:\u0022Here is my passport, officer.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E2y l\\u00E0 h\\u1ED9 chi\\u1EBFu c\\u1EE7a t\\u00F4i, th\\u01B0a nh\\u00E2n vi\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022May I see your passport?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i xem h\\u1ED9 chi\\u1EBFu c\\u1EE7a b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022Thank you.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.160fa2ddb1b94d929f95c8659be56666",
+      "kind": "Card",
+      "values": {
+        "Term": "What\u0027s the Wi-Fi password?",
+        "Definition": "m\u1EADt kh\u1EA9u Wi-Fi l\u00E0 g\u00EC?",
+        "ImageUrl": "asset:193ea9b07332980853ed3aaa714f42f0f9be43fb6477e972486f740c800f9428.webp",
+        "Phonetic": null,
+        "Example": "What\u0027s the Wi-Fi password?",
+        "ExampleTranslation": "M\u1EADt kh\u1EA9u Wi-Fi l\u00E0 g\u00EC?",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question to connect to the internet",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022What\\u0027s the Wi-Fi password?\u0022,\u0022vi\u0022:\u0022M\\u1EADt kh\\u1EA9u Wi-Fi l\\u00E0 g\\u00EC?\u0022},{\u0022text\u0022:\u0022Excuse me, what\\u0027s the Wi-Fi password?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, m\\u1EADt kh\\u1EA9u Wi-Fi l\\u00E0 g\\u00EC?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s on this card.\u0022,\u0022vi\u0022:\u0022N\\u00F3 \\u1EDF tr\\u00EAn t\\u1EA5m th\\u1EBB n\\u00E0y.\u0022},{\u0022text\u0022:\u0022The network is Hotel Guest.\u0022,\u0022vi\u0022:\u0022M\\u1EA1ng l\\u00E0 Hotel Guest.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.1980f1fc7392432fb676eb0162b156d2",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027d like to check in, please.",
+        "Definition": "t\u00F4i mu\u1ED1n nh\u1EADn ph\u00F2ng",
+        "ImageUrl": "asset:592bddff5adae9568f54868fd394a36496b2f89c214cbc0f819aa5b77dc1497d.webp",
+        "Phonetic": null,
+        "Example": "I\u0027d like to check in, please.",
+        "ExampleTranslation": "T\u00F4i mu\u1ED1n nh\u1EADn ph\u00F2ng.",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you arrive at a hotel",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027d like to check in, please.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n nh\\u1EADn ph\\u00F2ng.\u0022},{\u0022text\u0022:\u0022I\\u0027d like to check in, please. My name is Linh.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n nh\\u1EADn ph\\u00F2ng. T\\u00EAn t\\u00F4i l\\u00E0 Linh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Here is your key.\u0022,\u0022vi\u0022:\u0022Ch\\u00ECa kh\\u00F3a c\\u1EE7a b\\u1EA1n \\u0111\\u00E2y.\u0022},{\u0022text\u0022:\u0022Please fill in this form.\u0022,\u0022vi\u0022:\u0022Xin \\u0111i\\u1EC1n v\\u00E0o m\\u1EABu n\\u00E0y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.3a8d4e86173541aaa3a50163304ab3b0",
+      "kind": "Card",
+      "values": {
+        "Term": "Could I have a wake-up call at six?",
+        "Definition": "cho t\u00F4i d\u1ECBch v\u1EE5 b\u00E1o th\u1EE9c l\u00FAc s\u00E1u gi\u1EDD \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:09be5770e9d8f9dc5c4d2840dcac9948b783a98257e8cd056b0dcc45cc1364a2.webp",
+        "Phonetic": null,
+        "Example": "Could I have a wake-up call at six?",
+        "ExampleTranslation": "Cho t\u00F4i d\u1ECBch v\u1EE5 b\u00E1o th\u1EE9c l\u00FAc s\u00E1u gi\u1EDD \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request for the hotel to call you in the morning",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could I have a wake-up call at six?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i d\\u1ECBch v\\u1EE5 b\\u00E1o th\\u1EE9c l\\u00FAc s\\u00E1u gi\\u1EDD \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Could I have a wake-up call at half past five?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i d\\u1ECBch v\\u1EE5 b\\u00E1o th\\u1EE9c l\\u00FAc n\\u0103m gi\\u1EDD r\\u01B0\\u1EE1i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Certainly.\u0022,\u0022vi\u0022:\u0022Ch\\u1EAFc ch\\u1EAFn r\\u1ED3i.\u0022},{\u0022text\u0022:\u0022What room number is it?\u0022,\u0022vi\u0022:\u0022S\\u1ED1 ph\\u00F2ng c\\u1EE7a b\\u1EA1n l\\u00E0 g\\u00EC?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.42f0d24988634bbbbd33ae9b69005de0",
+      "kind": "Card",
+      "values": {
+        "Term": "Is this my boarding gate?",
+        "Definition": "\u0111\u00E2y c\u00F3 ph\u1EA3i c\u1ED5ng l\u00EAn m\u00E1y bay c\u1EE7a t\u00F4i kh\u00F4ng?",
+        "ImageUrl": "asset:6e5cc873c06e045e81c1784df80c5c8b1ec8bb2efb4cf4b5b4d838bf5bf70542.webp",
+        "Phonetic": null,
+        "Example": "Is this my boarding gate?",
+        "ExampleTranslation": "\u0110\u00E2y c\u00F3 ph\u1EA3i c\u1ED5ng l\u00EAn m\u00E1y bay c\u1EE7a t\u00F4i kh\u00F4ng?",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question to check the gate for your flight",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Is this my boarding gate?\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E2y c\\u00F3 ph\\u1EA3i c\\u1ED5ng l\\u00EAn m\\u00E1y bay c\\u1EE7a t\\u00F4i kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Is this the boarding gate for Tokyo?\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E2y c\\u00F3 ph\\u1EA3i c\\u1ED5ng l\\u00EAn m\\u00E1y bay \\u0111i Tokyo kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022No, it\\u0027s gate twelve.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng, l\\u00E0 c\\u1ED5ng m\\u01B0\\u1EDDi hai.\u0022},{\u0022text\u0022:\u0022Yes, it is.\u0022,\u0022vi\u0022:\u0022V\\u00E2ng, \\u0111\\u00FAng r\\u1ED3i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.4701f7b116294955acf97ab6291e91d5",
+      "kind": "Card",
+      "values": {
+        "Term": "Where is the check-in desk?",
+        "Definition": "qu\u1EA7y l\u00E0m th\u1EE7 t\u1EE5c \u1EDF \u0111\u00E2u?",
+        "ImageUrl": "asset:8ff7df85862d0c5a1045f79ee408ab90bc015471ca4f0455b57321db0cecb232.webp",
+        "Phonetic": null,
+        "Example": "Excuse me, where is the check-in desk?",
+        "ExampleTranslation": "Xin l\u1ED7i, qu\u1EA7y l\u00E0m th\u1EE7 t\u1EE5c \u1EDF \u0111\u00E2u?",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question to find where to check in for a flight",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Excuse me, where is the check-in desk?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, qu\\u1EA7y l\\u00E0m th\\u1EE7 t\\u1EE5c \\u1EDF \\u0111\\u00E2u?\u0022},{\u0022text\u0022:\u0022Where is the check-in desk for Hanoi?\u0022,\u0022vi\u0022:\u0022Qu\\u1EA7y l\\u00E0m th\\u1EE7 t\\u1EE5c \\u0111i H\\u00E0 N\\u1ED9i \\u1EDF \\u0111\\u00E2u?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s on the second floor.\u0022,\u0022vi\u0022:\u0022\\u1EDE t\\u1EA7ng hai.\u0022},{\u0022text\u0022:\u0022Go to desk twelve.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111\\u1EBFn qu\\u1EA7y s\\u1ED1 m\\u01B0\\u1EDDi hai.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.4aa55f421d894919b459c680c082a530",
+      "kind": "Card",
+      "values": {
+        "Term": "What time is breakfast?",
+        "Definition": "b\u1EEFa s\u00E1ng l\u00FAc m\u1EA5y gi\u1EDD?",
+        "ImageUrl": "asset:9475728e2b6b5d88abe372bea141f8eb66e32d9ebe6061e64f033dfdec54fd74.webp",
+        "Phonetic": null,
+        "Example": "What time is breakfast?",
+        "ExampleTranslation": "B\u1EEFa s\u00E1ng l\u00FAc m\u1EA5y gi\u1EDD?",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about breakfast time",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022What time is breakfast?\u0022,\u0022vi\u0022:\u0022B\\u1EEFa s\\u00E1ng l\\u00FAc m\\u1EA5y gi\\u1EDD?\u0022},{\u0022text\u0022:\u0022What time is breakfast tomorrow?\u0022,\u0022vi\u0022:\u0022Mai b\\u1EEFa s\\u00E1ng l\\u00FAc m\\u1EA5y gi\\u1EDD?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022From seven to ten.\u0022,\u0022vi\u0022:\u0022T\\u1EEB b\\u1EA3y \\u0111\\u1EBFn m\\u01B0\\u1EDDi gi\\u1EDD.\u0022},{\u0022text\u0022:\u0022It\\u0027s on the ground floor.\u0022,\u0022vi\u0022:\u0022\\u1EDE t\\u1EA7ng tr\\u1EC7t.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.52a9addddd244443a376344cc30bb109",
+      "kind": "Card",
+      "values": {
+        "Term": "I have nothing to declare.",
+        "Definition": "t\u00F4i kh\u00F4ng c\u00F3 g\u00EC ph\u1EA3i khai b\u00E1o",
+        "ImageUrl": "asset:b26552acd30694cc721a2fde33076bdca75e2c7d082b7379d50cb61e17297c8b.webp",
+        "Phonetic": null,
+        "Example": "I have nothing to declare.",
+        "ExampleTranslation": "T\u00F4i kh\u00F4ng c\u00F3 g\u00EC ph\u1EA3i khai b\u00E1o.",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say at customs",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have nothing to declare.\u0022,\u0022vi\u0022:\u0022T\\u00F4i kh\\u00F4ng c\\u00F3 g\\u00EC ph\\u1EA3i khai b\\u00E1o.\u0022},{\u0022text\u0022:\u0022Do you have anything to declare?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 g\\u00EC c\\u1EA7n khai b\\u00E1o kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I have some gifts.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u00F3 v\\u00E0i m\\u00F3n qu\\u00E0.\u0022},{\u0022text\u0022:\u0022Please open your bag.\u0022,\u0022vi\u0022:\u0022Xin h\\u00E3y m\\u1EDF t\\u00FAi c\\u1EE7a b\\u1EA1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.5df9a71ae963483295b5be2f053ce77e",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027d like a window seat.",
+        "Definition": "t\u00F4i mu\u1ED1n ng\u1ED3i c\u1EA1nh c\u1EEDa s\u1ED5",
+        "ImageUrl": "asset:2a97a928503744a75a1568bdc60b1e4cede4da83f4586c7d43fd7541f75f7988.webp",
+        "Phonetic": null,
+        "Example": "I\u0027d like a window seat, please.",
+        "ExampleTranslation": "T\u00F4i mu\u1ED1n ng\u1ED3i c\u1EA1nh c\u1EEDa s\u1ED5.",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request for a seat next to the window",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027d like a window seat, please.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n ng\\u1ED3i c\\u1EA1nh c\\u1EEDa s\\u1ED5.\u0022},{\u0022text\u0022:\u0022I\\u0027d like an aisle seat, please.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n ng\\u1ED3i c\\u1EA1nh l\\u1ED1i \\u0111i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Window or aisle?\u0022,\u0022vi\u0022:\u0022C\\u1EEDa s\\u1ED5 hay l\\u1ED1i \\u0111i?\u0022},{\u0022text\u0022:\u0022I\\u0027ll check for you.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD ki\\u1EC3m tra gi\\u00FAp b\\u1EA1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.5e907ec4593b47e88673aa274b9d7b05",
+      "kind": "Card",
+      "values": {
+        "Term": "Where can I get my luggage?",
+        "Definition": "t\u00F4i nh\u1EADn h\u00E0nh l\u00FD \u1EDF \u0111\u00E2u?",
+        "ImageUrl": "asset:30dd97ab2362cf57b8be25f3aa3eb5fb272ac6432b7bc2ad75fcbe8135799599.webp",
+        "Phonetic": null,
+        "Example": "Where can I get my luggage?",
+        "ExampleTranslation": "T\u00F4i nh\u1EADn h\u00E0nh l\u00FD \u1EDF \u0111\u00E2u?",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about collecting bags at an airport",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Where can I get my luggage?\u0022,\u0022vi\u0022:\u0022T\\u00F4i nh\\u1EADn h\\u00E0nh l\\u00FD \\u1EDF \\u0111\\u00E2u?\u0022},{\u0022text\u0022:\u0022Where can I get my luggage from this flight?\u0022,\u0022vi\u0022:\u0022T\\u00F4i nh\\u1EADn h\\u00E0nh l\\u00FD c\\u1EE7a chuy\\u1EBFn bay n\\u00E0y \\u1EDF \\u0111\\u00E2u?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022At the baggage claim.\u0022,\u0022vi\u0022:\u0022\\u1EDE khu nh\\u1EADn h\\u00E0nh l\\u00FD.\u0022},{\u0022text\u0022:\u0022Belt number three.\u0022,\u0022vi\u0022:\u0022B\\u0103ng chuy\\u1EC1n s\\u1ED1 ba.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.6076fc3546a646c0a7dec7a301e756fb",
+      "kind": "Card",
+      "values": {
+        "Term": "Do I need to pay for extra baggage?",
+        "Definition": "t\u00F4i c\u00F3 ph\u1EA3i tr\u1EA3 th\u00EAm ph\u00ED h\u00E0nh l\u00FD kh\u00F4ng?",
+        "ImageUrl": "asset:5d80bbcb8fb38636794f0a8f8d008c3900117a279e41b42742c437b8651543ff.webp",
+        "Phonetic": null,
+        "Example": "Do I need to pay for extra baggage?",
+        "ExampleTranslation": "T\u00F4i c\u00F3 ph\u1EA3i tr\u1EA3 th\u00EAm ph\u00ED h\u00E0nh l\u00FD kh\u00F4ng?",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about the cost of heavy bags",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Do I need to pay for extra baggage?\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u00F3 ph\\u1EA3i tr\\u1EA3 th\\u00EAm ph\\u00ED h\\u00E0nh l\\u00FD kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Do I need to pay for extra baggage on this flight?\u0022,\u0022vi\u0022:\u0022Chuy\\u1EBFn bay n\\u00E0y t\\u00F4i c\\u00F3 ph\\u1EA3i tr\\u1EA3 th\\u00EAm ph\\u00ED h\\u00E0nh l\\u00FD kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022The limit is twenty kilos.\u0022,\u0022vi\u0022:\u0022Gi\\u1EDBi h\\u1EA1n l\\u00E0 hai m\\u01B0\\u01A1i k\\u00FD.\u0022},{\u0022text\u0022:\u0022Please put your bag on the scale.\u0022,\u0022vi\u0022:\u0022Xin h\\u00E3y \\u0111\\u1EB7t t\\u00FAi l\\u00EAn c\\u00E2n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.741974f82ecd415faf5ad5b16cf6794d",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027d like to check out.",
+        "Definition": "t\u00F4i mu\u1ED1n tr\u1EA3 ph\u00F2ng",
+        "ImageUrl": "asset:8d23c8fd2ccb6a920e40055477c2a151440f385dc0da9784b4125409215a5c76.webp",
+        "Phonetic": null,
+        "Example": "I\u0027d like to check out, please.",
+        "ExampleTranslation": "T\u00F4i mu\u1ED1n tr\u1EA3 ph\u00F2ng.",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you leave a hotel",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027d like to check out, please.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n tr\\u1EA3 ph\\u00F2ng.\u0022},{\u0022text\u0022:\u0022I\\u0027d like to check out of room 305.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n tr\\u1EA3 ph\\u00F2ng 305.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022How was your stay?\u0022,\u0022vi\u0022:\u0022K\\u1EF3 ngh\\u1EC9 c\\u1EE7a b\\u1EA1n th\\u1EBF n\\u00E0o?\u0022},{\u0022text\u0022:\u0022Here is the bill.\u0022,\u0022vi\u0022:\u0022H\\u00F3a \\u0111\\u01A1n \\u0111\\u00E2y \\u1EA1.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.84059aec852542e8a759ea8f7818c4ea",
+      "kind": "Card",
+      "values": {
+        "Term": "Can I leave my bags here?",
+        "Definition": "t\u00F4i g\u1EEDi h\u00E0nh l\u00FD \u1EDF \u0111\u00E2y \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:6bab536b0179121fbc3d12a4f1713205abddac088e2bd3311aec8881d0f9a4dd.webp",
+        "Phonetic": null,
+        "Example": "Can I leave my bags here until three?",
+        "ExampleTranslation": "T\u00F4i g\u1EEDi h\u00E0nh l\u00FD \u1EDF \u0111\u00E2y \u0111\u1EBFn ba gi\u1EDD \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request to store luggage for a while",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can I leave my bags here until three?\u0022,\u0022vi\u0022:\u0022T\\u00F4i g\\u1EEDi h\\u00E0nh l\\u00FD \\u1EDF \\u0111\\u00E2y \\u0111\\u1EBFn ba gi\\u1EDD \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Can I leave my bags here for a few hours?\u0022,\u0022vi\u0022:\u0022T\\u00F4i g\\u1EEDi h\\u00E0nh l\\u00FD \\u1EDF \\u0111\\u00E2y v\\u00E0i ti\\u1EBFng \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Yes, we have a luggage room.\u0022,\u0022vi\u0022:\u0022\\u0110\\u01B0\\u1EE3c, ch\\u00FAng t\\u00F4i c\\u00F3 ph\\u00F2ng gi\\u1EEF h\\u00E0nh l\\u00FD.\u0022},{\u0022text\u0022:\u0022Here is your ticket.\u0022,\u0022vi\u0022:\u0022Phi\\u1EBFu g\\u1EEDi c\\u1EE7a b\\u1EA1n \\u0111\\u00E2y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.849e8877c7a348b4b140a4a8a00c2cc4",
+      "kind": "Card",
+      "values": {
+        "Term": "Is breakfast included?",
+        "Definition": "\u0111\u00E3 bao g\u1ED3m b\u1EEFa s\u00E1ng ch\u01B0a?",
+        "ImageUrl": "asset:0c98003a01bee9b1f6f1b9f2ef78038b0d0b3ade7215a1903c65ec2664fc6935.webp",
+        "Phonetic": null,
+        "Example": "Is breakfast included in the price?",
+        "ExampleTranslation": "Gi\u00E1 n\u00E0y \u0111\u00E3 bao g\u1ED3m b\u1EEFa s\u00E1ng ch\u01B0a?",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about whether breakfast is in the price",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Is breakfast included in the price?\u0022,\u0022vi\u0022:\u0022Gi\\u00E1 n\\u00E0y \\u0111\\u00E3 bao g\\u1ED3m b\\u1EEFa s\\u00E1ng ch\\u01B0a?\u0022},{\u0022text\u0022:\u0022Is breakfast included?\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E3 bao g\\u1ED3m b\\u1EEFa s\\u00E1ng ch\\u01B0a?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Yes, it\\u0027s free.\u0022,\u0022vi\u0022:\u0022V\\u00E2ng, mi\\u1EC5n ph\\u00ED.\u0022},{\u0022text\u0022:\u0022It costs ten dollars.\u0022,\u0022vi\u0022:\u0022Gi\\u00E1 m\\u01B0\\u1EDDi \\u0111\\u00F4 la.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.8dd51a953a7a4e13af995c30aed64a5d",
+      "kind": "Card",
+      "values": {
+        "Term": "What time is boarding?",
+        "Definition": "m\u1EA5y gi\u1EDD b\u1EAFt \u0111\u1EA7u l\u00EAn m\u00E1y bay?",
+        "ImageUrl": "asset:3a02015a41c073d2ce44f677bbe1e84b6c3aff3256378a835811bbf78b9d1cc4.webp",
+        "Phonetic": null,
+        "Example": "What time is boarding?",
+        "ExampleTranslation": "M\u1EA5y gi\u1EDD b\u1EAFt \u0111\u1EA7u l\u00EAn m\u00E1y bay?",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about boarding time",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022What time is boarding?\u0022,\u0022vi\u0022:\u0022M\\u1EA5y gi\\u1EDD b\\u1EAFt \\u0111\\u1EA7u l\\u00EAn m\\u00E1y bay?\u0022},{\u0022text\u0022:\u0022What time is boarding for flight ten?\u0022,\u0022vi\u0022:\u0022M\\u1EA5y gi\\u1EDD b\\u1EAFt \\u0111\\u1EA7u l\\u00EAn m\\u00E1y bay chuy\\u1EBFn m\\u01B0\\u1EDDi?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Boarding is at six.\u0022,\u0022vi\u0022:\u0022L\\u00EAn m\\u00E1y bay l\\u00FAc s\\u00E1u gi\\u1EDD.\u0022},{\u0022text\u0022:\u0022Please wait at the gate.\u0022,\u0022vi\u0022:\u0022Xin h\\u00E3y ch\\u1EDD \\u1EDF c\\u1ED5ng.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.9176e877d0d64002a906df76d86b75d3",
+      "kind": "Card",
+      "values": {
+        "Term": "Could you call a taxi for me?",
+        "Definition": "b\u1EA1n g\u1ECDi gi\u00FAp t\u00F4i m\u1ED9t chi\u1EBFc taxi \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:12e1f71fcda1ad3dcc69e38ae0d0c5d69f2797d5d6345057fef06fc386070003.webp",
+        "Phonetic": null,
+        "Example": "Could you call a taxi for me?",
+        "ExampleTranslation": "B\u1EA1n g\u1ECDi gi\u00FAp t\u00F4i m\u1ED9t chi\u1EBFc taxi \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request for the hotel to call a taxi",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could you call a taxi for me?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n g\\u1ECDi gi\\u00FAp t\\u00F4i m\\u1ED9t chi\\u1EBFc taxi \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Could you call a taxi for me at six?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n g\\u1ECDi gi\\u00FAp t\\u00F4i m\\u1ED9t chi\\u1EBFc taxi l\\u00FAc s\\u00E1u gi\\u1EDD \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Where to?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n \\u0111i \\u0111\\u00E2u?\u0022},{\u0022text\u0022:\u0022It\\u0027ll be here in ten minutes.\u0022,\u0022vi\u0022:\u0022M\\u01B0\\u1EDDi ph\\u00FAt n\\u1EEFa xe s\\u1EBD \\u0111\\u1EBFn.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.a56ff014006b4ca58c92881c84380c85",
+      "kind": "Card",
+      "values": {
+        "Term": "I have a reservation.",
+        "Definition": "t\u00F4i c\u00F3 \u0111\u1EB7t ph\u00F2ng tr\u01B0\u1EDBc",
+        "ImageUrl": "asset:c60a539db1e83a60b70434122c5436d75f60a532b0b5dbe2ed85106c4bab824b.webp",
+        "Phonetic": null,
+        "Example": "Good evening. I have a reservation.",
+        "ExampleTranslation": "Ch\u00E0o bu\u1ED5i t\u1ED1i. T\u00F4i c\u00F3 \u0111\u1EB7t ph\u00F2ng tr\u01B0\u1EDBc.",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say at a hotel when you booked a room",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Good evening. I have a reservation.\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o bu\\u1ED5i t\\u1ED1i. T\\u00F4i c\\u00F3 \\u0111\\u1EB7t ph\\u00F2ng tr\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022I have a reservation under the name Nam.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u00F3 \\u0111\\u1EB7t ph\\u00F2ng d\\u01B0\\u1EDBi t\\u00EAn Nam.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Your name, please?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i bi\\u1EBFt t\\u00EAn b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022Let me check.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EC3 t\\u00F4i ki\\u1EC3m tra.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.abd97ad0b259458288f7420d049ce141",
+      "kind": "Card",
+      "values": {
+        "Term": "My flight has been delayed.",
+        "Definition": "chuy\u1EBFn bay c\u1EE7a t\u00F4i b\u1ECB ho\u00E3n",
+        "ImageUrl": "asset:b0614a53180a223ec814fc1a8a0deb6078831990763660dcba9e8cecc94df8f0.webp",
+        "Phonetic": null,
+        "Example": "My flight has been delayed by two hours.",
+        "ExampleTranslation": "Chuy\u1EBFn bay c\u1EE7a t\u00F4i b\u1ECB ho\u00E3n hai ti\u1EBFng.",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when a flight is late",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My flight has been delayed by two hours.\u0022,\u0022vi\u0022:\u0022Chuy\\u1EBFn bay c\\u1EE7a t\\u00F4i b\\u1ECB ho\\u00E3n hai ti\\u1EBFng.\u0022},{\u0022text\u0022:\u0022I\\u0027m sorry, my flight has been delayed.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, chuy\\u1EBFn bay c\\u1EE7a t\\u00F4i b\\u1ECB ho\\u00E3n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022The flight is on time.\u0022,\u0022vi\u0022:\u0022Chuy\\u1EBFn bay \\u0111\\u00FAng gi\\u1EDD.\u0022},{\u0022text\u0022:\u0022It was cancelled.\u0022,\u0022vi\u0022:\u0022Chuy\\u1EBFn bay \\u0111\\u00E3 b\\u1ECB h\\u1EE7y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.b073a3740b72415ca7817736e92c0fd9",
+      "kind": "Card",
+      "values": {
+        "Term": "The air conditioner isn\u0027t working.",
+        "Definition": "m\u00E1y \u0111i\u1EC1u h\u00F2a kh\u00F4ng ho\u1EA1t \u0111\u1ED9ng",
+        "ImageUrl": "asset:eb6ad3a1bb552c516fac2a996d4df30d2f3b97b0fe5b1c40d6e38504f5e1cc61.webp",
+        "Phonetic": null,
+        "Example": "The air conditioner isn\u0027t working. It\u0027s very hot.",
+        "ExampleTranslation": "M\u00E1y \u0111i\u1EC1u h\u00F2a kh\u00F4ng ho\u1EA1t \u0111\u1ED9ng. R\u1EA5t n\u00F3ng.",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a complaint about a broken air conditioner",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The air conditioner isn\\u0027t working. It\\u0027s very hot.\u0022,\u0022vi\u0022:\u0022M\\u00E1y \\u0111i\\u1EC1u h\\u00F2a kh\\u00F4ng ho\\u1EA1t \\u0111\\u1ED9ng. R\\u1EA5t n\\u00F3ng.\u0022},{\u0022text\u0022:\u0022The air conditioner isn\\u0027t working in my room.\u0022,\u0022vi\u0022:\u0022M\\u00E1y \\u0111i\\u1EC1u h\\u00F2a trong ph\\u00F2ng t\\u00F4i kh\\u00F4ng ho\\u1EA1t \\u0111\\u1ED9ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027ll send someone.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD c\\u1EED ng\\u01B0\\u1EDDi l\\u00EAn.\u0022},{\u0022text\u0022:\u0022I\\u0027m sorry about that.\u0022,\u0022vi\u0022:\u0022T\\u00F4i xin l\\u1ED7i v\\u1EC1 \\u0111i\\u1EC1u \\u0111\\u00F3.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san.b8a4230e69ee481ba329e916363ea631",
+      "kind": "Card",
+      "values": {
+        "Term": "Could I have a room with a view?",
+        "Definition": "t\u00F4i c\u00F3 th\u1EC3 c\u00F3 ph\u00F2ng nh\u00ECn ra c\u1EA3nh \u0111\u1EB9p kh\u00F4ng?",
+        "ImageUrl": "asset:880c86e9928d0715f547445e0d2b35041f592db24549addb5873d5c9e3acdb9f.webp",
+        "Phonetic": null,
+        "Example": "Could I have a room with a view?",
+        "ExampleTranslation": "T\u00F4i c\u00F3 th\u1EC3 c\u00F3 ph\u00F2ng nh\u00ECn ra c\u1EA3nh \u0111\u1EB9p kh\u00F4ng?",
+        "Topic": "\u1EDE s\u00E2n bay \u0026 kh\u00E1ch s\u1EA1n",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request for a room with a good view",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could I have a room with a view?\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u00F3 th\\u1EC3 c\\u00F3 ph\\u00F2ng nh\\u00ECn ra c\\u1EA3nh \\u0111\\u1EB9p kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Could I have a room with a sea view?\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u00F3 th\\u1EC3 c\\u00F3 ph\\u00F2ng nh\\u00ECn ra bi\\u1EC3n kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027ll see what I can do.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD xem c\\u00F3 th\\u1EC3 l\\u00E0m g\\u00EC.\u0022},{\u0022text\u0022:\u0022A room on a high floor.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t ph\\u00F2ng \\u1EDF t\\u1EA7ng cao.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "8ff7df85862d0c5a1045f79ee408ab90bc015471ca4f0455b57321db0cecb232.webp",
+      "sha256": "8ff7df85862d0c5a1045f79ee408ab90bc015471ca4f0455b57321db0cecb232"
+    },
+    {
+      "file": "90ec3b6d3a20e1124ebe2980e2abfcdf0ac59b9bbee9c111afd1d4b624e6ac56.webp",
+      "sha256": "90ec3b6d3a20e1124ebe2980e2abfcdf0ac59b9bbee9c111afd1d4b624e6ac56"
+    },
+    {
+      "file": "2a97a928503744a75a1568bdc60b1e4cede4da83f4586c7d43fd7541f75f7988.webp",
+      "sha256": "2a97a928503744a75a1568bdc60b1e4cede4da83f4586c7d43fd7541f75f7988"
+    },
+    {
+      "file": "6e5cc873c06e045e81c1784df80c5c8b1ec8bb2efb4cf4b5b4d838bf5bf70542.webp",
+      "sha256": "6e5cc873c06e045e81c1784df80c5c8b1ec8bb2efb4cf4b5b4d838bf5bf70542"
+    },
+    {
+      "file": "5d80bbcb8fb38636794f0a8f8d008c3900117a279e41b42742c437b8651543ff.webp",
+      "sha256": "5d80bbcb8fb38636794f0a8f8d008c3900117a279e41b42742c437b8651543ff"
+    },
+    {
+      "file": "b0614a53180a223ec814fc1a8a0deb6078831990763660dcba9e8cecc94df8f0.webp",
+      "sha256": "b0614a53180a223ec814fc1a8a0deb6078831990763660dcba9e8cecc94df8f0"
+    },
+    {
+      "file": "30dd97ab2362cf57b8be25f3aa3eb5fb272ac6432b7bc2ad75fcbe8135799599.webp",
+      "sha256": "30dd97ab2362cf57b8be25f3aa3eb5fb272ac6432b7bc2ad75fcbe8135799599"
+    },
+    {
+      "file": "b26552acd30694cc721a2fde33076bdca75e2c7d082b7379d50cb61e17297c8b.webp",
+      "sha256": "b26552acd30694cc721a2fde33076bdca75e2c7d082b7379d50cb61e17297c8b"
+    },
+    {
+      "file": "3a02015a41c073d2ce44f677bbe1e84b6c3aff3256378a835811bbf78b9d1cc4.webp",
+      "sha256": "3a02015a41c073d2ce44f677bbe1e84b6c3aff3256378a835811bbf78b9d1cc4"
+    },
+    {
+      "file": "c60a539db1e83a60b70434122c5436d75f60a532b0b5dbe2ed85106c4bab824b.webp",
+      "sha256": "c60a539db1e83a60b70434122c5436d75f60a532b0b5dbe2ed85106c4bab824b"
+    },
+    {
+      "file": "592bddff5adae9568f54868fd394a36496b2f89c214cbc0f819aa5b77dc1497d.webp",
+      "sha256": "592bddff5adae9568f54868fd394a36496b2f89c214cbc0f819aa5b77dc1497d"
+    },
+    {
+      "file": "880c86e9928d0715f547445e0d2b35041f592db24549addb5873d5c9e3acdb9f.webp",
+      "sha256": "880c86e9928d0715f547445e0d2b35041f592db24549addb5873d5c9e3acdb9f"
+    },
+    {
+      "file": "9475728e2b6b5d88abe372bea141f8eb66e32d9ebe6061e64f033dfdec54fd74.webp",
+      "sha256": "9475728e2b6b5d88abe372bea141f8eb66e32d9ebe6061e64f033dfdec54fd74"
+    },
+    {
+      "file": "0c98003a01bee9b1f6f1b9f2ef78038b0d0b3ade7215a1903c65ec2664fc6935.webp",
+      "sha256": "0c98003a01bee9b1f6f1b9f2ef78038b0d0b3ade7215a1903c65ec2664fc6935"
+    },
+    {
+      "file": "12e1f71fcda1ad3dcc69e38ae0d0c5d69f2797d5d6345057fef06fc386070003.webp",
+      "sha256": "12e1f71fcda1ad3dcc69e38ae0d0c5d69f2797d5d6345057fef06fc386070003"
+    },
+    {
+      "file": "193ea9b07332980853ed3aaa714f42f0f9be43fb6477e972486f740c800f9428.webp",
+      "sha256": "193ea9b07332980853ed3aaa714f42f0f9be43fb6477e972486f740c800f9428"
+    },
+    {
+      "file": "eb6ad3a1bb552c516fac2a996d4df30d2f3b97b0fe5b1c40d6e38504f5e1cc61.webp",
+      "sha256": "eb6ad3a1bb552c516fac2a996d4df30d2f3b97b0fe5b1c40d6e38504f5e1cc61"
+    },
+    {
+      "file": "8d23c8fd2ccb6a920e40055477c2a151440f385dc0da9784b4125409215a5c76.webp",
+      "sha256": "8d23c8fd2ccb6a920e40055477c2a151440f385dc0da9784b4125409215a5c76"
+    },
+    {
+      "file": "6bab536b0179121fbc3d12a4f1713205abddac088e2bd3311aec8881d0f9a4dd.webp",
+      "sha256": "6bab536b0179121fbc3d12a4f1713205abddac088e2bd3311aec8881d0f9a4dd"
+    },
+    {
+      "file": "09be5770e9d8f9dc5c4d2840dcac9948b783a98257e8cd056b0dcc45cc1364a2.webp",
+      "sha256": "09be5770e9d8f9dc5c4d2840dcac9948b783a98257e8cd056b0dcc45cc1364a2"
+    }
+  ],
+  "rootKey": "team.vocab.c-giao-tiep-hang-ngay.c07-o-san-bay-khach-san"
+}

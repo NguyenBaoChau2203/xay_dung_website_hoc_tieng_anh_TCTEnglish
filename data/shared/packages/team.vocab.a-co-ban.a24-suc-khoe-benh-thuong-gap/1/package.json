@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap",
+      "kind": "Set",
+      "values": {
+        "SetName": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "Description": "#a1 #a2 #health #illness"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.17ea46953c134808896b1c71ca3469c7",
+      "kind": "Card",
+      "values": {
+        "Term": "wound",
+        "Definition": "v\u1EBFt th\u01B0\u01A1ng",
+        "ImageUrl": "asset:b19786eb822ee5fde798dddbe4ea630debff40ac71075674258551439253099b.webp",
+        "Phonetic": "/\u02C8wund/",
+        "Example": "Clean the wound with water.",
+        "ExampleTranslation": "H\u00E3y r\u1EEDa v\u1EBFt th\u01B0\u01A1ng b\u1EB1ng n\u01B0\u1EDBc.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an injury where the skin is cut or broken",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8wu\u02D0nd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Clean the wound with water.\u0022,\u0022vi\u0022:\u0022H\\u00E3y r\\u1EEDa v\\u1EBFt th\\u01B0\\u01A1ng b\\u1EB1ng n\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022The wound on his leg is healing.\u0022,\u0022vi\u0022:\u0022V\\u1EBFt th\\u01B0\\u01A1ng \\u1EDF ch\\u00E2n anh \\u1EA5y \\u0111ang l\\u00E0nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022clean a wound\u0022,\u0022vi\u0022:\u0022r\\u1EEDa v\\u1EBFt th\\u01B0\\u01A1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.23efcf666a08474e9778c13a9d9cf15e",
+      "kind": "Card",
+      "values": {
+        "Term": "patient",
+        "Definition": "b\u1EC7nh nh\u00E2n",
+        "ImageUrl": "asset:527c821de8d2d02f0a7a61cd3fd8580b9dbe807abe9ac8d7565094a608d12fa6.webp",
+        "Phonetic": "/\u02C8pe\u026A\u032F\u0283\u0259nt/",
+        "Example": "The doctor is talking to a patient.",
+        "ExampleTranslation": "B\u00E1c s\u0129 \u0111ang n\u00F3i chuy\u1EC7n v\u1EDBi m\u1ED9t b\u1EC7nh nh\u00E2n.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who is being treated by a doctor",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u025Bj\u0283\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The doctor is talking to a patient.\u0022,\u0022vi\u0022:\u0022B\\u00E1c s\\u0129 \\u0111ang n\\u00F3i chuy\\u1EC7n v\\u1EDBi m\\u1ED9t b\\u1EC7nh nh\\u00E2n.\u0022},{\u0022text\u0022:\u0022The hospital has many patients today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay b\\u1EC7nh vi\\u1EC7n c\\u00F3 r\\u1EA5t nhi\\u1EC1u b\\u1EC7nh nh\\u00E2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hospital patient\u0022,\u0022vi\u0022:\u0022b\\u1EC7nh nh\\u00E2n n\\u1EB1m vi\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.324a3448ebf04b818a31cda9040b2d62",
+      "kind": "Card",
+      "values": {
+        "Term": "wheelchair",
+        "Definition": "xe l\u0103n",
+        "ImageUrl": "asset:a03f21b1de383207ac030686d615fd198b8998f9679701c0a3cbd110d05387c2.webp",
+        "Phonetic": "/\u02C8(h)wilt\u0361\u0283\u025B\u0279/",
+        "Example": "The hospital has a ramp for wheelchairs.",
+        "ExampleTranslation": "B\u1EC7nh vi\u1EC7n c\u00F3 \u0111\u01B0\u1EDDng d\u1ED1c d\u00E0nh cho xe l\u0103n.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a chair with wheels for a person who cannot walk",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8wi\u02D0lt\u0361\u0283\u025B\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The hospital has a ramp for wheelchairs.\u0022,\u0022vi\u0022:\u0022B\\u1EC7nh vi\\u1EC7n c\\u00F3 \\u0111\\u01B0\\u1EDDng d\\u1ED1c d\\u00E0nh cho xe l\\u0103n.\u0022},{\u0022text\u0022:\u0022He moves around in a wheelchair.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y di chuy\\u1EC3n b\\u1EB1ng xe l\\u0103n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wheelchair ramp\u0022,\u0022vi\u0022:\u0022d\\u1ED1c cho xe l\\u0103n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.42a7ffb20ca744b8bc84441498eafb7a",
+      "kind": "Card",
+      "values": {
+        "Term": "bandage",
+        "Definition": "b\u0103ng g\u1EA1c",
+        "ImageUrl": "asset:69e4053ce97949d6ec9c6a75d088ea111a11132b3553d9f543e4c3afabe163f1.webp",
+        "Phonetic": "/\u02C8b\u00E6n.d\u026Ad\u0361\u0292/",
+        "Example": "The nurse put a bandage on my knee.",
+        "ExampleTranslation": "C\u00F4 y t\u00E1 b\u0103ng \u0111\u1EA7u g\u1ED1i cho t\u00F4i.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long piece of cloth that covers a wound",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u00E6n.d\u026Ad\u0361\u0292/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The nurse put a bandage on my knee.\u0022,\u0022vi\u0022:\u0022C\\u00F4 y t\\u00E1 b\\u0103ng \\u0111\\u1EA7u g\\u1ED1i cho t\\u00F4i.\u0022},{\u0022text\u0022:\u0022He wore a bandage on his hand.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y qu\\u1EA5n b\\u0103ng \\u1EDF tay.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wrap a bandage\u0022,\u0022vi\u0022:\u0022qu\\u1EA5n b\\u0103ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.48e8f9af7d4d48ec9939f8e1938b9ed1",
+      "kind": "Card",
+      "values": {
+        "Term": "toothache",
+        "Definition": "\u0111au r\u0103ng",
+        "ImageUrl": "asset:56829651e37eb0edec22c9c22666622338bb73e8d112af89815ff094c2240c4a.webp",
+        "Phonetic": "/\u02C8tu\u03B8\u02CCe\u026Ak/",
+        "Example": "He went to the dentist because of a toothache.",
+        "ExampleTranslation": "Anh \u1EA5y \u0111i kh\u00E1m nha s\u0129 v\u00EC b\u1ECB \u0111au r\u0103ng.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a pain in a tooth",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8tu\u03B8\u02CCe\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He went to the dentist because of a toothache.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111i kh\\u00E1m nha s\\u0129 v\\u00EC b\\u1ECB \\u0111au r\\u0103ng.\u0022},{\u0022text\u0022:\u0022Sweet food gives me a toothache.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1ED3 ng\\u1ECDt l\\u00E0m t\\u00F4i \\u0111au r\\u0103ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022have a toothache\u0022,\u0022vi\u0022:\u0022b\\u1ECB \\u0111au r\\u0103ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.53baea93e2134e64b7094ae7fdccb367",
+      "kind": "Card",
+      "values": {
+        "Term": "sunburn",
+        "Definition": "ch\u00E1y n\u1EAFng",
+        "ImageUrl": "asset:579e3a03b1834e99635e4a4f0eac275844d2158b852ce53ae3b1eae5e6b5a992.webp",
+        "Phonetic": "/\u02C8s\u028Cn\u02CCb\u025Dn/",
+        "Example": "Use cream to avoid sunburn.",
+        "ExampleTranslation": "H\u00E3y d\u00F9ng kem \u0111\u1EC3 tr\u00E1nh b\u1ECB ch\u00E1y n\u1EAFng.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "red painful skin caused by too much sun",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8s\u028Cn\u02CCb\u025C\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Use cream to avoid sunburn.\u0022,\u0022vi\u0022:\u0022H\\u00E3y d\\u00F9ng kem \\u0111\\u1EC3 tr\\u00E1nh b\\u1ECB ch\\u00E1y n\\u1EAFng.\u0022},{\u0022text\u0022:\u0022He got a bad sunburn at the beach.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y b\\u1ECB ch\\u00E1y n\\u1EAFng n\\u1EB7ng \\u1EDF b\\u00E3i bi\\u1EC3n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022get sunburn\u0022,\u0022vi\u0022:\u0022b\\u1ECB ch\\u00E1y n\\u1EAFng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.5c4e96968e18428998a79ac1b7f222f0",
+      "kind": "Card",
+      "values": {
+        "Term": "stomachache",
+        "Definition": "\u0111au b\u1EE5ng",
+        "ImageUrl": "asset:3701d8968720db3fe03db9e1204e3ccf9443294b1af03583d501bd02659bdaa2.webp",
+        "Phonetic": "/\u02C8st\u028Cm\u0259k\u02CCe\u026Ak/",
+        "Example": "I have a stomachache after eating too much.",
+        "ExampleTranslation": "T\u00F4i b\u1ECB \u0111au b\u1EE5ng sau khi \u0103n qu\u00E1 nhi\u1EC1u.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a pain in your stomach",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8st\u028Cm\u0259k\u02CCe\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have a stomachache after eating too much.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB \\u0111au b\\u1EE5ng sau khi \\u0103n qu\\u00E1 nhi\\u1EC1u.\u0022},{\u0022text\u0022:\u0022The child has a stomachache and cannot eat.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EE9a tr\\u1EBB b\\u1ECB \\u0111au b\\u1EE5ng v\\u00E0 kh\\u00F4ng \\u0103n \\u0111\\u01B0\\u1EE3c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022have a stomachache\u0022,\u0022vi\u0022:\u0022b\\u1ECB \\u0111au b\\u1EE5ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.6e6bfc81dd6b4bb3b27075c593f874d4",
+      "kind": "Card",
+      "values": {
+        "Term": "cold",
+        "Definition": "c\u1EA3m l\u1EA1nh; l\u1EA1nh",
+        "ImageUrl": "asset:027f6f42c73957b43e21e372109f19625993aede1960219a6aa1948b8233b7d6.webp",
+        "Phonetic": "/ko\u028Ald/",
+        "Example": "I have a cold, so I stay at home.",
+        "ExampleTranslation": "T\u00F4i b\u1ECB c\u1EA3m l\u1EA1nh n\u00EAn \u1EDF nh\u00E0.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun,adj",
+        "MeaningEn": "a common illness with a runny nose and a sore throat",
+        "Cefr": "A1",
+        "PhoneticUk": "/k\u0259\u028Ald/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have a cold, so I stay at home.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB c\\u1EA3m l\\u1EA1nh n\\u00EAn \\u1EDF nh\\u00E0.\u0022},{\u0022text\u0022:\u0022She caught a cold in the rain.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y b\\u1ECB c\\u1EA3m l\\u1EA1nh v\\u00EC \\u0111i m\\u01B0a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022catch a cold\u0022,\u0022vi\u0022:\u0022b\\u1ECB c\\u1EA3m l\\u1EA1nh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.70d2e8b4a4f545d4a7a963a7b9211d1f",
+      "kind": "Card",
+      "values": {
+        "Term": "sneeze",
+        "Definition": "h\u1EAFt h\u01A1i",
+        "ImageUrl": "asset:c98cc380114a79f85a696a69eb557e9b5c009c46de544afe8c42098f2c4eaab0.webp",
+        "Phonetic": "/sni\u02D0z/",
+        "Example": "He sneezed three times in a row.",
+        "ExampleTranslation": "Anh \u1EA5y h\u1EAFt h\u01A1i ba l\u1EA7n li\u00EAn ti\u1EBFp.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "verb,noun",
+        "MeaningEn": "to blow air suddenly out of your nose and mouth",
+        "Cefr": "A2",
+        "PhoneticUk": "/sni\u02D0z/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He sneezed three times in a row.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y h\\u1EAFt h\\u01A1i ba l\\u1EA7n li\\u00EAn ti\\u1EBFp.\u0022},{\u0022text\u0022:\u0022Cover your mouth when you sneeze.\u0022,\u0022vi\u0022:\u0022H\\u00E3y che mi\\u1EC7ng khi b\\u1EA1n h\\u1EAFt h\\u01A1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022sneeze loudly\u0022,\u0022vi\u0022:\u0022h\\u1EAFt h\\u01A1i to\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022sneezed\u0022,\u0022pastParticiple\u0022:\u0022sneezed\u0022,\u0022ing\u0022:\u0022sneezing\u0022,\u0022thirdPerson\u0022:\u0022sneezes\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.73fdb6a9e62e4394b8a19ad762b27f1c",
+      "kind": "Card",
+      "values": {
+        "Term": "bruise",
+        "Definition": "v\u1EBFt b\u1EA7m t\u00EDm",
+        "ImageUrl": "asset:15f56e8a3dc5f4676aa9315276c604df301e5b9403e7c03b4fbc3ce1ae3976aa.webp",
+        "Phonetic": "/b\u0279uz/",
+        "Example": "I have a big bruise on my knee.",
+        "ExampleTranslation": "T\u00F4i c\u00F3 m\u1ED9t v\u1EBFt b\u1EA7m l\u1EDBn \u1EDF \u0111\u1EA7u g\u1ED1i.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a dark mark on the skin after you hit it",
+        "Cefr": "A2",
+        "PhoneticUk": "/b\u0279u\u02D0z/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have a big bruise on my knee.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u00F3 m\\u1ED9t v\\u1EBFt b\\u1EA7m l\\u1EDBn \\u1EDF \\u0111\\u1EA7u g\\u1ED1i.\u0022},{\u0022text\u0022:\u0022The bruise turned purple after two days.\u0022,\u0022vi\u0022:\u0022V\\u1EBFt b\\u1EA7m chuy\\u1EC3n sang m\\u00E0u t\\u00EDm sau hai ng\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a dark bruise\u0022,\u0022vi\u0022:\u0022v\\u1EBFt b\\u1EA7m s\\u1EABm\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.7a9591ed4cea47079890df2a3d5d860f",
+      "kind": "Card",
+      "values": {
+        "Term": "health",
+        "Definition": "s\u1EE9c kh\u1ECFe",
+        "ImageUrl": "asset:cad85ba5378052bfe9bfb881af65b25c180e7e5d3970cb5ab936b201521a99b9.webp",
+        "Phonetic": "/\u02C8h\u025Bl\u03B8/",
+        "Example": "Good food is important for your health.",
+        "ExampleTranslation": "Th\u1EE9c \u0103n t\u1ED1t r\u1EA5t quan tr\u1ECDng cho s\u1EE9c kh\u1ECFe c\u1EE7a b\u1EA1n.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the condition of your body and whether you are well",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8h\u025Bl\u03B8/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Good food is important for your health.\u0022,\u0022vi\u0022:\u0022Th\\u1EE9c \\u0103n t\\u1ED1t r\\u1EA5t quan tr\\u1ECDng cho s\\u1EE9c kh\\u1ECFe c\\u1EE7a b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022My grandmother is in good health.\u0022,\u0022vi\u0022:\u0022B\\u00E0 t\\u00F4i c\\u00F3 s\\u1EE9c kh\\u1ECFe t\\u1ED1t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022good health\u0022,\u0022vi\u0022:\u0022s\\u1EE9c kh\\u1ECFe t\\u1ED1t\u0022},{\u0022text\u0022:\u0022health care\u0022,\u0022vi\u0022:\u0022ch\\u0103m s\\u00F3c s\\u1EE9c kh\\u1ECFe\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022healthy\u0022,\u0022pos\u0022:\u0022adj\u0022,\u0022vi\u0022:\u0022kh\\u1ECFe m\\u1EA1nh\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.8317c740fd6f499091c77d64426ed96d",
+      "kind": "Card",
+      "values": {
+        "Term": "vitamin",
+        "Definition": "vi-ta-min",
+        "ImageUrl": "asset:038ece2999d88a16a2f87e9244aaccbaedc77a5ac462a01664653c5ae0082c1f.webp",
+        "Phonetic": "/\u02C8va\u026A.t\u0259.m\u026An/",
+        "Example": "Oranges are full of vitamin C.",
+        "ExampleTranslation": "Cam ch\u1EE9a r\u1EA5t nhi\u1EC1u vi-ta-min C.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a natural substance in food that keeps your body healthy",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8v\u026At.\u0259.m\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Oranges are full of vitamin C.\u0022,\u0022vi\u0022:\u0022Cam ch\\u1EE9a r\\u1EA5t nhi\\u1EC1u vi-ta-min C.\u0022},{\u0022text\u0022:\u0022She takes a vitamin every morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng n\\u00E0o c\\u00F4 \\u1EA5y c\\u0169ng u\\u1ED1ng m\\u1ED9t vi\\u00EAn vi-ta-min.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022vitamin C\u0022,\u0022vi\u0022:\u0022vi-ta-min C\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.852dfde79e054974bd473220468c5893",
+      "kind": "Card",
+      "values": {
+        "Term": "injection",
+        "Definition": "m\u0169i ti\u00EAm",
+        "ImageUrl": "asset:44276f697e447cb1d3ef28b874c7fcd10815ca9c00e9308db41c96c8b469e9e5.webp",
+        "Phonetic": "/\u026An\u02C8d\u0361\u0292\u025Bk.\u0283\u0259n/",
+        "Example": "The nurse gave me an injection.",
+        "ExampleTranslation": "C\u00F4 y t\u00E1 ti\u00EAm cho t\u00F4i m\u1ED9t m\u0169i.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a way of putting medicine into your body with a needle",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u026An\u02C8d\u0361\u0292\u025Bk.\u0283\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The nurse gave me an injection.\u0022,\u0022vi\u0022:\u0022C\\u00F4 y t\\u00E1 ti\\u00EAm cho t\\u00F4i m\\u1ED9t m\\u0169i.\u0022},{\u0022text\u0022:\u0022Children often cry before an injection.\u0022,\u0022vi\u0022:\u0022Tr\\u1EBB em th\\u01B0\\u1EDDng kh\\u00F3c tr\\u01B0\\u1EDBc khi ti\\u00EAm.\u0022}],\u0022synonyms\u0022:[\u0022shot\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022have an injection\u0022,\u0022vi\u0022:\u0022ti\\u00EAm m\\u1ED9t m\\u0169i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5923937/photo-image-public-domain-medicine-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.865b168b809c4149804bd9c848ebe444",
+      "kind": "Card",
+      "values": {
+        "Term": "pill",
+        "Definition": "vi\u00EAn thu\u1ED1c",
+        "ImageUrl": "asset:8b9770cd7ea088da010481b045b65bb83780499dbd4f298a131535d1de45bba5.webp",
+        "Phonetic": "/p\u026Al/",
+        "Example": "She takes a pill every morning.",
+        "ExampleTranslation": "M\u1ED7i s\u00E1ng c\u00F4 \u1EA5y u\u1ED1ng m\u1ED9t vi\u00EAn thu\u1ED1c.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small round piece of medicine that you swallow",
+        "Cefr": "A2",
+        "PhoneticUk": "/p\u026Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She takes a pill every morning.\u0022,\u0022vi\u0022:\u0022M\\u1ED7i s\\u00E1ng c\\u00F4 \\u1EA5y u\\u1ED1ng m\\u1ED9t vi\\u00EAn thu\\u1ED1c.\u0022},{\u0022text\u0022:\u0022The pill is difficult to swallow.\u0022,\u0022vi\u0022:\u0022Vi\\u00EAn thu\\u1ED1c n\\u00E0y kh\\u00F3 nu\\u1ED1t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022take a pill\u0022,\u0022vi\u0022:\u0022u\\u1ED1ng m\\u1ED9t vi\\u00EAn thu\\u1ED1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/pills-medicine-S5WGVL18A9\u0022,\u0022author\u0022:\u0022Freestocks.org\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.87fac535886c485ba2e1f203bf4aeaa3",
+      "kind": "Card",
+      "values": {
+        "Term": "fever",
+        "Definition": "s\u1ED1t",
+        "ImageUrl": "asset:3801a1acf50c301d75062d96ba7fecf0b1493f7a9a34b284d29d8c3794f36ae4.webp",
+        "Phonetic": "/\u02C8fiv\u025A/",
+        "Example": "The child has a high fever.",
+        "ExampleTranslation": "\u0110\u1EE9a tr\u1EBB b\u1ECB s\u1ED1t cao.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a high body temperature when you are ill",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8fi\u02D0v\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The child has a high fever.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EE9a tr\\u1EBB b\\u1ECB s\\u1ED1t cao.\u0022},{\u0022text\u0022:\u0022I had a fever for two days.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB s\\u1ED1t trong hai ng\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022high fever\u0022,\u0022vi\u0022:\u0022s\\u1ED1t cao\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.8d9e3b2f75a14c72bc04371c1ca82a22",
+      "kind": "Card",
+      "values": {
+        "Term": "face mask",
+        "Definition": "kh\u1EA9u trang",
+        "ImageUrl": "asset:82c13514999c7573e40ada5bdd0cc8ffd8e5b838f89d60239d98e9230b856638.webp",
+        "Phonetic": "/fe\u026A\u032Fs m\u00E6sk/",
+        "Example": "Wear a face mask on the bus.",
+        "ExampleTranslation": "H\u00E3y \u0111eo kh\u1EA9u trang khi \u0111i xe bu\u00FDt.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a cover for your nose and mouth that protects you from germs",
+        "Cefr": "A2",
+        "PhoneticUk": "/fe\u026A\u032Fs m\u0251\u02D0sk/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Wear a face mask on the bus.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111eo kh\\u1EA9u trang khi \\u0111i xe bu\\u00FDt.\u0022},{\u0022text\u0022:\u0022The nurse changes her face mask often.\u0022,\u0022vi\u0022:\u0022C\\u00F4 y t\\u00E1 thay kh\\u1EA9u trang th\\u01B0\\u1EDDng xuy\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wear a face mask\u0022,\u0022vi\u0022:\u0022\\u0111eo kh\\u1EA9u trang\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5909614/image-face-mask-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.8e94b38446fa41a9b8a496288c8b51bb",
+      "kind": "Card",
+      "values": {
+        "Term": "crutches",
+        "Definition": "c\u00E2y n\u1EA1ng",
+        "ImageUrl": "asset:bef50855426ec1c0761cd9ede5823f1893b5ae0acd2d294b4155f26736e75bb2.webp",
+        "Phonetic": "/\u02C8kr\u028Ct\u0283\u026Az/",
+        "Example": "He walks with crutches after the accident.",
+        "ExampleTranslation": "Sau tai n\u1EA1n anh \u1EA5y \u0111i b\u1EB1ng n\u1EA1ng.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "two sticks that help you walk when your leg is hurt",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8kr\u028Ct\u0283\u026Az/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He walks with crutches after the accident.\u0022,\u0022vi\u0022:\u0022Sau tai n\\u1EA1n anh \\u1EA5y \\u0111i b\\u1EB1ng n\\u1EA1ng.\u0022},{\u0022text\u0022:\u0022She needs crutches for six weeks.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y c\\u1EA7n d\\u00F9ng n\\u1EA1ng trong s\\u00E1u tu\\u1EA7n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022walk on crutches\u0022,\u0022vi\u0022:\u0022\\u0111i b\\u1EB1ng n\\u1EA1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/196708439@N04/52424413859\u0022,\u0022author\u0022:\u0022We, the Disabled People of India\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.967b83e1421a494a93560df21ab495f8",
+      "kind": "Card",
+      "values": {
+        "Term": "flu",
+        "Definition": "b\u1EC7nh c\u00FAm",
+        "ImageUrl": "asset:000fa66c1022c1b17bd3ebc1a4961a11f617fa91b1ec4c4e9d361522419c7241.webp",
+        "Phonetic": "/flu\u02D0/",
+        "Example": "Half of my class has the flu.",
+        "ExampleTranslation": "M\u1ED9t n\u1EEDa l\u1EDBp t\u00F4i b\u1ECB c\u00FAm.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an illness like a bad cold with fever and body pain",
+        "Cefr": "A2",
+        "PhoneticUk": "/flu\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Half of my class has the flu.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t n\\u1EEDa l\\u1EDBp t\\u00F4i b\\u1ECB c\\u00FAm.\u0022},{\u0022text\u0022:\u0022He stayed in bed with the flu for a week.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y n\\u1EB1m ngh\\u1EC9 m\\u1ED9t tu\\u1EA7n v\\u00EC c\\u00FAm.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022flu shot\u0022,\u0022vi\u0022:\u0022m\\u0169i ti\\u00EAm ph\\u00F2ng c\\u00FAm\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.9c985d50436340fb912637f3c0503ec8",
+      "kind": "Card",
+      "values": {
+        "Term": "headache",
+        "Definition": "\u0111au \u0111\u1EA7u",
+        "ImageUrl": "asset:5477d8357721cecb7c59dcc0057c1bdc1a72929854cf1614be5afbf94031ac21.webp",
+        "Phonetic": "/\u02C8h\u025Bde\u026Ak/",
+        "Example": "I have a headache and I need to rest.",
+        "ExampleTranslation": "T\u00F4i b\u1ECB \u0111au \u0111\u1EA7u v\u00E0 c\u1EA7n ngh\u1EC9 ng\u01A1i.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a pain in your head",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8h\u025Bde\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have a headache and I need to rest.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB \\u0111au \\u0111\\u1EA7u v\\u00E0 c\\u1EA7n ngh\\u1EC9 ng\\u01A1i.\u0022},{\u0022text\u0022:\u0022Too much noise gives me a headache.\u0022,\u0022vi\u0022:\u0022Ti\\u1EBFng \\u1ED3n qu\\u00E1 nhi\\u1EC1u l\\u00E0m t\\u00F4i \\u0111au \\u0111\\u1EA7u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bad headache\u0022,\u0022vi\u0022:\u0022\\u0111au \\u0111\\u1EA7u d\\u1EEF d\\u1ED9i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.ad3438ae30e24253acc3555692176bba",
+      "kind": "Card",
+      "values": {
+        "Term": "sore throat",
+        "Definition": "\u0111au h\u1ECDng",
+        "ImageUrl": "asset:204dcc49116c090ab09117983150bf861ad22ca2ed7c97aa66cb55411f95f96a.webp",
+        "Phonetic": "/so\u0279 \u02C8\u03B8\u0279o\u028At/",
+        "Example": "I have a sore throat and cannot talk much.",
+        "ExampleTranslation": "T\u00F4i b\u1ECB \u0111au h\u1ECDng v\u00E0 kh\u00F4ng n\u00F3i nhi\u1EC1u \u0111\u01B0\u1EE3c.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a painful throat that hurts when you swallow",
+        "Cefr": "A2",
+        "PhoneticUk": "/s\u0254\u02D0 \u02C8\u03B8\u0279\u0259\u028At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have a sore throat and cannot talk much.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB \\u0111au h\\u1ECDng v\\u00E0 kh\\u00F4ng n\\u00F3i nhi\\u1EC1u \\u0111\\u01B0\\u1EE3c.\u0022},{\u0022text\u0022:\u0022Warm tea is good for a sore throat.\u0022,\u0022vi\u0022:\u0022Tr\\u00E0 \\u1EA5m r\\u1EA5t t\\u1ED1t cho c\\u1ED5 h\\u1ECDng b\\u1ECB \\u0111au.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022have a sore throat\u0022,\u0022vi\u0022:\u0022b\\u1ECB \\u0111au h\\u1ECDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.bba4b6f069334fb19dcad39b424a8598",
+      "kind": "Card",
+      "values": {
+        "Term": "cough",
+        "Definition": "ho; c\u01A1n ho",
+        "ImageUrl": "asset:336715b575e36a275f8796814e5c3507d116edd70ae3117bf10093442d15f848.webp",
+        "Phonetic": "/k\u0254f/",
+        "Example": "I have a bad cough at night.",
+        "ExampleTranslation": "Ban \u0111\u00EAm t\u00F4i b\u1ECB ho n\u1EB7ng.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "a sudden noise you make when you push air out of your throat",
+        "Cefr": "A2",
+        "PhoneticUk": "/k\u0252f/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have a bad cough at night.\u0022,\u0022vi\u0022:\u0022Ban \\u0111\\u00EAm t\\u00F4i b\\u1ECB ho n\\u1EB7ng.\u0022},{\u0022text\u0022:\u0022He coughed all night because of the cold.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y ho su\\u1ED1t \\u0111\\u00EAm v\\u00EC b\\u1ECB c\\u1EA3m l\\u1EA1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022dry cough\u0022,\u0022vi\u0022:\u0022ho khan\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022coughed\u0022,\u0022pastParticiple\u0022:\u0022coughed\u0022,\u0022ing\u0022:\u0022coughing\u0022,\u0022thirdPerson\u0022:\u0022coughs\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.bbcf9bf778da49c1889df19f555d790d",
+      "kind": "Card",
+      "values": {
+        "Term": "allergy",
+        "Definition": "d\u1ECB \u1EE9ng",
+        "ImageUrl": "asset:234ad0d2d0cbad6552465737804a5f2f6c5d37a9a70adbfb4c5390cf02b8956f.webp",
+        "Phonetic": "/\u02C8\u00E6l.\u025A.d\u0361\u0292i/",
+        "Example": "I have an allergy to peanuts.",
+        "ExampleTranslation": "T\u00F4i b\u1ECB d\u1ECB \u1EE9ng \u0111\u1EADu ph\u1ED9ng.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a bad reaction of your body to food, dust or animals",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u00E6l.\u0259\u0279.d\u0361\u0292i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have an allergy to peanuts.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB d\\u1ECB \\u1EE9ng \\u0111\\u1EADu ph\\u1ED9ng.\u0022},{\u0022text\u0022:\u0022Her allergy gets worse in spring.\u0022,\u0022vi\u0022:\u0022Ch\\u1EE9ng d\\u1ECB \\u1EE9ng c\\u1EE7a c\\u00F4 \\u1EA5y n\\u1EB7ng h\\u01A1n v\\u00E0o m\\u00F9a xu\\u00E2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022food allergy\u0022,\u0022vi\u0022:\u0022d\\u1ECB \\u1EE9ng th\\u1EF1c ph\\u1EA9m\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022allergies\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.e37dcfb8652b4e3c8fdf2ac322d1c7c8",
+      "kind": "Card",
+      "values": {
+        "Term": "first aid kit",
+        "Definition": "h\u1ED9p s\u01A1 c\u1EE9u",
+        "ImageUrl": "asset:087b63c525308439fab01666edc90b16f81d6792054c637a27bfd9556b326eea.webp",
+        "Phonetic": "/f\u025Ast e\u026Ad k\u026At/",
+        "Example": "We keep a first aid kit in the kitchen.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111\u1EC3 m\u1ED9t h\u1ED9p s\u01A1 c\u1EE9u trong b\u1EBFp.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a box with bandages and medicine for small injuries",
+        "Cefr": "A2",
+        "PhoneticUk": "/f\u025C\u02D0st e\u026Ad k\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We keep a first aid kit in the kitchen.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u1EC3 m\\u1ED9t h\\u1ED9p s\\u01A1 c\\u1EE9u trong b\\u1EBFp.\u0022},{\u0022text\u0022:\u0022The teacher took the first aid kit to the field.\u0022,\u0022vi\u0022:\u0022C\\u00F4 gi\\u00E1o mang h\\u1ED9p s\\u01A1 c\\u1EE9u ra s\\u00E2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pack a first aid kit\u0022,\u0022vi\u0022:\u0022chu\\u1EA9n b\\u1ECB h\\u1ED9p s\\u01A1 c\\u1EE9u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.ec5f5bec65be4c0e880e7c42735fbfcb",
+      "kind": "Card",
+      "values": {
+        "Term": "medicine",
+        "Definition": "thu\u1ED1c",
+        "ImageUrl": "asset:330ef32a9aa6a064268926d0e075a606bc1eaa96c1462f43fc0c8313b3321034.webp",
+        "Phonetic": "/\u02C8m\u025Bd.\u026A.s\u026An/",
+        "Example": "Take this medicine three times a day.",
+        "ExampleTranslation": "H\u00E3y u\u1ED1ng thu\u1ED1c n\u00E0y ba l\u1EA7n m\u1ED9t ng\u00E0y.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "something you take to treat an illness",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8m\u025Bd.\u026A.s(\u026A)n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Take this medicine three times a day.\u0022,\u0022vi\u0022:\u0022H\\u00E3y u\\u1ED1ng thu\\u1ED1c n\\u00E0y ba l\\u1EA7n m\\u1ED9t ng\\u00E0y.\u0022},{\u0022text\u0022:\u0022The doctor gave me some medicine for my cough.\u0022,\u0022vi\u0022:\u0022B\\u00E1c s\\u0129 cho t\\u00F4i \\u00EDt thu\\u1ED1c tr\\u1ECB ho.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022take medicine\u0022,\u0022vi\u0022:\u0022u\\u1ED1ng thu\\u1ED1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap.ee8332d10604454a922175d8c8758c84",
+      "kind": "Card",
+      "values": {
+        "Term": "rash",
+        "Definition": "ph\u00E1t ban",
+        "ImageUrl": "asset:29cc658c4405fdf557b26e7547f72695e080458d7f6ea6211b7f6dcb8d73557f.webp",
+        "Phonetic": "/\u0279\u00E6\u0283/",
+        "Example": "He has a red rash on his arm.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y b\u1ECB ph\u00E1t ban \u0111\u1ECF \u1EDF c\u00E1nh tay.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 b\u1EC7nh th\u01B0\u1EDDng g\u1EB7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a lot of small red spots on the skin",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0279\u00E6\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He has a red rash on his arm.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y b\\u1ECB ph\\u00E1t ban \\u0111\\u1ECF \\u1EDF c\\u00E1nh tay.\u0022},{\u0022text\u0022:\u0022The rash is itchy.\u0022,\u0022vi\u0022:\u0022Ch\\u1ED7 ph\\u00E1t ban r\\u1EA5t ng\\u1EE9a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022skin rash\u0022,\u0022vi\u0022:\u0022ph\\u00E1t ban tr\\u00EAn da\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "3801a1acf50c301d75062d96ba7fecf0b1493f7a9a34b284d29d8c3794f36ae4.webp",
+      "sha256": "3801a1acf50c301d75062d96ba7fecf0b1493f7a9a34b284d29d8c3794f36ae4"
+    },
+    {
+      "file": "336715b575e36a275f8796814e5c3507d116edd70ae3117bf10093442d15f848.webp",
+      "sha256": "336715b575e36a275f8796814e5c3507d116edd70ae3117bf10093442d15f848"
+    },
+    {
+      "file": "5477d8357721cecb7c59dcc0057c1bdc1a72929854cf1614be5afbf94031ac21.webp",
+      "sha256": "5477d8357721cecb7c59dcc0057c1bdc1a72929854cf1614be5afbf94031ac21"
+    },
+    {
+      "file": "56829651e37eb0edec22c9c22666622338bb73e8d112af89815ff094c2240c4a.webp",
+      "sha256": "56829651e37eb0edec22c9c22666622338bb73e8d112af89815ff094c2240c4a"
+    },
+    {
+      "file": "027f6f42c73957b43e21e372109f19625993aede1960219a6aa1948b8233b7d6.webp",
+      "sha256": "027f6f42c73957b43e21e372109f19625993aede1960219a6aa1948b8233b7d6"
+    },
+    {
+      "file": "000fa66c1022c1b17bd3ebc1a4961a11f617fa91b1ec4c4e9d361522419c7241.webp",
+      "sha256": "000fa66c1022c1b17bd3ebc1a4961a11f617fa91b1ec4c4e9d361522419c7241"
+    },
+    {
+      "file": "3701d8968720db3fe03db9e1204e3ccf9443294b1af03583d501bd02659bdaa2.webp",
+      "sha256": "3701d8968720db3fe03db9e1204e3ccf9443294b1af03583d501bd02659bdaa2"
+    },
+    {
+      "file": "204dcc49116c090ab09117983150bf861ad22ca2ed7c97aa66cb55411f95f96a.webp",
+      "sha256": "204dcc49116c090ab09117983150bf861ad22ca2ed7c97aa66cb55411f95f96a"
+    },
+    {
+      "file": "c98cc380114a79f85a696a69eb557e9b5c009c46de544afe8c42098f2c4eaab0.webp",
+      "sha256": "c98cc380114a79f85a696a69eb557e9b5c009c46de544afe8c42098f2c4eaab0"
+    },
+    {
+      "file": "330ef32a9aa6a064268926d0e075a606bc1eaa96c1462f43fc0c8313b3321034.webp",
+      "sha256": "330ef32a9aa6a064268926d0e075a606bc1eaa96c1462f43fc0c8313b3321034"
+    },
+    {
+      "file": "8b9770cd7ea088da010481b045b65bb83780499dbd4f298a131535d1de45bba5.webp",
+      "sha256": "8b9770cd7ea088da010481b045b65bb83780499dbd4f298a131535d1de45bba5"
+    },
+    {
+      "file": "44276f697e447cb1d3ef28b874c7fcd10815ca9c00e9308db41c96c8b469e9e5.webp",
+      "sha256": "44276f697e447cb1d3ef28b874c7fcd10815ca9c00e9308db41c96c8b469e9e5"
+    },
+    {
+      "file": "69e4053ce97949d6ec9c6a75d088ea111a11132b3553d9f543e4c3afabe163f1.webp",
+      "sha256": "69e4053ce97949d6ec9c6a75d088ea111a11132b3553d9f543e4c3afabe163f1"
+    },
+    {
+      "file": "527c821de8d2d02f0a7a61cd3fd8580b9dbe807abe9ac8d7565094a608d12fa6.webp",
+      "sha256": "527c821de8d2d02f0a7a61cd3fd8580b9dbe807abe9ac8d7565094a608d12fa6"
+    },
+    {
+      "file": "234ad0d2d0cbad6552465737804a5f2f6c5d37a9a70adbfb4c5390cf02b8956f.webp",
+      "sha256": "234ad0d2d0cbad6552465737804a5f2f6c5d37a9a70adbfb4c5390cf02b8956f"
+    },
+    {
+      "file": "29cc658c4405fdf557b26e7547f72695e080458d7f6ea6211b7f6dcb8d73557f.webp",
+      "sha256": "29cc658c4405fdf557b26e7547f72695e080458d7f6ea6211b7f6dcb8d73557f"
+    },
+    {
+      "file": "b19786eb822ee5fde798dddbe4ea630debff40ac71075674258551439253099b.webp",
+      "sha256": "b19786eb822ee5fde798dddbe4ea630debff40ac71075674258551439253099b"
+    },
+    {
+      "file": "15f56e8a3dc5f4676aa9315276c604df301e5b9403e7c03b4fbc3ce1ae3976aa.webp",
+      "sha256": "15f56e8a3dc5f4676aa9315276c604df301e5b9403e7c03b4fbc3ce1ae3976aa"
+    },
+    {
+      "file": "bef50855426ec1c0761cd9ede5823f1893b5ae0acd2d294b4155f26736e75bb2.webp",
+      "sha256": "bef50855426ec1c0761cd9ede5823f1893b5ae0acd2d294b4155f26736e75bb2"
+    },
+    {
+      "file": "82c13514999c7573e40ada5bdd0cc8ffd8e5b838f89d60239d98e9230b856638.webp",
+      "sha256": "82c13514999c7573e40ada5bdd0cc8ffd8e5b838f89d60239d98e9230b856638"
+    },
+    {
+      "file": "038ece2999d88a16a2f87e9244aaccbaedc77a5ac462a01664653c5ae0082c1f.webp",
+      "sha256": "038ece2999d88a16a2f87e9244aaccbaedc77a5ac462a01664653c5ae0082c1f"
+    },
+    {
+      "file": "087b63c525308439fab01666edc90b16f81d6792054c637a27bfd9556b326eea.webp",
+      "sha256": "087b63c525308439fab01666edc90b16f81d6792054c637a27bfd9556b326eea"
+    },
+    {
+      "file": "a03f21b1de383207ac030686d615fd198b8998f9679701c0a3cbd110d05387c2.webp",
+      "sha256": "a03f21b1de383207ac030686d615fd198b8998f9679701c0a3cbd110d05387c2"
+    },
+    {
+      "file": "579e3a03b1834e99635e4a4f0eac275844d2158b852ce53ae3b1eae5e6b5a992.webp",
+      "sha256": "579e3a03b1834e99635e4a4f0eac275844d2158b852ce53ae3b1eae5e6b5a992"
+    },
+    {
+      "file": "cad85ba5378052bfe9bfb881af65b25c180e7e5d3970cb5ab936b201521a99b9.webp",
+      "sha256": "cad85ba5378052bfe9bfb881af65b25c180e7e5d3970cb5ab936b201521a99b9"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a24-suc-khoe-benh-thuong-gap"
+}

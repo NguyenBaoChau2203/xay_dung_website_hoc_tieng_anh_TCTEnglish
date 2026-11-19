@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan",
+      "kind": "Set",
+      "values": {
+        "SetName": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "Description": "#a1 #a2 #nature #landscape"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.11a0da47c0c1476b8405d1f1b0f5d6b3",
+      "kind": "Card",
+      "values": {
+        "Term": "island",
+        "Definition": "h\u00F2n \u0111\u1EA3o",
+        "ImageUrl": "asset:2c1a6bcd6c07e2fd29c4fa515fa2207376392225d72a91d77c551dc1bcdb40ba.webp",
+        "Phonetic": "/\u02C8a\u026A.l\u0259nd/",
+        "Example": "We took a boat to a small island.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111i thuy\u1EC1n ra m\u1ED9t h\u00F2n \u0111\u1EA3o nh\u1ECF.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of land with water all around it",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8a\u026A.l\u0259nd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We took a boat to a small island.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i thuy\\u1EC1n ra m\\u1ED9t h\\u00F2n \\u0111\\u1EA3o nh\\u1ECF.\u0022},{\u0022text\u0022:\u0022Phu Quoc is a beautiful island.\u0022,\u0022vi\u0022:\u0022Ph\\u00FA Qu\\u1ED1c l\\u00E0 m\\u1ED9t h\\u00F2n \\u0111\\u1EA3o \\u0111\\u1EB9p.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022tropical island\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EA3o nhi\\u1EC7t \\u0111\\u1EDBi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/34409164@N06/3811740720\u0022,\u0022author\u0022:\u0022gnuckx\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.1354ead927c141f293fbdead1d2b8409",
+      "kind": "Card",
+      "values": {
+        "Term": "beach",
+        "Definition": "b\u00E3i bi\u1EC3n",
+        "ImageUrl": "asset:5e11ab15a7d13b2b0e0b99f0e0efee08b721aa6990ca4987eb18c64299dd7548.webp",
+        "Phonetic": "/bi\u02D0t\u0361\u0283/",
+        "Example": "We walk on the beach every morning.",
+        "ExampleTranslation": "S\u00E1ng n\u00E0o ch\u00FAng t\u00F4i c\u0169ng \u0111i d\u1EA1o tr\u00EAn b\u00E3i bi\u1EC3n.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an area of sand or small stones next to the sea",
+        "Cefr": "A1",
+        "PhoneticUk": "/bi\u02D0t\u0361\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We walk on the beach every morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng n\\u00E0o ch\\u00FAng t\\u00F4i c\\u0169ng \\u0111i d\\u1EA1o tr\\u00EAn b\\u00E3i bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022The children built a sandcastle on the beach.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB x\\u00E2y m\\u1ED9t l\\u00E2u \\u0111\\u00E0i c\\u00E1t tr\\u00EAn b\\u00E3i bi\\u1EC3n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022sandy beach\u0022,\u0022vi\u0022:\u0022b\\u00E3i bi\\u1EC3n c\\u00E1t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/tropical-beach-9FM2TZZYP4\u0022,\u0022author\u0022:\u0022Joe deSousa\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.17b0b8036c144aebb4c98f3b1b52962a",
+      "kind": "Card",
+      "values": {
+        "Term": "sand",
+        "Definition": "c\u00E1t",
+        "ImageUrl": "asset:3b079a266a2df0a84f8622c1b270bd6f9b7087a87b032681e5d89103004d9710.webp",
+        "Phonetic": "/s\u00E6nd/",
+        "Example": "The sand was hot under my feet.",
+        "ExampleTranslation": "C\u00E1t n\u00F3ng d\u01B0\u1EDBi ch\u00E2n t\u00F4i.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "tiny pieces of rock that cover beaches and deserts",
+        "Cefr": "A2",
+        "PhoneticUk": "/s\u00E6nd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The sand was hot under my feet.\u0022,\u0022vi\u0022:\u0022C\\u00E1t n\\u00F3ng d\\u01B0\\u1EDBi ch\\u00E2n t\\u00F4i.\u0022},{\u0022text\u0022:\u0022The children played in the sand.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB ch\\u01A1i \\u0111\\u00F9a trong c\\u00E1t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022sand dune\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EE5n c\\u00E1t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Cromer_beach_sand_2016_01.JPG\u0022,\u0022author\u0022:\u0022Annajohepworth\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.1cf4e75d505745eb989a86ce96638cb9",
+      "kind": "Card",
+      "values": {
+        "Term": "wave",
+        "Definition": "con s\u00F3ng; v\u1EABy tay",
+        "ImageUrl": "asset:6d6814d8ede0413be8e60cd60929714558e95d9f0304e2dae41ce7e3ea31d32f.webp",
+        "Phonetic": "/we\u026Av/",
+        "Example": "A big wave hit the rocks.",
+        "ExampleTranslation": "M\u1ED9t con s\u00F3ng l\u1EDBn \u0111\u1EADp v\u00E0o gh\u1EC1nh \u0111\u00E1.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "a line of water that moves across the sea",
+        "Cefr": "A2",
+        "PhoneticUk": "/we\u026Av/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A big wave hit the rocks.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con s\\u00F3ng l\\u1EDBn \\u0111\\u1EADp v\\u00E0o gh\\u1EC1nh \\u0111\\u00E1.\u0022},{\u0022text\u0022:\u0022The waves are high today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay s\\u00F3ng cao.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022big wave\u0022,\u0022vi\u0022:\u0022s\\u00F3ng l\\u1EDBn\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022waved\u0022,\u0022pastParticiple\u0022:\u0022waved\u0022,\u0022ing\u0022:\u0022waving\u0022,\u0022thirdPerson\u0022:\u0022waves\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/132795455@N08/19368541060\u0022,\u0022author\u0022:\u0022Image Catalog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.1f11e18b0f6245f18a9ff7f2c37542e5",
+      "kind": "Card",
+      "values": {
+        "Term": "forest",
+        "Definition": "khu r\u1EEBng",
+        "ImageUrl": "asset:d3d6588250e70bcc0151ec5c9bf65a2f51236512d83801fcc7f4ea73e72c3e5e.webp",
+        "Phonetic": "/\u02C8f\u0254\u0279\u026Ast/",
+        "Example": "We walked through the forest on Sunday.",
+        "ExampleTranslation": "Ch\u1EE7 nh\u1EADt ch\u00FAng t\u00F4i \u0111i b\u1ED9 xuy\u00EAn qua khu r\u1EEBng.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large area covered with trees",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8f\u0252\u0279\u026Ast/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We walked through the forest on Sunday.\u0022,\u0022vi\u0022:\u0022Ch\\u1EE7 nh\\u1EADt ch\\u00FAng t\\u00F4i \\u0111i b\\u1ED9 xuy\\u00EAn qua khu r\\u1EEBng.\u0022},{\u0022text\u0022:\u0022Many animals live in the forest.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC1u lo\\u00E0i v\\u1EADt s\\u1ED1ng trong r\\u1EEBng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022rain forest\u0022,\u0022vi\u0022:\u0022r\\u1EEBng nhi\\u1EC7t \\u0111\\u1EDBi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Forest_path_surrounded_by_green_trees.jpg\u0022,\u0022author\u0022:\u0022Zed Can77\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.2027988f787f4ff9a0ff115688cb04f5",
+      "kind": "Card",
+      "values": {
+        "Term": "cliff",
+        "Definition": "v\u00E1ch \u0111\u00E1, v\u00E1ch n\u00FAi",
+        "ImageUrl": "asset:37cf483965be9c91615e1117af3a2bd0ad77d5bdc79c10372ce2abb5e8d7f3c1.webp",
+        "Phonetic": "/kl\u026Af/",
+        "Example": "We stood on the cliff and watched the sea.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111\u1EE9ng tr\u00EAn v\u00E1ch \u0111\u00E1 nh\u00ECn ra bi\u1EC3n.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a high steep rock face next to the sea",
+        "Cefr": "A2",
+        "PhoneticUk": "/kl\u026Af/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We stood on the cliff and watched the sea.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u1EE9ng tr\\u00EAn v\\u00E1ch \\u0111\\u00E1 nh\\u00ECn ra bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022Be careful near the edge of the cliff.\u0022,\u0022vi\u0022:\u0022H\\u00E3y c\\u1EA9n th\\u1EADn g\\u1EA7n m\\u00E9p v\\u00E1ch \\u0111\\u00E1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cliff edge\u0022,\u0022vi\u0022:\u0022m\\u00E9p v\\u00E1ch \\u0111\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Cliffed_coast_with_resting_man_near_sunset.JPG\u0022,\u0022author\u0022:\u0022Cartoffel\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.2396068fa3b1472d953ee5be9db7f7ea",
+      "kind": "Card",
+      "values": {
+        "Term": "sky",
+        "Definition": "b\u1EA7u tr\u1EDDi",
+        "ImageUrl": "asset:165b81ae0eabc627ac9885d3e99d7b3436056699e687f839292a2d7a974ed553.webp",
+        "Phonetic": "/ska\u026A/",
+        "Example": "The sky is clear and blue today.",
+        "ExampleTranslation": "H\u00F4m nay b\u1EA7u tr\u1EDDi trong v\u00E0 xanh.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the space above the Earth where you see clouds and the sun",
+        "Cefr": "A1",
+        "PhoneticUk": "/ska\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The sky is clear and blue today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay b\\u1EA7u tr\\u1EDDi trong v\\u00E0 xanh.\u0022},{\u0022text\u0022:\u0022Birds are flying across the sky.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng con chim \\u0111ang bay ngang b\\u1EA7u tr\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022blue sky\u0022,\u0022vi\u0022:\u0022b\\u1EA7u tr\\u1EDDi xanh\u0022},{\u0022text\u0022:\u0022night sky\u0022,\u0022vi\u0022:\u0022b\\u1EA7u tr\\u1EDDi \\u0111\\u00EAm\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/132795455@N08/17866167810\u0022,\u0022author\u0022:\u0022Image Catalog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.3bb79896ef0740d4b80017889d2c224d",
+      "kind": "Card",
+      "values": {
+        "Term": "sunset",
+        "Definition": "ho\u00E0ng h\u00F4n",
+        "ImageUrl": "asset:72282a5495bbded189428a3e4a106e32aaa6e7ca83ff2da99c41359b4989c990.webp",
+        "Phonetic": "/\u02C8s\u028Cn\u02CCs\u025Bt/",
+        "Example": "We watched the sunset from the beach.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i ng\u1EAFm ho\u00E0ng h\u00F4n t\u1EEB b\u00E3i bi\u1EC3n.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the time in the evening when the sun goes down",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8s\u028Cn\u02CCs\u025Bt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We watched the sunset from the beach.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i ng\\u1EAFm ho\\u00E0ng h\\u00F4n t\\u1EEB b\\u00E3i bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022The sunset turned the sky orange.\u0022,\u0022vi\u0022:\u0022Ho\\u00E0ng h\\u00F4n nhu\\u1ED9m b\\u1EA7u tr\\u1EDDi th\\u00E0nh m\\u00E0u cam.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022watch the sunset\u0022,\u0022vi\u0022:\u0022ng\\u1EAFm ho\\u00E0ng h\\u00F4n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/sunset-sea-PGYAOPFXVN\u0022,\u0022author\u0022:\u0022Sergei Gussev\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.4ffaaf2df45c463e968f6c38c8403dc8",
+      "kind": "Card",
+      "values": {
+        "Term": "volcano",
+        "Definition": "n\u00FAi l\u1EEDa",
+        "ImageUrl": "asset:e45583897a4c5d4689e7925aac94286f15ad09980f2b0da0127d7e7d148515dd.webp",
+        "Phonetic": "/v\u0251l\u02C8ke\u026A.no\u028A/",
+        "Example": "The volcano erupted last year.",
+        "ExampleTranslation": "Ng\u1ECDn n\u00FAi l\u1EEDa \u0111\u00E3 phun tr\u00E0o v\u00E0o n\u0103m ngo\u00E1i.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a mountain that sometimes throws out hot melted rock",
+        "Cefr": "A2",
+        "PhoneticUk": "/v\u0252l\u02C8ke\u026A.n\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The volcano erupted last year.\u0022,\u0022vi\u0022:\u0022Ng\\u1ECDn n\\u00FAi l\\u1EEDa \\u0111\\u00E3 phun tr\\u00E0o v\\u00E0o n\\u0103m ngo\\u00E1i.\u0022},{\u0022text\u0022:\u0022Smoke rises from the top of the volcano.\u0022,\u0022vi\u0022:\u0022Kh\\u00F3i b\\u1ED1c l\\u00EAn t\\u1EEB \\u0111\\u1EC9nh n\\u00FAi l\\u1EEDa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022active volcano\u0022,\u0022vi\u0022:\u0022n\\u00FAi l\\u1EEDa \\u0111ang ho\\u1EA1t \\u0111\\u1ED9ng\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022volcanoes\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/34409164@N06/5711827176\u0022,\u0022author\u0022:\u0022gnuckx\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.647f374ce8774facb605f820ca630bbf",
+      "kind": "Card",
+      "values": {
+        "Term": "mountain",
+        "Definition": "ng\u1ECDn n\u00FAi",
+        "ImageUrl": "asset:2634968ce47b43e0f34070f72c64f4c56fe9d625e37b099177d4850dfd89273a.webp",
+        "Phonetic": "/\u02C8ma\u028An.t(\u0259)n/",
+        "Example": "We climbed the mountain last summer.",
+        "ExampleTranslation": "M\u00F9a h\u00E8 n\u0103m ngo\u00E1i ch\u00FAng t\u00F4i leo ng\u1ECDn n\u00FAi \u0111\u00F3.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very high hill, often with snow on top",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8ma\u028An.t\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We climbed the mountain last summer.\u0022,\u0022vi\u0022:\u0022M\\u00F9a h\\u00E8 n\\u0103m ngo\\u00E1i ch\\u00FAng t\\u00F4i leo ng\\u1ECDn n\\u00FAi \\u0111\\u00F3.\u0022},{\u0022text\u0022:\u0022The mountain is covered with snow.\u0022,\u0022vi\u0022:\u0022Ng\\u1ECDn n\\u00FAi ph\\u1EE7 \\u0111\\u1EA7y tuy\\u1EBFt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022climb a mountain\u0022,\u0022vi\u0022:\u0022leo n\\u00FAi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/151415985@N06/36748616474\u0022,\u0022author\u0022:\u0022Wallboat\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.708c28ab7c494917bf1e4d1f405577ed",
+      "kind": "Card",
+      "values": {
+        "Term": "valley",
+        "Definition": "thung l\u0169ng",
+        "ImageUrl": "asset:3184596f805b1aef2a391061e9bab40e6e3cbd549dd8a58f2215d2dd3b9f22d2.webp",
+        "Phonetic": "/\u02C8v\u00E6li/",
+        "Example": "A small river runs through the valley.",
+        "ExampleTranslation": "M\u1ED9t con s\u00F4ng nh\u1ECF ch\u1EA3y qua thung l\u0169ng.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a low area of land between two hills or mountains",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8v\u00E6li/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A small river runs through the valley.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con s\\u00F4ng nh\\u1ECF ch\\u1EA3y qua thung l\\u0169ng.\u0022},{\u0022text\u0022:\u0022The valley is full of flowers in spring.\u0022,\u0022vi\u0022:\u0022Thung l\\u0169ng \\u0111\\u1EA7y hoa v\\u00E0o m\\u00F9a xu\\u00E2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022green valley\u0022,\u0022vi\u0022:\u0022thung l\\u0169ng xanh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/131546502@N04/52550469280\u0022,\u0022author\u0022:\u0022plastigffantastig88\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.78deae7e755f4db38b379f34d4d18905",
+      "kind": "Card",
+      "values": {
+        "Term": "lake",
+        "Definition": "c\u00E1i h\u1ED3",
+        "ImageUrl": "asset:6107cd34e4a93d10932c159f3b28fe8f84702116629860a463f567e7f7ab1a2c.webp",
+        "Phonetic": "/le\u026Ak/",
+        "Example": "The children swim in the lake in summer.",
+        "ExampleTranslation": "M\u00F9a h\u00E8 b\u1ECDn tr\u1EBB b\u01A1i \u1EDF h\u1ED3.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large area of water with land all around it",
+        "Cefr": "A1",
+        "PhoneticUk": "/le\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The children swim in the lake in summer.\u0022,\u0022vi\u0022:\u0022M\\u00F9a h\\u00E8 b\\u1ECDn tr\\u1EBB b\\u01A1i \\u1EDF h\\u1ED3.\u0022},{\u0022text\u0022:\u0022There is a quiet lake near our village.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t c\\u00E1i h\\u1ED3 y\\u00EAn t\\u0129nh g\\u1EA7n l\\u00E0ng ch\\u00FAng t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022by the lake\u0022,\u0022vi\u0022:\u0022c\\u1EA1nh h\\u1ED3\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/lake-mountains-ZJCT5H4VXR\u0022,\u0022author\u0022:\u0022Sam Jotham Sutharson\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.7ac53974d8c644238cde758112e5ed2b",
+      "kind": "Card",
+      "values": {
+        "Term": "waterfall",
+        "Definition": "th\u00E1c n\u01B0\u1EDBc",
+        "ImageUrl": "asset:71bd1bcb6561184390cdef05d59d5102509f242b9418572c36a12d80ebe23389.webp",
+        "Phonetic": "/\u02C8w\u0254t\u025Af\u0254l/",
+        "Example": "We swam below the waterfall.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i b\u01A1i b\u00EAn d\u01B0\u1EDBi th\u00E1c n\u01B0\u1EDBc.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "water that falls from a high place down a cliff",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8w\u0254\u02D0t\u0259f\u0254\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We swam below the waterfall.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i b\\u01A1i b\\u00EAn d\\u01B0\\u1EDBi th\\u00E1c n\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022The waterfall is more than fifty metres high.\u0022,\u0022vi\u0022:\u0022Th\\u00E1c n\\u01B0\\u1EDBc cao h\\u01A1n n\\u0103m m\\u01B0\\u01A1i m\\u00E9t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022visit a waterfall\u0022,\u0022vi\u0022:\u0022th\\u0103m th\\u00E1c n\\u01B0\\u1EDBc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/46583370@N04/15726379042\u0022,\u0022author\u0022:\u0022Blarvar\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.7da51f2cc6fb4faea0e40f863a54b8ea",
+      "kind": "Card",
+      "values": {
+        "Term": "leaf",
+        "Definition": "chi\u1EBFc l\u00E1",
+        "ImageUrl": "asset:ea1b09c701ec7d9c11751cb01caca18cd87a0473d1b5a964a046597f348e1dcb.webp",
+        "Phonetic": "/lif/",
+        "Example": "A yellow leaf fell on my desk.",
+        "ExampleTranslation": "M\u1ED9t chi\u1EBFc l\u00E1 v\u00E0ng r\u01A1i xu\u1ED1ng b\u00E0n t\u00F4i.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat green part that grows on a plant",
+        "Cefr": "A2",
+        "PhoneticUk": "/li\u02D0f/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A yellow leaf fell on my desk.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t chi\\u1EBFc l\\u00E1 v\\u00E0ng r\\u01A1i xu\\u1ED1ng b\\u00E0n t\\u00F4i.\u0022},{\u0022text\u0022:\u0022The leaves change colour in autumn.\u0022,\u0022vi\u0022:\u0022L\\u00E1 \\u0111\\u1ED5i m\\u00E0u v\\u00E0o m\\u00F9a thu.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022green leaf\u0022,\u0022vi\u0022:\u0022l\\u00E1 xanh\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022leaves\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/132795455@N08/17501205836\u0022,\u0022author\u0022:\u0022Image Catalog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.818b6db768fb4555b92662b45d46d817",
+      "kind": "Card",
+      "values": {
+        "Term": "cave",
+        "Definition": "hang \u0111\u1ED9ng",
+        "ImageUrl": "asset:ffc6bc1ab48d0fccb70250c4e10e35a3371009d271470adf40db00dba7cf7548.webp",
+        "Phonetic": "/ke\u026Av/",
+        "Example": "We explored a dark cave with a torch.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i kh\u00E1m ph\u00E1 m\u1ED9t hang \u0111\u1ED9ng t\u1ED1i b\u1EB1ng \u0111\u00E8n pin.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large hole in the side of a hill or under the ground",
+        "Cefr": "A2",
+        "PhoneticUk": "/ke\u026Av/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We explored a dark cave with a torch.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i kh\\u00E1m ph\\u00E1 m\\u1ED9t hang \\u0111\\u1ED9ng t\\u1ED1i b\\u1EB1ng \\u0111\\u00E8n pin.\u0022},{\u0022text\u0022:\u0022Bats sleep in the cave all day.\u0022,\u0022vi\u0022:\u0022D\\u01A1i ng\\u1EE7 trong hang c\\u1EA3 ng\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022explore a cave\u0022,\u0022vi\u0022:\u0022kh\\u00E1m ph\\u00E1 hang \\u0111\\u1ED9ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/130826934@N07/24672448785\u0022,\u0022author\u0022:\u0022naturenps\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.83dea3c4600f48b4b866d4f6a49283f8",
+      "kind": "Card",
+      "values": {
+        "Term": "sea",
+        "Definition": "bi\u1EC3n",
+        "ImageUrl": "asset:247fa1e098d59a8b18c5b66467a677a8aeb6503dc801ede8b7346182543cd04b.webp",
+        "Phonetic": "/si\u02D0/",
+        "Example": "We spent the summer by the sea.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111\u00E3 ngh\u1EC9 h\u00E8 \u1EDF b\u00EAn b\u1EDD bi\u1EC3n.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large area of salt water",
+        "Cefr": "A1",
+        "PhoneticUk": "/si\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We spent the summer by the sea.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u00E3 ngh\\u1EC9 h\\u00E8 \\u1EDF b\\u00EAn b\\u1EDD bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022The sea is calm and blue today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay bi\\u1EC3n l\\u1EB7ng v\\u00E0 xanh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022swim in the sea\u0022,\u0022vi\u0022:\u0022b\\u01A1i \\u1EDF bi\\u1EC3n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/132795455@N08/20520693421\u0022,\u0022author\u0022:\u0022Image Catalog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.8bd509f0a58c47ae95b2de9e8b611369",
+      "kind": "Card",
+      "values": {
+        "Term": "rock",
+        "Definition": "t\u1EA3ng \u0111\u00E1, h\u00F2n \u0111\u00E1",
+        "ImageUrl": "asset:58bca869146948065fa2842b7a1ca66522ddee9aa112c9b7d59d532d50b6069f.webp",
+        "Phonetic": "/\u0279\u0251k/",
+        "Example": "He sat on a big rock by the river.",
+        "ExampleTranslation": "Anh \u1EA5y ng\u1ED3i tr\u00EAn m\u1ED9t t\u1EA3ng \u0111\u00E1 l\u1EDBn b\u00EAn s\u00F4ng.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large piece of hard stone",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0279\u0252k/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He sat on a big rock by the river.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y ng\\u1ED3i tr\\u00EAn m\\u1ED9t t\\u1EA3ng \\u0111\\u00E1 l\\u1EDBn b\\u00EAn s\\u00F4ng.\u0022},{\u0022text\u0022:\u0022The path was full of sharp rocks.\u0022,\u0022vi\u0022:\u0022Con \\u0111\\u01B0\\u1EDDng \\u0111\\u1EA7y nh\\u1EEFng t\\u1EA3ng \\u0111\\u00E1 s\\u1EAFc nh\\u1ECDn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022climb the rocks\u0022,\u0022vi\u0022:\u0022tr\\u00E8o l\\u00EAn \\u0111\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/52230569826\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.91f1eb4f88a8437693efe9d2f428c8a5",
+      "kind": "Card",
+      "values": {
+        "Term": "jungle",
+        "Definition": "r\u1EEBng r\u1EADm nhi\u1EC7t \u0111\u1EDBi",
+        "ImageUrl": "asset:d58ec44f0d3f56cdd461a3d88ba4c481e51702f18cf81dbe185cdc835f3af493.webp",
+        "Phonetic": "/\u02C8d\u0361\u0292\u028C\u014B.\u0261(\u0259)l/",
+        "Example": "Tigers live in the jungle.",
+        "ExampleTranslation": "H\u1ED5 s\u1ED1ng trong r\u1EEBng r\u1EADm.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thick hot forest with many plants and animals",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8d\u0361\u0292\u028C\u014B.\u0261(\u0259)l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Tigers live in the jungle.\u0022,\u0022vi\u0022:\u0022H\\u1ED5 s\\u1ED1ng trong r\\u1EEBng r\\u1EADm.\u0022},{\u0022text\u0022:\u0022The jungle was hot and very wet.\u0022,\u0022vi\u0022:\u0022Khu r\\u1EEBng r\\u1EADm v\\u1EEBa n\\u00F3ng v\\u1EEBa \\u1EA9m \\u01B0\\u1EDBt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022deep jungle\u0022,\u0022vi\u0022:\u0022r\\u1EEBng s\\u00E2u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/60455048@N02/30398245503\u0022,\u0022author\u0022:\u0022Queensland State Archives\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.b7d026e916cd4020adb9e5bba1536ce6",
+      "kind": "Card",
+      "values": {
+        "Term": "field",
+        "Definition": "c\u00E1nh \u0111\u1ED3ng",
+        "ImageUrl": "asset:a7dde7273af8d2cf31a0a8be78616d34006016391ecc575c381b29cdbc6f1fde.webp",
+        "Phonetic": "/\u02C8fi(\u02D0)ld/",
+        "Example": "The farmer works in the rice field.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi n\u00F4ng d\u00E2n l\u00E0m vi\u1EC7c tr\u00EAn c\u00E1nh \u0111\u1ED3ng l\u00FAa.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large area of land used for crops or animals",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8fi(\u02D0)ld/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The farmer works in the rice field.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi n\\u00F4ng d\\u00E2n l\\u00E0m vi\\u1EC7c tr\\u00EAn c\\u00E1nh \\u0111\\u1ED3ng l\\u00FAa.\u0022},{\u0022text\u0022:\u0022Cows are eating grass in the field.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng con b\\u00F2 \\u0111ang \\u0103n c\\u1ECF tr\\u00EAn c\\u00E1nh \\u0111\\u1ED3ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022rice field\u0022,\u0022vi\u0022:\u0022ru\\u1ED9ng l\\u00FAa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/green-field-IW4TR0PI04\u0022,\u0022author\u0022:\u0022Benjamin Davies\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.cd26712b46e44abe844552986757e53e",
+      "kind": "Card",
+      "values": {
+        "Term": "flower",
+        "Definition": "b\u00F4ng hoa",
+        "ImageUrl": "asset:6b2e438def5da27163f5c7a5e5d87bd53101f9851e2077d347cccec3aae73e4e.webp",
+        "Phonetic": "/\u02C8fla\u028A\u032F.\u025A/",
+        "Example": "She gave me a red flower.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y t\u1EB7ng t\u00F4i m\u1ED9t b\u00F4ng hoa \u0111\u1ECF.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the colourful part of a plant",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8fla\u028A\u032F.\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She gave me a red flower.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y t\\u1EB7ng t\\u00F4i m\\u1ED9t b\\u00F4ng hoa \\u0111\\u1ECF.\u0022},{\u0022text\u0022:\u0022The garden is full of beautiful flowers.\u0022,\u0022vi\u0022:\u0022Khu v\\u01B0\\u1EDDn \\u0111\\u1EA7y nh\\u1EEFng b\\u00F4ng hoa \\u0111\\u1EB9p.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pick a flower\u0022,\u0022vi\u0022:\u0022h\\u00E1i hoa\u0022},{\u0022text\u0022:\u0022bunch of flowers\u0022,\u0022vi\u0022:\u0022b\\u00F3 hoa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/92253640@N03/13830016943\u0022,\u0022author\u0022:\u0022joejungmann\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.d8a41fc4d4614b8db43a94143c66fde4",
+      "kind": "Card",
+      "values": {
+        "Term": "tree",
+        "Definition": "c\u00E1i c\u00E2y",
+        "ImageUrl": "asset:78c93a1baeb02c6c287c852bd68a69b195138a6fe32dccdbc2c632907864737f.webp",
+        "Phonetic": "/t\u0279i\u02D0/",
+        "Example": "There is a big tree in front of our house.",
+        "ExampleTranslation": "C\u00F3 m\u1ED9t c\u00E1i c\u00E2y l\u1EDBn tr\u01B0\u1EDBc nh\u00E0 ch\u00FAng t\u00F4i.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tall plant with a thick trunk and branches",
+        "Cefr": "A1",
+        "PhoneticUk": "/t\u0361\u0283\u0279\u026Aj/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022There is a big tree in front of our house.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t c\\u00E1i c\\u00E2y l\\u1EDBn tr\\u01B0\\u1EDBc nh\\u00E0 ch\\u00FAng t\\u00F4i.\u0022},{\u0022text\u0022:\u0022The cat climbed up the tree.\u0022,\u0022vi\u0022:\u0022Con m\\u00E8o tr\\u00E8o l\\u00EAn c\\u00E2y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022plant a tree\u0022,\u0022vi\u0022:\u0022tr\\u1ED3ng c\\u00E2y\u0022},{\u0022text\u0022:\u0022climb a tree\u0022,\u0022vi\u0022:\u0022tr\\u00E8o c\\u00E2y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/115357548@N08/12525899013\u0022,\u0022author\u0022:\u0022Joshua Tree National Park\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.f019734620a042b6bda64e26850f0c89",
+      "kind": "Card",
+      "values": {
+        "Term": "hill",
+        "Definition": "ng\u1ECDn \u0111\u1ED3i",
+        "ImageUrl": "asset:f1cc7e90b2f76ba18d444895c2723d182f1f722914e7ec81a164c26c5ac42536.webp",
+        "Phonetic": "/h\u026Al/",
+        "Example": "The village is on top of a green hill.",
+        "ExampleTranslation": "Ng\u00F4i l\u00E0ng n\u1EB1m tr\u00EAn \u0111\u1EC9nh m\u1ED9t ng\u1ECDn \u0111\u1ED3i xanh.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a high area of land that is smaller than a mountain",
+        "Cefr": "A2",
+        "PhoneticUk": "/h\u026Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The village is on top of a green hill.\u0022,\u0022vi\u0022:\u0022Ng\\u00F4i l\\u00E0ng n\\u1EB1m tr\\u00EAn \\u0111\\u1EC9nh m\\u1ED9t ng\\u1ECDn \\u0111\\u1ED3i xanh.\u0022},{\u0022text\u0022:\u0022We rode our bikes up the hill.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u1EA1p xe l\\u00EAn \\u0111\\u1ED3i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022top of the hill\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EC9nh \\u0111\\u1ED3i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/143413219@N06/45789877372\u0022,\u0022author\u0022:\u0022onejeet\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.f0f0564c119b45948af5a8cd03da44fa",
+      "kind": "Card",
+      "values": {
+        "Term": "desert",
+        "Definition": "sa m\u1EA1c",
+        "ImageUrl": "asset:e2f5faec466d3f9295e25be9a3fd0a221c8086abf07cbac47a095fec641014af.webp",
+        "Phonetic": "/\u02C8d\u025Bz.\u025At/",
+        "Example": "It almost never rains in the desert.",
+        "ExampleTranslation": "\u1EDE sa m\u1EA1c h\u1EA7u nh\u01B0 kh\u00F4ng bao gi\u1EDD m\u01B0a.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very dry area with sand and few plants",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8d\u025Bz.\u0259t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022It almost never rains in the desert.\u0022,\u0022vi\u0022:\u0022\\u1EDE sa m\\u1EA1c h\\u1EA7u nh\\u01B0 kh\\u00F4ng bao gi\\u1EDD m\\u01B0a.\u0022},{\u0022text\u0022:\u0022We crossed the desert on camels.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i b\\u0103ng qua sa m\\u1EA1c b\\u1EB1ng l\\u1EA1c \\u0111\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hot desert\u0022,\u0022vi\u0022:\u0022sa m\\u1EA1c n\\u00F3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/3596a7eaf0/\u0022,\u0022author\u0022:\u0022Anushila Basnet\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.f3c8f90bdd644119935b2ed9f249b1c2",
+      "kind": "Card",
+      "values": {
+        "Term": "grass",
+        "Definition": "c\u1ECF",
+        "ImageUrl": "asset:c35dad1816bf3d00e859fa392ff9ac0a9d6a2bf817d3070fe76fe27eb27897fc.webp",
+        "Phonetic": "/\u0261\u0279\u0251\u02D0s/",
+        "Example": "The children are sitting on the grass.",
+        "ExampleTranslation": "B\u1ECDn tr\u1EBB \u0111ang ng\u1ED3i tr\u00EAn b\u00E3i c\u1ECF.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a green plant with thin leaves that covers the ground",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u0261\u0279\u0251\u02D0s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The children are sitting on the grass.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB \\u0111ang ng\\u1ED3i tr\\u00EAn b\\u00E3i c\\u1ECF.\u0022},{\u0022text\u0022:\u0022The grass is wet after the rain.\u0022,\u0022vi\u0022:\u0022C\\u1ECF \\u01B0\\u1EDBt sau c\\u01A1n m\\u01B0a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cut the grass\u0022,\u0022vi\u0022:\u0022c\\u1EAFt c\\u1ECF\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/135371437@N04/23163935546\u0022,\u0022author\u0022:\u0022StockyPics\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan.f61d671b804e4f05b20fdfa7782fed8e",
+      "kind": "Card",
+      "values": {
+        "Term": "river",
+        "Definition": "d\u00F2ng s\u00F4ng",
+        "ImageUrl": "asset:25999140ef8318ac9c1215cb412765b2877d677a90ba0981b77edca154a44a47.webp",
+        "Phonetic": "/\u02C8\u0279\u026Av\u025A/",
+        "Example": "The river is wide and slow here.",
+        "ExampleTranslation": "D\u00F2ng s\u00F4ng \u1EDF \u0111\u00E2y r\u1ED9ng v\u00E0 ch\u1EA3y ch\u1EADm.",
+        "Topic": "Thi\u00EAn nhi\u00EAn \u0026 c\u1EA3nh quan",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long stream of water that flows to the sea",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u0279\u026Av\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The river is wide and slow here.\u0022,\u0022vi\u0022:\u0022D\\u00F2ng s\\u00F4ng \\u1EDF \\u0111\\u00E2y r\\u1ED9ng v\\u00E0 ch\\u1EA3y ch\\u1EADm.\u0022},{\u0022text\u0022:\u0022We had a picnic by the river.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i d\\u00E3 ngo\\u1EA1i b\\u00EAn b\\u1EDD s\\u00F4ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cross a river\u0022,\u0022vi\u0022:\u0022qua s\\u00F4ng\u0022},{\u0022text\u0022:\u0022river bank\u0022,\u0022vi\u0022:\u0022b\\u1EDD s\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/river-landscape-4POJPLIIEE\u0022,\u0022author\u0022:\u0022Mike Moloney\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "25999140ef8318ac9c1215cb412765b2877d677a90ba0981b77edca154a44a47.webp",
+      "sha256": "25999140ef8318ac9c1215cb412765b2877d677a90ba0981b77edca154a44a47"
+    },
+    {
+      "file": "6107cd34e4a93d10932c159f3b28fe8f84702116629860a463f567e7f7ab1a2c.webp",
+      "sha256": "6107cd34e4a93d10932c159f3b28fe8f84702116629860a463f567e7f7ab1a2c"
+    },
+    {
+      "file": "247fa1e098d59a8b18c5b66467a677a8aeb6503dc801ede8b7346182543cd04b.webp",
+      "sha256": "247fa1e098d59a8b18c5b66467a677a8aeb6503dc801ede8b7346182543cd04b"
+    },
+    {
+      "file": "5e11ab15a7d13b2b0e0b99f0e0efee08b721aa6990ca4987eb18c64299dd7548.webp",
+      "sha256": "5e11ab15a7d13b2b0e0b99f0e0efee08b721aa6990ca4987eb18c64299dd7548"
+    },
+    {
+      "file": "2c1a6bcd6c07e2fd29c4fa515fa2207376392225d72a91d77c551dc1bcdb40ba.webp",
+      "sha256": "2c1a6bcd6c07e2fd29c4fa515fa2207376392225d72a91d77c551dc1bcdb40ba"
+    },
+    {
+      "file": "2634968ce47b43e0f34070f72c64f4c56fe9d625e37b099177d4850dfd89273a.webp",
+      "sha256": "2634968ce47b43e0f34070f72c64f4c56fe9d625e37b099177d4850dfd89273a"
+    },
+    {
+      "file": "f1cc7e90b2f76ba18d444895c2723d182f1f722914e7ec81a164c26c5ac42536.webp",
+      "sha256": "f1cc7e90b2f76ba18d444895c2723d182f1f722914e7ec81a164c26c5ac42536"
+    },
+    {
+      "file": "3184596f805b1aef2a391061e9bab40e6e3cbd549dd8a58f2215d2dd3b9f22d2.webp",
+      "sha256": "3184596f805b1aef2a391061e9bab40e6e3cbd549dd8a58f2215d2dd3b9f22d2"
+    },
+    {
+      "file": "d3d6588250e70bcc0151ec5c9bf65a2f51236512d83801fcc7f4ea73e72c3e5e.webp",
+      "sha256": "d3d6588250e70bcc0151ec5c9bf65a2f51236512d83801fcc7f4ea73e72c3e5e"
+    },
+    {
+      "file": "d58ec44f0d3f56cdd461a3d88ba4c481e51702f18cf81dbe185cdc835f3af493.webp",
+      "sha256": "d58ec44f0d3f56cdd461a3d88ba4c481e51702f18cf81dbe185cdc835f3af493"
+    },
+    {
+      "file": "e2f5faec466d3f9295e25be9a3fd0a221c8086abf07cbac47a095fec641014af.webp",
+      "sha256": "e2f5faec466d3f9295e25be9a3fd0a221c8086abf07cbac47a095fec641014af"
+    },
+    {
+      "file": "71bd1bcb6561184390cdef05d59d5102509f242b9418572c36a12d80ebe23389.webp",
+      "sha256": "71bd1bcb6561184390cdef05d59d5102509f242b9418572c36a12d80ebe23389"
+    },
+    {
+      "file": "ffc6bc1ab48d0fccb70250c4e10e35a3371009d271470adf40db00dba7cf7548.webp",
+      "sha256": "ffc6bc1ab48d0fccb70250c4e10e35a3371009d271470adf40db00dba7cf7548"
+    },
+    {
+      "file": "e45583897a4c5d4689e7925aac94286f15ad09980f2b0da0127d7e7d148515dd.webp",
+      "sha256": "e45583897a4c5d4689e7925aac94286f15ad09980f2b0da0127d7e7d148515dd"
+    },
+    {
+      "file": "a7dde7273af8d2cf31a0a8be78616d34006016391ecc575c381b29cdbc6f1fde.webp",
+      "sha256": "a7dde7273af8d2cf31a0a8be78616d34006016391ecc575c381b29cdbc6f1fde"
+    },
+    {
+      "file": "c35dad1816bf3d00e859fa392ff9ac0a9d6a2bf817d3070fe76fe27eb27897fc.webp",
+      "sha256": "c35dad1816bf3d00e859fa392ff9ac0a9d6a2bf817d3070fe76fe27eb27897fc"
+    },
+    {
+      "file": "78c93a1baeb02c6c287c852bd68a69b195138a6fe32dccdbc2c632907864737f.webp",
+      "sha256": "78c93a1baeb02c6c287c852bd68a69b195138a6fe32dccdbc2c632907864737f"
+    },
+    {
+      "file": "6b2e438def5da27163f5c7a5e5d87bd53101f9851e2077d347cccec3aae73e4e.webp",
+      "sha256": "6b2e438def5da27163f5c7a5e5d87bd53101f9851e2077d347cccec3aae73e4e"
+    },
+    {
+      "file": "ea1b09c701ec7d9c11751cb01caca18cd87a0473d1b5a964a046597f348e1dcb.webp",
+      "sha256": "ea1b09c701ec7d9c11751cb01caca18cd87a0473d1b5a964a046597f348e1dcb"
+    },
+    {
+      "file": "58bca869146948065fa2842b7a1ca66522ddee9aa112c9b7d59d532d50b6069f.webp",
+      "sha256": "58bca869146948065fa2842b7a1ca66522ddee9aa112c9b7d59d532d50b6069f"
+    },
+    {
+      "file": "3b079a266a2df0a84f8622c1b270bd6f9b7087a87b032681e5d89103004d9710.webp",
+      "sha256": "3b079a266a2df0a84f8622c1b270bd6f9b7087a87b032681e5d89103004d9710"
+    },
+    {
+      "file": "6d6814d8ede0413be8e60cd60929714558e95d9f0304e2dae41ce7e3ea31d32f.webp",
+      "sha256": "6d6814d8ede0413be8e60cd60929714558e95d9f0304e2dae41ce7e3ea31d32f"
+    },
+    {
+      "file": "37cf483965be9c91615e1117af3a2bd0ad77d5bdc79c10372ce2abb5e8d7f3c1.webp",
+      "sha256": "37cf483965be9c91615e1117af3a2bd0ad77d5bdc79c10372ce2abb5e8d7f3c1"
+    },
+    {
+      "file": "72282a5495bbded189428a3e4a106e32aaa6e7ca83ff2da99c41359b4989c990.webp",
+      "sha256": "72282a5495bbded189428a3e4a106e32aaa6e7ca83ff2da99c41359b4989c990"
+    },
+    {
+      "file": "165b81ae0eabc627ac9885d3e99d7b3436056699e687f839292a2d7a974ed553.webp",
+      "sha256": "165b81ae0eabc627ac9885d3e99d7b3436056699e687f839292a2d7a974ed553"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a18-thien-nhien-canh-quan"
+}

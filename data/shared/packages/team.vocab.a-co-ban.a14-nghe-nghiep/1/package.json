@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a14-nghe-nghiep",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep",
+      "kind": "Set",
+      "values": {
+        "SetName": "Ngh\u1EC1 nghi\u1EC7p",
+        "Description": "#a1 #a2 #jobs #work"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.04feceaf878546959b89ddd742545ee0",
+      "kind": "Card",
+      "values": {
+        "Term": "driver",
+        "Definition": "t\u00E0i x\u1EBF",
+        "ImageUrl": "asset:fe732a2dbc9d6c4ffed76b066d0df88e5de8f0a1cb8ba246dbe288e4e723f3e0.webp",
+        "Phonetic": "/\u02C8d\u0279a\u026Av\u025A/",
+        "Example": "The bus driver was very friendly.",
+        "ExampleTranslation": "B\u00E1c t\u00E0i x\u1EBF xe bu\u00FDt r\u1EA5t th\u00E2n thi\u1EC7n.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who drives a car, bus or truck",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8d\u0279a\u026A.v\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The bus driver was very friendly.\u0022,\u0022vi\u0022:\u0022B\\u00E1c t\\u00E0i x\\u1EBF xe bu\\u00FDt r\\u1EA5t th\\u00E2n thi\\u1EC7n.\u0022},{\u0022text\u0022:\u0022My father is a taxi driver.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 t\\u00F4i l\\u00E0 t\\u00E0i x\\u1EBF taxi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022taxi driver\u0022,\u0022vi\u0022:\u0022t\\u00E0i x\\u1EBF taxi\u0022},{\u0022text\u0022:\u0022bus driver\u0022,\u0022vi\u0022:\u0022t\\u00E0i x\\u1EBF xe bu\\u00FDt\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.0f7be18f751f43d890c6d0aeac0a374a",
+      "kind": "Card",
+      "values": {
+        "Term": "soldier",
+        "Definition": "ng\u01B0\u1EDDi l\u00EDnh",
+        "ImageUrl": "asset:08fd71fd33025c65952288850b840e6561a8ca5dd990a5036b3a2a9419fbbf23.webp",
+        "Phonetic": "/\u02C8so\u028Ald\u0361\u0292\u025A/",
+        "Example": "The soldier stood at the gate all night.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi l\u00EDnh \u0111\u1EE9ng g\u00E1c \u1EDF c\u1ED5ng su\u1ED1t \u0111\u00EAm.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who serves in an army",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8s\u0259\u028Ald\u0361\u0292\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The soldier stood at the gate all night.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi l\\u00EDnh \\u0111\\u1EE9ng g\\u00E1c \\u1EDF c\\u1ED5ng su\\u1ED1t \\u0111\\u00EAm.\u0022},{\u0022text\u0022:\u0022Her grandfather was a soldier.\u0022,\u0022vi\u0022:\u0022\\u00D4ng c\\u1EE7a c\\u00F4 \\u1EA5y t\\u1EEBng l\\u00E0 m\\u1ED9t ng\\u01B0\\u1EDDi l\\u00EDnh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022young soldier\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi l\\u00EDnh tr\\u1EBB\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.11ed48dad7fc46c7a9d74f5487331f83",
+      "kind": "Card",
+      "values": {
+        "Term": "lawyer",
+        "Definition": "lu\u1EADt s\u01B0",
+        "ImageUrl": "asset:9be59d62206cdf1ae9f722d49d4c8c963afb00f05e7d5cc1e04d9a191b0a9c2d.webp",
+        "Phonetic": "/\u02C8l\u0254\u026A.\u025A/",
+        "Example": "The lawyer explained the contract to us.",
+        "ExampleTranslation": "Lu\u1EADt s\u01B0 gi\u1EA3i th\u00EDch h\u1EE3p \u0111\u1ED3ng cho ch\u00FAng t\u00F4i.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who gives advice about the law and speaks in court",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8l\u0254\u02D0j\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The lawyer explained the contract to us.\u0022,\u0022vi\u0022:\u0022Lu\\u1EADt s\\u01B0 gi\\u1EA3i th\\u00EDch h\\u1EE3p \\u0111\\u1ED3ng cho ch\\u00FAng t\\u00F4i.\u0022},{\u0022text\u0022:\u0022He studied law to become a lawyer.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y h\\u1ECDc lu\\u1EADt \\u0111\\u1EC3 tr\\u1EDF th\\u00E0nh lu\\u1EADt s\\u01B0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hire a lawyer\u0022,\u0022vi\u0022:\u0022thu\\u00EA lu\\u1EADt s\\u01B0\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.1a39ee6b56244b7b9681bcc185c84580",
+      "kind": "Card",
+      "values": {
+        "Term": "builder",
+        "Definition": "th\u1EE3 x\u00E2y",
+        "ImageUrl": "asset:5a1dfa0cbff9c39895cedceb09b8e305796ae08e835b7918a08eca839c3f458f.webp",
+        "Phonetic": "/\u02C8b\u026Al.d\u025A/",
+        "Example": "The builder is working on the new house.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi th\u1EE3 x\u00E2y \u0111ang l\u00E0m ng\u00F4i nh\u00E0 m\u1EDBi.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person whose job is to build houses",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u026Al.d\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The builder is working on the new house.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi th\\u1EE3 x\\u00E2y \\u0111ang l\\u00E0m ng\\u00F4i nh\\u00E0 m\\u1EDBi.\u0022},{\u0022text\u0022:\u0022Builders wear helmets to stay safe.\u0022,\u0022vi\u0022:\u0022Th\\u1EE3 x\\u00E2y \\u0111\\u1ED9i m\\u0169 b\\u1EA3o h\\u1ED9 \\u0111\\u1EC3 \\u0111\\u01B0\\u1EE3c an to\\u00E0n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022building site\u0022,\u0022vi\u0022:\u0022c\\u00F4ng tr\\u01B0\\u1EDDng x\\u00E2y d\\u1EF1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.264df604a5bc465684a4b2cf4bbf893d",
+      "kind": "Card",
+      "values": {
+        "Term": "mechanic",
+        "Definition": "th\u1EE3 m\u00E1y",
+        "ImageUrl": "asset:c05792ed660c62200d2aa25cb51dd186e561dd245633563426dbf277c57b0d77.webp",
+        "Phonetic": "/m\u026A\u02C8k\u00E6n\u026Ak/",
+        "Example": "The mechanic fixed my motorbike quickly.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi th\u1EE3 m\u00E1y s\u1EEDa xe m\u00E1y c\u1EE7a t\u00F4i r\u1EA5t nhanh.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person whose job is to repair machines and cars",
+        "Cefr": "A2",
+        "PhoneticUk": "/m\u026A\u02C8k\u00E6n\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The mechanic fixed my motorbike quickly.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi th\\u1EE3 m\\u00E1y s\\u1EEDa xe m\\u00E1y c\\u1EE7a t\\u00F4i r\\u1EA5t nhanh.\u0022},{\u0022text\u0022:\u0022A good mechanic can find the problem easily.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t th\\u1EE3 m\\u00E1y gi\\u1ECFi c\\u00F3 th\\u1EC3 t\\u00ECm ra l\\u1ED7i d\\u1EC5 d\\u00E0ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022car mechanic\u0022,\u0022vi\u0022:\u0022th\\u1EE3 s\\u1EEDa \\u00F4 t\\u00F4\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.2f249ff41113416db52733144b6c9731",
+      "kind": "Card",
+      "values": {
+        "Term": "doctor",
+        "Definition": "b\u00E1c s\u0129",
+        "ImageUrl": "asset:79952a2d9a59c8051cf090a0f1d5efe74d7780a5d38ce8d6c55a2a143d6afceb.webp",
+        "Phonetic": "/\u02C8d\u0251kt\u025A/",
+        "Example": "I need to see a doctor today.",
+        "ExampleTranslation": "H\u00F4m nay t\u00F4i c\u1EA7n \u0111i kh\u00E1m b\u00E1c s\u0129.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person whose job is to treat sick people",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8d\u0252kt\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I need to see a doctor today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay t\\u00F4i c\\u1EA7n \\u0111i kh\\u00E1m b\\u00E1c s\\u0129.\u0022},{\u0022text\u0022:\u0022The doctor gave her some medicine.\u0022,\u0022vi\u0022:\u0022B\\u00E1c s\\u0129 cho c\\u00F4 \\u1EA5y m\\u1ED9t \\u00EDt thu\\u1ED1c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022see a doctor\u0022,\u0022vi\u0022:\u0022\\u0111i kh\\u00E1m b\\u00E1c s\\u0129\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.5c8653ed5aeb4ee39e4cb186e1b7ff1d",
+      "kind": "Card",
+      "values": {
+        "Term": "photographer",
+        "Definition": "nhi\u1EBFp \u1EA3nh gia",
+        "ImageUrl": "asset:de2d047e4f374e8fe1f60caa9846bc442256726946233a8a14604464b0448f10.webp",
+        "Phonetic": "/f\u0259\u02C8t\u0251.\u0261\u0279\u0259.f\u025A/",
+        "Example": "The photographer took many pictures at the wedding.",
+        "ExampleTranslation": "Nhi\u1EBFp \u1EA3nh gia ch\u1EE5p r\u1EA5t nhi\u1EC1u \u1EA3nh trong \u0111\u00E1m c\u01B0\u1EDBi.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who takes photos as a job",
+        "Cefr": "A2",
+        "PhoneticUk": "/f\u0259\u02C8t\u0252\u0261.\u0279\u0259.f\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The photographer took many pictures at the wedding.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EBFp \\u1EA3nh gia ch\\u1EE5p r\\u1EA5t nhi\\u1EC1u \\u1EA3nh trong \\u0111\\u00E1m c\\u01B0\\u1EDBi.\u0022},{\u0022text\u0022:\u0022She dreams of becoming a photographer.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u01A1 \\u01B0\\u1EDBc tr\\u1EDF th\\u00E0nh nhi\\u1EBFp \\u1EA3nh gia.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022professional photographer\u0022,\u0022vi\u0022:\u0022nhi\\u1EBFp \\u1EA3nh gia chuy\\u00EAn nghi\\u1EC7p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.5e1d9511e15b41c19c4e5689ebd1e586",
+      "kind": "Card",
+      "values": {
+        "Term": "pilot",
+        "Definition": "phi c\u00F4ng",
+        "ImageUrl": "asset:f1f734e0b19c84d7f1d9c400b584cfce8881d9ad6a40b56018e9edca1bb0a70f.webp",
+        "Phonetic": "/\u02C8pa\u026A.l\u0259t/",
+        "Example": "The pilot said hello to the passengers.",
+        "ExampleTranslation": "Phi c\u00F4ng ch\u00E0o h\u00E0nh kh\u00E1ch.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who flies an aeroplane",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8pa\u026A.l\u0259t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The pilot said hello to the passengers.\u0022,\u0022vi\u0022:\u0022Phi c\\u00F4ng ch\\u00E0o h\\u00E0nh kh\\u00E1ch.\u0022},{\u0022text\u0022:\u0022My brother wants to be a pilot.\u0022,\u0022vi\u0022:\u0022Anh trai t\\u00F4i mu\\u1ED1n tr\\u1EDF th\\u00E0nh phi c\\u00F4ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022airline pilot\u0022,\u0022vi\u0022:\u0022phi c\\u00F4ng h\\u00E0ng kh\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.6315d75751e44cbab593721bf3c9bd1d",
+      "kind": "Card",
+      "values": {
+        "Term": "cashier",
+        "Definition": "thu ng\u00E2n",
+        "ImageUrl": "asset:8ddf877a1d262384787b3101d38e1bda343a794b06d3a33846cca5bc18203d8c.webp",
+        "Phonetic": "/k\u0259\u02C8\u0283\u026A\u0259/",
+        "Example": "The cashier gave me my change.",
+        "ExampleTranslation": "Nh\u00E2n vi\u00EAn thu ng\u00E2n \u0111\u01B0a ti\u1EC1n th\u1EEBa cho t\u00F4i.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who takes payment in a shop",
+        "Cefr": "A2",
+        "PhoneticUk": "/k\u0259\u02C8\u0283\u026A\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The cashier gave me my change.\u0022,\u0022vi\u0022:\u0022Nh\\u00E2n vi\\u00EAn thu ng\\u00E2n \\u0111\\u01B0a ti\\u1EC1n th\\u1EEBa cho t\\u00F4i.\u0022},{\u0022text\u0022:\u0022She works as a cashier in a supermarket.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0m thu ng\\u00E2n \\u1EDF si\\u00EAu th\\u1ECB.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pay the cashier\u0022,\u0022vi\u0022:\u0022tr\\u1EA3 ti\\u1EC1n cho thu ng\\u00E2n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.6a7d6d0b7d5e482ca7e470692d6c9aac",
+      "kind": "Card",
+      "values": {
+        "Term": "barber",
+        "Definition": "th\u1EE3 c\u1EAFt t\u00F3c nam",
+        "ImageUrl": "asset:154a38861c0602628e3114950bd58580752f23c535df8331c0fa1e3ac94507e6.webp",
+        "Phonetic": "/\u02C8b\u0251\u0279.b\u025A/",
+        "Example": "The barber cut my hair short.",
+        "ExampleTranslation": "Th\u1EE3 c\u1EAFt t\u00F3c c\u1EAFt t\u00F3c t\u00F4i ng\u1EAFn.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who cuts men\u0027s hair",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u0251\u02D0b\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The barber cut my hair short.\u0022,\u0022vi\u0022:\u0022Th\\u1EE3 c\\u1EAFt t\\u00F3c c\\u1EAFt t\\u00F3c t\\u00F4i ng\\u1EAFn.\u0022},{\u0022text\u0022:\u0022My father goes to the barber every month.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 t\\u00F4i \\u0111i c\\u1EAFt t\\u00F3c m\\u1ED7i th\\u00E1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go to the barber\u0022,\u0022vi\u0022:\u0022\\u0111i c\\u1EAFt t\\u00F3c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.6fa1e2acdeea4641ac6f192612c100ad",
+      "kind": "Card",
+      "values": {
+        "Term": "baker",
+        "Definition": "th\u1EE3 l\u00E0m b\u00E1nh",
+        "ImageUrl": "asset:f3fd06e73144fce87e58b9fcec9959870fedd9605c326b80f9a18edc3f53b687.webp",
+        "Phonetic": "/\u02C8be\u026A.k\u025A/",
+        "Example": "The baker gets up at four to make bread.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi th\u1EE3 l\u00E0m b\u00E1nh d\u1EADy l\u00FAc b\u1ED1n gi\u1EDD \u0111\u1EC3 n\u01B0\u1EDBng b\u00E1nh m\u00EC.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who makes bread and cakes",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8be\u026A.k\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The baker gets up at four to make bread.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi th\\u1EE3 l\\u00E0m b\\u00E1nh d\\u1EADy l\\u00FAc b\\u1ED1n gi\\u1EDD \\u0111\\u1EC3 n\\u01B0\\u1EDBng b\\u00E1nh m\\u00EC.\u0022},{\u0022text\u0022:\u0022My neighbour is a baker.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng x\\u00F3m c\\u1EE7a t\\u00F4i l\\u00E0 th\\u1EE3 l\\u00E0m b\\u00E1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022local baker\u0022,\u0022vi\u0022:\u0022th\\u1EE3 l\\u00E0m b\\u00E1nh \\u0111\\u1ECBa ph\\u01B0\\u01A1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.78f885d354d741f5ae014481e407950e",
+      "kind": "Card",
+      "values": {
+        "Term": "firefighter",
+        "Definition": "l\u00EDnh c\u1EE9u h\u1ECFa",
+        "ImageUrl": "asset:7f234ea6deacc1fa70b57d9310d84f9b1b30ec0e66cb9ebb92f160e9918bc78b.webp",
+        "Phonetic": "/\u02C8fa\u026A.\u025A\u02CCfa\u026A.t\u025A/",
+        "Example": "The firefighter saved the cat from the tree.",
+        "ExampleTranslation": "Anh l\u00EDnh c\u1EE9u h\u1ECFa c\u1EE9u con m\u00E8o kh\u1ECFi c\u00E1i c\u00E2y.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person whose job is to put out fires",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8fa\u026A\u0259(\u0279)\u02CCfa\u026A.t\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The firefighter saved the cat from the tree.\u0022,\u0022vi\u0022:\u0022Anh l\\u00EDnh c\\u1EE9u h\\u1ECFa c\\u1EE9u con m\\u00E8o kh\\u1ECFi c\\u00E1i c\\u00E2y.\u0022},{\u0022text\u0022:\u0022Firefighters wear heavy clothes and helmets.\u0022,\u0022vi\u0022:\u0022L\\u00EDnh c\\u1EE9u h\\u1ECFa m\\u1EB7c qu\\u1EA7n \\u00E1o d\\u00E0y v\\u00E0 \\u0111\\u1ED9i m\\u0169 b\\u1EA3o hi\\u1EC3m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022brave firefighter\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi l\\u00EDnh c\\u1EE9u h\\u1ECFa d\\u0169ng c\\u1EA3m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.7913c32844944a6a8db8855395e67bd1",
+      "kind": "Card",
+      "values": {
+        "Term": "electrician",
+        "Definition": "th\u1EE3 \u0111i\u1EC7n",
+        "ImageUrl": "asset:0466daa8e56609caa5d42c1e509649246540e4d6cbac67e9266518ae0e0d3856.webp",
+        "Phonetic": "/\u026A\u02CCl\u025Bk\u02C8t\u0279\u026A\u0283\u0259n/",
+        "Example": "We called an electrician to fix the lights.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i g\u1ECDi th\u1EE3 \u0111i\u1EC7n \u0111\u1EBFn s\u1EEDa \u0111\u00E8n.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person whose job is to fix electrical things",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u026A\u02CCl\u025Bk\u02C8t\u0279\u026A\u0283(\u0259)n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We called an electrician to fix the lights.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i g\\u1ECDi th\\u1EE3 \\u0111i\\u1EC7n \\u0111\\u1EBFn s\\u1EEDa \\u0111\\u00E8n.\u0022},{\u0022text\u0022:\u0022The electrician checked the wires carefully.\u0022,\u0022vi\u0022:\u0022Th\\u1EE3 \\u0111i\\u1EC7n ki\\u1EC3m tra d\\u00E2y \\u0111i\\u1EC7n c\\u1EA9n th\\u1EADn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022call an electrician\u0022,\u0022vi\u0022:\u0022g\\u1ECDi th\\u1EE3 \\u0111i\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.7d0f88ecd31842cfb289c63796d14502",
+      "kind": "Card",
+      "values": {
+        "Term": "tailor",
+        "Definition": "th\u1EE3 may",
+        "ImageUrl": "asset:feeb075bbb97d326be95b3229379d88e3580a8292168275c693605ec350a3a03.webp",
+        "Phonetic": "/\u02C8te\u026Al\u025A/",
+        "Example": "The tailor made me a new suit.",
+        "ExampleTranslation": "Th\u1EE3 may may cho t\u00F4i m\u1ED9t b\u1ED9 vest m\u1EDBi.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who makes or repairs clothes",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8te\u026Al\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The tailor made me a new suit.\u0022,\u0022vi\u0022:\u0022Th\\u1EE3 may may cho t\\u00F4i m\\u1ED9t b\\u1ED9 vest m\\u1EDBi.\u0022},{\u0022text\u0022:\u0022I took my trousers to the tailor.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mang chi\\u1EBFc qu\\u1EA7n \\u0111\\u1EBFn th\\u1EE3 may.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022visit a tailor\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EBFn ti\\u1EC7m may\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.7d9153e910694ab19b762bfef29fb746",
+      "kind": "Card",
+      "values": {
+        "Term": "nurse",
+        "Definition": "y t\u00E1",
+        "ImageUrl": "asset:d094ad59dd58f149e69a65b93f866a7bdbdd179450a89ac03c264e3dcd2fd42c.webp",
+        "Phonetic": "/n\u025Ds/",
+        "Example": "The nurse took my temperature.",
+        "ExampleTranslation": "C\u00F4 y t\u00E1 \u0111o nhi\u1EC7t \u0111\u1ED9 cho t\u00F4i.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who looks after sick people in a hospital",
+        "Cefr": "A2",
+        "PhoneticUk": "/n\u025C\u02D0s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The nurse took my temperature.\u0022,\u0022vi\u0022:\u0022C\\u00F4 y t\\u00E1 \\u0111o nhi\\u1EC7t \\u0111\\u1ED9 cho t\\u00F4i.\u0022},{\u0022text\u0022:\u0022My aunt works as a nurse at a hospital.\u0022,\u0022vi\u0022:\u0022D\\u00EC t\\u00F4i l\\u00E0m y t\\u00E1 \\u1EDF m\\u1ED9t b\\u1EC7nh vi\\u1EC7n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022night nurse\u0022,\u0022vi\u0022:\u0022y t\\u00E1 tr\\u1EF1c \\u0111\\u00EAm\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.7fe1bb9ff4d047f29cac652bd6fcc6cf",
+      "kind": "Card",
+      "values": {
+        "Term": "waiter",
+        "Definition": "ng\u01B0\u1EDDi ph\u1EE5c v\u1EE5 nam",
+        "ImageUrl": "asset:3c97368f135b3592f8598b05f62e361356cff92f1858381eb6c8f1d2906e1851.webp",
+        "Phonetic": "/\u02C8we\u026A\u032Ft\u025A/",
+        "Example": "The waiter brought us the menu.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi ph\u1EE5c v\u1EE5 mang th\u1EF1c \u0111\u01A1n cho ch\u00FAng t\u00F4i.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a man who brings food to people in a restaurant",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8we\u026A\u032Ft\u0259\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The waiter brought us the menu.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi ph\\u1EE5c v\\u1EE5 mang th\\u1EF1c \\u0111\\u01A1n cho ch\\u00FAng t\\u00F4i.\u0022},{\u0022text\u0022:\u0022Our waiter was polite and quick.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi ph\\u1EE5c v\\u1EE5 c\\u1EE7a ch\\u00FAng t\\u00F4i l\\u1ECBch s\\u1EF1 v\\u00E0 nhanh nh\\u1EB9n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022call the waiter\u0022,\u0022vi\u0022:\u0022g\\u1ECDi ph\\u1EE5c v\\u1EE5\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022waitress\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022n\\u1EEF ph\\u1EE5c v\\u1EE5\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.8bb9dc18c6c44bedbc3419dc8f8df986",
+      "kind": "Card",
+      "values": {
+        "Term": "vet",
+        "Definition": "b\u00E1c s\u0129 th\u00FA y",
+        "ImageUrl": "asset:094457094534236e07a0b089a5079a4052de1ff96c7195b6bf9fa528b13315c3.webp",
+        "Phonetic": "/v\u025Bt/",
+        "Example": "The vet looked at our sick puppy.",
+        "ExampleTranslation": "B\u00E1c s\u0129 th\u00FA y kh\u00E1m con ch\u00F3 con b\u1ECB \u1ED1m c\u1EE7a ch\u00FAng t\u00F4i.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a doctor who treats sick animals",
+        "Cefr": "A2",
+        "PhoneticUk": "/v\u025Bt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The vet looked at our sick puppy.\u0022,\u0022vi\u0022:\u0022B\\u00E1c s\\u0129 th\\u00FA y kh\\u00E1m con ch\\u00F3 con b\\u1ECB \\u1ED1m c\\u1EE7a ch\\u00FAng t\\u00F4i.\u0022},{\u0022text\u0022:\u0022She wants to be a vet because she loves animals.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y mu\\u1ED1n l\\u00E0m b\\u00E1c s\\u0129 th\\u00FA y v\\u00EC y\\u00EAu \\u0111\\u1ED9ng v\\u1EADt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022take a pet to the vet\u0022,\u0022vi\u0022:\u0022\\u0111\\u01B0a th\\u00FA c\\u01B0ng \\u0111i kh\\u00E1m th\\u00FA y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.a2e892e66b634a0a98c4f4270acba677",
+      "kind": "Card",
+      "values": {
+        "Term": "scientist",
+        "Definition": "nh\u00E0 khoa h\u1ECDc",
+        "ImageUrl": "asset:cd7d2bebc723d56c2fb4ee7f25e5da832ce63a6c1c8eb7d1a07768dabdc9882c.webp",
+        "Phonetic": "/\u02C8sa\u026A\u0259nt\u0259st/",
+        "Example": "The scientist works in a laboratory.",
+        "ExampleTranslation": "Nh\u00E0 khoa h\u1ECDc l\u00E0m vi\u1EC7c trong ph\u00F2ng th\u00ED nghi\u1EC7m.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who studies nature using experiments",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8sa\u026A\u0259nt\u026Ast/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The scientist works in a laboratory.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 khoa h\\u1ECDc l\\u00E0m vi\\u1EC7c trong ph\\u00F2ng th\\u00ED nghi\\u1EC7m.\u0022},{\u0022text\u0022:\u0022A scientist found a new kind of frog.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t nh\\u00E0 khoa h\\u1ECDc \\u0111\\u00E3 t\\u00ECm ra m\\u1ED9t lo\\u00E0i \\u1EBFch m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022famous scientist\u0022,\u0022vi\u0022:\u0022nh\\u00E0 khoa h\\u1ECDc n\\u1ED5i ti\\u1EBFng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.c2adf21aac9b46c4ac3bf4387b95fcb8",
+      "kind": "Card",
+      "values": {
+        "Term": "fisherman",
+        "Definition": "ng\u01B0 d\u00E2n",
+        "ImageUrl": "asset:7c6f20c42bc48f1e35f04dc23d152e96402d4be28c1c2a21cf0c4d3b63494a94.webp",
+        "Phonetic": "/\u02C8f\u026A\u0283.\u025A.m\u0259n/",
+        "Example": "The fisherman goes out to sea early.",
+        "ExampleTranslation": "Ng\u01B0 d\u00E2n ra kh\u01A1i t\u1EEB s\u00E1ng s\u1EDBm.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a man whose job is to catch fish",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8f\u026A\u0283.\u0259.m\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The fisherman goes out to sea early.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0 d\\u00E2n ra kh\\u01A1i t\\u1EEB s\\u00E1ng s\\u1EDBm.\u0022},{\u0022text\u0022:\u0022A fisherman sold fresh fish at the market.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t ng\\u01B0 d\\u00E2n b\\u00E1n c\\u00E1 t\\u01B0\\u01A1i \\u1EDF ch\\u1EE3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022local fisherman\u0022,\u0022vi\u0022:\u0022ng\\u01B0 d\\u00E2n \\u0111\\u1ECBa ph\\u01B0\\u01A1ng\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022fishermen\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.c56ca1a2c8314f47af34829e670bf5e3",
+      "kind": "Card",
+      "values": {
+        "Term": "engineer",
+        "Definition": "k\u1EF9 s\u01B0",
+        "ImageUrl": "asset:f86fccd77a1590be796b6868b49559841a3a34e30cf37a9fea0aeb2a668f6822.webp",
+        "Phonetic": "/\u02CC\u025Bnd\u0361\u0292\u026A\u02C8n\u026A\u0279/",
+        "Example": "My sister is an engineer.",
+        "ExampleTranslation": "Ch\u1ECB g\u00E1i t\u00F4i l\u00E0 m\u1ED9t k\u1EF9 s\u01B0.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who designs and builds machines, roads or bridges",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02CC\u025Bn(d)\u0292\u026A\u02C8n\u026A\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My sister is an engineer.\u0022,\u0022vi\u0022:\u0022Ch\\u1ECB g\\u00E1i t\\u00F4i l\\u00E0 m\\u1ED9t k\\u1EF9 s\\u01B0.\u0022},{\u0022text\u0022:\u0022The engineer drew a plan for the bridge.\u0022,\u0022vi\u0022:\u0022K\\u1EF9 s\\u01B0 v\\u1EBD b\\u1EA3n thi\\u1EBFt k\\u1EBF cho c\\u00E2y c\\u1EA7u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022software engineer\u0022,\u0022vi\u0022:\u0022k\\u1EF9 s\\u01B0 ph\\u1EA7n m\\u1EC1m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.cdd3f5163a554c868d6edf9ef2494f95",
+      "kind": "Card",
+      "values": {
+        "Term": "postman",
+        "Definition": "ng\u01B0\u1EDDi \u0111\u01B0a th\u01B0",
+        "ImageUrl": "asset:91d514ae687695c1c3d9281ca1b1eaeb6a6e02dee2976884b40ce0543fc8f1e2.webp",
+        "Phonetic": "/\u02C8p\u0259\u028As(t)m\u0259n/",
+        "Example": "The postman brings letters every morning.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi \u0111\u01B0a th\u01B0 mang th\u01B0 \u0111\u1EBFn m\u1ED7i bu\u1ED5i s\u00E1ng.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who brings letters to your home",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u0259\u028As(t)m\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The postman brings letters every morning.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi \\u0111\\u01B0a th\\u01B0 mang th\\u01B0 \\u0111\\u1EBFn m\\u1ED7i bu\\u1ED5i s\\u00E1ng.\u0022},{\u0022text\u0022:\u0022Our dog barks at the postman.\u0022,\u0022vi\u0022:\u0022Con ch\\u00F3 c\\u1EE7a ch\\u00FAng t\\u00F4i s\\u1EE7a ng\\u01B0\\u1EDDi \\u0111\\u01B0a th\\u01B0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022friendly postman\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi \\u0111\\u01B0a th\\u01B0 th\\u00E2n thi\\u1EC7n\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022postmen\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.d33674a69cfe4773bc1a4841f1435960",
+      "kind": "Card",
+      "values": {
+        "Term": "police officer",
+        "Definition": "c\u1EA3nh s\u00E1t",
+        "ImageUrl": "asset:cb1e1b10a344e799ff17cc65ed580704382f0ace45a8538ab985fa18e8e1fe1b.webp",
+        "Phonetic": "/p\u0259\u02C8li\u02D0s \u02C8\u0254f\u026As\u025A/",
+        "Example": "The police officer helped us cross the road.",
+        "ExampleTranslation": "Ch\u00FA c\u1EA3nh s\u00E1t gi\u00FAp ch\u00FAng t\u00F4i qua \u0111\u01B0\u1EDDng.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person whose job is to keep order and catch criminals",
+        "Cefr": "A2",
+        "PhoneticUk": "/p\u0259\u02C8li\u02D0s \u02C8\u0252f.\u026A.s\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The police officer helped us cross the road.\u0022,\u0022vi\u0022:\u0022Ch\\u00FA c\\u1EA3nh s\\u00E1t gi\\u00FAp ch\\u00FAng t\\u00F4i qua \\u0111\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022She wants to become a police officer.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y mu\\u1ED1n tr\\u1EDF th\\u00E0nh m\\u1ED9t c\\u1EA3nh s\\u00E1t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022call a police officer\u0022,\u0022vi\u0022:\u0022g\\u1ECDi c\\u1EA3nh s\\u00E1t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.d89735fd0674485ea688e68c000d1487",
+      "kind": "Card",
+      "values": {
+        "Term": "farmer",
+        "Definition": "n\u00F4ng d\u00E2n",
+        "ImageUrl": "asset:2c20fcc65faad9d78423b5405c28ecc811faca2f01b50aa1152f9bb4ce1f4c89.webp",
+        "Phonetic": "/f\u0251\u0279m\u025A/",
+        "Example": "The farmer gets up at five every morning.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi n\u00F4ng d\u00E2n d\u1EADy l\u00FAc n\u0103m gi\u1EDD m\u1ED7i s\u00E1ng.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who grows crops or keeps animals",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8f\u0251\u02D0.m\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The farmer gets up at five every morning.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi n\\u00F4ng d\\u00E2n d\\u1EADy l\\u00FAc n\\u0103m gi\\u1EDD m\\u1ED7i s\\u00E1ng.\u0022},{\u0022text\u0022:\u0022My uncle is a rice farmer.\u0022,\u0022vi\u0022:\u0022Ch\\u00FA t\\u00F4i l\\u00E0 m\\u1ED9t n\\u00F4ng d\\u00E2n tr\\u1ED3ng l\\u00FAa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022rice farmer\u0022,\u0022vi\u0022:\u0022n\\u00F4ng d\\u00E2n tr\\u1ED3ng l\\u00FAa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.dda6078bcc4c4c51b55f27e7ad233c11",
+      "kind": "Card",
+      "values": {
+        "Term": "chef",
+        "Definition": "\u0111\u1EA7u b\u1EBFp",
+        "ImageUrl": "asset:10d93a65dd4fdf27cf206e415dd54e60c3e27dcb8505fd4c899b05faa331a13e.webp",
+        "Phonetic": "/\u0283\u025Bf/",
+        "Example": "The chef cooks very good fish.",
+        "ExampleTranslation": "\u0110\u1EA7u b\u1EBFp n\u1EA5u m\u00F3n c\u00E1 r\u1EA5t ngon.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a professional cook in a restaurant",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0283\u025Bf/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The chef cooks very good fish.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EA7u b\\u1EBFp n\\u1EA5u m\\u00F3n c\\u00E1 r\\u1EA5t ngon.\u0022},{\u0022text\u0022:\u0022She wants to become a chef one day.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y mu\\u1ED1n tr\\u1EDF th\\u00E0nh \\u0111\\u1EA7u b\\u1EBFp v\\u00E0o m\\u1ED9t ng\\u00E0y n\\u00E0o \\u0111\\u00F3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022head chef\u0022,\u0022vi\u0022:\u0022b\\u1EBFp tr\\u01B0\\u1EDFng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a14-nghe-nghiep.f0cd1d1d2a34427fb979838006993329",
+      "kind": "Card",
+      "values": {
+        "Term": "dentist",
+        "Definition": "nha s\u0129",
+        "ImageUrl": "asset:f3e4643c80fce3e4e8a7c7db4c4491f7ff8c04568f088a0b38ca2fc9df38c32f.webp",
+        "Phonetic": "/\u02C8d\u025Bnt\u026Ast/",
+        "Example": "I go to the dentist twice a year.",
+        "ExampleTranslation": "T\u00F4i \u0111i kh\u00E1m nha s\u0129 hai l\u1EA7n m\u1ED9t n\u0103m.",
+        "Topic": "Ngh\u1EC1 nghi\u1EC7p",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a doctor who looks after your teeth",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8d\u025Bnt\u026Ast/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I go to the dentist twice a year.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111i kh\\u00E1m nha s\\u0129 hai l\\u1EA7n m\\u1ED9t n\\u0103m.\u0022},{\u0022text\u0022:\u0022The dentist said my teeth are healthy.\u0022,\u0022vi\u0022:\u0022Nha s\\u0129 n\\u00F3i r\\u0103ng t\\u00F4i kh\\u1ECFe m\\u1EA1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022visit the dentist\u0022,\u0022vi\u0022:\u0022\\u0111i kh\\u00E1m nha s\\u0129\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a14-nghe-nghiep"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "d094ad59dd58f149e69a65b93f866a7bdbdd179450a89ac03c264e3dcd2fd42c.webp",
+      "sha256": "d094ad59dd58f149e69a65b93f866a7bdbdd179450a89ac03c264e3dcd2fd42c"
+    },
+    {
+      "file": "79952a2d9a59c8051cf090a0f1d5efe74d7780a5d38ce8d6c55a2a143d6afceb.webp",
+      "sha256": "79952a2d9a59c8051cf090a0f1d5efe74d7780a5d38ce8d6c55a2a143d6afceb"
+    },
+    {
+      "file": "2c20fcc65faad9d78423b5405c28ecc811faca2f01b50aa1152f9bb4ce1f4c89.webp",
+      "sha256": "2c20fcc65faad9d78423b5405c28ecc811faca2f01b50aa1152f9bb4ce1f4c89"
+    },
+    {
+      "file": "10d93a65dd4fdf27cf206e415dd54e60c3e27dcb8505fd4c899b05faa331a13e.webp",
+      "sha256": "10d93a65dd4fdf27cf206e415dd54e60c3e27dcb8505fd4c899b05faa331a13e"
+    },
+    {
+      "file": "f1f734e0b19c84d7f1d9c400b584cfce8881d9ad6a40b56018e9edca1bb0a70f.webp",
+      "sha256": "f1f734e0b19c84d7f1d9c400b584cfce8881d9ad6a40b56018e9edca1bb0a70f"
+    },
+    {
+      "file": "c05792ed660c62200d2aa25cb51dd186e561dd245633563426dbf277c57b0d77.webp",
+      "sha256": "c05792ed660c62200d2aa25cb51dd186e561dd245633563426dbf277c57b0d77"
+    },
+    {
+      "file": "fe732a2dbc9d6c4ffed76b066d0df88e5de8f0a1cb8ba246dbe288e4e723f3e0.webp",
+      "sha256": "fe732a2dbc9d6c4ffed76b066d0df88e5de8f0a1cb8ba246dbe288e4e723f3e0"
+    },
+    {
+      "file": "cb1e1b10a344e799ff17cc65ed580704382f0ace45a8538ab985fa18e8e1fe1b.webp",
+      "sha256": "cb1e1b10a344e799ff17cc65ed580704382f0ace45a8538ab985fa18e8e1fe1b"
+    },
+    {
+      "file": "7f234ea6deacc1fa70b57d9310d84f9b1b30ec0e66cb9ebb92f160e9918bc78b.webp",
+      "sha256": "7f234ea6deacc1fa70b57d9310d84f9b1b30ec0e66cb9ebb92f160e9918bc78b"
+    },
+    {
+      "file": "f3e4643c80fce3e4e8a7c7db4c4491f7ff8c04568f088a0b38ca2fc9df38c32f.webp",
+      "sha256": "f3e4643c80fce3e4e8a7c7db4c4491f7ff8c04568f088a0b38ca2fc9df38c32f"
+    },
+    {
+      "file": "f86fccd77a1590be796b6868b49559841a3a34e30cf37a9fea0aeb2a668f6822.webp",
+      "sha256": "f86fccd77a1590be796b6868b49559841a3a34e30cf37a9fea0aeb2a668f6822"
+    },
+    {
+      "file": "9be59d62206cdf1ae9f722d49d4c8c963afb00f05e7d5cc1e04d9a191b0a9c2d.webp",
+      "sha256": "9be59d62206cdf1ae9f722d49d4c8c963afb00f05e7d5cc1e04d9a191b0a9c2d"
+    },
+    {
+      "file": "3c97368f135b3592f8598b05f62e361356cff92f1858381eb6c8f1d2906e1851.webp",
+      "sha256": "3c97368f135b3592f8598b05f62e361356cff92f1858381eb6c8f1d2906e1851"
+    },
+    {
+      "file": "8ddf877a1d262384787b3101d38e1bda343a794b06d3a33846cca5bc18203d8c.webp",
+      "sha256": "8ddf877a1d262384787b3101d38e1bda343a794b06d3a33846cca5bc18203d8c"
+    },
+    {
+      "file": "08fd71fd33025c65952288850b840e6561a8ca5dd990a5036b3a2a9419fbbf23.webp",
+      "sha256": "08fd71fd33025c65952288850b840e6561a8ca5dd990a5036b3a2a9419fbbf23"
+    },
+    {
+      "file": "5a1dfa0cbff9c39895cedceb09b8e305796ae08e835b7918a08eca839c3f458f.webp",
+      "sha256": "5a1dfa0cbff9c39895cedceb09b8e305796ae08e835b7918a08eca839c3f458f"
+    },
+    {
+      "file": "0466daa8e56609caa5d42c1e509649246540e4d6cbac67e9266518ae0e0d3856.webp",
+      "sha256": "0466daa8e56609caa5d42c1e509649246540e4d6cbac67e9266518ae0e0d3856"
+    },
+    {
+      "file": "7c6f20c42bc48f1e35f04dc23d152e96402d4be28c1c2a21cf0c4d3b63494a94.webp",
+      "sha256": "7c6f20c42bc48f1e35f04dc23d152e96402d4be28c1c2a21cf0c4d3b63494a94"
+    },
+    {
+      "file": "f3fd06e73144fce87e58b9fcec9959870fedd9605c326b80f9a18edc3f53b687.webp",
+      "sha256": "f3fd06e73144fce87e58b9fcec9959870fedd9605c326b80f9a18edc3f53b687"
+    },
+    {
+      "file": "de2d047e4f374e8fe1f60caa9846bc442256726946233a8a14604464b0448f10.webp",
+      "sha256": "de2d047e4f374e8fe1f60caa9846bc442256726946233a8a14604464b0448f10"
+    },
+    {
+      "file": "feeb075bbb97d326be95b3229379d88e3580a8292168275c693605ec350a3a03.webp",
+      "sha256": "feeb075bbb97d326be95b3229379d88e3580a8292168275c693605ec350a3a03"
+    },
+    {
+      "file": "cd7d2bebc723d56c2fb4ee7f25e5da832ce63a6c1c8eb7d1a07768dabdc9882c.webp",
+      "sha256": "cd7d2bebc723d56c2fb4ee7f25e5da832ce63a6c1c8eb7d1a07768dabdc9882c"
+    },
+    {
+      "file": "154a38861c0602628e3114950bd58580752f23c535df8331c0fa1e3ac94507e6.webp",
+      "sha256": "154a38861c0602628e3114950bd58580752f23c535df8331c0fa1e3ac94507e6"
+    },
+    {
+      "file": "094457094534236e07a0b089a5079a4052de1ff96c7195b6bf9fa528b13315c3.webp",
+      "sha256": "094457094534236e07a0b089a5079a4052de1ff96c7195b6bf9fa528b13315c3"
+    },
+    {
+      "file": "91d514ae687695c1c3d9281ca1b1eaeb6a6e02dee2976884b40ce0543fc8f1e2.webp",
+      "sha256": "91d514ae687695c1c3d9281ca1b1eaeb6a6e02dee2976884b40ce0543fc8f1e2"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a14-nghe-nghiep"
+}

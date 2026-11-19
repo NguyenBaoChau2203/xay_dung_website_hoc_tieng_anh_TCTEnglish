@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang",
+      "kind": "Set",
+      "values": {
+        "SetName": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "Description": "#a1 #a2 #colours #shapes"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.0112429cace94e4e8e5ce49a11fa85c2",
+      "kind": "Card",
+      "values": {
+        "Term": "silver",
+        "Definition": "m\u00E0u b\u1EA1c; b\u1EA1c",
+        "ImageUrl": "asset:e2313d8b64289ff0092a49c7c0841046437703fdbf567b799816084849aa45e2.webp",
+        "Phonetic": "/\u02C8s\u026Al.v\u025A/",
+        "Example": "He gave her a silver ring.",
+        "ExampleTranslation": "Anh \u1EA5y t\u1EB7ng c\u00F4 \u1EA5y m\u1ED9t chi\u1EBFc nh\u1EABn b\u1EA1c.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun,adj",
+        "MeaningEn": "a shiny grey colour, or the precious metal",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8s\u026Al.v\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He gave her a silver ring.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y t\\u1EB7ng c\\u00F4 \\u1EA5y m\\u1ED9t chi\\u1EBFc nh\\u1EABn b\\u1EA1c.\u0022},{\u0022text\u0022:\u0022The moon was silver in the night sky.\u0022,\u0022vi\u0022:\u0022M\\u1EB7t tr\\u0103ng \\u00E1nh b\\u1EA1c tr\\u00EAn b\\u1EA7u tr\\u1EDDi \\u0111\\u00EAm.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022silver spoon\u0022,\u0022vi\u0022:\u0022th\\u00ECa b\\u1EA1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.0c40175434754ec3aeefd6453b244381",
+      "kind": "Card",
+      "values": {
+        "Term": "square",
+        "Definition": "h\u00ECnh vu\u00F4ng",
+        "ImageUrl": "asset:16865a9bf3f850d9036a761cb5be7e93557223fea384e748439ad3508fdae038.webp",
+        "Phonetic": "/skw\u025B\u0259(\u0279)/",
+        "Example": "The table is a square.",
+        "ExampleTranslation": "C\u00E1i b\u00E0n c\u00F3 d\u1EA1ng h\u00ECnh vu\u00F4ng.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun,adj",
+        "MeaningEn": "a shape with four equal sides",
+        "Cefr": "A1",
+        "PhoneticUk": "/skw\u025B\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The table is a square.\u0022,\u0022vi\u0022:\u0022C\\u00E1i b\\u00E0n c\\u00F3 d\\u1EA1ng h\\u00ECnh vu\\u00F4ng.\u0022},{\u0022text\u0022:\u0022A square has four straight sides.\u0022,\u0022vi\u0022:\u0022H\\u00ECnh vu\\u00F4ng c\\u00F3 b\\u1ED1n c\\u1EA1nh th\\u1EB3ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022square table\u0022,\u0022vi\u0022:\u0022b\\u00E0n vu\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.0e2921513e094994aa9ff7bc8d9be697",
+      "kind": "Card",
+      "values": {
+        "Term": "diamond",
+        "Definition": "h\u00ECnh thoi; kim c\u01B0\u01A1ng",
+        "ImageUrl": "asset:a9837dd14e89f9c64903be3b00913920903a6ac4df7c107514fcea5eef6e4bfc.webp",
+        "Phonetic": "/\u02C8da\u026A.\u0259.m\u0259nd/",
+        "Example": "The kite has a diamond shape.",
+        "ExampleTranslation": "Con di\u1EC1u c\u00F3 h\u00ECnh thoi.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a shape with four equal sides standing on one point",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8da\u026A.\u0259.m\u0259nd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The kite has a diamond shape.\u0022,\u0022vi\u0022:\u0022Con di\\u1EC1u c\\u00F3 h\\u00ECnh thoi.\u0022},{\u0022text\u0022:\u0022She drew a red diamond on the card.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y v\\u1EBD m\\u1ED9t h\\u00ECnh thoi \\u0111\\u1ECF l\\u00EAn t\\u1EA5m th\\u1EBB.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022diamond shape\u0022,\u0022vi\u0022:\u0022h\\u00ECnh thoi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.14996d8f34f14af5859219f8adbc8616",
+      "kind": "Card",
+      "values": {
+        "Term": "blue",
+        "Definition": "m\u00E0u xanh d\u01B0\u01A1ng",
+        "ImageUrl": "asset:bd79d9340e93c0c0fd591d240ee271f8f0a1404f298cb22d8b37af146b60f850.webp",
+        "Phonetic": "/blu/",
+        "Example": "The sky is blue today.",
+        "ExampleTranslation": "H\u00F4m nay b\u1EA7u tr\u1EDDi m\u00E0u xanh.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "adj,noun",
+        "MeaningEn": "the colour of a clear sky or the sea",
+        "Cefr": "A1",
+        "PhoneticUk": "/blu\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The sky is blue today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay b\\u1EA7u tr\\u1EDDi m\\u00E0u xanh.\u0022},{\u0022text\u0022:\u0022He bought a blue shirt.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y mua m\\u1ED9t chi\\u1EBFc \\u00E1o s\\u01A1 mi xanh d\\u01B0\\u01A1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022light blue\u0022,\u0022vi\u0022:\u0022xanh nh\\u1EA1t\u0022},{\u0022text\u0022:\u0022dark blue\u0022,\u0022vi\u0022:\u0022xanh \\u0111\\u1EADm\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.1714636cab2e4bf3beed18d01f074fc0",
+      "kind": "Card",
+      "values": {
+        "Term": "sphere",
+        "Definition": "h\u00ECnh c\u1EA7u",
+        "ImageUrl": "asset:361f9321306226dd9e49dcf0f25209902f0de5c2cfea70d681c0719b9e6968ec.webp",
+        "Phonetic": "/sf\u026A\u025A/",
+        "Example": "A ball is a sphere.",
+        "ExampleTranslation": "Qu\u1EA3 b\u00F3ng l\u00E0 m\u1ED9t h\u00ECnh c\u1EA7u.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a perfectly round solid shape like a ball",
+        "Cefr": "A2",
+        "PhoneticUk": "/sf\u026A\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A ball is a sphere.\u0022,\u0022vi\u0022:\u0022Qu\\u1EA3 b\\u00F3ng l\\u00E0 m\\u1ED9t h\\u00ECnh c\\u1EA7u.\u0022},{\u0022text\u0022:\u0022The Earth is almost a sphere.\u0022,\u0022vi\u0022:\u0022Tr\\u00E1i \\u0110\\u1EA5t g\\u1EA7n nh\\u01B0 l\\u00E0 m\\u1ED9t h\\u00ECnh c\\u1EA7u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022glass sphere\u0022,\u0022vi\u0022:\u0022qu\\u1EA3 c\\u1EA7u th\\u1EE7y tinh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.1773922afd334560b19755bca9b50e87",
+      "kind": "Card",
+      "values": {
+        "Term": "cone",
+        "Definition": "h\u00ECnh n\u00F3n",
+        "ImageUrl": "asset:66865c57973c255db77cf95f43615c47e2000e8daefb39eb36aa11ac1e8497a8.webp",
+        "Phonetic": "/\u02C8ko\u028An/",
+        "Example": "The ice cream is in a cone.",
+        "ExampleTranslation": "C\u00E2y kem n\u1EB1m trong m\u1ED9t chi\u1EBFc \u1ED1c qu\u1EBF h\u00ECnh n\u00F3n.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a solid shape with a round base and a point at the top",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u0259\u028An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The ice cream is in a cone.\u0022,\u0022vi\u0022:\u0022C\\u00E2y kem n\\u1EB1m trong m\\u1ED9t chi\\u1EBFc \\u1ED1c qu\\u1EBF h\\u00ECnh n\\u00F3n.\u0022},{\u0022text\u0022:\u0022A party hat is shaped like a cone.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc m\\u0169 d\\u1EF1 ti\\u1EC7c c\\u00F3 h\\u00ECnh n\\u00F3n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022traffic cone\u0022,\u0022vi\u0022:\u0022c\\u1ECDc ti\\u00EAu giao th\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.1871fe8a3885470d9dcd7b453d8068cf",
+      "kind": "Card",
+      "values": {
+        "Term": "star",
+        "Definition": "ng\u00F4i sao",
+        "ImageUrl": "asset:ef4731228144ff5dc8a1bcfad2b2e9f4cf5cde1cf99009891b25c97826b037a9.webp",
+        "Phonetic": "/st\u0251\u0279/",
+        "Example": "The teacher gave me a gold star.",
+        "ExampleTranslation": "C\u00F4 gi\u00E1o t\u1EB7ng t\u00F4i m\u1ED9t ng\u00F4i sao v\u00E0ng.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a shape with five points, or a bright light in the night sky",
+        "Cefr": "A1",
+        "PhoneticUk": "/st\u0251\u02D0(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The teacher gave me a gold star.\u0022,\u0022vi\u0022:\u0022C\\u00F4 gi\\u00E1o t\\u1EB7ng t\\u00F4i m\\u1ED9t ng\\u00F4i sao v\\u00E0ng.\u0022},{\u0022text\u0022:\u0022We can see many stars tonight.\u0022,\u0022vi\u0022:\u0022T\\u1ED1i nay ch\\u00FAng ta c\\u00F3 th\\u1EC3 th\\u1EA5y nhi\\u1EC1u ng\\u00F4i sao.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022five-pointed star\u0022,\u0022vi\u0022:\u0022ng\\u00F4i sao n\\u0103m c\\u00E1nh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.1a7ed56836204ea1a57cb76282d7d1bd",
+      "kind": "Card",
+      "values": {
+        "Term": "brown",
+        "Definition": "m\u00E0u n\u00E2u",
+        "ImageUrl": "asset:3b91fe59d9e54c28966f82f0d231677edac894b8616186f1048975b3841aef7d.webp",
+        "Phonetic": "/b\u0279a\u028A\u032Fn/",
+        "Example": "The dog has brown eyes.",
+        "ExampleTranslation": "Con ch\u00F3 c\u00F3 \u0111\u00F4i m\u1EAFt m\u00E0u n\u00E2u.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "adj,noun",
+        "MeaningEn": "the colour of chocolate or wood",
+        "Cefr": "A1",
+        "PhoneticUk": "/b\u0279a\u028A\u032Fn/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The dog has brown eyes.\u0022,\u0022vi\u0022:\u0022Con ch\\u00F3 c\\u00F3 \\u0111\\u00F4i m\\u1EAFt m\\u00E0u n\\u00E2u.\u0022},{\u0022text\u0022:\u0022She bought brown shoes.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y mua m\\u1ED9t \\u0111\\u00F4i gi\\u00E0y m\\u00E0u n\\u00E2u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022dark brown\u0022,\u0022vi\u0022:\u0022n\\u00E2u \\u0111\\u1EADm\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.33136dff5faf44e5aedaedaf86c34a6e",
+      "kind": "Card",
+      "values": {
+        "Term": "black",
+        "Definition": "m\u00E0u \u0111en",
+        "ImageUrl": "asset:e3a1e99845f2d6118ec935a543a70878fe463163ee0a091036598fdb16f2be04.webp",
+        "Phonetic": "/bl\u00E6k/",
+        "Example": "He wears a black coat in winter.",
+        "ExampleTranslation": "Anh \u1EA5y m\u1EB7c \u00E1o kho\u00E1c \u0111en v\u00E0o m\u00F9a \u0111\u00F4ng.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "adj,noun",
+        "MeaningEn": "the darkest colour, like the night sky",
+        "Cefr": "A1",
+        "PhoneticUk": "/bl\u00E6k/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He wears a black coat in winter.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y m\\u1EB7c \\u00E1o kho\\u00E1c \\u0111en v\\u00E0o m\\u00F9a \\u0111\\u00F4ng.\u0022},{\u0022text\u0022:\u0022My cat is black and white.\u0022,\u0022vi\u0022:\u0022Con m\\u00E8o c\\u1EE7a t\\u00F4i c\\u00F3 m\\u00E0u \\u0111en v\\u00E0 tr\\u1EAFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022black and white\u0022,\u0022vi\u0022:\u0022\\u0111en tr\\u1EAFng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.4333e46aa1414db4abf881a131733b3b",
+      "kind": "Card",
+      "values": {
+        "Term": "oval",
+        "Definition": "h\u00ECnh b\u1EA7u d\u1EE5c",
+        "ImageUrl": "asset:d66a857027bd5edfcb44ff6f1ea50cf3afcbdd75bba3b2f95f8eb9975526448d.webp",
+        "Phonetic": "/\u02C8o\u028Av\u0259l/",
+        "Example": "The mirror has an oval shape.",
+        "ExampleTranslation": "Chi\u1EBFc g\u01B0\u01A1ng c\u00F3 h\u00ECnh b\u1EA7u d\u1EE5c.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun,adj",
+        "MeaningEn": "a shape like an egg or a long circle",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0259\u028Av\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The mirror has an oval shape.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc g\\u01B0\\u01A1ng c\\u00F3 h\\u00ECnh b\\u1EA7u d\\u1EE5c.\u0022},{\u0022text\u0022:\u0022An egg is oval.\u0022,\u0022vi\u0022:\u0022Qu\\u1EA3 tr\\u1EE9ng c\\u00F3 h\\u00ECnh b\\u1EA7u d\\u1EE5c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022oval face\u0022,\u0022vi\u0022:\u0022khu\\u00F4n m\\u1EB7t tr\\u00E1i xoan\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.49ff3e3f8d914856a1aa47b56c57ea63",
+      "kind": "Card",
+      "values": {
+        "Term": "circle",
+        "Definition": "h\u00ECnh tr\u00F2n",
+        "ImageUrl": "asset:fc8f665e1ba1916dc864ad7ec0e85476e42c398b161276750bbc44e947cc576d.webp",
+        "Phonetic": "/\u02C8s\u025C\u0279k\u0259l/",
+        "Example": "Draw a circle on the paper.",
+        "ExampleTranslation": "H\u00E3y v\u1EBD m\u1ED9t h\u00ECnh tr\u00F2n l\u00EAn t\u1EDD gi\u1EA5y.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a perfectly round shape",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8s\u025C\u02D0k\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Draw a circle on the paper.\u0022,\u0022vi\u0022:\u0022H\\u00E3y v\\u1EBD m\\u1ED9t h\\u00ECnh tr\\u00F2n l\\u00EAn t\\u1EDD gi\\u1EA5y.\u0022},{\u0022text\u0022:\u0022The children sat in a circle.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB ng\\u1ED3i th\\u00E0nh m\\u1ED9t v\\u00F2ng tr\\u00F2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022sit in a circle\u0022,\u0022vi\u0022:\u0022ng\\u1ED3i th\\u00E0nh v\\u00F2ng tr\\u00F2n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.55bd7714e1c34fd79d9afadbda9b2287",
+      "kind": "Card",
+      "values": {
+        "Term": "gold",
+        "Definition": "m\u00E0u v\u00E0ng kim; v\u00E0ng",
+        "ImageUrl": "asset:54b52e2ebb93c0192b5ef9631d7b5beb5a93d11b4901895b66e49853d92b87eb.webp",
+        "Phonetic": "/\u0261o\u028Ald/",
+        "Example": "She wore a gold necklace.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111eo m\u1ED9t s\u1EE3i d\u00E2y chuy\u1EC1n v\u00E0ng.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun,adj",
+        "MeaningEn": "a shiny yellow colour, or the precious metal",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0261\u0259\u028Ald/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She wore a gold necklace.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111eo m\\u1ED9t s\\u1EE3i d\\u00E2y chuy\\u1EC1n v\\u00E0ng.\u0022},{\u0022text\u0022:\u0022The athlete won a gold medal.\u0022,\u0022vi\u0022:\u0022V\\u1EADn \\u0111\\u1ED9ng vi\\u00EAn gi\\u00E0nh huy ch\\u01B0\\u01A1ng v\\u00E0ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022gold medal\u0022,\u0022vi\u0022:\u0022huy ch\\u01B0\\u01A1ng v\\u00E0ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.6804740a084843f0a59e90978922a0a7",
+      "kind": "Card",
+      "values": {
+        "Term": "rectangle",
+        "Definition": "h\u00ECnh ch\u1EEF nh\u1EADt",
+        "ImageUrl": "asset:9deb5effe44670854adbaf2d78258711b483494e4bb7e4632447760b3208f23e.webp",
+        "Phonetic": "/\u02C8r\u025Bkt\u00E6\u014B\u0261l\u0329/",
+        "Example": "The door is a tall rectangle.",
+        "ExampleTranslation": "C\u00E1nh c\u1EEDa l\u00E0 m\u1ED9t h\u00ECnh ch\u1EEF nh\u1EADt cao.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a shape with four sides, two long and two short",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8r\u025Bkt\u00E6\u014B\u0261l\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The door is a tall rectangle.\u0022,\u0022vi\u0022:\u0022C\\u00E1nh c\\u1EEDa l\\u00E0 m\\u1ED9t h\\u00ECnh ch\\u1EEF nh\\u1EADt cao.\u0022},{\u0022text\u0022:\u0022Draw a rectangle with a ruler.\u0022,\u0022vi\u0022:\u0022H\\u00E3y d\\u00F9ng th\\u01B0\\u1EDBc v\\u1EBD m\\u1ED9t h\\u00ECnh ch\\u1EEF nh\\u1EADt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022long rectangle\u0022,\u0022vi\u0022:\u0022h\\u00ECnh ch\\u1EEF nh\\u1EADt d\\u00E0i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.6f4c8dc9208a40e693ca628f15c24fa1",
+      "kind": "Card",
+      "values": {
+        "Term": "spiral",
+        "Definition": "h\u00ECnh xo\u1EAFn \u1ED1c",
+        "ImageUrl": "asset:7787679345ce501b9f5099b9c506b7028fc333bce629220c1c9933b70076a977.webp",
+        "Phonetic": "/\u02C8spa\u026A\u0279\u0259l/",
+        "Example": "A snail shell has a spiral shape.",
+        "ExampleTranslation": "V\u1ECF \u1ED1c s\u00EAn c\u00F3 h\u00ECnh xo\u1EAFn \u1ED1c.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun,adj",
+        "MeaningEn": "a shape that curves round and round",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8spa\u026A\u0279\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A snail shell has a spiral shape.\u0022,\u0022vi\u0022:\u0022V\\u1ECF \\u1ED1c s\\u00EAn c\\u00F3 h\\u00ECnh xo\\u1EAFn \\u1ED1c.\u0022},{\u0022text\u0022:\u0022We walked up the spiral stairs.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i l\\u00EAn c\\u1EA7u thang xo\\u1EAFn \\u1ED1c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022spiral staircase\u0022,\u0022vi\u0022:\u0022c\\u1EA7u thang xo\\u1EAFn \\u1ED1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.84fe60abb1fc44d2a6e27bb450b184fe",
+      "kind": "Card",
+      "values": {
+        "Term": "cube",
+        "Definition": "h\u00ECnh kh\u1ED1i l\u1EADp ph\u01B0\u01A1ng",
+        "ImageUrl": "asset:6f81c6a585f6717547489d27924fa87041a66576b6bf617be75bee4e324b4e77.webp",
+        "Phonetic": "/kju\u02D0b/",
+        "Example": "A dice is a small cube.",
+        "ExampleTranslation": "Con x\u00FAc x\u1EAFc l\u00E0 m\u1ED9t kh\u1ED1i l\u1EADp ph\u01B0\u01A1ng nh\u1ECF.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a solid shape with six equal square sides",
+        "Cefr": "A2",
+        "PhoneticUk": "/kju\u02D0b/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A dice is a small cube.\u0022,\u0022vi\u0022:\u0022Con x\\u00FAc x\\u1EAFc l\\u00E0 m\\u1ED9t kh\\u1ED1i l\\u1EADp ph\\u01B0\\u01A1ng nh\\u1ECF.\u0022},{\u0022text\u0022:\u0022He built a tower from wooden cubes.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y x\\u1EBFp m\\u1ED9t t\\u00F2a th\\u00E1p t\\u1EEB nh\\u1EEFng kh\\u1ED1i g\\u1ED7 l\\u1EADp ph\\u01B0\\u01A1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ice cube\u0022,\u0022vi\u0022:\u0022vi\\u00EAn \\u0111\\u00E1 l\\u1EA1nh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.89aef577b48e4ccd86290caab7c0c827",
+      "kind": "Card",
+      "values": {
+        "Term": "triangle",
+        "Definition": "h\u00ECnh tam gi\u00E1c",
+        "ImageUrl": "asset:8eef800fafe2e81bc2270db7aa998c754bc98d7fc0e43ad6f043d9d4f2dd4100.webp",
+        "Phonetic": "/\u02C8t\u0279a\u026A\u02CC\u00E6\u014B\u0261\u0259l/",
+        "Example": "She drew a triangle on the board.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y v\u1EBD m\u1ED9t h\u00ECnh tam gi\u00E1c l\u00EAn b\u1EA3ng.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a shape with three sides",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8t\u0279a\u026A\u0259\u014B\u0261\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She drew a triangle on the board.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y v\\u1EBD m\\u1ED9t h\\u00ECnh tam gi\\u00E1c l\\u00EAn b\\u1EA3ng.\u0022},{\u0022text\u0022:\u0022A triangle has three corners.\u0022,\u0022vi\u0022:\u0022H\\u00ECnh tam gi\\u00E1c c\\u00F3 ba g\\u00F3c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a right-angled triangle\u0022,\u0022vi\u0022:\u0022tam gi\\u00E1c vu\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.9d17d18d80814b12a9e61cf518446dca",
+      "kind": "Card",
+      "values": {
+        "Term": "cylinder",
+        "Definition": "h\u00ECnh tr\u1EE5",
+        "ImageUrl": "asset:c09de1c1eea56030e3b6778af65d292c1463bc9ec989a52945827da30a031df3.webp",
+        "Phonetic": "/\u02C8s\u026Al\u0259nd\u025A/",
+        "Example": "A can of soup is a cylinder.",
+        "ExampleTranslation": "Lon s\u00FAp l\u00E0 m\u1ED9t h\u00ECnh tr\u1EE5.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a solid shape with two flat round ends, like a can",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8s\u026Al\u026And\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A can of soup is a cylinder.\u0022,\u0022vi\u0022:\u0022Lon s\\u00FAp l\\u00E0 m\\u1ED9t h\\u00ECnh tr\\u1EE5.\u0022},{\u0022text\u0022:\u0022The pipe is a long cylinder.\u0022,\u0022vi\u0022:\u0022\\u0110\\u01B0\\u1EDDng \\u1ED1ng l\\u00E0 m\\u1ED9t h\\u00ECnh tr\\u1EE5 d\\u00E0i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022metal cylinder\u0022,\u0022vi\u0022:\u0022h\\u00ECnh tr\\u1EE5 kim lo\\u1EA1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.a086ff5afa6e44879f38f35d058ca176",
+      "kind": "Card",
+      "values": {
+        "Term": "green",
+        "Definition": "m\u00E0u xanh l\u00E1",
+        "ImageUrl": "asset:0e89332006e87e3cb25c2ac62202d9073bdbdfabd396593e95c5608bc3ab5007.webp",
+        "Phonetic": "/\u0261\u0279in/",
+        "Example": "The grass is green after the rain.",
+        "ExampleTranslation": "C\u1ECF xanh m\u01B0\u1EDBt sau c\u01A1n m\u01B0a.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "adj,noun",
+        "MeaningEn": "the colour of grass and leaves",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u0261\u0279i\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The grass is green after the rain.\u0022,\u0022vi\u0022:\u0022C\\u1ECF xanh m\\u01B0\\u1EDBt sau c\\u01A1n m\\u01B0a.\u0022},{\u0022text\u0022:\u0022She has green eyes.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y c\\u00F3 \\u0111\\u00F4i m\\u1EAFt m\\u00E0u xanh l\\u00E1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022dark green\u0022,\u0022vi\u0022:\u0022xanh l\\u00E1 \\u0111\\u1EADm\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.ab37f6ff49ae405b81039deb64936c81",
+      "kind": "Card",
+      "values": {
+        "Term": "crescent",
+        "Definition": "h\u00ECnh l\u01B0\u1EE1i li\u1EC1m",
+        "ImageUrl": "asset:823d65d0b8340eeb5c930a87191c98bd89569aee3e47b1a88bea166dbafcbdc8.webp",
+        "Phonetic": "/\u02C8k\u0279\u025Bs.\u0259nt/",
+        "Example": "The moon looks like a crescent tonight.",
+        "ExampleTranslation": "T\u1ED1i nay m\u1EB7t tr\u0103ng tr\u00F4ng nh\u01B0 h\u00ECnh l\u01B0\u1EE1i li\u1EC1m.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thin curved shape like the new moon",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u0279\u025Bz.\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The moon looks like a crescent tonight.\u0022,\u0022vi\u0022:\u0022T\\u1ED1i nay m\\u1EB7t tr\\u0103ng tr\\u00F4ng nh\\u01B0 h\\u00ECnh l\\u01B0\\u1EE1i li\\u1EC1m.\u0022},{\u0022text\u0022:\u0022She drew a yellow crescent on the sky.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y v\\u1EBD m\\u1ED9t h\\u00ECnh l\\u01B0\\u1EE1i li\\u1EC1m v\\u00E0ng l\\u00EAn b\\u1EA7u tr\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022crescent moon\u0022,\u0022vi\u0022:\u0022tr\\u0103ng l\\u01B0\\u1EE1i li\\u1EC1m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.addea85dfc514a21a59ea859b26fe3f8",
+      "kind": "Card",
+      "values": {
+        "Term": "purple",
+        "Definition": "m\u00E0u t\u00EDm",
+        "ImageUrl": "asset:3a1c7932e94adf2ba2d0ae83add98b419a66d8e9c3363dc51bbd40635d18568f.webp",
+        "Phonetic": "/\u02C8p\u025D.pl\u0329/",
+        "Example": "The flowers in the garden are purple.",
+        "ExampleTranslation": "Nh\u1EEFng b\u00F4ng hoa trong v\u01B0\u1EDDn m\u00E0u t\u00EDm.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "adj,noun",
+        "MeaningEn": "a colour between red and blue",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u025C\u02D0.pl\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The flowers in the garden are purple.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng b\\u00F4ng hoa trong v\\u01B0\\u1EDDn m\\u00E0u t\\u00EDm.\u0022},{\u0022text\u0022:\u0022My sister loves purple clothes.\u0022,\u0022vi\u0022:\u0022Ch\\u1ECB t\\u00F4i th\\u00EDch qu\\u1EA7n \\u00E1o m\\u00E0u t\\u00EDm.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022light purple\u0022,\u0022vi\u0022:\u0022t\\u00EDm nh\\u1EA1t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.c1a357fe63114e499bd06d6860843916",
+      "kind": "Card",
+      "values": {
+        "Term": "yellow",
+        "Definition": "m\u00E0u v\u00E0ng",
+        "ImageUrl": "asset:d122a26026a1229f7fae26df836a9e45be3c956695214dcf22849c0ab808e864.webp",
+        "Phonetic": "/\u02C8j\u025Blo\u028A/",
+        "Example": "The banana is yellow.",
+        "ExampleTranslation": "Qu\u1EA3 chu\u1ED1i c\u00F3 m\u00E0u v\u00E0ng.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "adj,noun",
+        "MeaningEn": "the colour of the sun or a banana",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8j\u00E6l.\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The banana is yellow.\u0022,\u0022vi\u0022:\u0022Qu\\u1EA3 chu\\u1ED1i c\\u00F3 m\\u00E0u v\\u00E0ng.\u0022},{\u0022text\u0022:\u0022She painted the door yellow.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y s\\u01A1n c\\u00E1nh c\\u1EEDa m\\u00E0u v\\u00E0ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bright yellow\u0022,\u0022vi\u0022:\u0022v\\u00E0ng t\\u01B0\\u01A1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.cbd6386020524c69af71e67e762b0c22",
+      "kind": "Card",
+      "values": {
+        "Term": "red",
+        "Definition": "m\u00E0u \u0111\u1ECF",
+        "ImageUrl": "asset:ff5184e7e59d1bf292bd676ec3ca5f08e38bb2f1f63396a4a69876eb3c996657.webp",
+        "Phonetic": "/\u0279\u025Bd/",
+        "Example": "She wore a red dress to the party.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y m\u1EB7c m\u1ED9t chi\u1EBFc v\u00E1y \u0111\u1ECF \u0111\u1EBFn b\u1EEFa ti\u1EC7c.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "adj,noun",
+        "MeaningEn": "the colour of blood or a ripe tomato",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u0279\u025Bd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She wore a red dress to the party.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EB7c m\\u1ED9t chi\\u1EBFc v\\u00E1y \\u0111\\u1ECF \\u0111\\u1EBFn b\\u1EEFa ti\\u1EC7c.\u0022},{\u0022text\u0022:\u0022Red is my favourite colour.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1ECF l\\u00E0 m\\u00E0u t\\u00F4i y\\u00EAu th\\u00EDch nh\\u1EA5t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bright red\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ECF t\\u01B0\\u01A1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.d529f42888104f34bfa5983a78d5e862",
+      "kind": "Card",
+      "values": {
+        "Term": "pink",
+        "Definition": "m\u00E0u h\u1ED3ng",
+        "ImageUrl": "asset:7768405f0507897e227ccf9f58d866ee52c9348179d68d1a9180dcd12e0fb374.webp",
+        "Phonetic": "/\u02C8p\u026A\u014Bk/",
+        "Example": "The baby has a pink hat.",
+        "ExampleTranslation": "Em b\u00E9 \u0111\u1ED9i m\u1ED9t chi\u1EBFc m\u0169 m\u00E0u h\u1ED3ng.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "adj,noun",
+        "MeaningEn": "a light red colour",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8p\u026A\u014Bk/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The baby has a pink hat.\u0022,\u0022vi\u0022:\u0022Em b\\u00E9 \\u0111\\u1ED9i m\\u1ED9t chi\\u1EBFc m\\u0169 m\\u00E0u h\\u1ED3ng.\u0022},{\u0022text\u0022:\u0022Pink roses are my favourite flowers.\u0022,\u0022vi\u0022:\u0022Hoa h\\u1ED3ng m\\u00E0u h\\u1ED3ng l\\u00E0 lo\\u00E0i hoa t\\u00F4i th\\u00EDch nh\\u1EA5t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022light pink\u0022,\u0022vi\u0022:\u0022h\\u1ED3ng nh\\u1EA1t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.e2a3e101971d4e54be0af16a6310acaf",
+      "kind": "Card",
+      "values": {
+        "Term": "grey",
+        "Definition": "m\u00E0u x\u00E1m",
+        "ImageUrl": "asset:5a5a7bbd4efc334319e3465ce486aed9963deb3dae3d74d2f1f05a3fc431e884.webp",
+        "Phonetic": "/\u0261\u0279e\u026A/",
+        "Example": "The sky is grey and cloudy.",
+        "ExampleTranslation": "B\u1EA7u tr\u1EDDi x\u00E1m x\u1ECBt v\u00E0 nhi\u1EC1u m\u00E2y.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "adj,noun",
+        "MeaningEn": "the colour between black and white",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0261\u0279e\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The sky is grey and cloudy.\u0022,\u0022vi\u0022:\u0022B\\u1EA7u tr\\u1EDDi x\\u00E1m x\\u1ECBt v\\u00E0 nhi\\u1EC1u m\\u00E2y.\u0022},{\u0022text\u0022:\u0022My grandfather has grey hair.\u0022,\u0022vi\u0022:\u0022\\u00D4ng t\\u00F4i c\\u00F3 m\\u00E1i t\\u00F3c m\\u00E0u b\\u1EA1c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022light grey\u0022,\u0022vi\u0022:\u0022x\\u00E1m nh\\u1EA1t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang.f925e77bdabb4fcb90b4ef8e666cbb06",
+      "kind": "Card",
+      "values": {
+        "Term": "white",
+        "Definition": "m\u00E0u tr\u1EAFng",
+        "ImageUrl": "asset:3d69cef0bba204c78bca59df86602e42701ce1618d334054813d29c3579be6f4.webp",
+        "Phonetic": "/\u02C8\u028Da\u026At/",
+        "Example": "The walls of my room are white.",
+        "ExampleTranslation": "T\u01B0\u1EDDng ph\u00F2ng t\u00F4i m\u00E0u tr\u1EAFng.",
+        "Topic": "M\u00E0u s\u1EAFc \u0026 h\u00ECnh d\u1EA1ng",
+        "PartsOfSpeech": "adj,noun",
+        "MeaningEn": "the colour of snow and milk",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u028Da\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The walls of my room are white.\u0022,\u0022vi\u0022:\u0022T\\u01B0\\u1EDDng ph\\u00F2ng t\\u00F4i m\\u00E0u tr\\u1EAFng.\u0022},{\u0022text\u0022:\u0022She wore a white shirt.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EB7c m\\u1ED9t chi\\u1EBFc \\u00E1o s\\u01A1 mi tr\\u1EAFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pure white\u0022,\u0022vi\u0022:\u0022tr\\u1EAFng tinh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "ff5184e7e59d1bf292bd676ec3ca5f08e38bb2f1f63396a4a69876eb3c996657.webp",
+      "sha256": "ff5184e7e59d1bf292bd676ec3ca5f08e38bb2f1f63396a4a69876eb3c996657"
+    },
+    {
+      "file": "bd79d9340e93c0c0fd591d240ee271f8f0a1404f298cb22d8b37af146b60f850.webp",
+      "sha256": "bd79d9340e93c0c0fd591d240ee271f8f0a1404f298cb22d8b37af146b60f850"
+    },
+    {
+      "file": "0e89332006e87e3cb25c2ac62202d9073bdbdfabd396593e95c5608bc3ab5007.webp",
+      "sha256": "0e89332006e87e3cb25c2ac62202d9073bdbdfabd396593e95c5608bc3ab5007"
+    },
+    {
+      "file": "d122a26026a1229f7fae26df836a9e45be3c956695214dcf22849c0ab808e864.webp",
+      "sha256": "d122a26026a1229f7fae26df836a9e45be3c956695214dcf22849c0ab808e864"
+    },
+    {
+      "file": "3a1c7932e94adf2ba2d0ae83add98b419a66d8e9c3363dc51bbd40635d18568f.webp",
+      "sha256": "3a1c7932e94adf2ba2d0ae83add98b419a66d8e9c3363dc51bbd40635d18568f"
+    },
+    {
+      "file": "7768405f0507897e227ccf9f58d866ee52c9348179d68d1a9180dcd12e0fb374.webp",
+      "sha256": "7768405f0507897e227ccf9f58d866ee52c9348179d68d1a9180dcd12e0fb374"
+    },
+    {
+      "file": "e3a1e99845f2d6118ec935a543a70878fe463163ee0a091036598fdb16f2be04.webp",
+      "sha256": "e3a1e99845f2d6118ec935a543a70878fe463163ee0a091036598fdb16f2be04"
+    },
+    {
+      "file": "3d69cef0bba204c78bca59df86602e42701ce1618d334054813d29c3579be6f4.webp",
+      "sha256": "3d69cef0bba204c78bca59df86602e42701ce1618d334054813d29c3579be6f4"
+    },
+    {
+      "file": "5a5a7bbd4efc334319e3465ce486aed9963deb3dae3d74d2f1f05a3fc431e884.webp",
+      "sha256": "5a5a7bbd4efc334319e3465ce486aed9963deb3dae3d74d2f1f05a3fc431e884"
+    },
+    {
+      "file": "3b91fe59d9e54c28966f82f0d231677edac894b8616186f1048975b3841aef7d.webp",
+      "sha256": "3b91fe59d9e54c28966f82f0d231677edac894b8616186f1048975b3841aef7d"
+    },
+    {
+      "file": "54b52e2ebb93c0192b5ef9631d7b5beb5a93d11b4901895b66e49853d92b87eb.webp",
+      "sha256": "54b52e2ebb93c0192b5ef9631d7b5beb5a93d11b4901895b66e49853d92b87eb"
+    },
+    {
+      "file": "e2313d8b64289ff0092a49c7c0841046437703fdbf567b799816084849aa45e2.webp",
+      "sha256": "e2313d8b64289ff0092a49c7c0841046437703fdbf567b799816084849aa45e2"
+    },
+    {
+      "file": "fc8f665e1ba1916dc864ad7ec0e85476e42c398b161276750bbc44e947cc576d.webp",
+      "sha256": "fc8f665e1ba1916dc864ad7ec0e85476e42c398b161276750bbc44e947cc576d"
+    },
+    {
+      "file": "16865a9bf3f850d9036a761cb5be7e93557223fea384e748439ad3508fdae038.webp",
+      "sha256": "16865a9bf3f850d9036a761cb5be7e93557223fea384e748439ad3508fdae038"
+    },
+    {
+      "file": "8eef800fafe2e81bc2270db7aa998c754bc98d7fc0e43ad6f043d9d4f2dd4100.webp",
+      "sha256": "8eef800fafe2e81bc2270db7aa998c754bc98d7fc0e43ad6f043d9d4f2dd4100"
+    },
+    {
+      "file": "9deb5effe44670854adbaf2d78258711b483494e4bb7e4632447760b3208f23e.webp",
+      "sha256": "9deb5effe44670854adbaf2d78258711b483494e4bb7e4632447760b3208f23e"
+    },
+    {
+      "file": "d66a857027bd5edfcb44ff6f1ea50cf3afcbdd75bba3b2f95f8eb9975526448d.webp",
+      "sha256": "d66a857027bd5edfcb44ff6f1ea50cf3afcbdd75bba3b2f95f8eb9975526448d"
+    },
+    {
+      "file": "ef4731228144ff5dc8a1bcfad2b2e9f4cf5cde1cf99009891b25c97826b037a9.webp",
+      "sha256": "ef4731228144ff5dc8a1bcfad2b2e9f4cf5cde1cf99009891b25c97826b037a9"
+    },
+    {
+      "file": "a9837dd14e89f9c64903be3b00913920903a6ac4df7c107514fcea5eef6e4bfc.webp",
+      "sha256": "a9837dd14e89f9c64903be3b00913920903a6ac4df7c107514fcea5eef6e4bfc"
+    },
+    {
+      "file": "6f81c6a585f6717547489d27924fa87041a66576b6bf617be75bee4e324b4e77.webp",
+      "sha256": "6f81c6a585f6717547489d27924fa87041a66576b6bf617be75bee4e324b4e77"
+    },
+    {
+      "file": "361f9321306226dd9e49dcf0f25209902f0de5c2cfea70d681c0719b9e6968ec.webp",
+      "sha256": "361f9321306226dd9e49dcf0f25209902f0de5c2cfea70d681c0719b9e6968ec"
+    },
+    {
+      "file": "66865c57973c255db77cf95f43615c47e2000e8daefb39eb36aa11ac1e8497a8.webp",
+      "sha256": "66865c57973c255db77cf95f43615c47e2000e8daefb39eb36aa11ac1e8497a8"
+    },
+    {
+      "file": "c09de1c1eea56030e3b6778af65d292c1463bc9ec989a52945827da30a031df3.webp",
+      "sha256": "c09de1c1eea56030e3b6778af65d292c1463bc9ec989a52945827da30a031df3"
+    },
+    {
+      "file": "7787679345ce501b9f5099b9c506b7028fc333bce629220c1c9933b70076a977.webp",
+      "sha256": "7787679345ce501b9f5099b9c506b7028fc333bce629220c1c9933b70076a977"
+    },
+    {
+      "file": "823d65d0b8340eeb5c930a87191c98bd89569aee3e47b1a88bea166dbafcbdc8.webp",
+      "sha256": "823d65d0b8340eeb5c930a87191c98bd89569aee3e47b1a88bea166dbafcbdc8"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a22-mau-sac-hinh-dang"
+}

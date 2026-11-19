@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua",
+      "kind": "Set",
+      "values": {
+        "SetName": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "Description": "#a1 #a2 #weather #seasons"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.47e4152606c54e8c973516ec1f62c0eb",
+      "kind": "Card",
+      "values": {
+        "Term": "umbrella",
+        "Definition": "c\u00E1i \u00F4, c\u00E1i d\u00F9",
+        "ImageUrl": "asset:e1c6a2844541b097324017b90555957da083f27a73443dded2a59589e1ee11bb.webp",
+        "Phonetic": "/\u028Cm\u02C8b\u0279\u025Bl.\u0259/",
+        "Example": "Take an umbrella because it may rain.",
+        "ExampleTranslation": "H\u00E3y mang theo \u00F4 v\u00EC tr\u1EDDi c\u00F3 th\u1EC3 m\u01B0a.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a round cover you hold over your head in the rain",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u028Cm\u02C8b\u0279\u025Bl.\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Take an umbrella because it may rain.\u0022,\u0022vi\u0022:\u0022H\\u00E3y mang theo \\u00F4 v\\u00EC tr\\u1EDDi c\\u00F3 th\\u1EC3 m\\u01B0a.\u0022},{\u0022text\u0022:\u0022She opened her red umbrella.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EDF chi\\u1EBFc \\u00F4 \\u0111\\u1ECF c\\u1EE7a m\\u00ECnh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open an umbrella\u0022,\u0022vi\u0022:\u0022m\\u1EDF \\u00F4\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/umbrella-rain-L7X3V4PRUI\u0022,\u0022author\u0022:\u0022Sajjad Ghanavati\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.4be2e219779a4abc97f7a17f39836a7d",
+      "kind": "Card",
+      "values": {
+        "Term": "wind",
+        "Definition": "gi\u00F3",
+        "ImageUrl": "asset:583a71d8547fde1895ab44442a00118192589057e2ca64f594acb368472a6de6.webp",
+        "Phonetic": "/w\u026And/",
+        "Example": "The wind blew my hat away.",
+        "ExampleTranslation": "Gi\u00F3 th\u1ED5i bay m\u0169 c\u1EE7a t\u00F4i.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "air that moves across the land",
+        "Cefr": "A1",
+        "PhoneticUk": "/w\u026And/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The wind blew my hat away.\u0022,\u0022vi\u0022:\u0022Gi\\u00F3 th\\u1ED5i bay m\\u0169 c\\u1EE7a t\\u00F4i.\u0022},{\u0022text\u0022:\u0022There is a strong wind today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay c\\u00F3 gi\\u00F3 m\\u1EA1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022strong wind\u0022,\u0022vi\u0022:\u0022gi\\u00F3 m\\u1EA1nh\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022windy\u0022,\u0022pos\u0022:\u0022adj\u0022,\u0022vi\u0022:\u0022c\\u00F3 gi\\u00F3\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.55bc4a0603c249a1866881b1e453bbd3",
+      "kind": "Card",
+      "values": {
+        "Term": "lightning",
+        "Definition": "tia ch\u1EDBp, s\u00E9t",
+        "ImageUrl": "asset:1a93a4496007e16ee0026e3c7c83817b5ed64306fca51fb6db4de6a52cce9cda.webp",
+        "Phonetic": "/\u02C8la\u026A\u032Ft.n\u026A\u014B/",
+        "Example": "A flash of lightning lit up the sky.",
+        "ExampleTranslation": "M\u1ED9t tia ch\u1EDBp l\u00E0m s\u00E1ng c\u1EA3 b\u1EA7u tr\u1EDDi.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a bright flash of light in the sky during a storm",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8la\u026A\u032Ft.n\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A flash of lightning lit up the sky.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t tia ch\\u1EDBp l\\u00E0m s\\u00E1ng c\\u1EA3 b\\u1EA7u tr\\u1EDDi.\u0022},{\u0022text\u0022:\u0022Lightning hit the old tree.\u0022,\u0022vi\u0022:\u0022S\\u00E9t \\u0111\\u00E1nh v\\u00E0o c\\u00E1i c\\u00E2y gi\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022flash of lightning\u0022,\u0022vi\u0022:\u0022tia ch\\u1EDBp\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Lightning_Ground_Storm_(Unsplash).jpg\u0022,\u0022author\u0022:\u0022Brandon Morgan littleppl85\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.592c6876d87d4824a34fba4243a64606",
+      "kind": "Card",
+      "values": {
+        "Term": "summer",
+        "Definition": "m\u00F9a h\u00E8",
+        "ImageUrl": "asset:d03480ad4c3be40ce40572bcffc7715e2bbc64c09a51774c89715de55ec9a08d.webp",
+        "Phonetic": "/\u02C8s\u028Cm\u025A/",
+        "Example": "We go to the beach every summer.",
+        "ExampleTranslation": "M\u00F9a h\u00E8 n\u00E0o ch\u00FAng t\u00F4i c\u0169ng \u0111i bi\u1EC3n.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the hottest season of the year",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8s\u028Cm\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We go to the beach every summer.\u0022,\u0022vi\u0022:\u0022M\\u00F9a h\\u00E8 n\\u00E0o ch\\u00FAng t\\u00F4i c\\u0169ng \\u0111i bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022Summer is very hot in my city.\u0022,\u0022vi\u0022:\u0022M\\u00F9a h\\u00E8 \\u1EDF th\\u00E0nh ph\\u1ED1 t\\u00F4i r\\u1EA5t n\\u00F3ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022summer holiday\u0022,\u0022vi\u0022:\u0022k\\u1EF3 ngh\\u1EC9 h\\u00E8\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5917100/image-public-domain-ocean-nature\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.63490100b84d4af5912985cafbe9a14f",
+      "kind": "Card",
+      "values": {
+        "Term": "rain",
+        "Definition": "m\u01B0a; tr\u1EDDi m\u01B0a",
+        "ImageUrl": "asset:bc26a3bba1d637c9aed26a516f985ef971df651a2845b8abd54085d9ac16b6a6.webp",
+        "Phonetic": "/\u0279e\u026An/",
+        "Example": "The rain started in the afternoon.",
+        "ExampleTranslation": "C\u01A1n m\u01B0a b\u1EAFt \u0111\u1EA7u v\u00E0o bu\u1ED5i chi\u1EC1u.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "water that falls from the clouds",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u0279e\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The rain started in the afternoon.\u0022,\u0022vi\u0022:\u0022C\\u01A1n m\\u01B0a b\\u1EAFt \\u0111\\u1EA7u v\\u00E0o bu\\u1ED5i chi\\u1EC1u.\u0022},{\u0022text\u0022:\u0022We stayed home because of the heavy rain.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u1EDF nh\\u00E0 v\\u00EC m\\u01B0a to.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022heavy rain\u0022,\u0022vi\u0022:\u0022m\\u01B0a l\\u1EDBn\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022rainy\u0022,\u0022pos\u0022:\u0022adj\u0022,\u0022vi\u0022:\u0022c\\u00F3 m\\u01B0a\u0022}],\u0022verbForms\u0022:{\u0022past\u0022:\u0022rained\u0022,\u0022pastParticiple\u0022:\u0022rained\u0022,\u0022ing\u0022:\u0022raining\u0022,\u0022thirdPerson\u0022:\u0022rains\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.6728866a9cfd449093a09ca24ff16acf",
+      "kind": "Card",
+      "values": {
+        "Term": "winter",
+        "Definition": "m\u00F9a \u0111\u00F4ng",
+        "ImageUrl": "asset:acbc79547872b121610eb19c3125678c8dd459787e04d788db3f9e4c0bc49e44.webp",
+        "Phonetic": "/\u02C8w\u026Ant\u025A/",
+        "Example": "It is very cold in winter.",
+        "ExampleTranslation": "M\u00F9a \u0111\u00F4ng tr\u1EDDi r\u1EA5t l\u1EA1nh.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the coldest season of the year",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8w\u026Ant\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022It is very cold in winter.\u0022,\u0022vi\u0022:\u0022M\\u00F9a \\u0111\\u00F4ng tr\\u1EDDi r\\u1EA5t l\\u1EA1nh.\u0022},{\u0022text\u0022:\u0022We wear warm coats in winter.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i m\\u1EB7c \\u00E1o \\u1EA5m v\\u00E0o m\\u00F9a \\u0111\\u00F4ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022winter holiday\u0022,\u0022vi\u0022:\u0022k\\u1EF3 ngh\\u1EC9 \\u0111\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Gustaf_Fj%C3%A6stad_-_Winter_road_in_a_snow-laden_landscape_1896.jpg\u0022,\u0022author\u0022:\u0022Gustaf Fj\\u00E6stad\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.6ad59ec1c23a4452887963de96ce06ea",
+      "kind": "Card",
+      "values": {
+        "Term": "spring",
+        "Definition": "m\u00F9a xu\u00E2n",
+        "ImageUrl": "asset:af84f4a8d287656a02bc9d808cb6c1b4860eed156be7df02da4d3fe66a3e9d65.webp",
+        "Phonetic": "/\u02C8sp\u0279\u026A\u014B/",
+        "Example": "Flowers bloom in spring.",
+        "ExampleTranslation": "Hoa n\u1EDF v\u00E0o m\u00F9a xu\u00E2n.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the season after winter when flowers begin to grow",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8sp\u0279\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Flowers bloom in spring.\u0022,\u0022vi\u0022:\u0022Hoa n\\u1EDF v\\u00E0o m\\u00F9a xu\\u00E2n.\u0022},{\u0022text\u0022:\u0022The weather is warm in spring.\u0022,\u0022vi\u0022:\u0022Th\\u1EDDi ti\\u1EBFt \\u1EA5m \\u00E1p v\\u00E0o m\\u00F9a xu\\u00E2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022in spring\u0022,\u0022vi\u0022:\u0022v\\u00E0o m\\u00F9a xu\\u00E2n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Bunches-blossom-spring_(Unsplash).jpg\u0022,\u0022author\u0022:\u0022Joshua Reddekopp joshuaryanphoto\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.6ff276aff3264c508ca4f5f2898b218e",
+      "kind": "Card",
+      "values": {
+        "Term": "thunder",
+        "Definition": "s\u1EA5m",
+        "ImageUrl": "asset:56cdcbd5c53c3222266a774ba2f66d80bee5ccef9734602a7b27fd8398c21b75.webp",
+        "Phonetic": "/\u02C8\u03B8\u028Cnd\u025A/",
+        "Example": "The dog is afraid of thunder.",
+        "ExampleTranslation": "Con ch\u00F3 s\u1EE3 ti\u1EBFng s\u1EA5m.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the loud noise you hear after lightning",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u03B8\u028Cnd\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The dog is afraid of thunder.\u0022,\u0022vi\u0022:\u0022Con ch\\u00F3 s\\u1EE3 ti\\u1EBFng s\\u1EA5m.\u0022},{\u0022text\u0022:\u0022We heard loud thunder at night.\u0022,\u0022vi\u0022:\u0022Ban \\u0111\\u00EAm ch\\u00FAng t\\u00F4i nghe th\\u1EA5y ti\\u1EBFng s\\u1EA5m l\\u1EDBn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a clap of thunder\u0022,\u0022vi\u0022:\u0022m\\u1ED9t ti\\u1EBFng s\\u1EA5m r\\u1EC1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.77fa1f04cdac4c2bbbf027850574f7a5",
+      "kind": "Card",
+      "values": {
+        "Term": "flood",
+        "Definition": "l\u0169 l\u1EE5t; l\u00E0m ng\u1EADp",
+        "ImageUrl": "asset:d9d5d165a2b1f242c07d1bd94c186e9848f4fd2ea39fd1fd93902a187ff2db50.webp",
+        "Phonetic": "/fl\u028Cd/",
+        "Example": "The flood covered the whole village.",
+        "ExampleTranslation": "Tr\u1EADn l\u1EE5t nh\u1EA5n ch\u00ECm c\u1EA3 ng\u00F4i l\u00E0ng.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "a large amount of water covering dry land",
+        "Cefr": "A2",
+        "PhoneticUk": "/fl\u028Cd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The flood covered the whole village.\u0022,\u0022vi\u0022:\u0022Tr\\u1EADn l\\u1EE5t nh\\u1EA5n ch\\u00ECm c\\u1EA3 ng\\u00F4i l\\u00E0ng.\u0022},{\u0022text\u0022:\u0022Heavy rain caused a flood in the city.\u0022,\u0022vi\u0022:\u0022M\\u01B0a l\\u1EDBn g\\u00E2y ra l\\u0169 l\\u1EE5t trong th\\u00E0nh ph\\u1ED1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022flood water\u0022,\u0022vi\u0022:\u0022n\\u01B0\\u1EDBc l\\u0169\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022flooded\u0022,\u0022pastParticiple\u0022:\u0022flooded\u0022,\u0022ing\u0022:\u0022flooding\u0022,\u0022thirdPerson\u0022:\u0022floods\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8723819/photo-image-border-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.82d1cc6a63ab4e15a9168784f0d6519c",
+      "kind": "Card",
+      "values": {
+        "Term": "fog",
+        "Definition": "s\u01B0\u01A1ng m\u00F9",
+        "ImageUrl": "asset:81089ee27e6460f5622a595974a6ff8fa66dd6b398c224607398546c4b952454.webp",
+        "Phonetic": "/f\u0254\u0261/",
+        "Example": "The fog was so thick that we could not see the road.",
+        "ExampleTranslation": "S\u01B0\u01A1ng m\u00F9 d\u00E0y \u0111\u1EBFn m\u1EE9c ch\u00FAng t\u00F4i kh\u00F4ng th\u1EA5y \u0111\u01B0\u1EDDng.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "thick cloud near the ground that makes it hard to see",
+        "Cefr": "A2",
+        "PhoneticUk": "/f\u0252\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The fog was so thick that we could not see the road.\u0022,\u0022vi\u0022:\u0022S\\u01B0\\u01A1ng m\\u00F9 d\\u00E0y \\u0111\\u1EBFn m\\u1EE9c ch\\u00FAng t\\u00F4i kh\\u00F4ng th\\u1EA5y \\u0111\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022There was fog over the lake this morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng nay c\\u00F3 s\\u01B0\\u01A1ng m\\u00F9 tr\\u00EAn h\\u1ED3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022thick fog\u0022,\u0022vi\u0022:\u0022s\\u01B0\\u01A1ng m\\u00F9 d\\u00E0y\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022foggy\u0022,\u0022pos\u0022:\u0022adj\u0022,\u0022vi\u0022:\u0022c\\u00F3 s\\u01B0\\u01A1ng m\\u00F9\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/80223459@N05/36499082851\u0022,\u0022author\u0022:\u0022YellowstoneNPS\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.9655c40799e047a48686f4886bd8ebe4",
+      "kind": "Card",
+      "values": {
+        "Term": "snowman",
+        "Definition": "ng\u01B0\u1EDDi tuy\u1EBFt",
+        "ImageUrl": "asset:febe3b6f573bb5a046bc14f613c626ad040a48aa57d9355f22c3b2e8a65a7d97.webp",
+        "Phonetic": "/\u02C8sno\u028A.m\u00E6n/",
+        "Example": "The children built a snowman in the garden.",
+        "ExampleTranslation": "B\u1ECDn tr\u1EBB l\u00E0m m\u1ED9t ng\u01B0\u1EDDi tuy\u1EBFt trong v\u01B0\u1EDDn.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a figure of a person made from snow",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8sn\u0259\u028A.m\u00E6n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The children built a snowman in the garden.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB l\\u00E0m m\\u1ED9t ng\\u01B0\\u1EDDi tuy\\u1EBFt trong v\\u01B0\\u1EDDn.\u0022},{\u0022text\u0022:\u0022The snowman has a carrot for a nose.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi tuy\\u1EBFt c\\u00F3 m\\u1ED9t c\\u1EE7 c\\u00E0 r\\u1ED1t l\\u00E0m m\\u0169i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022build a snowman\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EAFp ng\\u01B0\\u1EDDi tuy\\u1EBFt\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022snowmen\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/37996646802@N01/339182350\u0022,\u0022author\u0022:\u0022cogdogblog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.ad905247363f4f1586fe27d6cd151ac2",
+      "kind": "Card",
+      "values": {
+        "Term": "season",
+        "Definition": "m\u00F9a (trong n\u0103m)",
+        "ImageUrl": "asset:dd8d038fca034a33d8ac5a6dee8dc6d5c9008351bc1f0f4a174b82a950ffa7f0.webp",
+        "Phonetic": "/\u02C8si.zn\u0329/",
+        "Example": "Which season do you like best?",
+        "ExampleTranslation": "B\u1EA1n th\u00EDch m\u00F9a n\u00E0o nh\u1EA5t?",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "one of the four parts of the year",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8si\u02D0.zn\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Which season do you like best?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n th\\u00EDch m\\u00F9a n\\u00E0o nh\\u1EA5t?\u0022},{\u0022text\u0022:\u0022There are four seasons in a year.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t n\\u0103m c\\u00F3 b\\u1ED1n m\\u00F9a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022rainy season\u0022,\u0022vi\u0022:\u0022m\\u00F9a m\\u01B0a\u0022},{\u0022text\u0022:\u0022dry season\u0022,\u0022vi\u0022:\u0022m\\u00F9a kh\\u00F4\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.bf76fd62942640aa8b267e80c3772fed",
+      "kind": "Card",
+      "values": {
+        "Term": "rainbow",
+        "Definition": "c\u1EA7u v\u1ED3ng",
+        "ImageUrl": "asset:a58f205f77037f7122c13e6e02e85f3a1a8d85dd8f01a6e764b401b75b42de8a.webp",
+        "Phonetic": "/\u02C8\u0279e\u026Anbo\u028A/",
+        "Example": "We saw a beautiful rainbow after the rain.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i th\u1EA5y m\u1ED9t chi\u1EBFc c\u1EA7u v\u1ED3ng tuy\u1EC7t \u0111\u1EB9p sau c\u01A1n m\u01B0a.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a curve of seven colours in the sky after rain",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0279e\u026Anb\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We saw a beautiful rainbow after the rain.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i th\\u1EA5y m\\u1ED9t chi\\u1EBFc c\\u1EA7u v\\u1ED3ng tuy\\u1EC7t \\u0111\\u1EB9p sau c\\u01A1n m\\u01B0a.\u0022},{\u0022text\u0022:\u0022A rainbow has seven colours.\u0022,\u0022vi\u0022:\u0022C\\u1EA7u v\\u1ED3ng c\\u00F3 b\\u1EA3y m\\u00E0u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022double rainbow\u0022,\u0022vi\u0022:\u0022c\\u1EA7u v\\u1ED3ng \\u0111\\u00F4i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/rainbow-sky-PAQC3Z5YDJ\u0022,\u0022author\u0022:\u0022Ian Livesey\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.c29be143e517410aa53fc98e6e844cd9",
+      "kind": "Card",
+      "values": {
+        "Term": "weather",
+        "Definition": "th\u1EDDi ti\u1EBFt",
+        "ImageUrl": "asset:5370033837002044c46afafb64d43cf610d0950cd6be63b78277de4c93b212a5.webp",
+        "Phonetic": "/\u02C8w\u025B\u00F0\u025A/",
+        "Example": "The weather is lovely today.",
+        "ExampleTranslation": "H\u00F4m nay th\u1EDDi ti\u1EBFt th\u1EADt \u0111\u1EB9p.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the conditions outside, such as sun, rain or wind",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8w\u025B\u00F0\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The weather is lovely today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay th\\u1EDDi ti\\u1EBFt th\\u1EADt \\u0111\\u1EB9p.\u0022},{\u0022text\u0022:\u0022What is the weather like in Hanoi?\u0022,\u0022vi\u0022:\u0022Th\\u1EDDi ti\\u1EBFt \\u1EDF H\\u00E0 N\\u1ED9i th\\u1EBF n\\u00E0o?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022weather forecast\u0022,\u0022vi\u0022:\u0022d\\u1EF1 b\\u00E1o th\\u1EDDi ti\\u1EBFt\u0022},{\u0022text\u0022:\u0022good weather\u0022,\u0022vi\u0022:\u0022th\\u1EDDi ti\\u1EBFt \\u0111\\u1EB9p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.ce35465bf61141f9a422b3078050ede2",
+      "kind": "Card",
+      "values": {
+        "Term": "breeze",
+        "Definition": "l\u00E0n gi\u00F3 nh\u1EB9",
+        "ImageUrl": "asset:e16f70fd6caaa9bf2ee78ef4c58299856e84be515073e0e4eea1af31d411c259.webp",
+        "Phonetic": "/b\u0279i\u02D0z/",
+        "Example": "A cool breeze came from the sea.",
+        "ExampleTranslation": "M\u1ED9t l\u00E0n gi\u00F3 m\u00E1t th\u1ED5i t\u1EEB bi\u1EC3n v\u00E0o.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a light, pleasant wind",
+        "Cefr": "A2",
+        "PhoneticUk": "/b\u0279i\u02D0z/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A cool breeze came from the sea.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t l\\u00E0n gi\\u00F3 m\\u00E1t th\\u1ED5i t\\u1EEB bi\\u1EC3n v\\u00E0o.\u0022},{\u0022text\u0022:\u0022We sat outside and enjoyed the breeze.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i ng\\u1ED3i ngo\\u00E0i tr\\u1EDDi t\\u1EADn h\\u01B0\\u1EDFng l\\u00E0n gi\\u00F3 nh\\u1EB9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022gentle breeze\u0022,\u0022vi\u0022:\u0022l\\u00E0n gi\\u00F3 nh\\u1EB9\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.d07c3be569e94bfd849f8f9809b3d55d",
+      "kind": "Card",
+      "values": {
+        "Term": "storm",
+        "Definition": "c\u01A1n b\u00E3o, c\u01A1n gi\u00F4ng",
+        "ImageUrl": "asset:17fad83d1d62a0224fb55ee1ed90c4504f1bd85a8577fe1c693fc145b4fa16a4.webp",
+        "Phonetic": "/sto\u0279m/",
+        "Example": "A big storm is coming tonight.",
+        "ExampleTranslation": "M\u1ED9t c\u01A1n gi\u00F4ng l\u1EDBn s\u1EAFp \u0111\u1EBFn v\u00E0o t\u1ED1i nay.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "very bad weather with strong wind and heavy rain",
+        "Cefr": "A2",
+        "PhoneticUk": "/st\u0254\u02D0m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A big storm is coming tonight.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t c\\u01A1n gi\\u00F4ng l\\u1EDBn s\\u1EAFp \\u0111\\u1EBFn v\\u00E0o t\\u1ED1i nay.\u0022},{\u0022text\u0022:\u0022The storm broke many trees.\u0022,\u0022vi\u0022:\u0022C\\u01A1n b\\u00E3o l\\u00E0m g\\u00E3y nhi\\u1EC1u c\\u00E2y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022thunder storm\u0022,\u0022vi\u0022:\u0022b\\u00E3o c\\u00F3 s\\u1EA5m s\\u00E9t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.d43b4a0564444505ab6df61bc3de905d",
+      "kind": "Card",
+      "values": {
+        "Term": "snow",
+        "Definition": "tuy\u1EBFt; c\u00F3 tuy\u1EBFt r\u01A1i",
+        "ImageUrl": "asset:6cd6b365b8de35adecf0dd5fd996fd23145a02da3fb614f44fd9bd36d51d8229.webp",
+        "Phonetic": "/sno\u028A\u032F/",
+        "Example": "The children played in the snow.",
+        "ExampleTranslation": "B\u1ECDn tr\u1EBB ch\u01A1i \u0111\u00F9a trong tuy\u1EBFt.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "soft white pieces of frozen water that fall from the sky",
+        "Cefr": "A1",
+        "PhoneticUk": "/sn\u0259\u028A\u032F/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The children played in the snow.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB ch\\u01A1i \\u0111\\u00F9a trong tuy\\u1EBFt.\u0022},{\u0022text\u0022:\u0022It snows a lot in January.\u0022,\u0022vi\u0022:\u0022Th\\u00E1ng M\\u1ED9t tuy\\u1EBFt r\\u01A1i r\\u1EA5t nhi\\u1EC1u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022heavy snow\u0022,\u0022vi\u0022:\u0022tuy\\u1EBFt d\\u00E0y\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022snowy\u0022,\u0022pos\u0022:\u0022adj\u0022,\u0022vi\u0022:\u0022c\\u00F3 tuy\\u1EBFt\u0022}],\u0022verbForms\u0022:{\u0022past\u0022:\u0022snowed\u0022,\u0022pastParticiple\u0022:\u0022snowed\u0022,\u0022ing\u0022:\u0022snowing\u0022,\u0022thirdPerson\u0022:\u0022snows\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/135886671@N08/32106484915\u0022,\u0022author\u0022:\u0022Forest Service Pacific Northwest Region\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.dcb5e4d4e9a3455181204a5734d0d103",
+      "kind": "Card",
+      "values": {
+        "Term": "frost",
+        "Definition": "s\u01B0\u01A1ng gi\u00E1",
+        "ImageUrl": "asset:e3157508f611268290d756ebbd7f591e1d4e553cd6e471fd70be883bd203ac1d.webp",
+        "Phonetic": "/f\u0279\u0254st/",
+        "Example": "There was frost on the grass this morning.",
+        "ExampleTranslation": "S\u00E1ng nay c\u00F3 s\u01B0\u01A1ng gi\u00E1 tr\u00EAn c\u1ECF.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thin white layer of ice on the ground on cold mornings",
+        "Cefr": "A2",
+        "PhoneticUk": "/f\u0279\u0252st/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022There was frost on the grass this morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng nay c\\u00F3 s\\u01B0\\u01A1ng gi\\u00E1 tr\\u00EAn c\\u1ECF.\u0022},{\u0022text\u0022:\u0022The frost killed the flowers.\u0022,\u0022vi\u0022:\u0022S\\u01B0\\u01A1ng gi\\u00E1 l\\u00E0m ch\\u1EBFt nh\\u1EEFng b\\u00F4ng hoa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022morning frost\u0022,\u0022vi\u0022:\u0022s\\u01B0\\u01A1ng gi\\u00E1 bu\\u1ED5i s\\u00E1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Dry_grass_with_frost_1.jpg\u0022,\u0022author\u0022:\u0022W.carter\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.dd66543a308e4c3491f51897f31d3bc8",
+      "kind": "Card",
+      "values": {
+        "Term": "autumn",
+        "Definition": "m\u00F9a thu",
+        "ImageUrl": "asset:7dc3dbf242bee0ca34cf68b1eff8c0f50684cc4dd2639ab7da7cce9d78e77478.webp",
+        "Phonetic": "/\u02C8\u0254t\u0259m/",
+        "Example": "The leaves turn red in autumn.",
+        "ExampleTranslation": "L\u00E1 chuy\u1EC3n sang m\u00E0u \u0111\u1ECF v\u00E0o m\u00F9a thu.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the season when leaves change colour and fall",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0254\u02D0t\u0259m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The leaves turn red in autumn.\u0022,\u0022vi\u0022:\u0022L\\u00E1 chuy\\u1EC3n sang m\\u00E0u \\u0111\\u1ECF v\\u00E0o m\\u00F9a thu.\u0022},{\u0022text\u0022:\u0022Autumn is my favourite season.\u0022,\u0022vi\u0022:\u0022M\\u00F9a thu l\\u00E0 m\\u00F9a t\\u00F4i y\\u00EAu th\\u00EDch nh\\u1EA5t.\u0022}],\u0022synonyms\u0022:[\u0022fall\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022autumn leaves\u0022,\u0022vi\u0022:\u0022l\\u00E1 m\\u00F9a thu\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/66741228@N05/50561182987\u0022,\u0022author\u0022:\u0022Bonnie Moreland (free images)\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.e5e585b6791b43ba95afb6418dc8197a",
+      "kind": "Card",
+      "values": {
+        "Term": "raincoat",
+        "Definition": "\u00E1o m\u01B0a",
+        "ImageUrl": "asset:73e416610da454e56fb2678b375bc974ba7a3388e14118809b7b8f3bf4c5f151.webp",
+        "Phonetic": "/\u02C8\u0279e\u026Anko\u028At/",
+        "Example": "He wears a yellow raincoat to school.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y m\u1EB7c \u00E1o m\u01B0a v\u00E0ng \u0111\u1EBFn tr\u01B0\u1EDDng.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a waterproof coat that keeps you dry in the rain",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0279e\u026Ank\u0259\u028At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He wears a yellow raincoat to school.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y m\\u1EB7c \\u00E1o m\\u01B0a v\\u00E0ng \\u0111\\u1EBFn tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022I forgot my raincoat and got wet.\u0022,\u0022vi\u0022:\u0022T\\u00F4i qu\\u00EAn \\u00E1o m\\u01B0a n\\u00EAn b\\u1ECB \\u01B0\\u1EDBt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wear a raincoat\u0022,\u0022vi\u0022:\u0022m\\u1EB7c \\u00E1o m\\u01B0a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/yellow-jacket-C6J16TFD75\u0022,\u0022author\u0022:\u0022Justin Luebke\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.e5ee384e135c4ce8b3ba976d43529831",
+      "kind": "Card",
+      "values": {
+        "Term": "sun",
+        "Definition": "m\u1EB7t tr\u1EDDi",
+        "ImageUrl": "asset:1310cd828d13aa00499a3b0db1353352788e041354576cd6708623e4e79bb652.webp",
+        "Phonetic": "/s\u028Cn/",
+        "Example": "The sun rises in the east.",
+        "ExampleTranslation": "M\u1EB7t tr\u1EDDi m\u1ECDc \u1EDF ph\u00EDa \u0111\u00F4ng.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the bright star that gives us light and heat",
+        "Cefr": "A1",
+        "PhoneticUk": "/s\u028Cn/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The sun rises in the east.\u0022,\u0022vi\u0022:\u0022M\\u1EB7t tr\\u1EDDi m\\u1ECDc \\u1EDF ph\\u00EDa \\u0111\\u00F4ng.\u0022},{\u0022text\u0022:\u0022We sat in the sun and ate lunch.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i ng\\u1ED3i d\\u01B0\\u1EDBi n\\u1EAFng v\\u00E0 \\u0103n tr\\u01B0a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022in the sun\u0022,\u0022vi\u0022:\u0022d\\u01B0\\u1EDBi \\u00E1nh n\\u1EAFng\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022sunny\u0022,\u0022pos\u0022:\u0022adj\u0022,\u0022vi\u0022:\u0022c\\u00F3 n\\u1EAFng\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.e79188f78fbc40dead98113475adae37",
+      "kind": "Card",
+      "values": {
+        "Term": "typhoon",
+        "Definition": "b\u00E3o nhi\u1EC7t \u0111\u1EDBi",
+        "ImageUrl": "asset:a80993feb1169a32ce0c8f3f8288f27839cdc68a971af6c51e1cd5c418793f8b.webp",
+        "Phonetic": "/ta\u026A\u02C8fun/",
+        "Example": "A typhoon is coming to the coast.",
+        "ExampleTranslation": "M\u1ED9t c\u01A1n b\u00E3o \u0111ang ti\u1EBFn v\u00E0o b\u1EDD bi\u1EC3n.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very strong storm that starts over the sea",
+        "Cefr": "A2",
+        "PhoneticUk": "/ta\u026A\u02C8fu\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A typhoon is coming to the coast.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t c\\u01A1n b\\u00E3o \\u0111ang ti\\u1EBFn v\\u00E0o b\\u1EDD bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022The typhoon destroyed many houses.\u0022,\u0022vi\u0022:\u0022C\\u01A1n b\\u00E3o \\u0111\\u00E3 ph\\u00E1 h\\u1EE7y nhi\\u1EC1u ng\\u00F4i nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022typhoon warning\u0022,\u0022vi\u0022:\u0022c\\u1EA3nh b\\u00E1o b\\u00E3o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/39735679@N00/298167837\u0022,\u0022author\u0022:\u0022pingnews.com\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.eec9d53b69604684b6f4926f170c26b8",
+      "kind": "Card",
+      "values": {
+        "Term": "cloud",
+        "Definition": "\u0111\u00E1m m\u00E2y",
+        "ImageUrl": "asset:b62766a73e689efba7109fb1921dafc68b72608227104a6389349d87e7556a56.webp",
+        "Phonetic": "/\u02C8kla\u028A\u032Fd/",
+        "Example": "A dark cloud covered the sun.",
+        "ExampleTranslation": "M\u1ED9t \u0111\u00E1m m\u00E2y \u0111en che m\u1EA5t m\u1EB7t tr\u1EDDi.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a white or grey mass floating in the sky",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8kla\u028A\u032Fd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A dark cloud covered the sun.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t \\u0111\\u00E1m m\\u00E2y \\u0111en che m\\u1EA5t m\\u1EB7t tr\\u1EDDi.\u0022},{\u0022text\u0022:\u0022There is not a single cloud in the sky.\u0022,\u0022vi\u0022:\u0022Tr\\u00EAn tr\\u1EDDi kh\\u00F4ng c\\u00F3 l\\u1EA5y m\\u1ED9t \\u0111\\u00E1m m\\u00E2y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022dark clouds\u0022,\u0022vi\u0022:\u0022m\\u00E2y \\u0111en\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022cloudy\u0022,\u0022pos\u0022:\u0022adj\u0022,\u0022vi\u0022:\u0022nhi\\u1EC1u m\\u00E2y\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3299072/free-photo-image-heaven-cloudscape-azure-sky\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.f387b3db7df94671bc98937f05f47512",
+      "kind": "Card",
+      "values": {
+        "Term": "temperature",
+        "Definition": "nhi\u1EC7t \u0111\u1ED9",
+        "ImageUrl": "asset:afe2189f03f82fb8a53f9e1257e1f287bcf3fd938329095209ed463c64ab9c1b.webp",
+        "Phonetic": "/\u02C8t\u025Bm.p\u0259\u0279.\u0259.t\u0361\u0283\u0259(\u0279)/",
+        "Example": "The temperature is thirty degrees today.",
+        "ExampleTranslation": "H\u00F4m nay nhi\u1EC7t \u0111\u1ED9 l\u00E0 ba m\u01B0\u01A1i \u0111\u1ED9.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "how hot or cold something is",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8t\u025Bm.p\u0259\u0279.\u0259.t\u0361\u0283\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The temperature is thirty degrees today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay nhi\\u1EC7t \\u0111\\u1ED9 l\\u00E0 ba m\\u01B0\\u01A1i \\u0111\\u1ED9.\u0022},{\u0022text\u0022:\u0022The temperature drops at night.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC7t \\u0111\\u1ED9 gi\\u1EA3m v\\u00E0o ban \\u0111\\u00EAm.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022high temperature\u0022,\u0022vi\u0022:\u0022nhi\\u1EC7t \\u0111\\u1ED9 cao\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua.f957d6edff1b4268a1df65898d24b0c1",
+      "kind": "Card",
+      "values": {
+        "Term": "puddle",
+        "Definition": "v\u0169ng n\u01B0\u1EDBc",
+        "ImageUrl": "asset:09f5a5e0e6454c32a78c57a55c397726966953bf3b58fc841c8c5a42467dfb30.webp",
+        "Phonetic": "/\u02C8p\u028Cd\u0259l/",
+        "Example": "The child jumped in a puddle.",
+        "ExampleTranslation": "\u0110\u1EE9a b\u00E9 nh\u1EA3y v\u00E0o m\u1ED9t v\u0169ng n\u01B0\u1EDBc.",
+        "Topic": "Th\u1EDDi ti\u1EBFt \u0026 c\u00E1c m\u00F9a",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small pool of water on the ground after rain",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u028Cd\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The child jumped in a puddle.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EE9a b\\u00E9 nh\\u1EA3y v\\u00E0o m\\u1ED9t v\\u0169ng n\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022Be careful, there is a big puddle.\u0022,\u0022vi\u0022:\u0022C\\u1EA9n th\\u1EADn nh\\u00E9, c\\u00F3 m\\u1ED9t v\\u0169ng n\\u01B0\\u1EDBc l\\u1EDBn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022jump in a puddle\u0022,\u0022vi\u0022:\u0022nh\\u1EA3y v\\u00E0o v\\u0169ng n\\u01B0\\u1EDBc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "5370033837002044c46afafb64d43cf610d0950cd6be63b78277de4c93b212a5.webp",
+      "sha256": "5370033837002044c46afafb64d43cf610d0950cd6be63b78277de4c93b212a5"
+    },
+    {
+      "file": "1310cd828d13aa00499a3b0db1353352788e041354576cd6708623e4e79bb652.webp",
+      "sha256": "1310cd828d13aa00499a3b0db1353352788e041354576cd6708623e4e79bb652"
+    },
+    {
+      "file": "bc26a3bba1d637c9aed26a516f985ef971df651a2845b8abd54085d9ac16b6a6.webp",
+      "sha256": "bc26a3bba1d637c9aed26a516f985ef971df651a2845b8abd54085d9ac16b6a6"
+    },
+    {
+      "file": "b62766a73e689efba7109fb1921dafc68b72608227104a6389349d87e7556a56.webp",
+      "sha256": "b62766a73e689efba7109fb1921dafc68b72608227104a6389349d87e7556a56"
+    },
+    {
+      "file": "583a71d8547fde1895ab44442a00118192589057e2ca64f594acb368472a6de6.webp",
+      "sha256": "583a71d8547fde1895ab44442a00118192589057e2ca64f594acb368472a6de6"
+    },
+    {
+      "file": "17fad83d1d62a0224fb55ee1ed90c4504f1bd85a8577fe1c693fc145b4fa16a4.webp",
+      "sha256": "17fad83d1d62a0224fb55ee1ed90c4504f1bd85a8577fe1c693fc145b4fa16a4"
+    },
+    {
+      "file": "6cd6b365b8de35adecf0dd5fd996fd23145a02da3fb614f44fd9bd36d51d8229.webp",
+      "sha256": "6cd6b365b8de35adecf0dd5fd996fd23145a02da3fb614f44fd9bd36d51d8229"
+    },
+    {
+      "file": "81089ee27e6460f5622a595974a6ff8fa66dd6b398c224607398546c4b952454.webp",
+      "sha256": "81089ee27e6460f5622a595974a6ff8fa66dd6b398c224607398546c4b952454"
+    },
+    {
+      "file": "56cdcbd5c53c3222266a774ba2f66d80bee5ccef9734602a7b27fd8398c21b75.webp",
+      "sha256": "56cdcbd5c53c3222266a774ba2f66d80bee5ccef9734602a7b27fd8398c21b75"
+    },
+    {
+      "file": "1a93a4496007e16ee0026e3c7c83817b5ed64306fca51fb6db4de6a52cce9cda.webp",
+      "sha256": "1a93a4496007e16ee0026e3c7c83817b5ed64306fca51fb6db4de6a52cce9cda"
+    },
+    {
+      "file": "a58f205f77037f7122c13e6e02e85f3a1a8d85dd8f01a6e764b401b75b42de8a.webp",
+      "sha256": "a58f205f77037f7122c13e6e02e85f3a1a8d85dd8f01a6e764b401b75b42de8a"
+    },
+    {
+      "file": "e1c6a2844541b097324017b90555957da083f27a73443dded2a59589e1ee11bb.webp",
+      "sha256": "e1c6a2844541b097324017b90555957da083f27a73443dded2a59589e1ee11bb"
+    },
+    {
+      "file": "73e416610da454e56fb2678b375bc974ba7a3388e14118809b7b8f3bf4c5f151.webp",
+      "sha256": "73e416610da454e56fb2678b375bc974ba7a3388e14118809b7b8f3bf4c5f151"
+    },
+    {
+      "file": "af84f4a8d287656a02bc9d808cb6c1b4860eed156be7df02da4d3fe66a3e9d65.webp",
+      "sha256": "af84f4a8d287656a02bc9d808cb6c1b4860eed156be7df02da4d3fe66a3e9d65"
+    },
+    {
+      "file": "d03480ad4c3be40ce40572bcffc7715e2bbc64c09a51774c89715de55ec9a08d.webp",
+      "sha256": "d03480ad4c3be40ce40572bcffc7715e2bbc64c09a51774c89715de55ec9a08d"
+    },
+    {
+      "file": "7dc3dbf242bee0ca34cf68b1eff8c0f50684cc4dd2639ab7da7cce9d78e77478.webp",
+      "sha256": "7dc3dbf242bee0ca34cf68b1eff8c0f50684cc4dd2639ab7da7cce9d78e77478"
+    },
+    {
+      "file": "acbc79547872b121610eb19c3125678c8dd459787e04d788db3f9e4c0bc49e44.webp",
+      "sha256": "acbc79547872b121610eb19c3125678c8dd459787e04d788db3f9e4c0bc49e44"
+    },
+    {
+      "file": "dd8d038fca034a33d8ac5a6dee8dc6d5c9008351bc1f0f4a174b82a950ffa7f0.webp",
+      "sha256": "dd8d038fca034a33d8ac5a6dee8dc6d5c9008351bc1f0f4a174b82a950ffa7f0"
+    },
+    {
+      "file": "afe2189f03f82fb8a53f9e1257e1f287bcf3fd938329095209ed463c64ab9c1b.webp",
+      "sha256": "afe2189f03f82fb8a53f9e1257e1f287bcf3fd938329095209ed463c64ab9c1b"
+    },
+    {
+      "file": "d9d5d165a2b1f242c07d1bd94c186e9848f4fd2ea39fd1fd93902a187ff2db50.webp",
+      "sha256": "d9d5d165a2b1f242c07d1bd94c186e9848f4fd2ea39fd1fd93902a187ff2db50"
+    },
+    {
+      "file": "e3157508f611268290d756ebbd7f591e1d4e553cd6e471fd70be883bd203ac1d.webp",
+      "sha256": "e3157508f611268290d756ebbd7f591e1d4e553cd6e471fd70be883bd203ac1d"
+    },
+    {
+      "file": "09f5a5e0e6454c32a78c57a55c397726966953bf3b58fc841c8c5a42467dfb30.webp",
+      "sha256": "09f5a5e0e6454c32a78c57a55c397726966953bf3b58fc841c8c5a42467dfb30"
+    },
+    {
+      "file": "febe3b6f573bb5a046bc14f613c626ad040a48aa57d9355f22c3b2e8a65a7d97.webp",
+      "sha256": "febe3b6f573bb5a046bc14f613c626ad040a48aa57d9355f22c3b2e8a65a7d97"
+    },
+    {
+      "file": "a80993feb1169a32ce0c8f3f8288f27839cdc68a971af6c51e1cd5c418793f8b.webp",
+      "sha256": "a80993feb1169a32ce0c8f3f8288f27839cdc68a971af6c51e1cd5c418793f8b"
+    },
+    {
+      "file": "e16f70fd6caaa9bf2ee78ef4c58299856e84be515073e0e4eea1af31d411c259.webp",
+      "sha256": "e16f70fd6caaa9bf2ee78ef4c58299856e84be515073e0e4eea1af31d411c259"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a17-thoi-tiet-cac-mua"
+}

@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b04-du-lich-san-bay",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay",
+      "kind": "Set",
+      "values": {
+        "SetName": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "Description": "#b1 #b2 #travel #airport"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.2b0f77af4ed3463bb6a0984a0786017f",
+      "kind": "Card",
+      "values": {
+        "Term": "cruise ship",
+        "Definition": "t\u00E0u du l\u1ECBch bi\u1EC3n",
+        "ImageUrl": "asset:1308591ad87a3b697dd57b2d3b91196f0de6ec309966f8e3c8b0a74a2e5e4480.webp",
+        "Phonetic": "/k\u0279uz \u0283\u026Ap/",
+        "Example": "The cruise ship stops at five islands.",
+        "ExampleTranslation": "T\u00E0u du l\u1ECBch d\u1EEBng \u1EDF n\u0103m h\u00F2n \u0111\u1EA3o.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very large ship that takes people on holiday trips",
+        "Cefr": "B2",
+        "PhoneticUk": "/k\u0279u\u02D0z \u0283\u026Ap/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The cruise ship stops at five islands.\u0022,\u0022vi\u0022:\u0022T\\u00E0u du l\\u1ECBch d\\u1EEBng \\u1EDF n\\u0103m h\\u00F2n \\u0111\\u1EA3o.\u0022},{\u0022text\u0022:\u0022They spent a week on a cruise ship.\u0022,\u0022vi\u0022:\u0022H\\u1ECD d\\u00E0nh m\\u1ED9t tu\\u1EA7n tr\\u00EAn m\\u1ED9t con t\\u00E0u du l\\u1ECBch.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022board a cruise ship\u0022,\u0022vi\u0022:\u0022l\\u00EAn t\\u00E0u du l\\u1ECBch\u0022},{\u0022text\u0022:\u0022luxury cruise ship\u0022,\u0022vi\u0022:\u0022t\\u00E0u du l\\u1ECBch sang tr\\u1ECDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6112791/photo-image-public-domain-sea-water\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.390ff789eee54256bb98ebb585ef567a",
+      "kind": "Card",
+      "values": {
+        "Term": "ticket",
+        "Definition": "v\u00E9",
+        "ImageUrl": "asset:7b19d6c21845b211c71317d47975526bed1ba0396abae31da4d4baa1df10eaa4.webp",
+        "Phonetic": "/\u02C8t\u026Ak.\u026At/",
+        "Example": "I booked two train tickets online.",
+        "ExampleTranslation": "T\u00F4i \u0111\u00E3 \u0111\u1EB7t hai v\u00E9 t\u00E0u tr\u1EF1c tuy\u1EBFn.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small piece of paper that lets you travel or enter a place",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8t\u026Ak.\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I booked two train tickets online.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u00E3 \\u0111\\u1EB7t hai v\\u00E9 t\\u00E0u tr\\u1EF1c tuy\\u1EBFn.\u0022},{\u0022text\u0022:\u0022You must show your ticket to the guard.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n ph\\u1EA3i xu\\u1EA5t tr\\u00ECnh v\\u00E9 cho nh\\u00E2n vi\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022buy a ticket\u0022,\u0022vi\u0022:\u0022mua v\\u00E9\u0022},{\u0022text\u0022:\u0022return ticket\u0022,\u0022vi\u0022:\u0022v\\u00E9 kh\\u1EE9 h\\u1ED3i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.3f7fbfae5ebd44b9be34b3a4cf5e5f1e",
+      "kind": "Card",
+      "values": {
+        "Term": "customs",
+        "Definition": "h\u1EA3i quan",
+        "ImageUrl": "asset:fccd49806e2157e5fb203adff258f3f0b6bdaf287239e7319054842dc2f8df23.webp",
+        "Phonetic": "/\u02C8k\u028Cs.t\u0259mz/",
+        "Example": "We waited in line to go through customs.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i x\u1EBFp h\u00E0ng \u0111\u1EC3 qua c\u1EEDa h\u1EA3i quan.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the place at a border where officers check what you bring into a country",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u028Cs.t\u0259mz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We waited in line to go through customs.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i x\\u1EBFp h\\u00E0ng \\u0111\\u1EC3 qua c\\u1EEDa h\\u1EA3i quan.\u0022},{\u0022text\u0022:\u0022The customs officer opened my suitcase.\u0022,\u0022vi\u0022:\u0022Nh\\u00E2n vi\\u00EAn h\\u1EA3i quan m\\u1EDF va li c\\u1EE7a t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go through customs\u0022,\u0022vi\u0022:\u0022qua h\\u1EA3i quan\u0022},{\u0022text\u0022:\u0022customs officer\u0022,\u0022vi\u0022:\u0022nh\\u00E2n vi\\u00EAn h\\u1EA3i quan\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8726603/photo-image-public-domain-person-fingerprint\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.3f87ce9badfd4b3d93a6d396888d1d02",
+      "kind": "Card",
+      "values": {
+        "Term": "sunscreen",
+        "Definition": "kem ch\u1ED1ng n\u1EAFng",
+        "ImageUrl": "asset:0980f1bcad0515da4c1cd524efdf43950556d4cfd33b8b065e7004c88fcb87a2.webp",
+        "Phonetic": "/\u02C8s\u028Cn.sk\u0279i\u02D0n/",
+        "Example": "Put on sunscreen before you go to the beach.",
+        "ExampleTranslation": "H\u00E3y thoa kem ch\u1ED1ng n\u1EAFng tr\u01B0\u1EDBc khi ra b\u00E3i bi\u1EC3n.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a cream that protects your skin from the sun",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8s\u028Cn.sk\u0279i\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Put on sunscreen before you go to the beach.\u0022,\u0022vi\u0022:\u0022H\\u00E3y thoa kem ch\\u1ED1ng n\\u1EAFng tr\\u01B0\\u1EDBc khi ra b\\u00E3i bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022I always pack sunscreen for a summer trip.\u0022,\u0022vi\u0022:\u0022T\\u00F4i lu\\u00F4n mang theo kem ch\\u1ED1ng n\\u1EAFng cho chuy\\u1EBFn \\u0111i m\\u00F9a h\\u00E8.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022apply sunscreen\u0022,\u0022vi\u0022:\u0022thoa kem ch\\u1ED1ng n\\u1EAFng\u0022},{\u0022text\u0022:\u0022bottle of sunscreen\u0022,\u0022vi\u0022:\u0022m\\u1ED9t l\\u1ECD kem ch\\u1ED1ng n\\u1EAFng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.41f068c64bb84bb4a3728f65a46cd190",
+      "kind": "Card",
+      "values": {
+        "Term": "suitcase",
+        "Definition": "va li",
+        "ImageUrl": "asset:55cb0d480be8419098dcab65ad5493bd6b3ab7ab0492a566c9bd7872146a2a1b.webp",
+        "Phonetic": "/\u02C8sutke\u026As/",
+        "Example": "She packed her suitcase the night before the trip.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y x\u1EBFp va li v\u00E0o \u0111\u00EAm tr\u01B0\u1EDBc chuy\u1EBFn \u0111i.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large case with a handle for carrying clothes when you travel",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8sutke\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She packed her suitcase the night before the trip.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y x\\u1EBFp va li v\\u00E0o \\u0111\\u00EAm tr\\u01B0\\u1EDBc chuy\\u1EBFn \\u0111i.\u0022},{\u0022text\u0022:\u0022My suitcase was too heavy to lift.\u0022,\u0022vi\u0022:\u0022Va li c\\u1EE7a t\\u00F4i n\\u1EB7ng qu\\u00E1 kh\\u00F4ng nh\\u1EA5c n\\u1ED5i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pack a suitcase\u0022,\u0022vi\u0022:\u0022x\\u1EBFp va li\u0022},{\u0022text\u0022:\u0022heavy suitcase\u0022,\u0022vi\u0022:\u0022va li n\\u1EB7ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/44124284226@N01/3134492932\u0022,\u0022author\u0022:\u0022mlinksva\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.42b0270471d147d0928a1552025caa11",
+      "kind": "Card",
+      "values": {
+        "Term": "souvenir",
+        "Definition": "qu\u00E0 l\u01B0u ni\u1EC7m",
+        "ImageUrl": "asset:1c88314c7638d0a5a833903d16761339bb7e962524ee173f1c1e3ba9ede12e19.webp",
+        "Phonetic": "/\u02C8su.v\u0259\u02CCn\u026A\u0279/",
+        "Example": "I bought a small souvenir for my mother.",
+        "ExampleTranslation": "T\u00F4i mua m\u1ED9t m\u00F3n qu\u00E0 l\u01B0u ni\u1EC7m nh\u1ECF cho m\u1EB9.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "something you buy to remember a place you visited",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02CCsu\u02D0.v\u0259\u02C8n\u026A\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I bought a small souvenir for my mother.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mua m\\u1ED9t m\\u00F3n qu\\u00E0 l\\u01B0u ni\\u1EC7m nh\\u1ECF cho m\\u1EB9.\u0022},{\u0022text\u0022:\u0022The market sells many cheap souvenirs.\u0022,\u0022vi\u0022:\u0022Khu ch\\u1EE3 b\\u00E1n nhi\\u1EC1u m\\u00F3n qu\\u00E0 l\\u01B0u ni\\u1EC7m gi\\u00E1 r\\u1EBB.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022buy a souvenir\u0022,\u0022vi\u0022:\u0022mua qu\\u00E0 l\\u01B0u ni\\u1EC7m\u0022},{\u0022text\u0022:\u0022souvenir shop\u0022,\u0022vi\u0022:\u0022c\\u1EEDa h\\u00E0ng l\\u01B0u ni\\u1EC7m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3300506/free-photo-image-candy-store-souvenir-shop\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.460a07d7063e4dc2966c89394d070f12",
+      "kind": "Card",
+      "values": {
+        "Term": "guidebook",
+        "Definition": "s\u00E1ch h\u01B0\u1EDBng d\u1EABn du l\u1ECBch",
+        "ImageUrl": "asset:708adbc7c527472e3fda52ce46f70891f4719495b1c5417e1fdc0b3078359dde.webp",
+        "Phonetic": "/\u02C8\u0261a\u026Adb\u028Ak/",
+        "Example": "The guidebook recommends a small restaurant near the river.",
+        "ExampleTranslation": "S\u00E1ch h\u01B0\u1EDBng d\u1EABn du l\u1ECBch gi\u1EDBi thi\u1EC7u m\u1ED9t nh\u00E0 h\u00E0ng nh\u1ECF g\u1EA7n s\u00F4ng.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a book with information for people who visit a place",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0261a\u026Adb\u028Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The guidebook recommends a small restaurant near the river.\u0022,\u0022vi\u0022:\u0022S\\u00E1ch h\\u01B0\\u1EDBng d\\u1EABn du l\\u1ECBch gi\\u1EDBi thi\\u1EC7u m\\u1ED9t nh\\u00E0 h\\u00E0ng nh\\u1ECF g\\u1EA7n s\\u00F4ng.\u0022},{\u0022text\u0022:\u0022I bought a guidebook before our trip to Rome.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mua m\\u1ED9t cu\\u1ED1n s\\u00E1ch h\\u01B0\\u1EDBng d\\u1EABn tr\\u01B0\\u1EDBc chuy\\u1EBFn \\u0111i \\u0111\\u1EBFn Rome.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022travel guidebook\u0022,\u0022vi\u0022:\u0022s\\u00E1ch h\\u01B0\\u1EDBng d\\u1EABn du l\\u1ECBch\u0022},{\u0022text\u0022:\u0022read a guidebook\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ECDc s\\u00E1ch h\\u01B0\\u1EDBng d\\u1EABn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.4f020c87444a4f1bb4c63d1940db7c6a",
+      "kind": "Card",
+      "values": {
+        "Term": "map",
+        "Definition": "b\u1EA3n \u0111\u1ED3",
+        "ImageUrl": "asset:19ac2bf74ad980874a3508269e275836dc76a8a80de1f37fa42bd786cee8f43b.webp",
+        "Phonetic": "/m\u00E6p/",
+        "Example": "We looked at the map to find the museum.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i xem b\u1EA3n \u0111\u1ED3 \u0111\u1EC3 t\u00ECm b\u1EA3o t\u00E0ng.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a drawing that shows where places are",
+        "Cefr": "B1",
+        "PhoneticUk": "/m\u00E6p/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We looked at the map to find the museum.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i xem b\\u1EA3n \\u0111\\u1ED3 \\u0111\\u1EC3 t\\u00ECm b\\u1EA3o t\\u00E0ng.\u0022},{\u0022text\u0022:\u0022Can you show me on the map where we are?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 th\\u1EC3 ch\\u1EC9 cho t\\u00F4i tr\\u00EAn b\\u1EA3n \\u0111\\u1ED3 ch\\u00FAng ta \\u0111ang \\u1EDF \\u0111\\u00E2u kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022read a map\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ECDc b\\u1EA3n \\u0111\\u1ED3\u0022},{\u0022text\u0022:\u0022city map\u0022,\u0022vi\u0022:\u0022b\\u1EA3n \\u0111\\u1ED3 th\\u00E0nh ph\\u1ED1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/147875007@N03/32191464373\u0022,\u0022author\u0022:\u0022Rawpixel Ltd\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.5a82dee3b96646fa997dc0e05562edd3",
+      "kind": "Card",
+      "values": {
+        "Term": "postcard",
+        "Definition": "b\u01B0u thi\u1EBFp",
+        "ImageUrl": "asset:c143d1c1d1b2ccec53b9c38637b42ff68446dd6781942c83e02838e9ba6c1f8d.webp",
+        "Phonetic": "/\u02C8po\u028Ast\u02CCk\u0251\u0279d/",
+        "Example": "She sent me a postcard from Paris.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y g\u1EEDi cho t\u00F4i m\u1ED9t t\u1EA5m b\u01B0u thi\u1EBFp t\u1EEB Paris.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a card with a picture that you send from a place you visit",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8po\u028Ast\u02CCk\u0251\u0279d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She sent me a postcard from Paris.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y g\\u1EEDi cho t\\u00F4i m\\u1ED9t t\\u1EA5m b\\u01B0u thi\\u1EBFp t\\u1EEB Paris.\u0022},{\u0022text\u0022:\u0022I collect postcards from every city I visit.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u01B0u t\\u1EA7m b\\u01B0u thi\\u1EBFp t\\u1EEB m\\u1ECDi th\\u00E0nh ph\\u1ED1 t\\u00F4i \\u0111\\u1EBFn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022send a postcard\u0022,\u0022vi\u0022:\u0022g\\u1EEDi b\\u01B0u thi\\u1EBFp\u0022},{\u0022text\u0022:\u0022colourful postcard\u0022,\u0022vi\u0022:\u0022b\\u01B0u thi\\u1EBFp nhi\\u1EC1u m\\u00E0u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.67f2777e85f644609ca140eaf73167a9",
+      "kind": "Card",
+      "values": {
+        "Term": "luggage cart",
+        "Definition": "xe \u0111\u1EA9y h\u00E0nh l\u00FD",
+        "ImageUrl": "asset:d599bbbeeba2858f952e3facf80f95de3339398da1342dda004b8d4018b35355.webp",
+        "Phonetic": "/\u02C8l\u028C\u0261\u026Ad\u0361\u0292 k\u0251\u0279t/",
+        "Example": "We put all our bags on a luggage cart.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111\u1EC3 t\u1EA5t c\u1EA3 t\u00FAi l\u00EAn m\u1ED9t chi\u1EBFc xe \u0111\u1EA9y h\u00E0nh l\u00FD.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small trolley for moving bags in an airport",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8l\u028C\u0261\u026Ad\u0361\u0292 k\u0251\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We put all our bags on a luggage cart.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u1EC3 t\\u1EA5t c\\u1EA3 t\\u00FAi l\\u00EAn m\\u1ED9t chi\\u1EBFc xe \\u0111\\u1EA9y h\\u00E0nh l\\u00FD.\u0022},{\u0022text\u0022:\u0022You can find a luggage cart near the entrance.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 th\\u1EC3 t\\u00ECm th\\u1EA5y xe \\u0111\\u1EA9y h\\u00E0nh l\\u00FD g\\u1EA7n l\\u1ED1i v\\u00E0o.\u0022}],\u0022synonyms\u0022:[\u0022luggage trolley\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022push a luggage cart\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EA9y xe h\\u00E0nh l\\u00FD\u0022},{\u0022text\u0022:\u0022free luggage cart\u0022,\u0022vi\u0022:\u0022xe \\u0111\\u1EA9y h\\u00E0nh l\\u00FD mi\\u1EC5n ph\\u00ED\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Broome_International_Airport,_Broome,_WA,_Australia_17.jpg\u0022,\u0022author\u0022:\u0022Ridiculopathy\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.69471c8106e34488ad15e991714cfa20",
+      "kind": "Card",
+      "values": {
+        "Term": "landmark",
+        "Definition": "\u0111\u1ECBa danh n\u1ED5i ti\u1EBFng",
+        "ImageUrl": "asset:4135b059943065584464f235a5dded41de3e9797907cc5bd6c12b5b6451a74e6.webp",
+        "Phonetic": "/\u02C8l\u00E6ndm\u0251\u0279k/",
+        "Example": "The Eiffel Tower is a famous landmark.",
+        "ExampleTranslation": "Th\u00E1p Eiffel l\u00E0 m\u1ED9t \u0111\u1ECBa danh n\u1ED5i ti\u1EBFng.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a famous building or place that people easily recognise",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8l\u00E6ndm\u0251\u02D0k/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The Eiffel Tower is a famous landmark.\u0022,\u0022vi\u0022:\u0022Th\\u00E1p Eiffel l\\u00E0 m\\u1ED9t \\u0111\\u1ECBa danh n\\u1ED5i ti\\u1EBFng.\u0022},{\u0022text\u0022:\u0022Use the church as a landmark to find the hotel.\u0022,\u0022vi\u0022:\u0022H\\u00E3y d\\u00F9ng nh\\u00E0 th\\u1EDD l\\u00E0m m\\u1ED1c \\u0111\\u1EC3 t\\u00ECm kh\\u00E1ch s\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022famous landmark\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ECBa danh n\\u1ED5i ti\\u1EBFng\u0022},{\u0022text\u0022:\u0022historic landmark\u0022,\u0022vi\u0022:\u0022di t\\u00EDch l\\u1ECBch s\\u1EED\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/34409164@N06/8594428854\u0022,\u0022author\u0022:\u0022gnuckx\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.6c34ed91257c4db3938d0656aed35aeb",
+      "kind": "Card",
+      "values": {
+        "Term": "resort",
+        "Definition": "khu ngh\u1EC9 d\u01B0\u1EE1ng",
+        "ImageUrl": "asset:13597889fe9a41f88e5c720d89e1faa43ea8c8fce5e0fa593531f5a4b1b44746.webp",
+        "Phonetic": "/\u0279i\u02C8zo\u0279t/",
+        "Example": "We stayed at a beach resort for a week.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u1EDF m\u1ED9t khu ngh\u1EC9 d\u01B0\u1EE1ng ven bi\u1EC3n m\u1ED9t tu\u1EA7n.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place where people go for a holiday, with a hotel and activities",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0279\u026A\u02C8z\u0254\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We stayed at a beach resort for a week.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u1EDF m\\u1ED9t khu ngh\\u1EC9 d\\u01B0\\u1EE1ng ven bi\\u1EC3n m\\u1ED9t tu\\u1EA7n.\u0022},{\u0022text\u0022:\u0022The resort has three swimming pools.\u0022,\u0022vi\u0022:\u0022Khu ngh\\u1EC9 d\\u01B0\\u1EE1ng c\\u00F3 ba h\\u1ED3 b\\u01A1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022beach resort\u0022,\u0022vi\u0022:\u0022khu ngh\\u1EC9 d\\u01B0\\u1EE1ng ven bi\\u1EC3n\u0022},{\u0022text\u0022:\u0022ski resort\u0022,\u0022vi\u0022:\u0022khu tr\\u01B0\\u1EE3t tuy\\u1EBFt\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/37996646802@N01/251048534\u0022,\u0022author\u0022:\u0022cogdogblog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.7ab7e466b4b64a6cb02bdb17857e5993",
+      "kind": "Card",
+      "values": {
+        "Term": "currency exchange",
+        "Definition": "qu\u1EA7y \u0111\u1ED5i ti\u1EC1n",
+        "ImageUrl": "asset:08d8e411189ea6145225b3782fa41685ab282f3d85e82b952eab11f17dd54eae.webp",
+        "Phonetic": "/\u02C8k\u028C\u0279.\u0259n.si \u025Bks\u02C8t\u0361\u0283e\u026And\u0361\u0292/",
+        "Example": "I changed some dollars at the currency exchange.",
+        "ExampleTranslation": "T\u00F4i \u0111\u1ED5i \u00EDt \u0111\u00F4 la \u1EDF qu\u1EA7y \u0111\u1ED5i ti\u1EC1n.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place where you change money from one country into another",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u028C\u0279.\u0259n.si \u025Bks\u02C8t\u0361\u0283e\u026And\u0361\u0292/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I changed some dollars at the currency exchange.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1ED5i \\u00EDt \\u0111\\u00F4 la \\u1EDF qu\\u1EA7y \\u0111\\u1ED5i ti\\u1EC1n.\u0022},{\u0022text\u0022:\u0022The currency exchange in the airport has a bad rate.\u0022,\u0022vi\u0022:\u0022Qu\\u1EA7y \\u0111\\u1ED5i ti\\u1EC1n \\u1EDF s\\u00E2n bay c\\u00F3 t\\u1EF7 gi\\u00E1 kh\\u00F4ng t\\u1ED1t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022currency exchange rate\u0022,\u0022vi\u0022:\u0022t\\u1EF7 gi\\u00E1 h\\u1ED1i \\u0111o\\u00E1i\u0022},{\u0022text\u0022:\u0022use a currency exchange\u0022,\u0022vi\u0022:\u0022d\\u00F9ng qu\\u1EA7y \\u0111\\u1ED5i ti\\u1EC1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5923378/photo-image-public-domain-money-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.8254f3a967eb47c7ba990429ff0a2a01",
+      "kind": "Card",
+      "values": {
+        "Term": "tourist",
+        "Definition": "kh\u00E1ch du l\u1ECBch",
+        "ImageUrl": "asset:29ab698699cac882401cd8f10a0f77aca766cd34ec15848238b28e35cef7daea.webp",
+        "Phonetic": "/\u02C8t\u028A\u0279\u026Ast/",
+        "Example": "Thousands of tourists visit the old town every summer.",
+        "ExampleTranslation": "H\u00E0ng ngh\u00ECn kh\u00E1ch du l\u1ECBch \u0111\u1EBFn th\u0103m khu ph\u1ED1 c\u1ED5 m\u1ED7i m\u00F9a h\u00E8.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who visits a place for a holiday",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8t\u028A\u0259\u0279\u026Ast/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Thousands of tourists visit the old town every summer.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng ngh\\u00ECn kh\\u00E1ch du l\\u1ECBch \\u0111\\u1EBFn th\\u0103m khu ph\\u1ED1 c\\u1ED5 m\\u1ED7i m\\u00F9a h\\u00E8.\u0022},{\u0022text\u0022:\u0022The tourists took photos in front of the temple.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng du kh\\u00E1ch ch\\u1EE5p \\u1EA3nh tr\\u01B0\\u1EDBc ng\\u00F4i \\u0111\\u1EC1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022tourist attraction\u0022,\u0022vi\u0022:\u0022\\u0111i\\u1EC3m thu h\\u00FAt kh\\u00E1ch du l\\u1ECBch\u0022},{\u0022text\u0022:\u0022tourist season\u0022,\u0022vi\u0022:\u0022m\\u00F9a du l\\u1ECBch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.8aae4df64fa0487695ac49101c2faac8",
+      "kind": "Card",
+      "values": {
+        "Term": "visa",
+        "Definition": "th\u1ECB th\u1EF1c, visa",
+        "ImageUrl": "asset:489e54b0daf45e778a0ac0fee20ab22c7b535e7bd1e737182580ffff59dbcbec.webp",
+        "Phonetic": "/\u02C8vi\u02D0.z\u0259/",
+        "Example": "You need a visa to visit that country.",
+        "ExampleTranslation": "B\u1EA1n c\u1EA7n c\u00F3 visa \u0111\u1EC3 \u0111\u1EBFn \u0111\u1EA5t n\u01B0\u1EDBc \u0111\u00F3.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a stamp or paper that lets you enter a foreign country",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8vi\u02D0.z\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022You need a visa to visit that country.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u1EA7n c\\u00F3 visa \\u0111\\u1EC3 \\u0111\\u1EBFn \\u0111\\u1EA5t n\\u01B0\\u1EDBc \\u0111\\u00F3.\u0022},{\u0022text\u0022:\u0022She applied for a tourist visa in May.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y n\\u1ED9p \\u0111\\u01A1n xin visa du l\\u1ECBch v\\u00E0o th\\u00E1ng N\\u0103m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022apply for a visa\u0022,\u0022vi\u0022:\u0022xin visa\u0022},{\u0022text\u0022:\u0022tourist visa\u0022,\u0022vi\u0022:\u0022visa du l\\u1ECBch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.8abade2c8e41495ab0c3c8b1155a0ff6",
+      "kind": "Card",
+      "values": {
+        "Term": "check-in desk",
+        "Definition": "qu\u1EA7y l\u00E0m th\u1EE7 t\u1EE5c",
+        "ImageUrl": "asset:636b948ddc4721f64e08591aa54b6d5bc2989a1a60b250ec072025ba3458b5f5.webp",
+        "Phonetic": "/t\u0361\u0283\u025Bk \u026An d\u025Bsk/",
+        "Example": "There was a long queue at the check-in desk.",
+        "ExampleTranslation": "C\u00F3 m\u1ED9t h\u00E0ng d\u00E0i \u1EDF qu\u1EA7y l\u00E0m th\u1EE7 t\u1EE5c.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the place in an airport where you show your ticket and leave your bags",
+        "Cefr": "B2",
+        "PhoneticUk": "/t\u0361\u0283\u025Bk \u0259n d\u025Bsk/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022There was a long queue at the check-in desk.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t h\\u00E0ng d\\u00E0i \\u1EDF qu\\u1EA7y l\\u00E0m th\\u1EE7 t\\u1EE5c.\u0022},{\u0022text\u0022:\u0022The check-in desk closes one hour before the flight.\u0022,\u0022vi\u0022:\u0022Qu\\u1EA7y l\\u00E0m th\\u1EE7 t\\u1EE5c \\u0111\\u00F3ng c\\u1EEDa m\\u1ED9t gi\\u1EDD tr\\u01B0\\u1EDBc chuy\\u1EBFn bay.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go to the check-in desk\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EBFn qu\\u1EA7y l\\u00E0m th\\u1EE7 t\\u1EE5c\u0022},{\u0022text\u0022:\u0022online check-in\u0022,\u0022vi\u0022:\u0022l\\u00E0m th\\u1EE7 t\\u1EE5c tr\\u1EF1c tuy\\u1EBFn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6029330/photo-image-public-domain-check-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.9488d5ef2ec44b7aab39c8a7f3321ef7",
+      "kind": "Card",
+      "values": {
+        "Term": "travel agency",
+        "Definition": "c\u00F4ng ty du l\u1ECBch",
+        "ImageUrl": "asset:5fa80dbc6c8680361946c54a897526f926dcc42522f69f12606b9dfafadf1f97.webp",
+        "Phonetic": "/\u02C8t\u0279\u00E6v\u0259l \u02C8e\u026A.d\u0361\u0292\u0259n.si/",
+        "Example": "We booked the holiday through a travel agency.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111\u1EB7t k\u1EF3 ngh\u1EC9 qua m\u1ED9t c\u00F4ng ty du l\u1ECBch.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a business that arranges holidays and tickets for customers",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8t\u0279\u00E6v\u0259l \u02C8e\u026A.d\u0361\u0292\u0259n.si/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We booked the holiday through a travel agency.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u1EB7t k\\u1EF3 ngh\\u1EC9 qua m\\u1ED9t c\\u00F4ng ty du l\\u1ECBch.\u0022},{\u0022text\u0022:\u0022The travel agency offered a cheap trip to Japan.\u0022,\u0022vi\u0022:\u0022C\\u00F4ng ty du l\\u1ECBch \\u0111\\u01B0a ra m\\u1ED9t chuy\\u1EBFn \\u0111i Nh\\u1EADt B\\u1EA3n gi\\u00E1 r\\u1EBB.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022book through a travel agency\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EB7t qua c\\u00F4ng ty du l\\u1ECBch\u0022},{\u0022text\u0022:\u0022local travel agency\u0022,\u0022vi\u0022:\u0022c\\u00F4ng ty du l\\u1ECBch \\u0111\\u1ECBa ph\\u01B0\\u01A1ng\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022travel agencies\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.a425f1c1ee7b4876aff91c841fabcc52",
+      "kind": "Card",
+      "values": {
+        "Term": "runway",
+        "Definition": "\u0111\u01B0\u1EDDng b\u0103ng",
+        "ImageUrl": "asset:577b9482a50ede681f99fd0ea1d6937c60c2fb4db5bf9ec33b1ba7075e87270b.webp",
+        "Phonetic": "/\u02C8\u0279\u028Cnwe\u026A/",
+        "Example": "The plane waited on the runway for ten minutes.",
+        "ExampleTranslation": "M\u00E1y bay \u0111\u1EE3i tr\u00EAn \u0111\u01B0\u1EDDng b\u0103ng m\u01B0\u1EDDi ph\u00FAt.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long strip of ground where planes take off and land",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0279\u028Cnwe\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The plane waited on the runway for ten minutes.\u0022,\u0022vi\u0022:\u0022M\\u00E1y bay \\u0111\\u1EE3i tr\\u00EAn \\u0111\\u01B0\\u1EDDng b\\u0103ng m\\u01B0\\u1EDDi ph\\u00FAt.\u0022},{\u0022text\u0022:\u0022A long runway is needed for big aircraft.\u0022,\u0022vi\u0022:\u0022M\\u00E1y bay l\\u1EDBn c\\u1EA7n c\\u00F3 \\u0111\\u01B0\\u1EDDng b\\u0103ng d\\u00E0i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022land on a runway\u0022,\u0022vi\u0022:\u0022h\\u1EA1 c\\u00E1nh xu\\u1ED1ng \\u0111\\u01B0\\u1EDDng b\\u0103ng\u0022},{\u0022text\u0022:\u0022runway lights\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E8n \\u0111\\u01B0\\u1EDDng b\\u0103ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5967712/airport-runway-plane\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.b87c1037ebed4f5292edb279e7757559",
+      "kind": "Card",
+      "values": {
+        "Term": "boarding pass",
+        "Definition": "th\u1EBB l\u00EAn m\u00E1y bay",
+        "ImageUrl": "asset:143ce6449c8515834618652e5a5cb7b21f427abda200232d86e9a2c2c1b4a0c2.webp",
+        "Phonetic": "/\u02C8b\u0254\u02D0.d\u026A\u014B p\u02B0as/",
+        "Example": "Show your boarding pass at the gate.",
+        "ExampleTranslation": "H\u00E3y xu\u1EA5t tr\u00ECnh th\u1EBB l\u00EAn m\u00E1y bay \u1EDF c\u1ED5ng.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a card that lets you get on a plane",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8b\u0254\u02D0.d\u026A\u014B p\u0251\u02D0s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Show your boarding pass at the gate.\u0022,\u0022vi\u0022:\u0022H\\u00E3y xu\\u1EA5t tr\\u00ECnh th\\u1EBB l\\u00EAn m\\u00E1y bay \\u1EDF c\\u1ED5ng.\u0022},{\u0022text\u0022:\u0022I printed my boarding pass at home.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u00E3 in th\\u1EBB l\\u00EAn m\\u00E1y bay \\u1EDF nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022print a boarding pass\u0022,\u0022vi\u0022:\u0022in th\\u1EBB l\\u00EAn m\\u00E1y bay\u0022},{\u0022text\u0022:\u0022scan a boarding pass\u0022,\u0022vi\u0022:\u0022qu\\u00E9t th\\u1EBB l\\u00EAn m\\u00E1y bay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.c25283aaaee64a4c9f67034d75d33ddf",
+      "kind": "Card",
+      "values": {
+        "Term": "security check",
+        "Definition": "ki\u1EC3m tra an ninh",
+        "ImageUrl": "asset:600fc68aaacd536c6895d2a3769beb102ee90ed32173f47d163f97aea0282e8e.webp",
+        "Phonetic": "/s\u0259\u02C8kj\u028A\u0279.\u026Ati t\u0361\u0283\u025Bk/",
+        "Example": "The security check took more than twenty minutes.",
+        "ExampleTranslation": "Vi\u1EC7c ki\u1EC3m tra an ninh m\u1EA5t h\u01A1n hai m\u01B0\u01A1i ph\u00FAt.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place at an airport where your bags and body are checked",
+        "Cefr": "B2",
+        "PhoneticUk": "/s\u026A\u02C8kj\u028A\u0259\u0279\u026Ati t\u0361\u0283\u025Bk/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The security check took more than twenty minutes.\u0022,\u0022vi\u0022:\u0022Vi\\u1EC7c ki\\u1EC3m tra an ninh m\\u1EA5t h\\u01A1n hai m\\u01B0\\u01A1i ph\\u00FAt.\u0022},{\u0022text\u0022:\u0022Take your laptop out before the security check.\u0022,\u0022vi\u0022:\u0022H\\u00E3y l\\u1EA5y m\\u00E1y t\\u00EDnh ra tr\\u01B0\\u1EDBc khi qua ki\\u1EC3m tra an ninh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go through the security check\u0022,\u0022vi\u0022:\u0022qua ki\\u1EC3m tra an ninh\u0022},{\u0022text\u0022:\u0022airport security check\u0022,\u0022vi\u0022:\u0022ki\\u1EC3m tra an ninh s\\u00E2n bay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.c5dd7411a8754a8db7c27f2d65851f4e",
+      "kind": "Card",
+      "values": {
+        "Term": "seat belt",
+        "Definition": "d\u00E2y an to\u00E0n",
+        "ImageUrl": "asset:2b33929eb84061a7ca5853d26a03a45d210ef12f5d3b6d78e58ea934f83bbbf1.webp",
+        "Phonetic": "/si\u02D0t \u02C8b\u025Blt/",
+        "Example": "Fasten your seat belt during take-off.",
+        "ExampleTranslation": "H\u00E3y th\u1EAFt d\u00E2y an to\u00E0n khi m\u00E1y bay c\u1EA5t c\u00E1nh.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a strap that keeps you in your seat in a car or plane",
+        "Cefr": "B1",
+        "PhoneticUk": "/si\u02D0t \u02C8b\u025Blt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Fasten your seat belt during take-off.\u0022,\u0022vi\u0022:\u0022H\\u00E3y th\\u1EAFt d\\u00E2y an to\\u00E0n khi m\\u00E1y bay c\\u1EA5t c\\u00E1nh.\u0022},{\u0022text\u0022:\u0022A seat belt can save your life in an accident.\u0022,\u0022vi\u0022:\u0022D\\u00E2y an to\\u00E0n c\\u00F3 th\\u1EC3 c\\u1EE9u m\\u1EA1ng b\\u1EA1n khi c\\u00F3 tai n\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fasten your seat belt\u0022,\u0022vi\u0022:\u0022th\\u1EAFt d\\u00E2y an to\\u00E0n\u0022},{\u0022text\u0022:\u0022wear a seat belt\u0022,\u0022vi\u0022:\u0022c\\u00E0i d\\u00E2y an to\\u00E0n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.d434f14a5f2e4c3aa0fbb95616dd7919",
+      "kind": "Card",
+      "values": {
+        "Term": "departure board",
+        "Definition": "b\u1EA3ng chuy\u1EBFn bay kh\u1EDFi h\u00E0nh",
+        "ImageUrl": "asset:096530845494bf1060733528de5719c46a0a9f0b2df1a8f545f2dfcf29cb1721.webp",
+        "Phonetic": "/d\u026A\u02C8p\u0251\u02D0(\u0279)tj\u0259(\u0279) bo\u0279d/",
+        "Example": "Check the departure board for your gate number.",
+        "ExampleTranslation": "H\u00E3y xem b\u1EA3ng chuy\u1EBFn bay kh\u1EDFi h\u00E0nh \u0111\u1EC3 bi\u1EBFt s\u1ED1 c\u1ED5ng.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a big screen that shows the times of planes leaving",
+        "Cefr": "B2",
+        "PhoneticUk": "/d\u026A\u02C8p\u0251\u02D0(\u0279)tj\u0259(\u0279) b\u0254\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Check the departure board for your gate number.\u0022,\u0022vi\u0022:\u0022H\\u00E3y xem b\\u1EA3ng chuy\\u1EBFn bay kh\\u1EDFi h\\u00E0nh \\u0111\\u1EC3 bi\\u1EBFt s\\u1ED1 c\\u1ED5ng.\u0022},{\u0022text\u0022:\u0022The departure board says our flight is delayed.\u0022,\u0022vi\u0022:\u0022B\\u1EA3ng chuy\\u1EBFn bay cho bi\\u1EBFt chuy\\u1EBFn c\\u1EE7a ch\\u00FAng t\\u00F4i b\\u1ECB ho\\u00E3n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022check the departure board\u0022,\u0022vi\u0022:\u0022xem b\\u1EA3ng kh\\u1EDFi h\\u00E0nh\u0022},{\u0022text\u0022:\u0022digital departure board\u0022,\u0022vi\u0022:\u0022b\\u1EA3ng kh\\u1EDFi h\\u00E0nh \\u0111i\\u1EC7n t\\u1EED\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5917082/image-light-public-domain-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.dde81c28999d47fdbc5d2da81433ce20",
+      "kind": "Card",
+      "values": {
+        "Term": "hostel",
+        "Definition": "nh\u00E0 ngh\u1EC9 gi\u00E1 r\u1EBB, k\u00FD t\u00FAc x\u00E1 du l\u1ECBch",
+        "ImageUrl": "asset:dde277c14e985c63d9a592bb031ae7bc8e4c2a5110b9b4a613d736a3a221bfd5.webp",
+        "Phonetic": "/\u02C8h\u0251st\u0259l/",
+        "Example": "We stayed at a youth hostel in Hanoi.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u1EDF m\u1ED9t nh\u00E0 ngh\u1EC9 b\u00ECnh d\u00E2n cho gi\u1EDBi tr\u1EBB \u1EDF H\u00E0 N\u1ED9i.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a cheap place to stay where you share a room with other travellers",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8h\u0252st\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We stayed at a youth hostel in Hanoi.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u1EDF m\\u1ED9t nh\\u00E0 ngh\\u1EC9 b\\u00ECnh d\\u00E2n cho gi\\u1EDBi tr\\u1EBB \\u1EDF H\\u00E0 N\\u1ED9i.\u0022},{\u0022text\u0022:\u0022The hostel has beds for sixteen people.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 ngh\\u1EC9 c\\u00F3 gi\\u01B0\\u1EDDng cho m\\u01B0\\u1EDDi s\\u00E1u ng\\u01B0\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022youth hostel\u0022,\u0022vi\u0022:\u0022nh\\u00E0 ngh\\u1EC9 b\\u00ECnh d\\u00E2n cho gi\\u1EDBi tr\\u1EBB\u0022},{\u0022text\u0022:\u0022book a hostel\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EB7t nh\\u00E0 ngh\\u1EC9\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.ee2b1b0b9cd3452f8d199bcca6c06aca",
+      "kind": "Card",
+      "values": {
+        "Term": "tour guide",
+        "Definition": "h\u01B0\u1EDBng d\u1EABn vi\u00EAn du l\u1ECBch",
+        "ImageUrl": "asset:1a19fd7cf895d6c41fe40b302862fa3732f06feaf29a67653ef5404e8a24a0e0.webp",
+        "Phonetic": "/t\u028A\u025A \u0261a\u026Ad/",
+        "Example": "The tour guide told us about the history of the castle.",
+        "ExampleTranslation": "H\u01B0\u1EDBng d\u1EABn vi\u00EAn k\u1EC3 cho ch\u00FAng t\u00F4i nghe v\u1EC1 l\u1ECBch s\u1EED c\u1EE7a l\u00E2u \u0111\u00E0i.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who shows tourists around a place",
+        "Cefr": "B1",
+        "PhoneticUk": "/t\u0254\u02D0(\u0279) \u0261a\u026Ad/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The tour guide told us about the history of the castle.\u0022,\u0022vi\u0022:\u0022H\\u01B0\\u1EDBng d\\u1EABn vi\\u00EAn k\\u1EC3 cho ch\\u00FAng t\\u00F4i nghe v\\u1EC1 l\\u1ECBch s\\u1EED c\\u1EE7a l\\u00E2u \\u0111\\u00E0i.\u0022},{\u0022text\u0022:\u0022Our tour guide speaks three languages.\u0022,\u0022vi\u0022:\u0022H\\u01B0\\u1EDBng d\\u1EABn vi\\u00EAn c\\u1EE7a ch\\u00FAng t\\u00F4i n\\u00F3i \\u0111\\u01B0\\u1EE3c ba th\\u1EE9 ti\\u1EBFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hire a tour guide\u0022,\u0022vi\u0022:\u0022thu\\u00EA h\\u01B0\\u1EDBng d\\u1EABn vi\\u00EAn\u0022},{\u0022text\u0022:\u0022follow the tour guide\u0022,\u0022vi\u0022:\u0022\\u0111i theo h\\u01B0\\u1EDBng d\\u1EABn vi\\u00EAn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b04-du-lich-san-bay.fea14f3655b447b28f60c19c3ff0bdb5",
+      "kind": "Card",
+      "values": {
+        "Term": "passport",
+        "Definition": "h\u1ED9 chi\u1EBFu",
+        "ImageUrl": "asset:94fcc62d88742df4e9165aad175b14fc99bcd897179e8651374fbcce4149e5e8.webp",
+        "Phonetic": "/\u02C8p\u00E6sp\u0254\u0279t/",
+        "Example": "Do not forget your passport at the airport.",
+        "ExampleTranslation": "\u0110\u1EEBng qu\u00EAn h\u1ED9 chi\u1EBFu khi ra s\u00E2n bay.",
+        "Topic": "Du l\u1ECBch \u0026 s\u00E2n bay",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an official document that you need to travel to other countries",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8p\u0251\u02D0sp\u0254\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Do not forget your passport at the airport.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EEBng qu\\u00EAn h\\u1ED9 chi\\u1EBFu khi ra s\\u00E2n bay.\u0022},{\u0022text\u0022:\u0022My passport expires next year.\u0022,\u0022vi\u0022:\u0022H\\u1ED9 chi\\u1EBFu c\\u1EE7a t\\u00F4i h\\u1EBFt h\\u1EA1n v\\u00E0o n\\u0103m sau.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022renew a passport\u0022,\u0022vi\u0022:\u0022gia h\\u1EA1n h\\u1ED9 chi\\u1EBFu\u0022},{\u0022text\u0022:\u0022passport control\u0022,\u0022vi\u0022:\u0022ki\\u1EC3m so\\u00E1t h\\u1ED9 chi\\u1EBFu\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6482230/png-sticker-book\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "94fcc62d88742df4e9165aad175b14fc99bcd897179e8651374fbcce4149e5e8.webp",
+      "sha256": "94fcc62d88742df4e9165aad175b14fc99bcd897179e8651374fbcce4149e5e8"
+    },
+    {
+      "file": "143ce6449c8515834618652e5a5cb7b21f427abda200232d86e9a2c2c1b4a0c2.webp",
+      "sha256": "143ce6449c8515834618652e5a5cb7b21f427abda200232d86e9a2c2c1b4a0c2"
+    },
+    {
+      "file": "55cb0d480be8419098dcab65ad5493bd6b3ab7ab0492a566c9bd7872146a2a1b.webp",
+      "sha256": "55cb0d480be8419098dcab65ad5493bd6b3ab7ab0492a566c9bd7872146a2a1b"
+    },
+    {
+      "file": "d599bbbeeba2858f952e3facf80f95de3339398da1342dda004b8d4018b35355.webp",
+      "sha256": "d599bbbeeba2858f952e3facf80f95de3339398da1342dda004b8d4018b35355"
+    },
+    {
+      "file": "7b19d6c21845b211c71317d47975526bed1ba0396abae31da4d4baa1df10eaa4.webp",
+      "sha256": "7b19d6c21845b211c71317d47975526bed1ba0396abae31da4d4baa1df10eaa4"
+    },
+    {
+      "file": "577b9482a50ede681f99fd0ea1d6937c60c2fb4db5bf9ec33b1ba7075e87270b.webp",
+      "sha256": "577b9482a50ede681f99fd0ea1d6937c60c2fb4db5bf9ec33b1ba7075e87270b"
+    },
+    {
+      "file": "096530845494bf1060733528de5719c46a0a9f0b2df1a8f545f2dfcf29cb1721.webp",
+      "sha256": "096530845494bf1060733528de5719c46a0a9f0b2df1a8f545f2dfcf29cb1721"
+    },
+    {
+      "file": "636b948ddc4721f64e08591aa54b6d5bc2989a1a60b250ec072025ba3458b5f5.webp",
+      "sha256": "636b948ddc4721f64e08591aa54b6d5bc2989a1a60b250ec072025ba3458b5f5"
+    },
+    {
+      "file": "fccd49806e2157e5fb203adff258f3f0b6bdaf287239e7319054842dc2f8df23.webp",
+      "sha256": "fccd49806e2157e5fb203adff258f3f0b6bdaf287239e7319054842dc2f8df23"
+    },
+    {
+      "file": "1c88314c7638d0a5a833903d16761339bb7e962524ee173f1c1e3ba9ede12e19.webp",
+      "sha256": "1c88314c7638d0a5a833903d16761339bb7e962524ee173f1c1e3ba9ede12e19"
+    },
+    {
+      "file": "1a19fd7cf895d6c41fe40b302862fa3732f06feaf29a67653ef5404e8a24a0e0.webp",
+      "sha256": "1a19fd7cf895d6c41fe40b302862fa3732f06feaf29a67653ef5404e8a24a0e0"
+    },
+    {
+      "file": "19ac2bf74ad980874a3508269e275836dc76a8a80de1f37fa42bd786cee8f43b.webp",
+      "sha256": "19ac2bf74ad980874a3508269e275836dc76a8a80de1f37fa42bd786cee8f43b"
+    },
+    {
+      "file": "c143d1c1d1b2ccec53b9c38637b42ff68446dd6781942c83e02838e9ba6c1f8d.webp",
+      "sha256": "c143d1c1d1b2ccec53b9c38637b42ff68446dd6781942c83e02838e9ba6c1f8d"
+    },
+    {
+      "file": "4135b059943065584464f235a5dded41de3e9797907cc5bd6c12b5b6451a74e6.webp",
+      "sha256": "4135b059943065584464f235a5dded41de3e9797907cc5bd6c12b5b6451a74e6"
+    },
+    {
+      "file": "13597889fe9a41f88e5c720d89e1faa43ea8c8fce5e0fa593531f5a4b1b44746.webp",
+      "sha256": "13597889fe9a41f88e5c720d89e1faa43ea8c8fce5e0fa593531f5a4b1b44746"
+    },
+    {
+      "file": "1308591ad87a3b697dd57b2d3b91196f0de6ec309966f8e3c8b0a74a2e5e4480.webp",
+      "sha256": "1308591ad87a3b697dd57b2d3b91196f0de6ec309966f8e3c8b0a74a2e5e4480"
+    },
+    {
+      "file": "5fa80dbc6c8680361946c54a897526f926dcc42522f69f12606b9dfafadf1f97.webp",
+      "sha256": "5fa80dbc6c8680361946c54a897526f926dcc42522f69f12606b9dfafadf1f97"
+    },
+    {
+      "file": "600fc68aaacd536c6895d2a3769beb102ee90ed32173f47d163f97aea0282e8e.webp",
+      "sha256": "600fc68aaacd536c6895d2a3769beb102ee90ed32173f47d163f97aea0282e8e"
+    },
+    {
+      "file": "2b33929eb84061a7ca5853d26a03a45d210ef12f5d3b6d78e58ea934f83bbbf1.webp",
+      "sha256": "2b33929eb84061a7ca5853d26a03a45d210ef12f5d3b6d78e58ea934f83bbbf1"
+    },
+    {
+      "file": "dde277c14e985c63d9a592bb031ae7bc8e4c2a5110b9b4a613d736a3a221bfd5.webp",
+      "sha256": "dde277c14e985c63d9a592bb031ae7bc8e4c2a5110b9b4a613d736a3a221bfd5"
+    },
+    {
+      "file": "0980f1bcad0515da4c1cd524efdf43950556d4cfd33b8b065e7004c88fcb87a2.webp",
+      "sha256": "0980f1bcad0515da4c1cd524efdf43950556d4cfd33b8b065e7004c88fcb87a2"
+    },
+    {
+      "file": "708adbc7c527472e3fda52ce46f70891f4719495b1c5417e1fdc0b3078359dde.webp",
+      "sha256": "708adbc7c527472e3fda52ce46f70891f4719495b1c5417e1fdc0b3078359dde"
+    },
+    {
+      "file": "08d8e411189ea6145225b3782fa41685ab282f3d85e82b952eab11f17dd54eae.webp",
+      "sha256": "08d8e411189ea6145225b3782fa41685ab282f3d85e82b952eab11f17dd54eae"
+    },
+    {
+      "file": "29ab698699cac882401cd8f10a0f77aca766cd34ec15848238b28e35cef7daea.webp",
+      "sha256": "29ab698699cac882401cd8f10a0f77aca766cd34ec15848238b28e35cef7daea"
+    },
+    {
+      "file": "489e54b0daf45e778a0ac0fee20ab22c7b535e7bd1e737182580ffff59dbcbec.webp",
+      "sha256": "489e54b0daf45e778a0ac0fee20ab22c7b535e7bd1e737182580ffff59dbcbec"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b04-du-lich-san-bay"
+}

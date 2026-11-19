@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac",
+      "kind": "Set",
+      "values": {
+        "SetName": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "Description": "#b1 #b2 #shopping #money"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.0477f66f48ec48e89423a44761e12e91",
+      "kind": "Card",
+      "values": {
+        "Term": "gift card",
+        "Definition": "th\u1EBB qu\u00E0 t\u1EB7ng",
+        "ImageUrl": "asset:58d1bc09b18a29f78ddbfa2be1adb6929f0d5bff62cd51939bded7b1768065a3.webp",
+        "Phonetic": "/\u0261\u026Aft k\u0251\u0279d/",
+        "Example": "My aunt gave me a gift card for my birthday.",
+        "ExampleTranslation": "D\u00EC t\u1EB7ng t\u00F4i m\u1ED9t th\u1EBB qu\u00E0 t\u1EB7ng v\u00E0o sinh nh\u1EADt.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a card that you give someone to spend in a shop",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0261\u026Aft k\u0251\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My aunt gave me a gift card for my birthday.\u0022,\u0022vi\u0022:\u0022D\\u00EC t\\u1EB7ng t\\u00F4i m\\u1ED9t th\\u1EBB qu\\u00E0 t\\u1EB7ng v\\u00E0o sinh nh\\u1EADt.\u0022},{\u0022text\u0022:\u0022You can use the gift card online.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 th\\u1EC3 d\\u00F9ng th\\u1EBB qu\\u00E0 t\\u1EB7ng tr\\u1EF1c tuy\\u1EBFn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022buy a gift card\u0022,\u0022vi\u0022:\u0022mua th\\u1EBB qu\\u00E0 t\\u1EB7ng\u0022},{\u0022text\u0022:\u0022redeem a gift card\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED5i th\\u1EBB qu\\u00E0 t\\u1EB7ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.138c8da0c8fc42ae80ddbaedb749bf5c",
+      "kind": "Card",
+      "values": {
+        "Term": "discount",
+        "Definition": "gi\u1EA3m gi\u00E1",
+        "ImageUrl": "asset:b2dce406ca737b0055686dfb5a148555955cd51136ace36e99a8a1eacab6e741.webp",
+        "Phonetic": "/\u02C8d\u026Aska\u028Ant/",
+        "Example": "The shop gives a ten percent discount to students.",
+        "ExampleTranslation": "C\u1EEDa h\u00E0ng gi\u1EA3m gi\u00E1 m\u01B0\u1EDDi ph\u1EA7n tr\u0103m cho sinh vi\u00EAn.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a lower price than usual",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8d\u026Aska\u028Ant/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The shop gives a ten percent discount to students.\u0022,\u0022vi\u0022:\u0022C\\u1EEDa h\\u00E0ng gi\\u1EA3m gi\\u00E1 m\\u01B0\\u1EDDi ph\\u1EA7n tr\\u0103m cho sinh vi\\u00EAn.\u0022},{\u0022text\u0022:\u0022I bought the jacket at a big discount.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mua chi\\u1EBFc \\u00E1o kho\\u00E1c v\\u1EDBi m\\u1EE9c gi\\u1EA3m gi\\u00E1 l\\u1EDBn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022get a discount\u0022,\u0022vi\u0022:\u0022\\u0111\\u01B0\\u1EE3c gi\\u1EA3m gi\\u00E1\u0022},{\u0022text\u0022:\u0022student discount\u0022,\u0022vi\u0022:\u0022gi\\u1EA3m gi\\u00E1 cho sinh vi\\u00EAn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6042681/photo-image-background-public-domain-banner\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.19034b4a928c4fbabb538a1fc1dd0e65",
+      "kind": "Card",
+      "values": {
+        "Term": "sale",
+        "Definition": "\u0111\u1EE3t gi\u1EA3m gi\u00E1, vi\u1EC7c b\u00E1n h\u00E0ng",
+        "ImageUrl": "asset:f9787c90a93dc467f3e34cfb646c494825f8eac9d5be34d82b47da8095609adb.webp",
+        "Phonetic": "/se\u02D0l/",
+        "Example": "The winter sale starts on Monday.",
+        "ExampleTranslation": "\u0110\u1EE3t gi\u1EA3m gi\u00E1 m\u00F9a \u0111\u00F4ng b\u1EAFt \u0111\u1EA7u v\u00E0o th\u1EE9 Hai.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a time when a shop sells things at lower prices",
+        "Cefr": "B1",
+        "PhoneticUk": "/se\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The winter sale starts on Monday.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EE3t gi\\u1EA3m gi\\u00E1 m\\u00F9a \\u0111\\u00F4ng b\\u1EAFt \\u0111\\u1EA7u v\\u00E0o th\\u1EE9 Hai.\u0022},{\u0022text\u0022:\u0022I bought these shoes in the sale.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mua \\u0111\\u00F4i gi\\u00E0y n\\u00E0y trong \\u0111\\u1EE3t gi\\u1EA3m gi\\u00E1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022on sale\u0022,\u0022vi\u0022:\u0022\\u0111ang gi\\u1EA3m gi\\u00E1\u0022},{\u0022text\u0022:\u0022summer sale\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EE3t gi\\u1EA3m gi\\u00E1 m\\u00F9a h\\u00E8\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.32a710d4a9824809b98b6a4e87810dbf",
+      "kind": "Card",
+      "values": {
+        "Term": "price tag",
+        "Definition": "nh\u00E3n gi\u00E1",
+        "ImageUrl": "asset:c1ef6925dee33043a1f626da771dec9a3f5a0392269d831569c3cb148d61170e.webp",
+        "Phonetic": "/\u02C8p\u0279a\u026A\u032Fs t\u00E6\u0261/",
+        "Example": "I looked at the price tag and put the shirt back.",
+        "ExampleTranslation": "T\u00F4i nh\u00ECn nh\u00E3n gi\u00E1 r\u1ED3i \u0111\u1EC3 chi\u1EBFc \u00E1o s\u01A1 mi l\u1EA1i.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small label that shows how much something costs",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u0279a\u026A\u032Fs ta\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I looked at the price tag and put the shirt back.\u0022,\u0022vi\u0022:\u0022T\\u00F4i nh\\u00ECn nh\\u00E3n gi\\u00E1 r\\u1ED3i \\u0111\\u1EC3 chi\\u1EBFc \\u00E1o s\\u01A1 mi l\\u1EA1i.\u0022},{\u0022text\u0022:\u0022The price tag says twenty dollars.\u0022,\u0022vi\u0022:\u0022Nh\\u00E3n gi\\u00E1 ghi hai m\\u01B0\\u01A1i \\u0111\\u00F4 la.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022check the price tag\u0022,\u0022vi\u0022:\u0022xem nh\\u00E3n gi\\u00E1\u0022},{\u0022text\u0022:\u0022remove the price tag\u0022,\u0022vi\u0022:\u0022g\\u1EE1 nh\\u00E3n gi\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.341d1ef81edf4b5188798e7ee4942855",
+      "kind": "Card",
+      "values": {
+        "Term": "customer",
+        "Definition": "kh\u00E1ch h\u00E0ng",
+        "ImageUrl": "asset:3a406d144b77ce7f8b8680d19a7765a731dff42d3ee9864672ebddc8cf81666e.webp",
+        "Phonetic": "/\u02C8k\u028Cs.t\u0259.m\u025A/",
+        "Example": "The shop assistant helped a customer find a gift.",
+        "ExampleTranslation": "Nh\u00E2n vi\u00EAn c\u1EEDa h\u00E0ng gi\u00FAp m\u1ED9t kh\u00E1ch h\u00E0ng ch\u1ECDn qu\u00E0.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who buys things from a shop",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8k\u028Cs.t\u0259.m\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The shop assistant helped a customer find a gift.\u0022,\u0022vi\u0022:\u0022Nh\\u00E2n vi\\u00EAn c\\u1EEDa h\\u00E0ng gi\\u00FAp m\\u1ED9t kh\\u00E1ch h\\u00E0ng ch\\u1ECDn qu\\u00E0.\u0022},{\u0022text\u0022:\u0022We have many regular customers.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i c\\u00F3 nhi\\u1EC1u kh\\u00E1ch h\\u00E0ng th\\u00E2n thi\\u1EBFt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022regular customer\u0022,\u0022vi\u0022:\u0022kh\\u00E1ch h\\u00E0ng th\\u00E2n thi\\u1EBFt\u0022},{\u0022text\u0022:\u0022customer service\u0022,\u0022vi\u0022:\u0022d\\u1ECBch v\\u1EE5 kh\\u00E1ch h\\u00E0ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.39edeeb03e7c4eb286c005a2806de065",
+      "kind": "Card",
+      "values": {
+        "Term": "credit card",
+        "Definition": "th\u1EBB t\u00EDn d\u1EE5ng",
+        "ImageUrl": "asset:c01655361a42cb18fbd124fc86a7daa1617cb149cd11e7cf05f8ae6fdbd0d724.webp",
+        "Phonetic": "/\u02C8k\u0279\u025Bd\u026At k\u0251\u0279d/",
+        "Example": "I paid for the hotel with my credit card.",
+        "ExampleTranslation": "T\u00F4i tr\u1EA3 ti\u1EC1n kh\u00E1ch s\u1EA1n b\u1EB1ng th\u1EBB t\u00EDn d\u1EE5ng.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a plastic card that lets you buy now and pay the bank later",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8k\u0279\u025Bd\u026At k\u0251\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I paid for the hotel with my credit card.\u0022,\u0022vi\u0022:\u0022T\\u00F4i tr\\u1EA3 ti\\u1EC1n kh\\u00E1ch s\\u1EA1n b\\u1EB1ng th\\u1EBB t\\u00EDn d\\u1EE5ng.\u0022},{\u0022text\u0022:\u0022Do not lend your credit card to anyone.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EEBng cho ai m\\u01B0\\u1EE3n th\\u1EBB t\\u00EDn d\\u1EE5ng c\\u1EE7a b\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pay by credit card\u0022,\u0022vi\u0022:\u0022tr\\u1EA3 b\\u1EB1ng th\\u1EBB t\\u00EDn d\\u1EE5ng\u0022},{\u0022text\u0022:\u0022credit card bill\u0022,\u0022vi\u0022:\u0022h\\u00F3a \\u0111\\u01A1n th\\u1EBB t\\u00EDn d\\u1EE5ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.408cb3fc2e464cae8668dfb18e7cee58",
+      "kind": "Card",
+      "values": {
+        "Term": "shopping bag",
+        "Definition": "t\u00FAi mua s\u1EAFm",
+        "ImageUrl": "asset:4b3a3fdaa597ee85b66dd2a83fcb4cbadb92d99dfc89391d794d923f975085d1.webp",
+        "Phonetic": "/\u02C8\u0283\u0251p\u026A\u014B b\u00E6\u0261/",
+        "Example": "She carried two heavy shopping bags home.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y x\u00E1ch hai t\u00FAi mua s\u1EAFm n\u1EB7ng v\u1EC1 nh\u00E0.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a bag that you use to carry the things you buy",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u0283\u0252p\u026A\u014B ba\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She carried two heavy shopping bags home.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y x\\u00E1ch hai t\\u00FAi mua s\\u1EAFm n\\u1EB7ng v\\u1EC1 nh\\u00E0.\u0022},{\u0022text\u0022:\u0022Do not forget your shopping bag.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EEBng qu\\u00EAn t\\u00FAi mua s\\u1EAFm c\\u1EE7a b\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022carry a shopping bag\u0022,\u0022vi\u0022:\u0022x\\u00E1ch t\\u00FAi mua s\\u1EAFm\u0022},{\u0022text\u0022:\u0022paper shopping bag\u0022,\u0022vi\u0022:\u0022t\\u00FAi mua s\\u1EAFm b\\u1EB1ng gi\\u1EA5y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.55f5930aba5c42ff923aedeae36cc908",
+      "kind": "Card",
+      "values": {
+        "Term": "banknote",
+        "Definition": "t\u1EDD ti\u1EC1n gi\u1EA5y",
+        "ImageUrl": "asset:d5f904a0af5abc0859fc68b372a66820f0856c08197210e958191ceb940eda67.webp",
+        "Phonetic": "/\u00E6/",
+        "Example": "He paid with a large banknote.",
+        "ExampleTranslation": "Anh \u1EA5y tr\u1EA3 b\u1EB1ng m\u1ED9t t\u1EDD ti\u1EC1n m\u1EC7nh gi\u00E1 l\u1EDBn.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of paper money",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8b\u00E6\u014Bkn\u0259\u028A\u032Ft/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He paid with a large banknote.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y tr\\u1EA3 b\\u1EB1ng m\\u1ED9t t\\u1EDD ti\\u1EC1n m\\u1EC7nh gi\\u00E1 l\\u1EDBn.\u0022},{\u0022text\u0022:\u0022The shop does not accept torn banknotes.\u0022,\u0022vi\u0022:\u0022C\\u1EEDa h\\u00E0ng kh\\u00F4ng nh\\u1EADn nh\\u1EEFng t\\u1EDD ti\\u1EC1n b\\u1ECB r\\u00E1ch.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a new banknote\u0022,\u0022vi\u0022:\u0022m\\u1ED9t t\\u1EDD ti\\u1EC1n m\\u1EDBi\u0022},{\u0022text\u0022:\u0022fake banknote\u0022,\u0022vi\u0022:\u0022t\\u1EDD ti\\u1EC1n gi\\u1EA3\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Japanese_government_small-face-value_paper_money_50_Sen_(Series_A)_-_back.jpg\u0022,\u0022author\u0022:\u0022Eclipse2009\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.5d31411725f54d2d907222403cb22a2a",
+      "kind": "Card",
+      "values": {
+        "Term": "fitting room",
+        "Definition": "ph\u00F2ng th\u1EED \u0111\u1ED3",
+        "ImageUrl": "asset:a0e03070d7381954697888642352212b447802fb22c622bc22361623dcd3f3d8.webp",
+        "Phonetic": "/\u02C8f\u026At\u026A\u014B \u0279um/",
+        "Example": "Can I try this dress in the fitting room?",
+        "ExampleTranslation": "T\u00F4i th\u1EED chi\u1EBFc v\u00E1y n\u00E0y trong ph\u00F2ng th\u1EED \u0111\u1ED3 \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small room in a shop where you try on clothes",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8f\u026At\u026A\u014B \u0279\u028Am/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can I try this dress in the fitting room?\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EED chi\\u1EBFc v\\u00E1y n\\u00E0y trong ph\\u00F2ng th\\u1EED \\u0111\\u1ED3 \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022There was a long queue for the fitting room.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t h\\u00E0ng d\\u00E0i \\u0111\\u1EE3i ph\\u00F2ng th\\u1EED \\u0111\\u1ED3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022use the fitting room\u0022,\u0022vi\u0022:\u0022d\\u00F9ng ph\\u00F2ng th\\u1EED \\u0111\\u1ED3\u0022},{\u0022text\u0022:\u0022fitting room mirror\u0022,\u0022vi\u0022:\u0022g\\u01B0\\u01A1ng ph\\u00F2ng th\\u1EED \\u0111\\u1ED3\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.5d89958e06f14817976196e5b6be95a4",
+      "kind": "Card",
+      "values": {
+        "Term": "checkout",
+        "Definition": "qu\u1EA7y thanh to\u00E1n",
+        "ImageUrl": "asset:61c6c609c4bcf18709c22a8622c87f85858e47c08605250faa452b9ab8a89ccc.webp",
+        "Phonetic": "/\u02C8t\u0361\u0283\u025Bk\u02CCa\u028At/",
+        "Example": "There was a long queue at the checkout.",
+        "ExampleTranslation": "C\u00F3 m\u1ED9t h\u00E0ng d\u00E0i \u1EDF qu\u1EA7y thanh to\u00E1n.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the place in a shop where you pay for your things",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8t\u0361\u0283\u025Bk\u02CCa\u028At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022There was a long queue at the checkout.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t h\\u00E0ng d\\u00E0i \\u1EDF qu\\u1EA7y thanh to\\u00E1n.\u0022},{\u0022text\u0022:\u0022Please bring your basket to the checkout.\u0022,\u0022vi\u0022:\u0022Xin h\\u00E3y mang gi\\u1ECF h\\u00E0ng c\\u1EE7a b\\u1EA1n \\u0111\\u1EBFn qu\\u1EA7y thanh to\\u00E1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022at the checkout\u0022,\u0022vi\u0022:\u0022\\u1EDF qu\\u1EA7y thanh to\\u00E1n\u0022},{\u0022text\u0022:\u0022self-service checkout\u0022,\u0022vi\u0022:\u0022qu\\u1EA7y t\\u1EF1 thanh to\\u00E1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:SZ_%E6%B7%B1%E5%9C%B3_Shenzhen_%E9%B9%BD%E7%94%B0%E5%8D%80_Yantian_%E6%B2%99%E9%A0%AD%E8%A7%92_Shatoujiao_%E6%B5%B7%E5%B1%B1%E8%B7%AF_Haishan_Road_%E5%BB%A3%E5%AF%8C%E7%99%BE%E8%B2%A8_Guangfu_Department_Store_%E5%BB%A3%E5%AF%8C%E9%87%8C%E8%B6%85%E5%B8%82_Guang_Fu_Li_Supermarket_cashier_checkout_counters_February_2025_R12S.jpg\u0022,\u0022author\u0022:\u0022Shwim WIAIOP 226\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.5e8dcf2e76004ce8a1f4749531d43c1d",
+      "kind": "Card",
+      "values": {
+        "Term": "coupon",
+        "Definition": "phi\u1EBFu gi\u1EA3m gi\u00E1",
+        "ImageUrl": "asset:feb440e4ca94165103baed52676b84cce1ba5b0093ef48be17ea6a290e5fb92f.webp",
+        "Phonetic": "/\u02C8ku\u02D0\u02CCp\u0251n/",
+        "Example": "I cut out a coupon from the newspaper.",
+        "ExampleTranslation": "T\u00F4i c\u1EAFt m\u1ED9t phi\u1EBFu gi\u1EA3m gi\u00E1 t\u1EEB t\u1EDD b\u00E1o.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of paper that gives you money off when you buy something",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8ku\u02D0\u02CCp\u0251n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I cut out a coupon from the newspaper.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u1EAFt m\\u1ED9t phi\\u1EBFu gi\\u1EA3m gi\\u00E1 t\\u1EEB t\\u1EDD b\\u00E1o.\u0022},{\u0022text\u0022:\u0022This coupon is only valid until Friday.\u0022,\u0022vi\u0022:\u0022Phi\\u1EBFu gi\\u1EA3m gi\\u00E1 n\\u00E0y ch\\u1EC9 c\\u00F3 hi\\u1EC7u l\\u1EF1c \\u0111\\u1EBFn th\\u1EE9 S\\u00E1u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022use a coupon\u0022,\u0022vi\u0022:\u0022d\\u00F9ng phi\\u1EBFu gi\\u1EA3m gi\\u00E1\u0022},{\u0022text\u0022:\u0022coupon code\u0022,\u0022vi\u0022:\u0022m\\u00E3 gi\\u1EA3m gi\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.5fc715dcdd7f4ac39d76d5e426ff0fda",
+      "kind": "Card",
+      "values": {
+        "Term": "piggy bank",
+        "Definition": "con heo \u0111\u1EA5t",
+        "ImageUrl": "asset:9fa1e5d41e391e4701bddc9d854e62f9a5dec7aa9d579f51df934321b06bfc34.webp",
+        "Phonetic": "/\u02C8p\u026A\u0261i \u02C8b\u00E6\u014Bk/",
+        "Example": "The child put coins into her piggy bank.",
+        "ExampleTranslation": "\u0110\u1EE9a tr\u1EBB b\u1ECF nh\u1EEFng \u0111\u1ED3ng xu v\u00E0o con heo \u0111\u1EA5t.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small container in the shape of a pig for saving coins",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8p\u026A\u0261i \u02C8ba\u014Bk/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The child put coins into her piggy bank.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EE9a tr\\u1EBB b\\u1ECF nh\\u1EEFng \\u0111\\u1ED3ng xu v\\u00E0o con heo \\u0111\\u1EA5t.\u0022},{\u0022text\u0022:\u0022He broke the piggy bank to buy a toy.\u0022,\u0022vi\u0022:\u0022C\\u1EADu b\\u00E9 \\u0111\\u1EADp con heo \\u0111\\u1EA5t \\u0111\\u1EC3 mua \\u0111\\u1ED3 ch\\u01A1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fill a piggy bank\u0022,\u0022vi\u0022:\u0022l\\u00E0m \\u0111\\u1EA7y con heo \\u0111\\u1EA5t\u0022},{\u0022text\u0022:\u0022save in a piggy bank\u0022,\u0022vi\u0022:\u0022ti\\u1EBFt ki\\u1EC7m trong heo \\u0111\\u1EA5t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/7664149/image-people-cartoon-pink\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.65ded6591dcb4207bf02dfe4b3191f4b",
+      "kind": "Card",
+      "values": {
+        "Term": "bargain",
+        "Definition": "m\u00F3n h\u1EDDi; m\u1EB7c c\u1EA3",
+        "ImageUrl": "asset:067f917c3ebdbf8593b9de6906c5d82aeea9c0f568b95f54651ea47d2a8d75a9.webp",
+        "Phonetic": "/\u02C8b\u0251\u02D0\u0279\u0261\u0259n/",
+        "Example": "At only five dollars, this bag is a bargain.",
+        "ExampleTranslation": "Ch\u1EC9 n\u0103m \u0111\u00F4 th\u00EC chi\u1EBFc t\u00FAi n\u00E0y l\u00E0 m\u1ED9t m\u00F3n h\u1EDDi.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "something you buy at a much lower price than normal",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8b\u0251\u02D0\u0261\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022At only five dollars, this bag is a bargain.\u0022,\u0022vi\u0022:\u0022Ch\\u1EC9 n\\u0103m \\u0111\\u00F4 th\\u00EC chi\\u1EBFc t\\u00FAi n\\u00E0y l\\u00E0 m\\u1ED9t m\\u00F3n h\\u1EDDi.\u0022},{\u0022text\u0022:\u0022You can bargain with sellers at the market.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 th\\u1EC3 m\\u1EB7c c\\u1EA3 v\\u1EDBi ng\\u01B0\\u1EDDi b\\u00E1n \\u1EDF ch\\u1EE3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a real bargain\u0022,\u0022vi\u0022:\u0022m\\u1ED9t m\\u00F3n h\\u1EDDi th\\u1EF1c s\\u1EF1\u0022},{\u0022text\u0022:\u0022bargain hunter\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi s\\u0103n h\\u00E0ng gi\\u00E1 h\\u1EDDi\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022bargained\u0022,\u0022pastParticiple\u0022:\u0022bargained\u0022,\u0022ing\u0022:\u0022bargaining\u0022,\u0022thirdPerson\u0022:\u0022bargains\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.6dcaabe7155a4406abef14fcbc48aec2",
+      "kind": "Card",
+      "values": {
+        "Term": "shopping list",
+        "Definition": "danh s\u00E1ch mua s\u1EAFm",
+        "ImageUrl": "asset:c11cc570aaaf56faccff88001a29d7e1e0866e5b87dc0d92bb9650ff49ce85c5.webp",
+        "Phonetic": "/\u02C8\u0283\u0251p\u026A\u014B l\u026Ast/",
+        "Example": "I wrote a shopping list before I went to the market.",
+        "ExampleTranslation": "T\u00F4i vi\u1EBFt danh s\u00E1ch mua s\u1EAFm tr\u01B0\u1EDBc khi \u0111i ch\u1EE3.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a list of things that you need to buy",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u0283\u0252p\u026A\u014B l\u026Ast/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I wrote a shopping list before I went to the market.\u0022,\u0022vi\u0022:\u0022T\\u00F4i vi\\u1EBFt danh s\\u00E1ch mua s\\u1EAFm tr\\u01B0\\u1EDBc khi \\u0111i ch\\u1EE3.\u0022},{\u0022text\u0022:\u0022Milk is the first item on my shopping list.\u0022,\u0022vi\u0022:\u0022S\\u1EEFa l\\u00E0 m\\u00F3n \\u0111\\u1EA7u ti\\u00EAn trong danh s\\u00E1ch mua s\\u1EAFm c\\u1EE7a t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022write a shopping list\u0022,\u0022vi\u0022:\u0022vi\\u1EBFt danh s\\u00E1ch mua s\\u1EAFm\u0022},{\u0022text\u0022:\u0022check the shopping list\u0022,\u0022vi\u0022:\u0022xem l\\u1EA1i danh s\\u00E1ch mua s\\u1EAFm\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.724808c3a27e42d1b29f7f1961cf387b",
+      "kind": "Card",
+      "values": {
+        "Term": "bank account",
+        "Definition": "t\u00E0i kho\u1EA3n ng\u00E2n h\u00E0ng",
+        "ImageUrl": "asset:25f82f33d0b34ec0a2f818c9134a4cf2a372c2432d593c1af361f41a9f40f465.webp",
+        "Phonetic": "/\u02C8b\u00E6\u014Bk \u0259\u02C8ka\u028Ant/",
+        "Example": "She opened a bank account when she started work.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y m\u1EDF m\u1ED9t t\u00E0i kho\u1EA3n ng\u00E2n h\u00E0ng khi b\u1EAFt \u0111\u1EA7u \u0111i l\u00E0m.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an arrangement with a bank to keep and manage your money",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8ba\u014Bk \u0259\u02C8ka\u028Ant/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She opened a bank account when she started work.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EDF m\\u1ED9t t\\u00E0i kho\\u1EA3n ng\\u00E2n h\\u00E0ng khi b\\u1EAFt \\u0111\\u1EA7u \\u0111i l\\u00E0m.\u0022},{\u0022text\u0022:\u0022The money goes straight into my bank account.\u0022,\u0022vi\u0022:\u0022Ti\\u1EC1n \\u0111\\u01B0\\u1EE3c chuy\\u1EC3n th\\u1EB3ng v\\u00E0o t\\u00E0i kho\\u1EA3n ng\\u00E2n h\\u00E0ng c\\u1EE7a t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open a bank account\u0022,\u0022vi\u0022:\u0022m\\u1EDF t\\u00E0i kho\\u1EA3n ng\\u00E2n h\\u00E0ng\u0022},{\u0022text\u0022:\u0022savings account\u0022,\u0022vi\u0022:\u0022t\\u00E0i kho\\u1EA3n ti\\u1EBFt ki\\u1EC7m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.7ef91f606eeb45f28324ca3d42feba95",
+      "kind": "Card",
+      "values": {
+        "Term": "shopping cart",
+        "Definition": "xe \u0111\u1EA9y mua h\u00E0ng",
+        "ImageUrl": "asset:a5fe7a9000711694a8eba03ee3e11dbce2c258115e1138437f07684a7d0a4fbb.webp",
+        "Phonetic": "/\u02C8\u0283\u0251p\u026A\u014B k\u0251\u0279t/",
+        "Example": "She pushed the shopping cart down the aisle.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111\u1EA9y xe mua h\u00E0ng d\u1ECDc l\u1ED1i \u0111i.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a metal basket on wheels that you push around a shop",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u0283\u0252p\u026A\u014B k\u0251\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She pushed the shopping cart down the aisle.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111\\u1EA9y xe mua h\\u00E0ng d\\u1ECDc l\\u1ED1i \\u0111i.\u0022},{\u0022text\u0022:\u0022My shopping cart is full of vegetables.\u0022,\u0022vi\u0022:\u0022Xe mua h\\u00E0ng c\\u1EE7a t\\u00F4i \\u0111\\u1EA7y rau.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022push a shopping cart\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EA9y xe mua h\\u00E0ng\u0022},{\u0022text\u0022:\u0022online shopping cart\u0022,\u0022vi\u0022:\u0022gi\\u1ECF h\\u00E0ng tr\\u1EF1c tuy\\u1EBFn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6780489/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.82acf2792bf945479fe9cc075d36068f",
+      "kind": "Card",
+      "values": {
+        "Term": "vending machine",
+        "Definition": "m\u00E1y b\u00E1n h\u00E0ng t\u1EF1 \u0111\u1ED9ng",
+        "ImageUrl": "asset:c08d3f85cc773c56f7a1bb5e0e9f27c97c32c2837df0b3ea3f248d44504d8a89.webp",
+        "Phonetic": "/\u02C8v\u025Bnd\u026A\u014B m\u0259\u02CC\u0283i\u02D0n/",
+        "Example": "I bought a cold drink from the vending machine.",
+        "ExampleTranslation": "T\u00F4i mua m\u1ED9t lon n\u01B0\u1EDBc l\u1EA1nh t\u1EEB m\u00E1y b\u00E1n h\u00E0ng t\u1EF1 \u0111\u1ED9ng.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that sells drinks or snacks when you put in money",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8vend\u026A\u014B m\u0259\u02CC\u0283i\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I bought a cold drink from the vending machine.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mua m\\u1ED9t lon n\\u01B0\\u1EDBc l\\u1EA1nh t\\u1EEB m\\u00E1y b\\u00E1n h\\u00E0ng t\\u1EF1 \\u0111\\u1ED9ng.\u0022},{\u0022text\u0022:\u0022The vending machine is out of order.\u0022,\u0022vi\u0022:\u0022M\\u00E1y b\\u00E1n h\\u00E0ng t\\u1EF1 \\u0111\\u1ED9ng \\u0111ang b\\u1ECB h\\u1ECFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022use a vending machine\u0022,\u0022vi\u0022:\u0022d\\u00F9ng m\\u00E1y b\\u00E1n h\\u00E0ng t\\u1EF1 \\u0111\\u1ED9ng\u0022},{\u0022text\u0022:\u0022drinks vending machine\u0022,\u0022vi\u0022:\u0022m\\u00E1y b\\u00E1n n\\u01B0\\u1EDBc t\\u1EF1 \\u0111\\u1ED9ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Drink_vending_machine_at_Narita_Airport.jpg\u0022,\u0022author\u0022:\u0022Chiara Coetzee\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.8707c3df044540048fd8773326944d4a",
+      "kind": "Card",
+      "values": {
+        "Term": "receipt",
+        "Definition": "h\u00F3a \u0111\u01A1n mua h\u00E0ng",
+        "ImageUrl": "asset:38bd9655f4648ce403b766bcd9bb8ce07080a5434cc84c0deb5cfac5054ef50b.webp",
+        "Phonetic": "/\u0279\u026A\u02C8sit/",
+        "Example": "Keep the receipt in case you want to return it.",
+        "ExampleTranslation": "H\u00E3y gi\u1EEF h\u00F3a \u0111\u01A1n ph\u00F2ng khi b\u1EA1n mu\u1ED1n tr\u1EA3 l\u1EA1i h\u00E0ng.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of paper that shows what you bought and paid for",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u0279\u026A\u02C8si\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Keep the receipt in case you want to return it.\u0022,\u0022vi\u0022:\u0022H\\u00E3y gi\\u1EEF h\\u00F3a \\u0111\\u01A1n ph\\u00F2ng khi b\\u1EA1n mu\\u1ED1n tr\\u1EA3 l\\u1EA1i h\\u00E0ng.\u0022},{\u0022text\u0022:\u0022The cashier gave me a long receipt.\u0022,\u0022vi\u0022:\u0022Nh\\u00E2n vi\\u00EAn thu ng\\u00E2n \\u0111\\u01B0a cho t\\u00F4i m\\u1ED9t t\\u1EDD h\\u00F3a \\u0111\\u01A1n d\\u00E0i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022keep the receipt\u0022,\u0022vi\u0022:\u0022gi\\u1EEF h\\u00F3a \\u0111\\u01A1n\u0022},{\u0022text\u0022:\u0022ask for a receipt\u0022,\u0022vi\u0022:\u0022xin h\\u00F3a \\u0111\\u01A1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6032671/photo-image-paper-public-domain-note\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.a489e993e74240b29aed8839ff1a8174",
+      "kind": "Card",
+      "values": {
+        "Term": "bill",
+        "Definition": "h\u00F3a \u0111\u01A1n thanh to\u00E1n",
+        "ImageUrl": "asset:6f2594b80647d34a1da31cca13858f6707df206445ad9e9a53da0a212fe244ea.webp",
+        "Phonetic": "/b\u026Al/",
+        "Example": "Could we have the bill, please?",
+        "ExampleTranslation": "Cho ch\u00FAng t\u00F4i xin h\u00F3a \u0111\u01A1n thanh to\u00E1n nh\u00E9?",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of paper that shows how much you must pay",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8b\u026A\u028A\u032F/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could we have the bill, please?\u0022,\u0022vi\u0022:\u0022Cho ch\\u00FAng t\\u00F4i xin h\\u00F3a \\u0111\\u01A1n thanh to\\u00E1n nh\\u00E9?\u0022},{\u0022text\u0022:\u0022The electricity bill is higher this month.\u0022,\u0022vi\u0022:\u0022H\\u00F3a \\u0111\\u01A1n ti\\u1EC1n \\u0111i\\u1EC7n th\\u00E1ng n\\u00E0y cao h\\u01A1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pay the bill\u0022,\u0022vi\u0022:\u0022thanh to\\u00E1n h\\u00F3a \\u0111\\u01A1n\u0022},{\u0022text\u0022:\u0022electricity bill\u0022,\u0022vi\u0022:\u0022h\\u00F3a \\u0111\\u01A1n ti\\u1EC1n \\u0111i\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.aa530ce9467b4e69b28d8d290923876d",
+      "kind": "Card",
+      "values": {
+        "Term": "ATM",
+        "Definition": "m\u00E1y r\u00FAt ti\u1EC1n",
+        "ImageUrl": "asset:992d4f7bf7829de9337ea1d271a1f5e5f99fa1b76d092104b8b7af3cb7c7f587.webp",
+        "Phonetic": "/\u02CCe\u026A ti\u02D0 \u02C8\u025Bm/",
+        "Example": "There is an ATM next to the supermarket.",
+        "ExampleTranslation": "C\u00F3 m\u1ED9t m\u00E1y r\u00FAt ti\u1EC1n c\u1EA1nh si\u00EAu th\u1ECB.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine in the street that gives you money from your account",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02CCe\u026A ti\u02D0 \u02C8em/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022There is an ATM next to the supermarket.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t m\\u00E1y r\\u00FAt ti\\u1EC1n c\\u1EA1nh si\\u00EAu th\\u1ECB.\u0022},{\u0022text\u0022:\u0022I need to find an ATM to get some cash.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u1EA7n t\\u00ECm m\\u1ED9t m\\u00E1y r\\u00FAt ti\\u1EC1n \\u0111\\u1EC3 l\\u1EA5y \\u00EDt ti\\u1EC1n m\\u1EB7t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022use an ATM\u0022,\u0022vi\u0022:\u0022d\\u00F9ng m\\u00E1y r\\u00FAt ti\\u1EC1n\u0022},{\u0022text\u0022:\u0022ATM card\u0022,\u0022vi\u0022:\u0022th\\u1EBB ATM\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.aeceed06a2464cbbb85cdc4d16238d43",
+      "kind": "Card",
+      "values": {
+        "Term": "wallet",
+        "Definition": "v\u00ED ti\u1EC1n",
+        "ImageUrl": "asset:0190ed641698f098db9ebafe4ba4ba4fd737a478af6a07267f44fe23076ec48c.webp",
+        "Phonetic": "/\u02C8w\u0251l.\u0259t/",
+        "Example": "He took out his wallet and paid the bill.",
+        "ExampleTranslation": "Anh \u1EA5y l\u1EA5y v\u00ED ra v\u00E0 thanh to\u00E1n h\u00F3a \u0111\u01A1n.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small flat case for carrying money and cards",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8w\u0252l.\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He took out his wallet and paid the bill.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y l\\u1EA5y v\\u00ED ra v\\u00E0 thanh to\\u00E1n h\\u00F3a \\u0111\\u01A1n.\u0022},{\u0022text\u0022:\u0022I left my wallet on the table at the cafe.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1EC3 qu\\u00EAn v\\u00ED tr\\u00EAn b\\u00E0n \\u1EDF qu\\u00E1n c\\u00E0 ph\\u00EA.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022leather wallet\u0022,\u0022vi\u0022:\u0022v\\u00ED da\u0022},{\u0022text\u0022:\u0022lose a wallet\u0022,\u0022vi\u0022:\u0022l\\u00E0m m\\u1EA5t v\\u00ED\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.cd4938a48e5d4a6ca5b5bf6bdfeff8cc",
+      "kind": "Card",
+      "values": {
+        "Term": "market stall",
+        "Definition": "gian h\u00E0ng \u1EDF ch\u1EE3",
+        "ImageUrl": "asset:44d45f37731802c5a818a9a12258b8db70b105dba842854e109eefbf43fe3c93.webp",
+        "Phonetic": "/\u02C8m\u0251\u0279k\u026At st\u0254l/",
+        "Example": "She sells fresh flowers at a market stall.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y b\u00E1n hoa t\u01B0\u01A1i \u1EDF m\u1ED9t gian h\u00E0ng ngo\u00E0i ch\u1EE3.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small open table or booth where goods are sold in a market",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8m\u0251\u02D0k\u026At st\u0254\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She sells fresh flowers at a market stall.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y b\\u00E1n hoa t\\u01B0\\u01A1i \\u1EDF m\\u1ED9t gian h\\u00E0ng ngo\\u00E0i ch\\u1EE3.\u0022},{\u0022text\u0022:\u0022The market stalls open at six in the morning.\u0022,\u0022vi\u0022:\u0022C\\u00E1c gian h\\u00E0ng \\u1EDF ch\\u1EE3 m\\u1EDF c\\u1EEDa l\\u00FAc s\\u00E1u gi\\u1EDD s\\u00E1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022run a market stall\u0022,\u0022vi\u0022:\u0022b\\u00E1n h\\u00E0ng \\u1EDF gian ch\\u1EE3\u0022},{\u0022text\u0022:\u0022fruit market stall\u0022,\u0022vi\u0022:\u0022gian h\\u00E0ng tr\\u00E1i c\\u00E2y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/57458501@N00/224542843\u0022,\u0022author\u0022:\u0022Hillbraith\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.db500dec4a7c4eb1ab93a4fa4d0f0519",
+      "kind": "Card",
+      "values": {
+        "Term": "tip",
+        "Definition": "ti\u1EC1n boa",
+        "ImageUrl": "asset:bae287d1514343c4c0b681dd2cdfce4251226513b24efe4cf657c620a0a979ce.webp",
+        "Phonetic": "/t\u026Ap/",
+        "Example": "We left a big tip for the waiter.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111\u1EC3 l\u1EA1i m\u1ED9t kho\u1EA3n ti\u1EC1n boa l\u1EDBn cho ng\u01B0\u1EDDi ph\u1EE5c v\u1EE5.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "a small extra amount of money you give for good service",
+        "Cefr": "B2",
+        "PhoneticUk": "/t\u026Ap/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We left a big tip for the waiter.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u1EC3 l\\u1EA1i m\\u1ED9t kho\\u1EA3n ti\\u1EC1n boa l\\u1EDBn cho ng\\u01B0\\u1EDDi ph\\u1EE5c v\\u1EE5.\u0022},{\u0022text\u0022:\u0022In some countries you do not need to tip.\u0022,\u0022vi\u0022:\u0022\\u1EDE m\\u1ED9t s\\u1ED1 n\\u01B0\\u1EDBc b\\u1EA1n kh\\u00F4ng c\\u1EA7n boa ti\\u1EC1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022leave a tip\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EC3 l\\u1EA1i ti\\u1EC1n boa\u0022},{\u0022text\u0022:\u0022generous tip\u0022,\u0022vi\u0022:\u0022ti\\u1EC1n boa h\\u1EADu h\\u0129nh\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022tipped\u0022,\u0022pastParticiple\u0022:\u0022tipped\u0022,\u0022ing\u0022:\u0022tipping\u0022,\u0022thirdPerson\u0022:\u0022tips\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.ede75e4fa47542b0a9445d8d44c5a03e",
+      "kind": "Card",
+      "values": {
+        "Term": "coin",
+        "Definition": "\u0111\u1ED3ng xu",
+        "ImageUrl": "asset:947f086ba2c646becf473ca225eb2f2a7465c95d311b5b84865dafc7441a9152.webp",
+        "Phonetic": "/\u02C8ko\u026A\u032Fn/",
+        "Example": "She put a coin in the machine.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y b\u1ECF m\u1ED9t \u0111\u1ED3ng xu v\u00E0o m\u00E1y.",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small round piece of metal used as money",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8ko\u026A\u032Fn/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She put a coin in the machine.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y b\\u1ECF m\\u1ED9t \\u0111\\u1ED3ng xu v\\u00E0o m\\u00E1y.\u0022},{\u0022text\u0022:\u0022I found an old coin in the garden.\u0022,\u0022vi\u0022:\u0022T\\u00F4i t\\u00ECm th\\u1EA5y m\\u1ED9t \\u0111\\u1ED3ng xu c\\u0169 trong v\\u01B0\\u1EDDn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022toss a coin\u0022,\u0022vi\u0022:\u0022tung \\u0111\\u1ED3ng xu\u0022},{\u0022text\u0022:\u0022gold coin\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED3ng xu v\\u00E0ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/44124483743@N01/60952108\u0022,\u0022author\u0022:\u0022brownpau\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac.f6efa39c686c4b55a342100f56baee78",
+      "kind": "Card",
+      "values": {
+        "Term": "cash",
+        "Definition": "ti\u1EC1n m\u1EB7t",
+        "ImageUrl": "asset:b60ee62552e54db73e6bdeed82b49127724ff29a953de851edaea029d0fdd856.webp",
+        "Phonetic": "/k\u00E6\u0283/",
+        "Example": "Do you accept cash or only cards?",
+        "ExampleTranslation": "B\u1EA1n nh\u1EADn ti\u1EC1n m\u1EB7t hay ch\u1EC9 nh\u1EADn th\u1EBB?",
+        "Topic": "Mua s\u1EAFm \u0026 ti\u1EC1n b\u1EA1c",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "money in the form of notes and coins",
+        "Cefr": "B1",
+        "PhoneticUk": "/k\u00E6\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Do you accept cash or only cards?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n nh\\u1EADn ti\\u1EC1n m\\u1EB7t hay ch\\u1EC9 nh\\u1EADn th\\u1EBB?\u0022},{\u0022text\u0022:\u0022I have no cash in my wallet today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay trong v\\u00ED t\\u00F4i kh\\u00F4ng c\\u00F3 ti\\u1EC1n m\\u1EB7t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pay in cash\u0022,\u0022vi\u0022:\u0022tr\\u1EA3 b\\u1EB1ng ti\\u1EC1n m\\u1EB7t\u0022},{\u0022text\u0022:\u0022withdraw cash\u0022,\u0022vi\u0022:\u0022r\\u00FAt ti\\u1EC1n m\\u1EB7t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/money-bills-BEL7YED80C\u0022,\u0022author\u0022:\u0022Alexas Fotos\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "38bd9655f4648ce403b766bcd9bb8ce07080a5434cc84c0deb5cfac5054ef50b.webp",
+      "sha256": "38bd9655f4648ce403b766bcd9bb8ce07080a5434cc84c0deb5cfac5054ef50b"
+    },
+    {
+      "file": "b2dce406ca737b0055686dfb5a148555955cd51136ace36e99a8a1eacab6e741.webp",
+      "sha256": "b2dce406ca737b0055686dfb5a148555955cd51136ace36e99a8a1eacab6e741"
+    },
+    {
+      "file": "feb440e4ca94165103baed52676b84cce1ba5b0093ef48be17ea6a290e5fb92f.webp",
+      "sha256": "feb440e4ca94165103baed52676b84cce1ba5b0093ef48be17ea6a290e5fb92f"
+    },
+    {
+      "file": "067f917c3ebdbf8593b9de6906c5d82aeea9c0f568b95f54651ea47d2a8d75a9.webp",
+      "sha256": "067f917c3ebdbf8593b9de6906c5d82aeea9c0f568b95f54651ea47d2a8d75a9"
+    },
+    {
+      "file": "b60ee62552e54db73e6bdeed82b49127724ff29a953de851edaea029d0fdd856.webp",
+      "sha256": "b60ee62552e54db73e6bdeed82b49127724ff29a953de851edaea029d0fdd856"
+    },
+    {
+      "file": "c01655361a42cb18fbd124fc86a7daa1617cb149cd11e7cf05f8ae6fdbd0d724.webp",
+      "sha256": "c01655361a42cb18fbd124fc86a7daa1617cb149cd11e7cf05f8ae6fdbd0d724"
+    },
+    {
+      "file": "0190ed641698f098db9ebafe4ba4ba4fd737a478af6a07267f44fe23076ec48c.webp",
+      "sha256": "0190ed641698f098db9ebafe4ba4ba4fd737a478af6a07267f44fe23076ec48c"
+    },
+    {
+      "file": "947f086ba2c646becf473ca225eb2f2a7465c95d311b5b84865dafc7441a9152.webp",
+      "sha256": "947f086ba2c646becf473ca225eb2f2a7465c95d311b5b84865dafc7441a9152"
+    },
+    {
+      "file": "25f82f33d0b34ec0a2f818c9134a4cf2a372c2432d593c1af361f41a9f40f465.webp",
+      "sha256": "25f82f33d0b34ec0a2f818c9134a4cf2a372c2432d593c1af361f41a9f40f465"
+    },
+    {
+      "file": "992d4f7bf7829de9337ea1d271a1f5e5f99fa1b76d092104b8b7af3cb7c7f587.webp",
+      "sha256": "992d4f7bf7829de9337ea1d271a1f5e5f99fa1b76d092104b8b7af3cb7c7f587"
+    },
+    {
+      "file": "c1ef6925dee33043a1f626da771dec9a3f5a0392269d831569c3cb148d61170e.webp",
+      "sha256": "c1ef6925dee33043a1f626da771dec9a3f5a0392269d831569c3cb148d61170e"
+    },
+    {
+      "file": "a5fe7a9000711694a8eba03ee3e11dbce2c258115e1138437f07684a7d0a4fbb.webp",
+      "sha256": "a5fe7a9000711694a8eba03ee3e11dbce2c258115e1138437f07684a7d0a4fbb"
+    },
+    {
+      "file": "61c6c609c4bcf18709c22a8622c87f85858e47c08605250faa452b9ab8a89ccc.webp",
+      "sha256": "61c6c609c4bcf18709c22a8622c87f85858e47c08605250faa452b9ab8a89ccc"
+    },
+    {
+      "file": "a0e03070d7381954697888642352212b447802fb22c622bc22361623dcd3f3d8.webp",
+      "sha256": "a0e03070d7381954697888642352212b447802fb22c622bc22361623dcd3f3d8"
+    },
+    {
+      "file": "f9787c90a93dc467f3e34cfb646c494825f8eac9d5be34d82b47da8095609adb.webp",
+      "sha256": "f9787c90a93dc467f3e34cfb646c494825f8eac9d5be34d82b47da8095609adb"
+    },
+    {
+      "file": "3a406d144b77ce7f8b8680d19a7765a731dff42d3ee9864672ebddc8cf81666e.webp",
+      "sha256": "3a406d144b77ce7f8b8680d19a7765a731dff42d3ee9864672ebddc8cf81666e"
+    },
+    {
+      "file": "9fa1e5d41e391e4701bddc9d854e62f9a5dec7aa9d579f51df934321b06bfc34.webp",
+      "sha256": "9fa1e5d41e391e4701bddc9d854e62f9a5dec7aa9d579f51df934321b06bfc34"
+    },
+    {
+      "file": "58d1bc09b18a29f78ddbfa2be1adb6929f0d5bff62cd51939bded7b1768065a3.webp",
+      "sha256": "58d1bc09b18a29f78ddbfa2be1adb6929f0d5bff62cd51939bded7b1768065a3"
+    },
+    {
+      "file": "c11cc570aaaf56faccff88001a29d7e1e0866e5b87dc0d92bb9650ff49ce85c5.webp",
+      "sha256": "c11cc570aaaf56faccff88001a29d7e1e0866e5b87dc0d92bb9650ff49ce85c5"
+    },
+    {
+      "file": "4b3a3fdaa597ee85b66dd2a83fcb4cbadb92d99dfc89391d794d923f975085d1.webp",
+      "sha256": "4b3a3fdaa597ee85b66dd2a83fcb4cbadb92d99dfc89391d794d923f975085d1"
+    },
+    {
+      "file": "bae287d1514343c4c0b681dd2cdfce4251226513b24efe4cf657c620a0a979ce.webp",
+      "sha256": "bae287d1514343c4c0b681dd2cdfce4251226513b24efe4cf657c620a0a979ce"
+    },
+    {
+      "file": "6f2594b80647d34a1da31cca13858f6707df206445ad9e9a53da0a212fe244ea.webp",
+      "sha256": "6f2594b80647d34a1da31cca13858f6707df206445ad9e9a53da0a212fe244ea"
+    },
+    {
+      "file": "c08d3f85cc773c56f7a1bb5e0e9f27c97c32c2837df0b3ea3f248d44504d8a89.webp",
+      "sha256": "c08d3f85cc773c56f7a1bb5e0e9f27c97c32c2837df0b3ea3f248d44504d8a89"
+    },
+    {
+      "file": "d5f904a0af5abc0859fc68b372a66820f0856c08197210e958191ceb940eda67.webp",
+      "sha256": "d5f904a0af5abc0859fc68b372a66820f0856c08197210e958191ceb940eda67"
+    },
+    {
+      "file": "44d45f37731802c5a818a9a12258b8db70b105dba842854e109eefbf43fe3c93.webp",
+      "sha256": "44d45f37731802c5a818a9a12258b8db70b105dba842854e109eefbf43fe3c93"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b05-mua-sam-tien-bac"
+}

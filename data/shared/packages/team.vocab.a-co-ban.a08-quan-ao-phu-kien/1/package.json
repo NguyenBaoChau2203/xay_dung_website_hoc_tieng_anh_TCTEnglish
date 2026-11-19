@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a08-quan-ao-phu-kien",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien",
+      "kind": "Set",
+      "values": {
+        "SetName": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "Description": "#a1 #a2 #clothes #fashion"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.05a4ade4660d4ba0be132f4980bfe44d",
+      "kind": "Card",
+      "values": {
+        "Term": "hat",
+        "Definition": "c\u00E1i m\u0169 c\u00F3 v\u00E0nh",
+        "ImageUrl": "asset:19801226e9e791e037de74658512aeea839003f11092c03da73f690227ad676c.webp",
+        "Phonetic": "/h\u00E6t/",
+        "Example": "He wears a straw hat in the sun.",
+        "ExampleTranslation": "Anh \u1EA5y \u0111\u1ED9i m\u0169 r\u01A1m khi ra n\u1EAFng.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "something you wear on your head",
+        "Cefr": "A1",
+        "PhoneticUk": "/hat/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He wears a straw hat in the sun.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111\\u1ED9i m\\u0169 r\\u01A1m khi ra n\\u1EAFng.\u0022},{\u0022text\u0022:\u0022The hat is too big for me.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc m\\u0169 n\\u00E0y qu\\u00E1 r\\u1ED9ng v\\u1EDBi t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022straw hat\u0022,\u0022vi\u0022:\u0022m\\u0169 r\\u01A1m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/7267914/vector-public-domain-illustrations-fashion\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.06981c3ac61b4131bbec4878b37e6106",
+      "kind": "Card",
+      "values": {
+        "Term": "coat",
+        "Definition": "\u00E1o kho\u00E1c d\u00E0i",
+        "ImageUrl": "asset:d1a108405d60aee127f1c71644f59b9560312be316b841afc69de8cf102056ef.webp",
+        "Phonetic": "/\u02C8ko\u028A\u032Ft/",
+        "Example": "She wore a warm coat in winter.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y m\u1EB7c \u00E1o kho\u00E1c d\u00E0y v\u00E0o m\u00F9a \u0111\u00F4ng.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long warm piece of clothing for cold weather",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8k\u0259\u028A\u032Ft/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She wore a warm coat in winter.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EB7c \\u00E1o kho\\u00E1c d\\u00E0y v\\u00E0o m\\u00F9a \\u0111\\u00F4ng.\u0022},{\u0022text\u0022:\u0022Hang your coat on the hook.\u0022,\u0022vi\u0022:\u0022H\\u00E3y treo \\u00E1o kho\\u00E1c l\\u00EAn m\\u00F3c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022winter coat\u0022,\u0022vi\u0022:\u0022\\u00E1o kho\\u00E1c m\\u00F9a \\u0111\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6430590/vector-sticker-watercolor-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.07d8a631d49b4f2b89292643f31f8ce7",
+      "kind": "Card",
+      "values": {
+        "Term": "belt",
+        "Definition": "th\u1EAFt l\u01B0ng",
+        "ImageUrl": "asset:6bc328363c49c927a583034d200886ea78d37d0681b74a297e9513e84e54b6ae.webp",
+        "Phonetic": "/b\u025Blt/",
+        "Example": "He wears a black belt with his trousers.",
+        "ExampleTranslation": "Anh \u1EA5y th\u1EAFt m\u1ED9t chi\u1EBFc th\u1EAFt l\u01B0ng \u0111en v\u1EDBi qu\u1EA7n d\u00E0i.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a strip of leather worn around the waist",
+        "Cefr": "A2",
+        "PhoneticUk": "/b\u025Blt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He wears a black belt with his trousers.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y th\\u1EAFt m\\u1ED9t chi\\u1EBFc th\\u1EAFt l\\u01B0ng \\u0111en v\\u1EDBi qu\\u1EA7n d\\u00E0i.\u0022},{\u0022text\u0022:\u0022The belt is too tight.\u0022,\u0022vi\u0022:\u0022C\\u00E1i th\\u1EAFt l\\u01B0ng ch\\u1EB7t qu\\u00E1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022leather belt\u0022,\u0022vi\u0022:\u0022th\\u1EAFt l\\u01B0ng da\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.0d0731190cb84f51b4318e1db7dec099",
+      "kind": "Card",
+      "values": {
+        "Term": "jacket",
+        "Definition": "\u00E1o kho\u00E1c ng\u1EAFn",
+        "ImageUrl": "asset:9e31dbfab69c57d9a2398431ae80b982e81ebb6334d68c5651d120c81e9dcee0.webp",
+        "Phonetic": "/\u02C8d\u0361\u0292\u00E6k.\u026At/",
+        "Example": "Take a jacket because it is cold.",
+        "ExampleTranslation": "H\u00E3y mang \u00E1o kho\u00E1c v\u00EC tr\u1EDDi l\u1EA1nh.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a short coat that you wear over other clothes",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8d\u0361\u0292\u00E6k.\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Take a jacket because it is cold.\u0022,\u0022vi\u0022:\u0022H\\u00E3y mang \\u00E1o kho\\u00E1c v\\u00EC tr\\u1EDDi l\\u1EA1nh.\u0022},{\u0022text\u0022:\u0022He put his jacket on the chair.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111\\u1EC3 \\u00E1o kho\\u00E1c l\\u00EAn gh\\u1EBF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022leather jacket\u0022,\u0022vi\u0022:\u0022\\u00E1o kho\\u00E1c da\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/11728760/image-pattern-collage-illustrations\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.0eec98beea364d7fade33a4d7e704af9",
+      "kind": "Card",
+      "values": {
+        "Term": "shirt",
+        "Definition": "\u00E1o s\u01A1 mi",
+        "ImageUrl": "asset:8ef91c5e641389f87f19c60842428c5ee2d9627fbdff2b2c2c895b0936ff3bb1.webp",
+        "Phonetic": "/\u0283\u025C\u0279t/",
+        "Example": "He wears a white shirt to work.",
+        "ExampleTranslation": "Anh \u1EA5y m\u1EB7c \u00E1o s\u01A1 mi tr\u1EAFng \u0111i l\u00E0m.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of clothing with a collar and buttons",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u0283\u025C\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He wears a white shirt to work.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y m\\u1EB7c \\u00E1o s\\u01A1 mi tr\\u1EAFng \\u0111i l\\u00E0m.\u0022},{\u0022text\u0022:\u0022This shirt is too small for me.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc \\u00E1o s\\u01A1 mi n\\u00E0y qu\\u00E1 nh\\u1ECF v\\u1EDBi t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022button a shirt\u0022,\u0022vi\u0022:\u0022c\\u00E0i c\\u00FAc \\u00E1o s\\u01A1 mi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/10096504/png-shirt-illustrations\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.114fae8d26d44f95a6c70b05eb74ba84",
+      "kind": "Card",
+      "values": {
+        "Term": "sandals",
+        "Definition": "d\u00E9p quai h\u1EADu, x\u0103ng \u0111an",
+        "ImageUrl": "asset:cbc2db4e7137c7bb0dbef5862cda0c1af4d086e389d76a8215c8aeb94cbc3d8b.webp",
+        "Phonetic": "/\u02C8s\u00E6nd\u0259lz/",
+        "Example": "I wear sandals at the beach.",
+        "ExampleTranslation": "T\u00F4i \u0111i x\u0103ng \u0111an \u1EDF b\u00E3i bi\u1EC3n.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "light open shoes for warm weather",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8s\u00E6nd\u0259lz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I wear sandals at the beach.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111i x\\u0103ng \\u0111an \\u1EDF b\\u00E3i bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022These sandals are comfortable.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00F4i x\\u0103ng \\u0111an n\\u00E0y \\u0111i r\\u1EA5t tho\\u1EA3i m\\u00E1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022leather sandals\u0022,\u0022vi\u0022:\u0022x\\u0103ng \\u0111an da\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6552628/image-public-domain-blue-pink\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.2ab19705429545b6b5702a4936e2470e",
+      "kind": "Card",
+      "values": {
+        "Term": "sweater",
+        "Definition": "\u00E1o len",
+        "ImageUrl": "asset:b3526b94e756f148fcff7bcfdeaadbffc99ee99455d7385b346153f9517b40b2.webp",
+        "Phonetic": "/\u02C8sw\u025Bt\u025A/",
+        "Example": "My grandmother knitted me a sweater.",
+        "ExampleTranslation": "B\u00E0 t\u00F4i \u0111an cho t\u00F4i m\u1ED9t chi\u1EBFc \u00E1o len.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a warm knitted piece of clothing for the upper body",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8sw\u025Bt\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandmother knitted me a sweater.\u0022,\u0022vi\u0022:\u0022B\\u00E0 t\\u00F4i \\u0111an cho t\\u00F4i m\\u1ED9t chi\\u1EBFc \\u00E1o len.\u0022},{\u0022text\u0022:\u0022I wear a sweater when it is cold.\u0022,\u0022vi\u0022:\u0022T\\u00F4i m\\u1EB7c \\u00E1o len khi tr\\u1EDDi l\\u1EA1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wool sweater\u0022,\u0022vi\u0022:\u0022\\u00E1o len l\\u00F4ng c\\u1EEBu\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.3595c89dff964930ab3c1954a5907909",
+      "kind": "Card",
+      "values": {
+        "Term": "cap",
+        "Definition": "m\u0169 l\u01B0\u1EE1i trai",
+        "ImageUrl": "asset:6078376f3293bf7f003c9ec6210f877714767beaae5c7a26ca1b141852bc5c8c.webp",
+        "Phonetic": "/k\u00E6p/",
+        "Example": "He always wears a baseball cap.",
+        "ExampleTranslation": "Anh \u1EA5y l\u00FAc n\u00E0o c\u0169ng \u0111\u1ED9i m\u0169 l\u01B0\u1EE1i trai.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a soft hat with a flat front part called a peak",
+        "Cefr": "A2",
+        "PhoneticUk": "/k\u00E6p/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He always wears a baseball cap.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y l\\u00FAc n\\u00E0o c\\u0169ng \\u0111\\u1ED9i m\\u0169 l\\u01B0\\u1EE1i trai.\u0022},{\u0022text\u0022:\u0022I left my cap on the bus.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1EC3 qu\\u00EAn m\\u0169 l\\u01B0\\u1EE1i trai tr\\u00EAn xe bu\\u00FDt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022baseball cap\u0022,\u0022vi\u0022:\u0022m\\u0169 b\\u00F3ng ch\\u00E0y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/10865536/png-cartoon-illustration\u0022,\u0022author\u0022:\u0022Miiruuku\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.376421e1da2d4fc2af3b279ee23927e0",
+      "kind": "Card",
+      "values": {
+        "Term": "ring",
+        "Definition": "chi\u1EBFc nh\u1EABn; reo",
+        "ImageUrl": "asset:abcb21f7ace584e074d9baa49549c936853ff27fc853e798be698e2317ecf85d.webp",
+        "Phonetic": "/\u0279\u026A\u014B/",
+        "Example": "She has a gold ring on her finger.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111eo m\u1ED9t chi\u1EBFc nh\u1EABn v\u00E0ng tr\u00EAn ng\u00F3n tay.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "a small circle of metal worn on a finger",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0279\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She has a gold ring on her finger.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111eo m\\u1ED9t chi\\u1EBFc nh\\u1EABn v\\u00E0ng tr\\u00EAn ng\\u00F3n tay.\u0022},{\u0022text\u0022:\u0022He gave her a silver ring.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y t\\u1EB7ng c\\u00F4 \\u1EA5y m\\u1ED9t chi\\u1EBFc nh\\u1EABn b\\u1EA1c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wedding ring\u0022,\u0022vi\u0022:\u0022nh\\u1EABn c\\u01B0\\u1EDBi\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022rang\u0022,\u0022pastParticiple\u0022:\u0022rung\u0022,\u0022ing\u0022:\u0022ringing\u0022,\u0022thirdPerson\u0022:\u0022rings\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6330521/vector-sticker-public-domain-golden\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.3b023f4670b8421ea42f5832909969b5",
+      "kind": "Card",
+      "values": {
+        "Term": "boots",
+        "Definition": "\u1EE7ng, b\u1ED1t",
+        "ImageUrl": "asset:8a446658a3703874adf23b5b2c6eaf522abf199cb71cb55d906ab63323d7623e.webp",
+        "Phonetic": "/buts/",
+        "Example": "She wore boots in the snow.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111i \u1EE7ng trong tuy\u1EBFt.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "strong shoes that cover the ankle",
+        "Cefr": "A2",
+        "PhoneticUk": "/bu\u02D0ts/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She wore boots in the snow.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111i \\u1EE7ng trong tuy\\u1EBFt.\u0022},{\u0022text\u0022:\u0022My rain boots are by the door.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00F4i \\u1EE7ng \\u0111i m\\u01B0a c\\u1EE7a t\\u00F4i \\u1EDF c\\u1EA1nh c\\u1EEDa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022rain boots\u0022,\u0022vi\u0022:\u0022\\u1EE7ng \\u0111i m\\u01B0a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6754317/vector-public-domain-illustrations-fashion\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.5600513a9d2149778af1e9457d368d76",
+      "kind": "Card",
+      "values": {
+        "Term": "socks",
+        "Definition": "t\u1EA5t, v\u1EDB",
+        "ImageUrl": "asset:08f26b2acd988ae26e803f60c101110bfd20c1bb2e9ecf1257ebf3d88099a6a5.webp",
+        "Phonetic": "/s\u0251\u02D0ks/",
+        "Example": "I put on clean socks every day.",
+        "ExampleTranslation": "Ng\u00E0y n\u00E0o t\u00F4i c\u0169ng mang t\u1EA5t s\u1EA1ch.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "soft clothing worn on your feet inside shoes",
+        "Cefr": "A1",
+        "PhoneticUk": "/s\u0252ks/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I put on clean socks every day.\u0022,\u0022vi\u0022:\u0022Ng\\u00E0y n\\u00E0o t\\u00F4i c\\u0169ng mang t\\u1EA5t s\\u1EA1ch.\u0022},{\u0022text\u0022:\u0022These socks are thick and warm.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00F4i t\\u1EA5t n\\u00E0y d\\u00E0y v\\u00E0 \\u1EA5m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a pair of socks\u0022,\u0022vi\u0022:\u0022m\\u1ED9t \\u0111\\u00F4i t\\u1EA5t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6479624/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.611e9869ccf144c5b5dc69831d677e16",
+      "kind": "Card",
+      "values": {
+        "Term": "dress",
+        "Definition": "v\u00E1y li\u1EC1n; m\u1EB7c qu\u1EA7n \u00E1o",
+        "ImageUrl": "asset:107e24150b61064995e637983de84be749cc47efb4c35373700ea606b5ef87d7.webp",
+        "Phonetic": "/d\u0279\u025Bs/",
+        "Example": "She wore a red dress to the party.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y m\u1EB7c m\u1ED9t chi\u1EBFc v\u00E1y \u0111\u1ECF \u0111\u1EBFn b\u1EEFa ti\u1EC7c.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "a piece of clothing for women that covers the body and legs",
+        "Cefr": "A1",
+        "PhoneticUk": "/d\u0279es/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She wore a red dress to the party.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EB7c m\\u1ED9t chi\\u1EBFc v\\u00E1y \\u0111\\u1ECF \\u0111\\u1EBFn b\\u1EEFa ti\\u1EC7c.\u0022},{\u0022text\u0022:\u0022The little girl loves her new dress.\u0022,\u0022vi\u0022:\u0022C\\u00F4 b\\u00E9 r\\u1EA5t th\\u00EDch chi\\u1EBFc v\\u00E1y m\\u1EDBi c\\u1EE7a m\\u00ECnh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wedding dress\u0022,\u0022vi\u0022:\u0022v\\u00E1y c\\u01B0\\u1EDBi\u0022},{\u0022text\u0022:\u0022evening dress\u0022,\u0022vi\u0022:\u0022v\\u00E1y d\\u1EA1 h\\u1ED9i\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022dressed\u0022,\u0022pastParticiple\u0022:\u0022dressed\u0022,\u0022ing\u0022:\u0022dressing\u0022,\u0022thirdPerson\u0022:\u0022dresses\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.76939c359d634240a098953bd512a634",
+      "kind": "Card",
+      "values": {
+        "Term": "glasses",
+        "Definition": "k\u00EDnh m\u1EAFt",
+        "ImageUrl": "asset:efdbe875c80a52155f969730e8a3fe8167a398e3eac4435e92d1ed0718374af4.webp",
+        "Phonetic": "/\u02C8\u0261l\u00E6s\u026Az/",
+        "Example": "I cannot read without my glasses.",
+        "ExampleTranslation": "T\u00F4i kh\u00F4ng \u0111\u1ECDc \u0111\u01B0\u1EE3c n\u1EBFu thi\u1EBFu k\u00EDnh.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "two lenses in a frame that help you see better",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0261l\u0251\u02D0s\u026Az/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I cannot read without my glasses.\u0022,\u0022vi\u0022:\u0022T\\u00F4i kh\\u00F4ng \\u0111\\u1ECDc \\u0111\\u01B0\\u1EE3c n\\u1EBFu thi\\u1EBFu k\\u00EDnh.\u0022},{\u0022text\u0022:\u0022She put on her glasses and smiled.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111eo k\\u00EDnh l\\u00EAn v\\u00E0 m\\u1EC9m c\\u01B0\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a pair of glasses\u0022,\u0022vi\u0022:\u0022m\\u1ED9t chi\\u1EBFc k\\u00EDnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/7580299/vector-pattern-illustrations-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.84da82a4b2e64dd29af8206760c80797",
+      "kind": "Card",
+      "values": {
+        "Term": "T-shirt",
+        "Definition": "\u00E1o ph\u00F4ng",
+        "ImageUrl": "asset:3b6e6e917adc8ed30cde223018b71d7c70d62cddf5ab88b41561d2e1694b3412.webp",
+        "Phonetic": "/ti\u02D0 \u0283\u025C\u0279t/",
+        "Example": "I wear a T-shirt on hot days.",
+        "ExampleTranslation": "T\u00F4i m\u1EB7c \u00E1o ph\u00F4ng v\u00E0o nh\u1EEFng ng\u00E0y n\u00F3ng.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a soft short-sleeved shirt with no collar",
+        "Cefr": "A1",
+        "PhoneticUk": "/ti\u02D0 \u0283\u025C\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I wear a T-shirt on hot days.\u0022,\u0022vi\u0022:\u0022T\\u00F4i m\\u1EB7c \\u00E1o ph\\u00F4ng v\\u00E0o nh\\u1EEFng ng\\u00E0y n\\u00F3ng.\u0022},{\u0022text\u0022:\u0022She bought a blue T-shirt yesterday.\u0022,\u0022vi\u0022:\u0022H\\u00F4m qua c\\u00F4 \\u1EA5y mua m\\u1ED9t chi\\u1EBFc \\u00E1o ph\\u00F4ng xanh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cotton T-shirt\u0022,\u0022vi\u0022:\u0022\\u00E1o ph\\u00F4ng cotton\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/9746897/vector-people-pattern-illustrations\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.87efc929b08f4adea12de121a1ac2e6d",
+      "kind": "Card",
+      "values": {
+        "Term": "gloves",
+        "Definition": "g\u0103ng tay",
+        "ImageUrl": "asset:a7596392373cae71fe89eaec3ec00ca0784116b28424bfdf8d6bd2db662c8186.webp",
+        "Phonetic": "/\u0261l\u028Cvz/",
+        "Example": "Wear gloves when it is cold.",
+        "ExampleTranslation": "H\u00E3y \u0111eo g\u0103ng tay khi tr\u1EDDi l\u1EA1nh.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "clothing that covers your hands and fingers",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0261l\u028Cvz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Wear gloves when it is cold.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111eo g\\u0103ng tay khi tr\\u1EDDi l\\u1EA1nh.\u0022},{\u0022text\u0022:\u0022I lost one of my gloves.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u00E0m m\\u1EA5t m\\u1ED9t chi\\u1EBFc g\\u0103ng tay.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a pair of gloves\u0022,\u0022vi\u0022:\u0022m\\u1ED9t \\u0111\\u00F4i g\\u0103ng tay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.881b0f25ee214c5abcd5ee1a06775703",
+      "kind": "Card",
+      "values": {
+        "Term": "trousers",
+        "Definition": "qu\u1EA7n d\u00E0i",
+        "ImageUrl": "asset:08e8b21ff8397aa6d129168867b1a7c1038ce19991c10ff01c6b9b4cf2778313.webp",
+        "Phonetic": "/\u02C8t\u0279a\u028Az\u025Az/",
+        "Example": "He wore black trousers and a white shirt.",
+        "ExampleTranslation": "Anh \u1EA5y m\u1EB7c qu\u1EA7n d\u00E0i \u0111en v\u00E0 \u00E1o s\u01A1 mi tr\u1EAFng.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "clothing for the legs that covers each leg separately",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8t\u0279a\u028Az\u0259z/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He wore black trousers and a white shirt.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y m\\u1EB7c qu\\u1EA7n d\\u00E0i \\u0111en v\\u00E0 \\u00E1o s\\u01A1 mi tr\\u1EAFng.\u0022},{\u0022text\u0022:\u0022These trousers are too long for me.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc qu\\u1EA7n d\\u00E0i n\\u00E0y qu\\u00E1 d\\u00E0i v\\u1EDBi t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a pair of trousers\u0022,\u0022vi\u0022:\u0022m\\u1ED9t chi\\u1EBFc qu\\u1EA7n d\\u00E0i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.b60c32eea14b41bb87bb48176853ad91",
+      "kind": "Card",
+      "values": {
+        "Term": "shoes",
+        "Definition": "gi\u00E0y",
+        "ImageUrl": "asset:52fc6cd540181de246c79d874defa97a3b2fbbcb3ad69f1ce8aec3982c590c69.webp",
+        "Phonetic": "/\u0283u\u02D0z/",
+        "Example": "Take off your shoes at the door.",
+        "ExampleTranslation": "H\u00E3y c\u1EDFi gi\u00E0y \u1EDF c\u1EEDa.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "strong coverings for your feet",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u0283u\u02D0z/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Take off your shoes at the door.\u0022,\u0022vi\u0022:\u0022H\\u00E3y c\\u1EDFi gi\\u00E0y \\u1EDF c\\u1EEDa.\u0022},{\u0022text\u0022:\u0022She bought new shoes for school.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y mua gi\\u00E0y m\\u1EDBi \\u0111\\u1EC3 \\u0111i h\\u1ECDc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a pair of shoes\u0022,\u0022vi\u0022:\u0022m\\u1ED9t \\u0111\\u00F4i gi\\u00E0y\u0022},{\u0022text\u0022:\u0022leather shoes\u0022,\u0022vi\u0022:\u0022gi\\u00E0y da\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6525958/image-public-domain-black-illustrations\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.bdcaae952ed040108dc776749f673a1e",
+      "kind": "Card",
+      "values": {
+        "Term": "scarf",
+        "Definition": "kh\u0103n qu\u00E0ng c\u1ED5",
+        "ImageUrl": "asset:f27967517f742f929d5a54c1106a4e29a88eb3920ce34576991cceff8dc2f09f.webp",
+        "Phonetic": "/sk\u0251\u0279f/",
+        "Example": "She wrapped a scarf around her neck.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y qu\u1EA5n m\u1ED9t chi\u1EBFc kh\u0103n quanh c\u1ED5.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long piece of cloth worn around the neck",
+        "Cefr": "A2",
+        "PhoneticUk": "/sk\u0251\u02D0f/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She wrapped a scarf around her neck.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y qu\\u1EA5n m\\u1ED9t chi\\u1EBFc kh\\u0103n quanh c\\u1ED5.\u0022},{\u0022text\u0022:\u0022My red scarf keeps me warm.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc kh\\u0103n \\u0111\\u1ECF gi\\u1EEF \\u1EA5m cho t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wool scarf\u0022,\u0022vi\u0022:\u0022kh\\u0103n len\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022scarves\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/7613126/vector-cartoon-illustrations-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.c4dcf7f34bc94ef1b94a787e6a7a085e",
+      "kind": "Card",
+      "values": {
+        "Term": "skirt",
+        "Definition": "ch\u00E2n v\u00E1y",
+        "ImageUrl": "asset:3ed227b6c690d1793c726d4ded4a2a13382d737bc15029b09ac1c9045da957fd.webp",
+        "Phonetic": "/sk\u025At/",
+        "Example": "She wears a long skirt to school.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y m\u1EB7c ch\u00E2n v\u00E1y d\u00E0i \u0111\u1EBFn tr\u01B0\u1EDDng.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of clothing that hangs from the waist",
+        "Cefr": "A1",
+        "PhoneticUk": "/sk\u025C\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She wears a long skirt to school.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EB7c ch\\u00E2n v\\u00E1y d\\u00E0i \\u0111\\u1EBFn tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022The skirt is made of cotton.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc ch\\u00E2n v\\u00E1y \\u0111\\u01B0\\u1EE3c l\\u00E0m b\\u1EB1ng v\\u1EA3i cotton.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022short skirt\u0022,\u0022vi\u0022:\u0022v\\u00E1y ng\\u1EAFn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.c52c5cbdc3bd4224aff6e3b5321dad6e",
+      "kind": "Card",
+      "values": {
+        "Term": "sneakers",
+        "Definition": "gi\u00E0y th\u1EC3 thao",
+        "ImageUrl": "asset:2bdd51a45df9c8a176612b4e75b763a344e72e77a4b57f000675ff326df7c133.webp",
+        "Phonetic": "/\u02C8snik\u025Az/",
+        "Example": "I wear sneakers for the morning run.",
+        "ExampleTranslation": "T\u00F4i \u0111i gi\u00E0y th\u1EC3 thao \u0111\u1EC3 ch\u1EA1y b\u1ED9 bu\u1ED5i s\u00E1ng.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "soft shoes for sport and walking",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8snik\u025Az/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I wear sneakers for the morning run.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111i gi\\u00E0y th\\u1EC3 thao \\u0111\\u1EC3 ch\\u1EA1y b\\u1ED9 bu\\u1ED5i s\\u00E1ng.\u0022},{\u0022text\u0022:\u0022His white sneakers are dirty now.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00F4i gi\\u00E0y th\\u1EC3 thao tr\\u1EAFng c\\u1EE7a c\\u1EADu \\u1EA5y gi\\u1EDD \\u0111\\u00E3 b\\u1EA9n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022running sneakers\u0022,\u0022vi\u0022:\u0022gi\\u00E0y ch\\u1EA1y b\\u1ED9\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/9005051/vector-cartoon-illustrations-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.c8a27778f10443589fcd4c1ffa0d5d9f",
+      "kind": "Card",
+      "values": {
+        "Term": "shorts",
+        "Definition": "qu\u1EA7n \u0111\u00F9i, qu\u1EA7n short",
+        "ImageUrl": "asset:cf8a193db33cd902c7b0b00f05e255c7ca0f2a37d536dbcdbad69ce3235d95ca.webp",
+        "Phonetic": "/\u0283\u0254\u02D0(\u0279)ts/",
+        "Example": "He plays football in shorts.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y ch\u01A1i b\u00F3ng \u0111\u00E1 trong qu\u1EA7n \u0111\u00F9i.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "short trousers that end above the knee",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u0283\u0254\u02D0(\u0279)ts/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He plays football in shorts.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y ch\\u01A1i b\\u00F3ng \\u0111\\u00E1 trong qu\\u1EA7n \\u0111\\u00F9i.\u0022},{\u0022text\u0022:\u0022I wear shorts in summer.\u0022,\u0022vi\u0022:\u0022T\\u00F4i m\\u1EB7c qu\\u1EA7n \\u0111\\u00F9i v\\u00E0o m\\u00F9a h\\u00E8.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022swimming shorts\u0022,\u0022vi\u0022:\u0022qu\\u1EA7n b\\u01A1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.d9f34b7d333141ee9dc3c57cfd92ee59",
+      "kind": "Card",
+      "values": {
+        "Term": "jeans",
+        "Definition": "qu\u1EA7n b\u00F2, qu\u1EA7n jean",
+        "ImageUrl": "asset:0c6ce323ec805dc1d3b916d57310277f298d6a4061f1b487a11aa1f55bfeab53.webp",
+        "Phonetic": "/d\u0361\u0292i\u02D0nz/",
+        "Example": "I wear jeans on weekends.",
+        "ExampleTranslation": "T\u00F4i m\u1EB7c qu\u1EA7n jean v\u00E0o cu\u1ED1i tu\u1EA7n.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "strong blue trousers made of denim",
+        "Cefr": "A1",
+        "PhoneticUk": "/d\u0361\u0292i\u02D0nz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I wear jeans on weekends.\u0022,\u0022vi\u0022:\u0022T\\u00F4i m\\u1EB7c qu\\u1EA7n jean v\\u00E0o cu\\u1ED1i tu\\u1EA7n.\u0022},{\u0022text\u0022:\u0022Her jeans are blue and comfortable.\u0022,\u0022vi\u0022:\u0022Qu\\u1EA7n jean c\\u1EE7a c\\u00F4 \\u1EA5y m\\u00E0u xanh v\\u00E0 tho\\u1EA3i m\\u00E1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a pair of jeans\u0022,\u0022vi\u0022:\u0022m\\u1ED9t chi\\u1EBFc qu\\u1EA7n jean\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6489742/image-public-domain-blue-person\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.e0272416ff3241ca8a1ebf3af1b0ca0f",
+      "kind": "Card",
+      "values": {
+        "Term": "watch",
+        "Definition": "\u0111\u1ED3ng h\u1ED3 \u0111eo tay; xem",
+        "ImageUrl": "asset:85d90d212bd0db8650360c4d6323d4d76553fd821a4be07134fe4ab0f3af5fa5.webp",
+        "Phonetic": "/\u02C8w\u0251t\u0361\u0283/",
+        "Example": "He looked at his watch and left.",
+        "ExampleTranslation": "Anh \u1EA5y nh\u00ECn \u0111\u1ED3ng h\u1ED3 r\u1ED3i r\u1EDDi \u0111i.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "a small clock that you wear on your wrist",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8w\u0252t\u0361\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He looked at his watch and left.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y nh\\u00ECn \\u0111\\u1ED3ng h\\u1ED3 r\\u1ED3i r\\u1EDDi \\u0111i.\u0022},{\u0022text\u0022:\u0022My father gave me a new watch.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 t\\u1EB7ng t\\u00F4i m\\u1ED9t chi\\u1EBFc \\u0111\\u1ED3ng h\\u1ED3 m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wrist watch\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED3ng h\\u1ED3 \\u0111eo tay\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022watched\u0022,\u0022pastParticiple\u0022:\u0022watched\u0022,\u0022ing\u0022:\u0022watching\u0022,\u0022thirdPerson\u0022:\u0022watches\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6283414/image-public-domain-illustrations-cute\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.ecdcae83234b4218af7431f9cce48e7f",
+      "kind": "Card",
+      "values": {
+        "Term": "necklace",
+        "Definition": "d\u00E2y chuy\u1EC1n, v\u00F2ng c\u1ED5",
+        "ImageUrl": "asset:c33f6778e12bfa253845e237b042e89c3a2ac70363a48224272a3c0637a1d49d.webp",
+        "Phonetic": "/\u02C8n\u025Bkl\u0259s/",
+        "Example": "She wore a gold necklace.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111eo m\u1ED9t s\u1EE3i d\u00E2y chuy\u1EC1n v\u00E0ng.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "jewellery that you wear around your neck",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8nekl\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She wore a gold necklace.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111eo m\\u1ED9t s\\u1EE3i d\\u00E2y chuy\\u1EC1n v\\u00E0ng.\u0022},{\u0022text\u0022:\u0022The necklace was a gift from her mother.\u0022,\u0022vi\u0022:\u0022S\\u1EE3i d\\u00E2y chuy\\u1EC1n l\\u00E0 qu\\u00E0 c\\u1EE7a m\\u1EB9 c\\u00F4 \\u1EA5y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pearl necklace\u0022,\u0022vi\u0022:\u0022v\\u00F2ng c\\u1ED5 ng\\u1ECDc trai\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/7568137/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a08-quan-ao-phu-kien.f2898ad693ee4f48875dd21e7c9a2cfd",
+      "kind": "Card",
+      "values": {
+        "Term": "tie",
+        "Definition": "c\u00E0 v\u1EA1t; bu\u1ED9c",
+        "ImageUrl": "asset:43fddc30496f67ed9a33e52ede36112dc7ed68553be12f53f0ff5582047630a6.webp",
+        "Phonetic": "/ta\u026A/",
+        "Example": "He wears a tie to the office.",
+        "ExampleTranslation": "Anh \u1EA5y th\u1EAFt c\u00E0 v\u1EA1t \u0111\u1EBFn v\u0103n ph\u00F2ng.",
+        "Topic": "Qu\u1EA7n \u00E1o \u0026 ph\u1EE5 ki\u1EC7n",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "a long narrow strip of cloth worn around the neck",
+        "Cefr": "A2",
+        "PhoneticUk": "/ta\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He wears a tie to the office.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y th\\u1EAFt c\\u00E0 v\\u1EA1t \\u0111\\u1EBFn v\\u0103n ph\\u00F2ng.\u0022},{\u0022text\u0022:\u0022Dad bought a blue tie for the interview.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 mua m\\u1ED9t chi\\u1EBFc c\\u00E0 v\\u1EA1t xanh cho bu\\u1ED5i ph\\u1ECFng v\\u1EA5n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wear a tie\u0022,\u0022vi\u0022:\u0022th\\u1EAFt c\\u00E0 v\\u1EA1t\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022tied\u0022,\u0022pastParticiple\u0022:\u0022tied\u0022,\u0022ing\u0022:\u0022tying\u0022,\u0022thirdPerson\u0022:\u0022ties\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "8ef91c5e641389f87f19c60842428c5ee2d9627fbdff2b2c2c895b0936ff3bb1.webp",
+      "sha256": "8ef91c5e641389f87f19c60842428c5ee2d9627fbdff2b2c2c895b0936ff3bb1"
+    },
+    {
+      "file": "3b6e6e917adc8ed30cde223018b71d7c70d62cddf5ab88b41561d2e1694b3412.webp",
+      "sha256": "3b6e6e917adc8ed30cde223018b71d7c70d62cddf5ab88b41561d2e1694b3412"
+    },
+    {
+      "file": "107e24150b61064995e637983de84be749cc47efb4c35373700ea606b5ef87d7.webp",
+      "sha256": "107e24150b61064995e637983de84be749cc47efb4c35373700ea606b5ef87d7"
+    },
+    {
+      "file": "3ed227b6c690d1793c726d4ded4a2a13382d737bc15029b09ac1c9045da957fd.webp",
+      "sha256": "3ed227b6c690d1793c726d4ded4a2a13382d737bc15029b09ac1c9045da957fd"
+    },
+    {
+      "file": "08e8b21ff8397aa6d129168867b1a7c1038ce19991c10ff01c6b9b4cf2778313.webp",
+      "sha256": "08e8b21ff8397aa6d129168867b1a7c1038ce19991c10ff01c6b9b4cf2778313"
+    },
+    {
+      "file": "0c6ce323ec805dc1d3b916d57310277f298d6a4061f1b487a11aa1f55bfeab53.webp",
+      "sha256": "0c6ce323ec805dc1d3b916d57310277f298d6a4061f1b487a11aa1f55bfeab53"
+    },
+    {
+      "file": "cf8a193db33cd902c7b0b00f05e255c7ca0f2a37d536dbcdbad69ce3235d95ca.webp",
+      "sha256": "cf8a193db33cd902c7b0b00f05e255c7ca0f2a37d536dbcdbad69ce3235d95ca"
+    },
+    {
+      "file": "9e31dbfab69c57d9a2398431ae80b982e81ebb6334d68c5651d120c81e9dcee0.webp",
+      "sha256": "9e31dbfab69c57d9a2398431ae80b982e81ebb6334d68c5651d120c81e9dcee0"
+    },
+    {
+      "file": "d1a108405d60aee127f1c71644f59b9560312be316b841afc69de8cf102056ef.webp",
+      "sha256": "d1a108405d60aee127f1c71644f59b9560312be316b841afc69de8cf102056ef"
+    },
+    {
+      "file": "b3526b94e756f148fcff7bcfdeaadbffc99ee99455d7385b346153f9517b40b2.webp",
+      "sha256": "b3526b94e756f148fcff7bcfdeaadbffc99ee99455d7385b346153f9517b40b2"
+    },
+    {
+      "file": "f27967517f742f929d5a54c1106a4e29a88eb3920ce34576991cceff8dc2f09f.webp",
+      "sha256": "f27967517f742f929d5a54c1106a4e29a88eb3920ce34576991cceff8dc2f09f"
+    },
+    {
+      "file": "19801226e9e791e037de74658512aeea839003f11092c03da73f690227ad676c.webp",
+      "sha256": "19801226e9e791e037de74658512aeea839003f11092c03da73f690227ad676c"
+    },
+    {
+      "file": "6078376f3293bf7f003c9ec6210f877714767beaae5c7a26ca1b141852bc5c8c.webp",
+      "sha256": "6078376f3293bf7f003c9ec6210f877714767beaae5c7a26ca1b141852bc5c8c"
+    },
+    {
+      "file": "a7596392373cae71fe89eaec3ec00ca0784116b28424bfdf8d6bd2db662c8186.webp",
+      "sha256": "a7596392373cae71fe89eaec3ec00ca0784116b28424bfdf8d6bd2db662c8186"
+    },
+    {
+      "file": "08f26b2acd988ae26e803f60c101110bfd20c1bb2e9ecf1257ebf3d88099a6a5.webp",
+      "sha256": "08f26b2acd988ae26e803f60c101110bfd20c1bb2e9ecf1257ebf3d88099a6a5"
+    },
+    {
+      "file": "52fc6cd540181de246c79d874defa97a3b2fbbcb3ad69f1ce8aec3982c590c69.webp",
+      "sha256": "52fc6cd540181de246c79d874defa97a3b2fbbcb3ad69f1ce8aec3982c590c69"
+    },
+    {
+      "file": "2bdd51a45df9c8a176612b4e75b763a344e72e77a4b57f000675ff326df7c133.webp",
+      "sha256": "2bdd51a45df9c8a176612b4e75b763a344e72e77a4b57f000675ff326df7c133"
+    },
+    {
+      "file": "8a446658a3703874adf23b5b2c6eaf522abf199cb71cb55d906ab63323d7623e.webp",
+      "sha256": "8a446658a3703874adf23b5b2c6eaf522abf199cb71cb55d906ab63323d7623e"
+    },
+    {
+      "file": "cbc2db4e7137c7bb0dbef5862cda0c1af4d086e389d76a8215c8aeb94cbc3d8b.webp",
+      "sha256": "cbc2db4e7137c7bb0dbef5862cda0c1af4d086e389d76a8215c8aeb94cbc3d8b"
+    },
+    {
+      "file": "6bc328363c49c927a583034d200886ea78d37d0681b74a297e9513e84e54b6ae.webp",
+      "sha256": "6bc328363c49c927a583034d200886ea78d37d0681b74a297e9513e84e54b6ae"
+    },
+    {
+      "file": "43fddc30496f67ed9a33e52ede36112dc7ed68553be12f53f0ff5582047630a6.webp",
+      "sha256": "43fddc30496f67ed9a33e52ede36112dc7ed68553be12f53f0ff5582047630a6"
+    },
+    {
+      "file": "efdbe875c80a52155f969730e8a3fe8167a398e3eac4435e92d1ed0718374af4.webp",
+      "sha256": "efdbe875c80a52155f969730e8a3fe8167a398e3eac4435e92d1ed0718374af4"
+    },
+    {
+      "file": "85d90d212bd0db8650360c4d6323d4d76553fd821a4be07134fe4ab0f3af5fa5.webp",
+      "sha256": "85d90d212bd0db8650360c4d6323d4d76553fd821a4be07134fe4ab0f3af5fa5"
+    },
+    {
+      "file": "c33f6778e12bfa253845e237b042e89c3a2ac70363a48224272a3c0637a1d49d.webp",
+      "sha256": "c33f6778e12bfa253845e237b042e89c3a2ac70363a48224272a3c0637a1d49d"
+    },
+    {
+      "file": "abcb21f7ace584e074d9baa49549c936853ff27fc853e798be698e2317ecf85d.webp",
+      "sha256": "abcb21f7ace584e074d9baa49549c936853ff27fc853e798be698e2317ecf85d"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a08-quan-ao-phu-kien"
+}

@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap",
+      "kind": "Set",
+      "values": {
+        "SetName": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "Description": "#b1 #b2 #education #study"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.024a692dae9f4706a47e379e95b31c36",
+      "kind": "Card",
+      "values": {
+        "Term": "science fair",
+        "Definition": "h\u1ED9i ch\u1EE3 khoa h\u1ECDc",
+        "ImageUrl": "asset:13caa27bfc248b69d02fcc5b2cab917eb7158ac87c61c51cf0e3a3a67f15c9d9.webp",
+        "Phonetic": "/\u02C8sa\u026A.\u0259ns \u02C8f\u025B\u025A/",
+        "Example": "She won a prize at the school science fair.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111o\u1EA1t gi\u1EA3i \u1EDF h\u1ED9i ch\u1EE3 khoa h\u1ECDc c\u1EE7a tr\u01B0\u1EDDng.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an event where students show their science projects",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8sa\u026A.\u0259ns \u02C8f\u025B\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She won a prize at the school science fair.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111o\\u1EA1t gi\\u1EA3i \\u1EDF h\\u1ED9i ch\\u1EE3 khoa h\\u1ECDc c\\u1EE7a tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022Our science fair takes place in the gym.\u0022,\u0022vi\u0022:\u0022H\\u1ED9i ch\\u1EE3 khoa h\\u1ECDc c\\u1EE7a ch\\u00FAng t\\u00F4i di\\u1EC5n ra trong ph\\u00F2ng t\\u1EADp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022science fair project\u0022,\u0022vi\u0022:\u0022d\\u1EF1 \\u00E1n h\\u1ED9i ch\\u1EE3 khoa h\\u1ECDc\u0022},{\u0022text\u0022:\u0022win a prize at the science fair\u0022,\u0022vi\u0022:\u0022\\u0111o\\u1EA1t gi\\u1EA3i \\u1EDF h\\u1ED9i ch\\u1EE3 khoa h\\u1ECDc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.080e1e6a03234019a9e81dcfed8d630f",
+      "kind": "Card",
+      "values": {
+        "Term": "worksheet",
+        "Definition": "phi\u1EBFu b\u00E0i t\u1EADp",
+        "ImageUrl": "asset:ac5d82b724d32754fdec2f01bf547552275b0768f1b09e8fa4c3578c377fffd2.webp",
+        "Phonetic": "/\u02C8w\u025D\u02D0k\u0283it/",
+        "Example": "The teacher handed out a maths worksheet.",
+        "ExampleTranslation": "C\u00F4 gi\u00E1o ph\u00E1t m\u1ED9t phi\u1EBFu b\u00E0i t\u1EADp to\u00E1n.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a printed page of questions for students to answer",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8w\u025C\u02D0k\u0283i\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The teacher handed out a maths worksheet.\u0022,\u0022vi\u0022:\u0022C\\u00F4 gi\\u00E1o ph\\u00E1t m\\u1ED9t phi\\u1EBFu b\\u00E0i t\\u1EADp to\\u00E1n.\u0022},{\u0022text\u0022:\u0022Please finish the worksheet before the bell.\u0022,\u0022vi\u0022:\u0022H\\u00E3y l\\u00E0m xong phi\\u1EBFu b\\u00E0i t\\u1EADp tr\\u01B0\\u1EDBc khi chu\\u00F4ng reo.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022complete a worksheet\u0022,\u0022vi\u0022:\u0022ho\\u00E0n th\\u00E0nh phi\\u1EBFu b\\u00E0i t\\u1EADp\u0022},{\u0022text\u0022:\u0022grammar worksheet\u0022,\u0022vi\u0022:\u0022phi\\u1EBFu b\\u00E0i t\\u1EADp ng\\u1EEF ph\\u00E1p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.08d06b6d9c904747b673cc02a97c9e23",
+      "kind": "Card",
+      "values": {
+        "Term": "laboratory",
+        "Definition": "ph\u00F2ng th\u00ED nghi\u1EC7m",
+        "ImageUrl": "asset:acfdaf7b15eb5591cdfd980cddce8d3abee7046c87ae701e0fcc5023908edce3.webp",
+        "Phonetic": "/\u02C8l\u00E6b(\u0259)\u0279\u0259\u02CCt\u0254\u0279i/",
+        "Example": "The students do experiments in the laboratory.",
+        "ExampleTranslation": "H\u1ECDc sinh l\u00E0m th\u00ED nghi\u1EC7m trong ph\u00F2ng th\u00ED nghi\u1EC7m.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a room with equipment for scientific work",
+        "Cefr": "B2",
+        "PhoneticUk": "/l\u0259\u02C8b\u0252\u0279\u0259t(\u0259)\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The students do experiments in the laboratory.\u0022,\u0022vi\u0022:\u0022H\\u1ECDc sinh l\\u00E0m th\\u00ED nghi\\u1EC7m trong ph\\u00F2ng th\\u00ED nghi\\u1EC7m.\u0022},{\u0022text\u0022:\u0022Wear safety glasses in the laboratory.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111eo k\\u00EDnh b\\u1EA3o h\\u1ED9 khi \\u1EDF trong ph\\u00F2ng th\\u00ED nghi\\u1EC7m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022science laboratory\u0022,\u0022vi\u0022:\u0022ph\\u00F2ng th\\u00ED nghi\\u1EC7m khoa h\\u1ECDc\u0022},{\u0022text\u0022:\u0022laboratory equipment\u0022,\u0022vi\u0022:\u0022thi\\u1EBFt b\\u1ECB ph\\u00F2ng th\\u00ED nghi\\u1EC7m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.1548384ea7924e26a3982743f60fd287",
+      "kind": "Card",
+      "values": {
+        "Term": "highlighter",
+        "Definition": "b\u00FAt d\u1EA1 quang",
+        "ImageUrl": "asset:f5aa03766a7378b9ee93a6943e60a7c28d37734c557a88bee6a2f818b517fa36.webp",
+        "Phonetic": "/\u02C8ha\u026A.la\u026At.\u025A/",
+        "Example": "Use a highlighter to mark the key words.",
+        "ExampleTranslation": "H\u00E3y d\u00F9ng b\u00FAt d\u1EA1 quang \u0111\u1EC3 \u0111\u00E1nh d\u1EA5u c\u00E1c t\u1EEB kh\u00F3a.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a bright pen used to mark important words",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8ha\u026A.la\u026At.\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Use a highlighter to mark the key words.\u0022,\u0022vi\u0022:\u0022H\\u00E3y d\\u00F9ng b\\u00FAt d\\u1EA1 quang \\u0111\\u1EC3 \\u0111\\u00E1nh d\\u1EA5u c\\u00E1c t\\u1EEB kh\\u00F3a.\u0022},{\u0022text\u0022:\u0022My highlighter is yellow.\u0022,\u0022vi\u0022:\u0022B\\u00FAt d\\u1EA1 quang c\\u1EE7a t\\u00F4i m\\u00E0u v\\u00E0ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022yellow highlighter\u0022,\u0022vi\u0022:\u0022b\\u00FAt d\\u1EA1 quang m\\u00E0u v\\u00E0ng\u0022},{\u0022text\u0022:\u0022use a highlighter\u0022,\u0022vi\u0022:\u0022d\\u00F9ng b\\u00FAt d\\u1EA1 quang\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.2e8e60d64c87427aaf68b6ffddb14eaf",
+      "kind": "Card",
+      "values": {
+        "Term": "diploma",
+        "Definition": "v\u0103n b\u1EB1ng, b\u1EB1ng t\u1ED1t nghi\u1EC7p",
+        "ImageUrl": "asset:db0a072b8e346bf8f241931fdab2c342e5685ba812cef3f6a6ef744461fc029d.webp",
+        "Phonetic": "/d\u026A\u02C8plo\u028Am\u0259/",
+        "Example": "She received her diploma on graduation day.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y nh\u1EADn b\u1EB1ng t\u1ED1t nghi\u1EC7p v\u00E0o ng\u00E0y l\u1EC5 t\u1ED1t nghi\u1EC7p.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an official paper that shows you have finished a course",
+        "Cefr": "B2",
+        "PhoneticUk": "/d\u026A\u02C8pl\u0259\u028Am\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She received her diploma on graduation day.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y nh\\u1EADn b\\u1EB1ng t\\u1ED1t nghi\\u1EC7p v\\u00E0o ng\\u00E0y l\\u1EC5 t\\u1ED1t nghi\\u1EC7p.\u0022},{\u0022text\u0022:\u0022He hung his diploma on the wall.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y treo b\\u1EB1ng t\\u1ED1t nghi\\u1EC7p l\\u00EAn t\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022receive a diploma\u0022,\u0022vi\u0022:\u0022nh\\u1EADn b\\u1EB1ng t\\u1ED1t nghi\\u1EC7p\u0022},{\u0022text\u0022:\u0022high school diploma\u0022,\u0022vi\u0022:\u0022b\\u1EB1ng t\\u1ED1t nghi\\u1EC7p trung h\\u1ECDc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6535481/vector-paper-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.3235d1a405b7409fb1a7583b2ea5ba8c",
+      "kind": "Card",
+      "values": {
+        "Term": "graduation",
+        "Definition": "l\u1EC5 t\u1ED1t nghi\u1EC7p",
+        "ImageUrl": "asset:d6d819ece0580c4bb5be7169327ff0d552fb0c88b699199a35c9e0f5544297e5.webp",
+        "Phonetic": "/\u02CC\u0261\u0279\u00E6d\u0361\u0292u\u02C8e\u026A\u0283\u0259n/",
+        "Example": "Our whole family came to my graduation.",
+        "ExampleTranslation": "C\u1EA3 gia \u0111\u00ECnh t\u00F4i \u0111\u1EBFn d\u1EF1 l\u1EC5 t\u1ED1t nghi\u1EC7p c\u1EE7a t\u00F4i.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the day or ceremony when you finish your studies",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02CC\u0261\u0279\u00E6dju\u02C8e\u026A\u0283\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Our whole family came to my graduation.\u0022,\u0022vi\u0022:\u0022C\\u1EA3 gia \\u0111\\u00ECnh t\\u00F4i \\u0111\\u1EBFn d\\u1EF1 l\\u1EC5 t\\u1ED1t nghi\\u1EC7p c\\u1EE7a t\\u00F4i.\u0022},{\u0022text\u0022:\u0022Graduation is in June this year.\u0022,\u0022vi\u0022:\u0022N\\u0103m nay l\\u1EC5 t\\u1ED1t nghi\\u1EC7p di\\u1EC5n ra v\\u00E0o th\\u00E1ng S\\u00E1u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022graduation ceremony\u0022,\u0022vi\u0022:\u0022l\\u1EC5 t\\u1ED1t nghi\\u1EC7p\u0022},{\u0022text\u0022:\u0022graduation day\u0022,\u0022vi\u0022:\u0022ng\\u00E0y t\\u1ED1t nghi\\u1EC7p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.3534457ed57748b99d6d6bb67f8e1948",
+      "kind": "Card",
+      "values": {
+        "Term": "cafeteria",
+        "Definition": "c\u0103ng tin",
+        "ImageUrl": "asset:885a729c73f06928969503d1812d7ad51963a1396196609948a311ea538daafc.webp",
+        "Phonetic": "/\u02CCk\u00E6f.\u0259.\u02C8t\u026A\u0279.i.\u0259/",
+        "Example": "We eat lunch in the school cafeteria.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0103n tr\u01B0a \u1EDF c\u0103ng tin tr\u01B0\u1EDDng.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place in a school where you buy and eat meals",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02CCk\u00E6f.\u0259.\u02C8t\u026A\u0259\u032F.\u0279i.\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We eat lunch in the school cafeteria.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0103n tr\\u01B0a \\u1EDF c\\u0103ng tin tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022The cafeteria is crowded at noon.\u0022,\u0022vi\u0022:\u0022C\\u0103ng tin r\\u1EA5t \\u0111\\u00F4ng v\\u00E0o bu\\u1ED5i tr\\u01B0a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022school cafeteria\u0022,\u0022vi\u0022:\u0022c\\u0103ng tin tr\\u01B0\\u1EDDng\u0022},{\u0022text\u0022:\u0022cafeteria food\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED3 \\u0103n c\\u0103ng tin\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Elementary_school_(2nd_grade)_students_eating_school_breakfast_in_the_cafeteria_-_20210727-FNS-UNC-0009.jpg\u0022,\u0022author\u0022:\u0022U.S. Department of Agriculture\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.368a9f2d7d8944eab1e22f0710345f9f",
+      "kind": "Card",
+      "values": {
+        "Term": "campus",
+        "Definition": "khu\u00F4n vi\u00EAn tr\u01B0\u1EDDng",
+        "ImageUrl": "asset:cad075be88c18f98cd6d7d41e712b3667b77e150461a88ee57186108824e7344.webp",
+        "Phonetic": "/\u02C8k\u00E6mp\u0259s/",
+        "Example": "The campus has a library and a sports centre.",
+        "ExampleTranslation": "Khu\u00F4n vi\u00EAn tr\u01B0\u1EDDng c\u00F3 th\u01B0 vi\u1EC7n v\u00E0 trung t\u00E2m th\u1EC3 thao.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the land and buildings of a university or college",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8k\u00E6mp\u0259s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The campus has a library and a sports centre.\u0022,\u0022vi\u0022:\u0022Khu\\u00F4n vi\\u00EAn tr\\u01B0\\u1EDDng c\\u00F3 th\\u01B0 vi\\u1EC7n v\\u00E0 trung t\\u00E2m th\\u1EC3 thao.\u0022},{\u0022text\u0022:\u0022Many students live on campus.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC1u sinh vi\\u00EAn s\\u1ED1ng trong khu\\u00F4n vi\\u00EAn tr\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022live on campus\u0022,\u0022vi\u0022:\u0022\\u1EDF trong khu\\u00F4n vi\\u00EAn tr\\u01B0\\u1EDDng\u0022},{\u0022text\u0022:\u0022university campus\u0022,\u0022vi\u0022:\u0022khu\\u00F4n vi\\u00EAn \\u0111\\u1EA1i h\\u1ECDc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/104736837@N03/12074301105\u0022,\u0022author\u0022:\u0022Amsterdam free photos \\u0026 pictures of the Dutch city\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.3912774e70fe4f578a997dffd0ffb52a",
+      "kind": "Card",
+      "values": {
+        "Term": "school bus",
+        "Definition": "xe bu\u00FDt tr\u01B0\u1EDDng h\u1ECDc",
+        "ImageUrl": "asset:741dd6c471612bae9bf52391bbb16a69d63b352d266bbe7e839b0a87e5c25484.webp",
+        "Phonetic": "/skul b\u028Cs/",
+        "Example": "The school bus comes at seven o\u0027clock.",
+        "ExampleTranslation": "Xe bu\u00FDt tr\u01B0\u1EDDng h\u1ECDc \u0111\u1EBFn l\u00FAc b\u1EA3y gi\u1EDD.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a bus that takes children to and from school",
+        "Cefr": "B1",
+        "PhoneticUk": "/sku\u02D0l b\u028Cs/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The school bus comes at seven o\\u0027clock.\u0022,\u0022vi\u0022:\u0022Xe bu\\u00FDt tr\\u01B0\\u1EDDng h\\u1ECDc \\u0111\\u1EBFn l\\u00FAc b\\u1EA3y gi\\u1EDD.\u0022},{\u0022text\u0022:\u0022He gets off the school bus near his house.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y xu\\u1ED1ng xe bu\\u00FDt tr\\u01B0\\u1EDDng h\\u1ECDc g\\u1EA7n nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022take the school bus\u0022,\u0022vi\u0022:\u0022\\u0111i xe bu\\u00FDt tr\\u01B0\\u1EDDng h\\u1ECDc\u0022},{\u0022text\u0022:\u0022yellow school bus\u0022,\u0022vi\u0022:\u0022xe bu\\u00FDt tr\\u01B0\\u1EDDng h\\u1ECDc m\\u00E0u v\\u00E0ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8809277/yellow-school-bus\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.3cc73017e665447eac5d7ca4753d0b00",
+      "kind": "Card",
+      "values": {
+        "Term": "chalk",
+        "Definition": "ph\u1EA5n",
+        "ImageUrl": "asset:986c6d5d264bd272bf795c007bb7e32a2cc8fd48897b4a79c4f89c5907ba7d74.webp",
+        "Phonetic": "/t\u0361\u0283\u0254k/",
+        "Example": "She picked up a piece of chalk and drew a circle.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y c\u1EA7m m\u1ED9t vi\u00EAn ph\u1EA5n l\u00EAn v\u00E0 v\u1EBD m\u1ED9t v\u00F2ng tr\u00F2n.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a soft white stick used for writing on a blackboard",
+        "Cefr": "B1",
+        "PhoneticUk": "/t\u0361\u0283\u0254\u02D0k/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She picked up a piece of chalk and drew a circle.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y c\\u1EA7m m\\u1ED9t vi\\u00EAn ph\\u1EA5n l\\u00EAn v\\u00E0 v\\u1EBD m\\u1ED9t v\\u00F2ng tr\\u00F2n.\u0022},{\u0022text\u0022:\u0022My hands were covered in chalk dust.\u0022,\u0022vi\u0022:\u0022Tay t\\u00F4i d\\u00EDnh \\u0111\\u1EA7y b\\u1EE5i ph\\u1EA5n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022piece of chalk\u0022,\u0022vi\u0022:\u0022m\\u1ED9t vi\\u00EAn ph\\u1EA5n\u0022},{\u0022text\u0022:\u0022coloured chalk\u0022,\u0022vi\u0022:\u0022ph\\u1EA5n m\\u00E0u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5911951/image-background-aesthetic-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.3e057c07cb7742598cb1e3a9cdb7082e",
+      "kind": "Card",
+      "values": {
+        "Term": "timetable",
+        "Definition": "th\u1EDDi kh\u00F3a bi\u1EC3u",
+        "ImageUrl": "asset:33c4219753bf30897365e05b991e1809fba98189a553dcb70d3f8bcc4a1feacc.webp",
+        "Phonetic": "/\u02C8ta\u026Am\u02CCte\u026Ab\u0259l/",
+        "Example": "Check the timetable to see when the next class starts.",
+        "ExampleTranslation": "H\u00E3y xem th\u1EDDi kh\u00F3a bi\u1EC3u \u0111\u1EC3 bi\u1EBFt khi n\u00E0o l\u1EDBp ti\u1EBFp theo b\u1EAFt \u0111\u1EA7u.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a list that shows when lessons or events happen",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8ta\u026Am\u02CCte\u026Ab\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Check the timetable to see when the next class starts.\u0022,\u0022vi\u0022:\u0022H\\u00E3y xem th\\u1EDDi kh\\u00F3a bi\\u1EC3u \\u0111\\u1EC3 bi\\u1EBFt khi n\\u00E0o l\\u1EDBp ti\\u1EBFp theo b\\u1EAFt \\u0111\\u1EA7u.\u0022},{\u0022text\u0022:\u0022My timetable is very busy on Mondays.\u0022,\u0022vi\u0022:\u0022Th\\u1EDDi kh\\u00F3a bi\\u1EC3u c\\u1EE7a t\\u00F4i r\\u1EA5t k\\u00EDn v\\u00E0o th\\u1EE9 Hai.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022school timetable\u0022,\u0022vi\u0022:\u0022th\\u1EDDi kh\\u00F3a bi\\u1EC3u c\\u1EE7a tr\\u01B0\\u1EDDng\u0022},{\u0022text\u0022:\u0022check the timetable\u0022,\u0022vi\u0022:\u0022xem th\\u1EDDi kh\\u00F3a bi\\u1EC3u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:FLHS_School_Schedule.jpg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.4203a35f552d4897a139d94f63ba2a3a",
+      "kind": "Card",
+      "values": {
+        "Term": "group project",
+        "Definition": "d\u1EF1 \u00E1n nh\u00F3m",
+        "ImageUrl": "asset:d40d353131683e0d3aa071b5ec22b924808016a0d1da09aaaa1cd1ef5e220621.webp",
+        "Phonetic": "/\u0261\u0279up \u02C8p\u0279\u0251\u02CCd\u0361\u0292\u025Bkt/",
+        "Example": "Our group project is about recycling.",
+        "ExampleTranslation": "D\u1EF1 \u00E1n nh\u00F3m c\u1EE7a ch\u00FAng t\u00F4i n\u00F3i v\u1EC1 t\u00E1i ch\u1EBF.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "school work that a small team does together",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0261\u0279u\u02D0p \u02C8p\u0279\u0252d\u0361\u0292.\u025Bkt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Our group project is about recycling.\u0022,\u0022vi\u0022:\u0022D\\u1EF1 \\u00E1n nh\\u00F3m c\\u1EE7a ch\\u00FAng t\\u00F4i n\\u00F3i v\\u1EC1 t\\u00E1i ch\\u1EBF.\u0022},{\u0022text\u0022:\u0022We worked on the group project after class.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i l\\u00E0m d\\u1EF1 \\u00E1n nh\\u00F3m sau gi\\u1EDD h\\u1ECDc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022work on a group project\u0022,\u0022vi\u0022:\u0022l\\u00E0m d\\u1EF1 \\u00E1n nh\\u00F3m\u0022},{\u0022text\u0022:\u0022finish a group project\u0022,\u0022vi\u0022:\u0022ho\\u00E0n th\\u00E0nh d\\u1EF1 \\u00E1n nh\\u00F3m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.4f3e5c411de94503bdf30cdfe6c9ba52",
+      "kind": "Card",
+      "values": {
+        "Term": "blackboard",
+        "Definition": "b\u1EA3ng \u0111en",
+        "ImageUrl": "asset:8d98e9d798f4aadbb904484bb3cbf2314d44fd93d0c1c30e6ad2a8fefe2ca508.webp",
+        "Phonetic": "/\u02C8bl\u00E6kbo\u0279d/",
+        "Example": "The teacher wrote the date on the blackboard.",
+        "ExampleTranslation": "C\u00F4 gi\u00E1o vi\u1EBFt ng\u00E0y th\u00E1ng l\u00EAn b\u1EA3ng \u0111en.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a dark board that you write on with chalk",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8bl\u00E6kb\u0254\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The teacher wrote the date on the blackboard.\u0022,\u0022vi\u0022:\u0022C\\u00F4 gi\\u00E1o vi\\u1EBFt ng\\u00E0y th\\u00E1ng l\\u00EAn b\\u1EA3ng \\u0111en.\u0022},{\u0022text\u0022:\u0022Please clean the blackboard after class.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n lau b\\u1EA3ng \\u0111en sau gi\\u1EDD h\\u1ECDc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022clean the blackboard\u0022,\u0022vi\u0022:\u0022lau b\\u1EA3ng \\u0111en\u0022},{\u0022text\u0022:\u0022write on the blackboard\u0022,\u0022vi\u0022:\u0022vi\\u1EBFt l\\u00EAn b\\u1EA3ng \\u0111en\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/9004448/png-white-background-frame\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.5831427f43fb45629c4e7d2f2e74778b",
+      "kind": "Card",
+      "values": {
+        "Term": "lecture hall",
+        "Definition": "gi\u1EA3ng \u0111\u01B0\u1EDDng",
+        "ImageUrl": "asset:f8674b853e41e48386cbb6707cb21e81104126accf5eeb6eb85a36c842eea0d1.webp",
+        "Phonetic": "/\u02C8l\u025Bk.t\u0361\u0283\u025A h\u0254l/",
+        "Example": "The lecture hall was full of students.",
+        "ExampleTranslation": "Gi\u1EA3ng \u0111\u01B0\u1EDDng ch\u1EADt k\u00EDn sinh vi\u00EAn.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large room where a teacher gives a talk to many students",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8l\u025Bk.t\u0361\u0283\u0259 h\u0254\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The lecture hall was full of students.\u0022,\u0022vi\u0022:\u0022Gi\\u1EA3ng \\u0111\\u01B0\\u1EDDng ch\\u1EADt k\\u00EDn sinh vi\\u00EAn.\u0022},{\u0022text\u0022:\u0022We found seats at the back of the lecture hall.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i t\\u00ECm \\u0111\\u01B0\\u1EE3c ch\\u1ED7 ng\\u1ED3i \\u1EDF cu\\u1ED1i gi\\u1EA3ng \\u0111\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022crowded lecture hall\u0022,\u0022vi\u0022:\u0022gi\\u1EA3ng \\u0111\\u01B0\\u1EDDng \\u0111\\u00F4ng \\u0111\\u00FAc\u0022},{\u0022text\u0022:\u0022enter the lecture hall\u0022,\u0022vi\u0022:\u0022b\\u01B0\\u1EDBc v\\u00E0o gi\\u1EA3ng \\u0111\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Ohio_University_Lecture_Hall.jpg\u0022,\u0022author\u0022:\u0022Garden Sprite\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.6d4f41dd21ca4782beeca6325e9f53db",
+      "kind": "Card",
+      "values": {
+        "Term": "dormitory",
+        "Definition": "k\u00FD t\u00FAc x\u00E1",
+        "ImageUrl": "asset:370f8013536ce2ab4e9f315a6986fac2b1d49814ead54fb00a3f5ee15cd8f42f.webp",
+        "Phonetic": "/\u02C8d\u0254\u0279.m\u026A\u02CCt\u0254\u0279.i/",
+        "Example": "My brother shares a dormitory room with two friends.",
+        "ExampleTranslation": "Anh trai t\u00F4i \u1EDF chung ph\u00F2ng k\u00FD t\u00FAc x\u00E1 v\u1EDBi hai ng\u01B0\u1EDDi b\u1EA1n.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a building where students live and sleep at school",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8d\u0254\u02D0.m\u026A.t\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My brother shares a dormitory room with two friends.\u0022,\u0022vi\u0022:\u0022Anh trai t\\u00F4i \\u1EDF chung ph\\u00F2ng k\\u00FD t\\u00FAc x\\u00E1 v\\u1EDBi hai ng\\u01B0\\u1EDDi b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022The dormitory is five minutes from the classroom.\u0022,\u0022vi\u0022:\u0022K\\u00FD t\\u00FAc x\\u00E1 c\\u00E1ch l\\u1EDBp h\\u1ECDc n\\u0103m ph\\u00FAt \\u0111i b\\u1ED9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022dormitory room\u0022,\u0022vi\u0022:\u0022ph\\u00F2ng k\\u00FD t\\u00FAc x\\u00E1\u0022},{\u0022text\u0022:\u0022live in a dormitory\u0022,\u0022vi\u0022:\u0022\\u1EDF k\\u00FD t\\u00FAc x\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.6faf28f9a34843be95726d1b42c3a58a",
+      "kind": "Card",
+      "values": {
+        "Term": "assignment",
+        "Definition": "b\u00E0i t\u1EADp \u0111\u01B0\u1EE3c giao",
+        "ImageUrl": "asset:f81f02d6d3ba3274a7f622f0fa958dbe6aef3b026247703713aa5fab554397be.webp",
+        "Phonetic": "/\u0259\u02C8sa\u026An.m\u0259nt/",
+        "Example": "The teacher gave us a long assignment for the weekend.",
+        "ExampleTranslation": "C\u00F4 gi\u00E1o giao cho ch\u00FAng t\u00F4i m\u1ED9t b\u00E0i t\u1EADp d\u00E0i cho cu\u1ED1i tu\u1EA7n.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of work that a teacher gives to students",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u0259\u02C8sa\u026An.m\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The teacher gave us a long assignment for the weekend.\u0022,\u0022vi\u0022:\u0022C\\u00F4 gi\\u00E1o giao cho ch\\u00FAng t\\u00F4i m\\u1ED9t b\\u00E0i t\\u1EADp d\\u00E0i cho cu\\u1ED1i tu\\u1EA7n.\u0022},{\u0022text\u0022:\u0022I handed in the assignment on time.\u0022,\u0022vi\u0022:\u0022T\\u00F4i n\\u1ED9p b\\u00E0i t\\u1EADp \\u0111\\u00FAng h\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hand in an assignment\u0022,\u0022vi\u0022:\u0022n\\u1ED9p b\\u00E0i t\\u1EADp\u0022},{\u0022text\u0022:\u0022written assignment\u0022,\u0022vi\u0022:\u0022b\\u00E0i t\\u1EADp vi\\u1EBFt\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.706ff131058146ecbe91edafd3fa9eb6",
+      "kind": "Card",
+      "values": {
+        "Term": "locker",
+        "Definition": "t\u1EE7 c\u00F3 kh\u00F3a",
+        "ImageUrl": "asset:659feca6144160c7764ff51eaf4ba238dfdb39f1fd06e3414d8ab7797338d2f4.webp",
+        "Phonetic": "/\u02C8l\u0251.k\u025A/",
+        "Example": "I keep my books in my locker.",
+        "ExampleTranslation": "T\u00F4i c\u1EA5t s\u00E1ch trong t\u1EE7 c\u00F3 kh\u00F3a c\u1EE7a m\u00ECnh.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small cupboard with a lock for keeping your things",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8l\u0252k.\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I keep my books in my locker.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u1EA5t s\\u00E1ch trong t\\u1EE7 c\\u00F3 kh\\u00F3a c\\u1EE7a m\\u00ECnh.\u0022},{\u0022text\u0022:\u0022Her locker is next to the gym.\u0022,\u0022vi\u0022:\u0022T\\u1EE7 c\\u1EE7a c\\u00F4 \\u1EA5y \\u1EDF c\\u1EA1nh ph\\u00F2ng t\\u1EADp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022school locker\u0022,\u0022vi\u0022:\u0022t\\u1EE7 kh\\u00F3a \\u1EDF tr\\u01B0\\u1EDDng\u0022},{\u0022text\u0022:\u0022open a locker\u0022,\u0022vi\u0022:\u0022m\\u1EDF t\\u1EE7 kh\\u00F3a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5914049/photo-image-background-public-domain-orange\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.7d0a7cd398b64f94ad225783f4623e7b",
+      "kind": "Card",
+      "values": {
+        "Term": "hole punch",
+        "Definition": "c\u00E1i \u0111\u1EE5c l\u1ED7 gi\u1EA5y",
+        "ImageUrl": "asset:0914031750ca91b762ba977cc73ea71f8219260f0482cc7f15a412ee860c63f0.webp",
+        "Phonetic": "/ho\u028Al p\u028Cnt\u0361\u0283/",
+        "Example": "Use the hole punch to make holes in the page.",
+        "ExampleTranslation": "H\u00E3y d\u00F9ng c\u00E1i \u0111\u1EE5c l\u1ED7 \u0111\u1EC3 \u0111\u1EE5c l\u1ED7 tr\u00EAn trang gi\u1EA5y.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tool that makes round holes in paper",
+        "Cefr": "B2",
+        "PhoneticUk": "/h\u0259\u028Al p\u028Cnt\u0361\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Use the hole punch to make holes in the page.\u0022,\u0022vi\u0022:\u0022H\\u00E3y d\\u00F9ng c\\u00E1i \\u0111\\u1EE5c l\\u1ED7 \\u0111\\u1EC3 \\u0111\\u1EE5c l\\u1ED7 tr\\u00EAn trang gi\\u1EA5y.\u0022},{\u0022text\u0022:\u0022The hole punch is on the teacher\\u0027s desk.\u0022,\u0022vi\u0022:\u0022C\\u00E1i \\u0111\\u1EE5c l\\u1ED7 gi\\u1EA5y n\\u1EB1m tr\\u00EAn b\\u00E0n gi\\u00E1o vi\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022use a hole punch\u0022,\u0022vi\u0022:\u0022d\\u00F9ng c\\u00E1i \\u0111\\u1EE5c l\\u1ED7\u0022},{\u0022text\u0022:\u0022two-hole punch\u0022,\u0022vi\u0022:\u0022c\\u00E1i \\u0111\\u1EE5c hai l\\u1ED7\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Hole_Puncher_with_Paper_positioner.jpg\u0022,\u0022author\u0022:\u0022No machine-readable author provided. Berteun assumed (based on copyright claims).\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.85bd5abc7cce4814978fab0adaaf7f6e",
+      "kind": "Card",
+      "values": {
+        "Term": "flashcard",
+        "Definition": "th\u1EBB ghi nh\u1EDB",
+        "ImageUrl": "asset:2948309a37e734be8f576cddf0776c077fad9fac4873881339b2a5ff3a61d59e.webp",
+        "Phonetic": "/\u02C8fl\u00E6\u0283\u02CCk\u0251\u0279d/",
+        "Example": "I learn new words with flashcards.",
+        "ExampleTranslation": "T\u00F4i h\u1ECDc t\u1EEB m\u1EDBi b\u1EB1ng th\u1EBB ghi nh\u1EDB.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small card with a word on one side and the meaning on the other",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8fl\u00E6\u0283\u02CCk\u0251\u0279d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I learn new words with flashcards.\u0022,\u0022vi\u0022:\u0022T\\u00F4i h\\u1ECDc t\\u1EEB m\\u1EDBi b\\u1EB1ng th\\u1EBB ghi nh\\u1EDB.\u0022},{\u0022text\u0022:\u0022She made a flashcard for each new word.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0m m\\u1ED9t th\\u1EBB ghi nh\\u1EDB cho m\\u1ED7i t\\u1EEB m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022make flashcards\u0022,\u0022vi\u0022:\u0022l\\u00E0m th\\u1EBB ghi nh\\u1EDB\u0022},{\u0022text\u0022:\u0022study with flashcards\u0022,\u0022vi\u0022:\u0022h\\u1ECDc b\\u1EB1ng th\\u1EBB ghi nh\\u1EDB\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.91662b817ef54ac9b665d23ee2e6c46b",
+      "kind": "Card",
+      "values": {
+        "Term": "essay",
+        "Definition": "b\u00E0i lu\u1EADn",
+        "ImageUrl": "asset:f836fcea91b03286e4ae437afb5d0e30e688398e3f8be8807dc4ce4ef5895b47.webp",
+        "Phonetic": "/\u02C8\u025Bs.e\u026A/",
+        "Example": "I have to write an essay about my hometown.",
+        "ExampleTranslation": "T\u00F4i ph\u1EA3i vi\u1EBFt m\u1ED9t b\u00E0i lu\u1EADn v\u1EC1 qu\u00EA h\u01B0\u01A1ng m\u00ECnh.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a short piece of writing on one subject",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u025Bs.e\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have to write an essay about my hometown.\u0022,\u0022vi\u0022:\u0022T\\u00F4i ph\\u1EA3i vi\\u1EBFt m\\u1ED9t b\\u00E0i lu\\u1EADn v\\u1EC1 qu\\u00EA h\\u01B0\\u01A1ng m\\u00ECnh.\u0022},{\u0022text\u0022:\u0022The teacher marked our essays last night.\u0022,\u0022vi\u0022:\u0022C\\u00F4 gi\\u00E1o \\u0111\\u00E3 ch\\u1EA5m b\\u00E0i lu\\u1EADn c\\u1EE7a ch\\u00FAng t\\u00F4i t\\u1ED1i qua.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022write an essay\u0022,\u0022vi\u0022:\u0022vi\\u1EBFt b\\u00E0i lu\\u1EADn\u0022},{\u0022text\u0022:\u0022essay topic\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EC1 t\\u00E0i b\\u00E0i lu\\u1EADn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.9416742225194377a1b8e6f4ab43ca26",
+      "kind": "Card",
+      "values": {
+        "Term": "quiz",
+        "Definition": "b\u00E0i ki\u1EC3m tra ng\u1EAFn",
+        "ImageUrl": "asset:85b0a0940db3f96563df622bceb4a10f0752227d945047929954bbc3e4d9ecf1.webp",
+        "Phonetic": "/kw\u026Az/",
+        "Example": "We have a spelling quiz every Friday.",
+        "ExampleTranslation": "Th\u1EE9 S\u00E1u n\u00E0o ch\u00FAng t\u00F4i c\u0169ng c\u00F3 m\u1ED9t b\u00E0i ki\u1EC3m tra ch\u00EDnh t\u1EA3 ng\u1EAFn.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a short test with a few questions",
+        "Cefr": "B1",
+        "PhoneticUk": "/kw\u026Az/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We have a spelling quiz every Friday.\u0022,\u0022vi\u0022:\u0022Th\\u1EE9 S\\u00E1u n\\u00E0o ch\\u00FAng t\\u00F4i c\\u0169ng c\\u00F3 m\\u1ED9t b\\u00E0i ki\\u1EC3m tra ch\\u00EDnh t\\u1EA3 ng\\u1EAFn.\u0022},{\u0022text\u0022:\u0022The quiz was easier than I expected.\u0022,\u0022vi\u0022:\u0022B\\u00E0i ki\\u1EC3m tra ng\\u1EAFn d\\u1EC5 h\\u01A1n t\\u00F4i ngh\\u0129.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022take a quiz\u0022,\u0022vi\u0022:\u0022l\\u00E0m b\\u00E0i ki\\u1EC3m tra ng\\u1EAFn\u0022},{\u0022text\u0022:\u0022pop quiz\u0022,\u0022vi\u0022:\u0022ki\\u1EC3m tra \\u0111\\u1ED9t xu\\u1EA5t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.ae8966337f324bb8a56503787d025e25",
+      "kind": "Card",
+      "values": {
+        "Term": "graduation gown",
+        "Definition": "\u00E1o c\u1EED nh\u00E2n",
+        "ImageUrl": "asset:eef3ae5b62268cf9f8871a950e87c266cefe436760967f46f18dd2d4f0103a08.webp",
+        "Phonetic": "/\u02CC\u0261\u0279\u00E6d\u0361\u0292u\u02C8e\u026A\u0283\u0259n \u02C8\u0261a\u028A\u032Fn/",
+        "Example": "He wore a black graduation gown and a square cap.",
+        "ExampleTranslation": "Anh \u1EA5y m\u1EB7c \u00E1o c\u1EED nh\u00E2n \u0111en v\u00E0 \u0111\u1ED9i m\u0169 vu\u00F4ng.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long loose robe worn at a graduation ceremony",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02CC\u0261\u0279\u00E6dju\u02C8e\u026A\u0283\u0259n \u02C8\u0261a\u028A\u032Fn/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He wore a black graduation gown and a square cap.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y m\\u1EB7c \\u00E1o c\\u1EED nh\\u00E2n \\u0111en v\\u00E0 \\u0111\\u1ED9i m\\u0169 vu\\u00F4ng.\u0022},{\u0022text\u0022:\u0022The graduation gowns were handed out before the ceremony.\u0022,\u0022vi\u0022:\u0022\\u00C1o c\\u1EED nh\\u00E2n \\u0111\\u01B0\\u1EE3c ph\\u00E1t tr\\u01B0\\u1EDBc bu\\u1ED5i l\\u1EC5.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wear a graduation gown\u0022,\u0022vi\u0022:\u0022m\\u1EB7c \\u00E1o c\\u1EED nh\\u00E2n\u0022},{\u0022text\u0022:\u0022rent a graduation gown\u0022,\u0022vi\u0022:\u0022thu\\u00EA \\u00E1o c\\u1EED nh\\u00E2n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.cf6e127739a6440fa12e9e9de1080f8b",
+      "kind": "Card",
+      "values": {
+        "Term": "projector",
+        "Definition": "m\u00E1y chi\u1EBFu",
+        "ImageUrl": "asset:2b2c20b52423aedf2bd417523c02cc61ce5854dc2b8e466b368ee69e639daa19.webp",
+        "Phonetic": "/p\u0279\u0259\u02C8d\u0361\u0292\u025Bkt\u025A/",
+        "Example": "The teacher turned on the projector.",
+        "ExampleTranslation": "C\u00F4 gi\u00E1o b\u1EADt m\u00E1y chi\u1EBFu l\u00EAn.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that shows pictures on a wall or screen",
+        "Cefr": "B2",
+        "PhoneticUk": "/p\u0279\u0259\u02C8d\u0361\u0292\u025Bkt\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The teacher turned on the projector.\u0022,\u0022vi\u0022:\u0022C\\u00F4 gi\\u00E1o b\\u1EADt m\\u00E1y chi\\u1EBFu l\\u00EAn.\u0022},{\u0022text\u0022:\u0022The projector is connected to her laptop.\u0022,\u0022vi\u0022:\u0022M\\u00E1y chi\\u1EBFu \\u0111\\u01B0\\u1EE3c n\\u1ED1i v\\u1EDBi m\\u00E1y t\\u00EDnh x\\u00E1ch tay c\\u1EE7a c\\u00F4 \\u1EA5y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022turn on the projector\u0022,\u0022vi\u0022:\u0022b\\u1EADt m\\u00E1y chi\\u1EBFu\u0022},{\u0022text\u0022:\u0022projector screen\u0022,\u0022vi\u0022:\u0022m\\u00E0n chi\\u1EBFu\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.d156621ff653459791187be1281c3c2c",
+      "kind": "Card",
+      "values": {
+        "Term": "certificate",
+        "Definition": "ch\u1EE9ng ch\u1EC9",
+        "ImageUrl": "asset:9232dc88698b3f9d3387da7df8ac2c14b8bf4e983c3ab8ef4e81f40797d382be.webp",
+        "Phonetic": "/s\u025A\u02C8t\u026Af.\u026A.k\u0259t/",
+        "Example": "I got a certificate for finishing the English course.",
+        "ExampleTranslation": "T\u00F4i nh\u1EADn \u0111\u01B0\u1EE3c ch\u1EE9ng ch\u1EC9 v\u00EC ho\u00E0n th\u00E0nh kh\u00F3a ti\u1EBFng Anh.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an official paper that proves you passed a course or test",
+        "Cefr": "B2",
+        "PhoneticUk": "/s\u0259\u02C8t\u026Af.\u026A.k\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I got a certificate for finishing the English course.\u0022,\u0022vi\u0022:\u0022T\\u00F4i nh\\u1EADn \\u0111\\u01B0\\u1EE3c ch\\u1EE9ng ch\\u1EC9 v\\u00EC ho\\u00E0n th\\u00E0nh kh\\u00F3a ti\\u1EBFng Anh.\u0022},{\u0022text\u0022:\u0022The certificate is on the wall.\u0022,\u0022vi\u0022:\u0022T\\u1EA5m ch\\u1EE9ng ch\\u1EC9 \\u0111\\u01B0\\u1EE3c treo tr\\u00EAn t\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022earn a certificate\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EA1t ch\\u1EE9ng ch\\u1EC9\u0022},{\u0022text\u0022:\u0022certificate of achievement\u0022,\u0022vi\u0022:\u0022gi\\u1EA5y khen\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6482334/png-paper-sticker\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap.e0a678208b00472fa3c3bba650ee0eb1",
+      "kind": "Card",
+      "values": {
+        "Term": "tutor",
+        "Definition": "gia s\u01B0",
+        "ImageUrl": "asset:7ecba435e3988f8e49cad0ae66c21a80b74e1423066dc8e0a69023a0da5ad13e.webp",
+        "Phonetic": "/\u02C8tut\u025A/",
+        "Example": "My tutor helps me with English every Tuesday.",
+        "ExampleTranslation": "Gia s\u01B0 gi\u00FAp t\u00F4i h\u1ECDc ti\u1EBFng Anh m\u1ED7i th\u1EE9 Ba.",
+        "Topic": "Gi\u00E1o d\u1EE5c \u0026 h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a teacher who gives extra lessons to one student",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8tju\u02D0t\u0259\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My tutor helps me with English every Tuesday.\u0022,\u0022vi\u0022:\u0022Gia s\\u01B0 gi\\u00FAp t\\u00F4i h\\u1ECDc ti\\u1EBFng Anh m\\u1ED7i th\\u1EE9 Ba.\u0022},{\u0022text\u0022:\u0022She works as a maths tutor.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0m gia s\\u01B0 m\\u00F4n to\\u00E1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022private tutor\u0022,\u0022vi\u0022:\u0022gia s\\u01B0 ri\\u00EAng\u0022},{\u0022text\u0022:\u0022hire a tutor\u0022,\u0022vi\u0022:\u0022thu\\u00EA gia s\\u01B0\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "f8674b853e41e48386cbb6707cb21e81104126accf5eeb6eb85a36c842eea0d1.webp",
+      "sha256": "f8674b853e41e48386cbb6707cb21e81104126accf5eeb6eb85a36c842eea0d1"
+    },
+    {
+      "file": "cad075be88c18f98cd6d7d41e712b3667b77e150461a88ee57186108824e7344.webp",
+      "sha256": "cad075be88c18f98cd6d7d41e712b3667b77e150461a88ee57186108824e7344"
+    },
+    {
+      "file": "370f8013536ce2ab4e9f315a6986fac2b1d49814ead54fb00a3f5ee15cd8f42f.webp",
+      "sha256": "370f8013536ce2ab4e9f315a6986fac2b1d49814ead54fb00a3f5ee15cd8f42f"
+    },
+    {
+      "file": "db0a072b8e346bf8f241931fdab2c342e5685ba812cef3f6a6ef744461fc029d.webp",
+      "sha256": "db0a072b8e346bf8f241931fdab2c342e5685ba812cef3f6a6ef744461fc029d"
+    },
+    {
+      "file": "d6d819ece0580c4bb5be7169327ff0d552fb0c88b699199a35c9e0f5544297e5.webp",
+      "sha256": "d6d819ece0580c4bb5be7169327ff0d552fb0c88b699199a35c9e0f5544297e5"
+    },
+    {
+      "file": "eef3ae5b62268cf9f8871a950e87c266cefe436760967f46f18dd2d4f0103a08.webp",
+      "sha256": "eef3ae5b62268cf9f8871a950e87c266cefe436760967f46f18dd2d4f0103a08"
+    },
+    {
+      "file": "f81f02d6d3ba3274a7f622f0fa958dbe6aef3b026247703713aa5fab554397be.webp",
+      "sha256": "f81f02d6d3ba3274a7f622f0fa958dbe6aef3b026247703713aa5fab554397be"
+    },
+    {
+      "file": "d40d353131683e0d3aa071b5ec22b924808016a0d1da09aaaa1cd1ef5e220621.webp",
+      "sha256": "d40d353131683e0d3aa071b5ec22b924808016a0d1da09aaaa1cd1ef5e220621"
+    },
+    {
+      "file": "acfdaf7b15eb5591cdfd980cddce8d3abee7046c87ae701e0fcc5023908edce3.webp",
+      "sha256": "acfdaf7b15eb5591cdfd980cddce8d3abee7046c87ae701e0fcc5023908edce3"
+    },
+    {
+      "file": "7ecba435e3988f8e49cad0ae66c21a80b74e1423066dc8e0a69023a0da5ad13e.webp",
+      "sha256": "7ecba435e3988f8e49cad0ae66c21a80b74e1423066dc8e0a69023a0da5ad13e"
+    },
+    {
+      "file": "f836fcea91b03286e4ae437afb5d0e30e688398e3f8be8807dc4ce4ef5895b47.webp",
+      "sha256": "f836fcea91b03286e4ae437afb5d0e30e688398e3f8be8807dc4ce4ef5895b47"
+    },
+    {
+      "file": "33c4219753bf30897365e05b991e1809fba98189a553dcb70d3f8bcc4a1feacc.webp",
+      "sha256": "33c4219753bf30897365e05b991e1809fba98189a553dcb70d3f8bcc4a1feacc"
+    },
+    {
+      "file": "2948309a37e734be8f576cddf0776c077fad9fac4873881339b2a5ff3a61d59e.webp",
+      "sha256": "2948309a37e734be8f576cddf0776c077fad9fac4873881339b2a5ff3a61d59e"
+    },
+    {
+      "file": "f5aa03766a7378b9ee93a6943e60a7c28d37734c557a88bee6a2f818b517fa36.webp",
+      "sha256": "f5aa03766a7378b9ee93a6943e60a7c28d37734c557a88bee6a2f818b517fa36"
+    },
+    {
+      "file": "0914031750ca91b762ba977cc73ea71f8219260f0482cc7f15a412ee860c63f0.webp",
+      "sha256": "0914031750ca91b762ba977cc73ea71f8219260f0482cc7f15a412ee860c63f0"
+    },
+    {
+      "file": "ac5d82b724d32754fdec2f01bf547552275b0768f1b09e8fa4c3578c377fffd2.webp",
+      "sha256": "ac5d82b724d32754fdec2f01bf547552275b0768f1b09e8fa4c3578c377fffd2"
+    },
+    {
+      "file": "2b2c20b52423aedf2bd417523c02cc61ce5854dc2b8e466b368ee69e639daa19.webp",
+      "sha256": "2b2c20b52423aedf2bd417523c02cc61ce5854dc2b8e466b368ee69e639daa19"
+    },
+    {
+      "file": "9232dc88698b3f9d3387da7df8ac2c14b8bf4e983c3ab8ef4e81f40797d382be.webp",
+      "sha256": "9232dc88698b3f9d3387da7df8ac2c14b8bf4e983c3ab8ef4e81f40797d382be"
+    },
+    {
+      "file": "659feca6144160c7764ff51eaf4ba238dfdb39f1fd06e3414d8ab7797338d2f4.webp",
+      "sha256": "659feca6144160c7764ff51eaf4ba238dfdb39f1fd06e3414d8ab7797338d2f4"
+    },
+    {
+      "file": "885a729c73f06928969503d1812d7ad51963a1396196609948a311ea538daafc.webp",
+      "sha256": "885a729c73f06928969503d1812d7ad51963a1396196609948a311ea538daafc"
+    },
+    {
+      "file": "741dd6c471612bae9bf52391bbb16a69d63b352d266bbe7e839b0a87e5c25484.webp",
+      "sha256": "741dd6c471612bae9bf52391bbb16a69d63b352d266bbe7e839b0a87e5c25484"
+    },
+    {
+      "file": "13caa27bfc248b69d02fcc5b2cab917eb7158ac87c61c51cf0e3a3a67f15c9d9.webp",
+      "sha256": "13caa27bfc248b69d02fcc5b2cab917eb7158ac87c61c51cf0e3a3a67f15c9d9"
+    },
+    {
+      "file": "85b0a0940db3f96563df622bceb4a10f0752227d945047929954bbc3e4d9ecf1.webp",
+      "sha256": "85b0a0940db3f96563df622bceb4a10f0752227d945047929954bbc3e4d9ecf1"
+    },
+    {
+      "file": "8d98e9d798f4aadbb904484bb3cbf2314d44fd93d0c1c30e6ad2a8fefe2ca508.webp",
+      "sha256": "8d98e9d798f4aadbb904484bb3cbf2314d44fd93d0c1c30e6ad2a8fefe2ca508"
+    },
+    {
+      "file": "986c6d5d264bd272bf795c007bb7e32a2cc8fd48897b4a79c4f89c5907ba7d74.webp",
+      "sha256": "986c6d5d264bd272bf795c007bb7e32a2cc8fd48897b4a79c4f89c5907ba7d74"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b08-giao-duc-hoc-tap"
+}

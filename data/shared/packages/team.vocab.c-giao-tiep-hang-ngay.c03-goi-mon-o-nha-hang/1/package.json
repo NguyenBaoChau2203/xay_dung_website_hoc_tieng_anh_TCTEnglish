@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang",
+      "kind": "Set",
+      "values": {
+        "SetName": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "Description": "#a2 #b1 #restaurant #ordering"
+      },
+      "references": {
+        "FolderId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.69eb25c500b84f00ab2dc9c4b8036467",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.10e344d3b33b464f8bb2d7837cfad903",
+      "kind": "Card",
+      "values": {
+        "Term": "Takeaway or eat in?",
+        "Definition": "mang \u0111i hay \u0103n t\u1EA1i ch\u1ED7?",
+        "ImageUrl": "asset:b11f9cb615b572dc15f68598c76479c044e4d114e4ff72bf2c4f5c2453168191.webp",
+        "Phonetic": null,
+        "Example": "Takeaway or eat in?",
+        "ExampleTranslation": "Mang \u0111i hay \u0103n t\u1EA1i ch\u1ED7?",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question asked at a fast-food counter",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Takeaway or eat in?\u0022,\u0022vi\u0022:\u0022Mang \\u0111i hay \\u0103n t\\u1EA1i ch\\u1ED7?\u0022},{\u0022text\u0022:\u0022Is that takeaway or eat in?\u0022,\u0022vi\u0022:\u0022L\\u00E0 mang \\u0111i hay \\u0103n t\\u1EA1i ch\\u1ED7 \\u1EA1?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Takeaway, please.\u0022,\u0022vi\u0022:\u0022Mang \\u0111i, l\\u00E0m \\u01A1n.\u0022},{\u0022text\u0022:\u0022I\\u0027ll eat in.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0103n t\\u1EA1i ch\\u1ED7.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.18b36c6f48074b2191afd9e20894ccff",
+      "kind": "Card",
+      "values": {
+        "Term": "What do you recommend?",
+        "Definition": "b\u1EA1n g\u1EE3i \u00FD m\u00F3n n\u00E0o?",
+        "ImageUrl": "asset:b784fa58041cf19b8cf27919870b320114ab1b0dbd970e76a6421d414d316d30.webp",
+        "Phonetic": null,
+        "Example": "What do you recommend? I\u0027m very hungry.",
+        "ExampleTranslation": "B\u1EA1n g\u1EE3i \u00FD m\u00F3n n\u00E0o? T\u00F4i \u0111\u00F3i l\u1EAFm.",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question to ask the waiter for advice",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022What do you recommend? I\\u0027m very hungry.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n g\\u1EE3i \\u00FD m\\u00F3n n\\u00E0o? T\\u00F4i \\u0111\\u00F3i l\\u1EAFm.\u0022},{\u0022text\u0022:\u0022What do you recommend for dessert?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n g\\u1EE3i \\u00FD m\\u00F3n tr\\u00E1ng mi\\u1EC7ng n\\u00E0o?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027d recommend the fish.\u0022,\u0022vi\u0022:\u0022T\\u00F4i g\\u1EE3i \\u00FD m\\u00F3n c\\u00E1.\u0022},{\u0022text\u0022:\u0022Our special today is soup.\u0022,\u0022vi\u0022:\u0022M\\u00F3n \\u0111\\u1EB7c bi\\u1EC7t h\\u00F4m nay l\\u00E0 s\\u00FAp.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.19c49f44dc214aeaad1691bfe304d0c1",
+      "kind": "Card",
+      "values": {
+        "Term": "A table for two, please.",
+        "Definition": "cho t\u00F4i m\u1ED9t b\u00E0n hai ng\u01B0\u1EDDi",
+        "ImageUrl": "asset:b1ede25e3774805d6d2230ffd77b318e0191fd72b4aa8683dacbb29b8cbf9121.webp",
+        "Phonetic": null,
+        "Example": "A table for two, please.",
+        "ExampleTranslation": "Cho t\u00F4i m\u1ED9t b\u00E0n hai ng\u01B0\u1EDDi.",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you arrive at a restaurant",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A table for two, please.\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i m\\u1ED9t b\\u00E0n hai ng\\u01B0\\u1EDDi.\u0022},{\u0022text\u0022:\u0022We\\u0027d like a table for four, please.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i mu\\u1ED1n m\\u1ED9t b\\u00E0n b\\u1ED1n ng\\u01B0\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Do you have a reservation?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 \\u0111\\u1EB7t b\\u00E0n tr\\u01B0\\u1EDBc kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022This way, please.\u0022,\u0022vi\u0022:\u0022M\\u1EDDi \\u0111i l\\u1ED1i n\\u00E0y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.1f128e205cac47fe9799b098be58edfd",
+      "kind": "Card",
+      "values": {
+        "Term": "Could you wrap this up?",
+        "Definition": "b\u1EA1n g\u00F3i gi\u00FAp t\u00F4i ph\u1EA7n n\u00E0y \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:e3f332e19a8c84bc80b37f1547ed8d4b6596c617536b6ccd0e99d18490885b10.webp",
+        "Phonetic": null,
+        "Example": "Could you wrap this up for me?",
+        "ExampleTranslation": "B\u1EA1n g\u00F3i gi\u00FAp t\u00F4i ph\u1EA7n n\u00E0y \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request to pack leftover food to take home",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could you wrap this up for me?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n g\\u00F3i gi\\u00FAp t\\u00F4i ph\\u1EA7n n\\u00E0y \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Could you wrap up the rest of the cake?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n g\\u00F3i ph\\u1EA7n b\\u00E1nh c\\u00F2n l\\u1EA1i gi\\u00FAp t\\u00F4i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Do you need a box?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 c\\u1EA7n h\\u1ED9p kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Sure.\u0022,\u0022vi\u0022:\u0022\\u0110\\u01B0\\u1EE3c \\u1EA1.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.2a6849372bac4129afd384c34c67b0c7",
+      "kind": "Card",
+      "values": {
+        "Term": "Can I pay by card?",
+        "Definition": "t\u00F4i tr\u1EA3 b\u1EB1ng th\u1EBB \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:357c95b321d2be042efc9fb6980e5f042fa698575724de8df26c52a032365fff.webp",
+        "Phonetic": null,
+        "Example": "Can I pay by card? I have no cash.",
+        "ExampleTranslation": "T\u00F4i tr\u1EA3 b\u1EB1ng th\u1EBB \u0111\u01B0\u1EE3c kh\u00F4ng? T\u00F4i kh\u00F4ng c\u00F3 ti\u1EC1n m\u1EB7t.",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about paying with a card",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can I pay by card? I have no cash.\u0022,\u0022vi\u0022:\u0022T\\u00F4i tr\\u1EA3 b\\u1EB1ng th\\u1EBB \\u0111\\u01B0\\u1EE3c kh\\u00F4ng? T\\u00F4i kh\\u00F4ng c\\u00F3 ti\\u1EC1n m\\u1EB7t.\u0022},{\u0022text\u0022:\u0022Can I pay by card here?\u0022,\u0022vi\u0022:\u0022\\u1EDE \\u0111\\u00E2y t\\u00F4i tr\\u1EA3 b\\u1EB1ng th\\u1EBB \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Cash only.\u0022,\u0022vi\u0022:\u0022Ch\\u1EC9 nh\\u1EADn ti\\u1EC1n m\\u1EB7t.\u0022},{\u0022text\u0022:\u0022Yes, of course.\u0022,\u0022vi\u0022:\u0022\\u0110\\u01B0\\u1EE3c, t\\u1EA5t nhi\\u00EAn.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.3c61f243002a4a6ba869a5720ac8ac05",
+      "kind": "Card",
+      "values": {
+        "Term": "Keep the change.",
+        "Definition": "kh\u00F4ng c\u1EA7n th\u1ED1i l\u1EA1i",
+        "ImageUrl": "asset:9df737536dcbc36b2e93dc44c4667079c074c682a79e47a9d8d1d2d444fa379e.webp",
+        "Phonetic": null,
+        "Example": "Here is twenty. Keep the change.",
+        "ExampleTranslation": "\u0110\u00E2y l\u00E0 hai m\u01B0\u01A1i. Kh\u00F4ng c\u1EA7n th\u1ED1i l\u1EA1i.",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you do not want the change back",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Here is twenty. Keep the change.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E2y l\\u00E0 hai m\\u01B0\\u01A1i. Kh\\u00F4ng c\\u1EA7n th\\u1ED1i l\\u1EA1i.\u0022},{\u0022text\u0022:\u0022Keep the change, thank you.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng c\\u1EA7n th\\u1ED1i l\\u1EA1i, c\\u1EA3m \\u01A1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022That\\u0027s for you.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E2y l\\u00E0 cho b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022Thank you, sir.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n \\u00F4ng.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.52980bbd14d3472aa9edc2aebf683272",
+      "kind": "Card",
+      "values": {
+        "Term": "Could we have another chair?",
+        "Definition": "cho ch\u00FAng t\u00F4i th\u00EAm m\u1ED9t c\u00E1i gh\u1EBF \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:7b1c0756a0d434b621bdcede9098a4ae14193acf587296fcac0b17d1f6362a72.webp",
+        "Phonetic": null,
+        "Example": "Could we have another chair? A friend is joining us.",
+        "ExampleTranslation": "Cho ch\u00FAng t\u00F4i th\u00EAm m\u1ED9t c\u00E1i gh\u1EBF \u0111\u01B0\u1EE3c kh\u00F4ng? M\u1ED9t ng\u01B0\u1EDDi b\u1EA1n s\u1EBD tham gia.",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request for an extra chair at the table",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could we have another chair? A friend is joining us.\u0022,\u0022vi\u0022:\u0022Cho ch\\u00FAng t\\u00F4i th\\u00EAm m\\u1ED9t c\\u00E1i gh\\u1EBF \\u0111\\u01B0\\u1EE3c kh\\u00F4ng? M\\u1ED9t ng\\u01B0\\u1EDDi b\\u1EA1n s\\u1EBD tham gia.\u0022},{\u0022text\u0022:\u0022Could we have another chair, please?\u0022,\u0022vi\u0022:\u0022Cho ch\\u00FAng t\\u00F4i th\\u00EAm m\\u1ED9t c\\u00E1i gh\\u1EBF \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Of course.\u0022,\u0022vi\u0022:\u0022T\\u1EA5t nhi\\u00EAn r\\u1ED3i.\u0022},{\u0022text\u0022:\u0022I\\u0027ll bring one.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD mang \\u0111\\u1EBFn m\\u1ED9t c\\u00E1i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.5d8645f328c84bdd9269c68274b83aca",
+      "kind": "Card",
+      "values": {
+        "Term": "It was delicious.",
+        "Definition": "m\u00F3n \u0103n r\u1EA5t ngon",
+        "ImageUrl": "asset:2d1376b9422c35c6ba761661b1d709c89ad3010a31d31aac0fc6fa8dac6fe935.webp",
+        "Phonetic": null,
+        "Example": "It was delicious. Thank you very much.",
+        "ExampleTranslation": "M\u00F3n \u0103n r\u1EA5t ngon. C\u1EA3m \u01A1n b\u1EA1n nhi\u1EC1u.",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a compliment about the food",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022It was delicious. Thank you very much.\u0022,\u0022vi\u0022:\u0022M\\u00F3n \\u0103n r\\u1EA5t ngon. C\\u1EA3m \\u01A1n b\\u1EA1n nhi\\u1EC1u.\u0022},{\u0022text\u0022:\u0022The soup was delicious.\u0022,\u0022vi\u0022:\u0022M\\u00F3n s\\u00FAp r\\u1EA5t ngon.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It was really tasty.\u0022,\u0022vi\u0022:\u0022M\\u00F3n \\u0103n th\\u1EADt ngon.\u0022},{\u0022text\u0022:\u0022My compliments to the chef.\u0022,\u0022vi\u0022:\u0022Xin khen \\u0111\\u1EA7u b\\u1EBFp.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.5e33a20e888345cfbf0ccb52609a1ccf",
+      "kind": "Card",
+      "values": {
+        "Term": "Could I have the bill, please?",
+        "Definition": "cho t\u00F4i xin h\u00F3a \u0111\u01A1n \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:dd4b0db255ac3fc1a5b099b83d60ad7700748cb76040f5a915701cda815b03a3.webp",
+        "Phonetic": null,
+        "Example": "Could I have the bill, please?",
+        "ExampleTranslation": "Cho t\u00F4i xin h\u00F3a \u0111\u01A1n \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite way to ask to pay",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could I have the bill, please?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i xin h\\u00F3a \\u0111\\u01A1n \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Could we have the bill, please?\u0022,\u0022vi\u0022:\u0022Cho ch\\u00FAng t\\u00F4i xin h\\u00F3a \\u0111\\u01A1n \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Here is your bill.\u0022,\u0022vi\u0022:\u0022H\\u00F3a \\u0111\\u01A1n c\\u1EE7a b\\u1EA1n \\u0111\\u00E2y.\u0022},{\u0022text\u0022:\u0022Check, please.\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i t\\u00EDnh ti\\u1EC1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.64f91b7a8c8840e08b44afe8bd8f7677",
+      "kind": "Card",
+      "values": {
+        "Term": "Can we order, please?",
+        "Definition": "ch\u00FAng t\u00F4i g\u1ECDi m\u00F3n \u0111\u01B0\u1EE3c ch\u01B0a?",
+        "ImageUrl": "asset:55ff1ceb2482c0b40064971dfac67dd61e31364a70a525f59f5cebe286c486f9.webp",
+        "Phonetic": null,
+        "Example": "Excuse me, can we order, please?",
+        "ExampleTranslation": "Xin l\u1ED7i, ch\u00FAng t\u00F4i g\u1ECDi m\u00F3n \u0111\u01B0\u1EE3c ch\u01B0a?",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite way to say you are ready to order",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Excuse me, can we order, please?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, ch\\u00FAng t\\u00F4i g\\u1ECDi m\\u00F3n \\u0111\\u01B0\\u1EE3c ch\\u01B0a?\u0022},{\u0022text\u0022:\u0022Can we order now, please?\u0022,\u0022vi\u0022:\u0022Gi\\u1EDD ch\\u00FAng t\\u00F4i g\\u1ECDi m\\u00F3n \\u0111\\u01B0\\u1EE3c ch\\u01B0a?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Are you ready to order?\u0022,\u0022vi\u0022:\u0022Qu\\u00FD kh\\u00E1ch \\u0111\\u00E3 s\\u1EB5n s\\u00E0ng g\\u1ECDi m\\u00F3n ch\\u01B0a?\u0022},{\u0022text\u0022:\u0022Just a moment.\u0022,\u0022vi\u0022:\u0022Xin \\u0111\\u1EE3i m\\u1ED9t ch\\u00FAt.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.6a52653231a84176b4906379425e7a6f",
+      "kind": "Card",
+      "values": {
+        "Term": "Could I have some water, please?",
+        "Definition": "cho t\u00F4i xin \u00EDt n\u01B0\u1EDBc \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:7ef963be242ad2868676e6fdfec364629052d75df6a2de3fd835dca7ec8127d4.webp",
+        "Phonetic": null,
+        "Example": "Could I have some water, please?",
+        "ExampleTranslation": "Cho t\u00F4i xin \u00EDt n\u01B0\u1EDBc \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite request for water",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could I have some water, please?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i xin \\u00EDt n\\u01B0\\u1EDBc \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Could I have some more water, please?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i xin th\\u00EAm n\\u01B0\\u1EDBc \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Sure, right away.\u0022,\u0022vi\u0022:\u0022\\u0110\\u01B0\\u1EE3c \\u1EA1, ngay \\u0111\\u00E2y.\u0022},{\u0022text\u0022:\u0022Still or sparkling?\u0022,\u0022vi\u0022:\u0022N\\u01B0\\u1EDBc th\\u01B0\\u1EDDng hay n\\u01B0\\u1EDBc c\\u00F3 ga?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.6ea9205be5124c64b3e09f57ae5f8228",
+      "kind": "Card",
+      "values": {
+        "Term": "Is service included?",
+        "Definition": "\u0111\u00E3 bao g\u1ED3m ph\u00ED ph\u1EE5c v\u1EE5 ch\u01B0a?",
+        "ImageUrl": "asset:11351a813ff0eafca67883fc376ed247dda81e8b9fd1154e6224a34b0fe1ea0b.webp",
+        "Phonetic": null,
+        "Example": "Is service included in the price?",
+        "ExampleTranslation": "Gi\u00E1 n\u00E0y \u0111\u00E3 bao g\u1ED3m ph\u00ED ph\u1EE5c v\u1EE5 ch\u01B0a?",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about whether a tip is already in the bill",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Is service included in the price?\u0022,\u0022vi\u0022:\u0022Gi\\u00E1 n\\u00E0y \\u0111\\u00E3 bao g\\u1ED3m ph\\u00ED ph\\u1EE5c v\\u1EE5 ch\\u01B0a?\u0022},{\u0022text\u0022:\u0022Is service included, or should I tip?\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E3 g\\u1ED3m ph\\u00ED ph\\u1EE5c v\\u1EE5 ch\\u01B0a, hay t\\u00F4i n\\u00EAn boa?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Service is not included.\u0022,\u0022vi\u0022:\u0022Ph\\u00ED ph\\u1EE5c v\\u1EE5 ch\\u01B0a bao g\\u1ED3m.\u0022},{\u0022text\u0022:\u0022A ten percent service charge.\u0022,\u0022vi\u0022:\u0022Ph\\u00ED ph\\u1EE5c v\\u1EE5 m\\u01B0\\u1EDDi ph\\u1EA7n tr\\u0103m.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.7779f82488894bb384fad4b33a4b9ecf",
+      "kind": "Card",
+      "values": {
+        "Term": "Enjoy your meal!",
+        "Definition": "ch\u00FAc b\u1EA1n ngon mi\u1EC7ng!",
+        "ImageUrl": "asset:944dc194fbaa87330e1d2ad4cac11d4ec69ec442786fce6795b29fc6c8cfc271.webp",
+        "Phonetic": null,
+        "Example": "Here is your soup. Enjoy your meal!",
+        "ExampleTranslation": "S\u00FAp c\u1EE7a b\u1EA1n \u0111\u00E2y. Ch\u00FAc b\u1EA1n ngon mi\u1EC7ng!",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what a waiter says after serving food",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Here is your soup. Enjoy your meal!\u0022,\u0022vi\u0022:\u0022S\\u00FAp c\\u1EE7a b\\u1EA1n \\u0111\\u00E2y. Ch\\u00FAc b\\u1EA1n ngon mi\\u1EC7ng!\u0022},{\u0022text\u0022:\u0022The waiter smiled and said, \\u0022Enjoy your meal!\\u0022\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi ph\\u1EE5c v\\u1EE5 m\\u1EC9m c\\u01B0\\u1EDDi n\\u00F3i: \\u0022Ch\\u00FAc qu\\u00FD kh\\u00E1ch ngon mi\\u1EC7ng!\\u0022\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Thank you, you too.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n, b\\u1EA1n c\\u0169ng v\\u1EADy.\u0022},{\u0022text\u0022:\u0022Bon appetit!\u0022,\u0022vi\u0022:\u0022Ch\\u00FAc ngon mi\\u1EC7ng!\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.78cf1de949e045b8bc5084580db4353f",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027ll have the same.",
+        "Definition": "t\u00F4i s\u1EBD d\u00F9ng m\u00F3n gi\u1ED1ng v\u1EADy",
+        "ImageUrl": "asset:baa86c546b8d4380a367bbdb6615bf946fb77b83b37ca2452d13f942891b1a72.webp",
+        "Phonetic": null,
+        "Example": "I\u0027ll have the same. It looks great.",
+        "ExampleTranslation": "T\u00F4i s\u1EBD d\u00F9ng m\u00F3n gi\u1ED1ng v\u1EADy. Tr\u00F4ng tuy\u1EC7t qu\u00E1.",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a way to order the same thing as someone else",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027ll have the same. It looks great.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD d\\u00F9ng m\\u00F3n gi\\u1ED1ng v\\u1EADy. Tr\\u00F4ng tuy\\u1EC7t qu\\u00E1.\u0022},{\u0022text\u0022:\u0022\\u0022I\\u0027ll have the steak.\\u0022 \\u0022I\\u0027ll have the same.\\u0022\u0022,\u0022vi\u0022:\u0022\\u0022T\\u00F4i d\\u00F9ng b\\u00EDt t\\u1EBFt.\\u0022 \\u0022T\\u00F4i d\\u00F9ng gi\\u1ED1ng v\\u1EADy.\\u0022\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Make that two.\u0022,\u0022vi\u0022:\u0022Cho hai ph\\u1EA7n nh\\u00E9.\u0022},{\u0022text\u0022:\u0022The same for me.\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i gi\\u1ED1ng v\\u1EADy.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.7994d5d8e6fb4df0ad407ddd710bfc0f",
+      "kind": "Card",
+      "values": {
+        "Term": "Can I see the menu, please?",
+        "Definition": "cho t\u00F4i xem th\u1EF1c \u0111\u01A1n \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:a44705420b2e59d21f237f27ab1aa02fd2b1599bd7ca551c8f16f78781b7cd0c.webp",
+        "Phonetic": null,
+        "Example": "Can I see the menu, please?",
+        "ExampleTranslation": "Cho t\u00F4i xem th\u1EF1c \u0111\u01A1n \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite request to see the list of food",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can I see the menu, please?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i xem th\\u1EF1c \\u0111\\u01A1n \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Can we see the menu, please?\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i xem th\\u1EF1c \\u0111\\u01A1n \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Here is the menu.\u0022,\u0022vi\u0022:\u0022Th\\u1EF1c \\u0111\\u01A1n \\u0111\\u00E2y \\u1EA1.\u0022},{\u0022text\u0022:\u0022Take your time.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u1EE9 t\\u1EEB t\\u1EEB.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.835b420cd1b14dada1f530e765d018c8",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027m allergic to peanuts.",
+        "Definition": "t\u00F4i b\u1ECB d\u1ECB \u1EE9ng v\u1EDBi \u0111\u1EADu ph\u1ED9ng",
+        "ImageUrl": "asset:dbc3a3462f5242820b4a644cb285d8f6b415d5c515e82c5211cdb0005e6f5ad0.webp",
+        "Phonetic": null,
+        "Example": "I\u0027m allergic to peanuts. Is there any in this?",
+        "ExampleTranslation": "T\u00F4i b\u1ECB d\u1ECB \u1EE9ng v\u1EDBi \u0111\u1EADu ph\u1ED9ng. M\u00F3n n\u00E0y c\u00F3 kh\u00F4ng?",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a warning about a food allergy",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027m allergic to peanuts. Is there any in this?\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB d\\u1ECB \\u1EE9ng v\\u1EDBi \\u0111\\u1EADu ph\\u1ED9ng. M\\u00F3n n\\u00E0y c\\u00F3 kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Please tell the chef I\\u0027m allergic to peanuts.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n n\\u00F3i v\\u1EDBi \\u0111\\u1EA7u b\\u1EBFp t\\u00F4i b\\u1ECB d\\u1ECB \\u1EE9ng \\u0111\\u1EADu ph\\u1ED9ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I can\\u0027t eat nuts.\u0022,\u0022vi\u0022:\u0022T\\u00F4i kh\\u00F4ng \\u0103n \\u0111\\u01B0\\u1EE3c c\\u00E1c lo\\u1EA1i h\\u1EA1t.\u0022},{\u0022text\u0022:\u0022Does it contain milk?\u0022,\u0022vi\u0022:\u0022M\\u00F3n n\\u00E0y c\\u00F3 s\\u1EEFa kh\\u00F4ng?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.9a40a0bfa6604751ba7e732a06150ebd",
+      "kind": "Card",
+      "values": {
+        "Term": "Is this dish spicy?",
+        "Definition": "m\u00F3n n\u00E0y c\u00F3 cay kh\u00F4ng?",
+        "ImageUrl": "asset:9d6b7403d658f86f89a4ea295d91732265ffe28dba4d7c5527d98688445872e9.webp",
+        "Phonetic": null,
+        "Example": "Is this dish spicy? I can\u0027t eat chilli.",
+        "ExampleTranslation": "M\u00F3n n\u00E0y c\u00F3 cay kh\u00F4ng? T\u00F4i kh\u00F4ng \u0103n \u0111\u01B0\u1EE3c \u1EDBt.",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about how hot a dish is",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Is this dish spicy? I can\\u0027t eat chilli.\u0022,\u0022vi\u0022:\u0022M\\u00F3n n\\u00E0y c\\u00F3 cay kh\\u00F4ng? T\\u00F4i kh\\u00F4ng \\u0103n \\u0111\\u01B0\\u1EE3c \\u1EDBt.\u0022},{\u0022text\u0022:\u0022Is this dish very spicy?\u0022,\u0022vi\u0022:\u0022M\\u00F3n n\\u00E0y c\\u00F3 r\\u1EA5t cay kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s quite mild.\u0022,\u0022vi\u0022:\u0022M\\u00F3n n\\u00E0y kh\\u00E1 nh\\u1EA1t.\u0022},{\u0022text\u0022:\u0022It\\u0027s a little spicy.\u0022,\u0022vi\u0022:\u0022M\\u00F3n n\\u00E0y h\\u01A1i cay.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.c78908a73aa54ce78c9012e5d8ef7708",
+      "kind": "Card",
+      "values": {
+        "Term": "Anything to drink?",
+        "Definition": "b\u1EA1n u\u1ED1ng g\u00EC kh\u00F4ng?",
+        "ImageUrl": "asset:8033589de7afaf8a410acf75ac1d1b259284f0f515a5542ef14cf0d7e435e279.webp",
+        "Phonetic": null,
+        "Example": "Anything to drink? We have tea and juice.",
+        "ExampleTranslation": "Qu\u00FD kh\u00E1ch u\u1ED1ng g\u00EC kh\u00F4ng? Ch\u00FAng t\u00F4i c\u00F3 tr\u00E0 v\u00E0 n\u01B0\u1EDBc \u00E9p.",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a waiter\u0027s question about drinks",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Anything to drink? We have tea and juice.\u0022,\u0022vi\u0022:\u0022Qu\\u00FD kh\\u00E1ch u\\u1ED1ng g\\u00EC kh\\u00F4ng? Ch\\u00FAng t\\u00F4i c\\u00F3 tr\\u00E0 v\\u00E0 n\\u01B0\\u1EDBc \\u00E9p.\u0022},{\u0022text\u0022:\u0022Anything to drink with your meal?\u0022,\u0022vi\u0022:\u0022Qu\\u00FD kh\\u00E1ch c\\u00F3 u\\u1ED1ng g\\u00EC k\\u00E8m b\\u1EEFa \\u0103n kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027ll have an orange juice.\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i m\\u1ED9t ly cam.\u0022},{\u0022text\u0022:\u0022Just water, please.\u0022,\u0022vi\u0022:\u0022Ch\\u1EC9 n\\u01B0\\u1EDBc l\\u1ECDc th\\u00F4i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.de63f7d3fc994464b8eced5f45b683c7",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027d like the chicken soup.",
+        "Definition": "t\u00F4i mu\u1ED1n g\u1ECDi m\u00F3n s\u00FAp g\u00E0",
+        "ImageUrl": "asset:04cc96de62515d644a53dd1667fccc46daa65a3e1c8786f8efe63afab101108c.webp",
+        "Phonetic": null,
+        "Example": "I\u0027d like the chicken soup, please.",
+        "ExampleTranslation": "T\u00F4i mu\u1ED1n g\u1ECDi m\u00F3n s\u00FAp g\u00E0.",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite way to order a dish",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027d like the chicken soup, please.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n g\\u1ECDi m\\u00F3n s\\u00FAp g\\u00E0.\u0022},{\u0022text\u0022:\u0022I\\u0027d like the fried rice and a juice.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n g\\u1ECDi c\\u01A1m chi\\u00EAn v\\u00E0 m\\u1ED9t ly n\\u01B0\\u1EDBc \\u00E9p.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027ll have the soup.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD d\\u00F9ng m\\u00F3n s\\u00FAp.\u0022},{\u0022text\u0022:\u0022Anything else?\u0022,\u0022vi\u0022:\u0022C\\u00F2n g\\u00EC n\\u1EEFa kh\\u00F4ng \\u1EA1?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang.fb04573ce2ac448c871315668522fdb3",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027d like it without onions.",
+        "Definition": "t\u00F4i mu\u1ED1n m\u00F3n n\u00E0y kh\u00F4ng h\u00E0nh",
+        "ImageUrl": "asset:8dd64320bd80744a83f25eadb6ff027e51396e080b2326574da135143761bb65.webp",
+        "Phonetic": null,
+        "Example": "I\u0027d like it without onions, please.",
+        "ExampleTranslation": "T\u00F4i mu\u1ED1n m\u00F3n n\u00E0y kh\u00F4ng h\u00E0nh.",
+        "Topic": "G\u1ECDi m\u00F3n \u1EDF nh\u00E0 h\u00E0ng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request to leave out an ingredient",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027d like it without onions, please.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n m\\u00F3n n\\u00E0y kh\\u00F4ng h\\u00E0nh.\u0022},{\u0022text\u0022:\u0022I\\u0027d like the burger without cheese.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n b\\u00E1nh m\\u00EC k\\u1EB9p th\\u1ECBt kh\\u00F4ng ph\\u00F4 mai.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022No problem.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng v\\u1EA5n \\u0111\\u1EC1 g\\u00EC.\u0022},{\u0022text\u0022:\u0022Extra sauce, please.\u0022,\u0022vi\u0022:\u0022Cho th\\u00EAm n\\u01B0\\u1EDBc s\\u1ED1t.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "b1ede25e3774805d6d2230ffd77b318e0191fd72b4aa8683dacbb29b8cbf9121.webp",
+      "sha256": "b1ede25e3774805d6d2230ffd77b318e0191fd72b4aa8683dacbb29b8cbf9121"
+    },
+    {
+      "file": "a44705420b2e59d21f237f27ab1aa02fd2b1599bd7ca551c8f16f78781b7cd0c.webp",
+      "sha256": "a44705420b2e59d21f237f27ab1aa02fd2b1599bd7ca551c8f16f78781b7cd0c"
+    },
+    {
+      "file": "b784fa58041cf19b8cf27919870b320114ab1b0dbd970e76a6421d414d316d30.webp",
+      "sha256": "b784fa58041cf19b8cf27919870b320114ab1b0dbd970e76a6421d414d316d30"
+    },
+    {
+      "file": "04cc96de62515d644a53dd1667fccc46daa65a3e1c8786f8efe63afab101108c.webp",
+      "sha256": "04cc96de62515d644a53dd1667fccc46daa65a3e1c8786f8efe63afab101108c"
+    },
+    {
+      "file": "7ef963be242ad2868676e6fdfec364629052d75df6a2de3fd835dca7ec8127d4.webp",
+      "sha256": "7ef963be242ad2868676e6fdfec364629052d75df6a2de3fd835dca7ec8127d4"
+    },
+    {
+      "file": "9d6b7403d658f86f89a4ea295d91732265ffe28dba4d7c5527d98688445872e9.webp",
+      "sha256": "9d6b7403d658f86f89a4ea295d91732265ffe28dba4d7c5527d98688445872e9"
+    },
+    {
+      "file": "dbc3a3462f5242820b4a644cb285d8f6b415d5c515e82c5211cdb0005e6f5ad0.webp",
+      "sha256": "dbc3a3462f5242820b4a644cb285d8f6b415d5c515e82c5211cdb0005e6f5ad0"
+    },
+    {
+      "file": "baa86c546b8d4380a367bbdb6615bf946fb77b83b37ca2452d13f942891b1a72.webp",
+      "sha256": "baa86c546b8d4380a367bbdb6615bf946fb77b83b37ca2452d13f942891b1a72"
+    },
+    {
+      "file": "55ff1ceb2482c0b40064971dfac67dd61e31364a70a525f59f5cebe286c486f9.webp",
+      "sha256": "55ff1ceb2482c0b40064971dfac67dd61e31364a70a525f59f5cebe286c486f9"
+    },
+    {
+      "file": "8033589de7afaf8a410acf75ac1d1b259284f0f515a5542ef14cf0d7e435e279.webp",
+      "sha256": "8033589de7afaf8a410acf75ac1d1b259284f0f515a5542ef14cf0d7e435e279"
+    },
+    {
+      "file": "dd4b0db255ac3fc1a5b099b83d60ad7700748cb76040f5a915701cda815b03a3.webp",
+      "sha256": "dd4b0db255ac3fc1a5b099b83d60ad7700748cb76040f5a915701cda815b03a3"
+    },
+    {
+      "file": "11351a813ff0eafca67883fc376ed247dda81e8b9fd1154e6224a34b0fe1ea0b.webp",
+      "sha256": "11351a813ff0eafca67883fc376ed247dda81e8b9fd1154e6224a34b0fe1ea0b"
+    },
+    {
+      "file": "357c95b321d2be042efc9fb6980e5f042fa698575724de8df26c52a032365fff.webp",
+      "sha256": "357c95b321d2be042efc9fb6980e5f042fa698575724de8df26c52a032365fff"
+    },
+    {
+      "file": "9df737536dcbc36b2e93dc44c4667079c074c682a79e47a9d8d1d2d444fa379e.webp",
+      "sha256": "9df737536dcbc36b2e93dc44c4667079c074c682a79e47a9d8d1d2d444fa379e"
+    },
+    {
+      "file": "2d1376b9422c35c6ba761661b1d709c89ad3010a31d31aac0fc6fa8dac6fe935.webp",
+      "sha256": "2d1376b9422c35c6ba761661b1d709c89ad3010a31d31aac0fc6fa8dac6fe935"
+    },
+    {
+      "file": "7b1c0756a0d434b621bdcede9098a4ae14193acf587296fcac0b17d1f6362a72.webp",
+      "sha256": "7b1c0756a0d434b621bdcede9098a4ae14193acf587296fcac0b17d1f6362a72"
+    },
+    {
+      "file": "8dd64320bd80744a83f25eadb6ff027e51396e080b2326574da135143761bb65.webp",
+      "sha256": "8dd64320bd80744a83f25eadb6ff027e51396e080b2326574da135143761bb65"
+    },
+    {
+      "file": "b11f9cb615b572dc15f68598c76479c044e4d114e4ff72bf2c4f5c2453168191.webp",
+      "sha256": "b11f9cb615b572dc15f68598c76479c044e4d114e4ff72bf2c4f5c2453168191"
+    },
+    {
+      "file": "e3f332e19a8c84bc80b37f1547ed8d4b6596c617536b6ccd0e99d18490885b10.webp",
+      "sha256": "e3f332e19a8c84bc80b37f1547ed8d4b6596c617536b6ccd0e99d18490885b10"
+    },
+    {
+      "file": "944dc194fbaa87330e1d2ad4cac11d4ec69ec442786fce6795b29fc6c8cfc271.webp",
+      "sha256": "944dc194fbaa87330e1d2ad4cac11d4ec69ec442786fce6795b29fc6c8cfc271"
+    }
+  ],
+  "rootKey": "team.vocab.c-giao-tiep-hang-ngay.c03-goi-mon-o-nha-hang"
+}

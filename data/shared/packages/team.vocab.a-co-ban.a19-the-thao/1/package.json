@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a19-the-thao",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao",
+      "kind": "Set",
+      "values": {
+        "SetName": "Th\u1EC3 thao",
+        "Description": "#a1 #a2 #sports #hobbies"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.019463e0b69049fc8a711b4f41ba378b",
+      "kind": "Card",
+      "values": {
+        "Term": "running",
+        "Definition": "m\u00F4n ch\u1EA1y b\u1ED9",
+        "ImageUrl": "asset:5f91de2ff851f67aaf7436d36e6ec6c96dac8d9b17101a7d88547c0c548886b2.webp",
+        "Phonetic": "/\u02C8\u0279\u028Cn\u026A\u014B/",
+        "Example": "Running in the morning makes me feel fresh.",
+        "ExampleTranslation": "Ch\u1EA1y b\u1ED9 bu\u1ED5i s\u00E1ng l\u00E0m t\u00F4i th\u1EA5y s\u1EA3ng kho\u00E1i.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the activity of moving fast on foot for exercise",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u0279\u028Cn\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Running in the morning makes me feel fresh.\u0022,\u0022vi\u0022:\u0022Ch\\u1EA1y b\\u1ED9 bu\\u1ED5i s\\u00E1ng l\\u00E0m t\\u00F4i th\\u1EA5y s\\u1EA3ng kho\\u00E1i.\u0022},{\u0022text\u0022:\u0022Running is a cheap sport.\u0022,\u0022vi\u0022:\u0022Ch\\u1EA1y b\\u1ED9 l\\u00E0 m\\u1ED9t m\\u00F4n th\\u1EC3 thao r\\u1EBB ti\\u1EC1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go running\u0022,\u0022vi\u0022:\u0022\\u0111i ch\\u1EA1y b\\u1ED9\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5920547/photo-image-public-domain-people-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.05d3c108f731401db8a699f7ebd47a80",
+      "kind": "Card",
+      "values": {
+        "Term": "gymnastics",
+        "Definition": "m\u00F4n th\u1EC3 d\u1EE5c d\u1EE5ng c\u1EE5",
+        "ImageUrl": "asset:7826610913893a3b838d2a1044eb712673f25155f24e3f5b8459d35915719697.webp",
+        "Phonetic": "/d\u0361\u0292\u026Am\u02C8n\u00E6s.t\u026Aks/",
+        "Example": "She practises gymnastics every afternoon.",
+        "ExampleTranslation": "C\u00F4 b\u00E9 t\u1EADp th\u1EC3 d\u1EE5c d\u1EE5ng c\u1EE5 m\u1ED7i bu\u1ED5i chi\u1EC1u.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a sport of exercises that need balance and strength",
+        "Cefr": "A2",
+        "PhoneticUk": "/d\u0361\u0292\u026Am\u02C8n\u00E6s.t\u026Aks/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She practises gymnastics every afternoon.\u0022,\u0022vi\u0022:\u0022C\\u00F4 b\\u00E9 t\\u1EADp th\\u1EC3 d\\u1EE5c d\\u1EE5ng c\\u1EE5 m\\u1ED7i bu\\u1ED5i chi\\u1EC1u.\u0022},{\u0022text\u0022:\u0022Gymnastics needs a lot of balance.\u0022,\u0022vi\u0022:\u0022Th\\u1EC3 d\\u1EE5c d\\u1EE5ng c\\u1EE5 c\\u1EA7n r\\u1EA5t nhi\\u1EC1u s\\u1EF1 th\\u0103ng b\\u1EB1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022gymnastics class\u0022,\u0022vi\u0022:\u0022l\\u1EDBp th\\u1EC3 d\\u1EE5c d\\u1EE5ng c\\u1EE5\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.078f6d134ddb4178ab0fb3868617d40a",
+      "kind": "Card",
+      "values": {
+        "Term": "volleyball",
+        "Definition": "b\u00F3ng chuy\u1EC1n",
+        "ImageUrl": "asset:7b18a736b5e17a2d69ed1bd8e5c9d838cb0af75398b3fb7255510f3f44045679.webp",
+        "Phonetic": "/\u02C8v\u0251lib\u0254l/",
+        "Example": "We play volleyball on the beach.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i ch\u01A1i b\u00F3ng chuy\u1EC1n tr\u00EAn b\u00E3i bi\u1EC3n.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a game where two teams hit a ball over a high net",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8v\u0252lib\u0254\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We play volleyball on the beach.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i ch\\u01A1i b\\u00F3ng chuy\\u1EC1n tr\\u00EAn b\\u00E3i bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022The volleyball team practises every Monday.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1ED9i b\\u00F3ng chuy\\u1EC1n t\\u1EADp luy\\u1EC7n v\\u00E0o m\\u1ED7i th\\u1EE9 Hai.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022beach volleyball\u0022,\u0022vi\u0022:\u0022b\\u00F3ng chuy\\u1EC1n b\\u00E3i bi\\u1EC3n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5905222/photo-image-public-domain-free-game\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.15e801b9117040b2960362ba8bbca0a0",
+      "kind": "Card",
+      "values": {
+        "Term": "marathon",
+        "Definition": "cu\u1ED9c ch\u1EA1y ma-ra-t\u00F4ng",
+        "ImageUrl": "asset:fb9f7e81e64f4d357a37b97dcfd2f369734579025f27f97e73a41572c4eb409b.webp",
+        "Phonetic": "/\u02C8m\u00E6\u0279\u0259\u02CC\u03B8\u0251n/",
+        "Example": "He ran a marathon last year.",
+        "ExampleTranslation": "N\u0103m ngo\u00E1i anh \u1EA5y \u0111\u00E3 ch\u1EA1y m\u1ED9t cu\u1ED9c ma-ra-t\u00F4ng.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very long running race of about forty-two kilometres",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8m\u00E6\u0279\u0259\u03B8\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He ran a marathon last year.\u0022,\u0022vi\u0022:\u0022N\\u0103m ngo\\u00E1i anh \\u1EA5y \\u0111\\u00E3 ch\\u1EA1y m\\u1ED9t cu\\u1ED9c ma-ra-t\\u00F4ng.\u0022},{\u0022text\u0022:\u0022Thousands of people join the marathon.\u0022,\u0022vi\u0022:\u0022H\\u00E0ng ngh\\u00ECn ng\\u01B0\\u1EDDi tham gia cu\\u1ED9c ch\\u1EA1y ma-ra-t\\u00F4ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022run a marathon\u0022,\u0022vi\u0022:\u0022ch\\u1EA1y ma-ra-t\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/37585279@N03/14282334315\u0022,\u0022author\u0022:\u0022U.S. Army Europe\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.1dae279bddd7466988b2174408c848be",
+      "kind": "Card",
+      "values": {
+        "Term": "surfing",
+        "Definition": "m\u00F4n l\u01B0\u1EDBt s\u00F3ng",
+        "ImageUrl": "asset:9bec043982891325e40648928317a0313fb423f54aad25dd438ae6cd047ff19b.webp",
+        "Phonetic": "/\u02C8s\u025Df\u026A\u014B/",
+        "Example": "Surfing is popular on this beach.",
+        "ExampleTranslation": "L\u01B0\u1EDBt s\u00F3ng r\u1EA5t \u0111\u01B0\u1EE3c \u01B0a chu\u1ED9ng \u1EDF b\u00E3i bi\u1EC3n n\u00E0y.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the sport of riding waves on a board",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8s\u025Df\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Surfing is popular on this beach.\u0022,\u0022vi\u0022:\u0022L\\u01B0\\u1EDBt s\\u00F3ng r\\u1EA5t \\u0111\\u01B0\\u1EE3c \\u01B0a chu\\u1ED9ng \\u1EDF b\\u00E3i bi\\u1EC3n n\\u00E0y.\u0022},{\u0022text\u0022:\u0022He learned surfing during the summer.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y h\\u1ECDc l\\u01B0\\u1EDBt s\\u00F3ng trong m\\u00F9a h\\u00E8.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go surfing\u0022,\u0022vi\u0022:\u0022\\u0111i l\\u01B0\\u1EDBt s\\u00F3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/126288307@N05/20681677698\u0022,\u0022author\u0022:\u0022watts_photos\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.2ec51c78f79c4aad93a85010ca4c8075",
+      "kind": "Card",
+      "values": {
+        "Term": "tennis",
+        "Definition": "qu\u1EA7n v\u1EE3t",
+        "ImageUrl": "asset:a9cfa6b6b8e24cd3aa9b89e0c52e4d770525ea6a1c04fe63ffd510ce2ff82f11.webp",
+        "Phonetic": "/\u02C8t\u025Bn.\u026As/",
+        "Example": "She plays tennis on Saturdays.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y ch\u01A1i qu\u1EA7n v\u1EE3t v\u00E0o c\u00E1c ng\u00E0y th\u1EE9 B\u1EA3y.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a game where two players hit a ball over a net with rackets",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8t\u025Bn.\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She plays tennis on Saturdays.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y ch\\u01A1i qu\\u1EA7n v\\u1EE3t v\\u00E0o c\\u00E1c ng\\u00E0y th\\u1EE9 B\\u1EA3y.\u0022},{\u0022text\u0022:\u0022We booked a tennis court for two hours.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u1EB7t m\\u1ED9t s\\u00E2n qu\\u1EA7n v\\u1EE3t trong hai ti\\u1EBFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022tennis court\u0022,\u0022vi\u0022:\u0022s\\u00E2n qu\\u1EA7n v\\u1EE3t\u0022},{\u0022text\u0022:\u0022tennis racket\u0022,\u0022vi\u0022:\u0022v\\u1EE3t tennis\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/tennis-racket-8ODE0WIMD9\u0022,\u0022author\u0022:\u0022Krzysztof%20Puszczy%u0144ski\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.2f9623757cd441c38d179b6d3f1e8154",
+      "kind": "Card",
+      "values": {
+        "Term": "skating",
+        "Definition": "m\u00F4n tr\u01B0\u1EE3t b\u0103ng, tr\u01B0\u1EE3t patin",
+        "ImageUrl": "asset:35bcecb5842ba9d83ac464f9f345b72e9c1a6c01a87f66c6f80b31f9ba873395.webp",
+        "Phonetic": "/\u02C8ske\u026At\u026A\u014B/",
+        "Example": "Ice skating is popular in winter.",
+        "ExampleTranslation": "Tr\u01B0\u1EE3t b\u0103ng \u0111\u01B0\u1EE3c \u01B0a chu\u1ED9ng v\u00E0o m\u00F9a \u0111\u00F4ng.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the sport of moving on ice or hard ground with wheels or blades",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8ske\u026At\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Ice skating is popular in winter.\u0022,\u0022vi\u0022:\u0022Tr\\u01B0\\u1EE3t b\\u0103ng \\u0111\\u01B0\\u1EE3c \\u01B0a chu\\u1ED9ng v\\u00E0o m\\u00F9a \\u0111\\u00F4ng.\u0022},{\u0022text\u0022:\u0022My sister loves skating in the park.\u0022,\u0022vi\u0022:\u0022Ch\\u1ECB t\\u00F4i r\\u1EA5t th\\u00EDch tr\\u01B0\\u1EE3t patin trong c\\u00F4ng vi\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ice skating\u0022,\u0022vi\u0022:\u0022tr\\u01B0\\u1EE3t b\\u0103ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/62518311@N00/8485071687\u0022,\u0022author\u0022:\u0022Daquella manera\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.30bf61a8334446ba8fa9671eea4d6ffd",
+      "kind": "Card",
+      "values": {
+        "Term": "badminton",
+        "Definition": "c\u1EA7u l\u00F4ng",
+        "ImageUrl": "asset:9729dea1ecb3a3effe44685b3d4af3da149f3c884d2c776c06a79f5d11587b94.webp",
+        "Phonetic": "/\u02C8b\u00E6d.m\u026An.t\u0259n/",
+        "Example": "We play badminton in the park.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i ch\u01A1i c\u1EA7u l\u00F4ng trong c\u00F4ng vi\u00EAn.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a game where players hit a small feathered shuttlecock over a net",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u00E6d.m\u026An.t\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We play badminton in the park.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i ch\\u01A1i c\\u1EA7u l\\u00F4ng trong c\\u00F4ng vi\\u00EAn.\u0022},{\u0022text\u0022:\u0022Badminton is very popular in Vietnam.\u0022,\u0022vi\u0022:\u0022C\\u1EA7u l\\u00F4ng r\\u1EA5t ph\\u1ED5 bi\\u1EBFn \\u1EDF Vi\\u1EC7t Nam.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play badminton\u0022,\u0022vi\u0022:\u0022ch\\u01A1i c\\u1EA7u l\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3338061/free-photo-image-badminton-cc0-creative-commons\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.34a8d81148994c9e8d25033af75819e2",
+      "kind": "Card",
+      "values": {
+        "Term": "rugby",
+        "Definition": "b\u00F3ng b\u1EA7u d\u1EE5c",
+        "ImageUrl": "asset:c56d79dd39ae6396d4fa663777eba10c8e4a1c3d011be7556f2cdb9daeb6f4da.webp",
+        "Phonetic": "/\u02C8\u0279\u028C\u0261bi/",
+        "Example": "Rugby is a very strong and fast game.",
+        "ExampleTranslation": "B\u00F3ng b\u1EA7u d\u1EE5c l\u00E0 m\u00F4n r\u1EA5t m\u1EA1nh v\u00E0 nhanh.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a team game played with an oval ball that players carry and throw",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0279\u028C\u0261bi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Rugby is a very strong and fast game.\u0022,\u0022vi\u0022:\u0022B\\u00F3ng b\\u1EA7u d\\u1EE5c l\\u00E0 m\\u00F4n r\\u1EA5t m\\u1EA1nh v\\u00E0 nhanh.\u0022},{\u0022text\u0022:\u0022He broke his arm playing rugby.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y b\\u1ECB g\\u00E3y tay khi ch\\u01A1i b\\u00F3ng b\\u1EA7u d\\u1EE5c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022rugby ball\u0022,\u0022vi\u0022:\u0022qu\\u1EA3 b\\u00F3ng b\\u1EA7u d\\u1EE5c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6771192/vector-sticker-public-domain-illustration\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.3fc5429426094e009ec38c5e1ab99836",
+      "kind": "Card",
+      "values": {
+        "Term": "climbing",
+        "Definition": "m\u00F4n leo n\u00FAi, leo v\u00E1ch",
+        "ImageUrl": "asset:8ad974fd7e0fa4d8ac424ed0c83a3a3811e82e87b3110de9502dd2a4c138761d.webp",
+        "Phonetic": "/\u02C8kla\u026A\u032Fm\u026A\u014B/",
+        "Example": "Climbing is hard work but great fun.",
+        "ExampleTranslation": "Leo n\u00FAi v\u1EA5t v\u1EA3 nh\u01B0ng r\u1EA5t vui.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the sport of going up mountains or walls using hands and feet",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8kla\u026A\u032Fm\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Climbing is hard work but great fun.\u0022,\u0022vi\u0022:\u0022Leo n\\u00FAi v\\u1EA5t v\\u1EA3 nh\\u01B0ng r\\u1EA5t vui.\u0022},{\u0022text\u0022:\u0022We go climbing every autumn.\u0022,\u0022vi\u0022:\u0022M\\u00F9a thu n\\u00E0o ch\\u00FAng t\\u00F4i c\\u0169ng \\u0111i leo n\\u00FAi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022rock climbing\u0022,\u0022vi\u0022:\u0022leo v\\u00E1ch \\u0111\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/136737541@N05/51323491277\u0022,\u0022author\u0022:\u0022U.S. Army ROTC\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.4a12f5e8eca649d2971aa677ff5423fe",
+      "kind": "Card",
+      "values": {
+        "Term": "cycling",
+        "Definition": "m\u00F4n \u0111\u1EA1p xe",
+        "ImageUrl": "asset:52931103267ebb1c3a695e5217ce5df4bb1c1f8a201c1403b67577e54f74d1cb.webp",
+        "Phonetic": "/\u02C8sa\u026Ak(\u0259)l\u026A\u014B/",
+        "Example": "Cycling is my favourite sport.",
+        "ExampleTranslation": "\u0110\u1EA1p xe l\u00E0 m\u00F4n th\u1EC3 thao y\u00EAu th\u00EDch c\u1EE7a t\u00F4i.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the sport or activity of riding a bicycle",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8sa\u026Ak(\u0259)l\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Cycling is my favourite sport.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EA1p xe l\\u00E0 m\\u00F4n th\\u1EC3 thao y\\u00EAu th\\u00EDch c\\u1EE7a t\\u00F4i.\u0022},{\u0022text\u0022:\u0022We go cycling along the river on Sundays.\u0022,\u0022vi\u0022:\u0022Ch\\u1EE7 nh\\u1EADt ch\\u00FAng t\\u00F4i \\u0111\\u1EA1p xe d\\u1ECDc b\\u1EDD s\\u00F4ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go cycling\u0022,\u0022vi\u0022:\u0022\\u0111i \\u0111\\u1EA1p xe\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/43288043@N04/50047948161\u0022,\u0022author\u0022:\u0022GlacierNPS\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.4e004611116841d49ec09e765c5a0552",
+      "kind": "Card",
+      "values": {
+        "Term": "football",
+        "Definition": "b\u00F3ng \u0111\u00E1",
+        "ImageUrl": "asset:c201ae40b8bed35c3ad389ad70e78a7bf19f3c329b212f42c7af378d83fd526e.webp",
+        "Phonetic": "/\u02C8f\u028At.b\u0254l/",
+        "Example": "My brother plays football every weekend.",
+        "ExampleTranslation": "Anh trai t\u00F4i ch\u01A1i b\u00F3ng \u0111\u00E1 v\u00E0o m\u1ED7i cu\u1ED1i tu\u1EA7n.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a team sport where players kick a ball into a goal",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8f\u028At.b\u0254\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My brother plays football every weekend.\u0022,\u0022vi\u0022:\u0022Anh trai t\\u00F4i ch\\u01A1i b\\u00F3ng \\u0111\\u00E1 v\\u00E0o m\\u1ED7i cu\\u1ED1i tu\\u1EA7n.\u0022},{\u0022text\u0022:\u0022We watched a football match on television.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i xem m\\u1ED9t tr\\u1EADn b\\u00F3ng \\u0111\\u00E1 tr\\u00EAn tivi.\u0022}],\u0022synonyms\u0022:[\u0022soccer\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022play football\u0022,\u0022vi\u0022:\u0022ch\\u01A1i b\\u00F3ng \\u0111\\u00E1\u0022},{\u0022text\u0022:\u0022football match\u0022,\u0022vi\u0022:\u0022tr\\u1EADn b\\u00F3ng \\u0111\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Adidas_soccer_ball_on_a_grass_pitch_(Unsplash).jpg\u0022,\u0022author\u0022:\u0022Peter Glaser baraida\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.543ae4f74c72464c94e81d4b6db07ae2",
+      "kind": "Card",
+      "values": {
+        "Term": "diving",
+        "Definition": "m\u00F4n l\u1EB7n, m\u00F4n nh\u1EA3y c\u1EA7u",
+        "ImageUrl": "asset:ff32b2d5701d77598fb925db8e4b5fcdf29cff3b38c34c340facd1d5a45ea715.webp",
+        "Phonetic": "/\u02C8da\u026A.v\u026A\u014B/",
+        "Example": "Diving is popular on this island.",
+        "ExampleTranslation": "L\u1EB7n bi\u1EC3n r\u1EA5t ph\u1ED5 bi\u1EBFn \u1EDF h\u00F2n \u0111\u1EA3o n\u00E0y.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the sport of jumping into water or swimming under it",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8da\u026A.v\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Diving is popular on this island.\u0022,\u0022vi\u0022:\u0022L\\u1EB7n bi\\u1EC3n r\\u1EA5t ph\\u1ED5 bi\\u1EBFn \\u1EDF h\\u00F2n \\u0111\\u1EA3o n\\u00E0y.\u0022},{\u0022text\u0022:\u0022He took a diving course last summer.\u0022,\u0022vi\u0022:\u0022M\\u00F9a h\\u00E8 n\\u0103m ngo\\u00E1i c\\u1EADu \\u1EA5y h\\u1ECDc m\\u1ED9t kh\\u00F3a l\\u1EB7n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022scuba diving\u0022,\u0022vi\u0022:\u0022l\\u1EB7n c\\u00F3 b\\u00ECnh kh\\u00ED\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Scuba_Diving_Samaesan_Island.jpg\u0022,\u0022author\u0022:\u0022Ryland.cairns\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.5753e9c8bf66411e97d686f8017cc351",
+      "kind": "Card",
+      "values": {
+        "Term": "archery",
+        "Definition": "m\u00F4n b\u1EAFn cung",
+        "ImageUrl": "asset:47ad76c94331b5ff0bbdbe6c30f04a59e4a972d85de94b4abe04bc4c2fb8e0ac.webp",
+        "Phonetic": "/\u02C8\u0251\u0279t\u0361\u0283\u0259\u0279i\u02D0/",
+        "Example": "Archery needs a steady hand.",
+        "ExampleTranslation": "B\u1EAFn cung c\u1EA7n m\u1ED9t b\u00E0n tay v\u1EEFng.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the sport of shooting arrows with a bow",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0251\u0279t\u0361\u0283\u0259\u0279i\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Archery needs a steady hand.\u0022,\u0022vi\u0022:\u0022B\\u1EAFn cung c\\u1EA7n m\\u1ED9t b\\u00E0n tay v\\u1EEFng.\u0022},{\u0022text\u0022:\u0022She won a prize in archery.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y gi\\u00E0nh gi\\u1EA3i \\u1EDF m\\u00F4n b\\u1EAFn cung.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022archery target\u0022,\u0022vi\u0022:\u0022bia b\\u1EAFn cung\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6042094/photo-image-public-domain-arrow-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.9cf4f8f35c954ed3a0c88c5538a0fc51",
+      "kind": "Card",
+      "values": {
+        "Term": "yoga",
+        "Definition": "m\u00F4n yoga",
+        "ImageUrl": "asset:899c5dbf1547e610defcd4108f23b7f450e68e3f92765a861c740197ffbba232.webp",
+        "Phonetic": "/\u02C8jo\u028A.\u0261\u0259/",
+        "Example": "My mother does yoga every morning.",
+        "ExampleTranslation": "M\u1EB9 t\u00F4i t\u1EADp yoga m\u1ED7i bu\u1ED5i s\u00E1ng.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "gentle exercises that stretch the body and calm the mind",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8jo\u028A.\u0261\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My mother does yoga every morning.\u0022,\u0022vi\u0022:\u0022M\\u1EB9 t\\u00F4i t\\u1EADp yoga m\\u1ED7i bu\\u1ED5i s\\u00E1ng.\u0022},{\u0022text\u0022:\u0022Yoga helps me relax after work.\u0022,\u0022vi\u0022:\u0022Yoga gi\\u00FAp t\\u00F4i th\\u01B0 gi\\u00E3n sau gi\\u1EDD l\\u00E0m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022yoga class\u0022,\u0022vi\u0022:\u0022l\\u1EDBp yoga\u0022},{\u0022text\u0022:\u0022yoga mat\u0022,\u0022vi\u0022:\u0022th\\u1EA3m t\\u1EADp yoga\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/11515776/rolled-teal-yoga-mat-its-side\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.9e89effc0ad64c58b8fc921a0e77d67c",
+      "kind": "Card",
+      "values": {
+        "Term": "swimming",
+        "Definition": "m\u00F4n b\u01A1i l\u1ED9i",
+        "ImageUrl": "asset:e77556789f79c4f7d2e9cb20b03a08c054378fb6b1c2db16376a329012665a69.webp",
+        "Phonetic": "/\u02C8sw\u026Am\u026A\u014B/",
+        "Example": "I go swimming every Tuesday.",
+        "ExampleTranslation": "Th\u1EE9 Ba n\u00E0o t\u00F4i c\u0169ng \u0111i b\u01A1i.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the sport of moving through water using your arms and legs",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8sw\u026Am\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I go swimming every Tuesday.\u0022,\u0022vi\u0022:\u0022Th\\u1EE9 Ba n\\u00E0o t\\u00F4i c\\u0169ng \\u0111i b\\u01A1i.\u0022},{\u0022text\u0022:\u0022Swimming is good for your whole body.\u0022,\u0022vi\u0022:\u0022B\\u01A1i l\\u1ED9i t\\u1ED1t cho to\\u00E0n b\\u1ED9 c\\u01A1 th\\u1EC3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022swimming pool\u0022,\u0022vi\u0022:\u0022h\\u1ED3 b\\u01A1i\u0022},{\u0022text\u0022:\u0022go swimming\u0022,\u0022vi\u0022:\u0022\\u0111i b\\u01A1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/156869144@N02/52127012983\u0022,\u0022author\u0022:\u0022Greenville, NC\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.a122651f905548f4b48678094691ecbc",
+      "kind": "Card",
+      "values": {
+        "Term": "basketball",
+        "Definition": "b\u00F3ng r\u1ED5",
+        "ImageUrl": "asset:250014a991b6bc93e146558dd846ce993e19decb447a77e94201e22104da7142.webp",
+        "Phonetic": "/\u02C8b\u00E6s.k\u026At.b\u0254l/",
+        "Example": "He is very tall and plays basketball.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y r\u1EA5t cao v\u00E0 ch\u01A1i b\u00F3ng r\u1ED5.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a game where players throw a ball through a high net",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8b\u0251\u02D0s.k\u026At.b\u0254\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He is very tall and plays basketball.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y r\\u1EA5t cao v\\u00E0 ch\\u01A1i b\\u00F3ng r\\u1ED5.\u0022},{\u0022text\u0022:\u0022We play basketball after school.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i ch\\u01A1i b\\u00F3ng r\\u1ED5 sau gi\\u1EDD h\\u1ECDc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022basketball court\u0022,\u0022vi\u0022:\u0022s\\u00E2n b\\u00F3ng r\\u1ED5\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/basketball-hoop-JEUPMB2AF7\u0022,\u0022author\u0022:\u0022Marcin Milewski\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.ab116c9a45b14817a8b2480917e56888",
+      "kind": "Card",
+      "values": {
+        "Term": "karate",
+        "Definition": "m\u00F4n karate",
+        "ImageUrl": "asset:bdb31ab4a47f5a16b4a803711ef33bb407d8d95b16835497ca0afc23b8de0546.webp",
+        "Phonetic": "/k\u0259\u02C8\u0279\u0251.ti/",
+        "Example": "My cousin learns karate at the club.",
+        "ExampleTranslation": "Anh h\u1ECD t\u00F4i h\u1ECDc karate \u1EDF c\u00E2u l\u1EA1c b\u1ED9.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a Japanese fighting sport using hands and feet",
+        "Cefr": "A2",
+        "PhoneticUk": "/k\u0259\u02C8\u0279\u0251\u02D0.ti/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My cousin learns karate at the club.\u0022,\u0022vi\u0022:\u0022Anh h\\u1ECD t\\u00F4i h\\u1ECDc karate \\u1EDF c\\u00E2u l\\u1EA1c b\\u1ED9.\u0022},{\u0022text\u0022:\u0022He has a black belt in karate.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y c\\u00F3 \\u0111ai \\u0111en karate.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022karate class\u0022,\u0022vi\u0022:\u0022l\\u1EDBp karate\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/30611184@N00/2096700130\u0022,\u0022author\u0022:\u0022kelannfuller\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.b7bb8ddf4aa04dc3aca567bec28ee830",
+      "kind": "Card",
+      "values": {
+        "Term": "golf",
+        "Definition": "m\u00F4n \u0111\u00E1nh g\u00F4n",
+        "ImageUrl": "asset:cfa42c66a3c7103ba46ba4e9c7ba36724449fb41a5940e3b92658df3e4ba6838.webp",
+        "Phonetic": "/\u0261\u0251lf/",
+        "Example": "My grandfather plays golf on Sundays.",
+        "ExampleTranslation": "\u00D4ng t\u00F4i ch\u01A1i g\u00F4n v\u00E0o c\u00E1c ng\u00E0y Ch\u1EE7 nh\u1EADt.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a game where you hit a small ball into holes with a club",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0261\u0252lf/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandfather plays golf on Sundays.\u0022,\u0022vi\u0022:\u0022\\u00D4ng t\\u00F4i ch\\u01A1i g\\u00F4n v\\u00E0o c\\u00E1c ng\\u00E0y Ch\\u1EE7 nh\\u1EADt.\u0022},{\u0022text\u0022:\u0022The golf course is very green.\u0022,\u0022vi\u0022:\u0022S\\u00E2n g\\u00F4n r\\u1EA5t xanh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022golf course\u0022,\u0022vi\u0022:\u0022s\\u00E2n g\\u00F4n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Golf_ball_on_tee.jpg\u0022,\u0022author\u0022:\u0022Stefanschenkon\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.bc50f3c955ae46c8ace3cd1dcebe9a8c",
+      "kind": "Card",
+      "values": {
+        "Term": "boxing",
+        "Definition": "m\u00F4n \u0111\u1EA5m b\u1ED1c",
+        "ImageUrl": "asset:3f3476c59761eb864c70cb4e3e57355cad16960db76540f2ba6335edd1141a22.webp",
+        "Phonetic": "/\u02C8b\u0251\u02D0ks\u026A\u014B/",
+        "Example": "He trains boxing three times a week.",
+        "ExampleTranslation": "Anh \u1EA5y t\u1EADp \u0111\u1EA5m b\u1ED1c ba l\u1EA7n m\u1ED7i tu\u1EA7n.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a sport where two people fight with their fists",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u0252ks\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He trains boxing three times a week.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y t\\u1EADp \\u0111\\u1EA5m b\\u1ED1c ba l\\u1EA7n m\\u1ED7i tu\\u1EA7n.\u0022},{\u0022text\u0022:\u0022Boxing needs a lot of strength.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EA5m b\\u1ED1c c\\u1EA7n r\\u1EA5t nhi\\u1EC1u s\\u1EE9c m\\u1EA1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022boxing gloves\u0022,\u0022vi\u0022:\u0022g\\u0103ng \\u0111\\u1EA5m b\\u1ED1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6027844/photo-image-public-domain-blue-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.c048160079654eb081c1361f8ec18048",
+      "kind": "Card",
+      "values": {
+        "Term": "table tennis",
+        "Definition": "b\u00F3ng b\u00E0n",
+        "ImageUrl": "asset:c3d13c27a934b650f9c4981756bd6f4ace9b89236f832261dbae3d67d9a6989b.webp",
+        "Phonetic": "/\u02C8t\u02B0e\u026Ab(\u0259)\u026B \u02C8t\u025Bn.\u026As/",
+        "Example": "We play table tennis after lunch.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i ch\u01A1i b\u00F3ng b\u00E0n sau b\u1EEFa tr\u01B0a.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a game where players hit a light ball across a table",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8te\u026Abl\u0329 \u02C8t\u025Bn.\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We play table tennis after lunch.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i ch\\u01A1i b\\u00F3ng b\\u00E0n sau b\\u1EEFa tr\\u01B0a.\u0022},{\u0022text\u0022:\u0022He is very good at table tennis.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y ch\\u01A1i b\\u00F3ng b\\u00E0n r\\u1EA5t gi\\u1ECFi.\u0022}],\u0022synonyms\u0022:[\u0022ping-pong\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022table tennis bat\u0022,\u0022vi\u0022:\u0022v\\u1EE3t b\\u00F3ng b\\u00E0n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5914671/image-public-domain-free-game\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.c8c4e528552b43ee9783eca1c5687add",
+      "kind": "Card",
+      "values": {
+        "Term": "baseball",
+        "Definition": "b\u00F3ng ch\u00E0y",
+        "ImageUrl": "asset:a77f862975dab25852603268cf31b3ea194f0c34aba6a79e0424774906de6a19.webp",
+        "Phonetic": "/\u02C8be\u026As.b\u0254l/",
+        "Example": "They play baseball in the summer.",
+        "ExampleTranslation": "H\u1ECD ch\u01A1i b\u00F3ng ch\u00E0y v\u00E0o m\u00F9a h\u00E8.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a game where a player hits a ball with a bat and runs around bases",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8be\u026As.b\u0254\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022They play baseball in the summer.\u0022,\u0022vi\u0022:\u0022H\\u1ECD ch\\u01A1i b\\u00F3ng ch\\u00E0y v\\u00E0o m\\u00F9a h\\u00E8.\u0022},{\u0022text\u0022:\u0022My father took me to a baseball game.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 \\u0111\\u01B0a t\\u00F4i \\u0111i xem m\\u1ED9t tr\\u1EADn b\\u00F3ng ch\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022baseball bat\u0022,\u0022vi\u0022:\u0022g\\u1EADy b\\u00F3ng ch\\u00E0y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5922332/photo-image-public-domain-green-black\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.db5eed7f625e46d88936b8d836cab6d7",
+      "kind": "Card",
+      "values": {
+        "Term": "skiing",
+        "Definition": "m\u00F4n tr\u01B0\u1EE3t tuy\u1EBFt",
+        "ImageUrl": "asset:58187a8318238761d055b4fff2a56beb291fe6a10607b1acb7b518acd9f1ce9b.webp",
+        "Phonetic": "/\u02C8ski.\u026A\u014B/",
+        "Example": "We go skiing in the mountains every winter.",
+        "ExampleTranslation": "M\u00F9a \u0111\u00F4ng n\u00E0o ch\u00FAng t\u00F4i c\u0169ng \u0111i tr\u01B0\u1EE3t tuy\u1EBFt \u1EDF tr\u00EAn n\u00FAi.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the sport of sliding over snow on long thin boards",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8ski.\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We go skiing in the mountains every winter.\u0022,\u0022vi\u0022:\u0022M\\u00F9a \\u0111\\u00F4ng n\\u00E0o ch\\u00FAng t\\u00F4i c\\u0169ng \\u0111i tr\\u01B0\\u1EE3t tuy\\u1EBFt \\u1EDF tr\\u00EAn n\\u00FAi.\u0022},{\u0022text\u0022:\u0022Skiing is fun but difficult at first.\u0022,\u0022vi\u0022:\u0022Tr\\u01B0\\u1EE3t tuy\\u1EBFt r\\u1EA5t vui nh\\u01B0ng l\\u00FAc \\u0111\\u1EA7u kh\\u00E1 kh\\u00F3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go skiing\u0022,\u0022vi\u0022:\u0022\\u0111i tr\\u01B0\\u1EE3t tuy\\u1EBFt\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5901625/photo-image-public-domain-tree-plant\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.e6d7890ee91c46b389729217cb5ff0cd",
+      "kind": "Card",
+      "values": {
+        "Term": "rowing",
+        "Definition": "m\u00F4n ch\u00E8o thuy\u1EC1n",
+        "ImageUrl": "asset:7f8e0facd6d38bf54ae69cbf0d609a6e03dd6054b45ca7b587a400ed6e1d0af9.webp",
+        "Phonetic": "/\u02C8\u0279o\u028A\u026A\u014B/",
+        "Example": "Rowing makes your arms strong.",
+        "ExampleTranslation": "Ch\u00E8o thuy\u1EC1n l\u00E0m \u0111\u00F4i tay b\u1EA1n kh\u1ECFe l\u00EAn.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the sport of moving a boat with long oars",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0279\u0259\u028A\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Rowing makes your arms strong.\u0022,\u0022vi\u0022:\u0022Ch\\u00E8o thuy\\u1EC1n l\\u00E0m \\u0111\\u00F4i tay b\\u1EA1n kh\\u1ECFe l\\u00EAn.\u0022},{\u0022text\u0022:\u0022The rowing race starts at nine.\u0022,\u0022vi\u0022:\u0022Cu\\u1ED9c \\u0111ua ch\\u00E8o thuy\\u1EC1n b\\u1EAFt \\u0111\\u1EA7u l\\u00FAc ch\\u00EDn gi\\u1EDD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022rowing boat\u0022,\u0022vi\u0022:\u0022thuy\\u1EC1n ch\\u00E8o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/49196928776\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a19-the-thao.f3f013e21f8c4e29bb8bc90af9c2446b",
+      "kind": "Card",
+      "values": {
+        "Term": "hockey",
+        "Definition": "m\u00F4n kh\u00FAc c\u00F4n c\u1EA7u",
+        "ImageUrl": "asset:e559aa45244e1cbdd1bb8b8ed9160339cdc915d57074abdcbede645b1ffbd409.webp",
+        "Phonetic": "/\u02C8h\u0251ki/",
+        "Example": "He plays ice hockey in the winter.",
+        "ExampleTranslation": "Anh \u1EA5y ch\u01A1i kh\u00FAc c\u00F4n c\u1EA7u tr\u00EAn b\u0103ng v\u00E0o m\u00F9a \u0111\u00F4ng.",
+        "Topic": "Th\u1EC3 thao",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a game where players hit a ball or puck with a curved stick",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8h\u0252ki/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He plays ice hockey in the winter.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y ch\\u01A1i kh\\u00FAc c\\u00F4n c\\u1EA7u tr\\u00EAn b\\u0103ng v\\u00E0o m\\u00F9a \\u0111\\u00F4ng.\u0022},{\u0022text\u0022:\u0022Hockey is a fast and exciting game.\u0022,\u0022vi\u0022:\u0022Kh\\u00FAc c\\u00F4n c\\u1EA7u l\\u00E0 m\\u00F4n nhanh v\\u00E0 h\\u1EA5p d\\u1EABn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ice hockey\u0022,\u0022vi\u0022:\u0022kh\\u00FAc c\\u00F4n c\\u1EA7u tr\\u00EAn b\\u0103ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/90949166@N00/4491063392\u0022,\u0022author\u0022:\u0022davidgsteadman\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a19-the-thao"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "c201ae40b8bed35c3ad389ad70e78a7bf19f3c329b212f42c7af378d83fd526e.webp",
+      "sha256": "c201ae40b8bed35c3ad389ad70e78a7bf19f3c329b212f42c7af378d83fd526e"
+    },
+    {
+      "file": "250014a991b6bc93e146558dd846ce993e19decb447a77e94201e22104da7142.webp",
+      "sha256": "250014a991b6bc93e146558dd846ce993e19decb447a77e94201e22104da7142"
+    },
+    {
+      "file": "a9cfa6b6b8e24cd3aa9b89e0c52e4d770525ea6a1c04fe63ffd510ce2ff82f11.webp",
+      "sha256": "a9cfa6b6b8e24cd3aa9b89e0c52e4d770525ea6a1c04fe63ffd510ce2ff82f11"
+    },
+    {
+      "file": "9729dea1ecb3a3effe44685b3d4af3da149f3c884d2c776c06a79f5d11587b94.webp",
+      "sha256": "9729dea1ecb3a3effe44685b3d4af3da149f3c884d2c776c06a79f5d11587b94"
+    },
+    {
+      "file": "7b18a736b5e17a2d69ed1bd8e5c9d838cb0af75398b3fb7255510f3f44045679.webp",
+      "sha256": "7b18a736b5e17a2d69ed1bd8e5c9d838cb0af75398b3fb7255510f3f44045679"
+    },
+    {
+      "file": "e77556789f79c4f7d2e9cb20b03a08c054378fb6b1c2db16376a329012665a69.webp",
+      "sha256": "e77556789f79c4f7d2e9cb20b03a08c054378fb6b1c2db16376a329012665a69"
+    },
+    {
+      "file": "5f91de2ff851f67aaf7436d36e6ec6c96dac8d9b17101a7d88547c0c548886b2.webp",
+      "sha256": "5f91de2ff851f67aaf7436d36e6ec6c96dac8d9b17101a7d88547c0c548886b2"
+    },
+    {
+      "file": "52931103267ebb1c3a695e5217ce5df4bb1c1f8a201c1403b67577e54f74d1cb.webp",
+      "sha256": "52931103267ebb1c3a695e5217ce5df4bb1c1f8a201c1403b67577e54f74d1cb"
+    },
+    {
+      "file": "cfa42c66a3c7103ba46ba4e9c7ba36724449fb41a5940e3b92658df3e4ba6838.webp",
+      "sha256": "cfa42c66a3c7103ba46ba4e9c7ba36724449fb41a5940e3b92658df3e4ba6838"
+    },
+    {
+      "file": "c3d13c27a934b650f9c4981756bd6f4ace9b89236f832261dbae3d67d9a6989b.webp",
+      "sha256": "c3d13c27a934b650f9c4981756bd6f4ace9b89236f832261dbae3d67d9a6989b"
+    },
+    {
+      "file": "3f3476c59761eb864c70cb4e3e57355cad16960db76540f2ba6335edd1141a22.webp",
+      "sha256": "3f3476c59761eb864c70cb4e3e57355cad16960db76540f2ba6335edd1141a22"
+    },
+    {
+      "file": "899c5dbf1547e610defcd4108f23b7f450e68e3f92765a861c740197ffbba232.webp",
+      "sha256": "899c5dbf1547e610defcd4108f23b7f450e68e3f92765a861c740197ffbba232"
+    },
+    {
+      "file": "58187a8318238761d055b4fff2a56beb291fe6a10607b1acb7b518acd9f1ce9b.webp",
+      "sha256": "58187a8318238761d055b4fff2a56beb291fe6a10607b1acb7b518acd9f1ce9b"
+    },
+    {
+      "file": "35bcecb5842ba9d83ac464f9f345b72e9c1a6c01a87f66c6f80b31f9ba873395.webp",
+      "sha256": "35bcecb5842ba9d83ac464f9f345b72e9c1a6c01a87f66c6f80b31f9ba873395"
+    },
+    {
+      "file": "9bec043982891325e40648928317a0313fb423f54aad25dd438ae6cd047ff19b.webp",
+      "sha256": "9bec043982891325e40648928317a0313fb423f54aad25dd438ae6cd047ff19b"
+    },
+    {
+      "file": "7826610913893a3b838d2a1044eb712673f25155f24e3f5b8459d35915719697.webp",
+      "sha256": "7826610913893a3b838d2a1044eb712673f25155f24e3f5b8459d35915719697"
+    },
+    {
+      "file": "a77f862975dab25852603268cf31b3ea194f0c34aba6a79e0424774906de6a19.webp",
+      "sha256": "a77f862975dab25852603268cf31b3ea194f0c34aba6a79e0424774906de6a19"
+    },
+    {
+      "file": "e559aa45244e1cbdd1bb8b8ed9160339cdc915d57074abdcbede645b1ffbd409.webp",
+      "sha256": "e559aa45244e1cbdd1bb8b8ed9160339cdc915d57074abdcbede645b1ffbd409"
+    },
+    {
+      "file": "c56d79dd39ae6396d4fa663777eba10c8e4a1c3d011be7556f2cdb9daeb6f4da.webp",
+      "sha256": "c56d79dd39ae6396d4fa663777eba10c8e4a1c3d011be7556f2cdb9daeb6f4da"
+    },
+    {
+      "file": "bdb31ab4a47f5a16b4a803711ef33bb407d8d95b16835497ca0afc23b8de0546.webp",
+      "sha256": "bdb31ab4a47f5a16b4a803711ef33bb407d8d95b16835497ca0afc23b8de0546"
+    },
+    {
+      "file": "8ad974fd7e0fa4d8ac424ed0c83a3a3811e82e87b3110de9502dd2a4c138761d.webp",
+      "sha256": "8ad974fd7e0fa4d8ac424ed0c83a3a3811e82e87b3110de9502dd2a4c138761d"
+    },
+    {
+      "file": "7f8e0facd6d38bf54ae69cbf0d609a6e03dd6054b45ca7b587a400ed6e1d0af9.webp",
+      "sha256": "7f8e0facd6d38bf54ae69cbf0d609a6e03dd6054b45ca7b587a400ed6e1d0af9"
+    },
+    {
+      "file": "47ad76c94331b5ff0bbdbe6c30f04a59e4a972d85de94b4abe04bc4c2fb8e0ac.webp",
+      "sha256": "47ad76c94331b5ff0bbdbe6c30f04a59e4a972d85de94b4abe04bc4c2fb8e0ac"
+    },
+    {
+      "file": "ff32b2d5701d77598fb925db8e4b5fcdf29cff3b38c34c340facd1d5a45ea715.webp",
+      "sha256": "ff32b2d5701d77598fb925db8e4b5fcdf29cff3b38c34c340facd1d5a45ea715"
+    },
+    {
+      "file": "fb9f7e81e64f4d357a37b97dcfd2f369734579025f27f97e73a41572c4eb409b.webp",
+      "sha256": "fb9f7e81e64f4d357a37b97dcfd2f369734579025f27f97e73a41572c4eb409b"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a19-the-thao"
+}

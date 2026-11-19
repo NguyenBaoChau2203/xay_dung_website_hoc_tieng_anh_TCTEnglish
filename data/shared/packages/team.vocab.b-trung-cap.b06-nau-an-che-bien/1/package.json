@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b06-nau-an-che-bien",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien",
+      "kind": "Set",
+      "values": {
+        "SetName": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "Description": "#b1 #b2 #cooking #kitchen"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.1338251170294a2e9dfc27cee8f1afd0",
+      "kind": "Card",
+      "values": {
+        "Term": "garnish",
+        "Definition": "trang tr\u00ED m\u00F3n \u0103n",
+        "ImageUrl": "asset:06cfe66c7adca5c2058b5966d673f54122eb3683b60ea2ef916a00f1049beb6e.webp",
+        "Phonetic": "/\u02C8\u0261\u0251\u0279n\u026A\u0283/",
+        "Example": "She garnished the soup with fresh green onions.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y trang tr\u00ED m\u00F3n s\u00FAp b\u1EB1ng h\u00E0nh l\u00E1 t\u01B0\u01A1i.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to add a small item to a dish to make it look nicer",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0261\u0251\u02D0n\u026A\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She garnished the soup with fresh green onions.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y trang tr\\u00ED m\\u00F3n s\\u00FAp b\\u1EB1ng h\\u00E0nh l\\u00E1 t\\u01B0\\u01A1i.\u0022},{\u0022text\u0022:\u0022Garnish the cake with some strawberries.\u0022,\u0022vi\u0022:\u0022H\\u00E3y trang tr\\u00ED b\\u00E1nh b\\u1EB1ng v\\u00E0i qu\\u1EA3 d\\u00E2u t\\u00E2y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022garnish with herbs\u0022,\u0022vi\u0022:\u0022trang tr\\u00ED b\\u1EB1ng rau th\\u01A1m\u0022},{\u0022text\u0022:\u0022garnish the dish\u0022,\u0022vi\u0022:\u0022trang tr\\u00ED m\\u00F3n \\u0103n\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022garnished\u0022,\u0022pastParticiple\u0022:\u0022garnished\u0022,\u0022ing\u0022:\u0022garnishing\u0022,\u0022thirdPerson\u0022:\u0022garnishes\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/4286a2171c/\u0022,\u0022author\u0022:\u0022auksainis\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.13e083cd9ec847f69682656c4fd3a992",
+      "kind": "Card",
+      "values": {
+        "Term": "bake",
+        "Definition": "n\u01B0\u1EDBng (b\u00E1nh)",
+        "ImageUrl": "asset:6f781475bfd622d8ea5a5a90ab1f0952f66493a86d1da3b2a834464ef26da6a8.webp",
+        "Phonetic": "/be\u026Ak/",
+        "Example": "We bake a cake every Sunday afternoon.",
+        "ExampleTranslation": "Chi\u1EC1u Ch\u1EE7 nh\u1EADt n\u00E0o ch\u00FAng t\u00F4i c\u0169ng n\u01B0\u1EDBng m\u1ED9t chi\u1EBFc b\u00E1nh.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to cook food such as bread or cake in an oven",
+        "Cefr": "B1",
+        "PhoneticUk": "/be\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We bake a cake every Sunday afternoon.\u0022,\u0022vi\u0022:\u0022Chi\\u1EC1u Ch\\u1EE7 nh\\u1EADt n\\u00E0o ch\\u00FAng t\\u00F4i c\\u0169ng n\\u01B0\\u1EDBng m\\u1ED9t chi\\u1EBFc b\\u00E1nh.\u0022},{\u0022text\u0022:\u0022The bread needs to bake for forty minutes.\u0022,\u0022vi\u0022:\u0022\\u1ED4 b\\u00E1nh m\\u00EC c\\u1EA7n \\u0111\\u01B0\\u1EE3c n\\u01B0\\u1EDBng b\\u1ED1n m\\u01B0\\u01A1i ph\\u00FAt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bake a cake\u0022,\u0022vi\u0022:\u0022n\\u01B0\\u1EDBng b\\u00E1nh ng\\u1ECDt\u0022},{\u0022text\u0022:\u0022freshly baked\u0022,\u0022vi\u0022:\u0022m\\u1EDBi n\\u01B0\\u1EDBng\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022baked\u0022,\u0022pastParticiple\u0022:\u0022baked\u0022,\u0022ing\u0022:\u0022baking\u0022,\u0022thirdPerson\u0022:\u0022bakes\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.2247a6a3355b4e1c9743796a37130d99",
+      "kind": "Card",
+      "values": {
+        "Term": "stir",
+        "Definition": "khu\u1EA5y, \u0111\u1EA3o",
+        "ImageUrl": "asset:31dbce0c788a8256edac7ad27c4bb8eb529543d44ef2a376b18dfdfe8eacc02f.webp",
+        "Phonetic": "/st\u025D/",
+        "Example": "Stir the soup so that it does not burn.",
+        "ExampleTranslation": "H\u00E3y khu\u1EA5y s\u00FAp \u0111\u1EC3 n\u00F3 kh\u00F4ng b\u1ECB ch\u00E1y.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to move food or liquid round and round with a spoon",
+        "Cefr": "B1",
+        "PhoneticUk": "/st\u025C\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Stir the soup so that it does not burn.\u0022,\u0022vi\u0022:\u0022H\\u00E3y khu\\u1EA5y s\\u00FAp \\u0111\\u1EC3 n\\u00F3 kh\\u00F4ng b\\u1ECB ch\\u00E1y.\u0022},{\u0022text\u0022:\u0022He stirred some sugar into his tea.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y khu\\u1EA5y ch\\u00FAt \\u0111\\u01B0\\u1EDDng v\\u00E0o tr\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022stir gently\u0022,\u0022vi\u0022:\u0022khu\\u1EA5y nh\\u1EB9\u0022},{\u0022text\u0022:\u0022stir in the sugar\u0022,\u0022vi\u0022:\u0022khu\\u1EA5y \\u0111\\u01B0\\u1EDDng v\\u00E0o\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022stirred\u0022,\u0022pastParticiple\u0022:\u0022stirred\u0022,\u0022ing\u0022:\u0022stirring\u0022,\u0022thirdPerson\u0022:\u0022stirs\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.26fbb9469c7448d4bcefe6c3d3184887",
+      "kind": "Card",
+      "values": {
+        "Term": "mixing bowl",
+        "Definition": "t\u00F4 tr\u1ED9n b\u1ED9t",
+        "ImageUrl": "asset:94890ca1c6f14bb9764a3761fb7e85e618a988ecf3af20ac2a5d4a2b0a34b486.webp",
+        "Phonetic": "/\u02C8m\u026Aks\u026A\u014B bo\u028Al/",
+        "Example": "Put the eggs and sugar into a large mixing bowl.",
+        "ExampleTranslation": "H\u00E3y cho tr\u1EE9ng v\u00E0 \u0111\u01B0\u1EDDng v\u00E0o m\u1ED9t c\u00E1i t\u00F4 tr\u1ED9n l\u1EDBn.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large bowl used to mix ingredients together",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8m\u026Aks\u026A\u014B b\u0259\u028Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Put the eggs and sugar into a large mixing bowl.\u0022,\u0022vi\u0022:\u0022H\\u00E3y cho tr\\u1EE9ng v\\u00E0 \\u0111\\u01B0\\u1EDDng v\\u00E0o m\\u1ED9t c\\u00E1i t\\u00F4 tr\\u1ED9n l\\u1EDBn.\u0022},{\u0022text\u0022:\u0022She washed the mixing bowl after baking.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y r\\u1EEDa c\\u00E1i t\\u00F4 tr\\u1ED9n sau khi n\\u01B0\\u1EDBng b\\u00E1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022large mixing bowl\u0022,\u0022vi\u0022:\u0022t\\u00F4 tr\\u1ED9n l\\u1EDBn\u0022},{\u0022text\u0022:\u0022glass mixing bowl\u0022,\u0022vi\u0022:\u0022t\\u00F4 tr\\u1ED9n b\\u1EB1ng th\\u1EE7y tinh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5918816/image-background-public-domain-wood\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.321179c1c2434de38f702960426020e0",
+      "kind": "Card",
+      "values": {
+        "Term": "boil",
+        "Definition": "\u0111un s\u00F4i, lu\u1ED9c",
+        "ImageUrl": "asset:9f08148987cad9002156f3098025f49ec58eeba114a059130a9be6be9debd1f4.webp",
+        "Phonetic": "/b\u0254\u026Al/",
+        "Example": "Boil the eggs for ten minutes.",
+        "ExampleTranslation": "H\u00E3y lu\u1ED9c tr\u1EE9ng trong m\u01B0\u1EDDi ph\u00FAt.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to heat a liquid until it bubbles, or to cook food in it",
+        "Cefr": "B1",
+        "PhoneticUk": "/b\u0254\u026Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Boil the eggs for ten minutes.\u0022,\u0022vi\u0022:\u0022H\\u00E3y lu\\u1ED9c tr\\u1EE9ng trong m\\u01B0\\u1EDDi ph\\u00FAt.\u0022},{\u0022text\u0022:\u0022The water is boiling, so you can add the noodles.\u0022,\u0022vi\u0022:\u0022N\\u01B0\\u1EDBc \\u0111ang s\\u00F4i, n\\u00EAn b\\u1EA1n c\\u00F3 th\\u1EC3 cho m\\u00EC v\\u00E0o.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022boil water\u0022,\u0022vi\u0022:\u0022\\u0111un s\\u00F4i n\\u01B0\\u1EDBc\u0022},{\u0022text\u0022:\u0022boiled egg\u0022,\u0022vi\u0022:\u0022tr\\u1EE9ng lu\\u1ED9c\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022boiled\u0022,\u0022pastParticiple\u0022:\u0022boiled\u0022,\u0022ing\u0022:\u0022boiling\u0022,\u0022thirdPerson\u0022:\u0022boils\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6075389/boiling-water\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.3ed77ee8550c49d99087329508dc39ba",
+      "kind": "Card",
+      "values": {
+        "Term": "saucepan",
+        "Definition": "n\u1ED3i c\u00F3 c\u00E1n",
+        "ImageUrl": "asset:9a4f121aac281b00c8ce5b337edfe268d224de3e35b43315a957929c64475ea5.webp",
+        "Phonetic": "/\u02C8s\u0254s\u02CCp\u00E6n/",
+        "Example": "Heat the milk in a small saucepan.",
+        "ExampleTranslation": "H\u00E3y \u0111un s\u1EEFa trong m\u1ED9t chi\u1EBFc n\u1ED3i nh\u1ECF c\u00F3 c\u00E1n.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a deep pan with a long handle used on a stove",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8s\u0254\u02D0s.p\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Heat the milk in a small saucepan.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111un s\\u1EEFa trong m\\u1ED9t chi\\u1EBFc n\\u1ED3i nh\\u1ECF c\\u00F3 c\\u00E1n.\u0022},{\u0022text\u0022:\u0022He put a lid on the saucepan.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111\\u1EADy n\\u1EAFp l\\u00EAn chi\\u1EBFc n\\u1ED3i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022small saucepan\u0022,\u0022vi\u0022:\u0022n\\u1ED3i nh\\u1ECF\u0022},{\u0022text\u0022:\u0022heat in a saucepan\u0022,\u0022vi\u0022:\u0022\\u0111un trong n\\u1ED3i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Saucepan_MET_DP245760.jpg\u0022,\u0022author\u0022:\u0022Creator:I. N.\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.428c8068dd82445e984936c2e9179d63",
+      "kind": "Card",
+      "values": {
+        "Term": "herb",
+        "Definition": "rau th\u01A1m, th\u1EA3o m\u1ED9c",
+        "ImageUrl": "asset:2571ba83550be6d799b8d6054bd791d01bb3601d6063807af6af7e88f27644e2.webp",
+        "Phonetic": "/(h)\u025Db/",
+        "Example": "I grow herbs such as basil and mint on my balcony.",
+        "ExampleTranslation": "T\u00F4i tr\u1ED3ng rau th\u01A1m nh\u01B0 h\u00FAng qu\u1EBF v\u00E0 b\u1EA1c h\u00E0 tr\u00EAn ban c\u00F4ng.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a leafy plant used to add flavour to food",
+        "Cefr": "B2",
+        "PhoneticUk": "/h\u025C\u02D0b/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I grow herbs such as basil and mint on my balcony.\u0022,\u0022vi\u0022:\u0022T\\u00F4i tr\\u1ED3ng rau th\\u01A1m nh\\u01B0 h\\u00FAng qu\\u1EBF v\\u00E0 b\\u1EA1c h\\u00E0 tr\\u00EAn ban c\\u00F4ng.\u0022},{\u0022text\u0022:\u0022Fresh herbs make the soup taste better.\u0022,\u0022vi\u0022:\u0022Rau th\\u01A1m t\\u01B0\\u01A1i l\\u00E0m m\\u00F3n s\\u00FAp ngon h\\u01A1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fresh herbs\u0022,\u0022vi\u0022:\u0022rau th\\u01A1m t\\u01B0\\u01A1i\u0022},{\u0022text\u0022:\u0022mixed herbs\u0022,\u0022vi\u0022:\u0022h\\u1ED7n h\\u1EE3p th\\u1EA3o m\\u1ED9c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/463169/free-photo-image-mint-thyme-potted-rosemary\u0022,\u0022author\u0022:\u0022Markus Spiske\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.45869c44ab9842fda704cee15f39ace0",
+      "kind": "Card",
+      "values": {
+        "Term": "peel",
+        "Definition": "g\u1ECDt v\u1ECF, b\u00F3c v\u1ECF",
+        "ImageUrl": "asset:31586a446d4d1be176ffa2d4aab7e394bdd2fdb9b11a61b55255162cada53561.webp",
+        "Phonetic": "/pi\u02D0l/",
+        "Example": "Can you peel the potatoes for dinner?",
+        "ExampleTranslation": "B\u1EA1n g\u1ECDt khoai t\u00E2y cho b\u1EEFa t\u1ED1i \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to remove the skin of a fruit or vegetable",
+        "Cefr": "B1",
+        "PhoneticUk": "/pi\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can you peel the potatoes for dinner?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n g\\u1ECDt khoai t\\u00E2y cho b\\u1EEFa t\\u1ED1i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022I peeled an orange and shared it with my sister.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u00F3c m\\u1ED9t qu\\u1EA3 cam r\\u1ED3i chia cho ch\\u1ECB g\\u00E1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022peel a potato\u0022,\u0022vi\u0022:\u0022g\\u1ECDt khoai t\\u00E2y\u0022},{\u0022text\u0022:\u0022peel off the skin\u0022,\u0022vi\u0022:\u0022b\\u00F3c l\\u1EDBp v\\u1ECF\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022peeled\u0022,\u0022pastParticiple\u0022:\u0022peeled\u0022,\u0022ing\u0022:\u0022peeling\u0022,\u0022thirdPerson\u0022:\u0022peels\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.49024c9171d743b9a43d011610d50720",
+      "kind": "Card",
+      "values": {
+        "Term": "dough",
+        "Definition": "b\u1ED9t nh\u00E0o",
+        "ImageUrl": "asset:43f1b30105ac3bfc02811fafa28a2dedd5a71575bf4d05489996d86a5d56496e.webp",
+        "Phonetic": "/do\u028A/",
+        "Example": "The dough needs to rest for an hour.",
+        "ExampleTranslation": "Kh\u1ED1i b\u1ED9t c\u1EA7n \u0111\u01B0\u1EE3c \u1EE7 m\u1ED9t ti\u1EBFng.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a soft thick mixture of flour and water for making bread",
+        "Cefr": "B2",
+        "PhoneticUk": "/d\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The dough needs to rest for an hour.\u0022,\u0022vi\u0022:\u0022Kh\\u1ED1i b\\u1ED9t c\\u1EA7n \\u0111\\u01B0\\u1EE3c \\u1EE7 m\\u1ED9t ti\\u1EBFng.\u0022},{\u0022text\u0022:\u0022She rolled out the dough on the table.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y c\\u00E1n m\\u1ECFng kh\\u1ED1i b\\u1ED9t tr\\u00EAn b\\u00E0n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022roll out the dough\u0022,\u0022vi\u0022:\u0022c\\u00E1n b\\u1ED9t\u0022},{\u0022text\u0022:\u0022bread dough\u0022,\u0022vi\u0022:\u0022b\\u1ED9t l\\u00E0m b\\u00E1nh m\\u00EC\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Risen_bread_dough.jpg\u0022,\u0022author\u0022:\u0022Gageills\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.53508a2f8ca943f19bfd0a43e55763a2",
+      "kind": "Card",
+      "values": {
+        "Term": "grate",
+        "Definition": "b\u00E0o, n\u1EA1o",
+        "ImageUrl": "asset:84807ec99bc2b3183460f0d44f30a56fa35b7631430769fa78c3e0767f5dd9a4.webp",
+        "Phonetic": "/\u02C8\u0261\u0279e\u026At/",
+        "Example": "Grate some cheese over the pasta.",
+        "ExampleTranslation": "H\u00E3y b\u00E0o \u00EDt ph\u00F4 mai l\u00EAn m\u00EC \u1ED1ng.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to rub food against a rough tool to make small pieces",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0261\u0279e\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Grate some cheese over the pasta.\u0022,\u0022vi\u0022:\u0022H\\u00E3y b\\u00E0o \\u00EDt ph\\u00F4 mai l\\u00EAn m\\u00EC \\u1ED1ng.\u0022},{\u0022text\u0022:\u0022She grated a carrot for the salad.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y n\\u1EA1o m\\u1ED9t c\\u1EE7 c\\u00E0 r\\u1ED1t \\u0111\\u1EC3 l\\u00E0m salad.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022grate cheese\u0022,\u0022vi\u0022:\u0022b\\u00E0o ph\\u00F4 mai\u0022},{\u0022text\u0022:\u0022finely grated\u0022,\u0022vi\u0022:\u0022b\\u00E0o m\\u1ECBn\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022grated\u0022,\u0022pastParticiple\u0022:\u0022grated\u0022,\u0022ing\u0022:\u0022grating\u0022,\u0022thirdPerson\u0022:\u0022grates\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.651dbe91d30e49e89a6395c0c41d4ab6",
+      "kind": "Card",
+      "values": {
+        "Term": "fry",
+        "Definition": "chi\u00EAn, r\u00E1n",
+        "ImageUrl": "asset:08838d767e2bb8ce2f6fc09ae287541d09a3d375913e556688644068cce1743a.webp",
+        "Phonetic": "/f\u0279a\u026A/",
+        "Example": "Fry the onions until they turn golden.",
+        "ExampleTranslation": "H\u00E3y chi\u00EAn h\u00E0nh cho \u0111\u1EBFn khi v\u00E0ng.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to cook food in hot oil in a pan",
+        "Cefr": "B1",
+        "PhoneticUk": "/f\u0279a\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Fry the onions until they turn golden.\u0022,\u0022vi\u0022:\u0022H\\u00E3y chi\\u00EAn h\\u00E0nh cho \\u0111\\u1EBFn khi v\\u00E0ng.\u0022},{\u0022text\u0022:\u0022My mother fries fish in a little oil.\u0022,\u0022vi\u0022:\u0022M\\u1EB9 t\\u00F4i r\\u00E1n c\\u00E1 v\\u1EDBi m\\u1ED9t \\u00EDt d\\u1EA7u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022deep fry\u0022,\u0022vi\u0022:\u0022chi\\u00EAn ng\\u1EADp d\\u1EA7u\u0022},{\u0022text\u0022:\u0022fry until golden\u0022,\u0022vi\u0022:\u0022chi\\u00EAn \\u0111\\u1EBFn khi v\\u00E0ng\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022fried\u0022,\u0022pastParticiple\u0022:\u0022fried\u0022,\u0022ing\u0022:\u0022frying\u0022,\u0022thirdPerson\u0022:\u0022fries\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/184594136@N08/49825786843\u0022,\u0022author\u0022:\u0022Alabama Extension\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.7f101e89d0bc402796102fefc7c8a277",
+      "kind": "Card",
+      "values": {
+        "Term": "recipe",
+        "Definition": "c\u00F4ng th\u1EE9c n\u1EA5u \u0103n",
+        "ImageUrl": "asset:ef60ee2c2f7731eb9b3d15ea89051ca18e1ec9bfbe1700d40a5a20f9ef1782f9.webp",
+        "Phonetic": "/\u02C8\u0279\u025Bs.\u026A.pi/",
+        "Example": "My aunt gave me her recipe for spring rolls.",
+        "ExampleTranslation": "D\u00EC t\u00F4i cho t\u00F4i c\u00F4ng th\u1EE9c l\u00E0m nem cu\u1ED1n c\u1EE7a d\u00EC.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a set of instructions for cooking a dish",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u0279\u025Bs.\u026A.pi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My aunt gave me her recipe for spring rolls.\u0022,\u0022vi\u0022:\u0022D\\u00EC t\\u00F4i cho t\\u00F4i c\\u00F4ng th\\u1EE9c l\\u00E0m nem cu\\u1ED1n c\\u1EE7a d\\u00EC.\u0022},{\u0022text\u0022:\u0022This recipe takes only twenty minutes.\u0022,\u0022vi\u0022:\u0022C\\u00F4ng th\\u1EE9c n\\u00E0y ch\\u1EC9 m\\u1EA5t hai m\\u01B0\\u01A1i ph\\u00FAt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022follow a recipe\u0022,\u0022vi\u0022:\u0022l\\u00E0m theo c\\u00F4ng th\\u1EE9c\u0022},{\u0022text\u0022:\u0022family recipe\u0022,\u0022vi\u0022:\u0022c\\u00F4ng th\\u1EE9c gia truy\\u1EC1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Recipe_book_of_Margaret_Countess_of_Moray.jpg\u0022,\u0022author\u0022:\u0022Unoquha\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.82d37c4017d344f78152175b8e3ab1c6",
+      "kind": "Card",
+      "values": {
+        "Term": "steam",
+        "Definition": "h\u1EA5p",
+        "ImageUrl": "asset:0e577beb3c4e33665485e4276f9e7902fa7535c4fba8ce3a943588afd830b2a1.webp",
+        "Phonetic": "/sti\u02D0m/",
+        "Example": "Steam the fish with ginger for ten minutes.",
+        "ExampleTranslation": "H\u00E3y h\u1EA5p c\u00E1 v\u1EDBi g\u1EEBng trong m\u01B0\u1EDDi ph\u00FAt.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to cook food using the hot vapour from boiling water",
+        "Cefr": "B2",
+        "PhoneticUk": "/sti\u02D0m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Steam the fish with ginger for ten minutes.\u0022,\u0022vi\u0022:\u0022H\\u00E3y h\\u1EA5p c\\u00E1 v\\u1EDBi g\\u1EEBng trong m\\u01B0\\u1EDDi ph\\u00FAt.\u0022},{\u0022text\u0022:\u0022My grandmother steams buns every morning.\u0022,\u0022vi\u0022:\u0022B\\u00E0 t\\u00F4i h\\u1EA5p b\\u00E1nh bao m\\u1ED7i s\\u00E1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022steamed rice\u0022,\u0022vi\u0022:\u0022c\\u01A1m h\\u1EA5p\u0022},{\u0022text\u0022:\u0022steam vegetables\u0022,\u0022vi\u0022:\u0022h\\u1EA5p rau\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022steamed\u0022,\u0022pastParticiple\u0022:\u0022steamed\u0022,\u0022ing\u0022:\u0022steaming\u0022,\u0022thirdPerson\u0022:\u0022steams\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/137699056e/\u0022,\u0022author\u0022:\u0022sweekar7\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.83c0e3178d424d6f971f38572f242d6c",
+      "kind": "Card",
+      "values": {
+        "Term": "knead",
+        "Definition": "nh\u00E0o (b\u1ED9t)",
+        "ImageUrl": "asset:55e75043af121ed9c2237d437ba89ddb17804521b5305772472347cd62a2951a.webp",
+        "Phonetic": "/ni\u02D0d/",
+        "Example": "Knead the dough for ten minutes until it is soft.",
+        "ExampleTranslation": "H\u00E3y nh\u00E0o b\u1ED9t m\u01B0\u1EDDi ph\u00FAt cho \u0111\u1EBFn khi m\u1EC1m m\u1ECBn.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to press and fold dough with your hands to make it smooth",
+        "Cefr": "B2",
+        "PhoneticUk": "/ni\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Knead the dough for ten minutes until it is soft.\u0022,\u0022vi\u0022:\u0022H\\u00E3y nh\\u00E0o b\\u1ED9t m\\u01B0\\u1EDDi ph\\u00FAt cho \\u0111\\u1EBFn khi m\\u1EC1m m\\u1ECBn.\u0022},{\u0022text\u0022:\u0022She kneaded the dough on the table.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y nh\\u00E0o b\\u1ED9t tr\\u00EAn b\\u00E0n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022knead the dough\u0022,\u0022vi\u0022:\u0022nh\\u00E0o b\\u1ED9t\u0022},{\u0022text\u0022:\u0022knead by hand\u0022,\u0022vi\u0022:\u0022nh\\u00E0o b\\u1EB1ng tay\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022kneaded\u0022,\u0022pastParticiple\u0022:\u0022kneaded\u0022,\u0022ing\u0022:\u0022kneading\u0022,\u0022thirdPerson\u0022:\u0022kneads\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5904398/photo-image-public-domain-hand-person\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.89e7b5068cc94ab7a150bec1422df018",
+      "kind": "Card",
+      "values": {
+        "Term": "sauce",
+        "Definition": "n\u01B0\u1EDBc s\u1ED1t",
+        "ImageUrl": "asset:6b660c25c82383631db64ca9e04c8adb8fb7723ddb03ac896be92905abad2e36.webp",
+        "Phonetic": "/s\u0254s/",
+        "Example": "The pasta comes with a creamy tomato sauce.",
+        "ExampleTranslation": "M\u00F3n m\u00EC \u1ED1ng \u0111i k\u00E8m n\u01B0\u1EDBc s\u1ED1t c\u00E0 chua b\u00E9o ng\u1EADy.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thick liquid that you put on food to add flavour",
+        "Cefr": "B1",
+        "PhoneticUk": "/s\u0254\u02D0s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The pasta comes with a creamy tomato sauce.\u0022,\u0022vi\u0022:\u0022M\\u00F3n m\\u00EC \\u1ED1ng \\u0111i k\\u00E8m n\\u01B0\\u1EDBc s\\u1ED1t c\\u00E0 chua b\\u00E9o ng\\u1EADy.\u0022},{\u0022text\u0022:\u0022Add a little sauce to the rice.\u0022,\u0022vi\u0022:\u0022H\\u00E3y th\\u00EAm ch\\u00FAt n\\u01B0\\u1EDBc s\\u1ED1t v\\u00E0o c\\u01A1m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022tomato sauce\u0022,\u0022vi\u0022:\u0022s\\u1ED1t c\\u00E0 chua\u0022},{\u0022text\u0022:\u0022soy sauce\u0022,\u0022vi\u0022:\u0022n\\u01B0\\u1EDBc t\\u01B0\\u01A1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3304068/free-photo-image-tomato-juice-cc0\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.948ed45389d14658a13e0d28147b351c",
+      "kind": "Card",
+      "values": {
+        "Term": "spice",
+        "Definition": "gia v\u1ECB (kh\u00F4)",
+        "ImageUrl": "asset:2c13e7b88a65930ba9fc2b31053e8d535ccf002fc92db12fb42b031d01809038.webp",
+        "Phonetic": "/spa\u026As/",
+        "Example": "Pepper is a popular spice all over the world.",
+        "ExampleTranslation": "H\u1EA1t ti\u00EAu l\u00E0 m\u1ED9t lo\u1EA1i gia v\u1ECB ph\u1ED5 bi\u1EBFn tr\u00EAn kh\u1EAFp th\u1EBF gi\u1EDBi.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a dried plant substance added to food for flavour",
+        "Cefr": "B2",
+        "PhoneticUk": "/spa\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Pepper is a popular spice all over the world.\u0022,\u0022vi\u0022:\u0022H\\u1EA1t ti\\u00EAu l\\u00E0 m\\u1ED9t lo\\u1EA1i gia v\\u1ECB ph\\u1ED5 bi\\u1EBFn tr\\u00EAn kh\\u1EAFp th\\u1EBF gi\\u1EDBi.\u0022},{\u0022text\u0022:\u0022The market sells spices from many countries.\u0022,\u0022vi\u0022:\u0022Khu ch\\u1EE3 b\\u00E1n gia v\\u1ECB t\\u1EEB nhi\\u1EC1u qu\\u1ED1c gia.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022add spices\u0022,\u0022vi\u0022:\u0022th\\u00EAm gia v\\u1ECB\u0022},{\u0022text\u0022:\u0022hot spice\u0022,\u0022vi\u0022:\u0022gia v\\u1ECB cay n\\u00F3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/77678c2215/\u0022,\u0022author\u0022:\u0022Nilo Velez\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.afdd8caff80a47399b0a19ff19fe7c4a",
+      "kind": "Card",
+      "values": {
+        "Term": "grill",
+        "Definition": "n\u01B0\u1EDBng v\u1EC9",
+        "ImageUrl": "asset:505ce552aaa5e2261c9eba436be4e51b874dd3942533dede0d1e14dda6fd8dce.webp",
+        "Phonetic": "/\u0261\u0279\u026Al/",
+        "Example": "We grilled sausages in the garden last weekend.",
+        "ExampleTranslation": "Cu\u1ED1i tu\u1EA7n tr\u01B0\u1EDBc ch\u00FAng t\u00F4i n\u01B0\u1EDBng x\u00FAc x\u00EDch ngo\u00E0i v\u01B0\u1EDDn.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to cook food over or under strong direct heat",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0261\u0279\u026Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We grilled sausages in the garden last weekend.\u0022,\u0022vi\u0022:\u0022Cu\\u1ED1i tu\\u1EA7n tr\\u01B0\\u1EDBc ch\\u00FAng t\\u00F4i n\\u01B0\\u1EDBng x\\u00FAc x\\u00EDch ngo\\u00E0i v\\u01B0\\u1EDDn.\u0022},{\u0022text\u0022:\u0022Grill the fish for about five minutes on each side.\u0022,\u0022vi\u0022:\u0022H\\u00E3y n\\u01B0\\u1EDBng c\\u00E1 kho\\u1EA3ng n\\u0103m ph\\u00FAt m\\u1ED7i m\\u1EB7t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022grilled fish\u0022,\u0022vi\u0022:\u0022c\\u00E1 n\\u01B0\\u1EDBng\u0022},{\u0022text\u0022:\u0022grill on both sides\u0022,\u0022vi\u0022:\u0022n\\u01B0\\u1EDBng c\\u1EA3 hai m\\u1EB7t\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022grilled\u0022,\u0022pastParticiple\u0022:\u0022grilled\u0022,\u0022ing\u0022:\u0022grilling\u0022,\u0022thirdPerson\u0022:\u0022grills\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5925364/photo-image-public-domain-leaf-smoke\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.b4ae81c72237492f84b2f679fde5fba2",
+      "kind": "Card",
+      "values": {
+        "Term": "roast",
+        "Definition": "quay, n\u01B0\u1EDBng nguy\u00EAn",
+        "ImageUrl": "asset:fe35e13915462d98a8141f7a1349fedd0726b07ef9e721e25b113274e597797f.webp",
+        "Phonetic": "/\u0279o\u028Ast/",
+        "Example": "They roast a chicken for the family dinner.",
+        "ExampleTranslation": "H\u1ECD quay m\u1ED9t con g\u00E0 cho b\u1EEFa t\u1ED1i gia \u0111\u00ECnh.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to cook meat or vegetables in an oven with dry heat",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u0279\u0259\u028Ast/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022They roast a chicken for the family dinner.\u0022,\u0022vi\u0022:\u0022H\\u1ECD quay m\\u1ED9t con g\\u00E0 cho b\\u1EEFa t\\u1ED1i gia \\u0111\\u00ECnh.\u0022},{\u0022text\u0022:\u0022Roast the potatoes until they are crispy.\u0022,\u0022vi\u0022:\u0022H\\u00E3y n\\u01B0\\u1EDBng khoai t\\u00E2y cho \\u0111\\u1EBFn khi gi\\u00F2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022roast chicken\u0022,\u0022vi\u0022:\u0022g\\u00E0 quay\u0022},{\u0022text\u0022:\u0022roast potatoes\u0022,\u0022vi\u0022:\u0022khoai t\\u00E2y n\\u01B0\\u1EDBng\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022roasted\u0022,\u0022pastParticiple\u0022:\u0022roasted\u0022,\u0022ing\u0022:\u0022roasting\u0022,\u0022thirdPerson\u0022:\u0022roasts\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Butterfly_chicken_with_roasted_vegetables_-_Massachusetts.jpg\u0022,\u0022author\u0022:\u0022Daderot\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.bda07c225d6a43d28428c13e8049a673",
+      "kind": "Card",
+      "values": {
+        "Term": "ingredient",
+        "Definition": "nguy\u00EAn li\u1EC7u",
+        "ImageUrl": "asset:789e7ba6738640ae3a6a8326e009b1f76f7d6b633b2466fa5a62e2a7a923dc94.webp",
+        "Phonetic": "/\u026An\u02C8\u0261\u0279i\u02D0di.\u0259nt/",
+        "Example": "Eggs and flour are the main ingredients of pancakes.",
+        "ExampleTranslation": "Tr\u1EE9ng v\u00E0 b\u1ED9t l\u00E0 nguy\u00EAn li\u1EC7u ch\u00EDnh c\u1EE7a b\u00E1nh k\u1EBFp.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "one of the foods you use to make a dish",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u026An\u02C8\u0261\u0279i\u02D0di.\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Eggs and flour are the main ingredients of pancakes.\u0022,\u0022vi\u0022:\u0022Tr\\u1EE9ng v\\u00E0 b\\u1ED9t l\\u00E0 nguy\\u00EAn li\\u1EC7u ch\\u00EDnh c\\u1EE7a b\\u00E1nh k\\u1EBFp.\u0022},{\u0022text\u0022:\u0022Gather all the ingredients before you start cooking.\u0022,\u0022vi\u0022:\u0022H\\u00E3y chu\\u1EA9n b\\u1ECB \\u0111\\u1EE7 nguy\\u00EAn li\\u1EC7u tr\\u01B0\\u1EDBc khi b\\u1EAFt \\u0111\\u1EA7u n\\u1EA5u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fresh ingredients\u0022,\u0022vi\u0022:\u0022nguy\\u00EAn li\\u1EC7u t\\u01B0\\u01A1i\u0022},{\u0022text\u0022:\u0022main ingredient\u0022,\u0022vi\u0022:\u0022nguy\\u00EAn li\\u1EC7u ch\\u00EDnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/cooking-ingredients-573HXXCQWB\u0022,\u0022author\u0022:\u0022Tim Sullivan\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.cdfb5a20a7b0433a92cbe6f74c558b09",
+      "kind": "Card",
+      "values": {
+        "Term": "chop",
+        "Definition": "th\u00E1i nh\u1ECF, b\u0103m",
+        "ImageUrl": "asset:0837661d019bce687f3e857f4989e0cea7bbf26336c8f88a4f343dd928502c56.webp",
+        "Phonetic": "/t\u0361\u0283\u0251p/",
+        "Example": "Please chop the onions finely before you fry them.",
+        "ExampleTranslation": "H\u00E3y th\u00E1i h\u00E0nh th\u1EADt nh\u1ECF tr\u01B0\u1EDBc khi x\u00E0o.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to cut food into small pieces with a knife",
+        "Cefr": "B1",
+        "PhoneticUk": "/t\u0361\u0283\u0252p/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Please chop the onions finely before you fry them.\u0022,\u0022vi\u0022:\u0022H\\u00E3y th\\u00E1i h\\u00E0nh th\\u1EADt nh\\u1ECF tr\\u01B0\\u1EDBc khi x\\u00E0o.\u0022},{\u0022text\u0022:\u0022He chopped the carrots for the soup.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y th\\u00E1i c\\u00E0 r\\u1ED1t \\u0111\\u1EC3 n\\u1EA5u s\\u00FAp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022chop finely\u0022,\u0022vi\u0022:\u0022th\\u00E1i nh\\u1ECF\u0022},{\u0022text\u0022:\u0022chop up vegetables\u0022,\u0022vi\u0022:\u0022th\\u00E1i rau c\\u1EE7\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022chopped\u0022,\u0022pastParticiple\u0022:\u0022chopped\u0022,\u0022ing\u0022:\u0022chopping\u0022,\u0022thirdPerson\u0022:\u0022chops\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/447868/man-chopping-spring-onion-kitchen\u0022,\u0022author\u0022:\u0022Jakub Kapusnak\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.ddf7883e31424813a31c58735d850091",
+      "kind": "Card",
+      "values": {
+        "Term": "measuring cup",
+        "Definition": "c\u1ED1c \u0111ong",
+        "ImageUrl": "asset:983d6d13eadb0636938acdea3954bcbc4f39f76b061139e79cc9860130a692fb.webp",
+        "Phonetic": "/\u02C8m\u025B\u0292.\u0259.\u0279\u026A\u014B \u02C8k\u028Cp/",
+        "Example": "Use a measuring cup to add exactly two cups of flour.",
+        "ExampleTranslation": "H\u00E3y d\u00F9ng c\u1ED1c \u0111ong \u0111\u1EC3 th\u00EAm \u0111\u00FAng hai c\u1ED1c b\u1ED9t.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a cup with marks on it used to measure ingredients",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8m\u025B\u0292.\u0259.\u0279\u026A\u014B \u02C8k\u028Cp/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Use a measuring cup to add exactly two cups of flour.\u0022,\u0022vi\u0022:\u0022H\\u00E3y d\\u00F9ng c\\u1ED1c \\u0111ong \\u0111\\u1EC3 th\\u00EAm \\u0111\\u00FAng hai c\\u1ED1c b\\u1ED9t.\u0022},{\u0022text\u0022:\u0022The measuring cup was full of milk.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc c\\u1ED1c \\u0111ong \\u0111\\u1EA7y s\\u1EEFa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fill a measuring cup\u0022,\u0022vi\u0022:\u0022\\u0111ong \\u0111\\u1EA7y c\\u1ED1c\u0022},{\u0022text\u0022:\u0022plastic measuring cup\u0022,\u0022vi\u0022:\u0022c\\u1ED1c \\u0111ong b\\u1EB1ng nh\\u1EF1a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Measuring_Cups.jpg\u0022,\u0022author\u0022:\u0022Estabiano\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.eb63654f29b3477f96b7ef4748485a93",
+      "kind": "Card",
+      "values": {
+        "Term": "pastry",
+        "Definition": "b\u00E1nh ng\u1ECDt, b\u1ED9t b\u00E1nh",
+        "ImageUrl": "asset:4ca1e74c2a233c987da0490a5e27746b1a88bd5d56591e61ec6fdb0f0542d564.webp",
+        "Phonetic": "/\u02C8pe\u026Ast\u0279i/",
+        "Example": "The bakery sells fresh pastries every morning.",
+        "ExampleTranslation": "Ti\u1EC7m b\u00E1nh b\u00E1n b\u00E1nh ng\u1ECDt m\u1EDBi n\u01B0\u1EDBng m\u1ED7i s\u00E1ng.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "baked dough used for pies, or a small sweet cake",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8pe\u026Ast\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The bakery sells fresh pastries every morning.\u0022,\u0022vi\u0022:\u0022Ti\\u1EC7m b\\u00E1nh b\\u00E1n b\\u00E1nh ng\\u1ECDt m\\u1EDBi n\\u01B0\\u1EDBng m\\u1ED7i s\\u00E1ng.\u0022},{\u0022text\u0022:\u0022This pie has a thin, crispy pastry.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc b\\u00E1nh n\\u00E0y c\\u00F3 l\\u1EDBp v\\u1ECF m\\u1ECFng v\\u00E0 gi\\u00F2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fresh pastry\u0022,\u0022vi\u0022:\u0022b\\u00E1nh ng\\u1ECDt m\\u1EDBi n\\u01B0\\u1EDBng\u0022},{\u0022text\u0022:\u0022puff pastry\u0022,\u0022vi\u0022:\u0022b\\u1ED9t b\\u00E1nh ng\\u00E0n l\\u1EDBp\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Leek_%26_Dauphinoise_Potato_Pastry_-_The_Flour_Pot_Bakery_2026-04-06.jpg\u0022,\u0022author\u0022:\u0022Andy Li\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.ec23e812c539411abd57b0ac5af84688",
+      "kind": "Card",
+      "values": {
+        "Term": "marinate",
+        "Definition": "\u01B0\u1EDBp (th\u1ECBt, c\u00E1)",
+        "ImageUrl": "asset:49cdcf8964aed118493f89b5625002ab8d0a0aa73f2545ffe4e60fa822c24589.webp",
+        "Phonetic": "/\u02C8m\u00E6\u0279\u026Ane\u026At/",
+        "Example": "You should marinate the chicken for at least an hour.",
+        "ExampleTranslation": "B\u1EA1n n\u00EAn \u01B0\u1EDBp g\u00E0 \u00EDt nh\u1EA5t m\u1ED9t ti\u1EBFng.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to leave food in a flavoured liquid before cooking it",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8m\u00E6\u0279\u026Ane\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022You should marinate the chicken for at least an hour.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n n\\u00EAn \\u01B0\\u1EDBp g\\u00E0 \\u00EDt nh\\u1EA5t m\\u1ED9t ti\\u1EBFng.\u0022},{\u0022text\u0022:\u0022I marinated the beef in soy sauce and garlic.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u01B0\\u1EDBp th\\u1ECBt b\\u00F2 v\\u1EDBi n\\u01B0\\u1EDBc t\\u01B0\\u01A1ng v\\u00E0 t\\u1ECFi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022marinate overnight\u0022,\u0022vi\u0022:\u0022\\u01B0\\u1EDBp qua \\u0111\\u00EAm\u0022},{\u0022text\u0022:\u0022marinate in soy sauce\u0022,\u0022vi\u0022:\u0022\\u01B0\\u1EDBp trong n\\u01B0\\u1EDBc t\\u01B0\\u01A1ng\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022marinated\u0022,\u0022pastParticiple\u0022:\u0022marinated\u0022,\u0022ing\u0022:\u0022marinating\u0022,\u0022thirdPerson\u0022:\u0022marinates\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.eee988769d374ca2ae32485b287e3f85",
+      "kind": "Card",
+      "values": {
+        "Term": "rolling pin",
+        "Definition": "c\u00E2y c\u00E1n b\u1ED9t",
+        "ImageUrl": "asset:8e5aeb0dd6ae230034115e3c5365917c1154dafc93a55cfb9bc0f0a898a5963e.webp",
+        "Phonetic": "/\u02C8\u0279ol.\u026A\u014B p\u026An/",
+        "Example": "She used a rolling pin to flatten the dough.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y d\u00F9ng c\u00E2y c\u00E1n b\u1ED9t \u0111\u1EC3 c\u00E1n ph\u1EB3ng kh\u1ED1i b\u1ED9t.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long round tool that you use to flatten dough",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0279\u0259\u028A.l\u026A\u014B p\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She used a rolling pin to flatten the dough.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y d\\u00F9ng c\\u00E2y c\\u00E1n b\\u1ED9t \\u0111\\u1EC3 c\\u00E1n ph\\u1EB3ng kh\\u1ED1i b\\u1ED9t.\u0022},{\u0022text\u0022:\u0022My grandmother has a wooden rolling pin.\u0022,\u0022vi\u0022:\u0022B\\u00E0 t\\u00F4i c\\u00F3 m\\u1ED9t c\\u00E2y c\\u00E1n b\\u1ED9t b\\u1EB1ng g\\u1ED7.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wooden rolling pin\u0022,\u0022vi\u0022:\u0022c\\u00E2y c\\u00E1n b\\u1ED9t b\\u1EB1ng g\\u1ED7\u0022},{\u0022text\u0022:\u0022use a rolling pin\u0022,\u0022vi\u0022:\u0022d\\u00F9ng c\\u00E2y c\\u00E1n b\\u1ED9t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6028931/photo-image-public-domain-hand-person\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b06-nau-an-che-bien.f060daaeee4242689cfe9e1e2a51d6c3",
+      "kind": "Card",
+      "values": {
+        "Term": "slice",
+        "Definition": "c\u1EAFt l\u00E1t",
+        "ImageUrl": "asset:486d247b3e8ce8497797e04a1bc68c11154093ca2075a7159cd49c226effabc0.webp",
+        "Phonetic": "/sla\u026As/",
+        "Example": "She sliced the tomato and put it in the sandwich.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y c\u1EAFt l\u00E1t c\u00E0 chua r\u1ED3i cho v\u00E0o b\u00E1nh m\u00EC k\u1EB9p.",
+        "Topic": "N\u1EA5u \u0103n \u0026 ch\u1EBF bi\u1EBFn",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to cut food into thin flat pieces",
+        "Cefr": "B1",
+        "PhoneticUk": "/sla\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She sliced the tomato and put it in the sandwich.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y c\\u1EAFt l\\u00E1t c\\u00E0 chua r\\u1ED3i cho v\\u00E0o b\\u00E1nh m\\u00EC k\\u1EB9p.\u0022},{\u0022text\u0022:\u0022Slice the bread thinly, please.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n c\\u1EAFt b\\u00E1nh m\\u00EC th\\u1EADt m\\u1ECFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022slice thinly\u0022,\u0022vi\u0022:\u0022c\\u1EAFt l\\u00E1t m\\u1ECFng\u0022},{\u0022text\u0022:\u0022slice a loaf of bread\u0022,\u0022vi\u0022:\u0022c\\u1EAFt \\u1ED5 b\\u00E1nh m\\u00EC\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022sliced\u0022,\u0022pastParticiple\u0022:\u0022sliced\u0022,\u0022ing\u0022:\u0022slicing\u0022,\u0022thirdPerson\u0022:\u0022slices\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6820718/png-sticker-vintage\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "0837661d019bce687f3e857f4989e0cea7bbf26336c8f88a4f343dd928502c56.webp",
+      "sha256": "0837661d019bce687f3e857f4989e0cea7bbf26336c8f88a4f343dd928502c56"
+    },
+    {
+      "file": "486d247b3e8ce8497797e04a1bc68c11154093ca2075a7159cd49c226effabc0.webp",
+      "sha256": "486d247b3e8ce8497797e04a1bc68c11154093ca2075a7159cd49c226effabc0"
+    },
+    {
+      "file": "31586a446d4d1be176ffa2d4aab7e394bdd2fdb9b11a61b55255162cada53561.webp",
+      "sha256": "31586a446d4d1be176ffa2d4aab7e394bdd2fdb9b11a61b55255162cada53561"
+    },
+    {
+      "file": "84807ec99bc2b3183460f0d44f30a56fa35b7631430769fa78c3e0767f5dd9a4.webp",
+      "sha256": "84807ec99bc2b3183460f0d44f30a56fa35b7631430769fa78c3e0767f5dd9a4"
+    },
+    {
+      "file": "31dbce0c788a8256edac7ad27c4bb8eb529543d44ef2a376b18dfdfe8eacc02f.webp",
+      "sha256": "31dbce0c788a8256edac7ad27c4bb8eb529543d44ef2a376b18dfdfe8eacc02f"
+    },
+    {
+      "file": "9f08148987cad9002156f3098025f49ec58eeba114a059130a9be6be9debd1f4.webp",
+      "sha256": "9f08148987cad9002156f3098025f49ec58eeba114a059130a9be6be9debd1f4"
+    },
+    {
+      "file": "08838d767e2bb8ce2f6fc09ae287541d09a3d375913e556688644068cce1743a.webp",
+      "sha256": "08838d767e2bb8ce2f6fc09ae287541d09a3d375913e556688644068cce1743a"
+    },
+    {
+      "file": "6f781475bfd622d8ea5a5a90ab1f0952f66493a86d1da3b2a834464ef26da6a8.webp",
+      "sha256": "6f781475bfd622d8ea5a5a90ab1f0952f66493a86d1da3b2a834464ef26da6a8"
+    },
+    {
+      "file": "fe35e13915462d98a8141f7a1349fedd0726b07ef9e721e25b113274e597797f.webp",
+      "sha256": "fe35e13915462d98a8141f7a1349fedd0726b07ef9e721e25b113274e597797f"
+    },
+    {
+      "file": "505ce552aaa5e2261c9eba436be4e51b874dd3942533dede0d1e14dda6fd8dce.webp",
+      "sha256": "505ce552aaa5e2261c9eba436be4e51b874dd3942533dede0d1e14dda6fd8dce"
+    },
+    {
+      "file": "0e577beb3c4e33665485e4276f9e7902fa7535c4fba8ce3a943588afd830b2a1.webp",
+      "sha256": "0e577beb3c4e33665485e4276f9e7902fa7535c4fba8ce3a943588afd830b2a1"
+    },
+    {
+      "file": "55e75043af121ed9c2237d437ba89ddb17804521b5305772472347cd62a2951a.webp",
+      "sha256": "55e75043af121ed9c2237d437ba89ddb17804521b5305772472347cd62a2951a"
+    },
+    {
+      "file": "49cdcf8964aed118493f89b5625002ab8d0a0aa73f2545ffe4e60fa822c24589.webp",
+      "sha256": "49cdcf8964aed118493f89b5625002ab8d0a0aa73f2545ffe4e60fa822c24589"
+    },
+    {
+      "file": "789e7ba6738640ae3a6a8326e009b1f76f7d6b633b2466fa5a62e2a7a923dc94.webp",
+      "sha256": "789e7ba6738640ae3a6a8326e009b1f76f7d6b633b2466fa5a62e2a7a923dc94"
+    },
+    {
+      "file": "ef60ee2c2f7731eb9b3d15ea89051ca18e1ec9bfbe1700d40a5a20f9ef1782f9.webp",
+      "sha256": "ef60ee2c2f7731eb9b3d15ea89051ca18e1ec9bfbe1700d40a5a20f9ef1782f9"
+    },
+    {
+      "file": "43f1b30105ac3bfc02811fafa28a2dedd5a71575bf4d05489996d86a5d56496e.webp",
+      "sha256": "43f1b30105ac3bfc02811fafa28a2dedd5a71575bf4d05489996d86a5d56496e"
+    },
+    {
+      "file": "6b660c25c82383631db64ca9e04c8adb8fb7723ddb03ac896be92905abad2e36.webp",
+      "sha256": "6b660c25c82383631db64ca9e04c8adb8fb7723ddb03ac896be92905abad2e36"
+    },
+    {
+      "file": "2c13e7b88a65930ba9fc2b31053e8d535ccf002fc92db12fb42b031d01809038.webp",
+      "sha256": "2c13e7b88a65930ba9fc2b31053e8d535ccf002fc92db12fb42b031d01809038"
+    },
+    {
+      "file": "2571ba83550be6d799b8d6054bd791d01bb3601d6063807af6af7e88f27644e2.webp",
+      "sha256": "2571ba83550be6d799b8d6054bd791d01bb3601d6063807af6af7e88f27644e2"
+    },
+    {
+      "file": "8e5aeb0dd6ae230034115e3c5365917c1154dafc93a55cfb9bc0f0a898a5963e.webp",
+      "sha256": "8e5aeb0dd6ae230034115e3c5365917c1154dafc93a55cfb9bc0f0a898a5963e"
+    },
+    {
+      "file": "983d6d13eadb0636938acdea3954bcbc4f39f76b061139e79cc9860130a692fb.webp",
+      "sha256": "983d6d13eadb0636938acdea3954bcbc4f39f76b061139e79cc9860130a692fb"
+    },
+    {
+      "file": "94890ca1c6f14bb9764a3761fb7e85e618a988ecf3af20ac2a5d4a2b0a34b486.webp",
+      "sha256": "94890ca1c6f14bb9764a3761fb7e85e618a988ecf3af20ac2a5d4a2b0a34b486"
+    },
+    {
+      "file": "9a4f121aac281b00c8ce5b337edfe268d224de3e35b43315a957929c64475ea5.webp",
+      "sha256": "9a4f121aac281b00c8ce5b337edfe268d224de3e35b43315a957929c64475ea5"
+    },
+    {
+      "file": "4ca1e74c2a233c987da0490a5e27746b1a88bd5d56591e61ec6fdb0f0542d564.webp",
+      "sha256": "4ca1e74c2a233c987da0490a5e27746b1a88bd5d56591e61ec6fdb0f0542d564"
+    },
+    {
+      "file": "06cfe66c7adca5c2058b5966d673f54122eb3683b60ea2ef916a00f1049beb6e.webp",
+      "sha256": "06cfe66c7adca5c2058b5966d673f54122eb3683b60ea2ef916a00f1049beb6e"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b06-nau-an-che-bien"
+}

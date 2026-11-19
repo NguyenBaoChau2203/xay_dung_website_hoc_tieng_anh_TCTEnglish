@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung",
+      "kind": "Set",
+      "values": {
+        "SetName": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "Description": "#a1 #a2 #furniture #home"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.12acba5e549b42b59b6e9498294db182",
+      "kind": "Card",
+      "values": {
+        "Term": "fan",
+        "Definition": "qu\u1EA1t",
+        "ImageUrl": "asset:c221aace3c5a41a9be5586ede046a99cc7cfb2604ca3b1da1fc05cd5d87973bb.webp",
+        "Phonetic": "/\u00E6/",
+        "Example": "Turn on the fan, it is hot.",
+        "ExampleTranslation": "B\u1EADt qu\u1EA1t l\u00EAn \u0111i, n\u00F3ng qu\u00E1.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine with blades that moves air to keep you cool",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u00E6/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Turn on the fan, it is hot.\u0022,\u0022vi\u0022:\u0022B\\u1EADt qu\\u1EA1t l\\u00EAn \\u0111i, n\\u00F3ng qu\\u00E1.\u0022},{\u0022text\u0022:\u0022The ceiling fan is very quiet.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc qu\\u1EA1t tr\\u1EA7n r\\u1EA5t \\u00EAm.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ceiling fan\u0022,\u0022vi\u0022:\u0022qu\\u1EA1t tr\\u1EA7n\u0022},{\u0022text\u0022:\u0022electric fan\u0022,\u0022vi\u0022:\u0022qu\\u1EA1t \\u0111i\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5901123/photo-image-public-domain-table-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.2cf304136eea423d94b91e7c8aafd023",
+      "kind": "Card",
+      "values": {
+        "Term": "mirror",
+        "Definition": "c\u00E1i g\u01B0\u01A1ng",
+        "ImageUrl": "asset:496b1dba90ecd6b49ce35bbc126f4cbcae76153d037a3aad2628a2bd5e009dd1.webp",
+        "Phonetic": "/\u02C8mi\u0279\u025A/",
+        "Example": "She looked at herself in the mirror.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y nh\u00ECn m\u00ECnh trong g\u01B0\u01A1ng.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a glass in which you can see yourself",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8m\u026A\u0279\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She looked at herself in the mirror.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y nh\\u00ECn m\\u00ECnh trong g\\u01B0\\u01A1ng.\u0022},{\u0022text\u0022:\u0022There is a big mirror in the hall.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t t\\u1EA5m g\\u01B0\\u01A1ng l\\u1EDBn \\u1EDF h\\u00E0nh lang.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022look in the mirror\u0022,\u0022vi\u0022:\u0022soi g\\u01B0\\u01A1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/8144103/wall-mirror\u0022,\u0022author\u0022:\u0022themet\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.2eed7a9918bf45499a029c9151fb3c92",
+      "kind": "Card",
+      "values": {
+        "Term": "washing machine",
+        "Definition": "m\u00E1y gi\u1EB7t",
+        "ImageUrl": "asset:156b1c3e06606d0072bfb5d89d6f95b590de5d0e0898cb907cfb9eb7e7dc2bb3.webp",
+        "Phonetic": "/\u02C8w\u0251\u0283.\u026A\u014B m\u0259\u02C8\u0283in/",
+        "Example": "The washing machine is in the bathroom.",
+        "ExampleTranslation": "M\u00E1y gi\u1EB7t \u0111\u1EB7t trong ph\u00F2ng t\u1EAFm.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that washes clothes",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8w\u0252\u0283.\u026A\u014B m\u0259\u02C8\u0283i\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The washing machine is in the bathroom.\u0022,\u0022vi\u0022:\u0022M\\u00E1y gi\\u1EB7t \\u0111\\u1EB7t trong ph\\u00F2ng t\\u1EAFm.\u0022},{\u0022text\u0022:\u0022I put my dirty clothes in the washing machine.\u0022,\u0022vi\u0022:\u0022T\\u00F4i cho qu\\u1EA7n \\u00E1o b\\u1EA9n v\\u00E0o m\\u00E1y gi\\u1EB7t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022use the washing machine\u0022,\u0022vi\u0022:\u0022d\\u00F9ng m\\u00E1y gi\\u1EB7t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6058248/free-public-domain-cc0-photo\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.338b8578043c47f1b835ff7f4cbafbb1",
+      "kind": "Card",
+      "values": {
+        "Term": "bed",
+        "Definition": "c\u00E1i gi\u01B0\u1EDDng",
+        "ImageUrl": "asset:5d3e4b8a92773b115d1f26f999e492a2eb6dfeb0b239e9f60f2191b9a102985d.webp",
+        "Phonetic": "/b\u025Bd/",
+        "Example": "I make my bed every morning.",
+        "ExampleTranslation": "S\u00E1ng n\u00E0o t\u00F4i c\u0169ng d\u1ECDn gi\u01B0\u1EDDng.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of furniture you sleep on",
+        "Cefr": "A1",
+        "PhoneticUk": "/b\u025Bd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I make my bed every morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng n\\u00E0o t\\u00F4i c\\u0169ng d\\u1ECDn gi\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022The baby is asleep in his bed.\u0022,\u0022vi\u0022:\u0022Em b\\u00E9 \\u0111ang ng\\u1EE7 tr\\u00EAn gi\\u01B0\\u1EDDng c\\u1EE7a m\\u00ECnh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go to bed\u0022,\u0022vi\u0022:\u0022\\u0111i ng\\u1EE7\u0022},{\u0022text\u0022:\u0022make the bed\u0022,\u0022vi\u0022:\u0022d\\u1ECDn gi\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/bed-bedroom-NNZ04PGNFD\u0022,\u0022author\u0022:\u0022Matt Bango\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.33d7cc20a82844a69ccf696e114550bc",
+      "kind": "Card",
+      "values": {
+        "Term": "table",
+        "Definition": "c\u00E1i b\u00E0n",
+        "ImageUrl": "asset:80973a285b4ad603bff0dd00ede85f184c38f14178028c91fc385027a167aaa0.webp",
+        "Phonetic": "/\u02C8t\u02B0e\u026Ab(\u0259)\u026B/",
+        "Example": "Put the plates on the table.",
+        "ExampleTranslation": "H\u00E3y \u0111\u1EB7t nh\u1EEFng c\u00E1i \u0111\u0129a l\u00EAn b\u00E0n.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of furniture with a flat top and legs",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8te\u026Ab\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Put the plates on the table.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111\\u1EB7t nh\\u1EEFng c\\u00E1i \\u0111\\u0129a l\\u00EAn b\\u00E0n.\u0022},{\u0022text\u0022:\u0022We eat dinner at a round table.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0103n t\\u1ED1i quanh m\\u1ED9t chi\\u1EBFc b\\u00E0n tr\\u00F2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022set the table\u0022,\u0022vi\u0022:\u0022d\\u1ECDn b\\u00E0n \\u0103n\u0022},{\u0022text\u0022:\u0022coffee table\u0022,\u0022vi\u0022:\u0022b\\u00E0n tr\\u00E0\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/190770594@N02/51335028677\u0022,\u0022author\u0022:\u0022murlisachi\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.3b95d13baaae4f1eab51fb06b183bbbf",
+      "kind": "Card",
+      "values": {
+        "Term": "vase",
+        "Definition": "b\u00ECnh hoa",
+        "ImageUrl": "asset:f8f2b964e2acb784feb3bc803b148d6e3372658cf13e0fd3a656fd0d66e0a75a.webp",
+        "Phonetic": "/ve\u026A\u032Fs/",
+        "Example": "She put the roses in a vase.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y c\u1EAFm nh\u1EEFng b\u00F4ng h\u1ED3ng v\u00E0o b\u00ECnh.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a container for cut flowers",
+        "Cefr": "A2",
+        "PhoneticUk": "/v\u0251\u02D0z/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She put the roses in a vase.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y c\\u1EAFm nh\\u1EEFng b\\u00F4ng h\\u1ED3ng v\\u00E0o b\\u00ECnh.\u0022},{\u0022text\u0022:\u0022The vase fell and broke.\u0022,\u0022vi\u0022:\u0022C\\u00E1i b\\u00ECnh hoa r\\u01A1i xu\\u1ED1ng v\\u00E0 v\\u1EE1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022vase of flowers\u0022,\u0022vi\u0022:\u0022b\\u00ECnh hoa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/flower-vase-VMRKBKSM2Q\u0022,\u0022author\u0022:\u0022Kelly Ishmael\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.3d2ca3a7c4634ac5a9dc6605f41ed615",
+      "kind": "Card",
+      "values": {
+        "Term": "clock",
+        "Definition": "\u0111\u1ED3ng h\u1ED3 treo t\u01B0\u1EDDng, \u0111\u1ED3ng h\u1ED3 \u0111\u1EC3 b\u00E0n",
+        "ImageUrl": "asset:b2b26f651a173085a9f231747be4a28d7e80c1b0421b5e58b63c7cdbcc1b1b55.webp",
+        "Phonetic": "/kl\u0251k/",
+        "Example": "The clock on the wall says seven.",
+        "ExampleTranslation": "Chi\u1EBFc \u0111\u1ED3ng h\u1ED3 tr\u00EAn t\u01B0\u1EDDng ch\u1EC9 b\u1EA3y gi\u1EDD.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine on a wall or table that shows the time",
+        "Cefr": "A1",
+        "PhoneticUk": "/kl\u0252k/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The clock on the wall says seven.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc \\u0111\\u1ED3ng h\\u1ED3 tr\\u00EAn t\\u01B0\\u1EDDng ch\\u1EC9 b\\u1EA3y gi\\u1EDD.\u0022},{\u0022text\u0022:\u0022I set the clock for six in the morning.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1EB7t \\u0111\\u1ED3ng h\\u1ED3 l\\u00FAc s\\u00E1u gi\\u1EDD s\\u00E1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022alarm clock\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED3ng h\\u1ED3 b\\u00E1o th\\u1EE9c\u0022},{\u0022text\u0022:\u0022wall clock\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED3ng h\\u1ED3 treo t\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/147778363@N07/33750132165\u0022,\u0022author\u0022:\u0022favorli\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.3ec78571e26e4ec0b04265eda751406c",
+      "kind": "Card",
+      "values": {
+        "Term": "vacuum cleaner",
+        "Definition": "m\u00E1y h\u00FAt b\u1EE5i",
+        "ImageUrl": "asset:8ed36686bd58dbeac7123fcc76b063d6d1d67258d0c9de6843a8dc5ef1b5d31a.webp",
+        "Phonetic": "/\u02C8v\u00E6.kju\u02D0m \u02C8kli.n\u025A/",
+        "Example": "My father uses the vacuum cleaner on Sundays.",
+        "ExampleTranslation": "B\u1ED1 t\u00F4i d\u00F9ng m\u00E1y h\u00FAt b\u1EE5i v\u00E0o Ch\u1EE7 nh\u1EADt.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that sucks dust from floors",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8v\u00E6.kju\u02D0m \u02C8kli\u02D0.n\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My father uses the vacuum cleaner on Sundays.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 t\\u00F4i d\\u00F9ng m\\u00E1y h\\u00FAt b\\u1EE5i v\\u00E0o Ch\\u1EE7 nh\\u1EADt.\u0022},{\u0022text\u0022:\u0022The vacuum cleaner is very noisy.\u0022,\u0022vi\u0022:\u0022M\\u00E1y h\\u00FAt b\\u1EE5i r\\u1EA5t \\u1ED3n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022robot vacuum cleaner\u0022,\u0022vi\u0022:\u0022robot h\\u00FAt b\\u1EE5i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6711022/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.587c82d62b1d4af18f36e3c3e3a5b8ba",
+      "kind": "Card",
+      "values": {
+        "Term": "lamp",
+        "Definition": "c\u00E1i \u0111\u00E8n",
+        "ImageUrl": "asset:b22f0dbd186c8a9d71a38a1f16901a4dc0e91c161adb05b3be2a1c912c8840fe.webp",
+        "Phonetic": "/\u00E6/",
+        "Example": "Turn on the lamp, please.",
+        "ExampleTranslation": "L\u00E0m \u01A1n b\u1EADt \u0111\u00E8n l\u00EAn.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a light that stands on a table or the floor",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8l\u00E6\u031Emp/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Turn on the lamp, please.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n b\\u1EADt \\u0111\\u00E8n l\\u00EAn.\u0022},{\u0022text\u0022:\u0022A small lamp stands next to my bed.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t chi\\u1EBFc \\u0111\\u00E8n nh\\u1ECF \\u0111\\u1EB7t c\\u1EA1nh gi\\u01B0\\u1EDDng t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022desk lamp\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E8n b\\u00E0n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/table-lamp-CGPGQOOQ4I\u0022,\u0022author\u0022:\u0022Kristin Hardwick\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.7193dd2b41df42489dce2d68f311266b",
+      "kind": "Card",
+      "values": {
+        "Term": "pillow",
+        "Definition": "c\u00E1i g\u1ED1i",
+        "ImageUrl": "asset:f3c1a68d44f2289f87440b42cf341ac12ba5a0283d4ab683f70383038cee90f2.webp",
+        "Phonetic": "/\u02C8p\u025Bl.o\u028A/",
+        "Example": "I need a softer pillow.",
+        "ExampleTranslation": "T\u00F4i c\u1EA7n m\u1ED9t c\u00E1i g\u1ED1i m\u1EC1m h\u01A1n.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a soft bag that supports your head in bed",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u026Al.\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I need a softer pillow.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u1EA7n m\\u1ED9t c\\u00E1i g\\u1ED1i m\\u1EC1m h\\u01A1n.\u0022},{\u0022text\u0022:\u0022The cat sleeps on my pillow.\u0022,\u0022vi\u0022:\u0022Con m\\u00E8o ng\\u1EE7 tr\\u00EAn g\\u1ED1i c\\u1EE7a t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022soft pillow\u0022,\u0022vi\u0022:\u0022g\\u1ED1i m\\u1EC1m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3284787/free-photo-image-hotel-room-linen-bed\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.72ca06323f5c4ba8b539908bb53561df",
+      "kind": "Card",
+      "values": {
+        "Term": "mattress",
+        "Definition": "n\u1EC7m, \u0111\u1EC7m",
+        "ImageUrl": "asset:5e4420e4d40bb1b6e4eae0bad6ae855d7ab0d7f71d83d12f1f56b3edb421264a.webp",
+        "Phonetic": "/\u02C8m\u00E6t\u0279\u026As/",
+        "Example": "This mattress is hard but comfortable.",
+        "ExampleTranslation": "T\u1EA5m n\u1EC7m n\u00E0y c\u1EE9ng nh\u01B0ng tho\u1EA3i m\u00E1i.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the thick soft part of a bed that you lie on",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8m\u00E6t\u0279\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022This mattress is hard but comfortable.\u0022,\u0022vi\u0022:\u0022T\\u1EA5m n\\u1EC7m n\\u00E0y c\\u1EE9ng nh\\u01B0ng tho\\u1EA3i m\\u00E1i.\u0022},{\u0022text\u0022:\u0022We need to buy a new mattress.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng ta c\\u1EA7n mua m\\u1ED9t t\\u1EA5m n\\u1EC7m m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022soft mattress\u0022,\u0022vi\u0022:\u0022n\\u1EC7m m\\u1EC1m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/60455048@N02/39243651074\u0022,\u0022author\u0022:\u0022Queensland State Archives\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.7611c471086b4354a2843cf05cf518e6",
+      "kind": "Card",
+      "values": {
+        "Term": "curtain",
+        "Definition": "r\u00E8m c\u1EEDa",
+        "ImageUrl": "asset:37063b829cb89c65f8db7db8db5cca3560e586fcf1004f411e6a0a370ea683f0.webp",
+        "Phonetic": "/\u02C8k\u025C\u0279t(\u0259)n/",
+        "Example": "Please close the curtains, it is too bright.",
+        "ExampleTranslation": "L\u00E0m \u01A1n k\u00E9o r\u00E8m l\u1EA1i, ch\u00F3i qu\u00E1.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of cloth that hangs over a window",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u025C\u02D0tn\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Please close the curtains, it is too bright.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n k\\u00E9o r\\u00E8m l\\u1EA1i, ch\\u00F3i qu\\u00E1.\u0022},{\u0022text\u0022:\u0022The curtain is blue with white stars.\u0022,\u0022vi\u0022:\u0022T\\u1EA5m r\\u00E8m m\\u00E0u xanh c\\u00F3 nh\\u1EEFng ng\\u00F4i sao tr\\u1EAFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022draw the curtains\u0022,\u0022vi\u0022:\u0022k\\u00E9o r\\u00E8m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/window-curtains-06OAHLI7B4\u0022,\u0022author\u0022:\u0022Eduard Militaru\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.8e7341e8d7db4e8499b608d278cb7e0a",
+      "kind": "Card",
+      "values": {
+        "Term": "sofa",
+        "Definition": "gh\u1EBF sofa",
+        "ImageUrl": "asset:f6d9ec4b6d6e1c5e335f52c89cccd39125d46fa46f93f80fbddd79570bf72192.webp",
+        "Phonetic": "/\u02C8so\u028A\u032Ff\u0259/",
+        "Example": "The cat is sleeping on the sofa.",
+        "ExampleTranslation": "Con m\u00E8o \u0111ang ng\u1EE7 tr\u00EAn gh\u1EBF sofa.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long soft seat for two or three people",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8s\u0259\u028A\u032Ff\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The cat is sleeping on the sofa.\u0022,\u0022vi\u0022:\u0022Con m\\u00E8o \\u0111ang ng\\u1EE7 tr\\u00EAn gh\\u1EBF sofa.\u0022},{\u0022text\u0022:\u0022We bought a new grey sofa.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i mua m\\u1ED9t chi\\u1EBFc gh\\u1EBF sofa m\\u00E0u x\\u00E1m m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022sit on the sofa\u0022,\u0022vi\u0022:\u0022ng\\u1ED3i tr\\u00EAn gh\\u1EBF sofa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/96511847@N04/9202793852\u0022,\u0022author\u0022:\u0022Foto Miki Digital\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.90b830d0620f45d3b9242694f3e6ea90",
+      "kind": "Card",
+      "values": {
+        "Term": "wardrobe",
+        "Definition": "t\u1EE7 qu\u1EA7n \u00E1o",
+        "ImageUrl": "asset:5ff5f41c5e9f2912cd4d627c921a8e71f4e13469065c0999b6949d699d21a8c5.webp",
+        "Phonetic": "/\u02C8w\u0254\u0279d\u0279o\u028Ab/",
+        "Example": "She hung her dress in the wardrobe.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y treo chi\u1EBFc v\u00E1y v\u00E0o t\u1EE7 qu\u1EA7n \u00E1o.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tall cupboard where you hang your clothes",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8w\u0254\u02D0d\u0279\u0259\u028Ab/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She hung her dress in the wardrobe.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y treo chi\\u1EBFc v\\u00E1y v\\u00E0o t\\u1EE7 qu\\u1EA7n \\u00E1o.\u0022},{\u0022text\u0022:\u0022My wardrobe is full of old clothes.\u0022,\u0022vi\u0022:\u0022T\\u1EE7 qu\\u1EA7n \\u00E1o c\\u1EE7a t\\u00F4i \\u0111\\u1EA7y qu\\u1EA7n \\u00E1o c\\u0169.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wardrobe door\u0022,\u0022vi\u0022:\u0022c\\u1EEDa t\\u1EE7 qu\\u1EA7n \\u00E1o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3390680/free-illustration-image-antique-art-artwork\u0022,\u0022author\u0022:\u0022nationalgalleryofart\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.b09508cdf8e948bc9b4da89d4328f11f",
+      "kind": "Card",
+      "values": {
+        "Term": "bookcase",
+        "Definition": "t\u1EE7 s\u00E1ch",
+        "ImageUrl": "asset:d86f9f918379e08439b791a5d48d21ca1a296ca2fcadc9960d1c910e11b1ce28.webp",
+        "Phonetic": "/\u02C8b\u028Ak\u02CCke\u026As/",
+        "Example": "The bookcase is full of old novels.",
+        "ExampleTranslation": "T\u1EE7 s\u00E1ch \u0111\u1EA7y nh\u1EEFng cu\u1ED1n ti\u1EC3u thuy\u1EBFt c\u0169.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of furniture with shelves for books",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u028Ak\u02CCke\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The bookcase is full of old novels.\u0022,\u0022vi\u0022:\u0022T\\u1EE7 s\\u00E1ch \\u0111\\u1EA7y nh\\u1EEFng cu\\u1ED1n ti\\u1EC3u thuy\\u1EBFt c\\u0169.\u0022},{\u0022text\u0022:\u0022We built a bookcase for my room.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u00F3ng m\\u1ED9t t\\u1EE7 s\\u00E1ch cho ph\\u00F2ng t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wooden bookcase\u0022,\u0022vi\u0022:\u0022t\\u1EE7 s\\u00E1ch g\\u1ED7\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Bookcase_MET_ADA3165.jpg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.b701116ad8a141309d579fff006a33df",
+      "kind": "Card",
+      "values": {
+        "Term": "chair",
+        "Definition": "c\u00E1i gh\u1EBF",
+        "ImageUrl": "asset:7bdd51766f271f2b8b76f65eaea12ab622867ec1c043b56ae9088a53d15ca45f.webp",
+        "Phonetic": "/t\u0361\u0283\u025B\u025A/",
+        "Example": "Please sit on this chair.",
+        "ExampleTranslation": "M\u1EDDi b\u1EA1n ng\u1ED3i v\u00E0o chi\u1EBFc gh\u1EBF n\u00E0y.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a seat for one person with a back",
+        "Cefr": "A1",
+        "PhoneticUk": "/t\u0361\u0283\u025B\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Please sit on this chair.\u0022,\u0022vi\u0022:\u0022M\\u1EDDi b\\u1EA1n ng\\u1ED3i v\\u00E0o chi\\u1EBFc gh\\u1EBF n\\u00E0y.\u0022},{\u0022text\u0022:\u0022There are four chairs around the table.\u0022,\u0022vi\u0022:\u0022C\\u00F3 b\\u1ED1n chi\\u1EBFc gh\\u1EBF quanh b\\u00E0n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wooden chair\u0022,\u0022vi\u0022:\u0022gh\\u1EBF g\\u1ED7\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/37996646802@N01/2274055016\u0022,\u0022author\u0022:\u0022cogdogblog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.bf6a1cfda00d44a5954d5b7136164fd8",
+      "kind": "Card",
+      "values": {
+        "Term": "armchair",
+        "Definition": "gh\u1EBF b\u00E0nh",
+        "ImageUrl": "asset:5aba6420776fb8aa310699c610e31b7a5e7d2466e3a5ec1ca265ff22ec093a81.webp",
+        "Phonetic": "/\u02C8\u0251\u0279mt\u0361\u0283\u025B\u025A/",
+        "Example": "Grandpa reads the newspaper in his armchair.",
+        "ExampleTranslation": "\u00D4ng \u0111\u1ECDc b\u00E1o tr\u00EAn chi\u1EBFc gh\u1EBF b\u00E0nh c\u1EE7a \u00F4ng.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a comfortable chair with arms for one person",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0251\u02D0(\u0279)mt\u0283\u025B\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Grandpa reads the newspaper in his armchair.\u0022,\u0022vi\u0022:\u0022\\u00D4ng \\u0111\\u1ECDc b\\u00E1o tr\\u00EAn chi\\u1EBFc gh\\u1EBF b\\u00E0nh c\\u1EE7a \\u00F4ng.\u0022},{\u0022text\u0022:\u0022This armchair is soft and comfortable.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc gh\\u1EBF b\\u00E0nh n\\u00E0y m\\u1EC1m v\\u00E0 tho\\u1EA3i m\\u00E1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022leather armchair\u0022,\u0022vi\u0022:\u0022gh\\u1EBF b\\u00E0nh da\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/96511847@N04/10798324736\u0022,\u0022author\u0022:\u0022Foto Miki Digital\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.cf253c9d116b4abf99f2b41e8bf26144",
+      "kind": "Card",
+      "values": {
+        "Term": "shelf",
+        "Definition": "c\u00E1i k\u1EC7, gi\u00E1 s\u00E1ch",
+        "ImageUrl": "asset:5bc1fce261082d29fb5cb0a160e8926ae1bfa847e656479c291d2e1144b252d6.webp",
+        "Phonetic": "/\u0283\u025Blf/",
+        "Example": "The books are on the top shelf.",
+        "ExampleTranslation": "Nh\u1EEFng quy\u1EC3n s\u00E1ch n\u1EB1m tr\u00EAn ng\u0103n k\u1EC7 tr\u00EAn c\u00F9ng.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat board on a wall for putting things on",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0283\u025Blf/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The books are on the top shelf.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng quy\\u1EC3n s\\u00E1ch n\\u1EB1m tr\\u00EAn ng\\u0103n k\\u1EC7 tr\\u00EAn c\\u00F9ng.\u0022},{\u0022text\u0022:\u0022He put the photo on the shelf.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111\\u1EB7t b\\u1EE9c \\u1EA3nh l\\u00EAn k\\u1EC7.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022top shelf\u0022,\u0022vi\u0022:\u0022ng\\u0103n tr\\u00EAn c\\u00F9ng\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022shelves\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/10078012/wall-shelf-c-1937-carl-keksi\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.e1d4590d70694c0ebea1fdaaeda2393d",
+      "kind": "Card",
+      "values": {
+        "Term": "microwave",
+        "Definition": "l\u00F2 vi s\u00F3ng",
+        "ImageUrl": "asset:7d472c4d9b599725b80334d87f0d206849cb3ead66c5aa2c6233c930ad9f2ea6.webp",
+        "Phonetic": "/\u02C8ma\u026Ak\u0279o\u028A\u02CCwe\u026Av/",
+        "Example": "Heat the soup in the microwave.",
+        "ExampleTranslation": "H\u00E3y h\u00E2m s\u00FAp trong l\u00F2 vi s\u00F3ng.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small oven that heats food very quickly",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8ma\u026Ak\u0279\u0259\u028A\u02CCwe\u026Av/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Heat the soup in the microwave.\u0022,\u0022vi\u0022:\u0022H\\u00E3y h\\u00E2m s\\u00FAp trong l\\u00F2 vi s\\u00F3ng.\u0022},{\u0022text\u0022:\u0022The microwave stopped after two minutes.\u0022,\u0022vi\u0022:\u0022L\\u00F2 vi s\\u00F3ng d\\u1EEBng sau hai ph\\u00FAt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022microwave oven\u0022,\u0022vi\u0022:\u0022l\\u00F2 vi s\\u00F3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5924482/photo-image-light-public-domain-black\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.e5b7618a7cfc4e6ab05852e992784407",
+      "kind": "Card",
+      "values": {
+        "Term": "air conditioner",
+        "Definition": "m\u00E1y \u0111i\u1EC1u h\u00F2a",
+        "ImageUrl": "asset:64ebcf47af98f0d7ff5ceb81ea27929118d24c3566e916f1e8f10dfe142b3946.webp",
+        "Phonetic": "/\u025B\u025A k\u0259n\u02C8d\u026A\u0283\u0259n\u025A/",
+        "Example": "The air conditioner is on in the bedroom.",
+        "ExampleTranslation": "M\u00E1y \u0111i\u1EC1u h\u00F2a \u0111ang b\u1EADt trong ph\u00F2ng ng\u1EE7.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that makes the air in a room cool",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u025B\u0259\u032F k\u0259n\u02C8d\u026A\u0283\u0259n\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The air conditioner is on in the bedroom.\u0022,\u0022vi\u0022:\u0022M\\u00E1y \\u0111i\\u1EC1u h\\u00F2a \\u0111ang b\\u1EADt trong ph\\u00F2ng ng\\u1EE7.\u0022},{\u0022text\u0022:\u0022We bought a new air conditioner last summer.\u0022,\u0022vi\u0022:\u0022M\\u00F9a h\\u00E8 n\\u0103m ngo\\u00E1i ch\\u00FAng t\\u00F4i mua m\\u1ED9t chi\\u1EBFc m\\u00E1y \\u0111i\\u1EC1u h\\u00F2a m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022turn on the air conditioner\u0022,\u0022vi\u0022:\u0022b\\u1EADt m\\u00E1y \\u0111i\\u1EC1u h\\u00F2a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Air_conditioner_in_brick_wall.jpg\u0022,\u0022author\u0022:\u0022HumanAdventure\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.e76331edd51f4b88a5c77dffec9ec383",
+      "kind": "Card",
+      "values": {
+        "Term": "blanket",
+        "Definition": "c\u00E1i ch\u0103n, c\u00E1i m\u1EC1n",
+        "ImageUrl": "asset:6cb24e14cf8ea53952fc069f68207ac48ccf2de4c1dad8401818e03e3f67f645.webp",
+        "Phonetic": "/\u00E6/",
+        "Example": "She put a blanket over the baby.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111\u1EAFp ch\u0103n cho em b\u00E9.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thick cover that keeps you warm in bed",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u00E6/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She put a blanket over the baby.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111\\u1EAFp ch\\u0103n cho em b\\u00E9.\u0022},{\u0022text\u0022:\u0022It is cold, so I need a warm blanket.\u0022,\u0022vi\u0022:\u0022Tr\\u1EDDi l\\u1EA1nh n\\u00EAn t\\u00F4i c\\u1EA7n m\\u1ED9t chi\\u1EBFc ch\\u0103n \\u1EA5m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022warm blanket\u0022,\u0022vi\u0022:\u0022ch\\u0103n \\u1EA5m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/57873306@N00/6650393729\u0022,\u0022author\u0022:\u0022Kim Siever\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.e9b8d644ffab441889045a6c51155052",
+      "kind": "Card",
+      "values": {
+        "Term": "refrigerator",
+        "Definition": "t\u1EE7 l\u1EA1nh",
+        "ImageUrl": "asset:d7ef652cf79bcd1501b80a2e33ad720cfee5efcd03d7ff98105998bcd6b62a8f.webp",
+        "Phonetic": "/\u0279\u026A\u02C8f\u0279\u026Ad\u0361\u0292.\u0259\u02CC\u0279e\u026A.t\u025A/",
+        "Example": "The milk is in the refrigerator.",
+        "ExampleTranslation": "S\u1EEFa \u0111\u1EC3 trong t\u1EE7 l\u1EA1nh.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that keeps food cold",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0279\u026A\u02C8f\u0279\u026Ad\u0361\u0292.\u0259\u02CC\u0279e\u026A.t\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The milk is in the refrigerator.\u0022,\u0022vi\u0022:\u0022S\\u1EEFa \\u0111\\u1EC3 trong t\\u1EE7 l\\u1EA1nh.\u0022},{\u0022text\u0022:\u0022Our refrigerator is almost empty.\u0022,\u0022vi\u0022:\u0022T\\u1EE7 l\\u1EA1nh nh\\u00E0 ch\\u00FAng t\\u00F4i g\\u1EA7n h\\u1EBFt \\u0111\\u1ED3.\u0022}],\u0022synonyms\u0022:[\u0022fridge\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open the refrigerator\u0022,\u0022vi\u0022:\u0022m\\u1EDF t\\u1EE7 l\\u1EA1nh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Newly_renovated_kitchen_with_cabinets_refrigerator_stove_and_hardwood_floor.jpg\u0022,\u0022author\u0022:\u0022Tomwsulcer\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.efba828204f34b208305f786dd764aed",
+      "kind": "Card",
+      "values": {
+        "Term": "drawer",
+        "Definition": "ng\u0103n k\u00E9o",
+        "ImageUrl": "asset:17f12eaaec9995345e6bd25d2f84fa3e8f6d6150befce4c84fd87b1a40148599.webp",
+        "Phonetic": "/d\u0279\u0254\u0279/",
+        "Example": "The keys are in the top drawer.",
+        "ExampleTranslation": "Ch\u00ECa kh\u00F3a \u1EDF trong ng\u0103n k\u00E9o tr\u00EAn c\u00F9ng.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a box in a piece of furniture that slides in and out",
+        "Cefr": "A2",
+        "PhoneticUk": "/d\u0279\u0254\u02D0(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The keys are in the top drawer.\u0022,\u0022vi\u0022:\u0022Ch\\u00ECa kh\\u00F3a \\u1EDF trong ng\\u0103n k\\u00E9o tr\\u00EAn c\\u00F9ng.\u0022},{\u0022text\u0022:\u0022He opened the drawer and took out a pen.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y m\\u1EDF ng\\u0103n k\\u00E9o v\\u00E0 l\\u1EA5y ra m\\u1ED9t c\\u00E2y b\\u00FAt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open a drawer\u0022,\u0022vi\u0022:\u0022m\\u1EDF ng\\u0103n k\\u00E9o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Chest_of_Drawers_MET_85J_ACF3111R7.jpg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.f9a3f54661674128b3b94b62d185da7c",
+      "kind": "Card",
+      "values": {
+        "Term": "carpet",
+        "Definition": "t\u1EA5m th\u1EA3m tr\u1EA3i s\u00E0n",
+        "ImageUrl": "asset:3c4377e133fc6a70a3cb90d31f920d73f6a83bc931f67c5246f5fa4bf140bbb2.webp",
+        "Phonetic": "/\u02C8k\u0251\u0279p\u0259t/",
+        "Example": "The children sat on the carpet.",
+        "ExampleTranslation": "B\u1ECDn tr\u1EBB ng\u1ED3i tr\u00EAn t\u1EA5m th\u1EA3m.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thick soft cover for a floor",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u0251\u02D0p\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The children sat on the carpet.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB ng\\u1ED3i tr\\u00EAn t\\u1EA5m th\\u1EA3m.\u0022},{\u0022text\u0022:\u0022We bought a red carpet for the living room.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i mua m\\u1ED9t t\\u1EA5m th\\u1EA3m \\u0111\\u1ECF cho ph\\u00F2ng kh\\u00E1ch.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022vacuum the carpet\u0022,\u0022vi\u0022:\u0022h\\u00FAt b\\u1EE5i t\\u1EA5m th\\u1EA3m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:%2B15_Carpet_Floor_Example.jpg\u0022,\u0022author\u0022:\u0022SubscribeTransport\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung.fe69e970d0bb4abda5dfeccefa6c0e22",
+      "kind": "Card",
+      "values": {
+        "Term": "television",
+        "Definition": "tivi",
+        "ImageUrl": "asset:b4840b8adf9b9e94b845bb0cf342fe2eb5183fe0f9ba160d7bbed4ea8441fc46.webp",
+        "Phonetic": "/\u02C8t\u025Bl\u026A\u02CCv\u026A\u0292\u0259n/",
+        "Example": "We watch television after dinner.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i xem tivi sau b\u1EEFa t\u1ED1i.",
+        "Topic": "N\u1ED9i th\u1EA5t \u0026 \u0111\u1ED3 gia d\u1EE5ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine with a screen that shows programmes",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8t\u025Bl\u026A\u02CCv\u026A\u0292\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We watch television after dinner.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i xem tivi sau b\\u1EEFa t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022The television is too loud.\u0022,\u0022vi\u0022:\u0022C\\u00E1i tivi to ti\\u1EBFng qu\\u00E1.\u0022}],\u0022synonyms\u0022:[\u0022TV\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022turn off the television\u0022,\u0022vi\u0022:\u0022t\\u1EAFt tivi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/44124284226@N01/2992997518\u0022,\u0022author\u0022:\u0022mlinksva\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "f6d9ec4b6d6e1c5e335f52c89cccd39125d46fa46f93f80fbddd79570bf72192.webp",
+      "sha256": "f6d9ec4b6d6e1c5e335f52c89cccd39125d46fa46f93f80fbddd79570bf72192"
+    },
+    {
+      "file": "5aba6420776fb8aa310699c610e31b7a5e7d2466e3a5ec1ca265ff22ec093a81.webp",
+      "sha256": "5aba6420776fb8aa310699c610e31b7a5e7d2466e3a5ec1ca265ff22ec093a81"
+    },
+    {
+      "file": "80973a285b4ad603bff0dd00ede85f184c38f14178028c91fc385027a167aaa0.webp",
+      "sha256": "80973a285b4ad603bff0dd00ede85f184c38f14178028c91fc385027a167aaa0"
+    },
+    {
+      "file": "7bdd51766f271f2b8b76f65eaea12ab622867ec1c043b56ae9088a53d15ca45f.webp",
+      "sha256": "7bdd51766f271f2b8b76f65eaea12ab622867ec1c043b56ae9088a53d15ca45f"
+    },
+    {
+      "file": "5d3e4b8a92773b115d1f26f999e492a2eb6dfeb0b239e9f60f2191b9a102985d.webp",
+      "sha256": "5d3e4b8a92773b115d1f26f999e492a2eb6dfeb0b239e9f60f2191b9a102985d"
+    },
+    {
+      "file": "5ff5f41c5e9f2912cd4d627c921a8e71f4e13469065c0999b6949d699d21a8c5.webp",
+      "sha256": "5ff5f41c5e9f2912cd4d627c921a8e71f4e13469065c0999b6949d699d21a8c5"
+    },
+    {
+      "file": "5bc1fce261082d29fb5cb0a160e8926ae1bfa847e656479c291d2e1144b252d6.webp",
+      "sha256": "5bc1fce261082d29fb5cb0a160e8926ae1bfa847e656479c291d2e1144b252d6"
+    },
+    {
+      "file": "d86f9f918379e08439b791a5d48d21ca1a296ca2fcadc9960d1c910e11b1ce28.webp",
+      "sha256": "d86f9f918379e08439b791a5d48d21ca1a296ca2fcadc9960d1c910e11b1ce28"
+    },
+    {
+      "file": "b22f0dbd186c8a9d71a38a1f16901a4dc0e91c161adb05b3be2a1c912c8840fe.webp",
+      "sha256": "b22f0dbd186c8a9d71a38a1f16901a4dc0e91c161adb05b3be2a1c912c8840fe"
+    },
+    {
+      "file": "496b1dba90ecd6b49ce35bbc126f4cbcae76153d037a3aad2628a2bd5e009dd1.webp",
+      "sha256": "496b1dba90ecd6b49ce35bbc126f4cbcae76153d037a3aad2628a2bd5e009dd1"
+    },
+    {
+      "file": "37063b829cb89c65f8db7db8db5cca3560e586fcf1004f411e6a0a370ea683f0.webp",
+      "sha256": "37063b829cb89c65f8db7db8db5cca3560e586fcf1004f411e6a0a370ea683f0"
+    },
+    {
+      "file": "3c4377e133fc6a70a3cb90d31f920d73f6a83bc931f67c5246f5fa4bf140bbb2.webp",
+      "sha256": "3c4377e133fc6a70a3cb90d31f920d73f6a83bc931f67c5246f5fa4bf140bbb2"
+    },
+    {
+      "file": "f3c1a68d44f2289f87440b42cf341ac12ba5a0283d4ab683f70383038cee90f2.webp",
+      "sha256": "f3c1a68d44f2289f87440b42cf341ac12ba5a0283d4ab683f70383038cee90f2"
+    },
+    {
+      "file": "6cb24e14cf8ea53952fc069f68207ac48ccf2de4c1dad8401818e03e3f67f645.webp",
+      "sha256": "6cb24e14cf8ea53952fc069f68207ac48ccf2de4c1dad8401818e03e3f67f645"
+    },
+    {
+      "file": "c221aace3c5a41a9be5586ede046a99cc7cfb2604ca3b1da1fc05cd5d87973bb.webp",
+      "sha256": "c221aace3c5a41a9be5586ede046a99cc7cfb2604ca3b1da1fc05cd5d87973bb"
+    },
+    {
+      "file": "64ebcf47af98f0d7ff5ceb81ea27929118d24c3566e916f1e8f10dfe142b3946.webp",
+      "sha256": "64ebcf47af98f0d7ff5ceb81ea27929118d24c3566e916f1e8f10dfe142b3946"
+    },
+    {
+      "file": "b4840b8adf9b9e94b845bb0cf342fe2eb5183fe0f9ba160d7bbed4ea8441fc46.webp",
+      "sha256": "b4840b8adf9b9e94b845bb0cf342fe2eb5183fe0f9ba160d7bbed4ea8441fc46"
+    },
+    {
+      "file": "d7ef652cf79bcd1501b80a2e33ad720cfee5efcd03d7ff98105998bcd6b62a8f.webp",
+      "sha256": "d7ef652cf79bcd1501b80a2e33ad720cfee5efcd03d7ff98105998bcd6b62a8f"
+    },
+    {
+      "file": "156b1c3e06606d0072bfb5d89d6f95b590de5d0e0898cb907cfb9eb7e7dc2bb3.webp",
+      "sha256": "156b1c3e06606d0072bfb5d89d6f95b590de5d0e0898cb907cfb9eb7e7dc2bb3"
+    },
+    {
+      "file": "7d472c4d9b599725b80334d87f0d206849cb3ead66c5aa2c6233c930ad9f2ea6.webp",
+      "sha256": "7d472c4d9b599725b80334d87f0d206849cb3ead66c5aa2c6233c930ad9f2ea6"
+    },
+    {
+      "file": "8ed36686bd58dbeac7123fcc76b063d6d1d67258d0c9de6843a8dc5ef1b5d31a.webp",
+      "sha256": "8ed36686bd58dbeac7123fcc76b063d6d1d67258d0c9de6843a8dc5ef1b5d31a"
+    },
+    {
+      "file": "b2b26f651a173085a9f231747be4a28d7e80c1b0421b5e58b63c7cdbcc1b1b55.webp",
+      "sha256": "b2b26f651a173085a9f231747be4a28d7e80c1b0421b5e58b63c7cdbcc1b1b55"
+    },
+    {
+      "file": "f8f2b964e2acb784feb3bc803b148d6e3372658cf13e0fd3a656fd0d66e0a75a.webp",
+      "sha256": "f8f2b964e2acb784feb3bc803b148d6e3372658cf13e0fd3a656fd0d66e0a75a"
+    },
+    {
+      "file": "17f12eaaec9995345e6bd25d2f84fa3e8f6d6150befce4c84fd87b1a40148599.webp",
+      "sha256": "17f12eaaec9995345e6bd25d2f84fa3e8f6d6150befce4c84fd87b1a40148599"
+    },
+    {
+      "file": "5e4420e4d40bb1b6e4eae0bad6ae855d7ab0d7f71d83d12f1f56b3edb421264a.webp",
+      "sha256": "5e4420e4d40bb1b6e4eae0bad6ae855d7ab0d7f71d83d12f1f56b3edb421264a"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a11-noi-that-do-gia-dung"
+}

@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a04-rau-cu",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu",
+      "kind": "Set",
+      "values": {
+        "SetName": "Rau c\u1EE7",
+        "Description": "#a1 #a2 #vegetables #food"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.241c6c6995bb48b9a58d7bdd70b44227",
+      "kind": "Card",
+      "values": {
+        "Term": "cabbage",
+        "Definition": "b\u1EAFp c\u1EA3i",
+        "ImageUrl": "asset:0b8c4d03912b974b9b2f34b1e84af4f00b6901a57d780c4777fa640c973fe308.webp",
+        "Phonetic": "/\u02C8k\u00E6b\u026Ad\u0361\u0292/",
+        "Example": "She cut the cabbage into thin strips.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y c\u1EAFt b\u1EAFp c\u1EA3i th\u00E0nh nh\u1EEFng s\u1EE3i m\u1ECFng.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a round vegetable with thick green leaves",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u00E6b\u026Ad\u0361\u0292/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She cut the cabbage into thin strips.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y c\\u1EAFt b\\u1EAFp c\\u1EA3i th\\u00E0nh nh\\u1EEFng s\\u1EE3i m\\u1ECFng.\u0022},{\u0022text\u0022:\u0022We grow cabbage behind the house.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i tr\\u1ED3ng b\\u1EAFp c\\u1EA3i sau nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cabbage soup\u0022,\u0022vi\u0022:\u0022canh b\\u1EAFp c\\u1EA3i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/69569e50d3/\u0022,\u0022author\u0022:\u0022Vishnu Chandra\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.38dacff9a049409597cdb42d6dc7b548",
+      "kind": "Card",
+      "values": {
+        "Term": "bean",
+        "Definition": "h\u1EA1t \u0111\u1EADu, qu\u1EA3 \u0111\u1EADu",
+        "ImageUrl": "asset:7a3cd8ebd4b4ce23061a2df42aa54bb5dc8022bb63d7b0ab6490be5e14ce8767.webp",
+        "Phonetic": "/\u02C8bi(\u02D0)n/",
+        "Example": "We had rice and beans for lunch.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0103n c\u01A1m v\u1EDBi \u0111\u1EADu v\u00E0o b\u1EEFa tr\u01B0a.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small seed or pod that people cook and eat",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8bi(\u02D0)n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We had rice and beans for lunch.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0103n c\\u01A1m v\\u1EDBi \\u0111\\u1EADu v\\u00E0o b\\u1EEFa tr\\u01B0a.\u0022},{\u0022text\u0022:\u0022The green beans are fresh today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay \\u0111\\u1EADu que t\\u01B0\\u01A1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022green beans\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EADu que\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/47121680@N00/29416335947\u0022,\u0022author\u0022:\u0022joncutrer\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.442ce95c6829465da186ec5c80e90a01",
+      "kind": "Card",
+      "values": {
+        "Term": "spinach",
+        "Definition": "rau ch\u00E2n v\u1ECBt",
+        "ImageUrl": "asset:b962c96096a6b9f9cf4e279230580dd2773d03483de8ee7cb9c6466ebab11d57.webp",
+        "Phonetic": "/\u02C8sp\u026An\u026At\u0361\u0283/",
+        "Example": "Spinach has a lot of iron.",
+        "ExampleTranslation": "Rau ch\u00E2n v\u1ECBt c\u00F3 nhi\u1EC1u s\u1EAFt.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a dark green leafy vegetable",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8sp\u026An\u026At\u0361\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Spinach has a lot of iron.\u0022,\u0022vi\u0022:\u0022Rau ch\\u00E2n v\\u1ECBt c\\u00F3 nhi\\u1EC1u s\\u1EAFt.\u0022},{\u0022text\u0022:\u0022She cooked spinach with garlic.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y x\\u00E0o rau ch\\u00E2n v\\u1ECBt v\\u1EDBi t\\u1ECFi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fresh spinach\u0022,\u0022vi\u0022:\u0022rau ch\\u00E2n v\\u1ECBt t\\u01B0\\u01A1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/685694ddb4/\u0022,\u0022author\u0022:\u0022appealdahal\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.4d7c4fbc60f74c73a032b140257c0340",
+      "kind": "Card",
+      "values": {
+        "Term": "corn",
+        "Definition": "ng\u00F4, b\u1EAFp",
+        "ImageUrl": "asset:c0b68ebcb109fe8c937babb0f8ed1e83a83f608b95027b8db263ea70ea6129c5.webp",
+        "Phonetic": "/\u02C8ko\u0279n/",
+        "Example": "We ate grilled corn at the market.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0103n b\u1EAFp n\u01B0\u1EDBng \u1EDF ch\u1EE3.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tall plant with yellow seeds that people eat",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u0254\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We ate grilled corn at the market.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0103n b\\u1EAFp n\\u01B0\\u1EDBng \\u1EDF ch\\u1EE3.\u0022},{\u0022text\u0022:\u0022The corn grows very tall in summer.\u0022,\u0022vi\u0022:\u0022C\\u00E2y ng\\u00F4 m\\u1ECDc r\\u1EA5t cao v\\u00E0o m\\u00F9a h\\u00E8.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022corn on the cob\u0022,\u0022vi\u0022:\u0022b\\u1EAFp nguy\\u00EAn tr\\u00E1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5913428/image-public-domain-leaves-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.4dc736d4c8df4878b91258b293550388",
+      "kind": "Card",
+      "values": {
+        "Term": "pumpkin",
+        "Definition": "b\u00ED ng\u00F4",
+        "ImageUrl": "asset:ba4d0c6ec468c91e76a6e443ede7a5aa2f253f189ff21c0dc6ae682415243ca4.webp",
+        "Phonetic": "/\u02C8p\u028Cm(p).k\u026An/",
+        "Example": "She made soup from a pumpkin.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y n\u1EA5u s\u00FAp t\u1EEB m\u1ED9t qu\u1EA3 b\u00ED ng\u00F4.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large round orange vegetable with thick skin",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u028Cmpk\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She made soup from a pumpkin.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y n\\u1EA5u s\\u00FAp t\\u1EEB m\\u1ED9t qu\\u1EA3 b\\u00ED ng\\u00F4.\u0022},{\u0022text\u0022:\u0022The children carved a face into the pumpkin.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB kh\\u1EAFc m\\u1ED9t khu\\u00F4n m\\u1EB7t l\\u00EAn qu\\u1EA3 b\\u00ED ng\\u00F4.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pumpkin soup\u0022,\u0022vi\u0022:\u0022s\\u00FAp b\\u00ED ng\\u00F4\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/132795455@N08/17276326802\u0022,\u0022author\u0022:\u0022Image Catalog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.5510356fbbe3496887988f9a2eb10ea9",
+      "kind": "Card",
+      "values": {
+        "Term": "garlic",
+        "Definition": "t\u1ECFi",
+        "ImageUrl": "asset:68113c5a2ff32d708b62d23df88daa0c846abaa2e57a9511477e46872f4eacac.webp",
+        "Phonetic": "/\u02C8\u0261\u0251\u0279l\u026Ak/",
+        "Example": "Add some garlic to the pan.",
+        "ExampleTranslation": "H\u00E3y cho m\u1ED9t \u00EDt t\u1ECFi v\u00E0o ch\u1EA3o.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small white bulb with a strong smell, used in cooking",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0261\u0251\u02D0l\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Add some garlic to the pan.\u0022,\u0022vi\u0022:\u0022H\\u00E3y cho m\\u1ED9t \\u00EDt t\\u1ECFi v\\u00E0o ch\\u1EA3o.\u0022},{\u0022text\u0022:\u0022My mother crushes garlic before cooking.\u0022,\u0022vi\u0022:\u0022M\\u1EB9 t\\u00F4i \\u0111\\u1EADp d\\u1EADp t\\u1ECFi tr\\u01B0\\u1EDBc khi n\\u1EA5u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022clove of garlic\u0022,\u0022vi\u0022:\u0022t\\u00E9p t\\u1ECFi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/132795455@N08/17665945114\u0022,\u0022author\u0022:\u0022Image Catalog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.557c6386294e453da250acd9b87fc196",
+      "kind": "Card",
+      "values": {
+        "Term": "chili",
+        "Definition": "qu\u1EA3 \u1EDBt",
+        "ImageUrl": "asset:37a9be41f784299b23f93ae298cef7dedf0085053be832fbac2bb003fd26f786.webp",
+        "Phonetic": "/\u02C8t\u0361\u0283\u026Ali/",
+        "Example": "This chili is very hot.",
+        "ExampleTranslation": "Qu\u1EA3 \u1EDBt n\u00E0y r\u1EA5t cay.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small, very hot pepper",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8t\u0361\u0283\u026Ali/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022This chili is very hot.\u0022,\u0022vi\u0022:\u0022Qu\\u1EA3 \\u1EDBt n\\u00E0y r\\u1EA5t cay.\u0022},{\u0022text\u0022:\u0022He added two red chilies to the sauce.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y cho hai qu\\u1EA3 \\u1EDBt \\u0111\\u1ECF v\\u00E0o n\\u01B0\\u1EDBc s\\u1ED1t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022chili sauce\u0022,\u0022vi\u0022:\u0022t\\u01B0\\u01A1ng \\u1EDBt\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022chilies\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5922616/photo-image-public-domain-tree-red\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.60b95b29801e48a8a991efbc32d6c2b5",
+      "kind": "Card",
+      "values": {
+        "Term": "radish",
+        "Definition": "c\u1EE7 c\u1EA3i",
+        "ImageUrl": "asset:506019a5ef72b9c2d33f4421713cb902ad24852bd6150bd7e5cfdb0d25d61481.webp",
+        "Phonetic": "/\u02C8\u0279\u00E6d.\u026A\u0283/",
+        "Example": "The salad has a few slices of radish.",
+        "ExampleTranslation": "M\u00F3n salad c\u00F3 v\u00E0i l\u00E1t c\u1EE7 c\u1EA3i.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small round red or white root vegetable with a sharp taste",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0279ad.\u026A\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The salad has a few slices of radish.\u0022,\u0022vi\u0022:\u0022M\\u00F3n salad c\\u00F3 v\\u00E0i l\\u00E1t c\\u1EE7 c\\u1EA3i.\u0022},{\u0022text\u0022:\u0022A red radish tastes sharp and fresh.\u0022,\u0022vi\u0022:\u0022C\\u1EE7 c\\u1EA3i \\u0111\\u1ECF c\\u00F3 v\\u1ECB cay n\\u1ED3ng v\\u00E0 t\\u01B0\\u01A1i m\\u00E1t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pickled radish\u0022,\u0022vi\u0022:\u0022c\\u1EE7 c\\u1EA3i mu\\u1ED1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/47121680@N00/30488576838\u0022,\u0022author\u0022:\u0022joncutrer\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.624617fd04684b1db25eabba476be321",
+      "kind": "Card",
+      "values": {
+        "Term": "spring onion",
+        "Definition": "h\u00E0nh l\u00E1",
+        "ImageUrl": "asset:41f4cb934fce4a37ce5a1a0a20cf32e0331ff4f370d7400e43733b3ad70756a0.webp",
+        "Phonetic": "/\u02C8sp\u0279\u026A\u014B \u02C8\u028Cnj(\u0259)n/",
+        "Example": "She put chopped spring onion on the noodles.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y r\u1EAFc h\u00E0nh l\u00E1 th\u00E1i nh\u1ECF l\u00EAn b\u00E1t m\u00EC.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thin green onion with a small white bulb",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8sp\u0279\u026A\u014B \u02C8\u028Cnj\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She put chopped spring onion on the noodles.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y r\\u1EAFc h\\u00E0nh l\\u00E1 th\\u00E1i nh\\u1ECF l\\u00EAn b\\u00E1t m\\u00EC.\u0022},{\u0022text\u0022:\u0022Spring onions are cheap and fresh at the market.\u0022,\u0022vi\u0022:\u0022H\\u00E0nh l\\u00E1 \\u1EDF ch\\u1EE3 v\\u1EEBa r\\u1EBB v\\u1EEBa t\\u01B0\\u01A1i.\u0022}],\u0022synonyms\u0022:[\u0022green onion\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022chopped spring onion\u0022,\u0022vi\u0022:\u0022h\\u00E0nh l\\u00E1 th\\u00E1i nh\\u1ECF\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/7715001/vector-plant-people-leaf\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.64295dfb984c494185c56a81893f746f",
+      "kind": "Card",
+      "values": {
+        "Term": "pea",
+        "Definition": "h\u1EA1t \u0111\u1EADu H\u00E0 Lan",
+        "ImageUrl": "asset:dcadaea0ffde85ec0f267d5f0bacafdd48c962e5dacbc23d2f0603c113bcaa90.webp",
+        "Phonetic": "/pi\u02D0/",
+        "Example": "The baby likes to eat peas.",
+        "ExampleTranslation": "Em b\u00E9 th\u00EDch \u0103n \u0111\u1EADu H\u00E0 Lan.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small round green seed that grows in a pod",
+        "Cefr": "A2",
+        "PhoneticUk": "/pi\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The baby likes to eat peas.\u0022,\u0022vi\u0022:\u0022Em b\\u00E9 th\\u00EDch \\u0103n \\u0111\\u1EADu H\\u00E0 Lan.\u0022},{\u0022text\u0022:\u0022She opened the pod and counted the peas.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EDF v\\u1ECF v\\u00E0 \\u0111\\u1EBFm nh\\u1EEFng h\\u1EA1t \\u0111\\u1EADu H\\u00E0 Lan.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022green peas\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EADu H\\u00E0 Lan xanh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3282882/free-photo-image-soy-fruits-veggies-and-vegetables\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.6a70a099d0ef45c294707b18e020a498",
+      "kind": "Card",
+      "values": {
+        "Term": "ginger",
+        "Definition": "g\u1EEBng",
+        "ImageUrl": "asset:8cde839a892135caa04517e294d5c309ac4714fcd487dc523abfb63c088cb160.webp",
+        "Phonetic": "/\u02C8d\u0361\u0292\u026And\u0361\u0292\u025A/",
+        "Example": "I drink ginger tea when I have a cold.",
+        "ExampleTranslation": "T\u00F4i u\u1ED1ng tr\u00E0 g\u1EEBng khi b\u1ECB c\u1EA3m.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a hot-tasting root used in cooking and tea",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8d\u0292\u026And\u0292\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I drink ginger tea when I have a cold.\u0022,\u0022vi\u0022:\u0022T\\u00F4i u\\u1ED1ng tr\\u00E0 g\\u1EEBng khi b\\u1ECB c\\u1EA3m.\u0022},{\u0022text\u0022:\u0022Add a little ginger to the soup.\u0022,\u0022vi\u0022:\u0022H\\u00E3y cho m\\u1ED9t ch\\u00FAt g\\u1EEBng v\\u00E0o m\\u00F3n s\\u00FAp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fresh ginger\u0022,\u0022vi\u0022:\u0022g\\u1EEBng t\\u01B0\\u01A1i\u0022},{\u0022text\u0022:\u0022ginger tea\u0022,\u0022vi\u0022:\u0022tr\\u00E0 g\\u1EEBng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/74569c5422/\u0022,\u0022author\u0022:\u0022Vishnu Chandra\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.6b107dfe9b1142858c4954d8ca3292ab",
+      "kind": "Card",
+      "values": {
+        "Term": "eggplant",
+        "Definition": "c\u00E0 t\u00EDm",
+        "ImageUrl": "asset:aae4a6ae5a4e3d1f9d4824f71454890d2ed8bcca16cc43875f8ecb1160d4b7df.webp",
+        "Phonetic": "/\u02C8\u025B\u0261.pl\u00E6nt/",
+        "Example": "Grandma grilled an eggplant for dinner.",
+        "ExampleTranslation": "B\u00E0 n\u01B0\u1EDBng m\u1ED9t qu\u1EA3 c\u00E0 t\u00EDm cho b\u1EEFa t\u1ED1i.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long purple vegetable with soft flesh",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u025B\u0261.pl\u00E6nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Grandma grilled an eggplant for dinner.\u0022,\u0022vi\u0022:\u0022B\\u00E0 n\\u01B0\\u1EDBng m\\u1ED9t qu\\u1EA3 c\\u00E0 t\\u00EDm cho b\\u1EEFa t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022An eggplant has shiny purple skin.\u0022,\u0022vi\u0022:\u0022Qu\\u1EA3 c\\u00E0 t\\u00EDm c\\u00F3 v\\u1ECF t\\u00EDm b\\u00F3ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022grilled eggplant\u0022,\u0022vi\u0022:\u0022c\\u00E0 t\\u00EDm n\\u01B0\\u1EDBng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/62295966@N07/8271295478\u0022,\u0022author\u0022:\u0022Plant pests and diseases\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.9b050de7f6e44ec8b9d1295c32d44df3",
+      "kind": "Card",
+      "values": {
+        "Term": "onion",
+        "Definition": "h\u00E0nh t\u00E2y",
+        "ImageUrl": "asset:f7b517bda74d82c0d86f412caae0e388cb19b8d179545d421126d737a468b1ef.webp",
+        "Phonetic": "/\u02C8\u028Cnj(\u0259)n/",
+        "Example": "Cutting an onion makes me cry.",
+        "ExampleTranslation": "C\u1EAFt h\u00E0nh t\u00E2y l\u00E0m t\u00F4i ch\u1EA3y n\u01B0\u1EDBc m\u1EAFt.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a round vegetable with layers that makes your eyes water",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u028Cnj\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Cutting an onion makes me cry.\u0022,\u0022vi\u0022:\u0022C\\u1EAFt h\\u00E0nh t\\u00E2y l\\u00E0m t\\u00F4i ch\\u1EA3y n\\u01B0\\u1EDBc m\\u1EAFt.\u0022},{\u0022text\u0022:\u0022She fried the onion until it was golden.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y chi\\u00EAn h\\u00E0nh t\\u00E2y \\u0111\\u1EBFn khi v\\u00E0ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022chopped onion\u0022,\u0022vi\u0022:\u0022h\\u00E0nh t\\u00E2y c\\u1EAFt nh\\u1ECF\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022spring onion\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022h\\u00E0nh l\\u00E1\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/47121680@N00/44355510981\u0022,\u0022author\u0022:\u0022joncutrer\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.aefd54fe69ad44c09754703aeee4a546",
+      "kind": "Card",
+      "values": {
+        "Term": "potato",
+        "Definition": "khoai t\u00E2y",
+        "ImageUrl": "asset:708604abd9cde512123cb12210becf21e2a5ae76fd2fc8ac13f78b22372b3226.webp",
+        "Phonetic": "/p\u0259\u02C8te\u026A.to\u028A/",
+        "Example": "I like mashed potato with chicken.",
+        "ExampleTranslation": "T\u00F4i th\u00EDch khoai t\u00E2y nghi\u1EC1n \u0103n v\u1EDBi th\u1ECBt g\u00E0.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a round vegetable that grows under the ground",
+        "Cefr": "A1",
+        "PhoneticUk": "/p\u0259\u0325\u02C8t\u02B0\u025Bi\u032Ft\u02B0\u025C\u028A\u032F\u0308/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I like mashed potato with chicken.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u00EDch khoai t\\u00E2y nghi\\u1EC1n \\u0103n v\\u1EDBi th\\u1ECBt g\\u00E0.\u0022},{\u0022text\u0022:\u0022The potatoes are boiling on the stove.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng c\\u1EE7 khoai t\\u00E2y \\u0111ang s\\u00F4i tr\\u00EAn b\\u1EBFp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022boiled potato\u0022,\u0022vi\u0022:\u0022khoai t\\u00E2y lu\\u1ED9c\u0022},{\u0022text\u0022:\u0022mashed potato\u0022,\u0022vi\u0022:\u0022khoai t\\u00E2y nghi\\u1EC1n\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022potatoes\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5920748/photo-image-public-domain-plant-fruit\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.b43ae22cc9944a4eb21e045868d8887b",
+      "kind": "Card",
+      "values": {
+        "Term": "lettuce",
+        "Definition": "rau x\u00E0 l\u00E1ch",
+        "ImageUrl": "asset:253f2759254c8164780a03180d0a5127dcbee3e7d32ccdfc0fc8f1382fcdb96f.webp",
+        "Phonetic": "/\u02C8l\u025Bt.\u026As/",
+        "Example": "The burger has lettuce and tomato.",
+        "ExampleTranslation": "Chi\u1EBFc b\u00E1nh k\u1EB9p c\u00F3 x\u00E0 l\u00E1ch v\u00E0 c\u00E0 chua.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a green leafy vegetable used in salads",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8l\u025Bt.\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The burger has lettuce and tomato.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc b\\u00E1nh k\\u1EB9p c\\u00F3 x\\u00E0 l\\u00E1ch v\\u00E0 c\\u00E0 chua.\u0022},{\u0022text\u0022:\u0022Wash the lettuce before you eat it.\u0022,\u0022vi\u0022:\u0022H\\u00E3y r\\u1EEDa x\\u00E0 l\\u00E1ch tr\\u01B0\\u1EDBc khi \\u0103n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022lettuce leaf\u0022,\u0022vi\u0022:\u0022l\\u00E1 x\\u00E0 l\\u00E1ch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/13967d4152/\u0022,\u0022author\u0022:\u0022Yam B Chhetri\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.b7fd3f4766fe4890be1a37ad0bef9177",
+      "kind": "Card",
+      "values": {
+        "Term": "tomato",
+        "Definition": "qu\u1EA3 c\u00E0 chua",
+        "ImageUrl": "asset:aef893a602237a92c942ba6c03d8cf9ab5add427b3ff17d1189030c8ace1f2a4.webp",
+        "Phonetic": "/t\u0259\u02C8me\u026A.to\u028A/",
+        "Example": "She sliced a tomato for the sandwich.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y th\u00E1i m\u1ED9t qu\u1EA3 c\u00E0 chua cho b\u00E1nh sandwich.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a soft red fruit used as a vegetable in salads and sauces",
+        "Cefr": "A1",
+        "PhoneticUk": "/t\u0259\u02C8m\u0251\u02D0.t\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She sliced a tomato for the sandwich.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y th\\u00E1i m\\u1ED9t qu\\u1EA3 c\\u00E0 chua cho b\\u00E1nh sandwich.\u0022},{\u0022text\u0022:\u0022Fresh tomatoes grow well in summer.\u0022,\u0022vi\u0022:\u0022C\\u00E0 chua t\\u01B0\\u01A1i m\\u1ECDc t\\u1ED1t v\\u00E0o m\\u00F9a h\\u00E8.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022tomato sauce\u0022,\u0022vi\u0022:\u0022s\\u1ED1t c\\u00E0 chua\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022tomatoes\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/29155878@N03/18248192205\u0022,\u0022author\u0022:\u0022Open Grid Scheduler / Grid Engine\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.c7125eef1eed4040acfcfb36d9b8cbcd",
+      "kind": "Card",
+      "values": {
+        "Term": "mushroom",
+        "Definition": "n\u1EA5m",
+        "ImageUrl": "asset:558a0fe21ca9268ade5785a5b80daa5ab991b950be22116817e72ec25fd95af9.webp",
+        "Phonetic": "/\u02C8m\u028C\u0283\u02CC\u0279um/",
+        "Example": "She fried mushrooms in butter.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y chi\u00EAn n\u1EA5m v\u1EDBi b\u01A1.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a soft plant with a round cap that grows in damp places",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8m\u028C\u0283\u02CC\u0279u\u02D0m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She fried mushrooms in butter.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y chi\\u00EAn n\\u1EA5m v\\u1EDBi b\\u01A1.\u0022},{\u0022text\u0022:\u0022Some wild mushrooms are poisonous.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t s\\u1ED1 lo\\u1EA1i n\\u1EA5m d\\u1EA1i c\\u00F3 \\u0111\\u1ED9c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022mushroom soup\u0022,\u0022vi\u0022:\u0022s\\u00FAp n\\u1EA5m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/54563451@N08/8016189217\u0022,\u0022author\u0022:\u0022Sam Droege\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.c8c66fd117b44e43a670926e19f64973",
+      "kind": "Card",
+      "values": {
+        "Term": "okra",
+        "Definition": "\u0111\u1EADu b\u1EAFp",
+        "ImageUrl": "asset:f87e1bee54493dd5d74f7b7e7eacdd22a6d71afea2f81ca1fb6e91b089e678c6.webp",
+        "Phonetic": "/\u02C8o\u028Ak\u0279\u0259/",
+        "Example": "She cooked okra with tomatoes.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y n\u1EA5u \u0111\u1EADu b\u1EAFp v\u1EDBi c\u00E0 chua.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a green vegetable shaped like a finger with small seeds inside",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0252k\u0279\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She cooked okra with tomatoes.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y n\\u1EA5u \\u0111\\u1EADu b\\u1EAFp v\\u1EDBi c\\u00E0 chua.\u0022},{\u0022text\u0022:\u0022Okra is soft and a little sticky.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EADu b\\u1EAFp m\\u1EC1m v\\u00E0 h\\u01A1i nh\\u1EDBt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fried okra\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EADu b\\u1EAFp chi\\u00EAn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/15965f9dca/\u0022,\u0022author\u0022:\u0022Bigul Malayi\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.d83dc61173ae4799b7fa7b1d5e7be521",
+      "kind": "Card",
+      "values": {
+        "Term": "cucumber",
+        "Definition": "d\u01B0a chu\u1ED9t",
+        "ImageUrl": "asset:9e60edaefcd8e0990a47ffaf2f5f26923b9c75b215bd59adbaf106bce5162ce6.webp",
+        "Phonetic": "/\u02C8kju\u02CCk\u028Cmb\u025A/",
+        "Example": "I put cucumber in my salad.",
+        "ExampleTranslation": "T\u00F4i cho d\u01B0a chu\u1ED9t v\u00E0o m\u00F3n salad.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long green vegetable that is cool and watery",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8kju\u02D0\u02CCk\u028Cmb\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I put cucumber in my salad.\u0022,\u0022vi\u0022:\u0022T\\u00F4i cho d\\u01B0a chu\\u1ED9t v\\u00E0o m\\u00F3n salad.\u0022},{\u0022text\u0022:\u0022A cold cucumber is good in summer.\u0022,\u0022vi\u0022:\u0022D\\u01B0a chu\\u1ED9t l\\u1EA1nh r\\u1EA5t ngon v\\u00E0o m\\u00F9a h\\u00E8.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022sliced cucumber\u0022,\u0022vi\u0022:\u0022d\\u01B0a chu\\u1ED9t th\\u00E1i l\\u00E1t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3304073/free-photo-image-animal-cc0-creative-commons\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.dc5934053c97409b95595e2b5844df0e",
+      "kind": "Card",
+      "values": {
+        "Term": "broccoli",
+        "Definition": "s\u00FAp l\u01A1 xanh",
+        "ImageUrl": "asset:1887af05cba9cecca9cd6f17302636dbc886d8e2a2160f90429f1760775f837a.webp",
+        "Phonetic": "/\u02C8b\u0279\u0251.k\u0259.li/",
+        "Example": "I steam the broccoli for five minutes.",
+        "ExampleTranslation": "T\u00F4i h\u1EA5p s\u00FAp l\u01A1 xanh trong n\u0103m ph\u00FAt.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a green vegetable that looks like a small tree",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u0279\u0252k.\u0259.li/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I steam the broccoli for five minutes.\u0022,\u0022vi\u0022:\u0022T\\u00F4i h\\u1EA5p s\\u00FAp l\\u01A1 xanh trong n\\u0103m ph\\u00FAt.\u0022},{\u0022text\u0022:\u0022Broccoli is good for your health.\u0022,\u0022vi\u0022:\u0022S\\u00FAp l\\u01A1 xanh t\\u1ED1t cho s\\u1EE9c kh\\u1ECFe.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022steamed broccoli\u0022,\u0022vi\u0022:\u0022s\\u00FAp l\\u01A1 xanh h\\u1EA5p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Broccoli_florets_on_ice.jpg\u0022,\u0022author\u0022:\u0022Jeffery Martin\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.ddc555b71afb40c6932d8432451f2313",
+      "kind": "Card",
+      "values": {
+        "Term": "pepper",
+        "Definition": "\u1EDBt chu\u00F4ng",
+        "ImageUrl": "asset:34e21cfb62eca6c5fab3d2b9792d04d763fd73b5d4cd78fda96e9a00cf739a2c.webp",
+        "Phonetic": "/\u02C8p\u025Bp.\u025A/",
+        "Example": "I cut a red pepper for the salad.",
+        "ExampleTranslation": "T\u00F4i c\u1EAFt m\u1ED9t qu\u1EA3 \u1EDBt chu\u00F4ng \u0111\u1ECF cho m\u00F3n salad.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a hollow green, red or yellow vegetable",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u025Bp.\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I cut a red pepper for the salad.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u1EAFt m\\u1ED9t qu\\u1EA3 \\u1EDBt chu\\u00F4ng \\u0111\\u1ECF cho m\\u00F3n salad.\u0022},{\u0022text\u0022:\u0022Green peppers are cheaper than red ones.\u0022,\u0022vi\u0022:\u0022\\u1EDAt chu\\u00F4ng xanh r\\u1EBB h\\u01A1n \\u1EDBt chu\\u00F4ng \\u0111\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022red pepper\u0022,\u0022vi\u0022:\u0022\\u1EDBt chu\\u00F4ng \\u0111\\u1ECF\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/126288307@N05/22412161608\u0022,\u0022author\u0022:\u0022watts_photos\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.f6e9c61f730d4af8bb82c298d0ff4b33",
+      "kind": "Card",
+      "values": {
+        "Term": "sweet potato",
+        "Definition": "khoai lang",
+        "ImageUrl": "asset:ca1f3b9ec1e5fd6dd19767124b7402cb91478915a90c4e98cc0e8596fd1bc9b0.webp",
+        "Phonetic": "/swit p\u0259\u02C8te\u026A.to\u028A/",
+        "Example": "We baked a sweet potato in the oven.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i n\u01B0\u1EDBng m\u1ED9t c\u1EE7 khoai lang trong l\u00F2.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a sweet orange or purple root vegetable",
+        "Cefr": "A2",
+        "PhoneticUk": "/swi\u02D0t p\u0259\u0325\u02C8t\u02B0\u025Bi\u032Ft\u02B0\u025C\u028A\u032F\u0308/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We baked a sweet potato in the oven.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i n\\u01B0\\u1EDBng m\\u1ED9t c\\u1EE7 khoai lang trong l\\u00F2.\u0022},{\u0022text\u0022:\u0022Sweet potatoes are sweet and soft.\u0022,\u0022vi\u0022:\u0022Khoai lang ng\\u1ECDt v\\u00E0 m\\u1EC1m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022baked sweet potato\u0022,\u0022vi\u0022:\u0022khoai lang n\\u01B0\\u1EDBng\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022sweet potatoes\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/47121680@N00/30485170568\u0022,\u0022author\u0022:\u0022joncutrer\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.f7cd04cd562640088b710a8bc3680a70",
+      "kind": "Card",
+      "values": {
+        "Term": "carrot",
+        "Definition": "c\u1EE7 c\u00E0 r\u1ED1t",
+        "ImageUrl": "asset:5c1ea3dbfca860a2eac5492cafb27776c3b3f2d1b8ab110620ccb715957135f7.webp",
+        "Phonetic": "/\u02C8k\u00E6\u0279.\u0259t/",
+        "Example": "The rabbit is eating a carrot.",
+        "ExampleTranslation": "Con th\u1ECF \u0111ang g\u1EB7m m\u1ED9t c\u1EE7 c\u00E0 r\u1ED1t.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long orange vegetable that grows in the ground",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8k\u00E6\u0279\u0259t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The rabbit is eating a carrot.\u0022,\u0022vi\u0022:\u0022Con th\\u1ECF \\u0111ang g\\u1EB7m m\\u1ED9t c\\u1EE7 c\\u00E0 r\\u1ED1t.\u0022},{\u0022text\u0022:\u0022I put carrots in the soup.\u0022,\u0022vi\u0022:\u0022T\\u00F4i cho c\\u00E0 r\\u1ED1t v\\u00E0o m\\u00F3n s\\u00FAp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022grated carrot\u0022,\u0022vi\u0022:\u0022c\\u00E0 r\\u1ED1t b\\u00E0o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/100088253@N05/17020281571\u0022,\u0022author\u0022:\u0022Eisb\\u00E4\\u00E4rchen\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.f9623503a0f14e2aa8d4f1d2a1a72de2",
+      "kind": "Card",
+      "values": {
+        "Term": "cauliflower",
+        "Definition": "s\u00FAp l\u01A1 tr\u1EAFng",
+        "ImageUrl": "asset:b24e8af2cb4459a79bba3337f16e980a0da266bfad9304f8cf4dbb903eb3d454.webp",
+        "Phonetic": "/\u02C8k\u0254l.\u026A\u02CCfla\u028A.\u025A/",
+        "Example": "She baked a whole cauliflower.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y n\u01B0\u1EDBng nguy\u00EAn m\u1ED9t c\u00E2y s\u00FAp l\u01A1 tr\u1EAFng.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a white vegetable with a round head of small flowers",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u0252l.i.fla\u028A.\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She baked a whole cauliflower.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y n\\u01B0\\u1EDBng nguy\\u00EAn m\\u1ED9t c\\u00E2y s\\u00FAp l\\u01A1 tr\\u1EAFng.\u0022},{\u0022text\u0022:\u0022Cauliflower is white and very healthy.\u0022,\u0022vi\u0022:\u0022S\\u00FAp l\\u01A1 tr\\u1EAFng c\\u00F3 m\\u00E0u tr\\u1EAFng v\\u00E0 r\\u1EA5t t\\u1ED1t cho s\\u1EE9c kh\\u1ECFe.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022roasted cauliflower\u0022,\u0022vi\u0022:\u0022s\\u00FAp l\\u01A1 tr\\u1EAFng n\\u01B0\\u1EDBng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5904635/photo-image-white-background-public-domain-nature\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a04-rau-cu.fc5eba06adac472b9633b3c1e80ae842",
+      "kind": "Card",
+      "values": {
+        "Term": "zucchini",
+        "Definition": "b\u00ED ng\u00F2i",
+        "ImageUrl": "asset:fbffdbfc99f44acf11626f84d594e46d7f5ceb418fd668487052945756ea564e.webp",
+        "Phonetic": "/zu\u02D0\u02C8ki\u02D0.ni/",
+        "Example": "She sliced a zucchini for dinner.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y th\u00E1i m\u1ED9t qu\u1EA3 b\u00ED ng\u00F2i cho b\u1EEFa t\u1ED1i.",
+        "Topic": "Rau c\u1EE7",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long dark green vegetable with soft flesh",
+        "Cefr": "A2",
+        "PhoneticUk": "/zu\u02D0\u02C8ki\u02D0.ni/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She sliced a zucchini for dinner.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y th\\u00E1i m\\u1ED9t qu\\u1EA3 b\\u00ED ng\\u00F2i cho b\\u1EEFa t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022The zucchini grows fast in warm weather.\u0022,\u0022vi\u0022:\u0022B\\u00ED ng\\u00F2i l\\u1EDBn nhanh khi tr\\u1EDDi \\u1EA5m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022grilled zucchini\u0022,\u0022vi\u0022:\u0022b\\u00ED ng\\u00F2i n\\u01B0\\u1EDBng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3338575/free-photo-image-cucumber-zucchini-flower\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a04-rau-cu"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "5c1ea3dbfca860a2eac5492cafb27776c3b3f2d1b8ab110620ccb715957135f7.webp",
+      "sha256": "5c1ea3dbfca860a2eac5492cafb27776c3b3f2d1b8ab110620ccb715957135f7"
+    },
+    {
+      "file": "0b8c4d03912b974b9b2f34b1e84af4f00b6901a57d780c4777fa640c973fe308.webp",
+      "sha256": "0b8c4d03912b974b9b2f34b1e84af4f00b6901a57d780c4777fa640c973fe308"
+    },
+    {
+      "file": "9e60edaefcd8e0990a47ffaf2f5f26923b9c75b215bd59adbaf106bce5162ce6.webp",
+      "sha256": "9e60edaefcd8e0990a47ffaf2f5f26923b9c75b215bd59adbaf106bce5162ce6"
+    },
+    {
+      "file": "68113c5a2ff32d708b62d23df88daa0c846abaa2e57a9511477e46872f4eacac.webp",
+      "sha256": "68113c5a2ff32d708b62d23df88daa0c846abaa2e57a9511477e46872f4eacac"
+    },
+    {
+      "file": "f7b517bda74d82c0d86f412caae0e388cb19b8d179545d421126d737a468b1ef.webp",
+      "sha256": "f7b517bda74d82c0d86f412caae0e388cb19b8d179545d421126d737a468b1ef"
+    },
+    {
+      "file": "708604abd9cde512123cb12210becf21e2a5ae76fd2fc8ac13f78b22372b3226.webp",
+      "sha256": "708604abd9cde512123cb12210becf21e2a5ae76fd2fc8ac13f78b22372b3226"
+    },
+    {
+      "file": "aef893a602237a92c942ba6c03d8cf9ab5add427b3ff17d1189030c8ace1f2a4.webp",
+      "sha256": "aef893a602237a92c942ba6c03d8cf9ab5add427b3ff17d1189030c8ace1f2a4"
+    },
+    {
+      "file": "c0b68ebcb109fe8c937babb0f8ed1e83a83f608b95027b8db263ea70ea6129c5.webp",
+      "sha256": "c0b68ebcb109fe8c937babb0f8ed1e83a83f608b95027b8db263ea70ea6129c5"
+    },
+    {
+      "file": "ba4d0c6ec468c91e76a6e443ede7a5aa2f253f189ff21c0dc6ae682415243ca4.webp",
+      "sha256": "ba4d0c6ec468c91e76a6e443ede7a5aa2f253f189ff21c0dc6ae682415243ca4"
+    },
+    {
+      "file": "1887af05cba9cecca9cd6f17302636dbc886d8e2a2160f90429f1760775f837a.webp",
+      "sha256": "1887af05cba9cecca9cd6f17302636dbc886d8e2a2160f90429f1760775f837a"
+    },
+    {
+      "file": "253f2759254c8164780a03180d0a5127dcbee3e7d32ccdfc0fc8f1382fcdb96f.webp",
+      "sha256": "253f2759254c8164780a03180d0a5127dcbee3e7d32ccdfc0fc8f1382fcdb96f"
+    },
+    {
+      "file": "b962c96096a6b9f9cf4e279230580dd2773d03483de8ee7cb9c6466ebab11d57.webp",
+      "sha256": "b962c96096a6b9f9cf4e279230580dd2773d03483de8ee7cb9c6466ebab11d57"
+    },
+    {
+      "file": "34e21cfb62eca6c5fab3d2b9792d04d763fd73b5d4cd78fda96e9a00cf739a2c.webp",
+      "sha256": "34e21cfb62eca6c5fab3d2b9792d04d763fd73b5d4cd78fda96e9a00cf739a2c"
+    },
+    {
+      "file": "558a0fe21ca9268ade5785a5b80daa5ab991b950be22116817e72ec25fd95af9.webp",
+      "sha256": "558a0fe21ca9268ade5785a5b80daa5ab991b950be22116817e72ec25fd95af9"
+    },
+    {
+      "file": "aae4a6ae5a4e3d1f9d4824f71454890d2ed8bcca16cc43875f8ecb1160d4b7df.webp",
+      "sha256": "aae4a6ae5a4e3d1f9d4824f71454890d2ed8bcca16cc43875f8ecb1160d4b7df"
+    },
+    {
+      "file": "7a3cd8ebd4b4ce23061a2df42aa54bb5dc8022bb63d7b0ab6490be5e14ce8767.webp",
+      "sha256": "7a3cd8ebd4b4ce23061a2df42aa54bb5dc8022bb63d7b0ab6490be5e14ce8767"
+    },
+    {
+      "file": "dcadaea0ffde85ec0f267d5f0bacafdd48c962e5dacbc23d2f0603c113bcaa90.webp",
+      "sha256": "dcadaea0ffde85ec0f267d5f0bacafdd48c962e5dacbc23d2f0603c113bcaa90"
+    },
+    {
+      "file": "41f4cb934fce4a37ce5a1a0a20cf32e0331ff4f370d7400e43733b3ad70756a0.webp",
+      "sha256": "41f4cb934fce4a37ce5a1a0a20cf32e0331ff4f370d7400e43733b3ad70756a0"
+    },
+    {
+      "file": "b24e8af2cb4459a79bba3337f16e980a0da266bfad9304f8cf4dbb903eb3d454.webp",
+      "sha256": "b24e8af2cb4459a79bba3337f16e980a0da266bfad9304f8cf4dbb903eb3d454"
+    },
+    {
+      "file": "506019a5ef72b9c2d33f4421713cb902ad24852bd6150bd7e5cfdb0d25d61481.webp",
+      "sha256": "506019a5ef72b9c2d33f4421713cb902ad24852bd6150bd7e5cfdb0d25d61481"
+    },
+    {
+      "file": "8cde839a892135caa04517e294d5c309ac4714fcd487dc523abfb63c088cb160.webp",
+      "sha256": "8cde839a892135caa04517e294d5c309ac4714fcd487dc523abfb63c088cb160"
+    },
+    {
+      "file": "37a9be41f784299b23f93ae298cef7dedf0085053be832fbac2bb003fd26f786.webp",
+      "sha256": "37a9be41f784299b23f93ae298cef7dedf0085053be832fbac2bb003fd26f786"
+    },
+    {
+      "file": "fbffdbfc99f44acf11626f84d594e46d7f5ceb418fd668487052945756ea564e.webp",
+      "sha256": "fbffdbfc99f44acf11626f84d594e46d7f5ceb418fd668487052945756ea564e"
+    },
+    {
+      "file": "ca1f3b9ec1e5fd6dd19767124b7402cb91478915a90c4e98cc0e8596fd1bc9b0.webp",
+      "sha256": "ca1f3b9ec1e5fd6dd19767124b7402cb91478915a90c4e98cc0e8596fd1bc9b0"
+    },
+    {
+      "file": "f87e1bee54493dd5d74f7b7e7eacdd22a6d71afea2f81ca1fb6e91b089e678c6.webp",
+      "sha256": "f87e1bee54493dd5d74f7b7e7eacdd22a6d71afea2f81ca1fb6e91b089e678c6"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a04-rau-cu"
+}

@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap",
+      "kind": "Set",
+      "values": {
+        "SetName": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "Description": "#a1 #a2 #school #study"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.07fe085802384a3e8a4b428859ef0172",
+      "kind": "Card",
+      "values": {
+        "Term": "dictionary",
+        "Definition": "t\u1EEB \u0111i\u1EC3n",
+        "ImageUrl": "asset:a0372fb15fb2fa6f437e60fb9fe59cd2558ae5bf7ff815c2d881e88981fc9e42.webp",
+        "Phonetic": "/\u02C8d\u026Ak\u0283\u0259\u02CCn\u025B\u0279i/",
+        "Example": "I look up new words in the dictionary.",
+        "ExampleTranslation": "T\u00F4i tra t\u1EEB m\u1EDBi trong t\u1EEB \u0111i\u1EC3n.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a book that explains the meaning of words",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8d\u026Ak\u0283\u0259n.\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I look up new words in the dictionary.\u0022,\u0022vi\u0022:\u0022T\\u00F4i tra t\\u1EEB m\\u1EDBi trong t\\u1EEB \\u0111i\\u1EC3n.\u0022},{\u0022text\u0022:\u0022Her English dictionary is very thick.\u0022,\u0022vi\u0022:\u0022Cu\\u1ED1n t\\u1EEB \\u0111i\\u1EC3n ti\\u1EBFng Anh c\\u1EE7a c\\u00F4 \\u1EA5y r\\u1EA5t d\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022look up in a dictionary\u0022,\u0022vi\u0022:\u0022tra t\\u1EEB \\u0111i\\u1EC3n\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022dictionaries\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/135396164@N05/23349605895\u0022,\u0022author\u0022:\u0022freestocks.org\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.0bac7fe4f5dc4b9d9151f1054940def8",
+      "kind": "Card",
+      "values": {
+        "Term": "textbook",
+        "Definition": "s\u00E1ch gi\u00E1o khoa",
+        "ImageUrl": "asset:256fe05c78c4fce8fb744874015eafa156065cd0c03c94433ebb138be0d868f1.webp",
+        "Phonetic": "/\u02C8t\u025Bkst.b\u028Ak/",
+        "Example": "Open your textbook to page ten.",
+        "ExampleTranslation": "H\u00E3y m\u1EDF s\u00E1ch gi\u00E1o khoa ra trang m\u01B0\u1EDDi.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a book used for studying a school subject",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8t\u025Bkst.b\u028Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Open your textbook to page ten.\u0022,\u0022vi\u0022:\u0022H\\u00E3y m\\u1EDF s\\u00E1ch gi\\u00E1o khoa ra trang m\\u01B0\\u1EDDi.\u0022},{\u0022text\u0022:\u0022This English textbook has many pictures.\u0022,\u0022vi\u0022:\u0022Cu\\u1ED1n s\\u00E1ch gi\\u00E1o khoa ti\\u1EBFng Anh n\\u00E0y c\\u00F3 nhi\\u1EC1u h\\u00ECnh \\u1EA3nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022math textbook\u0022,\u0022vi\u0022:\u0022s\\u00E1ch gi\\u00E1o khoa to\\u00E1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/apple-textbooks-NAOWFGI5EF\u0022,\u0022author\u0022:\u0022Michal Jarmoluk\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.0bc7b8b29a62471eb7d8eacc21f81b6b",
+      "kind": "Card",
+      "values": {
+        "Term": "eraser",
+        "Definition": "c\u1EE5c t\u1EA9y",
+        "ImageUrl": "asset:c1e85ce4b2028135f082741578633666d6a8e7646dd323f62f1fc8c3a8a5688a.webp",
+        "Phonetic": "/\u026A\u02C8\u0279e\u026As\u025A/",
+        "Example": "Use an eraser to fix the mistake.",
+        "ExampleTranslation": "H\u00E3y d\u00F9ng c\u1EE5c t\u1EA9y \u0111\u1EC3 s\u1EEDa l\u1ED7i sai.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small piece of rubber that removes pencil marks",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u026A\u02C8\u0279e\u026Az\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Use an eraser to fix the mistake.\u0022,\u0022vi\u0022:\u0022H\\u00E3y d\\u00F9ng c\\u1EE5c t\\u1EA9y \\u0111\\u1EC3 s\\u1EEDa l\\u1ED7i sai.\u0022},{\u0022text\u0022:\u0022I lost my eraser at school.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u00E0m m\\u1EA5t c\\u1EE5c t\\u1EA9y \\u1EDF tr\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022rubber eraser\u0022,\u0022vi\u0022:\u0022c\\u1EE5c t\\u1EA9y cao su\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6588510/image-public-domain-blue-illustrations\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.0eebd4782aa748cf9a656e1f60cd51af",
+      "kind": "Card",
+      "values": {
+        "Term": "student",
+        "Definition": "h\u1ECDc sinh, sinh vi\u00EAn",
+        "ImageUrl": "asset:201b3199a877256135e4c2d0901f7d35147aa202afa079a8c5f61c007fd3e9b9.webp",
+        "Phonetic": "/\u02C8stu.dn\u0329t/",
+        "Example": "Every student has a notebook.",
+        "ExampleTranslation": "H\u1ECDc sinh n\u00E0o c\u0169ng c\u00F3 m\u1ED9t quy\u1EC3n v\u1EDF.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who studies at a school or university",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8st\u0361\u0283u\u02D0.dn\u0329t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Every student has a notebook.\u0022,\u0022vi\u0022:\u0022H\\u1ECDc sinh n\\u00E0o c\\u0169ng c\\u00F3 m\\u1ED9t quy\\u1EC3n v\\u1EDF.\u0022},{\u0022text\u0022:\u0022She is a student at a big university.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0 sinh vi\\u00EAn c\\u1EE7a m\\u1ED9t tr\\u01B0\\u1EDDng \\u0111\\u1EA1i h\\u1ECDc l\\u1EDBn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022university student\u0022,\u0022vi\u0022:\u0022sinh vi\\u00EAn \\u0111\\u1EA1i h\\u1ECDc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.1be97ebfc68e4e35a225cdab46c017b1",
+      "kind": "Card",
+      "values": {
+        "Term": "school",
+        "Definition": "tr\u01B0\u1EDDng h\u1ECDc",
+        "ImageUrl": "asset:f95080e1e5d64b35e7f1a0cc62c73332e4edc470a876c587ca59fad0fc95b905.webp",
+        "Phonetic": "/skul/",
+        "Example": "I walk to school every morning.",
+        "ExampleTranslation": "S\u00E1ng n\u00E0o t\u00F4i c\u0169ng \u0111i b\u1ED9 \u0111\u1EBFn tr\u01B0\u1EDDng.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place where children go to learn",
+        "Cefr": "A1",
+        "PhoneticUk": "/sku\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I walk to school every morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng n\\u00E0o t\\u00F4i c\\u0169ng \\u0111i b\\u1ED9 \\u0111\\u1EBFn tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022Her school is near the park.\u0022,\u0022vi\u0022:\u0022Tr\\u01B0\\u1EDDng c\\u1EE7a c\\u00F4 \\u1EA5y g\\u1EA7n c\\u00F4ng vi\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go to school\u0022,\u0022vi\u0022:\u0022\\u0111i h\\u1ECDc\u0022},{\u0022text\u0022:\u0022primary school\u0022,\u0022vi\u0022:\u0022tr\\u01B0\\u1EDDng ti\\u1EC3u h\\u1ECDc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/122654055@N06/23109388041\u0022,\u0022author\u0022:\u0022unclibraries_commons\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.262a71fe9bc347cc88c9f010552f3150",
+      "kind": "Card",
+      "values": {
+        "Term": "pen",
+        "Definition": "c\u00E2y b\u00FAt m\u1EF1c, b\u00FAt bi",
+        "ImageUrl": "asset:979a82ef4feb92c1d41e6f61336c28f98771ef55cf74d94ecbe89ba4fd0b0c7b.webp",
+        "Phonetic": "/p\u025Bn/",
+        "Example": "Can I borrow your pen, please?",
+        "ExampleTranslation": "Cho m\u00ECnh m\u01B0\u1EE3n c\u00E2y b\u00FAt c\u1EE7a b\u1EA1n \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tool with ink for writing",
+        "Cefr": "A1",
+        "PhoneticUk": "/p\u025Bn/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can I borrow your pen, please?\u0022,\u0022vi\u0022:\u0022Cho m\\u00ECnh m\\u01B0\\u1EE3n c\\u00E2y b\\u00FAt c\\u1EE7a b\\u1EA1n \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022She signed the paper with a blue pen.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y k\\u00FD gi\\u1EA5y b\\u1EB1ng m\\u1ED9t c\\u00E2y b\\u00FAt xanh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ballpoint pen\u0022,\u0022vi\u0022:\u0022b\\u00FAt bi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/writing-drawing-8Y0EDX4VP9\u0022,\u0022author\u0022:\u0022Green Chameleon\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.26e0bc2900ff406890ddf897e7388cbc",
+      "kind": "Card",
+      "values": {
+        "Term": "ruler",
+        "Definition": "c\u00E2y th\u01B0\u1EDBc k\u1EBB",
+        "ImageUrl": "asset:c63f5e88760921fa51b889c7d772ea7213dcd77e487f525b83a8cab4d246065c.webp",
+        "Phonetic": "/\u02C8\u0279ul\u025A/",
+        "Example": "Draw a line with a ruler.",
+        "ExampleTranslation": "H\u00E3y k\u1EBB m\u1ED9t \u0111\u01B0\u1EDDng b\u1EB1ng th\u01B0\u1EDBc.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long flat tool for drawing straight lines and measuring",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0279u\u02D0l\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Draw a line with a ruler.\u0022,\u0022vi\u0022:\u0022H\\u00E3y k\\u1EBB m\\u1ED9t \\u0111\\u01B0\\u1EDDng b\\u1EB1ng th\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022My ruler is thirty centimetres long.\u0022,\u0022vi\u0022:\u0022C\\u00E2y th\\u01B0\\u1EDBc c\\u1EE7a t\\u00F4i d\\u00E0i ba m\\u01B0\\u01A1i x\\u0103ng-ti-m\\u00E9t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022plastic ruler\u0022,\u0022vi\u0022:\u0022th\\u01B0\\u1EDBc nh\\u1EF1a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Ruler_image.jpg\u0022,\u0022author\u0022:\u0022User:Goele\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.42d8f94ab631407bb1ed11e78b4e9673",
+      "kind": "Card",
+      "values": {
+        "Term": "calculator",
+        "Definition": "m\u00E1y t\u00EDnh b\u1ECF t\u00FAi",
+        "ImageUrl": "asset:2ff82565a6d50cbf541fc04fdad669d2475dc7c579f9116d63fe8eee7383fd17.webp",
+        "Phonetic": "/k\u00E6l.kj\u0259.le\u026A.t\u025A/",
+        "Example": "You can use a calculator in the math test.",
+        "ExampleTranslation": "B\u1EA1n \u0111\u01B0\u1EE3c d\u00F9ng m\u00E1y t\u00EDnh b\u1ECF t\u00FAi trong b\u00E0i ki\u1EC3m tra to\u00E1n.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small machine that does mathematics",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u00E6l.kj\u0259.le\u026A.t\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022You can use a calculator in the math test.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n \\u0111\\u01B0\\u1EE3c d\\u00F9ng m\\u00E1y t\\u00EDnh b\\u1ECF t\\u00FAi trong b\\u00E0i ki\\u1EC3m tra to\\u00E1n.\u0022},{\u0022text\u0022:\u0022The calculator needs a new battery.\u0022,\u0022vi\u0022:\u0022M\\u00E1y t\\u00EDnh b\\u1ECF t\\u00FAi c\\u1EA7n thay pin m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022use a calculator\u0022,\u0022vi\u0022:\u0022d\\u00F9ng m\\u00E1y t\\u00EDnh b\\u1ECF t\\u00FAi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/91352576@N06/24217746621\u0022,\u0022author\u0022:\u0022motazabdelazeem \\u0635\\u0648\\u0631 \\u0645\\u0646 \\u0627\\u0644\\u0648\\u0637\\u0646\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.48205c296de2418893f1c60a634b8cca",
+      "kind": "Card",
+      "values": {
+        "Term": "playground",
+        "Definition": "s\u00E2n ch\u01A1i",
+        "ImageUrl": "asset:b1665c4bf68f7fbdd4094df90fb99b40aa063cee247452c54631fb08f86a25e7.webp",
+        "Phonetic": "/\u02C8ple\u026A\u0261\u0279a\u028And/",
+        "Example": "The children run around the playground.",
+        "ExampleTranslation": "B\u1ECDn tr\u1EBB ch\u1EA1y quanh s\u00E2n ch\u01A1i.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an outdoor area where children play",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8ple\u026A\u0261\u0279a\u028And/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The children run around the playground.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB ch\\u1EA1y quanh s\\u00E2n ch\\u01A1i.\u0022},{\u0022text\u0022:\u0022There is a slide in the playground.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t c\\u00E1i c\\u1EA7u tr\\u01B0\\u1EE3t \\u1EDF s\\u00E2n ch\\u01A1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022school playground\u0022,\u0022vi\u0022:\u0022s\\u00E2n ch\\u01A1i c\\u1EE7a tr\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/60455048@N02/28164475775\u0022,\u0022author\u0022:\u0022Queensland State Archives\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.492f21f0427a4cd581d3a2eabb7eb6e2",
+      "kind": "Card",
+      "values": {
+        "Term": "uniform",
+        "Definition": "\u0111\u1ED3ng ph\u1EE5c",
+        "ImageUrl": "asset:c160ed0e51904a93d76ecfc5f284ffd535eac403a850cab4f130eb0d8cc9ed68.webp",
+        "Phonetic": "/\u02C8jun\u026A\u02CCf\u0254\u0279m/",
+        "Example": "Students wear a blue uniform here.",
+        "ExampleTranslation": "H\u1ECDc sinh \u1EDF \u0111\u00E2y m\u1EB7c \u0111\u1ED3ng ph\u1EE5c m\u00E0u xanh.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "special clothes that all students or workers wear",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8ju\u02D0n\u026Af\u0254\u02D0m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Students wear a blue uniform here.\u0022,\u0022vi\u0022:\u0022H\\u1ECDc sinh \\u1EDF \\u0111\\u00E2y m\\u1EB7c \\u0111\\u1ED3ng ph\\u1EE5c m\\u00E0u xanh.\u0022},{\u0022text\u0022:\u0022She ironed her school uniform.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u1EE7i \\u0111\\u1ED3ng ph\\u1EE5c \\u0111i h\\u1ECDc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022school uniform\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED3ng ph\\u1EE5c h\\u1ECDc sinh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Secondary_School_Uniform_ESM.jpg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.4ae9628f0c774593884d38369e2cb7fe",
+      "kind": "Card",
+      "values": {
+        "Term": "classroom",
+        "Definition": "l\u1EDBp h\u1ECDc, ph\u00F2ng h\u1ECDc",
+        "ImageUrl": "asset:6d5d615ba5405881b3267ae2901b99bb1d4d2b0df9715afbe4b7ad0be90b74b1.webp",
+        "Phonetic": "/\u02C8kl\u0251\u02D0s\u0279\u028Am/",
+        "Example": "The classroom is bright and clean.",
+        "ExampleTranslation": "L\u1EDBp h\u1ECDc s\u00E1ng s\u1EE7a v\u00E0 s\u1EA1ch s\u1EBD.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a room where a class is taught",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8kl\u0251\u02D0s\u0279\u028Am/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The classroom is bright and clean.\u0022,\u0022vi\u0022:\u0022L\\u1EDBp h\\u1ECDc s\\u00E1ng s\\u1EE7a v\\u00E0 s\\u1EA1ch s\\u1EBD.\u0022},{\u0022text\u0022:\u0022Thirty students sit in my classroom.\u0022,\u0022vi\u0022:\u0022Ba m\\u01B0\\u01A1i h\\u1ECDc sinh ng\\u1ED3i trong l\\u1EDBp c\\u1EE7a t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022in the classroom\u0022,\u0022vi\u0022:\u0022trong l\\u1EDBp h\\u1ECDc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/37996646802@N01/46702870\u0022,\u0022author\u0022:\u0022cogdogblog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.5050509990dd42469b14e98e40e6d70b",
+      "kind": "Card",
+      "values": {
+        "Term": "glue",
+        "Definition": "keo d\u00E1n; d\u00E1n",
+        "ImageUrl": "asset:23001d65ee5b21a7befe6a1b0bfbac16a1f148f60b520d197e11829b92250735.webp",
+        "Phonetic": "/\u0261lu/",
+        "Example": "She used glue to stick the picture.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y d\u00F9ng keo \u0111\u1EC3 d\u00E1n b\u1EE9c tranh.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "a sticky liquid used to join things together",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0261lu\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She used glue to stick the picture.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y d\\u00F9ng keo \\u0111\\u1EC3 d\\u00E1n b\\u1EE9c tranh.\u0022},{\u0022text\u0022:\u0022The bottle of glue is empty.\u0022,\u0022vi\u0022:\u0022L\\u1ECD keo \\u0111\\u00E3 h\\u1EBFt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022glue stick\u0022,\u0022vi\u0022:\u0022keo d\\u00E1n d\\u1EA1ng th\\u1ECFi\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022glued\u0022,\u0022pastParticiple\u0022:\u0022glued\u0022,\u0022ing\u0022:\u0022gluing\u0022,\u0022thirdPerson\u0022:\u0022glues\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/11728613/image-collage-cartoon-logo\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.571c4131cbfb4f78b7e63f2fc895a3ab",
+      "kind": "Card",
+      "values": {
+        "Term": "pencil",
+        "Definition": "b\u00FAt ch\u00EC",
+        "ImageUrl": "asset:99d14c557e72ce01a43a6bdc7680e67d36ccb0ea278fbfda2e85bca4ff0c041f.webp",
+        "Phonetic": "/\u02C8p\u025Bn(t)s\u0259l/",
+        "Example": "I draw with a soft pencil.",
+        "ExampleTranslation": "T\u00F4i v\u1EBD b\u1EB1ng b\u00FAt ch\u00EC m\u1EC1m.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thin wooden tool with a grey point for writing or drawing",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8p\u025Bns\u026Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I draw with a soft pencil.\u0022,\u0022vi\u0022:\u0022T\\u00F4i v\\u1EBD b\\u1EB1ng b\\u00FAt ch\\u00EC m\\u1EC1m.\u0022},{\u0022text\u0022:\u0022The pencil is too short to hold.\u0022,\u0022vi\u0022:\u0022C\\u00E2y b\\u00FAt ch\\u00EC ng\\u1EAFn qu\\u00E1 kh\\u00F4ng c\\u1EA7m \\u0111\\u01B0\\u1EE3c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022sharpen a pencil\u0022,\u0022vi\u0022:\u0022g\\u1ECDt b\\u00FAt ch\\u00EC\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/151415985@N06/36646074744\u0022,\u0022author\u0022:\u0022Wallboat\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.6e653dbaf07e4d5a9c4b267edf8c22ed",
+      "kind": "Card",
+      "values": {
+        "Term": "desk",
+        "Definition": "b\u00E0n h\u1ECDc, b\u00E0n l\u00E0m vi\u1EC7c",
+        "ImageUrl": "asset:c32fc15af95c921f0e4f1a36aef1d328ea99d2b4c1fb115da93e85d30c020a0f.webp",
+        "Phonetic": "/d\u025Bsk/",
+        "Example": "My desk is next to the window.",
+        "ExampleTranslation": "B\u00E0n h\u1ECDc c\u1EE7a t\u00F4i n\u1EB1m c\u1EA1nh c\u1EEDa s\u1ED5.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a table where you read, write or work",
+        "Cefr": "A1",
+        "PhoneticUk": "/d\u025Bsk/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My desk is next to the window.\u0022,\u0022vi\u0022:\u0022B\\u00E0n h\\u1ECDc c\\u1EE7a t\\u00F4i n\\u1EB1m c\\u1EA1nh c\\u1EEDa s\\u1ED5.\u0022},{\u0022text\u0022:\u0022She keeps her books on the desk.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111\\u1EC3 s\\u00E1ch tr\\u00EAn b\\u00E0n h\\u1ECDc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022school desk\u0022,\u0022vi\u0022:\u0022b\\u00E0n h\\u1ECDc \\u1EDF tr\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/59809888@N06/6798320581\u0022,\u0022author\u0022:\u0022South Australian History Network\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.74add9881bb64bc2a709b448a0a663d9",
+      "kind": "Card",
+      "values": {
+        "Term": "notebook",
+        "Definition": "quy\u1EC3n v\u1EDF",
+        "ImageUrl": "asset:2ad728b8d14469881c5933a6915e28499034d54836719a4b2922aecc864d3de1.webp",
+        "Phonetic": "/\u02C8n\u0259\u028At\u02CCb\u028Ak/",
+        "Example": "I write new words in my notebook.",
+        "ExampleTranslation": "T\u00F4i ghi t\u1EEB m\u1EDBi v\u00E0o quy\u1EC3n v\u1EDF c\u1EE7a m\u00ECnh.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a book of empty pages for writing notes",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8n\u0259\u028At\u02CCb\u028Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I write new words in my notebook.\u0022,\u0022vi\u0022:\u0022T\\u00F4i ghi t\\u1EEB m\\u1EDBi v\\u00E0o quy\\u1EC3n v\\u1EDF c\\u1EE7a m\\u00ECnh.\u0022},{\u0022text\u0022:\u0022He forgot his notebook at home.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y qu\\u00EAn quy\\u1EC3n v\\u1EDF \\u1EDF nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open your notebook\u0022,\u0022vi\u0022:\u0022m\\u1EDF v\\u1EDF ra\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5947048/free-public-domain-cc0-photo\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.7b749bafabb840f49723d99ba1b5395d",
+      "kind": "Card",
+      "values": {
+        "Term": "teacher",
+        "Definition": "gi\u00E1o vi\u00EAn",
+        "ImageUrl": "asset:3ca1c1f8e4f7fef58627cc6651d1e3a484fb176c66d69fa0bb66b2861d2fcd18.webp",
+        "Phonetic": "/\u02C8ti.t\u0361\u0283\u025A/",
+        "Example": "Our teacher explains the lesson slowly.",
+        "ExampleTranslation": "C\u00F4 gi\u00E1o c\u1EE7a ch\u00FAng t\u00F4i gi\u1EA3ng b\u00E0i r\u1EA5t ch\u1EADm r\u00E3i.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person whose job is to teach",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8ti\u02D0.t\u0361\u0283\u0259\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Our teacher explains the lesson slowly.\u0022,\u0022vi\u0022:\u0022C\\u00F4 gi\\u00E1o c\\u1EE7a ch\\u00FAng t\\u00F4i gi\\u1EA3ng b\\u00E0i r\\u1EA5t ch\\u1EADm r\\u00E3i.\u0022},{\u0022text\u0022:\u0022My English teacher is very kind.\u0022,\u0022vi\u0022:\u0022Gi\\u00E1o vi\\u00EAn ti\\u1EBFng Anh c\\u1EE7a t\\u00F4i r\\u1EA5t t\\u1ED1t b\\u1EE5ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022English teacher\u0022,\u0022vi\u0022:\u0022gi\\u00E1o vi\\u00EAn ti\\u1EBFng Anh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.875c8e7e669543b69ad7bd50ec1249da",
+      "kind": "Card",
+      "values": {
+        "Term": "backpack",
+        "Definition": "ba l\u00F4",
+        "ImageUrl": "asset:cfde28767a664789e52a7f7f554e7bce59f3d2d27a683b8e036b0da84d034d68.webp",
+        "Phonetic": "/\u02C8b\u00E6k.p\u00E6k/",
+        "Example": "He puts his books in his backpack.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y cho s\u00E1ch v\u00E0o ba l\u00F4.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a bag that you carry on your back",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u00E6k.p\u00E6k/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He puts his books in his backpack.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y cho s\\u00E1ch v\\u00E0o ba l\\u00F4.\u0022},{\u0022text\u0022:\u0022My backpack is heavy today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay ba l\\u00F4 c\\u1EE7a t\\u00F4i n\\u1EB7ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022school backpack\u0022,\u0022vi\u0022:\u0022ba l\\u00F4 \\u0111i h\\u1ECDc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/35608308@N05/28404475294\u0022,\u0022author\u0022:\u0022megforce1\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.8c618936f25e4712ae0451b263d17e21",
+      "kind": "Card",
+      "values": {
+        "Term": "library",
+        "Definition": "th\u01B0 vi\u1EC7n",
+        "ImageUrl": "asset:e8afd643d6426a20bb622ba0fede961f33ac1f6e4ad5ffeef50d2c9765b72b87.webp",
+        "Phonetic": "/\u02C8la\u026A\u02CCb\u0279\u025B\u0279.i/",
+        "Example": "I borrow books from the school library.",
+        "ExampleTranslation": "T\u00F4i m\u01B0\u1EE3n s\u00E1ch t\u1EEB th\u01B0 vi\u1EC7n tr\u01B0\u1EDDng.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place where you can read or borrow books",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8la\u026A.b\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I borrow books from the school library.\u0022,\u0022vi\u0022:\u0022T\\u00F4i m\\u01B0\\u1EE3n s\\u00E1ch t\\u1EEB th\\u01B0 vi\\u1EC7n tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022The library is quiet in the afternoon.\u0022,\u0022vi\u0022:\u0022Th\\u01B0 vi\\u1EC7n y\\u00EAn t\\u0129nh v\\u00E0o bu\\u1ED5i chi\\u1EC1u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022library book\u0022,\u0022vi\u0022:\u0022s\\u00E1ch th\\u01B0 vi\\u1EC7n\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022libraries\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Chinese_books_in_Jubilee_Library,_Brighton_2026-09-29.jpg\u0022,\u0022author\u0022:\u0022Andy Li\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.969f8383c10847d19521bafe4c2e3e42",
+      "kind": "Card",
+      "values": {
+        "Term": "whiteboard",
+        "Definition": "b\u1EA3ng tr\u1EAFng",
+        "ImageUrl": "asset:11cef0298b5f94197806fd018263b36e0640ab0a55e3f9fe0e93e21faba948b6.webp",
+        "Phonetic": "/\u02C8wa\u026Atb\u0254\u0279d/",
+        "Example": "The teacher wrote a word on the whiteboard.",
+        "ExampleTranslation": "C\u00F4 gi\u00E1o vi\u1EBFt m\u1ED9t t\u1EEB l\u00EAn b\u1EA3ng tr\u1EAFng.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a smooth white board that you write on with markers",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8wa\u026Atb\u0254\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The teacher wrote a word on the whiteboard.\u0022,\u0022vi\u0022:\u0022C\\u00F4 gi\\u00E1o vi\\u1EBFt m\\u1ED9t t\\u1EEB l\\u00EAn b\\u1EA3ng tr\\u1EAFng.\u0022},{\u0022text\u0022:\u0022Please clean the whiteboard after class.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n lau b\\u1EA3ng tr\\u1EAFng sau gi\\u1EDD h\\u1ECDc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022write on the whiteboard\u0022,\u0022vi\u0022:\u0022vi\\u1EBFt l\\u00EAn b\\u1EA3ng tr\\u1EAFng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5920203/photo-image-paper-sticky-note-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.9ecead9419ea4551b5a919a7f1c1ac2d",
+      "kind": "Card",
+      "values": {
+        "Term": "globe",
+        "Definition": "qu\u1EA3 \u0111\u1ECBa c\u1EA7u",
+        "ImageUrl": "asset:6d18abd67765e6e86251e3381a36ca7b5a2792bdeb186370178a49fe14607fd2.webp",
+        "Phonetic": "/\u0261lo\u028Ab/",
+        "Example": "He found Vietnam on the globe.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y t\u00ECm th\u1EA5y Vi\u1EC7t Nam tr\u00EAn qu\u1EA3 \u0111\u1ECBa c\u1EA7u.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a ball with a map of the whole Earth on it",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0261l\u0259\u028Ab/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He found Vietnam on the globe.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y t\\u00ECm th\\u1EA5y Vi\\u1EC7t Nam tr\\u00EAn qu\\u1EA3 \\u0111\\u1ECBa c\\u1EA7u.\u0022},{\u0022text\u0022:\u0022There is a large globe in the classroom.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t qu\\u1EA3 \\u0111\\u1ECBa c\\u1EA7u l\\u1EDBn trong l\\u1EDBp h\\u1ECDc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022spin the globe\u0022,\u0022vi\u0022:\u0022xoay qu\\u1EA3 \\u0111\\u1ECBa c\\u1EA7u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5906441/photo-image-books-public-domain-wood\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.a6bffacdfb064b8aadd1aa2c284463d9",
+      "kind": "Card",
+      "values": {
+        "Term": "exam",
+        "Definition": "b\u00E0i thi, k\u1EF3 thi",
+        "ImageUrl": "asset:cd8a0330384e7f734a2f6df5f0f9104db8431c34b97950b474d3e89e75affa02.webp",
+        "Phonetic": "/\u026A\u0261\u02C8z\u00E6m/",
+        "Example": "I have an English exam tomorrow.",
+        "ExampleTranslation": "Ng\u00E0y mai t\u00F4i c\u00F3 m\u1ED9t b\u00E0i thi ti\u1EBFng Anh.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an important test of what you have learned",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u026A\u0261\u02C8zam/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have an English exam tomorrow.\u0022,\u0022vi\u0022:\u0022Ng\\u00E0y mai t\\u00F4i c\\u00F3 m\\u1ED9t b\\u00E0i thi ti\\u1EBFng Anh.\u0022},{\u0022text\u0022:\u0022She studied hard for the exam.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y h\\u1ECDc ch\\u0103m ch\\u1EC9 cho k\\u1EF3 thi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pass an exam\u0022,\u0022vi\u0022:\u0022thi \\u0111\\u1ED7\u0022},{\u0022text\u0022:\u0022take an exam\u0022,\u0022vi\u0022:\u0022d\\u1EF1 thi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5916433/image-paper-public-domain-wooden\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.ad12181f401342f8b5278c50572a321a",
+      "kind": "Card",
+      "values": {
+        "Term": "marker",
+        "Definition": "b\u00FAt l\u00F4ng, b\u00FAt d\u1EA1",
+        "ImageUrl": "asset:0790e1761e67dfafda1b9260d01ab6af449ff5a27a2b837a14fd2d1765cbb18d.webp",
+        "Phonetic": "/\u02C8m\u0251\u02D0(\u0279)k\u0259(\u0279)/",
+        "Example": "The teacher wrote on the board with a red marker.",
+        "ExampleTranslation": "C\u00F4 gi\u00E1o vi\u1EBFt l\u00EAn b\u1EA3ng b\u1EB1ng b\u00FAt l\u00F4ng \u0111\u1ECF.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thick pen with coloured ink",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8m\u0251\u02D0(\u0279)k\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The teacher wrote on the board with a red marker.\u0022,\u0022vi\u0022:\u0022C\\u00F4 gi\\u00E1o vi\\u1EBFt l\\u00EAn b\\u1EA3ng b\\u1EB1ng b\\u00FAt l\\u00F4ng \\u0111\\u1ECF.\u0022},{\u0022text\u0022:\u0022My marker has run out of ink.\u0022,\u0022vi\u0022:\u0022C\\u00E2y b\\u00FAt l\\u00F4ng c\\u1EE7a t\\u00F4i h\\u1EBFt m\\u1EF1c r\\u1ED3i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022colour marker\u0022,\u0022vi\u0022:\u0022b\\u00FAt l\\u00F4ng m\\u00E0u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Marker_paint.jpg\u0022,\u0022author\u0022:\u0022Flanoz\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.c22162a24e2d4363acb26a7c371e0907",
+      "kind": "Card",
+      "values": {
+        "Term": "pencil case",
+        "Definition": "h\u1ED9p b\u00FAt",
+        "ImageUrl": "asset:7007166321b2e3a9ee299612125113e131a07aead7da476449f09f2a219a607f.webp",
+        "Phonetic": "/\u02C8p\u025Bn(t)s\u0259l ke\u026As/",
+        "Example": "My pencil case is full of colourful pens.",
+        "ExampleTranslation": "H\u1ED9p b\u00FAt c\u1EE7a t\u00F4i \u0111\u1EA7y nh\u1EEFng c\u00E2y b\u00FAt nhi\u1EC1u m\u00E0u.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small bag or box for keeping pens and pencils",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u025Bns\u026Al ke\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My pencil case is full of colourful pens.\u0022,\u0022vi\u0022:\u0022H\\u1ED9p b\\u00FAt c\\u1EE7a t\\u00F4i \\u0111\\u1EA7y nh\\u1EEFng c\\u00E2y b\\u00FAt nhi\\u1EC1u m\\u00E0u.\u0022},{\u0022text\u0022:\u0022She took a pen from her pencil case.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u1EA5y m\\u1ED9t c\\u00E2y b\\u00FAt t\\u1EEB h\\u1ED9p b\\u00FAt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022zip the pencil case\u0022,\u0022vi\u0022:\u0022k\\u00E9o kh\\u00F3a h\\u1ED9p b\\u00FAt\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Pencil_case_014.jpg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.d8147ca9f38a449684111493437877ce",
+      "kind": "Card",
+      "values": {
+        "Term": "scissors",
+        "Definition": "c\u00E1i k\u00E9o",
+        "ImageUrl": "asset:48b614a30640df947cd6a9a91af290b0b78d7d91afdc1c8a3b837a7030b70d79.webp",
+        "Phonetic": "/\u02C8s\u026Az\u025Az/",
+        "Example": "Use scissors to cut the paper.",
+        "ExampleTranslation": "H\u00E3y d\u00F9ng k\u00E9o \u0111\u1EC3 c\u1EAFt t\u1EDD gi\u1EA5y.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tool with two blades for cutting paper",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8s\u026Az\u0259z/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Use scissors to cut the paper.\u0022,\u0022vi\u0022:\u0022H\\u00E3y d\\u00F9ng k\\u00E9o \\u0111\\u1EC3 c\\u1EAFt t\\u1EDD gi\\u1EA5y.\u0022},{\u0022text\u0022:\u0022The children need safe scissors.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB c\\u1EA7n lo\\u1EA1i k\\u00E9o an to\\u00E0n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a pair of scissors\u0022,\u0022vi\u0022:\u0022m\\u1ED9t chi\\u1EBFc k\\u00E9o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/53018729@N00/217183024\u0022,\u0022author\u0022:\u0022ani!\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap.e42bcbb806894234832df835b95210c4",
+      "kind": "Card",
+      "values": {
+        "Term": "homework",
+        "Definition": "b\u00E0i t\u1EADp v\u1EC1 nh\u00E0",
+        "ImageUrl": "asset:27eb00ce30750864c5893bebbe4298acbdc3694d9ddde07f4755b4d6bbe491e1.webp",
+        "Phonetic": "/\u02C8ho\u028Am\u02CCw\u025C\u0279k/",
+        "Example": "I do my homework after dinner.",
+        "ExampleTranslation": "T\u00F4i l\u00E0m b\u00E0i t\u1EADp v\u1EC1 nh\u00E0 sau b\u1EEFa t\u1ED1i.",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc \u0026 \u0111\u1ED3 d\u00F9ng h\u1ECDc t\u1EADp",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "schoolwork that you do at home",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8h\u0259\u028Am\u02CCw\u025C\u02D0k/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I do my homework after dinner.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u00E0m b\\u00E0i t\\u1EADp v\\u1EC1 nh\\u00E0 sau b\\u1EEFa t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022We have a lot of homework today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay ch\\u00FAng t\\u00F4i c\\u00F3 r\\u1EA5t nhi\\u1EC1u b\\u00E0i t\\u1EADp v\\u1EC1 nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022do your homework\u0022,\u0022vi\u0022:\u0022l\\u00E0m b\\u00E0i t\\u1EADp v\\u1EC1 nh\\u00E0\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/7647064/png-paper-person\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "f95080e1e5d64b35e7f1a0cc62c73332e4edc470a876c587ca59fad0fc95b905.webp",
+      "sha256": "f95080e1e5d64b35e7f1a0cc62c73332e4edc470a876c587ca59fad0fc95b905"
+    },
+    {
+      "file": "6d5d615ba5405881b3267ae2901b99bb1d4d2b0df9715afbe4b7ad0be90b74b1.webp",
+      "sha256": "6d5d615ba5405881b3267ae2901b99bb1d4d2b0df9715afbe4b7ad0be90b74b1"
+    },
+    {
+      "file": "3ca1c1f8e4f7fef58627cc6651d1e3a484fb176c66d69fa0bb66b2861d2fcd18.webp",
+      "sha256": "3ca1c1f8e4f7fef58627cc6651d1e3a484fb176c66d69fa0bb66b2861d2fcd18"
+    },
+    {
+      "file": "201b3199a877256135e4c2d0901f7d35147aa202afa079a8c5f61c007fd3e9b9.webp",
+      "sha256": "201b3199a877256135e4c2d0901f7d35147aa202afa079a8c5f61c007fd3e9b9"
+    },
+    {
+      "file": "c32fc15af95c921f0e4f1a36aef1d328ea99d2b4c1fb115da93e85d30c020a0f.webp",
+      "sha256": "c32fc15af95c921f0e4f1a36aef1d328ea99d2b4c1fb115da93e85d30c020a0f"
+    },
+    {
+      "file": "11cef0298b5f94197806fd018263b36e0640ab0a55e3f9fe0e93e21faba948b6.webp",
+      "sha256": "11cef0298b5f94197806fd018263b36e0640ab0a55e3f9fe0e93e21faba948b6"
+    },
+    {
+      "file": "2ad728b8d14469881c5933a6915e28499034d54836719a4b2922aecc864d3de1.webp",
+      "sha256": "2ad728b8d14469881c5933a6915e28499034d54836719a4b2922aecc864d3de1"
+    },
+    {
+      "file": "256fe05c78c4fce8fb744874015eafa156065cd0c03c94433ebb138be0d868f1.webp",
+      "sha256": "256fe05c78c4fce8fb744874015eafa156065cd0c03c94433ebb138be0d868f1"
+    },
+    {
+      "file": "979a82ef4feb92c1d41e6f61336c28f98771ef55cf74d94ecbe89ba4fd0b0c7b.webp",
+      "sha256": "979a82ef4feb92c1d41e6f61336c28f98771ef55cf74d94ecbe89ba4fd0b0c7b"
+    },
+    {
+      "file": "99d14c557e72ce01a43a6bdc7680e67d36ccb0ea278fbfda2e85bca4ff0c041f.webp",
+      "sha256": "99d14c557e72ce01a43a6bdc7680e67d36ccb0ea278fbfda2e85bca4ff0c041f"
+    },
+    {
+      "file": "c1e85ce4b2028135f082741578633666d6a8e7646dd323f62f1fc8c3a8a5688a.webp",
+      "sha256": "c1e85ce4b2028135f082741578633666d6a8e7646dd323f62f1fc8c3a8a5688a"
+    },
+    {
+      "file": "c63f5e88760921fa51b889c7d772ea7213dcd77e487f525b83a8cab4d246065c.webp",
+      "sha256": "c63f5e88760921fa51b889c7d772ea7213dcd77e487f525b83a8cab4d246065c"
+    },
+    {
+      "file": "48b614a30640df947cd6a9a91af290b0b78d7d91afdc1c8a3b837a7030b70d79.webp",
+      "sha256": "48b614a30640df947cd6a9a91af290b0b78d7d91afdc1c8a3b837a7030b70d79"
+    },
+    {
+      "file": "23001d65ee5b21a7befe6a1b0bfbac16a1f148f60b520d197e11829b92250735.webp",
+      "sha256": "23001d65ee5b21a7befe6a1b0bfbac16a1f148f60b520d197e11829b92250735"
+    },
+    {
+      "file": "cfde28767a664789e52a7f7f554e7bce59f3d2d27a683b8e036b0da84d034d68.webp",
+      "sha256": "cfde28767a664789e52a7f7f554e7bce59f3d2d27a683b8e036b0da84d034d68"
+    },
+    {
+      "file": "7007166321b2e3a9ee299612125113e131a07aead7da476449f09f2a219a607f.webp",
+      "sha256": "7007166321b2e3a9ee299612125113e131a07aead7da476449f09f2a219a607f"
+    },
+    {
+      "file": "2ff82565a6d50cbf541fc04fdad669d2475dc7c579f9116d63fe8eee7383fd17.webp",
+      "sha256": "2ff82565a6d50cbf541fc04fdad669d2475dc7c579f9116d63fe8eee7383fd17"
+    },
+    {
+      "file": "a0372fb15fb2fa6f437e60fb9fe59cd2558ae5bf7ff815c2d881e88981fc9e42.webp",
+      "sha256": "a0372fb15fb2fa6f437e60fb9fe59cd2558ae5bf7ff815c2d881e88981fc9e42"
+    },
+    {
+      "file": "6d18abd67765e6e86251e3381a36ca7b5a2792bdeb186370178a49fe14607fd2.webp",
+      "sha256": "6d18abd67765e6e86251e3381a36ca7b5a2792bdeb186370178a49fe14607fd2"
+    },
+    {
+      "file": "e8afd643d6426a20bb622ba0fede961f33ac1f6e4ad5ffeef50d2c9765b72b87.webp",
+      "sha256": "e8afd643d6426a20bb622ba0fede961f33ac1f6e4ad5ffeef50d2c9765b72b87"
+    },
+    {
+      "file": "27eb00ce30750864c5893bebbe4298acbdc3694d9ddde07f4755b4d6bbe491e1.webp",
+      "sha256": "27eb00ce30750864c5893bebbe4298acbdc3694d9ddde07f4755b4d6bbe491e1"
+    },
+    {
+      "file": "cd8a0330384e7f734a2f6df5f0f9104db8431c34b97950b474d3e89e75affa02.webp",
+      "sha256": "cd8a0330384e7f734a2f6df5f0f9104db8431c34b97950b474d3e89e75affa02"
+    },
+    {
+      "file": "c160ed0e51904a93d76ecfc5f284ffd535eac403a850cab4f130eb0d8cc9ed68.webp",
+      "sha256": "c160ed0e51904a93d76ecfc5f284ffd535eac403a850cab4f130eb0d8cc9ed68"
+    },
+    {
+      "file": "b1665c4bf68f7fbdd4094df90fb99b40aa063cee247452c54631fb08f86a25e7.webp",
+      "sha256": "b1665c4bf68f7fbdd4094df90fb99b40aa063cee247452c54631fb08f86a25e7"
+    },
+    {
+      "file": "0790e1761e67dfafda1b9260d01ab6af449ff5a27a2b837a14fd2d1765cbb18d.webp",
+      "sha256": "0790e1761e67dfafda1b9260d01ab6af449ff5a27a2b837a14fd2d1765cbb18d"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a13-truong-hoc-do-dung-hoc-tap"
+}

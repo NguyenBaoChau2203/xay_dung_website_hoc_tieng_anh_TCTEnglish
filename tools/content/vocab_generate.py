@@ -2531,6 +2531,170 @@ def media_icon(name: str) -> bytes:
     return finish(img)
 
 
+def sport_icon(name: str) -> bytes:
+    """Flat original drawing for a sports or event word (kind "sport")."""
+    img, d = canvas()
+    s = S
+    L = OUTLINE
+    GOLD = (250, 204, 21)
+
+    def oval(x0, y0, x1, y1, fill, w=3):
+        d.ellipse((x0 * s, y0 * s, x1 * s, y1 * s), fill=fill, outline=L if w else None, width=w * s)
+
+    def box(x0, y0, x1, y1, fill, rr=0, w=3):
+        d.rounded_rectangle((x0 * s, y0 * s, x1 * s, y1 * s), rr * s, fill=fill, outline=L if w else None, width=w * s)
+
+    def poly(pts, fill):
+        pp = [(x * s, y * s) for x, y in pts]
+        d.polygon(pp, fill=fill)
+        d.line(pp + [pp[0]], fill=L, width=3 * s, joint="curve")
+
+    def line(x0, y0, x1, y1, w=5, col=L):
+        d.line((x0 * s, y0 * s, x1 * s, y1 * s), fill=col, width=w * s)
+
+    def text(x, y, t, size, col=L):
+        d.text((x * s, y * s), t, fill=col, font=_big_font(size * s))
+
+    def ball(cx, cy, r):
+        oval(cx - r, cy - r, cx + r, cy + r, (255, 255, 255), 3)
+        poly([(cx, cy - r * 0.4), (cx + r * 0.38, cy - r * 0.12), (cx + r * 0.24, cy + r * 0.32), (cx - r * 0.24, cy + r * 0.32), (cx - r * 0.38, cy - r * 0.12)], L)
+
+    def trophy(cx, cy, k=1.0):
+        poly([(cx - 40 * k, cy - 60 * k), (cx + 40 * k, cy - 60 * k), (cx + 30 * k, cy + 10 * k), (cx + 10 * k, cy + 30 * k), (cx - 10 * k, cy + 30 * k), (cx - 30 * k, cy + 10 * k)], GOLD)
+        d.arc(((cx - 64 * k) * s, (cy - 56 * k) * s, (cx - 24 * k) * s, (cy - 6 * k) * s), 90, 270, fill=L, width=int(5 * s * k))
+        d.arc(((cx + 24 * k) * s, (cy - 56 * k) * s, (cx + 64 * k) * s, (cy - 6 * k) * s), 270, 90, fill=L, width=int(5 * s * k))
+        box(cx - 8 * k, cy + 30 * k, cx + 8 * k, cy + 56 * k, GOLD, 2, 3)
+        box(cx - 36 * k, cy + 56 * k, cx + 36 * k, cy + 78 * k, (120, 72, 36), 4, 3)
+
+    grass = (134, 239, 172)
+    if name in ("trophy", "champion"):
+        d.rectangle((0, 0, W * s, 300 * s), fill=(254, 249, 195))
+        trophy(240 if name == "trophy" else 330, 170, 1.7 if name == "trophy" else 1.3)
+        if name == "champion":
+            _person(d, 150, 60, 2.4, "m", (37, 99, 235))
+            line(200, 190, 270, 150, 7, (250, 213, 172))
+            for k in range(6):
+                d.polygon(poly_star((40 + k * 80) * s, 30 * s, 12 * s, 5 * s, 5), fill=GOLD, outline=L)
+    elif name == "medal":
+        line(170, 20, 230, 150, 20, (220, 38, 38))
+        line(310, 20, 250, 150, 20, (37, 99, 235))
+        oval(180, 140, 300, 260, GOLD, 5)
+        oval(198, 158, 282, 242, (253, 224, 71), 3)
+        text(222, 172, "1", 60)
+    elif name == "podium":
+        box(170, 120, 310, 320, (59, 130, 246), 4, 4)
+        box(40, 190, 170, 320, (148, 163, 184), 4, 4)
+        box(310, 220, 440, 320, (180, 83, 9), 4, 4)
+        text(226, 150, "1", 80, (255, 255, 255))
+        text(90, 210, "2", 60, (255, 255, 255))
+        text(360, 236, "3", 50, (255, 255, 255))
+        oval(205, 70, 275, 120, GOLD, 3)
+        d.polygon(poly_star(240 * s, 50 * s, 22 * s, 9 * s, 5), fill=GOLD, outline=L)
+    elif name == "scoreboard":
+        box(60, 50, 420, 250, (15, 23, 42), 12, 5)
+        text(100, 80, "HOME", 30, (255, 255, 255))
+        text(290, 80, "AWAY", 30, (255, 255, 255))
+        text(112, 130, "2", 100, (250, 204, 21))
+        text(312, 130, "1", 100, (250, 204, 21))
+        line(120, 250, 120, 320, 12)
+        line(360, 250, 360, 320, 12)
+    elif name == "goalkeeper":
+        d.rectangle((0, 0, W * s, 300 * s), fill=grass)
+        for x in range(40, 450, 24):
+            line(x, 40, x, 260, 2, (255, 255, 255))
+        for y in range(40, 270, 24):
+            line(40, y, 440, y, 2, (255, 255, 255))
+        box(30, 30, 450, 270, None, 0, 6)
+        _person(d, 210, 90, 2.1, "m", (234, 88, 12))
+        ball(340, 150, 26)
+        line(260, 190, 310, 160, 9, (234, 88, 12))
+    elif name == "penalty":
+        d.rectangle((0, 0, W * s, 300 * s), fill=grass)
+        box(100, 40, 380, 160, None, 0, 7)
+        for x in range(112, 380, 22):
+            line(x, 48, x, 156, 1, (255, 255, 255))
+        oval(224, 268, 256, 300, (255, 255, 255), 3)
+        ball(240, 270, 18)
+        oval(232, 200, 248, 216, L, 0)
+        line(240, 216, 240, 250, 3)
+        text(180, 304, "PENALTY", 26)
+    elif name == "coach":
+        d.rectangle((0, 0, W * s, 300 * s), fill=grass)
+        _person(d, 150, 50, 2.6, "m", (30, 58, 138))
+        line(220, 180, 300, 150, 7, (250, 213, 172))
+        box(300, 100, 440, 220, (255, 255, 255), 6, 4)
+        line(320, 130, 340, 160, 3)
+        line(340, 130, 320, 160, 3)
+        oval(380, 130, 402, 152, L, 3)
+        line(350, 190, 420, 130, 3, (220, 38, 38))
+    elif name == "tournament":
+        for k in range(4):
+            box(40, 50 + k * 70, 120, 90 + k * 70, (226, 232, 240), 6, 3)
+        for k in range(2):
+            box(190, 85 + k * 140, 270, 125 + k * 140, (226, 232, 240), 6, 3)
+            line(120, 70 + k * 140, 150, 70 + k * 140, 4)
+            line(120, 140 + k * 140, 150, 140 + k * 140, 4)
+            line(150, 70 + k * 140, 150, 140 + k * 140, 4)
+            line(150, 105 + k * 140, 190, 105 + k * 140, 4)
+        line(270, 105, 300, 105, 4)
+        line(270, 245, 300, 245, 4)
+        line(300, 105, 300, 245, 4)
+        line(300, 175, 330, 175, 4)
+        trophy(390, 160, 0.9)
+    elif name == "jersey":
+        poly([(150, 60), (200, 40), (240, 70), (280, 40), (330, 60), (420, 140), (380, 180), (340, 130), (340, 310), (140, 310), (140, 130), (100, 180), (60, 140)], (220, 38, 38))
+        poly([(200, 40), (240, 70), (280, 40), (270, 30), (240, 56), (210, 30)], (255, 255, 255))
+        text(196, 120, "10", 110, (255, 255, 255))
+        line(140, 290, 340, 290, 5, (255, 255, 255))
+    elif name == "finish line":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(214, 236, 252))
+        d.rectangle((0, 220 * s, W * s, H * s), fill=(190, 80, 60))
+        for r_ in range(2):
+            for c_ in range(16):
+                if (r_ + c_) % 2 == 0:
+                    d.rectangle(((30 + c_ * 28) * s, (60 + r_ * 28) * s, (58 + c_ * 28) * s, (88 + r_ * 28) * s), fill=L)
+        box(30, 60, 478, 116, None, 0, 3)
+        line(30, 60, 30, 260, 8)
+        line(450, 60, 450, 260, 8)
+        for k in range(2):
+            _person(d, 140 + k * 120, 150, 1.0, "m", [(37, 99, 235), (234, 88, 12)][k])
+    elif name == "athlete":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(190, 80, 60))
+        for y in (100, 200, 300):
+            line(0, y, 480, y, 4, (255, 255, 255))
+        _person(d, 240, 30, 2.8, "m", (37, 99, 235))
+        text(214, 160, "7", 50, (255, 255, 255))
+    elif name == "relay race":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(190, 80, 60))
+        line(0, 120, 480, 120, 4, (255, 255, 255))
+        _person(d, 130, 60, 2.2, "m", (37, 99, 235))
+        _person(d, 330, 60, 2.2, "f", (219, 39, 119))
+        line(200, 190, 290, 170, 8, (250, 213, 172))
+        box(230, 156, 262, 168, GOLD, 3, 3)
+    elif name == "birthday party":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(254, 226, 226))
+        for k, col in enumerate(((220, 38, 38), (250, 204, 21), (37, 99, 235), (22, 163, 74), (219, 39, 119))):
+            x = 60 + k * 90
+            line(x, 120 + (k % 2) * 20, 240, 250, 2)
+            oval(x - 28, 40 + (k % 2) * 20, x + 28, 120 + (k % 2) * 20, col, 3)
+        box(160, 220, 320, 300, (254, 215, 170), 6, 4)
+        box(160, 220, 320, 244, (244, 114, 182), 6, 3)
+        for k in range(5):
+            line(180 + k * 30, 190, 180 + k * 30, 220, 5, (59, 130, 246))
+            oval(174 + k * 30, 170, 186 + k * 30, 190, (250, 204, 21), 2)
+    elif name == "parade":
+        d.rectangle((0, 0, W * s, 300 * s), fill=(186, 230, 253))
+        for k, col in enumerate(((220, 38, 38), (250, 204, 21), (37, 99, 235), (22, 163, 74))):
+            line(40 + k * 130, 110, 40 + k * 130, 50, 5)
+            poly([(40 + k * 130, 50), (100 + k * 130, 66), (40 + k * 130, 84)], col)
+        for k in range(4):
+            _person(d, 70 + k * 100, 120, 1.2, "m" if k % 2 == 0 else "f", [(220, 38, 38), (250, 204, 21), (37, 99, 235), (22, 163, 74)][k])
+        box(30, 300, 450, 316, (148, 163, 184), 4, 0)
+    else:
+        raise SystemExit(f"unknown sport icon: {name}")
+    return finish(img)
+
+
 def main() -> None:
     path = Path(sys.argv[1])
     manifest = read_json(path)
@@ -2591,6 +2755,8 @@ def main() -> None:
             data = edu_icon(val)
         elif kind == "media":
             data = media_icon(val)
+        elif kind == "sport":
+            data = sport_icon(val)
         elif kind == "scene":
             data = scene_image(card["term"], card.get("imageQuery", ""), i, manifest["set"]["code"])
         else:

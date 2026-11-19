@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a02-dong-vat-hoang-da",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da",
+      "kind": "Set",
+      "values": {
+        "SetName": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "Description": "#a1 #a2 #animals #wildlife"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.0b07d22827e0466882db4b2025042616",
+      "kind": "Card",
+      "values": {
+        "Term": "snake",
+        "Definition": "con r\u1EAFn",
+        "ImageUrl": "asset:518634940150ddafa5a34a539cdbbcb5440dab30e7f984a1b46cbbfd14ea9efc.webp",
+        "Phonetic": "/sne\u026Ak/",
+        "Example": "A snake slid across the path.",
+        "ExampleTranslation": "M\u1ED9t con r\u1EAFn tr\u01B0\u1EDDn qua l\u1ED1i \u0111i.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long animal with no legs that moves along the ground",
+        "Cefr": "A2",
+        "PhoneticUk": "/sne\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A snake slid across the path.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con r\\u1EAFn tr\\u01B0\\u1EDDn qua l\\u1ED1i \\u0111i.\u0022},{\u0022text\u0022:\u0022Some snakes are very dangerous.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t s\\u1ED1 lo\\u00E0i r\\u1EAFn r\\u1EA5t nguy hi\\u1EC3m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022poisonous snake\u0022,\u0022vi\u0022:\u0022r\\u1EAFn \\u0111\\u1ED9c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/73946419@N07/6700823417\u0022,\u0022author\u0022:\u0022ahlea\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.0d7ab1b348764166a0b994b644516a2c",
+      "kind": "Card",
+      "values": {
+        "Term": "lion",
+        "Definition": "s\u01B0 t\u1EED",
+        "ImageUrl": "asset:61ce2f946a4de7ee1a8a1d7b036d8674028fef38c1605ec01e045bbfdb5735d8.webp",
+        "Phonetic": "/\u02C8la\u026A\u0259n/",
+        "Example": "The lion is resting under a tree.",
+        "ExampleTranslation": "Con s\u01B0 t\u1EED \u0111ang ngh\u1EC9 d\u01B0\u1EDBi g\u1ED1c c\u00E2y.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large wild cat with a thick mane on the male",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8la\u026A\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The lion is resting under a tree.\u0022,\u0022vi\u0022:\u0022Con s\\u01B0 t\\u1EED \\u0111ang ngh\\u1EC9 d\\u01B0\\u1EDBi g\\u1ED1c c\\u00E2y.\u0022},{\u0022text\u0022:\u0022A lion can run very fast for a short time.\u0022,\u0022vi\u0022:\u0022S\\u01B0 t\\u1EED c\\u00F3 th\\u1EC3 ch\\u1EA1y r\\u1EA5t nhanh trong th\\u1EDDi gian ng\\u1EAFn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022male lion\u0022,\u0022vi\u0022:\u0022s\\u01B0 t\\u1EED \\u0111\\u1EF1c\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022lioness\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022s\\u01B0 t\\u1EED c\\u00E1i\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/91501748@N07/26229121115\u0022,\u0022author\u0022:\u0022Mathias Appel\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.278445cc081c4127a22aadd551b01ae0",
+      "kind": "Card",
+      "values": {
+        "Term": "tiger",
+        "Definition": "con h\u1ED5",
+        "ImageUrl": "asset:97256b12225b18534325cadd35582f9eceaf323ef88c6089603c97d644efbd19.webp",
+        "Phonetic": "/\u02C8ta\u026A\u0261\u025A/",
+        "Example": "The tiger has beautiful orange stripes.",
+        "ExampleTranslation": "Con h\u1ED5 c\u00F3 nh\u1EEFng s\u1ECDc cam r\u1EA5t \u0111\u1EB9p.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a big wild cat with orange fur and black stripes",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8ta\u026A\u0261\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The tiger has beautiful orange stripes.\u0022,\u0022vi\u0022:\u0022Con h\\u1ED5 c\\u00F3 nh\\u1EEFng s\\u1ECDc cam r\\u1EA5t \\u0111\\u1EB9p.\u0022},{\u0022text\u0022:\u0022We saw a tiger at the zoo.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u00E3 th\\u1EA5y m\\u1ED9t con h\\u1ED5 \\u1EDF s\\u1EDF th\\u00FA.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Bengal tiger\u0022,\u0022vi\u0022:\u0022h\\u1ED5 Bengal\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/91501748@N07/27065384106\u0022,\u0022author\u0022:\u0022Mathias Appel\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.345e19ed424144eebddae809805aaeeb",
+      "kind": "Card",
+      "values": {
+        "Term": "bee",
+        "Definition": "con ong",
+        "ImageUrl": "asset:6babe5cd1c8a7952652463ee8c15fff5996179a2dfad27e7a2f55617da3f796b.webp",
+        "Phonetic": "/\u02C8bi\u02D0/",
+        "Example": "The bee is flying around the flowers.",
+        "ExampleTranslation": "Con ong \u0111ang bay quanh nh\u1EEFng b\u00F4ng hoa.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small flying insect that makes honey",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8bi\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The bee is flying around the flowers.\u0022,\u0022vi\u0022:\u0022Con ong \\u0111ang bay quanh nh\\u1EEFng b\\u00F4ng hoa.\u0022},{\u0022text\u0022:\u0022Bees make honey from flower nectar.\u0022,\u0022vi\u0022:\u0022Ong l\\u00E0m m\\u1EADt t\\u1EEB m\\u1EADt hoa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022honey bee\u0022,\u0022vi\u0022:\u0022ong m\\u1EADt\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/149685850@N05/42819646921\u0022,\u0022author\u0022:\u0022Kartlyn Earth \\u0026 ArtKN\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.423396a094c048a19fb5083ed9c57a84",
+      "kind": "Card",
+      "values": {
+        "Term": "kangaroo",
+        "Definition": "chu\u1ED9t t\u00FAi",
+        "ImageUrl": "asset:b19a2119111567c04bb8dbc3c92d6c525c419e784f0450630b1c18b036f40ea4.webp",
+        "Phonetic": "/\u02CCk\u00E6\u014B.\u0261\u0259\u02C8\u0279u/",
+        "Example": "The kangaroo carries her baby in a pouch.",
+        "ExampleTranslation": "Con chu\u1ED9t t\u00FAi mang con trong chi\u1EBFc t\u00FAi tr\u01B0\u1EDBc b\u1EE5ng.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an Australian animal that hops and carries babies in a pouch",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02CCk\u00E6\u014B.\u0261\u0259\u02C8\u0279u\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The kangaroo carries her baby in a pouch.\u0022,\u0022vi\u0022:\u0022Con chu\\u1ED9t t\\u00FAi mang con trong chi\\u1EBFc t\\u00FAi tr\\u01B0\\u1EDBc b\\u1EE5ng.\u0022},{\u0022text\u0022:\u0022Kangaroos hop across the dry land.\u0022,\u0022vi\u0022:\u0022Chu\\u1ED9t t\\u00FAi nh\\u1EA3y qua v\\u00F9ng \\u0111\\u1EA5t kh\\u00F4.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022baby kangaroo\u0022,\u0022vi\u0022:\u0022chu\\u1ED9t t\\u00FAi con\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/61021753@N02/9135311200\u0022,\u0022author\u0022:\u0022BioDivLibrary\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.509bcb8cb3934cf195426e449a0e881c",
+      "kind": "Card",
+      "values": {
+        "Term": "fox",
+        "Definition": "con c\u00E1o",
+        "ImageUrl": "asset:844caf9c9b84bbaa6b37b19295592f38e76234fea836590eb2be6f8a0a6bb0ce.webp",
+        "Phonetic": "/f\u0251ks/",
+        "Example": "The fox ran into the forest.",
+        "ExampleTranslation": "Con c\u00E1o ch\u1EA1y v\u00E0o r\u1EEBng.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a wild animal with red fur and a bushy tail",
+        "Cefr": "A2",
+        "PhoneticUk": "/f\u0252ks/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The fox ran into the forest.\u0022,\u0022vi\u0022:\u0022Con c\\u00E1o ch\\u1EA1y v\\u00E0o r\\u1EEBng.\u0022},{\u0022text\u0022:\u0022A red fox has a long bushy tail.\u0022,\u0022vi\u0022:\u0022C\\u00E1o \\u0111\\u1ECF c\\u00F3 c\\u00E1i \\u0111u\\u00F4i d\\u00E0i v\\u00E0 x\\u00F9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022red fox\u0022,\u0022vi\u0022:\u0022c\\u00E1o \\u0111\\u1ECF\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022foxes\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/54775250@N07/51357237877\u0022,\u0022author\u0022:\u0022USFWSAlaska\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.524646c5e5e64e8a85c71e5683973ee6",
+      "kind": "Card",
+      "values": {
+        "Term": "giraffe",
+        "Definition": "h\u01B0\u01A1u cao c\u1ED5",
+        "ImageUrl": "asset:2daaad4784c4f1fbcd61b6ee64e39096f5d5cebfb65661debde9fecc112efe5e.webp",
+        "Phonetic": "/d\u0361\u0292\u0259\u02C8\u0279\u00E6f/",
+        "Example": "The giraffe eats leaves from the top of the tree.",
+        "ExampleTranslation": "H\u01B0\u01A1u cao c\u1ED5 \u0103n l\u00E1 \u1EDF ng\u1ECDn c\u00E2y.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very tall animal with a long neck and spots",
+        "Cefr": "A2",
+        "PhoneticUk": "/d\u0292\u026A\u02C8\u0279\u0251\u02D0f/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The giraffe eats leaves from the top of the tree.\u0022,\u0022vi\u0022:\u0022H\\u01B0\\u01A1u cao c\\u1ED5 \\u0103n l\\u00E1 \\u1EDF ng\\u1ECDn c\\u00E2y.\u0022},{\u0022text\u0022:\u0022A giraffe is taller than a house door.\u0022,\u0022vi\u0022:\u0022H\\u01B0\\u01A1u cao c\\u1ED5 cao h\\u01A1n c\\u1EEDa nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a long-necked giraffe\u0022,\u0022vi\u0022:\u0022con h\\u01B0\\u01A1u c\\u1ED5 d\\u00E0i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/55958070@N08/5756127053\u0022,\u0022author\u0022:\u0022earthisthering\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.568606a9653d4f3fa1ba9a6b2255945e",
+      "kind": "Card",
+      "values": {
+        "Term": "monkey",
+        "Definition": "con kh\u1EC9",
+        "ImageUrl": "asset:cde2c0d32a53c0f643dffa65731e3f3f9ab5c8e4312f2c369ce9ea93547c99f3.webp",
+        "Phonetic": "/\u02C8m\u028C\u014Bki/",
+        "Example": "The monkey is eating a banana.",
+        "ExampleTranslation": "Con kh\u1EC9 \u0111ang \u0103n m\u1ED9t qu\u1EA3 chu\u1ED1i.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a clever animal with a long tail that climbs trees",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8m\u028C\u014Bki/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The monkey is eating a banana.\u0022,\u0022vi\u0022:\u0022Con kh\\u1EC9 \\u0111ang \\u0103n m\\u1ED9t qu\\u1EA3 chu\\u1ED1i.\u0022},{\u0022text\u0022:\u0022Monkeys jump from branch to branch.\u0022,\u0022vi\u0022:\u0022Kh\\u1EC9 nh\\u1EA3y t\\u1EEB c\\u00E0nh n\\u00E0y sang c\\u00E0nh kh\\u00E1c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a troop of monkeys\u0022,\u0022vi\u0022:\u0022m\\u1ED9t b\\u1EA7y kh\\u1EC9\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/91501748@N07/26733426676\u0022,\u0022author\u0022:\u0022Mathias Appel\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.5c78596ba272427da8986494d245ee32",
+      "kind": "Card",
+      "values": {
+        "Term": "owl",
+        "Definition": "con c\u00FA",
+        "ImageUrl": "asset:a2f745dd82160957ec5825253e6de8eb793089ef17b382c9aec1999015dad41f.webp",
+        "Phonetic": "/a\u028Al/",
+        "Example": "The owl sat in the tree at night.",
+        "ExampleTranslation": "Con c\u00FA \u0111\u1EADu tr\u00EAn c\u00E2y v\u00E0o ban \u0111\u00EAm.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a night bird with big round eyes",
+        "Cefr": "A2",
+        "PhoneticUk": "/a\u028Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The owl sat in the tree at night.\u0022,\u0022vi\u0022:\u0022Con c\\u00FA \\u0111\\u1EADu tr\\u00EAn c\\u00E2y v\\u00E0o ban \\u0111\\u00EAm.\u0022},{\u0022text\u0022:\u0022Owls hunt small animals in the dark.\u0022,\u0022vi\u0022:\u0022C\\u00FA s\\u0103n nh\\u1EEFng con v\\u1EADt nh\\u1ECF trong b\\u00F3ng t\\u1ED1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022night owl\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi th\\u00EDch th\\u1EE9c khuya\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/43322816@N08/5710564591\u0022,\u0022author\u0022:\u0022U. S. Fish and Wildlife Service - Northeast Region\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.6033df47a996479bb9ef33ea0425752a",
+      "kind": "Card",
+      "values": {
+        "Term": "deer",
+        "Definition": "con nai",
+        "ImageUrl": "asset:3857c20b4d61ef651c065cff58068a961e4a19ed7e24d474bab760c7868aaf32.webp",
+        "Phonetic": "/di\u02D0\u0279/",
+        "Example": "A deer stood still at the edge of the forest.",
+        "ExampleTranslation": "M\u1ED9t con nai \u0111\u1EE9ng y\u00EAn \u1EDF b\u00ECa r\u1EEBng.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a graceful forest animal; the male has antlers",
+        "Cefr": "A2",
+        "PhoneticUk": "/d\u026A\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A deer stood still at the edge of the forest.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con nai \\u0111\\u1EE9ng y\\u00EAn \\u1EDF b\\u00ECa r\\u1EEBng.\u0022},{\u0022text\u0022:\u0022The deer ran away when it heard a noise.\u0022,\u0022vi\u0022:\u0022Con nai ch\\u1EA1y \\u0111i khi nghe th\\u1EA5y ti\\u1EBFng \\u0111\\u1ED9ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a herd of deer\u0022,\u0022vi\u0022:\u0022m\\u1ED9t \\u0111\\u00E0n nai\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022deer\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/9242903035\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.7777d25b21e1432694f7bcd679202734",
+      "kind": "Card",
+      "values": {
+        "Term": "elephant",
+        "Definition": "con voi",
+        "ImageUrl": "asset:94170674993f6df90655419fbef2cd2f7ed408121bb3df07cfefc59066bed15c.webp",
+        "Phonetic": "/\u02C8\u025Bl\u0259f\u0259nt/",
+        "Example": "The elephant drinks water with its trunk.",
+        "ExampleTranslation": "Con voi u\u1ED1ng n\u01B0\u1EDBc b\u1EB1ng v\u00F2i.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the biggest land animal, with a long trunk",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u025Bl\u026Af\u0259nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The elephant drinks water with its trunk.\u0022,\u0022vi\u0022:\u0022Con voi u\\u1ED1ng n\\u01B0\\u1EDBc b\\u1EB1ng v\\u00F2i.\u0022},{\u0022text\u0022:\u0022An elephant never forgets, people say.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi ta n\\u00F3i voi kh\\u00F4ng bao gi\\u1EDD qu\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022baby elephant\u0022,\u0022vi\u0022:\u0022voi con\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/50838842@N06/6987533809\u0022,\u0022author\u0022:\u0022USFWS Headquarters\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.83cb1c73d3dd4c46a0d4614f65790c0e",
+      "kind": "Card",
+      "values": {
+        "Term": "frog",
+        "Definition": "con \u1EBFch",
+        "ImageUrl": "asset:4473d4ae02200a21585286d0fca43117fde99b670a92ec234a0e4f6cc6dc3183.webp",
+        "Phonetic": "/f\u0279\u0251\u0261/",
+        "Example": "The frog jumped into the pond.",
+        "ExampleTranslation": "Con \u1EBFch nh\u1EA3y xu\u1ED1ng ao.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small green animal that jumps and lives near water",
+        "Cefr": "A2",
+        "PhoneticUk": "/f\u0279\u0252\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The frog jumped into the pond.\u0022,\u0022vi\u0022:\u0022Con \\u1EBFch nh\\u1EA3y xu\\u1ED1ng ao.\u0022},{\u0022text\u0022:\u0022Frogs sing loudly after the rain.\u0022,\u0022vi\u0022:\u0022\\u1EBEch k\\u00EAu to sau c\\u01A1n m\\u01B0a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022tree frog\u0022,\u0022vi\u0022:\u0022\\u1EBFch c\\u00E2y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/43322816@N08/5278271076\u0022,\u0022author\u0022:\u0022U. S. Fish and Wildlife Service - Northeast Region\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.870bb5306a4a41c5a3986d3132ee4157",
+      "kind": "Card",
+      "values": {
+        "Term": "wolf",
+        "Definition": "con s\u00F3i",
+        "ImageUrl": "asset:9455373a85f120c2c5206065302bafedcb6cbd9fac6cb7688658165153ae409c.webp",
+        "Phonetic": "/w\u028Alf/",
+        "Example": "The wolf howled at the moon.",
+        "ExampleTranslation": "Con s\u00F3i tru l\u00EAn v\u1EDBi m\u1EB7t tr\u0103ng.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a wild animal like a large dog that hunts in groups",
+        "Cefr": "A2",
+        "PhoneticUk": "/w\u028Alf/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The wolf howled at the moon.\u0022,\u0022vi\u0022:\u0022Con s\\u00F3i tru l\\u00EAn v\\u1EDBi m\\u1EB7t tr\\u0103ng.\u0022},{\u0022text\u0022:\u0022Wolves hunt together in a pack.\u0022,\u0022vi\u0022:\u0022B\\u1EA7y s\\u00F3i \\u0111i s\\u0103n c\\u00F9ng nhau.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a pack of wolves\u0022,\u0022vi\u0022:\u0022m\\u1ED9t b\\u1EA7y s\\u00F3i\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022wolves\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/80223459@N05/38346221956\u0022,\u0022author\u0022:\u0022YellowstoneNPS\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.8c62408978e0400cbd8c4c08e3c76081",
+      "kind": "Card",
+      "values": {
+        "Term": "bear",
+        "Definition": "con g\u1EA5u",
+        "ImageUrl": "asset:824b941a644eb7780a3865e26479b2886c6848493b3d0509ec9ef496ae2bd0bf.webp",
+        "Phonetic": "/b\u025B\u025A/",
+        "Example": "The bear caught a fish in the river.",
+        "ExampleTranslation": "Con g\u1EA5u b\u1EAFt \u0111\u01B0\u1EE3c m\u1ED9t con c\u00E1 \u1EDF s\u00F4ng.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large strong animal with thick fur",
+        "Cefr": "A1",
+        "PhoneticUk": "/b\u025B\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The bear caught a fish in the river.\u0022,\u0022vi\u0022:\u0022Con g\\u1EA5u b\\u1EAFt \\u0111\\u01B0\\u1EE3c m\\u1ED9t con c\\u00E1 \\u1EDF s\\u00F4ng.\u0022},{\u0022text\u0022:\u0022A brown bear sleeps all winter.\u0022,\u0022vi\u0022:\u0022G\\u1EA5u n\\u00E2u ng\\u1EE7 su\\u1ED1t m\\u00F9a \\u0111\\u00F4ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022brown bear\u0022,\u0022vi\u0022:\u0022g\\u1EA5u n\\u00E2u\u0022},{\u0022text\u0022:\u0022polar bear\u0022,\u0022vi\u0022:\u0022g\\u1EA5u B\\u1EAFc C\\u1EF1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/54775250@N07/51942617571\u0022,\u0022author\u0022:\u0022USFWSAlaska\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.951ceb07ea86431cacaf53a5f4a18b1a",
+      "kind": "Card",
+      "values": {
+        "Term": "shark",
+        "Definition": "c\u00E1 m\u1EADp",
+        "ImageUrl": "asset:56393d3b5d6bff4bf5e739fbc9c21b160c8e2245b87e0328ad496aa9777fce17.webp",
+        "Phonetic": "/\u0283\u0251\u0279k/",
+        "Example": "The shark swam slowly near the boat.",
+        "ExampleTranslation": "Con c\u00E1 m\u1EADp b\u01A1i ch\u1EADm g\u1EA7n con thuy\u1EC1n.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large sea fish with sharp teeth",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0283\u0251\u02D0k/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The shark swam slowly near the boat.\u0022,\u0022vi\u0022:\u0022Con c\\u00E1 m\\u1EADp b\\u01A1i ch\\u1EADm g\\u1EA7n con thuy\\u1EC1n.\u0022},{\u0022text\u0022:\u0022Most sharks are not dangerous to people.\u0022,\u0022vi\u0022:\u0022H\\u1EA7u h\\u1EBFt c\\u00E1 m\\u1EADp kh\\u00F4ng nguy hi\\u1EC3m v\\u1EDBi con ng\\u01B0\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022great white shark\u0022,\u0022vi\u0022:\u0022c\\u00E1 m\\u1EADp tr\\u1EAFng l\\u1EDBn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6501486/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.972a9a2eabd14db4822f3a96acfdf4be",
+      "kind": "Card",
+      "values": {
+        "Term": "spider",
+        "Definition": "con nh\u1EC7n",
+        "ImageUrl": "asset:b454c9ce9504cd878e061cb531ee9d8d0311b695bc16b4f038a8f6387cd081c0.webp",
+        "Phonetic": "/\u02C8spa\u026A\u032Fd\u0259/",
+        "Example": "A spider made a web in the corner.",
+        "ExampleTranslation": "M\u1ED9t con nh\u1EC7n gi\u0103ng t\u01A1 \u1EDF g\u00F3c nh\u00E0.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small animal with eight legs that makes webs",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8spa\u026A\u032Fd\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A spider made a web in the corner.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con nh\\u1EC7n gi\\u0103ng t\\u01A1 \\u1EDF g\\u00F3c nh\\u00E0.\u0022},{\u0022text\u0022:\u0022The little spider is not dangerous.\u0022,\u0022vi\u0022:\u0022Con nh\\u1EC7n nh\\u1ECF n\\u00E0y kh\\u00F4ng nguy hi\\u1EC3m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022spider web\u0022,\u0022vi\u0022:\u0022m\\u1EA1ng nh\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/54563451@N08/9431140262\u0022,\u0022author\u0022:\u0022Sam Droege\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.9e0a63d4a7a14c3fb37333a28addef53",
+      "kind": "Card",
+      "values": {
+        "Term": "zebra",
+        "Definition": "ng\u1EF1a v\u1EB1n",
+        "ImageUrl": "asset:d39b077622194c3f6ea0134e59d967d930c69338f41e3d13c9552c610eaee9ba.webp",
+        "Phonetic": "/\u02C8zi\u02D0.b\u0279\u0259/",
+        "Example": "The zebra has black and white stripes.",
+        "ExampleTranslation": "Con ng\u1EF1a v\u1EB1n c\u00F3 s\u1ECDc \u0111en tr\u1EAFng.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an African animal like a horse with black and white stripes",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8zi\u02D0.b\u0279\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The zebra has black and white stripes.\u0022,\u0022vi\u0022:\u0022Con ng\\u1EF1a v\\u1EB1n c\\u00F3 s\\u1ECDc \\u0111en tr\\u1EAFng.\u0022},{\u0022text\u0022:\u0022Zebras live together in large groups.\u0022,\u0022vi\u0022:\u0022Ng\\u1EF1a v\\u1EB1n s\\u1ED1ng c\\u00F9ng nhau th\\u00E0nh \\u0111\\u00E0n l\\u1EDBn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022zebra crossing\u0022,\u0022vi\u0022:\u0022v\\u1EA1ch qua \\u0111\\u01B0\\u1EDDng d\\u00E0nh cho ng\\u01B0\\u1EDDi \\u0111i b\\u1ED9\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/52775988@N00/24694097565\u0022,\u0022author\u0022:\u0022Mussi Katz\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.9e5bde59e0d6489dba25d5c491e62afd",
+      "kind": "Card",
+      "values": {
+        "Term": "eagle",
+        "Definition": "chim \u0111\u1EA1i b\u00E0ng",
+        "ImageUrl": "asset:92210b6808fa87024269b6650ea6017584543c9215082b9a93c07a709b108d7e.webp",
+        "Phonetic": "/\u02C8i\u02D0\u0261\u0259l/",
+        "Example": "The eagle flew high above the mountain.",
+        "ExampleTranslation": "\u0110\u1EA1i b\u00E0ng bay cao tr\u00EAn \u0111\u1EC9nh n\u00FAi.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large bird that hunts and flies very high",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8i\u02D0\u0261\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The eagle flew high above the mountain.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EA1i b\\u00E0ng bay cao tr\\u00EAn \\u0111\\u1EC9nh n\\u00FAi.\u0022},{\u0022text\u0022:\u0022An eagle has very good eyes.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EA1i b\\u00E0ng c\\u00F3 \\u0111\\u00F4i m\\u1EAFt r\\u1EA5t tinh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bald eagle\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EA1i b\\u00E0ng \\u0111\\u1EA7u tr\\u1EAFng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/43322816@N08/5277661905\u0022,\u0022author\u0022:\u0022U. S. Fish and Wildlife Service - Northeast Region\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.a21400fb5188457e89eeb363ce8a9734",
+      "kind": "Card",
+      "values": {
+        "Term": "dolphin",
+        "Definition": "c\u00E1 heo",
+        "ImageUrl": "asset:0d3aec003dc9ff9c4ecf6d712620e1b626496809f87f852ec12d2eac3dea8f20.webp",
+        "Phonetic": "/\u02C8d\u0251lf.\u026An/",
+        "Example": "The dolphin jumped out of the water.",
+        "ExampleTranslation": "Con c\u00E1 heo nh\u1EA3y l\u00EAn kh\u1ECFi m\u1EB7t n\u01B0\u1EDBc.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a clever sea animal that jumps out of the water",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8d\u0252lf.\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The dolphin jumped out of the water.\u0022,\u0022vi\u0022:\u0022Con c\\u00E1 heo nh\\u1EA3y l\\u00EAn kh\\u1ECFi m\\u1EB7t n\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022Dolphins like to swim near boats.\u0022,\u0022vi\u0022:\u0022C\\u00E1 heo th\\u00EDch b\\u01A1i g\\u1EA7n c\\u00E1c con thuy\\u1EC1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a school of dolphins\u0022,\u0022vi\u0022:\u0022m\\u1ED9t \\u0111\\u00E0n c\\u00E1 heo\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/40322276@N04/6011306163\u0022,\u0022author\u0022:\u0022NOAA\\u0027s National Ocean Service\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.a7fa7764d56e42019483b074658adaa8",
+      "kind": "Card",
+      "values": {
+        "Term": "turtle",
+        "Definition": "con r\u00F9a",
+        "ImageUrl": "asset:00a5b8797492d51cac61295517b478aa436d6f2eaf818c652342e11358f18f85.webp",
+        "Phonetic": "/\u02C8t\u025Dtl\u0329/",
+        "Example": "The turtle walked slowly to the water.",
+        "ExampleTranslation": "Con r\u00F9a ch\u1EADm ch\u1EA1p b\u00F2 ra m\u1EB7t n\u01B0\u1EDBc.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a slow animal with a hard shell",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8t\u025C\u02D0tl\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The turtle walked slowly to the water.\u0022,\u0022vi\u0022:\u0022Con r\\u00F9a ch\\u1EADm ch\\u1EA1p b\\u00F2 ra m\\u1EB7t n\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022A sea turtle can live for many years.\u0022,\u0022vi\u0022:\u0022R\\u00F9a bi\\u1EC3n c\\u00F3 th\\u1EC3 s\\u1ED1ng nhi\\u1EC1u n\\u0103m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022sea turtle\u0022,\u0022vi\u0022:\u0022r\\u00F9a bi\\u1EC3n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/41464593@N02/5840602412\u0022,\u0022author\u0022:\u0022USFWS/Southeast\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.ac052a528c234c3ba2de172ebce4c99b",
+      "kind": "Card",
+      "values": {
+        "Term": "butterfly",
+        "Definition": "con b\u01B0\u1EDBm",
+        "ImageUrl": "asset:a7ee857b4c2eaa63c14db1614a82beb9f2b42491b3f14b46ba902292c575e6f5.webp",
+        "Phonetic": "/\u02C8b\u028C.t\u0259(\u0279).fla\u026A/",
+        "Example": "A butterfly landed on the red flower.",
+        "ExampleTranslation": "M\u1ED9t con b\u01B0\u1EDBm \u0111\u1EADu l\u00EAn b\u00F4ng hoa \u0111\u1ECF.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an insect with large colourful wings",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u028C.t\u0259(\u0279).fla\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A butterfly landed on the red flower.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con b\\u01B0\\u1EDBm \\u0111\\u1EADu l\\u00EAn b\\u00F4ng hoa \\u0111\\u1ECF.\u0022},{\u0022text\u0022:\u0022The butterfly has bright yellow wings.\u0022,\u0022vi\u0022:\u0022Con b\\u01B0\\u1EDBm c\\u00F3 \\u0111\\u00F4i c\\u00E1nh v\\u00E0ng r\\u1EF1c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022colourful butterfly\u0022,\u0022vi\u0022:\u0022b\\u01B0\\u1EDBm nhi\\u1EC1u m\\u00E0u\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022butterflies\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/13702029713\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.adec6709ee9248408843798864eb7ebc",
+      "kind": "Card",
+      "values": {
+        "Term": "crocodile",
+        "Definition": "c\u00E1 s\u1EA5u",
+        "ImageUrl": "asset:78baabe647c2596b5cf15e591dd7d97a5321a92c9976c66cc8993f74c5ed2426.webp",
+        "Phonetic": "/\u02C8k\u0279\u0251k\u0259da\u026Al/",
+        "Example": "The crocodile lay still in the river.",
+        "ExampleTranslation": "Con c\u00E1 s\u1EA5u n\u1EB1m im d\u01B0\u1EDBi s\u00F4ng.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large reptile with strong jaws that lives in rivers",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u0279\u0252k\u0259da\u026Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The crocodile lay still in the river.\u0022,\u0022vi\u0022:\u0022Con c\\u00E1 s\\u1EA5u n\\u1EB1m im d\\u01B0\\u1EDBi s\\u00F4ng.\u0022},{\u0022text\u0022:\u0022Be careful, crocodiles can be dangerous.\u0022,\u0022vi\u0022:\u0022H\\u00E3y c\\u1EA9n th\\u1EADn, c\\u00E1 s\\u1EA5u c\\u00F3 th\\u1EC3 r\\u1EA5t nguy hi\\u1EC3m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022crocodile teeth\u0022,\u0022vi\u0022:\u0022r\\u0103ng c\\u00E1 s\\u1EA5u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/439895/free-photo-image-crocodile-nasa-alligator\u0022,\u0022author\u0022:\u0022NASA\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.ea76e2159b3a4032b2ec5d9cbc643e1a",
+      "kind": "Card",
+      "values": {
+        "Term": "panda",
+        "Definition": "g\u1EA5u tr\u00FAc",
+        "ImageUrl": "asset:dc73586926e4832591225cdc468869b652f3fa3b6daf3bf9d7081bf0b4d9f6cf.webp",
+        "Phonetic": "/\u02C8p\u00E6nd\u0259/",
+        "Example": "The panda is eating bamboo.",
+        "ExampleTranslation": "Con g\u1EA5u tr\u00FAc \u0111ang \u0103n tre.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a black and white bear from China that eats bamboo",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u00E6nd\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The panda is eating bamboo.\u0022,\u0022vi\u0022:\u0022Con g\\u1EA5u tr\\u00FAc \\u0111ang \\u0103n tre.\u0022},{\u0022text\u0022:\u0022Pandas spend most of the day eating.\u0022,\u0022vi\u0022:\u0022G\\u1EA5u tr\\u00FAc d\\u00E0nh ph\\u1EA7n l\\u1EDBn th\\u1EDDi gian trong ng\\u00E0y \\u0111\\u1EC3 \\u0103n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022giant panda\u0022,\u0022vi\u0022:\u0022g\\u1EA5u tr\\u00FAc kh\\u1ED5ng l\\u1ED3\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/49399018@N00/27135210119\u0022,\u0022author\u0022:\u0022amanderson2\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.f884bba71a624ff183d0d33e7f7e4bb1",
+      "kind": "Card",
+      "values": {
+        "Term": "penguin",
+        "Definition": "chim c\u00E1nh c\u1EE5t",
+        "ImageUrl": "asset:cfff56065fb6a541aaa1e89ee335ca022f2434c87399771134089a4eebfe325e.webp",
+        "Phonetic": "/\u02C8p\u025B\u014B.\u0261w\u026An/",
+        "Example": "The penguin walks across the ice.",
+        "ExampleTranslation": "Ch\u00FA chim c\u00E1nh c\u1EE5t \u0111i b\u1ED9 tr\u00EAn b\u0103ng.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a black and white bird that cannot fly but swims well",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u025B\u014B.\u0261w\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The penguin walks across the ice.\u0022,\u0022vi\u0022:\u0022Ch\\u00FA chim c\\u00E1nh c\\u1EE5t \\u0111i b\\u1ED9 tr\\u00EAn b\\u0103ng.\u0022},{\u0022text\u0022:\u0022Penguins live in very cold places.\u0022,\u0022vi\u0022:\u0022Chim c\\u00E1nh c\\u1EE5t s\\u1ED1ng \\u1EDF nh\\u1EEFng n\\u01A1i r\\u1EA5t l\\u1EA1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022emperor penguin\u0022,\u0022vi\u0022:\u0022chim c\\u00E1nh c\\u1EE5t ho\\u00E0ng \\u0111\\u1EBF\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/8670574389\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a02-dong-vat-hoang-da.f8aeeede8f3c4055b166f4161c2e6080",
+      "kind": "Card",
+      "values": {
+        "Term": "whale",
+        "Definition": "c\u00E1 voi",
+        "ImageUrl": "asset:e6d5ed7eec5a774295be759332b7b164c42145b4d62969a1827b5c4379d52f32.webp",
+        "Phonetic": "/\u02C8we\u026Al/",
+        "Example": "The whale came up to breathe.",
+        "ExampleTranslation": "Con c\u00E1 voi n\u1ED5i l\u00EAn \u0111\u1EC3 th\u1EDF.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt hoang d\u00E3",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very big sea animal that breathes air",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8we\u026Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The whale came up to breathe.\u0022,\u0022vi\u0022:\u0022Con c\\u00E1 voi n\\u1ED5i l\\u00EAn \\u0111\\u1EC3 th\\u1EDF.\u0022},{\u0022text\u0022:\u0022A blue whale is bigger than any dinosaur.\u0022,\u0022vi\u0022:\u0022C\\u00E1 voi xanh l\\u1EDBn h\\u01A1n b\\u1EA5t k\\u1EF3 con kh\\u1EE7ng long n\\u00E0o.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022blue whale\u0022,\u0022vi\u0022:\u0022c\\u00E1 voi xanh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/11348448604\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "61ce2f946a4de7ee1a8a1d7b036d8674028fef38c1605ec01e045bbfdb5735d8.webp",
+      "sha256": "61ce2f946a4de7ee1a8a1d7b036d8674028fef38c1605ec01e045bbfdb5735d8"
+    },
+    {
+      "file": "97256b12225b18534325cadd35582f9eceaf323ef88c6089603c97d644efbd19.webp",
+      "sha256": "97256b12225b18534325cadd35582f9eceaf323ef88c6089603c97d644efbd19"
+    },
+    {
+      "file": "94170674993f6df90655419fbef2cd2f7ed408121bb3df07cfefc59066bed15c.webp",
+      "sha256": "94170674993f6df90655419fbef2cd2f7ed408121bb3df07cfefc59066bed15c"
+    },
+    {
+      "file": "2daaad4784c4f1fbcd61b6ee64e39096f5d5cebfb65661debde9fecc112efe5e.webp",
+      "sha256": "2daaad4784c4f1fbcd61b6ee64e39096f5d5cebfb65661debde9fecc112efe5e"
+    },
+    {
+      "file": "d39b077622194c3f6ea0134e59d967d930c69338f41e3d13c9552c610eaee9ba.webp",
+      "sha256": "d39b077622194c3f6ea0134e59d967d930c69338f41e3d13c9552c610eaee9ba"
+    },
+    {
+      "file": "cde2c0d32a53c0f643dffa65731e3f3f9ab5c8e4312f2c369ce9ea93547c99f3.webp",
+      "sha256": "cde2c0d32a53c0f643dffa65731e3f3f9ab5c8e4312f2c369ce9ea93547c99f3"
+    },
+    {
+      "file": "824b941a644eb7780a3865e26479b2886c6848493b3d0509ec9ef496ae2bd0bf.webp",
+      "sha256": "824b941a644eb7780a3865e26479b2886c6848493b3d0509ec9ef496ae2bd0bf"
+    },
+    {
+      "file": "9455373a85f120c2c5206065302bafedcb6cbd9fac6cb7688658165153ae409c.webp",
+      "sha256": "9455373a85f120c2c5206065302bafedcb6cbd9fac6cb7688658165153ae409c"
+    },
+    {
+      "file": "844caf9c9b84bbaa6b37b19295592f38e76234fea836590eb2be6f8a0a6bb0ce.webp",
+      "sha256": "844caf9c9b84bbaa6b37b19295592f38e76234fea836590eb2be6f8a0a6bb0ce"
+    },
+    {
+      "file": "3857c20b4d61ef651c065cff58068a961e4a19ed7e24d474bab760c7868aaf32.webp",
+      "sha256": "3857c20b4d61ef651c065cff58068a961e4a19ed7e24d474bab760c7868aaf32"
+    },
+    {
+      "file": "b19a2119111567c04bb8dbc3c92d6c525c419e784f0450630b1c18b036f40ea4.webp",
+      "sha256": "b19a2119111567c04bb8dbc3c92d6c525c419e784f0450630b1c18b036f40ea4"
+    },
+    {
+      "file": "78baabe647c2596b5cf15e591dd7d97a5321a92c9976c66cc8993f74c5ed2426.webp",
+      "sha256": "78baabe647c2596b5cf15e591dd7d97a5321a92c9976c66cc8993f74c5ed2426"
+    },
+    {
+      "file": "518634940150ddafa5a34a539cdbbcb5440dab30e7f984a1b46cbbfd14ea9efc.webp",
+      "sha256": "518634940150ddafa5a34a539cdbbcb5440dab30e7f984a1b46cbbfd14ea9efc"
+    },
+    {
+      "file": "92210b6808fa87024269b6650ea6017584543c9215082b9a93c07a709b108d7e.webp",
+      "sha256": "92210b6808fa87024269b6650ea6017584543c9215082b9a93c07a709b108d7e"
+    },
+    {
+      "file": "a2f745dd82160957ec5825253e6de8eb793089ef17b382c9aec1999015dad41f.webp",
+      "sha256": "a2f745dd82160957ec5825253e6de8eb793089ef17b382c9aec1999015dad41f"
+    },
+    {
+      "file": "0d3aec003dc9ff9c4ecf6d712620e1b626496809f87f852ec12d2eac3dea8f20.webp",
+      "sha256": "0d3aec003dc9ff9c4ecf6d712620e1b626496809f87f852ec12d2eac3dea8f20"
+    },
+    {
+      "file": "e6d5ed7eec5a774295be759332b7b164c42145b4d62969a1827b5c4379d52f32.webp",
+      "sha256": "e6d5ed7eec5a774295be759332b7b164c42145b4d62969a1827b5c4379d52f32"
+    },
+    {
+      "file": "56393d3b5d6bff4bf5e739fbc9c21b160c8e2245b87e0328ad496aa9777fce17.webp",
+      "sha256": "56393d3b5d6bff4bf5e739fbc9c21b160c8e2245b87e0328ad496aa9777fce17"
+    },
+    {
+      "file": "00a5b8797492d51cac61295517b478aa436d6f2eaf818c652342e11358f18f85.webp",
+      "sha256": "00a5b8797492d51cac61295517b478aa436d6f2eaf818c652342e11358f18f85"
+    },
+    {
+      "file": "4473d4ae02200a21585286d0fca43117fde99b670a92ec234a0e4f6cc6dc3183.webp",
+      "sha256": "4473d4ae02200a21585286d0fca43117fde99b670a92ec234a0e4f6cc6dc3183"
+    },
+    {
+      "file": "a7ee857b4c2eaa63c14db1614a82beb9f2b42491b3f14b46ba902292c575e6f5.webp",
+      "sha256": "a7ee857b4c2eaa63c14db1614a82beb9f2b42491b3f14b46ba902292c575e6f5"
+    },
+    {
+      "file": "6babe5cd1c8a7952652463ee8c15fff5996179a2dfad27e7a2f55617da3f796b.webp",
+      "sha256": "6babe5cd1c8a7952652463ee8c15fff5996179a2dfad27e7a2f55617da3f796b"
+    },
+    {
+      "file": "b454c9ce9504cd878e061cb531ee9d8d0311b695bc16b4f038a8f6387cd081c0.webp",
+      "sha256": "b454c9ce9504cd878e061cb531ee9d8d0311b695bc16b4f038a8f6387cd081c0"
+    },
+    {
+      "file": "dc73586926e4832591225cdc468869b652f3fa3b6daf3bf9d7081bf0b4d9f6cf.webp",
+      "sha256": "dc73586926e4832591225cdc468869b652f3fa3b6daf3bf9d7081bf0b4d9f6cf"
+    },
+    {
+      "file": "cfff56065fb6a541aaa1e89ee335ca022f2434c87399771134089a4eebfe325e.webp",
+      "sha256": "cfff56065fb6a541aaa1e89ee335ca022f2434c87399771134089a4eebfe325e"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a02-dong-vat-hoang-da"
+}

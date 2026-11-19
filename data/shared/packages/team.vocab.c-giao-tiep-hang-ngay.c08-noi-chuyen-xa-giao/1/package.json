@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao",
+      "kind": "Set",
+      "values": {
+        "SetName": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "Description": "#a2 #b1 #smalltalk #conversation"
+      },
+      "references": {
+        "FolderId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.69eb25c500b84f00ab2dc9c4b8036467",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.0979df8ca0364c089bce96eea8a08abe",
+      "kind": "Card",
+      "values": {
+        "Term": "It\u0027s getting cold.",
+        "Definition": "tr\u1EDDi \u0111ang l\u1EA1nh d\u1EA7n",
+        "ImageUrl": "asset:78d80b2ff6339e5972fa46c2bf2ae95b45c84c6e561dd7f289b00b602c4d0131.webp",
+        "Phonetic": null,
+        "Example": "It\u0027s getting cold. Take your coat.",
+        "ExampleTranslation": "Tr\u1EDDi \u0111ang l\u1EA1nh d\u1EA7n. Mang \u00E1o kho\u00E1c \u0111i.",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a comment about the temperature",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022It\\u0027s getting cold. Take your coat.\u0022,\u0022vi\u0022:\u0022Tr\\u1EDDi \\u0111ang l\\u1EA1nh d\\u1EA7n. Mang \\u00E1o kho\\u00E1c \\u0111i.\u0022},{\u0022text\u0022:\u0022It\\u0027s getting cold in the evening.\u0022,\u0022vi\u0022:\u0022Bu\\u1ED5i t\\u1ED1i tr\\u1EDDi \\u0111ang l\\u1EA1nh d\\u1EA7n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027m freezing.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u1EA1nh c\\u00F3ng.\u0022},{\u0022text\u0022:\u0022Let\\u0027s go inside.\u0022,\u0022vi\u0022:\u0022V\\u00E0o trong th\\u00F4i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.102561512618443f824d4419cfbf3e72",
+      "kind": "Card",
+      "values": {
+        "Term": "I love your shirt!",
+        "Definition": "t\u00F4i th\u00EDch \u00E1o c\u1EE7a b\u1EA1n qu\u00E1!",
+        "ImageUrl": "asset:89b4f7a954d38358d009a279246e052d58f29a970383aeb32cb129e90a908005.webp",
+        "Phonetic": null,
+        "Example": "I love your shirt! Where did you buy it?",
+        "ExampleTranslation": "T\u00F4i th\u00EDch \u00E1o c\u1EE7a b\u1EA1n qu\u00E1! B\u1EA1n mua \u1EDF \u0111\u00E2u v\u1EADy?",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a friendly compliment on clothes",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I love your shirt! Where did you buy it?\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u00EDch \\u00E1o c\\u1EE7a b\\u1EA1n qu\\u00E1! B\\u1EA1n mua \\u1EDF \\u0111\\u00E2u v\\u1EADy?\u0022},{\u0022text\u0022:\u0022I love your shirt! The colour is great.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u00EDch \\u00E1o c\\u1EE7a b\\u1EA1n qu\\u00E1! M\\u00E0u r\\u1EA5t \\u0111\\u1EB9p.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Thank you!\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n!\u0022},{\u0022text\u0022:\u0022It was a gift.\u0022,\u0022vi\u0022:\u0022N\\u00F3 l\\u00E0 qu\\u00E0 t\\u1EB7ng.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.1b1315d38f2e4eef86bf9d4a5886c6f3",
+      "kind": "Card",
+      "values": {
+        "Term": "I have to go now.",
+        "Definition": "gi\u1EDD t\u00F4i ph\u1EA3i \u0111i r\u1ED3i",
+        "ImageUrl": "asset:8b4e95a335c38c348a89aeb34e12a27a35db9d9536b4e201abebf9c2af7a631e.webp",
+        "Phonetic": null,
+        "Example": "I have to go now. See you tomorrow.",
+        "ExampleTranslation": "Gi\u1EDD t\u00F4i ph\u1EA3i \u0111i r\u1ED3i. H\u1EB9n mai g\u1EB7p.",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite way to end a conversation",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have to go now. See you tomorrow.\u0022,\u0022vi\u0022:\u0022Gi\\u1EDD t\\u00F4i ph\\u1EA3i \\u0111i r\\u1ED3i. H\\u1EB9n mai g\\u1EB7p.\u0022},{\u0022text\u0022:\u0022Sorry, I have to go now.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, gi\\u1EDD t\\u00F4i ph\\u1EA3i \\u0111i r\\u1ED3i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I must be going.\u0022,\u0022vi\u0022:\u0022T\\u00F4i ph\\u1EA3i \\u0111i \\u0111\\u00E2y.\u0022},{\u0022text\u0022:\u0022It was nice talking to you.\u0022,\u0022vi\u0022:\u0022R\\u1EA5t vui \\u0111\\u01B0\\u1EE3c tr\\u00F2 chuy\\u1EC7n v\\u1EDBi b\\u1EA1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.27ebaa39f90f4a2ca8d798cbd63e2b89",
+      "kind": "Card",
+      "values": {
+        "Term": "Let\u0027s keep in touch.",
+        "Definition": "h\u00E3y gi\u1EEF li\u00EAn l\u1EA1c nh\u00E9",
+        "ImageUrl": "asset:6bb6f3e34a0f3838d95768081041e6a8c99d87b6c3e26b9dcfb58279ea3ef20f.webp",
+        "Phonetic": null,
+        "Example": "Let\u0027s keep in touch. Here\u0027s my email.",
+        "ExampleTranslation": "H\u00E3y gi\u1EEF li\u00EAn l\u1EA1c nh\u00E9. \u0110\u00E2y l\u00E0 email c\u1EE7a t\u00F4i.",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you want to stay in contact",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Let\\u0027s keep in touch. Here\\u0027s my email.\u0022,\u0022vi\u0022:\u0022H\\u00E3y gi\\u1EEF li\\u00EAn l\\u1EA1c nh\\u00E9. \\u0110\\u00E2y l\\u00E0 email c\\u1EE7a t\\u00F4i.\u0022},{\u0022text\u0022:\u0022It was great to meet you. Let\\u0027s keep in touch.\u0022,\u0022vi\u0022:\u0022R\\u1EA5t vui \\u0111\\u01B0\\u1EE3c g\\u1EB7p b\\u1EA1n. H\\u00E3y gi\\u1EEF li\\u00EAn l\\u1EA1c nh\\u00E9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Stay in touch.\u0022,\u0022vi\u0022:\u0022Gi\\u1EEF li\\u00EAn l\\u1EA1c nh\\u00E9.\u0022},{\u0022text\u0022:\u0022I\\u0027ll message you.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD nh\\u1EAFn tin cho b\\u1EA1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.298c21dff43a490a8711d008c07acbcc",
+      "kind": "Card",
+      "values": {
+        "Term": "What a lovely day!",
+        "Definition": "h\u00F4m nay th\u1EADt \u0111\u1EB9p tr\u1EDDi!",
+        "ImageUrl": "asset:750bfe237245a666c69f03f2eafe21460d57d2a99b36f91473a507ca0413cb51.webp",
+        "Phonetic": null,
+        "Example": "What a lovely day! Let\u0027s go for a walk.",
+        "ExampleTranslation": "H\u00F4m nay th\u1EADt \u0111\u1EB9p tr\u1EDDi! Ch\u00FAng ta \u0111i d\u1EA1o nh\u00E9.",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a friendly comment about nice weather",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022What a lovely day! Let\\u0027s go for a walk.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay th\\u1EADt \\u0111\\u1EB9p tr\\u1EDDi! Ch\\u00FAng ta \\u0111i d\\u1EA1o nh\\u00E9.\u0022},{\u0022text\u0022:\u0022What a lovely day it is!\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay \\u0111\\u1EB9p tr\\u1EDDi th\\u1EADt!\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s a beautiful day.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay tr\\u1EDDi \\u0111\\u1EB9p.\u0022},{\u0022text\u0022:\u0022Yes, it\\u0027s perfect.\u0022,\u0022vi\u0022:\u0022\\u1EEA, ho\\u00E0n h\\u1EA3o lu\\u00F4n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.33a5a0def7e44a6788ebc798a1fcbbcb",
+      "kind": "Card",
+      "values": {
+        "Term": "How\u0027s your family?",
+        "Definition": "gia \u0111\u00ECnh b\u1EA1n th\u1EBF n\u00E0o?",
+        "ImageUrl": "asset:08d313aaebc7924ea9bb98f68f915d2a1311592b7e360ee91d97a288d5310bb4.webp",
+        "Phonetic": null,
+        "Example": "How\u0027s your family? I haven\u0027t seen them for ages.",
+        "ExampleTranslation": "Gia \u0111\u00ECnh b\u1EA1n th\u1EBF n\u00E0o? L\u00E2u r\u1ED3i t\u00F4i ch\u01B0a g\u1EB7p h\u1ECD.",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite question about someone\u0027s family",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022How\\u0027s your family? I haven\\u0027t seen them for ages.\u0022,\u0022vi\u0022:\u0022Gia \\u0111\\u00ECnh b\\u1EA1n th\\u1EBF n\\u00E0o? L\\u00E2u r\\u1ED3i t\\u00F4i ch\\u01B0a g\\u1EB7p h\\u1ECD.\u0022},{\u0022text\u0022:\u0022How\\u0027s your family these days?\u0022,\u0022vi\u0022:\u0022D\\u1EA1o n\\u00E0y gia \\u0111\\u00ECnh b\\u1EA1n th\\u1EBF n\\u00E0o?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022They\\u0027re all well.\u0022,\u0022vi\u0022:\u0022M\\u1ECDi ng\\u01B0\\u1EDDi \\u0111\\u1EC1u kh\\u1ECFe.\u0022},{\u0022text\u0022:\u0022Thanks for asking.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n \\u0111\\u00E3 h\\u1ECFi.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.35205b6a7fc5424895fc5a1e1febcf91",
+      "kind": "Card",
+      "values": {
+        "Term": "Me too.",
+        "Definition": "t\u00F4i c\u0169ng v\u1EADy",
+        "ImageUrl": "asset:dc65f7a7421b54eb00f4e50cb1f7fc408547f851b5009147f5428d663a44d699.webp",
+        "Phonetic": null,
+        "Example": "\u0022I love tea.\u0022 \u0022Me too.\u0022",
+        "ExampleTranslation": "\u0022T\u00F4i th\u00EDch tr\u00E0.\u0022 \u0022T\u00F4i c\u0169ng v\u1EADy.\u0022",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a reply that shows you feel or do the same",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022\\u0022I love tea.\\u0022 \\u0022Me too.\\u0022\u0022,\u0022vi\u0022:\u0022\\u0022T\\u00F4i th\\u00EDch tr\\u00E0.\\u0022 \\u0022T\\u00F4i c\\u0169ng v\\u1EADy.\\u0022\u0022},{\u0022text\u0022:\u0022I\\u0027m hungry. Me too.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u00F3i. T\\u00F4i c\\u0169ng v\\u1EADy.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022So do I.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u0169ng th\\u1EBF.\u0022},{\u0022text\u0022:\u0022Same here.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u0169ng v\\u1EADy.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.4b434237ea044c38a1b0f93142a4de45",
+      "kind": "Card",
+      "values": {
+        "Term": "How was your weekend?",
+        "Definition": "cu\u1ED1i tu\u1EA7n c\u1EE7a b\u1EA1n th\u1EBF n\u00E0o?",
+        "ImageUrl": "asset:4968c605e2f71ab6a2f2565c02c89d70fc0b898af293ae34d8a35dc358933fa4.webp",
+        "Phonetic": null,
+        "Example": "How was your weekend? Did you relax?",
+        "ExampleTranslation": "Cu\u1ED1i tu\u1EA7n c\u1EE7a b\u1EA1n th\u1EBF n\u00E0o? B\u1EA1n c\u00F3 th\u01B0 gi\u00E3n kh\u00F4ng?",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question to start a chat on Monday",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022How was your weekend? Did you relax?\u0022,\u0022vi\u0022:\u0022Cu\\u1ED1i tu\\u1EA7n c\\u1EE7a b\\u1EA1n th\\u1EBF n\\u00E0o? B\\u1EA1n c\\u00F3 th\\u01B0 gi\\u00E3n kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022How was your weekend, Sam?\u0022,\u0022vi\u0022:\u0022Cu\\u1ED1i tu\\u1EA7n c\\u1EE7a b\\u1EA1n th\\u1EBF n\\u00E0o, Sam?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It was great, thanks.\u0022,\u0022vi\u0022:\u0022Tuy\\u1EC7t l\\u1EAFm, c\\u1EA3m \\u01A1n.\u0022},{\u0022text\u0022:\u0022I stayed at home.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u1EDF nh\\u00E0.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.4d7ccf7b3b494fa09661450709edd0e1",
+      "kind": "Card",
+      "values": {
+        "Term": "Do you have any plans for the weekend?",
+        "Definition": "cu\u1ED1i tu\u1EA7n b\u1EA1n c\u00F3 k\u1EBF ho\u1EA1ch g\u00EC kh\u00F4ng?",
+        "ImageUrl": "asset:569e8f2b0660bf29008ffc779d8c2735cadaaae34c042656af924485e3800c4a.webp",
+        "Phonetic": null,
+        "Example": "Do you have any plans for the weekend?",
+        "ExampleTranslation": "Cu\u1ED1i tu\u1EA7n b\u1EA1n c\u00F3 k\u1EBF ho\u1EA1ch g\u00EC kh\u00F4ng?",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about future plans",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Do you have any plans for the weekend?\u0022,\u0022vi\u0022:\u0022Cu\\u1ED1i tu\\u1EA7n b\\u1EA1n c\\u00F3 k\\u1EBF ho\\u1EA1ch g\\u00EC kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Do you have any plans for the weekend? I\\u0027m free.\u0022,\u0022vi\u0022:\u0022Cu\\u1ED1i tu\\u1EA7n b\\u1EA1n c\\u00F3 k\\u1EBF ho\\u1EA1ch g\\u00EC kh\\u00F4ng? T\\u00F4i r\\u1EA3nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027m going to the beach.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD \\u0111i bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022Nothing special.\u0022,\u0022vi\u0022:\u0022Ch\\u1EB3ng c\\u00F3 g\\u00EC \\u0111\\u1EB7c bi\\u1EC7t.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.5ce87a9040a246968ab89069e27b9230",
+      "kind": "Card",
+      "values": {
+        "Term": "That sounds great!",
+        "Definition": "nghe hay \u0111\u1EA5y!",
+        "ImageUrl": "asset:715e598a3b857d8b45d84f2f08cd7084bd436299952b3943c60d43222c568cbd.webp",
+        "Phonetic": null,
+        "Example": "That sounds great! I\u0027d love to come.",
+        "ExampleTranslation": "Nghe hay \u0111\u1EA5y! T\u00F4i r\u1EA5t mu\u1ED1n \u0111\u1EBFn.",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a reply that shows you like an idea",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022That sounds great! I\\u0027d love to come.\u0022,\u0022vi\u0022:\u0022Nghe hay \\u0111\\u1EA5y! T\\u00F4i r\\u1EA5t mu\\u1ED1n \\u0111\\u1EBFn.\u0022},{\u0022text\u0022:\u0022\\u0022Let\\u0027s go for a picnic.\\u0022 \\u0022That sounds great!\\u0022\u0022,\u0022vi\u0022:\u0022\\u0022M\\u00ECnh \\u0111i d\\u00E3 ngo\\u1EA1i nh\\u00E9.\\u0022 \\u0022Nghe hay \\u0111\\u1EA5y!\\u0022\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Good idea!\u0022,\u0022vi\u0022:\u0022\\u00DD hay \\u0111\\u1EA5y!\u0022},{\u0022text\u0022:\u0022Why not?\u0022,\u0022vi\u0022:\u0022Sao l\\u1EA1i kh\\u00F4ng?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.6c7d090838204ef690ac5281872178f7",
+      "kind": "Card",
+      "values": {
+        "Term": "What\u0027s your favourite food?",
+        "Definition": "m\u00F3n \u0103n y\u00EAu th\u00EDch c\u1EE7a b\u1EA1n l\u00E0 g\u00EC?",
+        "ImageUrl": "asset:ca7d0f413110e08f1330f348a04bec9e6c42208f54cbb112c96138c922b1ae4c.webp",
+        "Phonetic": null,
+        "Example": "What\u0027s your favourite food? Mine is pizza.",
+        "ExampleTranslation": "M\u00F3n \u0103n y\u00EAu th\u00EDch c\u1EE7a b\u1EA1n l\u00E0 g\u00EC? C\u1EE7a t\u00F4i l\u00E0 pizza.",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about food preferences",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022What\\u0027s your favourite food? Mine is pizza.\u0022,\u0022vi\u0022:\u0022M\\u00F3n \\u0103n y\\u00EAu th\\u00EDch c\\u1EE7a b\\u1EA1n l\\u00E0 g\\u00EC? C\\u1EE7a t\\u00F4i l\\u00E0 pizza.\u0022},{\u0022text\u0022:\u0022What\\u0027s your favourite food in Vietnam?\u0022,\u0022vi\u0022:\u0022M\\u00F3n \\u0103n y\\u00EAu th\\u00EDch c\\u1EE7a b\\u1EA1n \\u1EDF Vi\\u1EC7t Nam l\\u00E0 g\\u00EC?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I love noodle soup.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u00EDch m\\u00EC n\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022I like spicy food.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u00EDch \\u0111\\u1ED3 \\u0103n cay.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.6fb91fefe44f436c9461a4a87346a78f",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027m learning English.",
+        "Definition": "t\u00F4i \u0111ang h\u1ECDc ti\u1EBFng Anh",
+        "ImageUrl": "asset:a76106fde26952240a4fe33187244b4a28c8ae69ff89922827dcb60d65cf8a27.webp",
+        "Phonetic": null,
+        "Example": "I\u0027m learning English at an evening class.",
+        "ExampleTranslation": "T\u00F4i \u0111ang h\u1ECDc ti\u1EBFng Anh \u1EDF l\u1EDBp bu\u1ED5i t\u1ED1i.",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a phrase for saying what you study",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027m learning English at an evening class.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111ang h\\u1ECDc ti\\u1EBFng Anh \\u1EDF l\\u1EDBp bu\\u1ED5i t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022I\\u0027m learning English because I like travelling.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111ang h\\u1ECDc ti\\u1EBFng Anh v\\u00EC t\\u00F4i th\\u00EDch \\u0111i du l\\u1ECBch.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I study English.\u0022,\u0022vi\u0022:\u0022T\\u00F4i h\\u1ECDc ti\\u1EBFng Anh.\u0022},{\u0022text\u0022:\u0022I want to improve my English.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n c\\u1EA3i thi\\u1EC7n ti\\u1EBFng Anh.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.908ba3ffc6764cdbbc718fd906a216e0",
+      "kind": "Card",
+      "values": {
+        "Term": "Your English is very good.",
+        "Definition": "ti\u1EBFng Anh c\u1EE7a b\u1EA1n r\u1EA5t gi\u1ECFi",
+        "ImageUrl": "asset:6b9f1905cbd81ebcb72a5c08efa3b7498a708e298fb634826099ac6c70783ef8.webp",
+        "Phonetic": null,
+        "Example": "Your English is very good.",
+        "ExampleTranslation": "Ti\u1EBFng Anh c\u1EE7a b\u1EA1n r\u1EA5t gi\u1ECFi.",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a compliment about someone\u0027s English",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Your English is very good.\u0022,\u0022vi\u0022:\u0022Ti\\u1EBFng Anh c\\u1EE7a b\\u1EA1n r\\u1EA5t gi\\u1ECFi.\u0022},{\u0022text\u0022:\u0022Your English is very good for a beginner.\u0022,\u0022vi\u0022:\u0022Ti\\u1EBFng Anh c\\u1EE7a b\\u1EA1n r\\u1EA5t gi\\u1ECFi so v\\u1EDBi ng\\u01B0\\u1EDDi m\\u1EDBi h\\u1ECDc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Thank you. I practise every day.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n. T\\u00F4i luy\\u1EC7n t\\u1EADp m\\u1ED7i ng\\u00E0y.\u0022},{\u0022text\u0022:\u0022You\\u0027re too kind.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n qu\\u00E1 khen.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.950f8e97480c468ea40af3408b21151b",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027m glad to hear that.",
+        "Definition": "t\u00F4i r\u1EA5t vui khi nghe \u0111i\u1EC1u \u0111\u00F3",
+        "ImageUrl": "asset:f9ef5ad5d4229512064759431d5ed1ed729b27b42f5e8e64cdb6bc8f366b8d9e.webp",
+        "Phonetic": null,
+        "Example": "I\u0027m glad to hear that. Congratulations!",
+        "ExampleTranslation": "T\u00F4i r\u1EA5t vui khi nghe \u0111i\u1EC1u \u0111\u00F3. Ch\u00FAc m\u1EEBng!",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a reply to good news",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027m glad to hear that. Congratulations!\u0022,\u0022vi\u0022:\u0022T\\u00F4i r\\u1EA5t vui khi nghe \\u0111i\\u1EC1u \\u0111\\u00F3. Ch\\u00FAc m\\u1EEBng!\u0022},{\u0022text\u0022:\u0022I\\u0027m glad to hear that you feel better.\u0022,\u0022vi\u0022:\u0022T\\u00F4i r\\u1EA5t vui khi nghe b\\u1EA1n kh\\u1ECFe h\\u01A1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022That\\u0027s good news.\u0022,\u0022vi\u0022:\u0022Tin t\\u1ED1t \\u0111\\u1EA5y.\u0022},{\u0022text\u0022:\u0022Well done!\u0022,\u0022vi\u0022:\u0022L\\u00E0m t\\u1ED1t l\\u1EAFm!\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.a180157a99794a6ab003c66fd992b258",
+      "kind": "Card",
+      "values": {
+        "Term": "Do you like music?",
+        "Definition": "b\u1EA1n c\u00F3 th\u00EDch \u00E2m nh\u1EA1c kh\u00F4ng?",
+        "ImageUrl": "asset:6ace1ee030a130c4ac36aa9e49dd67a608c18fb29e31f6d39083413c39f5049e.webp",
+        "Phonetic": null,
+        "Example": "Do you like music? I love pop songs.",
+        "ExampleTranslation": "B\u1EA1n c\u00F3 th\u00EDch \u00E2m nh\u1EA1c kh\u00F4ng? T\u00F4i m\u00EA nh\u1EA1c pop.",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a simple question about interests",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Do you like music? I love pop songs.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 th\\u00EDch \\u00E2m nh\\u1EA1c kh\\u00F4ng? T\\u00F4i m\\u00EA nh\\u1EA1c pop.\u0022},{\u0022text\u0022:\u0022Do you like music or sports more?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n th\\u00EDch \\u00E2m nh\\u1EA1c hay th\\u1EC3 thao h\\u01A1n?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Yes, I do.\u0022,\u0022vi\u0022:\u0022V\\u00E2ng, t\\u00F4i th\\u00EDch.\u0022},{\u0022text\u0022:\u0022Not really.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng h\\u1EB3n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.cc85f9f80c2a487d8eb394944b6fcddd",
+      "kind": "Card",
+      "values": {
+        "Term": "Have you been here before?",
+        "Definition": "b\u1EA1n \u0111\u00E3 t\u1EEBng \u0111\u1EBFn \u0111\u00E2y ch\u01B0a?",
+        "ImageUrl": "asset:b41bc789d65d0b8d5fa18e083b0491d22cb1548b89150a83ebd52dd3fea963f2.webp",
+        "Phonetic": null,
+        "Example": "Have you been here before?",
+        "ExampleTranslation": "B\u1EA1n \u0111\u00E3 t\u1EEBng \u0111\u1EBFn \u0111\u00E2y ch\u01B0a?",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question to start a chat in a new place",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Have you been here before?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n \\u0111\\u00E3 t\\u1EEBng \\u0111\\u1EBFn \\u0111\\u00E2y ch\\u01B0a?\u0022},{\u0022text\u0022:\u0022Have you been here before, or is it your first time?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n \\u0111\\u00E3 \\u0111\\u1EBFn \\u0111\\u00E2y ch\\u01B0a, hay \\u0111\\u00E2y l\\u00E0 l\\u1EA7n \\u0111\\u1EA7u?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s my first time.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E2y l\\u00E0 l\\u1EA7n \\u0111\\u1EA7u c\\u1EE7a t\\u00F4i.\u0022},{\u0022text\u0022:\u0022I come here often.\u0022,\u0022vi\u0022:\u0022T\\u00F4i hay \\u0111\\u1EBFn \\u0111\\u00E2y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.d325699704d94c01b4805ceaa75e0c83",
+      "kind": "Card",
+      "values": {
+        "Term": "Really?",
+        "Definition": "th\u1EADt sao?",
+        "ImageUrl": "asset:e9bf5d4d12ede9768e8f2fa05d1b4e35a0df2bc53917da50e62302a8d091fa9c.webp",
+        "Phonetic": null,
+        "Example": "Really? I didn\u0027t know that.",
+        "ExampleTranslation": "Th\u1EADt sao? T\u00F4i kh\u00F4ng bi\u1EBFt \u0111i\u1EC1u \u0111\u00F3.",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a short reply that shows surprise or interest",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Really? I didn\\u0027t know that.\u0022,\u0022vi\u0022:\u0022Th\\u1EADt sao? T\\u00F4i kh\\u00F4ng bi\\u1EBFt \\u0111i\\u1EC1u \\u0111\\u00F3.\u0022},{\u0022text\u0022:\u0022\\u0022I\\u0027m moving to Japan.\\u0022 \\u0022Really?\\u0022\u0022,\u0022vi\u0022:\u0022\\u0022T\\u00F4i s\\u1EAFp chuy\\u1EC3n \\u0111\\u1EBFn Nh\\u1EADt.\\u0022 \\u0022Th\\u1EADt sao?\\u0022\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Wow!\u0022,\u0022vi\u0022:\u0022Ch\\u00E0!\u0022},{\u0022text\u0022:\u0022No way!\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng th\\u1EC3 tin \\u0111\\u01B0\\u1EE3c!\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.dc0fb6c7bc294cc8aeb5d8acf75320bf",
+      "kind": "Card",
+      "values": {
+        "Term": "What\u0027s the weather like?",
+        "Definition": "th\u1EDDi ti\u1EBFt th\u1EBF n\u00E0o?",
+        "ImageUrl": "asset:1901cbcd6c2679ee1dbb604ca45f711ee87ee2dd6e626ff475303c53bb04e77d.webp",
+        "Phonetic": null,
+        "Example": "What\u0027s the weather like today?",
+        "ExampleTranslation": "H\u00F4m nay th\u1EDDi ti\u1EBFt th\u1EBF n\u00E0o?",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about the weather",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022What\\u0027s the weather like today?\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay th\\u1EDDi ti\\u1EBFt th\\u1EBF n\\u00E0o?\u0022},{\u0022text\u0022:\u0022What\\u0027s the weather like in your city?\u0022,\u0022vi\u0022:\u0022Th\\u1EDDi ti\\u1EBFt \\u1EDF th\\u00E0nh ph\\u1ED1 c\\u1EE7a b\\u1EA1n th\\u1EBF n\\u00E0o?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s sunny.\u0022,\u0022vi\u0022:\u0022Tr\\u1EDDi n\\u1EAFng.\u0022},{\u0022text\u0022:\u0022It\\u0027s raining.\u0022,\u0022vi\u0022:\u0022Tr\\u1EDDi \\u0111ang m\\u01B0a.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.e830ba5cea6b49b8a77caebd361b251f",
+      "kind": "Card",
+      "values": {
+        "Term": "What do you do in your free time?",
+        "Definition": "b\u1EA1n l\u00E0m g\u00EC l\u00FAc r\u1EA3nh?",
+        "ImageUrl": "asset:1ed22097156e290d1d48869a34e1033ba408a6dd02749df03affb5ba418bcab5.webp",
+        "Phonetic": null,
+        "Example": "What do you do in your free time?",
+        "ExampleTranslation": "B\u1EA1n l\u00E0m g\u00EC l\u00FAc r\u1EA3nh?",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about hobbies",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022What do you do in your free time?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n l\\u00E0m g\\u00EC l\\u00FAc r\\u1EA3nh?\u0022},{\u0022text\u0022:\u0022What do you do in your free time on weekends?\u0022,\u0022vi\u0022:\u0022Cu\\u1ED1i tu\\u1EA7n l\\u00FAc r\\u1EA3nh b\\u1EA1n l\\u00E0m g\\u00EC?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I like reading.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u00EDch \\u0111\\u1ECDc s\\u00E1ch.\u0022},{\u0022text\u0022:\u0022I play football.\u0022,\u0022vi\u0022:\u0022T\\u00F4i ch\\u01A1i b\\u00F3ng \\u0111\\u00E1.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao.ea7694406eab416fb6949e1f4c0d0d2e",
+      "kind": "Card",
+      "values": {
+        "Term": "It\u0027s nice weather today.",
+        "Definition": "h\u00F4m nay th\u1EDDi ti\u1EBFt \u0111\u1EB9p",
+        "ImageUrl": "asset:47680aaf3fdc6e9d9fe0c384460a3651c7e5287df9133214d9a868ac8901e807.webp",
+        "Phonetic": null,
+        "Example": "It\u0027s nice weather today, isn\u0027t it?",
+        "ExampleTranslation": "H\u00F4m nay th\u1EDDi ti\u1EBFt \u0111\u1EB9p nh\u1EC9?",
+        "Topic": "N\u00F3i chuy\u1EC7n x\u00E3 giao",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a comment about nice weather",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022It\\u0027s nice weather today, isn\\u0027t it?\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay th\\u1EDDi ti\\u1EBFt \\u0111\\u1EB9p nh\\u1EC9?\u0022},{\u0022text\u0022:\u0022It\\u0027s nice weather today. Let\\u0027s have lunch outside.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay th\\u1EDDi ti\\u1EBFt \\u0111\\u1EB9p. Ch\\u00FAng ta \\u0103n tr\\u01B0a ngo\\u00E0i tr\\u1EDDi nh\\u00E9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Yes, it is.\u0022,\u0022vi\u0022:\u0022V\\u00E2ng, \\u0111\\u00FAng v\\u1EADy.\u0022},{\u0022text\u0022:\u0022It\\u0027s warm.\u0022,\u0022vi\u0022:\u0022Tr\\u1EDDi \\u1EA5m.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "750bfe237245a666c69f03f2eafe21460d57d2a99b36f91473a507ca0413cb51.webp",
+      "sha256": "750bfe237245a666c69f03f2eafe21460d57d2a99b36f91473a507ca0413cb51"
+    },
+    {
+      "file": "4968c605e2f71ab6a2f2565c02c89d70fc0b898af293ae34d8a35dc358933fa4.webp",
+      "sha256": "4968c605e2f71ab6a2f2565c02c89d70fc0b898af293ae34d8a35dc358933fa4"
+    },
+    {
+      "file": "1ed22097156e290d1d48869a34e1033ba408a6dd02749df03affb5ba418bcab5.webp",
+      "sha256": "1ed22097156e290d1d48869a34e1033ba408a6dd02749df03affb5ba418bcab5"
+    },
+    {
+      "file": "6ace1ee030a130c4ac36aa9e49dd67a608c18fb29e31f6d39083413c39f5049e.webp",
+      "sha256": "6ace1ee030a130c4ac36aa9e49dd67a608c18fb29e31f6d39083413c39f5049e"
+    },
+    {
+      "file": "89b4f7a954d38358d009a279246e052d58f29a970383aeb32cb129e90a908005.webp",
+      "sha256": "89b4f7a954d38358d009a279246e052d58f29a970383aeb32cb129e90a908005"
+    },
+    {
+      "file": "b41bc789d65d0b8d5fa18e083b0491d22cb1548b89150a83ebd52dd3fea963f2.webp",
+      "sha256": "b41bc789d65d0b8d5fa18e083b0491d22cb1548b89150a83ebd52dd3fea963f2"
+    },
+    {
+      "file": "1901cbcd6c2679ee1dbb604ca45f711ee87ee2dd6e626ff475303c53bb04e77d.webp",
+      "sha256": "1901cbcd6c2679ee1dbb604ca45f711ee87ee2dd6e626ff475303c53bb04e77d"
+    },
+    {
+      "file": "47680aaf3fdc6e9d9fe0c384460a3651c7e5287df9133214d9a868ac8901e807.webp",
+      "sha256": "47680aaf3fdc6e9d9fe0c384460a3651c7e5287df9133214d9a868ac8901e807"
+    },
+    {
+      "file": "78d80b2ff6339e5972fa46c2bf2ae95b45c84c6e561dd7f289b00b602c4d0131.webp",
+      "sha256": "78d80b2ff6339e5972fa46c2bf2ae95b45c84c6e561dd7f289b00b602c4d0131"
+    },
+    {
+      "file": "569e8f2b0660bf29008ffc779d8c2735cadaaae34c042656af924485e3800c4a.webp",
+      "sha256": "569e8f2b0660bf29008ffc779d8c2735cadaaae34c042656af924485e3800c4a"
+    },
+    {
+      "file": "08d313aaebc7924ea9bb98f68f915d2a1311592b7e360ee91d97a288d5310bb4.webp",
+      "sha256": "08d313aaebc7924ea9bb98f68f915d2a1311592b7e360ee91d97a288d5310bb4"
+    },
+    {
+      "file": "a76106fde26952240a4fe33187244b4a28c8ae69ff89922827dcb60d65cf8a27.webp",
+      "sha256": "a76106fde26952240a4fe33187244b4a28c8ae69ff89922827dcb60d65cf8a27"
+    },
+    {
+      "file": "6b9f1905cbd81ebcb72a5c08efa3b7498a708e298fb634826099ac6c70783ef8.webp",
+      "sha256": "6b9f1905cbd81ebcb72a5c08efa3b7498a708e298fb634826099ac6c70783ef8"
+    },
+    {
+      "file": "ca7d0f413110e08f1330f348a04bec9e6c42208f54cbb112c96138c922b1ae4c.webp",
+      "sha256": "ca7d0f413110e08f1330f348a04bec9e6c42208f54cbb112c96138c922b1ae4c"
+    },
+    {
+      "file": "6bb6f3e34a0f3838d95768081041e6a8c99d87b6c3e26b9dcfb58279ea3ef20f.webp",
+      "sha256": "6bb6f3e34a0f3838d95768081041e6a8c99d87b6c3e26b9dcfb58279ea3ef20f"
+    },
+    {
+      "file": "f9ef5ad5d4229512064759431d5ed1ed729b27b42f5e8e64cdb6bc8f366b8d9e.webp",
+      "sha256": "f9ef5ad5d4229512064759431d5ed1ed729b27b42f5e8e64cdb6bc8f366b8d9e"
+    },
+    {
+      "file": "715e598a3b857d8b45d84f2f08cd7084bd436299952b3943c60d43222c568cbd.webp",
+      "sha256": "715e598a3b857d8b45d84f2f08cd7084bd436299952b3943c60d43222c568cbd"
+    },
+    {
+      "file": "e9bf5d4d12ede9768e8f2fa05d1b4e35a0df2bc53917da50e62302a8d091fa9c.webp",
+      "sha256": "e9bf5d4d12ede9768e8f2fa05d1b4e35a0df2bc53917da50e62302a8d091fa9c"
+    },
+    {
+      "file": "dc65f7a7421b54eb00f4e50cb1f7fc408547f851b5009147f5428d663a44d699.webp",
+      "sha256": "dc65f7a7421b54eb00f4e50cb1f7fc408547f851b5009147f5428d663a44d699"
+    },
+    {
+      "file": "8b4e95a335c38c348a89aeb34e12a27a35db9d9536b4e201abebf9c2af7a631e.webp",
+      "sha256": "8b4e95a335c38c348a89aeb34e12a27a35db9d9536b4e201abebf9c2af7a631e"
+    }
+  ],
+  "rootKey": "team.vocab.c-giao-tiep-hang-ngay.c08-noi-chuyen-xa-giao"
+}

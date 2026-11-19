@@ -1,0 +1,685 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b01-cong-viec-van-phong",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong",
+      "kind": "Set",
+      "values": {
+        "SetName": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "Description": "#b1 #b2 #work #office"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.21fd654f1e69464c81e2546600e6582d",
+      "kind": "Card",
+      "values": {
+        "Term": "clipboard",
+        "Definition": "b\u1EA3ng k\u1EB9p gi\u1EA5y",
+        "ImageUrl": "asset:52a14ef1049ed082005f0f8950ab038cacae1d511384982bb76d763903b1a5c7.webp",
+        "Phonetic": "/\u02C8kl\u026Apb\u0254\u0279d/",
+        "Example": "The inspector wrote notes on a clipboard.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi ki\u1EC3m tra ghi ch\u00FA l\u00EAn m\u1ED9t b\u1EA3ng k\u1EB9p gi\u1EA5y.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small board with a clip for holding papers while you write",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8kl\u026Apb\u0254\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The inspector wrote notes on a clipboard.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi ki\\u1EC3m tra ghi ch\\u00FA l\\u00EAn m\\u1ED9t b\\u1EA3ng k\\u1EB9p gi\\u1EA5y.\u0022},{\u0022text\u0022:\u0022Please sign the form on the clipboard.\u0022,\u0022vi\u0022:\u0022Vui l\\u00F2ng k\\u00FD v\\u00E0o m\\u1EABu \\u0111\\u01A1n tr\\u00EAn b\\u1EA3ng k\\u1EB9p gi\\u1EA5y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hold a clipboard\u0022,\u0022vi\u0022:\u0022c\\u1EA7m b\\u1EA3ng k\\u1EB9p gi\\u1EA5y\u0022},{\u0022text\u0022:\u0022clipboard and pen\u0022,\u0022vi\u0022:\u0022b\\u1EA3ng k\\u1EB9p gi\\u1EA5y v\\u00E0 b\\u00FAt\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/yellow-paper-QFVXJDCYKP\u0022,\u0022author\u0022:\u0022Artsy Crafty\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.23faf1d8936f4094ae091d113c41eb95",
+      "kind": "Card",
+      "values": {
+        "Term": "office",
+        "Definition": "v\u0103n ph\u00F2ng",
+        "ImageUrl": "asset:29c8c5b6336476d071684d4da2669b8d8738bf517b4ecd32a4e7e73bcb6ae5d7.webp",
+        "Phonetic": "/\u02C8\u0254f\u026As/",
+        "Example": "I take the bus to the office every day.",
+        "ExampleTranslation": "Ng\u00E0y n\u00E0o t\u00F4i c\u0169ng \u0111i xe bu\u00FDt \u0111\u1EBFn v\u0103n ph\u00F2ng.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place where people work at desks",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u0252f\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I take the bus to the office every day.\u0022,\u0022vi\u0022:\u0022Ng\\u00E0y n\\u00E0o t\\u00F4i c\\u0169ng \\u0111i xe bu\\u00FDt \\u0111\\u1EBFn v\\u0103n ph\\u00F2ng.\u0022},{\u0022text\u0022:\u0022Their new office is on the tenth floor.\u0022,\u0022vi\u0022:\u0022V\\u0103n ph\\u00F2ng m\\u1EDBi c\\u1EE7a h\\u1ECD \\u1EDF t\\u1EA7ng m\\u01B0\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022office hours\u0022,\u0022vi\u0022:\u0022gi\\u1EDD l\\u00E0m vi\\u1EC7c\u0022},{\u0022text\u0022:\u0022head office\u0022,\u0022vi\u0022:\u0022tr\\u1EE5 s\\u1EDF ch\\u00EDnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:GX-226_-_Wooden_desk_with_computer_lamp_and_statuettes_overlooking_lush_tropical_garden_through_large_windows.jpg\u0022,\u0022author\u0022:\u0022Palm Beach Police Department\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.2884263304d046dd8e4a45bf526fdb38",
+      "kind": "Card",
+      "values": {
+        "Term": "presentation",
+        "Definition": "b\u00E0i thuy\u1EBFt tr\u00ECnh",
+        "ImageUrl": "asset:3d0e8034abcad1a97930ba80bc2e7b22fc354529dedbb689a23c5609ed30d1cb.webp",
+        "Phonetic": "/\u02CCp\u0279\u025Bz\u0259n\u02C8te\u026A\u0283\u0259n/",
+        "Example": "She gave a clear presentation to the clients.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y c\u00F3 b\u00E0i thuy\u1EBFt tr\u00ECnh r\u00F5 r\u00E0ng tr\u01B0\u1EDBc kh\u00E1ch h\u00E0ng.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a talk that shows information to a group",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02CCp\u0279\u025Bz\u0259n\u02C8te\u026A\u0283\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She gave a clear presentation to the clients.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y c\\u00F3 b\\u00E0i thuy\\u1EBFt tr\\u00ECnh r\\u00F5 r\\u00E0ng tr\\u01B0\\u1EDBc kh\\u00E1ch h\\u00E0ng.\u0022},{\u0022text\u0022:\u0022I am nervous about tomorrow\\u0027s presentation.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EA5y h\\u1ED3i h\\u1ED9p v\\u1EC1 b\\u00E0i thuy\\u1EBFt tr\\u00ECnh ng\\u00E0y mai.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022give a presentation\u0022,\u0022vi\u0022:\u0022thuy\\u1EBFt tr\\u00ECnh\u0022},{\u0022text\u0022:\u0022presentation slides\u0022,\u0022vi\u0022:\u0022slide thuy\\u1EBFt tr\\u00ECnh\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022present\u0022,\u0022pos\u0022:\u0022verb\u0022,\u0022vi\u0022:\u0022tr\\u00ECnh b\\u00E0y\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6643424/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.34e6f37b42364ae0bfada75095e9bd70",
+      "kind": "Card",
+      "values": {
+        "Term": "conference room",
+        "Definition": "ph\u00F2ng h\u1ECDp",
+        "ImageUrl": "asset:8f38d4716f54c5a04d8b6aab0d906b9ab47d9645edcf23574e36e4a3004d9ebf.webp",
+        "Phonetic": "/\u02C8k\u0251n.f(\u0259.)\u0279\u0259ns \u0279um/",
+        "Example": "The team is waiting in the conference room.",
+        "ExampleTranslation": "C\u1EA3 nh\u00F3m \u0111ang \u0111\u1EE3i trong ph\u00F2ng h\u1ECDp.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large room used for meetings",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0252n.f(\u0259.)\u0279\u0259ns \u0279\u028Am/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The team is waiting in the conference room.\u0022,\u0022vi\u0022:\u0022C\\u1EA3 nh\\u00F3m \\u0111ang \\u0111\\u1EE3i trong ph\\u00F2ng h\\u1ECDp.\u0022},{\u0022text\u0022:\u0022We booked the conference room for two o\\u0027clock.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u00E3 \\u0111\\u1EB7t ph\\u00F2ng h\\u1ECDp l\\u00FAc hai gi\\u1EDD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022book a conference room\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EB7t ph\\u00F2ng h\\u1ECDp\u0022},{\u0022text\u0022:\u0022large conference room\u0022,\u0022vi\u0022:\u0022ph\\u00F2ng h\\u1ECDp l\\u1EDBn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3337630/free-photo-image-boardroom-conference-office-background\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.3d9ac7db100945959150a50e71df157f",
+      "kind": "Card",
+      "values": {
+        "Term": "filing cabinet",
+        "Definition": "t\u1EE7 \u0111\u1EF1ng h\u1ED3 s\u01A1",
+        "ImageUrl": "asset:aca71915d7e14041218c16fdd3a6e46925deccf5adc8b9f17072ebb3fe8cfeea.webp",
+        "Phonetic": "/\u02C8fa\u026A.l\u026A\u014B \u02C8k\u00E6b\u026An\u026At/",
+        "Example": "The old contracts are in the filing cabinet.",
+        "ExampleTranslation": "Nh\u1EEFng h\u1EE3p \u0111\u1ED3ng c\u0169 n\u1EB1m trong t\u1EE7 \u0111\u1EF1ng h\u1ED3 s\u01A1.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a metal cupboard with drawers for keeping documents",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8fa\u026A.l\u026A\u014B \u02C8k\u00E6b\u026An\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The old contracts are in the filing cabinet.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng h\\u1EE3p \\u0111\\u1ED3ng c\\u0169 n\\u1EB1m trong t\\u1EE7 \\u0111\\u1EF1ng h\\u1ED3 s\\u01A1.\u0022},{\u0022text\u0022:\u0022She locked the filing cabinet before she left.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y kh\\u00F3a t\\u1EE7 h\\u1ED3 s\\u01A1 tr\\u01B0\\u1EDBc khi ra v\\u1EC1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open a filing cabinet\u0022,\u0022vi\u0022:\u0022m\\u1EDF t\\u1EE7 h\\u1ED3 s\\u01A1\u0022},{\u0022text\u0022:\u0022metal filing cabinet\u0022,\u0022vi\u0022:\u0022t\\u1EE7 h\\u1ED3 s\\u01A1 b\\u1EB1ng kim lo\\u1EA1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6314596/png-paper-vintage\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.58cdd839ee0241e2a9220262e0f84fdd",
+      "kind": "Card",
+      "values": {
+        "Term": "desk lamp",
+        "Definition": "\u0111\u00E8n b\u00E0n",
+        "ImageUrl": "asset:7179d3581fe539eafda0c0a18263d7f43c9d651ea9abee0bc056b6a81d770330.webp",
+        "Phonetic": "/d\u025Bsk \u00E6/",
+        "Example": "She turned on the desk lamp and kept working.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y b\u1EADt \u0111\u00E8n b\u00E0n l\u00EAn v\u00E0 ti\u1EBFp t\u1EE5c l\u00E0m vi\u1EC7c.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small light that stands on a desk",
+        "Cefr": "B1",
+        "PhoneticUk": "/d\u025Bsk \u02C8l\u00E6\u031Emp/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She turned on the desk lamp and kept working.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y b\\u1EADt \\u0111\\u00E8n b\\u00E0n l\\u00EAn v\\u00E0 ti\\u1EBFp t\\u1EE5c l\\u00E0m vi\\u1EC7c.\u0022},{\u0022text\u0022:\u0022This desk lamp has a flexible neck.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc \\u0111\\u00E8n b\\u00E0n n\\u00E0y c\\u00F3 c\\u1ED5 u\\u1ED1n \\u0111\\u01B0\\u1EE3c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022switch on the desk lamp\u0022,\u0022vi\u0022:\u0022b\\u1EADt \\u0111\\u00E8n b\\u00E0n\u0022},{\u0022text\u0022:\u0022LED desk lamp\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E8n b\\u00E0n LED\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/135396164@N05/42381074432\u0022,\u0022author\u0022:\u0022freestocks.org\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.6830cc6009d84d57a59bf0fdcdcef029",
+      "kind": "Card",
+      "values": {
+        "Term": "office chair",
+        "Definition": "gh\u1EBF v\u0103n ph\u00F2ng",
+        "ImageUrl": "asset:4e5f2bfe10b29a2f5fe6431c499e363a54ce960da1297828f7ad8e10cf4b007c.webp",
+        "Phonetic": "/\u02C8\u0254f\u026As t\u0361\u0283\u025B\u025A/",
+        "Example": "My office chair is very comfortable.",
+        "ExampleTranslation": "Chi\u1EBFc gh\u1EBF v\u0103n ph\u00F2ng c\u1EE7a t\u00F4i r\u1EA5t tho\u1EA3i m\u00E1i.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a chair with wheels that you sit on at a desk",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u0252f\u026As t\u0361\u0283\u025B\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My office chair is very comfortable.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc gh\\u1EBF v\\u0103n ph\\u00F2ng c\\u1EE7a t\\u00F4i r\\u1EA5t tho\\u1EA3i m\\u00E1i.\u0022},{\u0022text\u0022:\u0022He spun round on his office chair.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y xoay v\\u00F2ng tr\\u00EAn chi\\u1EBFc gh\\u1EBF v\\u0103n ph\\u00F2ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022adjust the office chair\u0022,\u0022vi\u0022:\u0022ch\\u1EC9nh gh\\u1EBF v\\u0103n ph\\u00F2ng\u0022},{\u0022text\u0022:\u0022swivel office chair\u0022,\u0022vi\u0022:\u0022gh\\u1EBF v\\u0103n ph\\u00F2ng xoay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/office-desk-N7FUTW0RY5\u0022,\u0022author\u0022:\u0022Bench Accounting\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.6e9dab14b3bd4fa281b7f734b9ce6ca0",
+      "kind": "Card",
+      "values": {
+        "Term": "notice board",
+        "Definition": "b\u1EA3ng th\u00F4ng b\u00E1o",
+        "ImageUrl": "asset:863f0cd377cf6ad6d1525b38b7f7e07c8aa56938a4568f89751119c42ac61646.webp",
+        "Phonetic": "/\u02C8no\u028A.t\u026As bo\u0279d/",
+        "Example": "A new timetable is pinned to the notice board.",
+        "ExampleTranslation": "M\u1ED9t th\u1EDDi gian bi\u1EC3u m\u1EDBi \u0111\u01B0\u1EE3c ghim l\u00EAn b\u1EA3ng th\u00F4ng b\u00E1o.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a board on a wall where people put up messages and notes",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8n\u0259\u028A.t\u026As b\u0254\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A new timetable is pinned to the notice board.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t th\\u1EDDi gian bi\\u1EC3u m\\u1EDBi \\u0111\\u01B0\\u1EE3c ghim l\\u00EAn b\\u1EA3ng th\\u00F4ng b\\u00E1o.\u0022},{\u0022text\u0022:\u0022Please read the notice board before you leave.\u0022,\u0022vi\u0022:\u0022Vui l\\u00F2ng \\u0111\\u1ECDc b\\u1EA3ng th\\u00F4ng b\\u00E1o tr\\u01B0\\u1EDBc khi ra v\\u1EC1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pin a note on the notice board\u0022,\u0022vi\u0022:\u0022ghim gi\\u1EA5y l\\u00EAn b\\u1EA3ng th\\u00F4ng b\\u00E1o\u0022},{\u0022text\u0022:\u0022staff notice board\u0022,\u0022vi\u0022:\u0022b\\u1EA3ng th\\u00F4ng b\\u00E1o nh\\u00E2n vi\\u00EAn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6324535/png-paper-frame-sticker\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.6f7a16e428d54fcf972f1e28d3068b58",
+      "kind": "Card",
+      "values": {
+        "Term": "water cooler",
+        "Definition": "m\u00E1y n\u01B0\u1EDBc u\u1ED1ng",
+        "ImageUrl": "asset:9e847117a82c60cf25661384e37652b32695ad1f6bf0e4368c9b19df565f1ed9.webp",
+        "Phonetic": "/\u02C8w\u0254.t\u025A \u02C8ku.l\u025A/",
+        "Example": "The staff talk by the water cooler at break time.",
+        "ExampleTranslation": "Nh\u00E2n vi\u00EAn tr\u00F2 chuy\u1EC7n b\u00EAn m\u00E1y n\u01B0\u1EDBc u\u1ED1ng trong gi\u1EDD ngh\u1EC9.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine in an office that gives cool drinking water",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8w\u0254\u02D0.t\u0259 \u02C8ku\u02D0.l\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The staff talk by the water cooler at break time.\u0022,\u0022vi\u0022:\u0022Nh\\u00E2n vi\\u00EAn tr\\u00F2 chuy\\u1EC7n b\\u00EAn m\\u00E1y n\\u01B0\\u1EDBc u\\u1ED1ng trong gi\\u1EDD ngh\\u1EC9.\u0022},{\u0022text\u0022:\u0022The water cooler needs a new bottle.\u0022,\u0022vi\u0022:\u0022M\\u00E1y n\\u01B0\\u1EDBc u\\u1ED1ng c\\u1EA7n thay b\\u00ECnh m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fill a cup at the water cooler\u0022,\u0022vi\u0022:\u0022r\\u00F3t n\\u01B0\\u1EDBc \\u1EDF m\\u00E1y n\\u01B0\\u1EDBc u\\u1ED1ng\u0022},{\u0022text\u0022:\u0022office water cooler\u0022,\u0022vi\u0022:\u0022m\\u00E1y n\\u01B0\\u1EDBc u\\u1ED1ng v\\u0103n ph\\u00F2ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:G._I._Mix_Water-Cooler_-_DPLA_-_ee77d7c40c75f5280a669b3838e8f347_(page_3).jpg\u0022,\u0022author\u0022:\u0022Department of the Interior. Patent Office. (1849 - 1925)\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.771e429e79844f178458bfb019a6ff40",
+      "kind": "Card",
+      "values": {
+        "Term": "handshake",
+        "Definition": "c\u00E1i b\u1EAFt tay",
+        "ImageUrl": "asset:83d5274d9f14babf77e5f2b287744eb4c8cbfbed6ecf8bf141a533c5470c6e49.webp",
+        "Phonetic": "/\u02C8h\u00E6n(d)\u02CC\u0283e\u026Ak/",
+        "Example": "They closed the deal with a handshake.",
+        "ExampleTranslation": "H\u1ECD ch\u1ED1t th\u1ECFa thu\u1EADn b\u1EB1ng m\u1ED9t c\u00E1i b\u1EAFt tay.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the act of holding someone\u0027s hand to greet them",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8h\u00E6n(d)\u02CC\u0283e\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022They closed the deal with a handshake.\u0022,\u0022vi\u0022:\u0022H\\u1ECD ch\\u1ED1t th\\u1ECFa thu\\u1EADn b\\u1EB1ng m\\u1ED9t c\\u00E1i b\\u1EAFt tay.\u0022},{\u0022text\u0022:\u0022He has a firm handshake.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y c\\u00F3 c\\u00E1i b\\u1EAFt tay ch\\u1EAFc ch\\u1EAFn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022firm handshake\u0022,\u0022vi\u0022:\u0022c\\u00E1i b\\u1EAFt tay ch\\u1EAFc\u0022},{\u0022text\u0022:\u0022shake hands\u0022,\u0022vi\u0022:\u0022b\\u1EAFt tay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/9004444/image-person-handshake-cartoon\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.7bfe658951724ab6b03b9ccc8bb486fb",
+      "kind": "Card",
+      "values": {
+        "Term": "stapler",
+        "Definition": "c\u00E1i d\u1EADp ghim",
+        "ImageUrl": "asset:e1635bf06d4299a88410fff80b25b7d8bf3aca3359fb0813865a97e37954b696.webp",
+        "Phonetic": "/\u02C8ste\u026Apl\u025A/",
+        "Example": "Can I borrow your stapler for a moment?",
+        "ExampleTranslation": "M\u00ECnh m\u01B0\u1EE3n c\u00E1i d\u1EADp ghim c\u1EE7a b\u1EA1n m\u1ED9t l\u00E1t \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small tool that joins papers with a metal staple",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8ste\u026Apl\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can I borrow your stapler for a moment?\u0022,\u0022vi\u0022:\u0022M\\u00ECnh m\\u01B0\\u1EE3n c\\u00E1i d\\u1EADp ghim c\\u1EE7a b\\u1EA1n m\\u1ED9t l\\u00E1t \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022The stapler is on the shelf next to the pens.\u0022,\u0022vi\u0022:\u0022C\\u00E1i d\\u1EADp ghim \\u0111\\u1EB7t tr\\u00EAn k\\u1EC7 c\\u1EA1nh nh\\u1EEFng c\\u00E2y b\\u00FAt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022use a stapler\u0022,\u0022vi\u0022:\u0022d\\u00F9ng d\\u1EADp ghim\u0022},{\u0022text\u0022:\u0022staple papers together\u0022,\u0022vi\u0022:\u0022ghim c\\u00E1c t\\u1EDD gi\\u1EA5y l\\u1EA1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/2761dcbf26/\u0022,\u0022author\u0022:\u0022Darryl\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.80d3607206294b049460ed1ca43fe0d6",
+      "kind": "Card",
+      "values": {
+        "Term": "paper clip",
+        "Definition": "c\u00E1i k\u1EB9p gi\u1EA5y",
+        "ImageUrl": "asset:30009319879d622b9311447fe318c74b80ced4149d20a15e66d69c416dd9546c.webp",
+        "Phonetic": "/\u02C8pe\u026A\u032F.p\u0259\u0279 kl\u026Ap/",
+        "Example": "Attach the form to the letter with a paper clip.",
+        "ExampleTranslation": "H\u00E3y k\u1EB9p m\u1EABu \u0111\u01A1n v\u00E0o l\u00E1 th\u01B0 b\u1EB1ng m\u1ED9t c\u00E1i k\u1EB9p gi\u1EA5y.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small bent piece of wire that holds sheets of paper together",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8pe\u026A\u032F.p\u0259 kl\u026Ap/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Attach the form to the letter with a paper clip.\u0022,\u0022vi\u0022:\u0022H\\u00E3y k\\u1EB9p m\\u1EABu \\u0111\\u01A1n v\\u00E0o l\\u00E1 th\\u01B0 b\\u1EB1ng m\\u1ED9t c\\u00E1i k\\u1EB9p gi\\u1EA5y.\u0022},{\u0022text\u0022:\u0022There is a box of paper clips in the drawer.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t h\\u1ED9p k\\u1EB9p gi\\u1EA5y trong ng\\u0103n k\\u00E9o.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022use a paper clip\u0022,\u0022vi\u0022:\u0022d\\u00F9ng k\\u1EB9p gi\\u1EA5y\u0022},{\u0022text\u0022:\u0022box of paper clips\u0022,\u0022vi\u0022:\u0022h\\u1ED9p k\\u1EB9p gi\\u1EA5y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/paper-clip-NHBIJ8NGTB\u0022,\u0022author\u0022:\u0022Matt Moloney\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.8232637ecadd499ab08f5433e16b1598",
+      "kind": "Card",
+      "values": {
+        "Term": "meeting",
+        "Definition": "cu\u1ED9c h\u1ECDp",
+        "ImageUrl": "asset:224f4ba8647852c9364af960f7225d350b113542171084dfffa41f2fc1f49aa9.webp",
+        "Phonetic": "/\u02C8mit\u026A\u014B/",
+        "Example": "The team has a meeting every Monday morning.",
+        "ExampleTranslation": "C\u1EA3 nh\u00F3m h\u1ECDp v\u00E0o s\u00E1ng th\u1EE9 Hai h\u1EB1ng tu\u1EA7n.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an organised time when people discuss work together",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8mi\u02D0t\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The team has a meeting every Monday morning.\u0022,\u0022vi\u0022:\u0022C\\u1EA3 nh\\u00F3m h\\u1ECDp v\\u00E0o s\\u00E1ng th\\u1EE9 Hai h\\u1EB1ng tu\\u1EA7n.\u0022},{\u0022text\u0022:\u0022I was late for the meeting because of the traffic.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1EBFn h\\u1ECDp mu\\u1ED9n v\\u00EC k\\u1EB9t xe.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hold a meeting\u0022,\u0022vi\u0022:\u0022t\\u1ED5 ch\\u1EE9c cu\\u1ED9c h\\u1ECDp\u0022},{\u0022text\u0022:\u0022attend a meeting\u0022,\u0022vi\u0022:\u0022tham d\\u1EF1 cu\\u1ED9c h\\u1ECDp\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022meet\u0022,\u0022pos\u0022:\u0022verb\u0022,\u0022vi\u0022:\u0022g\\u1EB7p, h\\u1ECDp\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Deputy_Secretary_of_Defense_Kathleen_Hicks_greets_members_of_the_Defense_Business_Board_during_a_meeting_at_the_Pentagon,_Washington,_D.C.,_August_2,_2023_-_230802-D-PM193-1010.jpg\u0022,\u0022author\u0022:\u0022U.S. Deputy Secretary of Defense Kathleen H. Hicks\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.8616a14c7aec453da5554d0e04e44d72",
+      "kind": "Card",
+      "values": {
+        "Term": "briefcase",
+        "Definition": "c\u1EB7p t\u00E0i li\u1EC7u",
+        "ImageUrl": "asset:6370ac4bf7062a5bcd313dc9ce1b533c78f00a857799bd2bb30927c7b111c323.webp",
+        "Phonetic": "/\u02C8b\u0279i\u02D0f\u02CCke\u026As/",
+        "Example": "He carried a leather briefcase to the office.",
+        "ExampleTranslation": "Anh \u1EA5y x\u00E1ch m\u1ED9t chi\u1EBFc c\u1EB7p da \u0111\u1EBFn v\u0103n ph\u00F2ng.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat case for carrying papers to work",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8b\u0279i\u02D0f\u02CCke\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He carried a leather briefcase to the office.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y x\\u00E1ch m\\u1ED9t chi\\u1EBFc c\\u1EB7p da \\u0111\\u1EBFn v\\u0103n ph\\u00F2ng.\u0022},{\u0022text\u0022:\u0022She left her briefcase on the train.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y b\\u1ECF qu\\u00EAn chi\\u1EBFc c\\u1EB7p t\\u00E0i li\\u1EC7u tr\\u00EAn t\\u00E0u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022leather briefcase\u0022,\u0022vi\u0022:\u0022c\\u1EB7p da\u0022},{\u0022text\u0022:\u0022carry a briefcase\u0022,\u0022vi\u0022:\u0022x\\u00E1ch c\\u1EB7p t\\u00E0i li\\u1EC7u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6030259/vintage-briefcase-free-public-domain-cc0-photo\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.a09013cfe2824e9a8c6b3288ff3a1059",
+      "kind": "Card",
+      "values": {
+        "Term": "folder",
+        "Definition": "t\u1EADp h\u1ED3 s\u01A1, th\u01B0 m\u1EE5c gi\u1EA5y",
+        "ImageUrl": "asset:c41865e8e41fa54b6cd9e5dc3725e78e9ca0df0bb9693c2594fe080dcb17f72a.webp",
+        "Phonetic": "/\u02C8fo\u028Ald\u025A/",
+        "Example": "She put the contract in a blue folder.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y cho h\u1EE3p \u0111\u1ED3ng v\u00E0o m\u1ED9t t\u1EADp h\u1ED3 s\u01A1 m\u00E0u xanh.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat cover for keeping loose papers together",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8f\u0259\u028Ald\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She put the contract in a blue folder.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y cho h\\u1EE3p \\u0111\\u1ED3ng v\\u00E0o m\\u1ED9t t\\u1EADp h\\u1ED3 s\\u01A1 m\\u00E0u xanh.\u0022},{\u0022text\u0022:\u0022The folder on my desk is full of invoices.\u0022,\u0022vi\u0022:\u0022T\\u1EADp h\\u1ED3 s\\u01A1 tr\\u00EAn b\\u00E0n t\\u00F4i \\u0111\\u1EA7y h\\u00F3a \\u0111\\u01A1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open a folder\u0022,\u0022vi\u0022:\u0022m\\u1EDF t\\u1EADp h\\u1ED3 s\\u01A1\u0022},{\u0022text\u0022:\u0022file folder\u0022,\u0022vi\u0022:\u0022b\\u00ECa \\u0111\\u1EF1ng h\\u1ED3 s\\u01A1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:A4_swing_clip_folder_-_purple_-_A-.jpg\u0022,\u0022author\u0022:\u0022Fructibus\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.c289fa8849b041d9b8e9ea1b408935b0",
+      "kind": "Card",
+      "values": {
+        "Term": "laptop",
+        "Definition": "m\u00E1y t\u00EDnh x\u00E1ch tay",
+        "ImageUrl": "asset:be605b23c0dc2627776e271f512044ad52bc0d6ec53631c75acdd6758de070e9.webp",
+        "Phonetic": "/\u02C8l\u00E6p.t\u0251p/",
+        "Example": "She works on her laptop at the cafe.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y l\u00E0m vi\u1EC7c tr\u00EAn m\u00E1y t\u00EDnh x\u00E1ch tay \u1EDF qu\u00E1n c\u00E0 ph\u00EA.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small computer that you can carry",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8l\u00E6p.t\u0252p/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She works on her laptop at the cafe.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0m vi\\u1EC7c tr\\u00EAn m\\u00E1y t\\u00EDnh x\\u00E1ch tay \\u1EDF qu\\u00E1n c\\u00E0 ph\\u00EA.\u0022},{\u0022text\u0022:\u0022The company gave every employee a new laptop.\u0022,\u0022vi\u0022:\u0022C\\u00F4ng ty t\\u1EB7ng m\\u1ED7i nh\\u00E2n vi\\u00EAn m\\u1ED9t chi\\u1EBFc m\\u00E1y t\\u00EDnh x\\u00E1ch tay m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022open a laptop\u0022,\u0022vi\u0022:\u0022m\\u1EDF m\\u00E1y t\\u00EDnh x\\u00E1ch tay\u0022},{\u0022text\u0022:\u0022laptop bag\u0022,\u0022vi\u0022:\u0022t\\u00FAi \\u0111\\u1EF1ng laptop\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/laptop-desk-JCXQS3IVWD\u0022,\u0022author\u0022:\u0022Lisa Fotios\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.c66e95e8f70140828b438421773d4554",
+      "kind": "Card",
+      "values": {
+        "Term": "business card",
+        "Definition": "danh thi\u1EBFp",
+        "ImageUrl": "asset:0cc0ddf34685599bf1acad396943ab8fe193317df3a7a9566e7d3994efcc915d.webp",
+        "Phonetic": "/\u02C8b\u026Az.n\u026As k\u0251\u0279d/",
+        "Example": "He gave me his business card at the meeting.",
+        "ExampleTranslation": "Anh \u1EA5y \u0111\u01B0a danh thi\u1EBFp cho t\u00F4i trong cu\u1ED9c h\u1ECDp.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small card with your name, job and contact details",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8b\u026Az.n\u026As k\u0251\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He gave me his business card at the meeting.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111\\u01B0a danh thi\\u1EBFp cho t\\u00F4i trong cu\\u1ED9c h\\u1ECDp.\u0022},{\u0022text\u0022:\u0022I need to print new business cards.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u1EA7n in danh thi\\u1EBFp m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022exchange business cards\u0022,\u0022vi\u0022:\u0022trao \\u0111\\u1ED5i danh thi\\u1EBFp\u0022},{\u0022text\u0022:\u0022hand out a business card\u0022,\u0022vi\u0022:\u0022\\u0111\\u01B0a danh thi\\u1EBFp\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/182378525@N02/48371288526\u0022,\u0022author\u0022:\u0022FINTOC\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.ca1cbfdcfee84b8ca1b6aba99ac5deb6",
+      "kind": "Card",
+      "values": {
+        "Term": "photocopier",
+        "Definition": "m\u00E1y photocopy",
+        "ImageUrl": "asset:34ff22841bbda42a0810cee69003b62232aae1585159fcc7bf0194863ee5d9f0.webp",
+        "Phonetic": "/\u02C8fo\u028Ato\u028A\u02CCk\u0251pi\u025A/",
+        "Example": "The photocopier is jammed again.",
+        "ExampleTranslation": "M\u00E1y photocopy l\u1EA1i b\u1ECB k\u1EB9t gi\u1EA5y.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that makes copies of documents",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8f\u0259\u028At\u0259\u028A\u02CCk\u0252pi\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The photocopier is jammed again.\u0022,\u0022vi\u0022:\u0022M\\u00E1y photocopy l\\u1EA1i b\\u1ECB k\\u1EB9t gi\\u1EA5y.\u0022},{\u0022text\u0022:\u0022He made ten copies on the photocopier.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y photo m\\u01B0\\u1EDDi b\\u1EA3n b\\u1EB1ng m\\u00E1y photocopy.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022use the photocopier\u0022,\u0022vi\u0022:\u0022d\\u00F9ng m\\u00E1y photocopy\u0022},{\u0022text\u0022:\u0022photocopier paper\u0022,\u0022vi\u0022:\u0022gi\\u1EA5y photocopy\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6537997/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.d71f8402d41b42319ca89c007d2429e3",
+      "kind": "Card",
+      "values": {
+        "Term": "signature",
+        "Definition": "ch\u1EEF k\u00FD",
+        "ImageUrl": "asset:f26ab170578fccb4d3ee904966d5510b5533f9ca1768543e00577b44e0789e8f.webp",
+        "Phonetic": "/\u02C8s\u026A\u0261.n\u0259.t\u0361\u0283\u025A/",
+        "Example": "I need your signature at the bottom of the page.",
+        "ExampleTranslation": "T\u00F4i c\u1EA7n ch\u1EEF k\u00FD c\u1EE7a b\u1EA1n \u1EDF cu\u1ED1i trang.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "your name written in your own way",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8s\u026A\u0261.n\u0259.t\u0361\u0283\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I need your signature at the bottom of the page.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u1EA7n ch\\u1EEF k\\u00FD c\\u1EE7a b\\u1EA1n \\u1EDF cu\\u1ED1i trang.\u0022},{\u0022text\u0022:\u0022The signature on the letter looks very familiar.\u0022,\u0022vi\u0022:\u0022Ch\\u1EEF k\\u00FD tr\\u00EAn l\\u00E1 th\\u01B0 tr\\u00F4ng r\\u1EA5t quen.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022sign with a signature\u0022,\u0022vi\u0022:\u0022k\\u00FD b\\u1EB1ng ch\\u1EEF k\\u00FD\u0022},{\u0022text\u0022:\u0022digital signature\u0022,\u0022vi\u0022:\u0022ch\\u1EEF k\\u00FD s\\u1ED1\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022sign\u0022,\u0022pos\u0022:\u0022verb\u0022,\u0022vi\u0022:\u0022k\\u00FD\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/paper-steno-A6BMDPM394\u0022,\u0022author\u0022:\u0022energepic.com\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.d7699d049be341c4a986455880229400",
+      "kind": "Card",
+      "values": {
+        "Term": "cubicle",
+        "Definition": "ng\u0103n l\u00E0m vi\u1EC7c",
+        "ImageUrl": "asset:2352a34dde301b12ae34225d4cde36a81d3633555ea82f673a86d2e6ae40a470.webp",
+        "Phonetic": "/\u02C8kjub\u026Ak\u0259l/",
+        "Example": "Her cubicle is next to the window.",
+        "ExampleTranslation": "Ng\u0103n l\u00E0m vi\u1EC7c c\u1EE7a c\u00F4 \u1EA5y \u1EDF c\u1EA1nh c\u1EEDa s\u1ED5.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small part of an office separated by low walls",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8kju\u02D0b\u026Ak\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Her cubicle is next to the window.\u0022,\u0022vi\u0022:\u0022Ng\\u0103n l\\u00E0m vi\\u1EC7c c\\u1EE7a c\\u00F4 \\u1EA5y \\u1EDF c\\u1EA1nh c\\u1EEDa s\\u1ED5.\u0022},{\u0022text\u0022:\u0022He decorated his cubicle with family photos.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y trang tr\\u00ED ng\\u0103n l\\u00E0m vi\\u1EC7c b\\u1EB1ng nh\\u1EEFng b\\u1EE9c \\u1EA3nh gia \\u0111\\u00ECnh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022work in a cubicle\u0022,\u0022vi\u0022:\u0022l\\u00E0m vi\\u1EC7c trong ng\\u0103n l\\u00E0m vi\\u1EC7c\u0022},{\u0022text\u0022:\u0022office cubicle\u0022,\u0022vi\u0022:\u0022ng\\u0103n l\\u00E0m vi\\u1EC7c v\\u0103n ph\\u00F2ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Cubicle_land.jpg\u0022,\u0022author\u0022:\u0022Larsinio at English Wikipedia\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e3d55538522c4788a4893761626f222e",
+      "kind": "Card",
+      "values": {
+        "Term": "envelope",
+        "Definition": "phong b\u00EC",
+        "ImageUrl": "asset:2a34f87b76bf8d24e805cbde62926217b8b7b5b0b76e8baa212eb997e7ab7b69.webp",
+        "Phonetic": "/\u02C8\u025Bnv\u0259(\u02CC)lo\u028Ap/",
+        "Example": "She put the letter in an envelope.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y cho l\u00E1 th\u01B0 v\u00E0o m\u1ED9t c\u00E1i phong b\u00EC.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a paper cover in which you send a letter",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u025Bnv\u0259(\u02CC)l\u0259\u028Ap/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She put the letter in an envelope.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y cho l\\u00E1 th\\u01B0 v\\u00E0o m\\u1ED9t c\\u00E1i phong b\\u00EC.\u0022},{\u0022text\u0022:\u0022Write the address clearly on the envelope.\u0022,\u0022vi\u0022:\u0022H\\u00E3y vi\\u1EBFt \\u0111\\u1ECBa ch\\u1EC9 r\\u00F5 r\\u00E0ng l\\u00EAn phong b\\u00EC.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022seal an envelope\u0022,\u0022vi\u0022:\u0022d\\u00E1n phong b\\u00EC\u0022},{\u0022text\u0022:\u0022brown envelope\u0022,\u0022vi\u0022:\u0022phong b\\u00EC m\\u00E0u n\\u00E2u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6330256/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e54906e9003a48698a6b81143df0049b",
+      "kind": "Card",
+      "values": {
+        "Term": "contract",
+        "Definition": "h\u1EE3p \u0111\u1ED3ng",
+        "ImageUrl": "asset:37d727649200837b0342d5d5e5cf125d0a426a7451f197f30128fd4a09cf4f6f.webp",
+        "Phonetic": "/\u02C8k\u0251nt\u0279\u00E6kt/",
+        "Example": "She signed a two-year contract with the company.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y k\u00FD h\u1EE3p \u0111\u1ED3ng hai n\u0103m v\u1EDBi c\u00F4ng ty.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a legal agreement that you sign",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0252nt\u0279\u00E6kt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She signed a two-year contract with the company.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y k\\u00FD h\\u1EE3p \\u0111\\u1ED3ng hai n\\u0103m v\\u1EDBi c\\u00F4ng ty.\u0022},{\u0022text\u0022:\u0022Read the contract carefully before you sign it.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111\\u1ECDc k\\u1EF9 h\\u1EE3p \\u0111\\u1ED3ng tr\\u01B0\\u1EDBc khi k\\u00FD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022sign a contract\u0022,\u0022vi\u0022:\u0022k\\u00FD h\\u1EE3p \\u0111\\u1ED3ng\u0022},{\u0022text\u0022:\u0022permanent contract\u0022,\u0022vi\u0022:\u0022h\\u1EE3p \\u0111\\u1ED3ng kh\\u00F4ng th\\u1EDDi h\\u1EA1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5904897/photo-image-public-domain-hand-person\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e6ff8a06dcd64036b90c84d3f5f261fd",
+      "kind": "Card",
+      "values": {
+        "Term": "report",
+        "Definition": "b\u1EA3n b\u00E1o c\u00E1o; b\u00E1o c\u00E1o",
+        "ImageUrl": "asset:02e27310a0f10f34b08d76c557308baabace3e6d03d36ce75b272dd101d0be3a.webp",
+        "Phonetic": "/\u0279\u026A\u02C8po\u0279t/",
+        "Example": "I have to finish the sales report today.",
+        "ExampleTranslation": "H\u00F4m nay t\u00F4i ph\u1EA3i ho\u00E0n th\u00E0nh b\u00E1o c\u00E1o doanh s\u1ED1.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "a document that gives information about something",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u0279\u026A\u02C8p\u0254\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have to finish the sales report today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay t\\u00F4i ph\\u1EA3i ho\\u00E0n th\\u00E0nh b\\u00E1o c\\u00E1o doanh s\\u1ED1.\u0022},{\u0022text\u0022:\u0022He reported the problem to his manager.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y b\\u00E1o v\\u1EA5n \\u0111\\u1EC1 cho qu\\u1EA3n l\\u00FD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022write a report\u0022,\u0022vi\u0022:\u0022vi\\u1EBFt b\\u00E1o c\\u00E1o\u0022},{\u0022text\u0022:\u0022annual report\u0022,\u0022vi\u0022:\u0022b\\u00E1o c\\u00E1o th\\u01B0\\u1EDDng ni\\u00EAn\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022reported\u0022,\u0022pastParticiple\u0022:\u0022reported\u0022,\u0022ing\u0022:\u0022reporting\u0022,\u0022thirdPerson\u0022:\u0022reports\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/book-report-G0V362YTA5\u0022,\u0022author\u0022:\u0022Negative Space\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+      "kind": "Folder",
+      "values": {
+        "FolderName": "T\u1EEB v\u1EF1ng theo ch\u1EE7 \u0111\u1EC1 \u2013 Trung c\u1EA5p (B1\u2013B2)"
+      },
+      "references": {
+        "ParentFolderId": null,
+        "UserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.f0acefb39fea44a595365834f86445fe",
+      "kind": "Card",
+      "values": {
+        "Term": "calendar",
+        "Definition": "cu\u1ED1n l\u1ECBch",
+        "ImageUrl": "asset:535d8dfccf404e6f4dafa5b0189f92555c54d570ef74d1c87b88d790134f0a91.webp",
+        "Phonetic": "/\u02C8k\u00E6l\u0259nd\u025A/",
+        "Example": "I marked the meeting on my calendar.",
+        "ExampleTranslation": "T\u00F4i \u0111\u00E1nh d\u1EA5u cu\u1ED9c h\u1ECDp tr\u00EAn cu\u1ED1n l\u1ECBch c\u1EE7a m\u00ECnh.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a chart that shows the days and months of the year",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8k\u00E6l\u026And\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I marked the meeting on my calendar.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u00E1nh d\\u1EA5u cu\\u1ED9c h\\u1ECDp tr\\u00EAn cu\\u1ED1n l\\u1ECBch c\\u1EE7a m\\u00ECnh.\u0022},{\u0022text\u0022:\u0022There is a big calendar on the office wall.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t cu\\u1ED1n l\\u1ECBch l\\u1EDBn tr\\u00EAn t\\u01B0\\u1EDDng v\\u0103n ph\\u00F2ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wall calendar\u0022,\u0022vi\u0022:\u0022l\\u1ECBch treo t\\u01B0\\u1EDDng\u0022},{\u0022text\u0022:\u0022check the calendar\u0022,\u0022vi\u0022:\u0022xem l\\u1ECBch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Manual_scrollable_wooden_wall_calendar.jpg\u0022,\u0022author\u0022:\u0022Amitbalani\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.ff4b51a82826499f92290e8e4d3d85a8",
+      "kind": "Card",
+      "values": {
+        "Term": "coffee machine",
+        "Definition": "m\u00E1y pha c\u00E0 ph\u00EA",
+        "ImageUrl": "asset:3ab68666874e5a28f8577da0a0f3008a459ecae5a885bc9f3c2d5dceda8b19fb.webp",
+        "Phonetic": "/\u02C8k\u0254fi m\u0259\u02C8\u0283in/",
+        "Example": "The coffee machine in our office is broken again.",
+        "ExampleTranslation": "Chi\u1EBFc m\u00E1y pha c\u00E0 ph\u00EA \u1EDF v\u0103n ph\u00F2ng ch\u00FAng t\u00F4i l\u1EA1i h\u1ECFng.",
+        "Topic": "C\u00F4ng vi\u1EC7c \u0026 v\u0103n ph\u00F2ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that makes coffee",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8k\u0252fi m\u0259\u02C8\u0283i\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The coffee machine in our office is broken again.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc m\\u00E1y pha c\\u00E0 ph\\u00EA \\u1EDF v\\u0103n ph\\u00F2ng ch\\u00FAng t\\u00F4i l\\u1EA1i h\\u1ECFng.\u0022},{\u0022text\u0022:\u0022He got a cup from the coffee machine.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y l\\u1EA5y m\\u1ED9t t\\u00E1ch t\\u1EEB m\\u00E1y pha c\\u00E0 ph\\u00EA.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022use the coffee machine\u0022,\u0022vi\u0022:\u0022d\\u00F9ng m\\u00E1y pha c\\u00E0 ph\\u00EA\u0022},{\u0022text\u0022:\u0022automatic coffee machine\u0022,\u0022vi\u0022:\u0022m\\u00E1y pha c\\u00E0 ph\\u00EA t\\u1EF1 \\u0111\\u1ED9ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3283560/free-photo-image-restaurant-espresso-cafe\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "224f4ba8647852c9364af960f7225d350b113542171084dfffa41f2fc1f49aa9.webp",
+      "sha256": "224f4ba8647852c9364af960f7225d350b113542171084dfffa41f2fc1f49aa9"
+    },
+    {
+      "file": "c41865e8e41fa54b6cd9e5dc3725e78e9ca0df0bb9693c2594fe080dcb17f72a.webp",
+      "sha256": "c41865e8e41fa54b6cd9e5dc3725e78e9ca0df0bb9693c2594fe080dcb17f72a"
+    },
+    {
+      "file": "52a14ef1049ed082005f0f8950ab038cacae1d511384982bb76d763903b1a5c7.webp",
+      "sha256": "52a14ef1049ed082005f0f8950ab038cacae1d511384982bb76d763903b1a5c7"
+    },
+    {
+      "file": "30009319879d622b9311447fe318c74b80ced4149d20a15e66d69c416dd9546c.webp",
+      "sha256": "30009319879d622b9311447fe318c74b80ced4149d20a15e66d69c416dd9546c"
+    },
+    {
+      "file": "37d727649200837b0342d5d5e5cf125d0a426a7451f197f30128fd4a09cf4f6f.webp",
+      "sha256": "37d727649200837b0342d5d5e5cf125d0a426a7451f197f30128fd4a09cf4f6f"
+    },
+    {
+      "file": "29c8c5b6336476d071684d4da2669b8d8738bf517b4ecd32a4e7e73bcb6ae5d7.webp",
+      "sha256": "29c8c5b6336476d071684d4da2669b8d8738bf517b4ecd32a4e7e73bcb6ae5d7"
+    },
+    {
+      "file": "3ab68666874e5a28f8577da0a0f3008a459ecae5a885bc9f3c2d5dceda8b19fb.webp",
+      "sha256": "3ab68666874e5a28f8577da0a0f3008a459ecae5a885bc9f3c2d5dceda8b19fb"
+    },
+    {
+      "file": "02e27310a0f10f34b08d76c557308baabace3e6d03d36ce75b272dd101d0be3a.webp",
+      "sha256": "02e27310a0f10f34b08d76c557308baabace3e6d03d36ce75b272dd101d0be3a"
+    },
+    {
+      "file": "3d0e8034abcad1a97930ba80bc2e7b22fc354529dedbb689a23c5609ed30d1cb.webp",
+      "sha256": "3d0e8034abcad1a97930ba80bc2e7b22fc354529dedbb689a23c5609ed30d1cb"
+    },
+    {
+      "file": "4e5f2bfe10b29a2f5fe6431c499e363a54ce960da1297828f7ad8e10cf4b007c.webp",
+      "sha256": "4e5f2bfe10b29a2f5fe6431c499e363a54ce960da1297828f7ad8e10cf4b007c"
+    },
+    {
+      "file": "34ff22841bbda42a0810cee69003b62232aae1585159fcc7bf0194863ee5d9f0.webp",
+      "sha256": "34ff22841bbda42a0810cee69003b62232aae1585159fcc7bf0194863ee5d9f0"
+    },
+    {
+      "file": "e1635bf06d4299a88410fff80b25b7d8bf3aca3359fb0813865a97e37954b696.webp",
+      "sha256": "e1635bf06d4299a88410fff80b25b7d8bf3aca3359fb0813865a97e37954b696"
+    },
+    {
+      "file": "2a34f87b76bf8d24e805cbde62926217b8b7b5b0b76e8baa212eb997e7ab7b69.webp",
+      "sha256": "2a34f87b76bf8d24e805cbde62926217b8b7b5b0b76e8baa212eb997e7ab7b69"
+    },
+    {
+      "file": "535d8dfccf404e6f4dafa5b0189f92555c54d570ef74d1c87b88d790134f0a91.webp",
+      "sha256": "535d8dfccf404e6f4dafa5b0189f92555c54d570ef74d1c87b88d790134f0a91"
+    },
+    {
+      "file": "0cc0ddf34685599bf1acad396943ab8fe193317df3a7a9566e7d3994efcc915d.webp",
+      "sha256": "0cc0ddf34685599bf1acad396943ab8fe193317df3a7a9566e7d3994efcc915d"
+    },
+    {
+      "file": "6370ac4bf7062a5bcd313dc9ce1b533c78f00a857799bd2bb30927c7b111c323.webp",
+      "sha256": "6370ac4bf7062a5bcd313dc9ce1b533c78f00a857799bd2bb30927c7b111c323"
+    },
+    {
+      "file": "9e847117a82c60cf25661384e37652b32695ad1f6bf0e4368c9b19df565f1ed9.webp",
+      "sha256": "9e847117a82c60cf25661384e37652b32695ad1f6bf0e4368c9b19df565f1ed9"
+    },
+    {
+      "file": "aca71915d7e14041218c16fdd3a6e46925deccf5adc8b9f17072ebb3fe8cfeea.webp",
+      "sha256": "aca71915d7e14041218c16fdd3a6e46925deccf5adc8b9f17072ebb3fe8cfeea"
+    },
+    {
+      "file": "8f38d4716f54c5a04d8b6aab0d906b9ab47d9645edcf23574e36e4a3004d9ebf.webp",
+      "sha256": "8f38d4716f54c5a04d8b6aab0d906b9ab47d9645edcf23574e36e4a3004d9ebf"
+    },
+    {
+      "file": "2352a34dde301b12ae34225d4cde36a81d3633555ea82f673a86d2e6ae40a470.webp",
+      "sha256": "2352a34dde301b12ae34225d4cde36a81d3633555ea82f673a86d2e6ae40a470"
+    },
+    {
+      "file": "83d5274d9f14babf77e5f2b287744eb4c8cbfbed6ecf8bf141a533c5470c6e49.webp",
+      "sha256": "83d5274d9f14babf77e5f2b287744eb4c8cbfbed6ecf8bf141a533c5470c6e49"
+    },
+    {
+      "file": "f26ab170578fccb4d3ee904966d5510b5533f9ca1768543e00577b44e0789e8f.webp",
+      "sha256": "f26ab170578fccb4d3ee904966d5510b5533f9ca1768543e00577b44e0789e8f"
+    },
+    {
+      "file": "863f0cd377cf6ad6d1525b38b7f7e07c8aa56938a4568f89751119c42ac61646.webp",
+      "sha256": "863f0cd377cf6ad6d1525b38b7f7e07c8aa56938a4568f89751119c42ac61646"
+    },
+    {
+      "file": "7179d3581fe539eafda0c0a18263d7f43c9d651ea9abee0bc056b6a81d770330.webp",
+      "sha256": "7179d3581fe539eafda0c0a18263d7f43c9d651ea9abee0bc056b6a81d770330"
+    },
+    {
+      "file": "be605b23c0dc2627776e271f512044ad52bc0d6ec53631c75acdd6758de070e9.webp",
+      "sha256": "be605b23c0dc2627776e271f512044ad52bc0d6ec53631c75acdd6758de070e9"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b01-cong-viec-van-phong"
+}

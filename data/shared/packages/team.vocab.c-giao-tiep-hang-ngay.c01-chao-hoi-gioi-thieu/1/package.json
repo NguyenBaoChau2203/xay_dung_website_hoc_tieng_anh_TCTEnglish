@@ -1,0 +1,535 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu",
+      "kind": "Set",
+      "values": {
+        "SetName": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "Description": "#a1 #a2 #b1 #greetings #introductions"
+      },
+      "references": {
+        "FolderId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.69eb25c500b84f00ab2dc9c4b8036467",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.1d35f1b64c4b4ddaac91a9f4fcfa9d90",
+      "kind": "Card",
+      "values": {
+        "Term": "Good evening!",
+        "Definition": "ch\u00E0o bu\u1ED5i t\u1ED1i",
+        "ImageUrl": "asset:7e851cd15b683b6c27d4c0490f7412be4d6c12b7e0987d0f33e1ede5f260ddd5.webp",
+        "Phonetic": null,
+        "Example": "Good evening! Welcome to our restaurant.",
+        "ExampleTranslation": "Ch\u00E0o bu\u1ED5i t\u1ED1i! Ch\u00E0o m\u1EEBng \u0111\u1EBFn nh\u00E0 h\u00E0ng c\u1EE7a ch\u00FAng t\u00F4i.",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite greeting in the evening",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Good evening! Welcome to our restaurant.\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o bu\\u1ED5i t\\u1ED1i! Ch\\u00E0o m\\u1EEBng \\u0111\\u1EBFn nh\\u00E0 h\\u00E0ng c\\u1EE7a ch\\u00FAng t\\u00F4i.\u0022},{\u0022text\u0022:\u0022Good evening, everyone.\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o bu\\u1ED5i t\\u1ED1i m\\u1ECDi ng\\u01B0\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Good evening, sir.\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o bu\\u1ED5i t\\u1ED1i, th\\u01B0a \\u00F4ng.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.2244e925dc4d40eab03ef32ed3924c17",
+      "kind": "Card",
+      "values": {
+        "Term": "My name is...",
+        "Definition": "t\u00EAn t\u00F4i l\u00E0...",
+        "ImageUrl": "asset:2443e2f5ee908b43bc9c33a2170cde9715f54bacbfef8884e2e7e893311a6bdf.webp",
+        "Phonetic": null,
+        "Example": "My name is Minh. I\u0027m from Vietnam.",
+        "ExampleTranslation": "T\u00EAn t\u00F4i l\u00E0 Minh. T\u00F4i \u0111\u1EBFn t\u1EEB Vi\u1EC7t Nam.",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a phrase for telling people your name",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My name is Minh. I\\u0027m from Vietnam.\u0022,\u0022vi\u0022:\u0022T\\u00EAn t\\u00F4i l\\u00E0 Minh. T\\u00F4i \\u0111\\u1EBFn t\\u1EEB Vi\\u1EC7t Nam.\u0022},{\u0022text\u0022:\u0022Hello, my name is Sara.\u0022,\u0022vi\u0022:\u0022Xin ch\\u00E0o, t\\u00EAn t\\u00F4i l\\u00E0 Sara.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027m Minh.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u00E0 Minh.\u0022},{\u0022text\u0022:\u0022Call me Mike.\u0022,\u0022vi\u0022:\u0022C\\u1EE9 g\\u1ECDi t\\u00F4i l\\u00E0 Mike.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.254c801d81344879873435b48a679f45",
+      "kind": "Card",
+      "values": {
+        "Term": "Good afternoon!",
+        "Definition": "ch\u00E0o bu\u1ED5i chi\u1EC1u",
+        "ImageUrl": "asset:dc2806e0c42e714bb7106f8dc2499fab88d5d9636e855aa3a9b39f650492780e.webp",
+        "Phonetic": null,
+        "Example": "Good afternoon! Can I help you?",
+        "ExampleTranslation": "Ch\u00E0o bu\u1ED5i chi\u1EC1u! T\u00F4i gi\u00FAp \u0111\u01B0\u1EE3c g\u00EC cho b\u1EA1n?",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite greeting from noon until evening",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Good afternoon! Can I help you?\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o bu\\u1ED5i chi\\u1EC1u! T\\u00F4i gi\\u00FAp \\u0111\\u01B0\\u1EE3c g\\u00EC cho b\\u1EA1n?\u0022},{\u0022text\u0022:\u0022Good afternoon, class.\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o bu\\u1ED5i chi\\u1EC1u c\\u1EA3 l\\u1EDBp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Good afternoon, madam.\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o bu\\u1ED5i chi\\u1EC1u, th\\u01B0a b\\u00E0.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.328224b044564f60b1d98ca79898bd1d",
+      "kind": "Card",
+      "values": {
+        "Term": "Have a nice day!",
+        "Definition": "ch\u00FAc b\u1EA1n m\u1ED9t ng\u00E0y t\u1ED1t l\u00E0nh",
+        "ImageUrl": "asset:446b399a024f9761a8c85367abc29d2054eb7b7cdf19a12c1a2ecd1be0e9d9cc.webp",
+        "Phonetic": null,
+        "Example": "Thank you! Have a nice day!",
+        "ExampleTranslation": "C\u1EA3m \u01A1n b\u1EA1n! Ch\u00FAc b\u1EA1n m\u1ED9t ng\u00E0y t\u1ED1t l\u00E0nh!",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a friendly wish when someone leaves",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Thank you! Have a nice day!\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n! Ch\\u00FAc b\\u1EA1n m\\u1ED9t ng\\u00E0y t\\u1ED1t l\\u00E0nh!\u0022},{\u0022text\u0022:\u0022The shop assistant said, \\u0022Have a nice day!\\u0022\u0022,\u0022vi\u0022:\u0022Nh\\u00E2n vi\\u00EAn b\\u00E1n h\\u00E0ng n\\u00F3i: \\u0022Ch\\u00FAc b\\u1EA1n m\\u1ED9t ng\\u00E0y t\\u1ED1t l\\u00E0nh!\\u0022\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022You too!\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u0169ng v\\u1EADy nh\\u00E9!\u0022},{\u0022text\u0022:\u0022Have a great weekend!\u0022,\u0022vi\u0022:\u0022Ch\\u00FAc b\\u1EA1n cu\\u1ED1i tu\\u1EA7n vui v\\u1EBB!\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.3c63387f240b48079dbadbd7a7875c7a",
+      "kind": "Card",
+      "values": {
+        "Term": "Nice to meet you.",
+        "Definition": "r\u1EA5t vui \u0111\u01B0\u1EE3c g\u1EB7p b\u1EA1n",
+        "ImageUrl": "asset:573064a396acc108bc03411ea271d48f9da04d595b320c250e99eaca52227778.webp",
+        "Phonetic": null,
+        "Example": "Nice to meet you. I\u0027m Linh.",
+        "ExampleTranslation": "R\u1EA5t vui \u0111\u01B0\u1EE3c g\u1EB7p b\u1EA1n. T\u00F4i l\u00E0 Linh.",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you meet someone for the first time",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Nice to meet you. I\\u0027m Linh.\u0022,\u0022vi\u0022:\u0022R\\u1EA5t vui \\u0111\\u01B0\\u1EE3c g\\u1EB7p b\\u1EA1n. T\\u00F4i l\\u00E0 Linh.\u0022},{\u0022text\u0022:\u0022Nice to meet you too.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u0169ng r\\u1EA5t vui \\u0111\\u01B0\\u1EE3c g\\u1EB7p b\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Pleased to meet you.\u0022,\u0022vi\u0022:\u0022H\\u00E2n h\\u1EA1nh \\u0111\\u01B0\\u1EE3c g\\u1EB7p b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022Nice to meet you too.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u0169ng r\\u1EA5t vui \\u0111\\u01B0\\u1EE3c g\\u1EB7p b\\u1EA1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.5ac8ba51060540bda8badef30217b923",
+      "kind": "Card",
+      "values": {
+        "Term": "Where are you from?",
+        "Definition": "b\u1EA1n \u0111\u1EBFn t\u1EEB \u0111\u00E2u?",
+        "ImageUrl": "asset:46b385c6b3feda5cf9ca2d40eca0b475275bc2e283078b35de7dcb0d89395fc3.webp",
+        "Phonetic": null,
+        "Example": "Where are you from? I\u0027m from Brazil.",
+        "ExampleTranslation": "B\u1EA1n \u0111\u1EBFn t\u1EEB \u0111\u00E2u? T\u00F4i \u0111\u1EBFn t\u1EEB Brazil.",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about someone\u0027s country or town",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Where are you from? I\\u0027m from Brazil.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n \\u0111\\u1EBFn t\\u1EEB \\u0111\\u00E2u? T\\u00F4i \\u0111\\u1EBFn t\\u1EEB Brazil.\u0022},{\u0022text\u0022:\u0022Where are you from originally?\u0022,\u0022vi\u0022:\u0022G\\u1ED1c g\\u00E1c b\\u1EA1n \\u1EDF \\u0111\\u00E2u?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027m from Hanoi.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1EBFn t\\u1EEB H\\u00E0 N\\u1ED9i.\u0022},{\u0022text\u0022:\u0022I come from Japan.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1EBFn t\\u1EEB Nh\\u1EADt B\\u1EA3n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.5d50601ddd044151b10d23151cabcdab",
+      "kind": "Card",
+      "values": {
+        "Term": "See you later!",
+        "Definition": "h\u1EB9n g\u1EB7p l\u1EA1i sau!",
+        "ImageUrl": "asset:d24229cccacda794c1cd2a7e6752010d17e6bc30fbdd9142149303b701abf388.webp",
+        "Phonetic": null,
+        "Example": "See you later! I have to go to class.",
+        "ExampleTranslation": "H\u1EB9n g\u1EB7p l\u1EA1i sau! T\u00F4i ph\u1EA3i \u0111i h\u1ECDc \u0111\u00E2y.",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a friendly way to say goodbye for now",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022See you later! I have to go to class.\u0022,\u0022vi\u0022:\u0022H\\u1EB9n g\\u1EB7p l\\u1EA1i sau! T\\u00F4i ph\\u1EA3i \\u0111i h\\u1ECDc \\u0111\\u00E2y.\u0022},{\u0022text\u0022:\u0022See you later, Dad!\u0022,\u0022vi\u0022:\u0022H\\u1EB9n g\\u1EB7p l\\u1EA1i b\\u1ED1 sau nh\\u00E9!\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022See you soon!\u0022,\u0022vi\u0022:\u0022H\\u1EB9n s\\u1EDBm g\\u1EB7p l\\u1EA1i!\u0022},{\u0022text\u0022:\u0022See you tomorrow!\u0022,\u0022vi\u0022:\u0022H\\u1EB9n mai g\\u1EB7p!\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.6425fb6eb374484fa3552fb295e7863b",
+      "kind": "Card",
+      "values": {
+        "Term": "Hello!",
+        "Definition": "l\u1EDDi ch\u00E0o th\u00F4ng th\u01B0\u1EDDng",
+        "ImageUrl": "asset:af3096eca862ea0d28402e06a89a03997dd854e6bfb406632b2145475071e07b.webp",
+        "Phonetic": null,
+        "Example": "Hello! How are you today?",
+        "ExampleTranslation": "Xin ch\u00E0o! H\u00F4m nay b\u1EA1n th\u1EBF n\u00E0o?",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a common way to greet someone",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Hello! How are you today?\u0022,\u0022vi\u0022:\u0022Xin ch\\u00E0o! H\\u00F4m nay b\\u1EA1n th\\u1EBF n\\u00E0o?\u0022},{\u0022text\u0022:\u0022She smiled and said, \\u0022Hello!\\u0022\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EC9m c\\u01B0\\u1EDDi v\\u00E0 n\\u00F3i: \\u0022Xin ch\\u00E0o!\\u0022\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Hello there!\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o b\\u1EA1n!\u0022},{\u0022text\u0022:\u0022Hi!\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o!\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.69eb25c500b84f00ab2dc9c4b8036467",
+      "kind": "Folder",
+      "values": {
+        "FolderName": "Giao ti\u1EBFp h\u1EB1ng ng\u00E0y"
+      },
+      "references": {
+        "ParentFolderId": null,
+        "UserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.73fd60d52a0745b79b123485dfbc291f",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027m fine, thank you.",
+        "Definition": "t\u00F4i kh\u1ECFe, c\u1EA3m \u01A1n",
+        "ImageUrl": "asset:929049a565532d9a52ab9330a0930e9bbb50637aaea92794cc19fd09f2096576.webp",
+        "Phonetic": null,
+        "Example": "I\u0027m fine, thank you. And you?",
+        "ExampleTranslation": "T\u00F4i kh\u1ECFe, c\u1EA3m \u01A1n. C\u00F2n b\u1EA1n?",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite answer to \u0022How are you?\u0022",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027m fine, thank you. And you?\u0022,\u0022vi\u0022:\u0022T\\u00F4i kh\\u1ECFe, c\\u1EA3m \\u01A1n. C\\u00F2n b\\u1EA1n?\u0022},{\u0022text\u0022:\u0022\\u0022How are you?\\u0022 \\u0022I\\u0027m fine, thank you.\\u0022\u0022,\u0022vi\u0022:\u0022\\u0022B\\u1EA1n kh\\u1ECFe kh\\u00F4ng?\\u0022 \\u0022T\\u00F4i kh\\u1ECFe, c\\u1EA3m \\u01A1n.\\u0022\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027m very well.\u0022,\u0022vi\u0022:\u0022T\\u00F4i r\\u1EA5t kh\\u1ECFe.\u0022},{\u0022text\u0022:\u0022I\\u0027m okay.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u1ED5n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.7c5bc021728d49f0a25c672855269e62",
+      "kind": "Card",
+      "values": {
+        "Term": "Goodbye!",
+        "Definition": "t\u1EA1m bi\u1EC7t!",
+        "ImageUrl": "asset:d3eb9511e6f1b560eeefc8114518e0788b4eed85458081bc162b2c27d53b5330.webp",
+        "Phonetic": null,
+        "Example": "Goodbye! Have a nice day.",
+        "ExampleTranslation": "T\u1EA1m bi\u1EC7t! Ch\u00FAc b\u1EA1n m\u1ED9t ng\u00E0y t\u1ED1t l\u00E0nh.",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a common way to end a conversation",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Goodbye! Have a nice day.\u0022,\u0022vi\u0022:\u0022T\\u1EA1m bi\\u1EC7t! Ch\\u00FAc b\\u1EA1n m\\u1ED9t ng\\u00E0y t\\u1ED1t l\\u00E0nh.\u0022},{\u0022text\u0022:\u0022She waved and said goodbye.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y v\\u1EABy tay v\\u00E0 n\\u00F3i t\\u1EA1m bi\\u1EC7t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Bye-bye!\u0022,\u0022vi\u0022:\u0022T\\u1EA1m bi\\u1EC7t nh\\u00E9!\u0022},{\u0022text\u0022:\u0022Take care!\u0022,\u0022vi\u0022:\u0022B\\u1EA3o tr\\u1ECDng nh\\u00E9!\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.853a34da8edb4ed78ea0402ac3b5cbff",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027m from...",
+        "Definition": "t\u00F4i \u0111\u1EBFn t\u1EEB...",
+        "ImageUrl": "asset:3d4b929210b1ecbfb736be84256a5b4d0da9ad7dfcaf4e331dc598fbe143dd55.webp",
+        "Phonetic": null,
+        "Example": "I\u0027m from Da Nang, a city on the coast.",
+        "ExampleTranslation": "T\u00F4i \u0111\u1EBFn t\u1EEB \u0110\u00E0 N\u1EB5ng, m\u1ED9t th\u00E0nh ph\u1ED1 ven bi\u1EC3n.",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a phrase for saying your country or city",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027m from Da Nang, a city on the coast.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1EBFn t\\u1EEB \\u0110\\u00E0 N\\u1EB5ng, m\\u1ED9t th\\u00E0nh ph\\u1ED1 ven bi\\u1EC3n.\u0022},{\u0022text\u0022:\u0022She said, \\u0022I\\u0027m from Canada.\\u0022\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y n\\u00F3i: \\u0022T\\u00F4i \\u0111\\u1EBFn t\\u1EEB Canada.\\u0022\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I come from Peru.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1EBFn t\\u1EEB Peru.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.8b311c99cd07477a99be57734a9c0d9c",
+      "kind": "Card",
+      "values": {
+        "Term": "Good morning!",
+        "Definition": "ch\u00E0o bu\u1ED5i s\u00E1ng",
+        "ImageUrl": "asset:49c767a91018be2580806c14a594566bdd32a5528c2c33f6c7bedce59ad34e8f.webp",
+        "Phonetic": null,
+        "Example": "Good morning! Did you sleep well?",
+        "ExampleTranslation": "Ch\u00E0o bu\u1ED5i s\u00E1ng! B\u1EA1n ng\u1EE7 ngon kh\u00F4ng?",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a greeting you say before noon",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Good morning! Did you sleep well?\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o bu\\u1ED5i s\\u00E1ng! B\\u1EA1n ng\\u1EE7 ngon kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Good morning, Mr Lee!\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o bu\\u1ED5i s\\u00E1ng, \\u00F4ng Lee!\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Good morning, everyone!\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o bu\\u1ED5i s\\u00E1ng m\\u1ECDi ng\\u01B0\\u1EDDi!\u0022},{\u0022text\u0022:\u0022Morning!\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o bu\\u1ED5i s\\u00E1ng!\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.8b9843fa336c4bdcbfe14c3ccd9f7efc",
+      "kind": "Card",
+      "values": {
+        "Term": "It\u0027s a pleasure to meet you.",
+        "Definition": "r\u1EA5t h\u00E2n h\u1EA1nh \u0111\u01B0\u1EE3c g\u1EB7p b\u1EA1n",
+        "ImageUrl": "asset:12b30878bc08687456f04603161dc6dbd838833e3ccb25276c3c808dbed39ad0.webp",
+        "Phonetic": null,
+        "Example": "It\u0027s a pleasure to meet you, Dr Brown.",
+        "ExampleTranslation": "R\u1EA5t h\u00E2n h\u1EA1nh \u0111\u01B0\u1EE3c g\u1EB7p b\u00E1c s\u0129 Brown.",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a formal way to say you are happy to meet someone",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022It\\u0027s a pleasure to meet you, Dr Brown.\u0022,\u0022vi\u0022:\u0022R\\u1EA5t h\\u00E2n h\\u1EA1nh \\u0111\\u01B0\\u1EE3c g\\u1EB7p b\\u00E1c s\\u0129 Brown.\u0022},{\u0022text\u0022:\u0022It\\u0027s a pleasure to meet you at last.\u0022,\u0022vi\u0022:\u0022R\\u1EA5t h\\u00E2n h\\u1EA1nh cu\\u1ED1i c\\u00F9ng c\\u0169ng \\u0111\\u01B0\\u1EE3c g\\u1EB7p b\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022The pleasure is mine.\u0022,\u0022vi\u0022:\u0022H\\u00E2n h\\u1EA1nh l\\u00E0 c\\u1EE7a t\\u00F4i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.a32d22e0c6ed4dd3acfea875bed6fe9b",
+      "kind": "Card",
+      "values": {
+        "Term": "How are you?",
+        "Definition": "b\u1EA1n kh\u1ECFe kh\u00F4ng?",
+        "ImageUrl": "asset:6edddc59cecc2568aee4a230018bea72aa174907e3beb8b8195c702b78ed5200.webp",
+        "Phonetic": null,
+        "Example": "Hi, Anna! How are you?",
+        "ExampleTranslation": "Ch\u00E0o Anna! B\u1EA1n kh\u1ECFe kh\u00F4ng?",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question to ask about someone\u0027s health or mood",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Hi, Anna! How are you?\u0022,\u0022vi\u0022:\u0022Ch\\u00E0o Anna! B\\u1EA1n kh\\u1ECFe kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022How are you feeling today?\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay b\\u1EA1n th\\u1EA5y th\\u1EBF n\\u00E0o?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027m fine, thank you.\u0022,\u0022vi\u0022:\u0022T\\u00F4i kh\\u1ECFe, c\\u1EA3m \\u01A1n b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022Not bad.\u0022,\u0022vi\u0022:\u0022C\\u0169ng kh\\u00F4ng t\\u1EC7.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.a80dc8698b714670af7e19f9accbd0e5",
+      "kind": "Card",
+      "values": {
+        "Term": "Let me introduce myself.",
+        "Definition": "\u0111\u1EC3 t\u00F4i t\u1EF1 gi\u1EDBi thi\u1EC7u",
+        "ImageUrl": "asset:6e53cd5e7d8124329bd04238cba9b1b7b65abf7fcc8f0ea4de64d3cdeca6fe00.webp",
+        "Phonetic": null,
+        "Example": "Let me introduce myself. I\u0027m the new manager.",
+        "ExampleTranslation": "\u0110\u1EC3 t\u00F4i t\u1EF1 gi\u1EDBi thi\u1EC7u. T\u00F4i l\u00E0 qu\u1EA3n l\u00FD m\u1EDBi.",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite way to start telling people who you are",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Let me introduce myself. I\\u0027m the new manager.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EC3 t\\u00F4i t\\u1EF1 gi\\u1EDBi thi\\u1EC7u. T\\u00F4i l\\u00E0 qu\\u1EA3n l\\u00FD m\\u1EDBi.\u0022},{\u0022text\u0022:\u0022Let me introduce myself to the class.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EC3 t\\u00F4i t\\u1EF1 gi\\u1EDBi thi\\u1EC7u v\\u1EDBi c\\u1EA3 l\\u1EDBp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Allow me to introduce myself.\u0022,\u0022vi\u0022:\u0022Cho ph\\u00E9p t\\u00F4i t\\u1EF1 gi\\u1EDBi thi\\u1EC7u.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.aca2c0f5c62546b5b651793356aade31",
+      "kind": "Card",
+      "values": {
+        "Term": "What\u0027s your name?",
+        "Definition": "b\u1EA1n t\u00EAn l\u00E0 g\u00EC?",
+        "ImageUrl": "asset:096b1575dd504e104258dfd9e6e2644944f924313a66fd91761f9823c87ed5f8.webp",
+        "Phonetic": null,
+        "Example": "What\u0027s your name? I\u0027m Tom.",
+        "ExampleTranslation": "B\u1EA1n t\u00EAn l\u00E0 g\u00EC? T\u00F4i l\u00E0 Tom.",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question to ask someone\u0027s name",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022What\\u0027s your name? I\\u0027m Tom.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n t\\u00EAn l\\u00E0 g\\u00EC? T\\u00F4i l\\u00E0 Tom.\u0022},{\u0022text\u0022:\u0022Excuse me, what\\u0027s your name?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, b\\u1EA1n t\\u00EAn l\\u00E0 g\\u00EC?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022May I ask your name?\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u00F3 th\\u1EC3 h\\u1ECFi t\\u00EAn b\\u1EA1n kh\\u00F4ng?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.caaafafb570443979a606bd4bcfa03be",
+      "kind": "Card",
+      "values": {
+        "Term": "This is my friend.",
+        "Definition": "\u0111\u00E2y l\u00E0 b\u1EA1n c\u1EE7a t\u00F4i",
+        "ImageUrl": "asset:d55c3b9740a3c21c548fac6b774dda8c5081ace51ba66a8fd5bc78fd3b76a9d2.webp",
+        "Phonetic": null,
+        "Example": "This is my friend, Ben.",
+        "ExampleTranslation": "\u0110\u00E2y l\u00E0 b\u1EA1n t\u00F4i, Ben.",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a phrase for introducing a friend to someone",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022This is my friend, Ben.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E2y l\\u00E0 b\\u1EA1n t\\u00F4i, Ben.\u0022},{\u0022text\u0022:\u0022Mum, this is my friend Hoa.\u0022,\u0022vi\u0022:\u0022M\\u1EB9 \\u01A1i, \\u0111\\u00E2y l\\u00E0 b\\u1EA1n con, Hoa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Let me introduce my friend.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EC3 t\\u00F4i gi\\u1EDBi thi\\u1EC7u b\\u1EA1n t\\u00F4i.\u0022},{\u0022text\u0022:\u0022Meet my friend Joe.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E2y l\\u00E0 b\\u1EA1n t\\u00F4i, Joe.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.cdbf303161264f5a87cb926cfef9a18f",
+      "kind": "Card",
+      "values": {
+        "Term": "What do you do?",
+        "Definition": "b\u1EA1n l\u00E0m ngh\u1EC1 g\u00EC?",
+        "ImageUrl": "asset:e1f4ce81ec874d3f43842e6a0815d1667c5a17d9dda0b87b8d05820b82da0299.webp",
+        "Phonetic": null,
+        "Example": "What do you do for a living?",
+        "ExampleTranslation": "B\u1EA1n l\u00E0m ngh\u1EC1 g\u00EC \u0111\u1EC3 ki\u1EBFm s\u1ED1ng?",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about someone\u0027s job",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022What do you do for a living?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n l\\u00E0m ngh\\u1EC1 g\\u00EC \\u0111\\u1EC3 ki\\u1EBFm s\\u1ED1ng?\u0022},{\u0022text\u0022:\u0022What do you do? I\\u0027m a nurse.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n l\\u00E0m ngh\\u1EC1 g\\u00EC? T\\u00F4i l\\u00E0 y t\\u00E1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I work as a teacher.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u00E0m gi\\u00E1o vi\\u00EAn.\u0022},{\u0022text\u0022:\u0022I\\u0027m still a student.\u0022,\u0022vi\u0022:\u0022T\\u00F4i v\\u1EABn c\\u00F2n l\\u00E0 h\\u1ECDc sinh.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.e395faacea9844bba0444c4a814aca8c",
+      "kind": "Card",
+      "values": {
+        "Term": "Long time no see!",
+        "Definition": "l\u00E2u qu\u00E1 kh\u00F4ng g\u1EB7p!",
+        "ImageUrl": "asset:1d3b3bbaf071a80791cdccd6c6549e41ab2d2a9020c6eda05257da0101d8d41e.webp",
+        "Phonetic": null,
+        "Example": "Long time no see! How have you been?",
+        "ExampleTranslation": "L\u00E2u qu\u00E1 kh\u00F4ng g\u1EB7p! D\u1EA1o n\u00E0y b\u1EA1n th\u1EBF n\u00E0o?",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say to a person you have not seen for a long time",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Long time no see! How have you been?\u0022,\u0022vi\u0022:\u0022L\\u00E2u qu\\u00E1 kh\\u00F4ng g\\u1EB7p! D\\u1EA1o n\\u00E0y b\\u1EA1n th\\u1EBF n\\u00E0o?\u0022},{\u0022text\u0022:\u0022Long time no see, Peter!\u0022,\u0022vi\u0022:\u0022L\\u00E2u qu\\u00E1 kh\\u00F4ng g\\u1EB7p, Peter!\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s been ages!\u0022,\u0022vi\u0022:\u0022L\\u00E2u l\\u1EAFm r\\u1ED3i!\u0022},{\u0022text\u0022:\u0022How have you been?\u0022,\u0022vi\u0022:\u0022D\\u1EA1o n\\u00E0y b\\u1EA1n th\\u1EBF n\\u00E0o?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.ee24542edfb44f98b3bc5246895ee519",
+      "kind": "Card",
+      "values": {
+        "Term": "How old are you?",
+        "Definition": "b\u1EA1n bao nhi\u00EAu tu\u1ED5i?",
+        "ImageUrl": "asset:98a807488c235cf95d9c38405059adbd6adaa1f79afb6d6f124b0ce329dd4aba.webp",
+        "Phonetic": null,
+        "Example": "How old are you, Lan?",
+        "ExampleTranslation": "Lan, b\u1EA1n bao nhi\u00EAu tu\u1ED5i?",
+        "Topic": "Ch\u00E0o h\u1ECFi \u0026 gi\u1EDBi thi\u1EC7u",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about someone\u0027s age",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022How old are you, Lan?\u0022,\u0022vi\u0022:\u0022Lan, b\\u1EA1n bao nhi\\u00EAu tu\\u1ED5i?\u0022},{\u0022text\u0022:\u0022The boy asked, \\u0022How old are you?\\u0022\u0022,\u0022vi\u0022:\u0022C\\u1EADu b\\u00E9 h\\u1ECFi: \\u0022B\\u1EA1n bao nhi\\u00EAu tu\\u1ED5i?\\u0022\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027m twenty.\u0022,\u0022vi\u0022:\u0022T\\u00F4i hai m\\u01B0\\u01A1i tu\\u1ED5i.\u0022},{\u0022text\u0022:\u0022I\\u0027ll be twelve next month.\u0022,\u0022vi\u0022:\u0022Th\\u00E1ng sau t\\u00F4i s\\u1EBD m\\u01B0\\u1EDDi hai tu\\u1ED5i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "af3096eca862ea0d28402e06a89a03997dd854e6bfb406632b2145475071e07b.webp",
+      "sha256": "af3096eca862ea0d28402e06a89a03997dd854e6bfb406632b2145475071e07b"
+    },
+    {
+      "file": "49c767a91018be2580806c14a594566bdd32a5528c2c33f6c7bedce59ad34e8f.webp",
+      "sha256": "49c767a91018be2580806c14a594566bdd32a5528c2c33f6c7bedce59ad34e8f"
+    },
+    {
+      "file": "dc2806e0c42e714bb7106f8dc2499fab88d5d9636e855aa3a9b39f650492780e.webp",
+      "sha256": "dc2806e0c42e714bb7106f8dc2499fab88d5d9636e855aa3a9b39f650492780e"
+    },
+    {
+      "file": "7e851cd15b683b6c27d4c0490f7412be4d6c12b7e0987d0f33e1ede5f260ddd5.webp",
+      "sha256": "7e851cd15b683b6c27d4c0490f7412be4d6c12b7e0987d0f33e1ede5f260ddd5"
+    },
+    {
+      "file": "6edddc59cecc2568aee4a230018bea72aa174907e3beb8b8195c702b78ed5200.webp",
+      "sha256": "6edddc59cecc2568aee4a230018bea72aa174907e3beb8b8195c702b78ed5200"
+    },
+    {
+      "file": "929049a565532d9a52ab9330a0930e9bbb50637aaea92794cc19fd09f2096576.webp",
+      "sha256": "929049a565532d9a52ab9330a0930e9bbb50637aaea92794cc19fd09f2096576"
+    },
+    {
+      "file": "573064a396acc108bc03411ea271d48f9da04d595b320c250e99eaca52227778.webp",
+      "sha256": "573064a396acc108bc03411ea271d48f9da04d595b320c250e99eaca52227778"
+    },
+    {
+      "file": "2443e2f5ee908b43bc9c33a2170cde9715f54bacbfef8884e2e7e893311a6bdf.webp",
+      "sha256": "2443e2f5ee908b43bc9c33a2170cde9715f54bacbfef8884e2e7e893311a6bdf"
+    },
+    {
+      "file": "096b1575dd504e104258dfd9e6e2644944f924313a66fd91761f9823c87ed5f8.webp",
+      "sha256": "096b1575dd504e104258dfd9e6e2644944f924313a66fd91761f9823c87ed5f8"
+    },
+    {
+      "file": "46b385c6b3feda5cf9ca2d40eca0b475275bc2e283078b35de7dcb0d89395fc3.webp",
+      "sha256": "46b385c6b3feda5cf9ca2d40eca0b475275bc2e283078b35de7dcb0d89395fc3"
+    },
+    {
+      "file": "3d4b929210b1ecbfb736be84256a5b4d0da9ad7dfcaf4e331dc598fbe143dd55.webp",
+      "sha256": "3d4b929210b1ecbfb736be84256a5b4d0da9ad7dfcaf4e331dc598fbe143dd55"
+    },
+    {
+      "file": "98a807488c235cf95d9c38405059adbd6adaa1f79afb6d6f124b0ce329dd4aba.webp",
+      "sha256": "98a807488c235cf95d9c38405059adbd6adaa1f79afb6d6f124b0ce329dd4aba"
+    },
+    {
+      "file": "e1f4ce81ec874d3f43842e6a0815d1667c5a17d9dda0b87b8d05820b82da0299.webp",
+      "sha256": "e1f4ce81ec874d3f43842e6a0815d1667c5a17d9dda0b87b8d05820b82da0299"
+    },
+    {
+      "file": "d55c3b9740a3c21c548fac6b774dda8c5081ace51ba66a8fd5bc78fd3b76a9d2.webp",
+      "sha256": "d55c3b9740a3c21c548fac6b774dda8c5081ace51ba66a8fd5bc78fd3b76a9d2"
+    },
+    {
+      "file": "6e53cd5e7d8124329bd04238cba9b1b7b65abf7fcc8f0ea4de64d3cdeca6fe00.webp",
+      "sha256": "6e53cd5e7d8124329bd04238cba9b1b7b65abf7fcc8f0ea4de64d3cdeca6fe00"
+    },
+    {
+      "file": "12b30878bc08687456f04603161dc6dbd838833e3ccb25276c3c808dbed39ad0.webp",
+      "sha256": "12b30878bc08687456f04603161dc6dbd838833e3ccb25276c3c808dbed39ad0"
+    },
+    {
+      "file": "1d3b3bbaf071a80791cdccd6c6549e41ab2d2a9020c6eda05257da0101d8d41e.webp",
+      "sha256": "1d3b3bbaf071a80791cdccd6c6549e41ab2d2a9020c6eda05257da0101d8d41e"
+    },
+    {
+      "file": "d24229cccacda794c1cd2a7e6752010d17e6bc30fbdd9142149303b701abf388.webp",
+      "sha256": "d24229cccacda794c1cd2a7e6752010d17e6bc30fbdd9142149303b701abf388"
+    },
+    {
+      "file": "d3eb9511e6f1b560eeefc8114518e0788b4eed85458081bc162b2c27d53b5330.webp",
+      "sha256": "d3eb9511e6f1b560eeefc8114518e0788b4eed85458081bc162b2c27d53b5330"
+    },
+    {
+      "file": "446b399a024f9761a8c85367abc29d2054eb7b7cdf19a12c1a2ecd1be0e9d9cc.webp",
+      "sha256": "446b399a024f9761a8c85367abc29d2054eb7b7cdf19a12c1a2ecd1be0e9d9cc"
+    }
+  ],
+  "rootKey": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu"
+}

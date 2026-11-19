@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b02-cong-nghe-internet",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet",
+      "kind": "Set",
+      "values": {
+        "SetName": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "Description": "#b1 #b2 #technology #internet"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.0a8f2d8deba04b73b64b55e9c086f91a",
+      "kind": "Card",
+      "values": {
+        "Term": "cable",
+        "Definition": "d\u00E2y c\u00E1p",
+        "ImageUrl": "asset:9462516eaa3e00a67026ef0b134e738ae86b527794e347f8ab3e2f0185ebc276.webp",
+        "Phonetic": "/\u02C8ke\u026A.b\u0259l/",
+        "Example": "Connect the screen with this cable.",
+        "ExampleTranslation": "H\u00E3y n\u1ED1i m\u00E0n h\u00ECnh b\u1EB1ng s\u1EE3i c\u00E1p n\u00E0y.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long wire covered in plastic that carries electricity or data",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8ke\u026A.b\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Connect the screen with this cable.\u0022,\u0022vi\u0022:\u0022H\\u00E3y n\\u1ED1i m\\u00E0n h\\u00ECnh b\\u1EB1ng s\\u1EE3i c\\u00E1p n\\u00E0y.\u0022},{\u0022text\u0022:\u0022I tripped over a cable on the floor.\u0022,\u0022vi\u0022:\u0022T\\u00F4i v\\u1EA5p ph\\u1EA3i m\\u1ED9t s\\u1EE3i d\\u00E2y c\\u00E1p tr\\u00EAn s\\u00E0n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022USB cable\u0022,\u0022vi\u0022:\u0022d\\u00E2y c\\u00E1p USB\u0022},{\u0022text\u0022:\u0022power cable\u0022,\u0022vi\u0022:\u0022d\\u00E2y ngu\\u1ED3n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6040523/photo-image-white-background-public-domain-technology\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.15b06a514d8c4d1eb52beef1c75a5c08",
+      "kind": "Card",
+      "values": {
+        "Term": "drone",
+        "Definition": "m\u00E1y bay kh\u00F4ng ng\u01B0\u1EDDi l\u00E1i, flycam",
+        "ImageUrl": "asset:1d4b30592cc5ba77df2dc1dfbeb99977116e3d50c64eb6c6434617cde10b8d7d.webp",
+        "Phonetic": "/d\u0279o\u028An/",
+        "Example": "He filmed the beach with a drone.",
+        "ExampleTranslation": "Anh \u1EA5y quay phim b\u00E3i bi\u1EC3n b\u1EB1ng flycam.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small aircraft with no pilot that you control from the ground",
+        "Cefr": "B2",
+        "PhoneticUk": "/d\u0279\u0259\u028An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He filmed the beach with a drone.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y quay phim b\\u00E3i bi\\u1EC3n b\\u1EB1ng flycam.\u0022},{\u0022text\u0022:\u0022A drone delivered the package to our door.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t chi\\u1EBFc flycam \\u0111\\u00E3 giao g\\u00F3i h\\u00E0ng \\u0111\\u1EBFn c\\u1EEDa nh\\u00E0 ch\\u00FAng t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fly a drone\u0022,\u0022vi\u0022:\u0022\\u0111i\\u1EC1u khi\\u1EC3n flycam\u0022},{\u0022text\u0022:\u0022drone camera\u0022,\u0022vi\u0022:\u0022camera g\\u1EAFn flycam\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.205cced1e31d46e5877bcee73bcf3d1f",
+      "kind": "Card",
+      "values": {
+        "Term": "earbuds",
+        "Definition": "tai nghe nh\u00E9t tai",
+        "ImageUrl": "asset:7b668acda5f7e079937f0ff8eb3e662e13ea89eee2e8345928439d26e5605f8f.webp",
+        "Phonetic": "/\u02C8\u026Arb\u028Cdz/",
+        "Example": "I lost one of my wireless earbuds on the bus.",
+        "ExampleTranslation": "T\u00F4i l\u00E0m m\u1EA5t m\u1ED9t b\u00EAn tai nghe kh\u00F4ng d\u00E2y tr\u00EAn xe bu\u00FDt.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "very small headphones that fit inside your ears",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u026A\u0259b\u028Cdz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I lost one of my wireless earbuds on the bus.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u00E0m m\\u1EA5t m\\u1ED9t b\\u00EAn tai nghe kh\\u00F4ng d\\u00E2y tr\\u00EAn xe bu\\u00FDt.\u0022},{\u0022text\u0022:\u0022She runs with earbuds in her ears.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y ch\\u1EA1y b\\u1ED9 v\\u1EDBi tai nghe nh\\u00E9t tai.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wireless earbuds\u0022,\u0022vi\u0022:\u0022tai nghe nh\\u00E9t tai kh\\u00F4ng d\\u00E2y\u0022},{\u0022text\u0022:\u0022charge the earbuds\u0022,\u0022vi\u0022:\u0022s\\u1EA1c tai nghe\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.27142a35b39b4f85aa07a635750d5e69",
+      "kind": "Card",
+      "values": {
+        "Term": "webcam",
+        "Definition": "camera m\u00E1y t\u00EDnh",
+        "ImageUrl": "asset:1b8a62bb66b0cd04b57f1c1ab718475ddcf56e5a1e1b4df37e2ee34a3cd70613.webp",
+        "Phonetic": "/\u02C8w\u025Bb\u02CCk\u00E6m/",
+        "Example": "Please turn on your webcam for the meeting.",
+        "ExampleTranslation": "Vui l\u00F2ng b\u1EADt camera m\u00E1y t\u00EDnh cho cu\u1ED9c h\u1ECDp.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small camera on a computer used for video calls",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8w\u025Bb\u02CCk\u00E6m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Please turn on your webcam for the meeting.\u0022,\u0022vi\u0022:\u0022Vui l\\u00F2ng b\\u1EADt camera m\\u00E1y t\\u00EDnh cho cu\\u1ED9c h\\u1ECDp.\u0022},{\u0022text\u0022:\u0022The webcam on my laptop is not working.\u0022,\u0022vi\u0022:\u0022Camera tr\\u00EAn m\\u00E1y t\\u00EDnh x\\u00E1ch tay c\\u1EE7a t\\u00F4i kh\\u00F4ng ho\\u1EA1t \\u0111\\u1ED9ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022turn on the webcam\u0022,\u0022vi\u0022:\u0022b\\u1EADt camera\u0022},{\u0022text\u0022:\u0022built-in webcam\u0022,\u0022vi\u0022:\u0022camera t\\u00EDch h\\u1EE3p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5907091/photo-image-public-domain-technology-computer\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.367f2e32440e4fbdbce40662e53cd637",
+      "kind": "Card",
+      "values": {
+        "Term": "hard drive",
+        "Definition": "\u1ED5 c\u1EE9ng",
+        "ImageUrl": "asset:6b9734d0a322ef978baa28dc373cdaf4e9d8c086c1788d4ffd086ddaefe1f3bf.webp",
+        "Phonetic": "/h\u0251\u0279d d\u0279a\u026Av/",
+        "Example": "My hard drive is almost full.",
+        "ExampleTranslation": "\u1ED4 c\u1EE9ng c\u1EE7a t\u00F4i g\u1EA7n \u0111\u1EA7y.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the part of a computer that stores all your files",
+        "Cefr": "B2",
+        "PhoneticUk": "/h\u0251\u02D0d d\u0279a\u026Av/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My hard drive is almost full.\u0022,\u0022vi\u0022:\u0022\\u1ED4 c\\u1EE9ng c\\u1EE7a t\\u00F4i g\\u1EA7n \\u0111\\u1EA7y.\u0022},{\u0022text\u0022:\u0022He bought an external hard drive for his photos.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y mua m\\u1ED9t \\u1ED5 c\\u1EE9ng ngo\\u00E0i \\u0111\\u1EC3 l\\u01B0u \\u1EA3nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022external hard drive\u0022,\u0022vi\u0022:\u0022\\u1ED5 c\\u1EE9ng g\\u1EAFn ngo\\u00E0i\u0022},{\u0022text\u0022:\u0022back up to a hard drive\u0022,\u0022vi\u0022:\u0022sao l\\u01B0u v\\u00E0o \\u1ED5 c\\u1EE9ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5906336/photo-image-public-domain-technology-computer\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.37351bc72bd349f5a70d86bf45332971",
+      "kind": "Card",
+      "values": {
+        "Term": "satellite",
+        "Definition": "v\u1EC7 tinh",
+        "ImageUrl": "asset:241c2fbbf9a43f26323dffbba99c78175e21626501e7791ad3465c58f64ae727.webp",
+        "Phonetic": "/\u02C8s\u00E6t\u0259la\u026A\u032Ft/",
+        "Example": "A satellite sends pictures of the weather.",
+        "ExampleTranslation": "M\u1ED9t v\u1EC7 tinh g\u1EEDi nh\u1EEFng b\u1EE9c \u1EA3nh v\u1EC1 th\u1EDDi ti\u1EBFt.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that goes around the Earth and sends signals",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8s\u00E6t\u0259la\u026A\u032Ft/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A satellite sends pictures of the weather.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t v\\u1EC7 tinh g\\u1EEDi nh\\u1EEFng b\\u1EE9c \\u1EA3nh v\\u1EC1 th\\u1EDDi ti\\u1EBFt.\u0022},{\u0022text\u0022:\u0022The satellite orbits the Earth every ninety minutes.\u0022,\u0022vi\u0022:\u0022V\\u1EC7 tinh quay quanh Tr\\u00E1i \\u0110\\u1EA5t m\\u1ED7i ch\\u00EDn m\\u01B0\\u01A1i ph\\u00FAt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022launch a satellite\u0022,\u0022vi\u0022:\u0022ph\\u00F3ng v\\u1EC7 tinh\u0022},{\u0022text\u0022:\u0022satellite dish\u0022,\u0022vi\u0022:\u0022ch\\u1EA3o \\u0103ng-ten v\\u1EC7 tinh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.37a1b22b46ca4f1fbc8d0f8bd673b4d1",
+      "kind": "Card",
+      "values": {
+        "Term": "router",
+        "Definition": "b\u1ED9 ph\u00E1t wifi, b\u1ED9 \u0111\u1ECBnh tuy\u1EBFn",
+        "ImageUrl": "asset:620ec08db3a1761cb414b607ff39762891503a5c78cacd535ab147bcfe0c2191.webp",
+        "Phonetic": "/\u02C8\u0279a\u028A.t\u025A/",
+        "Example": "Turn the router off and on again.",
+        "ExampleTranslation": "H\u00E3y t\u1EAFt r\u1ED3i b\u1EADt l\u1EA1i b\u1ED9 ph\u00E1t wifi.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a device that sends internet to the computers in a building",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8\u0279u\u02D0.t\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Turn the router off and on again.\u0022,\u0022vi\u0022:\u0022H\\u00E3y t\\u1EAFt r\\u1ED3i b\\u1EADt l\\u1EA1i b\\u1ED9 ph\\u00E1t wifi.\u0022},{\u0022text\u0022:\u0022The router is in the living room.\u0022,\u0022vi\u0022:\u0022B\\u1ED9 ph\\u00E1t wifi \\u0111\\u1EB7t trong ph\\u00F2ng kh\\u00E1ch.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wifi router\u0022,\u0022vi\u0022:\u0022b\\u1ED9 ph\\u00E1t wifi\u0022},{\u0022text\u0022:\u0022restart the router\u0022,\u0022vi\u0022:\u0022kh\\u1EDFi \\u0111\\u1ED9ng l\\u1EA1i b\\u1ED9 ph\\u00E1t wifi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:ELECOM_WRC-300FEBK_WPS_WiFi_router.jpg\u0022,\u0022author\u0022:\u0022Syced\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.3984474f850c43169400059812911b07",
+      "kind": "Card",
+      "values": {
+        "Term": "server",
+        "Definition": "m\u00E1y ch\u1EE7",
+        "ImageUrl": "asset:c03bae973b4476b8d5e606d89e15c25180409698e5c7f31a61aec0364438b700.webp",
+        "Phonetic": "/\u02C8s\u025Dv\u025A/",
+        "Example": "The website is down because the server crashed.",
+        "ExampleTranslation": "Trang web ng\u1EEBng ho\u1EA1t \u0111\u1ED9ng v\u00EC m\u00E1y ch\u1EE7 b\u1ECB s\u1EADp.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a powerful computer that provides data to other computers",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8s\u025C\u02D0v\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The website is down because the server crashed.\u0022,\u0022vi\u0022:\u0022Trang web ng\\u1EEBng ho\\u1EA1t \\u0111\\u1ED9ng v\\u00EC m\\u00E1y ch\\u1EE7 b\\u1ECB s\\u1EADp.\u0022},{\u0022text\u0022:\u0022The company keeps its files on a secure server.\u0022,\u0022vi\u0022:\u0022C\\u00F4ng ty l\\u01B0u t\\u1EC7p tr\\u00EAn m\\u1ED9t m\\u00E1y ch\\u1EE7 an to\\u00E0n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022web server\u0022,\u0022vi\u0022:\u0022m\\u00E1y ch\\u1EE7 web\u0022},{\u0022text\u0022:\u0022server room\u0022,\u0022vi\u0022:\u0022ph\\u00F2ng m\\u00E1y ch\\u1EE7\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5906639/photo-image-light-desktop-wallpapers-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.3a8c99222a734b569a5d7c805b4ff239",
+      "kind": "Card",
+      "values": {
+        "Term": "battery",
+        "Definition": "pin",
+        "ImageUrl": "asset:47cf9a3a575628bf62332d113e663eaa43de4f483bb45cf7b3446cf865945c3b.webp",
+        "Phonetic": "/\u02C8b\u00E6t.\u0259\u0279i/",
+        "Example": "The battery died during the call.",
+        "ExampleTranslation": "Pin h\u1EBFt trong l\u00FAc \u0111ang g\u1ECDi.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small object that stores power for a device",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8b\u00E6t.(\u0259)\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The battery died during the call.\u0022,\u0022vi\u0022:\u0022Pin h\\u1EBFt trong l\\u00FAc \\u0111ang g\\u1ECDi.\u0022},{\u0022text\u0022:\u0022This camera uses two small batteries.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc m\\u00E1y \\u1EA3nh n\\u00E0y d\\u00F9ng hai vi\\u00EAn pin nh\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022low battery\u0022,\u0022vi\u0022:\u0022pin y\\u1EBFu\u0022},{\u0022text\u0022:\u0022replace the battery\u0022,\u0022vi\u0022:\u0022thay pin\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022batteries\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/38451115@N04/5261323540\u0022,\u0022author\u0022:\u0022pasukaru76\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.43a8064202794951a56bb278db05d24d",
+      "kind": "Card",
+      "values": {
+        "Term": "headphones",
+        "Definition": "tai nghe ch\u1EE5p tai",
+        "ImageUrl": "asset:c02230ff982d50ffeb734c13acc571ede516b9d84355de04b47282d34a40ca39.webp",
+        "Phonetic": "/\u02C8h\u025Bdfo\u028Anz/",
+        "Example": "She listens to music with her headphones on.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y nghe nh\u1EA1c b\u1EB1ng tai nghe.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a pair of speakers that you wear over your ears",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8h\u025Bdf\u0259\u028Anz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She listens to music with her headphones on.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y nghe nh\\u1EA1c b\\u1EB1ng tai nghe.\u0022},{\u0022text\u0022:\u0022I need noise-cancelling headphones for the train.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u1EA7n tai nghe ch\\u1ED1ng \\u1ED3n \\u0111\\u1EC3 \\u0111i t\\u00E0u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wireless headphones\u0022,\u0022vi\u0022:\u0022tai nghe kh\\u00F4ng d\\u00E2y\u0022},{\u0022text\u0022:\u0022put on headphones\u0022,\u0022vi\u0022:\u0022\\u0111eo tai nghe\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/57866029@N00/52459692877\u0022,\u0022author\u0022:\u0022Abdulla Al Muhairi\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.4ad76fb70426415282e2b156268620c1",
+      "kind": "Card",
+      "values": {
+        "Term": "keyboard",
+        "Definition": "b\u00E0n ph\u00EDm",
+        "ImageUrl": "asset:f598a257be105d497a946f06ad5e08b3b8e876c70cfc0c64fc47fb5db1745315.webp",
+        "Phonetic": "/\u02C8ki.b\u0254\u0279d/",
+        "Example": "I spilled coffee on my keyboard.",
+        "ExampleTranslation": "T\u00F4i l\u00E0m \u0111\u1ED5 c\u00E0 ph\u00EA l\u00EAn b\u00E0n ph\u00EDm.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a set of keys that you press to type on a computer",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8ki\u02D0b\u0254\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I spilled coffee on my keyboard.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u00E0m \\u0111\\u1ED5 c\\u00E0 ph\\u00EA l\\u00EAn b\\u00E0n ph\\u00EDm.\u0022},{\u0022text\u0022:\u0022A wireless keyboard keeps the desk tidy.\u0022,\u0022vi\u0022:\u0022B\\u00E0n ph\\u00EDm kh\\u00F4ng d\\u00E2y gi\\u00FAp b\\u00E0n l\\u00E0m vi\\u1EC7c g\\u1ECDn g\\u00E0ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wireless keyboard\u0022,\u0022vi\u0022:\u0022b\\u00E0n ph\\u00EDm kh\\u00F4ng d\\u00E2y\u0022},{\u0022text\u0022:\u0022type on a keyboard\u0022,\u0022vi\u0022:\u0022g\\u00F5 ph\\u00EDm\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/135396164@N05/40623300100\u0022,\u0022author\u0022:\u0022freestocks.org\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.4f044e6458ea4306987c601cf2eb0ba6",
+      "kind": "Card",
+      "values": {
+        "Term": "password",
+        "Definition": "m\u1EADt kh\u1EA9u",
+        "ImageUrl": "asset:dcf5295f3bf6b63232139388a415c8df3536dae0e1552c93353ed6f7f7d07a11.webp",
+        "Phonetic": "/\u02C8p\u00E6s.w\u025C\u0279d/",
+        "Example": "I forgot my password again.",
+        "ExampleTranslation": "T\u00F4i l\u1EA1i qu\u00EAn m\u1EADt kh\u1EA9u r\u1ED3i.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a secret word that you use to open your account",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8p\u00E6s.w\u025C\u0279d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I forgot my password again.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u1EA1i qu\\u00EAn m\\u1EADt kh\\u1EA9u r\\u1ED3i.\u0022},{\u0022text\u0022:\u0022Choose a long password that is hard to guess.\u0022,\u0022vi\u0022:\u0022H\\u00E3y ch\\u1ECDn m\\u1ED9t m\\u1EADt kh\\u1EA9u d\\u00E0i v\\u00E0 kh\\u00F3 \\u0111o\\u00E1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022enter a password\u0022,\u0022vi\u0022:\u0022nh\\u1EADp m\\u1EADt kh\\u1EA9u\u0022},{\u0022text\u0022:\u0022reset your password\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EB7t l\\u1EA1i m\\u1EADt kh\\u1EA9u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5908216/image-background-public-domain-laptop\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.57615aa719804c22b57c561885c088c4",
+      "kind": "Card",
+      "values": {
+        "Term": "QR code",
+        "Definition": "m\u00E3 QR",
+        "ImageUrl": "asset:ce05f0ee6f8d6d4ad0a444d46a0e1391c9834aac668b57e04f6847640a582805.webp",
+        "Phonetic": "/\u02CCkju\u02D0 \u02C8\u0251\u02D0r ko\u028Ad/",
+        "Example": "Scan the QR code to see the menu.",
+        "ExampleTranslation": "H\u00E3y qu\u00E9t m\u00E3 QR \u0111\u1EC3 xem th\u1EF1c \u0111\u01A1n.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a square pattern of black dots that a phone can read",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02CCkju\u02D0 \u02C8\u0251\u02D0 k\u0259\u028Ad/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Scan the QR code to see the menu.\u0022,\u0022vi\u0022:\u0022H\\u00E3y qu\\u00E9t m\\u00E3 QR \\u0111\\u1EC3 xem th\\u1EF1c \\u0111\\u01A1n.\u0022},{\u0022text\u0022:\u0022There is a QR code on the ticket.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t m\\u00E3 QR tr\\u00EAn v\\u00E9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022scan a QR code\u0022,\u0022vi\u0022:\u0022qu\\u00E9t m\\u00E3 QR\u0022},{\u0022text\u0022:\u0022QR code payment\u0022,\u0022vi\u0022:\u0022thanh to\\u00E1n b\\u1EB1ng m\\u00E3 QR\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.5e823230a3be4a098571566df3da62dd",
+      "kind": "Card",
+      "values": {
+        "Term": "microchip",
+        "Definition": "vi m\u1EA1ch, chip",
+        "ImageUrl": "asset:3c3cf81dbf89dae51a3b34e2804b57a4b1e223ab879c36e75b5844638ae8f114.webp",
+        "Phonetic": "/\u02C8ma\u026Ak\u0279o\u028A\u02CCt\u0361\u0283\u026Ap/",
+        "Example": "Every phone has a small microchip inside.",
+        "ExampleTranslation": "\u0110i\u1EC7n tho\u1EA1i n\u00E0o c\u0169ng c\u00F3 m\u1ED9t con chip nh\u1ECF b\u00EAn trong.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very small piece of silicon that controls a machine",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8ma\u026Ak\u0279o\u028A\u02CCt\u0361\u0283\u026Ap/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Every phone has a small microchip inside.\u0022,\u0022vi\u0022:\u0022\\u0110i\\u1EC7n tho\\u1EA1i n\\u00E0o c\\u0169ng c\\u00F3 m\\u1ED9t con chip nh\\u1ECF b\\u00EAn trong.\u0022},{\u0022text\u0022:\u0022The microchip is smaller than a coin.\u0022,\u0022vi\u0022:\u0022Con chip nh\\u1ECF h\\u01A1n m\\u1ED9t \\u0111\\u1ED3ng xu.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022install a microchip\u0022,\u0022vi\u0022:\u0022g\\u1EAFn vi m\\u1EA1ch\u0022},{\u0022text\u0022:\u0022computer microchip\u0022,\u0022vi\u0022:\u0022vi m\\u1EA1ch m\\u00E1y t\\u00EDnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/computer-board-DWVHX92TAL\u0022,\u0022author\u0022:\u0022Lenharth Systems\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.6d20710ed8b34ca89be6edc90c362100",
+      "kind": "Card",
+      "values": {
+        "Term": "computer mouse",
+        "Definition": "chu\u1ED9t m\u00E1y t\u00EDnh",
+        "ImageUrl": "asset:c85d8b4dcad14f49602f032e2cb2d65e73822d82f400f765107e53686f9f7426.webp",
+        "Phonetic": "/k\u0259m\u02C8pju.t\u025A ma\u028As/",
+        "Example": "My computer mouse stopped working this morning.",
+        "ExampleTranslation": "Chu\u1ED9t m\u00E1y t\u00EDnh c\u1EE7a t\u00F4i ng\u1EEBng ho\u1EA1t \u0111\u1ED9ng s\u00E1ng nay.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small device you move to control a cursor on a screen",
+        "Cefr": "B1",
+        "PhoneticUk": "/k\u0259m\u02C8pju\u02D0.t\u0259 ma\u028As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My computer mouse stopped working this morning.\u0022,\u0022vi\u0022:\u0022Chu\\u1ED9t m\\u00E1y t\\u00EDnh c\\u1EE7a t\\u00F4i ng\\u1EEBng ho\\u1EA1t \\u0111\\u1ED9ng s\\u00E1ng nay.\u0022},{\u0022text\u0022:\u0022Click the file with the computer mouse.\u0022,\u0022vi\u0022:\u0022H\\u00E3y nh\\u1EA5p v\\u00E0o t\\u1EC7p b\\u1EB1ng chu\\u1ED9t m\\u00E1y t\\u00EDnh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wireless computer mouse\u0022,\u0022vi\u0022:\u0022chu\\u1ED9t kh\\u00F4ng d\\u00E2y\u0022},{\u0022text\u0022:\u0022click a mouse\u0022,\u0022vi\u0022:\u0022nh\\u1EA5p chu\\u1ED9t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6020645/photo-image-public-domain-hand-person\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.7f14dee9a7174bc29e8e4dbcfafe8c4c",
+      "kind": "Card",
+      "values": {
+        "Term": "charger",
+        "Definition": "b\u1ED9 s\u1EA1c",
+        "ImageUrl": "asset:c0b032a5a719f37b3e63175f8657397e6ea73536ee24962d74115cc15a58793d.webp",
+        "Phonetic": "/\u02C8t\u0283\u0251\u0279d\u0292\u0259\u0279/",
+        "Example": "Can I borrow your phone charger?",
+        "ExampleTranslation": "M\u00ECnh m\u01B0\u1EE3n b\u1ED9 s\u1EA1c \u0111i\u1EC7n tho\u1EA1i c\u1EE7a b\u1EA1n \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a device that puts electricity into a battery",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8t\u0283\u0251\u02D0d\u0292\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can I borrow your phone charger?\u0022,\u0022vi\u0022:\u0022M\\u00ECnh m\\u01B0\\u1EE3n b\\u1ED9 s\\u1EA1c \\u0111i\\u1EC7n tho\\u1EA1i c\\u1EE7a b\\u1EA1n \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022I always carry a charger in my bag.\u0022,\u0022vi\u0022:\u0022T\\u00F4i lu\\u00F4n mang theo b\\u1ED9 s\\u1EA1c trong t\\u00FAi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022phone charger\u0022,\u0022vi\u0022:\u0022b\\u1ED9 s\\u1EA1c \\u0111i\\u1EC7n tho\\u1EA1i\u0022},{\u0022text\u0022:\u0022portable charger\u0022,\u0022vi\u0022:\u0022s\\u1EA1c d\\u1EF1 ph\\u00F2ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.802e8d70a04d4ebc84e4b6aa47d50d8d",
+      "kind": "Card",
+      "values": {
+        "Term": "app",
+        "Definition": "\u1EE9ng d\u1EE5ng",
+        "ImageUrl": "asset:6a65bdb71f43634814e91e49a6f312b31b787b6b73f0b412b56aa1e45ec2f917.webp",
+        "Phonetic": "/\u00E6p/",
+        "Example": "I use an app to learn English every day.",
+        "ExampleTranslation": "Ng\u00E0y n\u00E0o t\u00F4i c\u0169ng d\u00F9ng m\u1ED9t \u1EE9ng d\u1EE5ng \u0111\u1EC3 h\u1ECDc ti\u1EBFng Anh.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small program that you use on a phone or tablet",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u00E6p/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I use an app to learn English every day.\u0022,\u0022vi\u0022:\u0022Ng\\u00E0y n\\u00E0o t\\u00F4i c\\u0169ng d\\u00F9ng m\\u1ED9t \\u1EE9ng d\\u1EE5ng \\u0111\\u1EC3 h\\u1ECDc ti\\u1EBFng Anh.\u0022},{\u0022text\u0022:\u0022Download the app before the trip.\u0022,\u0022vi\u0022:\u0022H\\u00E3y t\\u1EA3i \\u1EE9ng d\\u1EE5ng tr\\u01B0\\u1EDBc chuy\\u1EBFn \\u0111i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022download an app\u0022,\u0022vi\u0022:\u0022t\\u1EA3i \\u1EE9ng d\\u1EE5ng\u0022},{\u0022text\u0022:\u0022mobile app\u0022,\u0022vi\u0022:\u0022\\u1EE9ng d\\u1EE5ng di \\u0111\\u1ED9ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.a415088e8f594aae8f4aa84b24beb090",
+      "kind": "Card",
+      "values": {
+        "Term": "website",
+        "Definition": "trang web",
+        "ImageUrl": "asset:7ce1020ec5da87caa9796bdb61787a0170f3b7dad5dfb7f2edf39292e95d79c7.webp",
+        "Phonetic": "/\u02C8w\u025Bb(\u02CC)sa\u026At/",
+        "Example": "The school has a new website.",
+        "ExampleTranslation": "Tr\u01B0\u1EDDng c\u00F3 m\u1ED9t trang web m\u1EDBi.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place on the internet with pages about one subject",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8w\u025Bb(\u02CC)sa\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The school has a new website.\u0022,\u0022vi\u0022:\u0022Tr\\u01B0\\u1EDDng c\\u00F3 m\\u1ED9t trang web m\\u1EDBi.\u0022},{\u0022text\u0022:\u0022You can find the schedule on our website.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 th\\u1EC3 xem l\\u1ECBch tr\\u00EAn trang web c\\u1EE7a ch\\u00FAng t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022visit a website\u0022,\u0022vi\u0022:\u0022truy c\\u1EADp trang web\u0022},{\u0022text\u0022:\u0022company website\u0022,\u0022vi\u0022:\u0022trang web c\\u00F4ng ty\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.b97a092d01494711a47dfe4e7b80ae7e",
+      "kind": "Card",
+      "values": {
+        "Term": "screen",
+        "Definition": "m\u00E0n h\u00ECnh",
+        "ImageUrl": "asset:b35da212d8789028aadfe462036c7325fb15f1f6f24aa216a87ede4d5f1413e3.webp",
+        "Phonetic": "/\u02C8sk\u0279i\u02D0n/",
+        "Example": "The screen of my phone is cracked.",
+        "ExampleTranslation": "M\u00E0n h\u00ECnh \u0111i\u1EC7n tho\u1EA1i c\u1EE7a t\u00F4i b\u1ECB n\u1EE9t.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the flat surface where you see pictures and words on a device",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8sk\u0279i\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The screen of my phone is cracked.\u0022,\u0022vi\u0022:\u0022M\\u00E0n h\\u00ECnh \\u0111i\\u1EC7n tho\\u1EA1i c\\u1EE7a t\\u00F4i b\\u1ECB n\\u1EE9t.\u0022},{\u0022text\u0022:\u0022Too much time in front of a screen hurts your eyes.\u0022,\u0022vi\u0022:\u0022Nh\\u00ECn m\\u00E0n h\\u00ECnh qu\\u00E1 l\\u00E2u l\\u00E0m h\\u1EA1i m\\u1EAFt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022touch screen\u0022,\u0022vi\u0022:\u0022m\\u00E0n h\\u00ECnh c\\u1EA3m \\u1EE9ng\u0022},{\u0022text\u0022:\u0022screen time\u0022,\u0022vi\u0022:\u0022th\\u1EDDi gian d\\u00F9ng m\\u00E0n h\\u00ECnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/seo-computer-959IURDRGJ\u0022,\u0022author\u0022:\u0022Serpstat\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.befacfb52cd44c0c82286ed77f2e2181",
+      "kind": "Card",
+      "values": {
+        "Term": "tablet",
+        "Definition": "m\u00E1y t\u00EDnh b\u1EA3ng",
+        "ImageUrl": "asset:ef3b0349f410cc67cd856c76d7902e1f2a8ad7d2de224e31fe31fa3cda31861d.webp",
+        "Phonetic": "/\u02C8t\u00E6bl\u0259t/",
+        "Example": "The children watch cartoons on a tablet.",
+        "ExampleTranslation": "B\u1ECDn tr\u1EBB xem ho\u1EA1t h\u00ECnh tr\u00EAn m\u00E1y t\u00EDnh b\u1EA3ng.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat computer that you control by touching the screen",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8t\u00E6bl\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The children watch cartoons on a tablet.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB xem ho\\u1EA1t h\\u00ECnh tr\\u00EAn m\\u00E1y t\\u00EDnh b\\u1EA3ng.\u0022},{\u0022text\u0022:\u0022He reads the news on his tablet every morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng n\\u00E0o anh \\u1EA5y c\\u0169ng \\u0111\\u1ECDc tin t\\u1EE9c tr\\u00EAn m\\u00E1y t\\u00EDnh b\\u1EA3ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022touch screen tablet\u0022,\u0022vi\u0022:\u0022m\\u00E1y t\\u00EDnh b\\u1EA3ng c\\u1EA3m \\u1EE9ng\u0022},{\u0022text\u0022:\u0022tablet case\u0022,\u0022vi\u0022:\u0022bao m\\u00E1y t\\u00EDnh b\\u1EA3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/tablet-computer-KCEVT4PCQ1\u0022,\u0022author\u0022:\u0022Birch Landing Home\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.bf865fff5d3549229db5466786542b5a",
+      "kind": "Card",
+      "values": {
+        "Term": "smartphone",
+        "Definition": "\u0111i\u1EC7n tho\u1EA1i th\u00F4ng minh",
+        "ImageUrl": "asset:909eb5b01df0d35ee49390d252e71fc0382a880d870c6c9cf1dbe787ef2bb64c.webp",
+        "Phonetic": "/\u02C8sm\u0251\u0279tfo\u028An/",
+        "Example": "She checks her smartphone every few minutes.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y xem \u0111i\u1EC7n tho\u1EA1i th\u00F4ng minh v\u00E0i ph\u00FAt m\u1ED9t l\u1EA7n.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a mobile phone that can use the internet and apps",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8sm\u0251\u02D0tf\u0259\u028An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She checks her smartphone every few minutes.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y xem \\u0111i\\u1EC7n tho\\u1EA1i th\\u00F4ng minh v\\u00E0i ph\\u00FAt m\\u1ED9t l\\u1EA7n.\u0022},{\u0022text\u0022:\u0022My smartphone battery lasts only one day.\u0022,\u0022vi\u0022:\u0022Pin \\u0111i\\u1EC7n tho\\u1EA1i c\\u1EE7a t\\u00F4i ch\\u1EC9 d\\u00F9ng \\u0111\\u01B0\\u1EE3c m\\u1ED9t ng\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022charge a smartphone\u0022,\u0022vi\u0022:\u0022s\\u1EA1c \\u0111i\\u1EC7n tho\\u1EA1i\u0022},{\u0022text\u0022:\u0022smartphone screen\u0022,\u0022vi\u0022:\u0022m\\u00E0n h\\u00ECnh \\u0111i\\u1EC7n tho\\u1EA1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/135371437@N04/22389367255\u0022,\u0022author\u0022:\u0022StockyPics\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.cdec4e6e7d5f4c8381669c588e8d7d4e",
+      "kind": "Card",
+      "values": {
+        "Term": "smartwatch",
+        "Definition": "\u0111\u1ED3ng h\u1ED3 th\u00F4ng minh",
+        "ImageUrl": "asset:e6dc767a82b4768866b21fe7951947cab2cbdf0273c58c0c6e5e1ee9c5367e9e.webp",
+        "Phonetic": "/\u02C8sm\u0251\u02D0rtw\u0251\u02D0t\u0283/",
+        "Example": "My smartwatch counts my steps every day.",
+        "ExampleTranslation": "\u0110\u1ED3ng h\u1ED3 th\u00F4ng minh c\u1EE7a t\u00F4i \u0111\u1EBFm s\u1ED1 b\u01B0\u1EDBc ch\u00E2n m\u1ED7i ng\u00E0y.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a watch that connects to your phone and counts your steps",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8sm\u0251\u02D0tw\u0252t\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My smartwatch counts my steps every day.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1ED3ng h\\u1ED3 th\\u00F4ng minh c\\u1EE7a t\\u00F4i \\u0111\\u1EBFm s\\u1ED1 b\\u01B0\\u1EDBc ch\\u00E2n m\\u1ED7i ng\\u00E0y.\u0022},{\u0022text\u0022:\u0022She got a message on her smartwatch.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y nh\\u1EADn \\u0111\\u01B0\\u1EE3c m\\u1ED9t tin nh\\u1EAFn tr\\u00EAn \\u0111\\u1ED3ng h\\u1ED3 th\\u00F4ng minh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wear a smartwatch\u0022,\u0022vi\u0022:\u0022\\u0111eo \\u0111\\u1ED3ng h\\u1ED3 th\\u00F4ng minh\u0022},{\u0022text\u0022:\u0022smartwatch strap\u0022,\u0022vi\u0022:\u0022d\\u00E2y \\u0111\\u1ED3ng h\\u1ED3 th\\u00F4ng minh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5921716/photo-image-background-public-domain-blue\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.ef1c0a12bf9e449c9bb70fa2260ba22e",
+      "kind": "Card",
+      "values": {
+        "Term": "robot",
+        "Definition": "ng\u01B0\u1EDDi m\u00E1y, r\u00F4-b\u1ED1t",
+        "ImageUrl": "asset:544ae5891ccc3b3795108bf603435f760312d24d6660104f5160ee5fd5f3164e.webp",
+        "Phonetic": "/\u02C8\u0279o\u028A.b\u0251t/",
+        "Example": "A robot cleans the floor in our house.",
+        "ExampleTranslation": "M\u1ED9t con r\u00F4-b\u1ED1t lau s\u00E0n trong nh\u00E0 ch\u00FAng t\u00F4i.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that can do tasks by itself",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u0279\u0259\u028A.b\u0252t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A robot cleans the floor in our house.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con r\\u00F4-b\\u1ED1t lau s\\u00E0n trong nh\\u00E0 ch\\u00FAng t\\u00F4i.\u0022},{\u0022text\u0022:\u0022Robots now build cars in the factory.\u0022,\u0022vi\u0022:\u0022Gi\\u1EDD \\u0111\\u00E2y r\\u00F4-b\\u1ED1t l\\u1EAFp r\\u00E1p \\u00F4 t\\u00F4 trong nh\\u00E0 m\\u00E1y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022industrial robot\u0022,\u0022vi\u0022:\u0022r\\u00F4-b\\u1ED1t c\\u00F4ng nghi\\u1EC7p\u0022},{\u0022text\u0022:\u0022robot arm\u0022,\u0022vi\u0022:\u0022c\\u00E1nh tay r\\u00F4-b\\u1ED1t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/38451115@N04/3959355664\u0022,\u0022author\u0022:\u0022pasukaru76\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.f56328f867a64de593dc44d5e5e60a16",
+      "kind": "Card",
+      "values": {
+        "Term": "social media",
+        "Definition": "m\u1EA1ng x\u00E3 h\u1ED9i",
+        "ImageUrl": "asset:a44e3ecb83fe39fbc951db6eb398d8ac2c97e62c4de618914f21411b471d3433.webp",
+        "Phonetic": "/\u02C8so\u028A.\u0283\u0259l \u02C8mi.di.\u0259/",
+        "Example": "Many teenagers spend hours on social media.",
+        "ExampleTranslation": "Nhi\u1EC1u thi\u1EBFu ni\u00EAn d\u00E0nh h\u00E0ng gi\u1EDD tr\u00EAn m\u1EA1ng x\u00E3 h\u1ED9i.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "websites and apps where people share photos and messages",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8s\u0259\u028A.\u0283\u0259l \u02C8mi\u02D0.di.\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Many teenagers spend hours on social media.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC1u thi\\u1EBFu ni\\u00EAn d\\u00E0nh h\\u00E0ng gi\\u1EDD tr\\u00EAn m\\u1EA1ng x\\u00E3 h\\u1ED9i.\u0022},{\u0022text\u0022:\u0022She shares her travel photos on social media.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y chia s\\u1EBB \\u1EA3nh du l\\u1ECBch tr\\u00EAn m\\u1EA1ng x\\u00E3 h\\u1ED9i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022post on social media\u0022,\u0022vi\u0022:\u0022\\u0111\\u0103ng l\\u00EAn m\\u1EA1ng x\\u00E3 h\\u1ED9i\u0022},{\u0022text\u0022:\u0022social media account\u0022,\u0022vi\u0022:\u0022t\\u00E0i kho\\u1EA3n m\\u1EA1ng x\\u00E3 h\\u1ED9i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b02-cong-nghe-internet.f732ba7fb1cc42e6a386aa09a6d051e5",
+      "kind": "Card",
+      "values": {
+        "Term": "USB drive",
+        "Definition": "\u1ED5 USB",
+        "ImageUrl": "asset:2b58ba91a6efa786f3dbb1c5e31d3e01197e8ceee76ddd9bbd645db52becabe9.webp",
+        "Phonetic": "/\u02CCju\u02D0 \u025Bs \u02C8bi\u02D0 dra\u026Av/",
+        "Example": "I saved the report on a USB drive.",
+        "ExampleTranslation": "T\u00F4i l\u01B0u b\u1EA3n b\u00E1o c\u00E1o v\u00E0o m\u1ED9t \u1ED5 USB.",
+        "Topic": "C\u00F4ng ngh\u1EC7 \u0026 internet",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small device for carrying files from one computer to another",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02CCju\u02D0 es \u02C8bi\u02D0 dra\u026Av/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I saved the report on a USB drive.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u01B0u b\\u1EA3n b\\u00E1o c\\u00E1o v\\u00E0o m\\u1ED9t \\u1ED5 USB.\u0022},{\u0022text\u0022:\u0022Please plug the USB drive into the laptop.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n c\\u1EAFm \\u1ED5 USB v\\u00E0o m\\u00E1y t\\u00EDnh x\\u00E1ch tay.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022plug in a USB drive\u0022,\u0022vi\u0022:\u0022c\\u1EAFm \\u1ED5 USB\u0022},{\u0022text\u0022:\u0022copy to a USB drive\u0022,\u0022vi\u0022:\u0022sao ch\\u00E9p v\\u00E0o \\u1ED5 USB\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/7267945/png-sticker-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "909eb5b01df0d35ee49390d252e71fc0382a880d870c6c9cf1dbe787ef2bb64c.webp",
+      "sha256": "909eb5b01df0d35ee49390d252e71fc0382a880d870c6c9cf1dbe787ef2bb64c"
+    },
+    {
+      "file": "ef3b0349f410cc67cd856c76d7902e1f2a8ad7d2de224e31fe31fa3cda31861d.webp",
+      "sha256": "ef3b0349f410cc67cd856c76d7902e1f2a8ad7d2de224e31fe31fa3cda31861d"
+    },
+    {
+      "file": "f598a257be105d497a946f06ad5e08b3b8e876c70cfc0c64fc47fb5db1745315.webp",
+      "sha256": "f598a257be105d497a946f06ad5e08b3b8e876c70cfc0c64fc47fb5db1745315"
+    },
+    {
+      "file": "c85d8b4dcad14f49602f032e2cb2d65e73822d82f400f765107e53686f9f7426.webp",
+      "sha256": "c85d8b4dcad14f49602f032e2cb2d65e73822d82f400f765107e53686f9f7426"
+    },
+    {
+      "file": "b35da212d8789028aadfe462036c7325fb15f1f6f24aa216a87ede4d5f1413e3.webp",
+      "sha256": "b35da212d8789028aadfe462036c7325fb15f1f6f24aa216a87ede4d5f1413e3"
+    },
+    {
+      "file": "c0b032a5a719f37b3e63175f8657397e6ea73536ee24962d74115cc15a58793d.webp",
+      "sha256": "c0b032a5a719f37b3e63175f8657397e6ea73536ee24962d74115cc15a58793d"
+    },
+    {
+      "file": "47cf9a3a575628bf62332d113e663eaa43de4f483bb45cf7b3446cf865945c3b.webp",
+      "sha256": "47cf9a3a575628bf62332d113e663eaa43de4f483bb45cf7b3446cf865945c3b"
+    },
+    {
+      "file": "c02230ff982d50ffeb734c13acc571ede516b9d84355de04b47282d34a40ca39.webp",
+      "sha256": "c02230ff982d50ffeb734c13acc571ede516b9d84355de04b47282d34a40ca39"
+    },
+    {
+      "file": "1b8a62bb66b0cd04b57f1c1ab718475ddcf56e5a1e1b4df37e2ee34a3cd70613.webp",
+      "sha256": "1b8a62bb66b0cd04b57f1c1ab718475ddcf56e5a1e1b4df37e2ee34a3cd70613"
+    },
+    {
+      "file": "1d4b30592cc5ba77df2dc1dfbeb99977116e3d50c64eb6c6434617cde10b8d7d.webp",
+      "sha256": "1d4b30592cc5ba77df2dc1dfbeb99977116e3d50c64eb6c6434617cde10b8d7d"
+    },
+    {
+      "file": "544ae5891ccc3b3795108bf603435f760312d24d6660104f5160ee5fd5f3164e.webp",
+      "sha256": "544ae5891ccc3b3795108bf603435f760312d24d6660104f5160ee5fd5f3164e"
+    },
+    {
+      "file": "620ec08db3a1761cb414b607ff39762891503a5c78cacd535ab147bcfe0c2191.webp",
+      "sha256": "620ec08db3a1761cb414b607ff39762891503a5c78cacd535ab147bcfe0c2191"
+    },
+    {
+      "file": "dcf5295f3bf6b63232139388a415c8df3536dae0e1552c93353ed6f7f7d07a11.webp",
+      "sha256": "dcf5295f3bf6b63232139388a415c8df3536dae0e1552c93353ed6f7f7d07a11"
+    },
+    {
+      "file": "7ce1020ec5da87caa9796bdb61787a0170f3b7dad5dfb7f2edf39292e95d79c7.webp",
+      "sha256": "7ce1020ec5da87caa9796bdb61787a0170f3b7dad5dfb7f2edf39292e95d79c7"
+    },
+    {
+      "file": "6a65bdb71f43634814e91e49a6f312b31b787b6b73f0b412b56aa1e45ec2f917.webp",
+      "sha256": "6a65bdb71f43634814e91e49a6f312b31b787b6b73f0b412b56aa1e45ec2f917"
+    },
+    {
+      "file": "a44e3ecb83fe39fbc951db6eb398d8ac2c97e62c4de618914f21411b471d3433.webp",
+      "sha256": "a44e3ecb83fe39fbc951db6eb398d8ac2c97e62c4de618914f21411b471d3433"
+    },
+    {
+      "file": "2b58ba91a6efa786f3dbb1c5e31d3e01197e8ceee76ddd9bbd645db52becabe9.webp",
+      "sha256": "2b58ba91a6efa786f3dbb1c5e31d3e01197e8ceee76ddd9bbd645db52becabe9"
+    },
+    {
+      "file": "6b9734d0a322ef978baa28dc373cdaf4e9d8c086c1788d4ffd086ddaefe1f3bf.webp",
+      "sha256": "6b9734d0a322ef978baa28dc373cdaf4e9d8c086c1788d4ffd086ddaefe1f3bf"
+    },
+    {
+      "file": "c03bae973b4476b8d5e606d89e15c25180409698e5c7f31a61aec0364438b700.webp",
+      "sha256": "c03bae973b4476b8d5e606d89e15c25180409698e5c7f31a61aec0364438b700"
+    },
+    {
+      "file": "9462516eaa3e00a67026ef0b134e738ae86b527794e347f8ab3e2f0185ebc276.webp",
+      "sha256": "9462516eaa3e00a67026ef0b134e738ae86b527794e347f8ab3e2f0185ebc276"
+    },
+    {
+      "file": "e6dc767a82b4768866b21fe7951947cab2cbdf0273c58c0c6e5e1ee9c5367e9e.webp",
+      "sha256": "e6dc767a82b4768866b21fe7951947cab2cbdf0273c58c0c6e5e1ee9c5367e9e"
+    },
+    {
+      "file": "3c3cf81dbf89dae51a3b34e2804b57a4b1e223ab879c36e75b5844638ae8f114.webp",
+      "sha256": "3c3cf81dbf89dae51a3b34e2804b57a4b1e223ab879c36e75b5844638ae8f114"
+    },
+    {
+      "file": "241c2fbbf9a43f26323dffbba99c78175e21626501e7791ad3465c58f64ae727.webp",
+      "sha256": "241c2fbbf9a43f26323dffbba99c78175e21626501e7791ad3465c58f64ae727"
+    },
+    {
+      "file": "ce05f0ee6f8d6d4ad0a444d46a0e1391c9834aac668b57e04f6847640a582805.webp",
+      "sha256": "ce05f0ee6f8d6d4ad0a444d46a0e1391c9834aac668b57e04f6847640a582805"
+    },
+    {
+      "file": "7b668acda5f7e079937f0ff8eb3e662e13ea89eee2e8345928439d26e5605f8f.webp",
+      "sha256": "7b668acda5f7e079937f0ff8eb3e662e13ea89eee2e8345928439d26e5605f8f"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b02-cong-nghe-internet"
+}

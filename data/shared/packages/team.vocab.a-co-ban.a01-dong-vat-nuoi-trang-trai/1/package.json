@@ -1,0 +1,685 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai",
+      "kind": "Set",
+      "values": {
+        "SetName": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "Description": "#a1 #a2 #animals #farm"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.08d7fa7a6a1545bda060d631c96a47b2",
+      "kind": "Card",
+      "values": {
+        "Term": "donkey",
+        "Definition": "con l\u1EEBa",
+        "ImageUrl": "asset:277b58a8180c3748ba795de869d64b332c049bd882fcfd8f907ffd7bd6c08cda.webp",
+        "Phonetic": "/\u02C8d\u0251\u014B.ki/",
+        "Example": "The donkey carries our bags up the hill.",
+        "ExampleTranslation": "Con l\u1EEBa ch\u1EDF t\u00FAi c\u1EE7a ch\u00FAng t\u00F4i l\u00EAn \u0111\u1ED3i.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an animal like a small horse with long ears",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8d\u0252\u014B.ki/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The donkey carries our bags up the hill.\u0022,\u0022vi\u0022:\u0022Con l\\u1EEBa ch\\u1EDF t\\u00FAi c\\u1EE7a ch\\u00FAng t\\u00F4i l\\u00EAn \\u0111\\u1ED3i.\u0022},{\u0022text\u0022:\u0022A donkey stood quietly beside the road.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con l\\u1EEBa \\u0111\\u1EE9ng y\\u00EAn l\\u1EB7ng b\\u00EAn \\u0111\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ride a donkey\u0022,\u0022vi\u0022:\u0022c\\u01B0\\u1EE1i l\\u1EEBa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/89918055@N05/51578147148\u0022,\u0022author\u0022:\u0022JOHN K THORNE\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.1a9189a6064642c19398e32eb52887db",
+      "kind": "Card",
+      "values": {
+        "Term": "tractor",
+        "Definition": "m\u00E1y k\u00E9o",
+        "ImageUrl": "asset:48bae48bf646d28b24c8127ed96f32c35479a98475c5088060af7fb9ac82d8a1.webp",
+        "Phonetic": "/\u02C8t\u0279\u00E6kt\u025A/",
+        "Example": "The farmer drives a green tractor.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi n\u00F4ng d\u00E2n l\u00E1i m\u1ED9t chi\u1EBFc m\u00E1y k\u00E9o m\u00E0u xanh.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a strong farm vehicle that pulls heavy machines",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8t\u0279\u00E6kt\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The farmer drives a green tractor.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi n\\u00F4ng d\\u00E2n l\\u00E1i m\\u1ED9t chi\\u1EBFc m\\u00E1y k\\u00E9o m\\u00E0u xanh.\u0022},{\u0022text\u0022:\u0022The tractor is ploughing the field.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc m\\u00E1y k\\u00E9o \\u0111ang c\\u00E0y ru\\u1ED9ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022drive a tractor\u0022,\u0022vi\u0022:\u0022l\\u00E1i m\\u00E1y k\\u00E9o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/12360520514\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.36f48dc7271c40f989a3ed041d581932",
+      "kind": "Card",
+      "values": {
+        "Term": "goose",
+        "Definition": "con ng\u1ED7ng",
+        "ImageUrl": "asset:a273807c078aac00e673d70002992317fe062ed05b03b385f05422fce276adc4.webp",
+        "Phonetic": "/\u0261us/",
+        "Example": "The goose walked slowly to the water.",
+        "ExampleTranslation": "Con ng\u1ED7ng ch\u1EADm r\u00E3i \u0111i v\u1EC1 ph\u00EDa m\u1EB7t n\u01B0\u1EDBc.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large water bird with a long neck",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0261u\u02D0s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The goose walked slowly to the water.\u0022,\u0022vi\u0022:\u0022Con ng\\u1ED7ng ch\\u1EADm r\\u00E3i \\u0111i v\\u1EC1 ph\\u00EDa m\\u1EB7t n\\u01B0\\u1EDBc.\u0022},{\u0022text\u0022:\u0022Many geese live near the lake.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC1u con ng\\u1ED7ng s\\u1ED1ng g\\u1EA7n h\\u1ED3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a flock of geese\u0022,\u0022vi\u0022:\u0022m\\u1ED9t \\u0111\\u00E0n ng\\u1ED7ng\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022geese\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/277435/free-illustration-image-audubon-goose-vintage-animal\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.3f3a283e244449c3939b1a659243f060",
+      "kind": "Card",
+      "values": {
+        "Term": "goat",
+        "Definition": "con d\u00EA",
+        "ImageUrl": "asset:478c92824b14b141063da0dbd2729834ccd18d24e96b28a36544e4a9314bacf3.webp",
+        "Phonetic": "/\u0261o\u028At/",
+        "Example": "The goat jumped over the small fence.",
+        "ExampleTranslation": "Con d\u00EA nh\u1EA3y qua h\u00E0ng r\u00E0o nh\u1ECF.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a farm animal with horns that climbs well",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0261\u0259\u028At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The goat jumped over the small fence.\u0022,\u0022vi\u0022:\u0022Con d\\u00EA nh\\u1EA3y qua h\\u00E0ng r\\u00E0o nh\\u1ECF.\u0022},{\u0022text\u0022:\u0022They make cheese from goat milk.\u0022,\u0022vi\u0022:\u0022H\\u1ECD l\\u00E0m ph\\u00F4 mai t\\u1EEB s\\u1EEFa d\\u00EA.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022goat milk\u0022,\u0022vi\u0022:\u0022s\\u1EEFa d\\u00EA\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3296984/free-photo-image-cow-goat-cattle-animal\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.465edd5508f941269a8904cbf4b37929",
+      "kind": "Card",
+      "values": {
+        "Term": "fence",
+        "Definition": "h\u00E0ng r\u00E0o",
+        "ImageUrl": "asset:4fa58c447e02882ba2433087453a312701a918a3d5f3beeed8c588327199590d.webp",
+        "Phonetic": "/f\u025Bns/",
+        "Example": "A white fence goes around the field.",
+        "ExampleTranslation": "M\u1ED9t h\u00E0ng r\u00E0o tr\u1EAFng bao quanh c\u00E1nh \u0111\u1ED3ng.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a barrier around a field or garden",
+        "Cefr": "A2",
+        "PhoneticUk": "/f\u025Bns/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A white fence goes around the field.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t h\\u00E0ng r\\u00E0o tr\\u1EAFng bao quanh c\\u00E1nh \\u0111\\u1ED3ng.\u0022},{\u0022text\u0022:\u0022The sheep cannot jump over this fence.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00E0n c\\u1EEBu kh\\u00F4ng th\\u1EC3 nh\\u1EA3y qua h\\u00E0ng r\\u00E0o n\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wooden fence\u0022,\u0022vi\u0022:\u0022h\\u00E0ng r\\u00E0o g\\u1ED7\u0022},{\u0022text\u0022:\u0022climb over a fence\u0022,\u0022vi\u0022:\u0022tr\\u00E8o qua h\\u00E0ng r\\u00E0o\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/39068d114b/\u0022,\u0022author\u0022:\u0022Bigul Malayi\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.4cb24755b24746eeadfff5218194b509",
+      "kind": "Card",
+      "values": {
+        "Term": "lamb",
+        "Definition": "c\u1EEBu con",
+        "ImageUrl": "asset:d1729a04639cf41d1897edd33715839594f6f4d6c583b19d73e0c947c29287a8.webp",
+        "Phonetic": "/\u02C8l\u00E6m/",
+        "Example": "The lamb follows its mother everywhere.",
+        "ExampleTranslation": "C\u1EEBu con \u0111i theo m\u1EB9 kh\u1EAFp n\u01A1i.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a young sheep",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8l\u00E6m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The lamb follows its mother everywhere.\u0022,\u0022vi\u0022:\u0022C\\u1EEBu con \\u0111i theo m\\u1EB9 kh\\u1EAFp n\\u01A1i.\u0022},{\u0022text\u0022:\u0022A newborn lamb stood up on shaky legs.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t ch\\u00FA c\\u1EEBu con m\\u1EDBi sinh \\u0111\\u1EE9ng d\\u1EADy tr\\u00EAn \\u0111\\u00F4i ch\\u00E2n run r\\u1EA9y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022spring lamb\u0022,\u0022vi\u0022:\u0022c\\u1EEBu non m\\u00F9a xu\\u00E2n\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022sheep\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022con c\\u1EEBu\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/baby-sheep-MPETRILKHN\u0022,\u0022author\u0022:\u0022Ian Livesey\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.4eab28bcb3d34972a32a6033e4a80689",
+      "kind": "Card",
+      "values": {
+        "Term": "pig",
+        "Definition": "con l\u1EE3n",
+        "ImageUrl": "asset:0bfb5f6d7a25cf8e799e78dbd082f11d1c86543d9e89ba0f190bc9bf529e0b5d.webp",
+        "Phonetic": "/p\u026A\u0261/",
+        "Example": "The pig is sleeping in the mud.",
+        "ExampleTranslation": "Con l\u1EE3n \u0111ang ng\u1EE7 trong b\u00F9n.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a pink or black farm animal kept for its meat",
+        "Cefr": "A1",
+        "PhoneticUk": "/p\u026A\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The pig is sleeping in the mud.\u0022,\u0022vi\u0022:\u0022Con l\\u1EE3n \\u0111ang ng\\u1EE7 trong b\\u00F9n.\u0022},{\u0022text\u0022:\u0022My uncle keeps ten pigs on his farm.\u0022,\u0022vi\u0022:\u0022Ch\\u00FA t\\u00F4i nu\\u00F4i m\\u01B0\\u1EDDi con l\\u1EE3n \\u1EDF trang tr\\u1EA1i.\u0022}],\u0022synonyms\u0022:[\u0022hog\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022feed the pigs\u0022,\u0022vi\u0022:\u0022cho l\\u1EE3n \\u0103n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/pig-animal-I1CNCRXDYR\u0022,\u0022author\u0022:\u0022Ian Livesey\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.512c5212093746c3b7d7f49b401ae535",
+      "kind": "Card",
+      "values": {
+        "Term": "rabbit",
+        "Definition": "con th\u1ECF",
+        "ImageUrl": "asset:335afcc5ebaaad0a1f9eacd06e0ddc41f6bdf09df9479cf0bbc0ab131e1a9b88.webp",
+        "Phonetic": "/\u02C8\u0279\u00E6b\u0259t/",
+        "Example": "The rabbit is eating a carrot.",
+        "ExampleTranslation": "Con th\u1ECF \u0111ang \u0103n m\u1ED9t c\u1EE7 c\u00E0 r\u1ED1t.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small animal with long ears that hops",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u0279\u00E6b\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The rabbit is eating a carrot.\u0022,\u0022vi\u0022:\u0022Con th\\u1ECF \\u0111ang \\u0103n m\\u1ED9t c\\u1EE7 c\\u00E0 r\\u1ED1t.\u0022},{\u0022text\u0022:\u0022My sister has a white pet rabbit.\u0022,\u0022vi\u0022:\u0022Em g\\u00E1i t\\u00F4i c\\u00F3 m\\u1ED9t con th\\u1ECF c\\u1EA3nh m\\u00E0u tr\\u1EAFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pet rabbit\u0022,\u0022vi\u0022:\u0022th\\u1ECF c\\u1EA3nh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/8398907@N02/5251390861\u0022,\u0022author\u0022:\u0022moonjazz\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.5988dd5a13094c5aae2d3aca15e7807b",
+      "kind": "Card",
+      "values": {
+        "Term": "farm",
+        "Definition": "trang tr\u1EA1i",
+        "ImageUrl": "asset:7ed5d700997338c2b79a358aed74d757b7ba362b4dc65e02627e9aa4e6cfa436.webp",
+        "Phonetic": "/\u02C8f\u0251\u0279m/",
+        "Example": "My grandparents live on a big farm.",
+        "ExampleTranslation": "\u00D4ng b\u00E0 t\u00F4i s\u1ED1ng \u1EDF m\u1ED9t trang tr\u1EA1i l\u1EDBn.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "land and buildings where people grow food and keep animals",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8f\u0251\u02D0m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandparents live on a big farm.\u0022,\u0022vi\u0022:\u0022\\u00D4ng b\\u00E0 t\\u00F4i s\\u1ED1ng \\u1EDF m\\u1ED9t trang tr\\u1EA1i l\\u1EDBn.\u0022},{\u0022text\u0022:\u0022We visited a farm during the school trip.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111\\u00E3 th\\u0103m m\\u1ED9t trang tr\\u1EA1i trong chuy\\u1EBFn \\u0111i c\\u1EE7a tr\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022work on a farm\u0022,\u0022vi\u0022:\u0022l\\u00E0m vi\\u1EC7c \\u1EDF trang tr\\u1EA1i\u0022},{\u0022text\u0022:\u0022farm animals\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED9ng v\\u1EADt nu\\u00F4i \\u1EDF trang tr\\u1EA1i\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022farmer\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022n\\u00F4ng d\\u00E2n\u0022},{\u0022text\u0022:\u0022farming\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022ngh\\u1EC1 n\\u00F4ng\u0022}],\u0022verbForms\u0022:{\u0022past\u0022:\u0022farmed\u0022,\u0022pastParticiple\u0022:\u0022farmed\u0022,\u0022ing\u0022:\u0022farming\u0022,\u0022thirdPerson\u0022:\u0022farms\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6478694/vector-public-domain-blue-nature\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.5d31a390783444e9a955f09fff257138",
+      "kind": "Card",
+      "values": {
+        "Term": "hamster",
+        "Definition": "chu\u1ED9t \u0111\u1ED3ng (th\u00FA c\u1EA3nh)",
+        "ImageUrl": "asset:f5799a0bf6fa32ec0c5f30cebaab40869b8ec67dd5332a905543deb3633580ca.webp",
+        "Phonetic": "/\u02C8h\u00E6m(p)st\u025A/",
+        "Example": "The hamster runs on its wheel at night.",
+        "ExampleTranslation": "Con chu\u1ED9t \u0111\u1ED3ng ch\u1EA1y tr\u00EAn b\u00E1nh xe c\u1EE7a n\u00F3 v\u00E0o ban \u0111\u00EAm.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small furry pet that keeps food in its cheeks",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8h\u00E6m(p)st\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The hamster runs on its wheel at night.\u0022,\u0022vi\u0022:\u0022Con chu\\u1ED9t \\u0111\\u1ED3ng ch\\u1EA1y tr\\u00EAn b\\u00E1nh xe c\\u1EE7a n\\u00F3 v\\u00E0o ban \\u0111\\u00EAm.\u0022},{\u0022text\u0022:\u0022I bought a hamster and a small cage.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u00E3 mua m\\u1ED9t con chu\\u1ED9t \\u0111\\u1ED3ng v\\u00E0 m\\u1ED9t c\\u00E1i l\\u1ED3ng nh\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hamster cage\u0022,\u0022vi\u0022:\u0022l\\u1ED3ng chu\\u1ED9t \\u0111\\u1ED3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/36943025@N07/3402519358\u0022,\u0022author\u0022:\u0022Lottie\\u0027s pets \\u0026 stuff\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.681a16b9b9094085aaf93dc667d43495",
+      "kind": "Card",
+      "values": {
+        "Term": "rooster",
+        "Definition": "g\u00E0 tr\u1ED1ng",
+        "ImageUrl": "asset:0c57e8ec6fe8aa5e858833e9adab2eb2fbc744bbbc8d3ed00a1858c41feec710.webp",
+        "Phonetic": "/\u02C8\u0279ust\u025A/",
+        "Example": "The rooster wakes us up at five o\u0027clock.",
+        "ExampleTranslation": "Con g\u00E0 tr\u1ED1ng \u0111\u00E1nh th\u1EE9c ch\u00FAng t\u00F4i l\u00FAc n\u0103m gi\u1EDD.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a male chicken that crows in the morning",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0279u\u02D0st\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The rooster wakes us up at five o\\u0027clock.\u0022,\u0022vi\u0022:\u0022Con g\\u00E0 tr\\u1ED1ng \\u0111\\u00E1nh th\\u1EE9c ch\\u00FAng t\\u00F4i l\\u00FAc n\\u0103m gi\\u1EDD.\u0022},{\u0022text\u0022:\u0022A red rooster stood on the fence.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con g\\u00E0 tr\\u1ED1ng \\u0111\\u1ECF \\u0111\\u1EE9ng tr\\u00EAn h\\u00E0ng r\\u00E0o.\u0022}],\u0022synonyms\u0022:[\u0022cock\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022the rooster crows\u0022,\u0022vi\u0022:\u0022g\\u00E0 tr\\u1ED1ng g\\u00E1y\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022hen\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022g\\u00E0 m\\u00E1i\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/75983291@N07/17358552512\u0022,\u0022author\u0022:\u0022tu.finamore\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.6b823cb7aac8426aa55f7356ff855de9",
+      "kind": "Card",
+      "values": {
+        "Term": "turkey",
+        "Definition": "g\u00E0 t\u00E2y",
+        "ImageUrl": "asset:49d004e395b26b80698658997d9d00ba78208831a8cf7e97cfcda806960b417c.webp",
+        "Phonetic": "/\u02C8t\u025Dki/",
+        "Example": "The turkey has a big colourful tail.",
+        "ExampleTranslation": "Con g\u00E0 t\u00E2y c\u00F3 c\u00E1i \u0111u\u00F4i to nhi\u1EC1u m\u00E0u.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a big farm bird often eaten at festivals",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8t\u025C\u02D0ki/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The turkey has a big colourful tail.\u0022,\u0022vi\u0022:\u0022Con g\\u00E0 t\\u00E2y c\\u00F3 c\\u00E1i \\u0111u\\u00F4i to nhi\\u1EC1u m\\u00E0u.\u0022},{\u0022text\u0022:\u0022They keep a few turkeys on the farm.\u0022,\u0022vi\u0022:\u0022H\\u1ECD nu\\u00F4i v\\u00E0i con g\\u00E0 t\\u00E2y \\u1EDF trang tr\\u1EA1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022roast turkey\u0022,\u0022vi\u0022:\u0022g\\u00E0 t\\u00E2y n\\u01B0\\u1EDBng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6016105/photo-image-public-domain-nature-bird\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.763a0b4c670b4dcea5fe44bc5210574e",
+      "kind": "Card",
+      "values": {
+        "Term": "chicken",
+        "Definition": "con g\u00E0",
+        "ImageUrl": "asset:f9781f54882f09616c29278947f3abeaf066ef4d0fb61009099bde02811334ed.webp",
+        "Phonetic": "/\u02C8t\u0361\u0283\u026Ak\u026An/",
+        "Example": "The chicken is walking around the yard.",
+        "ExampleTranslation": "Con g\u00E0 \u0111ang \u0111i l\u1EA1i quanh s\u00E2n.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a farm bird kept for eggs and meat",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8t\u0361\u0283\u026Ak\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The chicken is walking around the yard.\u0022,\u0022vi\u0022:\u0022Con g\\u00E0 \\u0111ang \\u0111i l\\u1EA1i quanh s\\u00E2n.\u0022},{\u0022text\u0022:\u0022We keep six chickens behind the house.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i nu\\u00F4i s\\u00E1u con g\\u00E0 sau nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022free-range chicken\u0022,\u0022vi\u0022:\u0022g\\u00E0 th\\u1EA3 v\\u01B0\\u1EDDn\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022chick\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022g\\u00E0 con\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/82242140@N05/27457151663\u0022,\u0022author\u0022:\u0022LandBetweentheLakesKYTN\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.8c5f03f717094ee2b0180d1ad02f9950",
+      "kind": "Card",
+      "values": {
+        "Term": "calf",
+        "Definition": "b\u00EA con",
+        "ImageUrl": "asset:3337f38f45b43e0f2199c64c6aecd88e4a6318cc50e6ecf3d0c4c2b97c871c67.webp",
+        "Phonetic": "/k\u0251\u02D0f/",
+        "Example": "The calf drinks milk from its mother.",
+        "ExampleTranslation": "B\u00EA con b\u00FA s\u1EEFa t\u1EEB m\u1EB9.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a young cow",
+        "Cefr": "A2",
+        "PhoneticUk": "/k\u0251\u02D0f/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The calf drinks milk from its mother.\u0022,\u0022vi\u0022:\u0022B\\u00EA con b\\u00FA s\\u1EEFa t\\u1EEB m\\u1EB9.\u0022},{\u0022text\u0022:\u0022A calf was born in the barn last night.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t ch\\u00FA b\\u00EA con ra \\u0111\\u1EDDi trong chu\\u1ED3ng \\u0111\\u00EAm qua.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a newborn calf\u0022,\u0022vi\u0022:\u0022m\\u1ED9t ch\\u00FA b\\u00EA m\\u1EDBi sinh\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022calves\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Holstein_Cow_by_Roshan_Patel.jpg\u0022,\u0022author\u0022:\u0022Roshan Patel\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+      "kind": "Folder",
+      "values": {
+        "FolderName": "T\u1EEB v\u1EF1ng theo ch\u1EE7 \u0111\u1EC1 \u2013 C\u01A1 b\u1EA3n (A1\u2013A2)"
+      },
+      "references": {
+        "ParentFolderId": null,
+        "UserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.9b887957c7d947699719a68e216e07f2",
+      "kind": "Card",
+      "values": {
+        "Term": "kitten",
+        "Definition": "m\u00E8o con",
+        "ImageUrl": "asset:a120e143e08c236e088149580c73c030c90ede06d76faf0d1b1d24c9d78fe02a.webp",
+        "Phonetic": "/\u02C8k\u026At\u0259n\u0329/",
+        "Example": "The kitten is sleeping on the sofa.",
+        "ExampleTranslation": "Ch\u00FA m\u00E8o con \u0111ang ng\u1EE7 tr\u00EAn gh\u1EBF sofa.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a young cat",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u026At\u0259n\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The kitten is sleeping on the sofa.\u0022,\u0022vi\u0022:\u0022Ch\\u00FA m\\u00E8o con \\u0111ang ng\\u1EE7 tr\\u00EAn gh\\u1EBF sofa.\u0022},{\u0022text\u0022:\u0022She found a tiny kitten near the barn.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y t\\u00ECm th\\u1EA5y m\\u1ED9t ch\\u00FA m\\u00E8o con b\\u00E9 x\\u00EDu g\\u1EA7n chu\\u1ED3ng tr\\u1EA1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a litter of kittens\u0022,\u0022vi\u0022:\u0022m\\u1ED9t l\\u1EE9a m\\u00E8o con\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022cat\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022con m\\u00E8o\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/38709274@N02/14582884739\u0022,\u0022author\u0022:\u0022iDapinder\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.a263079b20564ffbb64a961ec8f38388",
+      "kind": "Card",
+      "values": {
+        "Term": "horse",
+        "Definition": "con ng\u1EF1a",
+        "ImageUrl": "asset:7033a5a5c0da35d0c72032c85878baf53f74a8c69095bc499d82f0552584124c.webp",
+        "Phonetic": "/ho\u0279s/",
+        "Example": "She rides a brown horse every weekend.",
+        "ExampleTranslation": "Cu\u1ED1i tu\u1EA7n n\u00E0o c\u00F4 \u1EA5y c\u0169ng c\u01B0\u1EE1i m\u1ED9t con ng\u1EF1a n\u00E2u.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large animal people ride or use to pull things",
+        "Cefr": "A1",
+        "PhoneticUk": "/h\u0254\u02D0s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She rides a brown horse every weekend.\u0022,\u0022vi\u0022:\u0022Cu\\u1ED1i tu\\u1EA7n n\\u00E0o c\\u00F4 \\u1EA5y c\\u0169ng c\\u01B0\\u1EE1i m\\u1ED9t con ng\\u1EF1a n\\u00E2u.\u0022},{\u0022text\u0022:\u0022The horse ran fast across the field.\u0022,\u0022vi\u0022:\u0022Con ng\\u1EF1a ch\\u1EA1y nhanh qua c\\u00E1nh \\u0111\\u1ED3ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ride a horse\u0022,\u0022vi\u0022:\u0022c\\u01B0\\u1EE1i ng\\u1EF1a\u0022},{\u0022text\u0022:\u0022horse race\u0022,\u0022vi\u0022:\u0022cu\\u1ED9c \\u0111ua ng\\u1EF1a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/126064386@N03/20129028816\u0022,\u0022author\u0022:\u0022swallowedtail\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.a2d72ab4f985483c84cbcf09ae1f6dcd",
+      "kind": "Card",
+      "values": {
+        "Term": "duck",
+        "Definition": "con v\u1ECBt",
+        "ImageUrl": "asset:8d5dec6e5958b0e7e1c75f998a6f7f04cc98e80a3c319188bc493cd9ca894893.webp",
+        "Phonetic": "/d\u028Ck/",
+        "Example": "The duck is swimming on the pond.",
+        "ExampleTranslation": "Con v\u1ECBt \u0111ang b\u01A1i tr\u00EAn ao.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a water bird with a flat beak",
+        "Cefr": "A1",
+        "PhoneticUk": "/d\u028Ck/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The duck is swimming on the pond.\u0022,\u0022vi\u0022:\u0022Con v\\u1ECBt \\u0111ang b\\u01A1i tr\\u00EAn ao.\u0022},{\u0022text\u0022:\u0022Ducks like to play in the water.\u0022,\u0022vi\u0022:\u0022V\\u1ECBt th\\u00EDch ngh\\u1ECBch n\\u01B0\\u1EDBc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a flock of ducks\u0022,\u0022vi\u0022:\u0022m\\u1ED9t \\u0111\\u00E0n v\\u1ECBt\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022duckling\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022v\\u1ECBt con\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/15035592304\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.c5457fd3175943bc8096b5f7d29a6e31",
+      "kind": "Card",
+      "values": {
+        "Term": "goldfish",
+        "Definition": "c\u00E1 v\u00E0ng",
+        "ImageUrl": "asset:8c9023d7aff0d627071abe914936924f2dc130f6097e69e3dbec6c5d314a33c0.webp",
+        "Phonetic": "/\u02C8\u0261o\u028Aldf\u026A\u0283/",
+        "Example": "My goldfish lives in a round glass bowl.",
+        "ExampleTranslation": "Con c\u00E1 v\u00E0ng c\u1EE7a t\u00F4i s\u1ED1ng trong m\u1ED9t c\u00E1i b\u00ECnh th\u1EE7y tinh tr\u00F2n.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small orange fish kept as a pet",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0261o\u028Aldf\u026A\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My goldfish lives in a round glass bowl.\u0022,\u0022vi\u0022:\u0022Con c\\u00E1 v\\u00E0ng c\\u1EE7a t\\u00F4i s\\u1ED1ng trong m\\u1ED9t c\\u00E1i b\\u00ECnh th\\u1EE7y tinh tr\\u00F2n.\u0022},{\u0022text\u0022:\u0022He feeds the goldfish twice a day.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y cho c\\u00E1 v\\u00E0ng \\u0103n hai l\\u1EA7n m\\u1ED9t ng\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022goldfish bowl\u0022,\u0022vi\u0022:\u0022b\\u00ECnh nu\\u00F4i c\\u00E1 v\\u00E0ng\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022goldfish\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/26002238@N05/2570634950\u0022,\u0022author\u0022:\u0022C_K_L\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.cb97508f87fa449cadf7f7a88be2b13e",
+      "kind": "Card",
+      "values": {
+        "Term": "buffalo",
+        "Definition": "con tr\u00E2u",
+        "ImageUrl": "asset:39595ef1500a4c07204b9986b336ca189a73ca7375ea44dd2a5c01a556661dc7.webp",
+        "Phonetic": "/\u02C8b\u028Cf.\u0259.lo\u028A/",
+        "Example": "The buffalo pulls the plough in the rice field.",
+        "ExampleTranslation": "Con tr\u00E2u k\u00E9o c\u00E0y trong ru\u1ED9ng l\u00FAa.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a strong animal with curved horns used on farms",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u028Cf.\u0259l.\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The buffalo pulls the plough in the rice field.\u0022,\u0022vi\u0022:\u0022Con tr\\u00E2u k\\u00E9o c\\u00E0y trong ru\\u1ED9ng l\\u00FAa.\u0022},{\u0022text\u0022:\u0022Children ride on the back of the buffalo.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB c\\u01B0\\u1EE1i tr\\u00EAn l\\u01B0ng con tr\\u00E2u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022water buffalo\u0022,\u0022vi\u0022:\u0022tr\\u00E2u n\\u01B0\\u1EDBc\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022buffaloes\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/9391143988\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.dc807165590e4e119ca4e64eb860c164",
+      "kind": "Card",
+      "values": {
+        "Term": "hay",
+        "Definition": "c\u1ECF kh\u00F4, r\u01A1m kh\u00F4",
+        "ImageUrl": "asset:3d53091504afb0be3c8fd27c233fac993dc475d25711da413ef7e15b6103c3b2.webp",
+        "Phonetic": "/he\u026A/",
+        "Example": "The horses are eating fresh hay.",
+        "ExampleTranslation": "Nh\u1EEFng con ng\u1EF1a \u0111ang \u0103n c\u1ECF kh\u00F4 m\u1EDBi.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "dry grass used as food for farm animals",
+        "Cefr": "A2",
+        "PhoneticUk": "/he\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The horses are eating fresh hay.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng con ng\\u1EF1a \\u0111ang \\u0103n c\\u1ECF kh\\u00F4 m\\u1EDBi.\u0022},{\u0022text\u0022:\u0022The farmer carried hay to the barn.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi n\\u00F4ng d\\u00E2n ch\\u1EDF c\\u1ECF kh\\u00F4 v\\u00E0o chu\\u1ED3ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a bale of hay\u0022,\u0022vi\u0022:\u0022m\\u1ED9t ki\\u1EC7n c\\u1ECF kh\\u00F4\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/142289055@N04/29534114843\u0022,\u0022author\u0022:\u0022sbmeaper1\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.dfb243d48f6f41d390e75a2fa69b14b2",
+      "kind": "Card",
+      "values": {
+        "Term": "cow",
+        "Definition": "con b\u00F2 c\u00E1i",
+        "ImageUrl": "asset:493697481bccde8fc2d615c9fee205c6234604fa5f7fbd5d84df256fffdbc5a9.webp",
+        "Phonetic": "/ka\u028A/",
+        "Example": "The cow is eating grass in the field.",
+        "ExampleTranslation": "Con b\u00F2 \u0111ang \u0103n c\u1ECF ngo\u00E0i \u0111\u1ED3ng.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large farm animal that gives milk",
+        "Cefr": "A1",
+        "PhoneticUk": "/ka\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The cow is eating grass in the field.\u0022,\u0022vi\u0022:\u0022Con b\\u00F2 \\u0111ang \\u0103n c\\u1ECF ngo\\u00E0i \\u0111\\u1ED3ng.\u0022},{\u0022text\u0022:\u0022We get fresh milk from our cow every morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng n\\u00E0o ch\\u00FAng t\\u00F4i c\\u0169ng l\\u1EA5y s\\u1EEFa t\\u01B0\\u01A1i t\\u1EEB con b\\u00F2 c\\u1EE7a nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022milk a cow\u0022,\u0022vi\u0022:\u0022v\\u1EAFt s\\u1EEFa b\\u00F2\u0022},{\u0022text\u0022:\u0022dairy cow\u0022,\u0022vi\u0022:\u0022b\\u00F2 s\\u1EEFa\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022cattle\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022gia s\\u00FAc (b\\u00F2)\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/85825630@N00/4813130909\u0022,\u0022author\u0022:\u0022boklm\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.e30fc9c803934ce1aa9b0aa47c8d614e",
+      "kind": "Card",
+      "values": {
+        "Term": "barn",
+        "Definition": "chu\u1ED3ng tr\u1EA1i, kho n\u00F4ng tr\u1EA1i",
+        "ImageUrl": "asset:0932127846960412025494822e43e830dfe3f58007d3b1fcd97e3e28827ce586.webp",
+        "Phonetic": "/\u02C8b\u0251\u0279n/",
+        "Example": "The cows sleep in the barn at night.",
+        "ExampleTranslation": "Ban \u0111\u00EAm nh\u1EEFng con b\u00F2 ng\u1EE7 trong chu\u1ED3ng.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large farm building for animals or crops",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8b\u0251\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The cows sleep in the barn at night.\u0022,\u0022vi\u0022:\u0022Ban \\u0111\\u00EAm nh\\u1EEFng con b\\u00F2 ng\\u1EE7 trong chu\\u1ED3ng.\u0022},{\u0022text\u0022:\u0022There is hay in the old barn.\u0022,\u0022vi\u0022:\u0022Trong c\\u00E1i chu\\u1ED3ng c\\u0169 c\\u00F3 r\\u01A1m kh\\u00F4.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022red barn\u0022,\u0022vi\u0022:\u0022nh\\u00E0 kho m\\u00E0u \\u0111\\u1ECF\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/66741228@N05/25810965467\u0022,\u0022author\u0022:\u0022Bonnie Moreland (free images)\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.f73c8a1b47a54de486ce50235d1c953a",
+      "kind": "Card",
+      "values": {
+        "Term": "pond",
+        "Definition": "c\u00E1i ao",
+        "ImageUrl": "asset:325070de726ffbeb1d7da15fe6ad0a5532ca5311b2e8cf38109388ec26b02902.webp",
+        "Phonetic": "/p\u0252nd/",
+        "Example": "The ducks are swimming in the pond.",
+        "ExampleTranslation": "Nh\u1EEFng con v\u1ECBt \u0111ang b\u01A1i trong ao.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small area of still water",
+        "Cefr": "A2",
+        "PhoneticUk": "/p\u0252nd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The ducks are swimming in the pond.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng con v\\u1ECBt \\u0111ang b\\u01A1i trong ao.\u0022},{\u0022text\u0022:\u0022There is a small pond behind our farm.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t c\\u00E1i ao nh\\u1ECF ph\\u00EDa sau trang tr\\u1EA1i c\\u1EE7a ch\\u00FAng t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fish pond\u0022,\u0022vi\u0022:\u0022ao c\\u00E1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/147755034@N05/43627491511\u0022,\u0022author\u0022:\u0022angelobrathot\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.f7e2046ff5a74509a2f71692bc9973f2",
+      "kind": "Card",
+      "values": {
+        "Term": "puppy",
+        "Definition": "ch\u00F3 con",
+        "ImageUrl": "asset:9a7ef767f9567b3be7366344bde1278fe2df3dcf2a1d21f5105720ab6c9f5087.webp",
+        "Phonetic": "/\u02C8p\u028Cpi/",
+        "Example": "The puppy wants to play with me.",
+        "ExampleTranslation": "Ch\u00FA ch\u00F3 con mu\u1ED1n ch\u01A1i v\u1EDBi t\u00F4i.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a young dog",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8p\u028Cpi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The puppy wants to play with me.\u0022,\u0022vi\u0022:\u0022Ch\\u00FA ch\\u00F3 con mu\\u1ED1n ch\\u01A1i v\\u1EDBi t\\u00F4i.\u0022},{\u0022text\u0022:\u0022Our puppy sleeps in a small basket.\u0022,\u0022vi\u0022:\u0022Ch\\u00F3 con nh\\u00E0 t\\u00F4i ng\\u1EE7 trong m\\u1ED9t c\\u00E1i gi\\u1ECF nh\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cute puppy\u0022,\u0022vi\u0022:\u0022ch\\u00F3 con d\\u1EC5 th\\u01B0\\u01A1ng\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022dog\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022con ch\\u00F3\u0022}],\u0022plural\u0022:\u0022puppies\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/11234074@N05/14013137587\u0022,\u0022author\u0022:\u0022Philippe Vieux-Jeanton\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.fe829253a9d34444b886bd3ac4246ca6",
+      "kind": "Card",
+      "values": {
+        "Term": "sheep",
+        "Definition": "con c\u1EEBu",
+        "ImageUrl": "asset:4112c2bc81031ef66d61065c9d4428b8f0cd22ac8342d41654701ac43d301783.webp",
+        "Phonetic": "/\u02C8\u0283i\u02D0p/",
+        "Example": "A sheep has thick white wool.",
+        "ExampleTranslation": "M\u1ED9t con c\u1EEBu c\u00F3 b\u1ED9 l\u00F4ng d\u00E0y m\u00E0u tr\u1EAFng.",
+        "Topic": "\u0110\u1ED9ng v\u1EADt nu\u00F4i \u0026 trang tr\u1EA1i",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a farm animal with thick wool",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u0283i\u02D0p/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A sheep has thick white wool.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con c\\u1EEBu c\\u00F3 b\\u1ED9 l\\u00F4ng d\\u00E0y m\\u00E0u tr\\u1EAFng.\u0022},{\u0022text\u0022:\u0022The farmer has fifty sheep on the hill.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi n\\u00F4ng d\\u00E2n c\\u00F3 n\\u0103m m\\u01B0\\u01A1i con c\\u1EEBu tr\\u00EAn \\u0111\\u1ED3i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a flock of sheep\u0022,\u0022vi\u0022:\u0022m\\u1ED9t \\u0111\\u00E0n c\\u1EEBu\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022sheep\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/96541566@N06/51861989798\u0022,\u0022author\u0022:\u0022Juhele_CZ\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "493697481bccde8fc2d615c9fee205c6234604fa5f7fbd5d84df256fffdbc5a9.webp",
+      "sha256": "493697481bccde8fc2d615c9fee205c6234604fa5f7fbd5d84df256fffdbc5a9"
+    },
+    {
+      "file": "0bfb5f6d7a25cf8e799e78dbd082f11d1c86543d9e89ba0f190bc9bf529e0b5d.webp",
+      "sha256": "0bfb5f6d7a25cf8e799e78dbd082f11d1c86543d9e89ba0f190bc9bf529e0b5d"
+    },
+    {
+      "file": "478c92824b14b141063da0dbd2729834ccd18d24e96b28a36544e4a9314bacf3.webp",
+      "sha256": "478c92824b14b141063da0dbd2729834ccd18d24e96b28a36544e4a9314bacf3"
+    },
+    {
+      "file": "4112c2bc81031ef66d61065c9d4428b8f0cd22ac8342d41654701ac43d301783.webp",
+      "sha256": "4112c2bc81031ef66d61065c9d4428b8f0cd22ac8342d41654701ac43d301783"
+    },
+    {
+      "file": "7033a5a5c0da35d0c72032c85878baf53f74a8c69095bc499d82f0552584124c.webp",
+      "sha256": "7033a5a5c0da35d0c72032c85878baf53f74a8c69095bc499d82f0552584124c"
+    },
+    {
+      "file": "f9781f54882f09616c29278947f3abeaf066ef4d0fb61009099bde02811334ed.webp",
+      "sha256": "f9781f54882f09616c29278947f3abeaf066ef4d0fb61009099bde02811334ed"
+    },
+    {
+      "file": "8d5dec6e5958b0e7e1c75f998a6f7f04cc98e80a3c319188bc493cd9ca894893.webp",
+      "sha256": "8d5dec6e5958b0e7e1c75f998a6f7f04cc98e80a3c319188bc493cd9ca894893"
+    },
+    {
+      "file": "335afcc5ebaaad0a1f9eacd06e0ddc41f6bdf09df9479cf0bbc0ab131e1a9b88.webp",
+      "sha256": "335afcc5ebaaad0a1f9eacd06e0ddc41f6bdf09df9479cf0bbc0ab131e1a9b88"
+    },
+    {
+      "file": "9a7ef767f9567b3be7366344bde1278fe2df3dcf2a1d21f5105720ab6c9f5087.webp",
+      "sha256": "9a7ef767f9567b3be7366344bde1278fe2df3dcf2a1d21f5105720ab6c9f5087"
+    },
+    {
+      "file": "a120e143e08c236e088149580c73c030c90ede06d76faf0d1b1d24c9d78fe02a.webp",
+      "sha256": "a120e143e08c236e088149580c73c030c90ede06d76faf0d1b1d24c9d78fe02a"
+    },
+    {
+      "file": "a273807c078aac00e673d70002992317fe062ed05b03b385f05422fce276adc4.webp",
+      "sha256": "a273807c078aac00e673d70002992317fe062ed05b03b385f05422fce276adc4"
+    },
+    {
+      "file": "277b58a8180c3748ba795de869d64b332c049bd882fcfd8f907ffd7bd6c08cda.webp",
+      "sha256": "277b58a8180c3748ba795de869d64b332c049bd882fcfd8f907ffd7bd6c08cda"
+    },
+    {
+      "file": "0c57e8ec6fe8aa5e858833e9adab2eb2fbc744bbbc8d3ed00a1858c41feec710.webp",
+      "sha256": "0c57e8ec6fe8aa5e858833e9adab2eb2fbc744bbbc8d3ed00a1858c41feec710"
+    },
+    {
+      "file": "49d004e395b26b80698658997d9d00ba78208831a8cf7e97cfcda806960b417c.webp",
+      "sha256": "49d004e395b26b80698658997d9d00ba78208831a8cf7e97cfcda806960b417c"
+    },
+    {
+      "file": "39595ef1500a4c07204b9986b336ca189a73ca7375ea44dd2a5c01a556661dc7.webp",
+      "sha256": "39595ef1500a4c07204b9986b336ca189a73ca7375ea44dd2a5c01a556661dc7"
+    },
+    {
+      "file": "d1729a04639cf41d1897edd33715839594f6f4d6c583b19d73e0c947c29287a8.webp",
+      "sha256": "d1729a04639cf41d1897edd33715839594f6f4d6c583b19d73e0c947c29287a8"
+    },
+    {
+      "file": "3337f38f45b43e0f2199c64c6aecd88e4a6318cc50e6ecf3d0c4c2b97c871c67.webp",
+      "sha256": "3337f38f45b43e0f2199c64c6aecd88e4a6318cc50e6ecf3d0c4c2b97c871c67"
+    },
+    {
+      "file": "7ed5d700997338c2b79a358aed74d757b7ba362b4dc65e02627e9aa4e6cfa436.webp",
+      "sha256": "7ed5d700997338c2b79a358aed74d757b7ba362b4dc65e02627e9aa4e6cfa436"
+    },
+    {
+      "file": "0932127846960412025494822e43e830dfe3f58007d3b1fcd97e3e28827ce586.webp",
+      "sha256": "0932127846960412025494822e43e830dfe3f58007d3b1fcd97e3e28827ce586"
+    },
+    {
+      "file": "48bae48bf646d28b24c8127ed96f32c35479a98475c5088060af7fb9ac82d8a1.webp",
+      "sha256": "48bae48bf646d28b24c8127ed96f32c35479a98475c5088060af7fb9ac82d8a1"
+    },
+    {
+      "file": "4fa58c447e02882ba2433087453a312701a918a3d5f3beeed8c588327199590d.webp",
+      "sha256": "4fa58c447e02882ba2433087453a312701a918a3d5f3beeed8c588327199590d"
+    },
+    {
+      "file": "3d53091504afb0be3c8fd27c233fac993dc475d25711da413ef7e15b6103c3b2.webp",
+      "sha256": "3d53091504afb0be3c8fd27c233fac993dc475d25711da413ef7e15b6103c3b2"
+    },
+    {
+      "file": "325070de726ffbeb1d7da15fe6ad0a5532ca5311b2e8cf38109388ec26b02902.webp",
+      "sha256": "325070de726ffbeb1d7da15fe6ad0a5532ca5311b2e8cf38109388ec26b02902"
+    },
+    {
+      "file": "8c9023d7aff0d627071abe914936924f2dc130f6097e69e3dbec6c5d314a33c0.webp",
+      "sha256": "8c9023d7aff0d627071abe914936924f2dc130f6097e69e3dbec6c5d314a33c0"
+    },
+    {
+      "file": "f5799a0bf6fa32ec0c5f30cebaab40869b8ec67dd5332a905543deb3633580ca.webp",
+      "sha256": "f5799a0bf6fa32ec0c5f30cebaab40869b8ec67dd5332a905543deb3633580ca"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai"
+}

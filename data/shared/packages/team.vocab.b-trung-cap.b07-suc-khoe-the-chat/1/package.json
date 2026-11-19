@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.b-trung-cap.b01-cong-viec-van-phong:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat",
+      "kind": "Set",
+      "values": {
+        "SetName": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "Description": "#b1 #b2 #health #fitness"
+      },
+      "references": {
+        "FolderId": "team.vocab.b-trung-cap.b01-cong-viec-van-phong.e717db8a34f248d2a320776cd57c4233",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.0d77f76786e2417992d5a0912f2d2a0b",
+      "kind": "Card",
+      "values": {
+        "Term": "blood pressure",
+        "Definition": "huy\u1EBFt \u00E1p",
+        "ImageUrl": "asset:1a219763eeea5c638123b183506a79758e0555b4f9483c723dff2a9cbe0358bf.webp",
+        "Phonetic": "/bl\u028Cd \u02C8p\u0279\u025B\u0283\u025A/",
+        "Example": "The nurse checked my blood pressure.",
+        "ExampleTranslation": "Y t\u00E1 \u0111o huy\u1EBFt \u00E1p cho t\u00F4i.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the force of blood pushing against the blood vessels",
+        "Cefr": "B2",
+        "PhoneticUk": "/bl\u028Cd \u02C8p\u0279\u025B\u0283\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The nurse checked my blood pressure.\u0022,\u0022vi\u0022:\u0022Y t\\u00E1 \\u0111o huy\\u1EBFt \\u00E1p cho t\\u00F4i.\u0022},{\u0022text\u0022:\u0022High blood pressure can be dangerous.\u0022,\u0022vi\u0022:\u0022Huy\\u1EBFt \\u00E1p cao c\\u00F3 th\\u1EC3 nguy hi\\u1EC3m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022high blood pressure\u0022,\u0022vi\u0022:\u0022huy\\u1EBFt \\u00E1p cao\u0022},{\u0022text\u0022:\u0022check blood pressure\u0022,\u0022vi\u0022:\u0022\\u0111o huy\\u1EBFt \\u00E1p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5924328/photo-image-public-domain-person-doctor\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.27e8e540638b448cabd13528c182909a",
+      "kind": "Card",
+      "values": {
+        "Term": "scale",
+        "Definition": "c\u00E1i c\u00E2n",
+        "ImageUrl": "asset:ba1045581f835e28ff6e417c24a792031dbc8a131fbbbf183f5ab0d844338941.webp",
+        "Phonetic": "/ske\u026Al/",
+        "Example": "He stood on the scale to check his weight.",
+        "ExampleTranslation": "Anh \u1EA5y \u0111\u1EE9ng l\u00EAn c\u00E1i c\u00E2n \u0111\u1EC3 ki\u1EC3m tra c\u00E2n n\u1EB7ng.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine you stand on to find out your weight",
+        "Cefr": "B2",
+        "PhoneticUk": "/ske\u026Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He stood on the scale to check his weight.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111\\u1EE9ng l\\u00EAn c\\u00E1i c\\u00E2n \\u0111\\u1EC3 ki\\u1EC3m tra c\\u00E2n n\\u1EB7ng.\u0022},{\u0022text\u0022:\u0022There is a scale in the bathroom.\u0022,\u0022vi\u0022:\u0022Trong ph\\u00F2ng t\\u1EAFm c\\u00F3 m\\u1ED9t c\\u00E1i c\\u00E2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bathroom scale\u0022,\u0022vi\u0022:\u0022c\\u00E2n s\\u1EE9c kh\\u1ECFe\u0022},{\u0022text\u0022:\u0022step on the scale\u0022,\u0022vi\u0022:\u0022b\\u01B0\\u1EDBc l\\u00EAn c\\u00E2n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.32087298d73b4893bb12191713822ea5",
+      "kind": "Card",
+      "values": {
+        "Term": "blood test",
+        "Definition": "x\u00E9t nghi\u1EC7m m\u00E1u",
+        "ImageUrl": "asset:1c4879a1d1b5b1d3ebad9ed3e6571efb0444644ddf5374174eacc72b819ffa1b.webp",
+        "Phonetic": "/bl\u028Cd t\u025Bst/",
+        "Example": "I had a blood test this morning.",
+        "ExampleTranslation": "S\u00E1ng nay t\u00F4i \u0111\u00E3 \u0111i x\u00E9t nghi\u1EC7m m\u00E1u.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a medical check of a small amount of your blood",
+        "Cefr": "B2",
+        "PhoneticUk": "/bl\u028Cd t\u025Bst/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I had a blood test this morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng nay t\\u00F4i \\u0111\\u00E3 \\u0111i x\\u00E9t nghi\\u1EC7m m\\u00E1u.\u0022},{\u0022text\u0022:\u0022The blood test shows that you are healthy.\u0022,\u0022vi\u0022:\u0022K\\u1EBFt qu\\u1EA3 x\\u00E9t nghi\\u1EC7m m\\u00E1u cho th\\u1EA5y b\\u1EA1n kh\\u1ECFe m\\u1EA1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022have a blood test\u0022,\u0022vi\u0022:\u0022\\u0111i x\\u00E9t nghi\\u1EC7m m\\u00E1u\u0022},{\u0022text\u0022:\u0022blood test results\u0022,\u0022vi\u0022:\u0022k\\u1EBFt qu\\u1EA3 x\\u00E9t nghi\\u1EC7m m\\u00E1u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3338342/free-photo-image-blood-collection-tube-cc0-creative-commons\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.3a19e2caadde4eba8f91a651f19d2657",
+      "kind": "Card",
+      "values": {
+        "Term": "contact lens",
+        "Definition": "k\u00EDnh \u00E1p tr\u00F2ng",
+        "ImageUrl": "asset:691d8d2e994aacb7d11a8440606c1af8e2f40c29a3d1ec4ee5303e99c1795ccd.webp",
+        "Phonetic": "/\u02C8k\u0251nt\u00E6kt l\u025Bnz/",
+        "Example": "She wears contact lenses instead of glasses.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111eo k\u00EDnh \u00E1p tr\u00F2ng thay v\u00EC k\u00EDnh m\u1EAFt.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thin lens that you wear on the eye to see better",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u0252nt\u00E6kt l\u025Bnz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She wears contact lenses instead of glasses.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111eo k\\u00EDnh \\u00E1p tr\\u00F2ng thay v\\u00EC k\\u00EDnh m\\u1EAFt.\u0022},{\u0022text\u0022:\u0022Put the contact lens in carefully.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111\\u1EB7t k\\u00EDnh \\u00E1p tr\\u00F2ng v\\u00E0o m\\u1EAFt th\\u1EADt c\\u1EA9n th\\u1EADn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wear contact lenses\u0022,\u0022vi\u0022:\u0022\\u0111eo k\\u00EDnh \\u00E1p tr\\u00F2ng\u0022},{\u0022text\u0022:\u0022contact lens case\u0022,\u0022vi\u0022:\u0022h\\u1ED9p \\u0111\\u1EF1ng k\\u00EDnh \\u00E1p tr\\u00F2ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.3bb9e368689746039aeacc1813aa6691",
+      "kind": "Card",
+      "values": {
+        "Term": "heartbeat",
+        "Definition": "nh\u1ECBp tim",
+        "ImageUrl": "asset:04fd3e8afc3e6938df7580095ab22b08b1edf747f55d323fcd0d28dac3bd1220.webp",
+        "Phonetic": "/\u02C8h\u0251\u0279t\u02CCbit/",
+        "Example": "The doctor listened to my heartbeat.",
+        "ExampleTranslation": "B\u00E1c s\u0129 nghe nh\u1ECBp tim c\u1EE7a t\u00F4i.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the regular movement of your heart",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8h\u0251\u02D0t\u02CCbi\u02D0t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The doctor listened to my heartbeat.\u0022,\u0022vi\u0022:\u0022B\\u00E1c s\\u0129 nghe nh\\u1ECBp tim c\\u1EE7a t\\u00F4i.\u0022},{\u0022text\u0022:\u0022Your heartbeat gets faster when you run.\u0022,\u0022vi\u0022:\u0022Nh\\u1ECBp tim c\\u1EE7a b\\u1EA1n nhanh h\\u01A1n khi b\\u1EA1n ch\\u1EA1y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fast heartbeat\u0022,\u0022vi\u0022:\u0022nh\\u1ECBp tim nhanh\u0022},{\u0022text\u0022:\u0022hear a heartbeat\u0022,\u0022vi\u0022:\u0022nghe th\\u1EA5y nh\\u1ECBp tim\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.3e27acc138d54aeeab6c475f978d2fb0",
+      "kind": "Card",
+      "values": {
+        "Term": "exercise",
+        "Definition": "b\u00E0i t\u1EADp th\u1EC3 d\u1EE5c",
+        "ImageUrl": "asset:e55d6a094b9fd05344f3bc530e143679b5d6a47ba93a098deacc8407fe626de3.webp",
+        "Phonetic": "/\u02C8\u025Bk.s\u025A.sa\u026Az/",
+        "Example": "Regular exercise helps you sleep better.",
+        "ExampleTranslation": "T\u1EADp th\u1EC3 d\u1EE5c \u0111\u1EC1u \u0111\u1EB7n gi\u00FAp b\u1EA1n ng\u1EE7 ngon h\u01A1n.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "physical activity that keeps your body strong",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8\u025Bk.s\u0259.sa\u026Az/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Regular exercise helps you sleep better.\u0022,\u0022vi\u0022:\u0022T\\u1EADp th\\u1EC3 d\\u1EE5c \\u0111\\u1EC1u \\u0111\\u1EB7n gi\\u00FAp b\\u1EA1n ng\\u1EE7 ngon h\\u01A1n.\u0022},{\u0022text\u0022:\u0022I do morning exercise in the park.\u0022,\u0022vi\u0022:\u0022T\\u00F4i t\\u1EADp th\\u1EC3 d\\u1EE5c bu\\u1ED5i s\\u00E1ng trong c\\u00F4ng vi\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022do exercise\u0022,\u0022vi\u0022:\u0022t\\u1EADp th\\u1EC3 d\\u1EE5c\u0022},{\u0022text\u0022:\u0022regular exercise\u0022,\u0022vi\u0022:\u0022t\\u1EADp luy\\u1EC7n \\u0111\\u1EC1u \\u0111\\u1EB7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Haikou_People%27s_Park_-_people_exercising_on_exercise_equipment_-_01.jpg\u0022,\u0022author\u0022:\u0022Anna Frodesiak\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.4c94c17caa1e41adae7c5c9e29681d67",
+      "kind": "Card",
+      "values": {
+        "Term": "prescription",
+        "Definition": "\u0111\u01A1n thu\u1ED1c",
+        "ImageUrl": "asset:20e30eac130100c7e6dfe6dc808b21936597fff8442460b36bc0a89683d60a6a.webp",
+        "Phonetic": "/p\u0279\u0259\u02C8sk\u0279\u026Ap.\u0283\u0259n/",
+        "Example": "The doctor wrote me a prescription for antibiotics.",
+        "ExampleTranslation": "B\u00E1c s\u0129 k\u00EA cho t\u00F4i \u0111\u01A1n thu\u1ED1c kh\u00E1ng sinh.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a paper from a doctor that lets you buy medicine",
+        "Cefr": "B2",
+        "PhoneticUk": "/p\u0279\u0259\u02C8sk\u0279\u026Ap.\u0283\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The doctor wrote me a prescription for antibiotics.\u0022,\u0022vi\u0022:\u0022B\\u00E1c s\\u0129 k\\u00EA cho t\\u00F4i \\u0111\\u01A1n thu\\u1ED1c kh\\u00E1ng sinh.\u0022},{\u0022text\u0022:\u0022You need a prescription to buy this medicine.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u1EA7n c\\u00F3 \\u0111\\u01A1n thu\\u1ED1c \\u0111\\u1EC3 mua lo\\u1EA1i thu\\u1ED1c n\\u00E0y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022write a prescription\u0022,\u0022vi\u0022:\u0022k\\u00EA \\u0111\\u01A1n thu\\u1ED1c\u0022},{\u0022text\u0022:\u0022fill a prescription\u0022,\u0022vi\u0022:\u0022mua thu\\u1ED1c theo \\u0111\\u01A1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.514e221bfec34970b381d70ce011448a",
+      "kind": "Card",
+      "values": {
+        "Term": "surgery",
+        "Definition": "ph\u1EABu thu\u1EADt",
+        "ImageUrl": "asset:724b82cc60a13c46ec46bb98ba8a5a4888dfd1d3116fba9438f2e7fd944e062d.webp",
+        "Phonetic": "/\u02C8s\u025D.d\u0361\u0292\u0259.\u0279i/",
+        "Example": "He needs surgery on his knee.",
+        "ExampleTranslation": "Anh \u1EA5y c\u1EA7n ph\u1EABu thu\u1EADt \u0111\u1EA7u g\u1ED1i.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a medical operation in which doctors cut the body",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8s\u025C\u02D0.d\u0361\u0292\u0259.\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He needs surgery on his knee.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y c\\u1EA7n ph\\u1EABu thu\\u1EADt \\u0111\\u1EA7u g\\u1ED1i.\u0022},{\u0022text\u0022:\u0022The surgery took three hours.\u0022,\u0022vi\u0022:\u0022Ca ph\\u1EABu thu\\u1EADt k\\u00E9o d\\u00E0i ba gi\\u1EDD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022have surgery\u0022,\u0022vi\u0022:\u0022ph\\u1EABu thu\\u1EADt\u0022},{\u0022text\u0022:\u0022heart surgery\u0022,\u0022vi\u0022:\u0022ph\\u1EABu thu\\u1EADt tim\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Operating_room_activity_150702-F-LP903-438.jpg\u0022,\u0022author\u0022:\u0022Capt. David Murphy\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.5af7974652384c8495d70c321b724e9b",
+      "kind": "Card",
+      "values": {
+        "Term": "hospital bed",
+        "Definition": "gi\u01B0\u1EDDng b\u1EC7nh",
+        "ImageUrl": "asset:3929766c0c95331a560c47f17598812c435e9f2d1df596fc56e28ae2783c2d2f.webp",
+        "Phonetic": "/\u02C8h\u0251s.p\u026A.tl\u0329 b\u025Bd/",
+        "Example": "The patient rested in a hospital bed.",
+        "ExampleTranslation": "B\u1EC7nh nh\u00E2n n\u1EB1m ngh\u1EC9 tr\u00EAn gi\u01B0\u1EDDng b\u1EC7nh.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a bed in a hospital for a sick or hurt person",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8h\u0252s.p\u026A.tl\u0329 b\u025Bd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The patient rested in a hospital bed.\u0022,\u0022vi\u0022:\u0022B\\u1EC7nh nh\\u00E2n n\\u1EB1m ngh\\u1EC9 tr\\u00EAn gi\\u01B0\\u1EDDng b\\u1EC7nh.\u0022},{\u0022text\u0022:\u0022There are four hospital beds in this room.\u0022,\u0022vi\u0022:\u0022Ph\\u00F2ng n\\u00E0y c\\u00F3 b\\u1ED1n gi\\u01B0\\u1EDDng b\\u1EC7nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022lie in a hospital bed\u0022,\u0022vi\u0022:\u0022n\\u1EB1m tr\\u00EAn gi\\u01B0\\u1EDDng b\\u1EC7nh\u0022},{\u0022text\u0022:\u0022adjustable hospital bed\u0022,\u0022vi\u0022:\u0022gi\\u01B0\\u1EDDng b\\u1EC7nh ch\\u1EC9nh \\u0111\\u01B0\\u1EE3c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Bed_in_Three_Persons_Room,_Internal_Medicine_Ward,_NTUH_East_Campus_20101204a.JPG\u0022,\u0022author\u0022:\u0022\\u7384\\u53F2\\u751F\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.5cb05fc829c048d68a3af7ea5ec09f76",
+      "kind": "Card",
+      "values": {
+        "Term": "thermometer",
+        "Definition": "nhi\u1EC7t k\u1EBF",
+        "ImageUrl": "asset:4e83eca9fe45ec41e0ab51293e31748b257c31dc1883cdf018615cdc0b25037c.webp",
+        "Phonetic": "/\u03B8\u025A\u02C8m\u0251.m\u026A.t\u025A/",
+        "Example": "The nurse put a thermometer under my arm.",
+        "ExampleTranslation": "Y t\u00E1 \u0111\u1EB7t nhi\u1EC7t k\u1EBF d\u01B0\u1EDBi n\u00E1ch t\u00F4i.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tool that measures how hot or cold something is",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u03B8\u0259\u02C8m\u0252m.\u026A.t\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The nurse put a thermometer under my arm.\u0022,\u0022vi\u0022:\u0022Y t\\u00E1 \\u0111\\u1EB7t nhi\\u1EC7t k\\u1EBF d\\u01B0\\u1EDBi n\\u00E1ch t\\u00F4i.\u0022},{\u0022text\u0022:\u0022The thermometer shows thirty-nine degrees.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC7t k\\u1EBF ch\\u1EC9 ba m\\u01B0\\u01A1i ch\\u00EDn \\u0111\\u1ED9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022digital thermometer\u0022,\u0022vi\u0022:\u0022nhi\\u1EC7t k\\u1EBF \\u0111i\\u1EC7n t\\u1EED\u0022},{\u0022text\u0022:\u0022take your temperature with a thermometer\u0022,\u0022vi\u0022:\u0022\\u0111o nhi\\u1EC7t b\\u1EB1ng nhi\\u1EC7t k\\u1EBF\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5925351/photo-image-public-domain-medicine-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.5e2a083025f54d6ab57ff0f41af2fe99",
+      "kind": "Card",
+      "values": {
+        "Term": "x-ray",
+        "Definition": "ch\u1EE5p X-quang",
+        "ImageUrl": "asset:a80574bd537f25f43393303be17693781d331008bc9494df9de3e7146c7bf128.webp",
+        "Phonetic": "/\u025Bks \u0279e\u026A/",
+        "Example": "The doctor took an x-ray of my arm.",
+        "ExampleTranslation": "B\u00E1c s\u0129 ch\u1EE5p X-quang c\u00E1nh tay t\u00F4i.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a picture of the inside of your body made with rays",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u025Bks \u0279e\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The doctor took an x-ray of my arm.\u0022,\u0022vi\u0022:\u0022B\\u00E1c s\\u0129 ch\\u1EE5p X-quang c\\u00E1nh tay t\\u00F4i.\u0022},{\u0022text\u0022:\u0022The x-ray shows a broken bone.\u0022,\u0022vi\u0022:\u0022Phim X-quang cho th\\u1EA5y m\\u1ED9t chi\\u1EBFc x\\u01B0\\u01A1ng b\\u1ECB g\\u00E3y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022take an x-ray\u0022,\u0022vi\u0022:\u0022ch\\u1EE5p X-quang\u0022},{\u0022text\u0022:\u0022chest x-ray\u0022,\u0022vi\u0022:\u0022X-quang ng\\u1EF1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Hip_replacement_Image_3684-PH.jpg\u0022,\u0022author\u0022:\u0022X-ray Image ID: 3684. Photographer: Unknown.\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.648ad03c37c546e184db0f1e765015ca",
+      "kind": "Card",
+      "values": {
+        "Term": "stretcher",
+        "Definition": "c\u00E1ng c\u1EE9u th\u01B0\u01A1ng",
+        "ImageUrl": "asset:b84b644dd8d8066774637f7d8a314e147cde42be3b522c4676cecb288b19abd3.webp",
+        "Phonetic": "/\u02C8st\u0279\u025Bt\u0361\u0283\u025A/",
+        "Example": "They carried the injured man on a stretcher.",
+        "ExampleTranslation": "H\u1ECD khi\u00EAng ng\u01B0\u1EDDi \u0111\u00E0n \u00F4ng b\u1ECB th\u01B0\u01A1ng tr\u00EAn c\u00E1ng.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a light bed used to carry a hurt person",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8st\u0279\u025Bt\u0361\u0283\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022They carried the injured man on a stretcher.\u0022,\u0022vi\u0022:\u0022H\\u1ECD khi\\u00EAng ng\\u01B0\\u1EDDi \\u0111\\u00E0n \\u00F4ng b\\u1ECB th\\u01B0\\u01A1ng tr\\u00EAn c\\u00E1ng.\u0022},{\u0022text\u0022:\u0022The stretcher was put in the ambulance.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc c\\u00E1ng \\u0111\\u01B0\\u1EE3c \\u0111\\u01B0a l\\u00EAn xe c\\u1EA5p c\\u1EE9u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022carry on a stretcher\u0022,\u0022vi\u0022:\u0022khi\\u00EAng b\\u1EB1ng c\\u00E1ng\u0022},{\u0022text\u0022:\u0022stretcher bearer\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi khi\\u00EAng c\\u00E1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:US_Navy_070119-N-4049C-024_Firefighter_Paramedics_William_Strickland_and_Steven_Ames_assist_a_simulated_burn_victim_during_a_mass_casualty_drill_at_Naval_Branch_Health_Clinic_Mayport.jpg\u0022,\u0022author\u0022:\u0022U.S. Navy photo by Mass Communication Specialist Seaman Patrick J. Cook\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.6d51afd0a17949958fad089e7373b5a9",
+      "kind": "Card",
+      "values": {
+        "Term": "dumbbell",
+        "Definition": "t\u1EA1 tay",
+        "ImageUrl": "asset:2da9244dcd8fbff933aa9f3990e58905b125c1c14a71ab622a0ca02c02198473.webp",
+        "Phonetic": "/\u02C8d\u028Cm.b\u025Bl/",
+        "Example": "He lifts a heavy dumbbell every morning.",
+        "ExampleTranslation": "S\u00E1ng n\u00E0o anh \u1EA5y c\u0169ng n\u00E2ng m\u1ED9t c\u1EB7p t\u1EA1 tay n\u1EB7ng.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a short bar with a weight at each end for lifting",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8d\u028Cm.b\u025Bl/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He lifts a heavy dumbbell every morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng n\\u00E0o anh \\u1EA5y c\\u0169ng n\\u00E2ng m\\u1ED9t c\\u1EB7p t\\u1EA1 tay n\\u1EB7ng.\u0022},{\u0022text\u0022:\u0022She bought two small dumbbells for home.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y mua hai chi\\u1EBFc t\\u1EA1 tay nh\\u1ECF \\u0111\\u1EC3 t\\u1EADp \\u1EDF nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022lift a dumbbell\u0022,\u0022vi\u0022:\u0022n\\u00E2ng t\\u1EA1 tay\u0022},{\u0022text\u0022:\u0022pair of dumbbells\u0022,\u0022vi\u0022:\u0022c\\u1EB7p t\\u1EA1 tay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/weights-dumbbells-QP7WI19WFG\u0022,\u0022author\u0022:\u0022Skitter Photo\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.7c92fde683dd4679afb0dae527e83fff",
+      "kind": "Card",
+      "values": {
+        "Term": "stretch",
+        "Definition": "gi\u00E3n c\u01A1, du\u1ED7i",
+        "ImageUrl": "asset:511d63c5f5629f92e8d5d1bc33ae24ec3de91aa6f9f20934b7af12df3d028cb9.webp",
+        "Phonetic": "/st\u0279\u025Bt\u0361\u0283/",
+        "Example": "Stretch your legs before you run.",
+        "ExampleTranslation": "H\u00E3y gi\u00E3n c\u01A1 ch\u00E2n tr\u01B0\u1EDBc khi ch\u1EA1y.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to make your muscles longer by pulling them gently",
+        "Cefr": "B1",
+        "PhoneticUk": "/st\u0279\u025Bt\u0361\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Stretch your legs before you run.\u0022,\u0022vi\u0022:\u0022H\\u00E3y gi\\u00E3n c\\u01A1 ch\\u00E2n tr\\u01B0\\u1EDBc khi ch\\u1EA1y.\u0022},{\u0022text\u0022:\u0022He stretched his arms over his head.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y du\\u1ED7i hai tay l\\u00EAn qu\\u00E1 \\u0111\\u1EA7u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022stretch your arms\u0022,\u0022vi\u0022:\u0022du\\u1ED7i tay\u0022},{\u0022text\u0022:\u0022stretch before exercise\u0022,\u0022vi\u0022:\u0022gi\\u00E3n c\\u01A1 tr\\u01B0\\u1EDBc khi t\\u1EADp\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022stretched\u0022,\u0022pastParticiple\u0022:\u0022stretched\u0022,\u0022ing\u0022:\u0022stretching\u0022,\u0022thirdPerson\u0022:\u0022stretches\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/stretching-exercises-HUVYWA4LKS\u0022,\u0022author\u0022:\u0022Direct Media\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.85c0fa14b8d84c41859838c4778d1168",
+      "kind": "Card",
+      "values": {
+        "Term": "stethoscope",
+        "Definition": "\u1ED1ng nghe",
+        "ImageUrl": "asset:ea50061bb90a4428eba302c8a49ee4734335f24aaf6ba42b5d3f7852e9a33926.webp",
+        "Phonetic": "/\u02C8st\u025B\u03B8\u0259s\u02CCko\u028Ap/",
+        "Example": "The doctor put the stethoscope on my chest.",
+        "ExampleTranslation": "B\u00E1c s\u0129 \u0111\u1EB7t \u1ED1ng nghe l\u00EAn ng\u1EF1c t\u00F4i.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tool doctors use to listen to your heart and lungs",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8st\u025B\u03B8\u0259sk\u0259\u028Ap/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The doctor put the stethoscope on my chest.\u0022,\u0022vi\u0022:\u0022B\\u00E1c s\\u0129 \\u0111\\u1EB7t \\u1ED1ng nghe l\\u00EAn ng\\u1EF1c t\\u00F4i.\u0022},{\u0022text\u0022:\u0022She wears a stethoscope around her neck.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111eo \\u1ED1ng nghe quanh c\\u1ED5.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022use a stethoscope\u0022,\u0022vi\u0022:\u0022d\\u00F9ng \\u1ED1ng nghe\u0022},{\u0022text\u0022:\u0022doctor\\u0027s stethoscope\u0022,\u0022vi\u0022:\u0022\\u1ED1ng nghe c\\u1EE7a b\\u00E1c s\\u0129\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/stethoscope-medical-9M1HWW2JFV\u0022,\u0022author\u0022:\u0022Negative Space\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.8f7f7ffbccb0468f840fd91cf399c94b",
+      "kind": "Card",
+      "values": {
+        "Term": "vaccine",
+        "Definition": "v\u1EAFc-xin",
+        "ImageUrl": "asset:df06b06417876a2a32905d8fd58356d3c28e671fa1866af7920fd4fd064c3401.webp",
+        "Phonetic": "/v\u00E6k\u02C8sin/",
+        "Example": "Children get a vaccine against measles.",
+        "ExampleTranslation": "Tr\u1EBB em \u0111\u01B0\u1EE3c ti\u00EAm v\u1EAFc-xin ph\u00F2ng b\u1EC7nh s\u1EDFi.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a medicine that protects you from a disease",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8v\u00E6k.si\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Children get a vaccine against measles.\u0022,\u0022vi\u0022:\u0022Tr\\u1EBB em \\u0111\\u01B0\\u1EE3c ti\\u00EAm v\\u1EAFc-xin ph\\u00F2ng b\\u1EC7nh s\\u1EDFi.\u0022},{\u0022text\u0022:\u0022The new vaccine is safe and effective.\u0022,\u0022vi\u0022:\u0022Lo\\u1EA1i v\\u1EAFc-xin m\\u1EDBi an to\\u00E0n v\\u00E0 hi\\u1EC7u qu\\u1EA3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022get a vaccine\u0022,\u0022vi\u0022:\u0022ti\\u00EAm v\\u1EAFc-xin\u0022},{\u0022text\u0022:\u0022flu vaccine\u0022,\u0022vi\u0022:\u0022v\\u1EAFc-xin c\\u00FAm\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:First_COVID_Vaccines_Administered_in_Rota_(6483132).jpg\u0022,\u0022author\u0022:\u0022U.S. Navy photo by Petty Officer 1st Class Nathan Carpenter\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.904bbed04150422f8af3d6f7b9858043",
+      "kind": "Card",
+      "values": {
+        "Term": "muscle",
+        "Definition": "c\u01A1 b\u1EAFp",
+        "ImageUrl": "asset:60451c3261eaacae61060e3dcc1bd334845df691d6cf93b7a50d859bcebd043a.webp",
+        "Phonetic": "/\u02C8m\u028Cs.\u0259l/",
+        "Example": "Swimming builds strong muscles.",
+        "ExampleTranslation": "B\u01A1i l\u1ED9i gi\u00FAp x\u00E2y d\u1EF1ng c\u01A1 b\u1EAFp kh\u1ECFe.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a part of the body that makes you move",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8m\u028Cs.\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Swimming builds strong muscles.\u0022,\u0022vi\u0022:\u0022B\\u01A1i l\\u1ED9i gi\\u00FAp x\\u00E2y d\\u1EF1ng c\\u01A1 b\\u1EAFp kh\\u1ECFe.\u0022},{\u0022text\u0022:\u0022He pulled a muscle in his leg.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y b\\u1ECB c\\u0103ng c\\u01A1 \\u1EDF ch\\u00E2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022build muscle\u0022,\u0022vi\u0022:\u0022t\\u0103ng c\\u01A1\u0022},{\u0022text\u0022:\u0022pull a muscle\u0022,\u0022vi\u0022:\u0022b\\u1ECB c\\u0103ng c\\u01A1\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/13957158/image-hand-person-art\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.95843e4587364bb5af2bcd89b0fba738",
+      "kind": "Card",
+      "values": {
+        "Term": "hearing aid",
+        "Definition": "m\u00E1y tr\u1EE3 th\u00EDnh",
+        "ImageUrl": "asset:93abeefc859f9ecfaec348c0858340e81a13ef50e0cc5f7487c5a4c24c60d8fb.webp",
+        "Phonetic": "/\u02C8h\u026A\u0279\u026A\u014B e\u026Ad/",
+        "Example": "My grandfather wears a hearing aid in his left ear.",
+        "ExampleTranslation": "\u00D4ng t\u00F4i \u0111eo m\u00E1y tr\u1EE3 th\u00EDnh \u1EDF tai tr\u00E1i.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small device that helps people hear better",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8h\u026A\u0259\u0279\u026A\u014B e\u026Ad/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandfather wears a hearing aid in his left ear.\u0022,\u0022vi\u0022:\u0022\\u00D4ng t\\u00F4i \\u0111eo m\\u00E1y tr\\u1EE3 th\\u00EDnh \\u1EDF tai tr\\u00E1i.\u0022},{\u0022text\u0022:\u0022The hearing aid needs a new battery.\u0022,\u0022vi\u0022:\u0022M\\u00E1y tr\\u1EE3 th\\u00EDnh c\\u1EA7n thay pin m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wear a hearing aid\u0022,\u0022vi\u0022:\u0022\\u0111eo m\\u00E1y tr\\u1EE3 th\\u00EDnh\u0022},{\u0022text\u0022:\u0022hearing aid battery\u0022,\u0022vi\u0022:\u0022pin m\\u00E1y tr\\u1EE3 th\\u00EDnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.a2f80579c1b74d6b8fe4039ca659760d",
+      "kind": "Card",
+      "values": {
+        "Term": "gym",
+        "Definition": "ph\u00F2ng t\u1EADp gym",
+        "ImageUrl": "asset:b01fbadda0bb3820659dd1074f873dea3adb44e6faefb97c6dde32ebf33b8da1.webp",
+        "Phonetic": "/d\u0361\u0292\u026Am/",
+        "Example": "She goes to the gym three times a week.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111\u1EBFn ph\u00F2ng t\u1EADp ba l\u1EA7n m\u1ED7i tu\u1EA7n.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a place with equipment where people exercise",
+        "Cefr": "B1",
+        "PhoneticUk": "/d\u0361\u0292\u026Am/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She goes to the gym three times a week.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111\\u1EBFn ph\\u00F2ng t\\u1EADp ba l\\u1EA7n m\\u1ED7i tu\\u1EA7n.\u0022},{\u0022text\u0022:\u0022The gym opens at six in the morning.\u0022,\u0022vi\u0022:\u0022Ph\\u00F2ng t\\u1EADp m\\u1EDF c\\u1EEDa l\\u00FAc s\\u00E1u gi\\u1EDD s\\u00E1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022join a gym\u0022,\u0022vi\u0022:\u0022\\u0111\\u0103ng k\\u00FD ph\\u00F2ng t\\u1EADp\u0022},{\u0022text\u0022:\u0022gym membership\u0022,\u0022vi\u0022:\u0022th\\u1EBB th\\u00E0nh vi\\u00EAn ph\\u00F2ng t\\u1EADp\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6037808/photo-image-public-domain-free-sport\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.b4b75790b28e4cf7a58eafee7e875aeb",
+      "kind": "Card",
+      "values": {
+        "Term": "skeleton",
+        "Definition": "b\u1ED9 x\u01B0\u01A1ng",
+        "ImageUrl": "asset:b3131ed212b4bdd74a50eb30718ccbc68facf659f8014c2e6149727c0ed3bad7.webp",
+        "Phonetic": "/\u02C8sk\u025Bl\u0259t\u0259n/",
+        "Example": "The museum has a dinosaur skeleton.",
+        "ExampleTranslation": "B\u1EA3o t\u00E0ng c\u00F3 m\u1ED9t b\u1ED9 x\u01B0\u01A1ng kh\u1EE7ng long.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "all the bones in a human or animal body",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8sk\u025Bl\u026At\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The museum has a dinosaur skeleton.\u0022,\u0022vi\u0022:\u0022B\\u1EA3o t\\u00E0ng c\\u00F3 m\\u1ED9t b\\u1ED9 x\\u01B0\\u01A1ng kh\\u1EE7ng long.\u0022},{\u0022text\u0022:\u0022A skeleton gives the body its shape.\u0022,\u0022vi\u0022:\u0022B\\u1ED9 x\\u01B0\\u01A1ng t\\u1EA1o n\\u00EAn h\\u00ECnh d\\u00E1ng c\\u1EE7a c\\u01A1 th\\u1EC3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022human skeleton\u0022,\u0022vi\u0022:\u0022b\\u1ED9 x\\u01B0\\u01A1ng ng\\u01B0\\u1EDDi\u0022},{\u0022text\u0022:\u0022dinosaur skeleton\u0022,\u0022vi\u0022:\u0022b\\u1ED9 x\\u01B0\\u01A1ng kh\\u1EE7ng long\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.b6e9877e8a454180b43ff8fdc3105897",
+      "kind": "Card",
+      "values": {
+        "Term": "toothbrush",
+        "Definition": "b\u00E0n ch\u1EA3i \u0111\u00E1nh r\u0103ng",
+        "ImageUrl": "asset:cf503736528678498647bad2d484b1db54aa4fb0d2a2f3d04ff028006930a403.webp",
+        "Phonetic": "/\u02C8tu\u03B8.b\u0279\u028C\u0283/",
+        "Example": "Remember to pack your toothbrush.",
+        "ExampleTranslation": "Nh\u1EDB mang theo b\u00E0n ch\u1EA3i \u0111\u00E1nh r\u0103ng nh\u00E9.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small brush for cleaning your teeth",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8tu\u02D0\u03B8.b\u0279\u028C\u0283/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Remember to pack your toothbrush.\u0022,\u0022vi\u0022:\u0022Nh\\u1EDB mang theo b\\u00E0n ch\\u1EA3i \\u0111\\u00E1nh r\\u0103ng nh\\u00E9.\u0022},{\u0022text\u0022:\u0022My toothbrush is blue.\u0022,\u0022vi\u0022:\u0022B\\u00E0n ch\\u1EA3i \\u0111\\u00E1nh r\\u0103ng c\\u1EE7a t\\u00F4i m\\u00E0u xanh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022electric toothbrush\u0022,\u0022vi\u0022:\u0022b\\u00E0n ch\\u1EA3i \\u0111i\\u1EC7n\u0022},{\u0022text\u0022:\u0022change your toothbrush\u0022,\u0022vi\u0022:\u0022thay b\\u00E0n ch\\u1EA3i \\u0111\\u00E1nh r\\u0103ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/toothbrush-toothpaste-UD9953XS1H\u0022,\u0022author\u0022:\u0022WDnet Studio\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.bdba08e524554433b789306720968303",
+      "kind": "Card",
+      "values": {
+        "Term": "diet",
+        "Definition": "ch\u1EBF \u0111\u1ED9 \u0103n",
+        "ImageUrl": "asset:3c9549feac4e002127cf0ad9146532da2379473ae86fffb5dc2e944ee4dc4848.webp",
+        "Phonetic": "/\u02C8da\u026A\u0259t/",
+        "Example": "A healthy diet includes a lot of vegetables.",
+        "ExampleTranslation": "M\u1ED9t ch\u1EBF \u0111\u1ED9 \u0103n l\u00E0nh m\u1EA1nh c\u00F3 nhi\u1EC1u rau c\u1EE7.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the food that a person usually eats",
+        "Cefr": "B1",
+        "PhoneticUk": "/\u02C8da\u026A\u0259t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A healthy diet includes a lot of vegetables.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t ch\\u1EBF \\u0111\\u1ED9 \\u0103n l\\u00E0nh m\\u1EA1nh c\\u00F3 nhi\\u1EC1u rau c\\u1EE7.\u0022},{\u0022text\u0022:\u0022He is on a diet to lose weight.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111ang \\u0103n ki\\u00EAng \\u0111\\u1EC3 gi\\u1EA3m c\\u00E2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022balanced diet\u0022,\u0022vi\u0022:\u0022ch\\u1EBF \\u0111\\u1ED9 \\u0103n c\\u00E2n b\\u1EB1ng\u0022},{\u0022text\u0022:\u0022be on a diet\u0022,\u0022vi\u0022:\u0022\\u0111ang \\u0103n ki\\u00EAng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/41284017@N08/7880829380\u0022,\u0022author\u0022:\u0022USDAgov\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.e7813f48f1de45c58ceeca7c7f893e36",
+      "kind": "Card",
+      "values": {
+        "Term": "calorie",
+        "Definition": "calo",
+        "ImageUrl": "asset:23972fad18a33bc2d6872367be844c151f02807e76cd70bb3eaf2c62b3183cb5.webp",
+        "Phonetic": "/\u02C8k\u00E6l\u0259\u0279i/",
+        "Example": "A small apple has very few calories.",
+        "ExampleTranslation": "M\u1ED9t qu\u1EA3 t\u00E1o nh\u1ECF c\u00F3 r\u1EA5t \u00EDt calo.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a unit for measuring the energy in food",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8k\u00E6l\u0259\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A small apple has very few calories.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t qu\\u1EA3 t\\u00E1o nh\\u1ECF c\\u00F3 r\\u1EA5t \\u00EDt calo.\u0022},{\u0022text\u0022:\u0022She counts the calories in every meal.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111\\u1EBFm l\\u01B0\\u1EE3ng calo trong m\\u1ED7i b\\u1EEFa \\u0103n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022burn calories\u0022,\u0022vi\u0022:\u0022\\u0111\\u1ED1t ch\\u00E1y calo\u0022},{\u0022text\u0022:\u0022low in calories\u0022,\u0022vi\u0022:\u0022\\u00EDt calo\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.e9b579dc262c42b58fdd9d95a56ee04d",
+      "kind": "Card",
+      "values": {
+        "Term": "jog",
+        "Definition": "ch\u1EA1y b\u1ED9 nh\u1EB9",
+        "ImageUrl": "asset:d2584d857d877c803e6f27853c063c592cd25d86393d2dc79f6f1387b501fd31.webp",
+        "Phonetic": "/d\u0361\u0292\u0251\u0261/",
+        "Example": "I jog around the lake every evening.",
+        "ExampleTranslation": "T\u1ED1i n\u00E0o t\u00F4i c\u0169ng ch\u1EA1y b\u1ED9 quanh h\u1ED3.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "verb",
+        "MeaningEn": "to run slowly and steadily for exercise",
+        "Cefr": "B1",
+        "PhoneticUk": "/d\u0361\u0292\u0252\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I jog around the lake every evening.\u0022,\u0022vi\u0022:\u0022T\\u1ED1i n\\u00E0o t\\u00F4i c\\u0169ng ch\\u1EA1y b\\u1ED9 quanh h\\u1ED3.\u0022},{\u0022text\u0022:\u0022They jogged along the beach at sunrise.\u0022,\u0022vi\u0022:\u0022H\\u1ECD ch\\u1EA1y b\\u1ED9 d\\u1ECDc b\\u00E3i bi\\u1EC3n l\\u00FAc b\\u00ECnh minh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022go jogging\u0022,\u0022vi\u0022:\u0022\\u0111i ch\\u1EA1y b\\u1ED9\u0022},{\u0022text\u0022:\u0022jog around the park\u0022,\u0022vi\u0022:\u0022ch\\u1EA1y b\\u1ED9 quanh c\\u00F4ng vi\\u00EAn\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022jogged\u0022,\u0022pastParticiple\u0022:\u0022jogged\u0022,\u0022ing\u0022:\u0022jogging\u0022,\u0022thirdPerson\u0022:\u0022jogs\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Indiana_Dunes_National_Park_(cf500527-7cda-44e9-aa6b-7cc992a97cfd).jpg\u0022,\u0022author\u0022:\u0022Victoria Stauffenberg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    },
+    {
+      "key": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat.eb9427060aa74f62a066f52f6017aca2",
+      "kind": "Card",
+      "values": {
+        "Term": "treadmill",
+        "Definition": "m\u00E1y ch\u1EA1y b\u1ED9",
+        "ImageUrl": "asset:0cbab8a8007e8c39d0946c6930465bd9de94798e79e650227cb3acb2ffa1431a.webp",
+        "Phonetic": "/\u02C8t\u0279\u025Bd.m\u026Al/",
+        "Example": "I run on the treadmill when it rains.",
+        "ExampleTranslation": "T\u00F4i ch\u1EA1y tr\u00EAn m\u00E1y ch\u1EA1y b\u1ED9 khi tr\u1EDDi m\u01B0a.",
+        "Topic": "S\u1EE9c kh\u1ECFe \u0026 th\u1EC3 ch\u1EA5t",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine with a moving belt that you run on",
+        "Cefr": "B2",
+        "PhoneticUk": "/\u02C8t\u0279\u025Bd.m\u026Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I run on the treadmill when it rains.\u0022,\u0022vi\u0022:\u0022T\\u00F4i ch\\u1EA1y tr\\u00EAn m\\u00E1y ch\\u1EA1y b\\u1ED9 khi tr\\u1EDDi m\\u01B0a.\u0022},{\u0022text\u0022:\u0022The treadmill is next to the window.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc m\\u00E1y ch\\u1EA1y b\\u1ED9 \\u1EDF c\\u1EA1nh c\\u1EEDa s\\u1ED5.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022run on a treadmill\u0022,\u0022vi\u0022:\u0022ch\\u1EA1y tr\\u00EAn m\\u00E1y ch\\u1EA1y b\\u1ED9\u0022},{\u0022text\u0022:\u0022treadmill workout\u0022,\u0022vi\u0022:\u0022bu\\u1ED5i t\\u1EADp tr\\u00EAn m\\u00E1y ch\\u1EA1y b\\u1ED9\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/7396a27d86/\u0022,\u0022author\u0022:\u0022Rashed Hossain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "e55d6a094b9fd05344f3bc530e143679b5d6a47ba93a098deacc8407fe626de3.webp",
+      "sha256": "e55d6a094b9fd05344f3bc530e143679b5d6a47ba93a098deacc8407fe626de3"
+    },
+    {
+      "file": "b01fbadda0bb3820659dd1074f873dea3adb44e6faefb97c6dde32ebf33b8da1.webp",
+      "sha256": "b01fbadda0bb3820659dd1074f873dea3adb44e6faefb97c6dde32ebf33b8da1"
+    },
+    {
+      "file": "2da9244dcd8fbff933aa9f3990e58905b125c1c14a71ab622a0ca02c02198473.webp",
+      "sha256": "2da9244dcd8fbff933aa9f3990e58905b125c1c14a71ab622a0ca02c02198473"
+    },
+    {
+      "file": "0cbab8a8007e8c39d0946c6930465bd9de94798e79e650227cb3acb2ffa1431a.webp",
+      "sha256": "0cbab8a8007e8c39d0946c6930465bd9de94798e79e650227cb3acb2ffa1431a"
+    },
+    {
+      "file": "511d63c5f5629f92e8d5d1bc33ae24ec3de91aa6f9f20934b7af12df3d028cb9.webp",
+      "sha256": "511d63c5f5629f92e8d5d1bc33ae24ec3de91aa6f9f20934b7af12df3d028cb9"
+    },
+    {
+      "file": "d2584d857d877c803e6f27853c063c592cd25d86393d2dc79f6f1387b501fd31.webp",
+      "sha256": "d2584d857d877c803e6f27853c063c592cd25d86393d2dc79f6f1387b501fd31"
+    },
+    {
+      "file": "60451c3261eaacae61060e3dcc1bd334845df691d6cf93b7a50d859bcebd043a.webp",
+      "sha256": "60451c3261eaacae61060e3dcc1bd334845df691d6cf93b7a50d859bcebd043a"
+    },
+    {
+      "file": "b3131ed212b4bdd74a50eb30718ccbc68facf659f8014c2e6149727c0ed3bad7.webp",
+      "sha256": "b3131ed212b4bdd74a50eb30718ccbc68facf659f8014c2e6149727c0ed3bad7"
+    },
+    {
+      "file": "04fd3e8afc3e6938df7580095ab22b08b1edf747f55d323fcd0d28dac3bd1220.webp",
+      "sha256": "04fd3e8afc3e6938df7580095ab22b08b1edf747f55d323fcd0d28dac3bd1220"
+    },
+    {
+      "file": "1a219763eeea5c638123b183506a79758e0555b4f9483c723dff2a9cbe0358bf.webp",
+      "sha256": "1a219763eeea5c638123b183506a79758e0555b4f9483c723dff2a9cbe0358bf"
+    },
+    {
+      "file": "3c9549feac4e002127cf0ad9146532da2379473ae86fffb5dc2e944ee4dc4848.webp",
+      "sha256": "3c9549feac4e002127cf0ad9146532da2379473ae86fffb5dc2e944ee4dc4848"
+    },
+    {
+      "file": "23972fad18a33bc2d6872367be844c151f02807e76cd70bb3eaf2c62b3183cb5.webp",
+      "sha256": "23972fad18a33bc2d6872367be844c151f02807e76cd70bb3eaf2c62b3183cb5"
+    },
+    {
+      "file": "ba1045581f835e28ff6e417c24a792031dbc8a131fbbbf183f5ab0d844338941.webp",
+      "sha256": "ba1045581f835e28ff6e417c24a792031dbc8a131fbbbf183f5ab0d844338941"
+    },
+    {
+      "file": "4e83eca9fe45ec41e0ab51293e31748b257c31dc1883cdf018615cdc0b25037c.webp",
+      "sha256": "4e83eca9fe45ec41e0ab51293e31748b257c31dc1883cdf018615cdc0b25037c"
+    },
+    {
+      "file": "ea50061bb90a4428eba302c8a49ee4734335f24aaf6ba42b5d3f7852e9a33926.webp",
+      "sha256": "ea50061bb90a4428eba302c8a49ee4734335f24aaf6ba42b5d3f7852e9a33926"
+    },
+    {
+      "file": "20e30eac130100c7e6dfe6dc808b21936597fff8442460b36bc0a89683d60a6a.webp",
+      "sha256": "20e30eac130100c7e6dfe6dc808b21936597fff8442460b36bc0a89683d60a6a"
+    },
+    {
+      "file": "724b82cc60a13c46ec46bb98ba8a5a4888dfd1d3116fba9438f2e7fd944e062d.webp",
+      "sha256": "724b82cc60a13c46ec46bb98ba8a5a4888dfd1d3116fba9438f2e7fd944e062d"
+    },
+    {
+      "file": "a80574bd537f25f43393303be17693781d331008bc9494df9de3e7146c7bf128.webp",
+      "sha256": "a80574bd537f25f43393303be17693781d331008bc9494df9de3e7146c7bf128"
+    },
+    {
+      "file": "df06b06417876a2a32905d8fd58356d3c28e671fa1866af7920fd4fd064c3401.webp",
+      "sha256": "df06b06417876a2a32905d8fd58356d3c28e671fa1866af7920fd4fd064c3401"
+    },
+    {
+      "file": "3929766c0c95331a560c47f17598812c435e9f2d1df596fc56e28ae2783c2d2f.webp",
+      "sha256": "3929766c0c95331a560c47f17598812c435e9f2d1df596fc56e28ae2783c2d2f"
+    },
+    {
+      "file": "b84b644dd8d8066774637f7d8a314e147cde42be3b522c4676cecb288b19abd3.webp",
+      "sha256": "b84b644dd8d8066774637f7d8a314e147cde42be3b522c4676cecb288b19abd3"
+    },
+    {
+      "file": "1c4879a1d1b5b1d3ebad9ed3e6571efb0444644ddf5374174eacc72b819ffa1b.webp",
+      "sha256": "1c4879a1d1b5b1d3ebad9ed3e6571efb0444644ddf5374174eacc72b819ffa1b"
+    },
+    {
+      "file": "cf503736528678498647bad2d484b1db54aa4fb0d2a2f3d04ff028006930a403.webp",
+      "sha256": "cf503736528678498647bad2d484b1db54aa4fb0d2a2f3d04ff028006930a403"
+    },
+    {
+      "file": "691d8d2e994aacb7d11a8440606c1af8e2f40c29a3d1ec4ee5303e99c1795ccd.webp",
+      "sha256": "691d8d2e994aacb7d11a8440606c1af8e2f40c29a3d1ec4ee5303e99c1795ccd"
+    },
+    {
+      "file": "93abeefc859f9ecfaec348c0858340e81a13ef50e0cc5f7487c5a4c24c60d8fb.webp",
+      "sha256": "93abeefc859f9ecfaec348c0858340e81a13ef50e0cc5f7487c5a4c24c60d8fb"
+    }
+  ],
+  "rootKey": "team.vocab.b-trung-cap.b07-suc-khoe-the-chat"
+}

@@ -1,0 +1,660 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi",
+      "kind": "Set",
+      "values": {
+        "SetName": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "Description": "#a1 #a2 #family #people"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.169a287ff2c44d2c9620a31e73955065",
+      "kind": "Card",
+      "values": {
+        "Term": "twins",
+        "Definition": "c\u1EB7p song sinh",
+        "ImageUrl": "asset:c79351aa9e487aca189eb48ea30f445a1e0db4cfe9f5b717bcb03f96723648ac.webp",
+        "Phonetic": "/tw\u026Anz/",
+        "Example": "The twins look exactly the same.",
+        "ExampleTranslation": "C\u1EB7p song sinh tr\u00F4ng gi\u1ED1ng h\u1EC7t nhau.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "two children born to the same mother at the same time",
+        "Cefr": "A2",
+        "PhoneticUk": "/tw\u026Anz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The twins look exactly the same.\u0022,\u0022vi\u0022:\u0022C\\u1EB7p song sinh tr\\u00F4ng gi\\u1ED1ng h\\u1EC7t nhau.\u0022},{\u0022text\u0022:\u0022She has twin sons and a daughter.\u0022,\u0022vi\u0022:\u0022B\\u00E0 c\\u00F3 hai con trai song sinh v\\u00E0 m\\u1ED9t con g\\u00E1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022identical twins\u0022,\u0022vi\u0022:\u0022c\\u1EB7p song sinh gi\\u1ED1ng h\\u1EC7t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.18de10bb6c34424db0f5f631b16fb2a4",
+      "kind": "Card",
+      "values": {
+        "Term": "boy",
+        "Definition": "c\u1EADu b\u00E9",
+        "ImageUrl": "asset:ad126315ea787c82f45153b575093137a60aba9af3a2442f2ee8a534fe5629ec.webp",
+        "Phonetic": "/b\u0254\u026A/",
+        "Example": "The boy is riding a bicycle.",
+        "ExampleTranslation": "C\u1EADu b\u00E9 \u0111ang \u0111\u1EA1p xe.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a male child",
+        "Cefr": "A1",
+        "PhoneticUk": "/b\u0254\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The boy is riding a bicycle.\u0022,\u0022vi\u0022:\u0022C\\u1EADu b\\u00E9 \\u0111ang \\u0111\\u1EA1p xe.\u0022},{\u0022text\u0022:\u0022A little boy asked me the time.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t c\\u1EADu b\\u00E9 h\\u1ECFi t\\u00F4i m\\u1EA5y gi\\u1EDD r\\u1ED3i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022little boy\u0022,\u0022vi\u0022:\u0022c\\u1EADu b\\u00E9\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.29aa23941582416b9248b67455d61e1a",
+      "kind": "Card",
+      "values": {
+        "Term": "grandmother",
+        "Definition": "b\u00E0",
+        "ImageUrl": "asset:e6e6f72d75d0d6b8e0a9f781cc3430a62d37e2a73ef704e18301b9a136a23be2.webp",
+        "Phonetic": "/\u02C8\u0261\u0279\u00E6n(d)\u02CCm\u028C\u00F0\u025A/",
+        "Example": "My grandmother tells us old stories.",
+        "ExampleTranslation": "B\u00E0 t\u00F4i k\u1EC3 cho ch\u00FAng t\u00F4i nghe nh\u1EEFng c\u00E2u chuy\u1EC7n x\u01B0a.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the mother of your mother or father",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u0261\u0279\u00E6n(d)\u02CCm\u028C\u00F0\u0259(r)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandmother tells us old stories.\u0022,\u0022vi\u0022:\u0022B\\u00E0 t\\u00F4i k\\u1EC3 cho ch\\u00FAng t\\u00F4i nghe nh\\u1EEFng c\\u00E2u chuy\\u1EC7n x\\u01B0a.\u0022},{\u0022text\u0022:\u0022We visit my grandmother every weekend.\u0022,\u0022vi\u0022:\u0022Cu\\u1ED1i tu\\u1EA7n n\\u00E0o ch\\u00FAng t\\u00F4i c\\u0169ng th\\u0103m b\\u00E0.\u0022}],\u0022synonyms\u0022:[\u0022grandma\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022visit your grandmother\u0022,\u0022vi\u0022:\u0022th\\u0103m b\\u00E0\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.31eb49268cf64428b099524f134dfa0d",
+      "kind": "Card",
+      "values": {
+        "Term": "uncle",
+        "Definition": "ch\u00FA, b\u00E1c, c\u1EADu, d\u01B0\u1EE3ng",
+        "ImageUrl": "asset:7c4a5df2e1f2b16265b18a1f3e0c330a1fb74eeda14255ba135da0ddad12f5ee.webp",
+        "Phonetic": "/\u02C8\u028C\u014B.kl\u0329/",
+        "Example": "My uncle lives in another city.",
+        "ExampleTranslation": "Ch\u00FA t\u00F4i s\u1ED1ng \u1EDF m\u1ED9t th\u00E0nh ph\u1ED1 kh\u00E1c.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the brother of your mother or father",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u028C\u014B.kl\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My uncle lives in another city.\u0022,\u0022vi\u0022:\u0022Ch\\u00FA t\\u00F4i s\\u1ED1ng \\u1EDF m\\u1ED9t th\\u00E0nh ph\\u1ED1 kh\\u00E1c.\u0022},{\u0022text\u0022:\u0022Uncle Tom gave me a book.\u0022,\u0022vi\u0022:\u0022Ch\\u00FA Tom t\\u1EB7ng t\\u00F4i m\\u1ED9t quy\\u1EC3n s\\u00E1ch.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022visit your uncle\u0022,\u0022vi\u0022:\u0022th\\u0103m ch\\u00FA\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.3ce72209c9334b5e84db99b708d56084",
+      "kind": "Card",
+      "values": {
+        "Term": "parents",
+        "Definition": "b\u1ED1 m\u1EB9, cha m\u1EB9",
+        "ImageUrl": "asset:44fc990d879bcaf43ccaccc3814058411c90a5e87f0fcb254b5410220542e57a.webp",
+        "Phonetic": "/\u02C8p\u00E6\u0279\u0259nts/",
+        "Example": "My parents live in a small town.",
+        "ExampleTranslation": "B\u1ED1 m\u1EB9 t\u00F4i s\u1ED1ng \u1EDF m\u1ED9t th\u1ECB tr\u1EA5n nh\u1ECF.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "your mother and father",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8p\u025B\u0259.\u0279\u0259nts/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My parents live in a small town.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 m\\u1EB9 t\\u00F4i s\\u1ED1ng \\u1EDF m\\u1ED9t th\\u1ECB tr\\u1EA5n nh\\u1ECF.\u0022},{\u0022text\u0022:\u0022I call my parents every Sunday.\u0022,\u0022vi\u0022:\u0022Ch\\u1EE7 nh\\u1EADt n\\u00E0o t\\u00F4i c\\u0169ng g\\u1ECDi \\u0111i\\u1EC7n cho b\\u1ED1 m\\u1EB9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022talk to your parents\u0022,\u0022vi\u0022:\u0022n\\u00F3i chuy\\u1EC7n v\\u1EDBi b\\u1ED1 m\\u1EB9\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022parent\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022cha ho\\u1EB7c m\\u1EB9\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.3ea8fb318ef84f20855697d77ed6f48b",
+      "kind": "Card",
+      "values": {
+        "Term": "family",
+        "Definition": "gia \u0111\u00ECnh",
+        "ImageUrl": "asset:fa520c54f2934fc3f3af0edbf4a04d61492adff9c94c7d6f1525fdc54d57e391.webp",
+        "Phonetic": "/\u02C8f\u00E6m(\u0259)li/",
+        "Example": "My family has dinner together every evening.",
+        "ExampleTranslation": "Gia \u0111\u00ECnh t\u00F4i \u0103n t\u1ED1i c\u00F9ng nhau m\u1ED7i bu\u1ED5i chi\u1EC1u.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a group of people who are related to each other",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8f\u00E6m(\u026A)li/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My family has dinner together every evening.\u0022,\u0022vi\u0022:\u0022Gia \\u0111\\u00ECnh t\\u00F4i \\u0103n t\\u1ED1i c\\u00F9ng nhau m\\u1ED7i bu\\u1ED5i chi\\u1EC1u.\u0022},{\u0022text\u0022:\u0022There are five people in my family.\u0022,\u0022vi\u0022:\u0022Gia \\u0111\\u00ECnh t\\u00F4i c\\u00F3 n\\u0103m ng\\u01B0\\u1EDDi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022family photo\u0022,\u0022vi\u0022:\u0022\\u1EA3nh gia \\u0111\\u00ECnh\u0022},{\u0022text\u0022:\u0022big family\u0022,\u0022vi\u0022:\u0022gia \\u0111\\u00ECnh \\u0111\\u00F4ng ng\\u01B0\\u1EDDi\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022families\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.4f9bce1ca36b4e6c913a7dfd25dee93b",
+      "kind": "Card",
+      "values": {
+        "Term": "aunt",
+        "Definition": "c\u00F4, d\u00EC, th\u00EDm, m\u1EE3",
+        "ImageUrl": "asset:bd0cb806a15e28832e181014de1f033d1821816eccf1ed30deef44f49818effc.webp",
+        "Phonetic": "/\u0251nt/",
+        "Example": "My aunt makes delicious cakes.",
+        "ExampleTranslation": "D\u00EC t\u00F4i l\u00E0m nh\u1EEFng chi\u1EBFc b\u00E1nh r\u1EA5t ngon.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the sister of your mother or father",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0251\u02D0nt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My aunt makes delicious cakes.\u0022,\u0022vi\u0022:\u0022D\\u00EC t\\u00F4i l\\u00E0m nh\\u1EEFng chi\\u1EBFc b\\u00E1nh r\\u1EA5t ngon.\u0022},{\u0022text\u0022:\u0022We stayed at my aunt\\u0027s house.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u1EDF nh\\u00E0 d\\u00EC.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022your favourite aunt\u0022,\u0022vi\u0022:\u0022ng\\u01B0\\u1EDDi d\\u00EC y\\u00EAu th\\u00EDch c\\u1EE7a b\\u1EA1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.6d13eb395a3245509924073ce5f22ccb",
+      "kind": "Card",
+      "values": {
+        "Term": "man",
+        "Definition": "ng\u01B0\u1EDDi \u0111\u00E0n \u00F4ng",
+        "ImageUrl": "asset:0e10926d3225556b1b33b04de9d2d8d06d47bd0600cdcf5ecd2bf2e2160c587d.webp",
+        "Phonetic": "/\u02C8m\u00E6n/",
+        "Example": "The man is waiting at the bus stop.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi \u0111\u00E0n \u00F4ng \u0111ang \u0111\u1EE3i \u1EDF tr\u1EA1m xe bu\u00FDt.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an adult male person",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8m\u00E6n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The man is waiting at the bus stop.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi \\u0111\\u00E0n \\u00F4ng \\u0111ang \\u0111\\u1EE3i \\u1EDF tr\\u1EA1m xe bu\\u00FDt.\u0022},{\u0022text\u0022:\u0022A tall man opened the door.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t ng\\u01B0\\u1EDDi \\u0111\\u00E0n \\u00F4ng cao m\\u1EDF c\\u1EEDa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022old man\u0022,\u0022vi\u0022:\u0022\\u00F4ng c\\u1EE5\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022men\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.76b54c4551ef41ab97e7be75ccc08d03",
+      "kind": "Card",
+      "values": {
+        "Term": "teenager",
+        "Definition": "thi\u1EBFu ni\u00EAn",
+        "ImageUrl": "asset:369df4ef75b14f62c8cd7f942a476715bdf9097240e09469e25110673656bbe7.webp",
+        "Phonetic": "/\u02C8tin\u02CCe\u026Ad\u0292\u025A/",
+        "Example": "My brother is a teenager now.",
+        "ExampleTranslation": "Gi\u1EDD anh trai t\u00F4i \u0111\u00E3 l\u00E0 m\u1ED9t thi\u1EBFu ni\u00EAn.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a young person between thirteen and nineteen years old",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8ti\u02D0n\u02CCe\u026A\u032Fd\u0361\u0292\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My brother is a teenager now.\u0022,\u0022vi\u0022:\u0022Gi\\u1EDD anh trai t\\u00F4i \\u0111\\u00E3 l\\u00E0 m\\u1ED9t thi\\u1EBFu ni\\u00EAn.\u0022},{\u0022text\u0022:\u0022Many teenagers like music and games.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC1u thi\\u1EBFu ni\\u00EAn th\\u00EDch \\u00E2m nh\\u1EA1c v\\u00E0 tr\\u00F2 ch\\u01A1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022typical teenager\u0022,\u0022vi\u0022:\u0022m\\u1ED9t thi\\u1EBFu ni\\u00EAn \\u0111i\\u1EC3n h\\u00ECnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.82052d90495943b29c17a8a8fb506c34",
+      "kind": "Card",
+      "values": {
+        "Term": "son",
+        "Definition": "con trai",
+        "ImageUrl": "asset:74204a51f264cd54a91595b413cd03d8a3eb5312693dd9d4ac05c24313e9a69d.webp",
+        "Phonetic": "/s\u028Cn/",
+        "Example": "Their son is ten years old.",
+        "ExampleTranslation": "Con trai h\u1ECD m\u01B0\u1EDDi tu\u1ED5i.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a boy or man who is someone\u0027s child",
+        "Cefr": "A1",
+        "PhoneticUk": "/s\u028Cn/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Their son is ten years old.\u0022,\u0022vi\u0022:\u0022Con trai h\\u1ECD m\\u01B0\\u1EDDi tu\\u1ED5i.\u0022},{\u0022text\u0022:\u0022She is proud of her son.\u0022,\u0022vi\u0022:\u0022B\\u00E0 t\\u1EF1 h\\u00E0o v\\u1EC1 con trai m\\u00ECnh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022eldest son\u0022,\u0022vi\u0022:\u0022con trai c\\u1EA3\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.8d99098103024b05b46297f62d1cd1b3",
+      "kind": "Card",
+      "values": {
+        "Term": "grandfather",
+        "Definition": "\u00F4ng",
+        "ImageUrl": "asset:ea9bedb9ffdcc98165233b83009e336227ce20303768c4e28e81df9b4bd654e1.webp",
+        "Phonetic": "/\u02C8\u0261\u0279\u00E6n(d)\u02CCf\u0251\u00F0\u025A/",
+        "Example": "My grandfather grows vegetables in his garden.",
+        "ExampleTranslation": "\u00D4ng t\u00F4i tr\u1ED3ng rau trong v\u01B0\u1EDDn.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the father of your mother or father",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u0261\u0279\u00E6n(d)\u02CCf\u0251\u02D0\u00F0\u0259(r)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My grandfather grows vegetables in his garden.\u0022,\u0022vi\u0022:\u0022\\u00D4ng t\\u00F4i tr\\u1ED3ng rau trong v\\u01B0\\u1EDDn.\u0022},{\u0022text\u0022:\u0022The children sat with their grandfather.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB ng\\u1ED3i c\\u1EA1nh \\u00F4ng.\u0022}],\u0022synonyms\u0022:[\u0022grandpa\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022great-grandfather\u0022,\u0022vi\u0022:\u0022c\\u1EE5 \\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.8e68eec155744d2cacd125589e29b22c",
+      "kind": "Card",
+      "values": {
+        "Term": "woman",
+        "Definition": "ng\u01B0\u1EDDi ph\u1EE5 n\u1EEF",
+        "ImageUrl": "asset:9baa34e8e9e39bcb28b71e0a2721ac0cc6149879bf56a52e53e28114a6eb8789.webp",
+        "Phonetic": "/\u02C8w\u028Am\u0259n/",
+        "Example": "The woman is carrying a heavy bag.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi ph\u1EE5 n\u1EEF \u0111ang x\u00E1ch m\u1ED9t chi\u1EBFc t\u00FAi n\u1EB7ng.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an adult female person",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8w\u028Am\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The woman is carrying a heavy bag.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi ph\\u1EE5 n\\u1EEF \\u0111ang x\\u00E1ch m\\u1ED9t chi\\u1EBFc t\\u00FAi n\\u1EB7ng.\u0022},{\u0022text\u0022:\u0022A young woman helped me find the way.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t c\\u00F4 g\\u00E1i tr\\u1EBB gi\\u00FAp t\\u00F4i t\\u00ECm \\u0111\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022young woman\u0022,\u0022vi\u0022:\u0022ph\\u1EE5 n\\u1EEF tr\\u1EBB\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022women\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.917bd00ee70240339e34c6993ce88346",
+      "kind": "Card",
+      "values": {
+        "Term": "mother",
+        "Definition": "m\u1EB9",
+        "ImageUrl": "asset:6c58a6aababc97a1275ea6d14828038517b6b968759b3ad0e7eecee70891d247.webp",
+        "Phonetic": "/\u02C8m\u028C\u00F0\u025A/",
+        "Example": "My mother cooks dinner every evening.",
+        "ExampleTranslation": "M\u1EB9 t\u00F4i n\u1EA5u b\u1EEFa t\u1ED1i m\u1ED7i bu\u1ED5i chi\u1EC1u.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a woman who has a child",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8m\u028C\u00F0.\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My mother cooks dinner every evening.\u0022,\u0022vi\u0022:\u0022M\\u1EB9 t\\u00F4i n\\u1EA5u b\\u1EEFa t\\u1ED1i m\\u1ED7i bu\\u1ED5i chi\\u1EC1u.\u0022},{\u0022text\u0022:\u0022She is a kind mother to her children.\u0022,\u0022vi\u0022:\u0022B\\u00E0 l\\u00E0 m\\u1ED9t ng\\u01B0\\u1EDDi m\\u1EB9 t\\u1ED1t b\\u1EE5ng v\\u1EDBi c\\u00E1c con.\u0022}],\u0022synonyms\u0022:[\u0022mum\u0022,\u0022mom\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022single mother\u0022,\u0022vi\u0022:\u0022m\\u1EB9 \\u0111\\u01A1n th\\u00E2n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.9543b0a705e74fd0b358a9f6bc7893c6",
+      "kind": "Card",
+      "values": {
+        "Term": "child",
+        "Definition": "\u0111\u1EE9a tr\u1EBB",
+        "ImageUrl": "asset:07c306f4596d0850fe438810a747f20eacbe558d84d51b5e29a8f6c6fc770cf0.webp",
+        "Phonetic": "/t\u0283a\u026Ald/",
+        "Example": "The child is playing in the garden.",
+        "ExampleTranslation": "\u0110\u1EE9a tr\u1EBB \u0111ang ch\u01A1i trong v\u01B0\u1EDDn.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a young person who is not yet an adult",
+        "Cefr": "A1",
+        "PhoneticUk": "/t\u0283a\u026Ald/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The child is playing in the garden.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EE9a tr\\u1EBB \\u0111ang ch\\u01A1i trong v\\u01B0\\u1EDDn.\u0022},{\u0022text\u0022:\u0022Every child needs love and care.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EE9a tr\\u1EBB n\\u00E0o c\\u0169ng c\\u1EA7n t\\u00ECnh y\\u00EAu v\\u00E0 s\\u1EF1 ch\\u0103m s\\u00F3c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022only child\u0022,\u0022vi\u0022:\u0022con m\\u1ED9t\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022children\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.95f4c981bfdb413c8e966bd535cbf164",
+      "kind": "Card",
+      "values": {
+        "Term": "brother",
+        "Definition": "anh trai, em trai",
+        "ImageUrl": "asset:74204a51f264cd54a91595b413cd03d8a3eb5312693dd9d4ac05c24313e9a69d.webp",
+        "Phonetic": "/\u02C8b\u0279\u028C\u00F0\u025A/",
+        "Example": "My brother plays football every day.",
+        "ExampleTranslation": "Anh trai t\u00F4i ch\u01A1i b\u00F3ng \u0111\u00E1 m\u1ED7i ng\u00E0y.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a boy or man with the same parents as you",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8b\u0279\u028C\u00F0\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My brother plays football every day.\u0022,\u0022vi\u0022:\u0022Anh trai t\\u00F4i ch\\u01A1i b\\u00F3ng \\u0111\\u00E1 m\\u1ED7i ng\\u00E0y.\u0022},{\u0022text\u0022:\u0022I share a room with my little brother.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u1EDF chung ph\\u00F2ng v\\u1EDBi em trai.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022older brother\u0022,\u0022vi\u0022:\u0022anh trai\u0022},{\u0022text\u0022:\u0022younger brother\u0022,\u0022vi\u0022:\u0022em trai\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.a138f9b5a48a4d8c8267a88d67805651",
+      "kind": "Card",
+      "values": {
+        "Term": "baby",
+        "Definition": "em b\u00E9",
+        "ImageUrl": "asset:be5e855747792a7b341cd15fa839bb47260bf9cfe54f890a0c0fad461c7ad8bb.webp",
+        "Phonetic": "/\u02C8be\u026A.bi/",
+        "Example": "The baby is sleeping in the bed.",
+        "ExampleTranslation": "Em b\u00E9 \u0111ang ng\u1EE7 tr\u00EAn gi\u01B0\u1EDDng.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very young child",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8be\u026A.bi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The baby is sleeping in the bed.\u0022,\u0022vi\u0022:\u0022Em b\\u00E9 \\u0111ang ng\\u1EE7 tr\\u00EAn gi\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022She is having a baby next month.\u0022,\u0022vi\u0022:\u0022Th\\u00E1ng sau c\\u00F4 \\u1EA5y sinh em b\\u00E9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022baby girl\u0022,\u0022vi\u0022:\u0022b\\u00E9 g\\u00E1i\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022babies\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.a7af8cf68e18473091bc79434f0705ce",
+      "kind": "Card",
+      "values": {
+        "Term": "girl",
+        "Definition": "c\u00F4 b\u00E9, c\u00F4 g\u00E1i",
+        "ImageUrl": "asset:c329ecb006f48e485f8107f4e996f4c01d65ec7c004095f05773efafd84c6a70.webp",
+        "Phonetic": "/\u02C8\u0261\u025C\u0279l/",
+        "Example": "The girl is reading a book.",
+        "ExampleTranslation": "C\u00F4 b\u00E9 \u0111ang \u0111\u1ECDc s\u00E1ch.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a female child",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u0261\u025C\u02D0l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The girl is reading a book.\u0022,\u0022vi\u0022:\u0022C\\u00F4 b\\u00E9 \\u0111ang \\u0111\\u1ECDc s\\u00E1ch.\u0022},{\u0022text\u0022:\u0022A young girl waved at us.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t c\\u00F4 g\\u00E1i nh\\u1ECF v\\u1EABy tay ch\\u00E0o ch\\u00FAng t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022little girl\u0022,\u0022vi\u0022:\u0022c\\u00F4 b\\u00E9\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.a95379d4d60f4272afb614c79ebb7937",
+      "kind": "Card",
+      "values": {
+        "Term": "wife",
+        "Definition": "v\u1EE3",
+        "ImageUrl": "asset:6c58a6aababc97a1275ea6d14828038517b6b968759b3ad0e7eecee70891d247.webp",
+        "Phonetic": "/wa\u026Af/",
+        "Example": "His wife is a doctor.",
+        "ExampleTranslation": "V\u1EE3 anh \u1EA5y l\u00E0 b\u00E1c s\u0129.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the woman a man is married to",
+        "Cefr": "A2",
+        "PhoneticUk": "/wa\u026Af/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022His wife is a doctor.\u0022,\u0022vi\u0022:\u0022V\\u1EE3 anh \\u1EA5y l\\u00E0 b\\u00E1c s\\u0129.\u0022},{\u0022text\u0022:\u0022He took his wife to the cinema.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y d\\u1EABn v\\u1EE3 \\u0111i xem phim.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wife and children\u0022,\u0022vi\u0022:\u0022v\\u1EE3 con\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022wives\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.a9d8d2de291b4f50b50cdd8d01cf73b5",
+      "kind": "Card",
+      "values": {
+        "Term": "sister",
+        "Definition": "ch\u1ECB g\u00E1i, em g\u00E1i",
+        "ImageUrl": "asset:aad2c2739f902d6837c7486168a231afc5d3456bdf3ec6753d8cb23a7822a9d6.webp",
+        "Phonetic": "/\u02C8s\u026As.t\u025A/",
+        "Example": "My sister is a teacher.",
+        "ExampleTranslation": "Ch\u1ECB g\u00E1i t\u00F4i l\u00E0 gi\u00E1o vi\u00EAn.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a girl or woman with the same parents as you",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8s\u026As.t\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My sister is a teacher.\u0022,\u0022vi\u0022:\u0022Ch\\u1ECB g\\u00E1i t\\u00F4i l\\u00E0 gi\\u00E1o vi\\u00EAn.\u0022},{\u0022text\u0022:\u0022I help my little sister with her homework.\u0022,\u0022vi\u0022:\u0022T\\u00F4i gi\\u00FAp em g\\u00E1i l\\u00E0m b\\u00E0i t\\u1EADp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022older sister\u0022,\u0022vi\u0022:\u0022ch\\u1ECB g\\u00E1i\u0022},{\u0022text\u0022:\u0022younger sister\u0022,\u0022vi\u0022:\u0022em g\\u00E1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.be4e3436dfe649709dbaf4e0800fe562",
+      "kind": "Card",
+      "values": {
+        "Term": "husband",
+        "Definition": "ch\u1ED3ng",
+        "ImageUrl": "asset:8df55ba1b7445269d4011c39545ba2e74dc7d2cc5b5904988ea1addc92d0c8f8.webp",
+        "Phonetic": "/\u02C8h\u028Cz.b\u0259nd/",
+        "Example": "Her husband works in a bank.",
+        "ExampleTranslation": "Ch\u1ED3ng c\u00F4 \u1EA5y l\u00E0m vi\u1EC7c \u1EDF ng\u00E2n h\u00E0ng.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the man a woman is married to",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8h\u028Cz.b\u0259nd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Her husband works in a bank.\u0022,\u0022vi\u0022:\u0022Ch\\u1ED3ng c\\u00F4 \\u1EA5y l\\u00E0m vi\\u1EC7c \\u1EDF ng\\u00E2n h\\u00E0ng.\u0022},{\u0022text\u0022:\u0022My husband cooks dinner on Sundays.\u0022,\u0022vi\u0022:\u0022Ch\\u1ED3ng t\\u00F4i n\\u1EA5u b\\u1EEFa t\\u1ED1i v\\u00E0o Ch\\u1EE7 nh\\u1EADt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022husband and wife\u0022,\u0022vi\u0022:\u0022v\\u1EE3 ch\\u1ED3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.d08a806537f14b89b796937ad8d96fec",
+      "kind": "Card",
+      "values": {
+        "Term": "friend",
+        "Definition": "b\u1EA1n b\u00E8",
+        "ImageUrl": "asset:98f27d0cbf27ab7519861af4c154024c4735f00f6c5c3fe1a45b10c5d298df33.webp",
+        "Phonetic": "/f\u0279\u025Bnd/",
+        "Example": "My best friend lives next door.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi b\u1EA1n th\u00E2n nh\u1EA5t c\u1EE7a t\u00F4i s\u1ED1ng \u1EDF nh\u00E0 b\u00EAn.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person you like and know well",
+        "Cefr": "A1",
+        "PhoneticUk": "/f\u0279\u025Bnd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My best friend lives next door.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi b\\u1EA1n th\\u00E2n nh\\u1EA5t c\\u1EE7a t\\u00F4i s\\u1ED1ng \\u1EDF nh\\u00E0 b\\u00EAn.\u0022},{\u0022text\u0022:\u0022I met a new friend at school.\u0022,\u0022vi\u0022:\u0022T\\u00F4i g\\u1EB7p m\\u1ED9t ng\\u01B0\\u1EDDi b\\u1EA1n m\\u1EDBi \\u1EDF tr\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022best friend\u0022,\u0022vi\u0022:\u0022b\\u1EA1n th\\u00E2n nh\\u1EA5t\u0022},{\u0022text\u0022:\u0022make friends\u0022,\u0022vi\u0022:\u0022k\\u1EBFt b\\u1EA1n\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022friendly\u0022,\u0022pos\u0022:\u0022adj\u0022,\u0022vi\u0022:\u0022th\\u00E2n thi\\u1EC7n\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.dbbba44c25714083965291aa85f29b38",
+      "kind": "Card",
+      "values": {
+        "Term": "neighbour",
+        "Definition": "h\u00E0ng x\u00F3m",
+        "ImageUrl": "asset:042b6cfcdc981a6c7cb16dea469d7548aac5b1f8a1437f520e1f55212f9a77f0.webp",
+        "Phonetic": "/\u02C8ne\u026Ab\u025A/",
+        "Example": "Our neighbour has a friendly dog.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi h\u00E0ng x\u00F3m c\u1EE7a ch\u00FAng t\u00F4i c\u00F3 m\u1ED9t con ch\u00F3 th\u00E2n thi\u1EC7n.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a person who lives near you",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8ne\u026Ab\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Our neighbour has a friendly dog.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi h\\u00E0ng x\\u00F3m c\\u1EE7a ch\\u00FAng t\\u00F4i c\\u00F3 m\\u1ED9t con ch\\u00F3 th\\u00E2n thi\\u1EC7n.\u0022},{\u0022text\u0022:\u0022I say hello to my neighbours every day.\u0022,\u0022vi\u0022:\u0022Ng\\u00E0y n\\u00E0o t\\u00F4i c\\u0169ng ch\\u00E0o nh\\u1EEFng ng\\u01B0\\u1EDDi h\\u00E0ng x\\u00F3m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022next-door neighbour\u0022,\u0022vi\u0022:\u0022h\\u00E0ng x\\u00F3m s\\u00E1t v\\u00E1ch\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.e1935a7c3b8a40c9a1067590ae8c9d63",
+      "kind": "Card",
+      "values": {
+        "Term": "cousin",
+        "Definition": "anh ch\u1ECB em h\u1ECD",
+        "ImageUrl": "asset:3c5ba55cb9513a6b2cc37848ed8c2a57be5c72c229571be9492f729411ca5a8c.webp",
+        "Phonetic": "/\u02C8k\u028Cz(\u0259)n/",
+        "Example": "My cousin lives next to our house.",
+        "ExampleTranslation": "Anh h\u1ECD t\u00F4i s\u1ED1ng c\u1EA1nh nh\u00E0 ch\u00FAng t\u00F4i.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "the child of your uncle or aunt",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u028Czn\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My cousin lives next to our house.\u0022,\u0022vi\u0022:\u0022Anh h\\u1ECD t\\u00F4i s\\u1ED1ng c\\u1EA1nh nh\\u00E0 ch\\u00FAng t\\u00F4i.\u0022},{\u0022text\u0022:\u0022I play games with my cousins.\u0022,\u0022vi\u0022:\u0022T\\u00F4i ch\\u01A1i tr\\u00F2 ch\\u01A1i v\\u1EDBi c\\u00E1c anh ch\\u1ECB em h\\u1ECD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022first cousin\u0022,\u0022vi\u0022:\u0022anh ch\\u1ECB em h\\u1ECD \\u0111\\u1EDDi \\u0111\\u1EA7u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.f438b332936a4909aabeb17c8f489e12",
+      "kind": "Card",
+      "values": {
+        "Term": "daughter",
+        "Definition": "con g\u00E1i",
+        "ImageUrl": "asset:aad2c2739f902d6837c7486168a231afc5d3456bdf3ec6753d8cb23a7822a9d6.webp",
+        "Phonetic": "/\u02C8d\u0254.t\u025A/",
+        "Example": "Their daughter studies at university.",
+        "ExampleTranslation": "Con g\u00E1i h\u1ECD h\u1ECDc \u0111\u1EA1i h\u1ECDc.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a girl or woman who is someone\u0027s child",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8d\u0254\u02D0t\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Their daughter studies at university.\u0022,\u0022vi\u0022:\u0022Con g\\u00E1i h\\u1ECD h\\u1ECDc \\u0111\\u1EA1i h\\u1ECDc.\u0022},{\u0022text\u0022:\u0022He took his daughter to the park.\u0022,\u0022vi\u0022:\u0022\\u00D4ng d\\u1EABn con g\\u00E1i ra c\\u00F4ng vi\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022youngest daughter\u0022,\u0022vi\u0022:\u0022con g\\u00E1i \\u00FAt\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi.ff3d29b861f6437a8a8d5c0532d89667",
+      "kind": "Card",
+      "values": {
+        "Term": "father",
+        "Definition": "b\u1ED1, cha",
+        "ImageUrl": "asset:8df55ba1b7445269d4011c39545ba2e74dc7d2cc5b5904988ea1addc92d0c8f8.webp",
+        "Phonetic": "/\u02C8f\u0251\u02D0.\u00F0\u0259(\u0279)/",
+        "Example": "My father drives me to school.",
+        "ExampleTranslation": "B\u1ED1 t\u00F4i ch\u1EDF t\u00F4i \u0111\u1EBFn tr\u01B0\u1EDDng.",
+        "Topic": "Gia \u0111\u00ECnh \u0026 con ng\u01B0\u1EDDi",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a man who has a child",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8f\u0251\u02D0.\u00F0\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My father drives me to school.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 t\\u00F4i ch\\u1EDF t\\u00F4i \\u0111\\u1EBFn tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022He is a good father to his son.\u0022,\u0022vi\u0022:\u0022\\u00D4ng l\\u00E0 m\\u1ED9t ng\\u01B0\\u1EDDi cha t\\u1ED1t v\\u1EDBi con trai.\u0022}],\u0022synonyms\u0022:[\u0022dad\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Father\\u0027s Day\u0022,\u0022vi\u0022:\u0022Ng\\u00E0y c\\u1EE7a Cha\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "6c58a6aababc97a1275ea6d14828038517b6b968759b3ad0e7eecee70891d247.webp",
+      "sha256": "6c58a6aababc97a1275ea6d14828038517b6b968759b3ad0e7eecee70891d247"
+    },
+    {
+      "file": "8df55ba1b7445269d4011c39545ba2e74dc7d2cc5b5904988ea1addc92d0c8f8.webp",
+      "sha256": "8df55ba1b7445269d4011c39545ba2e74dc7d2cc5b5904988ea1addc92d0c8f8"
+    },
+    {
+      "file": "44fc990d879bcaf43ccaccc3814058411c90a5e87f0fcb254b5410220542e57a.webp",
+      "sha256": "44fc990d879bcaf43ccaccc3814058411c90a5e87f0fcb254b5410220542e57a"
+    },
+    {
+      "file": "74204a51f264cd54a91595b413cd03d8a3eb5312693dd9d4ac05c24313e9a69d.webp",
+      "sha256": "74204a51f264cd54a91595b413cd03d8a3eb5312693dd9d4ac05c24313e9a69d"
+    },
+    {
+      "file": "aad2c2739f902d6837c7486168a231afc5d3456bdf3ec6753d8cb23a7822a9d6.webp",
+      "sha256": "aad2c2739f902d6837c7486168a231afc5d3456bdf3ec6753d8cb23a7822a9d6"
+    },
+    {
+      "file": "e6e6f72d75d0d6b8e0a9f781cc3430a62d37e2a73ef704e18301b9a136a23be2.webp",
+      "sha256": "e6e6f72d75d0d6b8e0a9f781cc3430a62d37e2a73ef704e18301b9a136a23be2"
+    },
+    {
+      "file": "ea9bedb9ffdcc98165233b83009e336227ce20303768c4e28e81df9b4bd654e1.webp",
+      "sha256": "ea9bedb9ffdcc98165233b83009e336227ce20303768c4e28e81df9b4bd654e1"
+    },
+    {
+      "file": "7c4a5df2e1f2b16265b18a1f3e0c330a1fb74eeda14255ba135da0ddad12f5ee.webp",
+      "sha256": "7c4a5df2e1f2b16265b18a1f3e0c330a1fb74eeda14255ba135da0ddad12f5ee"
+    },
+    {
+      "file": "bd0cb806a15e28832e181014de1f033d1821816eccf1ed30deef44f49818effc.webp",
+      "sha256": "bd0cb806a15e28832e181014de1f033d1821816eccf1ed30deef44f49818effc"
+    },
+    {
+      "file": "3c5ba55cb9513a6b2cc37848ed8c2a57be5c72c229571be9492f729411ca5a8c.webp",
+      "sha256": "3c5ba55cb9513a6b2cc37848ed8c2a57be5c72c229571be9492f729411ca5a8c"
+    },
+    {
+      "file": "be5e855747792a7b341cd15fa839bb47260bf9cfe54f890a0c0fad461c7ad8bb.webp",
+      "sha256": "be5e855747792a7b341cd15fa839bb47260bf9cfe54f890a0c0fad461c7ad8bb"
+    },
+    {
+      "file": "07c306f4596d0850fe438810a747f20eacbe558d84d51b5e29a8f6c6fc770cf0.webp",
+      "sha256": "07c306f4596d0850fe438810a747f20eacbe558d84d51b5e29a8f6c6fc770cf0"
+    },
+    {
+      "file": "ad126315ea787c82f45153b575093137a60aba9af3a2442f2ee8a534fe5629ec.webp",
+      "sha256": "ad126315ea787c82f45153b575093137a60aba9af3a2442f2ee8a534fe5629ec"
+    },
+    {
+      "file": "c329ecb006f48e485f8107f4e996f4c01d65ec7c004095f05773efafd84c6a70.webp",
+      "sha256": "c329ecb006f48e485f8107f4e996f4c01d65ec7c004095f05773efafd84c6a70"
+    },
+    {
+      "file": "0e10926d3225556b1b33b04de9d2d8d06d47bd0600cdcf5ecd2bf2e2160c587d.webp",
+      "sha256": "0e10926d3225556b1b33b04de9d2d8d06d47bd0600cdcf5ecd2bf2e2160c587d"
+    },
+    {
+      "file": "9baa34e8e9e39bcb28b71e0a2721ac0cc6149879bf56a52e53e28114a6eb8789.webp",
+      "sha256": "9baa34e8e9e39bcb28b71e0a2721ac0cc6149879bf56a52e53e28114a6eb8789"
+    },
+    {
+      "file": "98f27d0cbf27ab7519861af4c154024c4735f00f6c5c3fe1a45b10c5d298df33.webp",
+      "sha256": "98f27d0cbf27ab7519861af4c154024c4735f00f6c5c3fe1a45b10c5d298df33"
+    },
+    {
+      "file": "042b6cfcdc981a6c7cb16dea469d7548aac5b1f8a1437f520e1f55212f9a77f0.webp",
+      "sha256": "042b6cfcdc981a6c7cb16dea469d7548aac5b1f8a1437f520e1f55212f9a77f0"
+    },
+    {
+      "file": "369df4ef75b14f62c8cd7f942a476715bdf9097240e09469e25110673656bbe7.webp",
+      "sha256": "369df4ef75b14f62c8cd7f942a476715bdf9097240e09469e25110673656bbe7"
+    },
+    {
+      "file": "c79351aa9e487aca189eb48ea30f445a1e0db4cfe9f5b717bcb03f96723648ac.webp",
+      "sha256": "c79351aa9e487aca189eb48ea30f445a1e0db4cfe9f5b717bcb03f96723648ac"
+    },
+    {
+      "file": "fa520c54f2934fc3f3af0edbf4a04d61492adff9c94c7d6f1525fdc54d57e391.webp",
+      "sha256": "fa520c54f2934fc3f3af0edbf4a04d61492adff9c94c7d6f1525fdc54d57e391"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a09-gia-dinh-con-nguoi"
+}

@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong",
+      "kind": "Set",
+      "values": {
+        "SetName": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "Description": "#a2 #b1 #directions #travel"
+      },
+      "references": {
+        "FolderId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.69eb25c500b84f00ab2dc9c4b8036467",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.01a5ea3bf23347c1af5ab292ebe115c3",
+      "kind": "Card",
+      "values": {
+        "Term": "Take the second street on the right.",
+        "Definition": "\u0111i v\u00E0o con ph\u1ED1 th\u1EE9 hai b\u00EAn ph\u1EA3i",
+        "ImageUrl": "asset:1fdcd879a0f8e923089ed5d6ab7793369ebbb112a33e06fd358f3811d15e4fcb.webp",
+        "Phonetic": null,
+        "Example": "Take the second street on the right.",
+        "ExampleTranslation": "\u0110i v\u00E0o con ph\u1ED1 th\u1EE9 hai b\u00EAn ph\u1EA3i.",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a direction that counts the streets",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Take the second street on the right.\u0022,\u0022vi\u0022:\u0022\\u0110i v\\u00E0o con ph\\u1ED1 th\\u1EE9 hai b\\u00EAn ph\\u1EA3i.\u0022},{\u0022text\u0022:\u0022Take the first street on the left.\u0022,\u0022vi\u0022:\u0022\\u0110i v\\u00E0o con ph\\u1ED1 \\u0111\\u1EA7u ti\\u00EAn b\\u00EAn tr\\u00E1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Take the third turning.\u0022,\u0022vi\u0022:\u0022R\\u1EBD \\u1EDF ng\\u00E3 r\\u1EBD th\\u1EE9 ba.\u0022},{\u0022text\u0022:\u0022Go past the school.\u0022,\u0022vi\u0022:\u0022\\u0110i qua tr\\u01B0\\u1EDDng h\\u1ECDc.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.055a98a5fccf4a0ea49ba99460af5f7a",
+      "kind": "Card",
+      "values": {
+        "Term": "Cross the bridge.",
+        "Definition": "b\u0103ng qua c\u00E2y c\u1EA7u",
+        "ImageUrl": "asset:f2a0d8da175749bde3042e56e8fd39aeeeaef0bdab9966915926d8b5a138dda8.webp",
+        "Phonetic": null,
+        "Example": "Cross the bridge and turn left.",
+        "ExampleTranslation": "B\u0103ng qua c\u00E2y c\u1EA7u r\u1ED3i r\u1EBD tr\u00E1i.",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "an instruction to go over a bridge",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Cross the bridge and turn left.\u0022,\u0022vi\u0022:\u0022B\\u0103ng qua c\\u00E2y c\\u1EA7u r\\u1ED3i r\\u1EBD tr\\u00E1i.\u0022},{\u0022text\u0022:\u0022Cross the bridge and you\\u0027ll see the station.\u0022,\u0022vi\u0022:\u0022B\\u0103ng qua c\\u00E2y c\\u1EA7u l\\u00E0 b\\u1EA1n s\\u1EBD th\\u1EA5y nh\\u00E0 ga.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Cross the street.\u0022,\u0022vi\u0022:\u0022B\\u0103ng qua \\u0111\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022Walk over the bridge.\u0022,\u0022vi\u0022:\u0022\\u0110i b\\u1ED9 qua c\\u1EA7u.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.0b4f4f11cf7d410e9ddd6a60654048e5",
+      "kind": "Card",
+      "values": {
+        "Term": "How do I get to the airport?",
+        "Definition": "t\u00F4i \u0111\u1EBFn s\u00E2n bay b\u1EB1ng c\u00E1ch n\u00E0o?",
+        "ImageUrl": "asset:cf9355f8661b0e6720a925d797756aa946411cf23c0461f9b666f8feecf42c44.webp",
+        "Phonetic": null,
+        "Example": "How do I get to the airport from here?",
+        "ExampleTranslation": "T\u1EEB \u0111\u00E2y t\u00F4i \u0111\u1EBFn s\u00E2n bay b\u1EB1ng c\u00E1ch n\u00E0o?",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about the way to a place",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022How do I get to the airport from here?\u0022,\u0022vi\u0022:\u0022T\\u1EEB \\u0111\\u00E2y t\\u00F4i \\u0111\\u1EBFn s\\u00E2n bay b\\u1EB1ng c\\u00E1ch n\\u00E0o?\u0022},{\u0022text\u0022:\u0022How do I get to the city centre?\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u1EBFn trung t\\u00E2m th\\u00E0nh ph\\u1ED1 b\\u1EB1ng c\\u00E1ch n\\u00E0o?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Which way is the airport?\u0022,\u0022vi\u0022:\u0022S\\u00E2n bay \\u0111i h\\u01B0\\u1EDBng n\\u00E0o?\u0022},{\u0022text\u0022:\u0022Take the bus.\u0022,\u0022vi\u0022:\u0022\\u0110i b\\u1EB1ng xe bu\\u00FDt.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.138b78cb3f85435fa4e0e1bc85e37177",
+      "kind": "Card",
+      "values": {
+        "Term": "You can\u0027t miss it.",
+        "Definition": "b\u1EA1n kh\u00F4ng th\u1EC3 nh\u1EA7m \u0111\u01B0\u1EE3c \u0111\u00E2u",
+        "ImageUrl": "asset:acb078c2173248f7b84f8f3a96b1b3abb8fa88933d2aa96d32a995548c154bae.webp",
+        "Phonetic": null,
+        "Example": "The church is big. You can\u0027t miss it.",
+        "ExampleTranslation": "Nh\u00E0 th\u1EDD r\u1EA5t l\u1EDBn. B\u1EA1n kh\u00F4ng th\u1EC3 nh\u1EA7m \u0111\u01B0\u1EE3c \u0111\u00E2u.",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a phrase meaning the place is very easy to see",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The church is big. You can\\u0027t miss it.\u0022,\u0022vi\u0022:\u0022Nh\\u00E0 th\\u1EDD r\\u1EA5t l\\u1EDBn. B\\u1EA1n kh\\u00F4ng th\\u1EC3 nh\\u1EA7m \\u0111\\u01B0\\u1EE3c \\u0111\\u00E2u.\u0022},{\u0022text\u0022:\u0022It\\u0027s the red building. You can\\u0027t miss it.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00F3 l\\u00E0 t\\u00F2a nh\\u00E0 m\\u00E0u \\u0111\\u1ECF. B\\u1EA1n kh\\u00F4ng th\\u1EC3 nh\\u1EA7m \\u0111\\u01B0\\u1EE3c \\u0111\\u00E2u.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s easy to find.\u0022,\u0022vi\u0022:\u0022R\\u1EA5t d\\u1EC5 t\\u00ECm.\u0022},{\u0022text\u0022:\u0022You\\u0027ll see it.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n s\\u1EBD th\\u1EA5y n\\u00F3.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.2b5523a9acc34dadbf771488ea649f4a",
+      "kind": "Card",
+      "values": {
+        "Term": "Where is the station?",
+        "Definition": "nh\u00E0 ga \u1EDF \u0111\u00E2u?",
+        "ImageUrl": "asset:4428c159b8a21356ee631068f1d4029812aa9417f3f4c0c77b4e8f7f7c94f915.webp",
+        "Phonetic": null,
+        "Example": "Excuse me, where is the station?",
+        "ExampleTranslation": "Xin l\u1ED7i, nh\u00E0 ga \u1EDF \u0111\u00E2u \u1EA1?",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question to ask where a place is",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Excuse me, where is the station?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, nh\\u00E0 ga \\u1EDF \\u0111\\u00E2u \\u1EA1?\u0022},{\u0022text\u0022:\u0022Where is the nearest bank?\u0022,\u0022vi\u0022:\u0022Ng\\u00E2n h\\u00E0ng g\\u1EA7n nh\\u1EA5t \\u1EDF \\u0111\\u00E2u?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Where can I find a bank?\u0022,\u0022vi\u0022:\u0022T\\u00F4i t\\u00ECm ng\\u00E2n h\\u00E0ng \\u1EDF \\u0111\\u00E2u?\u0022},{\u0022text\u0022:\u0022Is there a pharmacy nearby?\u0022,\u0022vi\u0022:\u0022G\\u1EA7n \\u0111\\u00E2y c\\u00F3 hi\\u1EC7u thu\\u1ED1c kh\\u00F4ng?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.381d22aaba3d40849f9cd1b829580fba",
+      "kind": "Card",
+      "values": {
+        "Term": "Turn left at the corner.",
+        "Definition": "r\u1EBD tr\u00E1i \u1EDF g\u00F3c ph\u1ED1",
+        "ImageUrl": "asset:904850352d1130d3177df9e074138cd5c03abf073fd0b5c32280a59c7093b9dc.webp",
+        "Phonetic": null,
+        "Example": "Turn left at the corner.",
+        "ExampleTranslation": "R\u1EBD tr\u00E1i \u1EDF g\u00F3c ph\u1ED1.",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "an instruction to turn left",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Turn left at the corner.\u0022,\u0022vi\u0022:\u0022R\\u1EBD tr\\u00E1i \\u1EDF g\\u00F3c ph\\u1ED1.\u0022},{\u0022text\u0022:\u0022Turn left at the bakery.\u0022,\u0022vi\u0022:\u0022R\\u1EBD tr\\u00E1i ch\\u1ED7 ti\\u1EC7m b\\u00E1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Take a left.\u0022,\u0022vi\u0022:\u0022R\\u1EBD tr\\u00E1i.\u0022},{\u0022text\u0022:\u0022Then turn left.\u0022,\u0022vi\u0022:\u0022Sau \\u0111\\u00F3 r\\u1EBD tr\\u00E1i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.3f13e33cb72d4f9b9fa618a4fc61c7d1",
+      "kind": "Card",
+      "values": {
+        "Term": "It\u0027s opposite the park.",
+        "Definition": "n\u00F3 \u1EDF \u0111\u1ED1i di\u1EC7n c\u00F4ng vi\u00EAn",
+        "ImageUrl": "asset:9ab8b672f544fb2d8114a9ea4ee992fccbf3578da977dbdcdb569eb053eb382c.webp",
+        "Phonetic": null,
+        "Example": "The hotel is opposite the park.",
+        "ExampleTranslation": "Kh\u00E1ch s\u1EA1n \u1EDF \u0111\u1ED1i di\u1EC7n c\u00F4ng vi\u00EAn.",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a phrase that says what is on the other side of the road",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The hotel is opposite the park.\u0022,\u0022vi\u0022:\u0022Kh\\u00E1ch s\\u1EA1n \\u1EDF \\u0111\\u1ED1i di\\u1EC7n c\\u00F4ng vi\\u00EAn.\u0022},{\u0022text\u0022:\u0022It\\u0027s opposite the park, across the road.\u0022,\u0022vi\u0022:\u0022N\\u00F3 \\u1EDF \\u0111\\u1ED1i di\\u1EC7n c\\u00F4ng vi\\u00EAn, b\\u00EAn kia \\u0111\\u01B0\\u1EDDng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s across the street.\u0022,\u0022vi\u0022:\u0022N\\u00F3 \\u1EDF b\\u00EAn kia \\u0111\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022It\\u0027s in front of the school.\u0022,\u0022vi\u0022:\u0022N\\u00F3 \\u1EDF ph\\u00EDa tr\\u01B0\\u1EDBc tr\\u01B0\\u1EDDng h\\u1ECDc.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.5c31d5cd077f49ce9a7146308f89dffd",
+      "kind": "Card",
+      "values": {
+        "Term": "Can you show me on the map?",
+        "Definition": "b\u1EA1n ch\u1EC9 gi\u00FAp t\u00F4i tr\u00EAn b\u1EA3n \u0111\u1ED3 \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:0c6a0598ebd309675b17c0b366c073e5b1a5b8c3080d9a48b49c2828bb9258f3.webp",
+        "Phonetic": null,
+        "Example": "Can you show me on the map?",
+        "ExampleTranslation": "B\u1EA1n ch\u1EC9 gi\u00FAp t\u00F4i tr\u00EAn b\u1EA3n \u0111\u1ED3 \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request for help to find a place on a map",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can you show me on the map?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n ch\\u1EC9 gi\\u00FAp t\\u00F4i tr\\u00EAn b\\u1EA3n \\u0111\\u1ED3 \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Can you show me on the map where we are?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n ch\\u1EC9 gi\\u00FAp t\\u00F4i ch\\u00FAng ta \\u0111ang \\u1EDF \\u0111\\u00E2u tr\\u00EAn b\\u1EA3n \\u0111\\u1ED3 \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022We are here.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng ta \\u0111ang \\u1EDF \\u0111\\u00E2y.\u0022},{\u0022text\u0022:\u0022It\\u0027s over here.\u0022,\u0022vi\u0022:\u0022N\\u00F3 \\u1EDF \\u0111\\u00E2y n\\u00E0y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.64a0848c2b184adfb018107e140539cc",
+      "kind": "Card",
+      "values": {
+        "Term": "Turn right at the traffic lights.",
+        "Definition": "r\u1EBD ph\u1EA3i \u1EDF ch\u1ED7 \u0111\u00E8n giao th\u00F4ng",
+        "ImageUrl": "asset:c33a88c7c0f5517bde7278d30c563b4e0320ccbd1b4fccea318815d80f41cb3c.webp",
+        "Phonetic": null,
+        "Example": "Turn right at the traffic lights.",
+        "ExampleTranslation": "R\u1EBD ph\u1EA3i \u1EDF ch\u1ED7 \u0111\u00E8n giao th\u00F4ng.",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "an instruction to turn right",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Turn right at the traffic lights.\u0022,\u0022vi\u0022:\u0022R\\u1EBD ph\\u1EA3i \\u1EDF ch\\u1ED7 \\u0111\\u00E8n giao th\\u00F4ng.\u0022},{\u0022text\u0022:\u0022Turn right at the next traffic lights.\u0022,\u0022vi\u0022:\u0022R\\u1EBD ph\\u1EA3i \\u1EDF \\u0111\\u00E8n giao th\\u00F4ng ti\\u1EBFp theo.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Take a right.\u0022,\u0022vi\u0022:\u0022R\\u1EBD ph\\u1EA3i.\u0022},{\u0022text\u0022:\u0022Then turn right.\u0022,\u0022vi\u0022:\u0022Sau \\u0111\\u00F3 r\\u1EBD ph\\u1EA3i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.794a0229e20549faab849606203e5f60",
+      "kind": "Card",
+      "values": {
+        "Term": "It\u0027s on your left.",
+        "Definition": "n\u00F3 \u1EDF b\u00EAn tr\u00E1i b\u1EA1n",
+        "ImageUrl": "asset:1058fea129de0a90b89083291b311533744dcf34b288dc2634f5edbe4670056c.webp",
+        "Phonetic": null,
+        "Example": "The bank is on your left.",
+        "ExampleTranslation": "Ng\u00E2n h\u00E0ng \u1EDF b\u00EAn tr\u00E1i b\u1EA1n.",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a phrase that says where something is",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The bank is on your left.\u0022,\u0022vi\u0022:\u0022Ng\\u00E2n h\\u00E0ng \\u1EDF b\\u00EAn tr\\u00E1i b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022It\\u0027s on your left, next to the cafe.\u0022,\u0022vi\u0022:\u0022N\\u00F3 \\u1EDF b\\u00EAn tr\\u00E1i b\\u1EA1n, c\\u1EA1nh qu\\u00E1n c\\u00E0 ph\\u00EA.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s on your right.\u0022,\u0022vi\u0022:\u0022N\\u00F3 \\u1EDF b\\u00EAn ph\\u1EA3i b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022It\\u0027s straight ahead.\u0022,\u0022vi\u0022:\u0022N\\u00F3 \\u1EDF ngay ph\\u00EDa tr\\u01B0\\u1EDBc.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.84f1327a13174c599f379a728e8b663f",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027m lost.",
+        "Definition": "t\u00F4i b\u1ECB l\u1EA1c",
+        "ImageUrl": "asset:47a1243452200bbd81221e45508738030f06629924eb9309fed0ae91e7aff01f.webp",
+        "Phonetic": null,
+        "Example": "Excuse me, I\u0027m lost. Can you help?",
+        "ExampleTranslation": "Xin l\u1ED7i, t\u00F4i b\u1ECB l\u1EA1c. B\u1EA1n gi\u00FAp t\u00F4i \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you do not know where you are",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Excuse me, I\\u0027m lost. Can you help?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, t\\u00F4i b\\u1ECB l\\u1EA1c. B\\u1EA1n gi\\u00FAp t\\u00F4i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022I\\u0027m lost. Where is the hotel?\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB l\\u1EA1c. Kh\\u00E1ch s\\u1EA1n \\u1EDF \\u0111\\u00E2u?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I don\\u0027t know where I am.\u0022,\u0022vi\u0022:\u0022T\\u00F4i kh\\u00F4ng bi\\u1EBFt m\\u00ECnh \\u0111ang \\u1EDF \\u0111\\u00E2u.\u0022},{\u0022text\u0022:\u0022I\\u0027m looking for the station.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111ang t\\u00ECm nh\\u00E0 ga.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.97291dd8685c4433999dcc0aa5944953",
+      "kind": "Card",
+      "values": {
+        "Term": "Keep going until you see the school.",
+        "Definition": "c\u1EE9 \u0111i \u0111\u1EBFn khi th\u1EA5y ng\u00F4i tr\u01B0\u1EDDng",
+        "ImageUrl": "asset:41b7e2708db1140d3e12c9dcb61c7d7f9c489faf51b3fe259695cfdfa548385d.webp",
+        "Phonetic": null,
+        "Example": "Keep going until you see the school.",
+        "ExampleTranslation": "C\u1EE9 \u0111i cho \u0111\u1EBFn khi th\u1EA5y ng\u00F4i tr\u01B0\u1EDDng.",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a direction to walk until you reach a landmark",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Keep going until you see the school.\u0022,\u0022vi\u0022:\u0022C\\u1EE9 \\u0111i cho \\u0111\\u1EBFn khi th\\u1EA5y ng\\u00F4i tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022Keep going until you see a big supermarket.\u0022,\u0022vi\u0022:\u0022C\\u1EE9 \\u0111i cho \\u0111\\u1EBFn khi th\\u1EA5y m\\u1ED9t si\\u00EAu th\\u1ECB l\\u1EDBn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Walk past the park.\u0022,\u0022vi\u0022:\u0022\\u0110i ngang qua c\\u00F4ng vi\\u00EAn.\u0022},{\u0022text\u0022:\u0022It\\u0027s right there.\u0022,\u0022vi\u0022:\u0022N\\u00F3 \\u1EDF ngay \\u0111\\u00F3.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.a3e14bb37fd2470abe13f1d3a7b280ff",
+      "kind": "Card",
+      "values": {
+        "Term": "Is it far from here?",
+        "Definition": "ch\u1ED7 \u0111\u00F3 c\u00F3 xa \u0111\u00E2y kh\u00F4ng?",
+        "ImageUrl": "asset:3d11f5ab53fe201d5373d9bcef7b19c48a5e29005407758b8cffa476ed51922b.webp",
+        "Phonetic": null,
+        "Example": "Is it far from here? I have a heavy bag.",
+        "ExampleTranslation": "Ch\u1ED7 \u0111\u00F3 c\u00F3 xa \u0111\u00E2y kh\u00F4ng? T\u00F4i c\u00F3 t\u00FAi n\u1EB7ng.",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about distance",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Is it far from here? I have a heavy bag.\u0022,\u0022vi\u0022:\u0022Ch\\u1ED7 \\u0111\\u00F3 c\\u00F3 xa \\u0111\\u00E2y kh\\u00F4ng? T\\u00F4i c\\u00F3 t\\u00FAi n\\u1EB7ng.\u0022},{\u0022text\u0022:\u0022Is the museum far from here?\u0022,\u0022vi\u0022:\u0022B\\u1EA3o t\\u00E0ng c\\u00F3 xa \\u0111\\u00E2y kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022No, it\\u0027s close.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng, g\\u1EA7n th\\u00F4i.\u0022},{\u0022text\u0022:\u0022It\\u0027s quite far.\u0022,\u0022vi\u0022:\u0022Kh\\u00E1 xa \\u0111\\u1EA5y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.aa9ba01ace544828ba0856bbe6558e31",
+      "kind": "Card",
+      "values": {
+        "Term": "How long does it take?",
+        "Definition": "m\u1EA5t bao l\u00E2u?",
+        "ImageUrl": "asset:dea22608fda80c62bae6d5c91c857fbddf272cf809d2f07a1516ee6d2ee621d3.webp",
+        "Phonetic": null,
+        "Example": "How long does it take to get there?",
+        "ExampleTranslation": "\u0110i \u0111\u1EBFn \u0111\u00F3 m\u1EA5t bao l\u00E2u?",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about travel time",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022How long does it take to get there?\u0022,\u0022vi\u0022:\u0022\\u0110i \\u0111\\u1EBFn \\u0111\\u00F3 m\\u1EA5t bao l\\u00E2u?\u0022},{\u0022text\u0022:\u0022How long does it take by bus?\u0022,\u0022vi\u0022:\u0022\\u0110i b\\u1EB1ng xe bu\\u00FDt m\\u1EA5t bao l\\u00E2u?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It takes ten minutes.\u0022,\u0022vi\u0022:\u0022M\\u1EA5t m\\u01B0\\u1EDDi ph\\u00FAt.\u0022},{\u0022text\u0022:\u0022About half an hour.\u0022,\u0022vi\u0022:\u0022Kho\\u1EA3ng n\\u1EEDa ti\\u1EBFng.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.bebf65141baf47038201a7e324216ea0",
+      "kind": "Card",
+      "values": {
+        "Term": "It\u0027s about five minutes on foot.",
+        "Definition": "\u0111i b\u1ED9 kho\u1EA3ng n\u0103m ph\u00FAt",
+        "ImageUrl": "asset:2779e86973a20cce2697637a4b54194977b82af6dbedea4d0433f2f2fd4230d9.webp",
+        "Phonetic": null,
+        "Example": "It\u0027s about five minutes on foot.",
+        "ExampleTranslation": "\u0110i b\u1ED9 kho\u1EA3ng n\u0103m ph\u00FAt.",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a phrase for how long it takes to walk",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022It\\u0027s about five minutes on foot.\u0022,\u0022vi\u0022:\u0022\\u0110i b\\u1ED9 kho\\u1EA3ng n\\u0103m ph\\u00FAt.\u0022},{\u0022text\u0022:\u0022The park is about ten minutes on foot.\u0022,\u0022vi\u0022:\u0022C\\u00F4ng vi\\u00EAn c\\u00E1ch \\u0111\\u00E2y kho\\u1EA3ng m\\u01B0\\u1EDDi ph\\u00FAt \\u0111i b\\u1ED9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s a short walk.\u0022,\u0022vi\u0022:\u0022\\u0110i b\\u1ED9 m\\u1ED9t \\u0111o\\u1EA1n ng\\u1EAFn th\\u00F4i.\u0022},{\u0022text\u0022:\u0022It\\u0027s five minutes by car.\u0022,\u0022vi\u0022:\u0022\\u0110i xe h\\u01A1i n\\u0103m ph\\u00FAt.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.bf1262de622d42dfb7aea1a6c11b8e2f",
+      "kind": "Card",
+      "values": {
+        "Term": "Is there a bus stop near here?",
+        "Definition": "g\u1EA7n \u0111\u00E2y c\u00F3 tr\u1EA1m xe bu\u00FDt kh\u00F4ng?",
+        "ImageUrl": "asset:ad8e6ba29a0c1440eb661a41ee38a93c8ffec6004261dc6ff2d30bb083b8b62d.webp",
+        "Phonetic": null,
+        "Example": "Is there a bus stop near here?",
+        "ExampleTranslation": "G\u1EA7n \u0111\u00E2y c\u00F3 tr\u1EA1m xe bu\u00FDt kh\u00F4ng?",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about public transport",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Is there a bus stop near here?\u0022,\u0022vi\u0022:\u0022G\\u1EA7n \\u0111\\u00E2y c\\u00F3 tr\\u1EA1m xe bu\\u00FDt kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Is there a bus stop near the hotel?\u0022,\u0022vi\u0022:\u0022G\\u1EA7n kh\\u00E1ch s\\u1EA1n c\\u00F3 tr\\u1EA1m xe bu\\u00FDt kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Yes, over there.\u0022,\u0022vi\u0022:\u0022C\\u00F3, \\u1EDF \\u0111\\u1EB1ng kia.\u0022},{\u0022text\u0022:\u0022Not far from here.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng xa \\u0111\\u00E2y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.db8d5f191e7c42b5a6899d9efae0256d",
+      "kind": "Card",
+      "values": {
+        "Term": "Where can I buy a ticket?",
+        "Definition": "t\u00F4i mua v\u00E9 \u1EDF \u0111\u00E2u?",
+        "ImageUrl": "asset:1a120ad012354ba6e32859500dd02b3c4d3e5d78489c3c41627365cefeac0d37.webp",
+        "Phonetic": null,
+        "Example": "Where can I buy a ticket?",
+        "ExampleTranslation": "T\u00F4i mua v\u00E9 \u1EDF \u0111\u00E2u?",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about where to buy a ticket",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Where can I buy a ticket?\u0022,\u0022vi\u0022:\u0022T\\u00F4i mua v\\u00E9 \\u1EDF \\u0111\\u00E2u?\u0022},{\u0022text\u0022:\u0022Where can I buy a train ticket?\u0022,\u0022vi\u0022:\u0022T\\u00F4i mua v\\u00E9 t\\u00E0u \\u1EDF \\u0111\\u00E2u?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022At the ticket office.\u0022,\u0022vi\u0022:\u0022\\u1EDE qu\\u1EA7y v\\u00E9.\u0022},{\u0022text\u0022:\u0022You can use the machine.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 th\\u1EC3 d\\u00F9ng m\\u00E1y b\\u00E1n v\\u00E9.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.e57a4fe5bee34bd28e183c14682e680b",
+      "kind": "Card",
+      "values": {
+        "Term": "Which bus goes to the museum?",
+        "Definition": "xe bu\u00FDt n\u00E0o \u0111i \u0111\u1EBFn b\u1EA3o t\u00E0ng?",
+        "ImageUrl": "asset:a9c97da5347c0690b5faffcb32611233d23b6854c3d228f94deb2e92527557d8.webp",
+        "Phonetic": null,
+        "Example": "Which bus goes to the museum?",
+        "ExampleTranslation": "Xe bu\u00FDt n\u00E0o \u0111i \u0111\u1EBFn b\u1EA3o t\u00E0ng?",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question about which bus to take",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Which bus goes to the museum?\u0022,\u0022vi\u0022:\u0022Xe bu\\u00FDt n\\u00E0o \\u0111i \\u0111\\u1EBFn b\\u1EA3o t\\u00E0ng?\u0022},{\u0022text\u0022:\u0022Which bus goes to the beach?\u0022,\u0022vi\u0022:\u0022Xe bu\\u00FDt n\\u00E0o \\u0111i ra b\\u00E3i bi\\u1EC3n?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Take bus number five.\u0022,\u0022vi\u0022:\u0022\\u0110i xe bu\\u00FDt s\\u1ED1 n\\u0103m.\u0022},{\u0022text\u0022:\u0022You need the number twelve.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u1EA7n xe s\\u1ED1 m\\u01B0\\u1EDDi hai.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.f90d02b0ff164573a6390138e308e620",
+      "kind": "Card",
+      "values": {
+        "Term": "It\u0027s next to the bank.",
+        "Definition": "n\u00F3 \u1EDF c\u1EA1nh ng\u00E2n h\u00E0ng",
+        "ImageUrl": "asset:3dcad90cff08d11e1e79824121579567409800bf28ddea57d75d4372a0cc1777.webp",
+        "Phonetic": null,
+        "Example": "The post office is next to the bank.",
+        "ExampleTranslation": "B\u01B0u \u0111i\u1EC7n \u1EDF c\u1EA1nh ng\u00E2n h\u00E0ng.",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a phrase that says what is beside a place",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The post office is next to the bank.\u0022,\u0022vi\u0022:\u0022B\\u01B0u \\u0111i\\u1EC7n \\u1EDF c\\u1EA1nh ng\\u00E2n h\\u00E0ng.\u0022},{\u0022text\u0022:\u0022It\\u0027s next to the bank, near the park.\u0022,\u0022vi\u0022:\u0022N\\u00F3 \\u1EDF c\\u1EA1nh ng\\u00E2n h\\u00E0ng, g\\u1EA7n c\\u00F4ng vi\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022It\\u0027s beside the school.\u0022,\u0022vi\u0022:\u0022N\\u00F3 \\u1EDF b\\u00EAn c\\u1EA1nh tr\\u01B0\\u1EDDng h\\u1ECDc.\u0022},{\u0022text\u0022:\u0022It\\u0027s between the shop and the cafe.\u0022,\u0022vi\u0022:\u0022N\\u00F3 n\\u1EB1m gi\\u1EEFa c\\u1EEDa h\\u00E0ng v\\u00E0 qu\\u00E1n c\\u00E0 ph\\u00EA.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong.fa6369b4f5fe4ee397fd3bea1bb1c8d0",
+      "kind": "Card",
+      "values": {
+        "Term": "Go straight ahead.",
+        "Definition": "\u0111i th\u1EB3ng v\u1EC1 ph\u00EDa tr\u01B0\u1EDBc",
+        "ImageUrl": "asset:7c40446987fa04834dff176f93866be62e213f597c6aa9bcd8d82c48020640ba.webp",
+        "Phonetic": null,
+        "Example": "Go straight ahead for two blocks.",
+        "ExampleTranslation": "\u0110i th\u1EB3ng v\u1EC1 ph\u00EDa tr\u01B0\u1EDBc hai d\u00E3y nh\u00E0.",
+        "Topic": "H\u1ECFi v\u00E0 ch\u1EC9 \u0111\u01B0\u1EDDng",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "an instruction to keep walking forward",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Go straight ahead for two blocks.\u0022,\u0022vi\u0022:\u0022\\u0110i th\\u1EB3ng v\\u1EC1 ph\\u00EDa tr\\u01B0\\u1EDBc hai d\\u00E3y nh\\u00E0.\u0022},{\u0022text\u0022:\u0022Go straight ahead and you\\u0027ll see it.\u0022,\u0022vi\u0022:\u0022\\u0110i th\\u1EB3ng v\\u1EC1 ph\\u00EDa tr\\u01B0\\u1EDBc l\\u00E0 b\\u1EA1n s\\u1EBD th\\u1EA5y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Keep going straight.\u0022,\u0022vi\u0022:\u0022C\\u1EE9 \\u0111i th\\u1EB3ng.\u0022},{\u0022text\u0022:\u0022Walk along this street.\u0022,\u0022vi\u0022:\u0022\\u0110i d\\u1ECDc con \\u0111\\u01B0\\u1EDDng n\\u00E0y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "4428c159b8a21356ee631068f1d4029812aa9417f3f4c0c77b4e8f7f7c94f915.webp",
+      "sha256": "4428c159b8a21356ee631068f1d4029812aa9417f3f4c0c77b4e8f7f7c94f915"
+    },
+    {
+      "file": "cf9355f8661b0e6720a925d797756aa946411cf23c0461f9b666f8feecf42c44.webp",
+      "sha256": "cf9355f8661b0e6720a925d797756aa946411cf23c0461f9b666f8feecf42c44"
+    },
+    {
+      "file": "3d11f5ab53fe201d5373d9bcef7b19c48a5e29005407758b8cffa476ed51922b.webp",
+      "sha256": "3d11f5ab53fe201d5373d9bcef7b19c48a5e29005407758b8cffa476ed51922b"
+    },
+    {
+      "file": "7c40446987fa04834dff176f93866be62e213f597c6aa9bcd8d82c48020640ba.webp",
+      "sha256": "7c40446987fa04834dff176f93866be62e213f597c6aa9bcd8d82c48020640ba"
+    },
+    {
+      "file": "904850352d1130d3177df9e074138cd5c03abf073fd0b5c32280a59c7093b9dc.webp",
+      "sha256": "904850352d1130d3177df9e074138cd5c03abf073fd0b5c32280a59c7093b9dc"
+    },
+    {
+      "file": "c33a88c7c0f5517bde7278d30c563b4e0320ccbd1b4fccea318815d80f41cb3c.webp",
+      "sha256": "c33a88c7c0f5517bde7278d30c563b4e0320ccbd1b4fccea318815d80f41cb3c"
+    },
+    {
+      "file": "1058fea129de0a90b89083291b311533744dcf34b288dc2634f5edbe4670056c.webp",
+      "sha256": "1058fea129de0a90b89083291b311533744dcf34b288dc2634f5edbe4670056c"
+    },
+    {
+      "file": "3dcad90cff08d11e1e79824121579567409800bf28ddea57d75d4372a0cc1777.webp",
+      "sha256": "3dcad90cff08d11e1e79824121579567409800bf28ddea57d75d4372a0cc1777"
+    },
+    {
+      "file": "9ab8b672f544fb2d8114a9ea4ee992fccbf3578da977dbdcdb569eb053eb382c.webp",
+      "sha256": "9ab8b672f544fb2d8114a9ea4ee992fccbf3578da977dbdcdb569eb053eb382c"
+    },
+    {
+      "file": "1fdcd879a0f8e923089ed5d6ab7793369ebbb112a33e06fd358f3811d15e4fcb.webp",
+      "sha256": "1fdcd879a0f8e923089ed5d6ab7793369ebbb112a33e06fd358f3811d15e4fcb"
+    },
+    {
+      "file": "f2a0d8da175749bde3042e56e8fd39aeeeaef0bdab9966915926d8b5a138dda8.webp",
+      "sha256": "f2a0d8da175749bde3042e56e8fd39aeeeaef0bdab9966915926d8b5a138dda8"
+    },
+    {
+      "file": "acb078c2173248f7b84f8f3a96b1b3abb8fa88933d2aa96d32a995548c154bae.webp",
+      "sha256": "acb078c2173248f7b84f8f3a96b1b3abb8fa88933d2aa96d32a995548c154bae"
+    },
+    {
+      "file": "dea22608fda80c62bae6d5c91c857fbddf272cf809d2f07a1516ee6d2ee621d3.webp",
+      "sha256": "dea22608fda80c62bae6d5c91c857fbddf272cf809d2f07a1516ee6d2ee621d3"
+    },
+    {
+      "file": "2779e86973a20cce2697637a4b54194977b82af6dbedea4d0433f2f2fd4230d9.webp",
+      "sha256": "2779e86973a20cce2697637a4b54194977b82af6dbedea4d0433f2f2fd4230d9"
+    },
+    {
+      "file": "ad8e6ba29a0c1440eb661a41ee38a93c8ffec6004261dc6ff2d30bb083b8b62d.webp",
+      "sha256": "ad8e6ba29a0c1440eb661a41ee38a93c8ffec6004261dc6ff2d30bb083b8b62d"
+    },
+    {
+      "file": "a9c97da5347c0690b5faffcb32611233d23b6854c3d228f94deb2e92527557d8.webp",
+      "sha256": "a9c97da5347c0690b5faffcb32611233d23b6854c3d228f94deb2e92527557d8"
+    },
+    {
+      "file": "47a1243452200bbd81221e45508738030f06629924eb9309fed0ae91e7aff01f.webp",
+      "sha256": "47a1243452200bbd81221e45508738030f06629924eb9309fed0ae91e7aff01f"
+    },
+    {
+      "file": "0c6a0598ebd309675b17c0b366c073e5b1a5b8c3080d9a48b49c2828bb9258f3.webp",
+      "sha256": "0c6a0598ebd309675b17c0b366c073e5b1a5b8c3080d9a48b49c2828bb9258f3"
+    },
+    {
+      "file": "1a120ad012354ba6e32859500dd02b3c4d3e5d78489c3c41627365cefeac0d37.webp",
+      "sha256": "1a120ad012354ba6e32859500dd02b3c4d3e5d78489c3c41627365cefeac0d37"
+    },
+    {
+      "file": "41b7e2708db1140d3e12c9dcb61c7d7f9c489faf51b3fe259695cfdfa548385d.webp",
+      "sha256": "41b7e2708db1140d3e12c9dcb61c7d7f9c489faf51b3fe259695cfdfa548385d"
+    }
+  ],
+  "rootKey": "team.vocab.c-giao-tiep-hang-ngay.c04-hoi-va-chi-duong"
+}

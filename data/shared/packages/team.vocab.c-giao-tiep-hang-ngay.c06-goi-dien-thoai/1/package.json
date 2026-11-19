@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai",
+      "kind": "Set",
+      "values": {
+        "SetName": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "Description": "#a2 #b1 #phone #calls"
+      },
+      "references": {
+        "FolderId": "team.vocab.c-giao-tiep-hang-ngay.c01-chao-hoi-gioi-thieu.69eb25c500b84f00ab2dc9c4b8036467",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.0c4df90837be42eb82bc05dcd8fc270b",
+      "kind": "Card",
+      "values": {
+        "Term": "Could you speak more slowly?",
+        "Definition": "b\u1EA1n n\u00F3i ch\u1EADm h\u01A1n \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:87b8b7e6c48f0daef24e9023cbb675acb6daf5b5b5e298f4d75b958d064429fd.webp",
+        "Phonetic": null,
+        "Example": "Could you speak more slowly, please?",
+        "ExampleTranslation": "B\u1EA1n n\u00F3i ch\u1EADm h\u01A1n \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request when someone speaks too fast",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could you speak more slowly, please?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n n\\u00F3i ch\\u1EADm h\\u01A1n \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Could you speak more slowly? My English is basic.\u0022,\u0022vi\u0022:\u0022B\\u1EA1n n\\u00F3i ch\\u1EADm h\\u01A1n \\u0111\\u01B0\\u1EE3c kh\\u00F4ng? Ti\\u1EBFng Anh c\\u1EE7a t\\u00F4i c\\u00F2n c\\u01A1 b\\u1EA3n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Sure, no problem.\u0022,\u0022vi\u0022:\u0022\\u0110\\u01B0\\u1EE3c, kh\\u00F4ng v\\u1EA5n \\u0111\\u1EC1 g\\u00EC.\u0022},{\u0022text\u0022:\u0022I\\u0027ll say it again.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD n\\u00F3i l\\u1EA1i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.2ca78c61c48e4ca092fc3ad2745ba534",
+      "kind": "Card",
+      "values": {
+        "Term": "He\u0027s not available right now.",
+        "Definition": "hi\u1EC7n gi\u1EDD \u00F4ng \u1EA5y kh\u00F4ng c\u00F3 m\u1EB7t",
+        "ImageUrl": "asset:df31ff07fcce311332071d95ee526a8dd21d7bfc641120def81a0b077f4bd51b.webp",
+        "Phonetic": null,
+        "Example": "He\u0027s not available right now. Can I take a message?",
+        "ExampleTranslation": "Hi\u1EC7n gi\u1EDD \u00F4ng \u1EA5y kh\u00F4ng c\u00F3 m\u1EB7t. T\u00F4i ghi l\u1EA1i l\u1EDDi nh\u1EAFn nh\u00E9?",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite way to say a person cannot take the call",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He\\u0027s not available right now. Can I take a message?\u0022,\u0022vi\u0022:\u0022Hi\\u1EC7n gi\\u1EDD \\u00F4ng \\u1EA5y kh\\u00F4ng c\\u00F3 m\\u1EB7t. T\\u00F4i ghi l\\u1EA1i l\\u1EDDi nh\\u1EAFn nh\\u00E9?\u0022},{\u0022text\u0022:\u0022She\\u0027s not available right now.\u0022,\u0022vi\u0022:\u0022Hi\\u1EC7n gi\\u1EDD c\\u00F4 \\u1EA5y kh\\u00F4ng r\\u1EA3nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022He\\u0027s out of the office.\u0022,\u0022vi\u0022:\u0022\\u00D4ng \\u1EA5y ra ngo\\u00E0i r\\u1ED3i.\u0022},{\u0022text\u0022:\u0022He\\u0027s in a meeting.\u0022,\u0022vi\u0022:\u0022\\u00D4ng \\u1EA5y \\u0111ang h\\u1ECDp.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.3145db84748442839de5daf03fcacd2b",
+      "kind": "Card",
+      "values": {
+        "Term": "Hello, this is Anna speaking.",
+        "Definition": "xin ch\u00E0o, Anna \u0111ang nghe m\u00E1y",
+        "ImageUrl": "asset:9e07669b4d7838a680676296869e029d912470adb2d67d6527b9767fd6baea47.webp",
+        "Phonetic": null,
+        "Example": "Hello, this is Anna speaking. How can I help?",
+        "ExampleTranslation": "Xin ch\u00E0o, Anna \u0111ang nghe m\u00E1y. T\u00F4i gi\u00FAp \u0111\u01B0\u1EE3c g\u00EC?",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "how you introduce yourself when you answer or make a call",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Hello, this is Anna speaking. How can I help?\u0022,\u0022vi\u0022:\u0022Xin ch\\u00E0o, Anna \\u0111ang nghe m\\u00E1y. T\\u00F4i gi\\u00FAp \\u0111\\u01B0\\u1EE3c g\\u00EC?\u0022},{\u0022text\u0022:\u0022Hello, this is Tom speaking.\u0022,\u0022vi\u0022:\u0022Xin ch\\u00E0o, Tom \\u0111ang nghe m\\u00E1y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Who\\u0027s calling, please?\u0022,\u0022vi\u0022:\u0022Xin h\\u1ECFi ai \\u0111ang g\\u1ECDi?\u0022},{\u0022text\u0022:\u0022It\\u0027s Anna here.\u0022,\u0022vi\u0022:\u0022Anna \\u0111\\u00E2y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.520c1f25a7d949ec8ccac8fcab4d092d",
+      "kind": "Card",
+      "values": {
+        "Term": "What\u0027s your phone number?",
+        "Definition": "s\u1ED1 \u0111i\u1EC7n tho\u1EA1i c\u1EE7a b\u1EA1n l\u00E0 g\u00EC?",
+        "ImageUrl": "asset:5b44c0e936a38e6205f6eae95322c8c09b71584f8901b5ba3ae4a6b1c46c4325.webp",
+        "Phonetic": null,
+        "Example": "What\u0027s your phone number? I\u0027ll call you.",
+        "ExampleTranslation": "S\u1ED1 \u0111i\u1EC7n tho\u1EA1i c\u1EE7a b\u1EA1n l\u00E0 g\u00EC? T\u00F4i s\u1EBD g\u1ECDi b\u1EA1n.",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a question to ask for someone\u0027s number",
+        "Cefr": "A1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022What\\u0027s your phone number? I\\u0027ll call you.\u0022,\u0022vi\u0022:\u0022S\\u1ED1 \\u0111i\\u1EC7n tho\\u1EA1i c\\u1EE7a b\\u1EA1n l\\u00E0 g\\u00EC? T\\u00F4i s\\u1EBD g\\u1ECDi b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022What\\u0027s your phone number, please?\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n cho t\\u00F4i s\\u1ED1 \\u0111i\\u1EC7n tho\\u1EA1i c\\u1EE7a b\\u1EA1n?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022My number is 0912 345 678.\u0022,\u0022vi\u0022:\u0022S\\u1ED1 c\\u1EE7a t\\u00F4i l\\u00E0 0912 345 678.\u0022},{\u0022text\u0022:\u0022Can I have your number?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i xin s\\u1ED1 c\\u1EE7a b\\u1EA1n?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.55ce824e2f934d5487553ba8ad23ef38",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027ll call you back later.",
+        "Definition": "l\u00E1t n\u1EEFa t\u00F4i s\u1EBD g\u1ECDi l\u1EA1i cho b\u1EA1n",
+        "ImageUrl": "asset:1687cd97c806634c9518ebd23faaba17e89471b974ba681a3fc68f4a4e8c6907.webp",
+        "Phonetic": null,
+        "Example": "I\u0027m busy now. I\u0027ll call you back later.",
+        "ExampleTranslation": "Gi\u1EDD t\u00F4i b\u1EADn. L\u00E1t n\u1EEFa t\u00F4i s\u1EBD g\u1ECDi l\u1EA1i cho b\u1EA1n.",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a phrase for promising a later call",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027m busy now. I\\u0027ll call you back later.\u0022,\u0022vi\u0022:\u0022Gi\\u1EDD t\\u00F4i b\\u1EADn. L\\u00E1t n\\u1EEFa t\\u00F4i s\\u1EBD g\\u1ECDi l\\u1EA1i cho b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022I\\u0027ll call you back later tonight.\u0022,\u0022vi\u0022:\u0022T\\u1ED1i nay t\\u00F4i s\\u1EBD g\\u1ECDi l\\u1EA1i cho b\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Talk to you later.\u0022,\u0022vi\u0022:\u0022L\\u00E1t n\\u00F3i chuy\\u1EC7n nh\\u00E9.\u0022},{\u0022text\u0022:\u0022Call me when you can.\u0022,\u0022vi\u0022:\u0022R\\u1EA3nh th\\u00EC g\\u1ECDi t\\u00F4i nh\\u00E9.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.5e47e053de7e449daea9c9716caa0d31",
+      "kind": "Card",
+      "values": {
+        "Term": "You have the wrong number.",
+        "Definition": "b\u1EA1n g\u1ECDi nh\u1EA7m s\u1ED1 r\u1ED3i",
+        "ImageUrl": "asset:8d2ebca2990c1ce40fe78cee36ded90aa3d32cf799a659bc20a91a09dff33627.webp",
+        "Phonetic": null,
+        "Example": "Sorry, you have the wrong number.",
+        "ExampleTranslation": "Xin l\u1ED7i, b\u1EA1n g\u1ECDi nh\u1EA7m s\u1ED1 r\u1ED3i.",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when someone calls the wrong person",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Sorry, you have the wrong number.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, b\\u1EA1n g\\u1ECDi nh\\u1EA7m s\\u1ED1 r\\u1ED3i.\u0022},{\u0022text\u0022:\u0022I think you have the wrong number.\u0022,\u0022vi\u0022:\u0022T\\u00F4i ngh\\u0129 b\\u1EA1n g\\u1ECDi nh\\u1EA7m s\\u1ED1 r\\u1ED3i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Sorry, wrong number.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, nh\\u1EA7m s\\u1ED1.\u0022},{\u0022text\u0022:\u0022I\\u0027m sorry to bother you.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i \\u0111\\u00E3 l\\u00E0m phi\\u1EC1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.6281c940e20f42bc8e25384331a21ce1",
+      "kind": "Card",
+      "values": {
+        "Term": "Can I speak to Mr Brown?",
+        "Definition": "cho t\u00F4i n\u00F3i chuy\u1EC7n v\u1EDBi \u00F4ng Brown \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:c349bc395eb34a21359915f9920cee441d3d13ac56c06c6e3645a4a9ce85acea.webp",
+        "Phonetic": null,
+        "Example": "Hello, can I speak to Mr Brown?",
+        "ExampleTranslation": "Xin ch\u00E0o, cho t\u00F4i n\u00F3i chuy\u1EC7n v\u1EDBi \u00F4ng Brown \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite request to talk to someone on the phone",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Hello, can I speak to Mr Brown?\u0022,\u0022vi\u0022:\u0022Xin ch\\u00E0o, cho t\\u00F4i n\\u00F3i chuy\\u1EC7n v\\u1EDBi \\u00F4ng Brown \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Can I speak to the manager, please?\u0022,\u0022vi\u0022:\u0022Cho t\\u00F4i n\\u00F3i chuy\\u1EC7n v\\u1EDBi qu\\u1EA3n l\\u00FD \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Speaking.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u00E2y.\u0022},{\u0022text\u0022:\u0022One moment, please.\u0022,\u0022vi\u0022:\u0022Xin ch\\u1EDD m\\u1ED9t ch\\u00FAt.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.7d37302717cf43a681234ed16596d0f1",
+      "kind": "Card",
+      "values": {
+        "Term": "Can I take a message?",
+        "Definition": "t\u00F4i ghi l\u1EA1i l\u1EDDi nh\u1EAFn \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:764ba287bfd7811a98c51bf789e6f575095b951b2ec6e1facb9b0e6e3a355542.webp",
+        "Phonetic": null,
+        "Example": "Can I take a message for her?",
+        "ExampleTranslation": "T\u00F4i ghi l\u1EA1i l\u1EDDi nh\u1EAFn cho c\u00F4 \u1EA5y \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite offer to write down a message",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Can I take a message for her?\u0022,\u0022vi\u0022:\u0022T\\u00F4i ghi l\\u1EA1i l\\u1EDDi nh\\u1EAFn cho c\\u00F4 \\u1EA5y \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Can I take a message, please?\u0022,\u0022vi\u0022:\u0022T\\u00F4i ghi l\\u1EA1i l\\u1EDDi nh\\u1EAFn \\u0111\\u01B0\\u1EE3c kh\\u00F4ng \\u1EA1?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Yes, please tell him I called.\u0022,\u0022vi\u0022:\u0022V\\u00E2ng, h\\u00E3y n\\u00F3i v\\u1EDBi anh \\u1EA5y t\\u00F4i \\u0111\\u00E3 g\\u1ECDi.\u0022},{\u0022text\u0022:\u0022No, thank you.\u0022,\u0022vi\u0022:\u0022Kh\\u00F4ng, c\\u1EA3m \\u01A1n.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.8fd69b8a4f8d46088e1453533025c3ad",
+      "kind": "Card",
+      "values": {
+        "Term": "Could you ask him to call me back?",
+        "Definition": "b\u1EA1n nh\u1EDD anh \u1EA5y g\u1ECDi l\u1EA1i cho t\u00F4i \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:a7ad1d21838b8ab6bb3381e2773f05b0e1c28784cc13c99686390f1a4a1198d4.webp",
+        "Phonetic": null,
+        "Example": "Could you ask him to call me back?",
+        "ExampleTranslation": "B\u1EA1n nh\u1EDD anh \u1EA5y g\u1ECDi l\u1EA1i cho t\u00F4i \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request to pass a message",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could you ask him to call me back?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n nh\\u1EDD anh \\u1EA5y g\\u1ECDi l\\u1EA1i cho t\\u00F4i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Could you ask her to call me back today?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n nh\\u1EDD c\\u00F4 \\u1EA5y g\\u1ECDi l\\u1EA1i cho t\\u00F4i h\\u00F4m nay \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022What\\u0027s your number?\u0022,\u0022vi\u0022:\u0022S\\u1ED1 c\\u1EE7a b\\u1EA1n l\\u00E0 g\\u00EC?\u0022},{\u0022text\u0022:\u0022I\\u0027ll give him the message.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD chuy\\u1EC3n l\\u1EDDi cho anh \\u1EA5y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.a268288dcc9e456f97cac23f0b654af5",
+      "kind": "Card",
+      "values": {
+        "Term": "My battery is dying.",
+        "Definition": "\u0111i\u1EC7n tho\u1EA1i t\u00F4i s\u1EAFp h\u1EBFt pin",
+        "ImageUrl": "asset:128649d000cab6ec7a812fc9840ee247f89f8e9975c9850d4c5824983372ced4.webp",
+        "Phonetic": null,
+        "Example": "My battery is dying. I\u0027ll call you later.",
+        "ExampleTranslation": "\u0110i\u1EC7n tho\u1EA1i t\u00F4i s\u1EAFp h\u1EBFt pin. T\u00F4i s\u1EBD g\u1ECDi l\u1EA1i sau.",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when your phone is almost out of power",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My battery is dying. I\\u0027ll call you later.\u0022,\u0022vi\u0022:\u0022\\u0110i\\u1EC7n tho\\u1EA1i t\\u00F4i s\\u1EAFp h\\u1EBFt pin. T\\u00F4i s\\u1EBD g\\u1ECDi l\\u1EA1i sau.\u0022},{\u0022text\u0022:\u0022Sorry, my battery is dying.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, \\u0111i\\u1EC7n tho\\u1EA1i t\\u00F4i s\\u1EAFp h\\u1EBFt pin.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I need to charge my phone.\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u1EA7n s\\u1EA1c \\u0111i\\u1EC7n tho\\u1EA1i.\u0022},{\u0022text\u0022:\u0022My phone is out of battery.\u0022,\u0022vi\u0022:\u0022\\u0110i\\u1EC7n tho\\u1EA1i t\\u00F4i h\\u1EBFt pin.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.a7ec79221949467d8a358894fba1ba3d",
+      "kind": "Card",
+      "values": {
+        "Term": "Hold on, please.",
+        "Definition": "xin gi\u1EEF m\u00E1y",
+        "ImageUrl": "asset:6c1073164da47ea1d03df628321af0a1d302057c8cc78af9bc3405e33c574994.webp",
+        "Phonetic": null,
+        "Example": "Hold on, please. I\u0027ll get him.",
+        "ExampleTranslation": "Xin gi\u1EEF m\u00E1y. T\u00F4i s\u1EBD g\u1ECDi anh \u1EA5y.",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a phrase asking the caller to wait",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Hold on, please. I\\u0027ll get him.\u0022,\u0022vi\u0022:\u0022Xin gi\\u1EEF m\\u00E1y. T\\u00F4i s\\u1EBD g\\u1ECDi anh \\u1EA5y.\u0022},{\u0022text\u0022:\u0022Hold on, please. He\\u0027s coming.\u0022,\u0022vi\u0022:\u0022Xin gi\\u1EEF m\\u00E1y. Anh \\u1EA5y s\\u1EAFp \\u0111\\u1EBFn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Hold the line, please.\u0022,\u0022vi\u0022:\u0022Xin gi\\u1EEF m\\u00E1y.\u0022},{\u0022text\u0022:\u0022Just a moment.\u0022,\u0022vi\u0022:\u0022Ch\\u1EDD m\\u1ED9t ch\\u00FAt.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.b8af0adb63f54a78ad2dc117910e82b1",
+      "kind": "Card",
+      "values": {
+        "Term": "I can\u0027t hear you.",
+        "Definition": "t\u00F4i kh\u00F4ng nghe th\u1EA5y b\u1EA1n",
+        "ImageUrl": "asset:42b595dd0af621917834fb5239b3343461528edd947a7dd34b1aeff7fa3c142b.webp",
+        "Phonetic": null,
+        "Example": "I can\u0027t hear you. The line is bad.",
+        "ExampleTranslation": "T\u00F4i kh\u00F4ng nghe th\u1EA5y b\u1EA1n. \u0110\u01B0\u1EDDng truy\u1EC1n k\u00E9m qu\u00E1.",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when the call is not clear",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I can\\u0027t hear you. The line is bad.\u0022,\u0022vi\u0022:\u0022T\\u00F4i kh\\u00F4ng nghe th\\u1EA5y b\\u1EA1n. \\u0110\\u01B0\\u1EDDng truy\\u1EC1n k\\u00E9m qu\\u00E1.\u0022},{\u0022text\u0022:\u0022Sorry, I can\\u0027t hear you well.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, t\\u00F4i kh\\u00F4ng nghe r\\u00F5 b\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Can you speak up?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n n\\u00F3i to h\\u01A1n \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022You\\u0027re breaking up.\u0022,\u0022vi\u0022:\u0022T\\u00EDn hi\\u1EC7u b\\u1ECB ch\\u1EADp ch\\u1EDDn.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.c76d8613f5494a97b1bda1b9b138ceca",
+      "kind": "Card",
+      "values": {
+        "Term": "The line is busy.",
+        "Definition": "\u0111\u01B0\u1EDDng d\u00E2y \u0111ang b\u1EADn",
+        "ImageUrl": "asset:a314d4808da061f0435ce169b1eb066cb0157712e3b78ac2d38b5a8636ff2fe1.webp",
+        "Phonetic": null,
+        "Example": "I tried calling, but the line is busy.",
+        "ExampleTranslation": "T\u00F4i \u0111\u00E3 th\u1EED g\u1ECDi nh\u01B0ng \u0111\u01B0\u1EDDng d\u00E2y \u0111ang b\u1EADn.",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you cannot connect to the person",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I tried calling, but the line is busy.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u00E3 th\\u1EED g\\u1ECDi nh\\u01B0ng \\u0111\\u01B0\\u1EDDng d\\u00E2y \\u0111ang b\\u1EADn.\u0022},{\u0022text\u0022:\u0022The line is busy. Please try later.\u0022,\u0022vi\u0022:\u0022\\u0110\\u01B0\\u1EDDng d\\u00E2y \\u0111ang b\\u1EADn. Xin h\\u00E3y th\\u1EED l\\u1EA1i sau.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027ll try again later.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD th\\u1EED l\\u1EA1i sau.\u0022},{\u0022text\u0022:\u0022Please call back.\u0022,\u0022vi\u0022:\u0022Xin h\\u00E3y g\\u1ECDi l\\u1EA1i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.c800da7c7b0346a0939e44c7faa9a331",
+      "kind": "Card",
+      "values": {
+        "Term": "Speak to you soon.",
+        "Definition": "h\u1EB9n s\u1EDBm n\u00F3i chuy\u1EC7n l\u1EA1i",
+        "ImageUrl": "asset:509ca38a49508b22ff00115ad127686433cf08b01aeadd71f64a8210c89e9827.webp",
+        "Phonetic": null,
+        "Example": "Thanks, Mum. Speak to you soon.",
+        "ExampleTranslation": "C\u1EA3m \u01A1n m\u1EB9. H\u1EB9n s\u1EDBm n\u00F3i chuy\u1EC7n l\u1EA1i.",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a friendly way to finish a call",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Thanks, Mum. Speak to you soon.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n m\\u1EB9. H\\u1EB9n s\\u1EDBm n\\u00F3i chuy\\u1EC7n l\\u1EA1i.\u0022},{\u0022text\u0022:\u0022Speak to you soon, bye!\u0022,\u0022vi\u0022:\u0022H\\u1EB9n s\\u1EDBm n\\u00F3i chuy\\u1EC7n l\\u1EA1i, t\\u1EA1m bi\\u1EC7t!\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Talk to you soon.\u0022,\u0022vi\u0022:\u0022H\\u1EB9n n\\u00F3i chuy\\u1EC7n s\\u1EDBm.\u0022},{\u0022text\u0022:\u0022Bye for now.\u0022,\u0022vi\u0022:\u0022T\\u1EA1m bi\\u1EC7t nh\\u00E9.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.cad760871f824ec48f716c9215e55317",
+      "kind": "Card",
+      "values": {
+        "Term": "Could you repeat that, please?",
+        "Definition": "b\u1EA1n nh\u1EAFc l\u1EA1i \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "ImageUrl": "asset:f16efd82cfe7b53cb5f31046d4cb32a56405524f210eb38d78335c398e98924e.webp",
+        "Phonetic": null,
+        "Example": "Could you repeat that, please?",
+        "ExampleTranslation": "B\u1EA1n nh\u1EAFc l\u1EA1i \u0111\u01B0\u1EE3c kh\u00F4ng?",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a request to say something again",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Could you repeat that, please?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n nh\\u1EAFc l\\u1EA1i \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022},{\u0022text\u0022:\u0022Could you repeat that number, please?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n nh\\u1EAFc l\\u1EA1i s\\u1ED1 \\u0111\\u00F3 \\u0111\\u01B0\\u1EE3c kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Sorry, what was that?\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, b\\u1EA1n n\\u00F3i g\\u00EC c\\u01A1?\u0022},{\u0022text\u0022:\u0022I didn\\u0027t catch that.\u0022,\u0022vi\u0022:\u0022T\\u00F4i kh\\u00F4ng nghe k\\u1ECBp.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.d0ac29b0f9224fdf8778d7fba5e644e5",
+      "kind": "Card",
+      "values": {
+        "Term": "I\u0027ll put you through.",
+        "Definition": "t\u00F4i s\u1EBD n\u1ED1i m\u00E1y cho b\u1EA1n",
+        "ImageUrl": "asset:938706422e40f64b6af31d19e2d0b9a4c741896945d3a418670e32f0ade58652.webp",
+        "Phonetic": null,
+        "Example": "I\u0027ll put you through to the manager.",
+        "ExampleTranslation": "T\u00F4i s\u1EBD n\u1ED1i m\u00E1y cho b\u1EA1n \u0111\u1EBFn qu\u1EA3n l\u00FD.",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when you connect a caller to another person",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I\\u0027ll put you through to the manager.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD n\\u1ED1i m\\u00E1y cho b\\u1EA1n \\u0111\\u1EBFn qu\\u1EA3n l\\u00FD.\u0022},{\u0022text\u0022:\u0022Please wait. I\\u0027ll put you through.\u0022,\u0022vi\u0022:\u0022Xin ch\\u1EDD. T\\u00F4i s\\u1EBD n\\u1ED1i m\\u00E1y cho b\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Thank you.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022Please hold.\u0022,\u0022vi\u0022:\u0022Xin gi\\u1EEF m\\u00E1y.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.da600c4b8ab94c58aff146bb81d74247",
+      "kind": "Card",
+      "values": {
+        "Term": "Sorry, the signal is bad.",
+        "Definition": "xin l\u1ED7i, s\u00F3ng y\u1EBFu qu\u00E1",
+        "ImageUrl": "asset:885ee5b0189a0e1d108b00fd47b9028eccb2de1bb28c7e024d5db7e73b909d7f.webp",
+        "Phonetic": null,
+        "Example": "Sorry, the signal is bad here.",
+        "ExampleTranslation": "Xin l\u1ED7i, \u1EDF \u0111\u00E2y s\u00F3ng y\u1EBFu qu\u00E1.",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "what you say when the mobile signal is weak",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Sorry, the signal is bad here.\u0022,\u0022vi\u0022:\u0022Xin l\\u1ED7i, \\u1EDF \\u0111\\u00E2y s\\u00F3ng y\\u1EBFu qu\\u00E1.\u0022},{\u0022text\u0022:\u0022The signal is bad in the lift.\u0022,\u0022vi\u0022:\u0022S\\u00F3ng trong thang m\\u00E1y y\\u1EBFu.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022I\\u0027ll move to another place.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD \\u0111i ch\\u1ED7 kh\\u00E1c.\u0022},{\u0022text\u0022:\u0022You\\u0027re breaking up.\u0022,\u0022vi\u0022:\u0022T\\u00EDn hi\\u1EC7u b\\u1ECB ch\\u1EADp ch\\u1EDDn.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.db354f62bca448b1a643ffb377ba045a",
+      "kind": "Card",
+      "values": {
+        "Term": "Thanks for calling.",
+        "Definition": "c\u1EA3m \u01A1n b\u1EA1n \u0111\u00E3 g\u1ECDi",
+        "ImageUrl": "asset:3e1ab3da60561258efcb0d78643b99da1eeabfb25a0c682f03964e1268e6cff3.webp",
+        "Phonetic": null,
+        "Example": "Thanks for calling. Goodbye!",
+        "ExampleTranslation": "C\u1EA3m \u01A1n b\u1EA1n \u0111\u00E3 g\u1ECDi. T\u1EA1m bi\u1EC7t!",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite phrase to end a call",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Thanks for calling. Goodbye!\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n \\u0111\\u00E3 g\\u1ECDi. T\\u1EA1m bi\\u1EC7t!\u0022},{\u0022text\u0022:\u0022Thanks for calling our shop.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n \\u0111\\u00E3 g\\u1ECDi \\u0111\\u1EBFn c\\u1EEDa h\\u00E0ng c\\u1EE7a ch\\u00FAng t\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Thank you for calling.\u0022,\u0022vi\u0022:\u0022C\\u1EA3m \\u01A1n b\\u1EA1n \\u0111\\u00E3 g\\u1ECDi.\u0022},{\u0022text\u0022:\u0022Have a nice day.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAc b\\u1EA1n m\\u1ED9t ng\\u00E0y t\\u1ED1t l\\u00E0nh.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.dfcc106232bf454bb5f85d070c251ce1",
+      "kind": "Card",
+      "values": {
+        "Term": "Who\u0027s calling, please?",
+        "Definition": "xin h\u1ECFi ai \u0111ang g\u1ECDi?",
+        "ImageUrl": "asset:d164fc689bbc43ead6261266f2087f796fc93f68fedb5d925d20c44f57da7b34.webp",
+        "Phonetic": null,
+        "Example": "Who\u0027s calling, please?",
+        "ExampleTranslation": "Xin h\u1ECFi ai \u0111ang g\u1ECDi \u1EA1?",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a polite question to find out who is on the phone",
+        "Cefr": "A2",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Who\\u0027s calling, please?\u0022,\u0022vi\u0022:\u0022Xin h\\u1ECFi ai \\u0111ang g\\u1ECDi \\u1EA1?\u0022},{\u0022text\u0022:\u0022Who\\u0027s calling, please? I\\u0027ll check if he is in.\u0022,\u0022vi\u0022:\u0022Xin h\\u1ECFi ai \\u0111ang g\\u1ECDi? T\\u00F4i s\\u1EBD xem anh \\u1EA5y c\\u00F3 \\u1EDF \\u0111\\u00F3 kh\\u00F4ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022This is Lan from the bank.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u00E0 Lan \\u1EDF ng\\u00E2n h\\u00E0ng.\u0022},{\u0022text\u0022:\u0022May I ask who is calling?\u0022,\u0022vi\u0022:\u0022T\\u00F4i c\\u00F3 th\\u1EC3 h\\u1ECFi ai \\u0111ang g\\u1ECDi kh\\u00F4ng?\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    },
+    {
+      "key": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai.ff40e9afa76b4007a414406f7b6b5e82",
+      "kind": "Card",
+      "values": {
+        "Term": "Please leave a message after the tone.",
+        "Definition": "xin \u0111\u1EC3 l\u1EA1i l\u1EDDi nh\u1EAFn sau ti\u1EBFng b\u00EDp",
+        "ImageUrl": "asset:ad12593c54156247958db9f3252b7f67df6b42a95693d3b7ac3156c6e40360c6.webp",
+        "Phonetic": null,
+        "Example": "Please leave a message after the tone.",
+        "ExampleTranslation": "Xin \u0111\u1EC3 l\u1EA1i l\u1EDDi nh\u1EAFn sau ti\u1EBFng b\u00EDp.",
+        "Topic": "G\u1ECDi \u0111i\u1EC7n tho\u1EA1i",
+        "PartsOfSpeech": "phrase",
+        "MeaningEn": "a recorded phone instruction",
+        "Cefr": "B1",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Please leave a message after the tone.\u0022,\u0022vi\u0022:\u0022Xin \\u0111\\u1EC3 l\\u1EA1i l\\u1EDDi nh\\u1EAFn sau ti\\u1EBFng b\\u00EDp.\u0022},{\u0022text\u0022:\u0022The voicemail said, \\u0022Please leave a message after the tone.\\u0022\u0022,\u0022vi\u0022:\u0022H\\u1ED9p th\\u01B0 tho\\u1EA1i n\\u00F3i: \\u0022Xin \\u0111\\u1EC3 l\\u1EA1i l\\u1EDDi nh\\u1EAFn sau ti\\u1EBFng b\\u00EDp.\\u0022\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022Leave a voicemail.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EC3 l\\u1EA1i th\\u01B0 tho\\u1EA1i.\u0022},{\u0022text\u0022:\u0022I\\u0027ll call back.\u0022,\u0022vi\u0022:\u0022T\\u00F4i s\\u1EBD g\\u1ECDi l\\u1EA1i.\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "9e07669b4d7838a680676296869e029d912470adb2d67d6527b9767fd6baea47.webp",
+      "sha256": "9e07669b4d7838a680676296869e029d912470adb2d67d6527b9767fd6baea47"
+    },
+    {
+      "file": "d164fc689bbc43ead6261266f2087f796fc93f68fedb5d925d20c44f57da7b34.webp",
+      "sha256": "d164fc689bbc43ead6261266f2087f796fc93f68fedb5d925d20c44f57da7b34"
+    },
+    {
+      "file": "c349bc395eb34a21359915f9920cee441d3d13ac56c06c6e3645a4a9ce85acea.webp",
+      "sha256": "c349bc395eb34a21359915f9920cee441d3d13ac56c06c6e3645a4a9ce85acea"
+    },
+    {
+      "file": "6c1073164da47ea1d03df628321af0a1d302057c8cc78af9bc3405e33c574994.webp",
+      "sha256": "6c1073164da47ea1d03df628321af0a1d302057c8cc78af9bc3405e33c574994"
+    },
+    {
+      "file": "938706422e40f64b6af31d19e2d0b9a4c741896945d3a418670e32f0ade58652.webp",
+      "sha256": "938706422e40f64b6af31d19e2d0b9a4c741896945d3a418670e32f0ade58652"
+    },
+    {
+      "file": "df31ff07fcce311332071d95ee526a8dd21d7bfc641120def81a0b077f4bd51b.webp",
+      "sha256": "df31ff07fcce311332071d95ee526a8dd21d7bfc641120def81a0b077f4bd51b"
+    },
+    {
+      "file": "764ba287bfd7811a98c51bf789e6f575095b951b2ec6e1facb9b0e6e3a355542.webp",
+      "sha256": "764ba287bfd7811a98c51bf789e6f575095b951b2ec6e1facb9b0e6e3a355542"
+    },
+    {
+      "file": "a7ad1d21838b8ab6bb3381e2773f05b0e1c28784cc13c99686390f1a4a1198d4.webp",
+      "sha256": "a7ad1d21838b8ab6bb3381e2773f05b0e1c28784cc13c99686390f1a4a1198d4"
+    },
+    {
+      "file": "5b44c0e936a38e6205f6eae95322c8c09b71584f8901b5ba3ae4a6b1c46c4325.webp",
+      "sha256": "5b44c0e936a38e6205f6eae95322c8c09b71584f8901b5ba3ae4a6b1c46c4325"
+    },
+    {
+      "file": "42b595dd0af621917834fb5239b3343461528edd947a7dd34b1aeff7fa3c142b.webp",
+      "sha256": "42b595dd0af621917834fb5239b3343461528edd947a7dd34b1aeff7fa3c142b"
+    },
+    {
+      "file": "a314d4808da061f0435ce169b1eb066cb0157712e3b78ac2d38b5a8636ff2fe1.webp",
+      "sha256": "a314d4808da061f0435ce169b1eb066cb0157712e3b78ac2d38b5a8636ff2fe1"
+    },
+    {
+      "file": "8d2ebca2990c1ce40fe78cee36ded90aa3d32cf799a659bc20a91a09dff33627.webp",
+      "sha256": "8d2ebca2990c1ce40fe78cee36ded90aa3d32cf799a659bc20a91a09dff33627"
+    },
+    {
+      "file": "87b8b7e6c48f0daef24e9023cbb675acb6daf5b5b5e298f4d75b958d064429fd.webp",
+      "sha256": "87b8b7e6c48f0daef24e9023cbb675acb6daf5b5b5e298f4d75b958d064429fd"
+    },
+    {
+      "file": "f16efd82cfe7b53cb5f31046d4cb32a56405524f210eb38d78335c398e98924e.webp",
+      "sha256": "f16efd82cfe7b53cb5f31046d4cb32a56405524f210eb38d78335c398e98924e"
+    },
+    {
+      "file": "3e1ab3da60561258efcb0d78643b99da1eeabfb25a0c682f03964e1268e6cff3.webp",
+      "sha256": "3e1ab3da60561258efcb0d78643b99da1eeabfb25a0c682f03964e1268e6cff3"
+    },
+    {
+      "file": "1687cd97c806634c9518ebd23faaba17e89471b974ba681a3fc68f4a4e8c6907.webp",
+      "sha256": "1687cd97c806634c9518ebd23faaba17e89471b974ba681a3fc68f4a4e8c6907"
+    },
+    {
+      "file": "128649d000cab6ec7a812fc9840ee247f89f8e9975c9850d4c5824983372ced4.webp",
+      "sha256": "128649d000cab6ec7a812fc9840ee247f89f8e9975c9850d4c5824983372ced4"
+    },
+    {
+      "file": "885ee5b0189a0e1d108b00fd47b9028eccb2de1bb28c7e024d5db7e73b909d7f.webp",
+      "sha256": "885ee5b0189a0e1d108b00fd47b9028eccb2de1bb28c7e024d5db7e73b909d7f"
+    },
+    {
+      "file": "ad12593c54156247958db9f3252b7f67df6b42a95693d3b7ac3156c6e40360c6.webp",
+      "sha256": "ad12593c54156247958db9f3252b7f67df6b42a95693d3b7ac3156c6e40360c6"
+    },
+    {
+      "file": "509ca38a49508b22ff00115ad127686433cf08b01aeadd71f64a8210c89e9827.webp",
+      "sha256": "509ca38a49508b22ff00115ad127686433cf08b01aeadd71f64a8210c89e9827"
+    }
+  ],
+  "rootKey": "team.vocab.c-giao-tiep-hang-ngay.c06-goi-dien-thoai"
+}

@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a23-cam-xuc",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc",
+      "kind": "Set",
+      "values": {
+        "SetName": "C\u1EA3m x\u00FAc",
+        "Description": "#a1 #a2 #feelings #emotions"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.1627d25d8b2e44b08bf60b12da66d4be",
+      "kind": "Card",
+      "values": {
+        "Term": "stressed",
+        "Definition": "c\u0103ng th\u1EB3ng",
+        "ImageUrl": "asset:bfb9eed507b80864de3a3596d086259b1bf572aa00ac5ec2f834706e41af8bd8.webp",
+        "Phonetic": "/st\u0279\u025Bst/",
+        "Example": "I feel stressed before every exam.",
+        "ExampleTranslation": "T\u00F4i th\u1EA5y c\u0103ng th\u1EB3ng tr\u01B0\u1EDBc m\u1ED7i k\u1EF3 thi.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling worried and unable to relax because of pressure",
+        "Cefr": "A2",
+        "PhoneticUk": "/st\u0279\u025Bst/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I feel stressed before every exam.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EA5y c\\u0103ng th\\u1EB3ng tr\\u01B0\\u1EDBc m\\u1ED7i k\\u1EF3 thi.\u0022},{\u0022text\u0022:\u0022She looked stressed at her desk.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y tr\\u00F4ng c\\u0103ng th\\u1EB3ng khi ng\\u1ED3i \\u1EDF b\\u00E0n l\\u00E0m vi\\u1EC7c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022feel stressed\u0022,\u0022vi\u0022:\u0022c\\u1EA3m th\\u1EA5y c\\u0103ng th\\u1EB3ng\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022stress\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022s\\u1EF1 c\\u0103ng th\\u1EB3ng\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.19599bddcca046c1aaea8b0a864f1f76",
+      "kind": "Card",
+      "values": {
+        "Term": "worried",
+        "Definition": "lo l\u1EAFng",
+        "ImageUrl": "asset:7644a35d07eb2402d93559a61ea417696dec389ac372b48e44d3c1aa5a5f9691.webp",
+        "Phonetic": "/\u02C8w\u028C\u0279id/",
+        "Example": "My mother is worried about my health.",
+        "ExampleTranslation": "M\u1EB9 t\u00F4i lo l\u1EAFng v\u1EC1 s\u1EE9c kh\u1ECFe c\u1EE7a t\u00F4i.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling that something bad may happen",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8w\u028C\u0279id/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My mother is worried about my health.\u0022,\u0022vi\u0022:\u0022M\\u1EB9 t\\u00F4i lo l\\u1EAFng v\\u1EC1 s\\u1EE9c kh\\u1ECFe c\\u1EE7a t\\u00F4i.\u0022},{\u0022text\u0022:\u0022Do not be worried, everything is fine.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EEBng lo, m\\u1ECDi chuy\\u1EC7n \\u0111\\u1EC1u \\u1ED5n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022worried about\u0022,\u0022vi\u0022:\u0022lo l\\u1EAFng v\\u1EC1\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022worry\u0022,\u0022pos\u0022:\u0022verb\u0022,\u0022vi\u0022:\u0022lo l\\u1EAFng\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.1c745947b2fc408a960215a2b9a9a59d",
+      "kind": "Card",
+      "values": {
+        "Term": "disappointed",
+        "Definition": "th\u1EA5t v\u1ECDng",
+        "ImageUrl": "asset:0e32e42e80c0979114fd60aca1c29ec7b77db3f8ce0aa13b3b6fbf61abe0c037.webp",
+        "Phonetic": "/\u02CCd\u026As\u0259\u02C8p\u0254\u026Ant\u026Ad/",
+        "Example": "I was disappointed with the result.",
+        "ExampleTranslation": "T\u00F4i th\u1EA5t v\u1ECDng v\u1EDBi k\u1EBFt qu\u1EA3.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling sad because something was not as good as you hoped",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02CCd\u026As\u0259\u02C8p\u0254\u026Ant\u026Ad/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I was disappointed with the result.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EA5t v\\u1ECDng v\\u1EDBi k\\u1EBFt qu\\u1EA3.\u0022},{\u0022text\u0022:\u0022She looked disappointed when it rained.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y tr\\u00F4ng th\\u1EA5t v\\u1ECDng khi tr\\u1EDDi \\u0111\\u1ED5 m\\u01B0a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022disappointed with\u0022,\u0022vi\u0022:\u0022th\\u1EA5t v\\u1ECDng v\\u1EDBi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.25c59fae6e64441ea2f386c328019706",
+      "kind": "Card",
+      "values": {
+        "Term": "calm",
+        "Definition": "b\u00ECnh t\u0129nh",
+        "ImageUrl": "asset:b39102d748f908b38afdc60af54e16890fe5d112bf218ccba72f3e4dd88d5ea2.webp",
+        "Phonetic": "/k\u0251m/",
+        "Example": "Stay calm and listen to me.",
+        "ExampleTranslation": "H\u00E3y b\u00ECnh t\u0129nh v\u00E0 nghe t\u00F4i n\u00F3i.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "quiet and not worried or angry",
+        "Cefr": "A2",
+        "PhoneticUk": "/k\u0251\u02D0m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Stay calm and listen to me.\u0022,\u0022vi\u0022:\u0022H\\u00E3y b\\u00ECnh t\\u0129nh v\\u00E0 nghe t\\u00F4i n\\u00F3i.\u0022},{\u0022text\u0022:\u0022The sea was calm this morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng nay bi\\u1EC3n r\\u1EA5t l\\u1EB7ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022keep calm\u0022,\u0022vi\u0022:\u0022gi\\u1EEF b\\u00ECnh t\\u0129nh\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022calmly\u0022,\u0022pos\u0022:\u0022adv\u0022,\u0022vi\u0022:\u0022m\\u1ED9t c\\u00E1ch b\\u00ECnh t\\u0129nh\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.2e43b9fbbe844e23bec1bf1e95ca20ed",
+      "kind": "Card",
+      "values": {
+        "Term": "surprised",
+        "Definition": "ng\u1EA1c nhi\u00EAn",
+        "ImageUrl": "asset:c95e6bd370aad60fbe61bab1ac5c26ab16cc791078e41e66f2cd0d5f3eafb3d5.webp",
+        "Phonetic": "/s\u0259\u02C8p\u0279a\u026Azd/",
+        "Example": "I was surprised to see him at the party.",
+        "ExampleTranslation": "T\u00F4i ng\u1EA1c nhi\u00EAn khi th\u1EA5y anh \u1EA5y \u1EDF b\u1EEFa ti\u1EC7c.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling shocked because something was not expected",
+        "Cefr": "A2",
+        "PhoneticUk": "/s\u0259\u02C8p\u0279a\u026Azd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I was surprised to see him at the party.\u0022,\u0022vi\u0022:\u0022T\\u00F4i ng\\u1EA1c nhi\\u00EAn khi th\\u1EA5y anh \\u1EA5y \\u1EDF b\\u1EEFa ti\\u1EC7c.\u0022},{\u0022text\u0022:\u0022She looked surprised when she opened the gift.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y tr\\u00F4ng ng\\u1EA1c nhi\\u00EAn khi m\\u1EDF m\\u00F3n qu\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022look surprised\u0022,\u0022vi\u0022:\u0022tr\\u00F4ng ng\\u1EA1c nhi\\u00EAn\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022surprise\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022s\\u1EF1 b\\u1EA5t ng\\u1EDD\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.39febeb481a84d1e9777b9557d3eec2c",
+      "kind": "Card",
+      "values": {
+        "Term": "cheerful",
+        "Definition": "vui v\u1EBB, t\u01B0\u01A1i t\u1EC9nh",
+        "ImageUrl": "asset:14be2f40e8631d384dc36ede9525d1ad7db2889cc6190eaa04267b50663bd6af.webp",
+        "Phonetic": "/\u02C8t\u0361\u0283\u026A\u0279fl\u0329/",
+        "Example": "My cheerful neighbour always says hello.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi h\u00E0ng x\u00F3m vui t\u00EDnh c\u1EE7a t\u00F4i l\u00FAc n\u00E0o c\u0169ng ch\u00E0o.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "happy and full of energy",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8t\u0361\u0283\u026A\u0259fl\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My cheerful neighbour always says hello.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi h\\u00E0ng x\\u00F3m vui t\\u00EDnh c\\u1EE7a t\\u00F4i l\\u00FAc n\\u00E0o c\\u0169ng ch\\u00E0o.\u0022},{\u0022text\u0022:\u0022The room looks bright and cheerful.\u0022,\u0022vi\u0022:\u0022C\\u0103n ph\\u00F2ng tr\\u00F4ng t\\u01B0\\u01A1i s\\u00E1ng v\\u00E0 vui m\\u1EAFt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cheerful smile\u0022,\u0022vi\u0022:\u0022n\\u1EE5 c\\u01B0\\u1EDDi t\\u01B0\\u01A1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.4f242458cfe1456db063fa22ecd06a6a",
+      "kind": "Card",
+      "values": {
+        "Term": "grateful",
+        "Definition": "bi\u1EBFt \u01A1n",
+        "ImageUrl": "asset:c27540aa45ded3ee38ced210d3c4ae12fc062d56ed9a77a5b753650f3490e786.webp",
+        "Phonetic": "/\u02C8\u0261\u0279e\u026Atf(\u0259)l/",
+        "Example": "I am grateful for your help.",
+        "ExampleTranslation": "T\u00F4i bi\u1EBFt \u01A1n s\u1EF1 gi\u00FAp \u0111\u1EE1 c\u1EE7a b\u1EA1n.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling thankful for something someone did",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0261\u0279e\u026Atf(\u028A)l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I am grateful for your help.\u0022,\u0022vi\u0022:\u0022T\\u00F4i bi\\u1EBFt \\u01A1n s\\u1EF1 gi\\u00FAp \\u0111\\u1EE1 c\\u1EE7a b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022She gave him a grateful smile.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y d\\u00E0nh cho anh m\\u1ED9t n\\u1EE5 c\\u01B0\\u1EDDi bi\\u1EBFt \\u01A1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022grateful for\u0022,\u0022vi\u0022:\u0022bi\\u1EBFt \\u01A1n v\\u00EC\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.510a798e506a4695925cb7a1a986c8a6",
+      "kind": "Card",
+      "values": {
+        "Term": "happy",
+        "Definition": "vui v\u1EBB, h\u1EA1nh ph\u00FAc",
+        "ImageUrl": "asset:4d6a38a921184cea505b71455d587ad752f65a41b899440a8f5d421588887833.webp",
+        "Phonetic": "/\u02C8h\u00E6pi/",
+        "Example": "I am happy to see you again.",
+        "ExampleTranslation": "T\u00F4i r\u1EA5t vui khi g\u1EB7p l\u1EA1i b\u1EA1n.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling pleased and full of joy",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8h\u00E6pi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I am happy to see you again.\u0022,\u0022vi\u0022:\u0022T\\u00F4i r\\u1EA5t vui khi g\\u1EB7p l\\u1EA1i b\\u1EA1n.\u0022},{\u0022text\u0022:\u0022The children look very happy today.\u0022,\u0022vi\u0022:\u0022H\\u00F4m nay b\\u1ECDn tr\\u1EBB tr\\u00F4ng r\\u1EA5t vui.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[\u0022sad\u0022],\u0022collocations\u0022:[{\u0022text\u0022:\u0022feel happy\u0022,\u0022vi\u0022:\u0022c\\u1EA3m th\\u1EA5y vui\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022happiness\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022ni\\u1EC1m h\\u1EA1nh ph\\u00FAc\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.54cd01c209b745aaba94e6523ce524c0",
+      "kind": "Card",
+      "values": {
+        "Term": "upset",
+        "Definition": "bu\u1ED3n b\u1EF1c, kh\u00F3 ch\u1ECBu",
+        "ImageUrl": "asset:0723c6747987fe0142f1191e1545f63e57fbf4d35408199b7d647c60a1ed8822.webp",
+        "Phonetic": "/\u02C8\u028Cp.s\u025Bt/",
+        "Example": "He was upset about losing his phone.",
+        "ExampleTranslation": "Anh \u1EA5y bu\u1ED3n b\u1EF1c v\u00EC l\u00E0m m\u1EA5t \u0111i\u1EC7n tho\u1EA1i.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling unhappy or worried because of something bad",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u028Cp.s\u025Bt/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He was upset about losing his phone.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y bu\\u1ED3n b\\u1EF1c v\\u00EC l\\u00E0m m\\u1EA5t \\u0111i\\u1EC7n tho\\u1EA1i.\u0022},{\u0022text\u0022:\u0022The little girl is upset because she cannot find her doll.\u0022,\u0022vi\u0022:\u0022C\\u00F4 b\\u00E9 bu\\u1ED3n v\\u00EC kh\\u00F4ng t\\u00ECm th\\u1EA5y con b\\u00FAp b\\u00EA.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022get upset\u0022,\u0022vi\u0022:\u0022tr\\u1EDF n\\u00EAn bu\\u1ED3n b\\u1EF1c\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.69bd86f6a656436a91642cca0da15715",
+      "kind": "Card",
+      "values": {
+        "Term": "angry",
+        "Definition": "t\u1EE9c gi\u1EADn",
+        "ImageUrl": "asset:4fdc38c5621ebcb6a2404be11df2652b62c07a2e4c66436aab9386310f3b9bb5.webp",
+        "Phonetic": "/\u02C8\u00E6\u014B.\u0261\u0279i/",
+        "Example": "He was angry because the bus was late.",
+        "ExampleTranslation": "Anh \u1EA5y t\u1EE9c gi\u1EADn v\u00EC xe bu\u00FDt \u0111\u1EBFn mu\u1ED9n.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling very annoyed or cross",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8\u00E6\u014B.\u0261\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He was angry because the bus was late.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y t\\u1EE9c gi\\u1EADn v\\u00EC xe bu\\u00FDt \\u0111\\u1EBFn mu\\u1ED9n.\u0022},{\u0022text\u0022:\u0022Do not be angry with me.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EEBng gi\\u1EADn t\\u00F4i nh\\u00E9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022get angry\u0022,\u0022vi\u0022:\u0022n\\u1ED5i gi\\u1EADn\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022anger\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022c\\u01A1n gi\\u1EADn\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.70e5ff25095043e1b4342f832a9befff",
+      "kind": "Card",
+      "values": {
+        "Term": "excited",
+        "Definition": "h\u00E0o h\u1EE9ng, ph\u1EA5n kh\u00EDch",
+        "ImageUrl": "asset:ecccea9f699e231a951840051f786ea187cd13190c36b7aa8fee8054b7eed965.webp",
+        "Phonetic": "/\u026Ak\u02C8sa\u026A.t\u026Ad/",
+        "Example": "The children are excited about the trip.",
+        "ExampleTranslation": "B\u1ECDn tr\u1EBB r\u1EA5t h\u00E0o h\u1EE9ng v\u1EC1 chuy\u1EBFn \u0111i.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling very happy about something that will happen",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u026Ak\u02C8sa\u026A.t\u026Ad/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The children are excited about the trip.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB r\\u1EA5t h\\u00E0o h\\u1EE9ng v\\u1EC1 chuy\\u1EBFn \\u0111i.\u0022},{\u0022text\u0022:\u0022I am so excited to meet my new friends.\u0022,\u0022vi\u0022:\u0022T\\u00F4i r\\u1EA5t h\\u00E1o h\\u1EE9c \\u0111\\u01B0\\u1EE3c g\\u1EB7p nh\\u1EEFng ng\\u01B0\\u1EDDi b\\u1EA1n m\\u1EDBi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022get excited\u0022,\u0022vi\u0022:\u0022tr\\u1EDF n\\u00EAn h\\u00E0o h\\u1EE9ng\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022exciting\u0022,\u0022pos\u0022:\u0022adj\u0022,\u0022vi\u0022:\u0022th\\u00FA v\\u1ECB, g\\u00E2y ph\\u1EA5n kh\\u00EDch\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.7d67a1f31067411894a553858fc9245c",
+      "kind": "Card",
+      "values": {
+        "Term": "tired",
+        "Definition": "m\u1EC7t, m\u1EC7t m\u1ECFi",
+        "ImageUrl": "asset:55302ea698ef45eaa4ff48f996c68ff613f8e25db42d82443d618e6e4847e2a3.webp",
+        "Phonetic": "/\u02C8ta\u026A\u032F\u025Ad/",
+        "Example": "I am tired after a long day at work.",
+        "ExampleTranslation": "T\u00F4i m\u1EC7t sau m\u1ED9t ng\u00E0y d\u00E0i l\u00E0m vi\u1EC7c.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling that you need to rest or sleep",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8ta\u026A\u032F\u0259d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I am tired after a long day at work.\u0022,\u0022vi\u0022:\u0022T\\u00F4i m\\u1EC7t sau m\\u1ED9t ng\\u00E0y d\\u00E0i l\\u00E0m vi\\u1EC7c.\u0022},{\u0022text\u0022:\u0022The baby is tired and wants to sleep.\u0022,\u0022vi\u0022:\u0022Em b\\u00E9 m\\u1EC7t v\\u00E0 mu\\u1ED1n ng\\u1EE7.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022feel tired\u0022,\u0022vi\u0022:\u0022c\\u1EA3m th\\u1EA5y m\\u1EC7t\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.812aab30cbca42aeaeeef675fd19d300",
+      "kind": "Card",
+      "values": {
+        "Term": "proud",
+        "Definition": "t\u1EF1 h\u00E0o",
+        "ImageUrl": "asset:38f305c96b744ee7cbfcab9f5d4675dce90e120502486082ca19b9126080deaf.webp",
+        "Phonetic": "/\u02C8p\u0279a\u028A\u032Fd/",
+        "Example": "I am proud of my son.",
+        "ExampleTranslation": "T\u00F4i t\u1EF1 h\u00E0o v\u1EC1 con trai m\u00ECnh.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling very pleased about something good you or others did",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u0279a\u028A\u032Fd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I am proud of my son.\u0022,\u0022vi\u0022:\u0022T\\u00F4i t\\u1EF1 h\\u00E0o v\\u1EC1 con trai m\\u00ECnh.\u0022},{\u0022text\u0022:\u0022She looked proud when she won the prize.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y tr\\u00F4ng th\\u1EADt t\\u1EF1 h\\u00E0o khi gi\\u00E0nh gi\\u1EA3i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022proud of\u0022,\u0022vi\u0022:\u0022t\\u1EF1 h\\u00E0o v\\u1EC1\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022pride\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022ni\\u1EC1m t\\u1EF1 h\\u00E0o\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.90f2a8c9a7ba4c69b54ca5ce880152e5",
+      "kind": "Card",
+      "values": {
+        "Term": "jealous",
+        "Definition": "ghen t\u1ECB",
+        "ImageUrl": "asset:f4c710f830e26b09e3651053e8a35f503c93fd3018d13a57b54163638685eb26.webp",
+        "Phonetic": "/\u02C8d\u0361\u0292\u025Bl.\u0259s/",
+        "Example": "She was jealous of her sister\u0027s new bike.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y ghen t\u1ECB v\u1EDBi chi\u1EBFc xe \u0111\u1EA1p m\u1EDBi c\u1EE7a em g\u00E1i.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling unhappy because someone has something you want",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8d\u0361\u0292\u025Bl.\u0259s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She was jealous of her sister\\u0027s new bike.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y ghen t\\u1ECB v\\u1EDBi chi\\u1EBFc xe \\u0111\\u1EA1p m\\u1EDBi c\\u1EE7a em g\\u00E1i.\u0022},{\u0022text\u0022:\u0022Do not be jealous, you will get one too.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EEBng ghen t\\u1ECB, b\\u1EA1n c\\u0169ng s\\u1EBD c\\u00F3 m\\u1ED9t c\\u00E1i th\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022jealous of\u0022,\u0022vi\u0022:\u0022ghen t\\u1ECB v\\u1EDBi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.9572dc93f79547969d7d08c0c83f6c95",
+      "kind": "Card",
+      "values": {
+        "Term": "embarrassed",
+        "Definition": "x\u1EA5u h\u1ED5, ng\u01B0\u1EE3ng",
+        "ImageUrl": "asset:fdec6b6016b2b602538be58f4983d9bcccefb3481ea057f14874f216d1aefe52.webp",
+        "Phonetic": "/\u026Am\u02C8b\u00E6\u0279.\u0259st/",
+        "Example": "He felt embarrassed when he forgot her name.",
+        "ExampleTranslation": "Anh \u1EA5y th\u1EA5y ng\u01B0\u1EE3ng khi qu\u00EAn t\u00EAn c\u00F4 \u1EA5y.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling uncomfortable because of something awkward",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u026Am\u02C8b\u00E6\u0279.\u0259st/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He felt embarrassed when he forgot her name.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y th\\u1EA5y ng\\u01B0\\u1EE3ng khi qu\\u00EAn t\\u00EAn c\\u00F4 \\u1EA5y.\u0022},{\u0022text\u0022:\u0022She was embarrassed by her mistake.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y x\\u1EA5u h\\u1ED5 v\\u00EC l\\u1ED7i c\\u1EE7a m\\u00ECnh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022feel embarrassed\u0022,\u0022vi\u0022:\u0022c\\u1EA3m th\\u1EA5y x\\u1EA5u h\\u1ED5\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.a170c2dc7979409bb522932e71b0e5fd",
+      "kind": "Card",
+      "values": {
+        "Term": "bored",
+        "Definition": "ch\u00E1n, bu\u1ED3n ch\u00E1n",
+        "ImageUrl": "asset:4496fb78cfceb833937cd9a8547ce01e3091aeb9f871596c673921c622bef103.webp",
+        "Phonetic": "/b\u0254\u0279d/",
+        "Example": "I was bored during the long lesson.",
+        "ExampleTranslation": "T\u00F4i th\u1EA5y ch\u00E1n trong ti\u1EBFt h\u1ECDc d\u00E0i.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling tired because something is not interesting",
+        "Cefr": "A2",
+        "PhoneticUk": "/b\u0254\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I was bored during the long lesson.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EA5y ch\\u00E1n trong ti\\u1EBFt h\\u1ECDc d\\u00E0i.\u0022},{\u0022text\u0022:\u0022The children get bored on rainy days.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB th\\u1EA5y ch\\u00E1n v\\u00E0o nh\\u1EEFng ng\\u00E0y m\\u01B0a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022feel bored\u0022,\u0022vi\u0022:\u0022th\\u1EA5y ch\\u00E1n\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022boring\u0022,\u0022pos\u0022:\u0022adj\u0022,\u0022vi\u0022:\u0022nh\\u00E0m ch\\u00E1n\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.a8e1495735824a33bf8ec55088addc96",
+      "kind": "Card",
+      "values": {
+        "Term": "shy",
+        "Definition": "nh\u00FAt nh\u00E1t, ng\u1EA1i ng\u00F9ng",
+        "ImageUrl": "asset:f03f03b8ccb48ae582e0c99917b5691056763e90d635444d62e8745758ecf395.webp",
+        "Phonetic": "/\u0283a\u026A/",
+        "Example": "The shy boy did not say a word.",
+        "ExampleTranslation": "C\u1EADu b\u00E9 nh\u00FAt nh\u00E1t kh\u00F4ng n\u00F3i m\u1ED9t l\u1EDDi.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling nervous when you meet new people",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0283a\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The shy boy did not say a word.\u0022,\u0022vi\u0022:\u0022C\\u1EADu b\\u00E9 nh\\u00FAt nh\\u00E1t kh\\u00F4ng n\\u00F3i m\\u1ED9t l\\u1EDDi.\u0022},{\u0022text\u0022:\u0022She is shy with strangers.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y ng\\u1EA1i ng\\u01B0\\u1EDDi l\\u1EA1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022shy smile\u0022,\u0022vi\u0022:\u0022n\\u1EE5 c\\u01B0\\u1EDDi e th\\u1EB9n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.a9be9f24174c42ddb617464237f57703",
+      "kind": "Card",
+      "values": {
+        "Term": "confused",
+        "Definition": "b\u1ED1i r\u1ED1i, kh\u00F3 hi\u1EC3u",
+        "ImageUrl": "asset:315ad1988226f3aca68242f3f2423bad93654f044a00e000ef4a0ced5a4bc30d.webp",
+        "Phonetic": "/k\u0259n\u02C8fjuzd/",
+        "Example": "I am confused by these instructions.",
+        "ExampleTranslation": "T\u00F4i th\u1EA5y b\u1ED1i r\u1ED1i v\u1EDBi nh\u1EEFng h\u01B0\u1EDBng d\u1EABn n\u00E0y.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "not able to think clearly or understand something",
+        "Cefr": "A2",
+        "PhoneticUk": "/k\u0259n\u02C8fju\u02D0zd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I am confused by these instructions.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EA5y b\\u1ED1i r\\u1ED1i v\\u1EDBi nh\\u1EEFng h\\u01B0\\u1EDBng d\\u1EABn n\\u00E0y.\u0022},{\u0022text\u0022:\u0022The tourist looked confused at the map.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi du kh\\u00E1ch tr\\u00F4ng b\\u1ED1i r\\u1ED1i tr\\u01B0\\u1EDBc t\\u1EA5m b\\u1EA3n \\u0111\\u1ED3.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022look confused\u0022,\u0022vi\u0022:\u0022tr\\u00F4ng b\\u1ED1i r\\u1ED1i\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022confusing\u0022,\u0022pos\u0022:\u0022adj\u0022,\u0022vi\u0022:\u0022g\\u00E2y kh\\u00F3 hi\\u1EC3u\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.b4c8a56e7898415ea601cf94ace0a8c5",
+      "kind": "Card",
+      "values": {
+        "Term": "lonely",
+        "Definition": "c\u00F4 \u0111\u01A1n",
+        "ImageUrl": "asset:e20a367840e18fd34f34e4a219b1ae9ade8444108c04d9a261f43e72a4084657.webp",
+        "Phonetic": "/\u02C8lo\u028Anli/",
+        "Example": "He felt lonely in the big city.",
+        "ExampleTranslation": "Anh \u1EA5y th\u1EA5y c\u00F4 \u0111\u01A1n \u1EDF th\u00E0nh ph\u1ED1 l\u1EDBn.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling sad because you have no friends near you",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8l\u0259\u028Anli/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He felt lonely in the big city.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y th\\u1EA5y c\\u00F4 \\u0111\\u01A1n \\u1EDF th\\u00E0nh ph\\u1ED1 l\\u1EDBn.\u0022},{\u0022text\u0022:\u0022The old man is lonely without his wife.\u0022,\u0022vi\u0022:\u0022\\u00D4ng l\\u00E3o c\\u00F4 \\u0111\\u01A1n khi kh\\u00F4ng c\\u00F3 v\\u1EE3 b\\u00EAn c\\u1EA1nh.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022feel lonely\u0022,\u0022vi\u0022:\u0022c\\u1EA3m th\\u1EA5y c\\u00F4 \\u0111\\u01A1n\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022loneliness\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022s\\u1EF1 c\\u00F4 \\u0111\\u01A1n\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.bd2fefd635f143f78998b6b2adb3343c",
+      "kind": "Card",
+      "values": {
+        "Term": "sad",
+        "Definition": "bu\u1ED3n",
+        "ImageUrl": "asset:f1ac700d07c3e4f7706d80c96d7558695d2d1f56abbb8a3a2f4072a169473dc6.webp",
+        "Phonetic": "/\u02C8s\u00E6d/",
+        "Example": "She was sad when her friend moved away.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y bu\u1ED3n khi ng\u01B0\u1EDDi b\u1EA1n chuy\u1EC3n \u0111i.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling unhappy about something",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8s\u00E6d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She was sad when her friend moved away.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y bu\\u1ED3n khi ng\\u01B0\\u1EDDi b\\u1EA1n chuy\\u1EC3n \\u0111i.\u0022},{\u0022text\u0022:\u0022It is a sad story with a happy end.\u0022,\u0022vi\u0022:\u0022\\u0110\\u00F3 l\\u00E0 m\\u1ED9t c\\u00E2u chuy\\u1EC7n bu\\u1ED3n nh\\u01B0ng c\\u00F3 k\\u1EBFt th\\u00FAc vui.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[\u0022happy\u0022],\u0022collocations\u0022:[{\u0022text\u0022:\u0022feel sad\u0022,\u0022vi\u0022:\u0022c\\u1EA3m th\\u1EA5y bu\\u1ED3n\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022sadness\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022n\\u1ED7i bu\\u1ED3n\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.c6ce39f5c1bc454d844d90c230e82aa5",
+      "kind": "Card",
+      "values": {
+        "Term": "curious",
+        "Definition": "t\u00F2 m\u00F2",
+        "ImageUrl": "asset:839381f4a9271471fe7e93da017085865cb2dc4ba8a478bf5d3eea2956296c54.webp",
+        "Phonetic": "/\u02C8kj\u028A\u0279.i.\u0259s/",
+        "Example": "The curious child opened every box.",
+        "ExampleTranslation": "\u0110\u1EE9a tr\u1EBB t\u00F2 m\u00F2 m\u1EDF m\u1ECDi chi\u1EBFc h\u1ED9p.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "wanting to know or learn about something",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8kj\u028A\u0259.\u0279i.\u0259s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The curious child opened every box.\u0022,\u0022vi\u0022:\u0022\\u0110\\u1EE9a tr\\u1EBB t\\u00F2 m\\u00F2 m\\u1EDF m\\u1ECDi chi\\u1EBFc h\\u1ED9p.\u0022},{\u0022text\u0022:\u0022I am curious about your new job.\u0022,\u0022vi\u0022:\u0022T\\u00F4i t\\u00F2 m\\u00F2 v\\u1EC1 c\\u00F4ng vi\\u1EC7c m\\u1EDBi c\\u1EE7a b\\u1EA1n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022curious about\u0022,\u0022vi\u0022:\u0022t\\u00F2 m\\u00F2 v\\u1EC1\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022curiosity\u0022,\u0022pos\u0022:\u0022noun\u0022,\u0022vi\u0022:\u0022s\\u1EF1 t\\u00F2 m\\u00F2\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.d1f44baa094b48198fc5240e19ed867f",
+      "kind": "Card",
+      "values": {
+        "Term": "nervous",
+        "Definition": "lo l\u1EAFng, h\u1ED3i h\u1ED9p",
+        "ImageUrl": "asset:0665e25e531439641bfe7330ae64898e99b1fc55a8fd5f8c8cdc27483eeb5b17.webp",
+        "Phonetic": "/\u02C8n\u025Dv\u0259s/",
+        "Example": "I felt nervous before the exam.",
+        "ExampleTranslation": "T\u00F4i th\u1EA5y h\u1ED3i h\u1ED9p tr\u01B0\u1EDBc k\u1EF3 thi.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling worried before something important",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8n\u025C\u02D0v\u0259s/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I felt nervous before the exam.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EA5y h\\u1ED3i h\\u1ED9p tr\\u01B0\\u1EDBc k\\u1EF3 thi.\u0022},{\u0022text\u0022:\u0022She is nervous about her first day at work.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y lo l\\u1EAFng v\\u1EC1 ng\\u00E0y l\\u00E0m vi\\u1EC7c \\u0111\\u1EA7u ti\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022feel nervous\u0022,\u0022vi\u0022:\u0022th\\u1EA5y h\\u1ED3i h\\u1ED9p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.dbe5ee602aac4751a67583a0a42a859d",
+      "kind": "Card",
+      "values": {
+        "Term": "sleepy",
+        "Definition": "bu\u1ED3n ng\u1EE7",
+        "ImageUrl": "asset:0f37f7b935658977d4fd1e8559f36acbd0f3cb77fda1901e64b7bd434fd07ffc.webp",
+        "Phonetic": "/\u02C8sli\u02D0pi/",
+        "Example": "I feel sleepy after lunch.",
+        "ExampleTranslation": "Sau b\u1EEFa tr\u01B0a t\u00F4i th\u1EA5y bu\u1ED3n ng\u1EE7.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling that you want to go to sleep",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8sli\u02D0pi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I feel sleepy after lunch.\u0022,\u0022vi\u0022:\u0022Sau b\\u1EEFa tr\\u01B0a t\\u00F4i th\\u1EA5y bu\\u1ED3n ng\\u1EE7.\u0022},{\u0022text\u0022:\u0022The sleepy baby closed her eyes.\u0022,\u0022vi\u0022:\u0022Em b\\u00E9 bu\\u1ED3n ng\\u1EE7 nh\\u1EAFm m\\u1EAFt l\\u1EA1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022feel sleepy\u0022,\u0022vi\u0022:\u0022th\\u1EA5y bu\\u1ED3n ng\\u1EE7\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.e956b6e41a454a849b7e598ac7e273e9",
+      "kind": "Card",
+      "values": {
+        "Term": "scared",
+        "Definition": "s\u1EE3 h\u00E3i",
+        "ImageUrl": "asset:2c0f34fb7a45998c47b925f0ed44d89f3689db748d34ffa93e29d55526a158f4.webp",
+        "Phonetic": "/sk\u025B(\u0259)\u0279d/",
+        "Example": "The little girl is scared of the dark.",
+        "ExampleTranslation": "C\u00F4 b\u00E9 s\u1EE3 b\u00F3ng t\u1ED1i.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling afraid of something",
+        "Cefr": "A2",
+        "PhoneticUk": "/sk\u025B\u0259d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The little girl is scared of the dark.\u0022,\u0022vi\u0022:\u0022C\\u00F4 b\\u00E9 s\\u1EE3 b\\u00F3ng t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022I felt scared during the storm.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EA5y s\\u1EE3 trong c\\u01A1n b\\u00E3o.\u0022}],\u0022synonyms\u0022:[\u0022afraid\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022scared of\u0022,\u0022vi\u0022:\u0022s\\u1EE3 c\\u00E1i g\\u00EC\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a23-cam-xuc.f3f69bd2606946a880b43d313c97df97",
+      "kind": "Card",
+      "values": {
+        "Term": "relaxed",
+        "Definition": "th\u01B0 gi\u00E3n, tho\u1EA3i m\u00E1i",
+        "ImageUrl": "asset:39ceca9a16e28e31d532be4966a32c32e0bac3bba9261a48b3525ba5df514dd1.webp",
+        "Phonetic": "/\u0279\u026A\u02C8l\u00E6kst/",
+        "Example": "I feel relaxed after a hot bath.",
+        "ExampleTranslation": "T\u00F4i th\u1EA5y th\u01B0 gi\u00E3n sau khi t\u1EAFm n\u01B0\u1EDBc n\u00F3ng.",
+        "Topic": "C\u1EA3m x\u00FAc",
+        "PartsOfSpeech": "adj",
+        "MeaningEn": "feeling calm and free from worry",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0279\u026A\u02C8l\u00E6kst/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I feel relaxed after a hot bath.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u1EA5y th\\u01B0 gi\\u00E3n sau khi t\\u1EAFm n\\u01B0\\u1EDBc n\\u00F3ng.\u0022},{\u0022text\u0022:\u0022He looks relaxed on holiday.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y tr\\u00F4ng th\\u01B0 th\\u00E1i trong k\\u1EF3 ngh\\u1EC9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022feel relaxed\u0022,\u0022vi\u0022:\u0022th\\u1EA5y th\\u01B0 gi\\u00E3n\u0022}],\u0022wordFamily\u0022:[{\u0022text\u0022:\u0022relax\u0022,\u0022pos\u0022:\u0022verb\u0022,\u0022vi\u0022:\u0022th\\u01B0 gi\\u00E3n\u0022}]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a23-cam-xuc"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "4d6a38a921184cea505b71455d587ad752f65a41b899440a8f5d421588887833.webp",
+      "sha256": "4d6a38a921184cea505b71455d587ad752f65a41b899440a8f5d421588887833"
+    },
+    {
+      "file": "f1ac700d07c3e4f7706d80c96d7558695d2d1f56abbb8a3a2f4072a169473dc6.webp",
+      "sha256": "f1ac700d07c3e4f7706d80c96d7558695d2d1f56abbb8a3a2f4072a169473dc6"
+    },
+    {
+      "file": "4fdc38c5621ebcb6a2404be11df2652b62c07a2e4c66436aab9386310f3b9bb5.webp",
+      "sha256": "4fdc38c5621ebcb6a2404be11df2652b62c07a2e4c66436aab9386310f3b9bb5"
+    },
+    {
+      "file": "c95e6bd370aad60fbe61bab1ac5c26ab16cc791078e41e66f2cd0d5f3eafb3d5.webp",
+      "sha256": "c95e6bd370aad60fbe61bab1ac5c26ab16cc791078e41e66f2cd0d5f3eafb3d5"
+    },
+    {
+      "file": "4496fb78cfceb833937cd9a8547ce01e3091aeb9f871596c673921c622bef103.webp",
+      "sha256": "4496fb78cfceb833937cd9a8547ce01e3091aeb9f871596c673921c622bef103"
+    },
+    {
+      "file": "55302ea698ef45eaa4ff48f996c68ff613f8e25db42d82443d618e6e4847e2a3.webp",
+      "sha256": "55302ea698ef45eaa4ff48f996c68ff613f8e25db42d82443d618e6e4847e2a3"
+    },
+    {
+      "file": "2c0f34fb7a45998c47b925f0ed44d89f3689db748d34ffa93e29d55526a158f4.webp",
+      "sha256": "2c0f34fb7a45998c47b925f0ed44d89f3689db748d34ffa93e29d55526a158f4"
+    },
+    {
+      "file": "ecccea9f699e231a951840051f786ea187cd13190c36b7aa8fee8054b7eed965.webp",
+      "sha256": "ecccea9f699e231a951840051f786ea187cd13190c36b7aa8fee8054b7eed965"
+    },
+    {
+      "file": "0665e25e531439641bfe7330ae64898e99b1fc55a8fd5f8c8cdc27483eeb5b17.webp",
+      "sha256": "0665e25e531439641bfe7330ae64898e99b1fc55a8fd5f8c8cdc27483eeb5b17"
+    },
+    {
+      "file": "7644a35d07eb2402d93559a61ea417696dec389ac372b48e44d3c1aa5a5f9691.webp",
+      "sha256": "7644a35d07eb2402d93559a61ea417696dec389ac372b48e44d3c1aa5a5f9691"
+    },
+    {
+      "file": "38f305c96b744ee7cbfcab9f5d4675dce90e120502486082ca19b9126080deaf.webp",
+      "sha256": "38f305c96b744ee7cbfcab9f5d4675dce90e120502486082ca19b9126080deaf"
+    },
+    {
+      "file": "f03f03b8ccb48ae582e0c99917b5691056763e90d635444d62e8745758ecf395.webp",
+      "sha256": "f03f03b8ccb48ae582e0c99917b5691056763e90d635444d62e8745758ecf395"
+    },
+    {
+      "file": "e20a367840e18fd34f34e4a219b1ae9ade8444108c04d9a261f43e72a4084657.webp",
+      "sha256": "e20a367840e18fd34f34e4a219b1ae9ade8444108c04d9a261f43e72a4084657"
+    },
+    {
+      "file": "f4c710f830e26b09e3651053e8a35f503c93fd3018d13a57b54163638685eb26.webp",
+      "sha256": "f4c710f830e26b09e3651053e8a35f503c93fd3018d13a57b54163638685eb26"
+    },
+    {
+      "file": "315ad1988226f3aca68242f3f2423bad93654f044a00e000ef4a0ced5a4bc30d.webp",
+      "sha256": "315ad1988226f3aca68242f3f2423bad93654f044a00e000ef4a0ced5a4bc30d"
+    },
+    {
+      "file": "fdec6b6016b2b602538be58f4983d9bcccefb3481ea057f14874f216d1aefe52.webp",
+      "sha256": "fdec6b6016b2b602538be58f4983d9bcccefb3481ea057f14874f216d1aefe52"
+    },
+    {
+      "file": "39ceca9a16e28e31d532be4966a32c32e0bac3bba9261a48b3525ba5df514dd1.webp",
+      "sha256": "39ceca9a16e28e31d532be4966a32c32e0bac3bba9261a48b3525ba5df514dd1"
+    },
+    {
+      "file": "839381f4a9271471fe7e93da017085865cb2dc4ba8a478bf5d3eea2956296c54.webp",
+      "sha256": "839381f4a9271471fe7e93da017085865cb2dc4ba8a478bf5d3eea2956296c54"
+    },
+    {
+      "file": "0e32e42e80c0979114fd60aca1c29ec7b77db3f8ce0aa13b3b6fbf61abe0c037.webp",
+      "sha256": "0e32e42e80c0979114fd60aca1c29ec7b77db3f8ce0aa13b3b6fbf61abe0c037"
+    },
+    {
+      "file": "c27540aa45ded3ee38ced210d3c4ae12fc062d56ed9a77a5b753650f3490e786.webp",
+      "sha256": "c27540aa45ded3ee38ced210d3c4ae12fc062d56ed9a77a5b753650f3490e786"
+    },
+    {
+      "file": "0723c6747987fe0142f1191e1545f63e57fbf4d35408199b7d647c60a1ed8822.webp",
+      "sha256": "0723c6747987fe0142f1191e1545f63e57fbf4d35408199b7d647c60a1ed8822"
+    },
+    {
+      "file": "b39102d748f908b38afdc60af54e16890fe5d112bf218ccba72f3e4dd88d5ea2.webp",
+      "sha256": "b39102d748f908b38afdc60af54e16890fe5d112bf218ccba72f3e4dd88d5ea2"
+    },
+    {
+      "file": "14be2f40e8631d384dc36ede9525d1ad7db2889cc6190eaa04267b50663bd6af.webp",
+      "sha256": "14be2f40e8631d384dc36ede9525d1ad7db2889cc6190eaa04267b50663bd6af"
+    },
+    {
+      "file": "0f37f7b935658977d4fd1e8559f36acbd0f3cb77fda1901e64b7bd434fd07ffc.webp",
+      "sha256": "0f37f7b935658977d4fd1e8559f36acbd0f3cb77fda1901e64b7bd434fd07ffc"
+    },
+    {
+      "file": "bfb9eed507b80864de3a3596d086259b1bf572aa00ac5ec2f834706e41af8bd8.webp",
+      "sha256": "bfb9eed507b80864de3a3596d086259b1bf572aa00ac5ec2f834706e41af8bd8"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a23-cam-xuc"
+}

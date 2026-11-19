@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an",
+      "kind": "Set",
+      "values": {
+        "SetName": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "Description": "#a1 #a2 #kitchen #cooking"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.00ef7515050a4f058a598250c7809f99",
+      "kind": "Card",
+      "values": {
+        "Term": "tray",
+        "Definition": "c\u00E1i khay",
+        "ImageUrl": "asset:49a0479356313a40c926e89de8f14475ee86087c6ddc0ee03791ecc5c93a5075.webp",
+        "Phonetic": "/t\u0279e\u026A/",
+        "Example": "The waiter carried a tray of drinks.",
+        "ExampleTranslation": "Ng\u01B0\u1EDDi ph\u1EE5c v\u1EE5 b\u01B0ng m\u1ED9t khay \u0111\u1ED3 u\u1ED1ng.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat object for carrying food and drinks",
+        "Cefr": "A2",
+        "PhoneticUk": "/t\u0279e\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The waiter carried a tray of drinks.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi ph\\u1EE5c v\\u1EE5 b\\u01B0ng m\\u1ED9t khay \\u0111\\u1ED3 u\\u1ED1ng.\u0022},{\u0022text\u0022:\u0022She put the cups on a tray.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111\\u1EB7t nh\\u1EEFng chi\\u1EBFc c\\u1ED1c l\\u00EAn m\\u1ED9t c\\u00E1i khay.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022baking tray\u0022,\u0022vi\u0022:\u0022khay n\\u01B0\\u1EDBng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.01dc92ef83f147d7b91a773f9fa2a662",
+      "kind": "Card",
+      "values": {
+        "Term": "grater",
+        "Definition": "c\u00E1i b\u00E0o, d\u1EE5ng c\u1EE5 n\u1EA1o",
+        "ImageUrl": "asset:1c5aed3b6f708a5db14523d8fa890ca726bfed390910c30fb77e049b061bedca.webp",
+        "Phonetic": "/\u02C8\u0261\u0279e\u026At\u025A/",
+        "Example": "Use a grater for the cheese.",
+        "ExampleTranslation": "H\u00E3y d\u00F9ng d\u1EE5ng c\u1EE5 n\u1EA1o cho ph\u1EA7n ph\u00F4 mai.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a kitchen tool with sharp holes for making food into small pieces",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0261\u0279e\u026At\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Use a grater for the cheese.\u0022,\u0022vi\u0022:\u0022H\\u00E3y d\\u00F9ng d\\u1EE5ng c\\u1EE5 n\\u1EA1o cho ph\\u1EA7n ph\\u00F4 mai.\u0022},{\u0022text\u0022:\u0022I scraped my finger on the grater.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1ECB tr\\u1EA7y ng\\u00F3n tay v\\u00E0o d\\u1EE5ng c\\u1EE5 n\\u1EA1o.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cheese grater\u0022,\u0022vi\u0022:\u0022d\\u1EE5ng c\\u1EE5 n\\u1EA1o ph\\u00F4 mai\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6023728/cheese-grater-free-public-domain-cc0-photo\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.171a42529ceb4657852c25500d34826f",
+      "kind": "Card",
+      "values": {
+        "Term": "bowl",
+        "Definition": "c\u00E1i b\u00E1t, c\u00E1i t\u00F4",
+        "ImageUrl": "asset:ce735d5f4d1fb75b5c10c9c06c764e4cec1a0ded6f4805e89ed5ffce48dffb75.webp",
+        "Phonetic": "/bo\u028Al/",
+        "Example": "He ate a bowl of noodles.",
+        "ExampleTranslation": "Anh \u1EA5y \u0103n m\u1ED9t b\u00E1t m\u00EC.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a deep round dish for soup or rice",
+        "Cefr": "A1",
+        "PhoneticUk": "/b\u0259\u028Al/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He ate a bowl of noodles.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0103n m\\u1ED9t b\\u00E1t m\\u00EC.\u0022},{\u0022text\u0022:\u0022The bowl is full of fruit.\u0022,\u0022vi\u0022:\u0022C\\u00E1i b\\u00E1t \\u0111\\u1EA7y tr\\u00E1i c\\u00E2y.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a bowl of rice\u0022,\u0022vi\u0022:\u0022m\\u1ED9t b\\u00E1t c\\u01A1m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/101561334@N08/9768441362\u0022,\u0022author\u0022:\u0022Gary Lee Todd, Ph.D.\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.1f119bd10a6d489abafea02d8ac903ea",
+      "kind": "Card",
+      "values": {
+        "Term": "oven",
+        "Definition": "l\u00F2 n\u01B0\u1EDBng",
+        "ImageUrl": "asset:f429400c145e3f67499cdd82e3f6facc9c4fd03cacad7ca0ad0e2506b0777ee1.webp",
+        "Phonetic": "/\u02C8\u028C.vn\u0329/",
+        "Example": "She took the cake out of the oven.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y l\u1EA5y chi\u1EBFc b\u00E1nh ra kh\u1ECFi l\u00F2 n\u01B0\u1EDBng.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a closed box that you use to bake food",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u028C.vn\u0329/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She took the cake out of the oven.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u1EA5y chi\\u1EBFc b\\u00E1nh ra kh\\u1ECFi l\\u00F2 n\\u01B0\\u1EDBng.\u0022},{\u0022text\u0022:\u0022Heat the oven to 180 degrees.\u0022,\u0022vi\u0022:\u0022H\\u00E3y l\\u00E0m n\\u00F3ng l\\u00F2 n\\u01B0\\u1EDBng \\u0111\\u1EBFn 180 \\u0111\\u1ED9.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022preheat the oven\u0022,\u0022vi\u0022:\u0022l\\u00E0m n\\u00F3ng l\\u00F2 tr\\u01B0\\u1EDBc\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.21072962c81141f38b5e60c2a3a53dea",
+      "kind": "Card",
+      "values": {
+        "Term": "cutting board",
+        "Definition": "c\u00E1i th\u1EDBt",
+        "ImageUrl": "asset:c906910fce861187cf6c9b2fcd9d5ad7e8419706f7e59c26229bdd33214947bd.webp",
+        "Phonetic": "/\u02C8k\u028Ct\u026A\u014B bo\u0279d/",
+        "Example": "Cut the onion on the cutting board.",
+        "ExampleTranslation": "H\u00E3y c\u1EAFt h\u00E0nh t\u00E2y tr\u00EAn c\u00E1i th\u1EDBt.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat board for cutting food on",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u028Ct\u026A\u014B b\u0254\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Cut the onion on the cutting board.\u0022,\u0022vi\u0022:\u0022H\\u00E3y c\\u1EAFt h\\u00E0nh t\\u00E2y tr\\u00EAn c\\u00E1i th\\u1EDBt.\u0022},{\u0022text\u0022:\u0022This wooden cutting board is very old.\u0022,\u0022vi\u0022:\u0022C\\u00E1i th\\u1EDBt g\\u1ED7 n\\u00E0y r\\u1EA5t c\\u0169.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022wooden cutting board\u0022,\u0022vi\u0022:\u0022th\\u1EDBt g\\u1ED7\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5913099/image-public-domain-wood-kitchen\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.218334c74004429db83e344b1ffa6577",
+      "kind": "Card",
+      "values": {
+        "Term": "knife",
+        "Definition": "con dao",
+        "ImageUrl": "asset:8c99c0159b6eacad569bd2acb031d615e99b5d549338f82be1aaabaead3874ed.webp",
+        "Phonetic": "/\u02C8na\u026A\u032Ff/",
+        "Example": "Be careful with that sharp knife.",
+        "ExampleTranslation": "H\u00E3y c\u1EA9n th\u1EADn v\u1EDBi con dao s\u1EAFc \u0111\u00F3.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tool with a sharp edge for cutting",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8na\u026A\u032Ff/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Be careful with that sharp knife.\u0022,\u0022vi\u0022:\u0022H\\u00E3y c\\u1EA9n th\\u1EADn v\\u1EDBi con dao s\\u1EAFc \\u0111\\u00F3.\u0022},{\u0022text\u0022:\u0022He cut the bread with a knife.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y c\\u1EAFt b\\u00E1nh m\\u00EC b\\u1EB1ng dao.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022knife and fork\u0022,\u0022vi\u0022:\u0022dao v\\u00E0 n\\u0129a\u0022},{\u0022text\u0022:\u0022kitchen knife\u0022,\u0022vi\u0022:\u0022dao b\\u1EBFp\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022knives\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.2b803e11989840609178851d3fb572e8",
+      "kind": "Card",
+      "values": {
+        "Term": "chopsticks",
+        "Definition": "\u0111\u00F4i \u0111\u0169a",
+        "ImageUrl": "asset:7fc8fd0060c194a0e64a6f01a89dedf1e2af846a7ded69e510e78dfb432ef19a.webp",
+        "Phonetic": "/\u02C8t\u0361\u0283\u0251pst\u026Aks/",
+        "Example": "My little brother learns to use chopsticks.",
+        "ExampleTranslation": "Em trai t\u00F4i \u0111ang h\u1ECDc d\u00F9ng \u0111\u0169a.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "two thin sticks used in Asia to pick up food",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8t\u0361\u0283\u0252pst\u026Aks/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My little brother learns to use chopsticks.\u0022,\u0022vi\u0022:\u0022Em trai t\\u00F4i \\u0111ang h\\u1ECDc d\\u00F9ng \\u0111\\u0169a.\u0022},{\u0022text\u0022:\u0022We eat rice with chopsticks.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0103n c\\u01A1m b\\u1EB1ng \\u0111\\u0169a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a pair of chopsticks\u0022,\u0022vi\u0022:\u0022m\\u1ED9t \\u0111\\u00F4i \\u0111\\u0169a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/chopsticks-soysauce-3957479LEK\u0022,\u0022author\u0022:\u0022Daria Nepriakhina\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.2caf2123aed3418195a11771705dbac8",
+      "kind": "Card",
+      "values": {
+        "Term": "teapot",
+        "Definition": "\u1EA5m pha tr\u00E0",
+        "ImageUrl": "asset:ffb1bec7fa3a5502ebe151438fcc0d1cbd6da2377072921cd828a323971b5cd5.webp",
+        "Phonetic": "/\u02C8ti.p\u0254t/",
+        "Example": "She poured tea from the teapot.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y r\u00F3t tr\u00E0 t\u1EEB \u1EA5m.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a container with a spout for making and pouring tea",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8ti\u02D0.p\u0252t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She poured tea from the teapot.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y r\\u00F3t tr\\u00E0 t\\u1EEB \\u1EA5m.\u0022},{\u0022text\u0022:\u0022The teapot is made of white china.\u0022,\u0022vi\u0022:\u0022\\u1EA4m pha tr\\u00E0 l\\u00E0m b\\u1EB1ng s\\u1EE9 tr\\u1EAFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022china teapot\u0022,\u0022vi\u0022:\u0022\\u1EA5m tr\\u00E0 s\\u1EE9\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/132795455@N08/17106495329\u0022,\u0022author\u0022:\u0022Image Catalog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.36494056b6a04be38b58b9a534684d09",
+      "kind": "Card",
+      "values": {
+        "Term": "spatula",
+        "Definition": "x\u1EBBng l\u1EADt, spatula",
+        "ImageUrl": "asset:b135c9032c2a54b243674bab6cb7254592d4055e87830c072e60d54a4b0042ad.webp",
+        "Phonetic": "/\u02C8sp\u00E6tj\u028Al\u0259/",
+        "Example": "Use a spatula to turn the egg.",
+        "ExampleTranslation": "H\u00E3y d\u00F9ng x\u1EBBng l\u1EADt \u0111\u1EC3 l\u1EADt qu\u1EA3 tr\u1EE9ng.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat tool for turning food in a pan",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8sp\u00E6tj\u028Al\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Use a spatula to turn the egg.\u0022,\u0022vi\u0022:\u0022H\\u00E3y d\\u00F9ng x\\u1EBBng l\\u1EADt \\u0111\\u1EC3 l\\u1EADt qu\\u1EA3 tr\\u1EE9ng.\u0022},{\u0022text\u0022:\u0022The spatula is made of plastic.\u0022,\u0022vi\u0022:\u0022C\\u00E1i x\\u1EBBng l\\u1EADt l\\u00E0m b\\u1EB1ng nh\\u1EF1a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022plastic spatula\u0022,\u0022vi\u0022:\u0022x\\u1EBBng l\\u1EADt nh\\u1EF1a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.40545d7287d34a9c95592689099f60a4",
+      "kind": "Card",
+      "values": {
+        "Term": "kettle",
+        "Definition": "\u1EA5m \u0111un n\u01B0\u1EDBc",
+        "ImageUrl": "asset:11c796b9d110ba4be38d11378c3319168c9afdd11e210b9da161bf92bd158786.webp",
+        "Phonetic": "/\u02C8k\u025B.t\u0259l/",
+        "Example": "Put the kettle on, I want some tea.",
+        "ExampleTranslation": "B\u1EADt \u1EA5m \u0111un n\u01B0\u1EDBc l\u00EAn \u0111i, t\u00F4i mu\u1ED1n u\u1ED1ng tr\u00E0.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a container with a lid and a spout for boiling water",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u025B.t\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Put the kettle on, I want some tea.\u0022,\u0022vi\u0022:\u0022B\\u1EADt \\u1EA5m \\u0111un n\\u01B0\\u1EDBc l\\u00EAn \\u0111i, t\\u00F4i mu\\u1ED1n u\\u1ED1ng tr\\u00E0.\u0022},{\u0022text\u0022:\u0022The kettle is boiling.\u0022,\u0022vi\u0022:\u0022\\u1EA4m n\\u01B0\\u1EDBc \\u0111ang s\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022electric kettle\u0022,\u0022vi\u0022:\u0022\\u1EA5m \\u0111un n\\u01B0\\u1EDBc \\u0111i\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.49749ab2a0104f588d13235d5e58b8e4",
+      "kind": "Card",
+      "values": {
+        "Term": "whisk",
+        "Definition": "c\u00E1i \u0111\u00E1nh tr\u1EE9ng; \u0111\u00E1nh (tr\u1EE9ng)",
+        "ImageUrl": "asset:40a8430c28056e9fba44272c59b15098148b41277ff7fafd4eb4de732526206b.webp",
+        "Phonetic": "/(h)w\u026Ask/",
+        "Example": "She used a whisk to mix the eggs.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y d\u00F9ng c\u00E1i \u0111\u00E1nh tr\u1EE9ng \u0111\u1EC3 tr\u1ED9n tr\u1EE9ng.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun,verb",
+        "MeaningEn": "a tool for beating eggs or cream",
+        "Cefr": "A2",
+        "PhoneticUk": "/(h)w\u026Ask/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She used a whisk to mix the eggs.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y d\\u00F9ng c\\u00E1i \\u0111\\u00E1nh tr\\u1EE9ng \\u0111\\u1EC3 tr\\u1ED9n tr\\u1EE9ng.\u0022},{\u0022text\u0022:\u0022A small whisk is easy to clean.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t c\\u00E1i \\u0111\\u00E1nh tr\\u1EE9ng nh\\u1ECF r\\u1EA5t d\\u1EC5 r\\u1EEDa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022whisk the eggs\u0022,\u0022vi\u0022:\u0022\\u0111\\u00E1nh tr\\u1EE9ng\u0022}],\u0022wordFamily\u0022:[],\u0022verbForms\u0022:{\u0022past\u0022:\u0022whisked\u0022,\u0022pastParticiple\u0022:\u0022whisked\u0022,\u0022ing\u0022:\u0022whisking\u0022,\u0022thirdPerson\u0022:\u0022whisks\u0022}}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5970327/kitchen-whisk\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.52c7de04f33b4dd0a4729d5be6996177",
+      "kind": "Card",
+      "values": {
+        "Term": "apron",
+        "Definition": "t\u1EA1p d\u1EC1",
+        "ImageUrl": "asset:fb9e6ed75e58fef55f62fcaecba2b392634d17d80029898f614da90c56424ba1.webp",
+        "Phonetic": "/\u02C8e\u026A.p\u0279\u0259n/",
+        "Example": "He wears an apron when he cooks.",
+        "ExampleTranslation": "Anh \u1EA5y m\u1EB7c t\u1EA1p d\u1EC1 khi n\u1EA5u \u0103n.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a piece of clothing you wear to keep clean when cooking",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8e\u026A.p\u0279\u0259n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He wears an apron when he cooks.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y m\\u1EB7c t\\u1EA1p d\\u1EC1 khi n\\u1EA5u \\u0103n.\u0022},{\u0022text\u0022:\u0022The chef\\u0027s white apron has flour on it.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc t\\u1EA1p d\\u1EC1 tr\\u1EAFng c\\u1EE7a \\u0111\\u1EA7u b\\u1EBFp d\\u00EDnh b\\u1ED9t m\\u00EC.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022kitchen apron\u0022,\u0022vi\u0022:\u0022t\\u1EA1p d\\u1EC1 nh\\u00E0 b\\u1EBFp\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.5973a05afc714de3940a1717e1709645",
+      "kind": "Card",
+      "values": {
+        "Term": "frying pan",
+        "Definition": "ch\u1EA3o r\u00E1n",
+        "ImageUrl": "asset:6796e66f50c83c9c050dcbc809ba0db79e810304437b35ec4d65ea4ce1ba063a.webp",
+        "Phonetic": "/\u02C8f\u0279a\u026A.\u026A\u014B p\u00E6n/",
+        "Example": "Heat some oil in the frying pan.",
+        "ExampleTranslation": "H\u00E3y \u0111un m\u1ED9t \u00EDt d\u1EA7u trong ch\u1EA3o.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat pan with a long handle for frying food",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8f\u0279a\u026A.\u026A\u014B p\u00E6n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Heat some oil in the frying pan.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111un m\\u1ED9t \\u00EDt d\\u1EA7u trong ch\\u1EA3o.\u0022},{\u0022text\u0022:\u0022The frying pan is too hot to touch.\u0022,\u0022vi\u0022:\u0022C\\u00E1i ch\\u1EA3o n\\u00F3ng qu\\u00E1 kh\\u00F4ng ch\\u1EA1m v\\u00E0o \\u0111\\u01B0\\u1EE3c.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022non-stick frying pan\u0022,\u0022vi\u0022:\u0022ch\\u1EA3o ch\\u1ED1ng d\\u00EDnh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.5a6bb3389ed84dc18b1ca7659c8e5111",
+      "kind": "Card",
+      "values": {
+        "Term": "blender",
+        "Definition": "m\u00E1y xay sinh t\u1ED1",
+        "ImageUrl": "asset:f04fbef10b7378bb1d53218ed81ba3d1d15574fa34b537a7c0de0063ab0d6e44.webp",
+        "Phonetic": "/\u02C8bl\u025Bn.d\u025A/",
+        "Example": "I make fruit smoothies in the blender.",
+        "ExampleTranslation": "T\u00F4i l\u00E0m sinh t\u1ED1 tr\u00E1i c\u00E2y b\u1EB1ng m\u00E1y xay.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that mixes food into a liquid",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8bl\u025Bn.d\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I make fruit smoothies in the blender.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u00E0m sinh t\\u1ED1 tr\\u00E1i c\\u00E2y b\\u1EB1ng m\\u00E1y xay.\u0022},{\u0022text\u0022:\u0022The blender is very loud.\u0022,\u0022vi\u0022:\u0022M\\u00E1y xay sinh t\\u1ED1 \\u1ED3n l\\u1EAFm.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022electric blender\u0022,\u0022vi\u0022:\u0022m\\u00E1y xay \\u0111i\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.5bb4c14c50814189ac650a0f2f72203c",
+      "kind": "Card",
+      "values": {
+        "Term": "plate",
+        "Definition": "c\u00E1i \u0111\u0129a",
+        "ImageUrl": "asset:2f0ab18bde27cf2d2a55347953f2126bd0598accc5e3fc31d917c7c340102e4d.webp",
+        "Phonetic": "/\u02C8ple\u026A\u032Ft/",
+        "Example": "She put the cake on a white plate.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111\u1EB7t chi\u1EBFc b\u00E1nh l\u00EAn m\u1ED9t c\u00E1i \u0111\u0129a tr\u1EAFng.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat round dish for food",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8ple\u026A\u032Ft/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She put the cake on a white plate.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111\\u1EB7t chi\\u1EBFc b\\u00E1nh l\\u00EAn m\\u1ED9t c\\u00E1i \\u0111\\u0129a tr\\u1EAFng.\u0022},{\u0022text\u0022:\u0022Please wash the plates after dinner.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n r\\u1EEDa \\u0111\\u0129a sau b\\u1EEFa t\\u1ED1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022paper plate\u0022,\u0022vi\u0022:\u0022\\u0111\\u0129a gi\\u1EA5y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.70e4b025d50f49aeac4af1d940b8b0c6",
+      "kind": "Card",
+      "values": {
+        "Term": "pot",
+        "Definition": "c\u00E1i n\u1ED3i",
+        "ImageUrl": "asset:b6c8428f73e6e9cce239ec538cf8a9e23e95e7c70bc15ddc968fe1df30696379.webp",
+        "Phonetic": "/p\u0251t/",
+        "Example": "She put the soup in a big pot.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y cho m\u00F3n s\u00FAp v\u00E0o m\u1ED9t c\u00E1i n\u1ED3i l\u1EDBn.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a deep round container for cooking on a stove",
+        "Cefr": "A2",
+        "PhoneticUk": "/p\u0252t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She put the soup in a big pot.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y cho m\\u00F3n s\\u00FAp v\\u00E0o m\\u1ED9t c\\u00E1i n\\u1ED3i l\\u1EDBn.\u0022},{\u0022text\u0022:\u0022The water in the pot is boiling.\u0022,\u0022vi\u0022:\u0022N\\u01B0\\u1EDBc trong n\\u1ED3i \\u0111ang s\\u00F4i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cooking pot\u0022,\u0022vi\u0022:\u0022n\\u1ED3i n\\u1EA5u \\u0103n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/stove-pot-IZYP5AYVUD\u0022,\u0022author\u0022:\u0022Pawel Kadysz\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.72409305ea764a788edbcf060efafaf4",
+      "kind": "Card",
+      "values": {
+        "Term": "toaster",
+        "Definition": "m\u00E1y n\u01B0\u1EDBng b\u00E1nh m\u00EC",
+        "ImageUrl": "asset:135bab733998b06727d042ca132f66cc1045205e4d615ff1b431259659693818.webp",
+        "Phonetic": "/\u02C8to\u028A\u032Fs.t\u025A/",
+        "Example": "Put two slices of bread in the toaster.",
+        "ExampleTranslation": "Cho hai l\u00E1t b\u00E1nh m\u00EC v\u00E0o m\u00E1y n\u01B0\u1EDBng.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a machine that makes bread brown and crisp",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8t\u0259\u028A\u032Fs.t\u0259\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Put two slices of bread in the toaster.\u0022,\u0022vi\u0022:\u0022Cho hai l\\u00E1t b\\u00E1nh m\\u00EC v\\u00E0o m\\u00E1y n\\u01B0\\u1EDBng.\u0022},{\u0022text\u0022:\u0022The toaster is next to the kettle.\u0022,\u0022vi\u0022:\u0022M\\u00E1y n\\u01B0\\u1EDBng b\\u00E1nh m\\u00EC \\u0111\\u1EB7t c\\u1EA1nh \\u1EA5m \\u0111un n\\u01B0\\u1EDBc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022pop-up toaster\u0022,\u0022vi\u0022:\u0022m\\u00E1y n\\u01B0\\u1EDBng b\\u00E1nh m\\u00EC b\\u1EADt l\\u00EAn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/toaster-toast-0UTZ00FWC6\u0022,\u0022author\u0022:\u0022%u0141ukasz%20Popardowski\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.7ce1d12fddc748b291d56f1c293f38cb",
+      "kind": "Card",
+      "values": {
+        "Term": "stove",
+        "Definition": "b\u1EBFp n\u1EA5u",
+        "ImageUrl": "asset:2c3a9bbe71f14d78aa4d05c17c02709e878903d78e4fd80c2aa7484a1de50b01.webp",
+        "Phonetic": "/sto\u028Av/",
+        "Example": "The soup is on the stove.",
+        "ExampleTranslation": "N\u1ED3i s\u00FAp \u0111ang \u1EDF tr\u00EAn b\u1EBFp.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a kitchen machine with flames or rings for cooking",
+        "Cefr": "A2",
+        "PhoneticUk": "/st\u0259\u028Av/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The soup is on the stove.\u0022,\u0022vi\u0022:\u0022N\\u1ED3i s\\u00FAp \\u0111ang \\u1EDF tr\\u00EAn b\\u1EBFp.\u0022},{\u0022text\u0022:\u0022Turn off the stove before you leave.\u0022,\u0022vi\u0022:\u0022H\\u00E3y t\\u1EAFt b\\u1EBFp tr\\u01B0\\u1EDBc khi b\\u1EA1n ra kh\\u1ECFi nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022gas stove\u0022,\u0022vi\u0022:\u0022b\\u1EBFp ga\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5912366/image-public-domain-house-kitchen\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.9316ca90f5a546cbb25ba6279f033c74",
+      "kind": "Card",
+      "values": {
+        "Term": "fork",
+        "Definition": "c\u00E1i n\u0129a",
+        "ImageUrl": "asset:b5f35efe58afdaa4c5ad2cb0a1331e49363888147d7cfd827cf0d872ca406e57.webp",
+        "Phonetic": "/f\u0254\u0279k/",
+        "Example": "I eat noodles with a fork.",
+        "ExampleTranslation": "T\u00F4i \u0103n m\u00EC b\u1EB1ng n\u0129a.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tool with points that you use to eat food",
+        "Cefr": "A1",
+        "PhoneticUk": "/f\u0254\u02D0k/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I eat noodles with a fork.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0103n m\\u00EC b\\u1EB1ng n\\u0129a.\u0022},{\u0022text\u0022:\u0022Put the fork on the left of the plate.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111\\u1EB7t c\\u00E1i n\\u0129a b\\u00EAn tr\\u00E1i c\\u00E1i \\u0111\\u0129a.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022knife and fork\u0022,\u0022vi\u0022:\u0022dao v\\u00E0 n\\u0129a\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.a0a83c7895d64148933c7207aa2d4175",
+      "kind": "Card",
+      "values": {
+        "Term": "colander",
+        "Definition": "c\u00E1i r\u1ED5, c\u00E1i chao",
+        "ImageUrl": "asset:d003868aee5e8f3d51299c065a1c8262d42d17bc894f78c046b3bc78bd33b70d.webp",
+        "Phonetic": "/\u02C8k\u0251l\u0259nd\u025A/",
+        "Example": "Pour the noodles into the colander.",
+        "ExampleTranslation": "H\u00E3y \u0111\u1ED5 m\u00EC v\u00E0o c\u00E1i r\u1ED5.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a bowl with many holes for draining water from food",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u0252l\u0259nd\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Pour the noodles into the colander.\u0022,\u0022vi\u0022:\u0022H\\u00E3y \\u0111\\u1ED5 m\\u00EC v\\u00E0o c\\u00E1i r\\u1ED5.\u0022},{\u0022text\u0022:\u0022She washed the tomatoes in a colander.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y r\\u1EEDa c\\u00E0 chua trong c\\u00E1i r\\u1ED5.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022metal colander\u0022,\u0022vi\u0022:\u0022r\\u1ED5 kim lo\\u1EA1i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3282859/free-photo-image-cucumber-pickle-bean\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.a21d96ac3380466390d2bcc4287afd38",
+      "kind": "Card",
+      "values": {
+        "Term": "jar",
+        "Definition": "c\u00E1i h\u0169, c\u00E1i l\u1ECD",
+        "ImageUrl": "asset:1e65870a522f931d6ec45f7450c366d584e03df58c3487e84ae42580f6fd1d07.webp",
+        "Phonetic": "/d\u0361\u0292\u0251\u0279/",
+        "Example": "There is a jar of honey on the shelf.",
+        "ExampleTranslation": "C\u00F3 m\u1ED9t h\u0169 m\u1EADt ong tr\u00EAn k\u1EC7.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a glass container with a lid for food",
+        "Cefr": "A2",
+        "PhoneticUk": "/d\u0361\u0292\u0251\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022There is a jar of honey on the shelf.\u0022,\u0022vi\u0022:\u0022C\\u00F3 m\\u1ED9t h\\u0169 m\\u1EADt ong tr\\u00EAn k\\u1EC7.\u0022},{\u0022text\u0022:\u0022She opened the jar and smelled the jam.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u1EDF h\\u0169 v\\u00E0 ng\\u1EEDi m\\u1EE9t.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022glass jar\u0022,\u0022vi\u0022:\u0022h\\u0169 th\\u1EE7y tinh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/glass-jar-O04CQLRPIA\u0022,\u0022author\u0022:\u0022Ethan Sykes\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.a4b49427825a484d9f248e03eb5bc8ad",
+      "kind": "Card",
+      "values": {
+        "Term": "ladle",
+        "Definition": "c\u00E1i m\u00F4i, mu\u00F4i m\u00FAc canh",
+        "ImageUrl": "asset:f0b3dfc6281b369aee2ec183bce9ab64d9a1139601709e33d7f46059c48badb2.webp",
+        "Phonetic": "/\u02C8le\u026A.d\u0259l/",
+        "Example": "She served the soup with a ladle.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y m\u00FAc s\u00FAp b\u1EB1ng c\u00E1i m\u00F4i.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large deep spoon for serving soup",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8le\u026A.d\u0259l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She served the soup with a ladle.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y m\\u00FAc s\\u00FAp b\\u1EB1ng c\\u00E1i m\\u00F4i.\u0022},{\u0022text\u0022:\u0022Dad took a ladle of soup.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 m\\u00FAc m\\u1ED9t m\\u00F4i s\\u00FAp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022soup ladle\u0022,\u0022vi\u0022:\u0022m\\u00F4i m\\u00FAc s\\u00FAp\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3368781/free-illustration-image-20th-century-antique-art\u0022,\u0022author\u0022:\u0022nationalgalleryofart\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.c9efafee3ce84cbab3d8a1b773f6e856",
+      "kind": "Card",
+      "values": {
+        "Term": "spoon",
+        "Definition": "c\u00E1i th\u00ECa, c\u00E1i mu\u1ED7ng",
+        "ImageUrl": "asset:18d64d3b6325ae2f5fc267dccca2b9fecb082be99d8924fdd2fba332ae79f2ef.webp",
+        "Phonetic": "/spun/",
+        "Example": "She ate the soup with a spoon.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0103n s\u00FAp b\u1EB1ng th\u00ECa.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tool with a small bowl that you use to eat soup",
+        "Cefr": "A1",
+        "PhoneticUk": "/spu\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She ate the soup with a spoon.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0103n s\\u00FAp b\\u1EB1ng th\\u00ECa.\u0022},{\u0022text\u0022:\u0022Add a spoon of sugar to the tea.\u0022,\u0022vi\u0022:\u0022Cho m\\u1ED9t th\\u00ECa \\u0111\\u01B0\\u1EDDng v\\u00E0o tr\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a spoon of sugar\u0022,\u0022vi\u0022:\u0022m\\u1ED9t th\\u00ECa \\u0111\\u01B0\\u1EDDng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/123666315@N03/13988243986\u0022,\u0022author\u0022:\u0022legopicler\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.e720f521e9c64a04aeeda07893144572",
+      "kind": "Card",
+      "values": {
+        "Term": "rice cooker",
+        "Definition": "n\u1ED3i c\u01A1m \u0111i\u1EC7n",
+        "ImageUrl": "asset:25a58b09e25e939b546c01649c950990fb84e53fdf4224c7f5fa31841bf77e54.webp",
+        "Phonetic": "/\u0279a\u026As \u02C8k\u028Ak\u025A/",
+        "Example": "The rice cooker is on the kitchen counter.",
+        "ExampleTranslation": "N\u1ED3i c\u01A1m \u0111i\u1EC7n \u0111\u1EB7t tr\u00EAn b\u00E0n b\u1EBFp.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an electric machine that cooks rice",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0279a\u026As \u02C8k\u028Ak\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The rice cooker is on the kitchen counter.\u0022,\u0022vi\u0022:\u0022N\\u1ED3i c\\u01A1m \\u0111i\\u1EC7n \\u0111\\u1EB7t tr\\u00EAn b\\u00E0n b\\u1EBFp.\u0022},{\u0022text\u0022:\u0022I press a button on the rice cooker.\u0022,\u0022vi\u0022:\u0022T\\u00F4i b\\u1EA5m m\\u1ED9t n\\u00FAt tr\\u00EAn n\\u1ED3i c\\u01A1m \\u0111i\\u1EC7n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022electric rice cooker\u0022,\u0022vi\u0022:\u0022n\\u1ED3i c\\u01A1m \\u0111i\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/9068944/image-cartoon-illustrations-public-domain\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an.fa2920c266804f8fb3d27e4829a2d886",
+      "kind": "Card",
+      "values": {
+        "Term": "peeler",
+        "Definition": "d\u1EE5ng c\u1EE5 g\u1ECDt v\u1ECF",
+        "ImageUrl": "asset:34fdbdba7aeea333ce5639e650ca3805cd92467cf60a0785ecc5bac849827b21.webp",
+        "Phonetic": "/\u02C8pi\u02D0l\u025A/",
+        "Example": "I use a peeler for the potatoes.",
+        "ExampleTranslation": "T\u00F4i d\u00F9ng d\u1EE5ng c\u1EE5 g\u1ECDt v\u1ECF cho khoai t\u00E2y.",
+        "Topic": "Nh\u00E0 b\u1EBFp \u0026 d\u1EE5ng c\u1EE5 n\u1EA5u \u0103n",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tool for taking the skin off fruit or vegetables",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8pi\u02D0l\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I use a peeler for the potatoes.\u0022,\u0022vi\u0022:\u0022T\\u00F4i d\\u00F9ng d\\u1EE5ng c\\u1EE5 g\\u1ECDt v\\u1ECF cho khoai t\\u00E2y.\u0022},{\u0022text\u0022:\u0022The peeler is in the drawer.\u0022,\u0022vi\u0022:\u0022D\\u1EE5ng c\\u1EE5 g\\u1ECDt v\\u1ECF n\\u1EB1m trong ng\\u0103n k\\u00E9o.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022potato peeler\u0022,\u0022vi\u0022:\u0022d\\u1EE5ng c\\u1EE5 g\\u1ECDt v\\u1ECF khoai\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:13._Peeler_and_kitchen_knife.jpg\u0022,\u0022author\u0022:\u0022Datariumrex\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "6796e66f50c83c9c050dcbc809ba0db79e810304437b35ec4d65ea4ce1ba063a.webp",
+      "sha256": "6796e66f50c83c9c050dcbc809ba0db79e810304437b35ec4d65ea4ce1ba063a"
+    },
+    {
+      "file": "b6c8428f73e6e9cce239ec538cf8a9e23e95e7c70bc15ddc968fe1df30696379.webp",
+      "sha256": "b6c8428f73e6e9cce239ec538cf8a9e23e95e7c70bc15ddc968fe1df30696379"
+    },
+    {
+      "file": "8c99c0159b6eacad569bd2acb031d615e99b5d549338f82be1aaabaead3874ed.webp",
+      "sha256": "8c99c0159b6eacad569bd2acb031d615e99b5d549338f82be1aaabaead3874ed"
+    },
+    {
+      "file": "b5f35efe58afdaa4c5ad2cb0a1331e49363888147d7cfd827cf0d872ca406e57.webp",
+      "sha256": "b5f35efe58afdaa4c5ad2cb0a1331e49363888147d7cfd827cf0d872ca406e57"
+    },
+    {
+      "file": "18d64d3b6325ae2f5fc267dccca2b9fecb082be99d8924fdd2fba332ae79f2ef.webp",
+      "sha256": "18d64d3b6325ae2f5fc267dccca2b9fecb082be99d8924fdd2fba332ae79f2ef"
+    },
+    {
+      "file": "7fc8fd0060c194a0e64a6f01a89dedf1e2af846a7ded69e510e78dfb432ef19a.webp",
+      "sha256": "7fc8fd0060c194a0e64a6f01a89dedf1e2af846a7ded69e510e78dfb432ef19a"
+    },
+    {
+      "file": "2f0ab18bde27cf2d2a55347953f2126bd0598accc5e3fc31d917c7c340102e4d.webp",
+      "sha256": "2f0ab18bde27cf2d2a55347953f2126bd0598accc5e3fc31d917c7c340102e4d"
+    },
+    {
+      "file": "ce735d5f4d1fb75b5c10c9c06c764e4cec1a0ded6f4805e89ed5ffce48dffb75.webp",
+      "sha256": "ce735d5f4d1fb75b5c10c9c06c764e4cec1a0ded6f4805e89ed5ffce48dffb75"
+    },
+    {
+      "file": "11c796b9d110ba4be38d11378c3319168c9afdd11e210b9da161bf92bd158786.webp",
+      "sha256": "11c796b9d110ba4be38d11378c3319168c9afdd11e210b9da161bf92bd158786"
+    },
+    {
+      "file": "f429400c145e3f67499cdd82e3f6facc9c4fd03cacad7ca0ad0e2506b0777ee1.webp",
+      "sha256": "f429400c145e3f67499cdd82e3f6facc9c4fd03cacad7ca0ad0e2506b0777ee1"
+    },
+    {
+      "file": "2c3a9bbe71f14d78aa4d05c17c02709e878903d78e4fd80c2aa7484a1de50b01.webp",
+      "sha256": "2c3a9bbe71f14d78aa4d05c17c02709e878903d78e4fd80c2aa7484a1de50b01"
+    },
+    {
+      "file": "c906910fce861187cf6c9b2fcd9d5ad7e8419706f7e59c26229bdd33214947bd.webp",
+      "sha256": "c906910fce861187cf6c9b2fcd9d5ad7e8419706f7e59c26229bdd33214947bd"
+    },
+    {
+      "file": "b135c9032c2a54b243674bab6cb7254592d4055e87830c072e60d54a4b0042ad.webp",
+      "sha256": "b135c9032c2a54b243674bab6cb7254592d4055e87830c072e60d54a4b0042ad"
+    },
+    {
+      "file": "f0b3dfc6281b369aee2ec183bce9ab64d9a1139601709e33d7f46059c48badb2.webp",
+      "sha256": "f0b3dfc6281b369aee2ec183bce9ab64d9a1139601709e33d7f46059c48badb2"
+    },
+    {
+      "file": "40a8430c28056e9fba44272c59b15098148b41277ff7fafd4eb4de732526206b.webp",
+      "sha256": "40a8430c28056e9fba44272c59b15098148b41277ff7fafd4eb4de732526206b"
+    },
+    {
+      "file": "1c5aed3b6f708a5db14523d8fa890ca726bfed390910c30fb77e049b061bedca.webp",
+      "sha256": "1c5aed3b6f708a5db14523d8fa890ca726bfed390910c30fb77e049b061bedca"
+    },
+    {
+      "file": "34fdbdba7aeea333ce5639e650ca3805cd92467cf60a0785ecc5bac849827b21.webp",
+      "sha256": "34fdbdba7aeea333ce5639e650ca3805cd92467cf60a0785ecc5bac849827b21"
+    },
+    {
+      "file": "d003868aee5e8f3d51299c065a1c8262d42d17bc894f78c046b3bc78bd33b70d.webp",
+      "sha256": "d003868aee5e8f3d51299c065a1c8262d42d17bc894f78c046b3bc78bd33b70d"
+    },
+    {
+      "file": "25a58b09e25e939b546c01649c950990fb84e53fdf4224c7f5fa31841bf77e54.webp",
+      "sha256": "25a58b09e25e939b546c01649c950990fb84e53fdf4224c7f5fa31841bf77e54"
+    },
+    {
+      "file": "f04fbef10b7378bb1d53218ed81ba3d1d15574fa34b537a7c0de0063ab0d6e44.webp",
+      "sha256": "f04fbef10b7378bb1d53218ed81ba3d1d15574fa34b537a7c0de0063ab0d6e44"
+    },
+    {
+      "file": "135bab733998b06727d042ca132f66cc1045205e4d615ff1b431259659693818.webp",
+      "sha256": "135bab733998b06727d042ca132f66cc1045205e4d615ff1b431259659693818"
+    },
+    {
+      "file": "49a0479356313a40c926e89de8f14475ee86087c6ddc0ee03791ecc5c93a5075.webp",
+      "sha256": "49a0479356313a40c926e89de8f14475ee86087c6ddc0ee03791ecc5c93a5075"
+    },
+    {
+      "file": "1e65870a522f931d6ec45f7450c366d584e03df58c3487e84ae42580f6fd1d07.webp",
+      "sha256": "1e65870a522f931d6ec45f7450c366d584e03df58c3487e84ae42580f6fd1d07"
+    },
+    {
+      "file": "fb9e6ed75e58fef55f62fcaecba2b392634d17d80029898f614da90c56424ba1.webp",
+      "sha256": "fb9e6ed75e58fef55f62fcaecba2b392634d17d80029898f614da90c56424ba1"
+    },
+    {
+      "file": "ffb1bec7fa3a5502ebe151438fcc0d1cbd6da2377072921cd828a323971b5cd5.webp",
+      "sha256": "ffb1bec7fa3a5502ebe151438fcc0d1cbd6da2377072921cd828a323971b5cd5"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a12-nha-bep-dung-cu-nau-an"
+}

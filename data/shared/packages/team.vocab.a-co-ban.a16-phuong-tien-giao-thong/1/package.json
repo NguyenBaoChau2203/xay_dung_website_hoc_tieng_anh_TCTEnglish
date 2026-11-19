@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong",
+      "kind": "Set",
+      "values": {
+        "SetName": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "Description": "#a1 #a2 #transport #travel"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.0a7826cf4dd64fae8a1367f394f6fbcb",
+      "kind": "Card",
+      "values": {
+        "Term": "ferry",
+        "Definition": "ph\u00E0",
+        "ImageUrl": "asset:9a391949984ad876ad57b76d77b828af64b410742425ed5d9cc0f6c995eb76b6.webp",
+        "Phonetic": "/\u02C8f\u025B\u0279i/",
+        "Example": "We took the ferry to the island.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111i ph\u00E0 ra \u0111\u1EA3o.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a boat that carries people and cars across water",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8f\u025B\u0279i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We took the ferry to the island.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i ph\\u00E0 ra \\u0111\\u1EA3o.\u0022},{\u0022text\u0022:\u0022The ferry leaves every hour.\u0022,\u0022vi\u0022:\u0022Ph\\u00E0 kh\\u1EDFi h\\u00E0nh m\\u1ED7i gi\\u1EDD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022catch the ferry\u0022,\u0022vi\u0022:\u0022\\u0111i ph\\u00E0\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022ferries\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/11132272@N07/32547623984\u0022,\u0022author\u0022:\u0022PhiloTrek\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.3120df00f6a641e89db3357c27835102",
+      "kind": "Card",
+      "values": {
+        "Term": "cable car",
+        "Definition": "c\u00E1p treo",
+        "ImageUrl": "asset:8665eb45c01e02a0b9e8c957d7e6e3e3b4c38a6432e8923e9d1c7abf6362f5fc.webp",
+        "Phonetic": "/\u02C8ke\u026A.b\u0259l k\u0251\u0279/",
+        "Example": "We took the cable car up the mountain.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111i c\u00E1p treo l\u00EAn n\u00FAi.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small cabin that hangs from a cable and carries people up a mountain",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8ke\u026A.b\u0259l k\u0251\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We took the cable car up the mountain.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i c\\u00E1p treo l\\u00EAn n\\u00FAi.\u0022},{\u0022text\u0022:\u0022The cable car gives a wonderful view.\u0022,\u0022vi\u0022:\u0022C\\u00E1p treo mang l\\u1EA1i m\\u1ED9t khung c\\u1EA3nh tuy\\u1EC7t \\u0111\\u1EB9p.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ride the cable car\u0022,\u0022vi\u0022:\u0022\\u0111i c\\u00E1p treo\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/593175/ski-lift-the-summer\u0022,\u0022author\u0022:\u0022Markus Spiske\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.35a3faddb860480486a69858df765323",
+      "kind": "Card",
+      "values": {
+        "Term": "skateboard",
+        "Definition": "v\u00E1n tr\u01B0\u1EE3t",
+        "ImageUrl": "asset:aab7cc73b195770e4dacd3bd760053027ccf73d8bfdf507d120df9b53df0760a.webp",
+        "Phonetic": "/\u02C8ske\u026At.b\u0254\u0279d/",
+        "Example": "He rides his skateboard to the park.",
+        "ExampleTranslation": "C\u1EADu \u1EA5y tr\u01B0\u1EE3t v\u00E1n ra c\u00F4ng vi\u00EAn.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a short board with four small wheels that you ride standing up",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8ske\u026At.b\u0254\u02D0d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He rides his skateboard to the park.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y tr\\u01B0\\u1EE3t v\\u00E1n ra c\\u00F4ng vi\\u00EAn.\u0022},{\u0022text\u0022:\u0022My new skateboard has red wheels.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc v\\u00E1n tr\\u01B0\\u1EE3t m\\u1EDBi c\\u1EE7a t\\u00F4i c\\u00F3 b\\u00E1nh xe m\\u00E0u \\u0111\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ride a skateboard\u0022,\u0022vi\u0022:\u0022tr\\u01B0\\u1EE3t v\\u00E1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/147875007@N03/32191466483\u0022,\u0022author\u0022:\u0022Rawpixel Ltd\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.371c1b414afe4c64b8123e985306f483",
+      "kind": "Card",
+      "values": {
+        "Term": "plane",
+        "Definition": "m\u00E1y bay",
+        "ImageUrl": "asset:7c550a7c2a27db95f9b5174156cdf090a9aa64c8067879dbf1a446e88780158f.webp",
+        "Phonetic": "/p\u02B0l\u0325\u1EBD\u02D0n/",
+        "Example": "The plane takes off in ten minutes.",
+        "ExampleTranslation": "M\u00E1y bay c\u1EA5t c\u00E1nh sau m\u01B0\u1EDDi ph\u00FAt n\u1EEFa.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a vehicle with wings that flies in the sky",
+        "Cefr": "A1",
+        "PhoneticUk": "/p\u02B0l\u025B\u026A\u032Fn/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The plane takes off in ten minutes.\u0022,\u0022vi\u0022:\u0022M\\u00E1y bay c\\u1EA5t c\\u00E1nh sau m\\u01B0\\u1EDDi ph\\u00FAt n\\u1EEFa.\u0022},{\u0022text\u0022:\u0022I looked out of the plane window.\u0022,\u0022vi\u0022:\u0022T\\u00F4i nh\\u00ECn ra ngo\\u00E0i c\\u1EEDa s\\u1ED5 m\\u00E1y bay.\u0022}],\u0022synonyms\u0022:[\u0022aeroplane\u0022,\u0022airplane\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022catch a plane\u0022,\u0022vi\u0022:\u0022\\u0111i m\\u00E1y bay\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6029376/photo-image-public-domain-sky-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.3a1a9de6ec4e4068ba166c4346b78387",
+      "kind": "Card",
+      "values": {
+        "Term": "taxi",
+        "Definition": "xe taxi",
+        "ImageUrl": "asset:6f331c62a03111a8d18905da10fe8fe5d2393ea763a717372db7224e272dc89d.webp",
+        "Phonetic": "/\u02C8t\u00E6ksi/",
+        "Example": "We took a taxi to the airport.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111i taxi ra s\u00E2n bay.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a car with a driver that you pay to take you somewhere",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8t\u00E6ksi/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We took a taxi to the airport.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i taxi ra s\\u00E2n bay.\u0022},{\u0022text\u0022:\u0022The taxi arrived in five minutes.\u0022,\u0022vi\u0022:\u0022Xe taxi \\u0111\\u1EBFn sau n\\u0103m ph\\u00FAt.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022call a taxi\u0022,\u0022vi\u0022:\u0022g\\u1ECDi taxi\u0022},{\u0022text\u0022:\u0022taxi driver\u0022,\u0022vi\u0022:\u0022t\\u00E0i x\\u1EBF taxi\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/61765479@N08/9656653980\u0022,\u0022author\u0022:\u0022AMISOM Public Information\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.3a419a3ce3534541856ee46fb6300107",
+      "kind": "Card",
+      "values": {
+        "Term": "ship",
+        "Definition": "con t\u00E0u th\u1EE7y",
+        "ImageUrl": "asset:4a618de5f8b5616feab8d8ec4d527a0689b13d794bef59ab5ddba068a6e31367.webp",
+        "Phonetic": "/\u0283\u026Ap/",
+        "Example": "The ship sailed across the ocean.",
+        "ExampleTranslation": "Con t\u00E0u v\u01B0\u1EE3t qua \u0111\u1EA1i d\u01B0\u01A1ng.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very large boat that travels on the sea",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u0283\u026Ap/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The ship sailed across the ocean.\u0022,\u0022vi\u0022:\u0022Con t\\u00E0u v\\u01B0\\u1EE3t qua \\u0111\\u1EA1i d\\u01B0\\u01A1ng.\u0022},{\u0022text\u0022:\u0022A big ship carries goods to many countries.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t con t\\u00E0u l\\u1EDBn ch\\u1EDF h\\u00E0ng \\u0111\\u1EBFn nhi\\u1EC1u n\\u01B0\\u1EDBc.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cargo ship\u0022,\u0022vi\u0022:\u0022t\\u00E0u ch\\u1EDF h\\u00E0ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:StateLibQld_1_45499_South_Sea_Islanders_on_a_sailing_ship_at_Bundaberg.jpg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.3b246975cd0349a8aeb7aab2cdfee1f0",
+      "kind": "Card",
+      "values": {
+        "Term": "subway",
+        "Definition": "t\u00E0u \u0111i\u1EC7n ng\u1EA7m",
+        "ImageUrl": "asset:4fd4bac5bcbdc24d9320be8e4e3c00a511609e6359173fe866b7f82a27ba825f.webp",
+        "Phonetic": "/\u02C8s\u028Cb\u02CCwe\u026A/",
+        "Example": "I take the subway to work every day.",
+        "ExampleTranslation": "Ng\u00E0y n\u00E0o t\u00F4i c\u0169ng \u0111i t\u00E0u \u0111i\u1EC7n ng\u1EA7m \u0111i l\u00E0m.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an underground train system in a city",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8s\u028Cb\u02CCwe\u026A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I take the subway to work every day.\u0022,\u0022vi\u0022:\u0022Ng\\u00E0y n\\u00E0o t\\u00F4i c\\u0169ng \\u0111i t\\u00E0u \\u0111i\\u1EC7n ng\\u1EA7m \\u0111i l\\u00E0m.\u0022},{\u0022text\u0022:\u0022The subway is faster than the bus.\u0022,\u0022vi\u0022:\u0022T\\u00E0u \\u0111i\\u1EC7n ng\\u1EA7m nhanh h\\u01A1n xe bu\\u00FDt.\u0022}],\u0022synonyms\u0022:[\u0022metro\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022subway station\u0022,\u0022vi\u0022:\u0022ga t\\u00E0u \\u0111i\\u1EC7n ng\\u1EA7m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/62518311@N00/87586659\u0022,\u0022author\u0022:\u0022Daquella manera\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.520dbd3124524d9bb8b491477bc0e4f5",
+      "kind": "Card",
+      "values": {
+        "Term": "truck",
+        "Definition": "xe t\u1EA3i",
+        "ImageUrl": "asset:85625661c33109b2f3473aa4051b22c77acc7457ee4e8b14b699208e541130fc.webp",
+        "Phonetic": "/t\u0279\u028Ck/",
+        "Example": "The truck carries rice to the city.",
+        "ExampleTranslation": "Chi\u1EBFc xe t\u1EA3i ch\u1EDF g\u1EA1o l\u00EAn th\u00E0nh ph\u1ED1.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a big road vehicle that carries goods",
+        "Cefr": "A2",
+        "PhoneticUk": "/t\u0279\u028Ck/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The truck carries rice to the city.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc xe t\\u1EA3i ch\\u1EDF g\\u1EA1o l\\u00EAn th\\u00E0nh ph\\u1ED1.\u0022},{\u0022text\u0022:\u0022A big truck stopped in front of the shop.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t chi\\u1EBFc xe t\\u1EA3i l\\u1EDBn d\\u1EEBng tr\\u01B0\\u1EDBc c\\u1EEDa h\\u00E0ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022truck driver\u0022,\u0022vi\u0022:\u0022t\\u00E0i x\\u1EBF xe t\\u1EA3i\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5907543/photo-image-background-public-domain-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.557df13a86f946099cf6c968287cf722",
+      "kind": "Card",
+      "values": {
+        "Term": "canoe",
+        "Definition": "xu\u1ED3ng, thuy\u1EC1n nh\u1ECF ch\u00E8o tay",
+        "ImageUrl": "asset:ebbdcedb4ff5d1c356c639a317dd8e53fdbb706db5cb80b13dc3b2600a6520c8.webp",
+        "Phonetic": "/k\u0259\u02C8nu\u02D0/",
+        "Example": "We paddled a canoe down the river.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i ch\u00E8o xu\u1ED3ng xu\u00F4i d\u00F2ng s\u00F4ng.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a light narrow boat that you move with a paddle",
+        "Cefr": "A2",
+        "PhoneticUk": "/k\u0259\u02C8nu\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We paddled a canoe down the river.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i ch\\u00E8o xu\\u1ED3ng xu\\u00F4i d\\u00F2ng s\\u00F4ng.\u0022},{\u0022text\u0022:\u0022The canoe is easy to carry.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc xu\\u1ED3ng r\\u1EA5t d\\u1EC5 khi\\u00EAng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022paddle a canoe\u0022,\u0022vi\u0022:\u0022ch\\u00E8o xu\\u1ED3ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5916878/image-background-public-domain-woman\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.695e9771c0194efca114514d845e7483",
+      "kind": "Card",
+      "values": {
+        "Term": "motorbike",
+        "Definition": "xe m\u00E1y",
+        "ImageUrl": "asset:9f016dc1195c305a61bff469e0743eae04916552d30a91a69f8a4c6fd3406e2e.webp",
+        "Phonetic": "/\u02C8mo\u028At\u025A\u02CCba\u026Ak/",
+        "Example": "Many people in Vietnam ride a motorbike.",
+        "ExampleTranslation": "Nhi\u1EC1u ng\u01B0\u1EDDi \u1EDF Vi\u1EC7t Nam \u0111i xe m\u00E1y.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a two-wheeled vehicle with an engine",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8m\u0259\u028At\u0259(\u0279)\u02CCba\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Many people in Vietnam ride a motorbike.\u0022,\u0022vi\u0022:\u0022Nhi\\u1EC1u ng\\u01B0\\u1EDDi \\u1EDF Vi\\u1EC7t Nam \\u0111i xe m\\u00E1y.\u0022},{\u0022text\u0022:\u0022He parked his motorbike outside the shop.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y \\u0111\\u1ED7 xe m\\u00E1y tr\\u01B0\\u1EDBc c\\u1EEDa h\\u00E0ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ride a motorbike\u0022,\u0022vi\u0022:\u0022\\u0111i xe m\\u00E1y\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/171425013@N02/50217836752\u0022,\u0022author\u0022:\u0022GeorgeTan#2...INACTIVE NOW\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.8b8c44abcf154e6aa18f71d86153d2a5",
+      "kind": "Card",
+      "values": {
+        "Term": "train",
+        "Definition": "t\u00E0u h\u1ECFa",
+        "ImageUrl": "asset:29b7830ead38035e54daa09b1f1c732e25eb8e65ddbcdb97a5f11982f1d00b72.webp",
+        "Phonetic": "/\u02C8t\u0279e\u026An/",
+        "Example": "The train leaves at nine o\u0027clock.",
+        "ExampleTranslation": "Chuy\u1EBFn t\u00E0u kh\u1EDFi h\u00E0nh l\u00FAc ch\u00EDn gi\u1EDD.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a long vehicle that runs on rails and carries passengers",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8t\u0279e\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The train leaves at nine o\\u0027clock.\u0022,\u0022vi\u0022:\u0022Chuy\\u1EBFn t\\u00E0u kh\\u1EDFi h\\u00E0nh l\\u00FAc ch\\u00EDn gi\\u1EDD.\u0022},{\u0022text\u0022:\u0022We travelled by train to the coast.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i t\\u00E0u h\\u1ECFa \\u0111\\u1EBFn v\\u00F9ng bi\\u1EC3n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022catch a train\u0022,\u0022vi\u0022:\u0022b\\u1EAFt t\\u00E0u\u0022},{\u0022text\u0022:\u0022by train\u0022,\u0022vi\u0022:\u0022b\\u1EB1ng t\\u00E0u h\\u1ECFa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/68618467@N03/37051956094\u0022,\u0022author\u0022:\u0022NTSBgov\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.94ed98a7121c4c14b4df8058488bea4d",
+      "kind": "Card",
+      "values": {
+        "Term": "van",
+        "Definition": "xe t\u1EA3i nh\u1ECF, xe van",
+        "ImageUrl": "asset:4841931680d2e98d449bf263817325462522a72300323a99ddf36fb9137d39bb.webp",
+        "Phonetic": "/v\u00E6n/",
+        "Example": "The shop delivers goods in a white van.",
+        "ExampleTranslation": "C\u1EEDa h\u00E0ng giao h\u00E0ng b\u1EB1ng m\u1ED9t chi\u1EBFc xe van m\u00E0u tr\u1EAFng.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small covered vehicle for carrying goods or people",
+        "Cefr": "A2",
+        "PhoneticUk": "/v\u00E6n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The shop delivers goods in a white van.\u0022,\u0022vi\u0022:\u0022C\\u1EEDa h\\u00E0ng giao h\\u00E0ng b\\u1EB1ng m\\u1ED9t chi\\u1EBFc xe van m\\u00E0u tr\\u1EAFng.\u0022},{\u0022text\u0022:\u0022We went camping in a big van.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i c\\u1EAFm tr\\u1EA1i b\\u1EB1ng m\\u1ED9t chi\\u1EBFc xe van l\\u1EDBn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022delivery van\u0022,\u0022vi\u0022:\u0022xe giao h\\u00E0ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/25802865@N08/55261080397\u0022,\u0022author\u0022:\u0022chooyutshing\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.9b1630c6cdaa4d3bb5c7665c36837dbc",
+      "kind": "Card",
+      "values": {
+        "Term": "ambulance",
+        "Definition": "xe c\u1EE9u th\u01B0\u01A1ng",
+        "ImageUrl": "asset:dc6d1f77257dfa99cda633f9439160ba72800a6124ba9d32187b7afc0810092f.webp",
+        "Phonetic": "/\u02C8\u00E6m.bj\u0259\u02CCl\u00E6ns/",
+        "Example": "The ambulance arrived in five minutes.",
+        "ExampleTranslation": "Xe c\u1EE9u th\u01B0\u01A1ng \u0111\u1EBFn sau n\u0103m ph\u00FAt.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a vehicle that takes sick or hurt people to hospital",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u00E6m.bj\u0259.l\u0259ns/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The ambulance arrived in five minutes.\u0022,\u0022vi\u0022:\u0022Xe c\\u1EE9u th\\u01B0\\u01A1ng \\u0111\\u1EBFn sau n\\u0103m ph\\u00FAt.\u0022},{\u0022text\u0022:\u0022Please call an ambulance quickly.\u0022,\u0022vi\u0022:\u0022L\\u00E0m \\u01A1n g\\u1ECDi xe c\\u1EE9u th\\u01B0\\u01A1ng nhanh l\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022call an ambulance\u0022,\u0022vi\u0022:\u0022g\\u1ECDi xe c\\u1EE9u th\\u01B0\\u01A1ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/57873306@N00/3044158189\u0022,\u0022author\u0022:\u0022Kim Siever\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.9b2c5d9294794d4e85beddc5e39c349b",
+      "kind": "Card",
+      "values": {
+        "Term": "fire truck",
+        "Definition": "xe c\u1EE9u h\u1ECFa",
+        "ImageUrl": "asset:8b08950bb44ed0699b442f619748a7bf41b7bac2d2f7234780d0f8978393bd10.webp",
+        "Phonetic": "/\u02C8fa\u026A.\u025A t\u0279\u028Ck/",
+        "Example": "The fire truck raced down the street.",
+        "ExampleTranslation": "Xe c\u1EE9u h\u1ECFa lao nhanh xu\u1ED1ng ph\u1ED1.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a big red vehicle that carries firefighters and water",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8fa\u026A.\u0259 t\u0279\u028Ck/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The fire truck raced down the street.\u0022,\u0022vi\u0022:\u0022Xe c\\u1EE9u h\\u1ECFa lao nhanh xu\\u1ED1ng ph\\u1ED1.\u0022},{\u0022text\u0022:\u0022Children love to see a fire truck.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB r\\u1EA5t th\\u00EDch xem xe c\\u1EE9u h\\u1ECFa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022red fire truck\u0022,\u0022vi\u0022:\u0022xe c\\u1EE9u h\\u1ECFa m\\u00E0u \\u0111\\u1ECF\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/98552965@N05/17196869198\u0022,\u0022author\u0022:\u0022josbert.lonnee\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.a2ef292ff3ee4bd9a4f9ab0ba49490a8",
+      "kind": "Card",
+      "values": {
+        "Term": "boat",
+        "Definition": "chi\u1EBFc thuy\u1EC1n",
+        "ImageUrl": "asset:96c54fc408aa8bdef4a54f215a4ab4bc5de492a7a71dfda6ba0d8824d7c5952e.webp",
+        "Phonetic": "/bo\u028A\u032Ft/",
+        "Example": "We crossed the river by boat.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i qua s\u00F4ng b\u1EB1ng thuy\u1EC1n.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small vehicle for travelling on water",
+        "Cefr": "A1",
+        "PhoneticUk": "/b\u0259\u028A\u032Ft/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We crossed the river by boat.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i qua s\\u00F4ng b\\u1EB1ng thuy\\u1EC1n.\u0022},{\u0022text\u0022:\u0022The fisherman has a small wooden boat.\u0022,\u0022vi\u0022:\u0022Ng\\u01B0\\u1EDDi ng\\u01B0 d\\u00E2n c\\u00F3 m\\u1ED9t chi\\u1EBFc thuy\\u1EC1n g\\u1ED7 nh\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022row a boat\u0022,\u0022vi\u0022:\u0022ch\\u00E8o thuy\\u1EC1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/132795455@N08/19029945846\u0022,\u0022author\u0022:\u0022Image Catalog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.a591f80390ef45e696fd68d24507fccf",
+      "kind": "Card",
+      "values": {
+        "Term": "cyclo",
+        "Definition": "x\u00EDch l\u00F4",
+        "ImageUrl": "asset:892c6a490591531dacbb8b2fcb6cee4d0e812ad62a1f4afc1fc1f18910c0082c.webp",
+        "Phonetic": "/\u02C8sa\u026Aklo\u028A/",
+        "Example": "We rode a cyclo around the old town.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0111i x\u00EDch l\u00F4 quanh khu ph\u1ED1 c\u1ED5.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a three-wheeled bicycle taxi in Vietnam",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8sa\u026Akl\u0259\u028A/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We rode a cyclo around the old town.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i x\\u00EDch l\\u00F4 quanh khu ph\\u1ED1 c\\u1ED5.\u0022},{\u0022text\u0022:\u0022The cyclo driver knows the city well.\u0022,\u0022vi\u0022:\u0022B\\u00E1c x\\u00EDch l\\u00F4 r\\u1EA5t r\\u00E0nh th\\u00E0nh ph\\u1ED1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022take a cyclo\u0022,\u0022vi\u0022:\u0022\\u0111i x\\u00EDch l\\u00F4\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish\u0022,\u0022author\u0022:\u0022TCT English content tool\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.a6962160a9db452fab2f81bc54cdd123",
+      "kind": "Card",
+      "values": {
+        "Term": "bus",
+        "Definition": "xe bu\u00FDt",
+        "ImageUrl": "asset:78b275c29bbf2e4dcef1b24dfb6c075311c081b01d0e86e57bfc3cd8b38314c1.webp",
+        "Phonetic": "/b\u028Cs/",
+        "Example": "I go to school by bus.",
+        "ExampleTranslation": "T\u00F4i \u0111i h\u1ECDc b\u1EB1ng xe bu\u00FDt.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a large vehicle that carries many passengers",
+        "Cefr": "A1",
+        "PhoneticUk": "/b\u028Cs/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I go to school by bus.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111i h\\u1ECDc b\\u1EB1ng xe bu\\u00FDt.\u0022},{\u0022text\u0022:\u0022The bus is late this morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng nay xe bu\\u00FDt \\u0111\\u1EBFn mu\\u1ED9n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022catch a bus\u0022,\u0022vi\u0022:\u0022b\\u1EAFt xe bu\\u00FDt\u0022},{\u0022text\u0022:\u0022bus stop\u0022,\u0022vi\u0022:\u0022tr\\u1EA1m xe bu\\u00FDt\u0022}],\u0022wordFamily\u0022:[],\u0022plural\u0022:\u0022buses\u0022}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/37938224@N03/24104142375\u0022,\u0022author\u0022:\u0022martin 65\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.beff7490ed264a93ab2906edcd953520",
+      "kind": "Card",
+      "values": {
+        "Term": "rocket",
+        "Definition": "t\u00EAn l\u1EEDa, t\u00E0u v\u0169 tr\u1EE5",
+        "ImageUrl": "asset:df4f697c14dffd1fb88ba3a093be8131030141e4acedd0e677b80283b58aaed6.webp",
+        "Phonetic": "/\u02C8\u0279\u0251k\u0259t/",
+        "Example": "The rocket flew into space.",
+        "ExampleTranslation": "T\u00EAn l\u1EEDa bay v\u00E0o v\u0169 tr\u1EE5.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a tall vehicle that travels into space",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0279\u0252k\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The rocket flew into space.\u0022,\u0022vi\u0022:\u0022T\\u00EAn l\\u1EEDa bay v\\u00E0o v\\u0169 tr\\u1EE5.\u0022},{\u0022text\u0022:\u0022We watched the rocket launch on television.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i xem l\\u1EC5 ph\\u00F3ng t\\u00EAn l\\u1EEDa tr\\u00EAn tivi.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022launch a rocket\u0022,\u0022vi\u0022:\u0022ph\\u00F3ng t\\u00EAn l\\u1EEDa\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/rocket-launch-7V1JEO2YXQ\u0022,\u0022author\u0022:\u0022SpaceX\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.c15a075bca024e33bbde0f3e57e1c819",
+      "kind": "Card",
+      "values": {
+        "Term": "scooter",
+        "Definition": "xe tay ga; xe tr\u01B0\u1EE3t",
+        "ImageUrl": "asset:b9dd006ca3343d5871771fac50a91943622c4e2ae8e0333474e97bf21385ec9d.webp",
+        "Phonetic": "/\u02C8sku\u02D0t\u0259(\u0279)/",
+        "Example": "She rides a pink scooter to school.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111i xe tay ga m\u00E0u h\u1ED3ng \u0111\u1EBFn tr\u01B0\u1EDDng.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a light motorbike, or a small toy you push with one foot",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8sku\u02D0t\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She rides a pink scooter to school.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111i xe tay ga m\\u00E0u h\\u1ED3ng \\u0111\\u1EBFn tr\\u01B0\\u1EDDng.\u0022},{\u0022text\u0022:\u0022My scooter is easy to park.\u0022,\u0022vi\u0022:\u0022Xe tay ga c\\u1EE7a t\\u00F4i r\\u1EA5t d\\u1EC5 \\u0111\\u1ED7.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022electric scooter\u0022,\u0022vi\u0022:\u0022xe \\u0111i\\u1EC7n tay ga\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/104736837@N03/10859689695\u0022,\u0022author\u0022:\u0022Amsterdam free photos \\u0026 pictures of the Dutch city\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.c269aa85eea24a80ac1a88b831c84b5f",
+      "kind": "Card",
+      "values": {
+        "Term": "helicopter",
+        "Definition": "m\u00E1y bay tr\u1EF1c th\u0103ng",
+        "ImageUrl": "asset:87af96b6131ce8f7f92829627ea1e770bce8828293342c3da47588ca2a22b70b.webp",
+        "Phonetic": "/\u02C8h\u025Bl\u026A\u02CCk\u0251pt\u025C\u0279/",
+        "Example": "A helicopter flew over the city.",
+        "ExampleTranslation": "M\u1ED9t chi\u1EBFc tr\u1EF1c th\u0103ng bay qua th\u00E0nh ph\u1ED1.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an aircraft with large blades on top that lift it up",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8h\u025Bl.i\u02CCk\u0252p.t\u0259(\u0279)/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A helicopter flew over the city.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t chi\\u1EBFc tr\\u1EF1c th\\u0103ng bay qua th\\u00E0nh ph\\u1ED1.\u0022},{\u0022text\u0022:\u0022The helicopter landed on the roof.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc tr\\u1EF1c th\\u0103ng h\\u1EA1 c\\u00E1nh tr\\u00EAn m\\u00E1i nh\\u00E0.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022rescue helicopter\u0022,\u0022vi\u0022:\u0022tr\\u1EF1c th\\u0103ng c\\u1EE9u h\\u1ED9\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/14091561063\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.cffb74a3cfb54a75ba5729a800bc20ad",
+      "kind": "Card",
+      "values": {
+        "Term": "sailboat",
+        "Definition": "thuy\u1EC1n bu\u1ED3m",
+        "ImageUrl": "asset:fc3c24687bdd76fd7f0c6327a1c342399ac5a996edde77b4952571b431fbf9f2.webp",
+        "Phonetic": "/\u02C8se\u026Al\u02CCbo\u028At/",
+        "Example": "A white sailboat floated on the lake.",
+        "ExampleTranslation": "M\u1ED9t chi\u1EBFc thuy\u1EC1n bu\u1ED3m tr\u1EAFng tr\u00F4i tr\u00EAn h\u1ED3.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a boat that moves by using the wind in its sails",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8se\u026Al\u02CCb\u0259\u028At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022A white sailboat floated on the lake.\u0022,\u0022vi\u0022:\u0022M\\u1ED9t chi\\u1EBFc thuy\\u1EC1n bu\\u1ED3m tr\\u1EAFng tr\\u00F4i tr\\u00EAn h\\u1ED3.\u0022},{\u0022text\u0022:\u0022He learned to sail a small sailboat.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y h\\u1ECDc l\\u00E1i m\\u1ED9t chi\\u1EBFc thuy\\u1EC1n bu\\u1ED3m nh\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022sail a sailboat\u0022,\u0022vi\u0022:\u0022l\\u00E1i thuy\\u1EC1n bu\\u1ED3m\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/11132272@N07/46651108351\u0022,\u0022author\u0022:\u0022PhiloTrek\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.d7536e29174a4702b14a133c6912e1a1",
+      "kind": "Card",
+      "values": {
+        "Term": "car",
+        "Definition": "xe \u00F4 t\u00F4",
+        "ImageUrl": "asset:fa5ea94e5f6fa08757cd7a7db6d1286afae39c932d5bc29fea1d747977628d7a.webp",
+        "Phonetic": "/k\u0251\u0279/",
+        "Example": "My father drives a small car.",
+        "ExampleTranslation": "B\u1ED1 t\u00F4i l\u00E1i m\u1ED9t chi\u1EBFc \u00F4 t\u00F4 nh\u1ECF.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a road vehicle with four wheels and an engine",
+        "Cefr": "A1",
+        "PhoneticUk": "/k\u0251\u02D0/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022My father drives a small car.\u0022,\u0022vi\u0022:\u0022B\\u1ED1 t\\u00F4i l\\u00E1i m\\u1ED9t chi\\u1EBFc \\u00F4 t\\u00F4 nh\\u1ECF.\u0022},{\u0022text\u0022:\u0022The car stopped at the red light.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc xe d\\u1EEBng l\\u1EA1i \\u1EDF \\u0111\\u00E8n \\u0111\\u1ECF.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022drive a car\u0022,\u0022vi\u0022:\u0022l\\u00E1i xe \\u00F4 t\\u00F4\u0022},{\u0022text\u0022:\u0022by car\u0022,\u0022vi\u0022:\u0022b\\u1EB1ng \\u00F4 t\\u00F4\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/6042661/cars-snowy-road-free-public-domain-cc0-photo\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.e81b8b8412b34ddebf39f550024fb113",
+      "kind": "Card",
+      "values": {
+        "Term": "tram",
+        "Definition": "xe \u0111i\u1EC7n (ch\u1EA1y tr\u00EAn ray)",
+        "ImageUrl": "asset:6cd505b6844a97ec2a8bd75003331e573e9973ff23e70865334dab98e224bffe.webp",
+        "Phonetic": "/t\u0279\u00E6m/",
+        "Example": "The tram goes along the main street.",
+        "ExampleTranslation": "Xe \u0111i\u1EC7n ch\u1EA1y d\u1ECDc ph\u1ED1 ch\u00EDnh.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an electric vehicle that runs on rails in a street",
+        "Cefr": "A2",
+        "PhoneticUk": "/t\u0279am/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The tram goes along the main street.\u0022,\u0022vi\u0022:\u0022Xe \\u0111i\\u1EC7n ch\\u1EA1y d\\u1ECDc ph\\u1ED1 ch\\u00EDnh.\u0022},{\u0022text\u0022:\u0022We took the tram to the old town.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0111i xe \\u0111i\\u1EC7n \\u0111\\u1EBFn khu ph\\u1ED1 c\\u1ED5.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022tram line\u0022,\u0022vi\u0022:\u0022tuy\\u1EBFn xe \\u0111i\\u1EC7n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/104736837@N03/10186225053\u0022,\u0022author\u0022:\u0022Amsterdam free photos \\u0026 pictures of the Dutch city\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.f09d07de59994b54bc546f8445842420",
+      "kind": "Card",
+      "values": {
+        "Term": "bicycle",
+        "Definition": "xe \u0111\u1EA1p",
+        "ImageUrl": "asset:a947daf9ae3ebc0dfeb370e4d481a0055078753cc652542e461fde71423fc0ec.webp",
+        "Phonetic": "/\u02C8ba\u026As\u026Ak(\u0259)l/",
+        "Example": "She rides a bicycle to work.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y \u0111\u1EA1p xe \u0111i l\u00E0m.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a vehicle with two wheels that you ride by pushing pedals",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8ba\u026As\u026Ak(\u0259)l/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She rides a bicycle to work.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0111\\u1EA1p xe \\u0111i l\\u00E0m.\u0022},{\u0022text\u0022:\u0022My brother got a new bicycle for his birthday.\u0022,\u0022vi\u0022:\u0022Anh trai t\\u00F4i \\u0111\\u01B0\\u1EE3c t\\u1EB7ng m\\u1ED9t chi\\u1EBFc xe \\u0111\\u1EA1p m\\u1EDBi v\\u00E0o sinh nh\\u1EADt.\u0022}],\u0022synonyms\u0022:[\u0022bike\u0022],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ride a bicycle\u0022,\u0022vi\u0022:\u0022\\u0111\\u1EA1p xe\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/88123769@N02/15655615295\u0022,\u0022author\u0022:\u0022Bernard Spragg\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong.fefa5711df06492283ed8d5e8fa17240",
+      "kind": "Card",
+      "values": {
+        "Term": "hot-air balloon",
+        "Definition": "khinh kh\u00ED c\u1EA7u",
+        "ImageUrl": "asset:c194bbdb55cbc565237f5224454ee38d2423cf3b67db8937b6fee6eccc541cf3.webp",
+        "Phonetic": "/h\u0251t \u025B\u025A b\u0259\u02C8lun/",
+        "Example": "We flew in a hot-air balloon over the valley.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i bay b\u1EB1ng khinh kh\u00ED c\u1EA7u qua thung l\u0169ng.",
+        "Topic": "Ph\u01B0\u01A1ng ti\u1EC7n giao th\u00F4ng",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a very large balloon with a basket that carries people",
+        "Cefr": "A2",
+        "PhoneticUk": "/h\u0252t \u025B\u0259\u032F b\u0259\u02C8lu\u02D0n/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We flew in a hot-air balloon over the valley.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i bay b\\u1EB1ng khinh kh\\u00ED c\\u1EA7u qua thung l\\u0169ng.\u0022},{\u0022text\u0022:\u0022The hot-air balloon was red and yellow.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc khinh kh\\u00ED c\\u1EA7u c\\u00F3 m\\u00E0u \\u0111\\u1ECF v\\u00E0 v\\u00E0ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hot-air balloon ride\u0022,\u0022vi\u0022:\u0022chuy\\u1EBFn bay khinh kh\\u00ED c\\u1EA7u\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/66741228@N05/51489651141\u0022,\u0022author\u0022:\u0022Bonnie Moreland (free images)\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "fa5ea94e5f6fa08757cd7a7db6d1286afae39c932d5bc29fea1d747977628d7a.webp",
+      "sha256": "fa5ea94e5f6fa08757cd7a7db6d1286afae39c932d5bc29fea1d747977628d7a"
+    },
+    {
+      "file": "78b275c29bbf2e4dcef1b24dfb6c075311c081b01d0e86e57bfc3cd8b38314c1.webp",
+      "sha256": "78b275c29bbf2e4dcef1b24dfb6c075311c081b01d0e86e57bfc3cd8b38314c1"
+    },
+    {
+      "file": "a947daf9ae3ebc0dfeb370e4d481a0055078753cc652542e461fde71423fc0ec.webp",
+      "sha256": "a947daf9ae3ebc0dfeb370e4d481a0055078753cc652542e461fde71423fc0ec"
+    },
+    {
+      "file": "9f016dc1195c305a61bff469e0743eae04916552d30a91a69f8a4c6fd3406e2e.webp",
+      "sha256": "9f016dc1195c305a61bff469e0743eae04916552d30a91a69f8a4c6fd3406e2e"
+    },
+    {
+      "file": "6f331c62a03111a8d18905da10fe8fe5d2393ea763a717372db7224e272dc89d.webp",
+      "sha256": "6f331c62a03111a8d18905da10fe8fe5d2393ea763a717372db7224e272dc89d"
+    },
+    {
+      "file": "29b7830ead38035e54daa09b1f1c732e25eb8e65ddbcdb97a5f11982f1d00b72.webp",
+      "sha256": "29b7830ead38035e54daa09b1f1c732e25eb8e65ddbcdb97a5f11982f1d00b72"
+    },
+    {
+      "file": "7c550a7c2a27db95f9b5174156cdf090a9aa64c8067879dbf1a446e88780158f.webp",
+      "sha256": "7c550a7c2a27db95f9b5174156cdf090a9aa64c8067879dbf1a446e88780158f"
+    },
+    {
+      "file": "4a618de5f8b5616feab8d8ec4d527a0689b13d794bef59ab5ddba068a6e31367.webp",
+      "sha256": "4a618de5f8b5616feab8d8ec4d527a0689b13d794bef59ab5ddba068a6e31367"
+    },
+    {
+      "file": "96c54fc408aa8bdef4a54f215a4ab4bc5de492a7a71dfda6ba0d8824d7c5952e.webp",
+      "sha256": "96c54fc408aa8bdef4a54f215a4ab4bc5de492a7a71dfda6ba0d8824d7c5952e"
+    },
+    {
+      "file": "9a391949984ad876ad57b76d77b828af64b410742425ed5d9cc0f6c995eb76b6.webp",
+      "sha256": "9a391949984ad876ad57b76d77b828af64b410742425ed5d9cc0f6c995eb76b6"
+    },
+    {
+      "file": "87af96b6131ce8f7f92829627ea1e770bce8828293342c3da47588ca2a22b70b.webp",
+      "sha256": "87af96b6131ce8f7f92829627ea1e770bce8828293342c3da47588ca2a22b70b"
+    },
+    {
+      "file": "85625661c33109b2f3473aa4051b22c77acc7457ee4e8b14b699208e541130fc.webp",
+      "sha256": "85625661c33109b2f3473aa4051b22c77acc7457ee4e8b14b699208e541130fc"
+    },
+    {
+      "file": "4fd4bac5bcbdc24d9320be8e4e3c00a511609e6359173fe866b7f82a27ba825f.webp",
+      "sha256": "4fd4bac5bcbdc24d9320be8e4e3c00a511609e6359173fe866b7f82a27ba825f"
+    },
+    {
+      "file": "6cd505b6844a97ec2a8bd75003331e573e9973ff23e70865334dab98e224bffe.webp",
+      "sha256": "6cd505b6844a97ec2a8bd75003331e573e9973ff23e70865334dab98e224bffe"
+    },
+    {
+      "file": "b9dd006ca3343d5871771fac50a91943622c4e2ae8e0333474e97bf21385ec9d.webp",
+      "sha256": "b9dd006ca3343d5871771fac50a91943622c4e2ae8e0333474e97bf21385ec9d"
+    },
+    {
+      "file": "dc6d1f77257dfa99cda633f9439160ba72800a6124ba9d32187b7afc0810092f.webp",
+      "sha256": "dc6d1f77257dfa99cda633f9439160ba72800a6124ba9d32187b7afc0810092f"
+    },
+    {
+      "file": "8b08950bb44ed0699b442f619748a7bf41b7bac2d2f7234780d0f8978393bd10.webp",
+      "sha256": "8b08950bb44ed0699b442f619748a7bf41b7bac2d2f7234780d0f8978393bd10"
+    },
+    {
+      "file": "4841931680d2e98d449bf263817325462522a72300323a99ddf36fb9137d39bb.webp",
+      "sha256": "4841931680d2e98d449bf263817325462522a72300323a99ddf36fb9137d39bb"
+    },
+    {
+      "file": "df4f697c14dffd1fb88ba3a093be8131030141e4acedd0e677b80283b58aaed6.webp",
+      "sha256": "df4f697c14dffd1fb88ba3a093be8131030141e4acedd0e677b80283b58aaed6"
+    },
+    {
+      "file": "8665eb45c01e02a0b9e8c957d7e6e3e3b4c38a6432e8923e9d1c7abf6362f5fc.webp",
+      "sha256": "8665eb45c01e02a0b9e8c957d7e6e3e3b4c38a6432e8923e9d1c7abf6362f5fc"
+    },
+    {
+      "file": "fc3c24687bdd76fd7f0c6327a1c342399ac5a996edde77b4952571b431fbf9f2.webp",
+      "sha256": "fc3c24687bdd76fd7f0c6327a1c342399ac5a996edde77b4952571b431fbf9f2"
+    },
+    {
+      "file": "ebbdcedb4ff5d1c356c639a317dd8e53fdbb706db5cb80b13dc3b2600a6520c8.webp",
+      "sha256": "ebbdcedb4ff5d1c356c639a317dd8e53fdbb706db5cb80b13dc3b2600a6520c8"
+    },
+    {
+      "file": "c194bbdb55cbc565237f5224454ee38d2423cf3b67db8937b6fee6eccc541cf3.webp",
+      "sha256": "c194bbdb55cbc565237f5224454ee38d2423cf3b67db8937b6fee6eccc541cf3"
+    },
+    {
+      "file": "892c6a490591531dacbb8b2fcb6cee4d0e812ad62a1f4afc1fc1f18910c0082c.webp",
+      "sha256": "892c6a490591531dacbb8b2fcb6cee4d0e812ad62a1f4afc1fc1f18910c0082c"
+    },
+    {
+      "file": "aab7cc73b195770e4dacd3bd760053027ccf73d8bfdf507d120df9b53df0760a.webp",
+      "sha256": "aab7cc73b195770e4dacd3bd760053027ccf73d8bfdf507d120df9b53df0760a"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a16-phuong-tien-giao-thong"
+}

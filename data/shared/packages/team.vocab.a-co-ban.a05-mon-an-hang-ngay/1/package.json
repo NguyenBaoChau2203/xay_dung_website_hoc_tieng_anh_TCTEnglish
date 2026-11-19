@@ -1,0 +1,676 @@
+{
+  "schemaVersion": 1,
+  "id": "team.vocab.a-co-ban.a05-mon-an-hang-ngay",
+  "version": 1,
+  "dependsOn": [
+    "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai:1"
+  ],
+  "records": [
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay",
+      "kind": "Set",
+      "values": {
+        "SetName": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "Description": "#a1 #a2 #food #meals"
+      },
+      "references": {
+        "FolderId": "team.vocab.a-co-ban.a01-dong-vat-nuoi-trang-trai.92d9a8b692664f6a8680715889ba0043",
+        "OwnerId": "owner:system"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.00af8245929d4bb69de97304a8d39298",
+      "kind": "Card",
+      "values": {
+        "Term": "soup",
+        "Definition": "s\u00FAp, canh",
+        "ImageUrl": "asset:e41393e86f9fb7cc96c7dc6ad2b5850646fd99c50d060ef98f6d4c3323b1b098.webp",
+        "Phonetic": "/sup/",
+        "Example": "The soup is very hot.",
+        "ExampleTranslation": "M\u00F3n s\u00FAp r\u1EA5t n\u00F3ng.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a hot liquid food made with vegetables or meat",
+        "Cefr": "A1",
+        "PhoneticUk": "/su\u02D0p/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022The soup is very hot.\u0022,\u0022vi\u0022:\u0022M\\u00F3n s\\u00FAp r\\u1EA5t n\\u00F3ng.\u0022},{\u0022text\u0022:\u0022My mother made chicken soup for dinner.\u0022,\u0022vi\u0022:\u0022M\\u1EB9 t\\u00F4i n\\u1EA5u s\\u00FAp g\\u00E0 cho b\\u1EEFa t\\u1ED1i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022bowl of soup\u0022,\u0022vi\u0022:\u0022m\\u1ED9t b\\u00E1t s\\u00FAp\u0022},{\u0022text\u0022:\u0022vegetable soup\u0022,\u0022vi\u0022:\u0022s\\u00FAp rau c\\u1EE7\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5916627/image-public-domain-food-white\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.08a73c5ef82b4f0ca515576aa29d01b7",
+      "kind": "Card",
+      "values": {
+        "Term": "hamburger",
+        "Definition": "b\u00E1nh hamburger",
+        "ImageUrl": "asset:b4467e742283b715467f7a0a4741f58e9a5d9836699d80dfbb72173d9d2899f0.webp",
+        "Phonetic": "/\u02C8h\u00E6m\u02CCb\u025C\u0279.\u0261\u025A/",
+        "Example": "He ordered a hamburger and a drink.",
+        "ExampleTranslation": "Anh \u1EA5y g\u1ECDi m\u1ED9t chi\u1EBFc hamburger v\u00E0 m\u1ED9t th\u1EE9c u\u1ED1ng.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a round sandwich with a meat patty inside",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8h\u00E6m\u02CCb\u025C\u02D0.\u0261\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He ordered a hamburger and a drink.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y g\\u1ECDi m\\u1ED9t chi\\u1EBFc hamburger v\\u00E0 m\\u1ED9t th\\u1EE9c u\\u1ED1ng.\u0022},{\u0022text\u0022:\u0022A hamburger comes with lettuce and tomato.\u0022,\u0022vi\u0022:\u0022B\\u00E1nh hamburger c\\u00F3 k\\u00E8m x\\u00E0 l\\u00E1ch v\\u00E0 c\\u00E0 chua.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hamburger and fries\u0022,\u0022vi\u0022:\u0022hamburger v\\u00E0 khoai t\\u00E2y chi\\u00EAn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Big_Mac_hamburger.jpg\u0022,\u0022author\u0022:\u0022Evan-Amos\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.0a6027880f38410d9af1a5f458cf437f",
+      "kind": "Card",
+      "values": {
+        "Term": "sushi",
+        "Definition": "sushi",
+        "ImageUrl": "asset:223e4ebc22b219f112449a95082326d7ae7ab572db8c2091e09807b2c9cf7ac8.webp",
+        "Phonetic": "/\u02C8su\u02D0\u0283i/",
+        "Example": "We ate sushi for dinner.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0103n sushi v\u00E0o b\u1EEFa t\u1ED1i.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a Japanese dish of cold rice with fish or vegetables",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8su\u02D0\u0283i/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We ate sushi for dinner.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0103n sushi v\\u00E0o b\\u1EEFa t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022Sushi is served with soy sauce.\u0022,\u0022vi\u0022:\u0022Sushi \\u0111\\u01B0\\u1EE3c \\u0103n c\\u00F9ng n\\u01B0\\u1EDBc t\\u01B0\\u01A1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022sushi roll\u0022,\u0022vi\u0022:\u0022sushi cu\\u1ED9n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/165868022@N02/47098028862\u0022,\u0022author\u0022:\u0022eshao5721\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.0be01316683741e7a05926216e6d7302",
+      "kind": "Card",
+      "values": {
+        "Term": "ice cream",
+        "Definition": "kem",
+        "ImageUrl": "asset:8af7617ff9e8d24883571ca779b0df0814c45231bd46afa6aafab977eebb05fa.webp",
+        "Phonetic": "/a\u026As k\u0279im/",
+        "Example": "I want a chocolate ice cream.",
+        "ExampleTranslation": "T\u00F4i mu\u1ED1n m\u1ED9t c\u00E2y kem s\u00F4-c\u00F4-la.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a sweet frozen food made from milk and sugar",
+        "Cefr": "A1",
+        "PhoneticUk": "/a\u026As k\u0279i\u02D0m/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I want a chocolate ice cream.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n m\\u1ED9t c\\u00E2y kem s\\u00F4-c\\u00F4-la.\u0022},{\u0022text\u0022:\u0022The children are eating ice cream in the sun.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB \\u0111ang \\u0103n kem d\\u01B0\\u1EDBi n\\u1EAFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ice cream cone\u0022,\u0022vi\u0022:\u0022kem \\u1ED1c qu\\u1EBF\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:It%27s_time_to_have_ice_cream_on_the_beach.jpg\u0022,\u0022author\u0022:\u0022Andy Li\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.2ea373324e054c87bd99ca7645900092",
+      "kind": "Card",
+      "values": {
+        "Term": "honey",
+        "Definition": "m\u1EADt ong",
+        "ImageUrl": "asset:d563b1bd3dc5bd37089b4df537c1a010f0996a07f85a0970842f7e3f910ce287.webp",
+        "Phonetic": "/\u02C8h\u028Cni/",
+        "Example": "I put honey in my tea.",
+        "ExampleTranslation": "T\u00F4i cho m\u1EADt ong v\u00E0o tr\u00E0.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a sweet sticky food made by bees",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8h\u028Cni/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I put honey in my tea.\u0022,\u0022vi\u0022:\u0022T\\u00F4i cho m\\u1EADt ong v\\u00E0o tr\\u00E0.\u0022},{\u0022text\u0022:\u0022She spread honey on the toast.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y ph\\u1EBFt m\\u1EADt ong l\\u00EAn b\\u00E1nh m\\u00EC n\\u01B0\\u1EDBng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022jar of honey\u0022,\u0022vi\u0022:\u0022m\\u1ED9t h\\u0169 m\\u1EADt ong\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5923869/photo-image-aesthetic-public-domain-sunflower\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.3c16eede79ab4aa0ac8ede1526d500ba",
+      "kind": "Card",
+      "values": {
+        "Term": "salad",
+        "Definition": "m\u00F3n salad, rau tr\u1ED9n",
+        "ImageUrl": "asset:e1f99e0132b6ae5cceacc5a8dea71c32b7b693c043f6e0912367393233c4e2d7.webp",
+        "Phonetic": "/\u02C8s\u00E6l\u0259d/",
+        "Example": "I eat a salad with my lunch.",
+        "ExampleTranslation": "T\u00F4i \u0103n m\u1ED9t \u0111\u0129a salad c\u00F9ng b\u1EEFa tr\u01B0a.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a cold dish of mixed raw vegetables",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8s\u00E6l\u0259d/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I eat a salad with my lunch.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0103n m\\u1ED9t \\u0111\\u0129a salad c\\u00F9ng b\\u1EEFa tr\\u01B0a.\u0022},{\u0022text\u0022:\u0022She made a fresh salad with tomatoes.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0m m\\u1ED9t \\u0111\\u0129a salad t\\u01B0\\u01A1i v\\u1EDBi c\\u00E0 chua.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022fruit salad\u0022,\u0022vi\u0022:\u0022salad tr\\u00E1i c\\u00E2y\u0022},{\u0022text\u0022:\u0022green salad\u0022,\u0022vi\u0022:\u0022salad rau xanh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://stocksnap.io/photo/salad-bowl-PLOA1CWIRK\u0022,\u0022author\u0022:\u0022FOCA Stock\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.51bc95c21ec94b2ab8b004746c1a93a2",
+      "kind": "Card",
+      "values": {
+        "Term": "dumpling",
+        "Definition": "b\u00E1nh bao, h\u00E1 c\u1EA3o",
+        "ImageUrl": "asset:48faad1ff9185c8885e6de2604bf83a07afd86267f0e7529f467206f00e83428.webp",
+        "Phonetic": "/\u02C8d\u028Cmp.l\u026A\u014B/",
+        "Example": "We made dumplings together at home.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i c\u00F9ng nhau l\u00E0m h\u00E1 c\u1EA3o \u1EDF nh\u00E0.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small piece of dough filled with meat or vegetables",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8d\u028Cmp.l\u026A\u014B/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We made dumplings together at home.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i c\\u00F9ng nhau l\\u00E0m h\\u00E1 c\\u1EA3o \\u1EDF nh\\u00E0.\u0022},{\u0022text\u0022:\u0022These dumplings are filled with pork.\u0022,\u0022vi\u0022:\u0022Nh\\u1EEFng chi\\u1EBFc h\\u00E1 c\\u1EA3o n\\u00E0y nh\\u00E2n th\\u1ECBt l\\u1EE3n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022steamed dumplings\u0022,\u0022vi\u0022:\u0022h\\u00E1 c\\u1EA3o h\\u1EA5p\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/35034347371@N01/92009159\u0022,\u0022author\u0022:\u0022roland\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.54158c749b8a4884bb7e8026e17dad9a",
+      "kind": "Card",
+      "values": {
+        "Term": "sandwich",
+        "Definition": "b\u00E1nh sandwich",
+        "ImageUrl": "asset:05c00b001eec61800f0755df3168cb7306d7e1f796527fb5a1ccc9cf63057f86.webp",
+        "Phonetic": "/\u00E6/",
+        "Example": "I made a cheese sandwich for lunch.",
+        "ExampleTranslation": "T\u00F4i l\u00E0m m\u1ED9t chi\u1EBFc sandwich ph\u00F4 mai cho b\u1EEFa tr\u01B0a.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "two slices of bread with food between them",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8s\u00E6n(d).w\u026Ad\u0361\u0292/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I made a cheese sandwich for lunch.\u0022,\u0022vi\u0022:\u0022T\\u00F4i l\\u00E0m m\\u1ED9t chi\\u1EBFc sandwich ph\\u00F4 mai cho b\\u1EEFa tr\\u01B0a.\u0022},{\u0022text\u0022:\u0022She ate a sandwich in the park.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y \\u0103n m\\u1ED9t chi\\u1EBFc sandwich trong c\\u00F4ng vi\\u00EAn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022ham sandwich\u0022,\u0022vi\u0022:\u0022sandwich gi\\u0103m b\\u00F4ng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/57873306@N00/7346865110\u0022,\u0022author\u0022:\u0022Kim Siever\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.5c3ed08896684414afe18bcf86c1bea0",
+      "kind": "Card",
+      "values": {
+        "Term": "cake",
+        "Definition": "b\u00E1nh ng\u1ECDt",
+        "ImageUrl": "asset:8ad1c9acf2397606ef9314a55d0eed79af8b1131174ee46013fc57d8c2c25bfe.webp",
+        "Phonetic": "/ke\u026Ak/",
+        "Example": "She baked a chocolate cake for his birthday.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y n\u01B0\u1EDBng m\u1ED9t chi\u1EBFc b\u00E1nh s\u00F4-c\u00F4-la cho sinh nh\u1EADt c\u1EADu \u1EA5y.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a sweet baked food, often for birthdays",
+        "Cefr": "A1",
+        "PhoneticUk": "/ke\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She baked a chocolate cake for his birthday.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y n\\u01B0\\u1EDBng m\\u1ED9t chi\\u1EBFc b\\u00E1nh s\\u00F4-c\\u00F4-la cho sinh nh\\u1EADt c\\u1EADu \\u1EA5y.\u0022},{\u0022text\u0022:\u0022Would you like a piece of cake?\u0022,\u0022vi\u0022:\u0022B\\u1EA1n c\\u00F3 mu\\u1ED1n m\\u1ED9t mi\\u1EBFng b\\u00E1nh kh\\u00F4ng?\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022birthday cake\u0022,\u0022vi\u0022:\u0022b\\u00E1nh sinh nh\\u1EADt\u0022},{\u0022text\u0022:\u0022piece of cake\u0022,\u0022vi\u0022:\u0022mi\\u1EBFng b\\u00E1nh\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5924587/photo-image-background-public-domain-table\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.625bb822ac864263a2c1b8ff0824e98b",
+      "kind": "Card",
+      "values": {
+        "Term": "spaghetti",
+        "Definition": "m\u00EC \u00DD",
+        "ImageUrl": "asset:02d6c098e985f280c479833c53af10642feebe4f53738840941079104924b8ac.webp",
+        "Phonetic": "/sp\u0259\u02C8\u0261\u025Bti/",
+        "Example": "We had spaghetti with tomato sauce.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0103n m\u00EC \u00DD v\u1EDBi s\u1ED1t c\u00E0 chua.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "long thin pasta, usually eaten with sauce",
+        "Cefr": "A2",
+        "PhoneticUk": "/sp\u0259\u02C8\u0261\u025Bti/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We had spaghetti with tomato sauce.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0103n m\\u00EC \\u00DD v\\u1EDBi s\\u1ED1t c\\u00E0 chua.\u0022},{\u0022text\u0022:\u0022The children love spaghetti.\u0022,\u0022vi\u0022:\u0022B\\u1ECDn tr\\u1EBB r\\u1EA5t th\\u00EDch m\\u00EC \\u00DD.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022spaghetti sauce\u0022,\u0022vi\u0022:\u0022s\\u1ED1t m\\u00EC \\u00DD\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/123529748@N03/17374832915\u0022,\u0022author\u0022:\u0022Cole Kennedy\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.77a736a71988485a88f9f4fc8ce513ff",
+      "kind": "Card",
+      "values": {
+        "Term": "pancake",
+        "Definition": "b\u00E1nh k\u1EBFp",
+        "ImageUrl": "asset:885afc09c7c950a7e3cbedb64d4b2287b61c138752bfe591cef60e7ad4d86a9b.webp",
+        "Phonetic": "/\u02C8p\u00E6n.ke\u026Ak/",
+        "Example": "Dad made pancakes on Sunday morning.",
+        "ExampleTranslation": "S\u00E1ng Ch\u1EE7 nh\u1EADt b\u1ED1 l\u00E0m b\u00E1nh k\u1EBFp.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thin round cake cooked in a pan",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8p\u00E6n.ke\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Dad made pancakes on Sunday morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng Ch\\u1EE7 nh\\u1EADt b\\u1ED1 l\\u00E0m b\\u00E1nh k\\u1EBFp.\u0022},{\u0022text\u0022:\u0022I put honey on my pancake.\u0022,\u0022vi\u0022:\u0022T\\u00F4i r\\u01B0\\u1EDBi m\\u1EADt ong l\\u00EAn chi\\u1EBFc b\\u00E1nh k\\u1EBFp.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022stack of pancakes\u0022,\u0022vi\u0022:\u0022ch\\u1ED3ng b\\u00E1nh k\\u1EBFp\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/35034347371@N01/2858854\u0022,\u0022author\u0022:\u0022roland\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.7ef056eb29ea4dff8392fe273deef953",
+      "kind": "Card",
+      "values": {
+        "Term": "noodles",
+        "Definition": "m\u00EC, b\u00FAn, ph\u1EDF",
+        "ImageUrl": "asset:dff0e88bf41f94cff624eb280bd960beb592b982a781b6a8556b9c5553024948.webp",
+        "Phonetic": "/\u02C8nu\u02D0d(\u0259)lz/",
+        "Example": "I had noodles for lunch.",
+        "ExampleTranslation": "T\u00F4i \u0111\u00E3 \u0103n m\u00EC v\u00E0o b\u1EEFa tr\u01B0a.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "long thin pieces of food made from flour",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8nu\u02D0d(\u0259)lz/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I had noodles for lunch.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0111\\u00E3 \\u0103n m\\u00EC v\\u00E0o b\\u1EEFa tr\\u01B0a.\u0022},{\u0022text\u0022:\u0022The noodles are hot and tasty.\u0022,\u0022vi\u0022:\u0022M\\u00F3n m\\u00EC n\\u00F3ng v\\u00E0 ngon.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022noodle soup\u0022,\u0022vi\u0022:\u0022m\\u00F3n m\\u00EC n\\u01B0\\u1EDBc\u0022},{\u0022text\u0022:\u0022instant noodles\u0022,\u0022vi\u0022:\u0022m\\u00EC \\u0103n li\\u1EC1n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/35034347371@N01/138568275\u0022,\u0022author\u0022:\u0022roland\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.7f9236f5d4d146328893b5c4bd9086d2",
+      "kind": "Card",
+      "values": {
+        "Term": "chocolate",
+        "Definition": "s\u00F4-c\u00F4-la",
+        "ImageUrl": "asset:47259177b6559681bb270c04c229e3c02abbb8ed24dc96f36f704e7e9356c412.webp",
+        "Phonetic": "/\u02C8t\u0283\u0254k(\u0259)l\u0259t/",
+        "Example": "She gave me a bar of chocolate.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y t\u1EB7ng t\u00F4i m\u1ED9t thanh s\u00F4-c\u00F4-la.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a sweet brown food made from cocoa",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8t\u0283\u0252k(\u0259)l\u0259t/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She gave me a bar of chocolate.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y t\\u1EB7ng t\\u00F4i m\\u1ED9t thanh s\\u00F4-c\\u00F4-la.\u0022},{\u0022text\u0022:\u0022Dark chocolate tastes a little bitter.\u0022,\u0022vi\u0022:\u0022S\\u00F4-c\\u00F4-la \\u0111en c\\u00F3 v\\u1ECB h\\u01A1i \\u0111\\u1EAFng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022hot chocolate\u0022,\u0022vi\u0022:\u0022s\\u00F4-c\\u00F4-la n\\u00F3ng\u0022},{\u0022text\u0022:\u0022bar of chocolate\u0022,\u0022vi\u0022:\u0022thanh s\\u00F4-c\\u00F4-la\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/198895458@N04/53097224316\u0022,\u0022author\u0022:\u0022personalgraphic.official\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.81f14778871e47caa24aa55c80bcdab2",
+      "kind": "Card",
+      "values": {
+        "Term": "french fries",
+        "Definition": "khoai t\u00E2y chi\u00EAn",
+        "ImageUrl": "asset:769e642f5dfd767a895e6cc00fa6a3ed1621302b1aa13650b889b68d4cd76d07.webp",
+        "Phonetic": "/f\u0279\u025Bnt\u0361\u0283 f\u0279a\u026Az/",
+        "Example": "I would like a burger and french fries.",
+        "ExampleTranslation": "T\u00F4i mu\u1ED1n m\u1ED9t chi\u1EBFc b\u00E1nh k\u1EB9p v\u00E0 khoai t\u00E2y chi\u00EAn.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "thin pieces of potato fried in oil",
+        "Cefr": "A2",
+        "PhoneticUk": "/f\u0279\u025Bnt\u0361\u0283 f\u0279a\u026Az/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I would like a burger and french fries.\u0022,\u0022vi\u0022:\u0022T\\u00F4i mu\\u1ED1n m\\u1ED9t chi\\u1EBFc b\\u00E1nh k\\u1EB9p v\\u00E0 khoai t\\u00E2y chi\\u00EAn.\u0022},{\u0022text\u0022:\u0022These french fries are too salty.\u0022,\u0022vi\u0022:\u0022Khoai t\\u00E2y chi\\u00EAn n\\u00E0y m\\u1EB7n qu\\u00E1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a bag of french fries\u0022,\u0022vi\u0022:\u0022m\\u1ED9t t\\u00FAi khoai t\\u00E2y chi\\u00EAn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:French_fries_%F0%9F%8D%9F.jpg\u0022,\u0022author\u0022:\u0022Fumikas Sagisavas\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.8f821bbc8b624adb9fe291d65d535fba",
+      "kind": "Card",
+      "values": {
+        "Term": "cheese",
+        "Definition": "ph\u00F4 mai",
+        "ImageUrl": "asset:c76e33f36599fe4838dc1ac1d0dca43a58046b79fd7e0b33e9a7217a931d532c.webp",
+        "Phonetic": "/t\u0361\u0283iz/",
+        "Example": "I like cheese on my sandwich.",
+        "ExampleTranslation": "T\u00F4i th\u00EDch ph\u00F4 mai trong b\u00E1nh sandwich.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a solid food made from milk",
+        "Cefr": "A1",
+        "PhoneticUk": "/t\u0361\u0283i\u02D0z/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I like cheese on my sandwich.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u00EDch ph\\u00F4 mai trong b\\u00E1nh sandwich.\u0022},{\u0022text\u0022:\u0022The mouse found a piece of cheese.\u0022,\u0022vi\u0022:\u0022Con chu\\u1ED9t t\\u00ECm th\\u1EA5y m\\u1ED9t mi\\u1EBFng ph\\u00F4 mai.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022slice of cheese\u0022,\u0022vi\u0022:\u0022l\\u00E1t ph\\u00F4 mai\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/63234672@N04/19757310168\u0022,\u0022author\u0022:\u0022Mustang Joe\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.98508c16950446a1952e15358c0dd4aa",
+      "kind": "Card",
+      "values": {
+        "Term": "egg",
+        "Definition": "qu\u1EA3 tr\u1EE9ng",
+        "ImageUrl": "asset:1bc54ce5ea378ef08b2ea68fa49079f0017737ea9fd7c6dd5c35a0bb89128416.webp",
+        "Phonetic": "/\u025B\u0261/",
+        "Example": "I eat an egg for breakfast.",
+        "ExampleTranslation": "T\u00F4i \u0103n m\u1ED9t qu\u1EA3 tr\u1EE9ng v\u00E0o b\u1EEFa s\u00E1ng.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "an oval food from a hen, often cooked for breakfast",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u025B\u0261/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I eat an egg for breakfast.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0103n m\\u1ED9t qu\\u1EA3 tr\\u1EE9ng v\\u00E0o b\\u1EEFa s\\u00E1ng.\u0022},{\u0022text\u0022:\u0022He boiled two eggs in a pot.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y lu\\u1ED9c hai qu\\u1EA3 tr\\u1EE9ng trong n\\u1ED3i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022boiled egg\u0022,\u0022vi\u0022:\u0022tr\\u1EE9ng lu\\u1ED9c\u0022},{\u0022text\u0022:\u0022fried egg\u0022,\u0022vi\u0022:\u0022tr\\u1EE9ng chi\\u00EAn\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/37996646802@N01/2543297739\u0022,\u0022author\u0022:\u0022cogdogblog\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.9cb0d17df6cf407dbc81ed18f6e131f0",
+      "kind": "Card",
+      "values": {
+        "Term": "toast",
+        "Definition": "b\u00E1nh m\u00EC n\u01B0\u1EDBng",
+        "ImageUrl": "asset:69e7b6c8c3696ab5105cd7669a3489ffdf43ea68fdd3dd9a2172287d674d3779.webp",
+        "Phonetic": "/to\u028Ast/",
+        "Example": "I have toast and jam for breakfast.",
+        "ExampleTranslation": "T\u00F4i \u0103n b\u00E1nh m\u00EC n\u01B0\u1EDBng v\u1EDBi m\u1EE9t v\u00E0o b\u1EEFa s\u00E1ng.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "slices of bread that are heated until brown",
+        "Cefr": "A1",
+        "PhoneticUk": "/t\u0259\u028Ast/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022I have toast and jam for breakfast.\u0022,\u0022vi\u0022:\u0022T\\u00F4i \\u0103n b\\u00E1nh m\\u00EC n\\u01B0\\u1EDBng v\\u1EDBi m\\u1EE9t v\\u00E0o b\\u1EEFa s\\u00E1ng.\u0022},{\u0022text\u0022:\u0022The toast is hot and crispy.\u0022,\u0022vi\u0022:\u0022B\\u00E1nh m\\u00EC n\\u01B0\\u1EDBng n\\u00F3ng v\\u00E0 gi\\u00F2n.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a slice of toast\u0022,\u0022vi\u0022:\u0022m\\u1ED9t l\\u00E1t b\\u00E1nh m\\u00EC n\\u01B0\\u1EDBng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/3303707/free-photo-image-coffee-sandwich-beverage-bread\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.ab12b37fc8284f198034cc06846aeb00",
+      "kind": "Card",
+      "values": {
+        "Term": "pizza",
+        "Definition": "b\u00E1nh pizza",
+        "ImageUrl": "asset:d7199e7db0cf22e5f6edf3507a2e597dc8760f0fd90c6e5eb5aae0be1418171d.webp",
+        "Phonetic": "/\u02C8pi.ts\u0259/",
+        "Example": "We ordered a large pizza.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i g\u1ECDi m\u1ED9t chi\u1EBFc pizza c\u1EE1 l\u1EDBn.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a flat round bread baked with cheese and tomato on top",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u02C8pi\u02D0.ts\u0259/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We ordered a large pizza.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i g\\u1ECDi m\\u1ED9t chi\\u1EBFc pizza c\\u1EE1 l\\u1EDBn.\u0022},{\u0022text\u0022:\u0022The pizza has cheese and mushrooms.\u0022,\u0022vi\u0022:\u0022Chi\\u1EBFc pizza c\\u00F3 ph\\u00F4 mai v\\u00E0 n\\u1EA5m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022slice of pizza\u0022,\u0022vi\u0022:\u0022m\\u1ED9t mi\\u1EBFng pizza\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/123529748@N03/18092872879\u0022,\u0022author\u0022:\u0022Cole Kennedy\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.ad51c37a106444c0961afca317c22fe0",
+      "kind": "Card",
+      "values": {
+        "Term": "omelette",
+        "Definition": "tr\u1EE9ng \u1ED1p la cu\u1ED9n, tr\u1EE9ng chi\u00EAn ki\u1EC3u \u00C2u",
+        "ImageUrl": "asset:8eafa9c12d0d6af3d8795469f49e950e75a3c17fc96867bb56fdd1ce2ac96d12.webp",
+        "Phonetic": "/\u02C8\u0251ml\u0259t/",
+        "Example": "She made a cheese omelette for breakfast.",
+        "ExampleTranslation": "C\u00F4 \u1EA5y l\u00E0m m\u00F3n tr\u1EE9ng cu\u1ED9n ph\u00F4 mai cho b\u1EEFa s\u00E1ng.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "eggs mixed together and fried, often folded in half",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8\u0252ml\u026At/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She made a cheese omelette for breakfast.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y l\\u00E0m m\\u00F3n tr\\u1EE9ng cu\\u1ED9n ph\\u00F4 mai cho b\\u1EEFa s\\u00E1ng.\u0022},{\u0022text\u0022:\u0022The omelette has ham and onion inside.\u0022,\u0022vi\u0022:\u0022M\\u00F3n tr\\u1EE9ng cu\\u1ED9n c\\u00F3 gi\\u0103m b\\u00F4ng v\\u00E0 h\\u00E0nh b\\u00EAn trong.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022cheese omelette\u0022,\u0022vi\u0022:\u0022tr\\u1EE9ng cu\\u1ED9n ph\\u00F4 mai\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/157234067@N03/46829521764\u0022,\u0022author\u0022:\u0022Figuer_18\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.b072c8f9a5e54d7b8c16c62eb0b684f6",
+      "kind": "Card",
+      "values": {
+        "Term": "sausage",
+        "Definition": "x\u00FAc x\u00EDch",
+        "ImageUrl": "asset:1834b308d6946a728c35128c9c1b5e6c3fb6c24d93df40c9a56978ac51f3b2b2.webp",
+        "Phonetic": "/\u02C8s\u0254s\u026Ad\u0361\u0292/",
+        "Example": "We cooked sausages on the grill.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i n\u01B0\u1EDBng x\u00FAc x\u00EDch tr\u00EAn v\u1EC9.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "minced meat pressed into a long thin shape",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8s\u0252s\u026Ad\u0361\u0292/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We cooked sausages on the grill.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i n\\u01B0\\u1EDBng x\\u00FAc x\\u00EDch tr\\u00EAn v\\u1EC9.\u0022},{\u0022text\u0022:\u0022He had a sausage for breakfast.\u0022,\u0022vi\u0022:\u0022C\\u1EADu \\u1EA5y \\u0103n m\\u1ED9t c\\u00E2y x\\u00FAc x\\u00EDch v\\u00E0o b\\u1EEFa s\\u00E1ng.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022grilled sausage\u0022,\u0022vi\u0022:\u0022x\\u00FAc x\\u00EDch n\\u01B0\\u1EDBng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5917729/image-public-domain-food-free\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.c75deb6a5f8c4d079be99352ee8df85a",
+      "kind": "Card",
+      "values": {
+        "Term": "steak",
+        "Definition": "b\u00EDt t\u1EBFt",
+        "ImageUrl": "asset:a74de3c96a1acfcfb015370a23b99096b3f680571c7dc40d117279be762ee509.webp",
+        "Phonetic": "/ste\u026Ak/",
+        "Example": "He ordered a steak with potatoes.",
+        "ExampleTranslation": "Anh \u1EA5y g\u1ECDi m\u00F3n b\u00EDt t\u1EBFt v\u1EDBi khoai t\u00E2y.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a thick flat piece of beef that is cooked",
+        "Cefr": "A2",
+        "PhoneticUk": "/ste\u026Ak/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022He ordered a steak with potatoes.\u0022,\u0022vi\u0022:\u0022Anh \\u1EA5y g\\u1ECDi m\\u00F3n b\\u00EDt t\\u1EBFt v\\u1EDBi khoai t\\u00E2y.\u0022},{\u0022text\u0022:\u0022The steak was cooked just right.\u0022,\u0022vi\u0022:\u0022Mi\\u1EBFng b\\u00EDt t\\u1EBFt \\u0111\\u01B0\\u1EE3c n\\u1EA5u v\\u1EEBa ch\\u00EDn.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022grilled steak\u0022,\u0022vi\u0022:\u0022b\\u00EDt t\\u1EBFt n\\u01B0\\u1EDBng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.flickr.com/photos/35034347371@N01/180773035\u0022,\u0022author\u0022:\u0022roland\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.cfabf5c68aa3475d8752bc47e970d0c5",
+      "kind": "Card",
+      "values": {
+        "Term": "cookie",
+        "Definition": "b\u00E1nh quy",
+        "ImageUrl": "asset:3875c122ba7a1ef55150dc98ac66d30d801c0697be36cc03bb3674921b5357d7.webp",
+        "Phonetic": "/\u02C8k\u028Aki/",
+        "Example": "Grandma baked cookies for us.",
+        "ExampleTranslation": "B\u00E0 n\u01B0\u1EDBng b\u00E1nh quy cho ch\u00FAng t\u00F4i.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a small, flat, sweet baked snack",
+        "Cefr": "A2",
+        "PhoneticUk": "/\u02C8k\u028Aki/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022Grandma baked cookies for us.\u0022,\u0022vi\u0022:\u0022B\\u00E0 n\\u01B0\\u1EDBng b\\u00E1nh quy cho ch\\u00FAng t\\u00F4i.\u0022},{\u0022text\u0022:\u0022I dipped my cookie in milk.\u0022,\u0022vi\u0022:\u0022T\\u00F4i ch\\u1EA5m chi\\u1EBFc b\\u00E1nh quy v\\u00E0o s\\u1EEFa.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022chocolate chip cookie\u0022,\u0022vi\u0022:\u0022b\\u00E1nh quy s\\u00F4-c\\u00F4-la chip\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://wordpress.org/photos/photo/133621d874/\u0022,\u0022author\u0022:\u0022mdburnette\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.d86dade224d442c4b5f67620a259e7ca",
+      "kind": "Card",
+      "values": {
+        "Term": "fried chicken",
+        "Definition": "g\u00E0 r\u00E1n",
+        "ImageUrl": "asset:86dde795f3e95b5d2fb1fbc8e3e0b58683c5443f69375ab53b4591b346f91153.webp",
+        "Phonetic": "/f\u0279a\u026Ad \u02C8t\u0361\u0283\u026Ak\u026An/",
+        "Example": "We ordered fried chicken for dinner.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i g\u1ECDi g\u00E0 r\u00E1n cho b\u1EEFa t\u1ED1i.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "pieces of chicken cooked in hot oil",
+        "Cefr": "A2",
+        "PhoneticUk": "/f\u0279a\u026Ad \u02C8t\u0361\u0283\u026Ak\u026An/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We ordered fried chicken for dinner.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i g\\u1ECDi g\\u00E0 r\\u00E1n cho b\\u1EEFa t\\u1ED1i.\u0022},{\u0022text\u0022:\u0022The fried chicken is crispy outside.\u0022,\u0022vi\u0022:\u0022G\\u00E0 r\\u00E1n gi\\u00F2n \\u1EDF b\\u00EAn ngo\\u00E0i.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022crispy fried chicken\u0022,\u0022vi\u0022:\u0022g\\u00E0 r\\u00E1n gi\\u00F2n\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:Fried-Chicken-Set.jpg\u0022,\u0022author\u0022:\u0022Evan-Amos\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.ef6fed56a2b34ec9b86cd8bb9d1e3194",
+      "kind": "Card",
+      "values": {
+        "Term": "rice",
+        "Definition": "c\u01A1m, g\u1EA1o",
+        "ImageUrl": "asset:65df2f421d43525a9659839179d53352ef7f2ab0b88a71e8a6e63039243a0494.webp",
+        "Phonetic": "/\u0279a\u026As/",
+        "Example": "We eat rice every day.",
+        "ExampleTranslation": "Ch\u00FAng t\u00F4i \u0103n c\u01A1m m\u1ED7i ng\u00E0y.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "small white grains that people cook and eat",
+        "Cefr": "A1",
+        "PhoneticUk": "/\u0279a\u026As/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022We eat rice every day.\u0022,\u0022vi\u0022:\u0022Ch\\u00FAng t\\u00F4i \\u0103n c\\u01A1m m\\u1ED7i ng\\u00E0y.\u0022},{\u0022text\u0022:\u0022She served the fish with a bowl of rice.\u0022,\u0022vi\u0022:\u0022C\\u00F4 \\u1EA5y d\\u1ECDn m\\u00F3n c\\u00E1 c\\u00F9ng m\\u1ED9t b\\u00E1t c\\u01A1m.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a bowl of rice\u0022,\u0022vi\u0022:\u0022m\\u1ED9t b\\u00E1t c\\u01A1m\u0022},{\u0022text\u0022:\u0022steamed rice\u0022,\u0022vi\u0022:\u0022c\\u01A1m tr\\u1EAFng\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://commons.wikimedia.org/wiki/File:A_bowl_of_rice.jpg\u0022,\u0022author\u0022:\u0022Douglas Perkins\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    },
+    {
+      "key": "team.vocab.a-co-ban.a05-mon-an-hang-ngay.fcbfb9dda405413a8256214563577ebb",
+      "kind": "Card",
+      "values": {
+        "Term": "bread",
+        "Definition": "b\u00E1nh m\u00EC",
+        "ImageUrl": "asset:2cf949be9c7ff4af3376195689ac16a703ea42eeda5d0836db27aa041eb0a245.webp",
+        "Phonetic": "/b\u0279\u025Bd/",
+        "Example": "She buys fresh bread every morning.",
+        "ExampleTranslation": "S\u00E1ng n\u00E0o c\u00F4 \u1EA5y c\u0169ng mua b\u00E1nh m\u00EC t\u01B0\u01A1i.",
+        "Topic": "M\u00F3n \u0103n h\u1EB1ng ng\u00E0y",
+        "PartsOfSpeech": "noun",
+        "MeaningEn": "a baked food made from flour, eaten with meals",
+        "Cefr": "A1",
+        "PhoneticUk": "/b\u0279\u025Bd/",
+        "DetailsJson": "{\u0022examples\u0022:[{\u0022text\u0022:\u0022She buys fresh bread every morning.\u0022,\u0022vi\u0022:\u0022S\\u00E1ng n\\u00E0o c\\u00F4 \\u1EA5y c\\u0169ng mua b\\u00E1nh m\\u00EC t\\u01B0\\u01A1i.\u0022},{\u0022text\u0022:\u0022I like bread with butter.\u0022,\u0022vi\u0022:\u0022T\\u00F4i th\\u00EDch b\\u00E1nh m\\u00EC ph\\u1EBFt b\\u01A1.\u0022}],\u0022synonyms\u0022:[],\u0022antonyms\u0022:[],\u0022collocations\u0022:[{\u0022text\u0022:\u0022a loaf of bread\u0022,\u0022vi\u0022:\u0022m\\u1ED9t \\u1ED5 b\\u00E1nh m\\u00EC\u0022},{\u0022text\u0022:\u0022slice of bread\u0022,\u0022vi\u0022:\u0022l\\u00E1t b\\u00E1nh m\\u00EC\u0022}],\u0022wordFamily\u0022:[]}",
+        "ImageSourceJson": "{\u0022provider\u0022:\u0022upload\u0022,\u0022pageUrl\u0022:\u0022https://www.rawpixel.com/image/5970492/bread-loaf\u0022}"
+      },
+      "references": {
+        "SetId": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "65df2f421d43525a9659839179d53352ef7f2ab0b88a71e8a6e63039243a0494.webp",
+      "sha256": "65df2f421d43525a9659839179d53352ef7f2ab0b88a71e8a6e63039243a0494"
+    },
+    {
+      "file": "dff0e88bf41f94cff624eb280bd960beb592b982a781b6a8556b9c5553024948.webp",
+      "sha256": "dff0e88bf41f94cff624eb280bd960beb592b982a781b6a8556b9c5553024948"
+    },
+    {
+      "file": "2cf949be9c7ff4af3376195689ac16a703ea42eeda5d0836db27aa041eb0a245.webp",
+      "sha256": "2cf949be9c7ff4af3376195689ac16a703ea42eeda5d0836db27aa041eb0a245"
+    },
+    {
+      "file": "1bc54ce5ea378ef08b2ea68fa49079f0017737ea9fd7c6dd5c35a0bb89128416.webp",
+      "sha256": "1bc54ce5ea378ef08b2ea68fa49079f0017737ea9fd7c6dd5c35a0bb89128416"
+    },
+    {
+      "file": "e41393e86f9fb7cc96c7dc6ad2b5850646fd99c50d060ef98f6d4c3323b1b098.webp",
+      "sha256": "e41393e86f9fb7cc96c7dc6ad2b5850646fd99c50d060ef98f6d4c3323b1b098"
+    },
+    {
+      "file": "05c00b001eec61800f0755df3168cb7306d7e1f796527fb5a1ccc9cf63057f86.webp",
+      "sha256": "05c00b001eec61800f0755df3168cb7306d7e1f796527fb5a1ccc9cf63057f86"
+    },
+    {
+      "file": "d7199e7db0cf22e5f6edf3507a2e597dc8760f0fd90c6e5eb5aae0be1418171d.webp",
+      "sha256": "d7199e7db0cf22e5f6edf3507a2e597dc8760f0fd90c6e5eb5aae0be1418171d"
+    },
+    {
+      "file": "b4467e742283b715467f7a0a4741f58e9a5d9836699d80dfbb72173d9d2899f0.webp",
+      "sha256": "b4467e742283b715467f7a0a4741f58e9a5d9836699d80dfbb72173d9d2899f0"
+    },
+    {
+      "file": "e1f99e0132b6ae5cceacc5a8dea71c32b7b693c043f6e0912367393233c4e2d7.webp",
+      "sha256": "e1f99e0132b6ae5cceacc5a8dea71c32b7b693c043f6e0912367393233c4e2d7"
+    },
+    {
+      "file": "8ad1c9acf2397606ef9314a55d0eed79af8b1131174ee46013fc57d8c2c25bfe.webp",
+      "sha256": "8ad1c9acf2397606ef9314a55d0eed79af8b1131174ee46013fc57d8c2c25bfe"
+    },
+    {
+      "file": "c76e33f36599fe4838dc1ac1d0dca43a58046b79fd7e0b33e9a7217a931d532c.webp",
+      "sha256": "c76e33f36599fe4838dc1ac1d0dca43a58046b79fd7e0b33e9a7217a931d532c"
+    },
+    {
+      "file": "69e7b6c8c3696ab5105cd7669a3489ffdf43ea68fdd3dd9a2172287d674d3779.webp",
+      "sha256": "69e7b6c8c3696ab5105cd7669a3489ffdf43ea68fdd3dd9a2172287d674d3779"
+    },
+    {
+      "file": "a74de3c96a1acfcfb015370a23b99096b3f680571c7dc40d117279be762ee509.webp",
+      "sha256": "a74de3c96a1acfcfb015370a23b99096b3f680571c7dc40d117279be762ee509"
+    },
+    {
+      "file": "1834b308d6946a728c35128c9c1b5e6c3fb6c24d93df40c9a56978ac51f3b2b2.webp",
+      "sha256": "1834b308d6946a728c35128c9c1b5e6c3fb6c24d93df40c9a56978ac51f3b2b2"
+    },
+    {
+      "file": "885afc09c7c950a7e3cbedb64d4b2287b61c138752bfe591cef60e7ad4d86a9b.webp",
+      "sha256": "885afc09c7c950a7e3cbedb64d4b2287b61c138752bfe591cef60e7ad4d86a9b"
+    },
+    {
+      "file": "8eafa9c12d0d6af3d8795469f49e950e75a3c17fc96867bb56fdd1ce2ac96d12.webp",
+      "sha256": "8eafa9c12d0d6af3d8795469f49e950e75a3c17fc96867bb56fdd1ce2ac96d12"
+    },
+    {
+      "file": "02d6c098e985f280c479833c53af10642feebe4f53738840941079104924b8ac.webp",
+      "sha256": "02d6c098e985f280c479833c53af10642feebe4f53738840941079104924b8ac"
+    },
+    {
+      "file": "8af7617ff9e8d24883571ca779b0df0814c45231bd46afa6aafab977eebb05fa.webp",
+      "sha256": "8af7617ff9e8d24883571ca779b0df0814c45231bd46afa6aafab977eebb05fa"
+    },
+    {
+      "file": "47259177b6559681bb270c04c229e3c02abbb8ed24dc96f36f704e7e9356c412.webp",
+      "sha256": "47259177b6559681bb270c04c229e3c02abbb8ed24dc96f36f704e7e9356c412"
+    },
+    {
+      "file": "3875c122ba7a1ef55150dc98ac66d30d801c0697be36cc03bb3674921b5357d7.webp",
+      "sha256": "3875c122ba7a1ef55150dc98ac66d30d801c0697be36cc03bb3674921b5357d7"
+    },
+    {
+      "file": "86dde795f3e95b5d2fb1fbc8e3e0b58683c5443f69375ab53b4591b346f91153.webp",
+      "sha256": "86dde795f3e95b5d2fb1fbc8e3e0b58683c5443f69375ab53b4591b346f91153"
+    },
+    {
+      "file": "48faad1ff9185c8885e6de2604bf83a07afd86267f0e7529f467206f00e83428.webp",
+      "sha256": "48faad1ff9185c8885e6de2604bf83a07afd86267f0e7529f467206f00e83428"
+    },
+    {
+      "file": "223e4ebc22b219f112449a95082326d7ae7ab572db8c2091e09807b2c9cf7ac8.webp",
+      "sha256": "223e4ebc22b219f112449a95082326d7ae7ab572db8c2091e09807b2c9cf7ac8"
+    },
+    {
+      "file": "d563b1bd3dc5bd37089b4df537c1a010f0996a07f85a0970842f7e3f910ce287.webp",
+      "sha256": "d563b1bd3dc5bd37089b4df537c1a010f0996a07f85a0970842f7e3f910ce287"
+    },
+    {
+      "file": "769e642f5dfd767a895e6cc00fa6a3ed1621302b1aa13650b889b68d4cd76d07.webp",
+      "sha256": "769e642f5dfd767a895e6cc00fa6a3ed1621302b1aa13650b889b68d4cd76d07"
+    }
+  ],
+  "rootKey": "team.vocab.a-co-ban.a05-mon-an-hang-ngay"
+}
