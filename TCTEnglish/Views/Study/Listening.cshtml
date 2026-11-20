@@ -80,9 +80,13 @@
         }
     </div>
 
+    <div class="tl-top@(Model.HeroMode == "none" ? " tl-top--solo" : string.Empty)">
+        <partial name="_ListeningHero" model="Model" />
+        <partial name="_ListeningYoutubeCard" model="Model" />
+    </div>
+
     @if (hasLessons)
     {
-        <partial name="_ListeningHero" model="Model" />
         <partial name="_ListeningLevelRow" model="Model" />
 
         <div class="tl-filters">
@@ -143,67 +147,19 @@
         <partial name="~/Views/Shared/_StateMessage.cshtml" model="noLessons" />
     }
 
-    @if (signedIn)
+    @if (signedIn && (Model.CanImport || Model.MyLessons.Count > 0))
     {
-        <section class="tl-mine" aria-labelledby="tl-mine-title">
+        <section class="tl-mine" id="tlMine" aria-labelledby="tl-mine-title" hidden="@(Model.MyLessons.Count == 0 ? "hidden" : null)">
             <header class="tl-shelf__head">
                 <h2 id="tl-mine-title" class="tl-section-title" tabindex="-1">Bài nghe của tôi</h2>
-                <span class="tct-badge tct-badge--primary">Premium</span>
-                <span class="tl-mine__count" id="tlMineCount">@Model.MyLessons.Count bài</span>
-                @if (Model.CanImport)
-                {
-                    <button type="button" class="btn btn-link tl-shelf__all" id="tlImportOpen" aria-expanded="false" aria-controls="tlImportPanel">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Thêm từ YouTube
-                    </button>
-                }
+                <span class="tct-badge tct-badge--primary tl-shelf__count" id="tlMineShelfCount">@Model.MyLessons.Count bài</span>
             </header>
-
-            @if (Model.CanImport)
-            {
-                <div class="tl-import-panel" id="tlImportPanel" hidden>
-                    <form id="tlImport" class="tl-import k-panel" novalidate>
-                        <label class="tl-import__label" for="tlImportUrl">Dán link YouTube</label>
-                        <div class="tl-import__row">
-                            <input id="tlImportUrl" name="youtubeUrl" type="url" class="form-control" required maxlength="300"
-                                   placeholder="https://www.youtube.com/watch?v=…" autocomplete="off" aria-describedby="tlImportHint tlImportError" />
-                            <button type="submit" class="btn btn-primary" id="tlImportSubmit"><i class="fa-solid fa-plus" aria-hidden="true"></i> Thêm bài nghe</button>
-                        </div>
-                        <p class="tl-import__hint" id="tlImportHint">Chỉ hỗ trợ video tiếng Anh có phụ đề.</p>
-                        <p class="tl-import__error" id="tlImportError" role="alert" hidden></p>
-                        <div class="tl-import__status" id="tlImportStatus" role="status" aria-live="polite"></div>
-                    </form>
-                </div>
-
-                <ul class="tl-grid" id="tlMineGrid">
-                    @foreach (var mine in Model.MyLessons)
-                    {
-                        <partial name="_ListeningMyLessonCard" model="mine" />
-                    }
-                    <li class="tl-grid__item tl-grid__item--tile">
-                        <button type="button" class="tl-tile" id="tlImportTile" aria-expanded="false" aria-controls="tlImportPanel">
-                            <i class="fa-brands fa-youtube tl-tile__icon" aria-hidden="true"></i>
-                            <span class="tl-tile__label">Dán link YouTube</span>
-                        </button>
-                    </li>
-                </ul>
-            }
-            else
-            {
-                if (Model.MyLessons.Count > 0)
+            <ul class="tl-grid" id="tlMineGrid">
+                @foreach (var mine in Model.MyLessons)
                 {
-                    <ul class="tl-grid" id="tlMineGrid">
-                        @foreach (var mine in Model.MyLessons)
-                        {
-                            <partial name="_ListeningMyLessonCard" model="mine" />
-                        }
-                    </ul>
+                    <partial name="_ListeningMyLessonCard" model="mine" />
                 }
-                <div class="tl-locked k-panel">
-                    <i class="fa-solid fa-crown" aria-hidden="true"></i>
-                    <p class="tl-locked__text">Nhập video YouTube để luyện nghe là tính năng Premium.</p>
-                    <a class="btn btn-primary" href="/Account/Premium">Nâng cấp Premium</a>
-                </div>
-            }
+            </ul>
         </section>
     }
 

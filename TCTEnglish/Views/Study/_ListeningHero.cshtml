@@ -1,36 +1,13 @@
 @model TCTEnglish.ViewModels.ListeningIndexViewModel
 @using TCTEnglish.ViewModels
 @*
-    "Nghe tiếp" hero of /Home/Listening (plan 5.1, mockup F1). One card, four states:
-      continue  signed in with an unfinished lesson (ContinueLesson)
-      start     signed in, nothing started: the first unfinished lesson of the lowest level that has one
-      alldone   signed in, every public lesson finished
-      guest     not signed in
-    The dictation chip is filled by listening-index.js from localStorage (D3); it stays hidden when there is no record.
+    Photo hero of /Home/Listening (plan 2026-11-20-listening-catalog-b, 2.2, mockup B1). One card, four states chosen by the
+    service (Model.HeroMode): continue, start, review (everything finished) and guest. The lesson thumbnail is a real <img>
+    behind a dark scrim; the button is the only action, the card itself is not a link.
 *@
 @{
-    var levelOrder = new[] { "A1", "A2", "B1", "B2", "C1", "C2" };
-    ListeningLessonCardViewModel? lesson = null;
-    var state = "none";
-
-    if (!Model.IsAuthenticated)
-    {
-        // "Nghe thử một bài": the first lesson of the lowest level that has one.
-        lesson = levelOrder.SelectMany(l => Model.LessonsByLevel.TryGetValue(l, out var list) ? list : new List<ListeningLessonCardViewModel>()).FirstOrDefault();
-        state = Model.TotalLessons > 0 ? "guest" : "none";
-    }
-    else if (Model.ContinueLesson is { } resume)
-    {
-        lesson = resume;
-        state = "continue";
-    }
-    else
-    {
-        lesson = levelOrder
-            .SelectMany(l => Model.LessonsByLevel.TryGetValue(l, out var list) ? list : new List<ListeningLessonCardViewModel>())
-            .FirstOrDefault(c => c.Status != "done");
-        state = lesson != null ? "start" : Model.TotalLessons > 0 ? "alldone" : "none";
-    }
+    var lesson = Model.HeroLesson;
+    var mode = Model.HeroMode;
 
     // The tab of the first unfinished step that has content (mirrors listening-core.js nextStepHash).
     string NextHash(ListeningLessonCardViewModel c)
@@ -41,101 +18,52 @@
         return "#transcript";
     }
 
-    var thumb = lesson?.ThumbnailSrc;
-    var practiceHref = lesson == null ? "/Home/Listening" : "/Home/Listening/Practice/" + lesson.Id + (state == "continue" ? NextHash(lesson) : string.Empty);
-    var chip = state switch { "continue" => "Nghe tiếp", "start" => "Bắt đầu", _ => string.Empty };
+    var chip = mode switch { "continue" => "Nghe tiếp", "start" => "Bắt đầu", "review" => "Ôn lại", "guest" => "Nghe thử", _ => string.Empty };
+    var practiceHref = lesson == null ? "/Home/Listening" : "/Home/Listening/Practice/" + lesson.Id + (mode == "continue" ? NextHash(lesson) : string.Empty);
+    var buttonText = mode switch { "continue" => "Học tiếp", "start" => "Bắt đầu nghe", "guest" => "Nghe thử miễn phí", _ => string.Empty };
+    var meta = lesson == null
+        ? string.Empty
+        : string.Join(" · ", new[] { lesson.Level, lesson.Topic, lesson.Duration }.Where(p => !string.IsNullOrWhiteSpace(p)));
 }
-@if (state != "none")
+@if (lesson != null && mode != "none")
 {
-    <section class="tl-hero k-panel" aria-labelledby="tlHeroTitle" data-hero="@state">
-        @if (lesson != null && state != "alldone")
-        {
-            <div class="tl-hero__media k-art-box">
-                @if (thumb != null)
-                {
-                    <img class="tl-thumb" src="@thumb" alt="" width="640" height="360" loading="lazy" decoding="async" />
-                }
-                else
-                {
-                    <span class="tl-thumb--empty" aria-hidden="true"><i class="fa-solid fa-headphones"></i></span>
-                }
-                <span class="tl-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
-                @if (!string.IsNullOrWhiteSpace(lesson.Duration))
-                {
-                    <span class="tl-card__duration"><i class="fa-regular fa-clock" aria-hidden="true"></i> @lesson.Duration</span>
-                }
-            </div>
-        }
-        <div class="tl-hero__body">
-            @if (state == "guest")
+    <section class="tl-hero" aria-labelledby="tlHeroTitle" data-hero="@mode">
+        <div class="tl-hero__media" aria-hidden="true">
+            @if (lesson.ThumbnailSrc != null)
             {
-                <h2 id="tlHeroTitle" class="tl-hero__title">Đăng nhập để lưu tiến độ và tiếp tục bài đang nghe.</h2>
-                <div class="tl-hero__actions">
-                    <a class="btn btn-primary" href="/Account/Login?returnUrl=%2FHome%2FListening">Đăng nhập</a>
-                    @if (lesson != null)
-                    {
-                        <a class="btn btn-outline-primary" href="@practiceHref">Nghe thử một bài</a>
-                    }
-                </div>
+                <img class="tl-thumb" src="@lesson.ThumbnailSrc" alt="" width="640" height="360" decoding="async" />
             }
-            else if (state == "alldone")
+            else
             {
-                <span class="tct-badge tct-badge--success"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Hoàn thành</span>
-                <h2 id="tlHeroTitle" class="tl-hero__title">Bạn đã nghe hết các bài hiện có</h2>
+                <span class="tl-thumb--empty"><i class="fa-solid fa-headphones"></i></span>
+            }
+        </div>
+        <span class="tl-hero__scrim" aria-hidden="true"></span>
+        <span class="tl-hero__play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+        <div class="tl-hero__body">
+            <span class="tl-hero__chip">@chip</span>
+            @if (mode == "review")
+            {
+                <h2 id="tlHeroTitle" class="tl-hero__title tct-clamp-2 tct-break">@Model.HeroHint</h2>
+                <p class="tl-hero__meta tct-clamp-2 tct-break">Bài gần nhất: @lesson.Title</p>
                 <div class="tl-hero__actions">
                     <a class="btn btn-primary" href="/Home/Listening?status=done" data-tl-hero-done><i class="fa-solid fa-rotate-right" aria-hidden="true"></i> Ôn lại bài đã xong</a>
-                    <p class="tl-hero__stats">
-                        <strong>@Model.CompletedLessons</strong> bài xong
-                        @if (Model.AverageQuizScore is int avgDone)
-                        {
-                            <span aria-hidden="true">·</span> <strong>@avgDone%</strong> <text>quiz TB</text>
-                        }
-                    </p>
                 </div>
             }
-            else if (lesson != null)
+            else
             {
-                <span class="tct-badge tct-badge--warning">@chip</span>
                 <h2 id="tlHeroTitle" class="tl-hero__title tct-clamp-2 tct-break">@lesson.Title</h2>
-                <p class="tl-hero__meta">@lesson.Level · @lesson.Topic</p>
-                <ul class="tl-hero__steps" aria-label="Các phần của bài này">
-                    @if (lesson.TranscriptLineCount > 0)
-                    {
-                        var heard = lesson.TranscriptCompleted == true;
-                        <li class="tct-badge @(heard ? "tct-badge--success" : string.Empty)">
-                            @if (heard) { <i class="fa-solid fa-check" aria-hidden="true"></i> }
-                            Nghe lời thoại
-                        </li>
-                        <li class="tct-badge tct-badge--warning" data-tl-hero-dict data-lesson="@lesson.Id" data-total="@lesson.TranscriptLineCount" hidden>
-                            Chép chính tả <span data-tl-hero-dict-count></span>
-                        </li>
-                    }
-                    @if (lesson.QuizQuestionCount > 0)
-                    {
-                        var quizDone = lesson.QuizCompleted == true;
-                        <li class="tct-badge @(quizDone ? "tct-badge--success" : string.Empty)">
-                            @if (quizDone) { <i class="fa-solid fa-check" aria-hidden="true"></i> }
-                            Quiz@(quizDone && lesson.QuizScore.HasValue ? " " + lesson.QuizScore.Value + "%" : string.Empty)
-                        </li>
-                    }
-                    @if (lesson.VocabItemCount > 0)
-                    {
-                        var vocabDone = lesson.VocabReviewed == true;
-                        <li class="tct-badge @(vocabDone ? "tct-badge--success" : string.Empty)">
-                            @if (vocabDone) { <i class="fa-solid fa-check" aria-hidden="true"></i> }
-                            Từ vựng
-                        </li>
-                    }
-                </ul>
+                <p class="tl-hero__meta">@meta</p>
                 <div class="tl-hero__actions">
-                    <a class="btn btn-primary" href="@practiceHref"><i class="fa-solid fa-play" aria-hidden="true"></i> @(state == "continue" ? "Học tiếp" : "Bắt đầu nghe")</a>
-                    <p class="tl-hero__stats">
-                        <strong>@Model.CompletedLessons</strong> bài xong
-                        @if (Model.AverageQuizScore is int avg)
-                        {
-                            <span aria-hidden="true">·</span> <strong>@avg%</strong> <text>quiz TB</text>
-                        }
-                    </p>
+                    <a class="btn btn-primary" href="@practiceHref"><i class="fa-solid fa-play" aria-hidden="true"></i> @buttonText</a>
+                    @if (mode == "guest")
+                    {
+                        <a class="tl-hero__hint tl-hero__hint--link" href="/Account/Login?returnUrl=%2FHome%2FListening">@Model.HeroHint</a>
+                    }
+                    else if (!string.IsNullOrEmpty(Model.HeroHint))
+                    {
+                        <p class="tl-hero__hint">@Model.HeroHint</p>
+                    }
                 </div>
             }
         </div>

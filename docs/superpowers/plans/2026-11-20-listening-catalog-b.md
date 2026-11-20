@@ -336,3 +336,32 @@ _(Filled by the agent: K0 inventory and verdicts, gate records, mockup differenc
 | G6 | `git diff --check` clean for the touched files (the only hit is the owner's unstaged `appsettings.Development.json`), no new UI yet |
 | G7 | files: `ListeningService.cs`, `ListeningViewModels.cs`, `listening-core.js`, two new tests |
 | G8–G15 | not applicable yet (no UI change in this phase) |
+
+### 12.3 K2 — top row (photo hero + YouTube card)
+
+**Done:**
+- `_ListeningHero.cshtml` rebuilt: the thumbnail is a real `<img alt="">` behind a token-based scrim (92% → 86% → 22%, left to right), a decorative play circle, chip (`Nghe tiếp` / `Bắt đầu` / `Ôn lại` / `Nghe thử`), title, `{Level} · {Topic} · {Duration}`, the primary button and the hint. States come from the service (`HeroMode`). The card is not a link; the button is the only action. The review state shows `Bạn đã nghe hết các bài hiện có` with the last finished lesson underneath.
+- New `_ListeningYoutubeCard.cshtml` (three states: Premium/Admin form with the ids kept, Standard upsell `Mở khóa với Premium`, guest `Đăng nhập`), placed in `.tl-top` next to the hero (3fr : 2fr; stacked below 1200 px; the tablet card puts the field and the button in one row).
+- The old bottom import section is gone (`tlImportOpen`, `tlImportPanel`, `tlImportTile`, `tl-import*`, `tl-tile`, `tl-locked`, `tl-guest` CSS removed). `Bài nghe của tôi` stays as a section with `#tlMine`/`#tlMineGrid` (hidden when empty) until K3 moves it to the top; `#tlMineCount` (number in the card), `#tlMineShelfCount`, `#tlMineJumpWrap` stay in step through `syncMine()`; `Xem tất cả` scrolls to the section and focuses its heading.
+- `listening-index.js`: removed the hero dictation chip logic (the hero no longer shows the optional dictation chip, the hint names the missing steps instead) and the import panel toggling; delete flow now focuses the shelf heading, or the import field when no lesson is left.
+- Tests: hero tests rewritten for the four modes (`data-hero` `guest|start|continue|review`), a new YouTube-card test per role (ids present only for Premium, order hero → card → filters, old section gone), my-lessons tests and two assertions in `ListeningIntegrationTests` updated to the new copy.
+
+**Gate record (K2)**
+
+| Gate | Result |
+| --- | --- |
+| G1 | build 0 errors |
+| G2/G3 | full suite **3788 passed, 0 failed, 58 skipped** (1000 + 2788; K0 3761) |
+| G4 | node **596 passed** (K0 589) |
+| G5 | no model/migration/route change |
+| G6 | no hex/rgb/hsl in `listening.css`, no inline style/handler/`<style>` in the three views, no `bi bi-`, `git diff --check` clean for the touched files |
+| G7 | files: `Listening.cshtml`, `_ListeningHero.cshtml`, new `_ListeningYoutubeCard.cshtml`, `listening.css`, `listening-index.js`, two test files |
+| G8 | `lc-check.cjs`: guest, Standard, Premium × 1440, 1366, 1024, 768, 390, 320 and 200% zoom (720×450 at DPR 2): no element outside the viewport, no console error, no 4xx/5xx or failed request; hero and card heights match on laptop (261/261 guest, 248/248 Standard, 285/285 Premium at 1440) |
+| G9 | first look against B1: same two-column top row, chip, title, button, hint, YouTube card with chip, field, button and `Bài của tôi` line; the filter row and shelves are still the old ones until K3 |
+| G10 | hero states, YouTube card per role, my-lessons count: covered by the render tests; import and delete behaviour run in K4 |
+| G11, G12 | scheduled for K5 (keyboard, names, contrast measured on the real thumbnails) |
+| G13 | practice page untouched (its CSS/JS blocks were not edited) |
+| G14 | copy as in the plan |
+| G15 | no `innerHTML`; antiforgery and URL validation untouched (same endpoints) |
+
+Screenshots: `.tmp/listening-catalog-b/after/{guest,standard,premium}-{1440x900,1366x768,1024x768,768x1024,390x844,320x640,720x450-zoom200}.png`.

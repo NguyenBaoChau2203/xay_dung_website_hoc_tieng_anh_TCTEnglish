@@ -1,6 +1,6 @@
 /*
  * /Home/Listening: level row, status chips, topic select and search (client-side filters), level shelves,
- * hero dictation chip, import tile and delete modal, thumbnail fallback.
+ * the YouTube import card and the delete modal, thumbnail fallback.
  * Needs window.TctSets (personal-sets-common.js) and window.TctListening.core (listening-core.js).
  * DOM is built with createElement and textContent only; server data is never turned into markup.
  */
@@ -38,24 +38,6 @@
     Array.prototype.forEach.call(page.querySelectorAll('img.tl-thumb'), function (img) {
         if (img.complete && img.naturalWidth === 0) { swapBrokenThumb(img); }
     });
-
-    // ------------------------------------------------------------------ hero: dictation chip (results live in this browser only)
-
-    (function initHeroDictation() {
-        var chips = page.querySelectorAll('[data-tl-hero-dict]');
-        if (!chips.length) { return; }
-        var storage = null;
-        try { storage = window.localStorage; } catch (e) { storage = null; }
-        Array.prototype.forEach.call(chips, function (chip) {
-            var total = Number(chip.getAttribute('data-total')) || 0;
-            var summary = core.dictationStore(storage, config.userKey, chip.getAttribute('data-lesson')).summary(total);
-            if (summary.done > 0) {
-                var count = chip.querySelector('[data-tl-hero-dict-count]');
-                if (count) { count.textContent = summary.done + '/' + total; }
-                chip.hidden = false;
-            }
-        });
-    }());
 
     // ------------------------------------------------------------------ filters, shelves
 
@@ -241,46 +223,41 @@
 
     var importForm = document.getElementById('tlImport');
     var mineGrid = document.getElementById('tlMineGrid');
+    var mineSection = document.getElementById('tlMine');
     var deleteModalEl = document.getElementById('tlDeleteLesson');
     if (importForm) { initImport(); }
     if (deleteModalEl) { initDelete(); }
 
+    // "Xem tất cả" in the YouTube card: scroll to the "Bài nghe của tôi" shelf and focus its heading
+    var jumpBtn = document.getElementById('tlMineJump');
+    if (jumpBtn) {
+        jumpBtn.addEventListener('click', function () {
+            var heading = document.getElementById('tl-mine-title');
+            if (!heading || !mineSection || mineSection.hidden) { return; }
+            heading.focus();
+            heading.scrollIntoView({ block: 'start', behavior: 'auto' });
+        });
+    }
+
+    /** Keeps the count in the YouTube card, the shelf count, the shelf itself and the "Xem tất cả" button in step with the grid. */
+    function syncMine() {
+        var left = mineGrid ? mineGrid.querySelectorAll('[data-mine-id]').length : 0;
+        var cardCount = document.getElementById('tlMineCount');
+        var shelfCount = document.getElementById('tlMineShelfCount');
+        var jump = document.getElementById('tlMineJumpWrap');
+        if (cardCount) { cardCount.textContent = String(left); }
+        if (shelfCount) { shelfCount.textContent = left + ' bài'; }
+        if (mineSection) { mineSection.hidden = left === 0; }
+        if (jump) { jump.hidden = left === 0; }
+        return left;
+    }
+
     function initImport() {
-        var panel = document.getElementById('tlImportPanel');
         var urlInput = document.getElementById('tlImportUrl');
         var submit = document.getElementById('tlImportSubmit');
         var errorEl = document.getElementById('tlImportError');
         var statusEl = document.getElementById('tlImportStatus');
-        var openers = [document.getElementById('tlImportOpen'), document.getElementById('tlImportTile')].filter(Boolean);
         var busy = false;
-
-        function setExpanded(on) {
-            if (panel) { panel.hidden = !on; }
-            openers.forEach(function (btn) { btn.setAttribute('aria-expanded', on ? 'true' : 'false'); });
-        }
-
-        // the header link and the dashed tile both reveal the form and move focus into it
-        openers.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var open = panel && panel.hidden;
-                setExpanded(open);
-                if (open) {
-                    panel.scrollIntoView({ block: 'nearest', behavior: 'auto' });
-                    urlInput.focus();
-                } else {
-                    btn.focus();
-                }
-            });
-        });
-        if (panel) {
-            panel.addEventListener('keydown', function (event) {
-                if (event.key === 'Escape' && !busy) {
-                    setExpanded(false);
-                    var back = openers[0];
-                    if (back) { back.focus(); }
-                }
-            });
-        }
 
         function setError(text) {
             errorEl.textContent = text || '';
@@ -352,8 +329,6 @@
     function initDelete() {
         var bodyEl = document.getElementById('tlDeleteBody');
         var confirmBtn = document.getElementById('tlDeleteConfirm');
-        var countEl = document.getElementById('tlMineCount');
-        var heading = document.getElementById('tl-mine-title');
         var current = null;
         var modal = null;
 
@@ -379,12 +354,10 @@
             m.show(trigger);
         });
 
-        // The dashed import tile stays in the grid, so the grid is never removed; only the card and the count change.
         function removeCard(id) {
             var item = mineGrid && mineGrid.querySelector('[data-mine-id="' + id + '"]');
             if (item) { item.remove(); }
-            var left = mineGrid ? mineGrid.querySelectorAll('[data-mine-id]').length : 0;
-            if (countEl) { countEl.textContent = left + ' bài'; }
+            return syncMine();
         }
 
         confirmBtn.addEventListener('click', function () {
@@ -396,9 +369,11 @@
             Sets.fetchJson(config.urls.delete, { method: 'POST', body: form }).then(function () {
                 Sets.pending(confirmBtn, false);
                 afterHidden(function () {
-                    removeCard(target.id);
+                    var left = removeCard(target.id);
                     Sets.toast('Đã xóa bài nghe.');
-                    if (heading) { heading.focus(); }
+                    // focus stays useful: the shelf heading while there are lessons left, otherwise the import field
+                    var next = left > 0 ? document.getElementById('tl-mine-title') : document.getElementById('tlImportUrl');
+                    if (next) { next.focus(); }
                 });
                 getModal().hide();
             }).catch(function () {

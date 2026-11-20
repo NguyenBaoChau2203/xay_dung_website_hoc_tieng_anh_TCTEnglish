@@ -99,25 +99,29 @@ public sealed class ListeningRedesignRenderTests
 
     private static string Decode(string html) => WebUtility.HtmlDecode(html);
 
-    // ------------------------------------------------------------------ hero states
+    // ------------------------------------------------------------------ hero states (catalogue direction B)
 
     [Fact]
-    public async Task Catalog_Hero_Guest_InvitesToSignIn_AndOffersTheFirstLessonOfTheLowestLevel()
+    public async Task Catalog_Hero_Guest_OffersTheFirstLessonOfTheLowestLevel_AndALoginHint()
     {
         await using var factory = await CreateFactoryAsync();
         using var guest = IntegrationTestClientHelper.CreateAnonymousClient(factory);
         var html = await HtmlAsync(guest, "/Home/Listening");
         var body = PageBody(html);
+        var text = Decode(body);
 
         Assert.Contains("data-hero=\"guest\"", body, StringComparison.Ordinal);
-        Assert.Contains("Đăng nhập để lưu tiến độ và tiếp tục bài đang nghe.", Decode(body), StringComparison.Ordinal);
-        Assert.Contains("href=\"/Account/Login?returnUrl=%2FHome%2FListening\"", body, StringComparison.Ordinal);
-        Assert.Contains("Nghe thử một bài", Decode(body), StringComparison.Ordinal);
-        Assert.Matches($"class=\"btn btn-outline-primary\" href=\"/Home/Listening/Practice/{A1FullId}\"", body);
-        Assert.DoesNotContain("Học tiếp", Decode(body), StringComparison.Ordinal);
+        Assert.Contains("Nghe thử", text, StringComparison.Ordinal);
+        Assert.Contains("Ordering coffee", text, StringComparison.Ordinal);
+        Assert.Matches($"class=\"btn btn-primary\" href=\"/Home/Listening/Practice/{A1FullId}\"[^>]*>(?s:.)*?Nghe thử miễn phí", body);
+        Assert.Contains("class=\"tl-hero__hint tl-hero__hint--link\" href=\"/Account/Login?returnUrl=%2FHome%2FListening\">Đăng nhập để lưu tiến độ</a>", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("Học tiếp", text, StringComparison.Ordinal);
         Assert.DoesNotContain("tlStatuses", body, StringComparison.Ordinal); // status chips are for signed-in users
-        Assert.DoesNotContain("Bài nghe của tôi", Decode(body), StringComparison.Ordinal);
+        Assert.DoesNotContain("Bài nghe của tôi", text, StringComparison.Ordinal);
         Assert.DoesNotContain("tlImport", body, StringComparison.Ordinal);
+        // the thumbnail is a real image behind the scrim, not a CSS background
+        Assert.Matches("<div class=\"tl-hero__media\"[^>]*>\\s*<img class=\"tl-thumb\" src=\"[^\"]+\" alt=\"\"", body);
+        Assert.Contains("tl-hero__scrim", body, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -129,23 +133,21 @@ public sealed class ListeningRedesignRenderTests
         var text = Decode(body);
 
         Assert.Contains("data-hero=\"start\"", body, StringComparison.Ordinal);
-        Assert.Contains("Bắt đầu", text, StringComparison.Ordinal);
+        Assert.Contains("tl-hero__chip\">Bắt đầu<", text, StringComparison.Ordinal);
         Assert.Contains("Bắt đầu nghe", text, StringComparison.Ordinal);
         Assert.Contains($"href=\"/Home/Listening/Practice/{A1FullId}\"", body, StringComparison.Ordinal);
         Assert.Contains("Ordering coffee", text, StringComparison.Ordinal);
-        Assert.Contains("A1 · Daily", text, StringComparison.Ordinal);
-        Assert.Contains("0</strong> bài xong", text, StringComparison.Ordinal);
-        Assert.DoesNotContain("quiz TB", text, StringComparison.Ordinal); // no finished lesson, no average
+        Assert.Contains("A1 · Daily · 01:20", text, StringComparison.Ordinal);
+        Assert.Contains("5 bài đang chờ bạn", text, StringComparison.Ordinal);
     }
 
     [Fact]
-    public async Task Catalog_Hero_Continue_ShowsTheStepChipsTheNextTabAndTheStats()
+    public async Task Catalog_Hero_Continue_ShowsTheMissingStepsAndOpensTheNextTab()
     {
         await using var factory = await CreateFactoryAsync();
         await SeedAsync(factory, db =>
         {
             db.UserListeningProgresses.AddRange(
-                // a finished lesson with a stored quiz score feeds "bài xong" and "quiz TB"
                 new UserListeningProgress { UserId = StudentId, LessonId = A2Id, TranscriptCompleted = true, QuizCompleted = true, QuizScore = 90, CompletedAt = DateTime.UtcNow.AddDays(-1), LastAccessedAt = DateTime.UtcNow.AddDays(-1) },
                 // the lesson being listened to: transcript done, quiz and vocabulary still open
                 new UserListeningProgress { UserId = StudentId, LessonId = A1FullId, TranscriptCompleted = true, LastAccessedAt = DateTime.UtcNow });
@@ -155,15 +157,11 @@ public sealed class ListeningRedesignRenderTests
         var text = Decode(body);
 
         Assert.Contains("data-hero=\"continue\"", body, StringComparison.Ordinal);
-        Assert.Contains("Nghe tiếp", text, StringComparison.Ordinal);
+        Assert.Contains("tl-hero__chip\">Nghe tiếp<", text, StringComparison.Ordinal);
         Assert.Contains("Học tiếp", text, StringComparison.Ordinal);
         Assert.Contains($"href=\"/Home/Listening/Practice/{A1FullId}#quiz\"", body, StringComparison.Ordinal); // first unfinished step
-        Assert.Matches("tct-badge tct-badge--success\">\\s*<i class=\"fa-solid fa-check\"[^>]*></i>\\s*Nghe lời thoại", body);
-        Assert.Contains("data-tl-hero-dict", body, StringComparison.Ordinal);   // filled from this browser's storage
-        Assert.Matches("data-total=\"3\"", body);
-        Assert.Contains("Từ vựng", text, StringComparison.Ordinal);
-        Assert.Contains("1</strong> bài xong", text, StringComparison.Ordinal);
-        Assert.Contains("90%</strong> quiz TB", text, StringComparison.Ordinal);
+        Assert.Contains("<p class=\"tl-hero__hint\">Còn quiz và từ vựng</p>", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-tl-hero-dict", body, StringComparison.Ordinal); // the dictation chip moved out of the hero
     }
 
     [Fact]
@@ -179,11 +177,53 @@ public sealed class ListeningRedesignRenderTests
         var body = PageBody(await HtmlAsync(student, "/Home/Listening"));
         var text = Decode(body);
 
-        Assert.Contains("data-hero=\"alldone\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-hero=\"review\"", body, StringComparison.Ordinal);
+        Assert.Contains("tl-hero__chip\">Ôn lại<", text, StringComparison.Ordinal);
         Assert.Contains("Bạn đã nghe hết các bài hiện có", text, StringComparison.Ordinal);
         Assert.Contains("Ôn lại bài đã xong", text, StringComparison.Ordinal);
         Assert.Contains("href=\"/Home/Listening?status=done\"", body, StringComparison.Ordinal);
-        Assert.Contains("5</strong> bài xong", text, StringComparison.Ordinal);
+        Assert.Contains("data-tl-hero-done", body, StringComparison.Ordinal);
+    }
+
+    // ------------------------------------------------------------------ the YouTube card (top row, right)
+
+    [Fact]
+    public async Task Catalog_YoutubeCard_SitsNextToTheHero_AboveTheFilters_ForEveryRole()
+    {
+        await using var factory = await CreateFactoryAsync();
+
+        using var guest = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        var guestBody = PageBody(await HtmlAsync(guest, "/Home/Listening"));
+        Assert.Contains("Bài nghe từ YouTube", Decode(guestBody), StringComparison.Ordinal);
+        Assert.Contains("Đăng nhập để tạo bài nghe từ video YouTube.", Decode(guestBody), StringComparison.Ordinal);
+        Assert.Contains("data-yt=\"guest\"", guestBody, StringComparison.Ordinal);
+
+        using var student = Client(factory, StudentId, Roles.Standard);
+        var studentBody = PageBody(await HtmlAsync(student, "/Home/Listening"));
+        Assert.Contains("data-yt=\"locked\"", studentBody, StringComparison.Ordinal);
+        Assert.Contains("Dán link YouTube, TCT tạo lời thoại, chép chính tả và quiz cho bạn.", Decode(studentBody), StringComparison.Ordinal);
+        Assert.Matches("href=\"/Account/Premium\"[^>]*>(?s:.)*?Mở khóa với Premium", Decode(studentBody));
+        Assert.DoesNotContain("id=\"tlImport", studentBody, StringComparison.Ordinal);
+
+        using var premium = Client(factory, PremiumId, Roles.Premium);
+        var premiumBody = PageBody(await HtmlAsync(premium, "/Home/Listening"));
+        Assert.Contains("data-yt=\"import\"", premiumBody, StringComparison.Ordinal);
+        foreach (var id in new[] { "tlImport", "tlImportUrl", "tlImportSubmit", "tlImportHint", "tlImportError", "tlImportStatus" })
+            Assert.Contains($"id=\"{id}\"", premiumBody, StringComparison.Ordinal);
+        Assert.Contains("name=\"youtubeUrl\"", premiumBody, StringComparison.Ordinal);
+        Assert.Contains("Tạo bài nghe", Decode(premiumBody), StringComparison.Ordinal);
+        Assert.Contains("Chỉ hỗ trợ video tiếng Anh có phụ đề.", Decode(premiumBody), StringComparison.Ordinal);
+        Assert.Matches("Bài của tôi: <strong id=\"tlMineCount\">1</strong>", Decode(premiumBody));
+
+        // top row first: hero, then the card, then the level pills and the filters
+        var hero = premiumBody.IndexOf("class=\"tl-hero\"", StringComparison.Ordinal);
+        var card = premiumBody.IndexOf("class=\"tl-yt k-panel\"", StringComparison.Ordinal);
+        var filters = premiumBody.IndexOf("id=\"tlLevels\"", StringComparison.Ordinal);
+        Assert.True(hero > 0 && card > hero && filters > card, "hero, YouTube card, then the filters");
+
+        // the old bottom import section is gone
+        foreach (var removed in new[] { "tlImportOpen", "tlImportPanel", "tlImportTile", "Thêm từ YouTube", "tl-import-panel" })
+            Assert.DoesNotContain(removed, Decode(premiumBody), StringComparison.Ordinal);
     }
 
     // ------------------------------------------------------------------ level row
@@ -305,7 +345,7 @@ public sealed class ListeningRedesignRenderTests
     // ------------------------------------------------------------------ "Bài nghe của tôi"
 
     [Fact]
-    public async Task Catalog_MyLessons_PremiumSeesTheTileTheHiddenFormAndTheirCards()
+    public async Task Catalog_MyLessons_PremiumSeesTheFormInTheTopCardAndTheirCardsInTheirOwnSection()
     {
         await using var factory = await CreateFactoryAsync();
         using var premium = Client(factory, PremiumId, Roles.Premium);
@@ -313,12 +353,9 @@ public sealed class ListeningRedesignRenderTests
         var text = Decode(body);
 
         Assert.Contains("Bài nghe của tôi", text, StringComparison.Ordinal);
-        Assert.Contains("Thêm từ YouTube", text, StringComparison.Ordinal);
-        Assert.Matches("id=\"tlImportOpen\"[^>]*aria-expanded=\"false\"[^>]*aria-controls=\"tlImportPanel\"", body);
-        Assert.Matches("id=\"tlImportPanel\" hidden", body);
         Assert.Contains("id=\"tlImport\"", body, StringComparison.Ordinal);
-        Assert.Matches("id=\"tlImportTile\"[^>]*aria-controls=\"tlImportPanel\"", body);
-        Assert.Contains("Dán link YouTube", text, StringComparison.Ordinal);
+        Assert.Matches("id=\"tlMine\" aria-labelledby=\"tl-mine-title\">", body);   // not hidden: the user has a lesson
+        Assert.Contains("id=\"tlMineGrid\"", body, StringComparison.Ordinal);
         Assert.Contains($"data-mine-id=\"{PrivateId}\"", body, StringComparison.Ordinal);
         Assert.Contains($"data-tl-delete=\"{PrivateId}\"", body, StringComparison.Ordinal);
         Assert.Contains("Riêng tư", text, StringComparison.Ordinal);
@@ -335,10 +372,10 @@ public sealed class ListeningRedesignRenderTests
         await using var factory = await CreateFactoryAsync();
         using var student = Client(factory, StudentId, Roles.Standard);
         var studentBody = PageBody(await HtmlAsync(student, "/Home/Listening"));
-        Assert.Contains("Nhập video YouTube để luyện nghe là tính năng Premium.", Decode(studentBody), StringComparison.Ordinal);
+        Assert.Contains("Dán link YouTube, TCT tạo lời thoại, chép chính tả và quiz cho bạn.", Decode(studentBody), StringComparison.Ordinal);
         Assert.Contains("href=\"/Account/Premium\"", studentBody, StringComparison.Ordinal);
         Assert.DoesNotContain("id=\"tlImport", studentBody, StringComparison.Ordinal);
-        Assert.DoesNotContain("tlImportTile", studentBody, StringComparison.Ordinal);
+        Assert.DoesNotContain("Bài nghe của tôi", Decode(studentBody), StringComparison.Ordinal); // no own lesson, no section
 
         using var guest = IntegrationTestClientHelper.CreateAnonymousClient(factory);
         var guestHtml = await HtmlAsync(guest, "/Home/Listening");

@@ -504,13 +504,14 @@ public sealed class ListeningIntegrationTests
 
         using var guest = IntegrationTestClientHelper.CreateAnonymousClient(factory);
         var guestText = WebUtility.HtmlDecode(await IndexHtmlAsync(guest));
-        Assert.Contains("Đăng nhập để lưu tiến độ và tiếp tục bài đang nghe.", guestText, StringComparison.Ordinal);
+        Assert.Contains("Đăng nhập để lưu tiến độ", guestText, StringComparison.Ordinal);
+        Assert.Contains("Đăng nhập để tạo bài nghe từ video YouTube.", guestText, StringComparison.Ordinal);
         Assert.DoesNotContain("Tiến độ nghe của bạn", guestText, StringComparison.Ordinal);
         Assert.DoesNotContain("tlImport", guestText, StringComparison.Ordinal);
 
         using var student = Client(factory, TestDataIds.UserId, Roles.Standard);
         var studentHtml = await IndexHtmlAsync(student);
-        Assert.Contains("Nhập video YouTube để luyện nghe là tính năng Premium.", WebUtility.HtmlDecode(studentHtml), StringComparison.Ordinal);
+        Assert.Contains("Dán link YouTube, TCT tạo lời thoại, chép chính tả và quiz cho bạn.", WebUtility.HtmlDecode(studentHtml), StringComparison.Ordinal);
         Assert.DoesNotContain("id=\"tlImport\"", studentHtml, StringComparison.Ordinal);
 
         using var premium = Client(factory, PremiumOwnerId, Roles.Premium);
