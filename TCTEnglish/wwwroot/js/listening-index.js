@@ -1,5 +1,5 @@
 /*
- * /Home/Listening: level row, status chips, topic select and search (client-side filters), level shelves,
+ * /Home/Listening: band pills, status toggles, topic select and search (client-side filters), level shelves and band grid,
  * the YouTube import card and the delete modal, thumbnail fallback.
  * Needs window.TctSets (personal-sets-common.js) and window.TctListening.core (listening-core.js).
  * DOM is built with createElement and textContent only; server data is never turned into markup.
@@ -52,15 +52,25 @@
 
     if (host && levelsGroup) { initFilters(); }
 
+    /**
+     * Band pills, status toggles, topic select and search. "Tất cả" shows one shelf per level (at most shelfSize cards each);
+     * a band shows one grid of every matching lesson with paging. Cards stay in the DOM; only hidden or moved.
+     */
     function initFilters() {
-        var items = Array.prototype.map.call(host.querySelectorAll('.tl-grid__item'), function (el) {
+        var bandSection = document.getElementById('tlBand');
+        var bandTitle = document.getElementById('tlBandTitle');
+        var bandGrid = document.getElementById('tlBandGrid');
+        var bandMore = document.getElementById('tlBandMore');
+        var items = Array.prototype.map.call(host.querySelectorAll('[data-level-section] .tl-grid__item'), function (el, index) {
             return {
                 id: Number(el.getAttribute('data-id')),
                 title: el.getAttribute('data-title') || '',
                 topic: el.getAttribute('data-topic') || '',
                 level: el.getAttribute('data-level') || '',
                 status: el.getAttribute('data-status') || 'new',
-                el: el
+                el: el,
+                home: el.parentNode,
+                order: index
             };
         });
         var sections = Array.prototype.map.call(host.querySelectorAll('[data-level-section]'), function (section) {
@@ -69,116 +79,132 @@
                 el: section,
                 heading: section.querySelector('.tl-section-title'),
                 count: section.querySelector('[data-level-count]'),
-                all: section.querySelector('[data-level-all]'),
-                more: section.querySelector('[data-level-more]')
+                all: section.querySelector('[data-level-all]')
             };
         });
         var lessons = items.map(function (it) { return { id: it.id, title: it.title, topic: it.topic, level: it.level, status: it.status }; });
         var byId = {};
         items.forEach(function (it) { byId[it.id] = it; });
         var radios = Array.prototype.slice.call(levelsGroup.querySelectorAll('[role="radio"]'));
+        var availableBands = radios.map(function (r) { return r.getAttribute('data-band'); });
 
-        var state = core.parseFilterQuery(window.location.search, config.topics);
-        if (!config.isAuthenticated) { state.status = 'all'; }
-        // a level without lessons is a disabled card: never start on it
-        var startRadio = radios.filter(function (r) { return r.getAttribute('data-level') === state.level; })[0];
-        if (state.level !== 'all' && (!startRadio || startRadio.disabled)) { state.level = 'all'; }
-        var shown = {};
-
-        function resetShown() { sections.forEach(function (s) { shown[s.level] = gridSize; }); }
-        resetShown();
+        // the URL keeps a level; its band is what the pills show. A band without lessons has no pill: start on "all".
+        var parsed = core.parseFilterQuery(window.location.search, config.topics);
+        var state = {
+            band: parsed.level === 'all' ? 'all' : (core.bandOf(parsed.level) || 'all'),
+            topic: parsed.topic,
+            status: config.isAuthenticated ? parsed.status : 'all',
+            q: parsed.q
+        };
+        if (availableBands.indexOf(state.band) < 0) { state.band = 'all'; }
+        var bandShown = gridSize;
 
         function syncRadios() {
             radios.forEach(function (radio) {
-                var on = radio.getAttribute('data-level') === state.level;
+                var on = radio.getAttribute('data-band') === state.band;
                 radio.setAttribute('aria-checked', on ? 'true' : 'false');
                 radio.tabIndex = on ? 0 : -1;
             });
         }
 
-        function syncPressed(group, attr, value) {
-            if (!group) { return; }
-            Array.prototype.forEach.call(group.querySelectorAll('button[' + attr + ']'), function (btn) {
-                btn.setAttribute('aria-pressed', btn.getAttribute(attr) === value ? 'true' : 'false');
+        function syncStatuses() {
+            if (!statusGroup) { return; }
+            Array.prototype.forEach.call(statusGroup.querySelectorAll('button[data-status]'), function (btn) {
+                btn.setAttribute('aria-pressed', btn.getAttribute('data-status') === state.status ? 'true' : 'false');
             });
         }
 
-        function render(reveal) {
-            var matching = {};
-            var matchIds = core.filterLessons(lessons, state);
-            matchIds.forEach(function (id) {
-                var it = byId[id];
-                (matching[it.level] = matching[it.level] || []).push(id);
-            });
+        // back to the level grids, in the original order
+        function restoreCards() {
+            items.forEach(function (it) { if (it.el.parentNode !== it.home) { it.home.appendChild(it.el); } });
+        }
 
-            var shelves = state.level === 'all';
+        function render(reveal) {
+            var matchIds = core.filterLessons(lessons, { band: state.band, topic: state.topic, status: state.status, q: state.q });
+            var matching = {};
+            matchIds.forEach(function (id) { (matching[byId[id].level] = matching[byId[id].level] || []).push(id); });
+            var shelves = state.band === 'all';
             var focusTarget = null;
-            sections.forEach(function (s) {
-                var ids = matching[s.level] || [];
-                var inScope = shelves || s.level === state.level;
-                var limit = shelves ? shelfSize : shown[s.level];
-                var slice = core.paginate(ids, limit);
+
+            if (shelves) {
+                restoreCards();
+                bandSection.hidden = true;
+                sections.forEach(function (s) {
+                    var ids = matching[s.level] || [];
+                    var slice = core.shelfSlice(ids, shelfSize);
+                    var visible = {};
+                    slice.visible.forEach(function (id) { visible[id] = true; });
+                    items.forEach(function (it) { if (it.level === s.level) { it.el.hidden = !visible[it.id]; } });
+                    s.el.hidden = ids.length === 0;
+                    if (s.count && !config.isAuthenticated) { s.count.textContent = ids.length + ' bài'; }
+                    if (s.all) {
+                        s.all.hidden = slice.rest === 0;
+                        s.all.textContent = 'Xem cả ' + ids.length + ' bài';
+                    }
+                });
+                bandMore.hidden = true;
+            } else {
+                var slice = core.paginate(matchIds, bandShown);
                 var visible = {};
                 slice.visible.forEach(function (id) { visible[id] = true; });
-                items.forEach(function (it) {
-                    if (it.level === s.level) { it.el.hidden = !(inScope && visible[it.id]); }
-                });
-                s.el.hidden = !inScope || ids.length === 0;
-                if (s.count && !config.isAuthenticated) { s.count.textContent = ids.length + ' bài'; }
-                if (s.all) {
-                    s.all.hidden = !(shelves && ids.length > shelfSize);
-                    s.all.textContent = 'Xem cả ' + ids.length + ' bài';
+                sections.forEach(function (s) { s.el.hidden = true; });
+                items.forEach(function (it) { it.el.hidden = !visible[it.id]; });
+                // one grid for the whole band, the matching cards in lesson order
+                slice.visible.forEach(function (id) { bandGrid.appendChild(byId[id].el); });
+                items.forEach(function (it) { if (!visible[it.id] && it.el.parentNode !== it.home) { it.home.appendChild(it.el); } });
+                bandSection.hidden = matchIds.length === 0;
+                bandTitle.textContent = state.band + ' · ' + matchIds.length + ' bài';
+                bandMore.hidden = !slice.hasMore;
+                if (reveal && reveal.index < slice.visible.length) {
+                    focusTarget = byId[slice.visible[reveal.index]].el.querySelector('a');
                 }
-                if (s.more) { s.more.hidden = !(!shelves && inScope && slice.hasMore); }
-                if (reveal && reveal.level === s.level && ids.length > reveal.index) {
-                    var first = byId[ids[reveal.index]];
-                    focusTarget = first && first.el.querySelector('a');
-                }
-            });
+            }
 
             countEl.textContent = matchIds.length + ' bài nghe';
             if (emptyEl) { emptyEl.hidden = matchIds.length > 0; }
 
             syncRadios();
-            syncPressed(statusGroup, 'data-status', state.status);
+            syncStatuses();
             if (topicSelect) { topicSelect.value = state.topic; }
 
-            var query = core.buildFilterQuery(state);
+            var query = core.buildFilterQuery({ level: core.levelOfBand(state.band), topic: state.topic, status: state.status, q: state.q });
             try { window.history.replaceState(null, '', window.location.pathname + query); } catch (e) { /* ignore */ }
             if (focusTarget) { focusTarget.focus(); }
         }
 
         function change(patch) {
             Object.keys(patch).forEach(function (k) { state[k] = patch[k]; });
-            resetShown();
+            bandShown = gridSize;
             render();
         }
 
         levelsGroup.addEventListener('click', function (event) {
             var radio = event.target.closest('[role="radio"]');
-            if (radio && !radio.disabled) { change({ level: radio.getAttribute('data-level') }); }
+            if (radio) { change({ band: radio.getAttribute('data-band') }); }
         });
 
-        // radiogroup: arrows move the selection to the next enabled card, Home/End jump to the ends
+        // radiogroup: arrows move the selection, Home/End jump to the ends
         levelsGroup.addEventListener('keydown', function (event) {
-            var enabled = radios.filter(function (r) { return !r.disabled; });
-            var current = enabled.indexOf(document.activeElement);
+            var current = radios.indexOf(document.activeElement);
             if (current < 0) { return; }
             var next = -1;
-            if (event.key === 'ArrowRight' || event.key === 'ArrowDown') { next = (current + 1) % enabled.length; }
-            else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') { next = (current - 1 + enabled.length) % enabled.length; }
+            if (event.key === 'ArrowRight' || event.key === 'ArrowDown') { next = (current + 1) % radios.length; }
+            else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') { next = (current - 1 + radios.length) % radios.length; }
             else if (event.key === 'Home') { next = 0; }
-            else if (event.key === 'End') { next = enabled.length - 1; }
+            else if (event.key === 'End') { next = radios.length - 1; }
             if (next < 0) { return; }
             event.preventDefault();
-            change({ level: enabled[next].getAttribute('data-level') });
-            enabled[next].focus();
+            change({ band: radios[next].getAttribute('data-band') });
+            radios[next].focus();
         });
 
+        // status pills are toggles: pressing the selected one goes back to every status
         if (statusGroup) {
             statusGroup.addEventListener('click', function (event) {
                 var btn = event.target.closest('button[data-status]');
-                if (btn) { change({ status: btn.getAttribute('data-status') }); }
+                if (!btn) { return; }
+                var value = btn.getAttribute('data-status');
+                change({ status: state.status === value ? 'all' : value });
             });
         }
         if (topicSelect) {
@@ -188,33 +214,51 @@
             searchInput.value = state.q;
             searchInput.addEventListener('input', Sets.debounce(function () { change({ q: searchInput.value.trim() }); }, 150));
         }
+
+        function showTop(el) {
+            if (!el) { return; }
+            el.tabIndex = -1;
+            el.focus();
+            el.scrollIntoView({ block: 'start', behavior: 'auto' });
+        }
+
+        // "Xem cả n bài" on a shelf selects the band of that level and jumps to the grid
         sections.forEach(function (s) {
             if (s.all) {
                 s.all.addEventListener('click', function () {
-                    change({ level: s.level });
-                    if (s.heading) {
-                        s.heading.tabIndex = -1;
-                        s.heading.focus();
-                        s.heading.scrollIntoView({ block: 'start', behavior: 'auto' });
-                    }
-                });
-            }
-            if (s.more) {
-                s.more.addEventListener('click', function () {
-                    var from = shown[s.level];
-                    shown[s.level] = from + gridSize;
-                    render({ level: s.level, index: from });
+                    var band = core.bandOf(s.level);
+                    if (availableBands.indexOf(band) < 0) { return; }
+                    change({ band: band });
+                    showTop(bandTitle);
                 });
             }
         });
+        if (bandMore) {
+            bandMore.addEventListener('click', function () {
+                var from = bandShown;
+                bandShown = from + gridSize;
+                render({ index: from });
+            });
+        }
         if (clearBtn) {
             clearBtn.addEventListener('click', function () {
-                state = { level: 'all', topic: 'all', status: 'all', q: '' };
+                state = { band: 'all', topic: 'all', status: 'all', q: '' };
                 if (searchInput) { searchInput.value = ''; searchInput.focus(); }
-                resetShown();
+                bandShown = gridSize;
                 render();
             });
         }
+
+        // the "all lessons finished" hero offers to review them: apply the filter instead of leaving the page
+        Array.prototype.forEach.call(page.querySelectorAll('[data-tl-hero-done]'), function (link) {
+            link.addEventListener('click', function (event) {
+                if (!config.isAuthenticated) { return; }
+                event.preventDefault();
+                change({ band: 'all', topic: 'all', q: '', status: 'done' });
+                if (searchInput) { searchInput.value = ''; }
+                showTop(levelsGroup.querySelector('[aria-checked="true"]'));
+            });
+        });
 
         render();
     }

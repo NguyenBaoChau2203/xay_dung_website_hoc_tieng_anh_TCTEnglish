@@ -1,12 +1,12 @@
 @model TCTEnglish.ViewModels.ListeningLessonCardViewModel
 @*
-    One private (imported) lesson on /Home/Listening (plan 5.1). Locked cards (owner is no longer Premium) are not links.
+    One private (imported) lesson on /Home/Listening (catalog B, plan 2.4): the same card as a public lesson plus a "Riêng tư" chip on the image. Locked cards (owner is no longer Premium) are not links.
     The delete button only exists on unlocked cards; listening-index.js opens the #tlDeleteLesson modal from it.
 *@
 @{
     var thumb = Model.ThumbnailSrc;
 }
-<li class="tl-grid__item" data-mine-id="@Model.Id" data-status="@Model.Status">
+<li class="tl-grid__item" data-mine-id="@Model.Id" data-title="@Model.Title" data-status="@Model.Status">
     <article class="tl-card tl-card--mine k-card @(Model.IsLocked ? "tl-card--locked" : "tct-card--interactive")">
         @if (!Model.IsLocked)
         {
@@ -21,10 +21,7 @@
             {
                 <span class="tl-thumb--empty" aria-hidden="true"><i class="fa-solid fa-headphones"></i></span>
             }
-            @if (!Model.IsLocked)
-            {
-                <span class="tl-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
-            }
+            <span class="tl-card__private"><i class="fa-solid fa-user-shield" aria-hidden="true"></i> Riêng tư</span>
             @if (!string.IsNullOrWhiteSpace(Model.Duration))
             {
                 <span class="tl-card__duration"><i class="fa-regular fa-clock" aria-hidden="true"></i> @Model.Duration</span>
@@ -40,10 +37,9 @@
             <h3 class="tl-card__title tct-clamp-2 tct-break">@Model.Title</h3>
             <p class="tl-card__meta">
                 <span class="tct-badge tct-badge--primary">@Model.Level</span>
-                <span class="tl-card__topic"><i class="fa-solid fa-user-shield" aria-hidden="true"></i> Riêng tư</span>
                 @if (Model.Status == "done")
                 {
-                    <span class="tct-badge tct-badge--success tl-card__status"><i class="fa-solid fa-check" aria-hidden="true"></i> Đã xong</span>
+                    <span class="tct-badge tct-badge--success tl-card__status"><i class="fa-solid fa-check" aria-hidden="true"></i> Xong</span>
                 }
                 else if (Model.Status == "progress")
                 {

@@ -12,7 +12,7 @@
         (Key: "A1", Label: "A1 · Sơ cấp"),
         (Key: "A2", Label: "A2 · Cơ bản"),
         (Key: "B1", Label: "B1 · Trung cấp"),
-        (Key: "B2", Label: "B2 · Trung cao cấp"),
+        (Key: "B2", Label: "B2 · Trung cao"),
         (Key: "C1", Label: "C1 · Nâng cao"),
         (Key: "C2", Label: "C2 · Thành thạo")
     };
@@ -28,6 +28,8 @@
     var hasLessons = lessonCount > 0;
     var selectedLevel = Model.SelectedLevel ?? "all";
     var selectedTopic = Model.SelectedTopic ?? "all";
+    // a band without public lessons has no pill: then "Tất cả" stays checked
+    var selectedBand = Model.Bands.Any(b => b.Key == Model.SelectedBand) ? Model.SelectedBand : "all";
     var signedIn = Model.IsAuthenticated;
     var completedByLevel = Model.Levels.ToDictionary(l => l.Key, l => l.CompletedCount);
 
@@ -40,10 +42,11 @@
         canImport = Model.CanImport,
         userKey,
         selectedLevel,
+        selectedBand,
         selectedTopic,
         topics = Model.Topics,
-        shelfSize = 4,
-        gridSize = 8,
+        shelfSize = 5,
+        gridSize = 10,
         urls = new
         {
             create = "/Home/Listening/My/Create",
@@ -57,7 +60,7 @@
     var noLessons = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Chưa có bài nghe nào.", Message = "Nội dung đang được cập nhật." };
     var noResults = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Không có bài nào khớp bộ lọc.", Message = "Thử từ khóa khác hoặc bỏ bớt bộ lọc." };
 
-    var statusLabels = new[] { (Key: "all", Label: "Mọi trạng thái"), (Key: "new", Label: "Chưa học"), (Key: "progress", Label: "Đang học"), (Key: "done", Label: "Đã xong") };
+    var statusLabels = new[] { (Key: "new", Label: "Chưa học"), (Key: "progress", Label: "Đang học"), (Key: "done", Label: "Đã xong") };
 }
 
 @section Styles {
@@ -87,31 +90,41 @@
 
     @if (hasLessons)
     {
-        <partial name="_ListeningLevelRow" model="Model" />
-
         <div class="tl-filters">
-            @if (signedIn)
-            {
-                <div class="tl-chips" id="tlStatuses" role="group" aria-label="Lọc theo trạng thái">
-                    @foreach (var st in statusLabels)
-                    {
-                        <button type="button" class="tl-chip" data-status="@st.Key" aria-pressed="@(st.Key == "all" ? "true" : "false")">@st.Label</button>
-                    }
-                </div>
-            }
-            @if (Model.Topics.Count > 0)
-            {
-                <div class="tl-topic">
-                    <label for="tlTopic" class="tl-topic__label">Chủ đề:</label>
-                    <select id="tlTopic" class="form-select form-select-sm">
-                        <option value="all" selected="@(selectedTopic == "all" ? "selected" : null)">Tất cả</option>
-                        @foreach (var topic in Model.Topics)
+            <div class="tl-chips tl-chips--bands" id="tlLevels" role="radiogroup" aria-label="Lọc theo trình độ">
+                <button type="button" role="radio" class="tl-chip" data-band="all"
+                        aria-checked="@(selectedBand == "all" ? "true" : "false")" tabindex="@(selectedBand == "all" ? "0" : "-1")">Tất cả</button>
+                @foreach (var band in Model.Bands)
+                {
+                    var isChecked = selectedBand == band.Key;
+                    <button type="button" role="radio" class="tl-chip" data-band="@band.Key"
+                            aria-checked="@(isChecked ? "true" : "false")" tabindex="@(isChecked ? "0" : "-1")">@band.Key</button>
+                }
+            </div>
+            <div class="tl-filters__side">
+                @if (signedIn)
+                {
+                    <div class="tl-chips" id="tlStatuses" role="group" aria-label="Lọc theo trạng thái">
+                        @foreach (var st in statusLabels)
                         {
-                            <option value="@topic" selected="@(selectedTopic == topic ? "selected" : null)">@topic</option>
+                            <button type="button" class="tl-chip" data-status="@st.Key" aria-pressed="false">@st.Label</button>
                         }
-                    </select>
-                </div>
-            }
+                    </div>
+                }
+                @if (Model.Topics.Count > 0)
+                {
+                    <div class="tl-topic">
+                        <label for="tlTopic" class="tl-topic__label">Chủ đề:</label>
+                        <select id="tlTopic" class="form-select form-select-sm">
+                            <option value="all" selected="@(selectedTopic == "all" ? "selected" : null)">Tất cả</option>
+                            @foreach (var topic in Model.Topics)
+                            {
+                                <option value="@topic" selected="@(selectedTopic == topic ? "selected" : null)">@topic</option>
+                            }
+                        </select>
+                    </div>
+                }
+            </div>
             <p class="tl-count visually-hidden" id="tlCount" aria-live="polite">@lessonCount bài nghe</p>
         </div>
 
@@ -119,8 +132,35 @@
             <partial name="~/Views/Shared/_StateMessage.cshtml" model="noResults" />
             <div class="tl-empty-actions"><button type="button" class="btn btn-outline-primary" id="tlClearFilters">Xóa bộ lọc</button></div>
         </div>
+    }
 
+    @if (signedIn && (Model.CanImport || Model.MyLessons.Count > 0))
+    {
+        <section class="tl-mine tl-shelf" id="tlMine" aria-labelledby="tl-mine-title" hidden="@(Model.MyLessons.Count == 0 ? "hidden" : null)">
+            <header class="tl-shelf__head">
+                <h2 id="tl-mine-title" class="tl-section-title" tabindex="-1">Bài nghe của tôi</h2>
+                <span class="tct-badge tct-badge--primary tl-shelf__count" id="tlMineShelfCount">@Model.MyLessons.Count bài</span>
+            </header>
+            <ul class="tl-grid" id="tlMineGrid">
+                @foreach (var mine in Model.MyLessons)
+                {
+                    <partial name="_ListeningMyLessonCard" model="mine" />
+                }
+            </ul>
+        </section>
+    }
+
+    @if (hasLessons)
+    {
         <div id="tlLevelsHost">
+            @* A band chosen in the pills shows one grid with every matching lesson; listening-index.js moves the cards in and out of it. *@
+            <section class="tl-shelf tl-band" id="tlBand" aria-labelledby="tlBandTitle" hidden>
+                <header class="tl-shelf__head">
+                    <h2 id="tlBandTitle" class="tl-section-title" tabindex="-1"></h2>
+                </header>
+                <ul class="tl-grid" id="tlBandGrid"></ul>
+                <div class="tl-shelf__more"><button type="button" class="btn btn-outline-primary" id="tlBandMore" hidden>Xem thêm bài</button></div>
+            </section>
             @foreach (var lvl in visibleLevels)
             {
                 var cards = Model.LessonsByLevel[lvl.Key];
@@ -137,7 +177,6 @@
                             @await Html.PartialAsync("_ListeningLessonCard", card, new ViewDataDictionary(ViewData) { { "Auth", signedIn } })
                         }
                     </ul>
-                    <div class="tl-shelf__more"><button type="button" class="btn btn-outline-primary" data-level-more hidden>Xem thêm bài</button></div>
                 </section>
             }
         </div>
@@ -145,22 +184,6 @@
     else
     {
         <partial name="~/Views/Shared/_StateMessage.cshtml" model="noLessons" />
-    }
-
-    @if (signedIn && (Model.CanImport || Model.MyLessons.Count > 0))
-    {
-        <section class="tl-mine" id="tlMine" aria-labelledby="tl-mine-title" hidden="@(Model.MyLessons.Count == 0 ? "hidden" : null)">
-            <header class="tl-shelf__head">
-                <h2 id="tl-mine-title" class="tl-section-title" tabindex="-1">Bài nghe của tôi</h2>
-                <span class="tct-badge tct-badge--primary tl-shelf__count" id="tlMineShelfCount">@Model.MyLessons.Count bài</span>
-            </header>
-            <ul class="tl-grid" id="tlMineGrid">
-                @foreach (var mine in Model.MyLessons)
-                {
-                    <partial name="_ListeningMyLessonCard" model="mine" />
-                }
-            </ul>
-        </section>
     }
 
     <div id="tsToastHost" class="toast-container ts-toast-host" aria-live="polite"></div>

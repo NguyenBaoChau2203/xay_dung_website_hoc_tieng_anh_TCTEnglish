@@ -226,65 +226,69 @@ public sealed class ListeningRedesignRenderTests
             Assert.DoesNotContain(removed, Decode(premiumBody), StringComparison.Ordinal);
     }
 
-    // ------------------------------------------------------------------ level row
+    // ------------------------------------------------------------------ level bands (pills)
 
     [Fact]
-    public async Task Catalog_LevelRow_HasSevenCardsIncludingC2_WithCountsBarsAndDisabledEmptyLevels()
+    public async Task Catalog_Bands_AreFourAtMost_EmptyBandsAreHidden_AndExactlyOneIsChecked()
     {
         await using var factory = await CreateFactoryAsync();
-        await SeedAsync(factory, db =>
-        {
-            db.UserListeningProgresses.Add(new UserListeningProgress { UserId = StudentId, LessonId = A2Id, TranscriptCompleted = true, QuizCompleted = true, QuizScore = 70, CompletedAt = DateTime.UtcNow, LastAccessedAt = DateTime.UtcNow });
-        });
         using var student = Client(factory, StudentId, Roles.Standard);
         var body = PageBody(await HtmlAsync(student, "/Home/Listening"));
 
         var groupStart = body.IndexOf("id=\"tlLevels\"", StringComparison.Ordinal);
-        var groupEnd = body.IndexOf("class=\"tl-filters\"", groupStart, StringComparison.Ordinal);
-        Assert.True(groupStart >= 0 && groupEnd > groupStart, "the level row precedes the filters");
+        var groupEnd = body.IndexOf("class=\"tl-filters__side\"", groupStart, StringComparison.Ordinal);
+        Assert.True(groupStart >= 0 && groupEnd > groupStart, "the band pills lead the filter row");
         var group = body[groupStart..groupEnd];
-        var cards = Regex.Matches(group, "role=\"radio\"");
-        Assert.Equal(7, cards.Count);
-        foreach (var key in new[] { "all", "A1", "A2", "B1", "B2", "C1", "C2" })
-            Assert.Contains($"data-level=\"{key}\"", group, StringComparison.Ordinal);
+        Assert.Contains("role=\"radiogroup\"", body[(groupStart - 80)..groupEnd], StringComparison.Ordinal);
 
-        // counts: signed in "{done}/{total}", "0 bài" for an empty level
-        Assert.Matches("data-level=\"A2\"[\\s\\S]*?tl-level-card__count\">1/1<", group);
-        Assert.Matches("data-level=\"A1\"[\\s\\S]*?tl-level-card__count\">0/2<", group);
-        Assert.Matches("data-level=\"C2\"[\\s\\S]*?tl-level-card__count\">0/1<", group);
-        Assert.Matches("data-level=\"all\"[\\s\\S]*?tl-level-card__count\">1/5<", group);
+        // seeded: A1, A2, B1, C2 are public, the only B2 lesson is private: bands "Tất cả", A1–A2, B1, C1–C2
+        Assert.Equal(4, Regex.Matches(group, "role=\"radio\"").Count);
+        foreach (var key in new[] { "all", "A1–A2", "B1", "C1–C2" })
+            Assert.Contains($"data-band=\"{key}\"", group, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-band=\"B2\"", group, StringComparison.Ordinal);
+        Assert.Contains("A1–A2</button>", group, StringComparison.Ordinal);
 
-        // a finished level gets the success bar; an empty level is disabled and says "0 bài"
-        Assert.Matches("data-level=\"A2\"[\\s\\S]*?tl-bar tl-bar--done\" max=\"100\" value=\"100\"", group);
-        Assert.Matches("data-level=\"C1\"[^>]*disabled", group);
-        Assert.Matches("data-level=\"B2\"[^>]*disabled", group); // the only B2 lesson is private
-        Assert.Matches("data-level=\"C1\"[\\s\\S]*?tl-level-card__count\">0 bài<", group);
-
-        // exactly one card is checked and tabbable
+        // exactly one pill is checked and tabbable
         Assert.Single(Regex.Matches(group, "aria-checked=\"true\""));
-        Assert.Matches("data-level=\"all\"[^>]*aria-checked=\"true\"[^>]*tabindex=\"0\"", group);
+        Assert.Matches("data-band=\"all\"[^>]*aria-checked=\"true\"[^>]*tabindex=\"0\"", group);
+
+        // the old big level cards are gone
+        Assert.DoesNotContain("tl-level-card", body, StringComparison.Ordinal);
         // the shared layout dialog (_CreateFolderDialog) ships its own <style>; the catalog itself must not
         var ownMarkup = Regex.Replace(body, @"<dialog[\s\S]*?</style>", string.Empty, RegexOptions.IgnoreCase);
         Assert.DoesNotContain("<style", ownMarkup, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
-    public async Task Catalog_LevelRow_Guest_ShowsLessonCountsOnly_AndDeepLinkChecksTheLevel()
+    public async Task Catalog_Bands_ALevelInTheUrlChecksItsBand_AndAHiddenBandFallsBackToAll()
     {
         await using var factory = await CreateFactoryAsync();
         using var guest = IntegrationTestClientHelper.CreateAnonymousClient(factory);
-        var body = PageBody(await HtmlAsync(guest, "/Home/Listening?level=C2"));
 
-        Assert.Matches("data-level=\"A1\"[\\s\\S]*?tl-level-card__count\">2 bài<", body);
-        Assert.Matches("data-level=\"C2\"[^>]*aria-checked=\"true\"[^>]*tabindex=\"0\"", body);
-        Assert.Matches("data-level=\"all\"[^>]*aria-checked=\"false\"[^>]*tabindex=\"-1\"", body);
-        Assert.Matches("value=\"0\"", body); // guests have no progress
+        var c2 = await HtmlAsync(guest, "/Home/Listening?level=C2");
+        var c2Body = PageBody(c2);
+        Assert.Matches("data-band=\"C1–C2\"[^>]*aria-checked=\"true\"[^>]*tabindex=\"0\"", c2Body);
+        Assert.Matches("data-band=\"all\"[^>]*aria-checked=\"false\"[^>]*tabindex=\"-1\"", c2Body);
+        var c2Config = Regex.Match(c2, "<script type=\"application/json\" id=\"tlConfig\">([\\s\\S]*?)</script>").Groups[1].Value;
+        using (var c2Json = System.Text.Json.JsonDocument.Parse(c2Config))
+        {
+            Assert.Equal("C1–C2", c2Json.RootElement.GetProperty("selectedBand").GetString());
+            Assert.Equal("C2", c2Json.RootElement.GetProperty("selectedLevel").GetString());
+        }
+
+        var a2 = PageBody(await HtmlAsync(guest, "/Home/Listening?level=A2"));
+        Assert.Matches("data-band=\"A1–A2\"[^>]*aria-checked=\"true\"", a2);
+
+        // B2 has only a private lesson: there is no B2 pill, so "Tất cả" stays checked instead of leaving none checked
+        var b2 = PageBody(await HtmlAsync(guest, "/Home/Listening?level=B2"));
+        Assert.Single(Regex.Matches(b2, "aria-checked=\"true\""));
+        Assert.Matches("data-band=\"all\"[^>]*aria-checked=\"true\"", b2);
     }
 
     // ------------------------------------------------------------------ filters, shelves, cards
 
     [Fact]
-    public async Task Catalog_Filters_TopicSelectListsTopicsAndStatusChipsAreForSignedInUsersOnly()
+    public async Task Catalog_Filters_TopicSelectListsTopicsAndStatusTogglesAreForSignedInUsersOnly()
     {
         await using var factory = await CreateFactoryAsync();
         using var student = Client(factory, StudentId, Roles.Standard);
@@ -298,13 +302,22 @@ public sealed class ListeningRedesignRenderTests
         Assert.DoesNotContain("<option value=\"Mine\"", text, StringComparison.Ordinal); // private topics never appear
         Assert.Matches("<option value=\"Travel\" selected=\"selected\">", body);
 
-        foreach (var label in new[] { "Mọi trạng thái", "Chưa học", "Đang học", "Đã xong" })
+        // three toggles (pressing the selected one clears it), no "all statuses" pill
+        foreach (var label in new[] { "Chưa học", "Đang học", "Đã xong" })
             Assert.Contains(label, text, StringComparison.Ordinal);
-        Assert.Matches("data-status=\"all\" aria-pressed=\"true\"", body);
+        Assert.DoesNotContain("Mọi trạng thái", text, StringComparison.Ordinal);
+        Assert.Equal(3, Regex.Matches(body, "data-status=\"(new|progress|done)\" aria-pressed=\"false\"").Count);
+        Assert.DoesNotContain("data-status=\"all\"", body, StringComparison.Ordinal);
         Assert.DoesNotContain("tlTopicsToggle", body, StringComparison.Ordinal); // the chip cloud is gone (D5)
         Assert.Contains("id=\"tlEmpty\"", body, StringComparison.Ordinal);
         Assert.Contains("Không có bài nào khớp bộ lọc.", text, StringComparison.Ordinal);
         Assert.Contains("id=\"tlClearFilters\"", body, StringComparison.Ordinal);
+
+        // one row: bands, then the status toggles and the topic select
+        var bands = body.IndexOf("id=\"tlLevels\"", StringComparison.Ordinal);
+        var statuses = body.IndexOf("id=\"tlStatuses\"", StringComparison.Ordinal);
+        var topic2 = body.IndexOf("id=\"tlTopic\"", StringComparison.Ordinal);
+        Assert.True(bands > 0 && statuses > bands && topic2 > statuses, "bands, statuses, topic");
     }
 
     [Fact]
@@ -326,7 +339,11 @@ public sealed class ListeningRedesignRenderTests
         Assert.Contains("C2 · Thành thạo", text, StringComparison.Ordinal);
         Assert.Matches("data-level-section=\"A1\"[\\s\\S]*?data-level-count data-done=\"0\">0/2<", body);
         Assert.Contains("data-level-all=\"A1\"", body, StringComparison.Ordinal);
-        Assert.Contains("Xem thêm bài", text, StringComparison.Ordinal);
+
+        // the band grid exists once, empty and hidden, with its own "Xem thêm bài" button
+        Assert.Matches("<section class=\"tl-shelf tl-band\" id=\"tlBand\"[^>]*hidden>", body);
+        Assert.Contains("id=\"tlBandGrid\"", body, StringComparison.Ordinal);
+        Assert.Matches("id=\"tlBandMore\" hidden>Xem thêm bài", text);
 
         // card hooks used by the script and by the older tests
         Assert.Matches($"data-id=\"{A1FullId}\"[^>]*data-status=\"progress\"", body);
@@ -334,12 +351,28 @@ public sealed class ListeningRedesignRenderTests
         Assert.Contains($"href=\"/Home/Listening/Practice/{A1FullId}\"", body, StringComparison.Ordinal);
         Assert.Contains("Đang học", text, StringComparison.Ordinal);
         Assert.Matches("<progress class=\"tl-bar tl-card__bar\" max=\"3\" value=\"1\"", body);
+        Assert.DoesNotContain("tl-play", body, StringComparison.Ordinal);           // no fake play icon on a card
 
         // no inline style anywhere in the page, no inline handlers, one h1
         Assert.DoesNotContain(" style=", body, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("onclick=", body, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--p:", body, StringComparison.Ordinal);
         Assert.Single(Regex.Matches(body, "<h1[ >]"));
+    }
+
+    [Fact]
+    public async Task Catalog_Cards_FinishedLessonShowsXongWithACheck_AndTheTopicHasATitle()
+    {
+        await using var factory = await CreateFactoryAsync();
+        await SeedAsync(factory, db =>
+        {
+            db.UserListeningProgresses.Add(new UserListeningProgress { UserId = StudentId, LessonId = A2Id, TranscriptCompleted = true, QuizCompleted = true, QuizScore = 70, CompletedAt = DateTime.UtcNow, LastAccessedAt = DateTime.UtcNow });
+        });
+        using var student = Client(factory, StudentId, Roles.Standard);
+        var body = PageBody(await HtmlAsync(student, "/Home/Listening"));
+
+        Assert.Matches("tct-badge tct-badge--success tl-card__status\"><i class=\"fa-solid fa-check\"[^>]*></i> Xong</span>", body);
+        Assert.Matches("<span class=\"tl-card__topic\" title=\"Daily\">Daily</span>", body);
     }
 
     // ------------------------------------------------------------------ "Bài nghe của tôi"
@@ -392,8 +425,9 @@ public sealed class ListeningRedesignRenderTests
         var config = Regex.Match(html, "<script type=\"application/json\" id=\"tlConfig\">([\\s\\S]*?)</script>").Groups[1].Value;
         using var json = System.Text.Json.JsonDocument.Parse(config);
 
-        Assert.Equal(4, json.RootElement.GetProperty("shelfSize").GetInt32());
-        Assert.Equal(8, json.RootElement.GetProperty("gridSize").GetInt32());
+        Assert.Equal(5, json.RootElement.GetProperty("shelfSize").GetInt32());
+        Assert.Equal(10, json.RootElement.GetProperty("gridSize").GetInt32());
+        Assert.Equal("all", json.RootElement.GetProperty("selectedBand").GetString());
         Assert.Equal(StudentId.ToString(), json.RootElement.GetProperty("userKey").GetString());
         Assert.True(json.RootElement.GetProperty("isAuthenticated").GetBoolean());
 

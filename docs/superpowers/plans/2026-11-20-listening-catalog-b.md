@@ -365,3 +365,27 @@ _(Filled by the agent: K0 inventory and verdicts, gate records, mockup differenc
 | G15 | no `innerHTML`; antiforgery and URL validation untouched (same endpoints) |
 
 Screenshots: `.tmp/listening-catalog-b/after/{guest,standard,premium}-{1440x900,1366x768,1024x768,768x1024,390x844,320x640,720x450-zoom200}.png`.
+
+### 12.4 K3 — filters and shelves
+
+**Done:**
+- Filter row in one line (laptop): the band pills (`Tất cả`, `A1–A2`, `B1`, `B2`, `C1–C2`, a band with no public lesson has no pill) as the radiogroup `#tlLevels` (arrows, Home/End, roving tabindex, dark selected pill), then the three status toggles (`Chưa học`, `Đang học`, `Đã xong`; pressing the selected one clears it; hidden for guests) and the topic select (D2). `_ListeningLevelRow.cshtml` and its CSS are deleted.
+- URL: a level still deep-links (`?level=C2` selects the band `C1–C2`); the URL keeps the first level of the band (`?level=C1`). No `?band=` was added. A level whose band has no pill falls back to `Tất cả`.
+- `Tất cả`: one shelf per level that has matching lessons, at most 5 cards (`shelfSize` 5), header `{Key} · {Label}` (labels `Sơ cấp`, `Cơ bản`, `Trung cấp`, `Trung cao`, `Nâng cao`, `Thành thạo`), count chip `{done}/{total}` and the link `Xem cả {n} bài`, which selects the band and focuses its heading.
+- A band: one grid (`#tlBand`) with every matching lesson, heading `{Band} · {n} bài`, paging of 10 (`gridSize` 10) with `Xem thêm bài`. The cards are moved between the level grids and the band grid by the script, never duplicated (checked: 0 duplicated lesson ids).
+- `Bài nghe của tôi` is its own shelf (`#tlMine`, hidden when empty, never filtered). It stays below the filter row and above the level shelves. The hero button `Ôn lại bài đã xong` applies the `Đã xong` filter in place.
+- Cards: no fake play icon, `Xong` chip with a check, topic with ellipsis and `title`, hover lift of 2 px (none under reduced motion), five columns from 1400 px, 4 from 1200, 3 from 1024, 2 from 768; on a phone each shelf is one sideways row with snap (cards 72% wide). The private card has a `Riêng tư` chip on the image, the delete icon button and no topic (imports have none worth showing).
+- Bug found by the render matrix and fixed in this phase: the phone filter column grew to 436 px (a `flex-wrap: wrap` column container takes the width of its content) and made the page scroll sideways at 390 and 320 px; the mobile rule now sets `flex-wrap: nowrap`.
+
+**Gate record (K3)**
+
+| Gate | Result |
+| --- | --- |
+| G1, G2 | build 0 errors; the 231 listening tests pass |
+| G3 | full suite **3789 passed, 0 failed, 58 skipped** (1000 + 2789; K0 3761). The first run of the AI group had 1 failure, `AiPhase4HardeningIntegrationTests.Send_WhenStandardUserReachedDailyQuestionLimit_Returns429WithFriendlyMessage` (expected 429, got 200): an unrelated AI quota test that passed alone and in a full rerun of the group (1000 passed). Recorded as a flaky test, not changed. |
+| G6 | no hex/rgb/hsl, no inline style/handler/`<style>`, no `bi bi-`, no `innerHTML`, `git diff --check` clean; `listening-index.js` 430 lines (under the 600 limit) |
+| G8 | `lc-check.cjs` after the fix: no element outside the viewport at 1440, 1366, 1024, 768, 390, 320 and 200% zoom; no console error, no failed request |
+| G10 | `lc-behave.cjs` (26 checks, Premium, real app): shelves of at most 5, band grids of 10, 5 and 1 cards with the right titles, shelves restored in order, `Xem cả` selects the band and focuses the heading, status toggle on and off, topic, search, empty state and `Xóa bộ lọc`, deep links (`?level=C2`, `?level=A1`, `?status=done&topic=…`), arrow keys and End on the radiogroup, hero link, invalid YouTube link: all pass |
+| G13 | practice page not touched |
+
+Evidence: `.tmp/listening-catalog-b/after/premium-*.png`, `premium-empty-state.png`.

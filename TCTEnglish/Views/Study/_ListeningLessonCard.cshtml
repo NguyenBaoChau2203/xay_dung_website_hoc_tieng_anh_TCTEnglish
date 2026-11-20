@@ -1,7 +1,7 @@
 @model TCTEnglish.ViewModels.ListeningLessonCardViewModel
 @*
-    One public lesson card on /Home/Listening (plan 5.1, mockup F1). The whole card is one stretched link; the play overlay,
-    duration, status chip and progress bar are decorative extras inside it. ViewData["Auth"] = true shows status and progress.
+    One public lesson card on /Home/Listening (catalog B, plan 2.4). The whole card is one stretched link; the duration badge,
+    status chip and progress bar are extras inside it. ViewData["Auth"] = true shows status and progress.
     The data-* attributes on the <li> are read by listening-index.js and by the render tests.
 *@
 @{
@@ -20,7 +20,6 @@
             {
                 <span class="tl-thumb--empty" aria-hidden="true"><i class="fa-solid fa-headphones"></i></span>
             }
-            <span class="tl-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
             @if (!string.IsNullOrWhiteSpace(Model.Duration))
             {
                 <span class="tl-card__duration"><i class="fa-regular fa-clock" aria-hidden="true"></i> @Model.Duration</span>
@@ -30,10 +29,10 @@
             <h3 class="tl-card__title tct-clamp-2 tct-break">@Model.Title</h3>
             <p class="tl-card__meta">
                 <span class="tct-badge tct-badge--primary">@Model.Level</span>
-                <span class="tl-card__topic tct-break">@Model.Topic</span>
+                <span class="tl-card__topic" title="@Model.Topic">@Model.Topic</span>
                 @if (signedIn && Model.Status == "done")
                 {
-                    <span class="tct-badge tct-badge--success tl-card__status"><i class="fa-solid fa-check" aria-hidden="true"></i> Đã xong</span>
+                    <span class="tct-badge tct-badge--success tl-card__status"><i class="fa-solid fa-check" aria-hidden="true"></i> Xong</span>
                 }
                 else if (signedIn && Model.Status == "progress")
                 {
