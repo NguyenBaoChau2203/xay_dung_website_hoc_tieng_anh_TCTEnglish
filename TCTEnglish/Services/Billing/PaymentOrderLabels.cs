@@ -65,6 +65,7 @@ namespace TCTEnglish.Services.Billing
             {
                 PaymentProviders.VNPay => "VNPay",
                 PaymentProviders.MoMo => "MoMo",
+                PaymentProviders.PayOS => "payOS",
                 var other => other
             };
         }

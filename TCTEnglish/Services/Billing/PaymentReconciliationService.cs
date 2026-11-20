@@ -54,7 +54,8 @@ namespace TCTEnglish.Services.Billing
 
             var openOrders = await _context.PaymentOrders
                 .AsNoTracking()
-                .Where(o => (o.Provider == PaymentProviders.VNPay || o.Provider == PaymentProviders.MoMo)
+                .Where(o => (o.Provider == PaymentProviders.VNPay || o.Provider == PaymentProviders.MoMo
+                             || o.Provider == PaymentProviders.PayOS)
                          && o.CreatedAtUtc <= oldestAllowed
                          && (o.Status == PaymentOrderStatuses.Pending
                              || (o.Status == PaymentOrderStatuses.Expired && o.ExpiresAtUtc >= recentlyExpired)))

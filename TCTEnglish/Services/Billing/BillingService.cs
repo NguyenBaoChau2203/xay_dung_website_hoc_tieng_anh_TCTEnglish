@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TCTEnglish.Models;
+using TCTEnglish.Services.Billing.PayOS;
 using TCTEnglish.ViewModels.Billing;
 using TCTVocabulary.Models;
 
@@ -45,17 +46,20 @@ namespace TCTEnglish.Services.Billing
         private readonly IEnumerable<IPaymentGateway> _gateways;
         private readonly IPaymentQueryService _queryService;
         private readonly ILogger<BillingService> _logger;
+        private readonly IPayOSClient? _payOsClient;
 
         public BillingService(
             DbflashcardContext context,
             IEnumerable<IPaymentGateway> gateways,
             IPaymentQueryService queryService,
-            ILogger<BillingService> logger)
+            ILogger<BillingService> logger,
+            IPayOSClient? payOsClient = null)
         {
             _context = context;
             _gateways = gateways;
             _queryService = queryService;
             _logger = logger;
+            _payOsClient = payOsClient;
         }
 
         public async Task<CheckoutResult> CreateCheckoutAsync(
@@ -405,6 +409,7 @@ namespace TCTEnglish.Services.Billing
             }
 
             var expired = 0;
+            var payOsCodesToCancel = new List<long>();
             foreach (var order in expiredOrders)
             {
                 if (!PaymentOrderStateMachine.CanExpire(order.Status))
@@ -415,10 +420,132 @@ namespace TCTEnglish.Services.Billing
                 order.Status = PaymentOrderStatuses.Expired;
                 order.FailureMessage = "Đã quá hạn thanh toán.";
                 expired++;
+
+                if (order.Provider.Equals(PaymentProviders.PayOS, StringComparison.OrdinalIgnoreCase)
+                    && PayOSOrderCode.TryParse(order.ProviderRequestId, out var payOsCode))
+                {
+                    payOsCodesToCancel.Add(payOsCode);
+                }
             }
 
             await _context.SaveChangesAsync(ct);
+
+            // The payOS link would stay payable until its own expiry: close it. Best effort (plan D8): a failure is
+            // logged, and an order that is paid after all is still found by the reconciliation.
+            if (_payOsClient != null)
+            {
+                foreach (var code in payOsCodesToCancel)
+                {
+                    try
+                    {
+                        await _payOsClient.CancelAsync(code, "Order expired", ct);
+                    }
+                    catch (OperationCanceledException) when (ct.IsCancellationRequested)
+                    {
+                        throw;
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, "payOS cancel of an expired order failed. PayOSCode={PayOSCode}", code);
+                    }
+                }
+            }
+
             return expired;
+        }
+
+        public async Task<PaymentResultViewModel?> GetPayOSReturnResultAsync(
+            IDictionary<string, string> queryParams,
+            CancellationToken ct = default)
+        {
+            var gateway = _gateways.FirstOrDefault(g =>
+                g.ProviderName.Equals(PaymentProviders.PayOS, StringComparison.OrdinalIgnoreCase));
+            if (gateway == null)
+            {
+                _logger.LogWarning("payOS return received but the gateway is unavailable.");
+                return CreateInvalidReturnResult();
+            }
+
+            // Asks the payOS API (or, in the local mock, believes only the cancel flag). Never believes the query.
+            var callback = await gateway.ProcessReturnAsync(queryParams, ct);
+            if (!callback.IsVerified || string.IsNullOrWhiteSpace(callback.ProviderRequestId))
+            {
+                _logger.LogWarning("payOS return rejected: the payOS API could not vouch for it.");
+                return CreateInvalidReturnResult();
+            }
+
+            var payOsCode = callback.ProviderRequestId;
+            var order = await _context.PaymentOrders
+                .Include(o => o.Plan)
+                .Where(o => o.Provider == PaymentProviders.PayOS && o.ProviderRequestId == payOsCode)
+                .OrderBy(o => o.Id)
+                .FirstOrDefaultAsync(ct);
+            if (order == null)
+            {
+                return null;
+            }
+
+            // Our own reference rides on the return address too; when it is there it must name the same order.
+            if (queryParams.TryGetValue("ref", out var ourReference)
+                && !string.IsNullOrWhiteSpace(ourReference)
+                && !string.Equals(ourReference, order.OrderCode, StringComparison.Ordinal))
+            {
+                _logger.LogWarning("payOS return rejected: reference does not match the order. OrderCode={OrderCode}", order.OrderCode);
+                return CreateInvalidReturnResult();
+            }
+
+            queryParams.TryGetValue("id", out var paymentLinkId);
+            var status = callback.ProviderTransactionStatus;
+            var returnPayload = SerializeSafePayload(queryParams);
+            order.ReturnPayloadJson = returnPayload;
+            order.ProviderTransactionId ??= callback.ProviderTransactionId;
+            order.ProviderResponseCode ??= callback.ProviderResponseCode;
+            order.ProviderTransactionStatus = status ?? order.ProviderTransactionStatus;
+            order.PayType ??= callback.IsPaid ? "bank_transfer" : null;
+            order.UpdatedAtUtc = DateTime.UtcNow;
+
+            await TrySaveReturnEventAsync(
+                PaymentProviders.PayOS,
+                order.Id,
+                IpnService.BuildReturnEventKey(order.OrderCode, status, paymentLinkId),
+                callback.ProviderResponseCode,
+                returnPayload,
+                ct);
+            await _context.SaveChangesAsync(ct);
+
+            var reportedSuccess = callback.IsPaid;
+            if (reportedSuccess)
+            {
+                var attempt = await _queryService.QueryAndConfirmAsync(order.Id, PaymentQueryTrigger.Return, ct);
+                _logger.LogInformation("payOS return query for {OrderCode}: {Status}", order.OrderCode, attempt.Status);
+            }
+            else if (string.Equals(status, PayOSStatuses.Cancelled, StringComparison.Ordinal)
+                     && PaymentOrderStateMachine.CanMarkFailedOrCancelled(order.Status, PaymentTransitionSource.ProviderQuery))
+            {
+                order.Status = PaymentOrderStatuses.Cancelled;
+                order.RawStatus = "payos_status=CANCELLED";
+                order.FailureMessage = "Bạn đã hủy thanh toán.";
+                order.UpdatedAtUtc = DateTime.UtcNow;
+                await _context.SaveChangesAsync(ct);
+            }
+
+            var current = await _context.PaymentOrders
+                .AsNoTracking()
+                .Include(o => o.Plan)
+                .FirstAsync(o => o.Id == order.Id, ct);
+
+            return new PaymentResultViewModel
+            {
+                OwnerUserId = current.UserId,
+                OrderCode = current.OrderCode,
+                PlanName = current.Plan?.Name ?? "Premium",
+                AmountVnd = current.AmountVnd,
+                OrderStatus = NormalizeStatus(current.Status),
+                HasValidReturnSignature = true,
+                CanShowOrderSummary = true,
+                PaidAtUtc = current.PaidAtUtc,
+                ReturnReportedSuccess = reportedSuccess
+            };
         }
 
         private async Task<PaymentResultViewModel?> GetProviderReturnResultAsync(

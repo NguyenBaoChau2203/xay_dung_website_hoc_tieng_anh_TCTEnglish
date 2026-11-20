@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using TCTEnglish.Services.Billing.MoMo;
+using TCTEnglish.Services.Billing.PayOS;
 using TCTEnglish.Services.Billing.VnPay;
 using TCTEnglish.ViewModels.Billing;
 
@@ -15,26 +16,63 @@ namespace TCTEnglish.Services.Billing
         private readonly MoMoOptions _moMoOptions;
         private readonly IWebHostEnvironment _environment;
         private readonly IConfiguration _configuration;
+        private readonly PayOSOptions? _payOsOptions;
 
         public PaymentProviderHealthService(
             IOptions<VnPayOptions> vnPayOptions,
             IOptions<MoMoOptions> moMoOptions,
             IWebHostEnvironment environment,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IOptions<PayOSOptions>? payOsOptions = null)
         {
             _vnPayOptions = vnPayOptions.Value.Normalize();
             _moMoOptions = moMoOptions.Value.Normalize();
             _environment = environment;
             _configuration = configuration;
+            _payOsOptions = payOsOptions?.Value.Normalize();
         }
 
         public IReadOnlyList<ProviderHealthViewModel> GetProviderHealthStatus()
         {
-            return new List<ProviderHealthViewModel>
+            var providers = new List<ProviderHealthViewModel>
             {
                 BuildVnPayHealth(),
                 BuildMoMoHealth(),
                 BuildBankTransferHealth()
+            };
+
+            if (_payOsOptions != null)
+            {
+                providers.Insert(0, BuildPayOSHealth(_payOsOptions));
+            }
+
+            return providers;
+        }
+
+        private ProviderHealthViewModel BuildPayOSHealth(PayOSOptions opts)
+        {
+            var isDevelopment = _environment.IsDevelopment();
+            var mockReady = opts.IsMockActive(isDevelopment);
+            var missing = opts.GetConfigurationErrors(isDevelopment).ToList();
+            if (mockReady)
+            {
+                missing.Clear();
+            }
+
+            var hasPublicUrl = PayOSOptions.IsAbsoluteUrl(opts.PublicBaseUrl, httpsOnly: !isDevelopment);
+            return new ProviderHealthViewModel
+            {
+                ProviderCode = PaymentProviders.PayOS,
+                DisplayName = "payOS",
+                Enabled = opts.Enabled,
+                Configured = opts.IsFullyConfigured(isDevelopment) || mockReady,
+                HasBaseUrl = PayOSOptions.IsAbsoluteUrl(opts.BaseUrl, httpsOnly: true),
+                HasReturnUrl = hasPublicUrl,
+                // The webhook address is registered in the payOS dashboard (confirm-webhook), not sent by us.
+                HasIpnUrl = hasPublicUrl,
+                HasMerchantCode = !string.IsNullOrWhiteSpace(opts.ClientId),
+                HasSecret = !string.IsNullOrWhiteSpace(opts.ApiKey) && !string.IsNullOrWhiteSpace(opts.ChecksumKey),
+                MissingFields = missing
             };
         }
 

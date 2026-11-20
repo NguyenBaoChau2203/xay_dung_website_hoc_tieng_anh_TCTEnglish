@@ -259,6 +259,11 @@ namespace TCTEnglish.Services.Billing
                 return $"query:{c.Provider}:code={c.ResponseCode}";
             }
 
+            if (c.Provider.Equals(PaymentProviders.PayOS, StringComparison.OrdinalIgnoreCase))
+            {
+                return $"payos_code={c.ResponseCode};payos_status={c.TransactionStatus}";
+            }
+
             return c.Provider.Equals(PaymentProviders.VNPay, StringComparison.OrdinalIgnoreCase)
                 ? $"vnp_ResponseCode={c.ResponseCode};vnp_TransactionStatus={c.TransactionStatus}"
                 : $"momo_resultCode={c.ResponseCode}";

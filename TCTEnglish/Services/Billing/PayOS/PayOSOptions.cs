@@ -59,6 +59,12 @@ namespace TCTEnglish.Services.Billing.PayOS
             };
         }
 
+        /// <summary>The key that signs and verifies webhooks: the real one, or the local mock key while the mock has no key.</summary>
+        public string ResolveChecksumKey(bool mockActive)
+            => mockActive && string.IsNullOrWhiteSpace(ChecksumKey) ? MockChecksumKey : ChecksumKey;
+
+        public bool HasApiKeys => !string.IsNullOrWhiteSpace(ClientId) && !string.IsNullOrWhiteSpace(ApiKey);
+
         /// <summary>The mock is allowed only in Development, and only when the provider is switched on too.</summary>
         public bool IsMockActive(bool isDevelopment) => isDevelopment && Enabled && MockMode;
 

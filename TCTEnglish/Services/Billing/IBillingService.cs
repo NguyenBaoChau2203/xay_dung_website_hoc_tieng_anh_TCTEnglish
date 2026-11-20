@@ -56,6 +56,15 @@ namespace TCTEnglish.Services.Billing
             CancellationToken ct = default);
 
         /// <summary>
+        /// Resolves a payOS return or cancel page. The query string is not trusted: the payOS API is asked for the
+        /// order (found by payOS's numeric <c>orderCode</c>) before anything is shown, confirmed or cancelled.
+        /// Null when no order has that code; <c>HasValidReturnSignature = false</c> when payOS cannot vouch for it.
+        /// </summary>
+        Task<PaymentResultViewModel?> GetPayOSReturnResultAsync(
+            IDictionary<string, string> queryParams,
+            CancellationToken ct = default);
+
+        /// <summary>
         /// Cleans up pending orders that have expired.
         /// Returns the number of orders expired.
         /// </summary>

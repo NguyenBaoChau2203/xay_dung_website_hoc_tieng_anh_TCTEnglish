@@ -43,5 +43,14 @@ namespace TCTEnglish.Services.Billing
         Task ProcessMoMoIpnAsync(
             IDictionary<string, string> parameters,
             CancellationToken ct = default);
+
+        /// <summary>
+        /// Processes a payOS webhook. <paramref name="parameters"/> is the flattened body: <c>code</c>, <c>desc</c>,
+        /// <c>success</c>, <c>signature</c> and each <c>data</c> field as <c>data.&lt;name&gt;</c>.
+        /// Never throws for a body that is merely not ours (bad signature, unknown order).
+        /// </summary>
+        Task ProcessPayOSWebhookAsync(
+            IDictionary<string, string> parameters,
+            CancellationToken ct = default);
     }
 }

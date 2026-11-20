@@ -45,8 +45,7 @@ namespace TCTEnglish.Services.Billing.PayOS
 
         private bool IsMockMode => _options.IsMockActive(_environment.IsDevelopment());
 
-        private string EffectiveChecksumKey =>
-            IsMockMode && string.IsNullOrWhiteSpace(_options.ChecksumKey) ? _options.MockChecksumKey : _options.ChecksumKey;
+        private string EffectiveChecksumKey => _options.ResolveChecksumKey(IsMockMode);
 
         public async Task<ProviderCheckoutResult> CreateCheckoutAsync(
             string orderCode,

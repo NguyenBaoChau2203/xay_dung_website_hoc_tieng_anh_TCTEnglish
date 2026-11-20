@@ -184,6 +184,13 @@ builder.Services.AddScoped<IPaymentGateway, TCTEnglish.Services.Billing.VnPay.Vn
 builder.Services.AddHttpClient<TCTEnglish.Services.Billing.MoMo.MoMoGateway>();
 builder.Services.AddScoped<IPaymentGateway>(sp =>
     sp.GetRequiredService<TCTEnglish.Services.Billing.MoMo.MoMoGateway>());
+builder.Services.AddOptions<TCTEnglish.Services.Billing.PayOS.PayOSOptions>()
+    .BindConfiguration(TCTEnglish.Services.Billing.PayOS.PayOSOptions.SectionName)
+    .ValidateOnStart();
+builder.Services.AddSingleton<Microsoft.Extensions.Options.IValidateOptions<TCTEnglish.Services.Billing.PayOS.PayOSOptions>,
+    TCTEnglish.Services.Billing.PayOS.PayOSOptionsValidator>();
+builder.Services.AddHttpClient<TCTEnglish.Services.Billing.PayOS.IPayOSClient, TCTEnglish.Services.Billing.PayOS.PayOSClient>();
+builder.Services.AddScoped<IPaymentGateway, TCTEnglish.Services.Billing.PayOS.PayOSGateway>();
 builder.Services.AddScoped<IIpnService, IpnService>();
 builder.Services.AddSingleton<IPaymentProviderHealthService, PaymentProviderHealthService>();
 builder.Services.AddScoped<IPaymentAuditService, PaymentAuditService>();

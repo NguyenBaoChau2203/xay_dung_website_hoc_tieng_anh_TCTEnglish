@@ -100,6 +100,12 @@ namespace TCTEnglish.Services.Billing
                     return Read("resultCode") == "0";
                 }
 
+                if (provider.Equals(PaymentProviders.PayOS, StringComparison.OrdinalIgnoreCase))
+                {
+                    // payOS appends code=00&status=PAID&cancel=false to the return address (unsigned: a hint only).
+                    return Read("status") == "PAID" && Read("code") == "00" && Read("cancel") != "true";
+                }
+
                 var status = Read("vnp_TransactionStatus");
                 return Read("vnp_ResponseCode") == "00" && (string.IsNullOrEmpty(status) || status == "00");
             }

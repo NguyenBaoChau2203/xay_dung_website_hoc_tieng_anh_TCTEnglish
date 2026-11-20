@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TCTEnglish.Models;
+using TCTEnglish.Services.Billing.PayOS;
 using TCTVocabulary.Models;
 
 namespace TCTEnglish.Services.Billing
@@ -16,6 +17,7 @@ namespace TCTEnglish.Services.Billing
         private readonly DbflashcardContext _context;
         private readonly IPaymentGateway _vnpayGateway;
         private readonly IPaymentGateway? _momoGateway;
+        private readonly IPaymentGateway? _payOsGateway;
         private readonly IPaymentConfirmationService _confirmationService;
         private readonly ILogger<IpnService> _logger;
 
@@ -30,6 +32,8 @@ namespace TCTEnglish.Services.Billing
                 g.ProviderName.Equals(PaymentProviders.VNPay, StringComparison.OrdinalIgnoreCase));
             _momoGateway = gateways.FirstOrDefault(g =>
                 g.ProviderName.Equals(PaymentProviders.MoMo, StringComparison.OrdinalIgnoreCase));
+            _payOsGateway = gateways.FirstOrDefault(g =>
+                g.ProviderName.Equals(PaymentProviders.PayOS, StringComparison.OrdinalIgnoreCase));
             _confirmationService = confirmationService;
             _logger = logger;
         }
@@ -495,6 +499,162 @@ namespace TCTEnglish.Services.Billing
                     TransactionStatus: resultCode,
                     PayType: payType),
                 ct);
+        }
+
+        public async Task ProcessPayOSWebhookAsync(
+            IDictionary<string, string> parameters,
+            CancellationToken ct = default)
+        {
+            if (_payOsGateway == null)
+            {
+                _logger.LogWarning("payOS webhook received but the gateway is unavailable.");
+                return;
+            }
+
+            parameters.TryGetValue("data.orderCode", out var orderCodeText);
+            parameters.TryGetValue("data.reference", out var reference);
+            parameters.TryGetValue("data.paymentLinkId", out var paymentLinkId);
+            parameters.TryGetValue("data.amount", out var amountText);
+            parameters.TryGetValue("data.code", out var dataCode);
+
+            var eventKey = BuildPayOSIpnEventKey(orderCodeText, string.IsNullOrWhiteSpace(reference) ? paymentLinkId : reference, dataCode);
+            var payloadJson = SerializePayOSPayload(parameters);
+            var ipnResult = await _payOsGateway.ProcessIpnAsync(parameters, ct);
+
+            if (!ipnResult.SignatureValid)
+            {
+                await TrySaveEventAsync(
+                    provider: PaymentProviders.PayOS,
+                    eventType: PaymentEventTypes.Ipn,
+                    eventKey: BuildInvalidSignatureAuditKey(eventKey),
+                    orderId: null,
+                    signatureValid: false,
+                    resultCode: dataCode,
+                    payloadJson: payloadJson,
+                    processingStatus: PaymentEventProcessingStatuses.Failed,
+                    message: "Invalid HMAC-SHA256 signature",
+                    ct: ct);
+                return;
+            }
+
+            var isDuplicate = await _context.PaymentEvents
+                .AsNoTracking()
+                .AnyAsync(e => e.Provider == PaymentProviders.PayOS
+                            && e.EventType == PaymentEventTypes.Ipn
+                            && e.EventKey == eventKey, ct);
+            if (isDuplicate)
+            {
+                return;
+            }
+
+            async Task Record(long? orderId, string status, string message)
+                => await TrySaveEventAsync(
+                    provider: PaymentProviders.PayOS,
+                    eventType: PaymentEventTypes.Ipn,
+                    eventKey: eventKey,
+                    orderId: orderId,
+                    signatureValid: true,
+                    resultCode: dataCode,
+                    payloadJson: payloadJson,
+                    processingStatus: status,
+                    message: message,
+                    ct: ct);
+
+            if (!PayOSOrderCode.TryParse(orderCodeText, out _))
+            {
+                await Record(null, PaymentEventProcessingStatuses.Failed, "Missing or invalid orderCode");
+                return;
+            }
+
+            var order = await _context.PaymentOrders
+                .Include(o => o.Plan)
+                .Where(o => o.Provider == PaymentProviders.PayOS && o.ProviderRequestId == orderCodeText)
+                .OrderBy(o => o.Id)
+                .FirstOrDefaultAsync(ct);
+            if (order == null)
+            {
+                // Also what payOS's own "confirm webhook" test call lands on (a sample order code).
+                await Record(null, PaymentEventProcessingStatuses.Failed, $"Order not found: payOS code {orderCodeText}");
+                return;
+            }
+
+            if (!long.TryParse(amountText, out var payOsAmount))
+            {
+                await Record(order.Id, PaymentEventProcessingStatuses.Failed, $"Unparseable amount: {amountText}");
+                return;
+            }
+
+            var expectedAmount = Convert.ToInt64(decimal.Truncate(order.AmountVnd));
+            if (payOsAmount != expectedAmount)
+            {
+                await Record(order.Id, PaymentEventProcessingStatuses.Failed, $"Amount mismatch: expected {expectedAmount}, got {payOsAmount}");
+                return;
+            }
+
+            if (order.Status == PaymentOrderStatuses.Paid)
+            {
+                await Record(order.Id, PaymentEventProcessingStatuses.Ignored, "Order already paid");
+                return;
+            }
+
+            if (!ipnResult.IsPaid)
+            {
+                // payOS sends webhooks for received transfers; a signed one that is not a success changes nothing.
+                await Record(order.Id, PaymentEventProcessingStatuses.Ignored, $"Webhook is not a success: code={dataCode}");
+                return;
+            }
+
+            await _confirmationService.ConfirmPaidAsync(
+                new PaymentConfirmation(
+                    OrderId: order.Id,
+                    Provider: PaymentProviders.PayOS,
+                    Source: PaymentTransitionSource.ProviderCallback,
+                    VerifiedAmountVnd: payOsAmount,
+                    EventType: PaymentEventTypes.Ipn,
+                    EventKey: eventKey,
+                    PayloadJson: payloadJson,
+                    ProviderTransactionId: ipnResult.ProviderTransactionId,
+                    ProviderRequestId: orderCodeText,
+                    ResponseCode: dataCode,
+                    TransactionStatus: PayOSStatuses.Paid,
+                    PayType: "bank_transfer"),
+                ct);
+        }
+
+        internal static string BuildPayOSIpnEventKey(string? orderCode, string? referenceOrLink, string? code)
+            => $"payos:{orderCode ?? "?"}:{(string.IsNullOrWhiteSpace(referenceOrLink) ? "?" : referenceOrLink)}:{code ?? "?"}";
+
+        /// <summary>
+        /// What is stored of a payOS webhook: no signature, bank account numbers cut to their last four digits.
+        /// </summary>
+        internal static string SerializePayOSPayload(IDictionary<string, string> parameters)
+        {
+            var safe = new Dictionary<string, string>(StringComparer.Ordinal);
+            foreach (var pair in parameters)
+            {
+                if (pair.Key.Equals("signature", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                safe[pair.Key] = pair.Key.EndsWith("AccountNumber", StringComparison.OrdinalIgnoreCase)
+                                 || pair.Key.EndsWith(".accountNumber", StringComparison.OrdinalIgnoreCase)
+                    ? MaskAccountNumber(pair.Value)
+                    : pair.Value;
+            }
+
+            return JsonSerializer.Serialize(safe);
+        }
+
+        internal static string MaskAccountNumber(string? value)
+        {
+            var digits = (value ?? string.Empty).Trim();
+            if (digits.Length == 0)
+            {
+                return string.Empty;
+            }
+
+            return digits.Length <= 4 ? new string('*', digits.Length) : "****" + digits[^4..];
         }
 
         internal static string BuildIpnEventKey(

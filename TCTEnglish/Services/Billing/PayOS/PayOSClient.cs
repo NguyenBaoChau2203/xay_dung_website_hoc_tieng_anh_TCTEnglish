@@ -212,6 +212,12 @@ namespace TCTEnglish.Services.Billing.PayOS
         private async Task<(JsonDocument? Document, string? Failure)> SendAsync(
             HttpMethod method, string path, JsonObject? body, CancellationToken ct)
         {
+            // No keys (the local mock, or a missing setting): nothing is sent to payOS.
+            if (!_options.HasApiKeys)
+            {
+                return (null, "payOS chưa được cấu hình.");
+            }
+
             using var request = new HttpRequestMessage(method, _options.BaseUrl + path);
             request.Headers.TryAddWithoutValidation("x-client-id", _options.ClientId);
             request.Headers.TryAddWithoutValidation("x-api-key", _options.ApiKey);
