@@ -451,6 +451,63 @@ Filled per phase; B2 rows below.
 | T19 | **new** `BillingMatrixGapTests.MoMoIpn_StoredPayloads_DoNotContainTheSignature`; payOS keys: B5 |
 | T20 | `PaymentReconciliationServiceTests.OneBrokenOrder_DoesNotStopTheRest`, `PaymentQueryServiceTests.AClientThatThrows_IsProviderUnavailable_NotACrash` |
 
+### 12.3b payOS rows of the matrix (B4-B7)
+
+| Row | payOS test |
+| --- | --- |
+| T1 | `PayOSBillingFlowTests.Webhook_ASignedPayment_ActivatesPremiumOnce_…`; browser: accounts 01 and 02 |
+| T2 | `Return_PayOSSaysPaid_ConfirmsTheOrderOnce_AndALaterWebhookIsAlreadyConfirmed`, `Return_TheQuerySaysPaid_ButPayOSSaysPending_ConfirmsNothing` |
+| T3 | `Webhook_TheSameWebhookThreeTimes_AndInParallel_ActivatesOnce` (in-memory DB: no unique index, the application checks carry it); browser: valid webhook x4 incl. 2 in parallel, Premium ends exactly +365 days |
+| T4 | `Webhook_AnInvalidSignature_…`, `PayOSClientAndGatewayTests.Webhook_ATamperedAmountAWrongKeyOrNoSignature_IsInvalid`, `PayOSSignatureTests` (docs vector + openssl vector) |
+| T5 | `Webhook_AnAmountThatDiffersFromTheOrder_DoesNotActivate` (48999, 49001, 1, 490000). Behaviour: the order **stays pending with a failed event**, as for VNPay/MoMo today; plan T5 said "manual_review", which no provider does on a mismatch: recorded, unchanged |
+| T6 | `Webhook_AnUnknownOrderCodeIsRecordedAndIgnored…`; browser: code 123 answered 200 |
+| T7 | `Return_TheCancelPage_ConfirmedByPayOS_CancelsTheOrder_ButNotAPaidOne`, `Reconciliation_MapsThePayOSStatus_Idempotently` (CANCELLED); browser: account 03 cancel, then a new order |
+| T8 | `Webhook_APaymentAfterTheOrderExpired_WithinAndBeyondTheLateWindow` (2 h: paid, 30 h: manual_review) |
+| T9 | `Reconciliation_MapsThePayOSStatus_Idempotently` (7 statuses, run twice) |
+| T10 | browser: MoMo mock bought while payOS Premium active, 20/11/2027 to 19/11/2028 (365 days); `SubscriptionServiceTests` |
+| T11 | `BillingConcurrentCheckoutTests` (payOS resumes the stored checkout URL) |
+| T12 | `PayOSPagesIntegrationTests.Order_PayOSOfAnotherBuyer_IsNotFound`; browser: account 04 gets 404 on order, mock page, OrderStatus, Refresh and MockConfirm |
+| T13 | `PayOSControllerAndPresentationTests.Return_OnlyEverRedirectsToTheOrderPage`; browser: an evil returnUrl stays on the site |
+| T14 | the provider list holds only usable methods; `BillingServiceTests` (unsupported / not configured) |
+| T15 | `Mock_EndpointsAreNotFound_UnlessDevelopmentEnabledAndMockMode`, `PayOSOptionsValidator` tests (Production/Staging refuse MockMode, and the host does not start: `ValidateOnStart`), `MockPage_IsNotFound_WhenTheMockIsOff` |
+| T16 | browser: Admin Revoke of account 02 (both subscriptions revoked, role Standard, /Premium shows the free plan) |
+| T17/T18 | unchanged code, `PremiumStatusAndExpiryTests`. Browser: **a first-time buyer is signed out right after activation** (known issue BILLING-ROLE-CHANGE-SIGNS-OUT, reproduced, not fixed: account code is out of scope) |
+| T19 | `TheClientNeverLogsAKeyASignatureOrABody`, `Webhook_ASignedPayment_…StoresNoSignatureOrFullAccountNumber`, `Health_ReportsPayOS_FirstAndWithoutValues`, `ConfigurationErrors_NameTheMissingSettings_ButNeverTheValues` |
+| T20 | `Reconciliation_APayOSClientThatThrows_IsLogged_AndDoesNotStopTheRest` |
+
 ### 12.4 Gate records
 
-_(One entry per phase below.)_
+Gates were run per group on the tree state of the commits listed:
+
+| Group | Commits | G1 build | G2 billing + payOS tests | G3 full suite | G5 | G6/G7 | G12 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| B0 | 6b5a00a (docs) | 0 errors | 677 pass | 3789 pass, 58 skip, 0 fail | n/a | docs only | clean |
+| B1/B2 | 1c690fa, d26dc94, 8225869 | 0 errors | 273 then 285 pass | run in B9 | n/a | Billing services + tests only | clean |
+| B4 | b6b337b | 0 errors | 66 payOS tests pass | run in B9 | n/a | new folder `Services/Billing/PayOS` | clean (fake keys only in tests) |
+| B5/B6 | 8b561d0, a171de7 | 0 errors | 1252 pass, 3 skip (billing + admin) | run in B9 | n/a | `Program.cs` = 6 billing lines; `appsettings.json` = the PayOS section | clean |
+| B9 | docs commit | 0 errors | - | **3954 pass, 58 skip, 0 fail, 4012 total (>= B0)** | "No changes have been made to the model since the last migration" | no migration, no `Models/**`, no csproj | the only hits are fake strings in tests |
+
+Not run: G4 (no billing JavaScript changed). G13 (Premium-gated feature regression): **not run in the browser**; the existing PremiumFeatureGate / Premium*Integration tests pass in the full suite, but the gated pages were not opened for the paid test accounts. G8: Pricing, Order (waiting, paid, cancelled), History at 1440 and 390 and the Admin payOS pages at 1440 were rendered and looked at; 1366, 1024 and 768 were not run. G10: no keyboard or screen-reader pass in the browser (the radio group keeps the native fieldset/legend/radio markup).
+
+Deviations from the plan, all deliberate: D7 (9 characters), return query name `ref` instead of `orderCode`, mock needs `Enabled` + `MockMode` + Development (like MoMo), the provider list hides unusable methods (D6; the 2026-11-17 test that expected a disabled row was changed to expect no row), the payOS client does not call the network without keys.
+
+### 12.5 End-to-end runs (browser, second instance on port 5101, Release, mock modes)
+
+Accounts (test data, left in the dev DB; passwords only in the ignored `.appdata/local/qa-billing.json`): ids 26 `qa.billing.01@tct.local`, 27 `qa.billing.02`, 28 `qa.billing.03`, 29 `qa.billing.04`, and 25 `qa.billing.dbg2@tct.local` (created while debugging the register script). Orders 54-58 (payOS paid, cancelled, pending, paid; MoMo paid) were kept.
+
+| Scenario | Result |
+| --- | --- |
+| Register 4 accounts through /Account/Login (the terms box and the reading level are required) | pass |
+| payOS: Pricing offers payOS first and preselected, mock chip, checkout to the mock page, pay, receipt | pass; the buyer was **signed out after activation** (known issue); the order page and history were verified after logging in again |
+| payOS cancel (account 03), then a new checkout | pass: cancelled sentence, pay-again button, new order |
+| Webhooks (account 02): tampered amount, wrong key, another amount, unknown code, valid x4 incl. 2 parallel, malformed body, 70 KB body | pass: always HTTP 200, order paid once (+365 days) |
+| IDOR (account 04): order page, mock page, OrderStatus, Refresh, MockConfirm; no antiforgery token | pass: 404, 404, 404, 404, 404, 400 |
+| Open redirect on /Billing/PayOSReturn | pass |
+| MoMo mock buy while Premium is active | pass: +365 days stacked |
+| Admin: payOS filter, details (no full account number, no signature), health row, premium users filter, Revoke | pass (the script's first Revoke attempt used a wrong selector; the rerun passed and the DB shows both subscriptions revoked, role Standard) |
+| VNPay sandbox | **not verified live**: TmnCode and HashSecret are empty in the local settings |
+| MoMo sandbox | **not verified live**: no test credentials; the mock was used |
+| payOS live (B8) | **not run**: no keys were provided |
+| Expiry flow in the browser | not run (needs a config change to shorten the 15 minutes); covered by tests |
+
+Evidence (screenshots and result JSON, no secrets): `.tmp/billing-verify/` (ignored by Git).
