@@ -346,18 +346,14 @@
 
 .tl-page .tl-grid__item { min-width: 0; }
 
-.tl-page .tl-card { position: relative; display: flex; flex-direction: column; height: 100%; overflow: hidden; transition: transform var(--tct-dur-fast) var(--tct-ease), box-shadow var(--tct-dur-fast) var(--tct-ease); }
-.tl-page .tl-card:hover { transform: translateY(-2px); box-shadow: var(--tct-clay-shadow-lift); }
-.tl-page .tl-card--locked:hover { transform: none; box-shadow: var(--tct-clay-shadow); }
+/* Hover only deepens the Clay shadow: study-kit.css sets transform: none on .k-card.tct-card--interactive for these pages. */
+.tl-page .tl-card { position: relative; display: flex; flex-direction: column; height: 100%; overflow: hidden; transition: box-shadow var(--tct-dur-fast) var(--tct-ease); }
+.tl-page .tl-card--locked:hover { box-shadow: var(--tct-clay-shadow); }
 .tl-page .tl-card:has(.tl-card__link:focus-visible) {
     outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
     outline-offset: var(--tct-focus-ring-offset);
 }
 .tl-page .tl-card__link:focus-visible { outline: none; }
-
-@media (prefers-reduced-motion: reduce) {
-    .tl-page .tl-card:hover { transform: none; box-shadow: var(--tct-clay-shadow); }
-}
 
 .tl-page .tl-card__thumb { position: relative; height: auto; aspect-ratio: 16 / 9; margin: var(--tct-space-sm) var(--tct-space-sm) 0; overflow: hidden; border-radius: var(--tct-radius-md); }
 .tl-page .tl-card__thumb .tl-thumb,

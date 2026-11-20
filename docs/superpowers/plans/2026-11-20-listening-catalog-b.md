@@ -414,3 +414,29 @@ Evidence: `.tmp/listening-catalog-b/after/premium-*.png`, `premium-empty-state.p
 | G8 | unchanged layout (K2/K3 matrix) plus the screenshots above |
 | G10 | plan section 8 item 3 and 4: done above |
 | G15 | the create/delete endpoints, antiforgery header (`RequestVerificationToken` through `Sets.fetchJson`) and server URL validation are untouched; the only new request is a same-origin GET of the catalogue |
+
+### 12.6 K5 — responsive and accessibility
+
+**Changed in this phase:** the card hover. The plan asked for a 2 px lift; `study-kit.css` (shared, not editable here) sets `transform: none` on `.k-card.tct-card--interactive` for the `.tl-page` and says Clay cards "only deepen the shadow". The shared rule wins (plan 0.1): the lift rule was removed from `listening.css`; hover deepens the Clay shadow and the card does not move, with or without reduced motion. This is a recorded difference from the mockup text, not a defect.
+
+**Checks run on the real app (`lc-a11y.cjs`, three roles, all pass):**
+- Structure: one `h1`; `h2` hero, `h2` YouTube card, `h2` shelves, `h3` cards; no unnamed link, button, input or select; no duplicate id; the band pills are a labelled `radiogroup` with one checked radio and one tab stop; live regions `#tlCount` (polite), `#tlImportStatus` (polite), `#tlImportError` (`role="alert"`); the hero is a region labelled by its title and its picture is decorative (`alt=""`); card links read `Mở bài nghe {title}`.
+- Keyboard (real Tab presses): hero button → YouTube card (field, `Tạo bài nghe`; or `Mở khóa với Premium`; or the two login links for a guest) → one stop for the band pills → three status toggles → topic select → the cards and the `Xem cả n bài` links in reading order. Every focused element shows a focus indicator (cards through the ring on the whole card). Arrow keys and End on the pills, Enter/Space on toggles, the modal and the form were also exercised in K3/K4.
+- Contrast (scripted, real colours): 98 text elements (Premium), 94 (Standard), 91 (guest) outside the hero all at or above their threshold (lowest 5.28:1, the primary button label). Hero text over **every one of the 22 real thumbnails**, brightest 5% of the pixels under each text box: at least 11.99:1 on a laptop (Premium; 11.34 Standard, 12.2 guest) and 8.44:1 on a phone, against a 4.5:1 requirement.
+- Reduced motion: hover does not move the card and the transition duration is about 0 (`1e-05s`). Forced colours: the hero scrim becomes `Canvas`, the picture is dropped and the text uses system colours (`premium-forced-colors.png`).
+- Widths: the K3 matrix was repeated for the three roles after the last change: no element outside the viewport at 1440, 1366, 1024, 768, 390, 320 and 200% zoom, no console error, no failed request; the K3 behaviour run (26 checks) still passes.
+
+**Not observed:** a real screen reader (names and live regions were checked in the DOM, not heard); Safari and Firefox.
+
+**Gate record (K5)**
+
+| Gate | Result |
+| --- | --- |
+| G1 | build 0 errors |
+| G2/G3 | full suite **3789 passed, 0 failed, 58 skipped** (1000 + 2789; K0 3761) |
+| G4 | node **596 passed** |
+| G6 | no hex/rgb/hsl, no inline style/handler, no `innerHTML`, `git diff --check` clean |
+| G8 | matrix repeated for the three roles (above) |
+| G11 | structure, keyboard, names, live regions (above) |
+| G12 | scripted contrast (above) |
+| G13 | practice page untouched |
