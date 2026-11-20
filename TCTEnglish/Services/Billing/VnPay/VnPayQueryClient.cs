@@ -234,7 +234,7 @@ namespace TCTEnglish.Services.Billing.VnPay
             });
 
             var computedHash = VnPaySignatureHelper.ComputeHmac512(_options.HashSecret, raw);
-            return string.Equals(computedHash, receivedHash.Trim(), StringComparison.OrdinalIgnoreCase);
+            return BillingSignatureComparer.HexEquals(computedHash, receivedHash);
         }
 
         private static string GetOrEmpty(IDictionary<string, string> payload, string key)

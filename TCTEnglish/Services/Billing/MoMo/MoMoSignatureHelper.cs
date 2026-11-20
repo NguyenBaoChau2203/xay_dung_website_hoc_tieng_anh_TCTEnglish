@@ -133,10 +133,7 @@ namespace TCTEnglish.Services.Billing.MoMo
             var raw = BuildReturnOrIpnRawSignature(parameters, accessKey);
             computedSignature = ComputeHmacSha256(secretKey, raw);
 
-            return string.Equals(
-                receivedSignature.Trim(),
-                computedSignature,
-                StringComparison.OrdinalIgnoreCase);
+            return BillingSignatureComparer.HexEquals(computedSignature, receivedSignature);
         }
     }
 }
