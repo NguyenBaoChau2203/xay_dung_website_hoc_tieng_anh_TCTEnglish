@@ -6061,3 +6061,37 @@ blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 **Commit**: `feat(listening)` (K3) on `feature/listening-catalog-b`; nothing pushed.
 
 **Notes**: Found by the K3 matrix before any user saw it.
+
+
+### Two tabs could create two pending payment orders — 2026-11-20
+
+**Symptom**: Pressing "Thanh toán" in two tabs (or double-clicking) at the same moment created two pending orders for the same user, plan and provider, and two provider checkouts.
+
+**Root Cause**: `BillingService.CreateCheckoutAsync` checks for an open order and then creates one, with no lock between the two steps, so two simultaneous requests both saw "no open order".
+
+**Solution**: A fixed set of 256 in-process gates (`SemaphoreSlim`), picked by a hash of user, plan and provider, serializes the check-and-create part (`CreateOrResumeOrderAsync`). The second request waits, then resumes the first order. A second app instance is still covered only by the 15-minute expiry and the rate limit (no schema change, so no unique index).
+
+**Files Changed**: `TCTEnglish/Services/Billing/BillingService.cs`.
+
+**Verification**: `BillingConcurrentCheckoutTests` (two contexts, `Task.WhenAll`; red before the fix with two orders, green after; different users are not merged).
+
+**Commit**: `fix(billing)` on `feature/billing-verify-payos`; nothing pushed.
+
+**Notes**: Plan `docs/superpowers/plans/2026-11-20-billing-verification-and-payos.md`, finding A1.
+
+
+### Provider signatures were compared with a non-constant-time string compare — 2026-11-20
+
+**Symptom**: No exploit observed. The audit checklist (plan 3.1 item 1) requires a constant-time comparison; VNPay (return/IPN, query response) and MoMo (return/IPN) used `string.Equals(..., OrdinalIgnoreCase)`.
+
+**Root Cause**: Each helper compared its own computed hex digest with the received one directly.
+
+**Solution**: New `BillingSignatureComparer.HexEquals` (`CryptographicOperations.FixedTimeEquals` over the lowercase, trimmed text; missing values are never equal) used by `VnPaySignatureHelper.Verify`, `VnPayQueryClient` and `MoMoSignatureHelper`. payOS will use it too.
+
+**Files Changed**: `TCTEnglish/Services/Billing/BillingSignatureComparer.cs` (new), `VnPay/VnPaySignatureHelper.cs`, `VnPay/VnPayQueryClient.cs`, `MoMo/MoMoSignatureHelper.cs`.
+
+**Verification**: `BillingSignatureComparerTests` (equal, case, whitespace, missing, one-character change, length change, and a source guard for the three call sites) plus the existing VNPay/MoMo signature tests (147 pass).
+
+**Commit**: `fix(billing)` on `feature/billing-verify-payos`; nothing pushed.
+
+**Notes**: Plan finding A2. The MoMo query client still does not verify a response signature (known issue `BILLING-MOMO-QUERY-UNVERIFIED`); it needs a sandbox answer to know the signed field list.
