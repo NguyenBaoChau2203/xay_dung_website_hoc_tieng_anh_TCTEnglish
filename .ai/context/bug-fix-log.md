@@ -6044,3 +6044,20 @@ blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 **Commit**: `fix(onboarding)` on `feature/onboarding-personal-decks`; nothing pushed.
 
 **Notes**: Found before release by the S7 checks; no user saw it.
+
+
+### Listening catalog filter row made the phone page scroll sideways — 2026-11-20
+
+**Symptom**: In the rebuilt catalog the page scrolled horizontally at 390 and 320 px (document width 449 px) because the filter row was 436 px wide.
+
+**Root Cause**: The mobile rule turned `.tl-filters` into a column (`flex-direction: column`) but kept the inherited `flex-wrap: wrap`. A wrapping column container sizes its line to the widest item's content, so the two scrolling chip rows could not shrink to the page width.
+
+**Solution**: `flex-wrap: nowrap` in the mobile rule of `.tl-filters` (`listening.css`), so the items stretch to the container and the chip rows scroll inside it.
+
+**Files Changed**: `TCTEnglish/wwwroot/css/listening.css`.
+
+**Verification**: Render matrix script (every element's rectangle against the viewport) at 1440, 1366, 1024, 768, 390, 320 and 200% zoom for guest, Standard and Premium: no element outside the viewport; evidence in the plan section 12.4.
+
+**Commit**: `feat(listening)` (K3) on `feature/listening-catalog-b`; nothing pushed.
+
+**Notes**: Found by the K3 matrix before any user saw it.

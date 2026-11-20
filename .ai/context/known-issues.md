@@ -49,6 +49,20 @@ implemented locally on `feature/onboarding-personal-decks`. Items for Châu to r
 Not covered by automated tests: two requests with the same id at the same instant (relies on the InnoDB row lock). 12 synthetic accounts
 `onb-*@tct.local` were left in the local Docker database (no sets); delete them with the normal account tools if they bother anyone.
 
+### LISTENING-CATALOG-B-NOTES — notes on the catalog direction B, 2026-11-20
+
+The Listening catalog `/Home/Listening` was rebuilt as direction B on `feature/listening-catalog-b` (plan `docs/superpowers/plans/2026-11-20-listening-catalog-b.md`).
+Items worth knowing:
+
+1. **Import read-back.** `POST Home/Listening/My/Create` returns only `{ success, lessonId }`. To insert the new card without a reload the page reads the
+   catalogue back (same-origin GET) and adopts the one `<li data-mine-id>`. If the endpoint ever returns the lesson data, replace the read-back.
+2. **Card hover.** `study-kit.css` sets `transform: none` on `.k-card.tct-card--interactive` for `.tl-page`, so a card only deepens its Clay shadow on hover.
+3. **Flaky unrelated test.** `AiPhase4HardeningIntegrationTests.Send_WhenStandardUserReachedDailyQuestionLimit_Returns429WithFriendlyMessage` failed once in
+   a full run (expected 429, got 200) and passed alone and on a rerun of its group; it does not touch Listening.
+4. **Bands.** `A1–A2` and `C1–C2` are one pill each; a level in the URL selects its band and the URL keeps the first level of the band. Every band with no
+   public lesson has no pill.
+5. **Not covered:** a real screen reader, Safari and Firefox; names, live regions and contrast were checked in the DOM and by script.
+
 ### SYSTEM-CONTENT-FAKE-SEED — invented Listening seed lessons, 2026-11-19
 
 `Models/ListeningLessonSeedData.cs` still holds hand-written transcripts without times attached to YouTube ids that were never verified, so the lessons do not match

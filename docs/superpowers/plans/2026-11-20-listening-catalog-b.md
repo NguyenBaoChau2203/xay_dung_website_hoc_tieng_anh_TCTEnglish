@@ -470,3 +470,31 @@ Compared the final screenshots (`.tmp/listening-catalog-b/after/*-1440x900.png`,
 | G8 | filter row measured at 1440, 1366, 1280 and 1024 for Standard and Premium; matrix of K3/K5 stays valid (no layout rule other than the select width changed) |
 | G9 | comparison above |
 | G3 | the full suite runs once on the final tree in K7 (this commit and the K7 commit differ only in CSS width and documents) |
+
+### 12.8 K7 — documents, final gate and summary
+
+**Documents:** tracker row (`docs/design-system/team-ui-workflow.md`, Nghe), `docs/project-structure.md` (Listening bullet), `.ai/context/known-issues.md` (`LISTENING-CATALOG-B-NOTES`), `.ai/context/bug-fix-log.md` (phone filter row overflow), this plan, the prompt copy in `.ai/prompts/`.
+
+**Final gate on the final tree**
+
+| Gate | Result |
+| --- | --- |
+| G1 | build 0 errors |
+| G2 | the Listening tests (231) pass; the bounded subset `Listening`, `Css`, `Design`, `Token`, `Encoding`, `UiRender`, `Layout`, `Onboarding`, `Vocabulary` (699 tests, one thread) passes: 699 passed, 3 skipped, 0 failed |
+| G3 | **Not completed on the final tree.** The `Ai` group passed in full (1000 passed, 0 failed, 18 skipped). The second group was aborted by the host for low memory ("Test host process crashed") after 1592 tests, all passed, 0 failed; the remaining 1237 did not run. Per the host's note it was not started again. The last complete full suite is the one of K5: **3789 passed, 0 failed, 58 skipped** (K0 3761); the code differs from that tree by one CSS declaration (`max-width` of the topic select) and documents only. Rerun the second group when memory allows, before merging. |
+| G4 | node **596 passed** (K0 589) |
+| G5 | `dotnet ef migrations has-pending-model-changes`: no changes; no model, migration, controller or route file is in the branch diff |
+| G6 | no hex/rgb/hsl in the new CSS (forced-colors keywords only), no inline style/handler, no `innerHTML`, no `bi bi-`, `git diff --check` clean for the committed files; encoding guard (scan of the 21 changed files for U+FFFD and mojibake patterns): the only matches are the 8 that already exist in `bug-fix-log.md` on master, none in this branch's additions |
+| G7 | only files of plan section 5; nothing from the forbidden list (the practice page and its JS, admin, `StudyController`, models, migrations, `Program.cs`, appsettings, `.csproj`, shared layouts and CSS) is in the diff |
+| G8–G12 | K2, K3, K5 records (render matrix for the three roles, behaviour checklist, keyboard, contrast on all 22 thumbnails, reduced motion, forced colours) |
+| G13 | the practice page opens from the cards and the hero in the behaviour runs; the practice page code is not in the diff; Home, Vocabulary, Sets and the admin Listening list were not browsed (their code is not in the diff) |
+| G14 | copy as in the plan; one difference: the B2 shelf label is `B2 · Trung cao` as the plan lists it (it was `Trung cao cấp`) |
+| G15 | antiforgery and server validation untouched; no `innerHTML`; thumbnails still come from `ThumbnailSrc` (https or local path only) |
+
+**Commits (local, nothing pushed):** `63fa918` K0, `3e0953e` K1, `7651f70` K2, `aac9091` K3, `dd8b356` K4, `d734ece` K5, `d664d94` K6, and the K7 documents commit.
+
+**Remaining risks**
+- The final full suite (second group) has to be rerun on a machine with free memory before the merge.
+- Not observed: Safari, Firefox, a real screen reader, phones other than the emulated 390 and 320 px.
+- The import read-back (a same-origin GET of the catalogue after a successful create) costs one extra page request per import; it disappears if the endpoint ever returns the lesson data.
+- The `Bài nghe của tôi` shelf is not touched by the filters (kept from the old page); if the owner wants search to cover it, that is a small follow-up.
