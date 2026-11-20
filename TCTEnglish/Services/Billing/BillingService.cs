@@ -20,6 +20,27 @@ namespace TCTEnglish.Services.Billing
         private static readonly TimeSpan PendingWindow = TimeSpan.FromMinutes(15);
         private static readonly TimeSpan OrderExpiry = TimeSpan.FromMinutes(15);
 
+        // Striped gates (a fixed number, so nothing grows with the number of buyers).
+        private const int CheckoutGateCount = 256;
+        private static readonly SemaphoreSlim[] CheckoutGates = CreateCheckoutGates();
+
+        private static SemaphoreSlim[] CreateCheckoutGates()
+        {
+            var gates = new SemaphoreSlim[CheckoutGateCount];
+            for (var i = 0; i < gates.Length; i++)
+            {
+                gates[i] = new SemaphoreSlim(1, 1);
+            }
+
+            return gates;
+        }
+
+        private static int CheckoutGateIndex(int userId, int planId, string provider)
+        {
+            var hash = HashCode.Combine(userId, planId, provider.ToLowerInvariant());
+            return (int)((uint)hash % CheckoutGateCount);
+        }
+
         private readonly DbflashcardContext _context;
         private readonly IEnumerable<IPaymentGateway> _gateways;
         private readonly IPaymentQueryService _queryService;
@@ -93,6 +114,29 @@ namespace TCTEnglish.Services.Billing
                         : "Tài khoản của bạn đã có quyền Premium không thời hạn.");
             }
 
+            // One checkout at a time per user, plan and provider: two tabs (or a double click) that arrive together
+            // must not both pass the "open order" check below and create two pending orders. The gate is in
+            // process; a second app instance is covered by the 15-minute expiry and the rate limit.
+            var gate = CheckoutGates[CheckoutGateIndex(userId, plan.Id, gateway.ProviderName)];
+            await gate.WaitAsync(ct);
+            try
+            {
+                return await CreateOrResumeOrderAsync(userId, plan, gateway, provider, clientIp, ct);
+            }
+            finally
+            {
+                gate.Release();
+            }
+        }
+
+        private async Task<CheckoutResult> CreateOrResumeOrderAsync(
+            int userId,
+            PremiumPlan plan,
+            IPaymentGateway gateway,
+            string provider,
+            string clientIp,
+            CancellationToken ct)
+        {
             // A second click, or a second tab, resumes the order that is still open instead of piling up new
             // ones (and does not count against the rate limit).
             var nowForReuse = DateTime.UtcNow;
