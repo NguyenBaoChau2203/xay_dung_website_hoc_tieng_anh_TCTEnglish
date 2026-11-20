@@ -34,7 +34,6 @@
     };
     var checkError = TempData["CheckoutError"] as string;
     var errorState = new StateMessageViewModel { Kind = StateMessageKind.Error, Title = "Chưa thể thực hiện", Message = checkError ?? string.Empty };
-    var sessionNotice = "Sau khi thanh toán xong, bạn có thể được yêu cầu đăng nhập lại để tài khoản nhận quyền Premium.";
     var builtAtClock = BillingTime.ToBusiness(Model.BuiltAtUtc).ToString("HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
     var orderUrl = "/Billing/Order/" + Uri.EscapeDataString(Model.OrderCode);
 }
@@ -144,10 +143,6 @@
                             <i class="fa-solid fa-mobile-screen-button me-2" aria-hidden="true"></i>Mở ứng dụng MoMo
                         </a>
                     }
-                    <p class="tb-note tb-note--info">
-                        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-                        @sessionNotice
-                    </p>
                     <a class="tb-link" href="/Premium">Hủy và chọn cách khác</a>
                 </section>
             </aside>
@@ -211,10 +206,6 @@
                 <p class="tb-note tb-note--center">
                     Đã bị trừ tiền nhưng quá 15 phút chưa được kích hoạt?
                     <a href="/Home/Contact">Liên hệ hỗ trợ</a> kèm mã đơn ở trên.
-                </p>
-                <p class="tb-note tb-note--info">
-                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-                    @sessionNotice
                 </p>
             }
             else

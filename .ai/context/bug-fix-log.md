@@ -6095,3 +6095,20 @@ blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 **Commit**: `fix(billing)` on `feature/billing-verify-payos`; nothing pushed.
 
 **Notes**: Plan finding A2. The MoMo query client still does not verify a response signature (known issue `BILLING-MOMO-QUERY-UNVERIFIED`); it needs a sandbox answer to know the signed field list.
+
+
+### First-time Premium buyer was signed out right after activation — 2026-11-20
+
+**Symptom**: Right after a payment was confirmed (VNPay, MoMo or payOS) the buyer's next request went to `/Account/Login`. The same happened when Premium expired and when an admin granted or revoked Premium (known issue `BILLING-ROLE-CHANGE-SIGNS-OUT`).
+
+**Root Cause**: `OnValidatePrincipal` (`Program.cs`) refused the cookie whenever the role in the cookie differed from `User.Role` in the database, and `SubscriptionService` changes that role on purchase, expiry and admin grant/revoke.
+
+**Solution**: `AccountSessionValidator.EvaluateAsync` returns `Valid`, `Invalid` or `RoleChanged`. When only the role differs, the cookie event replaces the principal with the stored role (`WithRole`) and sets `ShouldRenew`, so the session continues. A changed `SecurityVersion`, an anonymised account or an active lock still refuse the cookie. `IsValidAsync` (SignalR hubs) stays strict. The "you may be asked to sign in again" notice was removed from the Pricing and Order pages.
+
+**Files Changed**: `TCTEnglish/Services/Accounts/AccountSessionValidator.cs`, `TCTEnglish/Program.cs` (cookie event), `TCTEnglish/Views/Billing/Pricing.cshtml`, `TCTEnglish/Views/Billing/Order.cshtml`.
+
+**Verification**: `AccountSessionRoleChangeTests` (role changed both ways; security version, anonymised and blocked still refused; strict check unchanged; claims kept). Full suite 3964 pass, 58 skip, 0 fail. Browser: a fresh account paid through the payOS mock and stayed signed in on the order page, history, /Premium and the dashboard, and /Premium then showed Premium.
+
+**Commit**: `fix(account)` on `feature/billing-verify-payos`.
+
+**Notes**: `billing-order.js` still handles a really ended session (kept as a safety net). The login page still ignores `returnUrl` (separate item `LANDING-READING-LOGIN-RETURN`). Claim-based Premium checks in a few modules (`BILLING-ROLE-CLAIM-PREMIUM-CHECKS`) now see the new role on the next request after the cookie renews.

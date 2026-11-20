@@ -306,7 +306,15 @@ builder.Services.AddAuthentication(options =>
 
         var db = context.HttpContext.RequestServices.GetRequiredService<DbflashcardContext>();
         var clock = context.HttpContext.RequestServices.GetRequiredService<TimeProvider>();
-        if (!await AccountSessionValidator.IsValidAsync(db, principal, clock.GetUtcNow().UtcDateTime, context.HttpContext.RequestAborted))
+        var session = await AccountSessionValidator.EvaluateAsync(db, principal, clock.GetUtcNow().UtcDateTime, context.HttpContext.RequestAborted);
+        if (session.Status == AccountSessionStatus.RoleChanged && principal != null && session.CurrentRole != null)
+        {
+            // A purchase, an expiry or an admin changed only the role: keep the person signed in and renew the
+            // cookie with the stored role (security version, lock and anonymisation are still enforced above).
+            context.ReplacePrincipal(AccountSessionValidator.WithRole(principal, session.CurrentRole));
+            context.ShouldRenew = true;
+        }
+        else if (session.Status != AccountSessionStatus.Valid)
         {
             context.RejectPrincipal();
             await context.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
