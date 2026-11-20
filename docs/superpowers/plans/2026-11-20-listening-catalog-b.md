@@ -389,3 +389,28 @@ Screenshots: `.tmp/listening-catalog-b/after/{guest,standard,premium}-{1440x900,
 | G13 | practice page not touched |
 
 Evidence: `.tmp/listening-catalog-b/after/premium-*.png`, `premium-empty-state.png`.
+
+### 12.5 K4 — import flow
+
+**Done** (`listening-index.js`, `_ListeningMyLessonCard.cshtml`, test assertions):
+- Submitting: the button turns into a spinner and `Đang tạo bài nghe…`, is disabled (`aria-busy`), the field is read-only, the status line says `Đang lấy phụ đề và tạo bài nghe… Việc này có thể mất đến một phút.`; a second submit or click while busy sends nothing.
+- Success (D4): no page load. The create endpoint returns only `{ success, lessonId }` and `StudyController` is forbidden, so the script reads the new card back from the server-rendered catalogue page (same-origin GET, one `<li data-mine-id>` adopted with `DOMParser` and `importNode`, no `innerHTML`) and inserts it first in `Bài nghe của tôi`; the shelf is un-hidden if it was empty. The card shows `Đã tạo bài nghe "{title}"` with `Mở bài nghe` (focused) and `Tạo bài khác` (clears the field and refocuses it). If the read-back fails the panel still appears, without the title or the card.
+- Counts: `Bài của tôi: n`, the shelf count chip, the shelf itself and `Xem tất cả` follow the cards through `syncMine()`; `Xem tất cả` focuses the shelf heading.
+- Errors are inline in the `role="alert"` box (client check `Link YouTube không hợp lệ.`, the server message for 400, the server message plus a link `Nâng cấp Premium` for 403 `requiresUpgrade`, a generic message for a network failure); the form is usable again after every error.
+- Delete (modal kept): removes the card, updates every count, hides the shelf when empty and focuses the shelf heading, or the import field when no lesson is left.
+
+**Verification**
+- Stubbed run (`lc-import.cjs`, 18 checks, real page, Fetch interception, no YouTube request): start state, busy state, exactly one POST for a double submit, success panel and focus, card inserted first with counts 1, no navigation, `Mở bài nghe` link, `Xem tất cả` focus, `Tạo bài khác`, delete through the real modal with the stubbed answer, and the three error kinds (400, 403 with the upgrade link, network): all pass, no console error. Screenshots: `premium-import-busy.png`, `premium-import-done.png`, `premium-import-error.png`.
+- **Live import verified**: the Premium test account imported the real video `jNQXAC9IVRw` (title read back as `Me at the zoo`); the card appeared in place, the practice page opened with that title, and the lesson was deleted through the UI (0 own lessons afterwards, also after a reload). Seeded lessons were not touched.
+
+**Gate record (K4)**
+
+| Gate | Result |
+| --- | --- |
+| G1 | build 0 errors |
+| G2/G3 | full suite **3789 passed, 0 failed, 58 skipped** (1000 + 2789; K0 3761) |
+| G4 | node **596 passed** (K0 589) |
+| G6 | no `innerHTML`/`insertAdjacentHTML`, no hex, `git diff --check` clean; `listening-index.js` 483 lines |
+| G8 | unchanged layout (K2/K3 matrix) plus the screenshots above |
+| G10 | plan section 8 item 3 and 4: done above |
+| G15 | the create/delete endpoints, antiforgery header (`RequestVerificationToken` through `Sets.fetchJson`) and server URL validation are untouched; the only new request is a same-origin GET of the catalogue |

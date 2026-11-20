@@ -301,43 +301,93 @@
         var submit = document.getElementById('tlImportSubmit');
         var errorEl = document.getElementById('tlImportError');
         var statusEl = document.getElementById('tlImportStatus');
+        var doneEl = document.getElementById('tlImportDone');
+        var submitChildren = Array.prototype.slice.call(submit.childNodes);
         var busy = false;
+        var genericError = 'Không thêm được bài nghe. Hãy kiểm tra video có phụ đề tiếng Anh rồi thử lại.';
 
-        function setError(text) {
-            errorEl.textContent = text || '';
+        function setError(text, upgrade) {
+            errorEl.textContent = '';
+            if (text) {
+                errorEl.appendChild(document.createTextNode(text));
+                if (upgrade) {
+                    errorEl.appendChild(document.createTextNode(' '));
+                    var link = Sets.el('a', null, 'Nâng cấp Premium');
+                    link.href = (config.urls && config.urls.premium) || '/Account/Premium';
+                    errorEl.appendChild(link);
+                }
+            }
             errorEl.hidden = !text;
             if (text) { urlInput.setAttribute('aria-invalid', 'true'); } else { urlInput.removeAttribute('aria-invalid'); }
         }
 
-        function setStatus(nodes) {
-            statusEl.textContent = '';
-            (nodes || []).forEach(function (n) { statusEl.appendChild(n); });
+        function setStatus(text) {
+            statusEl.textContent = text || '';
         }
 
+        // while the server works: the button shows a spinner and cannot be pressed again, the field cannot be edited
         function setBusy(on) {
             busy = on;
-            urlInput.disabled = on;
+            urlInput.readOnly = on;
             submit.disabled = on;
-            if (on) { submit.setAttribute('aria-busy', 'true'); } else { submit.removeAttribute('aria-busy'); }
+            submit.textContent = '';
+            if (on) {
+                var spinner = Sets.el('span', 'spinner-border spinner-border-sm');
+                spinner.setAttribute('aria-hidden', 'true');
+                submit.appendChild(spinner);
+                submit.appendChild(document.createTextNode(' Đang tạo bài nghe…'));
+                submit.setAttribute('aria-busy', 'true');
+            } else {
+                submitChildren.forEach(function (node) { submit.appendChild(node); });
+                submit.removeAttribute('aria-busy');
+            }
         }
 
-        function failure(message, upgrade) {
-            setBusy(false);
-            var nodes = [document.createTextNode(message)];
-            if (upgrade) {
-                nodes.push(document.createTextNode(' '));
-                var link = Sets.el('a', null, 'Nâng cấp Premium');
-                link.href = (config.urls && config.urls.premium) || '/Account/Premium';
-                nodes.push(link);
-            }
-            setStatus(nodes);
+        // The create endpoint answers with the lesson id only: the finished card is read back from the catalogue page
+        // (same origin, server-rendered, Razor-encoded) and the one <li> of the new lesson is adopted into the shelf.
+        function fetchNewCard(id) {
+            return window.fetch(window.location.pathname, { credentials: 'same-origin', cache: 'no-store', headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                .then(function (response) { return response.ok ? response.text() : ''; })
+                .then(function (html) {
+                    if (!html) { return null; }
+                    var parsed = new DOMParser().parseFromString(html, 'text/html');
+                    var li = parsed.querySelector('li[data-mine-id="' + id + '"]');
+                    return li ? document.importNode(li, true) : null;
+                })
+                .catch(function () { return null; });
+        }
+
+        function showDone(id, card) {
+            var title = card ? (card.getAttribute('data-title') || '') : '';
+            importForm.hidden = true;
+            doneEl.textContent = '';
+            var text = Sets.el('p', 'tl-yt__done-text', title ? 'Đã tạo bài nghe "' + title + '"' : 'Đã tạo bài nghe.');
+            var actions = Sets.el('div', 'tl-yt__done-actions');
+            var open = Sets.el('a', 'btn btn-primary btn-sm', 'Mở bài nghe');
+            open.href = config.urls.practice + id;
+            var again = Sets.el('button', 'btn btn-outline-primary btn-sm', 'Tạo bài khác');
+            again.type = 'button';
+            again.addEventListener('click', function () {
+                doneEl.hidden = true;
+                doneEl.textContent = '';
+                importForm.hidden = false;
+                urlInput.value = '';
+                urlInput.focus();
+            });
+            actions.appendChild(open);
+            actions.appendChild(again);
+            doneEl.appendChild(text);
+            doneEl.appendChild(actions);
+            doneEl.setAttribute('role', 'status');
+            doneEl.hidden = false;
+            open.focus();
         }
 
         importForm.addEventListener('submit', function (event) {
             event.preventDefault();
             if (busy) { return; }
             setError('');
-            setStatus([]);
+            setStatus('');
 
             var value = urlInput.value.trim();
             if (!core.isYoutubeUrl(value)) {
@@ -347,23 +397,26 @@
             }
 
             setBusy(true);
-            var spinner = Sets.el('span', 'spinner-border spinner-border-sm me-2');
-            spinner.setAttribute('role', 'presentation');
-            setStatus([spinner, document.createTextNode('Đang lấy phụ đề và tạo bài nghe… Việc này có thể mất đến một phút.')]);
+            setStatus('Đang lấy phụ đề và tạo bài nghe… Việc này có thể mất đến một phút.');
 
             var form = new FormData();
             form.append('youtubeUrl', value);
             Sets.fetchJson(config.urls.create, { method: 'POST', body: form }).then(function (data) {
                 var id = data && Number(data.lessonId);
-                if (!id) { failure('Không thêm được bài nghe. Hãy kiểm tra video có phụ đề tiếng Anh rồi thử lại.'); return; }
-                setStatus([document.createTextNode('Đã thêm bài nghe.')]);
-                window.location.assign(config.urls.practice + id);
+                if (!id) { setBusy(false); setStatus(''); setError(genericError); return null; }
+                return fetchNewCard(id).then(function (card) {
+                    setBusy(false);
+                    setStatus('');
+                    if (card && mineGrid && !mineGrid.querySelector('[data-mine-id="' + id + '"]')) { mineGrid.insertBefore(card, mineGrid.firstChild); }
+                    syncMine();
+                    showDone(id, card);
+                });
             }).catch(function (error) {
                 var data = error && error.data;
-                var message = data && typeof data.message === 'string' && data.message
-                    ? data.message
-                    : 'Không thêm được bài nghe. Hãy kiểm tra video có phụ đề tiếng Anh rồi thử lại.';
-                failure(message, !!(error && error.status === 403 && data && data.requiresUpgrade));
+                var message = data && typeof data.message === 'string' && data.message ? data.message : genericError;
+                setBusy(false);
+                setStatus('');
+                setError(message, !!(error && error.status === 403 && data && data.requiresUpgrade));
             });
         });
 

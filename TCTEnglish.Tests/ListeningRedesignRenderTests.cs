@@ -391,6 +391,9 @@ public sealed class ListeningRedesignRenderTests
         Assert.Contains("id=\"tlMineGrid\"", body, StringComparison.Ordinal);
         Assert.Contains($"data-mine-id=\"{PrivateId}\"", body, StringComparison.Ordinal);
         Assert.Contains($"data-tl-delete=\"{PrivateId}\"", body, StringComparison.Ordinal);
+        // the title rides on the <li> so the import can read a new card back and name it, the chip sits on the image
+        Assert.Contains($"data-mine-id=\"{PrivateId}\" data-title=\"My own video\"", body, StringComparison.Ordinal);
+        Assert.Matches("<span class=\"tl-card__private\">(?s:.)*?Riêng tư</span>", text);
         Assert.Contains("Riêng tư", text, StringComparison.Ordinal);
         Assert.Contains("id=\"tlDeleteLesson\"", body, StringComparison.Ordinal); // the delete confirmation modal is still rendered
 
