@@ -15,6 +15,7 @@ using Microsoft.Extensions.Options;
 using TCTEnglish.Models;
 using TCTEnglish.Services.Billing;
 using TCTEnglish.Services.Billing.MoMo;
+using TCTEnglish.Services.Billing.PayOS;
 using TCTEnglish.ViewModels.Billing;
 using TCTVocabulary.Controllers;
 using TCTVocabulary.Models;
@@ -33,6 +34,7 @@ namespace TCTEnglish.Controllers
         private readonly IPaymentQueryService _queryService;
         private readonly ISubscriptionService _subscriptionService;
         private readonly ILogger<BillingController> _logger;
+        private readonly PayOSOptions _payOsOptions;
 
         public BillingController(
             DbflashcardContext context,
@@ -44,8 +46,10 @@ namespace TCTEnglish.Controllers
             IWebHostEnvironment environment,
             IPaymentQueryService queryService,
             ISubscriptionService subscriptionService,
-            ILogger<BillingController> logger)
+            ILogger<BillingController> logger,
+            IOptions<PayOSOptions>? payOsOptions = null)
         {
+            _payOsOptions = (payOsOptions?.Value ?? new PayOSOptions()).Normalize();
             _context = context;
             _billingService = billingService;
             _premiumAccessService = premiumAccessService;
@@ -90,7 +94,8 @@ namespace TCTEnglish.Controllers
                 providerReadiness,
                 IsMoMoMockModeEnabled(),
                 TempData["CheckoutError"] as string,
-                DateTime.UtcNow);
+                DateTime.UtcNow,
+                IsPayOSMockModeEnabled());
 
             return View(model);
         }
@@ -416,6 +421,228 @@ namespace TCTEnglish.Controllers
 
             var model = await _billingService.GetMoMoReturnResultAsync(queryParams);
             return RedirectReturnToOrderPage(model, orderCode);
+        }
+
+        // ───────────────────────────────────────────────────────────────────────────────────────────────
+        // payOS
+        // ───────────────────────────────────────────────────────────────────────────────────────────────
+
+        private const int MaxPayOSWebhookBodyBytes = 64 * 1024;
+
+        /// <summary>
+        /// payOS webhook. Answers 200 once the body could be read, whatever the outcome (an unknown order or a bad
+        /// signature will not become valid by payOS sending it again); the order is confirmed only after the
+        /// signature was verified by the gateway. The reconciliation covers a webhook lost to a server error.
+        /// </summary>
+        [AllowAnonymous]
+        [HttpPost("/api/billing/payos/webhook")]
+        public async Task<IActionResult> PayOSWebhook()
+        {
+            var parameters = await TryReadPayOSWebhookBodyAsync(Request.Body, HttpContext.RequestAborted);
+            if (parameters == null)
+            {
+                return Ok(new { success = true });
+            }
+
+            try
+            {
+                await _ipnService.ProcessPayOSWebhookAsync(parameters, HttpContext.RequestAborted);
+            }
+            catch (OperationCanceledException) when (HttpContext.RequestAborted.IsCancellationRequested)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unhandled error while processing a payOS webhook.");
+            }
+
+            return Ok(new { success = true });
+        }
+
+        [AllowAnonymous]
+        [HttpGet("/Billing/PayOSReturn")]
+        public Task<IActionResult> PayOSReturn() => HandlePayOSReturnAsync();
+
+        [AllowAnonymous]
+        [HttpGet("/Billing/PayOSCancel")]
+        public Task<IActionResult> PayOSCancel() => HandlePayOSReturnAsync();
+
+        private async Task<IActionResult> HandlePayOSReturnAsync()
+        {
+            var queryParams = HttpContext.Request.Query
+                .ToDictionary(kv => kv.Key, kv => kv.Value.ToString(), StringComparer.OrdinalIgnoreCase);
+
+            if (!queryParams.TryGetValue("orderCode", out var payOsCode) || !PayOSOrderCode.TryParse(payOsCode, out _))
+            {
+                return View("InvalidReturn");
+            }
+
+            var model = await _billingService.GetPayOSReturnResultAsync(queryParams);
+            return RedirectReturnToOrderPage(model, payOsCode);
+        }
+
+        /// <summary>The local fake payOS page (Development + PayOS:Enabled + PayOS:MockMode only). Owner only.</summary>
+        [Authorize]
+        [HttpGet("/Billing/PayOSMock")]
+        public async Task<IActionResult> PayOSMock(string orderCode)
+        {
+            if (!IsPayOSMockModeEnabled() || string.IsNullOrWhiteSpace(orderCode))
+            {
+                return NotFound();
+            }
+
+            var userId = GetCurrentUserId();
+            var order = await _context.PaymentOrders
+                .AsNoTracking()
+                .Include(o => o.Plan)
+                .Where(o => o.UserId == userId && o.OrderCode == orderCode && o.Provider == PaymentProviders.PayOS)
+                .FirstOrDefaultAsync();
+            if (order == null || !PayOSOrderCode.TryParse(order.ProviderRequestId, out _))
+            {
+                return NotFound();
+            }
+
+            var open = order.Status == PaymentOrderStatuses.Pending && order.ExpiresAtUtc > DateTime.UtcNow;
+            return View("PayOSMock", new PayOSMockViewModel
+            {
+                OrderCode = order.OrderCode,
+                PayOSCode = order.ProviderRequestId!,
+                PlanName = order.Plan?.Name ?? "Premium",
+                AmountText = BillingTime.FormatMoney(order.AmountVnd),
+                IsOpen = open
+            });
+        }
+
+        /// <summary>Sends this app a correctly signed payOS webhook for the buyer's own order (mock only).</summary>
+        [Authorize]
+        [HttpPost("/Billing/PayOSMockConfirm")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PayOSMockConfirm(string orderCode)
+        {
+            if (!IsPayOSMockModeEnabled() || string.IsNullOrWhiteSpace(orderCode))
+            {
+                return NotFound();
+            }
+
+            var userId = GetCurrentUserId();
+            var order = await _context.PaymentOrders
+                .AsNoTracking()
+                .Where(o => o.UserId == userId && o.OrderCode == orderCode && o.Provider == PaymentProviders.PayOS)
+                .FirstOrDefaultAsync();
+            if (order == null || !PayOSOrderCode.TryParse(order.ProviderRequestId, out _))
+            {
+                return NotFound();
+            }
+
+            if (order.ExpiresAtUtc <= DateTime.UtcNow)
+            {
+                TempData["CheckoutError"] = "Đơn hàng đã hết hạn, vui lòng tạo đơn mới.";
+                return Redirect(OrderPageUrl(orderCode));
+            }
+
+            var amount = Convert.ToInt64(decimal.Truncate(order.AmountVnd), CultureInfo.InvariantCulture)
+                .ToString(CultureInfo.InvariantCulture);
+            var data = new Dictionary<string, string?>(StringComparer.Ordinal)
+            {
+                ["orderCode"] = order.ProviderRequestId,
+                ["amount"] = amount,
+                ["description"] = PayOSOrderCode.Description(long.Parse(order.ProviderRequestId!, CultureInfo.InvariantCulture)),
+                ["accountNumber"] = "0000000000",
+                ["reference"] = $"MOCK{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}",
+                ["transactionDateTime"] = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture),
+                ["currency"] = "VND",
+                ["paymentLinkId"] = $"mock-{order.Id}",
+                ["code"] = "00",
+                ["desc"] = "Thành công",
+                ["counterAccountBankId"] = "",
+                ["counterAccountBankName"] = "",
+                ["counterAccountName"] = "",
+                ["counterAccountNumber"] = "",
+                ["virtualAccountName"] = "",
+                ["virtualAccountNumber"] = ""
+            };
+
+            var webhook = new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                ["code"] = "00",
+                ["desc"] = "success",
+                ["success"] = "true",
+                ["signature"] = PayOSSignature.ForData(data, _payOsOptions.ResolveChecksumKey(mockActive: true))
+            };
+            foreach (var pair in data)
+            {
+                webhook["data." + pair.Key] = pair.Value ?? string.Empty;
+            }
+
+            await _ipnService.ProcessPayOSWebhookAsync(webhook);
+            return Redirect(OrderPageUrl(orderCode));
+        }
+
+        private bool IsPayOSMockModeEnabled()
+            => _payOsOptions.IsMockActive(_environment.IsDevelopment());
+
+        /// <summary>
+        /// Reads at most 64 KB and returns the webhook flattened (<c>code</c>, <c>desc</c>, <c>success</c>,
+        /// <c>signature</c>, and <c>data.&lt;name&gt;</c> for every field of <c>data</c>), or null with one warning
+        /// line (no payload) when the body is too large, not JSON, not an object or has no <c>data</c> object.
+        /// </summary>
+        private async Task<Dictionary<string, string>?> TryReadPayOSWebhookBodyAsync(Stream body, CancellationToken ct)
+        {
+            using var buffer = new MemoryStream();
+            var chunk = new byte[8192];
+            int read;
+            while ((read = await body.ReadAsync(chunk.AsMemory(), ct)) > 0)
+            {
+                if (buffer.Length + read > MaxPayOSWebhookBodyBytes)
+                {
+                    _logger.LogWarning("payOS webhook ignored: body is larger than {LimitBytes} bytes.", MaxPayOSWebhookBodyBytes);
+                    return null;
+                }
+
+                buffer.Write(chunk, 0, read);
+            }
+
+            JsonDocument document;
+            try
+            {
+                document = JsonDocument.Parse(buffer.ToArray());
+            }
+            catch (JsonException)
+            {
+                _logger.LogWarning("payOS webhook ignored: body is not valid JSON ({Length} bytes).", buffer.Length);
+                return null;
+            }
+
+            using (document)
+            {
+                var root = document.RootElement;
+                if (root.ValueKind != JsonValueKind.Object
+                    || !root.TryGetProperty("data", out var data)
+                    || data.ValueKind != JsonValueKind.Object)
+                {
+                    _logger.LogWarning("payOS webhook ignored: body is not an object with a data object.");
+                    return null;
+                }
+
+                var result = new Dictionary<string, string>(StringComparer.Ordinal);
+                foreach (var property in root.EnumerateObject())
+                {
+                    if (property.Name == "data")
+                    {
+                        continue;
+                    }
+
+                    result[property.Name] = PayOSSignature.ToSignedText(property.Value);
+                }
+
+                foreach (var property in data.EnumerateObject())
+                {
+                    result["data." + property.Name] = PayOSSignature.ToSignedText(property.Value);
+                }
+
+                return result;
+            }
         }
 
         /// <summary>

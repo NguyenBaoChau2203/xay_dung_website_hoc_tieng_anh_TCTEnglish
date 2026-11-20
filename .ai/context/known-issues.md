@@ -912,3 +912,12 @@ level 0-6 (10 min, 1, 3, 7, 14, 30, 60 days) computed on the server from the les
 (`POST /Vocabulary/Review/Record`); the home shows the daily ring, the due words ("Ôn
 ngay"), "Trí nhớ của bạn" and "Lịch ôn 7 ngày tới"; course covers have illustrations and
 words have emoji pictures. See TD-016 and the SRS polish plan section 12.
+
+
+### BILLING-PAYOS-NOT-VERIFIED-LIVE — payOS chưa thử với khóa thật, 20/11/2026
+
+- payOS được tích hợp và kiểm thử đầy đủ bằng test tự động + chế độ mock Development (trình duyệt thật, tài khoản `qa.billing.*`). **Chưa có cuộc gọi nào tới `api-merchant.payos.vn` bằng khóa thật**: tạo link, hủy link, `GetPayment` và webhook thật chưa được xác minh. Các giả định chưa kiểm chứng: mã lỗi "đơn đã tồn tại" (231 hay dựa vào chữ "tồn tại"), trạng thái `EXPIRED`/`UNDERPAID` (docs chỉ nêu PAID/PENDING/PROCESSING/CANCELLED), định dạng `transactions[]`, các trường bắt buộc của `items`.
+- Mã đơn payOS (15 chữ số) nằm trong `PaymentOrder.ProviderRequestId`; cột này không có chỉ mục riêng. Với bảng lớn nên thêm chỉ mục (cần migration, bàn với Châu).
+- Webhook luôn trả 200 khi đọc được body (quyết định D3): nếu DB lỗi tạm thời payOS sẽ không gửi lại; đối soát (`ReconciliationWorker:Enabled=true`) là đường khôi phục.
+- Chữ ký mẫu trên trang webhook của payOS (`8d86…`) khác chữ ký trong mã mẫu của trang "Kiểm tra dữ liệu với signature" (`412e91…`); bản sau khớp cách ký đã cài (kiểm bằng openssl).
+- `BILLING-ROLE-CHANGE-SIGNS-OUT` vẫn tái hiện 20/11/2026 với payOS: người mua lần đầu bị đăng xuất ngay sau khi kích hoạt Premium (người đã là Premium mua tiếp thì không). Thuộc code tài khoản, chờ Châu.

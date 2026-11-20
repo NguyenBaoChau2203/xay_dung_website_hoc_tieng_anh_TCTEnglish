@@ -18,7 +18,8 @@ namespace TCTEnglish.Services.Billing
             IReadOnlyDictionary<string, bool> providerReadiness,
             bool moMoMockMode,
             string? errorMessage,
-            DateTime nowUtc)
+            DateTime nowUtc,
+            bool payOsMockMode = false)
         {
             var list = plans.Select(Clone).ToList();
 
@@ -53,6 +54,15 @@ namespace TCTEnglish.Services.Billing
             bool Ready(string code) => providerReadiness.TryGetValue(code, out var ok) && ok;
             var providers = new List<PricingProviderViewModel>
             {
+                new()
+                {
+                    Code = PaymentProviders.PayOS,
+                    Name = "Chuyển khoản QR (payOS)",
+                    Badge = "payOS",
+                    Description = "Quét mã bằng app ngân hàng bất kỳ",
+                    Available = Ready(PaymentProviders.PayOS),
+                    IsTest = payOsMockMode && Ready(PaymentProviders.PayOS)
+                },
                 new()
                 {
                     Code = PaymentProviders.VNPay,

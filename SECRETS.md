@@ -98,3 +98,17 @@ Neu repo da tung chua secret that truoc day, can:
 2. Thu hoi/revoke credential cu tren portal nha cung cap.
 3. Cap nhat lai bang User Secrets (local) hoac environment variables (production).
 4. Kiem tra lai source de dam bao khong con literal secret.
+
+## payOS (added 2026-11-20)
+
+Only the three keys are secret. Set them with user-secrets locally (or `PayOS__ClientId`, `PayOS__ApiKey`, `PayOS__ChecksumKey` in the server environment); never commit them, print them or put them in a screenshot.
+
+```powershell
+dotnet user-secrets set "PayOS:Enabled" "true"
+dotnet user-secrets set "PayOS:ClientId" "<client id>"
+dotnet user-secrets set "PayOS:ApiKey" "<api key>"
+dotnet user-secrets set "PayOS:ChecksumKey" "<checksum key>"
+dotnet user-secrets set "PayOS:PublicBaseUrl" "https://<public address>"
+```
+
+Local testing without keys: `PayOS__Enabled=true` and `PayOS__MockMode=true` (Development only).

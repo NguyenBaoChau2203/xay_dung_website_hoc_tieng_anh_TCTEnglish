@@ -98,3 +98,11 @@ What the buyer sees on `/Billing/Order/{code}`: **Chờ thanh toán** (waiting),
 ## 11. Local mock mode (development only)
 
 MoMo mock mode never exists outside `ASPNETCORE_ENVIRONMENT=Development`: the dashed "Chế độ thử nghiệm" box and `POST /Billing/MoMoMockConfirm` answer 404 in any other environment. Enable it for one local run with process environment variables only (never in `appsettings` or user secrets): `MoMo__Enabled=true`, `MoMo__MockModeEnabled=true`, `MoMo__MockSecretKey=<random value for that run>`, then `pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser`. No real payment is made and no provider is called.
+
+## 12. payOS (added 2026-11-20)
+
+- **Buyer paid, order still pending:** the buyer's "Kiểm tra lại ngay" and the reconciliation ask the payOS API for the order (`GET /v2/payment-requests/{number}`; the number is `PaymentOrder.ProviderRequestId`). PAID with the full amount confirms the order; PENDING/PROCESSING/EXPIRED never change it.
+- **Webhook not arriving:** check the registered address in the payOS dashboard, then Admin > Billing > Details > events: an `ipn` event with "Order not found" or "Amount mismatch" explains most cases; "Invalid HMAC-SHA256 signature" means a wrong `ChecksumKey` or a forged call. The endpoint answers 200 for everything it could read, so payOS will not retry; the reconciliation is the recovery path.
+- **Amount mismatch:** the order stays pending with a failed event; resolve it by hand (Admin manual confirm/reject) after checking the bank.
+- **Refund:** done at the bank or in the payOS dashboard, then revoke Premium in Admin.
+- **Disable payOS during an incident:** `PayOS__Enabled=false` (existing pending orders are still reconciled only while the gateway is enabled).

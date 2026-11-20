@@ -1,0 +1,55 @@
+@model TCTEnglish.ViewModels.Billing.PayOSMockViewModel
+@using TCTEnglish.ViewModels
+@*
+    The local fake of the payOS checkout page. Development only: the action answers 404 unless PayOS:Enabled and
+    PayOS:MockMode are on in the Development environment. "Thanh toán thử" sends this app a correctly signed webhook
+    for the buyer's own order; "Hủy" follows the cancel address of a real payOS cancel. No money, no network.
+*@
+@{
+    ViewData["Title"] = "payOS – thanh toán thử";
+    var header = new PageHeaderViewModel
+    {
+        Title = "Trang thanh toán payOS (thử)",
+        Breadcrumbs = new[]
+        {
+            new PageBreadcrumbItem("Nâng cấp Premium", "/Premium"),
+            new PageBreadcrumbItem("Thanh toán", null)
+        }
+    };
+    var cancelUrl = "/Billing/PayOSCancel?orderCode=" + Uri.EscapeDataString(Model.PayOSCode)
+        + "&cancel=true&status=CANCELLED&ref=" + Uri.EscapeDataString(Model.OrderCode);
+    var orderUrl = "/Billing/Order/" + Uri.EscapeDataString(Model.OrderCode);
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/billing.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tb-page tb-page--order" data-tb-payos-mock>
+    <partial name="_PageHeader" model="header" />
+
+    <section class="k-panel tb-card tb-pay-card" aria-labelledby="tb-mock-heading">
+        <div class="tb-mock" role="note">
+            <p class="tb-mock__text"><strong>Chế độ thử – không trừ tiền thật.</strong> Đây là trang giả lập của payOS, chỉ có ở máy phát triển.</p>
+        </div>
+
+        <h2 id="tb-mock-heading" class="tb-section-title">Đơn @Model.OrderCode</h2>
+        <p class="tb-lead">Gói @Model.PlanName · @Model.AmountText</p>
+
+        @if (Model.IsOpen)
+        {
+            <form method="post" asp-controller="Billing" asp-action="PayOSMockConfirm">
+                <input type="hidden" name="orderCode" value="@Model.OrderCode" />
+                <button type="submit" class="btn btn-primary btn-lg tb-btn-wide">
+                    <i class="fa-solid fa-building-columns me-2" aria-hidden="true"></i>Thanh toán thử
+                </button>
+            </form>
+            <a class="btn btn-outline-primary btn-lg tb-btn-wide" href="@cancelUrl">Hủy thanh toán</a>
+        }
+        else
+        {
+            <p class="tb-note">Đơn này không còn chờ thanh toán.</p>
+            <a class="btn btn-primary btn-lg tb-btn-wide" href="@orderUrl">Xem đơn hàng</a>
+        }
+    </section>
+</div>

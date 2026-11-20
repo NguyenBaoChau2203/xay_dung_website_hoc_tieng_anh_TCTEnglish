@@ -27,7 +27,9 @@
             },
         TotalText = selectedPlan?.PriceText ?? string.Empty
     };
-    var noteProvider = selectedProvider == null ? string.Empty : (selectedProvider.Code == "momo" ? "MoMo" : "VNPay");
+    var noteProvider = selectedProvider == null ? string.Empty : PaymentOrderLabels.ProviderName(selectedProvider.Code);
+    // Plan 2026-11-20 D6: only a method that can be used is offered; a disabled one never appears.
+    var offeredProviders = Model.Providers.Where(p => p.Available).ToList();
     var emptyPlans = new StateMessageViewModel
     {
         Kind = StateMessageKind.Empty,
@@ -124,12 +126,12 @@
                             <fieldset class="tb-fieldset">
                                 <legend class="tb-section-title">2. Thanh toán</legend>
                                 <div class="tb-methods">
-                                    @foreach (var provider in Model.Providers)
+                                    @foreach (var provider in offeredProviders)
                                     {
-                                        <label class="tb-method@(provider.Available ? string.Empty : " is-disabled")" data-tb-method
-                                               data-name="@(provider.Code == "momo" ? "MoMo" : "VNPay")">
+                                        <label class="tb-method" data-tb-method
+                                               data-name="@PaymentOrderLabels.ProviderName(provider.Code)">
                                             <input class="tb-radio" type="radio" name="Provider" value="@provider.Code"
-                                                   checked="@(provider.IsPreselected)" disabled="@(!provider.Available)" required />
+                                                   checked="@(provider.IsPreselected)" required />
                                             <span class="tb-method__badge tb-method__badge--@provider.Code" aria-hidden="true">@provider.Badge</span>
                                             <span class="tb-method__body">
                                                 <span class="tb-method__name">
@@ -139,7 +141,7 @@
                                                         <span class="tb-chip tb-chip--info">Thử nghiệm</span>
                                                     }
                                                 </span>
-                                                <span class="tb-method__desc">@(provider.Available ? provider.Description : "Tạm thời chưa dùng được")</span>
+                                                <span class="tb-method__desc">@provider.Description</span>
                                             </span>
                                             <span class="tb-mark" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
                                         </label>

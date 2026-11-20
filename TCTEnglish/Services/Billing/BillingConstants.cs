@@ -7,6 +7,7 @@ namespace TCTEnglish.Services.Billing
     {
         public const string VNPay = "vnpay";
         public const string MoMo = "momo";
+        public const string PayOS = "payos";
     }
 
     /// <summary>

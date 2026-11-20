@@ -20,7 +20,7 @@
         PaymentOrderStages.Paid => "Thanh toán thành công",
         PaymentOrderStages.Confirming => "Đang xác nhận thanh toán",
         PaymentOrderStages.NotCompleted => "Thanh toán chưa hoàn tất",
-        _ => Model.IsMoMo ? "Thanh toán bằng MoMo" : "Đơn đang chờ thanh toán"
+        _ => Model.IsMoMo ? "Thanh toán bằng MoMo" : Model.IsPayOS ? "Thanh toán bằng chuyển khoản QR" : "Đơn đang chờ thanh toán"
     };
     ViewData["Title"] = title;
     var header = new PageHeaderViewModel
@@ -90,12 +90,19 @@
                 }
                 else
                 {
-                    <h2 id="tb-order-heading" class="tb-section-title">Tiếp tục thanh toán</h2>
-                    <p class="tb-lead">Bạn chưa hoàn tất thanh toán cho đơn này. Hãy tiếp tục trên trang của @Model.ProviderName.</p>
+                    <h2 id="tb-order-heading" class="tb-section-title">@(Model.IsPayOS ? "Chuyển khoản bằng mã QR" : "Tiếp tục thanh toán")</h2>
+                    @if (Model.IsPayOS)
+                    {
+                        <p class="tb-lead">Mở trang thanh toán của payOS, quét mã QR bằng app ngân hàng bất kỳ và chuyển đúng @Model.AmountText.</p>
+                    }
+                    else
+                    {
+                        <p class="tb-lead">Bạn chưa hoàn tất thanh toán cho đơn này. Hãy tiếp tục trên trang của @Model.ProviderName.</p>
+                    }
                     @if (!string.IsNullOrWhiteSpace(Model.ResumeUrl))
                     {
                         <a class="btn btn-primary btn-lg tb-btn-wide" href="@Model.ResumeUrl">
-                            <i class="fa-solid fa-up-right-from-square me-2" aria-hidden="true"></i>Tiếp tục thanh toán trên @Model.ProviderName
+                            <i class="fa-solid fa-up-right-from-square me-2" aria-hidden="true"></i>@(Model.IsPayOS ? "Mở lại trang thanh toán" : "Tiếp tục thanh toán trên " + Model.ProviderName)
                         </a>
                     }
                     else
@@ -111,6 +118,10 @@
                     <span class="tb-spinner" aria-hidden="true"></span>
                     <span data-tb-live-text>Đang chờ bạn thanh toán… trang sẽ tự cập nhật</span>
                 </p>
+                @if (Model.IsPayOS)
+                {
+                    <p class="tb-note">Sau khi chuyển khoản, trang sẽ tự cập nhật trong vài giây.</p>
+                }
 
                 @if (Model.IsMockMode)
                 {

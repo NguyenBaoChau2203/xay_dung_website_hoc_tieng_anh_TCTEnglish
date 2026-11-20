@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TCTEnglish.Models;
 using TCTEnglish.Services.Billing.MoMo;
+using TCTEnglish.Services.Billing.PayOS;
 using TCTVocabulary.Models;
 
 namespace TCTEnglish.Services.Billing
@@ -76,19 +77,22 @@ namespace TCTEnglish.Services.Billing
         private readonly IMoMoQueryClient _moMoQueryClient;
         private readonly IPaymentConfirmationService _confirmationService;
         private readonly ILogger<PaymentQueryService> _logger;
+        private readonly IPayOSClient? _payOsClient;
 
         public PaymentQueryService(
             DbflashcardContext context,
             IVnPayQueryClient vnPayQueryClient,
             IMoMoQueryClient moMoQueryClient,
             IPaymentConfirmationService confirmationService,
-            ILogger<PaymentQueryService> logger)
+            ILogger<PaymentQueryService> logger,
+            IPayOSClient? payOsClient = null)
         {
             _context = context;
             _vnPayQueryClient = vnPayQueryClient;
             _moMoQueryClient = moMoQueryClient;
             _confirmationService = confirmationService;
             _logger = logger;
+            _payOsClient = payOsClient;
         }
 
         public async Task<PaymentQueryAttempt> QueryAndConfirmAsync(
@@ -101,7 +105,8 @@ namespace TCTEnglish.Services.Billing
                 .Where(o => o.Id == orderId)
                 .Select(o => new
                 {
-                    o.Id, o.OrderCode, o.Provider, o.Status, o.CreatedAtUtc, o.ExpiresAtUtc, o.ProviderTransactionId
+                    o.Id, o.OrderCode, o.Provider, o.Status, o.CreatedAtUtc, o.ExpiresAtUtc, o.ProviderTransactionId,
+                    o.ProviderRequestId
                 })
                 .FirstOrDefaultAsync(ct);
 
@@ -115,7 +120,8 @@ namespace TCTEnglish.Services.Billing
 
             var isVnPay = order.Provider.Equals(PaymentProviders.VNPay, StringComparison.OrdinalIgnoreCase);
             var isMoMo = order.Provider.Equals(PaymentProviders.MoMo, StringComparison.OrdinalIgnoreCase);
-            if (!isVnPay && !isMoMo)
+            var isPayOs = order.Provider.Equals(PaymentProviders.PayOS, StringComparison.OrdinalIgnoreCase);
+            if (!isVnPay && !isMoMo && !isPayOs)
             {
                 return new PaymentQueryAttempt(PaymentQueryStatus.NotEligible);
             }
@@ -130,7 +136,9 @@ namespace TCTEnglish.Services.Billing
             {
                 answer = isVnPay
                     ? await QueryVnPayAsync(order.OrderCode, order.CreatedAtUtc, order.ProviderTransactionId, ct)
-                    : await _moMoQueryClient.QueryOrderAsync(order.OrderCode, ct);
+                    : isPayOs
+                        ? await QueryPayOSAsync(order.ProviderRequestId, ct)
+                        : await _moMoQueryClient.QueryOrderAsync(order.OrderCode, ct);
             }
             catch (OperationCanceledException) when (ct.IsCancellationRequested)
             {
@@ -203,6 +211,43 @@ namespace TCTEnglish.Services.Billing
                 ResponseCode: result.ResponseCode,
                 TransactionStatus: result.TransactionStatus,
                 BankCode: result.BankCode);
+        }
+
+        /// <summary>
+        /// payOS: PAID is a success carrying the amount actually paid (the confirmation compares it with the order);
+        /// CANCELLED is a final failure; PENDING, PROCESSING, EXPIRED or anything new does not settle the order.
+        /// </summary>
+        private async Task<PaymentQueryResult?> QueryPayOSAsync(string? providerRequestId, CancellationToken ct)
+        {
+            if (_payOsClient == null || !PayOSOrderCode.TryParse(providerRequestId, out var payOsCode))
+            {
+                return PaymentQueryResult.Unknown("payOS is not available for this order");
+            }
+
+            var info = await _payOsClient.GetPaymentAsync(payOsCode, ct);
+            if (info == null)
+            {
+                return null;
+            }
+
+            return info.Status switch
+            {
+                PayOSStatuses.Paid => new PaymentQueryResult(
+                    PaymentQueryState.Success,
+                    AmountVnd: info.AmountPaid,
+                    TransactionId: info.Reference,
+                    ResponseCode: "00",
+                    TransactionStatus: PayOSStatuses.Paid,
+                    PayType: "bank_transfer"),
+                PayOSStatuses.Cancelled => new PaymentQueryResult(
+                    PaymentQueryState.Failed,
+                    ResponseCode: PayOSStatuses.Cancelled,
+                    TransactionStatus: PayOSStatuses.Cancelled),
+                _ => new PaymentQueryResult(
+                    PaymentQueryState.Unknown,
+                    ResponseCode: info.Status,
+                    TransactionStatus: info.Status)
+            };
         }
 
         private async Task<bool> IsThrottledAsync(long orderId, DateTime nowUtc, CancellationToken ct)

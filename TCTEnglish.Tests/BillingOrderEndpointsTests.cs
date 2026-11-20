@@ -259,7 +259,11 @@ namespace TCTEnglish.Tests
                 .OrderBy(n => n)
                 .ToArray();
 
-            Assert.Equal(new[] { "MoMoIpn", "MoMoReturn", "VnPayIpn", "VnPayReturn" }, anonymous);
+            // The three payOS callbacks (webhook, return, cancel) are the only additions of plan 2026-11-20; the mock
+            // pages are [Authorize] and owner-checked.
+            Assert.Equal(
+                new[] { "MoMoIpn", "MoMoReturn", "PayOSCancel", "PayOSReturn", "PayOSWebhook", "VnPayIpn", "VnPayReturn" },
+                anonymous);
         }
     }
 }

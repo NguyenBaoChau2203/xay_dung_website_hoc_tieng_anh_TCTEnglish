@@ -251,6 +251,7 @@ public static class PremiumUserFilters
     public const string Manual = "manual";
     public const string VnPay = "vnpay";
     public const string MoMo = "momo";
+    public const string PayOS = "payos";
 
     public static readonly IReadOnlyList<string> Values = new[]
     {
@@ -262,7 +263,8 @@ public static class PremiumUserFilters
         Revoked,
         Manual,
         VnPay,
-        MoMo
+        MoMo,
+        PayOS
     };
 }
 

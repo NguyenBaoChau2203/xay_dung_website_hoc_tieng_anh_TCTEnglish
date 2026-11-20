@@ -95,7 +95,7 @@ namespace TCTEnglish.Services.Billing.VnPay
             }
 
             var computedHash = Sign(hashSecret, parameters);
-            return string.Equals(computedHash, receivedHash, StringComparison.OrdinalIgnoreCase);
+            return BillingSignatureComparer.HexEquals(computedHash, receivedHash);
         }
 
         public static string BuildPaymentUrl(

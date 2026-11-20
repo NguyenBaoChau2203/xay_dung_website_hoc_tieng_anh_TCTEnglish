@@ -83,3 +83,12 @@ Use this checklist before enabling real-money traffic.
 - [ ] Fast toggle procedure documented (`VNPay__Enabled=false`, `MoMo__Enabled=false`).
 - [ ] Artifact rollback plan validated.
 - [ ] DB restore plan and owner on-call confirmed.
+
+## payOS steps (added 2026-11-20)
+
+- [ ] The three keys and `PayOS__PublicBaseUrl` are set on the server (environment / protected store), never in Git. `PayOS__MockMode` is `false` (the app does not start otherwise).
+- [ ] `PayOS__Enabled=true`; Admin > Billing > Health shows payOS as configured.
+- [ ] Register the webhook address `https://<site>/api/billing/payos/webhook` in payOS (`confirm-webhook`, or the dashboard). payOS sends a test webhook: it must be answered 200 and recorded as "Order not found" (a sample code), with no order changed. Do this **after** the release is live, by the owner, on staging first.
+- [ ] Staging: create one real link for the cheapest plan, open the payOS page, cancel it from the page; the order becomes `cancelled`.
+- [ ] A real transfer (owner only): the order becomes `paid` within a minute through the webhook, Premium is active, the receipt shows the payOS reference. Check the stored event has no signature and a masked account number.
+- [ ] `ReconciliationWorker:Enabled=true` so a lost webhook is recovered through the payOS API.
