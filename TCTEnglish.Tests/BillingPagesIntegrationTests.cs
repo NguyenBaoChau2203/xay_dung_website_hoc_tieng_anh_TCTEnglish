@@ -218,10 +218,12 @@ public class BillingPagesIntegrationTests
         var momo = Regex.Match(html, "<input[^>]*name=\"Provider\"[^>]*value=\"momo\"[^>]*>").Value;
         Assert.Contains("checked", vnpay);
         Assert.DoesNotContain("disabled", vnpay);
-        Assert.Contains("disabled", momo);
-        Assert.DoesNotContain("checked", momo);
+        // Plan 2026-11-20 D6 (newer than the 2026-11-17 behaviour that showed a disabled row): a provider that
+        // cannot be used is not offered at all.
+        Assert.Equal(string.Empty, momo);
         Assert.Contains("Thẻ ATM, QR ngân hàng, thẻ quốc tế", text);
-        Assert.Contains("Tạm thời chưa dùng được", text);
+        Assert.DoesNotContain("Tạm thời chưa dùng được", text);
+        Assert.DoesNotContain("Ví MoMo", text);
         Assert.DoesNotContain("chưa cấu hình", text, StringComparison.OrdinalIgnoreCase);
     }
 

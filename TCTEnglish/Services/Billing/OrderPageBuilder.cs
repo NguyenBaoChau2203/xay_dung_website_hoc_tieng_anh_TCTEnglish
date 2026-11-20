@@ -71,7 +71,9 @@ namespace TCTEnglish.Services.Billing
                 QrPayload = isMoMo ? order.ProviderQrCodePayload : null,
                 PayUrl = isMoMo ? SafeAddress(order.ProviderPaymentUrl, allowAppScheme: false) : null,
                 DeepLink = isMoMo ? SafeAddress(order.ProviderDeepLink, allowAppScheme: true) : null,
-                ResumeUrl = !isMoMo && waiting && !expired ? SafeAddress(order.ProviderPaymentUrl, allowAppScheme: false) : null,
+                ResumeUrl = !isMoMo && waiting && !expired
+                    ? SafeAddress(order.ProviderPaymentUrl, allowAppScheme: false) ?? LocalPayOSMockPath(order)
+                    : null,
                 // Mock mode is decided by the caller (Development + MoMo mock flag) and never leaks to a paid or closed order.
                 IsMockMode = isMockMode && isMoMo && waiting,
                 PremiumEndsAtUtc = premiumEndsAtUtc,
@@ -80,6 +82,22 @@ namespace TCTEnglish.Services.Billing
                 Summary = summary,
                 Receipt = receipt
             };
+        }
+
+        /// <summary>
+        /// The local fake payOS page is a relative address (<c>/Billing/PayOSMock?orderCode=…</c>) that only the mock
+        /// gateway stores. It is accepted only in exactly that shape, for a payOS order of this very order code; the
+        /// page itself answers 404 unless the Development mock is on.
+        /// </summary>
+        private static string? LocalPayOSMockPath(PaymentOrder order)
+        {
+            if (!order.Provider.Equals(PaymentProviders.PayOS, StringComparison.OrdinalIgnoreCase))
+            {
+                return null;
+            }
+
+            var expected = $"/Billing/PayOSMock?orderCode={Uri.EscapeDataString(order.OrderCode)}";
+            return string.Equals(order.ProviderPaymentUrl, expected, StringComparison.Ordinal) ? expected : null;
         }
 
         /// <summary>

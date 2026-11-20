@@ -18,6 +18,7 @@ namespace TCTEnglish.ViewModels.Billing
         public string Provider { get; init; } = string.Empty;
         public string ProviderName => PaymentOrderLabels.ProviderName(Provider);
         public bool IsMoMo => Provider.Equals(PaymentProviders.MoMo, StringComparison.OrdinalIgnoreCase);
+        public bool IsPayOS => Provider.Equals(PaymentProviders.PayOS, StringComparison.OrdinalIgnoreCase);
 
         /// <summary>Raw order status (pending, paid, cancelled…), used to pick the wording of the not-completed page.</summary>
         public string Status { get; init; } = string.Empty;
@@ -62,6 +63,7 @@ namespace TCTEnglish.ViewModels.Billing
         /// <summary>The one sentence that says why the order is not completed (plan 5.2). Never claims that no money was taken.</summary>
         public string NotCompletedReason => Status switch
         {
+            PaymentOrderStatuses.Cancelled when IsPayOS => "Bạn đã hủy thanh toán. Bạn có thể chọn gói và thanh toán lại.",
             PaymentOrderStatuses.Cancelled => $"Bạn đã hủy giao dịch trên {ProviderName}.",
             PaymentOrderStatuses.Failed => "Giao dịch không thành công.",
             PaymentOrderStatuses.Refunded => "Khoản thanh toán này đã được hoàn lại.",

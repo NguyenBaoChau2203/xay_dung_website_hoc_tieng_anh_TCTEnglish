@@ -41,7 +41,8 @@ public class BillingManagementController : BaseController
     private static readonly string[] Providers =
     {
         PaymentProviders.VNPay,
-        PaymentProviders.MoMo
+        PaymentProviders.MoMo,
+        PaymentProviders.PayOS
     };
 
     private readonly DbflashcardContext _context;
@@ -1005,6 +1006,7 @@ public class BillingManagementController : BaseController
             PremiumUserFilters.Manual => rows.Where(r => r.IsManualSubscription).ToList(),
             PremiumUserFilters.VnPay => rows.Where(r => string.Equals(r.Provider, PaymentProviders.VNPay, StringComparison.OrdinalIgnoreCase)).ToList(),
             PremiumUserFilters.MoMo => rows.Where(r => string.Equals(r.Provider, PaymentProviders.MoMo, StringComparison.OrdinalIgnoreCase)).ToList(),
+            PremiumUserFilters.PayOS => rows.Where(r => string.Equals(r.Provider, PaymentProviders.PayOS, StringComparison.OrdinalIgnoreCase)).ToList(),
             _ => rows.ToList()
         };
     }
