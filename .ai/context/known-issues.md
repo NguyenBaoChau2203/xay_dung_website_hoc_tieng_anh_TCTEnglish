@@ -135,7 +135,9 @@ Tap-a-word lookups outside the lesson vocabulary call `IVocabSuggestService` (th
   [step-02 ledger](../../docs/feature-audits/2026-11-16-contact-refresh/02-interface-ledger.md).
   [Step-03 evidence and dispatch accounting](../../docs/feature-audits/2026-11-16-contact-refresh/03-integration-smtp-ledger.md).
 
-### BILLING-ROLE-CHANGE-SIGNS-OUT — đề xuất cho Châu, confirmed 17/11/2026
+### BILLING-ROLE-CHANGE-SIGNS-OUT — ĐÃ SỬA 20/11/2026 (nhánh feature/billing-verify-payos); mô tả cũ bên dưới
+
+> **Đã sửa 20/11/2026:** `OnValidatePrincipal` giờ làm mới cookie khi chỉ vai trò đổi (xem bug-fix-log). Còn lại: trang đăng nhập vẫn bỏ qua `returnUrl`. Phần dưới là bản ghi lịch sử.
 
 - **Triệu chứng (đã tái hiện bằng luồng giả lập MoMo):** ngay sau khi đơn được xác nhận, yêu cầu tiếp theo của người mua bị chuyển tới `/Account/Login`. Cùng lỗi khi Premium hết hạn (worker hoặc trang thanh toán hạ vai trò) và khi admin cấp hoặc thu hồi Premium.
 - **Nguyên nhân gốc:** `SubscriptionService` đổi `User.Role` (Standard ↔ Premium). `AccountSessionValidator.IsValidAsync` (gọi từ `OnValidatePrincipal` trong `Program.cs`) so vai trò trong cookie với vai trò trong DB; thấy khác thì từ chối cookie và đăng xuất. Thêm nữa, các nơi đọc **claim** vai trò (`SetController`, `SetController.Personal`, `VocabApiController`, `AiController`, `_AiChatLauncher`) chỉ thấy Premium sau khi đăng nhập lại.
@@ -920,4 +922,4 @@ words have emoji pictures. See TD-016 and the SRS polish plan section 12.
 - Mã đơn payOS (15 chữ số) nằm trong `PaymentOrder.ProviderRequestId`; cột này không có chỉ mục riêng. Với bảng lớn nên thêm chỉ mục (cần migration, bàn với Châu).
 - Webhook luôn trả 200 khi đọc được body (quyết định D3): nếu DB lỗi tạm thời payOS sẽ không gửi lại; đối soát (`ReconciliationWorker:Enabled=true`) là đường khôi phục.
 - Chữ ký mẫu trên trang webhook của payOS (`8d86…`) khác chữ ký trong mã mẫu của trang "Kiểm tra dữ liệu với signature" (`412e91…`); bản sau khớp cách ký đã cài (kiểm bằng openssl).
-- `BILLING-ROLE-CHANGE-SIGNS-OUT` vẫn tái hiện 20/11/2026 với payOS: người mua lần đầu bị đăng xuất ngay sau khi kích hoạt Premium (người đã là Premium mua tiếp thì không). Thuộc code tài khoản, chờ Châu.
+- `BILLING-ROLE-CHANGE-SIGNS-OUT` đã được sửa cùng ngày (xem mục của nó).

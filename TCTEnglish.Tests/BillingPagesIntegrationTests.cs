@@ -152,7 +152,7 @@ public class BillingPagesIntegrationTests
         Assert.Matches("365 ngày, đến \\d{2}/\\d{2}/\\d{4}", text);
         Assert.Matches(">\\s*Thanh toán\\s*<", text);
         Assert.Contains("Bạn sẽ được chuyển sang trang của VNPay để hoàn tất. TCT English không lưu thông tin thẻ của bạn.", text);
-        Assert.Contains("Sau khi thanh toán xong, bạn có thể được yêu cầu đăng nhập lại để tài khoản nhận quyền Premium.", text);
+        Assert.DoesNotContain("yêu cầu đăng nhập lại", text); // the buyer stays signed in after activation (role refresh)
     }
 
     [Fact]
@@ -450,7 +450,7 @@ public class BillingPagesIntegrationTests
         Assert.Contains("365 ngày", text);
         Assert.Contains($"399.000{Nbsp}₫", text);
         Assert.Contains("Hủy và chọn cách khác", text);
-        Assert.Contains("Sau khi thanh toán xong, bạn có thể được yêu cầu đăng nhập lại để tài khoản nhận quyền Premium.", text);
+        Assert.DoesNotContain("yêu cầu đăng nhập lại", text); // the buyer stays signed in after activation (role refresh)
         Assert.Contains("/lib/pinned/qrcode-1.0.0.min.js", html);
         Assert.DoesNotContain("cdn.jsdelivr.net/npm/qrcodejs", html);
         Assert.Contains("/js/billing-order.js", html);
