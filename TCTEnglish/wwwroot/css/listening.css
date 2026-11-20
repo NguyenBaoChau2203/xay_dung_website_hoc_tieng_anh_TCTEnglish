@@ -290,7 +290,7 @@
 
 .tl-page .tl-topic { display: flex; align-items: center; gap: var(--tct-space-sm); }
 .tl-page .tl-topic__label { color: var(--tct-text-secondary); white-space: nowrap; }
-.tl-page .tl-topic .form-select { width: auto; max-width: 14rem; }
+.tl-page .tl-topic .form-select { width: auto; max-width: 11rem; text-overflow: ellipsis; }
 .tl-page .tl-count { margin: 0; font-size: var(--tct-text-sm); color: var(--tct-text-secondary); }
 .tl-page .tl-empty-actions { margin-top: var(--tct-space-sm); text-align: center; }
 

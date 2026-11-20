@@ -440,3 +440,33 @@ Evidence: `.tmp/listening-catalog-b/after/premium-*.png`, `premium-empty-state.p
 | G11 | structure, keyboard, names, live regions (above) |
 | G12 | scripted contrast (above) |
 | G13 | practice page untouched |
+
+### 12.7 K6 — comparison with mockup B1 and polish
+
+Compared the final screenshots (`.tmp/listening-catalog-b/after/*-1440x900.png`, `*-1366x768.png`) with `B1-hero-va-the-youtube.png` side by side.
+
+**Matches:** the two-column top row at the same height (hero 3 : YouTube card 2), the yellow chip, white title, meta line, primary button and hint on the dark scrim, the play circle, the card header (red logo tile, title, subtitle, Premium chip), the field, the wide primary button with the wand icon, the `Bài của tôi` line; the dark selected pill with the three other bands; shelf headers `{Key} · {Label}` with the `done/total` chip and the right-aligned `Xem cả n bài`; five-column shelves of 16:9 cards with duration badge, two-line title and the level / topic / status row, progress bar under in-progress lessons. At 1440×900 and 1366×768 the first screen shows the hero, the card, the filters and the first shelf header without scrolling (Premium, Standard and guest).
+
+**Polish done in this phase:** the filter row did not fit one line at 1366 px (the topic select was 224 px wide); `max-width: 11rem` with an ellipsis makes the bands, the three toggles and the topic select share one line at 1440 and 1366 (measured), and wrap gracefully (the right group goes to its own line) from 1280 px down.
+
+**Differences from the mockup, with reasons**
+
+| Difference | Reason |
+| --- | --- |
+| A `Chủ đề:` select ends the filter row | Decision D2: the existing topic filter must not disappear. |
+| The status pills are toggles without a "Mọi trạng thái" pill | Plan 2.3 (pressing the selected one clears it); hidden for guests. |
+| `Bài của tôi: 0` has no `Xem tất cả` | Plan D3: the link is hidden when the user has no lesson. The mockup shows it with 0. |
+| Hero picture is the lesson's own thumbnail (YouTube `hqdefault`, 4:3 cropped to the card) | The mockup uses a wider crop of the same lesson; no extra image is requested. |
+| The page header, sidebar and the TCT logo are the app's current ones | Out of scope (shared layout). |
+| Card hover only deepens the Clay shadow | `study-kit.css` (shared) sets `transform: none`; see 12.6. |
+| `Bài nghe của tôi` shelf is not touched by the pills, toggles, topic or search | Keeps the old behaviour of that section; it sits first, above the level shelves. |
+| Phone: the band grid is one column (two from 576 px), shelves are sideways rows of 72% cards | Plan 2.4 and 2.5. |
+
+**Gate record (K6)**
+
+| Gate | Result |
+| --- | --- |
+| G6 | the only code change is one CSS declaration; no hex, `git diff --check` clean |
+| G8 | filter row measured at 1440, 1366, 1280 and 1024 for Standard and Premium; matrix of K3/K5 stays valid (no layout rule other than the select width changed) |
+| G9 | comparison above |
+| G3 | the full suite runs once on the final tree in K7 (this commit and the K7 commit differ only in CSS width and documents) |
