@@ -499,6 +499,12 @@
             setPending($('btn-forgot-submit'), false);
             setPending($('btn-reset-submit'), false);
         });
+
+        // Focus server-side validation summary when present (Register failure)
+        var serverError = $('server-error-alert');
+        if (serverError && typeof serverError.focus === 'function') {
+            serverError.focus();
+        }
     }
 
     if (document.readyState === 'loading') {

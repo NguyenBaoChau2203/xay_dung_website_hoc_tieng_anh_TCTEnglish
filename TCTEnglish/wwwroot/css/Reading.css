@@ -290,25 +290,65 @@
     opacity: 0.9;
 }
 
+/* CEFR chip — flat soft badge (anti AI-slop: no gloss, pill glow, or solid candy fill) */
 .reading-card-level {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    padding: 0.25rem 0.65rem;
-    border-radius: var(--tct-radius-pill);
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--tct-on-primary, #fff);
     z-index: 2;
-    box-shadow: var(--rd-shadow-soft);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 1.5rem;
+    padding: 0.15rem 0.45rem;
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-sm, 8px);
+    background: var(--tct-surface);
+    color: var(--tct-text);
+    font-size: var(--tct-text-xs, 0.75rem);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    box-shadow: none;
+    text-shadow: none;
+    filter: none;
 }
 
-.reading-card-level.lvl-A1 { background: var(--tct-success); }
-.reading-card-level.lvl-A2 { background: var(--tct-info, #06b6d4); }
-.reading-card-level.lvl-B1 { background: var(--tct-warning); color: var(--tct-on-accent, #111c2d); }
-.reading-card-level.lvl-B2 { background: var(--tct-danger); }
-.reading-card-level.lvl-C1 { background: var(--tct-primary-strong); }
-.reading-card-level.lvl-C2 { background: var(--tct-text); }
+.reading-card-level.lvl-A1 {
+    background: var(--tct-success-soft);
+    color: var(--tct-success-text);
+    border-color: color-mix(in srgb, var(--tct-success) 28%, var(--tct-border));
+}
+
+.reading-card-level.lvl-A2 {
+    background: var(--tct-info-soft);
+    color: var(--tct-info-text);
+    border-color: color-mix(in srgb, var(--tct-info, #06b6d4) 28%, var(--tct-border));
+}
+
+.reading-card-level.lvl-B1 {
+    background: var(--tct-warning-soft);
+    color: var(--tct-warning-text);
+    border-color: color-mix(in srgb, var(--tct-warning) 28%, var(--tct-border));
+}
+
+.reading-card-level.lvl-B2 {
+    background: var(--tct-danger-soft);
+    color: var(--tct-danger-text);
+    border-color: color-mix(in srgb, var(--tct-danger) 28%, var(--tct-border));
+}
+
+.reading-card-level.lvl-C1 {
+    background: var(--tct-primary-soft);
+    color: var(--tct-primary-strong);
+    border-color: color-mix(in srgb, var(--tct-primary) 28%, var(--tct-border));
+}
+
+.reading-card-level.lvl-C2 {
+    background: var(--tct-surface-muted);
+    color: var(--tct-text);
+    border-color: var(--tct-border-control);
+}
 
 .reading-card-topic {
     position: absolute;

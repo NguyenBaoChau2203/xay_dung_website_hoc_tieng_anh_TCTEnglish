@@ -191,7 +191,11 @@ namespace TCTEnglish.Areas.Admin.Controllers
                 await _admin.DeleteAsync(id);
                 TempData["Success"] = "Đã xóa bài đọc.";
             }
-            catch (InvalidOperationException ex) { TempData["Error"] = ex.Message; }
+            catch (InvalidOperationException ex)
+            {
+                TempData["Error"] = ex.Message;
+            }
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -199,7 +203,7 @@ namespace TCTEnglish.Areas.Admin.Controllers
         public IActionResult DownloadTemplate()
         {
             var bytes = _excel.BuildTemplate();
-            return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Reading_Template.xlsx");
+            return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Reading_Template_v2.xlsx");
         }
 
         [HttpGet]

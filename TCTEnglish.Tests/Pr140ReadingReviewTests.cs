@@ -85,7 +85,7 @@ public sealed class Pr140ReadingReviewTests
         var result = await excel.ConfirmImportAsync(preview.ValidReadings, 101);
         Assert.Equal(1, result.SuccessCount);
         var passage = await admin.GetForEditAsync(result.Items.Single().PassageId!.Value);
-        var question = passage!.Questions.Single(q => q.ExternalQuestionKey == "Q1");
+        var question = passage!.Questions.Single(q => q.ExternalQuestionKey == "L1-Q1");
         Assert.NotNull(question.EvidenceParagraphId);
         Assert.Equal(passage.Paragraphs.Single(p => p.ParagraphOrder == 2).Id, question.EvidenceParagraphId);
         using var exported = new MemoryStream(await excel.ExportReadingAsync(passage.Id));

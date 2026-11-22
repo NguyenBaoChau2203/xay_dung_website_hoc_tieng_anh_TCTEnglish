@@ -25,99 +25,190 @@ public sealed class ReadingExcelService : IReadingExcelService
     public byte[] BuildTemplate()
     {
         using var workbook = new XLWorkbook();
-        var guide = workbook.AddWorksheet("Guide");
-        guide.Cell(1, 1).Value = "TCT Reading Excel Template";
-        guide.Cell(2, 1).Value = "Sheets: Reading_Info, Passage, Questions, Answers, Vocabulary";
-        guide.Cell(3, 1).Value = "CEFR: " + string.Join(", ", CefrLevels.All);
-        guide.Cell(4, 1).Value = "Question types: " + string.Join(", ", ReadingQuestionTypes.All);
-        guide.Cell(5, 1).Value = "Import creates Draft readings. Publish only after Admin review.";
-        guide.Cell(6, 1).Value = "Partial import: valid ReadingCodes are saved; failed codes are skipped.";
-        guide.Cell(7, 1).Value = "Vocabulary is optional. Meaning = Vietnamese meaning.";
-        guide.Cell(8, 1).Value = "Optional ImageUrl: /images/..., /uploads/..., or https://...";
-        guide.Cell(9, 1).Value = "Optional media ZIP: root files named {ReadingCode}.jpg|png|webp|gif (ZIP wins over ImageUrl).";
-        guide.Cell(10, 1).Value = "Matching answers: set Match_Key (shared pair id) and Match_Side (Left|Right) on Answers rows.";
-        guide.Cell(11, 1).Value = "Evidence_Paragraph_ID uses the Passage ParagraphNo, not a database ID.";
+        BuildGuideSheet(workbook);
 
         var info = workbook.AddWorksheet("Reading_Info");
         WriteHeader(info, "ReadingCode", "Title", "CEFR", "Topic", "Duration", "Description", "ImageUrl");
-        info.Cell(2, 1).Value = "RD001";
+        info.Cell(2, 1).Value = "L1";
         info.Cell(2, 2).Value = "The Importance of Trees";
         info.Cell(2, 3).Value = "A1";
         info.Cell(2, 4).Value = "Environment";
         info.Cell(2, 5).Value = 15;
-        info.Cell(2, 6).Value = "Sample reading about trees.";
+        info.Cell(2, 6).Value = "Sample reading covering all five question types.";
         info.Cell(2, 7).Value = "";
+        ApplyDataSheetLayout(info, freezeRows: 1, wrapColumns: [6, 7]);
+        ApplyListValidation(info.Range(2, 3, 200, 3), CefrLevels.All);
 
         var passage = workbook.AddWorksheet("Passage");
         WriteHeader(passage, "ReadingCode", "PassageTitle", "ParagraphNo", "Content");
-        passage.Cell(2, 1).Value = "RD001";
+        passage.Cell(2, 1).Value = "L1";
         passage.Cell(2, 2).Value = "The Importance of Trees";
         passage.Cell(2, 3).Value = 1;
         passage.Cell(2, 4).Value = "Trees play an important role in our environment.";
-        passage.Cell(3, 1).Value = "RD001";
+        passage.Cell(3, 1).Value = "L1";
         passage.Cell(3, 2).Value = "The Importance of Trees";
         passage.Cell(3, 3).Value = 2;
         passage.Cell(3, 4).Value = "They provide oxygen and help reduce air pollution.";
+        ApplyDataSheetLayout(passage, freezeRows: 1, wrapColumns: [4]);
 
         var questions = workbook.AddWorksheet("Questions");
         WriteHeader(questions, "Question_ID", "ReadingCode", "Question_Order", "Question_Type", "Question_Content", "Paragraph_Reference", "Points");
-        questions.Cell(2, 1).Value = "Q1";
-        questions.Cell(2, 2).Value = "RD001";
-        questions.Cell(2, 3).Value = 1;
-        questions.Cell(2, 4).Value = ReadingQuestionTypes.MultipleChoice;
-        questions.Cell(2, 5).Value = "What do trees provide?";
-        questions.Cell(2, 6).Value = "2";
-        questions.Cell(2, 7).Value = 1;
-        questions.Cell(3, 1).Value = "Q2";
-        questions.Cell(3, 2).Value = "RD001";
-        questions.Cell(3, 3).Value = 2;
-        questions.Cell(3, 4).Value = ReadingQuestionTypes.Matching;
-        questions.Cell(3, 5).Value = "Match the animal with its Vietnamese name.";
-        questions.Cell(3, 6).Value = "1";
-        questions.Cell(3, 7).Value = 1;
+        WriteQuestionSample(questions, 2, "L1", "L1-Q1", 1, ReadingQuestionTypes.MultipleChoice, "What do trees provide?", "2", 1);
+        WriteQuestionSample(questions, 3, "L1", "L1-Q2", 2, ReadingQuestionTypes.TrueFalse, "Trees help reduce air pollution.", "2", 1);
+        WriteQuestionSample(questions, 4, "L1", "L1-Q3", 3, ReadingQuestionTypes.GapFill, "They provide _____ and help reduce air pollution.", "2", 1);
+        WriteQuestionSample(questions, 5, "L1", "L1-Q4", 4, ReadingQuestionTypes.Matching, "Match each English word with its Vietnamese meaning.", "1", 1);
+        WriteQuestionSample(questions, 6, "L1", "L1-Q5", 5, ReadingQuestionTypes.ShortAnswer, "In one short phrase, what gas do trees provide?", "2", 1);
+        ApplyDataSheetLayout(questions, freezeRows: 1, wrapColumns: [5]);
+        ApplyListValidation(questions.Range(2, 4, 200, 4), ReadingQuestionTypes.All);
 
         var answers = workbook.AddWorksheet("Answers");
         WriteHeader(answers, "Question_ID", "Option_ID", "Option_Content", "Is_Correct", "Explanation", "Evidence_Text", "Evidence_Paragraph_ID", "Paraphrase", "Match_Key", "Match_Side");
-        answers.Cell(2, 1).Value = "Q1";
-        answers.Cell(2, 2).Value = "A";
-        answers.Cell(2, 3).Value = "Oxygen";
-        answers.Cell(2, 4).Value = "TRUE";
-        answers.Cell(2, 5).Value = "Paragraph 2 mentions oxygen.";
-        answers.Cell(2, 6).Value = "They provide oxygen and help reduce air pollution.";
-        answers.Cell(2, 7).Value = "2";
-        answers.Cell(2, 8).Value = "Trees give oxygen.";
-        answers.Cell(3, 1).Value = "Q1";
-        answers.Cell(3, 2).Value = "B";
-        answers.Cell(3, 3).Value = "Plastic";
-        answers.Cell(3, 4).Value = "FALSE";
-        // Sample Matching pair (optional second question can be added by author)
-        answers.Cell(4, 1).Value = "Q2";
-        answers.Cell(4, 2).Value = "L1";
-        answers.Cell(4, 3).Value = "Cat";
-        answers.Cell(4, 4).Value = "FALSE";
-        answers.Cell(4, 5).Value = "Match animals.";
-        answers.Cell(4, 9).Value = "p1";
-        answers.Cell(4, 10).Value = "Left";
-        answers.Cell(5, 1).Value = "Q2";
-        answers.Cell(5, 2).Value = "R1";
-        answers.Cell(5, 3).Value = "Mèo";
-        answers.Cell(5, 4).Value = "FALSE";
-        answers.Cell(5, 9).Value = "p1";
-        answers.Cell(5, 10).Value = "Right";
+        WriteAnswerSample(answers, 2, "L1-Q1", "A", "Oxygen", "TRUE", "Paragraph 2 mentions oxygen.", "They provide oxygen and help reduce air pollution.", "2", "Trees give oxygen.", null, null);
+        WriteAnswerSample(answers, 3, "L1-Q1", "B", "Plastic", "FALSE", null, null, null, null, null, null);
+        WriteAnswerSample(answers, 4, "L1-Q1", "C", "Noise", "FALSE", null, null, null, null, null, null);
+        WriteAnswerSample(answers, 5, "L1-Q2", "TRUE", "True", "TRUE", "Paragraph 2 states trees help reduce air pollution.", "They provide oxygen and help reduce air pollution.", "2", null, null, null);
+        WriteAnswerSample(answers, 6, "L1-Q2", "FALSE", "False", "FALSE", null, null, null, null, null, null);
+        WriteAnswerSample(answers, 7, "L1-Q3", "ANSWER", "oxygen", "TRUE", "Fill the blank with the gas trees provide.", "They provide oxygen and help reduce air pollution.", "2", null, null, null);
+        WriteAnswerSample(answers, 8, "L1-Q4", "Left1", "Environment", "FALSE", "Match words from paragraph 1.", null, "1", null, "p1", "Left");
+        WriteAnswerSample(answers, 9, "L1-Q4", "Right1", "Môi trường", "FALSE", null, null, null, null, "p1", "Right");
+        WriteAnswerSample(answers, 10, "L1-Q4", "Left2", "Trees", "FALSE", null, null, null, null, "p2", "Left");
+        WriteAnswerSample(answers, 11, "L1-Q4", "Right2", "Cây cối", "FALSE", null, null, null, null, "p2", "Right");
+        WriteAnswerSample(answers, 12, "L1-Q5", "ANSWER", "oxygen", "TRUE", "Accept the gas name from paragraph 2.", "They provide oxygen and help reduce air pollution.", "2", "Trees provide oxygen.", null, null);
+        ApplyDataSheetLayout(answers, freezeRows: 1, wrapColumns: [3, 5, 6, 8]);
+        ApplyListValidation(answers.Range(2, 4, 500, 4), ["TRUE", "FALSE"]);
+        ApplyListValidation(answers.Range(2, 10, 500, 10), ["Left", "Right"]);
 
         var vocab = workbook.AddWorksheet("Vocabulary");
         WriteHeader(vocab, "ReadingCode", "Word", "Pronunciation", "PartOfSpeech", "Meaning", "Example", "ParagraphNo");
-        vocab.Cell(2, 1).Value = "RD001";
+        vocab.Cell(2, 1).Value = "L1";
         vocab.Cell(2, 2).Value = "Environment";
         vocab.Cell(2, 3).Value = "/ɪnˈvaɪrənmənt/";
         vocab.Cell(2, 4).Value = "Noun";
         vocab.Cell(2, 5).Value = "Môi trường";
         vocab.Cell(2, 6).Value = "Protect the environment.";
         vocab.Cell(2, 7).Value = 1;
+        vocab.Cell(3, 1).Value = "L1";
+        vocab.Cell(3, 2).Value = "Oxygen";
+        vocab.Cell(3, 3).Value = "/ˈɒksɪdʒən/";
+        vocab.Cell(3, 4).Value = "Noun";
+        vocab.Cell(3, 5).Value = "Oxy";
+        vocab.Cell(3, 6).Value = "Trees provide oxygen.";
+        vocab.Cell(3, 7).Value = 2;
+        ApplyDataSheetLayout(vocab, freezeRows: 1, wrapColumns: [5, 6]);
 
+        workbook.Worksheet("Guide").Position = 1;
         using var stream = new MemoryStream();
         workbook.SaveAs(stream);
         return stream.ToArray();
+    }
+
+    private static void BuildGuideSheet(XLWorkbook workbook)
+    {
+        var guide = workbook.AddWorksheet("Guide");
+        WriteHeader(guide, "Topic", "Instruction");
+
+        var rows = new (string Topic, string Instruction)[]
+        {
+            ("Template", "TCT Reading Excel Template v2 — keep sheet names and header row exactly."),
+            ("Sheets", "Reading_Info, Passage, Questions, Answers, Vocabulary (+ this Guide)."),
+            ("CEFR", string.Join(", ", CefrLevels.All)),
+            ("Question types", string.Join(", ", ReadingQuestionTypes.All)),
+            ("Learner labels", "MultipleChoice=Trắc nghiệm; TrueFalse=Đúng/Sai; GapFill=Điền khuyết; Matching=Ghép cặp; ShortAnswer=Trả lời ngắn"),
+            ("Import result", "Import creates Draft only. Students see Published after Admin review."),
+            ("ReadingCode", "Excel ReadingCode is a temporary join key only (e.g. L1, L2). Unique per reading in the file. Import always assigns RD-{CEFR}-NNN."),
+            ("Word count", "Count Passage body words only (not Title/Questions/Answers/Vocabulary). Soft targets: A1 80–120; A2 120–180; B1 200–300; B2 300–450; C1 450–600; C2 550–750. See docs/content/reading-content-authoring-guidelines.md."),
+            ("Duration", "Suggested Duration (minutes, midpoint): A1=6; A2=8; B1=12; B2=18; C1=22; C2=28. Difficulty is not length alone."),
+            ("Partial import", "Valid readings are saved as Draft; failed rows are skipped. System codes never overwrite existing ExternalReadingKey values."),
+            ("Vocabulary", "Optional. Meaning = Vietnamese meaning (required when a vocab row exists)."),
+            ("ImageUrl", "Optional: /images/..., /uploads/..., or https://..."),
+            ("Media ZIP", "Optional ZIP at Import: root files {file ReadingCode}.jpg|png|webp|gif (ZIP wins over ImageUrl)."),
+            ("MultipleChoice", "Answers: Option_ID A/B/C…; one row Is_Correct=TRUE."),
+            ("TrueFalse", "Answers: Option_ID TRUE/FALSE (or True/False labels); one Is_Correct=TRUE."),
+            ("GapFill", "Answers: one row Option_ID=ANSWER, Is_Correct=TRUE, Option_Content=accepted text."),
+            ("Matching", "Answers: pairs share Match_Key; Match_Side Left|Right; Is_Correct usually FALSE."),
+            ("ShortAnswer", "Answers: one row Option_ID=ANSWER, Is_Correct=TRUE, Option_Content=accepted text."),
+            ("Evidence", "Evidence_Paragraph_ID uses Passage ParagraphNo (not a database id)."),
+            ("Sample", "Sheet data for L1 is a complete sample with all five question types — replace or extend for real content.")
+        };
+
+        for (var i = 0; i < rows.Length; i++)
+        {
+            guide.Cell(i + 2, 1).Value = rows[i].Topic;
+            guide.Cell(i + 2, 2).Value = rows[i].Instruction;
+        }
+
+        guide.Column(1).Width = 18;
+        guide.Column(2).Width = 96;
+        guide.Column(2).Style.Alignment.WrapText = true;
+        guide.SheetView.FreezeRows(1);
+        guide.Rows(2, rows.Length + 1).Style.Alignment.Vertical = XLAlignmentVerticalValues.Top;
+    }
+
+    private static void WriteQuestionSample(
+        IXLWorksheet sheet, int row, string readingCode, string questionId, int order, string type, string content, string paragraphRef, int points)
+    {
+        sheet.Cell(row, 1).Value = questionId;
+        sheet.Cell(row, 2).Value = readingCode;
+        sheet.Cell(row, 3).Value = order;
+        sheet.Cell(row, 4).Value = type;
+        sheet.Cell(row, 5).Value = content;
+        sheet.Cell(row, 6).Value = paragraphRef;
+        sheet.Cell(row, 7).Value = points;
+    }
+
+    private static void WriteAnswerSample(
+        IXLWorksheet sheet,
+        int row,
+        string questionId,
+        string optionId,
+        string optionContent,
+        string isCorrect,
+        string? explanation,
+        string? evidenceText,
+        string? evidenceParagraphId,
+        string? paraphrase,
+        string? matchKey,
+        string? matchSide)
+    {
+        sheet.Cell(row, 1).Value = questionId;
+        sheet.Cell(row, 2).Value = optionId;
+        sheet.Cell(row, 3).Value = optionContent;
+        sheet.Cell(row, 4).Value = isCorrect;
+        if (explanation is not null) sheet.Cell(row, 5).Value = explanation;
+        if (evidenceText is not null) sheet.Cell(row, 6).Value = evidenceText;
+        if (evidenceParagraphId is not null) sheet.Cell(row, 7).Value = evidenceParagraphId;
+        if (paraphrase is not null) sheet.Cell(row, 8).Value = paraphrase;
+        if (matchKey is not null) sheet.Cell(row, 9).Value = matchKey;
+        if (matchSide is not null) sheet.Cell(row, 10).Value = matchSide;
+    }
+
+    private static void ApplyDataSheetLayout(IXLWorksheet sheet, int freezeRows, int[]? wrapColumns = null)
+    {
+        sheet.SheetView.FreezeRows(freezeRows);
+        sheet.Row(1).Style.Fill.BackgroundColor = XLColor.FromHtml("#E8EEF5");
+        sheet.Row(1).Style.Font.Bold = true;
+        var lastCol = sheet.Row(1).LastCellUsed()?.Address.ColumnNumber ?? 1;
+        for (var col = 1; col <= lastCol; col++)
+        {
+            var header = sheet.Cell(1, col).GetString();
+            sheet.Column(col).Width = header switch
+            {
+                "Content" or "Question_Content" or "Explanation" or "Evidence_Text" or "Paraphrase" or "Description" or "Example" => 36,
+                "Option_Content" or "Meaning" or "Title" or "PassageTitle" => 28,
+                "ReadingCode" or "Question_ID" or "Option_ID" or "CEFR" or "Match_Key" or "Match_Side" => 14,
+                _ => 16
+            };
+        }
+
+        if (wrapColumns is null) return;
+        foreach (var col in wrapColumns)
+            sheet.Column(col).Style.Alignment.WrapText = true;
+    }
+
+    private static void ApplyListValidation(IXLRange range, IReadOnlyList<string> options)
+    {
+        var list = $"\"{string.Join(",", options)}\"";
+        range.CreateDataValidation().List(list, true);
     }
 
     public async Task<byte[]> ExportReadingAsync(int passageId, CancellationToken ct = default)
@@ -281,24 +372,13 @@ public sealed class ReadingExcelService : IReadingExcelService
                 return result;
             }
 
-            var codesInFile = infoRows
-                .Select(r => Cell(infoSheet, r, "ReadingCode"))
-                .Where(c => !string.IsNullOrWhiteSpace(c))
-                .Select(c => c!.Trim())
-                .ToList();
-
-            var duplicateCodes = codesInFile
-                .GroupBy(c => c, StringComparer.OrdinalIgnoreCase)
-                .Where(g => g.Count() > 1)
-                .Select(g => g.Key)
-                .ToHashSet(StringComparer.OrdinalIgnoreCase);
-
-            var existingKeys = (await _db.ReadingPassages.AsNoTracking()
+            var occupiedKeys = (await _db.ReadingPassages.AsNoTracking()
                 .Where(p => p.ExternalReadingKey != null)
                 .Select(p => p.ExternalReadingKey!)
                 .ToListAsync(ct))
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
+            var fileCodesSeen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var answersByQuestion = BuildAnswerIndex(answersSheet);
             var passagesByCode = GroupSheetRows(passageSheet, "ReadingCode");
             var questionsByCode = GroupSheetRows(questionsSheet, "ReadingCode");
@@ -306,7 +386,7 @@ public sealed class ReadingExcelService : IReadingExcelService
 
             foreach (var infoRow in infoRows)
             {
-                var readingCode = Cell(infoSheet, infoRow, "ReadingCode")?.Trim() ?? "";
+                var fileReadingCode = Cell(infoSheet, infoRow, "ReadingCode")?.Trim() ?? "";
                 var title = Cell(infoSheet, infoRow, "Title");
                 var cefr = Cell(infoSheet, infoRow, "CEFR");
                 var topic = Cell(infoSheet, infoRow, "Topic");
@@ -316,11 +396,11 @@ public sealed class ReadingExcelService : IReadingExcelService
 
                 var readingErrors = new List<ReadingExcelError>();
 
-                if (string.IsNullOrWhiteSpace(readingCode))
+                if (string.IsNullOrWhiteSpace(fileReadingCode))
                 {
-                    readingErrors.Add(Err(null, "Reading_Info", infoRow, "ReadingCode", readingCode,
+                    readingErrors.Add(Err(null, "Reading_Info", infoRow, "ReadingCode", fileReadingCode,
                         "ReadingCode is required.",
-                        "Enter a unique ReadingCode."));
+                        "Enter a temporary join key unique in this file (e.g. L1). The system assigns RD-{CEFR}-NNN on import."));
                     result.FailedReadings.Add(new ReadingExcelFailedReading
                     {
                         ReadingCode = "(blank)",
@@ -331,46 +411,70 @@ public sealed class ReadingExcelService : IReadingExcelService
                     continue;
                 }
 
-                if (duplicateCodes.Contains(readingCode))
+                if (!fileCodesSeen.Add(fileReadingCode))
                 {
-                    readingErrors.Add(Err(readingCode, "Reading_Info", infoRow, "ReadingCode", readingCode,
+                    readingErrors.Add(Err(fileReadingCode, "Reading_Info", infoRow, "ReadingCode", fileReadingCode,
                         "ReadingCode is duplicated in this file.",
-                        "Keep only one Reading_Info row per ReadingCode."));
+                        "Use a unique temporary join key per reading in the workbook (e.g. L1, L2)."));
+                    result.FailedReadings.Add(new ReadingExcelFailedReading
+                    {
+                        ReadingCode = fileReadingCode,
+                        Title = title,
+                        Errors = readingErrors
+                    });
+                    result.Errors.AddRange(readingErrors);
+                    continue;
                 }
 
-                if (existingKeys.Contains(readingCode))
-                {
-                    readingErrors.Add(Err(readingCode, "Reading_Info", infoRow, "ReadingCode", readingCode,
-                        "ReadingCode already exists in the database.",
-                        "Use a new ReadingCode. Existing readings are never overwritten."));
-                }
+                // Group Passage/Questions/Vocab by the temporary code written in the file.
+                var readingCode = fileReadingCode;
 
                 if (string.IsNullOrWhiteSpace(title))
                 {
-                    readingErrors.Add(Err(readingCode, "Reading_Info", infoRow, "Title", title,
+                    readingErrors.Add(Err(fileReadingCode, "Reading_Info", infoRow, "Title", title,
                         "Title is required.",
                         "Fill Title."));
                 }
 
                 if (!CefrLevels.IsValid(cefr))
                 {
-                    readingErrors.Add(Err(readingCode, "Reading_Info", infoRow, "CEFR", cefr,
+                    readingErrors.Add(Err(fileReadingCode, "Reading_Info", infoRow, "CEFR", cefr,
                         "CEFR must be A1, A2, B1, B2, C1, or C2.",
                         "Use a valid CEFR code."));
                 }
 
                 if (string.IsNullOrWhiteSpace(topic))
                 {
-                    readingErrors.Add(Err(readingCode, "Reading_Info", infoRow, "Topic", topic,
+                    readingErrors.Add(Err(fileReadingCode, "Reading_Info", infoRow, "Topic", topic,
                         "Topic is required.",
                         "Fill Topic."));
                 }
 
                 if (!int.TryParse(durationRaw, out var duration) || duration <= 0)
                 {
-                    readingErrors.Add(Err(readingCode, "Reading_Info", infoRow, "Duration", durationRaw,
+                    readingErrors.Add(Err(fileReadingCode, "Reading_Info", infoRow, "Duration", durationRaw,
                         "Duration must be a positive integer (minutes).",
                         "Enter a whole number greater than 0."));
+                }
+
+                var level = CefrLevels.IsValid(cefr) ? CefrLevels.Normalize(cefr) : "A1";
+                string allocatedCode;
+                if (CefrLevels.IsValid(cefr))
+                {
+                    allocatedCode = AllocateNextOfficialReadingCode(level, occupiedKeys);
+                    occupiedKeys.Add(allocatedCode);
+                    result.Warnings.Add(new ReadingExcelWarning
+                    {
+                        ReadingCode = allocatedCode,
+                        Sheet = "Reading_Info",
+                        Row = infoRow,
+                        Column = "ReadingCode",
+                        Message = $"File ReadingCode '{fileReadingCode}' assigned system code '{allocatedCode}'. Excel codes are join keys only; the system always assigns RD-{{CEFR}}-NNN."
+                    });
+                }
+                else
+                {
+                    allocatedCode = fileReadingCode;
                 }
 
                 string? imageUrl = null;
@@ -381,7 +485,7 @@ public sealed class ReadingExcelService : IReadingExcelService
                     {
                         result.Warnings.Add(new ReadingExcelWarning
                         {
-                            ReadingCode = readingCode,
+                            ReadingCode = allocatedCode,
                             Sheet = "Reading_Info",
                             Row = infoRow,
                             Column = "ImageUrl",
@@ -392,11 +496,12 @@ public sealed class ReadingExcelService : IReadingExcelService
 
                 var preview = new ReadingEditorViewModel
                 {
-                    ExternalReadingKey = readingCode,
+                    ExternalReadingKey = allocatedCode,
+                    ImportFileReadingCode = fileReadingCode,
                     Title = title?.Trim() ?? "",
                     Description = description,
                     Topic = topic?.Trim(),
-                    Level = CefrLevels.Normalize(cefr),
+                    Level = level,
                     EstimatedTimeMinutes = duration > 0 ? duration : null,
                     ImageUrl = imageUrl
                 };
@@ -407,7 +512,7 @@ public sealed class ReadingExcelService : IReadingExcelService
 
                 if (preview.Questions.Count == 0 && readingErrors.All(e => e.Sheet != "Questions"))
                 {
-                    readingErrors.Add(Err(readingCode, "Questions", 0, "Question_ID", null,
+                    readingErrors.Add(Err(fileReadingCode, "Questions", 0, "Question_ID", null,
                         "At least one question is required.",
                         "Add question rows for this ReadingCode."));
                 }
@@ -417,7 +522,7 @@ public sealed class ReadingExcelService : IReadingExcelService
                     var hasAnswer = q.Options.Count > 0 || !string.IsNullOrWhiteSpace(q.CorrectAnswerText);
                     if (!hasAnswer)
                     {
-                        readingErrors.Add(Err(readingCode, "Answers", 0, "Question_ID", q.ExternalQuestionKey,
+                        readingErrors.Add(Err(fileReadingCode, "Answers", 0, "Question_ID", q.ExternalQuestionKey,
                             $"Question {q.ExternalQuestionKey} has no valid answer.",
                             "Add Answers rows for this Question_ID."));
                     }
@@ -426,7 +531,7 @@ public sealed class ReadingExcelService : IReadingExcelService
                     {
                         foreach (var msg in ReadingAdminService.ValidateMatchingEditorOptions(q.OrderIndex, q.Options))
                         {
-                            readingErrors.Add(Err(readingCode, "Answers", 0, "Match_Key", q.ExternalQuestionKey,
+                            readingErrors.Add(Err(fileReadingCode, "Answers", 0, "Match_Key", q.ExternalQuestionKey,
                                 msg,
                                 "Set Match_Key and Match_Side (Left|Right) for each Matching option pair."));
                         }
@@ -437,7 +542,7 @@ public sealed class ReadingExcelService : IReadingExcelService
                 {
                     result.FailedReadings.Add(new ReadingExcelFailedReading
                     {
-                        ReadingCode = readingCode,
+                        ReadingCode = allocatedCode,
                         Title = preview.Title,
                         Errors = readingErrors
                     });
@@ -879,6 +984,27 @@ public sealed class ReadingExcelService : IReadingExcelService
         for (var i = 0; i < headers.Length; i++)
             sheet.Cell(1, i + 1).Value = headers[i];
         sheet.Row(1).Style.Font.Bold = true;
+    }
+
+    /// <summary>
+    /// Next official import key: RD-{CEFR}-NNN (3-digit), based on occupied DB + in-batch keys.
+    /// Excel ReadingCode values are temporary join keys only.
+    /// </summary>
+    public static string AllocateNextOfficialReadingCode(string cefr, ISet<string> occupied)
+    {
+        var level = CefrLevels.Normalize(cefr);
+        var prefix = $"RD-{level}-";
+        var max = 0;
+        foreach (var key in occupied)
+        {
+            if (string.IsNullOrWhiteSpace(key)) continue;
+            if (!key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) continue;
+            var suffix = key[prefix.Length..];
+            if (int.TryParse(suffix, out var n) && n > max)
+                max = n;
+        }
+
+        return $"{prefix}{(max + 1).ToString("D3")}";
     }
 
     private static IEnumerable<int> DataRows(IXLWorksheet sheet)

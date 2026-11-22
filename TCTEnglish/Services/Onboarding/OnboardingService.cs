@@ -180,57 +180,15 @@ public sealed class OnboardingService : IOnboardingService
         return new OnboardingCatalogView(OnboardingCatalog.Goals, topics, welcome);
     }
 
-    /// <summary>The cover of each topic: the same rule as the Vocabulary courses (<see cref="VocabularyCoverCatalog"/>), two queries in all.</summary>
-    private async Task<IReadOnlyDictionary<string, string>> LoadCoversAsync(CancellationToken ct)
+    /// <summary>Topic covers for steps 0–2: curated real photos under <c>/images/onboarding/covers/{key}.jpg</c>.</summary>
+    private Task<IReadOnlyDictionary<string, string>> LoadCoversAsync(CancellationToken ct = default)
     {
-        var result = new Dictionary<string, string>(StringComparer.Ordinal);
-        var systemId = await _db.Users.AsNoTracking()
-            .Where(u => u.Email == PersonalSetService.SystemOwnerEmail)
-            .Select(u => (int?)u.UserId)
-            .FirstOrDefaultAsync(ct);
-        if (systemId == null)
-        {
-            return result;
-        }
-
-        var keyByName = OnboardingCatalog.Topics.ToDictionary(topic => topic.SetName, topic => topic.Key, StringComparer.Ordinal);
-        var names = keyByName.Keys.ToList();
-        var sets = await _db.Sets.AsNoTracking()
-            .Where(s => s.OwnerId == systemId && names.Contains(s.SetName))
-            .Select(s => new { s.SetId, s.SetName, Cards = s.Cards.Count })
-            .ToListAsync(ct);
-        var chosen = sets
-            .GroupBy(s => s.SetName)
-            .Select(group => group.OrderByDescending(s => s.Cards).ThenBy(s => s.SetId).First())
-            .ToDictionary(s => s.SetId, s => s.SetName);
-        if (chosen.Count == 0)
-        {
-            return result;
-        }
-
-        var setIds = chosen.Keys.ToList();
-        var rows = await _db.Cards.AsNoTracking()
-            .Where(card => setIds.Contains(card.SetId) && card.ImageUrl != null && card.ImageUrl != string.Empty)
-            .OrderBy(card => card.CardId)
-            .Select(card => new { card.SetId, card.CardId, card.Term, card.ImageUrl })
-            .ToListAsync(ct);
-
-        foreach (var group in rows.GroupBy(row => row.SetId))
-        {
-            var candidates = group
-                .Select(row => (Row: row, Url: StudyService.SafeVocabularyImageUrl(row.ImageUrl)))
-                .Where(item => item.Url != null)
-                .Select(item => new CoverCandidate(item.Row.CardId, item.Row.Term ?? string.Empty, item.Url!))
-                .ToList();
-            var name = chosen[group.Key];
-            var choice = VocabularyCoverCatalog.Pick(name, candidates);
-            if (choice != null)
-            {
-                result[keyByName[name]] = choice.ImageUrl;
-            }
-        }
-
-        return result;
+        _ = ct;
+        var result = OnboardingCatalog.Topics.ToDictionary(
+            topic => topic.Key,
+            topic => $"/images/onboarding/covers/{topic.Key}.jpg",
+            StringComparer.Ordinal);
+        return Task.FromResult<IReadOnlyDictionary<string, string>>(result);
     }
 
     // =====================================================================================

@@ -23,7 +23,7 @@
                 var view = await Onboarding.GetCatalogAsync(Context.RequestAborted);
                 onboardingCatalog = new
                 {
-                    goals = view.Goals.Select(goal => new { key = goal.Key, title = goal.Title, description = goal.Description, icon = goal.Icon }),
+                    goals = view.Goals.Select(goal => new { key = goal.Key, title = goal.Title, description = goal.Description, icon = goal.Icon, photo = goal.Photo }),
                     topics = view.Topics.Select(topic => new { key = topic.Key, name = topic.Name, band = topic.Band, goals = topic.Goals, cover = topic.CoverUrl }),
                     welcome = view.WelcomeCovers
                 };

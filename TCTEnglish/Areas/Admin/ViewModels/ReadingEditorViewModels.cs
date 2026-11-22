@@ -54,6 +54,12 @@ public class ReadingEditorViewModel
 
     public string? ExternalReadingKey { get; set; }
 
+    /// <summary>
+    /// ReadingCode as written in the Excel file before import remapping.
+    /// Used so media ZIP files named {ReadingCode}.ext still match after auto-renumber.
+    /// </summary>
+    public string? ImportFileReadingCode { get; set; }
+
     public string Status { get; set; } = ReadingStatuses.Draft;
 
     public List<ReadingParagraphEditorViewModel> Paragraphs { get; set; } = new();

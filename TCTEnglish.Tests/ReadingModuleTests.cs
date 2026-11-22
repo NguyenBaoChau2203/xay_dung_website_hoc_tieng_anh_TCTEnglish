@@ -35,6 +35,10 @@ public sealed class ReadingModuleTests
         foreach (var sheet in new[] { "Reading_Info", "Passage", "Questions", "Answers", "Vocabulary", "Guide" })
             Assert.Contains(workbook.Worksheets, ws => ws.Name == sheet);
 
+        Assert.Equal("Guide", workbook.Worksheet(1).Name);
+        Assert.Equal("Topic", workbook.Worksheet("Guide").Cell(1, 1).GetString());
+        Assert.Equal("Instruction", workbook.Worksheet("Guide").Cell(1, 2).GetString());
+
         Assert.Equal("ReadingCode", workbook.Worksheet("Reading_Info").Cell(1, 1).GetString());
         Assert.Equal("CEFR", workbook.Worksheet("Reading_Info").Cell(1, 3).GetString());
         Assert.Equal("ImageUrl", workbook.Worksheet("Reading_Info").Cell(1, 7).GetString());
@@ -43,6 +47,16 @@ public sealed class ReadingModuleTests
         Assert.Equal("ReadingCode", workbook.Worksheet("Questions").Cell(1, 2).GetString());
         Assert.Equal("Match_Key", workbook.Worksheet("Answers").Cell(1, 9).GetString());
         Assert.Equal("Match_Side", workbook.Worksheet("Answers").Cell(1, 10).GetString());
+
+        var questionTypes = workbook.Worksheet("Questions").RowsUsed()
+            .Skip(1)
+            .Select(r => r.Cell(4).GetString())
+            .ToHashSet(StringComparer.Ordinal);
+        foreach (var type in ReadingQuestionTypes.All)
+            Assert.Contains(type, questionTypes);
+
+        Assert.Equal(1, workbook.Worksheet("Questions").SheetView.SplitRow);
+        Assert.Equal(1, workbook.Worksheet("Answers").SheetView.SplitRow);
     }
 
     [Fact]
@@ -57,15 +71,26 @@ public sealed class ReadingModuleTests
         Assert.True(preview.HasImportableReadings);
         Assert.Empty(preview.FailedReadings);
         var reading = Assert.Single(preview.ValidReadings);
-        Assert.Equal("RD001", reading.ExternalReadingKey);
+        Assert.Equal("RD-A1-001", reading.ExternalReadingKey);
+        Assert.Equal("L1", reading.ImportFileReadingCode);
         Assert.Equal(2, reading.Paragraphs.Count);
-        Assert.Equal(2, reading.Questions.Count);
+        Assert.Equal(5, reading.Questions.Count);
+        Assert.Contains(reading.Questions, q => q.QuestionType == ReadingQuestionTypes.MultipleChoice);
+        Assert.Contains(reading.Questions, q => q.QuestionType == ReadingQuestionTypes.TrueFalse);
+        Assert.Contains(reading.Questions, q => q.QuestionType == ReadingQuestionTypes.GapFill);
+        Assert.Contains(reading.Questions, q => q.QuestionType == ReadingQuestionTypes.ShortAnswer);
         var matching = Assert.Single(reading.Questions, q => q.QuestionType == ReadingQuestionTypes.Matching);
         Assert.Contains(matching.Options, o => o.MatchKey == "p1" && o.MatchSide == "Left");
         Assert.Contains(matching.Options, o => o.MatchKey == "p1" && o.MatchSide == "Right");
-        Assert.Single(reading.Vocabulary);
+        Assert.Contains(matching.Options, o => o.MatchKey == "p2" && o.MatchSide == "Left");
+        Assert.Contains(matching.Options, o => o.MatchKey == "p2" && o.MatchSide == "Right");
+        Assert.Equal(2, reading.Vocabulary.Count);
         Assert.Equal("Môi trường", reading.Vocabulary[0].VietnameseMeaning);
         Assert.Equal(1, reading.Vocabulary[0].ParagraphOrder);
+        var gap = Assert.Single(reading.Questions, q => q.QuestionType == ReadingQuestionTypes.GapFill);
+        Assert.Equal("oxygen", gap.CorrectAnswerText);
+        var shortAnswer = Assert.Single(reading.Questions, q => q.QuestionType == ReadingQuestionTypes.ShortAnswer);
+        Assert.Equal("oxygen", shortAnswer.CorrectAnswerText);
     }
 
     [Fact]
@@ -89,20 +114,48 @@ public sealed class ReadingModuleTests
 
         Assert.True(preview.HasImportableReadings);
         Assert.Single(preview.ValidReadings);
-        Assert.Equal("RD001", preview.ValidReadings[0].ExternalReadingKey);
+        Assert.Equal("RD-A1-001", preview.ValidReadings[0].ExternalReadingKey);
+        Assert.Equal("L1", preview.ValidReadings[0].ImportFileReadingCode);
         Assert.Contains(preview.FailedReadings, f => f.ReadingCode == "RD_BAD");
     }
 
     [Fact]
-    public async Task Parse_RejectsDuplicateReadingCode_InDatabase()
+    public void AllocateNextOfficialReadingCode_IncrementsPerCefr()
     {
-        var db = CreateContext(nameof(Parse_RejectsDuplicateReadingCode_InDatabase));
+        var occupied = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "RD-A1-001", "RD-A1-002", "RD-B1-001" };
+        Assert.Equal("RD-A1-003", ReadingExcelService.AllocateNextOfficialReadingCode("A1", occupied));
+        Assert.Equal("RD-B1-002", ReadingExcelService.AllocateNextOfficialReadingCode("B1", occupied));
+        Assert.Equal("RD-A2-001", ReadingExcelService.AllocateNextOfficialReadingCode("A2", new HashSet<string>(StringComparer.OrdinalIgnoreCase)));
+    }
+
+    [Fact]
+    public async Task Parse_AlwaysAssignsOfficialReadingCode_EvenWhenFileKeyFree()
+    {
+        var db = CreateContext(nameof(Parse_AlwaysAssignsOfficialReadingCode_EvenWhenFileKeyFree));
+        var admin = CreateAdmin(db);
+        var excel = new ReadingExcelService(db, admin);
+        using var stream = new MemoryStream(excel.BuildTemplate());
+        var preview = await excel.ParseAndValidateAsync(stream);
+
+        Assert.True(preview.HasImportableReadings);
+        var reading = Assert.Single(preview.ValidReadings);
+        Assert.Equal("RD-A1-001", reading.ExternalReadingKey);
+        Assert.Equal("L1", reading.ImportFileReadingCode);
+        Assert.Contains(preview.Warnings, w =>
+            w.Column == "ReadingCode" &&
+            w.Message.Contains("assigned system code", StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public async Task Parse_AssignsNextOfficialCode_WhenCefrSequenceOccupied()
+    {
+        var db = CreateContext(nameof(Parse_AssignsNextOfficialCode_WhenCefrSequenceOccupied));
         db.ReadingPassages.Add(new ReadingPassage
         {
             Title = "Existing",
             Content = "c",
             Level = "A1",
-            ExternalReadingKey = "RD001",
+            ExternalReadingKey = "RD-A1-001",
             Status = ReadingStatuses.Draft,
             CreatedAt = DateTime.UtcNow
         });
@@ -113,8 +166,40 @@ public sealed class ReadingModuleTests
         using var stream = new MemoryStream(excel.BuildTemplate());
         var preview = await excel.ParseAndValidateAsync(stream);
 
-        Assert.False(preview.HasImportableReadings);
-        Assert.Contains(preview.Errors, e => e.Column == "ReadingCode" && e.Message.Contains("already exists", StringComparison.OrdinalIgnoreCase));
+        Assert.True(preview.HasImportableReadings);
+        var reading = Assert.Single(preview.ValidReadings);
+        Assert.Equal("RD-A1-002", reading.ExternalReadingKey);
+        Assert.Equal("L1", reading.ImportFileReadingCode);
+        Assert.Contains(preview.Warnings, w =>
+            w.Column == "ReadingCode" &&
+            w.Message.Contains("RD-A1-002", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public async Task Parse_DuplicateFileReadingCode_FailsSecondReading()
+    {
+        var db = CreateContext(nameof(Parse_DuplicateFileReadingCode_FailsSecondReading));
+        var admin = CreateAdmin(db);
+        var excel = new ReadingExcelService(db, admin);
+        using var workbook = new ClosedXML.Excel.XLWorkbook(new MemoryStream(excel.BuildTemplate()));
+        var info = workbook.Worksheet("Reading_Info");
+        info.Cell(3, 1).Value = "L1";
+        info.Cell(3, 2).Value = "The Importance of Trees";
+        info.Cell(3, 3).Value = "A1";
+        info.Cell(3, 4).Value = "Environment";
+        info.Cell(3, 5).Value = 10;
+        info.Cell(3, 6).Value = "Duplicate file key";
+
+        using var stream = new MemoryStream();
+        workbook.SaveAs(stream);
+        stream.Position = 0;
+        var preview = await excel.ParseAndValidateAsync(stream);
+
+        Assert.True(preview.HasImportableReadings);
+        Assert.Single(preview.ValidReadings);
+        Assert.Equal("RD-A1-001", preview.ValidReadings[0].ExternalReadingKey);
+        Assert.Contains(preview.FailedReadings, f => f.ReadingCode == "L1");
+        Assert.Contains(preview.Errors, e => e.Message.Contains("duplicated in this file", StringComparison.OrdinalIgnoreCase));
     }
 
     [Fact]
@@ -157,7 +242,10 @@ public sealed class ReadingModuleTests
         using (var workbook = new ClosedXML.Excel.XLWorkbook(new MemoryStream(excel.BuildTemplate())))
         {
             var vocab = workbook.Worksheet("Vocabulary");
-            vocab.Row(2).Delete();
+            // Template v2 ships two sample vocab rows; clear all data rows for empty-sheet case.
+            var last = vocab.LastRowUsed()?.RowNumber() ?? 1;
+            for (var row = last; row >= 2; row--)
+                vocab.Row(row).Delete();
             using var stream = new MemoryStream();
             workbook.SaveAs(stream);
             stream.Position = 0;
@@ -958,6 +1046,132 @@ public sealed class ReadingModuleTests
         Assert.Contains(reloaded.Questions, q => q.QuestionType == ReadingQuestionTypes.GapFill && q.CorrectAnswerText == "oxygen");
         var match = Assert.Single(reloaded.Questions, q => q.QuestionType == ReadingQuestionTypes.Matching);
         Assert.Empty(ReadingAdminService.ValidateMatchingOptions(match.OrderIndex, match.Options));
+    }
+
+    [Fact]
+    public async Task DeleteAsync_ThrowsWhenLearnerAttemptsExist()
+    {
+        await using var db = CreateContext(nameof(DeleteAsync_ThrowsWhenLearnerAttemptsExist));
+        db.Users.Add(new User { UserId = 51, Email = "delete-learner@test.local", PasswordHash = "x", Role = Roles.Standard, ReadingLevel = "A1" });
+        var passage = new ReadingPassage
+        {
+            Title = "Delete with answers",
+            Content = "Body",
+            Level = "A1",
+            Status = ReadingStatuses.Draft,
+            IsPublished = false,
+            CreatedAt = DateTime.UtcNow,
+            Questions =
+            {
+                new ReadingQuestion
+                {
+                    QuestionText = "Q1",
+                    QuestionType = ReadingQuestionTypes.MultipleChoice,
+                    Explanation = "why",
+                    OrderIndex = 1,
+                    Points = 1,
+                    Options =
+                    {
+                        new ReadingOption { OptionText = "A", IsCorrect = true, OptionOrder = 1 },
+                        new ReadingOption { OptionText = "B", IsCorrect = false, OptionOrder = 2 }
+                    }
+                }
+            }
+        };
+        db.ReadingPassages.Add(passage);
+        await db.SaveChangesAsync();
+
+        db.ReadingAttempts.Add(new ReadingAttempt
+        {
+            UserId = 51,
+            ReadingPassageId = passage.Id,
+            Mode = "Practice",
+            StartedAt = DateTime.UtcNow
+        });
+        await db.SaveChangesAsync();
+
+        var passageId = passage.Id;
+        var admin = CreateAdmin(db);
+        var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => admin.DeleteAsync(passageId));
+        Assert.Contains("lưu trữ", ex.Message, StringComparison.OrdinalIgnoreCase);
+        Assert.NotNull(await db.ReadingPassages.FindAsync(passageId));
+    }
+
+    [Fact]
+    public async Task ReplaceQuestionsAsync_SucceedsWhenLearnerAnswersExist()
+    {
+        await using var db = CreateContext(nameof(ReplaceQuestionsAsync_SucceedsWhenLearnerAnswersExist));
+        db.Users.Add(new User { UserId = 52, Email = "replace-learner@test.local", PasswordHash = "x", Role = Roles.Standard, ReadingLevel = "A1" });
+        var passage = new ReadingPassage
+        {
+            Title = "Replace with answers",
+            Content = "Body",
+            Level = "A1",
+            Status = ReadingStatuses.RevisionRequired,
+            IsPublished = false,
+            CreatedByUserId = 1,
+            CreatedAt = DateTime.UtcNow,
+            Questions =
+            {
+                new ReadingQuestion
+                {
+                    QuestionText = "Old Q",
+                    QuestionType = ReadingQuestionTypes.MultipleChoice,
+                    Explanation = "old",
+                    OrderIndex = 1,
+                    Points = 1,
+                    Options =
+                    {
+                        new ReadingOption { OptionText = "A", IsCorrect = true, OptionOrder = 1 },
+                        new ReadingOption { OptionText = "B", IsCorrect = false, OptionOrder = 2 }
+                    }
+                }
+            }
+        };
+        db.ReadingPassages.Add(passage);
+        await db.SaveChangesAsync();
+
+        var oldQuestionId = passage.Questions.First().Id;
+        var optionId = passage.Questions.First().Options.First(o => o.IsCorrect).Id;
+        var attempt = new ReadingAttempt
+        {
+            UserId = 52,
+            ReadingPassageId = passage.Id,
+            Mode = "Practice",
+            StartedAt = DateTime.UtcNow
+        };
+        db.ReadingAttempts.Add(attempt);
+        await db.SaveChangesAsync();
+        db.ReadingStudentAnswers.Add(new ReadingStudentAnswer
+        {
+            AttemptId = attempt.Id,
+            QuestionId = oldQuestionId,
+            SelectedOptionId = optionId,
+            UpdatedAt = DateTime.UtcNow
+        });
+        await db.SaveChangesAsync();
+
+        var admin = CreateAdmin(db);
+        await admin.ReplaceQuestionsAsync(passage.Id, new List<ReadingQuestionEditorViewModel>
+        {
+            new()
+            {
+                OrderIndex = 1,
+                QuestionType = ReadingQuestionTypes.ShortAnswer,
+                QuestionText = "New short",
+                CorrectAnswerText = "answer",
+                Explanation = "new",
+                Points = 1
+            }
+        });
+
+        var reloaded = await admin.GetForEditAsync(passage.Id);
+        Assert.NotNull(reloaded);
+        var q = Assert.Single(reloaded!.Questions);
+        Assert.Equal(ReadingQuestionTypes.ShortAnswer, q.QuestionType);
+        Assert.Equal("New short", q.QuestionText);
+        Assert.Empty(await db.ReadingStudentAnswers.Where(a => a.QuestionId == oldQuestionId).ToListAsync());
+        Assert.Single(await db.ReadingAttempts.Where(a => a.ReadingPassageId == passage.Id).ToListAsync());
     }
 
     [Fact]

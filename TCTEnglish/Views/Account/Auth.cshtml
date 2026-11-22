@@ -35,100 +35,62 @@
 </head>
 <body class="tct-theme account-auth-ui auth-page">
 
+    @* Layer 1: full-screen campus on body.auth-page *@
     <div class="auth-split-container">
 
         <!-- ============================================================
-             LEFT COLUMN: Hero with Brand, Illustration & Feature Cards (Claymorphism)
+             LEFT STAGE: Layers 2–5 (decor, icons, mascot, brand)
              ============================================================ -->
-        <aside class="auth-col-left" aria-label="Giới thiệu TCT English">
-            <!-- Dot-grid pattern overlay -->
-            <div class="auth-decoration" aria-hidden="true"></div>
-
-            <!-- Floating soft clay learning milestone badges -->
-            <div class="auth-floating-shapes" aria-hidden="true">
-                <div class="auth-shape auth-shape--1">
-                    <div class="auth-shape-icon auth-shape-icon--streak">
-                        <i class="fa-solid fa-fire" aria-hidden="true"></i>
-                    </div>
-                    <div class="auth-shape-info">
-                        <span class="auth-shape-val">7 Ngày</span>
-                        <span class="auth-shape-lbl">Streak 🔥</span>
-                    </div>
-                </div>
-                <div class="auth-shape auth-shape--4">
-                    <div class="auth-shape-icon auth-shape-icon--trophy">
-                        <i class="fa-solid fa-trophy" aria-hidden="true"></i>
-                    </div>
-                    <div class="auth-shape-info">
-                        <span class="auth-shape-val">Top 5%</span>
-                        <span class="auth-shape-lbl">Thành tích 🏆</span>
-                    </div>
-                </div>
-                <div class="auth-shape auth-shape--2">
-                    <div class="auth-shape-icon auth-shape-icon--listening">
-                        <i class="fa-solid fa-headphones" aria-hidden="true"></i>
-                    </div>
-                    <div class="auth-shape-info">
-                        <span class="auth-shape-val">Luyện nghe</span>
-                        <span class="auth-shape-lbl">Bản xứ 🎧</span>
-                    </div>
-                </div>
-                <div class="auth-shape auth-shape--3">
-                    <div class="auth-shape-icon auth-shape-icon--vocab">
-                        <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
-                    </div>
-                    <div class="auth-shape-info">
-                        <span class="auth-shape-val">Flashcard</span>
-                        <span class="auth-shape-lbl">Siêu tốc ✨</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Brand content -->
-            <div class="auth-brand-content">
-                <div class="auth-brand-logo">
-                    <img src="~/brand/logo/tct-english-logo-horizontal-white.svg"
+        <aside class="auth-col-left" aria-label="TCT English — Learn English. Grow Further.">
+            @* Layer 5: Brand *@
+            <header class="auth-brand">
+                <a class="auth-brand-logo" href="@Url.Action("Index", "Home")" aria-label="TCT English — trang chủ">
+                    <img src="~/brand/logo/tct-english-logo.svg"
                          asp-append-version="true"
+                         width="160"
+                         height="40"
                          alt="TCT English"
-                         width="220"
-                         height="52" />
-                </div>
-                <p class="auth-brand-subtitle">
-                    Học tiếng Anh thông minh — dành cho mọi người.<br />
-                    Nâng tầm ngoại ngữ, mở rộng tương lai.
-                </p>
+                         decoding="async" />
+                </a>
+                <p class="auth-brand-slogan">Learn English. Grow Further.</p>
+            </header>
+
+            @* Layer 2: Organic decorations *@
+            <div class="auth-decor" aria-hidden="true">
+                <span class="auth-blob auth-blob-a"></span>
+                <span class="auth-blob auth-blob-b"></span>
+                <span class="auth-sparkle auth-sparkle-1"></span>
+                <span class="auth-sparkle auth-sparkle-2"></span>
+                <span class="auth-sparkle auth-sparkle-3"></span>
+                <span class="auth-trail auth-trail-1"></span>
+                <span class="auth-float-circle auth-float-circle-1"></span>
+                <span class="auth-float-circle auth-float-circle-2"></span>
             </div>
 
-            <!-- Custom Vector Illustration for Website -->
-            <div class="auth-hero-illustration">
-                <img src="~/images/auth/auth-illustration.svg" asp-append-version="true" alt="Học tiếng Anh cùng TCT English" class="auth-hero-img" />
+            @* Layer 3: Floating educational tiles *@
+            <div class="auth-edu-icons" aria-hidden="true">
+                <span class="auth-edu-tile auth-edu-book" title="Reading"><i class="fa-solid fa-book-open"></i></span>
+                <span class="auth-edu-tile auth-edu-headphones" title="Listening"><i class="fa-solid fa-headphones"></i></span>
+                <span class="auth-edu-tile auth-edu-chat" title="Speaking"><i class="fa-solid fa-comments"></i></span>
+                <span class="auth-edu-tile auth-edu-chart" title="Progress"><i class="fa-solid fa-chart-line"></i></span>
+                <span class="auth-edu-tile auth-edu-abc" title="Vocabulary"><i class="fa-solid fa-spell-check"></i></span>
+                <span class="auth-edu-tile auth-edu-dict" title="Dictionary"><i class="fa-solid fa-book"></i></span>
             </div>
 
-            <!-- Feature Clay Cards -->
-            <div class="auth-features">
-                <div class="auth-feature-card">
-                    <div class="auth-feature-icon auth-feature-icon--vocab">
-                        <i class="fa-solid fa-book-open" aria-hidden="true"></i>
-                    </div>
-                    <span class="auth-feature-label">500+ Từ vựng</span>
-                </div>
-                <div class="auth-feature-card">
-                    <div class="auth-feature-icon auth-feature-icon--speaking">
-                        <i class="fa-solid fa-microphone" aria-hidden="true"></i>
-                    </div>
-                    <span class="auth-feature-label">AI Speaking</span>
-                </div>
-                <div class="auth-feature-card">
-                    <div class="auth-feature-icon auth-feature-icon--quiz">
-                        <i class="fa-solid fa-bolt" aria-hidden="true"></i>
-                    </div>
-                    <span class="auth-feature-label">Smart Quiz</span>
-                </div>
+            @* Layer 4: Main character *@
+            <div class="auth-mascot">
+                <img class="auth-mascot-img"
+                     src="~/images/auth/auth-mascot-pencil.png"
+                     asp-append-version="true"
+                     width="973"
+                     height="660"
+                     alt="Học sinh và mascot Tico ngồi trên cây bút chì TCT English"
+                     decoding="async" />
             </div>
         </aside>
 
         <!-- ============================================================
-             RIGHT COLUMN: Form Card Area (Main Landmark)
+             RIGHT STAGE: Layers 6–7 — floating white card only (no panel fill)
              ============================================================ -->
         <main class="auth-col-right" id="main-content">
             <button class="btn auth-close-btn tct-btn-icon" onclick="window.history.back()" aria-label="Quay lại" id="btn-close-auth" type="button">
@@ -155,7 +117,7 @@
                 <!-- Server Error Message -->
                 @if (ViewBag.ErrorMessage != null)
                 {
-                    <div class="alert alert-danger" role="alert" id="server-error-alert">
+                    <div class="alert alert-danger" role="alert" id="server-error-alert" tabindex="-1">
                         <i class="fa-solid fa-circle-exclamation me-2" aria-hidden="true"></i>
                         <span>@ViewBag.ErrorMessage</span>
                     </div>
@@ -250,9 +212,11 @@
                     <div class="auth-form-group">
                         <label class="auth-form-label" for="register-name">Tên hiển thị</label>
                         <input type="text" name="fullName" class="form-control auth-form-input" placeholder="Nhập tên của bạn" required id="register-name" autocomplete="name">
+                    </div>
 
+                    <div class="auth-form-group">
                         <label class="auth-form-label" for="register-reading-level">Cấp độ Reading (CEFR)</label>
-                        <select name="readingLevel" class="auth-form-input" id="register-reading-level" required>
+                        <select name="readingLevel" class="form-select auth-form-input" id="register-reading-level" required>
                             <option value="A1" selected>A1 — Beginner</option>
                             <option value="A2">A2 — Elementary</option>
                             <option value="B1">B1 — Intermediate</option>

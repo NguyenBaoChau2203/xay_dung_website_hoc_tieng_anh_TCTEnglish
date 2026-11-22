@@ -1,0 +1,26 @@
+---
+description: Require SPEC.md and Spec Kit constitution before planning or implementing Reading/Dashboard (and architecture-affecting) work
+alwaysApply: true
+---
+
+# Spec Kit + SPEC.md context
+
+Before planning or implementing features that touch **Reading**, **learner Dashboard** (`Home/Index`), or shared architecture/security/UI foundations:
+
+1. Read [`SPEC.md`](SPEC.md) (project context). Prefer verified sections; treat `TODO` / `NEEDS_CONFIRMATION` / `OUT_OF_SCOPE` as non-authoritative for invention.
+2. Read [`.specify/memory/constitution.md`](.specify/memory/constitution.md) before writing or changing code.
+3. Inspect **current source** (controllers, services, models, views, tests) before proposing a solution.
+4. Do **not** create duplicate modules or parallel stacks when an existing feature already covers the need.
+5. Do **not** change architecture, add libraries/technologies, or alter existing business rules without explicit owner confirmation.
+6. New work must stay compatible with the architecture and Reading/Dashboard behaviors documented in SPEC.md and enforced by AGENTS.md.
+7. If SPEC.md no longer matches source, **report the drift** and propose a SPEC update — do not silently “fix” the doc by inventing rules, and do not implement against stale fiction.
+
+## Spec Kit usage
+
+- Use Spec Kit skills (`.cursor/skills/speckit-*`) for **bounded changes**: constitution → specify → plan → tasks → implement → converge.
+- Feature specs under `.specify/specs/` describe the **change**, not a replacement for root `SPEC.md`.
+- TCT project skills under `.agents/skills` remain valid; do not remove them.
+
+## Conflict priority
+
+Owner task instructions and [AGENTS.md](AGENTS.md) override Spec Kit defaults that conflict with single-agent, local-first, or deployment-gate policy.

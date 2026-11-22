@@ -137,6 +137,8 @@ public sealed class ReadingAdminService : IReadingAdminService
             evidenceIds[question] = paragraphId;
         }
 
+        await ClearStudentAnswersForQuestionsAsync(passage.Questions.Select(q => q.Id), ct);
+
         _db.ReadingOptions.RemoveRange(passage.Questions.SelectMany(q => q.Options));
         _db.ReadingQuestions.RemoveRange(passage.Questions);
         await _db.SaveChangesAsync(ct);
@@ -319,6 +321,24 @@ public sealed class ReadingAdminService : IReadingAdminService
         _db.ReadingPassages.Remove(passage);
         await _db.SaveChangesAsync(ct);
         _files.TryDeleteLocalFile(imageUrl, ImageUploadPolicies.ReadingPassage.PublicUrlPrefix);
+    }
+
+    /// <summary>
+    /// Removes learner answers that Restrict-block question deletes.
+    /// Must run and flush before EF deletes <see cref="ReadingQuestion"/> rows.
+    /// </summary>
+    private async Task ClearStudentAnswersForQuestionsAsync(IEnumerable<int> questionIds, CancellationToken ct)
+    {
+        var ids = questionIds.Where(id => id > 0).Distinct().ToList();
+        if (ids.Count == 0) return;
+
+        var answers = await _db.ReadingStudentAnswers
+            .Where(a => ids.Contains(a.QuestionId))
+            .ToListAsync(ct);
+        if (answers.Count == 0) return;
+
+        _db.ReadingStudentAnswers.RemoveRange(answers);
+        await _db.SaveChangesAsync(ct);
     }
 
     public Task<string> SavePassageImageAsync(IFormFile file, CancellationToken ct = default) =>
