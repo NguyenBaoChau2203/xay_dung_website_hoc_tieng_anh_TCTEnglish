@@ -39,9 +39,9 @@ def marker_matches(marker, sha, run_id, digest):
     return marker.get('environment') == 'Staging' and common.marker_matches(marker, sha, run_id, digest)
 
 
-def wait_for_deployed_release(sha, run_id, digest, timeout_seconds=1200, delay_seconds=5):
-    # The observed 140 MB hosting download took ~9 minutes. Count HTTP time
-    # in one wall-clock budget, allowing backup/migration/startup after download.
+def wait_for_deployed_release(sha, run_id, digest, timeout_seconds=1800, delay_seconds=5):
+    # Bound verification monotonically (30 minutes), allowing for large artifacts (>200 MB),
+    # slow hosting download, backup, migration and startup.
     deadline = time.monotonic() + timeout_seconds
     while time.monotonic() < deadline:
         try:

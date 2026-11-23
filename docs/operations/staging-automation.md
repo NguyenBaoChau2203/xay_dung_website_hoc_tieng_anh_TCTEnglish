@@ -83,8 +83,8 @@ Lần đầu CI chờ ngắn hơn thời gian hosting tải140MB nên báo lỗi
 hoàn tất. Sau khi xác minh current.json/backup/marker đúng, rerun failed job đã
 pass và giữ nguyên release/data, không chạy migration lại tùy tiện.
 
-Publisher dùng deadline20phút tính cả thời gian HTTP; job25phút. Host giới hạn
-download15phút và tắt PowerShell progress output khi tải file lớn. Nếu lần sau CI
+Publisher dùng deadline 30 phút tính cả thời gian HTTP; job 35 phút. Host giới hạn
+download 25 phút và tắt PowerShell progress output khi tải file lớn (cho artifact >200MB). Nếu lần sau CI
 timeout, kiểm state/marker và tiến trình hosting trước khi rerun; lỗi CI không
 chứng minh tác vụ hosting đã dừng. Không xóa lock/attempt hoặc gỡ maintenance để
 ép chạy lại.

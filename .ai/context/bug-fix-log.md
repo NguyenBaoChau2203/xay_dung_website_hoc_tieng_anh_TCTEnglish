@@ -6112,3 +6112,21 @@ blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 **Commit**: `fix(account)` on `feature/billing-verify-payos`.
 
 **Notes**: `billing-order.js` still handles a really ended session (kept as a safety net). The login page still ignores `returnUrl` (separate item `LANDING-READING-LOGIN-RETURN`). Claim-based Premium checks in a few modules (`BILLING-ROLE-CLAIM-PREMIUM-CHECKS`) now see the new role on the next request after the cookie renews.
+
+
+### Staging release verification times out on large content-expanded artifact — 2026-11-23
+
+**Symptom**: Staging job `Deploy tested master to staging` timed out after 20 minutes with "Staging did not verify the expected release (accepted)", blocking automated deployments of master features merged after 2026-11-19 (including Personal Starter Decks onboarding, PayOS and Vocabulary course covers).
+
+**Root Cause**: Addition of complete vocabulary sets A01-A20 and B01-B16 with webp media expanded `data/shared` and increased `tctenglish-release.zip` to ~207 MB (previously ~140 MB). The hosting download from AWS S3 to the Plesk host and subsequent unzipping, DB backup and shared-data import exceeded the 15-minute download timeout (`-TimeoutSec 900`) and the 20-minute CI verification budget (`timeout_seconds=1200`).
+
+**Solution**:
+1. Increased download timeout `-TimeoutSec 900` to `1500` (25 minutes) in `scripts/deploy-staging.ps1`.
+2. Increased monotonic verification budget `timeout_seconds=1200` to `1800` (30 minutes) in `scripts/publish-staging-release.py`.
+3. Increased GitHub Actions staging job `timeout-minutes: 25` to `35` in `.github/workflows/deploy.yml`.
+4. Updated documentation in `docs/operations/staging-automation.md`.
+
+**Files Changed**: `scripts/publish-staging-release.py`, `scripts/deploy-staging.ps1`, `.github/workflows/deploy.yml`, `docs/operations/staging-automation.md`, `.ai/context/bug-fix-log.md`.
+
+**Verification**: `test_staging_release.py` (21/21 pass), `test_deploy_tools.py` (18/18 pass).
+
