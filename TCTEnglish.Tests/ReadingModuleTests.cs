@@ -1098,9 +1098,9 @@ public sealed class ReadingModuleTests
     }
 
     [Fact]
-    public async Task ReplaceQuestionsAsync_SucceedsWhenLearnerAnswersExist()
+    public async Task ReplaceQuestionsAsync_PreservesLearnerAnswers()
     {
-        await using var db = CreateContext(nameof(ReplaceQuestionsAsync_SucceedsWhenLearnerAnswersExist));
+        await using var db = CreateContext(nameof(ReplaceQuestionsAsync_PreservesLearnerAnswers));
         db.Users.Add(new User { UserId = 52, Email = "replace-learner@test.local", PasswordHash = "x", Role = Roles.Standard, ReadingLevel = "A1" });
         var passage = new ReadingPassage
         {
@@ -1152,7 +1152,7 @@ public sealed class ReadingModuleTests
         await db.SaveChangesAsync();
 
         var admin = CreateAdmin(db);
-        await admin.ReplaceQuestionsAsync(passage.Id, new List<ReadingQuestionEditorViewModel>
+        var error = await Assert.ThrowsAsync<InvalidOperationException>(() => admin.ReplaceQuestionsAsync(passage.Id, new List<ReadingQuestionEditorViewModel>
         {
             new()
             {
@@ -1163,15 +1163,20 @@ public sealed class ReadingModuleTests
                 Explanation = "new",
                 Points = 1
             }
-        });
+        }));
 
-        var reloaded = await admin.GetForEditAsync(passage.Id);
-        Assert.NotNull(reloaded);
-        var q = Assert.Single(reloaded!.Questions);
-        Assert.Equal(ReadingQuestionTypes.ShortAnswer, q.QuestionType);
-        Assert.Equal("New short", q.QuestionText);
-        Assert.Empty(await db.ReadingStudentAnswers.Where(a => a.QuestionId == oldQuestionId).ToListAsync());
-        Assert.Single(await db.ReadingAttempts.Where(a => a.ReadingPassageId == passage.Id).ToListAsync());
+        Assert.Contains("lịch sử", error.Message, StringComparison.OrdinalIgnoreCase);
+        var originalQuestion = await db.ReadingQuestions.AsNoTracking().SingleAsync(q => q.PassageId == passage.Id);
+        Assert.Equal(oldQuestionId, originalQuestion.Id);
+        Assert.Equal("Old Q", originalQuestion.QuestionText);
+        var answer = await db.ReadingStudentAnswers.AsNoTracking().SingleAsync(a => a.AttemptId == attempt.Id);
+        Assert.Equal(oldQuestionId, answer.QuestionId);
+        Assert.Equal(optionId, answer.SelectedOptionId);
+
+        await Assert.ThrowsAsync<InvalidOperationException>(() => admin.UpdateDraftAsync(passage.Id,
+            new ReadingEditorViewModel { Title = "Changed title", QuestionsBound = true }, actorUserId: 1));
+        var originalTitle = await db.ReadingPassages.Where(p => p.Id == passage.Id).Select(p => p.Title).SingleAsync();
+        Assert.Equal("Replace with answers", originalTitle);
     }
 
     [Fact]

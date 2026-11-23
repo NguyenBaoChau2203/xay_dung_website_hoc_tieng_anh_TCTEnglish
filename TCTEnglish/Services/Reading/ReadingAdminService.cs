@@ -93,6 +93,8 @@ public sealed class ReadingAdminService : IReadingAdminService
     {
         var passage = await GetForEditAsync(id, ct) ?? throw new InvalidOperationException("Reading not found.");
         EnsureEditable(passage);
+        if (model.QuestionsBound)
+            await EnsureQuestionReplacementPreservesHistoryAsync(id, ct);
 
         passage.Title = model.Title.Trim();
         passage.Description = model.Description;
@@ -124,6 +126,7 @@ public sealed class ReadingAdminService : IReadingAdminService
             ?? throw new InvalidOperationException("Reading not found.");
 
         EnsureEditable(passage);
+        await EnsureQuestionReplacementPreservesHistoryAsync(passageId, ct);
 
         var evidenceIds = new Dictionary<ReadingQuestionEditorViewModel, int?>();
         foreach (var question in questions)
@@ -136,8 +139,6 @@ public sealed class ReadingAdminService : IReadingAdminService
                 throw new InvalidOperationException("Evidence paragraph must belong to this reading.");
             evidenceIds[question] = paragraphId;
         }
-
-        await ClearStudentAnswersForQuestionsAsync(passage.Questions.Select(q => q.Id), ct);
 
         _db.ReadingOptions.RemoveRange(passage.Questions.SelectMany(q => q.Options));
         _db.ReadingQuestions.RemoveRange(passage.Questions);
@@ -323,22 +324,10 @@ public sealed class ReadingAdminService : IReadingAdminService
         _files.TryDeleteLocalFile(imageUrl, ImageUploadPolicies.ReadingPassage.PublicUrlPrefix);
     }
 
-    /// <summary>
-    /// Removes learner answers that Restrict-block question deletes.
-    /// Must run and flush before EF deletes <see cref="ReadingQuestion"/> rows.
-    /// </summary>
-    private async Task ClearStudentAnswersForQuestionsAsync(IEnumerable<int> questionIds, CancellationToken ct)
+    private async Task EnsureQuestionReplacementPreservesHistoryAsync(int passageId, CancellationToken ct)
     {
-        var ids = questionIds.Where(id => id > 0).Distinct().ToList();
-        if (ids.Count == 0) return;
-
-        var answers = await _db.ReadingStudentAnswers
-            .Where(a => ids.Contains(a.QuestionId))
-            .ToListAsync(ct);
-        if (answers.Count == 0) return;
-
-        _db.ReadingStudentAnswers.RemoveRange(answers);
-        await _db.SaveChangesAsync(ct);
+        if (await _db.ReadingAttempts.AnyAsync(a => a.ReadingPassageId == passageId, ct))
+            throw new InvalidOperationException("Bài đã có lịch sử làm bài. Hãy tạo bản nháp mới để thay bộ câu hỏi.");
     }
 
     public Task<string> SavePassageImageAsync(IFormFile file, CancellationToken ct = default) =>

@@ -139,7 +139,13 @@ try {
     [IO.Directory]::CreateDirectory($runRoot) | Out-Null
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $zipPath = Join-Path $runRoot 'release.zip'
-    Invoke-WebRequest -UseBasicParsing -Uri $artifactUri.AbsoluteUri -OutFile $zipPath
+    $previousProgress = $ProgressPreference
+    $ProgressPreference = 'SilentlyContinue'
+    try {
+        Invoke-WebRequest -UseBasicParsing -Uri $artifactUri.AbsoluteUri -OutFile $zipPath
+    } finally {
+        $ProgressPreference = $previousProgress
+    }
     if ((Get-FileHash -LiteralPath $zipPath -Algorithm SHA256).Hash -ne $manifest.sha256) { throw 'Release checksum did not match.' }
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     $stageRoot = Join-Path $runRoot 'stage'

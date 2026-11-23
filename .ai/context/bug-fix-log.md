@@ -42,6 +42,22 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Staging deployment download acceleration: silence PowerShell 5.1 progress output — 2026-11-23
+
+**Symptom**: Staging deploy job timed out when downloading the release archive (~206 MB containing full vocabulary sets and media). Windows PowerShell 5.1 on Plesk hosting took over 25 minutes to download, causing `Invoke-WebRequest -TimeoutSec 1500` and GitHub Actions CI verification (30 mins) to fail.
+
+**Root Cause**: In Windows PowerShell 5.1, `Invoke-WebRequest` defaults to `$ProgressPreference = 'Continue'`, which fires `Write-Progress` on every small stream chunk (25,000+ times for a 206MB file). In non-interactive hosting scripts, progress rendering causes extreme I/O overhead and throttles download speeds by 90-95%, as documented in `docs/operations/staging-automation.md`.
+
+**Solution**: Temporarily set `$ProgressPreference = 'SilentlyContinue'` around `Invoke-WebRequest` in `scripts/deploy-staging.ps1` and `scripts/deploy-plesk.ps1`, restoring the previous preference in a `finally` block.
+
+**Files Changed**:
+- `scripts/deploy-staging.ps1`: wrapped `Invoke-WebRequest` download in `$ProgressPreference = 'SilentlyContinue'` try/finally block.
+- `scripts/deploy-plesk.ps1`: wrapped `Invoke-WebRequest` download in `$ProgressPreference = 'SilentlyContinue'` try/finally block.
+
+**Verification**:
+- `py -3 -m unittest scripts/tests/test_deploy_tools.py scripts/tests/test_staging_release.py`: 39/39 passed.
+- Verified absence of reparse point / security violations.
+
 ### Voice companion standalone visibility and reduced-motion return — 2026-11-19
 
 **Symptom/Root Cause**: Pre-merge review reproduced two new companion defects: the standalone workspace scrolled with the window, so comparing hero/window coordinates against a negative workspace top never revealed the companion; the return button always requested smooth scrolling even under reduced motion.
@@ -6112,3 +6128,30 @@ blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 **Commit**: `fix(account)` on `feature/billing-verify-payos`.
 
 **Notes**: `billing-order.js` still handles a really ended session (kept as a safety net). The login page still ignores `returnUrl` (separate item `LANDING-READING-LOGIN-RETURN`). Claim-based Premium checks in a few modules (`BILLING-ROLE-CLAIM-PREMIUM-CHECKS`) now see the new role on the next request after the cookie renews.
+
+
+### Staging release verification times out on large content-expanded artifact — 2026-11-23
+
+**Symptom**: Staging job `Deploy tested master to staging` timed out after 20 minutes with "Staging did not verify the expected release (accepted)", blocking automated deployments of master features merged after 2026-11-19 (including Personal Starter Decks onboarding, PayOS and Vocabulary course covers).
+
+**Root Cause**: Addition of complete vocabulary sets A01-A20 and B01-B16 with webp media expanded `data/shared` and increased `tctenglish-release.zip` to ~207 MB (previously ~140 MB). The hosting download from AWS S3 to the Plesk host and subsequent unzipping, DB backup and shared-data import exceeded the 15-minute download timeout (`-TimeoutSec 900`) and the 20-minute CI verification budget (`timeout_seconds=1200`).
+
+**Solution**:
+1. Increased download timeout `-TimeoutSec 900` to `1500` (25 minutes) in `scripts/deploy-staging.ps1`.
+2. Increased monotonic verification budget `timeout_seconds=1200` to `1800` (30 minutes) in `scripts/publish-staging-release.py`.
+3. Increased GitHub Actions staging job `timeout-minutes: 25` to `35` in `.github/workflows/deploy.yml`.
+4. Updated documentation in `docs/operations/staging-automation.md`.
+
+**Files Changed**: `scripts/publish-staging-release.py`, `scripts/deploy-staging.ps1`, `.github/workflows/deploy.yml`, `docs/operations/staging-automation.md`, `.ai/context/bug-fix-log.md`.
+
+**Verification**: `test_staging_release.py` (21/21 pass), `test_deploy_tools.py` (18/18 pass).
+
+
+### PR 144 integration — 2026-11-23
+
+The Class Razor build failed because BrowseClasses was checked in without its
+ViewModel or routes. Preserve the established Class list/detail and navigation.
+The shared feedback component still serves Reading. The draft edit also deleted
+persisted learner answers before replacing questions. Refuse question replacement
+when an attempt exists, before an edit saves any metadata, and verify that the
+attempt, answer, question and original title are retained.
