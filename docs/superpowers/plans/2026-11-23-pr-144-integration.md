@@ -19,8 +19,6 @@
 
 | Priority | Finding | Repair and acceptance |
 | --- | --- | --- |
-| P1 | The Reading ledger documents Published local content for 12 titles, while the PR adds no package under data/shared. | Confirm the intended staging catalog. If the lessons are intended for staging, export reviewed allowlisted readings and referenced media using the shared-data workflow. Verify immutable versions and a second import; retain learner history and separate production selection. |
-| P2 | The always-applied Cursor rule and Spec Kit 1.4.3 add an active workflow without a corresponding upstream commit and installed file hashes in the team lock file. | Obtain the owner's decision on activation. If approved, review the source, license and host compatibility and pin the installed files. Otherwise move the tooling changes to their own review. |
 | Release | master run 45182318680 passed application/MariaDB checks, but authenticated staging retained commit 93959ab4 after the webhook was accepted. The deployment artifact is 207,437,656 bytes. | Verify current private Plesk deployment state and sufficient disk headroom before a retry. Preserve backups, logs and data. A successful release must match commit, run and SHA-256 as well as readiness. |
 
 ## Local verification
@@ -36,3 +34,18 @@
 - [x] A change to a question explanation creates a distinct draft with the next available code, even from a stale preview.
 - [x] Two simultaneous Admin confirmations on disposable MariaDB 10.5.23 create one draft and return the same code. The rerun also matched a row created before the repair.
 - [x] Compare existing passage text, metadata, questions, options and vocabulary. A cover-only update belongs in the Admin editor. The schema and existing rows are preserved.
+
+## Shared Reading release and review scope
+
+- [x] Keep the PR focused on the application and its shared Reading catalog. Remove the newly added Spec Kit activation, scaffolding and root spec from the PR diff. Its source remains in the original PR commits.
+- [x] Build the six workbooks from ReadingLevelPacks, pair the 12 curated covers by title and publish only the selected readings in a disposable MariaDB 10.5.23 authoring database.
+- [x] Review the typed export of the 12 Published readings, their passages, questions, options, vocabulary and cover hashes. Keep the official Reading codes recorded in the author ledger and use stable catalog keys independent of local IDs.
+- [ ] Apply the catalog to a separate MariaDB database twice. Compare reading IDs, Published status and covers across both runs. Validate existing immutable packages and keep production approvals gated.
+- [ ] Verify build and MariaDB rehearsal for the final PR revision.
+
+Plesk Account displayed 1,820.3 MB used of 2 GB and disallowed overuse.
+Authenticated readiness returned 200 for the old marker. The owner chose to
+finish PR and CI while retaining the current hosting quota. Merge and staging
+release verification are deferred.
+
+The typed export adds 12 immutable releases, 372 content records and 12 verified JPEG cover hashes. The 456 existing releases and production selection were preserved.

@@ -1,0 +1,458 @@
+{
+  "schemaVersion": 1,
+  "id": "team.reading.b1.city-parks",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.reading.b1.city-parks",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "Protecting City Parks",
+        "Content": "City parks give people fresh air and a quiet place to rest after work. Trees in parks also help reduce heat on hot days, which is useful in crowded neighbourhoods. Many families visit parks on weekends to walk, play, or simply sit under the shade. For children, open grass is often safer than busy streets.\n\nHowever, litter and damaged benches are common problems. When visitors leave bottles on the grass, the park quickly looks uncared for. Broken lights make evening walks feel unsafe. Local groups now organise clean-up days and plant new trees along the main paths. When citizens join these activities, parks stay safer and more beautiful for everyone who lives nearby.\n\nSchools can also teach students to respect shared green spaces. Teachers can include short park visits in science lessons about plants and animals. Small actions, such as using bins and staying on paths, protect parks for the next generation.\n\nIf more people take responsibility, city parks will remain valuable public places rather than neglected corners of the city. Local governments can support these efforts with clear rules and regular maintenance budgets that keep paths safe all year for walkers, runners, and families with young children who visit after school.",
+        "Level": "B1",
+        "Topic": "Environment",
+        "ImageUrl": "asset:cf30cd002929e017b4a16c52ff7bf13d520bf83f5683d20d350f9e35692d3770.jpg",
+        "IsPublished": true,
+        "Description": "Why city parks matter and how people can protect them.",
+        "EstimatedTimeMinutes": 12,
+        "ExternalReadingKey": "RD-B1-003"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.reading.b1.city-parks.01856d45f32548a1a04546e1364cdfd1",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "parks",
+        "Ipa": "/p\u0251\u02D0ks/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "c\u00F4ng vi\u00EAn",
+        "Example": "City parks give fresh air."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.city-parks",
+        "ParagraphId": "team.reading.b1.city-parks.242dbbe398ae4dc19aeeecc201d919d8"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.04fd583819c14d9189279688385322ad",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "litter",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp1",
+        "MatchKey": "p1",
+        "MatchSide": "Left",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.city-parks.23a2d9cfae0045c09990591425f1fd79"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.06530aca3f314c6d9bd4cd4153f1b14e",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "protect",
+        "Ipa": "/pr\u0259\u02C8tekt/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "b\u1EA3o v\u1EC7",
+        "Example": "Protect parks."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.city-parks",
+        "ParagraphId": "team.reading.b1.city-parks.c95b4369667d4816bd368a9aabc99e36"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.149ae0dd9f9b4658861aec458c68d97b",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "r\u00E1c th\u1EA3i",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp1",
+        "MatchKey": "p1",
+        "MatchSide": "Right",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.city-parks.23a2d9cfae0045c09990591425f1fd79"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.2093e150d190496ab8ac7a67a4c4612b",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What small actions can protect parks?",
+        "OrderIndex": 5,
+        "QuestionType": "ShortAnswer",
+        "ParagraphReference": "3",
+        "CorrectAnswerText": "using bins and staying on paths",
+        "Explanation": "Answer briefly from the passage.",
+        "EvidenceText": "Small actions, such as using bins and staying on paths, protect parks for the next generation.",
+        "Paraphrase": "using bins and staying on paths",
+        "ExternalQuestionKey": "L1-Q5"
+      },
+      "references": {
+        "PassageId": "team.reading.b1.city-parks",
+        "EvidenceParagraphId": "team.reading.b1.city-parks.c95b4369667d4816bd368a9aabc99e36"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.23a2d9cfae0045c09990591425f1fd79",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Match each English word with its Vietnamese meaning.",
+        "OrderIndex": 4,
+        "QuestionType": "Matching",
+        "ParagraphReference": "1",
+        "Explanation": "Match the pairs from the passage.",
+        "ExternalQuestionKey": "L1-Q4"
+      },
+      "references": {
+        "PassageId": "team.reading.b1.city-parks",
+        "EvidenceParagraphId": "team.reading.b1.city-parks.242dbbe398ae4dc19aeeecc201d919d8"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.242dbbe398ae4dc19aeeecc201d919d8",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P1",
+        "ParagraphOrder": 1,
+        "ParagraphContent": "City parks give people fresh air and a quiet place to rest after work. Trees in parks also help reduce heat on hot days, which is useful in crowded neighbourhoods. Many families visit parks on weekends to walk, play, or simply sit under the shade. For children, open grass is often safer than busy streets."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.city-parks"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.315aa7349b674ee59f06a5da4877c9d9",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "True",
+        "IsCorrect": true,
+        "ExternalOptionKey": "TRUE",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.city-parks.a3689c37c6aa4af09a09d629f16600ae"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.41567dc17b3e407ab97a6fa75e540d8b",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What problem is mentioned in city parks?",
+        "OrderIndex": 1,
+        "ParagraphReference": "3",
+        "Explanation": "See the passage evidence.",
+        "EvidenceText": "Small actions, such as using bins and staying on paths, protect parks for the next generation.",
+        "Paraphrase": "Litter and damaged benches",
+        "ExternalQuestionKey": "L1-Q1"
+      },
+      "references": {
+        "PassageId": "team.reading.b1.city-parks",
+        "EvidenceParagraphId": "team.reading.b1.city-parks.c95b4369667d4816bd368a9aabc99e36"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.5444955b54de4fd2a0df3b7a0c0eb09a",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "organize",
+        "Ipa": "/\u02C8\u0254\u02D0\u0261\u0259na\u026Az/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "t\u1ED5 ch\u1EE9c",
+        "Example": "Organize clean-up days."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.city-parks",
+        "ParagraphId": "team.reading.b1.city-parks.8f974db92853473cbc86080389efca17"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.5a49e57d85a44184b264f7ffc71bed59",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Litter and damaged benches",
+        "IsCorrect": true,
+        "ExternalOptionKey": "A",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.city-parks.41567dc17b3e407ab97a6fa75e540d8b"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.6024cbbb8f484db68fb4e98240e52b67",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "respect",
+        "Ipa": "/r\u026A\u02C8spekt/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "t\u00F4n tr\u1ECDng",
+        "Example": "Respect green spaces."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.city-parks",
+        "ParagraphId": "team.reading.b1.city-parks.c95b4369667d4816bd368a9aabc99e36"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.6d99978e62f54981b0c4204430d6ccc7",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "citizens",
+        "Ipa": "/\u02C8s\u026At\u026Az\u0259nz/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "c\u00F4ng d\u00E2n",
+        "Example": "Citizens join activities."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.city-parks",
+        "ParagraphId": "team.reading.b1.city-parks.8f974db92853473cbc86080389efca17"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.7e270a06a02d4a32887a7b7e54faeddb",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "citizens",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp2",
+        "MatchKey": "p2",
+        "MatchSide": "Left",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.city-parks.23a2d9cfae0045c09990591425f1fd79"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.83fa270568154a518c364ddc578953e9",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "False",
+        "IsCorrect": false,
+        "ExternalOptionKey": "FALSE",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.city-parks.a3689c37c6aa4af09a09d629f16600ae"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.8f974db92853473cbc86080389efca17",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P2",
+        "ParagraphOrder": 2,
+        "ParagraphContent": "However, litter and damaged benches are common problems. When visitors leave bottles on the grass, the park quickly looks uncared for. Broken lights make evening walks feel unsafe. Local groups now organise clean-up days and plant new trees along the main paths. When citizens join these activities, parks stay safer and more beautiful for everyone who lives nearby."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.city-parks"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.933b0c069e244a259861ce059eb78ba1",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "th\u1EBF h\u1EC7",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp3",
+        "MatchKey": "p3",
+        "MatchSide": "Right",
+        "OptionOrder": 6
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.city-parks.23a2d9cfae0045c09990591425f1fd79"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.a3689c37c6aa4af09a09d629f16600ae",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Local groups plant new trees during clean-up activities.",
+        "OrderIndex": 2,
+        "QuestionType": "TrueFalse",
+        "ParagraphReference": "3",
+        "Explanation": "Check the stated fact.",
+        "EvidenceText": "Small actions, such as using bins and staying on paths, protect parks for the next generation.",
+        "ExternalQuestionKey": "L1-Q2"
+      },
+      "references": {
+        "PassageId": "team.reading.b1.city-parks",
+        "EvidenceParagraphId": "team.reading.b1.city-parks.c95b4369667d4816bd368a9aabc99e36"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.a9d0d9402a3b4b3d90c85ea7599987d7",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "generation",
+        "Ipa": "/\u02CCd\u0292en\u0259\u02C8re\u026A\u0283n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "th\u1EBF h\u1EC7",
+        "Example": "The next generation."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.city-parks",
+        "ParagraphId": "team.reading.b1.city-parks.c95b4369667d4816bd368a9aabc99e36"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.aea07f6cb3254679b3bfd6f95cc8aec6",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "generation",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp3",
+        "MatchKey": "p3",
+        "MatchSide": "Left",
+        "OptionOrder": 5
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.city-parks.23a2d9cfae0045c09990591425f1fd79"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.b7e2f0ccd9db4271bc84e3914bf14844",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "litter",
+        "Ipa": "/\u02C8l\u026At\u0259/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "r\u00E1c th\u1EA3i",
+        "Example": "Litter is a common problem."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.city-parks",
+        "ParagraphId": "team.reading.b1.city-parks.8f974db92853473cbc86080389efca17"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.c95b4369667d4816bd368a9aabc99e36",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P3",
+        "ParagraphOrder": 3,
+        "ParagraphContent": "Schools can also teach students to respect shared green spaces. Teachers can include short park visits in science lessons about plants and animals. Small actions, such as using bins and staying on paths, protect parks for the next generation."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.city-parks"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.d80ff3609d6c4805bd6676b01613df09",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "benches",
+        "Ipa": "/\u02C8bent\u0283\u026Az/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "gh\u1EBF d\u00E0i",
+        "Example": "Damaged benches."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.city-parks",
+        "ParagraphId": "team.reading.b1.city-parks.8f974db92853473cbc86080389efca17"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.d82c39efd310474fb9eab2ee98b0324e",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "c\u00F4ng d\u00E2n",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp2",
+        "MatchKey": "p2",
+        "MatchSide": "Right",
+        "OptionOrder": 4
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.city-parks.23a2d9cfae0045c09990591425f1fd79"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.ea61a1757b8a420db83c66515f3f8ea6",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P4",
+        "ParagraphOrder": 4,
+        "ParagraphContent": "If more people take responsibility, city parks will remain valuable public places rather than neglected corners of the city. Local governments can support these efforts with clear rules and regular maintenance budgets that keep paths safe all year for walkers, runners, and families with young children who visit after school."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.city-parks"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.f0c6a758ba1d45058b4b55d509e97ac6",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Too many restaurants",
+        "IsCorrect": false,
+        "ExternalOptionKey": "B",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.city-parks.41567dc17b3e407ab97a6fa75e540d8b"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.f227ee9d15704e3cbcb76b722dfbdb89",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "No visitors",
+        "IsCorrect": false,
+        "ExternalOptionKey": "C",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.city-parks.41567dc17b3e407ab97a6fa75e540d8b"
+      }
+    },
+    {
+      "key": "team.reading.b1.city-parks.fad322861ccb43888b788375160b6e41",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Trees in parks also help reduce _____ on hot days.",
+        "OrderIndex": 3,
+        "QuestionType": "GapFill",
+        "ParagraphReference": "3",
+        "CorrectAnswerText": "heat",
+        "Explanation": "Fill the blank from the passage.",
+        "EvidenceText": "Small actions, such as using bins and staying on paths, protect parks for the next generation.",
+        "ExternalQuestionKey": "L1-Q3"
+      },
+      "references": {
+        "PassageId": "team.reading.b1.city-parks",
+        "EvidenceParagraphId": "team.reading.b1.city-parks.c95b4369667d4816bd368a9aabc99e36"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "cf30cd002929e017b4a16c52ff7bf13d520bf83f5683d20d350f9e35692d3770.jpg",
+      "sha256": "cf30cd002929e017b4a16c52ff7bf13d520bf83f5683d20d350f9e35692d3770"
+    }
+  ],
+  "rootKey": "team.reading.b1.city-parks"
+}

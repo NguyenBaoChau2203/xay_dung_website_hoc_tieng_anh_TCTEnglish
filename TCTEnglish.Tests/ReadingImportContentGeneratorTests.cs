@@ -108,7 +108,7 @@ public sealed class ReadingImportContentGeneratorTests
             Assert.Equal("A1", p.Level);
         });
 
-        // Re-import same file → next CEFR sequence; does not touch existing drafts.
+        // Re-import matches the existing drafts even when preview proposes new codes.
         await using (var stream = File.OpenRead(path))
         {
             var preview2 = await excel.ParseAndValidateAsync(stream);
@@ -117,7 +117,9 @@ public sealed class ReadingImportContentGeneratorTests
             Assert.Equal("L1", preview2.ValidReadings[0].ImportFileReadingCode);
             Assert.Equal("L2", preview2.ValidReadings[1].ImportFileReadingCode);
             var confirm2 = await excel.ConfirmImportAsync(preview2.ValidReadings, actorUserId: 1);
-            Assert.Equal(2, confirm2.SuccessCount);
+            Assert.Equal(0, confirm2.SuccessCount);
+            Assert.Equal(2, confirm2.SkippedCount);
+            Assert.Equal(drafts.Select(p => p.Id), confirm2.Items.Select(item => item.PassageId!.Value));
         }
 
         var allA1 = await db.ReadingPassages.AsNoTracking()
@@ -125,7 +127,7 @@ public sealed class ReadingImportContentGeneratorTests
             .OrderBy(p => p.ExternalReadingKey)
             .Select(p => p.ExternalReadingKey)
             .ToListAsync();
-        Assert.Equal(["RD-A1-001", "RD-A1-002", "RD-A1-003", "RD-A1-004"], allA1);
+        Assert.Equal(["RD-A1-001", "RD-A1-002"], allA1);
     }
 
     private static (int Min, int Max, int Duration) WordBand(string cefr) => cefr.ToUpperInvariant() switch

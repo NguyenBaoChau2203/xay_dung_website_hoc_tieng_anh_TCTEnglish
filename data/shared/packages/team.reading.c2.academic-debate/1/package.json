@@ -1,0 +1,650 @@
+{
+  "schemaVersion": 1,
+  "id": "team.reading.c2.academic-debate",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.reading.c2.academic-debate",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "The Limits of Consensus in Academic Debate",
+        "Content": "Academic consensus offers a provisional map of what a field currently finds persuasive, not a permanent verdict sealed against revision. Treating consensus as unfinished knowledge keeps inquiry open when anomalies appear and refuse to fit the prevailing model. That stance is intellectually demanding because it asks scholars to hold confidence and doubt at once, especially when careers reward certainty more than careful hesitation.\n\nYet consensus can also harden into orthodoxy. Gatekeeping journals, funding priorities, and citation habits may quietly marginalize dissenting methods before their claims are tested on equal terms. When that happens, the appearance of agreement may reflect institutional filters more than settled truth, and outsiders mistake silence for refutation. The resulting map looks stable while quietly excluding whole families of questions.\n\nProductive debate therefore requires both evidentiary standards and institutional humility. Scholars must ask whether disagreement is ignored because it is weak or because it is inconvenient to careers and prestige. The distinction is rarely announced; it must be inferred from how forums allocate time, space, and legitimacy, and from which methods are treated as unserious before evidence is examined.\n\nHistorical reversals in science and the humanities show that minority positions sometimes become tomorrow\u0027s frameworks. The ethical task is to protect rigorous dissent without abandoning shared criteria of proof that make collective evaluation possible. Without those criteria, openness collapses into mere noise, and every claim demands equal standing regardless of method.\n\nIn classrooms, presenting consensus alongside its contested edges trains students to evaluate arguments rather than memorize authorized conclusions. That pedagogical choice mirrors the deeper claim of the text: consensus is a tool for orientation, not a substitute for judgment. Students who practise that dual reading are better prepared for research cultures that revise themselves.\n\nEditors and conference organisers share related responsibilities. They can design review processes that reward clarity and reproducibility without treating novelty as the only currency of value. When venues diversify the kinds of contribution they recognise, dissent that meets evidentiary standards has somewhere to appear before it is dismissed as noise.\n\nReaders outside academia also inherit these maps. Popular summaries that flatten consensus into slogan form make later revision look like betrayal. Better public communication would present living agreement as provisional, evidence-based, and open to disciplined challenge rather than as a finished creed.\n\nGraduate training is another pressure point. Students learn quickly which questions are fundable and which methods look risky on a CV. If advisors only reward safe alignment, the next generation inherits orthodoxy as survival strategy. Mentorship that models rigorous dissent\u2014with standards, not mere contrarianism\u2014keeps fields capable of self-correction.\n\nNone of this requires romanticising every outsider claim. Weak arguments still fail under scrutiny. The point is institutional design: give strong minority methods a fair hearing before declaring the map complete, and teach the public that completeness was never the real promise of scholarly consensus. When universities, journals, and funders treat provisional agreement as a living instrument rather than a finished creed, debate remains sharp without becoming theatre. Scholars can then defend standards of proof while still admitting that tomorrow\u2019s evidence may redraw today\u2019s map, and citizens can trust that revision is method rather than betrayal. In that climate, consensus retains its usefulness as orientation without pretending to replace judgment, and dissent retains its usefulness as correction without dissolving into noise. Those twin habits keep academic maps usable for teaching, policy advice, and public understanding while leaving space for the next careful revision.",
+        "Level": "C2",
+        "Topic": "Academic debate",
+        "ImageUrl": "asset:ef7ebebb85df23c01c8d767f41a4afbe03d487f8be2edfe41c10a78abf2ac82c.jpg",
+        "IsPublished": true,
+        "Description": "Why scholarly consensus is useful yet incomplete.",
+        "EstimatedTimeMinutes": 28,
+        "ExternalReadingKey": "RD-C2-003"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.reading.c2.academic-debate.03a0b85f542240d9903fa16e8e386686",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P3",
+        "ParagraphOrder": 3,
+        "ParagraphContent": "Productive debate therefore requires both evidentiary standards and institutional humility. Scholars must ask whether disagreement is ignored because it is weak or because it is inconvenient to careers and prestige. The distinction is rarely announced; it must be inferred from how forums allocate time, space, and legitimacy, and from which methods are treated as unserious before evidence is examined."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.06b2d9efc0e147e7809f4d7b9a6ce249",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What is academic consensus described as?",
+        "OrderIndex": 1,
+        "ParagraphReference": "5",
+        "Explanation": "See the passage evidence.",
+        "EvidenceText": "In classrooms, presenting consensus alongside its contested edges trains students to evaluate arguments rather than memorize authorized conclusions.",
+        "Paraphrase": "A provisional map of persuasive findings",
+        "ExternalQuestionKey": "L1-Q1"
+      },
+      "references": {
+        "PassageId": "team.reading.c2.academic-debate",
+        "EvidenceParagraphId": "team.reading.c2.academic-debate.c58524dc073c4e0394ea2ed916d6e78e"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.0d3dcce2fb0a4a03a5f8b46b5cb2f416",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What should classrooms present alongside consensus?",
+        "OrderIndex": 5,
+        "QuestionType": "ShortAnswer",
+        "ParagraphReference": "5",
+        "CorrectAnswerText": "its contested edges",
+        "Explanation": "Answer briefly from the passage.",
+        "EvidenceText": "In classrooms, presenting consensus alongside its contested edges trains students to evaluate arguments rather than memorize authorized conclusions.",
+        "Paraphrase": "its contested edges",
+        "ExternalQuestionKey": "L1-Q5"
+      },
+      "references": {
+        "PassageId": "team.reading.c2.academic-debate",
+        "EvidenceParagraphId": "team.reading.c2.academic-debate.c58524dc073c4e0394ea2ed916d6e78e"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.0d406c01a44d4db1abf7ea852af320ab",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "orthodoxy",
+        "Ipa": "/\u02C8\u0254\u02D0\u03B8\u0259d\u0252ksi/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "ch\u00EDnh th\u1ED1ng c\u1EE9ng nh\u1EAFc",
+        "Example": "Harden into orthodoxy."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.6c67c6c5c1864ea9994c9680305fe36f"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.1235a0e1981049b28cf6b0f9c60a5023",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "contested",
+        "Ipa": "/k\u0259n\u02C8test\u026Ad/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "b\u1ECB tranh c\u00E3i",
+        "Example": "Contested edges."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.c58524dc073c4e0394ea2ed916d6e78e"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.16303db34fd44ecda91fd69dcf0c445f",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "evidentiary",
+        "Ipa": "/\u02CCev\u026A\u02C8den\u0283\u0259ri/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "thu\u1ED9c v\u1EC1 b\u1EB1ng ch\u1EE9ng",
+        "Example": "Evidentiary standards."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.03a0b85f542240d9903fa16e8e386686"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.1682029c14ef443cb1a9bf20e543227d",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Match each concept with its Vietnamese meaning.",
+        "OrderIndex": 4,
+        "QuestionType": "Matching",
+        "ParagraphReference": "1",
+        "Explanation": "Match the pairs from the passage.",
+        "ExternalQuestionKey": "L1-Q4"
+      },
+      "references": {
+        "PassageId": "team.reading.c2.academic-debate",
+        "EvidenceParagraphId": "team.reading.c2.academic-debate.a51394cac0f643cba7015cc1ed1b5119"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.179b16841f4042cfa844222ac77a691a",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "b\u1EA5t \u0111\u1ED3ng / ph\u1EA3n bi\u1EC7n",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp4",
+        "MatchKey": "p4",
+        "MatchSide": "Right",
+        "OptionOrder": 6
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.1682029c14ef443cb1a9bf20e543227d"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.201ee0ce703a457fae4530642c3202b5",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P6",
+        "ParagraphOrder": 6,
+        "ParagraphContent": "Editors and conference organisers share related responsibilities. They can design review processes that reward clarity and reproducibility without treating novelty as the only currency of value. When venues diversify the kinds of contribution they recognise, dissent that meets evidentiary standards has somewhere to appear before it is dismissed as noise."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.23256f0d33764cf1a83630ccc80eb48b",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "consensus",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp1",
+        "MatchKey": "p1",
+        "MatchSide": "Left",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.1682029c14ef443cb1a9bf20e543227d"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.39e66ba5edc14aae8dabca20bc06fb08",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P8",
+        "ParagraphOrder": 8,
+        "ParagraphContent": "Graduate training is another pressure point. Students learn quickly which questions are fundable and which methods look risky on a CV. If advisors only reward safe alignment, the next generation inherits orthodoxy as survival strategy. Mentorship that models rigorous dissent\u2014with standards, not mere contrarianism\u2014keeps fields capable of self-correction."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.456620bf8bf047acb44418cfec474aa1",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "criteria",
+        "Ipa": "/kra\u026A\u02C8t\u026A\u0259ri\u0259/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "ti\u00EAu ch\u00ED",
+        "Example": "Shared criteria of proof."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.6a10bd5cf46f4435bd4384a2b500a129"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.5627e2312c744999b5ae4450dc440ee0",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "False",
+        "IsCorrect": false,
+        "ExternalOptionKey": "FALSE",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.68590a18bcad4fd6af290b963212f96b"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.5d9a08ecd6cd4100ba3c27f2a43c64b2",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "dissent",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp4",
+        "MatchKey": "p4",
+        "MatchSide": "Left",
+        "OptionOrder": 5
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.1682029c14ef443cb1a9bf20e543227d"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.631e1dc3b08140b6bf31e890e9eee0e1",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "A list of banned topics",
+        "IsCorrect": false,
+        "ExternalOptionKey": "C",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.06b2d9efc0e147e7809f4d7b9a6ce249"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.68590a18bcad4fd6af290b963212f96b",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Citation habits can marginalize dissenting methods.",
+        "OrderIndex": 2,
+        "QuestionType": "TrueFalse",
+        "ParagraphReference": "5",
+        "Explanation": "Check the stated fact.",
+        "EvidenceText": "In classrooms, presenting consensus alongside its contested edges trains students to evaluate arguments rather than memorize authorized conclusions.",
+        "ExternalQuestionKey": "L1-Q2"
+      },
+      "references": {
+        "PassageId": "team.reading.c2.academic-debate",
+        "EvidenceParagraphId": "team.reading.c2.academic-debate.c58524dc073c4e0394ea2ed916d6e78e"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.6a10bd5cf46f4435bd4384a2b500a129",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P4",
+        "ParagraphOrder": 4,
+        "ParagraphContent": "Historical reversals in science and the humanities show that minority positions sometimes become tomorrow\u0027s frameworks. The ethical task is to protect rigorous dissent without abandoning shared criteria of proof that make collective evaluation possible. Without those criteria, openness collapses into mere noise, and every claim demands equal standing regardless of method."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.6c67c6c5c1864ea9994c9680305fe36f",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P2",
+        "ParagraphOrder": 2,
+        "ParagraphContent": "Yet consensus can also harden into orthodoxy. Gatekeeping journals, funding priorities, and citation habits may quietly marginalize dissenting methods before their claims are tested on equal terms. When that happens, the appearance of agreement may reflect institutional filters more than settled truth, and outsiders mistake silence for refutation. The resulting map looks stable while quietly excluding whole families of questions."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.7bbea7c766a24e4c87a752c2ee492a3f",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "dissent",
+        "Ipa": "/d\u026A\u02C8sent/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "b\u1EA5t \u0111\u1ED3ng / ph\u1EA3n bi\u1EC7n",
+        "Example": "Rigorous dissent."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.6a10bd5cf46f4435bd4384a2b500a129"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.7c4ef1185485463a8be9347504ab70f0",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "A provisional map of persuasive findings",
+        "IsCorrect": true,
+        "ExternalOptionKey": "A",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.06b2d9efc0e147e7809f4d7b9a6ce249"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.7c6f219d014743739974c23116f754ef",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "ch\u00EDnh th\u1ED1ng c\u1EE9ng nh\u1EAFc",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp2",
+        "MatchKey": "p2",
+        "MatchSide": "Right",
+        "OptionOrder": 4
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.1682029c14ef443cb1a9bf20e543227d"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.82634805da62456786f76cdb6be78a51",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "humility",
+        "Ipa": "/hju\u02D0\u02C8m\u026Al\u0259ti/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 khi\u00EAm t\u1ED1n",
+        "Example": "Institutional humility."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.03a0b85f542240d9903fa16e8e386686"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.8eda26e0150541b6be275cbd7d30b1f7",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P9",
+        "ParagraphOrder": 9,
+        "ParagraphContent": "None of this requires romanticising every outsider claim. Weak arguments still fail under scrutiny. The point is institutional design: give strong minority methods a fair hearing before declaring the map complete, and teach the public that completeness was never the real promise of scholarly consensus. When universities, journals, and funders treat provisional agreement as a living instrument rather than a finished creed, debate remains sharp without becoming theatre. Scholars can then defend standards of proof while still admitting that tomorrow\u2019s evidence may redraw today\u2019s map, and citizens can trust that revision is method rather than betrayal. In that climate, consensus retains its usefulness as orientation without pretending to replace judgment, and dissent retains its usefulness as correction without dissolving into noise. Those twin habits keep academic maps usable for teaching, policy advice, and public understanding while leaving space for the next careful revision."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.94ce2fc2d31449f48a85c2b2f6e74314",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "inquiry",
+        "Ipa": "/\u026An\u02C8kwa\u026A\u0259ri/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 t\u00ECm hi\u1EC3u",
+        "Example": "Keep inquiry open."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.a51394cac0f643cba7015cc1ed1b5119"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.9a23b7d4fb6b41cd8e870bd723c7138d",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "orthodoxy",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp2",
+        "MatchKey": "p2",
+        "MatchSide": "Left",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.1682029c14ef443cb1a9bf20e543227d"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.9b5d8c88894744c4a281cde124b0b6b5",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "marginalize",
+        "Ipa": "/\u02C8m\u0251\u02D0d\u0292\u026An\u0259la\u026Az/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "\u0111\u1EA9y ra ngo\u00E0i l\u1EC1",
+        "Example": "Marginalize dissenting methods."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.6c67c6c5c1864ea9994c9680305fe36f"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.a51394cac0f643cba7015cc1ed1b5119",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P1",
+        "ParagraphOrder": 1,
+        "ParagraphContent": "Academic consensus offers a provisional map of what a field currently finds persuasive, not a permanent verdict sealed against revision. Treating consensus as unfinished knowledge keeps inquiry open when anomalies appear and refuse to fit the prevailing model. That stance is intellectually demanding because it asks scholars to hold confidence and doubt at once, especially when careers reward certainty more than careful hesitation."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.a9a0a447b6b744a7a99149c9c6249c18",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "reversal",
+        "Ipa": "/r\u026A\u02C8v\u025C\u02D0sl/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 \u0111\u1EA3o ng\u01B0\u1EE3c",
+        "Example": "Historical reversals."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.6a10bd5cf46f4435bd4384a2b500a129"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.bdf9eff909ff419cb544ca8ace2596d3",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "gatekeeping",
+        "Ipa": "/\u02C8\u0261e\u026Atki\u02D0p\u026A\u014B/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "ki\u1EC3m so\u00E1t c\u1EEDa ng\u00F5",
+        "Example": "Gatekeeping journals."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.6c67c6c5c1864ea9994c9680305fe36f"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.c44a7286427b4626be22e053447cdb7c",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "s\u1EF1 khi\u00EAm t\u1ED1n",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp3",
+        "MatchKey": "p3",
+        "MatchSide": "Right",
+        "OptionOrder": 8
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.1682029c14ef443cb1a9bf20e543227d"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.c58524dc073c4e0394ea2ed916d6e78e",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P5",
+        "ParagraphOrder": 5,
+        "ParagraphContent": "In classrooms, presenting consensus alongside its contested edges trains students to evaluate arguments rather than memorize authorized conclusions. That pedagogical choice mirrors the deeper claim of the text: consensus is a tool for orientation, not a substitute for judgment. Students who practise that dual reading are better prepared for research cultures that revise themselves."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.cd2b01539043450fb6fe86762e562a20",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "provisional",
+        "Ipa": "/pr\u0259\u02C8v\u026A\u0292\u0259nl/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "t\u1EA1m th\u1EDDi",
+        "Example": "A provisional map."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.a51394cac0f643cba7015cc1ed1b5119"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.d549561f139c4d4a9ac4b917bd83c860",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P7",
+        "ParagraphOrder": 7,
+        "ParagraphContent": "Readers outside academia also inherit these maps. Popular summaries that flatten consensus into slogan form make later revision look like betrayal. Better public communication would present living agreement as provisional, evidence-based, and open to disciplined challenge rather than as a finished creed."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.d5a99c7ef3f848f995d2a60f2776076f",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "\u0111\u1ED3ng thu\u1EADn",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp1",
+        "MatchKey": "p1",
+        "MatchSide": "Right",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.1682029c14ef443cb1a9bf20e543227d"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.da2b411456c0452ca66304cf8e396b5e",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "anomaly",
+        "Ipa": "/\u0259\u02C8n\u0252m\u0259li/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "d\u1ECB th\u01B0\u1EDDng",
+        "Example": "When anomalies appear."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.a51394cac0f643cba7015cc1ed1b5119"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.dac155437de84a27a5314f8c8237af72",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "consensus",
+        "Ipa": "/k\u0259n\u02C8sens\u0259s/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "\u0111\u1ED3ng thu\u1EADn",
+        "Example": "Academic consensus."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.a51394cac0f643cba7015cc1ed1b5119"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.ea75b095cc884a3b8e51c9e236ee0cea",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "True",
+        "IsCorrect": true,
+        "ExternalOptionKey": "TRUE",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.68590a18bcad4fd6af290b963212f96b"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.eb56afe332114f36b82ff11e283bfbaf",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "The ethical task is to protect rigorous _____ without abandoning shared criteria of proof.",
+        "OrderIndex": 3,
+        "QuestionType": "GapFill",
+        "ParagraphReference": "5",
+        "CorrectAnswerText": "dissent",
+        "Explanation": "Fill the blank from the passage.",
+        "EvidenceText": "In classrooms, presenting consensus alongside its contested edges trains students to evaluate arguments rather than memorize authorized conclusions.",
+        "ExternalQuestionKey": "L1-Q3"
+      },
+      "references": {
+        "PassageId": "team.reading.c2.academic-debate",
+        "EvidenceParagraphId": "team.reading.c2.academic-debate.c58524dc073c4e0394ea2ed916d6e78e"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.f94d9fb6b0ae43449cbc4d076e733ced",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "A permanent verdict",
+        "IsCorrect": false,
+        "ExternalOptionKey": "B",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.06b2d9efc0e147e7809f4d7b9a6ce249"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.fd93ae2d51ed4794b1ee3b3680e6b94d",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "authorized",
+        "Ipa": "/\u02C8\u0254\u02D0\u03B8\u0259ra\u026Azd/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "\u0111\u01B0\u1EE3c c\u00F4ng nh\u1EADn ch\u00EDnh th\u1EE9c",
+        "Example": "Authorized conclusions."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.academic-debate",
+        "ParagraphId": "team.reading.c2.academic-debate.c58524dc073c4e0394ea2ed916d6e78e"
+      }
+    },
+    {
+      "key": "team.reading.c2.academic-debate.ff7fc9aa00c940afa44da7c6656dcaec",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "humility",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp3",
+        "MatchKey": "p3",
+        "MatchSide": "Left",
+        "OptionOrder": 7
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.academic-debate.1682029c14ef443cb1a9bf20e543227d"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "ef7ebebb85df23c01c8d767f41a4afbe03d487f8be2edfe41c10a78abf2ac82c.jpg",
+      "sha256": "ef7ebebb85df23c01c8d767f41a4afbe03d487f8be2edfe41c10a78abf2ac82c"
+    }
+  ],
+  "rootKey": "team.reading.c2.academic-debate"
+}

@@ -1,0 +1,562 @@
+{
+  "schemaVersion": 1,
+  "id": "team.reading.c1.automation",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.reading.c1.automation",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "Automation and Meaningful Work",
+        "Content": "Automation removes repetitive tasks, but it also reshapes what workers experience as meaningful. When machines handle routine steps, remaining duties may become more complex and judgment-heavy, which some people welcome and others find exhausting. The same technology can therefore raise skill demands while shrinking the number of familiar roles that once offered a stable sense of contribution.\n\nSome employees welcome this shift because it elevates problem-solving and reduces dull repetition. Others feel deskilled if decisions are constrained by opaque algorithms they cannot question or correct. The difference often lies less in the tool itself than in whether workers retain agency over how it is used, trained, and overridden when unusual cases appear.\n\nOrganisations that explain automation goals and invite staff into redesign discussions usually face less resistance. Participation turns technology from an imposed threat into a negotiated tool whose limits can be debated in open forums. Without that conversation, rumours fill the gap and distrust spreads quickly through informal channels that managers rarely see until morale collapses.\n\nMeaningful work, in this context, depends on autonomy, skill use, and a visible link between effort and outcomes. Automation succeeds socially when those conditions are protected rather than eroded by efficiency targets alone. Leaders who treat people as partners in redesign are more likely to keep both productivity and dignity intact across teams of different ages and contract types.\n\nTraining budgets reveal whether organisations take that partnership seriously. When workers receive time to understand new systems and to propose safer overrides, automation becomes a scaffold for expertise. When training is treated as a one-off announcement, the same systems become opaque barriers that separate people from the results of their labour.\n\nLabour policy sits behind these workplace choices. Rules about notice, reskilling support, and shared gains from productivity can prevent automation from concentrating benefits among a few owners while dispersing risk among many workers who did not design the tools.\n\nCustomer-facing roles illustrate the tension clearly. Chatbots may answer routine queries, yet unusual cases still require human judgment, empathy, and the authority to override a script. If those humans lose status because the easy cases vanished, the remaining work feels heavier even when productivity metrics look better on a dashboard. A durable settlement treats automation as a redesign of the whole task system, including who gets credit, who gets trained, and who can stop an unsafe process. Without that redesign, organisations buy efficiency while quietly selling off the conditions that make work feel worth doing across whole careers. Workers who keep a voice in redesign are more likely to treat new tools as partners rather than as silent replacements for their judgment, memory, and skill on difficult cases. That partnership does not slow every project; it prevents costly failures that appear only after managers celebrate an early efficiency win on paper.",
+        "Level": "C1",
+        "Topic": "Science \u0026 society",
+        "ImageUrl": "asset:9ff3b3854298f88a16aa8a2cdd721e01140176e6ffbec2d592be4978164e7c84.jpg",
+        "IsPublished": true,
+        "Description": "How automation changes the meaning of everyday work.",
+        "EstimatedTimeMinutes": 22,
+        "ExternalReadingKey": "RD-C1-004"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.reading.c1.automation.0539a4ad6e964cdbb17472abe053918f",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What may remaining duties become after automation removes routine steps?",
+        "OrderIndex": 1,
+        "ParagraphReference": "4",
+        "Explanation": "See the passage evidence.",
+        "EvidenceText": "Automation succeeds socially when those conditions are protected rather than eroded by efficiency targets alone.",
+        "Paraphrase": "More complex and judgment-heavy",
+        "ExternalQuestionKey": "L2-Q1"
+      },
+      "references": {
+        "PassageId": "team.reading.c1.automation",
+        "EvidenceParagraphId": "team.reading.c1.automation.abb9c8a3d1884480b86cca0b9c4e3cf0"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.05fa422e88db4972bb22e43325ca0c2c",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P2",
+        "ParagraphOrder": 2,
+        "ParagraphContent": "Some employees welcome this shift because it elevates problem-solving and reduces dull repetition. Others feel deskilled if decisions are constrained by opaque algorithms they cannot question or correct. The difference often lies less in the tool itself than in whether workers retain agency over how it is used, trained, and overridden when unusual cases appear."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.0a8ed13695224845af2b7c3d417e7fd9",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "When does automation succeed socially?",
+        "OrderIndex": 5,
+        "QuestionType": "ShortAnswer",
+        "ParagraphReference": "4",
+        "CorrectAnswerText": "when autonomy, skill use, and visible effort-outcome links are protected",
+        "Explanation": "Answer briefly from the passage.",
+        "EvidenceText": "Automation succeeds socially when those conditions are protected rather than eroded by efficiency targets alone.",
+        "Paraphrase": "when autonomy, skill use, and visible effort-outcome links are protected",
+        "ExternalQuestionKey": "L2-Q5"
+      },
+      "references": {
+        "PassageId": "team.reading.c1.automation",
+        "EvidenceParagraphId": "team.reading.c1.automation.abb9c8a3d1884480b86cca0b9c4e3cf0"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.0c4df7a0d2994aceaaa6dab906fac091",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "complex",
+        "Ipa": "/\u02C8k\u0252mpleks/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "ph\u1EE9c t\u1EA1p",
+        "Example": "More complex duties."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation",
+        "ParagraphId": "team.reading.c1.automation.11c6ca86c7554e1aab67b41545b8376d"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.11c6ca86c7554e1aab67b41545b8376d",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P1",
+        "ParagraphOrder": 1,
+        "ParagraphContent": "Automation removes repetitive tasks, but it also reshapes what workers experience as meaningful. When machines handle routine steps, remaining duties may become more complex and judgment-heavy, which some people welcome and others find exhausting. The same technology can therefore raise skill demands while shrinking the number of familiar roles that once offered a stable sense of contribution."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.12820fc5700b4fd8bf02417df9206350",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "False",
+        "IsCorrect": false,
+        "ExternalOptionKey": "FALSE",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.automation.6101be6a4e1c475fb6ba7fde389eade4"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.157da24544f444e3b1f5a9d3034a9622",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "participation",
+        "Ipa": "/p\u0251\u02D0\u02CCt\u026As\u026A\u02C8pe\u026A\u0283n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 tham gia",
+        "Example": "Participation turns technology."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation",
+        "ParagraphId": "team.reading.c1.automation.a3f8ae00ec954d3ca592f2e86bcddb0d"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.15cfee1bb9634120815098c739bf6fe9",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "algorithm",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp2",
+        "MatchKey": "p2",
+        "MatchSide": "Left",
+        "OptionOrder": 5
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.automation.e7a6f245875e45dab15a526667e5cef1"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.1befa81071df437db7161be6ff361254",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "automation",
+        "Ipa": "/\u02CC\u0254\u02D0t\u0259\u02C8me\u026A\u0283n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "t\u1EF1 \u0111\u1ED9ng h\u00F3a",
+        "Example": "Automation removes repetitive tasks."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation",
+        "ParagraphId": "team.reading.c1.automation.11c6ca86c7554e1aab67b41545b8376d"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.31f3e9278b1b4a8ca0d923e0fa46ddf6",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "impose",
+        "Ipa": "/\u026Am\u02C8p\u0259\u028Az/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "\u00E1p \u0111\u1EB7t",
+        "Example": "An imposed threat."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation",
+        "ParagraphId": "team.reading.c1.automation.a3f8ae00ec954d3ca592f2e86bcddb0d"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.3ba004e6e2574a6c85edd07c08db7659",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "opaque",
+        "Ipa": "/\u0259\u028A\u02C8pe\u026Ak/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "kh\u00F4ng r\u00F5 r\u00E0ng",
+        "Example": "Opaque algorithms."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation",
+        "ParagraphId": "team.reading.c1.automation.05fa422e88db4972bb22e43325ca0c2c"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.3f11b9106be1485a955a6f88b211afa3",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "quy\u1EC1n t\u1EF1 ch\u1EE7",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp4",
+        "MatchKey": "p4",
+        "MatchSide": "Right",
+        "OptionOrder": 4
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.automation.e7a6f245875e45dab15a526667e5cef1"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.412f345be9c44f0293a0f57b5f6a1910",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Always easier and shorter",
+        "IsCorrect": false,
+        "ExternalOptionKey": "B",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.automation.0539a4ad6e964cdbb17472abe053918f"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.4271b30c097b43b1b8b61788e4a3cc66",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "repetitive",
+        "Ipa": "/r\u026A\u02C8pet\u0259t\u026Av/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "l\u1EB7p \u0111i l\u1EB7p l\u1EA1i",
+        "Example": "Repetitive tasks."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation",
+        "ParagraphId": "team.reading.c1.automation.11c6ca86c7554e1aab67b41545b8376d"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.44acf4dfcc3343ed8e1b98c6c9d8804c",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Participation turns technology from an imposed threat into a _____ tool.",
+        "OrderIndex": 3,
+        "QuestionType": "GapFill",
+        "ParagraphReference": "4",
+        "CorrectAnswerText": "negotiated",
+        "Explanation": "Fill the blank from the passage.",
+        "EvidenceText": "Automation succeeds socially when those conditions are protected rather than eroded by efficiency targets alone.",
+        "ExternalQuestionKey": "L2-Q3"
+      },
+      "references": {
+        "PassageId": "team.reading.c1.automation",
+        "EvidenceParagraphId": "team.reading.c1.automation.abb9c8a3d1884480b86cca0b9c4e3cf0"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.51fd070940974f79bba10351b405f5fe",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "autonomy",
+        "Ipa": "/\u0254\u02D0\u02C8t\u0252n\u0259mi/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "quy\u1EC1n t\u1EF1 ch\u1EE7",
+        "Example": "Depends on autonomy."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation",
+        "ParagraphId": "team.reading.c1.automation.abb9c8a3d1884480b86cca0b9c4e3cf0"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.5ae4a97a064c4461a2980fcab6267b3f",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "automation",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp1",
+        "MatchKey": "p1",
+        "MatchSide": "Left",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.automation.e7a6f245875e45dab15a526667e5cef1"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.6101be6a4e1c475fb6ba7fde389eade4",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Opaque algorithms can make some workers feel deskilled.",
+        "OrderIndex": 2,
+        "QuestionType": "TrueFalse",
+        "ParagraphReference": "4",
+        "Explanation": "Check the stated fact.",
+        "EvidenceText": "Automation succeeds socially when those conditions are protected rather than eroded by efficiency targets alone.",
+        "ExternalQuestionKey": "L2-Q2"
+      },
+      "references": {
+        "PassageId": "team.reading.c1.automation",
+        "EvidenceParagraphId": "team.reading.c1.automation.abb9c8a3d1884480b86cca0b9c4e3cf0"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.632ef17c78624212bba701f199609b63",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "resistance",
+        "Ipa": "/r\u026A\u02C8z\u026Ast\u0259ns/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 kh\u00E1ng c\u1EF1",
+        "Example": "Less resistance."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation",
+        "ParagraphId": "team.reading.c1.automation.a3f8ae00ec954d3ca592f2e86bcddb0d"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.6f01a0503333463aacf121e1f1793910",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "autonomy",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp4",
+        "MatchKey": "p4",
+        "MatchSide": "Left",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.automation.e7a6f245875e45dab15a526667e5cef1"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.71abce896366413a9df75539a6b112ac",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P5",
+        "ParagraphOrder": 5,
+        "ParagraphContent": "Training budgets reveal whether organisations take that partnership seriously. When workers receive time to understand new systems and to propose safer overrides, automation becomes a scaffold for expertise. When training is treated as a one-off announcement, the same systems become opaque barriers that separate people from the results of their labour."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.8c9b0502041842cd9bce3f0e6d73121a",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "outcome",
+        "Ipa": "/\u02C8a\u028Atk\u028Cm/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "k\u1EBFt qu\u1EA3",
+        "Example": "Effort and outcomes."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation",
+        "ParagraphId": "team.reading.c1.automation.abb9c8a3d1884480b86cca0b9c4e3cf0"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.8f3c495190e1437e93423cad49be035a",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P7",
+        "ParagraphOrder": 7,
+        "ParagraphContent": "Customer-facing roles illustrate the tension clearly. Chatbots may answer routine queries, yet unusual cases still require human judgment, empathy, and the authority to override a script. If those humans lose status because the easy cases vanished, the remaining work feels heavier even when productivity metrics look better on a dashboard. A durable settlement treats automation as a redesign of the whole task system, including who gets credit, who gets trained, and who can stop an unsafe process. Without that redesign, organisations buy efficiency while quietly selling off the conditions that make work feel worth doing across whole careers. Workers who keep a voice in redesign are more likely to treat new tools as partners rather than as silent replacements for their judgment, memory, and skill on difficult cases. That partnership does not slow every project; it prevents costly failures that appear only after managers celebrate an early efficiency win on paper."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.947a373026a445e6870006f0072974af",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "t\u1EF1 \u0111\u1ED9ng h\u00F3a",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp1",
+        "MatchKey": "p1",
+        "MatchSide": "Right",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.automation.e7a6f245875e45dab15a526667e5cef1"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.a3f8ae00ec954d3ca592f2e86bcddb0d",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P3",
+        "ParagraphOrder": 3,
+        "ParagraphContent": "Organisations that explain automation goals and invite staff into redesign discussions usually face less resistance. Participation turns technology from an imposed threat into a negotiated tool whose limits can be debated in open forums. Without that conversation, rumours fill the gap and distrust spreads quickly through informal channels that managers rarely see until morale collapses."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.abb9c8a3d1884480b86cca0b9c4e3cf0",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P4",
+        "ParagraphOrder": 4,
+        "ParagraphContent": "Meaningful work, in this context, depends on autonomy, skill use, and a visible link between effort and outcomes. Automation succeeds socially when those conditions are protected rather than eroded by efficiency targets alone. Leaders who treat people as partners in redesign are more likely to keep both productivity and dignity intact across teams of different ages and contract types."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.b490564004164759a6bee8ecb2afc766",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "More complex and judgment-heavy",
+        "IsCorrect": true,
+        "ExternalOptionKey": "A",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.automation.0539a4ad6e964cdbb17472abe053918f"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.b809238bbb0f4831baf13f81cc4436de",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "thu\u1EADt to\u00E1n",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp2",
+        "MatchKey": "p2",
+        "MatchSide": "Right",
+        "OptionOrder": 6
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.automation.e7a6f245875e45dab15a526667e5cef1"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.bb16f7b282484b389ee9600819e58fdf",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "True",
+        "IsCorrect": true,
+        "ExternalOptionKey": "TRUE",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.automation.6101be6a4e1c475fb6ba7fde389eade4"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.c6ed370340904e30884b66bcfd131bf8",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "deskilled",
+        "Ipa": "/\u02CCdi\u02D0\u02C8sk\u026Ald/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "b\u1ECB gi\u1EA3m k\u1EF9 n\u0103ng",
+        "Example": "Feel deskilled."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation",
+        "ParagraphId": "team.reading.c1.automation.05fa422e88db4972bb22e43325ca0c2c"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.d546a84830994abd8ab63e48e519bd40",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P6",
+        "ParagraphOrder": 6,
+        "ParagraphContent": "Labour policy sits behind these workplace choices. Rules about notice, reskilling support, and shared gains from productivity can prevent automation from concentrating benefits among a few owners while dispersing risk among many workers who did not design the tools."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.d61982144b664b76a6028742e45427f1",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "erode",
+        "Ipa": "/\u026A\u02C8r\u0259\u028Ad/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "x\u00F3i m\u00F2n",
+        "Example": "Protected rather than eroded."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation",
+        "ParagraphId": "team.reading.c1.automation.abb9c8a3d1884480b86cca0b9c4e3cf0"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.e41fa7bca7884fa59fa0e23048327b49",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "algorithm",
+        "Ipa": "/\u02C8\u00E6l\u0261\u0259r\u026A\u00F0\u0259m/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "thu\u1EADt to\u00E1n",
+        "Example": "Question the algorithm."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.automation",
+        "ParagraphId": "team.reading.c1.automation.05fa422e88db4972bb22e43325ca0c2c"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.e4446a88a8a5421a887069ed2cc1fc2b",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Completely unnecessary",
+        "IsCorrect": false,
+        "ExternalOptionKey": "C",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.automation.0539a4ad6e964cdbb17472abe053918f"
+      }
+    },
+    {
+      "key": "team.reading.c1.automation.e7a6f245875e45dab15a526667e5cef1",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Match each concept with its Vietnamese meaning.",
+        "OrderIndex": 4,
+        "QuestionType": "Matching",
+        "ParagraphReference": "1",
+        "Explanation": "Match the pairs from the passage.",
+        "ExternalQuestionKey": "L2-Q4"
+      },
+      "references": {
+        "PassageId": "team.reading.c1.automation",
+        "EvidenceParagraphId": "team.reading.c1.automation.11c6ca86c7554e1aab67b41545b8376d"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "9ff3b3854298f88a16aa8a2cdd721e01140176e6ffbec2d592be4978164e7c84.jpg",
+      "sha256": "9ff3b3854298f88a16aa8a2cdd721e01140176e6ffbec2d592be4978164e7c84"
+    }
+  ],
+  "rootKey": "team.reading.c1.automation"
+}

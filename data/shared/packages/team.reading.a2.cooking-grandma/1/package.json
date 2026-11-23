@@ -1,0 +1,382 @@
+{
+  "schemaVersion": 1,
+  "id": "team.reading.a2.cooking-grandma",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.reading.a2.cooking-grandma",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "Cooking with Grandma",
+        "Content": "On Sunday I cook with my grandma in our small kitchen. She teaches me how to wash vegetables and cut them carefully on a board. We also boil rice and prepare a light soup with carrots and onions. I try to remember each step so I can help again next time without asking too many questions.\n\nWhen the food is ready, the kitchen smells wonderful. We set the table and share the meal with my parents. Everyone says the soup tastes better because we made it together. My father asks for a second bowl and smiles.\n\nCooking together makes me feel close to my family. Next week grandma says we will bake a simple cake for dessert. I already bought flour and sugar so we can start early in the morning.",
+        "Level": "A2",
+        "Topic": "Food",
+        "ImageUrl": "asset:26df69c2262a89ca32ba933fb0c5216fa0fb6a6ce6b87da6964cdbbc1e1136f3.jpg",
+        "IsPublished": true,
+        "Description": "Learning to cook a simple meal at home.",
+        "EstimatedTimeMinutes": 8,
+        "ExternalReadingKey": "RD-A2-004"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.0074ee39f6c14e0abbc0d1883baa1327",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "How to bake a cake",
+        "IsCorrect": false,
+        "ExternalOptionKey": "B",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.cooking-grandma.d04852030d0a4cf0a2af11a9e0b67f74"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.0d16b9fada724fef9763925bfc4c33a1",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "False",
+        "IsCorrect": false,
+        "ExternalOptionKey": "FALSE",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.cooking-grandma.4bbbf249622f4291bb8703e2ebeb07b3"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.108f755f2db04241814e5069dd39a696",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "kitchen",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp2",
+        "MatchKey": "p2",
+        "MatchSide": "Left",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.cooking-grandma.43fd8249ff2740a58770119a7d8f2b5b"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.232e9a2ee81341e1a9e319047025e11f",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "cook",
+        "Ipa": "/k\u028Ak/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "n\u1EA5u \u0103n",
+        "Example": "I cook with grandma."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.cooking-grandma",
+        "ParagraphId": "team.reading.a2.cooking-grandma.3755ba4123a948c7bce514ad78c79371"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.288588f0f7304747a752f0967697a0fe",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "kitchen",
+        "Ipa": "/\u02C8k\u026At\u0283\u026An/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "nh\u00E0 b\u1EBFp",
+        "Example": "The kitchen smells wonderful."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.cooking-grandma",
+        "ParagraphId": "team.reading.a2.cooking-grandma.60bd87d7a5e94c7095d5506e9e71fb16"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.3755ba4123a948c7bce514ad78c79371",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P1",
+        "ParagraphOrder": 1,
+        "ParagraphContent": "On Sunday I cook with my grandma in our small kitchen. She teaches me how to wash vegetables and cut them carefully on a board. We also boil rice and prepare a light soup with carrots and onions. I try to remember each step so I can help again next time without asking too many questions."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.cooking-grandma"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.38a35cff6005429baafb20806188c78c",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P3",
+        "ParagraphOrder": 3,
+        "ParagraphContent": "Cooking together makes me feel close to my family. Next week grandma says we will bake a simple cake for dessert. I already bought flour and sugar so we can start early in the morning."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.cooking-grandma"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.3d1fbc6a69e24669a36271e77442c4b7",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "vegetables",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp1",
+        "MatchKey": "p1",
+        "MatchSide": "Left",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.cooking-grandma.43fd8249ff2740a58770119a7d8f2b5b"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.43fd8249ff2740a58770119a7d8f2b5b",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Match each English word with its Vietnamese meaning.",
+        "OrderIndex": 4,
+        "QuestionType": "Matching",
+        "ParagraphReference": "1",
+        "Explanation": "Match the pairs from the passage.",
+        "ExternalQuestionKey": "L2-Q4"
+      },
+      "references": {
+        "PassageId": "team.reading.a2.cooking-grandma",
+        "EvidenceParagraphId": "team.reading.a2.cooking-grandma.3755ba4123a948c7bce514ad78c79371"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.4bbbf249622f4291bb8703e2ebeb07b3",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "They share the meal with the writer\u0027s parents.",
+        "OrderIndex": 2,
+        "QuestionType": "TrueFalse",
+        "ParagraphReference": "2",
+        "Explanation": "Check the stated fact.",
+        "EvidenceText": "Cooking together makes me feel close to my family.",
+        "ExternalQuestionKey": "L2-Q2"
+      },
+      "references": {
+        "PassageId": "team.reading.a2.cooking-grandma",
+        "EvidenceParagraphId": "team.reading.a2.cooking-grandma.60bd87d7a5e94c7095d5506e9e71fb16"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.4f1f98e9677848b9bbdb65ae97740c5f",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "How to buy fish",
+        "IsCorrect": false,
+        "ExternalOptionKey": "C",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.cooking-grandma.d04852030d0a4cf0a2af11a9e0b67f74"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.5e56ff1f9410444fa6202587e341a31d",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "How to wash and cut vegetables",
+        "IsCorrect": true,
+        "ExternalOptionKey": "A",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.cooking-grandma.d04852030d0a4cf0a2af11a9e0b67f74"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.60bd87d7a5e94c7095d5506e9e71fb16",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P2",
+        "ParagraphOrder": 2,
+        "ParagraphContent": "When the food is ready, the kitchen smells wonderful. We set the table and share the meal with my parents. Everyone says the soup tastes better because we made it together. My father asks for a second bowl and smiles."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.cooking-grandma"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.984db0d636e04a77a688a4d7dccb7f56",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "vegetables",
+        "Ipa": "/\u02C8ved\u0292t\u0259blz/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "rau c\u1EE7",
+        "Example": "Wash vegetables."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.cooking-grandma",
+        "ParagraphId": "team.reading.a2.cooking-grandma.3755ba4123a948c7bce514ad78c79371"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.9c16e4f3c0ee4ceda9c7f807e14edb23",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "soup",
+        "Ipa": "/su\u02D0p/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u00FAp",
+        "Example": "Prepare a light soup."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.cooking-grandma",
+        "ParagraphId": "team.reading.a2.cooking-grandma.3755ba4123a948c7bce514ad78c79371"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.a92285ce54644949a043a282ebdb20ff",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "nh\u00E0 b\u1EBFp",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp2",
+        "MatchKey": "p2",
+        "MatchSide": "Right",
+        "OptionOrder": 4
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.cooking-grandma.43fd8249ff2740a58770119a7d8f2b5b"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.afdd692678c144c5b3794abea6184f29",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "carefully",
+        "Ipa": "/\u02C8ke\u0259f\u0259li/",
+        "PartOfSpeech": "Adverb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "c\u1EA9n th\u1EADn",
+        "Example": "Cut them carefully."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.cooking-grandma",
+        "ParagraphId": "team.reading.a2.cooking-grandma.3755ba4123a948c7bce514ad78c79371"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.ca452337170d4185850c0d5fce46e2c8",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "meal",
+        "Ipa": "/mi\u02D0l/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "b\u1EEFa \u0103n",
+        "Example": "Share the meal."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.cooking-grandma",
+        "ParagraphId": "team.reading.a2.cooking-grandma.60bd87d7a5e94c7095d5506e9e71fb16"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.d04852030d0a4cf0a2af11a9e0b67f74",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What does grandma teach the writer first?",
+        "OrderIndex": 1,
+        "ParagraphReference": "2",
+        "Explanation": "See the passage evidence.",
+        "EvidenceText": "Cooking together makes me feel close to my family.",
+        "Paraphrase": "How to wash and cut vegetables",
+        "ExternalQuestionKey": "L2-Q1"
+      },
+      "references": {
+        "PassageId": "team.reading.a2.cooking-grandma",
+        "EvidenceParagraphId": "team.reading.a2.cooking-grandma.60bd87d7a5e94c7095d5506e9e71fb16"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.d2d414c0e5a7438fb3de12b16a987ffb",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Why does cooking together matter to the writer?",
+        "OrderIndex": 5,
+        "QuestionType": "ShortAnswer",
+        "ParagraphReference": "2",
+        "CorrectAnswerText": "feel close to family",
+        "Explanation": "Answer briefly from the passage.",
+        "EvidenceText": "Cooking together makes me feel close to my family.",
+        "Paraphrase": "feel close to family",
+        "ExternalQuestionKey": "L2-Q5"
+      },
+      "references": {
+        "PassageId": "team.reading.a2.cooking-grandma",
+        "EvidenceParagraphId": "team.reading.a2.cooking-grandma.60bd87d7a5e94c7095d5506e9e71fb16"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.dfeaf45389e34770b66660eccec6cd8d",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "rau c\u1EE7",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp1",
+        "MatchKey": "p1",
+        "MatchSide": "Right",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.cooking-grandma.43fd8249ff2740a58770119a7d8f2b5b"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.fb712905270b414ebf098af2f4731d9d",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "True",
+        "IsCorrect": true,
+        "ExternalOptionKey": "TRUE",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.cooking-grandma.4bbbf249622f4291bb8703e2ebeb07b3"
+      }
+    },
+    {
+      "key": "team.reading.a2.cooking-grandma.fea909d2f83c4643bfb98de01a662465",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "We also boil rice and prepare a light _____.",
+        "OrderIndex": 3,
+        "QuestionType": "GapFill",
+        "ParagraphReference": "2",
+        "CorrectAnswerText": "soup",
+        "Explanation": "Fill the blank from the passage.",
+        "EvidenceText": "Cooking together makes me feel close to my family.",
+        "ExternalQuestionKey": "L2-Q3"
+      },
+      "references": {
+        "PassageId": "team.reading.a2.cooking-grandma",
+        "EvidenceParagraphId": "team.reading.a2.cooking-grandma.60bd87d7a5e94c7095d5506e9e71fb16"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "26df69c2262a89ca32ba933fb0c5216fa0fb6a6ce6b87da6964cdbbc1e1136f3.jpg",
+      "sha256": "26df69c2262a89ca32ba933fb0c5216fa0fb6a6ce6b87da6964cdbbc1e1136f3"
+    }
+  ],
+  "rootKey": "team.reading.a2.cooking-grandma"
+}

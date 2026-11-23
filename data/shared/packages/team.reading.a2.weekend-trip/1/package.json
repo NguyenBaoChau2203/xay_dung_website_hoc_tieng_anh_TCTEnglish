@@ -1,0 +1,382 @@
+{
+  "schemaVersion": 1,
+  "id": "team.reading.a2.weekend-trip",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.reading.a2.weekend-trip",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "A Weekend Trip",
+        "Content": "Last Saturday my family took a bus to the beach. The weather was warm and sunny, so we did not need jackets. We walked on the soft sand and collected small shells near the water. My little brother built a small castle with a stick and laughed when the waves touched it.\n\nIn the afternoon we ate fresh fish at a small restaurant by the road. Then we swam in the sea for almost an hour. My father took many photos of the blue water. Children nearby played football, and music came from a radio on the sand.\n\nOn the way home I was tired, but I felt excited about the trip. I want to go again next month if the weather is good and we have free time. My mother already put the shells in a small box on the shelf.",
+        "Level": "A2",
+        "Topic": "Travel",
+        "ImageUrl": "asset:48d9b2c1f868d709512f910a628a30d012de43e33dd73de18e26267e19d14eeb.jpg",
+        "IsPublished": true,
+        "Description": "A short weekend trip to the beach.",
+        "EstimatedTimeMinutes": 8,
+        "ExternalReadingKey": "RD-A2-003"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.0b0a8071d01a4d2e98246eeb0375b607",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "beach",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp1",
+        "MatchKey": "p1",
+        "MatchSide": "Left",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.weekend-trip.6b52c87dee2b4294a2bea85f6e2848a7"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.14e64d1ab223493cac5e5528416f0f54",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "shells",
+        "Ipa": "/\u0283elz/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "v\u1ECF s\u00F2",
+        "Example": "Collect shells."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.weekend-trip",
+        "ParagraphId": "team.reading.a2.weekend-trip.dad95c668e824f499d940383f0239df5"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.3185c8c15d74499e8d8484cc468e3771",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "beach",
+        "Ipa": "/bi\u02D0t\u0283/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "b\u00E3i bi\u1EC3n",
+        "Example": "Go to the beach."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.weekend-trip",
+        "ParagraphId": "team.reading.a2.weekend-trip.dad95c668e824f499d940383f0239df5"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.382b1eecd0524048abcf7a486c37dceb",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "How did the writer feel on the way home?",
+        "OrderIndex": 5,
+        "QuestionType": "ShortAnswer",
+        "ParagraphReference": "2",
+        "CorrectAnswerText": "tired but excited",
+        "Explanation": "Answer briefly from the passage.",
+        "EvidenceText": "On the way home I was tired, but I felt excited about the trip.",
+        "Paraphrase": "tired but excited",
+        "ExternalQuestionKey": "L1-Q5"
+      },
+      "references": {
+        "PassageId": "team.reading.a2.weekend-trip",
+        "EvidenceParagraphId": "team.reading.a2.weekend-trip.4b0e5990a94c44f29783a7e077b81138"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.38db705fb0544ec09be3dfd69e8efd97",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "b\u00E3i bi\u1EC3n",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp1",
+        "MatchKey": "p1",
+        "MatchSide": "Right",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.weekend-trip.6b52c87dee2b4294a2bea85f6e2848a7"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.454122ff73a3461ea10351a6b020f728",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "restaurant",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp2",
+        "MatchKey": "p2",
+        "MatchSide": "Left",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.weekend-trip.6b52c87dee2b4294a2bea85f6e2848a7"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.4823df4acd274104a86c4a49ba4484ee",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "restaurant",
+        "Ipa": "/\u02C8restr\u0252nt/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "nh\u00E0 h\u00E0ng",
+        "Example": "Eat at a restaurant."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.weekend-trip",
+        "ParagraphId": "team.reading.a2.weekend-trip.4b0e5990a94c44f29783a7e077b81138"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.4b0e5990a94c44f29783a7e077b81138",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P2",
+        "ParagraphOrder": 2,
+        "ParagraphContent": "In the afternoon we ate fresh fish at a small restaurant by the road. Then we swam in the sea for almost an hour. My father took many photos of the blue water. Children nearby played football, and music came from a radio on the sand."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.weekend-trip"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.526e6b9b9b89446895b9f99dafa41416",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "By bus",
+        "IsCorrect": true,
+        "ExternalOptionKey": "A",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.weekend-trip.600905b9b2fe4318baa04e38b5ca4c18"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.600905b9b2fe4318baa04e38b5ca4c18",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "How did the family travel to the beach?",
+        "OrderIndex": 1,
+        "ParagraphReference": "2",
+        "Explanation": "See the passage evidence.",
+        "EvidenceText": "On the way home I was tired, but I felt excited about the trip.",
+        "Paraphrase": "By bus",
+        "ExternalQuestionKey": "L1-Q1"
+      },
+      "references": {
+        "PassageId": "team.reading.a2.weekend-trip",
+        "EvidenceParagraphId": "team.reading.a2.weekend-trip.4b0e5990a94c44f29783a7e077b81138"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.6386aff1f4554d6e8507ff400d35aa3b",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "By train",
+        "IsCorrect": false,
+        "ExternalOptionKey": "C",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.weekend-trip.600905b9b2fe4318baa04e38b5ca4c18"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.6b52c87dee2b4294a2bea85f6e2848a7",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Match each English word with its Vietnamese meaning.",
+        "OrderIndex": 4,
+        "QuestionType": "Matching",
+        "ParagraphReference": "1",
+        "Explanation": "Match the pairs from the passage.",
+        "ExternalQuestionKey": "L1-Q4"
+      },
+      "references": {
+        "PassageId": "team.reading.a2.weekend-trip",
+        "EvidenceParagraphId": "team.reading.a2.weekend-trip.dad95c668e824f499d940383f0239df5"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.78369aa50a1c492eadb1e574e565af5a",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "weekend",
+        "Ipa": "/\u02CCwi\u02D0k\u02C8end/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "cu\u1ED1i tu\u1EA7n",
+        "Example": "A weekend trip."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.weekend-trip",
+        "ParagraphId": "team.reading.a2.weekend-trip.dad95c668e824f499d940383f0239df5"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.7beb1bb94fd345258c358e86910a10bd",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "We walked on the sand and collected small _____.",
+        "OrderIndex": 3,
+        "QuestionType": "GapFill",
+        "ParagraphReference": "2",
+        "CorrectAnswerText": "shells",
+        "Explanation": "Fill the blank from the passage.",
+        "EvidenceText": "On the way home I was tired, but I felt excited about the trip.",
+        "ExternalQuestionKey": "L1-Q3"
+      },
+      "references": {
+        "PassageId": "team.reading.a2.weekend-trip",
+        "EvidenceParagraphId": "team.reading.a2.weekend-trip.4b0e5990a94c44f29783a7e077b81138"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.8da131d1b3fa48029091d7a8dec997ae",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "nh\u00E0 h\u00E0ng",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp2",
+        "MatchKey": "p2",
+        "MatchSide": "Right",
+        "OptionOrder": 4
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.weekend-trip.6b52c87dee2b4294a2bea85f6e2848a7"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.8e5d0352685d4ec29d9c1a5c03b05165",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "They swam in the sea in the afternoon.",
+        "OrderIndex": 2,
+        "QuestionType": "TrueFalse",
+        "ParagraphReference": "2",
+        "Explanation": "Check the stated fact.",
+        "EvidenceText": "On the way home I was tired, but I felt excited about the trip.",
+        "ExternalQuestionKey": "L1-Q2"
+      },
+      "references": {
+        "PassageId": "team.reading.a2.weekend-trip",
+        "EvidenceParagraphId": "team.reading.a2.weekend-trip.4b0e5990a94c44f29783a7e077b81138"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.a246e2c83f7445fa8fbd83acaf9075a5",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "True",
+        "IsCorrect": true,
+        "ExternalOptionKey": "TRUE",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.weekend-trip.8e5d0352685d4ec29d9c1a5c03b05165"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.a295edf071e54589af54fddd5adf5989",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "By plane",
+        "IsCorrect": false,
+        "ExternalOptionKey": "B",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.weekend-trip.600905b9b2fe4318baa04e38b5ca4c18"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.be6d9ef5515640398eff94507418cc08",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P3",
+        "ParagraphOrder": 3,
+        "ParagraphContent": "On the way home I was tired, but I felt excited about the trip. I want to go again next month if the weather is good and we have free time. My mother already put the shells in a small box on the shelf."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.weekend-trip"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.d5fe0e5ca1b044908d8a8ecbac43af89",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "False",
+        "IsCorrect": false,
+        "ExternalOptionKey": "FALSE",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.a2.weekend-trip.8e5d0352685d4ec29d9c1a5c03b05165"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.dad95c668e824f499d940383f0239df5",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P1",
+        "ParagraphOrder": 1,
+        "ParagraphContent": "Last Saturday my family took a bus to the beach. The weather was warm and sunny, so we did not need jackets. We walked on the soft sand and collected small shells near the water. My little brother built a small castle with a stick and laughed when the waves touched it."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.weekend-trip"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.e7b64485b6b7471594bf8e86017f006b",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "swam",
+        "Ipa": "/sw\u00E6m/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "b\u01A1i (qu\u00E1 kh\u1EE9)",
+        "Example": "We swam in the sea."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.weekend-trip",
+        "ParagraphId": "team.reading.a2.weekend-trip.4b0e5990a94c44f29783a7e077b81138"
+      }
+    },
+    {
+      "key": "team.reading.a2.weekend-trip.fd500ff668ba417cb1b60dcc9ab630ba",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "excited",
+        "Ipa": "/\u026Ak\u02C8sa\u026At\u026Ad/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "h\u00E0o h\u1EE9ng",
+        "Example": "I felt excited."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a2.weekend-trip",
+        "ParagraphId": "team.reading.a2.weekend-trip.4b0e5990a94c44f29783a7e077b81138"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "48d9b2c1f868d709512f910a628a30d012de43e33dd73de18e26267e19d14eeb.jpg",
+      "sha256": "48d9b2c1f868d709512f910a628a30d012de43e33dd73de18e26267e19d14eeb"
+    }
+  ],
+  "rootKey": "team.reading.a2.weekend-trip"
+}
