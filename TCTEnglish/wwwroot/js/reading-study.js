@@ -274,7 +274,15 @@ document.addEventListener("DOMContentLoaded", function () {
             timerEl.textContent = `${m}:${s}`;
             if (remaining === 300 || remaining === 60) {
                 timerEl.classList.add('text-warning');
-                alert(remaining === 300 ? 'Còn 5 phút.' : 'Còn 1 phút.');
+                if (window.TctFeedback) {
+                    window.TctFeedback.toast({
+                        type: 'warning',
+                        title: remaining === 300 ? 'Còn 5 phút làm bài' : 'Còn 1 phút làm bài',
+                        message: remaining === 300
+                            ? 'Hãy kiểm tra lại câu chưa trả lời trước khi hết giờ.'
+                            : 'Sắp hết giờ — nộp bài khi bạn sẵn sàng.'
+                    });
+                }
             }
             if (remaining <= 0) {
                 clearInterval(timer);
@@ -360,7 +368,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         } catch (err) {
             btn.disabled = false;
-            alert("Có lỗi xảy ra khi nộp bài.");
+            if (window.TctFeedback) {
+                window.TctFeedback.toast({
+                    type: 'danger',
+                    title: 'Không nộp được bài đọc',
+                    message: 'Kiểm tra mạng rồi thử nộp lại. Câu trả lời đã lưu tạm vẫn được giữ.'
+                });
+            }
         }
     });
 });

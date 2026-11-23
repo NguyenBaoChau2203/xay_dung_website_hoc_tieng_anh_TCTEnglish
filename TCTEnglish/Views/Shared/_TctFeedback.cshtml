@@ -1,0 +1,35 @@
+@* Shared Clay toast host + confirm modal (learner shell). *@
+<div id="tctFeedbackToastHost"
+     class="tct-feedback-toast-host toast-container"
+     aria-live="polite"
+     aria-atomic="false"></div>
+
+<div class="modal fade"
+     id="tctFeedbackConfirm"
+     tabindex="-1"
+     aria-labelledby="tctFeedbackConfirmTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content tct-theme">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="tctFeedbackConfirmTitle">Xác nhận</h2>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-0" id="tctFeedbackConfirmMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-outline-secondary"
+                        id="tctFeedbackConfirmCancel"
+                        data-bs-dismiss="modal">Hủy</button>
+                <button type="button"
+                        class="btn btn-primary"
+                        id="tctFeedbackConfirmOk">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>

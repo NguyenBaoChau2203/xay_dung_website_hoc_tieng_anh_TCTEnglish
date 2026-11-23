@@ -1,398 +1,233 @@
 @model TCTVocabulary.ViewModels.ClassPageViewModel
+@using TCTEnglish.ViewModels
+@{
+    ViewData["Title"] = Model.PageTitle;
+    var header = new PageHeaderViewModel
+    {
+        Title = Model.PageTitle,
+        Description = Model.PageDescription
+    };
+    var emptyTitle = Model.IsCreatorRole
+        ? "Bạn chưa tạo lớp nào"
+        : "Chưa có lớp học của bạn";
+    var emptyMessage = Model.IsCreatorRole
+        ? "Tạo lớp mới hoặc tham gia lớp Public / bằng mã lớp."
+        : "Khám phá lớp Public, hoặc tham gia bằng mã lớp do giảng viên gửi.";
+    var empty = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Empty,
+        Title = emptyTitle,
+        Message = emptyMessage
+    };
+    var managedHeading = Model.IsCreatorRole ? "Lớp tôi tạo" : "Lớp bạn quản lý";
+}
+
+<link rel="stylesheet" href="~/css/class.css" asp-append-version="true" />
 
 @Html.AntiForgeryToken()
-<div class="my-classes-container">
+<div class="tct-theme class-page">
+    <partial name="_PageHeader" model="header" />
 
-    <div class="page-header page-header-flex">
-        <div class="page-header-left">
-            <h1>Lớp học của tôi</h1>
-            <p>Danh sách các lớp bạn đang tham gia</p>
-        </div>
-
-        <div class="page-header-actions">
-            <a href="javascript:void(0)" class="btn-outline" onclick="openSearchClassModal()">
-                <i class="fas fa-search"></i>
-                Tìm lớp học
+    <div class="class-page__actions">
+        <a href="@Url.Action("BrowseClasses", "Class")" class="btn btn-outline-primary class-page__browse">
+            <i class="fas fa-compass" aria-hidden="true"></i>
+            Khám phá lớp
+        </a>
+        <button type="button" class="btn btn-outline-primary class-page__code-btn" id="openJoinByCodeBtn">
+            <i class="fas fa-key" aria-hidden="true"></i>
+            Tham gia bằng mã
+        </button>
+        @if (Model.CanCreateClass)
+        {
+            <a href="@Url.Action("CreateClass", "Class")" class="btn btn-primary class-page__create">
+                <i class="fas fa-plus" aria-hidden="true"></i>
+                Tạo lớp
             </a>
-
-            <a href="@Url.Action("CreateClass", "Class")" class="btn-primary">
-                <i class="fas fa-plus"></i>
-                Thêm lớp học
-            </a>
-        </div>
+        }
     </div>
+    <p class="class-page__hint">
+        @(Model.IsCreatorRole
+            ? "Quản lý lớp bạn tạo tại đây. Tìm lớp Public ở Khám phá lớp; lớp Private chỉ vào bằng mã."
+            : "Tìm lớp Public ở Khám phá lớp. Lớp Private chỉ vào bằng mã lớp.")
+    </p>
 
-    @if (Model.Classes == null || !Model.Classes.Any())
-    {
-        <div class="empty-state">
-            <p>Bạn chưa tham gia lớp học nào</p>
-        </div>
-    }
-    else
-    {
-        <div class="class-list">
-            @foreach (var c in Model.Classes)
+    <div id="myClassesContent">
+        @if (Model.ManagedClasses.Count == 0 && Model.JoinedClasses.Count == 0)
+        {
+            <partial name="_StateMessage" model="empty" />
+        }
+        else
+        {
+            @if (Model.ManagedClasses.Count > 0)
             {
-                <a href="@Url.Action("ClassDetail", "Class", new { id = c.ClassId })"
-                   class="class-card">
-
-                    <div class="class-avatar">
-                        <img src="@(string.IsNullOrEmpty(c.ImageUrl)
-                                             ? "/images/ClassDefault/class-default.png"
-                                             : c.ImageUrl)"
-                             onerror="this.src='/images/ClassDefault/class-default.png'" />
-                    </div>
-
-                    <div class="class-info">
-                        <h3>@c.ClassName</h3>
-
-                        <p class="creator">
-                            <i class="fas fa-user"></i>
-                            @c.OwnerName
-                        </p>
-
-                        @if (c.IsOwner)
+                <section class="class-section" aria-labelledby="managed-classes-heading">
+                    <h2 class="class-section__title" id="managed-classes-heading">@managedHeading</h2>
+                    <div class="class-cover-grid">
+                        @foreach (var c in Model.ManagedClasses)
                         {
-                            <span class="class-badge owner">Lớp của bạn</span>
-                        }
-                        else
-                        {
-                            <span class="class-badge member">Đã tham gia</span>
+                            @await Html.PartialAsync("_ClassCoverCard", c)
                         }
                     </div>
-
-                    <div class="class-arrow">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </a>
+                </section>
             }
-        </div>
-    }
 
-    <div id="searchClassModal" class="modal-overlay">
-        <div class="search-modal">
-            <div class="search-modal-header">
-                <i class="fas fa-search"></i>
-                <input type="text"
-                       id="classSearchInput"
-                       placeholder="Tìm lớp học theo tên hoặc mã..."
-                       onkeyup="handleSearchClass()" />
-                <button class="close-btn" onclick="closeSearchClassModal()">×</button>
-            </div>
-
-            <div class="search-modal-body" id="searchResult">
-                <div class="search-placeholder">
-                    <i class="fas fa-school"></i>
-                    <p>Nhập từ khóa để tìm lớp học</p>
-                </div>
-            </div>
-        </div>
+            @if (Model.JoinedClasses.Count > 0)
+            {
+                <section class="class-section" aria-labelledby="joined-classes-heading">
+                    <h2 class="class-section__title" id="joined-classes-heading">Lớp đang tham gia</h2>
+                    <div class="class-cover-grid">
+                        @foreach (var c in Model.JoinedClasses)
+                        {
+                            @await Html.PartialAsync("_ClassCoverCard", c)
+                        }
+                    </div>
+                </section>
+            }
+        }
     </div>
 
-    <div id="joinClassModal" class="modal-overlay">
-        <div class="password-modal">
-            <h3>Nhập mật khẩu lớp</h3>
-
-            <input type="password"
-                   id="joinClassPassword"
-                   placeholder="Mật khẩu lớp" />
-
+    <div id="joinByCodeModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="joinByCodeTitle" hidden>
+        <div class="password-modal join-code-modal">
+            <h3 id="joinByCodeTitle">Tham gia bằng mã lớp</h3>
+            <p class="text-muted small">Nhập mã giảng viên gửi cho bạn. Nếu lớp có mật khẩu, hệ thống sẽ hỏi thêm.</p>
+            <label class="visually-hidden" for="joinCodeInput">Mã lớp</label>
+            <input type="text"
+                   id="joinCodeInput"
+                   name="classJoinCode"
+                   maxlength="16"
+                   autocomplete="off"
+                   data-1p-ignore="true"
+                   data-lpignore="true"
+                   data-form-type="other"
+                   placeholder="Ví dụ: ABCD2345"
+                   class="join-code-input"
+                   spellcheck="false" />
+            <div id="joinCodePasswordWrap" hidden>
+                <label class="visually-hidden" for="joinCodePassword">Mật khẩu lớp</label>
+                <input type="password"
+                       id="joinCodePassword"
+                       name="classJoinPassword"
+                       placeholder="Mật khẩu lớp"
+                       autocomplete="off"
+                       data-1p-ignore="true"
+                       data-lpignore="true"
+                       data-form-type="other" />
+            </div>
+            <p id="joinCodeError" class="text-danger small mb-0" hidden></p>
             <div class="modal-actions">
-                <button class="btn-outline" onclick="closeJoinClassModal()">Hủy</button>
-                <button class="btn-primary" onclick="confirmJoinClass()">Tham gia</button>
+                <button type="button" class="btn btn-outline-secondary" id="closeJoinByCodeBtn">Hủy</button>
+                <button type="button" class="btn btn-primary" id="confirmJoinByCodeBtn">Tham gia</button>
             </div>
         </div>
     </div>
 </div>
-<style>
-    .my-classes-container {
-        max-width: 800px;
-        margin: auto;
-    }
 
-    .page-header {
-        margin-bottom: 24px;
-    }
-
-    .class-list {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-    }
-
-    .class-card {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        padding: 14px;
-        border-radius: 12px;
-        background: #fff;
-        text-decoration: none;
-        color: #222;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        transition: all 0.2s ease;
-    }
-
-        .class-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-        }
-
-    .class-avatar img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .class-info h3 {
-        margin: 0;
-        font-size: 18px;
-    }
-
-    .creator {
-        margin-top: 6px;
-        font-size: 14px;
-        color: #666;
-    }
-
-    .class-arrow {
-        margin-left: auto;
-        color: #aaa;
-    }
-
-    .page-header-flex {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-    }
-
-    .page-header-left h1 {
-        margin: 0;
-    }
-
-    .page-header-left p {
-        margin-top: 6px;
-        color: #6b7280;
-    }
-
-    .page-header-actions {
-        display: flex;
-        gap: 12px;
-    }
-
-    .btn-primary {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 16px;
-        border-radius: 10px;
-        background: #4f6cff;
-        color: #ffffff;
-        font-size: 14px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
-
-        .btn-primary:hover {
-            background: #3f5be0;
-            transform: translateY(-1px);
-        }
-
-    .btn-outline {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 16px;
-        border-radius: 10px;
-        background: #ffffff;
-        color: #4f6cff;
-        border: 2px solid #4f6cff;
-        font-size: 14px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
-
-        .btn-outline:hover {
-            background: #f5f7ff;
-            transform: translateY(-1px);
-        }
-
-    .search-modal {
-        width: 760px;
-        max-width: 92%;
-        height: 70vh;
-        background: #ffffff;
-        border-radius: 18px;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.25);
-        animation: modalScaleIn 0.25s ease;
-    }
-
-    .search-modal-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 18px 20px;
-        border-bottom: 1px solid #e4e8ff;
-    }
-
-        .search-modal-header i {
-            font-size: 18px;
-            color: #4f6cff;
-        }
-
-        .search-modal-header input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 16px;
-            background: transparent;
-        }
-
-            .search-modal-header input::placeholder {
-                color: #9ca3af;
-            }
-
-        .search-modal-header .close-btn {
-            font-size: 26px;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-    .search-modal-body {
-        flex: 1;
-        overflow-y: auto;
-        padding: 28px;
-    }
-
-    .search-placeholder {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: #9ca3af;
-        gap: 10px;
-    }
-
-        .search-placeholder i {
-            font-size: 48px;
-            color: #c7d2fe;
-        }
-
-    .password-modal {
-        width: 360px;
-        background: #fff;
-        padding: 24px;
-        border-radius: 14px;
-        box-shadow: 0 30px 80px rgba(0,0,0,0.25);
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-        .password-modal h3 {
-            margin: 0;
-            font-size: 18px;
-        }
-
-        .password-modal input {
-            padding: 10px 12px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            font-size: 14px;
-        }
-
-    .modal-actions {
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-    }
-</style>
+@section Scripts {
 <script>
-    const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
-    let pendingClassId = null;
+(function () {
+    const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value || '';
+    const modal = document.getElementById('joinByCodeModal');
+    const codeInput = document.getElementById('joinCodeInput');
+    const passwordWrap = document.getElementById('joinCodePasswordWrap');
+    const passwordInput = document.getElementById('joinCodePassword');
+    const errorEl = document.getElementById('joinCodeError');
 
-    function openSearchClassModal() {
-        document.getElementById('searchClassModal').classList.add('active');
+    function openJoinModal() {
+        if (!modal) return;
+        modal.hidden = false;
+        modal.classList.add('active');
+        if (errorEl) { errorEl.hidden = true; errorEl.textContent = ''; }
+        if (passwordWrap) passwordWrap.hidden = true;
+        if (passwordInput) passwordInput.value = '';
+        codeInput?.focus();
     }
 
-    function closeSearchClassModal() {
-        document.getElementById('searchClassModal').classList.remove('active');
+    function closeJoinModal() {
+        if (!modal) return;
+        modal.classList.remove('active');
+        modal.hidden = true;
     }
 
-    function handleSearchClass() {
-        const keyword = document.getElementById('classSearchInput').value.trim();
-        const result = document.getElementById('searchResult');
+    function showJoinError(message) {
+        if (!errorEl) return;
+        errorEl.textContent = message || 'Không tham gia được.';
+        errorEl.hidden = false;
+    }
 
-        if (!keyword) {
-            result.innerHTML = `<p>Nhập từ khóa để tìm lớp học</p>`;
+    async function submitJoinByCode() {
+        const joinCode = (codeInput?.value || '').trim();
+        if (!joinCode) {
+            showJoinError('Vui lòng nhập mã lớp.');
             return;
         }
 
-        fetch(`/Home/SearchClass?keyword=${encodeURIComponent(keyword)}`)
-            .then(r => r.json())
-            .then(data => {
-                result.innerHTML = data.map(c => `
-        <a href="/Home/ClassDetail/${c.classId}" class="class-card">
-            <div class="class-avatar">
-                <img src="${c.imageUrl || '/images/ClassDefault/class-default.png'}"/>
-            </div>
+        const body = new URLSearchParams();
+        body.set('joinCode', joinCode);
+        const password = (passwordInput?.value || '').trim();
+        if (password) body.set('password', password);
 
-            <div class="class-info">
-                <h3>${c.className}</h3>
-                <p class="creator">
-                    <i class="fas fa-user"></i> ${c.ownerName}
-                </p>
-            </div>
-        </a>
-    `).join('');
+        try {
+            const response = await fetch('/Home/JoinClassByCode', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'RequestVerificationToken': token
+                },
+                body: body.toString()
             });
-    }
 
-    function handleJoinClick(classId, hasPassword) {
-        if (hasPassword === true) {
-            pendingClassId = classId;
-            document.getElementById('joinClassModal').classList.add('active');
-        } else {
-            joinClass(classId, '');
+            const text = await response.text();
+            let data = null;
+            try { data = text ? JSON.parse(text) : null; } catch { /* plain error */ }
+
+            if (!response.ok) {
+                showJoinError((data && data.message) || text || 'Không tham gia được.');
+                return;
+            }
+
+            if (data?.status === 'needsPassword') {
+                if (passwordWrap) passwordWrap.hidden = false;
+                passwordInput?.focus();
+                showJoinError(data.message || 'Lớp này yêu cầu mật khẩu.');
+                return;
+            }
+
+            if (data?.status === 'pending') {
+                if (window.TctFeedback) {
+                    window.TctFeedback.toast({
+                        type: 'success',
+                        title: 'Đã gửi yêu cầu tham gia',
+                        message: data.message || 'Vui lòng chờ quản trị lớp phê duyệt.'
+                    });
+                }
+                closeJoinModal();
+                return;
+            }
+
+            if (data?.redirectUrl) {
+                window.location.href = data.redirectUrl;
+                return;
+            }
+
+            closeJoinModal();
+            window.location.reload();
+        } catch {
+            showJoinError('Không kết nối được máy chủ.');
         }
     }
 
-    function closeJoinClassModal() {
-        document.getElementById('joinClassModal').classList.remove('active');
-        pendingClassId = null;
-    }
-
-    function confirmJoinClass() {
-        const pw = document.getElementById('joinClassPassword').value;
-        joinClass(pendingClassId, pw);
-    }
-
-    function joinClass(classId, password) {
-        fetch('/Home/JoinClass', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'RequestVerificationToken': antiForgeryToken
-            },
-            body: `classId=${classId}&password=${encodeURIComponent(password)}`
-        })
-        .then(async response => {
-            if (!response.ok) {
-                const errorMessage = await response.text();
-                throw new Error(errorMessage || 'Không thể tham gia lớp học.');
-            }
-
-            const data = await response.json();
-            window.location.href = data.redirectUrl;
-        })
-        .catch(error => alert(error.message));
-    }
+    document.getElementById('openJoinByCodeBtn')?.addEventListener('click', openJoinModal);
+    document.getElementById('closeJoinByCodeBtn')?.addEventListener('click', closeJoinModal);
+    document.getElementById('confirmJoinByCodeBtn')?.addEventListener('click', submitJoinByCode);
+    modal?.addEventListener('click', function (e) {
+        if (e.target === modal) closeJoinModal();
+    });
+    codeInput?.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            submitJoinByCode();
+        }
+    });
+})();
 </script>
+}

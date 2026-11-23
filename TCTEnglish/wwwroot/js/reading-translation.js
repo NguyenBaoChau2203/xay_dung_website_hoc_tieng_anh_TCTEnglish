@@ -259,7 +259,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ─── Delete translation ──────────────────────────────────────────────────
     async function deleteTranslation() {
-        if (!confirm('Bạn có chắc muốn xóa bản dịch này?')) return;
+        const confirmed = window.TctFeedback
+            ? await window.TctFeedback.confirm({
+                title: 'Xóa bản dịch?',
+                message: 'Bản dịch của bạn sẽ bị gỡ khỏi bài đọc này.',
+                confirmLabel: 'Xóa bản dịch',
+                danger: true
+            })
+            : window.confirm('Bạn có chắc muốn xóa bản dịch này?');
+        if (!confirmed) return;
 
         try {
             const myRes = await fetch(`/Reading/MyTranslation/${passageId}`);
@@ -276,12 +284,12 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             const result = await res.json();
             if (result.success) {
-                showToast('Đã xóa bản dịch.', 'success');
+                showToast('Đã xóa bản dịch của bài đọc này.', 'success');
                 toggleTranslationMode(); // Exit mode
                 loadCommunityTranslations();
             }
         } catch (err) {
-            showToast('Lỗi khi xóa.', 'danger');
+            showToast('Không xóa được bản dịch. Thử lại sau.', 'danger');
         }
     }
 
@@ -480,8 +488,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // ─── Toast helper ────────────────────────────────────────────────────────
+    // ─── Toast helper (shared Clay card when TctFeedback is available) ───────
     function showToast(message, type = 'info') {
+        const mapped = type === 'danger' || type === 'warning' || type === 'success' || type === 'info'
+            ? type
+            : 'info';
+        if (window.TctFeedback) {
+            window.TctFeedback.toast({
+                type: mapped,
+                title: message
+            });
+            return;
+        }
         const container = document.querySelector('.toast-container') || createToastContainer();
         const toastId = 'toast-' + Date.now();
         const toast = document.createElement('div');
@@ -501,7 +519,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function createToastContainer() {
         const c = document.createElement('div');
         c.className = 'toast-container position-fixed bottom-0 end-0 p-3';
-        c.style.zIndex = '9999';
         document.body.appendChild(c);
         return c;
     }
