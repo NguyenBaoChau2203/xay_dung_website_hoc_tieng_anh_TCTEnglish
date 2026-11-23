@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "id": "team.reading.a1.at-school",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.reading.a1.at-school",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "At School",
+        "Content": "My school starts at eight in the morning. We study English and maths in the first lessons. My teacher is kind and helpful. She explains new words slowly so we can understand them well. I write notes in my notebook every day.\n\nAt lunch I sit with my friends in the yard. We talk about our hobbies and share fruit from home. In the afternoon we have art class. I draw pictures of my family and feel happy when the teacher smiles at my work. School ends at four.",
+        "Level": "A1",
+        "Topic": "School",
+        "ImageUrl": "asset:7ceb5c0165821aebc566e83d6b81dd923081e2b4930a10d340e4b8ba3c50d39d.jpg",
+        "IsPublished": true,
+        "Description": "A short day at school for a student.",
+        "EstimatedTimeMinutes": 6,
+        "ExternalReadingKey": "RD-A1-008"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.reading.a1.at-school.01ff1f8341c949089135d4c9bafe60b4",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "The teacher is kind and helpful.",
+        "OrderIndex": 2,
+        "QuestionType": "TrueFalse",
+        "ParagraphReference": "2",
+        "Explanation": "Check the stated fact.",
+        "EvidenceText": "I draw pictures of my family and feel happy when the teacher smiles.",
+        "ExternalQuestionKey": "L2-Q2"
+      },
+      "references": {
+        "PassageId": "team.reading.a1.at-school",
+        "EvidenceParagraphId": "team.reading.a1.at-school.6ac6d134c27149f88d5bbe5f8a7f6049"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.18fa3142e5c448198be12e53901104c8",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Match each English word with its Vietnamese meaning.",
+        "OrderIndex": 4,
+        "QuestionType": "Matching",
+        "ParagraphReference": "1",
+        "Explanation": "Match the pairs from the passage.",
+        "ExternalQuestionKey": "L2-Q4"
+      },
+      "references": {
+        "PassageId": "team.reading.a1.at-school",
+        "EvidenceParagraphId": "team.reading.a1.at-school.2d1b2a7332f04a948e6b35cc204e0e9b"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.232aa5deaa5540feba59be131264316c",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What does the student do in art class?",
+        "OrderIndex": 5,
+        "QuestionType": "ShortAnswer",
+        "ParagraphReference": "2",
+        "CorrectAnswerText": "draw pictures",
+        "Explanation": "Answer briefly from the passage.",
+        "EvidenceText": "I draw pictures of my family and feel happy when the teacher smiles.",
+        "Paraphrase": "draw pictures",
+        "ExternalQuestionKey": "L2-Q5"
+      },
+      "references": {
+        "PassageId": "team.reading.a1.at-school",
+        "EvidenceParagraphId": "team.reading.a1.at-school.6ac6d134c27149f88d5bbe5f8a7f6049"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.2d1b2a7332f04a948e6b35cc204e0e9b",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P1",
+        "ParagraphOrder": 1,
+        "ParagraphContent": "My school starts at eight in the morning. We study English and maths in the first lessons. My teacher is kind and helpful. She explains new words slowly so we can understand them well. I write notes in my notebook every day."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.at-school"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.3ae8b7133fea40319262b96eb88dbd46",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "b\u1EA1n b\u00E8",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp2",
+        "MatchKey": "p2",
+        "MatchSide": "Right",
+        "OptionOrder": 4
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.at-school.18fa3142e5c448198be12e53901104c8"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.3f95e32130de43bca634e31e198cb874",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "friends",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp2",
+        "MatchKey": "p2",
+        "MatchSide": "Left",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.at-school.18fa3142e5c448198be12e53901104c8"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.4681e7b3d67041eab2d6a06f07ae1c12",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "teacher",
+        "Ipa": "/\u02C8ti\u02D0t\u0283\u0259/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "gi\u00E1o vi\u00EAn",
+        "Example": "My teacher is kind."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.at-school",
+        "ParagraphId": "team.reading.a1.at-school.2d1b2a7332f04a948e6b35cc204e0e9b"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.4d8857c3d2e94ebd8740fe1558883f82",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "At eight",
+        "IsCorrect": true,
+        "ExternalOptionKey": "A",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.at-school.59046172655947ba8558d71e4ed935d0"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.59046172655947ba8558d71e4ed935d0",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "When does school start?",
+        "OrderIndex": 1,
+        "ParagraphReference": "2",
+        "Explanation": "See the passage evidence.",
+        "EvidenceText": "I draw pictures of my family and feel happy when the teacher smiles.",
+        "Paraphrase": "At eight",
+        "ExternalQuestionKey": "L2-Q1"
+      },
+      "references": {
+        "PassageId": "team.reading.a1.at-school",
+        "EvidenceParagraphId": "team.reading.a1.at-school.6ac6d134c27149f88d5bbe5f8a7f6049"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.5c0bffe9df574092bab5104ef432078f",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "gi\u00E1o vi\u00EAn",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp1",
+        "MatchKey": "p1",
+        "MatchSide": "Right",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.at-school.18fa3142e5c448198be12e53901104c8"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.6ac6d134c27149f88d5bbe5f8a7f6049",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P2",
+        "ParagraphOrder": 2,
+        "ParagraphContent": "At lunch I sit with my friends in the yard. We talk about our hobbies and share fruit from home. In the afternoon we have art class. I draw pictures of my family and feel happy when the teacher smiles at my work. School ends at four."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.at-school"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.7360cb7047334999a03b1a28a453525d",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "teacher",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp1",
+        "MatchKey": "p1",
+        "MatchSide": "Left",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.at-school.18fa3142e5c448198be12e53901104c8"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.81b54db0a02443a9b20a5382bb6b3dfe",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "False",
+        "IsCorrect": false,
+        "ExternalOptionKey": "FALSE",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.at-school.01ff1f8341c949089135d4c9bafe60b4"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.8bdd75960ee14e5aaf554385c487ce38",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "study",
+        "Ipa": "/\u02C8st\u028Cdi/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "h\u1ECDc",
+        "Example": "We study English."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.at-school",
+        "ParagraphId": "team.reading.a1.at-school.2d1b2a7332f04a948e6b35cc204e0e9b"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.8ce7d6f5a2ad4f4d85728ac27ff68136",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "draw",
+        "Ipa": "/dr\u0254\u02D0/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "v\u1EBD",
+        "Example": "I draw pictures."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.at-school",
+        "ParagraphId": "team.reading.a1.at-school.6ac6d134c27149f88d5bbe5f8a7f6049"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.963c31b3f0c54efe9731d82fee7d54ff",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "At five",
+        "IsCorrect": false,
+        "ExternalOptionKey": "C",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.at-school.59046172655947ba8558d71e4ed935d0"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.a52f577648de4795aa09713f5db8d7bf",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "At noon",
+        "IsCorrect": false,
+        "ExternalOptionKey": "B",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.at-school.59046172655947ba8558d71e4ed935d0"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.d6e5f0d750dd457697b5752c0b59c688",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "True",
+        "IsCorrect": true,
+        "ExternalOptionKey": "TRUE",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.at-school.01ff1f8341c949089135d4c9bafe60b4"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.d7560f19d1ea41b29ee6a2edc046ad97",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "friends",
+        "Ipa": "/frendz/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "b\u1EA1n b\u00E8",
+        "Example": "Sit with friends."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.at-school",
+        "ParagraphId": "team.reading.a1.at-school.6ac6d134c27149f88d5bbe5f8a7f6049"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.ef8c454a886c4b5586b4a68f42d31d0e",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "In the afternoon we have _____ class.",
+        "OrderIndex": 3,
+        "QuestionType": "GapFill",
+        "ParagraphReference": "2",
+        "CorrectAnswerText": "art",
+        "Explanation": "Fill the blank from the passage.",
+        "EvidenceText": "I draw pictures of my family and feel happy when the teacher smiles.",
+        "ExternalQuestionKey": "L2-Q3"
+      },
+      "references": {
+        "PassageId": "team.reading.a1.at-school",
+        "EvidenceParagraphId": "team.reading.a1.at-school.6ac6d134c27149f88d5bbe5f8a7f6049"
+      }
+    },
+    {
+      "key": "team.reading.a1.at-school.fd1b8dca28374217a23e314a5d257030",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "lunch",
+        "Ipa": "/l\u028Cnt\u0283/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "b\u1EEFa tr\u01B0a",
+        "Example": "At lunch I sit with friends."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.at-school",
+        "ParagraphId": "team.reading.a1.at-school.6ac6d134c27149f88d5bbe5f8a7f6049"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "7ceb5c0165821aebc566e83d6b81dd923081e2b4930a10d340e4b8ba3c50d39d.jpg",
+      "sha256": "7ceb5c0165821aebc566e83d6b81dd923081e2b4930a10d340e4b8ba3c50d39d"
+    }
+  ],
+  "rootKey": "team.reading.a1.at-school"
+}

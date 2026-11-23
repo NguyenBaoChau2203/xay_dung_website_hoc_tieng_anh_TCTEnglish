@@ -56,7 +56,7 @@ namespace TCTVocabulary.Controllers
             var catalog = await _onboarding.GetCatalogAsync(ct);
             return Json(new
             {
-                goals = catalog.Goals.Select(goal => new { key = goal.Key, title = goal.Title, description = goal.Description, icon = goal.Icon }),
+                goals = catalog.Goals.Select(goal => new { key = goal.Key, title = goal.Title, description = goal.Description, icon = goal.Icon, photo = goal.Photo }),
                 topics = catalog.Topics.Select(topic => new
                 {
                     key = topic.Key, name = topic.Name, band = topic.Band, goals = topic.Goals, cover = topic.CoverUrl

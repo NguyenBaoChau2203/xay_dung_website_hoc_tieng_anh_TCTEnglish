@@ -69,7 +69,7 @@ public interface IOnboardingService
     /// <summary>Null unless the set is one of the user's own onboarding decks.</summary>
     Task<RefillSuggestion?> GetRefillSuggestionAsync(int userId, int setId, CancellationToken ct = default);
 
-    /// <summary>The goals, the 48 topics with their cover photos (one grouped query) and the welcome thumbnails.</summary>
+    /// <summary>The goals, the 48 topics with curated cover photos and the welcome thumbnails.</summary>
     Task<OnboardingCatalogView> GetCatalogAsync(CancellationToken ct = default);
 
     /// <summary>Creates the user's row on first call (Pending if eligible, NotEligible otherwise) and says whether to prompt now.</summary>

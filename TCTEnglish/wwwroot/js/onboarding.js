@@ -336,10 +336,15 @@
 
         var grid = h('div', { 'class': 'tob-grid-goals', role: 'group', 'aria-labelledby': 'tobTitle' });
         catalog.goals.forEach(function (goal) {
-            var el = h('div', { 'class': 'tob-choice', tabindex: '0' }, [
-                h('span', { 'class': 'tob-choice__icon tob-choice__icon--' + goal.key }, [icon(goal.icon)]),
-                h('span', { 'class': 'tob-choice__title', text: goal.title }),
-                h('span', { 'class': 'tob-choice__text', text: goal.description }),
+            var media = goal.photo
+                ? h('img', { 'class': 'tob-choice__img', src: goal.photo, alt: '', loading: 'lazy' })
+                : h('span', { 'class': 'tob-choice__icon tob-choice__icon--' + goal.key }, [icon(goal.icon)]);
+            var el = h('div', { 'class': 'tob-choice tob-choice--photo', tabindex: '0' }, [
+                media,
+                h('span', { 'class': 'tob-choice__body' }, [
+                    h('span', { 'class': 'tob-choice__title', text: goal.title }),
+                    h('span', { 'class': 'tob-choice__text', text: goal.description })
+                ]),
                 h('span', { 'class': 'tob-check', 'aria-hidden': 'true' }, [icon('fa-solid fa-check')])
             ]);
             checkbox(el, state.goals.indexOf(goal.key) >= 0, function () {

@@ -1,0 +1,562 @@
+{
+  "schemaVersion": 1,
+  "id": "team.reading.c1.science-trust",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.reading.c1.science-trust",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "Public Trust in Scientific Advice",
+        "Content": "Scientific advice shapes decisions about health, climate, and technology, yet public trust is uneven across communities. When experts communicate uncertainty poorly, audiences may treat every revision as a contradiction rather than an update based on better data. That reaction is understandable after repeated surprises, but it weakens collective problem-solving and makes cooperation harder during the next crisis.\n\nTransparent methods and accessible summaries help non-specialists follow how conclusions are reached. Institutions that publish both findings and limitations tend to retain credibility during later corrections, because readers can see the reasoning path rather than only the final claim. Clarity about what is known and unknown is itself a form of honesty that resists the appearance of hidden agendas or selective disclosure.\n\nSocial media rewards confident claims, which can amplify fringe interpretations that travel faster than careful caveats. Scientists who only broadcast absolute certainty may later struggle when new evidence requires nuance. The incentive structure of platforms therefore collides with the provisional nature of research, and performers of certainty often gain attention that careful researchers do not.\n\nBuilding durable trust depends less on never being wrong and more on showing how evidence is weighed, revised, and openly debated across time. Public communication that models that process invites citizens into inquiry instead of demanding blind acceptance. In the long run, that stance is more resilient than polished certainty, even if it feels slower and less dramatic in the short term.\n\nPolicy makers also shape trust when they translate science into rules. If regulations change without explaining the evidentiary threshold that triggered them, the public hears only inconsistency. Coordinated messaging that links each update to a named body of evidence reduces citizens track the logic of change rather than memorising shifting slogans.\n\nJournalists mediate that translation for wider audiences. When coverage frames every revision as scandal rather than as method, audiences learn to expect betrayal from experts. Reporting that distinguishes fraud, honest error, and normal updating preserves space for science to remain public without becoming pure theatre of blame.\n\nCommunity organisations and schools can reinforce the same habits locally. Town meetings, classroom debates, and library talks that invite questions about evidence\u2014not only about conclusions\u2014train citizens to participate without demanding impossible certainty. Trust then becomes a shared practice rather than a one-way performance of authority from distant institutions. When these local habits spread, national messages about evidence face a public that already knows how to ask better questions. In that climate, scientific advice can be debated without being dismissed as either absolute truth or empty theatre for every contested policy choice. Citizens who practise those habits still disagree, yet they disagree about evidence rather than about whether experts deserve a seat at the table at all.",
+        "Level": "C1",
+        "Topic": "Science \u0026 society",
+        "ImageUrl": "asset:1f8b596658bd6218910bc27679e75bd3c71d945d7d24b87e2c06da12998def8c.jpg",
+        "IsPublished": true,
+        "Description": "Why public trust in scientific guidance rises and falls.",
+        "EstimatedTimeMinutes": 22,
+        "ExternalReadingKey": "RD-C1-003"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.reading.c1.science-trust.00273c94d6f744bb814dfcf7dfe2dffe",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What does durable trust depend on most, according to the text?",
+        "OrderIndex": 5,
+        "QuestionType": "ShortAnswer",
+        "ParagraphReference": "4",
+        "CorrectAnswerText": "showing how evidence is weighed, revised, and debated",
+        "Explanation": "Answer briefly from the passage.",
+        "EvidenceText": "Building durable trust depends less on never being wrong and more on showing how evidence is weighed, revised, and openly debated across time.",
+        "Paraphrase": "showing how evidence is weighed, revised, and debated",
+        "ExternalQuestionKey": "L1-Q5"
+      },
+      "references": {
+        "PassageId": "team.reading.c1.science-trust",
+        "EvidenceParagraphId": "team.reading.c1.science-trust.122936845f764e408c48d43c9f201baa"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.090f2c8a6b5d4b2587bf011ecce7af2f",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "audience",
+        "Ipa": "/\u02C8\u0254\u02D0di\u0259ns/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "\u0111\u1ED1i t\u01B0\u1EE3ng ti\u1EBFp nh\u1EADn",
+        "Example": "Audiences may misunderstand."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust",
+        "ParagraphId": "team.reading.c1.science-trust.2c9a41ba705a4ea1bcf2474f202c5ba9"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.122936845f764e408c48d43c9f201baa",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P4",
+        "ParagraphOrder": 4,
+        "ParagraphContent": "Building durable trust depends less on never being wrong and more on showing how evidence is weighed, revised, and openly debated across time. Public communication that models that process invites citizens into inquiry instead of demanding blind acceptance. In the long run, that stance is more resilient than polished certainty, even if it feels slower and less dramatic in the short term."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.2c9a41ba705a4ea1bcf2474f202c5ba9",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P1",
+        "ParagraphOrder": 1,
+        "ParagraphContent": "Scientific advice shapes decisions about health, climate, and technology, yet public trust is uneven across communities. When experts communicate uncertainty poorly, audiences may treat every revision as a contradiction rather than an update based on better data. That reaction is understandable after repeated surprises, but it weakens collective problem-solving and makes cooperation harder during the next crisis."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.35efcb1b05804a86950f96f21b752dff",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Match each concept with its Vietnamese meaning.",
+        "OrderIndex": 4,
+        "QuestionType": "Matching",
+        "ParagraphReference": "1",
+        "Explanation": "Match the pairs from the passage.",
+        "ExternalQuestionKey": "L1-Q4"
+      },
+      "references": {
+        "PassageId": "team.reading.c1.science-trust",
+        "EvidenceParagraphId": "team.reading.c1.science-trust.2c9a41ba705a4ea1bcf2474f202c5ba9"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.37b0fdc95fdc4ad0a255607821c4cfeb",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "nuance",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp3",
+        "MatchKey": "p3",
+        "MatchSide": "Left",
+        "OptionOrder": 5
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.science-trust.35efcb1b05804a86950f96f21b752dff"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.48f0a64398a64e40865f763b2537e29c",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P5",
+        "ParagraphOrder": 5,
+        "ParagraphContent": "Policy makers also shape trust when they translate science into rules. If regulations change without explaining the evidentiary threshold that triggered them, the public hears only inconsistency. Coordinated messaging that links each update to a named body of evidence reduces citizens track the logic of change rather than memorising shifting slogans."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.4a77ef4f01804efabcc3f16e6aba8eb7",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "credibility",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp2",
+        "MatchKey": "p2",
+        "MatchSide": "Left",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.science-trust.35efcb1b05804a86950f96f21b752dff"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.54345ffd6800437d914069448880aa68",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P2",
+        "ParagraphOrder": 2,
+        "ParagraphContent": "Transparent methods and accessible summaries help non-specialists follow how conclusions are reached. Institutions that publish both findings and limitations tend to retain credibility during later corrections, because readers can see the reasoning path rather than only the final claim. Clarity about what is known and unknown is itself a form of honesty that resists the appearance of hidden agendas or selective disclosure."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.647e5ca7c5ea470bb4dd96556e449d99",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P6",
+        "ParagraphOrder": 6,
+        "ParagraphContent": "Journalists mediate that translation for wider audiences. When coverage frames every revision as scandal rather than as method, audiences learn to expect betrayal from experts. Reporting that distinguishes fraud, honest error, and normal updating preserves space for science to remain public without becoming pure theatre of blame."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.6b6cb28e02b6473e84708a667efffedd",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Publishing limitations can help retain credibility.",
+        "OrderIndex": 2,
+        "QuestionType": "TrueFalse",
+        "ParagraphReference": "4",
+        "Explanation": "Check the stated fact.",
+        "EvidenceText": "Building durable trust depends less on never being wrong and more on showing how evidence is weighed, revised, and openly debated across time.",
+        "ExternalQuestionKey": "L1-Q2"
+      },
+      "references": {
+        "PassageId": "team.reading.c1.science-trust",
+        "EvidenceParagraphId": "team.reading.c1.science-trust.122936845f764e408c48d43c9f201baa"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.6ec7f9ae74a640da83f3716efa2347dc",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Trust automatically increases",
+        "IsCorrect": false,
+        "ExternalOptionKey": "B",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.science-trust.b8c4e95099fd46bbbe76167a60dc3294"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.739b16a17b7843ed8c68d16ea2ae7660",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "durable",
+        "Ipa": "/\u02C8dj\u028A\u0259r\u0259bl/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "b\u1EC1n v\u1EEFng",
+        "Example": "Durable trust."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust",
+        "ParagraphId": "team.reading.c1.science-trust.122936845f764e408c48d43c9f201baa"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.76b82c933181455bba446f248eab758a",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "fringe",
+        "Ipa": "/fr\u026And\u0292/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "ngo\u00E0i l\u1EC1 / c\u1EF1c \u0111oan",
+        "Example": "Fringe interpretations."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust",
+        "ParagraphId": "team.reading.c1.science-trust.8e353807c98e4fd5a513917550ac699e"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.79bb0e1bb9244caab835f58fab7302e6",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "uncertainty",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp1",
+        "MatchKey": "p1",
+        "MatchSide": "Left",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.science-trust.35efcb1b05804a86950f96f21b752dff"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.87ebbb46b3964537a25c98abb2dac5bf",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "nuance",
+        "Ipa": "/\u02C8nju\u02D0\u0251\u02D0ns/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EAFc th\u00E1i tinh t\u1EBF",
+        "Example": "New data require nuance."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust",
+        "ParagraphId": "team.reading.c1.science-trust.8e353807c98e4fd5a513917550ac699e"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.8e353807c98e4fd5a513917550ac699e",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P3",
+        "ParagraphOrder": 3,
+        "ParagraphContent": "Social media rewards confident claims, which can amplify fringe interpretations that travel faster than careful caveats. Scientists who only broadcast absolute certainty may later struggle when new evidence requires nuance. The incentive structure of platforms therefore collides with the provisional nature of research, and performers of certainty often gain attention that careful researchers do not."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.90d3a01c0f78435e8af54a05f61a6f23",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "False",
+        "IsCorrect": false,
+        "ExternalOptionKey": "FALSE",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.science-trust.6b6cb28e02b6473e84708a667efffedd"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.9e8b5d26b36942e1a29a58b439505817",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "revision",
+        "Ipa": "/r\u026A\u02C8v\u026A\u0292n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 s\u1EEDa \u0111\u1ED5i",
+        "Example": "Treat revision as an update."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust",
+        "ParagraphId": "team.reading.c1.science-trust.2c9a41ba705a4ea1bcf2474f202c5ba9"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.a1206b4eaf1b415eb68439dddbecc58d",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "True",
+        "IsCorrect": true,
+        "ExternalOptionKey": "TRUE",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.science-trust.6b6cb28e02b6473e84708a667efffedd"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.a34547016bb0416086d0484560c6ae04",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Research funding stops",
+        "IsCorrect": false,
+        "ExternalOptionKey": "C",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.science-trust.b8c4e95099fd46bbbe76167a60dc3294"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.b1dbefc607474c3e9210824bdce6b655",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Revisions may look like contradictions",
+        "IsCorrect": true,
+        "ExternalOptionKey": "A",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.science-trust.b8c4e95099fd46bbbe76167a60dc3294"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.b20a4b8c97e14a63bbe45e159e3abe22",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "amplify",
+        "Ipa": "/\u02C8\u00E6mpl\u026Afa\u026A/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "khu\u1EBFch \u0111\u1EA1i",
+        "Example": "Amplify fringe interpretations."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust",
+        "ParagraphId": "team.reading.c1.science-trust.8e353807c98e4fd5a513917550ac699e"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.b52b9e79fe7842c0b6301622938dfa62",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "uy t\u00EDn",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp2",
+        "MatchKey": "p2",
+        "MatchSide": "Right",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.science-trust.35efcb1b05804a86950f96f21b752dff"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.b8c4e95099fd46bbbe76167a60dc3294",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What happens when uncertainty is communicated poorly?",
+        "OrderIndex": 1,
+        "ParagraphReference": "4",
+        "Explanation": "See the passage evidence.",
+        "EvidenceText": "Building durable trust depends less on never being wrong and more on showing how evidence is weighed, revised, and openly debated across time.",
+        "Paraphrase": "Revisions may look like contradictions",
+        "ExternalQuestionKey": "L1-Q1"
+      },
+      "references": {
+        "PassageId": "team.reading.c1.science-trust",
+        "EvidenceParagraphId": "team.reading.c1.science-trust.122936845f764e408c48d43c9f201baa"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.bf038d7933124c7e825bb7753fb04014",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "transparent",
+        "Ipa": "/tr\u00E6ns\u02C8p\u00E6r\u0259nt/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "minh b\u1EA1ch",
+        "Example": "Transparent methods."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust",
+        "ParagraphId": "team.reading.c1.science-trust.54345ffd6800437d914069448880aa68"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.c424670b338b4b22b3b18dae3234f39c",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "uncertainty",
+        "Ipa": "/\u028Cn\u02C8s\u025C\u02D0tnti/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 kh\u00F4ng ch\u1EAFc ch\u1EAFn",
+        "Example": "Communicate uncertainty clearly."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust",
+        "ParagraphId": "team.reading.c1.science-trust.2c9a41ba705a4ea1bcf2474f202c5ba9"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.c6878cc8bd01469183ef52918514adc2",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "credibility",
+        "Ipa": "/\u02CCkred\u0259\u02C8b\u026Al\u0259ti/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "uy t\u00EDn",
+        "Example": "Retain credibility."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust",
+        "ParagraphId": "team.reading.c1.science-trust.54345ffd6800437d914069448880aa68"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.c76a9ab9197a405d99cb34485e856d6d",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "limitation",
+        "Ipa": "/\u02CCl\u026Am\u026A\u02C8te\u026A\u0283n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "h\u1EA1n ch\u1EBF",
+        "Example": "Publish limitations."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust",
+        "ParagraphId": "team.reading.c1.science-trust.54345ffd6800437d914069448880aa68"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.e8300461d1d8489a8d5248906341cbdd",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "debate",
+        "Ipa": "/d\u026A\u02C8be\u026At/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "tranh lu\u1EADn",
+        "Example": "Openly debated."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust",
+        "ParagraphId": "team.reading.c1.science-trust.122936845f764e408c48d43c9f201baa"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.efb21c64e33640eb8806c27b28acb1f1",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P7",
+        "ParagraphOrder": 7,
+        "ParagraphContent": "Community organisations and schools can reinforce the same habits locally. Town meetings, classroom debates, and library talks that invite questions about evidence\u2014not only about conclusions\u2014train citizens to participate without demanding impossible certainty. Trust then becomes a shared practice rather than a one-way performance of authority from distant institutions. When these local habits spread, national messages about evidence face a public that already knows how to ask better questions. In that climate, scientific advice can be debated without being dismissed as either absolute truth or empty theatre for every contested policy choice. Citizens who practise those habits still disagree, yet they disagree about evidence rather than about whether experts deserve a seat at the table at all."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.f0100f78b5474b34b26468dbb85dc672",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Social media rewards _____ claims, which can amplify fringe interpretations.",
+        "OrderIndex": 3,
+        "QuestionType": "GapFill",
+        "ParagraphReference": "4",
+        "CorrectAnswerText": "confident",
+        "Explanation": "Fill the blank from the passage.",
+        "EvidenceText": "Building durable trust depends less on never being wrong and more on showing how evidence is weighed, revised, and openly debated across time.",
+        "ExternalQuestionKey": "L1-Q3"
+      },
+      "references": {
+        "PassageId": "team.reading.c1.science-trust",
+        "EvidenceParagraphId": "team.reading.c1.science-trust.122936845f764e408c48d43c9f201baa"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.f0fc9444b9964751b85befdd4cf3f319",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "institution",
+        "Ipa": "/\u02CC\u026Anst\u026A\u02C8tju\u02D0\u0283n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "t\u1ED5 ch\u1EE9c",
+        "Example": "Institutions publish findings."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c1.science-trust",
+        "ParagraphId": "team.reading.c1.science-trust.54345ffd6800437d914069448880aa68"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.f782aa069e4d4139b6e2e25e7423a43b",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "s\u1EF1 kh\u00F4ng ch\u1EAFc ch\u1EAFn",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp1",
+        "MatchKey": "p1",
+        "MatchSide": "Right",
+        "OptionOrder": 4
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.science-trust.35efcb1b05804a86950f96f21b752dff"
+      }
+    },
+    {
+      "key": "team.reading.c1.science-trust.fc865dfb0a474e69baea9a40b7bb1616",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "s\u1EAFc th\u00E1i tinh t\u1EBF",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp3",
+        "MatchKey": "p3",
+        "MatchSide": "Right",
+        "OptionOrder": 6
+      },
+      "references": {
+        "QuestionId": "team.reading.c1.science-trust.35efcb1b05804a86950f96f21b752dff"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "1f8b596658bd6218910bc27679e75bd3c71d945d7d24b87e2c06da12998def8c.jpg",
+      "sha256": "1f8b596658bd6218910bc27679e75bd3c71d945d7d24b87e2c06da12998def8c"
+    }
+  ],
+  "rootKey": "team.reading.c1.science-trust"
+}

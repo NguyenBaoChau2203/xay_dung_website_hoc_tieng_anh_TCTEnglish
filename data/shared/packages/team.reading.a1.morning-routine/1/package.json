@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "id": "team.reading.a1.morning-routine",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.reading.a1.morning-routine",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "My Morning Routine",
+        "Content": "I wake up at seven o\u0027clock every day. First I wash my face and brush my teeth. Then I put on clean clothes and drink a glass of water. My mother is already in the kitchen, and she smiles when she sees me.\n\nWe eat breakfast together at the table. I usually have bread, eggs, and milk. Sometimes I also eat fruit. After breakfast I pack my school bag and say goodbye. I walk to school with my sister. The morning is quiet and I feel happy.",
+        "Level": "A1",
+        "Topic": "Daily life",
+        "ImageUrl": "asset:129545572a4647fdc17f5688400f803134cbdc4c20c30048002e032031509bf1.jpg",
+        "IsPublished": true,
+        "Description": "A simple morning routine at home.",
+        "EstimatedTimeMinutes": 6,
+        "ExternalReadingKey": "RD-A1-007"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.reading.a1.morning-routine.0a1ffbb4d9fe46289efb70fb1508fd2a",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Go to bed again",
+        "IsCorrect": false,
+        "ExternalOptionKey": "B",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.morning-routine.51a2fa75973f4ce897b826166f9e03ad"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.3d3c41d92d4f4cec8a4e3bbb6f7b4cb4",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "True",
+        "IsCorrect": true,
+        "ExternalOptionKey": "TRUE",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.morning-routine.4f883b49eeb1491f8643894af53c478f"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.43e06f2330874804aaf983a4c11d23f9",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "wake up",
+        "Ipa": "/we\u026Ak \u028Cp/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "th\u1EE9c d\u1EADy",
+        "Example": "I wake up early."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.morning-routine",
+        "ParagraphId": "team.reading.a1.morning-routine.bb898645ae4743e5a96727e32843c2e5"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.490a076b8ed84eccab825974503d0258",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Drive a car",
+        "IsCorrect": false,
+        "ExternalOptionKey": "C",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.morning-routine.51a2fa75973f4ce897b826166f9e03ad"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.4f883b49eeb1491f8643894af53c478f",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "The writer walks to school after breakfast.",
+        "OrderIndex": 2,
+        "QuestionType": "TrueFalse",
+        "ParagraphReference": "2",
+        "Explanation": "Check the stated fact.",
+        "EvidenceText": "The morning is quiet and I feel happy.",
+        "ExternalQuestionKey": "L1-Q2"
+      },
+      "references": {
+        "PassageId": "team.reading.a1.morning-routine",
+        "EvidenceParagraphId": "team.reading.a1.morning-routine.703d56f7816742b88f48879dfe81eee0"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.51a2fa75973f4ce897b826166f9e03ad",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What does the writer do after waking up?",
+        "OrderIndex": 1,
+        "ParagraphReference": "2",
+        "Explanation": "See the passage evidence.",
+        "EvidenceText": "The morning is quiet and I feel happy.",
+        "Paraphrase": "Wash their face and brush their teeth",
+        "ExternalQuestionKey": "L1-Q1"
+      },
+      "references": {
+        "PassageId": "team.reading.a1.morning-routine",
+        "EvidenceParagraphId": "team.reading.a1.morning-routine.703d56f7816742b88f48879dfe81eee0"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.619d7829e07547ada725f2d2117e2179",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "b\u1EEFa s\u00E1ng",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp1",
+        "MatchKey": "p1",
+        "MatchSide": "Right",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.morning-routine.814123f3f22140a687984d78fdb2d57f"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.703d56f7816742b88f48879dfe81eee0",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P2",
+        "ParagraphOrder": 2,
+        "ParagraphContent": "We eat breakfast together at the table. I usually have bread, eggs, and milk. Sometimes I also eat fruit. After breakfast I pack my school bag and say goodbye. I walk to school with my sister. The morning is quiet and I feel happy."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.morning-routine"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.77138558e13f45528490df285a518014",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Wash their face and brush their teeth",
+        "IsCorrect": true,
+        "ExternalOptionKey": "A",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.morning-routine.51a2fa75973f4ce897b826166f9e03ad"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.7aab9506bf184db4baae4987c077fdb9",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "I wake up at _____ o\u0027clock every day.",
+        "OrderIndex": 3,
+        "QuestionType": "GapFill",
+        "ParagraphReference": "2",
+        "CorrectAnswerText": "seven",
+        "Explanation": "Fill the blank from the passage.",
+        "EvidenceText": "The morning is quiet and I feel happy.",
+        "ExternalQuestionKey": "L1-Q3"
+      },
+      "references": {
+        "PassageId": "team.reading.a1.morning-routine",
+        "EvidenceParagraphId": "team.reading.a1.morning-routine.703d56f7816742b88f48879dfe81eee0"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.814123f3f22140a687984d78fdb2d57f",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Match each English word with its Vietnamese meaning.",
+        "OrderIndex": 4,
+        "QuestionType": "Matching",
+        "ParagraphReference": "1",
+        "Explanation": "Match the pairs from the passage.",
+        "ExternalQuestionKey": "L1-Q4"
+      },
+      "references": {
+        "PassageId": "team.reading.a1.morning-routine",
+        "EvidenceParagraphId": "team.reading.a1.morning-routine.bb898645ae4743e5a96727e32843c2e5"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.8821d7ad6cfe4ec0910fe1f74a3fabdc",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "school",
+        "Ipa": "/sku\u02D0l/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "tr\u01B0\u1EDDng h\u1ECDc",
+        "Example": "Walk to school."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.morning-routine",
+        "ParagraphId": "team.reading.a1.morning-routine.703d56f7816742b88f48879dfe81eee0"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.8be367184d3c4611a6e44e538f802f99",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "quiet",
+        "Ipa": "/\u02C8kwa\u026A\u0259t/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "y\u00EAn t\u0129nh",
+        "Example": "A quiet morning."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.morning-routine",
+        "ParagraphId": "team.reading.a1.morning-routine.703d56f7816742b88f48879dfe81eee0"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.a8254eb3392f423291af7cd3c074e7b4",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "breakfast",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp1",
+        "MatchKey": "p1",
+        "MatchSide": "Left",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.morning-routine.814123f3f22140a687984d78fdb2d57f"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.b37b617687194e8a83a7a34436e0295f",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "False",
+        "IsCorrect": false,
+        "ExternalOptionKey": "FALSE",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.morning-routine.4f883b49eeb1491f8643894af53c478f"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.b968bfc9411146aa8054bffe4332c679",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "tr\u01B0\u1EDDng h\u1ECDc",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp2",
+        "MatchKey": "p2",
+        "MatchSide": "Right",
+        "OptionOrder": 4
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.morning-routine.814123f3f22140a687984d78fdb2d57f"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.bb898645ae4743e5a96727e32843c2e5",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P1",
+        "ParagraphOrder": 1,
+        "ParagraphContent": "I wake up at seven o\u0027clock every day. First I wash my face and brush my teeth. Then I put on clean clothes and drink a glass of water. My mother is already in the kitchen, and she smiles when she sees me."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.morning-routine"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.be92696659c940e4bc91179932c7f32f",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "school",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp2",
+        "MatchKey": "p2",
+        "MatchSide": "Left",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.a1.morning-routine.814123f3f22140a687984d78fdb2d57f"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.c1aec64674dc48e58e7300c954782585",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "breakfast",
+        "Ipa": "/\u02C8brekf\u0259st/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "b\u1EEFa s\u00E1ng",
+        "Example": "Eat breakfast."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.morning-routine",
+        "ParagraphId": "team.reading.a1.morning-routine.bb898645ae4743e5a96727e32843c2e5"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.c43ee3f2ed594b739860ac0242ac740c",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "How does the writer feel about the morning?",
+        "OrderIndex": 5,
+        "QuestionType": "ShortAnswer",
+        "ParagraphReference": "2",
+        "CorrectAnswerText": "quiet and happy",
+        "Explanation": "Answer briefly from the passage.",
+        "EvidenceText": "The morning is quiet and I feel happy.",
+        "Paraphrase": "quiet and happy",
+        "ExternalQuestionKey": "L1-Q5"
+      },
+      "references": {
+        "PassageId": "team.reading.a1.morning-routine",
+        "EvidenceParagraphId": "team.reading.a1.morning-routine.703d56f7816742b88f48879dfe81eee0"
+      }
+    },
+    {
+      "key": "team.reading.a1.morning-routine.e6f8e68f195146a8b974882cfdfe0b9b",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "brush",
+        "Ipa": "/br\u028C\u0283/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "\u0111\u00E1nh (r\u0103ng)",
+        "Example": "Brush your teeth."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.a1.morning-routine",
+        "ParagraphId": "team.reading.a1.morning-routine.bb898645ae4743e5a96727e32843c2e5"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "129545572a4647fdc17f5688400f803134cbdc4c20c30048002e032031509bf1.jpg",
+      "sha256": "129545572a4647fdc17f5688400f803134cbdc4c20c30048002e032031509bf1"
+    }
+  ],
+  "rootKey": "team.reading.a1.morning-routine"
+}

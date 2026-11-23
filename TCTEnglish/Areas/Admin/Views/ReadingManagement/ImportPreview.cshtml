@@ -88,9 +88,9 @@
 
     @if (Model.HasImportableReadings)
     {
-        <div class="alert alert-success">
+        <div class="admin-reading-preview-banner mb-4" role="status">
             <i class="fa-solid fa-circle-check me-1" aria-hidden="true"></i>
-            Có <strong>@Model.ValidReadings.Count</strong> bài hợp lệ sẵn sàng Import (partial import).
+            Có <strong>@Model.ValidReadings.Count</strong> bài hợp lệ sẵn sàng Import (partial import — bài lỗi bị bỏ qua).
         </div>
 
         <div class="admin-reading-card overflow-hidden mb-4">
@@ -121,7 +121,13 @@
                                     <span class="text-muted small">Không ảnh</span>
                                 }
                             </td>
-                            <td data-label="ReadingCode">@r.ExternalReadingKey</td>
+                            <td data-label="ReadingCode">
+                                <div>@r.ExternalReadingKey</div>
+                                @if (!string.IsNullOrWhiteSpace(r.ImportFileReadingCode))
+                                {
+                                    <div class="small text-muted">Mã file: <code>@r.ImportFileReadingCode</code></div>
+                                }
+                            </td>
                             <td data-label="Tiêu đề">@r.Title</td>
                             <td data-label="CEFR"><span class="admin-reading-level">@r.Level</span></td>
                             <td data-label="Đoạn">@r.Paragraphs.Count</td>

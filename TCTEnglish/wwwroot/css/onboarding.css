@@ -113,6 +113,23 @@ body.tob-open .ai-launcher { display: none; }
     cursor: pointer;
 }
 .tob-root .tob-choice[aria-checked="true"] { border-color: var(--tct-primary); background: var(--tct-primary-tint); box-shadow: var(--tct-clay-shadow); }
+.tob-root .tob-choice--photo {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+}
+.tob-root .tob-choice__img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: var(--tct-surface-muted);
+}
+.tob-root .tob-choice__body {
+    display: block;
+    padding: var(--tct-space-md);
+}
 .tob-root .tob-choice__icon { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; margin-bottom: var(--tct-space-sm); border-radius: var(--tct-radius-md); background: var(--tct-primary-soft); color: var(--tct-primary-strong); }
 .tob-root .tob-choice__icon--communication { background: var(--tct-info-soft); color: var(--tct-info-text); }
 .tob-root .tob-choice__icon--travel { background: var(--tct-primary-soft); color: var(--tct-primary-strong); }

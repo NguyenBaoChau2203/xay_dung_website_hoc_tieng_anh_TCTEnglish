@@ -6146,3 +6146,18 @@ blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 
 **Verification**: `test_staging_release.py` (21/21 pass), `test_deploy_tools.py` (18/18 pass).
 
+
+### PR 144 integration — 2026-11-23
+
+The Class Razor build failed because BrowseClasses was checked in without its
+ViewModel or routes. Preserve the established Class list/detail and navigation.
+The shared feedback component still serves Reading. The draft edit also deleted
+persisted learner answers before replacing questions. Refuse question replacement
+when an attempt exists, before an edit saves any metadata, and verify that the
+attempt, answer, question and original title are retained.
+
+A new preview of the same workbook allocated a different code, so confirmation
+could not detect the first import. Compare lesson content independent of the
+proposed code, reuse the catalog database lock for confirmation, and allocate
+a final code only for a distinct draft. Verified sequential and parallel
+confirmation using MariaDB 10.5.23 without changing the schema.

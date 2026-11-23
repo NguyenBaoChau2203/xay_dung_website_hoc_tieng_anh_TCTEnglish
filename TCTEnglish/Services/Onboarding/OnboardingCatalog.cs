@@ -1,7 +1,11 @@
 namespace TCTEnglish.Services.Onboarding;
 
 /// <summary>One learning goal the learner can pick in step 1. Title and description are the literal UI copy.</summary>
-public sealed record OnboardingGoal(string Key, string Title, string Description, string Icon);
+public sealed record OnboardingGoal(string Key, string Title, string Description, string Icon)
+{
+    /// <summary>Curated real stock photo shipped under wwwroot for the goal card.</summary>
+    public string Photo => $"/images/onboarding/goals/{Key}.jpg";
+}
 
 /// <summary>One system vocabulary set offered as a topic in step 2. <see cref="Key"/> is the set code (A01..C08).</summary>
 public sealed record OnboardingTopic(string Key, string SetName)

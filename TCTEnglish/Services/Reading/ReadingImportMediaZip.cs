@@ -54,10 +54,21 @@ public static class ReadingImportMediaZip
             return;
         }
 
-        var byCode = readings
-            .Where(r => !string.IsNullOrWhiteSpace(r.ExternalReadingKey))
-            .GroupBy(r => r.ExternalReadingKey!.Trim(), StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
+        // Match ZIP root names to the Excel file ReadingCode (before auto-remap), falling back to final key.
+        var byCode = new Dictionary<string, ReadingEditorViewModel>(StringComparer.OrdinalIgnoreCase);
+        foreach (var reading in readings)
+        {
+            void Map(string? code)
+            {
+                if (string.IsNullOrWhiteSpace(code)) return;
+                var key = code.Trim();
+                if (!byCode.ContainsKey(key))
+                    byCode[key] = reading;
+            }
+
+            Map(reading.ImportFileReadingCode);
+            Map(reading.ExternalReadingKey);
+        }
 
         var matched = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 

@@ -6,16 +6,27 @@
         step == current ? "is-active" : "";
 }
 <nav class="admin-reading-steps" aria-label="Các bước Import">
-    <div class="admin-reading-step @StepClass(1)" aria-current="@(current == 1 ? "step" : null)">
-        <span class="admin-reading-step-num">1</span>
-        <span>Excel + ảnh</span>
-    </div>
-    <div class="admin-reading-step @StepClass(2)" aria-current="@(current == 2 ? "step" : null)">
-        <span class="admin-reading-step-num">2</span>
-        <span>Xem trước</span>
-    </div>
-    <div class="admin-reading-step @StepClass(3)" aria-current="@(current == 3 ? "step" : null)">
-        <span class="admin-reading-step-num">3</span>
-        <span>Kết quả</span>
-    </div>
+    <ol class="admin-reading-steps-list">
+        <li class="admin-reading-step @StepClass(1)" aria-current="@(current == 1 ? "step" : null)">
+            <span class="admin-reading-step-num" aria-hidden="true">1</span>
+            <span class="admin-reading-step-label">
+                <span class="admin-reading-step-title">Excel + ảnh</span>
+                <span class="admin-reading-step-hint">Tải template và file</span>
+            </span>
+        </li>
+        <li class="admin-reading-step @StepClass(2)" aria-current="@(current == 2 ? "step" : null)">
+            <span class="admin-reading-step-num" aria-hidden="true">2</span>
+            <span class="admin-reading-step-label">
+                <span class="admin-reading-step-title">Xem trước</span>
+                <span class="admin-reading-step-hint">Kiểm tra bài hợp lệ</span>
+            </span>
+        </li>
+        <li class="admin-reading-step @StepClass(3)" aria-current="@(current == 3 ? "step" : null)">
+            <span class="admin-reading-step-num" aria-hidden="true">3</span>
+            <span class="admin-reading-step-label">
+                <span class="admin-reading-step-title">Kết quả</span>
+                <span class="admin-reading-step-hint">Bản nháp đã tạo</span>
+            </span>
+        </li>
+    </ol>
 </nav>

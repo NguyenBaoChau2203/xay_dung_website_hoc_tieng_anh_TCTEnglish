@@ -96,9 +96,11 @@ public sealed class OnboardingRenderTests
         Assert.Equal(48, catalog.GetProperty("topics").GetArrayLength());
         var fruit = catalog.GetProperty("topics").EnumerateArray().Single(t => t.GetProperty("key").GetString() == "A03");
         Assert.Equal("Trái cây", fruit.GetProperty("name").GetString());
-        Assert.StartsWith("/uploads/shared/", fruit.GetProperty("cover").GetString());
-        var noSet = catalog.GetProperty("topics").EnumerateArray().Single(t => t.GetProperty("key").GetString() == "B03");
-        Assert.Equal(JsonValueKind.Null, noSet.GetProperty("cover").ValueKind);
+        Assert.Equal("/images/onboarding/covers/A03.jpg", fruit.GetProperty("cover").GetString());
+        var environment = catalog.GetProperty("topics").EnumerateArray().Single(t => t.GetProperty("key").GetString() == "B03");
+        Assert.Equal("/images/onboarding/covers/B03.jpg", environment.GetProperty("cover").GetString());
+        var travel = catalog.GetProperty("goals").EnumerateArray().Single(g => g.GetProperty("key").GetString() == "travel");
+        Assert.Equal("/images/onboarding/goals/travel.jpg", travel.GetProperty("photo").GetString());
     }
 
     [Fact]
@@ -125,6 +127,10 @@ public sealed class OnboardingRenderTests
         Assert.Equal(48, json.GetProperty("topics").GetArrayLength());
         Assert.Equal(6, json.GetProperty("goals").GetArrayLength());
         Assert.True(json.GetProperty("welcome").GetArrayLength() >= 1);
+        Assert.All(json.GetProperty("topics").EnumerateArray(), t =>
+            Assert.StartsWith("/images/onboarding/covers/", t.GetProperty("cover").GetString()));
+        Assert.All(json.GetProperty("goals").EnumerateArray(), g =>
+            Assert.StartsWith("/images/onboarding/goals/", g.GetProperty("photo").GetString()));
 
         using var anonymous = IntegrationTestClientHelper.CreateAnonymousClient(factory);
         using var guest = await anonymous.GetAsync("/api/onboarding/catalog");

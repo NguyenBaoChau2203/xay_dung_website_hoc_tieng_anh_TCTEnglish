@@ -1,0 +1,516 @@
+{
+  "schemaVersion": 1,
+  "id": "team.reading.b2.digital-news",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.reading.b2.digital-news",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "Reading News in the Digital Age",
+        "Content": "Digital platforms deliver headlines within seconds, but speed often comes before careful checking. Readers may share a dramatic claim before reading the full article, especially when the title matches their existing beliefs. That habit turns partial information into social currency and rewards urgency over accuracy in everyday conversation.\n\nA practical habit is to identify the publisher, the date, and whether the piece separates facts from opinion. Looking for original sources is more useful than trusting a viral summary that strips away context. Even a short pause can change what people decide to forward to friends or post in a group chat where corrections rarely travel as far.\n\nVisuals can also mislead when old photos are reused for new events. Reverse image search and careful caption reading reduce that risk, though they take more effort than a quick scroll. Media producers know that striking images travel faster than careful explanations, which is why dramatic pictures often appear beside thin reporting.\n\nMedia literacy does not mean rejecting all news; it means slowing down enough to ask who benefits from a story and what evidence supports it. Readers who practise that discipline stay informed without becoming easy targets for exaggeration. Schools and workplaces can treat this skill as civic competence rather than optional hobby.\n\nIn group chats, a useful norm is to separate sharing from endorsement. People can pass along a link while noting what still needs checking, which lowers the social cost of caution. Over time, communities that reward careful reading produce fewer cascading errors than communities that reward only speed and dramatic certainty in every forward.\n\nPublic figures amplify these dynamics when they treat corrections as weakness. A healthier media culture treats revision as normal intellectual hygiene. Readers then learn that changing a conclusion after better evidence arrives is a strength of responsible reporting, not a personal failure.",
+        "Level": "B2",
+        "Topic": "Media literacy",
+        "ImageUrl": "asset:7a856d2fdee49819e59a3b780bb72ac9cf0d702c693b7341e21155488f1a1db4.jpg",
+        "IsPublished": true,
+        "Description": "How readers can evaluate online news carefully.",
+        "EstimatedTimeMinutes": 18,
+        "ExternalReadingKey": "RD-B2-004"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.reading.b2.digital-news.091ab4765c5d4d9588483ebcd0e5fbb8",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P2",
+        "ParagraphOrder": 2,
+        "ParagraphContent": "A practical habit is to identify the publisher, the date, and whether the piece separates facts from opinion. Looking for original sources is more useful than trusting a viral summary that strips away context. Even a short pause can change what people decide to forward to friends or post in a group chat where corrections rarely travel as far."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.1b37ba1513914806b8a589b2d7df8801",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "People may share claims before reading fully",
+        "IsCorrect": true,
+        "ExternalOptionKey": "A",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.digital-news.497c26108ea3459b8e8568bbf4074562"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.1b3baa1e9b464d90813f0e9bb26c6e54",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "opinion",
+        "Ipa": "/\u0259\u02C8p\u026Anj\u0259n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "\u00FD ki\u1EBFn",
+        "Example": "Separate facts from opinion."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news",
+        "ParagraphId": "team.reading.b2.digital-news.091ab4765c5d4d9588483ebcd0e5fbb8"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.223ac364581f46d9b8ec213ead084b6b",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "headline",
+        "Ipa": "/\u02C8hedla\u026An/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "ti\u00EAu \u0111\u1EC1",
+        "Example": "Digital headlines arrive fast."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news",
+        "ParagraphId": "team.reading.b2.digital-news.dbb55954c17247c0a85299595d1809ae"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.2a06dd6881f246dead512574bdae4d6d",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Newspapers stop printing",
+        "IsCorrect": false,
+        "ExternalOptionKey": "B",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.digital-news.497c26108ea3459b8e8568bbf4074562"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.2b58688706954eaabbea7f4e7fa75709",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Old photos can be reused for new events.",
+        "OrderIndex": 2,
+        "QuestionType": "TrueFalse",
+        "ParagraphReference": "4",
+        "Explanation": "Check the stated fact.",
+        "EvidenceText": "Media literacy does not mean rejecting all news; it means slowing down enough to ask who benefits from a story and what evidence supports it.",
+        "ExternalQuestionKey": "L2-Q2"
+      },
+      "references": {
+        "PassageId": "team.reading.b2.digital-news",
+        "EvidenceParagraphId": "team.reading.b2.digital-news.35604e52b8464a9c9f59f0f2f5418818"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.2cdcc79cb05742729e4076cbb4a691c8",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "claim",
+        "Ipa": "/kle\u026Am/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "tuy\u00EAn b\u1ED1",
+        "Example": "A dramatic claim."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news",
+        "ParagraphId": "team.reading.b2.digital-news.dbb55954c17247c0a85299595d1809ae"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.35604e52b8464a9c9f59f0f2f5418818",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P4",
+        "ParagraphOrder": 4,
+        "ParagraphContent": "Media literacy does not mean rejecting all news; it means slowing down enough to ask who benefits from a story and what evidence supports it. Readers who practise that discipline stay informed without becoming easy targets for exaggeration. Schools and workplaces can treat this skill as civic competence rather than optional hobby."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.38018700b693405893d7842c21c27093",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "mislead",
+        "Ipa": "/\u02CCm\u026As\u02C8li\u02D0d/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "g\u00E2y hi\u1EC3u nh\u1EA7m",
+        "Example": "Visuals can mislead."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news",
+        "ParagraphId": "team.reading.b2.digital-news.b63b5420fce8491e8e6326b1ad3652f5"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.3dfa7194244e4548a9525cffd882f6d2",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "nh\u00E0 xu\u1EA5t b\u1EA3n",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp2",
+        "MatchKey": "p2",
+        "MatchSide": "Right",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.digital-news.44024e7f645e4469b765b42b64a3ceeb"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.40f317d4a63c48e4b4b8568912cc73af",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "source",
+        "Ipa": "/s\u0254\u02D0s/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "ngu\u1ED3n",
+        "Example": "Original sources."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news",
+        "ParagraphId": "team.reading.b2.digital-news.091ab4765c5d4d9588483ebcd0e5fbb8"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.44024e7f645e4469b765b42b64a3ceeb",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Match each English word with its Vietnamese meaning.",
+        "OrderIndex": 4,
+        "QuestionType": "Matching",
+        "ParagraphReference": "1",
+        "Explanation": "Match the pairs from the passage.",
+        "ExternalQuestionKey": "L2-Q4"
+      },
+      "references": {
+        "PassageId": "team.reading.b2.digital-news",
+        "EvidenceParagraphId": "team.reading.b2.digital-news.dbb55954c17247c0a85299595d1809ae"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.472aa7ad3144478bab0c86b92e8abe93",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Readers never see images",
+        "IsCorrect": false,
+        "ExternalOptionKey": "C",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.digital-news.497c26108ea3459b8e8568bbf4074562"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.497c26108ea3459b8e8568bbf4074562",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What problem comes with fast digital headlines?",
+        "OrderIndex": 1,
+        "ParagraphReference": "4",
+        "Explanation": "See the passage evidence.",
+        "EvidenceText": "Media literacy does not mean rejecting all news; it means slowing down enough to ask who benefits from a story and what evidence supports it.",
+        "Paraphrase": "People may share claims before reading fully",
+        "ExternalQuestionKey": "L2-Q1"
+      },
+      "references": {
+        "PassageId": "team.reading.b2.digital-news",
+        "EvidenceParagraphId": "team.reading.b2.digital-news.35604e52b8464a9c9f59f0f2f5418818"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.6b936988c05f4340bbb08bc475ea5c20",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "caption",
+        "Ipa": "/\u02C8k\u00E6p\u0283n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "ch\u00FA th\u00EDch \u1EA3nh",
+        "Example": "Read the caption."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news",
+        "ParagraphId": "team.reading.b2.digital-news.b63b5420fce8491e8e6326b1ad3652f5"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.814e164a0bfa4e3cad5ce02bb4c086c4",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "caption",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp3",
+        "MatchKey": "p3",
+        "MatchSide": "Left",
+        "OptionOrder": 5
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.digital-news.44024e7f645e4469b765b42b64a3ceeb"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.8187e27ff6974ed692a93b17b171232b",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "publisher",
+        "Ipa": "/\u02C8p\u028Cbl\u026A\u0283\u0259/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "nh\u00E0 xu\u1EA5t b\u1EA3n",
+        "Example": "Identify the publisher."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news",
+        "ParagraphId": "team.reading.b2.digital-news.091ab4765c5d4d9588483ebcd0e5fbb8"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.892876b6b1e942a0a1ab9518354f0853",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "False",
+        "IsCorrect": false,
+        "ExternalOptionKey": "FALSE",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.digital-news.2b58688706954eaabbea7f4e7fa75709"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.8be215437b084a229628ae1fb784acaf",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "viral",
+        "Ipa": "/\u02C8va\u026Ar\u0259l/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "lan truy\u1EC1n m\u1EA1nh",
+        "Example": "A viral summary."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news",
+        "ParagraphId": "team.reading.b2.digital-news.091ab4765c5d4d9588483ebcd0e5fbb8"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.8bf754c9fa2f4e0c99d3ba1af5b9e65e",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What does media literacy mean according to the text?",
+        "OrderIndex": 5,
+        "QuestionType": "ShortAnswer",
+        "ParagraphReference": "4",
+        "CorrectAnswerText": "slowing down to check who benefits and what evidence supports a story",
+        "Explanation": "Answer briefly from the passage.",
+        "EvidenceText": "Media literacy does not mean rejecting all news; it means slowing down enough to ask who benefits from a story and what evidence supports it.",
+        "Paraphrase": "slowing down to check who benefits and what evidence supports a story",
+        "ExternalQuestionKey": "L2-Q5"
+      },
+      "references": {
+        "PassageId": "team.reading.b2.digital-news",
+        "EvidenceParagraphId": "team.reading.b2.digital-news.35604e52b8464a9c9f59f0f2f5418818"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.9723ee5075414d4c817f8e29bfe0f164",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "True",
+        "IsCorrect": true,
+        "ExternalOptionKey": "TRUE",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.digital-news.2b58688706954eaabbea7f4e7fa75709"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.a2b8c1d6121d404287d3cdc0609af3e3",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "evidence",
+        "Ipa": "/\u02C8ev\u026Ad\u0259ns/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "b\u1EB1ng ch\u1EE9ng",
+        "Example": "What evidence supports it."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news",
+        "ParagraphId": "team.reading.b2.digital-news.35604e52b8464a9c9f59f0f2f5418818"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.a97ff37f5f5f40eda0fc097d854fe14b",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "ch\u00FA th\u00EDch \u1EA3nh",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp3",
+        "MatchKey": "p3",
+        "MatchSide": "Right",
+        "OptionOrder": 6
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.digital-news.44024e7f645e4469b765b42b64a3ceeb"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.aa6020f41fd54bf39be0bb468db7ea42",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "literacy",
+        "Ipa": "/\u02C8l\u026At\u0259r\u0259si/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "n\u0103ng l\u1EF1c hi\u1EC3u bi\u1EBFt",
+        "Example": "Media literacy."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news",
+        "ParagraphId": "team.reading.b2.digital-news.35604e52b8464a9c9f59f0f2f5418818"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.adf1b923b6a744d389238303a4003866",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P5",
+        "ParagraphOrder": 5,
+        "ParagraphContent": "In group chats, a useful norm is to separate sharing from endorsement. People can pass along a link while noting what still needs checking, which lowers the social cost of caution. Over time, communities that reward careful reading produce fewer cascading errors than communities that reward only speed and dramatic certainty in every forward."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.b63b5420fce8491e8e6326b1ad3652f5",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P3",
+        "ParagraphOrder": 3,
+        "ParagraphContent": "Visuals can also mislead when old photos are reused for new events. Reverse image search and careful caption reading reduce that risk, though they take more effort than a quick scroll. Media producers know that striking images travel faster than careful explanations, which is why dramatic pictures often appear beside thin reporting."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.c778a55b7bc94ee4ab628d73f6e74364",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P6",
+        "ParagraphOrder": 6,
+        "ParagraphContent": "Public figures amplify these dynamics when they treat corrections as weakness. A healthier media culture treats revision as normal intellectual hygiene. Readers then learn that changing a conclusion after better evidence arrives is a strength of responsible reporting, not a personal failure."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.dbb55954c17247c0a85299595d1809ae",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P1",
+        "ParagraphOrder": 1,
+        "ParagraphContent": "Digital platforms deliver headlines within seconds, but speed often comes before careful checking. Readers may share a dramatic claim before reading the full article, especially when the title matches their existing beliefs. That habit turns partial information into social currency and rewards urgency over accuracy in everyday conversation."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.digital-news"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.dfb30f2d97c141b0b5956b55b5fe4f69",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "evidence",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp4",
+        "MatchKey": "p4",
+        "MatchSide": "Left",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.digital-news.44024e7f645e4469b765b42b64a3ceeb"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.ee601d9d44034e39b41abf679a715115",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "publisher",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp2",
+        "MatchKey": "p2",
+        "MatchSide": "Left",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.digital-news.44024e7f645e4469b765b42b64a3ceeb"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.ef43498da9184cbfad8ad4e924821e19",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "b\u1EB1ng ch\u1EE9ng",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp4",
+        "MatchKey": "p4",
+        "MatchSide": "Right",
+        "OptionOrder": 4
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.digital-news.44024e7f645e4469b765b42b64a3ceeb"
+      }
+    },
+    {
+      "key": "team.reading.b2.digital-news.f792f928e56e48a38e3f756af998d573",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Looking for original _____ is more useful than trusting a viral summary.",
+        "OrderIndex": 3,
+        "QuestionType": "GapFill",
+        "ParagraphReference": "4",
+        "CorrectAnswerText": "sources",
+        "Explanation": "Fill the blank from the passage.",
+        "EvidenceText": "Media literacy does not mean rejecting all news; it means slowing down enough to ask who benefits from a story and what evidence supports it.",
+        "ExternalQuestionKey": "L2-Q3"
+      },
+      "references": {
+        "PassageId": "team.reading.b2.digital-news",
+        "EvidenceParagraphId": "team.reading.b2.digital-news.35604e52b8464a9c9f59f0f2f5418818"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "7a856d2fdee49819e59a3b780bb72ac9cf0d702c693b7341e21155488f1a1db4.jpg",
+      "sha256": "7a856d2fdee49819e59a3b780bb72ac9cf0d702c693b7341e21155488f1a1db4"
+    }
+  ],
+  "rootKey": "team.reading.b2.digital-news"
+}

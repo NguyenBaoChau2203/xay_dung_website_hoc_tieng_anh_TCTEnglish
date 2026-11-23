@@ -1,0 +1,458 @@
+{
+  "schemaVersion": 1,
+  "id": "team.reading.b1.smartphone-study",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.reading.b1.smartphone-study",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "Smartphones in Daily Study",
+        "Content": "Many students use smartphones to check dictionaries, watch short lessons, and join online study groups. These tools can save time and make learning more flexible after class, especially when teachers share notes digitally. For some learners, a phone has become as common as a notebook, and they feel lost without it during homework.\n\nAt the same time, notifications often break concentration. Some learners spend long minutes on social media instead of finishing homework. Games and chat apps make it easy to forget the original plan. Setting app limits is one practical solution, and turning off non-study alerts during evening review can help. Clear goals make phone use more purposeful and less random.\n\nTeachers suggest using phones only for clear study goals, such as reviewing vocabulary lists or recording spoken practice. When students plan phone breaks, they keep better focus and still enjoy useful technology. Parents can agree on shared rules at home.\n\nBalance, not total ban, seems to work best for most classes that want both discipline and modern tools. Students who practise that balance often finish tasks faster and feel less stressed about missing messages during quiet study time at night before important exams. Many teachers now discuss these habits openly in class.",
+        "Level": "B1",
+        "Topic": "Technology",
+        "ImageUrl": "asset:e2ccdf82921083a7546fa14c6253c7c3b7c48ea07a0907636b55d45b3ae183c0.jpg",
+        "IsPublished": true,
+        "Description": "How smartphones help and distract students.",
+        "EstimatedTimeMinutes": 12,
+        "ExternalReadingKey": "RD-B1-004"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.065774fdad6a47549eb60b6234542701",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "s\u1EF1 t\u1EADp trung",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp3",
+        "MatchKey": "p3",
+        "MatchSide": "Right",
+        "OptionOrder": 6
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.smartphone-study.7a3d9ca911e8418ba5fce4f05471605a"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.0cd637c574a14d91bd56d4cfc2a12b61",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What do teachers suggest phones should be used for?",
+        "OrderIndex": 5,
+        "QuestionType": "ShortAnswer",
+        "ParagraphReference": "3",
+        "CorrectAnswerText": "clear study goals",
+        "Explanation": "Answer briefly from the passage.",
+        "EvidenceText": "Teachers suggest using phones only for clear study goals, such as reviewing vocabulary lists or recording spoken practice.",
+        "Paraphrase": "clear study goals",
+        "ExternalQuestionKey": "L2-Q5"
+      },
+      "references": {
+        "PassageId": "team.reading.b1.smartphone-study",
+        "EvidenceParagraphId": "team.reading.b1.smartphone-study.5acff80a731e41bebc151288ced14565"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.10dcd70edfdc4296a6b12a59978b9391",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "notification",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp2",
+        "MatchKey": "p2",
+        "MatchSide": "Left",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.smartphone-study.7a3d9ca911e8418ba5fce4f05471605a"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.1703cf0f2cd942d096edb75b60343531",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "practical",
+        "Ipa": "/\u02C8pr\u00E6kt\u026Akl/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "th\u1EF1c t\u1EBF",
+        "Example": "A practical solution."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.smartphone-study",
+        "ParagraphId": "team.reading.b1.smartphone-study.24ae8c7380374d6f97deb3f461a6d309"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.18ad3f067c084c0b9bb0cd75c9c65179",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "False",
+        "IsCorrect": false,
+        "ExternalOptionKey": "FALSE",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.smartphone-study.424a031ecc0c441ebb1578bceacbef01"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.24ae8c7380374d6f97deb3f461a6d309",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P2",
+        "ParagraphOrder": 2,
+        "ParagraphContent": "At the same time, notifications often break concentration. Some learners spend long minutes on social media instead of finishing homework. Games and chat apps make it easy to forget the original plan. Setting app limits is one practical solution, and turning off non-study alerts during evening review can help. Clear goals make phone use more purposeful and less random."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.smartphone-study"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.424a031ecc0c441ebb1578bceacbef01",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Notifications can break concentration.",
+        "OrderIndex": 2,
+        "QuestionType": "TrueFalse",
+        "ParagraphReference": "3",
+        "Explanation": "Check the stated fact.",
+        "EvidenceText": "Teachers suggest using phones only for clear study goals, such as reviewing vocabulary lists or recording spoken practice.",
+        "ExternalQuestionKey": "L2-Q2"
+      },
+      "references": {
+        "PassageId": "team.reading.b1.smartphone-study",
+        "EvidenceParagraphId": "team.reading.b1.smartphone-study.5acff80a731e41bebc151288ced14565"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.467492fac1ea41ca9809152c4d6aeb28",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "concentration",
+        "Ipa": "/\u02CCk\u0252nsn\u02C8tre\u026A\u0283n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 t\u1EADp trung",
+        "Example": "Break concentration."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.smartphone-study",
+        "ParagraphId": "team.reading.b1.smartphone-study.24ae8c7380374d6f97deb3f461a6d309"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.4941daa246bf46a39b42b5d82cc68dea",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P1",
+        "ParagraphOrder": 1,
+        "ParagraphContent": "Many students use smartphones to check dictionaries, watch short lessons, and join online study groups. These tools can save time and make learning more flexible after class, especially when teachers share notes digitally. For some learners, a phone has become as common as a notebook, and they feel lost without it during homework."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.smartphone-study"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.4aadde63f12b420b87e36a2ec4d4781d",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What is one benefit of smartphones for students?",
+        "OrderIndex": 1,
+        "ParagraphReference": "3",
+        "Explanation": "See the passage evidence.",
+        "EvidenceText": "Teachers suggest using phones only for clear study goals, such as reviewing vocabulary lists or recording spoken practice.",
+        "Paraphrase": "Flexible learning after class",
+        "ExternalQuestionKey": "L2-Q1"
+      },
+      "references": {
+        "PassageId": "team.reading.b1.smartphone-study",
+        "EvidenceParagraphId": "team.reading.b1.smartphone-study.5acff80a731e41bebc151288ced14565"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.505611ed88744a229d689f3a74293061",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "th\u00F4ng b\u00E1o",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp2",
+        "MatchKey": "p2",
+        "MatchSide": "Right",
+        "OptionOrder": 4
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.smartphone-study.7a3d9ca911e8418ba5fce4f05471605a"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.589e13e416e84759afe582366dbe04df",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Less homework",
+        "IsCorrect": false,
+        "ExternalOptionKey": "C",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.smartphone-study.4aadde63f12b420b87e36a2ec4d4781d"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.5acff80a731e41bebc151288ced14565",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P3",
+        "ParagraphOrder": 3,
+        "ParagraphContent": "Teachers suggest using phones only for clear study goals, such as reviewing vocabulary lists or recording spoken practice. When students plan phone breaks, they keep better focus and still enjoy useful technology. Parents can agree on shared rules at home."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.smartphone-study"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.6b69853caad046e69f4a3920ccd6b9cc",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "limit",
+        "Ipa": "/\u02C8l\u026Am\u026At/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "gi\u1EDBi h\u1EA1n",
+        "Example": "App limits help."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.smartphone-study",
+        "ParagraphId": "team.reading.b1.smartphone-study.24ae8c7380374d6f97deb3f461a6d309"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.78c41aa753d944e3baadc7bd440948ea",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "t\u1EEB \u0111i\u1EC3n",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp1",
+        "MatchKey": "p1",
+        "MatchSide": "Right",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.smartphone-study.7a3d9ca911e8418ba5fce4f05471605a"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.7a3d9ca911e8418ba5fce4f05471605a",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Match each English word with its Vietnamese meaning.",
+        "OrderIndex": 4,
+        "QuestionType": "Matching",
+        "ParagraphReference": "1",
+        "Explanation": "Match the pairs from the passage.",
+        "ExternalQuestionKey": "L2-Q4"
+      },
+      "references": {
+        "PassageId": "team.reading.b1.smartphone-study",
+        "EvidenceParagraphId": "team.reading.b1.smartphone-study.4941daa246bf46a39b42b5d82cc68dea"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.8b0b76f2c9974eb89b6885980e0cc8d7",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "notification",
+        "Ipa": "/\u02CCn\u0259\u028At\u026Af\u026A\u02C8ke\u026A\u0283n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "th\u00F4ng b\u00E1o",
+        "Example": "Notifications break focus."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.smartphone-study",
+        "ParagraphId": "team.reading.b1.smartphone-study.24ae8c7380374d6f97deb3f461a6d309"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.8c7ea205a3e9427e89e5e556867be07d",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Setting app _____ is one practical solution.",
+        "OrderIndex": 3,
+        "QuestionType": "GapFill",
+        "ParagraphReference": "3",
+        "CorrectAnswerText": "limits",
+        "Explanation": "Fill the blank from the passage.",
+        "EvidenceText": "Teachers suggest using phones only for clear study goals, such as reviewing vocabulary lists or recording spoken practice.",
+        "ExternalQuestionKey": "L2-Q3"
+      },
+      "references": {
+        "PassageId": "team.reading.b1.smartphone-study",
+        "EvidenceParagraphId": "team.reading.b1.smartphone-study.5acff80a731e41bebc151288ced14565"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.8ec1489ba9b948b9a6da01f0d14a201f",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "focus",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp3",
+        "MatchKey": "p3",
+        "MatchSide": "Left",
+        "OptionOrder": 5
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.smartphone-study.7a3d9ca911e8418ba5fce4f05471605a"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.90d016a93c1d417f8c4a16dfbc028fcf",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Free cinema tickets",
+        "IsCorrect": false,
+        "ExternalOptionKey": "B",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.smartphone-study.4aadde63f12b420b87e36a2ec4d4781d"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.9d6a61adc4924265a5b60688c5a39ba9",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Flexible learning after class",
+        "IsCorrect": true,
+        "ExternalOptionKey": "A",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.smartphone-study.4aadde63f12b420b87e36a2ec4d4781d"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.a0be4702aa934954bdd1f7aeede6502d",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "dictionary",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp1",
+        "MatchKey": "p1",
+        "MatchSide": "Left",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.smartphone-study.7a3d9ca911e8418ba5fce4f05471605a"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.a83baab69de1424e9a18265ca5e20996",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P4",
+        "ParagraphOrder": 4,
+        "ParagraphContent": "Balance, not total ban, seems to work best for most classes that want both discipline and modern tools. Students who practise that balance often finish tasks faster and feel less stressed about missing messages during quiet study time at night before important exams. Many teachers now discuss these habits openly in class."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.smartphone-study"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.b07caa2d4fdd458eaadd723f591c681f",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "True",
+        "IsCorrect": true,
+        "ExternalOptionKey": "TRUE",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.b1.smartphone-study.424a031ecc0c441ebb1578bceacbef01"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.c4b1dfc0683f4aeeb1cf38f95d80a56a",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "review",
+        "Ipa": "/r\u026A\u02C8vju\u02D0/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "\u00F4n t\u1EADp",
+        "Example": "Review vocabulary lists."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.smartphone-study",
+        "ParagraphId": "team.reading.b1.smartphone-study.5acff80a731e41bebc151288ced14565"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.c61cf4dac43a4e228877fa6c72c4b977",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "smartphone",
+        "Ipa": "/\u02C8sm\u0251\u02D0tf\u0259\u028An/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "\u0111i\u1EC7n tho\u1EA1i th\u00F4ng minh",
+        "Example": "Use a smartphone to study."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.smartphone-study",
+        "ParagraphId": "team.reading.b1.smartphone-study.4941daa246bf46a39b42b5d82cc68dea"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.d8571957eed645bcb29b3c22e5a913d9",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "focus",
+        "Ipa": "/\u02C8f\u0259\u028Ak\u0259s/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 t\u1EADp trung",
+        "Example": "Keep better focus."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.smartphone-study",
+        "ParagraphId": "team.reading.b1.smartphone-study.5acff80a731e41bebc151288ced14565"
+      }
+    },
+    {
+      "key": "team.reading.b1.smartphone-study.f9c154d8d43c4985b42316a322552a21",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "flexible",
+        "Ipa": "/\u02C8fleks\u0259bl/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "linh ho\u1EA1t",
+        "Example": "More flexible learning."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b1.smartphone-study",
+        "ParagraphId": "team.reading.b1.smartphone-study.4941daa246bf46a39b42b5d82cc68dea"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "e2ccdf82921083a7546fa14c6253c7c3b7c48ea07a0907636b55d45b3ae183c0.jpg",
+      "sha256": "e2ccdf82921083a7546fa14c6253c7c3b7c48ea07a0907636b55d45b3ae183c0"
+    }
+  ],
+  "rootKey": "team.reading.b1.smartphone-study"
+}

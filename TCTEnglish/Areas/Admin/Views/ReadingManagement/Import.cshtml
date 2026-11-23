@@ -12,10 +12,10 @@
             <div class="admin-reading-eyebrow mb-2">Import Reading</div>
             <h1 class="h3 admin-reading-header-title mb-1">Import Excel + ảnh</h1>
             <p class="admin-reading-header-desc mb-0">
-                Tải template, điền dữ liệu, (tuỳ chọn) kèm ZIP ảnh theo ReadingCode, rồi kiểm tra trước khi tạo bản nháp.
+                Tải template v2, điền mã tạm trong file (vd. L1) để nối sheet/ZIP, đủ năm loại câu hỏi, rồi kiểm tra trước khi tạo bản nháp — hệ thống gán mã RD-{CEFR}-NNN.
             </p>
         </div>
-        <a asp-action="Index" class="btn btn-outline-secondary">
+        <a asp-action="Index" class="btn btn-outline-secondary admin-reading-hit">
             <i class="fa-solid fa-arrow-left me-1" aria-hidden="true"></i>Danh sách
         </a>
     </div>
@@ -25,14 +25,27 @@
 
     <div class="admin-reading-card p-3 p-md-4 mb-4">
         <h2 class="admin-reading-section-title mb-2">Chuẩn bị file</h2>
-        <ul class="text-muted mb-3">
-            <li>Sheet: Reading_Info (có cột ImageUrl), Passage, Questions, Answers, Vocabulary.</li>
-            <li>ZIP ảnh (tuỳ chọn): chỉ file ở gốc, tên <code>{ReadingCode}.jpg|png|webp|gif</code> — ZIP thắng cột ImageUrl.</li>
-            <li>Bài hợp lệ lưu dạng <strong>Bản nháp</strong>; không ghi đè ReadingCode đã tồn tại.</li>
+        <ul class="admin-reading-prepare-list text-muted mb-3">
+            <li>Sheet: Reading_Info (có ImageUrl), Passage, Questions, Answers, Vocabulary — xem sheet Guide trong template.</li>
+            <li>ReadingCode trong Excel là mã tạm (unique trong file); import luôn gán <code>RD-{CEFR}-NNN</code>.</li>
+            <li>ZIP ảnh (tuỳ chọn): chỉ file ở gốc, tên <code>{mã file}.jpg|png|webp|gif</code> — ZIP thắng cột ImageUrl.</li>
+            <li>Bài hợp lệ lưu dạng <strong>Bản nháp</strong>; không ghi đè ExternalReadingKey đã tồn tại.</li>
             <li>Học viên chỉ thấy bài sau khi Admin duyệt và xuất bản.</li>
         </ul>
+
+        <div class="admin-reading-type-legend mb-3" aria-label="Nhãn loại câu hỏi trên giao diện học">
+            <span class="admin-reading-type-chip">Trắc nghiệm</span>
+            <span class="admin-reading-type-chip">Đúng/Sai</span>
+            <span class="admin-reading-type-chip">Điền khuyết</span>
+            <span class="admin-reading-type-chip">Ghép cặp</span>
+            <span class="admin-reading-type-chip">Trả lời ngắn</span>
+        </div>
+        <p class="form-text mb-3">
+            Trong Excel dùng đúng chuỗi: MultipleChoice, TrueFalse, GapFill, Matching, ShortAnswer.
+        </p>
+
         <a asp-action="DownloadTemplate" class="btn btn-outline-secondary">
-            <i class="fa-solid fa-download me-1" aria-hidden="true"></i>Tải template Excel
+            <i class="fa-solid fa-download me-1" aria-hidden="true"></i>Tải template Excel v2
         </a>
     </div>
 
@@ -42,16 +55,20 @@
         <div class="row g-3">
             <div class="col-md-6">
                 <label class="form-label" for="readingImportFile">File Excel (.xlsx)</label>
-                <input id="readingImportFile" type="file" name="file"
-                       accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                       class="form-control" required />
+                <div class="admin-reading-file-field">
+                    <input id="readingImportFile" type="file" name="file"
+                           accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                           class="form-control" required />
+                </div>
                 <div class="form-text">Bắt buộc. Tối đa 10MB.</div>
             </div>
             <div class="col-md-6">
                 <label class="form-label" for="readingMediaZip">Gói ảnh ZIP (tuỳ chọn)</label>
-                <input id="readingMediaZip" type="file" name="mediaZip"
-                       accept=".zip,application/zip,application/x-zip-compressed"
-                       class="form-control" />
+                <div class="admin-reading-file-field">
+                    <input id="readingMediaZip" type="file" name="mediaZip"
+                           accept=".zip,application/zip,application/x-zip-compressed"
+                           class="form-control" />
+                </div>
                 <div class="form-text">Tối đa 25MB. Ảnh lưu vào /images/reading/ khi xem trước.</div>
             </div>
         </div>

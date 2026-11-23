@@ -1,0 +1,516 @@
+{
+  "schemaVersion": 1,
+  "id": "team.reading.b2.remote-work",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.reading.b2.remote-work",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "Remote Work and Team Trust",
+        "Content": "Remote work allows specialists to collaborate across cities, yet trust becomes harder to build without informal hallway conversations. Managers therefore need clearer written goals and regular check-ins that feel supportive rather than controlling. Without those habits, silence is easily misread as disengagement, and small misunderstandings grow into lasting doubt about commitment.\n\nSuccessful teams share progress openly and document decisions in shared folders. This transparency reduces repeated questions and shows that colleagues are reliable even when they are offline. When updates arrive on a predictable rhythm, people stop guessing what others are doing and can plan their own tasks with confidence. Meeting notes become a shared memory that new members can read later.\n\nStill, constant messaging can create pressure. Instant replies are often treated as proof of loyalty, even when deep work needs uninterrupted time. Setting response-time expectations and protecting deep-work hours helps people stay productive without feeling watched. Leaders who model those boundaries make it safer for others to do the same without fear of looking lazy.\n\nWhen companies balance flexibility with visible accountability, remote work can strengthen rather than weaken professional relationships. Trust then grows from consistent delivery and honest communication, not from physical proximity alone. Teams that practise this balance often report higher satisfaction and clearer ownership of outcomes across locations.\n\nHiring and onboarding also change under remote conditions. New colleagues need structured introductions to tools, norms, and decision rights; otherwise they copy the loudest voices rather than the clearest process. Organisations that invest early in shared rituals reduce later conflict about who is responsible for which deliverable and how success will be recognised across time zones.\n\nPerformance review systems must adapt as well. Metrics that only count message volume can punish deep work and reward performative availability. Fair evaluation looks at outcomes, collaboration quality, and the reliability of handoffs rather than how quickly someone answers a late-night ping.",
+        "Level": "B2",
+        "Topic": "Work",
+        "ImageUrl": "asset:1260271e1758e15e6f31d1f91872fca834c4920273597b3e2abd55798f5538d0.jpg",
+        "IsPublished": true,
+        "Description": "How remote teams build trust without a shared office.",
+        "EstimatedTimeMinutes": 18,
+        "ExternalReadingKey": "RD-B2-003"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.reading.b2.remote-work.02f72517be7047fdb198b04be14a38fd",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P5",
+        "ParagraphOrder": 5,
+        "ParagraphContent": "Hiring and onboarding also change under remote conditions. New colleagues need structured introductions to tools, norms, and decision rights; otherwise they copy the loudest voices rather than the clearest process. Organisations that invest early in shared rituals reduce later conflict about who is responsible for which deliverable and how success will be recognised across time zones."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.0856008f03134a139eb6a113deb427b1",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Fewer informal hallway conversations",
+        "IsCorrect": true,
+        "ExternalOptionKey": "A",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.remote-work.73f272035e4f498f9f714b74a4086ac7"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.09a13b77d8204aa39155499a76e1853e",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "document",
+        "Ipa": "/\u02C8d\u0252kjument/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "ghi ch\u00E9p",
+        "Example": "Document decisions."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work",
+        "ParagraphId": "team.reading.b2.remote-work.622f91f7af704cf8b57b46f096cd2a37"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.0a9ce1b3a81b4d63a2150a7c321e696f",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P3",
+        "ParagraphOrder": 3,
+        "ParagraphContent": "Still, constant messaging can create pressure. Instant replies are often treated as proof of loyalty, even when deep work needs uninterrupted time. Setting response-time expectations and protecting deep-work hours helps people stay productive without feeling watched. Leaders who model those boundaries make it safer for others to do the same without fear of looking lazy."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.0cdff931fd4747f5ae1af34610b536ec",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P1",
+        "ParagraphOrder": 1,
+        "ParagraphContent": "Remote work allows specialists to collaborate across cities, yet trust becomes harder to build without informal hallway conversations. Managers therefore need clearer written goals and regular check-ins that feel supportive rather than controlling. Without those habits, silence is easily misread as disengagement, and small misunderstandings grow into lasting doubt about commitment."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.0ee3688103e4446da837efa85669866c",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "reliable",
+        "Ipa": "/r\u026A\u02C8la\u026A\u0259bl/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "\u0111\u00E1ng tin c\u1EADy",
+        "Example": "Reliable colleagues."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work",
+        "ParagraphId": "team.reading.b2.remote-work.622f91f7af704cf8b57b46f096cd2a37"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.19b328e73dea4809ae147ed28373c3f0",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "tr\u00E1ch nhi\u1EC7m gi\u1EA3i tr\u00ECnh",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp2",
+        "MatchKey": "p2",
+        "MatchSide": "Right",
+        "OptionOrder": 4
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.remote-work.edad80e5babc4169979340645c4de158"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.21afc4d61496414a8a7087b27a5ea175",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Shorter workdays",
+        "IsCorrect": false,
+        "ExternalOptionKey": "C",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.remote-work.73f272035e4f498f9f714b74a4086ac7"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.29bf1439d4b84e6390f4d3de670eadde",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "productive",
+        "Ipa": "/pr\u0259\u02C8d\u028Ckt\u026Av/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "hi\u1EC7u qu\u1EA3",
+        "Example": "Stay productive."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work",
+        "ParagraphId": "team.reading.b2.remote-work.0a9ce1b3a81b4d63a2150a7c321e696f"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.2d2d9ac2641d4dcf930c3fc492982678",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "flexibility",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp3",
+        "MatchKey": "p3",
+        "MatchSide": "Left",
+        "OptionOrder": 5
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.remote-work.edad80e5babc4169979340645c4de158"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.2dc8f6ce27af4270b84da7f8c88c4ebc",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "flexibility",
+        "Ipa": "/\u02CCfleks\u0259\u02C8b\u026Al\u0259ti/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 linh ho\u1EA1t",
+        "Example": "Balance flexibility."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work",
+        "ParagraphId": "team.reading.b2.remote-work.a03e573c2fc14baf920a596015835362"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.3c32a19b2276407fb3056e823fc31eea",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "s\u1EF1 linh ho\u1EA1t",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp3",
+        "MatchKey": "p3",
+        "MatchSide": "Right",
+        "OptionOrder": 6
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.remote-work.edad80e5babc4169979340645c4de158"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.3dd6675d1b114e528eb383ba39b4a9ca",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "True",
+        "IsCorrect": true,
+        "ExternalOptionKey": "TRUE",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.remote-work.f81427d3d0e54dd0bc380678c76ebc46"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.4b3a5917ee8f4eb8b8043b2a8016d29a",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "False",
+        "IsCorrect": false,
+        "ExternalOptionKey": "FALSE",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.remote-work.f81427d3d0e54dd0bc380678c76ebc46"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.622f91f7af704cf8b57b46f096cd2a37",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P2",
+        "ParagraphOrder": 2,
+        "ParagraphContent": "Successful teams share progress openly and document decisions in shared folders. This transparency reduces repeated questions and shows that colleagues are reliable even when they are offline. When updates arrive on a predictable rhythm, people stop guessing what others are doing and can plan their own tasks with confidence. Meeting notes become a shared memory that new members can read later."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.6a01b0fe53764ce482f4866fe5fa5d76",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "pressure",
+        "Ipa": "/\u02C8pre\u0283\u0259/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "\u00E1p l\u1EF1c",
+        "Example": "Create pressure."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work",
+        "ParagraphId": "team.reading.b2.remote-work.0a9ce1b3a81b4d63a2150a7c321e696f"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.73f272035e4f498f9f714b74a4086ac7",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Why is trust harder in remote teams?",
+        "OrderIndex": 1,
+        "ParagraphReference": "4",
+        "Explanation": "See the passage evidence.",
+        "EvidenceText": "When companies balance flexibility with visible accountability, remote work can strengthen rather than weaken professional relationships.",
+        "Paraphrase": "Fewer informal hallway conversations",
+        "ExternalQuestionKey": "L1-Q1"
+      },
+      "references": {
+        "PassageId": "team.reading.b2.remote-work",
+        "EvidenceParagraphId": "team.reading.b2.remote-work.a03e573c2fc14baf920a596015835362"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.8007e7ae512e4847967e1311bd7d1edf",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Higher salaries",
+        "IsCorrect": false,
+        "ExternalOptionKey": "B",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.remote-work.73f272035e4f498f9f714b74a4086ac7"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.8fb83d8ccc0e4581badb4d53077569bc",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "t\u00EDnh minh b\u1EA1ch",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp1",
+        "MatchKey": "p1",
+        "MatchSide": "Right",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.remote-work.edad80e5babc4169979340645c4de158"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.930d9c41a06242d79566a80d2be71167",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "accountability",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp2",
+        "MatchKey": "p2",
+        "MatchSide": "Left",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.remote-work.edad80e5babc4169979340645c4de158"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.93fb6c5db0f14eaeafb324d15d6cc46f",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "accountability",
+        "Ipa": "/\u0259\u02CCka\u028Ant\u0259\u02C8b\u026Al\u0259ti/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "tr\u00E1ch nhi\u1EC7m gi\u1EA3i tr\u00ECnh",
+        "Example": "Visible accountability."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work",
+        "ParagraphId": "team.reading.b2.remote-work.a03e573c2fc14baf920a596015835362"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.94d3e1feee9146e8881c56b83c341c36",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "remote",
+        "Ipa": "/r\u026A\u02C8m\u0259\u028At/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "t\u1EEB xa",
+        "Example": "Remote work across cities."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work",
+        "ParagraphId": "team.reading.b2.remote-work.0cdff931fd4747f5ae1af34610b536ec"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.a03e573c2fc14baf920a596015835362",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P4",
+        "ParagraphOrder": 4,
+        "ParagraphContent": "When companies balance flexibility with visible accountability, remote work can strengthen rather than weaken professional relationships. Trust then grows from consistent delivery and honest communication, not from physical proximity alone. Teams that practise this balance often report higher satisfaction and clearer ownership of outcomes across locations."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.a8864ae61b1b406889317c9a047389d1",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Setting response-time expectations and protecting _____ hours helps people stay productive.",
+        "OrderIndex": 3,
+        "QuestionType": "GapFill",
+        "ParagraphReference": "4",
+        "CorrectAnswerText": "deep-work",
+        "Explanation": "Fill the blank from the passage.",
+        "EvidenceText": "When companies balance flexibility with visible accountability, remote work can strengthen rather than weaken professional relationships.",
+        "ExternalQuestionKey": "L1-Q3"
+      },
+      "references": {
+        "PassageId": "team.reading.b2.remote-work",
+        "EvidenceParagraphId": "team.reading.b2.remote-work.a03e573c2fc14baf920a596015835362"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.bcb4917fdef8408ba4ef7aa6f72b7ecb",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "transparency",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp1",
+        "MatchKey": "p1",
+        "MatchSide": "Left",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.b2.remote-work.edad80e5babc4169979340645c4de158"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.cf0a5fd915124397a27b7ae3203ad028",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "collaborate",
+        "Ipa": "/k\u0259\u02C8l\u00E6b\u0259re\u026At/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "c\u1ED9ng t\u00E1c",
+        "Example": "Collaborate across cities."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work",
+        "ParagraphId": "team.reading.b2.remote-work.0cdff931fd4747f5ae1af34610b536ec"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.e141a30ad82a4e5394602c351e588fac",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "transparency",
+        "Ipa": "/tr\u00E6ns\u02C8p\u00E6r\u0259nsi/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "t\u00EDnh minh b\u1EA1ch",
+        "Example": "Transparency reduces questions."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work",
+        "ParagraphId": "team.reading.b2.remote-work.622f91f7af704cf8b57b46f096cd2a37"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.e9347cacc3b04257b470e498e8b850d3",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P6",
+        "ParagraphOrder": 6,
+        "ParagraphContent": "Performance review systems must adapt as well. Metrics that only count message volume can punish deep work and reward performative availability. Fair evaluation looks at outcomes, collaboration quality, and the reliability of handoffs rather than how quickly someone answers a late-night ping."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.edad80e5babc4169979340645c4de158",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Match each English idea with its Vietnamese meaning.",
+        "OrderIndex": 4,
+        "QuestionType": "Matching",
+        "ParagraphReference": "1",
+        "Explanation": "Match the pairs from the passage.",
+        "ExternalQuestionKey": "L1-Q4"
+      },
+      "references": {
+        "PassageId": "team.reading.b2.remote-work",
+        "EvidenceParagraphId": "team.reading.b2.remote-work.0cdff931fd4747f5ae1af34610b536ec"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.f6dbda0be3c042608ad6948a02923718",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "expectation",
+        "Ipa": "/\u02CCekspek\u02C8te\u026A\u0283n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "k\u1EF3 v\u1ECDng",
+        "Example": "Response-time expectations."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.b2.remote-work",
+        "ParagraphId": "team.reading.b2.remote-work.0a9ce1b3a81b4d63a2150a7c321e696f"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.f81427d3d0e54dd0bc380678c76ebc46",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Documenting decisions can reduce repeated questions.",
+        "OrderIndex": 2,
+        "QuestionType": "TrueFalse",
+        "ParagraphReference": "4",
+        "Explanation": "Check the stated fact.",
+        "EvidenceText": "When companies balance flexibility with visible accountability, remote work can strengthen rather than weaken professional relationships.",
+        "ExternalQuestionKey": "L1-Q2"
+      },
+      "references": {
+        "PassageId": "team.reading.b2.remote-work",
+        "EvidenceParagraphId": "team.reading.b2.remote-work.a03e573c2fc14baf920a596015835362"
+      }
+    },
+    {
+      "key": "team.reading.b2.remote-work.f9b70849cd464cc6990abef9c23f457c",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What balance helps remote work succeed?",
+        "OrderIndex": 5,
+        "QuestionType": "ShortAnswer",
+        "ParagraphReference": "4",
+        "CorrectAnswerText": "flexibility with visible accountability",
+        "Explanation": "Answer briefly from the passage.",
+        "EvidenceText": "When companies balance flexibility with visible accountability, remote work can strengthen rather than weaken professional relationships.",
+        "Paraphrase": "flexibility with visible accountability",
+        "ExternalQuestionKey": "L1-Q5"
+      },
+      "references": {
+        "PassageId": "team.reading.b2.remote-work",
+        "EvidenceParagraphId": "team.reading.b2.remote-work.a03e573c2fc14baf920a596015835362"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "1260271e1758e15e6f31d1f91872fca834c4920273597b3e2abd55798f5538d0.jpg",
+      "sha256": "1260271e1758e15e6f31d1f91872fca834c4920273597b3e2abd55798f5538d0"
+    }
+  ],
+  "rootKey": "team.reading.b2.remote-work"
+}

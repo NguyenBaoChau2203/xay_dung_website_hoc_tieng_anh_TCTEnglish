@@ -41,83 +41,98 @@
     <div class="reading-grid tab-passage" id="readingStudyGrid">
         
         <div class="passage-container">
-            <div class="card border-0 shadow-sm p-4">
-                <h2 class="passage-title mb-4" id="passageTitle">@Model.Title</h2>
-
-                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            @{
+                var structured = Model.Paragraphs?.OrderBy(p => p.Order).ToList() ?? new List<TCTEnglish.ViewModels.ReadingParagraphViewModel>();
+                if (structured.Count == 0 && !string.IsNullOrWhiteSpace(Model.Content))
                 {
-                    <div class="text-center mb-4">
-                        <img src="@Model.ImageUrl" class="img-fluid rounded shadow-sm reading-study-hero-image" alt="" />
-                    </div>
-                }
-
-                <div class="passage-content" id="passageContent">
-                    @{
-                        var structured = Model.Paragraphs?.OrderBy(p => p.Order).ToList() ?? new List<TCTEnglish.ViewModels.ReadingParagraphViewModel>();
-                        if (structured.Count == 0 && !string.IsNullOrWhiteSpace(Model.Content))
-                        {
-                            var parts = Model.Content.Replace("\r\n", "\n").Split("\n\n", StringSplitOptions.RemoveEmptyEntries);
-                            for (var i = 0; i < parts.Length; i++)
-                            {
-                                structured.Add(new TCTEnglish.ViewModels.ReadingParagraphViewModel
-                                {
-                                    Order = i + 1,
-                                    Content = parts[i].Trim()
-                                });
-                            }
-                        }
-                    }
-                    @foreach (var p in structured)
+                    var parts = Model.Content.Replace("\r\n", "\n").Split("\n\n", StringSplitOptions.RemoveEmptyEntries);
+                    for (var i = 0; i < parts.Length; i++)
                     {
-                        <div class="paragraph-block mb-3" data-paragraph-no="@p.Order">
-                            <div class="small text-secondary mb-1">Paragraph @p.Order</div>
-                            <p class="passage-text mb-1">@p.Content</p>
-                            <p class="translation d-none text-muted"></p>
+                        structured.Add(new TCTEnglish.ViewModels.ReadingParagraphViewModel
+                        {
+                            Order = i + 1,
+                            Content = parts[i].Trim()
+                        });
+                    }
+                }
+                var vocabItems = Model.Vocabulary?.ToList() ?? new List<TCTEnglish.ViewModels.ReadingVocabViewModel>();
+                var vocabCount = vocabItems.Count;
+            }
+
+            <section class="reading-section-card reading-section-card--primary" aria-labelledby="passageTitle">
+                <header class="reading-section-card__header">
+                    <h2 class="passage-title reading-section-card__title mb-0" id="passageTitle">@Model.Title</h2>
+                </header>
+                <div class="reading-section-card__body">
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                        <div class="text-center mb-4">
+                            <img src="@Model.ImageUrl" class="img-fluid rounded shadow-sm reading-study-hero-image" alt="" />
                         </div>
                     }
-                </div>
 
-                @if (Model.Vocabulary != null && Model.Vocabulary.Count > 0)
-                {
-                    <div class="mt-4 pt-3 border-top" id="keyVocabularyPanel">
-                        <h5 class="fw-bold mb-3">Từ vựng trọng điểm</h5>
-                        <div class="table-responsive">
-                            <table class="table table-sm align-middle mb-0">
-                                <thead>
-                                <tr>
-                                    <th>Word</th>
-                                    <th>IPA</th>
-                                    <th>Loại</th>
-                                    <th>Nghĩa</th>
-                                    <th>Ví dụ</th>
-                                    <th>Đoạn</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach (var v in Model.Vocabulary)
-                                {
-                                    <tr>
-                                        <td class="fw-semibold">@v.Word</td>
-                                        <td>@(string.IsNullOrWhiteSpace(v.Ipa) ? "—" : v.Ipa)</td>
-                                        <td>@(string.IsNullOrWhiteSpace(v.PartOfSpeech) ? "—" : v.PartOfSpeech)</td>
-                                        <td>@(string.IsNullOrWhiteSpace(v.VietnameseMeaning) ? "—" : v.VietnameseMeaning)</td>
-                                        <td>@(string.IsNullOrWhiteSpace(v.Example) ? "—" : v.Example)</td>
-                                        <td>@(v.ParagraphNo?.ToString() ?? "—")</td>
-                                    </tr>
-                                }
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="passage-content" id="passageContent">
+                        @foreach (var p in structured)
+                        {
+                            <div class="paragraph-block mb-3" data-paragraph-no="@p.Order">
+                                <div class="small text-secondary mb-1">Paragraph @p.Order</div>
+                                <p class="passage-text mb-1">@p.Content</p>
+                                <p class="translation d-none text-muted"></p>
+                            </div>
+                        }
                     </div>
-                }
-            </div>
+                </div>
+            </section>
 
-            @* ─── Khu vực Bản dịch nổi bật ─── *@
-            <div class="card border-0 shadow-sm p-4 mt-4" id="communityTranslationsCard">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="fw-bold mb-0">
+            @if (vocabCount > 0)
+            {
+                <section class="reading-section-card reading-section-card--quiet" id="keyVocabularyPanel" aria-labelledby="keyVocabularyHeading">
+                    <header class="reading-section-card__header">
+                        <h2 class="reading-section-card__title" id="keyVocabularyHeading">Từ vựng trọng điểm</h2>
+                        <span class="reading-section-card__meta">@vocabCount từ</span>
+                    </header>
+                    <div class="reading-section-card__body">
+                        <ul class="reading-vocab-list list-unstyled mb-0">
+                            @foreach (var v in vocabItems)
+                            {
+                                <li class="reading-vocab-entry">
+                                    <div class="reading-vocab-entry__head">
+                                        <div class="reading-vocab-entry__term">
+                                            <span class="reading-vocab-entry__word">@v.Word</span>
+                                            @if (!string.IsNullOrWhiteSpace(v.Ipa))
+                                            {
+                                                <span class="reading-vocab-entry__ipa">@v.Ipa</span>
+                                            }
+                                            @if (!string.IsNullOrWhiteSpace(v.PartOfSpeech))
+                                            {
+                                                <span class="reading-vocab-entry__pos">@v.PartOfSpeech</span>
+                                            }
+                                        </div>
+                                        @if (v.ParagraphNo.HasValue)
+                                        {
+                                            <span class="reading-vocab-entry__para" title="Đoạn @v.ParagraphNo">Đoạn @v.ParagraphNo</span>
+                                        }
+                                    </div>
+                                    @if (!string.IsNullOrWhiteSpace(v.VietnameseMeaning))
+                                    {
+                                        <p class="reading-vocab-entry__meaning">@v.VietnameseMeaning</p>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(v.Example))
+                                    {
+                                        <p class="reading-vocab-entry__example">@v.Example</p>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </section>
+            }
+
+            <section class="reading-section-card reading-section-card--quiet" id="communityTranslationsCard" aria-labelledby="communityTranslationsHeading">
+                <header class="reading-section-card__header">
+                    <h2 class="reading-section-card__title" id="communityTranslationsHeading">
                         <i class="fa-solid fa-star text-warning me-2" aria-hidden="true"></i>Những bản dịch nổi bật
-                    </h5>
+                    </h2>
                     @if (User.Identity?.IsAuthenticated == true)
                     {
                         <button type="button" class="btn btn-sm btn-outline-primary reading-study-icon-btn"
@@ -125,13 +140,13 @@
                             <i class="fa-solid fa-plus" aria-hidden="true"></i>
                         </button>
                     }
-                </div>
-                <div id="translationsList">
+                </header>
+                <div class="reading-section-card__body" id="translationsList">
                     <div class="text-center text-muted py-3">
                         <span class="spinner-border spinner-border-sm"></span> Đang tải...
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
 
         <div class="question-container">
@@ -169,28 +184,37 @@
                                 var isText = qType is TCTEnglish.Models.Reading.ReadingQuestionTypes.GapFill
                                     or TCTEnglish.Models.Reading.ReadingQuestionTypes.ShortAnswer;
                                 var isMatching = qType == TCTEnglish.Models.Reading.ReadingQuestionTypes.Matching;
+                                var qTypeLabel = qType switch
+                                {
+                                    TCTEnglish.Models.Reading.ReadingQuestionTypes.MultipleChoice => "Trắc nghiệm",
+                                    TCTEnglish.Models.Reading.ReadingQuestionTypes.TrueFalse => "Đúng/Sai",
+                                    TCTEnglish.Models.Reading.ReadingQuestionTypes.GapFill => "Điền khuyết",
+                                    TCTEnglish.Models.Reading.ReadingQuestionTypes.ShortAnswer => "Trả lời ngắn",
+                                    TCTEnglish.Models.Reading.ReadingQuestionTypes.Matching => "Ghép cặp",
+                                    _ => qType
+                                };
                                 <div class="question-panel @(i == 0 ? "" : "d-none")"
                                      id="q-panel-@i"
                                      data-q-id="@q.Id"
                                      data-q-type="@qType"
                                      data-q-index="@i"
                                      data-saved-matching="@(q.SavedMatchingJson ?? "")">
-                                    <h6 class="mb-3 fw-bold">Câu @(i + 1): @q.QuestionText</h6>
-                                    <div class="small text-secondary mb-2">@qType</div>
+                                    <h6 class="mb-2 fw-bold">Câu @(i + 1): @q.QuestionText</h6>
+                                    <div class="reading-q-type-chip mb-3">@qTypeLabel</div>
 
                                     @if (isChoice)
                                     {
-                                        <div class="options-list">
+                                        <div class="reading-q-block options-list">
                                             @foreach (var opt in q.Options)
                                             {
                                                 var selected = q.SavedSelectedOptionId == opt.Id;
-                                                <div class="option-item mb-2">
+                                                <div class="option-item">
                                                     <input class="btn-check" type="radio"
                                                            name="answers[@q.Id]" value="@opt.Id"
                                                            id="opt_@opt.Id"
                                                            @(selected ? "checked" : null)
                                                            onchange="markNavDone(@i)">
-                                                    <label class="btn btn-outline-light text-start w-100 py-2 px-3 option-label" for="opt_@opt.Id">
+                                                    <label class="btn btn-outline-light text-start w-100 option-label" for="opt_@opt.Id">
                                                         @opt.OptionText
                                                     </label>
                                                 </div>
@@ -199,10 +223,10 @@
                                     }
                                     else if (isText)
                                     {
-                                        <div class="text-answer-wrap">
+                                        <div class="reading-q-block text-answer-wrap">
                                             @if (qType == TCTEnglish.Models.Reading.ReadingQuestionTypes.GapFill)
                                             {
-                                                <label class="form-label visually-hidden" for="answer_text_@q.Id">Đáp án điền khuyết</label>
+                                                <label class="form-label reading-q-field-label" for="answer_text_@q.Id">Nhập đáp án</label>
                                                 <input type="text"
                                                        class="form-control reading-text-answer"
                                                        id="answer_text_@q.Id"
@@ -214,7 +238,7 @@
                                             }
                                             else
                                             {
-                                                <label class="form-label visually-hidden" for="answer_text_@q.Id">Câu trả lời ngắn</label>
+                                                <label class="form-label reading-q-field-label" for="answer_text_@q.Id">Nhập đáp án</label>
                                                 <textarea class="form-control reading-text-answer"
                                                           id="answer_text_@q.Id"
                                                           name="answerText[@q.Id]"
@@ -235,7 +259,7 @@
                                             left = ordered.Take(mid).ToList();
                                             right = ordered.Skip(mid).ToList();
                                         }
-                                        <div class="matching-answer-wrap" data-matching-root="1">
+                                        <div class="reading-q-block matching-answer-wrap" data-matching-root="1">
                                             @if (left.Count == 0 || right.Count == 0)
                                             {
                                                 <p class="text-muted small mb-0">
@@ -244,22 +268,20 @@
                                             }
                                             else
                                             {
-                                                <div class="d-flex flex-column gap-2">
+                                                <div class="matching-pair-list">
                                                     @foreach (var leftOpt in left)
                                                     {
-                                                        <div class="matching-row d-flex flex-column flex-sm-row align-items-sm-center gap-2"
-                                                             data-left-id="@leftOpt.Id"
-                                                             >
-                                                            <div class="matching-left flex-fill fw-semibold">@leftOpt.OptionText</div>
-                                                            <label class="visually-hidden" for="match_sel_@(q.Id)_@(leftOpt.Id)">Ghép với</label>
+                                                        <div class="matching-pair matching-row"
+                                                             data-left-id="@leftOpt.Id">
+                                                            <div class="matching-left">@leftOpt.OptionText</div>
+                                                            <label class="matching-pair-label" for="match_sel_@(q.Id)_@(leftOpt.Id)">Ghép với</label>
                                                             <select class="form-select matching-select"
                                                                     id="match_sel_@(q.Id)_@(leftOpt.Id)"
                                                                     data-q-index="@i">
                                                                 <option value="">— Chọn —</option>
                                                                 @foreach (var rightOpt in right)
                                                                 {
-                                                                    <option value="@rightOpt.Id"
-                                                                            >
+                                                                    <option value="@rightOpt.Id">
                                                                         @rightOpt.OptionText
                                                                     </option>
                                                                 }

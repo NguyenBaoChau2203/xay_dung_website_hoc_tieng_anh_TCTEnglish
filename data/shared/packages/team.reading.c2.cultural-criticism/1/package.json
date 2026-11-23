@@ -1,0 +1,650 @@
+{
+  "schemaVersion": 1,
+  "id": "team.reading.c2.cultural-criticism",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.reading.c2.cultural-criticism",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "Taste, Class, and Cultural Criticism",
+        "Content": "Cultural criticism frequently claims to judge form, yet taste is rarely innocent. Preferences for certain music, cuisine, or cinema can signal belonging to a social class as much as aesthetic insight, even when critics insist they are discussing pure quality. The vocabulary of refinement often doubles as a map of distinction that sorts people as firmly as it sorts artworks.\n\nCritics who ignore this entanglement risk presenting privilege as universal refinement. A review that mocks popular culture without examining its audiences may confuse exclusion with standards, treating unfamiliar codes as evidence of inferior art. That habit flatters the critic\u0027s circle while pretending to serve art itself, and it leaves unequal access to cultural capital unnamed.\n\nAt the same time, reducing every judgment to class position can erase craft. Some works repay close attention across audiences; others travel mainly as fashion. A careful critic distinguishes social signalling from compositional achievement without pretending the two never meet. The task is separation under pressure, not purity, and it requires patience with ambiguity.\n\nTaste therefore becomes a site where power and pleasure intersect. Naming that intersection does not abolish enjoyment; it makes criticism more honest about whose pleasure is treated as the default measure. When writers disclose their standpoint, readers can weigh claims instead of mistaking them for nature, and disagreement can become diagnostic rather than merely personal.\n\nFor classrooms and public debate, the useful practice is double literacy: read the artwork and read the social frame that elevates or dismisses it. Cultural criticism that holds both lenses resists both naive universalism and cynical reduction. That balance is difficult, which is precisely why it remains necessary for any public that wants judgment without disguise.\n\nReviewers writing for general audiences can model that balance by naming constraints of access, education, and geography without turning every preference into a confession. Readers then learn to ask what a judgment assumes, whom it includes by default, and what craft evidence would still persuade them if social fashion shifted tomorrow.\n\nInstitutions of culture\u2014museums, festivals, streaming platforms\u2014also allocate prestige. Their catalogues teach audiences what counts as serious before any critic writes a word. Awareness of that curation does not cancel pleasure; it situates pleasure inside a history of selection that can be questioned and redesigned.\n\nAlgorithmic recommendation intensifies the problem by quietly ranking taste. What appears as personal discovery may be a map of prior purchases, peer groups, and commercial partnerships. Critics who ignore that machinery risk treating platform visibility as aesthetic destiny rather than as a contested distribution system.\n\nA mature cultural public therefore practises two readings at once: the artwork\u2019s internal craft and the social machinery that frames it. Neither reading alone is enough. Together they allow disagreement that is sharper about art and fairer about people. Teachers, reviewers, and platform curators who model that dual attention help audiences enjoy culture without mistaking inherited prestige for inevitable quality. Over time, such habits loosen the grip of unexamined taste hierarchies while still preserving room for craft arguments that can persuade across class lines. The result is not flattened preference, but criticism that can name both pleasure and power without collapsing one into the other, and readers who can ask better questions about why a work travels, who funds its visibility, and what standards would still hold if fashion changed overnight. Practising that habit turns taste from a silent ranking system into a conversation that can still celebrate craft. Practising that habit turns taste from a silent ranking system into a conversation that can still celebrate craft.",
+        "Level": "C2",
+        "Topic": "Cultural criticism",
+        "ImageUrl": "asset:3933a3dc9610eceacefc4782224e30ce866f27c629235812a320036849b98f2c.jpg",
+        "IsPublished": true,
+        "Description": "How judgments of taste often encode social hierarchy.",
+        "EstimatedTimeMinutes": 28,
+        "ExternalReadingKey": "RD-C2-004"
+      },
+      "references": {}
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.0b663e76fd684131938869c381c81b5d",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P9",
+        "ParagraphOrder": 9,
+        "ParagraphContent": "A mature cultural public therefore practises two readings at once: the artwork\u2019s internal craft and the social machinery that frames it. Neither reading alone is enough. Together they allow disagreement that is sharper about art and fairer about people. Teachers, reviewers, and platform curators who model that dual attention help audiences enjoy culture without mistaking inherited prestige for inevitable quality. Over time, such habits loosen the grip of unexamined taste hierarchies while still preserving room for craft arguments that can persuade across class lines. The result is not flattened preference, but criticism that can name both pleasure and power without collapsing one into the other, and readers who can ask better questions about why a work travels, who funds its visibility, and what standards would still hold if fashion changed overnight. Practising that habit turns taste from a silent ranking system into a conversation that can still celebrate craft. Practising that habit turns taste from a silent ranking system into a conversation that can still celebrate craft."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.2983fd77829149539a12ab29353df16b",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "universalism",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp5",
+        "MatchKey": "p5",
+        "MatchSide": "Left",
+        "OptionOrder": 7
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.7b0e682d07cd49bb977370c5c7c5f77d"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.2a4e362f1c3a4cd6b3b1fea87b03a95a",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "ch\u1EE7 ngh\u0129a ph\u1ED5 qu\u00E1t",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp5",
+        "MatchKey": "p5",
+        "MatchSide": "Right",
+        "OptionOrder": 8
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.7b0e682d07cd49bb977370c5c7c5f77d"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.2c1e213fec5f4f7c835d0316f46d8c16",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "exclusion",
+        "Ipa": "/\u026Ak\u02C8sklu\u02D0\u0292n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 lo\u1EA1i tr\u1EEB",
+        "Example": "Confuse exclusion with standards."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.9b22caa0fc8a43f0950fd1b3de9789da"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.31cd63496bde46b1a40f534f6d57b683",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "literacy",
+        "Ipa": "/\u02C8l\u026At\u0259r\u0259si/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "n\u0103ng l\u1EF1c \u0111\u1ECDc hi\u1EC3u",
+        "Example": "Double literacy."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.ce827f25f16e48eb80fb22f093ce01b4"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.3d807dae73f64d079ebc65c0a87faebb",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "refinement",
+        "Ipa": "/r\u026A\u02C8fa\u026Anm\u0259nt/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 tinh t\u1EBF",
+        "Example": "Vocabulary of refinement."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.cb46818f6846438aa76ad3abcb0e3037"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.4093a990becc4851a6afd3364ca07ca2",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P4",
+        "ParagraphOrder": 4,
+        "ParagraphContent": "Taste therefore becomes a site where power and pleasure intersect. Naming that intersection does not abolish enjoyment; it makes criticism more honest about whose pleasure is treated as the default measure. When writers disclose their standpoint, readers can weigh claims instead of mistaking them for nature, and disagreement can become diagnostic rather than merely personal."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.4988c62dbab5440c95cc43020b0f7f22",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "standpoint",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp4",
+        "MatchKey": "p4",
+        "MatchSide": "Left",
+        "OptionOrder": 5
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.7b0e682d07cd49bb977370c5c7c5f77d"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.563964db36424fc6a3ab578d98538fd0",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P6",
+        "ParagraphOrder": 6,
+        "ParagraphContent": "Reviewers writing for general audiences can model that balance by naming constraints of access, education, and geography without turning every preference into a confession. Readers then learn to ask what a judgment assumes, whom it includes by default, and what craft evidence would still persuade them if social fashion shifted tomorrow."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.595802c5350b4b2a8eec1634593e6248",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "\u0111\u1EB7c quy\u1EC1n",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp2",
+        "MatchKey": "p2",
+        "MatchSide": "Right",
+        "OptionOrder": 4
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.7b0e682d07cd49bb977370c5c7c5f77d"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.5f8e9eb9fdad40c4994be4a0fde14e2a",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "craft",
+        "Ipa": "/kr\u0251\u02D0ft/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "tay ngh\u1EC1 / ngh\u1EC7 thu\u1EADt ch\u1EBF t\u00E1c",
+        "Example": "Erase craft."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.661cebd238b04a31abbf39401079a09f"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.60cc2d54c3ba46f79ddb63e8def3912d",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P7",
+        "ParagraphOrder": 7,
+        "ParagraphContent": "Institutions of culture\u2014museums, festivals, streaming platforms\u2014also allocate prestige. Their catalogues teach audiences what counts as serious before any critic writes a word. Awareness of that curation does not cancel pleasure; it situates pleasure inside a history of selection that can be questioned and redesigned."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.62b8d0030b964cb88f37d6e83b8bb4aa",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "aesthetic",
+        "Ipa": "/i\u02D0s\u02C8\u03B8et\u026Ak/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "th\u1EA9m m\u1EF9",
+        "Example": "Aesthetic insight."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.cb46818f6846438aa76ad3abcb0e3037"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.661cebd238b04a31abbf39401079a09f",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P3",
+        "ParagraphOrder": 3,
+        "ParagraphContent": "At the same time, reducing every judgment to class position can erase craft. Some works repay close attention across audiences; others travel mainly as fashion. A careful critic distinguishes social signalling from compositional achievement without pretending the two never meet. The task is separation under pressure, not purity, and it requires patience with ambiguity."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.67fa21b6c7b74456ac3f0e153e61b27e",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "distinction",
+        "Ipa": "/d\u026A\u02C8st\u026A\u014Bk\u0283n/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "s\u1EF1 ph\u00E2n bi\u1EC7t \u0111\u1ECBa v\u1ECB",
+        "Example": "Map of distinction."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.cb46818f6846438aa76ad3abcb0e3037"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.6b6383d2cdd24eeb8f94df40ee937f56",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "standpoint",
+        "Ipa": "/\u02C8st\u00E6ndp\u0254\u026Ant/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "l\u1EADp tr\u01B0\u1EDDng",
+        "Example": "Disclose their standpoint."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.4093a990becc4851a6afd3364ca07ca2"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.6cf90ecf206b4e4fa7dba8e3837a13d4",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "taste",
+        "Ipa": "/te\u026Ast/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "gu th\u1EA9m m\u1EF9",
+        "Example": "Judgments of taste."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.cb46818f6846438aa76ad3abcb0e3037"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.6f4e629bcee84b26a5e2b84633ee8f89",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What can preferences for music or cinema signal, according to the text?",
+        "OrderIndex": 1,
+        "ParagraphReference": "5",
+        "Explanation": "See the passage evidence.",
+        "EvidenceText": "For classrooms and public debate, the useful practice is double literacy: read the artwork and read the social frame that elevates or dismisses it.",
+        "Paraphrase": "Belonging to a social class as well as aesthetic insight",
+        "ExternalQuestionKey": "L2-Q1"
+      },
+      "references": {
+        "PassageId": "team.reading.c2.cultural-criticism",
+        "EvidenceParagraphId": "team.reading.c2.cultural-criticism.ce827f25f16e48eb80fb22f093ce01b4"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.6fde41b8a6674f0db0ccee1c9619e679",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "universalism",
+        "Ipa": "/\u02CCju\u02D0n\u026A\u02C8v\u025C\u02D0s\u0259l\u026Az\u0259m/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "ch\u1EE7 ngh\u0129a ph\u1ED5 qu\u00E1t",
+        "Example": "Naive universalism."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.ce827f25f16e48eb80fb22f093ce01b4"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.745c2a3a7da7435c8db5098f7510b2ee",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "False",
+        "IsCorrect": false,
+        "ExternalOptionKey": "FALSE",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.a9a06ba1d9ca43ceb354be9fa8542098"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.7b0e682d07cd49bb977370c5c7c5f77d",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Match each concept with its Vietnamese meaning.",
+        "OrderIndex": 4,
+        "QuestionType": "Matching",
+        "ParagraphReference": "1",
+        "Explanation": "Match the pairs from the passage.",
+        "ExternalQuestionKey": "L2-Q4"
+      },
+      "references": {
+        "PassageId": "team.reading.c2.cultural-criticism",
+        "EvidenceParagraphId": "team.reading.c2.cultural-criticism.cb46818f6846438aa76ad3abcb0e3037"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.7b73787ca15640fc942fc1cc05bbe4b6",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Only technical skill",
+        "IsCorrect": false,
+        "ExternalOptionKey": "B",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.6f4e629bcee84b26a5e2b84633ee8f89"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.82f98093174c458285af1c7c5783dacc",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "cynical",
+        "Ipa": "/\u02C8s\u026An\u026Akl/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "cynic / ho\u00E0i nghi cay \u0111\u1ED9c",
+        "Example": "Cynical reduction."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.ce827f25f16e48eb80fb22f093ce01b4"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.86097edb931f467da5bf65b53c300eb1",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Belonging to a social class as well as aesthetic insight",
+        "IsCorrect": true,
+        "ExternalOptionKey": "A",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.6f4e629bcee84b26a5e2b84633ee8f89"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.8cd9edb05b75463d957e3aafb66684ae",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P8",
+        "ParagraphOrder": 8,
+        "ParagraphContent": "Algorithmic recommendation intensifies the problem by quietly ranking taste. What appears as personal discovery may be a map of prior purchases, peer groups, and commercial partnerships. Critics who ignore that machinery risk treating platform visibility as aesthetic destiny rather than as a contested distribution system."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.94de20c9862b4551a30a43cdd2b83b34",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What double literacy does the text recommend?",
+        "OrderIndex": 5,
+        "QuestionType": "ShortAnswer",
+        "ParagraphReference": "5",
+        "CorrectAnswerText": "read the artwork and read the social frame",
+        "Explanation": "Answer briefly from the passage.",
+        "EvidenceText": "For classrooms and public debate, the useful practice is double literacy: read the artwork and read the social frame that elevates or dismisses it.",
+        "Paraphrase": "read the artwork and read the social frame",
+        "ExternalQuestionKey": "L2-Q5"
+      },
+      "references": {
+        "PassageId": "team.reading.c2.cultural-criticism",
+        "EvidenceParagraphId": "team.reading.c2.cultural-criticism.ce827f25f16e48eb80fb22f093ce01b4"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.9b22caa0fc8a43f0950fd1b3de9789da",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P2",
+        "ParagraphOrder": 2,
+        "ParagraphContent": "Critics who ignore this entanglement risk presenting privilege as universal refinement. A review that mocks popular culture without examining its audiences may confuse exclusion with standards, treating unfamiliar codes as evidence of inferior art. That habit flatters the critic\u0027s circle while pretending to serve art itself, and it leaves unequal access to cultural capital unnamed."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.a9a06ba1d9ca43ceb354be9fa8542098",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Mocking popular culture without examining audiences may confuse exclusion with standards.",
+        "OrderIndex": 2,
+        "QuestionType": "TrueFalse",
+        "ParagraphReference": "5",
+        "Explanation": "Check the stated fact.",
+        "EvidenceText": "For classrooms and public debate, the useful practice is double literacy: read the artwork and read the social frame that elevates or dismisses it.",
+        "ExternalQuestionKey": "L2-Q2"
+      },
+      "references": {
+        "PassageId": "team.reading.c2.cultural-criticism",
+        "EvidenceParagraphId": "team.reading.c2.cultural-criticism.ce827f25f16e48eb80fb22f093ce01b4"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.c138c8322f564545a1807a17440fd0b0",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "signalling",
+        "Ipa": "/\u02C8s\u026A\u0261n\u0259l\u026A\u014B/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "t\u00EDn hi\u1EC7u x\u00E3 h\u1ED9i",
+        "Example": "Social signalling."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.661cebd238b04a31abbf39401079a09f"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.c80bb0a766004c5396cfdb81d5e193b4",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "privilege",
+        "Ipa": "/\u02C8pr\u026Av\u0259l\u026Ad\u0292/",
+        "PartOfSpeech": "Noun",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "\u0111\u1EB7c quy\u1EC1n",
+        "Example": "Presenting privilege as refinement."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.9b22caa0fc8a43f0950fd1b3de9789da"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.cadc0747039e4d9dac4dff71f5985b43",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "intersect",
+        "Ipa": "/\u02CC\u026Ant\u0259\u02C8sekt/",
+        "PartOfSpeech": "Verb",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "giao nhau",
+        "Example": "Power and pleasure intersect."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.4093a990becc4851a6afd3364ca07ca2"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.cb46818f6846438aa76ad3abcb0e3037",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P1",
+        "ParagraphOrder": 1,
+        "ParagraphContent": "Cultural criticism frequently claims to judge form, yet taste is rarely innocent. Preferences for certain music, cuisine, or cinema can signal belonging to a social class as much as aesthetic insight, even when critics insist they are discussing pure quality. The vocabulary of refinement often doubles as a map of distinction that sorts people as firmly as it sorts artworks."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.ce827f25f16e48eb80fb22f093ce01b4",
+      "kind": "ReadingParagraph",
+      "values": {
+        "ExternalParagraphKey": "P5",
+        "ParagraphOrder": 5,
+        "ParagraphContent": "For classrooms and public debate, the useful practice is double literacy: read the artwork and read the social frame that elevates or dismisses it. Cultural criticism that holds both lenses resists both naive universalism and cynical reduction. That balance is difficult, which is precisely why it remains necessary for any public that wants judgment without disguise."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.d320a58504fa47e6b1ddf95486d5a3a2",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "l\u1EADp tr\u01B0\u1EDDng",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp4",
+        "MatchKey": "p4",
+        "MatchSide": "Right",
+        "OptionOrder": 6
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.7b0e682d07cd49bb977370c5c7c5f77d"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.d71e060f10ca473e86e9105c8d78c189",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "refinement",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp1",
+        "MatchKey": "p1",
+        "MatchSide": "Left",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.7b0e682d07cd49bb977370c5c7c5f77d"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.da312914c934413891cf4ae0ad54e04f",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "privilege",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Lp2",
+        "MatchKey": "p2",
+        "MatchSide": "Left",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.7b0e682d07cd49bb977370c5c7c5f77d"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.da9e3fd5649e42e3af6d966480c23428",
+      "kind": "ReadingVocabularyItem",
+      "values": {
+        "ExternalVocabularyKey": null,
+        "Word": "compositional",
+        "Ipa": "/\u02CCk\u0252mp\u0259\u02C8z\u026A\u0283\u0259nl/",
+        "PartOfSpeech": "Adjective",
+        "EnglishDefinition": null,
+        "VietnameseMeaning": "thu\u1ED9c b\u1ED1 c\u1EE5c / c\u1EA5u tr\u00FAc",
+        "Example": "Compositional achievement."
+      },
+      "references": {
+        "ReadingPassageId": "team.reading.c2.cultural-criticism",
+        "ParagraphId": "team.reading.c2.cultural-criticism.661cebd238b04a31abbf39401079a09f"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.ddedbe79335e46d7b884129714a3b308",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "s\u1EF1 tinh t\u1EBF",
+        "IsCorrect": false,
+        "ExternalOptionKey": "Rp1",
+        "MatchKey": "p1",
+        "MatchSide": "Right",
+        "OptionOrder": 2
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.7b0e682d07cd49bb977370c5c7c5f77d"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.e9e19c3dcc724b268eb31895366677c0",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "True",
+        "IsCorrect": true,
+        "ExternalOptionKey": "TRUE",
+        "OptionOrder": 1
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.a9a06ba1d9ca43ceb354be9fa8542098"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.f86107f9ee8047118a829e88c0e85122",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "Taste becomes a site where power and _____ intersect.",
+        "OrderIndex": 3,
+        "QuestionType": "GapFill",
+        "ParagraphReference": "5",
+        "CorrectAnswerText": "pleasure",
+        "Explanation": "Fill the blank from the passage.",
+        "EvidenceText": "For classrooms and public debate, the useful practice is double literacy: read the artwork and read the social frame that elevates or dismisses it.",
+        "ExternalQuestionKey": "L2-Q3"
+      },
+      "references": {
+        "PassageId": "team.reading.c2.cultural-criticism",
+        "EvidenceParagraphId": "team.reading.c2.cultural-criticism.ce827f25f16e48eb80fb22f093ce01b4"
+      }
+    },
+    {
+      "key": "team.reading.c2.cultural-criticism.fc695a7736034d34bdb1b133cbf4fc77",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Government policy",
+        "IsCorrect": false,
+        "ExternalOptionKey": "C",
+        "OptionOrder": 3
+      },
+      "references": {
+        "QuestionId": "team.reading.c2.cultural-criticism.6f4e629bcee84b26a5e2b84633ee8f89"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [
+    {
+      "file": "3933a3dc9610eceacefc4782224e30ce866f27c629235812a320036849b98f2c.jpg",
+      "sha256": "3933a3dc9610eceacefc4782224e30ce866f27c629235812a320036849b98f2c"
+    }
+  ],
+  "rootKey": "team.reading.c2.cultural-criticism"
+}
