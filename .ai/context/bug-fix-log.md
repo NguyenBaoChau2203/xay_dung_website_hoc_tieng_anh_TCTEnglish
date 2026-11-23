@@ -42,6 +42,22 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Staging deployment download acceleration: silence PowerShell 5.1 progress output — 2026-11-23
+
+**Symptom**: Staging deploy job timed out when downloading the release archive (~206 MB containing full vocabulary sets and media). Windows PowerShell 5.1 on Plesk hosting took over 25 minutes to download, causing `Invoke-WebRequest -TimeoutSec 1500` and GitHub Actions CI verification (30 mins) to fail.
+
+**Root Cause**: In Windows PowerShell 5.1, `Invoke-WebRequest` defaults to `$ProgressPreference = 'Continue'`, which fires `Write-Progress` on every small stream chunk (25,000+ times for a 206MB file). In non-interactive hosting scripts, progress rendering causes extreme I/O overhead and throttles download speeds by 90-95%, as documented in `docs/operations/staging-automation.md`.
+
+**Solution**: Temporarily set `$ProgressPreference = 'SilentlyContinue'` around `Invoke-WebRequest` in `scripts/deploy-staging.ps1` and `scripts/deploy-plesk.ps1`, restoring the previous preference in a `finally` block.
+
+**Files Changed**:
+- `scripts/deploy-staging.ps1`: wrapped `Invoke-WebRequest` download in `$ProgressPreference = 'SilentlyContinue'` try/finally block.
+- `scripts/deploy-plesk.ps1`: wrapped `Invoke-WebRequest` download in `$ProgressPreference = 'SilentlyContinue'` try/finally block.
+
+**Verification**:
+- `py -3 -m unittest scripts/tests/test_deploy_tools.py scripts/tests/test_staging_release.py`: 39/39 passed.
+- Verified absence of reparse point / security violations.
+
 ### Voice companion standalone visibility and reduced-motion return — 2026-11-19
 
 **Symptom/Root Cause**: Pre-merge review reproduced two new companion defects: the standalone workspace scrolled with the window, so comparing hero/window coordinates against a negative workspace top never revealed the companion; the return button always requested smooth scrolling even under reduced motion.
