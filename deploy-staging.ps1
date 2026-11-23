@@ -220,7 +220,13 @@ try {
     Write-Json (Join-Path $runRoot 'owner.json') @{ environment='Staging'; commit=$manifest.commit; runNumber=$manifest.runNumber }
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $zipPath = Join-Path $runRoot 'release.zip'
-    Invoke-WebRequest -UseBasicParsing -Uri $artifactUri.AbsoluteUri -OutFile $zipPath -TimeoutSec 1500
+    $previousProgress = $ProgressPreference
+    $ProgressPreference = 'SilentlyContinue'
+    try {
+        Invoke-WebRequest -UseBasicParsing -Uri $artifactUri.AbsoluteUri -OutFile $zipPath -TimeoutSec 1500
+    } finally {
+        $ProgressPreference = $previousProgress
+    }
     if ((Get-FileHash -LiteralPath $zipPath -Algorithm SHA256).Hash -ne $manifest.sha256) { throw 'Release checksum did not match.' }
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     $stageRoot = Join-Path $runRoot 'stage'
