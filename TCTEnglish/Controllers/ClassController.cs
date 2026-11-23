@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 using TCTVocabulary.ViewModels;
 
@@ -28,24 +29,53 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            var vm = await _classService.GetClassPageAsync(userId);
+            var vm = await _classService.GetClassPageAsync(userId, GetNormalizedRole());
             return View("Class", vm);
         }
 
         [Authorize]
+        [HttpGet("BrowseClasses")]
+        public IActionResult BrowseClasses()
+        {
+            if (!TryGetCurrentUserId(out _))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var role = GetNormalizedRole();
+            var vm = new BrowseClassesPageViewModel
+            {
+                Role = role,
+                CanCreateClass = Roles.CanCreateClass(role),
+                IsCreatorRole = Roles.CanCreateClass(role),
+                IsAdmin = role == Roles.Admin
+            };
+            return View("BrowseClasses", vm);
+        }
+
+        [Authorize(Roles = Roles.Teacher + "," + Roles.Admin)]
         [HttpGet("CreateClass")]
         public IActionResult CreateClass()
         {
-            return View();
+            return View(new CreateClassViewModel
+            {
+                IsPublic = true,
+                JoinCode = ClassJoinCode.Generate()
+            });
         }
 
-        [Authorize]
+        [Authorize(Roles = Roles.Teacher + "," + Roles.Admin)]
         [HttpPost("CreateClass")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateClass(CreateClassViewModel model)
         {
             if (!ModelState.IsValid)
             {
+                if (string.IsNullOrWhiteSpace(model.JoinCode))
+                {
+                    model.JoinCode = ClassJoinCode.Generate();
+                }
+
                 return View(nameof(CreateClass), model);
             }
 
@@ -56,12 +86,24 @@ namespace TCTVocabulary.Controllers
 
             try
             {
-                var classId = await _classService.CreateClassAsync(model, userId);
+                var classId = await _classService.CreateClassAsync(model, userId, GetNormalizedRole());
+                var detail = await _classService.GetClassDetailAsync(classId, userId, IsAdminUser());
+                TempData["ClassCreated"] = "1";
+                TempData["CreatedClassName"] = detail?.Class.ClassName ?? model.ClassName;
+                TempData["CreatedJoinCode"] = detail?.Class.JoinCode ?? model.JoinCode;
+                TempData["CreatedIsPublic"] = (detail?.Class.IsPublic ?? model.IsPublic) ? "1" : "0";
+                TempData["CreatedHasPassword"] = (detail?.Class.HasPassword ?? !string.IsNullOrWhiteSpace(model.Password)) ? "1" : "0";
+                TempData["CreatedRequiresApproval"] = (detail?.Class.RequiresApproval ?? model.RequiresApproval) ? "1" : "0";
                 return RedirectToAction(nameof(ClassDetail), "Class", new { id = classId });
             }
             catch (InvalidOperationException ex)
             {
-                ModelState.AddModelError(nameof(model.Avatar), ex.Message);
+                ModelState.AddModelError(string.Empty, ex.Message);
+                if (string.IsNullOrWhiteSpace(model.JoinCode))
+                {
+                    model.JoinCode = ClassJoinCode.Generate();
+                }
+
                 return View(nameof(CreateClass), model);
             }
         }
@@ -70,16 +112,16 @@ namespace TCTVocabulary.Controllers
         [HttpPost("EditClass")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditClass(
-    int classId,
-    string className,
-    string? description,
-    bool requiresApproval,
-    bool isChatLocked,
-    bool allowMemberToPost)
+            int classId,
+            string className,
+            string? description,
+            bool requiresApproval,
+            bool isChatLocked,
+            bool allowMemberToPost,
+            bool? isPublic)
         {
             if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
 
-            // Truyền đầy đủ 8 tham số vào Service[cite: 1, 14]
             var result = await _classService.UpdateClassAsync(
                 classId,
                 className,
@@ -87,12 +129,51 @@ namespace TCTVocabulary.Controllers
                 requiresApproval,
                 isChatLocked,
                 allowMemberToPost,
+                isPublic,
                 userId,
                 IsAdminUser());
 
             return result.Status == OperationStatus.Success
                 ? Ok()
                 : BadRequest(result.ErrorMessage);
+        }
+
+        [Authorize]
+        [HttpPost("RegenerateJoinCode")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegenerateJoinCode(int classId)
+        {
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
+
+            var result = await _classService.RegenerateJoinCodeAsync(classId, userId, IsAdminUser());
+            return result.Status switch
+            {
+                OperationStatus.Success => Json(new { joinCode = result.Value }),
+                OperationStatus.Invalid => BadRequest(result.ErrorMessage),
+                _ => NotFound(result.ErrorMessage)
+            };
+        }
+
+        [Authorize]
+        [HttpPost("UpdateClassCover")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateClassCover(int classId, IFormFile cover)
+        {
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
+
+            var result = await _classService.UpdateClassCoverAsync(classId, cover, userId, IsAdminUser());
+            return result.Status switch
+            {
+                OperationStatus.Success => Ok(),
+                OperationStatus.Invalid => BadRequest(result.ErrorMessage),
+                _ => NotFound(result.ErrorMessage)
+            };
         }
 
         [Authorize]
@@ -199,7 +280,7 @@ namespace TCTVocabulary.Controllers
                 return Unauthorized();
             }
 
-            var classes = await _classService.SearchClassesAsync(keyword, userId);
+            var classes = await _classService.BrowseClassesAsync(keyword, userId, GetNormalizedRole());
             return Ok(classes);
         }
 
@@ -214,6 +295,25 @@ namespace TCTVocabulary.Controllers
             }
 
             var result = await _classService.JoinClassAsync(classId, password, userId);
+            return MapJoinResult(result);
+        }
+
+        [Authorize]
+        [HttpPost("JoinClassByCode")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> JoinClassByCode(string joinCode, string? password)
+        {
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
+
+            var result = await _classService.JoinClassByCodeAsync(joinCode, password, userId);
+            return MapJoinResult(result);
+        }
+
+        private IActionResult MapJoinResult(OperationResult<JoinClassResult> result)
+        {
             if (result.Status == OperationStatus.NotFound)
             {
                 return NotFound();
@@ -224,9 +324,60 @@ namespace TCTVocabulary.Controllers
                 return BadRequest(result.ErrorMessage);
             }
 
+            var value = result.Value!;
+            if (value.Outcome == JoinClassOutcome.NeedsPassword)
+            {
+                return Json(new
+                {
+                    status = "needsPassword",
+                    classId = value.ClassId,
+                    message = "Lớp này yêu cầu mật khẩu."
+                });
+            }
+
+            if (value.Outcome == JoinClassOutcome.Pending)
+            {
+                return Json(new
+                {
+                    status = "pending",
+                    classId = value.ClassId,
+                    message = "Yêu cầu tham gia đã được gửi. Vui lòng chờ trưởng nhóm phê duyệt."
+                });
+            }
+
             return Json(new
             {
-                redirectUrl = Url.Action(nameof(ClassDetail), "Class", new { id = classId })
+                status = "joined",
+                classId = value.ClassId,
+                redirectUrl = Url.Action(nameof(ClassDetail), "Class", new { id = value.ClassId })
+            });
+        }
+
+        [Authorize]
+        [HttpGet("ClassMessages")]
+        public async Task<IActionResult> ClassMessages(int classId, int? beforeMessageId, int take = 50)
+        {
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
+
+            if (!await _classService.CanAccessClassAsync(classId, userId, IsAdminUser()))
+            {
+                return NotFound();
+            }
+
+            var page = await _classService.GetClassMessagesAsync(
+                classId,
+                userId,
+                IsAdminUser(),
+                beforeMessageId,
+                take);
+
+            return Json(new
+            {
+                messages = page.Messages,
+                hasMore = page.HasMore
             });
         }
 

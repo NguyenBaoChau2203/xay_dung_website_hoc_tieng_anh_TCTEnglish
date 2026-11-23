@@ -1,0 +1,48 @@
+@model TCTVocabulary.ViewModels.ClassCardViewModel
+@{
+    var cover = string.IsNullOrEmpty(Model.ImageUrl)
+        ? "/images/ClassDefault/class-default.png"
+        : Model.ImageUrl;
+}
+<a href="@Url.Action("ClassDetail", "Class", new { id = Model.ClassId })"
+   class="class-cover-card">
+    <div class="class-cover-card__media">
+        <img src="@cover"
+             alt=""
+             onerror="this.src='/images/ClassDefault/class-default.png'" />
+    </div>
+    <div class="class-cover-card__body">
+        <h3 class="class-cover-card__title">@Model.ClassName</h3>
+        <p class="class-cover-card__meta">@Model.OwnerName · @Model.MemberCount thành viên</p>
+        <div class="class-cover-card__badges">
+            @if (Model.IsOwner)
+            {
+                <span class="class-badge">Lớp của bạn</span>
+            }
+            else if (Model.IsAssistant)
+            {
+                <span class="class-badge">Phó nhóm</span>
+            }
+            else
+            {
+                <span class="class-badge class-badge--muted">Đã tham gia</span>
+            }
+            @if (!Model.IsPublic)
+            {
+                <span class="class-badge class-badge--muted">Private</span>
+            }
+            @if (Model.HasPassword)
+            {
+                <span class="class-badge class-badge--muted">Có mật khẩu</span>
+            }
+            @if (Model.RequiresApproval)
+            {
+                <span class="class-badge class-badge--warn">Cần duyệt</span>
+            }
+            @if ((Model.IsOwner || Model.IsAssistant) && Model.PendingRequestCount > 0)
+            {
+                <span class="class-badge class-badge--warn">@Model.PendingRequestCount yêu cầu</span>
+            }
+        </div>
+    </div>
+</a>

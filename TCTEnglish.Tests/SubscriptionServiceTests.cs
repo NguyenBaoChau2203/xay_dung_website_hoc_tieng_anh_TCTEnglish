@@ -114,6 +114,19 @@ namespace TCTEnglish.Tests
         }
 
         [Fact]
+        public async Task Activate_TeacherUser_DoesNotChangeRole()
+        {
+            var ctx = CreateContext(Guid.NewGuid().ToString());
+            var (user, _, order) = await SeedPaidOrder(ctx, role: Roles.Teacher);
+            var svc = new SubscriptionService(ctx);
+
+            await svc.ActivateFromPaidOrderAsync(order.Id);
+
+            var reloaded = await ctx.Users.FindAsync(user.UserId);
+            Assert.Equal(Roles.Teacher, reloaded!.Role);
+        }
+
+        [Fact]
         public async Task Activate_DuplicateCall_DoesNotStackDuration()
         {
             var ctx = CreateContext(Guid.NewGuid().ToString());
@@ -258,6 +271,53 @@ namespace TCTEnglish.Tests
 
             var reloadedUser = await ctx.Users.FindAsync(user.UserId);
             Assert.Equal(Roles.Admin, reloadedUser!.Role);
+        }
+
+        [Fact]
+        public async Task Expire_TeacherUser_DoesNotDowngrade()
+        {
+            var ctx = CreateContext(Guid.NewGuid().ToString());
+            var (user, plan, _) = await SeedPaidOrder(ctx, role: Roles.Teacher);
+
+            var sub = new UserSubscription
+            {
+                UserId = user.UserId,
+                PlanId = plan.Id,
+                Status = SubscriptionStatuses.Active,
+                StartsAtUtc = DateTime.UtcNow.AddDays(-35),
+                EndsAtUtc = DateTime.UtcNow.AddDays(-5),
+                CreatedAtUtc = DateTime.UtcNow.AddDays(-35)
+            };
+            ctx.UserSubscriptions.Add(sub);
+            await ctx.SaveChangesAsync();
+
+            var svc = new SubscriptionService(ctx);
+            await svc.ExpireSubscriptionsAsync();
+
+            var reloadedUser = await ctx.Users.FindAsync(user.UserId);
+            Assert.Equal(Roles.Teacher, reloadedUser!.Role);
+        }
+
+        [Fact]
+        public async Task GrantManual_TeacherUser_DoesNotChangeRole()
+        {
+            var ctx = CreateContext(Guid.NewGuid().ToString());
+            var user = new User { Email = "teacher-grant@test.com", PasswordHash = "h", Role = Roles.Teacher };
+            ctx.Users.Add(user);
+
+            var plan = new PremiumPlan
+            {
+                Code = "manual-teacher", Name = "Manual", Description = "d", PriceVnd = 0, DurationDays = 30, IsActive = true, CreatedAtUtc = DateTime.UtcNow
+            };
+            ctx.PremiumPlans.Add(plan);
+            await ctx.SaveChangesAsync();
+
+            var svc = new SubscriptionService(ctx);
+            var result = await svc.GrantManualAsync(user.UserId, plan.Id, 30, "Bonus");
+
+            Assert.Equal(OperationStatus.Success, result.Status);
+            var reloadedUser = await ctx.Users.FindAsync(user.UserId);
+            Assert.Equal(Roles.Teacher, reloadedUser!.Role);
         }
 
         // ───────────────────────────────────────────────────────────────────────

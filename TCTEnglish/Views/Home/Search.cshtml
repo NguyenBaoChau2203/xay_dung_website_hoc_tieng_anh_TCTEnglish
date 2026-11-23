@@ -1,175 +1,176 @@
 @model TCTVocabulary.ViewModels.SearchViewModel
 @{
-    ViewData["Title"] = $"Kết quả cho \"{Model.Query}\"";
+    ViewData["Title"] = string.IsNullOrWhiteSpace(Model.Query)
+        ? "Tìm kiếm"
+        : $"Kết quả cho \"{Model.Query}\"";
 }
 
-<div class="search-container">
-    <div class="search-header">
-        <h2 class="search-title">
-            Kết quả cho <span class="query-text">"@Model.Query"</span>
-        </h2>
-        <p class="search-stats">Tìm thấy @Model.TotalResults kết quả trong thư mục, lớp học và người dùng</p>
-    </div>
-
-    <div class="search-tabs">
-        <button class="tab-btn active" data-target="all">
-            <i class="fas fa-th-large"></i> Tất cả
-        </button>
-        <button class="tab-btn" data-target="folders">
-            <i class="fas fa-folder"></i> Thư mục (@Model.Folders.Count)
-        </button>
-        <button class="tab-btn" data-target="classes">
-            <i class="fas fa-chalkboard"></i> Lớp học (@Model.Classes.Count)
-        </button>
-        <button class="tab-btn" data-target="users">
-            <i class="fas fa-users"></i> Người dùng (@Model.Users.Count)
-        </button>
-    </div>
-
-    <div class="search-results-content">
-        <section class="result-section" id="folders-section">
-            <div class="section-header">
-                <h3>Thư mục</h3>
-                <span class="badge">@Model.Folders.Count</span>
-            </div>
-            <div class="result-grid">
-                @if (Model.Folders.Any())
+<div class="tct-theme search-page">
+    <div class="search-container">
+        <div class="search-header">
+            <h2 class="search-title">
+                @if (string.IsNullOrWhiteSpace(Model.Query))
                 {
-                    foreach (var folder in Model.Folders)
-                    {
-                        <a asp-controller="Folder" asp-action="FolderDetail" asp-route-id="@folder.FolderId" class="result-card">
-                            <div class="card-icon folder"><i class="fas fa-folder"></i></div>
-                            <div class="card-info">
-                                <span class="card-name">@folder.FolderName</span>
-                                <span class="card-meta">Tạo bởi <b>@folder.CreatorName</b></span>
-                            </div>
-                            <i class="fas fa-chevron-right arrow-icon"></i>
-                        </a>
-                    }
+                    <text>Tìm trong menu</text>
                 }
                 else
                 {
-                    <div class="empty-state">Không tìm thấy thư mục nào.</div>
+                    <text>Kết quả cho <span class="query-text">"@Model.Query"</span></text>
                 }
-            </div>
-        </section>
+            </h2>
+            <p class="search-stats">
+                Tìm thấy @Model.TotalResults kết quả trong menu, thư mục và người dùng.
+                Để tìm lớp học, mở <a asp-controller="Class" asp-action="BrowseClasses">Khám phá lớp</a>.
+            </p>
+        </div>
 
-        <section class="result-section" id="classes-section">
-            <div class="section-header">
-                <h3>Lớp học</h3>
-                <span class="badge">@Model.Classes.Count</span>
-            </div>
-            <div class="result-grid">
-                @if (Model.Classes.Any())
-                {
-                    foreach (var classResult in Model.Classes)
-                    {
-                        <a asp-controller="Class" asp-action="ClassDetail" asp-route-id="@classResult.ClassId" class="result-card">
-                            <div class="card-icon class"><i class="fas fa-chalkboard-teacher"></i></div>
-                            <div class="card-info">
-                                <span class="card-name">@classResult.ClassName</span>
-                                <span class="card-meta">Chủ sở hữu: <b>@classResult.OwnerName</b></span>
-                            </div>
-                            <i class="fas fa-chevron-right arrow-icon"></i>
-                        </a>
-                    }
-                }
-                else
-                {
-                    <div class="empty-state">Không tìm thấy lớp học nào.</div>
-                }
-            </div>
-        </section>
+        <div class="search-tabs" role="tablist">
+            <button type="button" class="tab-btn active" data-target="all" role="tab" aria-selected="true">
+                <i class="fas fa-th-large" aria-hidden="true"></i> Tất cả
+            </button>
+            <button type="button" class="tab-btn" data-target="menus" role="tab" aria-selected="false">
+                <i class="fas fa-compass" aria-hidden="true"></i> Menu (@Model.NavMenus.Count)
+            </button>
+            <button type="button" class="tab-btn" data-target="folders" role="tab" aria-selected="false">
+                <i class="fas fa-folder" aria-hidden="true"></i> Thư mục (@Model.Folders.Count)
+            </button>
+            <button type="button" class="tab-btn" data-target="users" role="tab" aria-selected="false">
+                <i class="fas fa-users" aria-hidden="true"></i> Người dùng (@Model.Users.Count)
+            </button>
+        </div>
 
-        <section class="result-section" id="users-section">
-            <div class="section-header">
-                <h3>Người dùng</h3>
-                <span class="badge">@Model.Users.Count</span>
-            </div>
-            <div class="result-grid">
-                @if (Model.Users.Any())
-                {
-                    foreach (var user in Model.Users)
+        <div class="search-results-content">
+            <section class="result-section" id="menus-section">
+                <div class="section-header">
+                    <h3>Menu điều hướng</h3>
+                    <span class="badge">@Model.NavMenus.Count</span>
+                </div>
+                <div class="result-grid">
+                    @if (Model.NavMenus.Any())
                     {
-                        <div class="result-card user-card">
-                            <div class="card-avatar" style="background-image: url('@(string.IsNullOrEmpty(user.AvatarUrl) ? "/img/default-avatar.png" : user.AvatarUrl)')">
-                                @if (string.IsNullOrEmpty(user.AvatarUrl))
-                                {
-                                    @user.AvatarInitial
-                                }
-                            </div>
-                            <div class="card-info">
-                                <span class="card-name">@user.FullName</span>
-                                <span class="card-meta">@user.Email</span>
-                            </div>
-                        </div>
+                        foreach (var menu in Model.NavMenus)
+                        {
+                            <a href="@menu.Url" class="result-card">
+                                <div class="card-icon menu"><i class="@menu.IconClass" aria-hidden="true"></i></div>
+                                <div class="card-info">
+                                    <span class="card-name">@menu.Title</span>
+                                    <span class="card-meta">@menu.Description</span>
+                                </div>
+                                <i class="fas fa-chevron-right arrow-icon" aria-hidden="true"></i>
+                            </a>
+                        }
                     }
-                }
-                else
-                {
-                    <div class="empty-state">Không tìm thấy người dùng nào.</div>
-                }
-            </div>
-        </section>
+                    else
+                    {
+                        <div class="empty-state">Không tìm thấy mục menu nào.</div>
+                    }
+                </div>
+            </section>
+
+            <section class="result-section" id="folders-section">
+                <div class="section-header">
+                    <h3>Thư mục</h3>
+                    <span class="badge">@Model.Folders.Count</span>
+                </div>
+                <div class="result-grid">
+                    @if (Model.Folders.Any())
+                    {
+                        foreach (var folder in Model.Folders)
+                        {
+                            <a asp-controller="Folder" asp-action="FolderDetail" asp-route-id="@folder.FolderId" class="result-card">
+                                <div class="card-icon folder"><i class="fas fa-folder" aria-hidden="true"></i></div>
+                                <div class="card-info">
+                                    <span class="card-name">@folder.FolderName</span>
+                                    <span class="card-meta">Tạo bởi <b>@folder.CreatorName</b></span>
+                                </div>
+                                <i class="fas fa-chevron-right arrow-icon" aria-hidden="true"></i>
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <div class="empty-state">Không tìm thấy thư mục nào.</div>
+                    }
+                </div>
+            </section>
+
+            <section class="result-section" id="users-section">
+                <div class="section-header">
+                    <h3>Người dùng</h3>
+                    <span class="badge">@Model.Users.Count</span>
+                </div>
+                <div class="result-grid">
+                    @if (Model.Users.Any())
+                    {
+                        foreach (var user in Model.Users)
+                        {
+                            <div class="result-card user-card">
+                                <div class="card-avatar" style="background-image: url('@(string.IsNullOrEmpty(user.AvatarUrl) ? "/img/default-avatar.png" : user.AvatarUrl)')">
+                                    @if (string.IsNullOrEmpty(user.AvatarUrl))
+                                    {
+                                        @user.AvatarInitial
+                                    }
+                                </div>
+                                <div class="card-info">
+                                    <span class="card-name">@user.FullName</span>
+                                    <span class="card-meta">@user.Email</span>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="empty-state">Không tìm thấy người dùng nào.</div>
+                    }
+                </div>
+            </section>
+        </div>
     </div>
 </div>
 
 <style>
-    :root {
-        --primary: #2563eb;
-        --primary-light: #eff6ff;
-        --text-main: #1e293b;
-        --text-sub: #64748b;
-        --bg-body: #f8fafc;
-        --white: #ffffff;
-        --border: #e2e8f0;
-        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-
-    .search-container {
+    .search-page .search-container {
         max-width: 1100px;
         margin: 40px auto;
         padding: 0 20px;
-        font-family: 'Inter', system-ui, sans-serif;
     }
 
-    .search-header {
+    .search-page .search-header {
         margin-bottom: 32px;
     }
 
-    .search-title {
-        font-size: 2rem;
+    .search-page .search-title {
+        font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
         font-weight: 800;
-        color: var(--text-main);
+        color: var(--tct-text, #111c2d);
         margin-bottom: 8px;
     }
 
-    .query-text {
-        color: var(--primary);
+    .search-page .query-text {
+        color: var(--tct-primary, #4255ff);
     }
 
-    .search-stats {
-        color: var(--text-sub);
+    .search-page .search-stats {
+        color: var(--tct-text-muted, #5b6578);
         font-size: 0.95rem;
     }
 
-    .search-tabs {
+    .search-page .search-tabs {
         display: flex;
         gap: 8px;
-        border-bottom: 2px solid var(--border);
+        border-bottom: 2px solid var(--tct-border, #e5e7eb);
         margin-bottom: 32px;
         overflow-x: auto;
         padding-bottom: 2px;
     }
 
-    .tab-btn {
+    .search-page .tab-btn {
         padding: 12px 20px;
         border: none;
         background: none;
         font-weight: 600;
-        color: var(--text-sub);
+        color: var(--tct-text-muted, #5b6578);
         cursor: pointer;
-        transition: all 0.3s;
         border-bottom: 3px solid transparent;
         margin-bottom: -2px;
         display: flex;
@@ -178,73 +179,68 @@
         white-space: nowrap;
     }
 
-    .tab-btn i {
-        font-size: 14px;
+    .search-page .tab-btn:hover,
+    .search-page .tab-btn.active {
+        color: var(--tct-primary, #4255ff);
     }
 
-    .tab-btn:hover {
-        color: var(--primary);
-        background: var(--primary-light);
-        border-radius: 8px 8px 0 0;
+    .search-page .tab-btn.active {
+        border-bottom-color: var(--tct-primary, #4255ff);
     }
 
-    .tab-btn.active {
-        color: var(--primary);
-        border-bottom-color: var(--primary);
-    }
-
-    .result-section {
+    .search-page .result-section {
         margin-bottom: 48px;
     }
 
-    .section-header {
+    .search-page .section-header {
         display: flex;
         align-items: center;
         gap: 12px;
         margin-bottom: 20px;
     }
 
-    .section-header h3 {
+    .search-page .section-header h3 {
         font-size: 1.25rem;
         font-weight: 700;
-        color: var(--text-main);
+        color: var(--tct-text, #111c2d);
+        margin: 0;
     }
 
-    .badge {
-        background: var(--border);
+    .search-page .badge {
+        background: var(--tct-surface-muted, #f8fafc);
         padding: 2px 10px;
         border-radius: 20px;
         font-size: 0.8rem;
         font-weight: 600;
-        color: var(--text-sub);
+        color: var(--tct-text-muted, #5b6578);
     }
 
-    .result-grid {
+    .search-page .result-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 16px;
     }
 
-    .result-card {
-        background: var(--white);
-        border: 1px solid var(--border);
-        border-radius: 16px;
+    .search-page .result-card {
+        background: var(--tct-surface, #fff);
+        border: 1px solid var(--tct-border, #e5e7eb);
+        border-radius: var(--tct-radius-lg, 18px);
         padding: 16px;
         display: flex;
         align-items: center;
         gap: 16px;
         text-decoration: none;
-        transition: all 0.2s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        box-shadow: var(--tct-shadow-soft, none);
+        color: inherit;
     }
 
-    .result-card:hover {
-        transform: translateY(-3px);
-        box-shadow: var(--shadow);
-        border-color: var(--primary);
+    .search-page .result-card:hover,
+    .search-page .result-card:focus-visible {
+        border-color: var(--tct-primary, #4255ff);
+        outline: none;
     }
 
-    .card-icon {
+    .search-page .card-icon {
         width: 48px;
         height: 48px;
         border-radius: 12px;
@@ -252,84 +248,84 @@
         align-items: center;
         justify-content: center;
         font-size: 20px;
+        flex-shrink: 0;
     }
 
-    .card-icon.folder {
+    .search-page .card-icon.menu {
+        background: var(--tct-primary-soft, #eef2ff);
+        color: var(--tct-primary-strong, #2136e7);
+    }
+
+    .search-page .card-icon.folder {
         background: #fff7ed;
         color: #f59e0b;
     }
 
-    .card-icon.class {
-        background: #f0fdf4;
-        color: #22c55e;
-    }
-
-    .card-avatar {
+    .search-page .card-avatar {
         width: 48px;
         height: 48px;
         border-radius: 50%;
         background-size: cover;
         background-position: center;
-        background-color: var(--primary);
+        background-color: var(--tct-primary, #4255ff);
         color: white;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: bold;
         text-transform: uppercase;
+        flex-shrink: 0;
     }
 
-    .card-info {
+    .search-page .card-info {
         flex: 1;
         display: flex;
         flex-direction: column;
+        min-width: 0;
     }
 
-    .card-name {
+    .search-page .card-name {
         font-weight: 700;
-        color: var(--text-main);
-        font-size: 1.05rem;
+        color: var(--tct-text, #111c2d);
     }
 
-    .card-meta {
+    .search-page .card-meta {
         font-size: 0.85rem;
-        color: var(--text-sub);
+        color: var(--tct-text-muted, #5b6578);
         margin-top: 2px;
     }
 
-    .arrow-icon {
-        color: var(--border);
+    .search-page .arrow-icon {
+        color: var(--tct-border, #e5e7eb);
         font-size: 12px;
-        transition: transform 0.2s;
     }
 
-    .result-card:hover .arrow-icon {
-        transform: translateX(3px);
-        color: var(--primary);
-    }
-
-    .empty-state {
+    .search-page .empty-state {
         grid-column: 1 / -1;
         padding: 40px;
         text-align: center;
-        background: #f1f5f9;
+        background: var(--tct-surface-muted, #f8fafc);
         border-radius: 12px;
-        color: var(--text-sub);
-        border: 2px dashed var(--border);
+        color: var(--tct-text-muted, #5b6578);
+        border: 2px dashed var(--tct-border, #e5e7eb);
     }
 </style>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const tabs = document.querySelectorAll(".tab-btn");
-        const sections = document.querySelectorAll(".result-section");
+        const tabs = document.querySelectorAll(".search-page .tab-btn");
+        const sections = document.querySelectorAll(".search-page .result-section");
 
         tabs.forEach(tab => {
             tab.addEventListener("click", () => {
                 const target = tab.getAttribute("data-target");
 
-                tabs.forEach(item => item.classList.remove("active"));
+                tabs.forEach(item => {
+                    item.classList.remove("active");
+                    item.setAttribute("aria-selected", "false");
+                });
                 tab.classList.add("active");
+                tab.setAttribute("aria-selected", "true");
 
                 sections.forEach(section => {
                     section.style.display = target === "all" || section.id === `${target}-section`

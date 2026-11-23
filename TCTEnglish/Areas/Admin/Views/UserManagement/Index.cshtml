@@ -105,6 +105,7 @@
                 <select id="filterRoleSelect" name="role" class="form-select admin-filter-select">
                     <option value="">Tất cả vai trò</option>
                     <option value="Admin" selected="@(Model.RoleFilter == "Admin" ? "selected" : null)">Admin (Quản trị)</option>
+                    <option value="Teacher" selected="@(Model.RoleFilter == "Teacher" ? "selected" : null)">Teacher (Giảng viên)</option>
                     <option value="Premium" selected="@(Model.RoleFilter == "Premium" ? "selected" : null)">Premium (Học viên VIP)</option>
                     <option value="Standard" selected="@(Model.RoleFilter == "Standard" ? "selected" : null)">Standard (Học viên)</option>
                 </select>
@@ -316,6 +317,7 @@
                     <label class="form-label admin-modal-label" for="editRole">Vai trò tài khoản</label>
                     <select id="editRole" class="form-select admin-modal-select">
                         <option value="Admin">Admin (Quản trị viên toàn quyền)</option>
+                        <option value="Teacher">Teacher (Giảng viên — tạo lớp)</option>
                         <option value="Premium">Premium (Học viên gói VIP)</option>
                         <option value="Standard">Standard (Học viên tiêu chuẩn)</option>
                     </select>

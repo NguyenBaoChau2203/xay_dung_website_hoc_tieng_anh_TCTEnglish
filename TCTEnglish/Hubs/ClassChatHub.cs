@@ -148,14 +148,21 @@ namespace TCTEnglish.Hubs
                 return;
             }
 
-            if (!await _classService.CanAccessClassAsync(classId, userId.Value, Context.User?.IsInRole(Roles.Admin) == true))
+            var isAdmin = Context.User?.IsInRole(Roles.Admin) == true;
+            var sendCheck = await _classService.EnsureCanSendClassChatAsync(classId, userId.Value, isAdmin);
+            if (!sendCheck.IsSuccess)
             {
-                _logger.LogWarning("Access denied when user {userId} tried to send message to class {classId}", userId.Value, classId);
-                throw new HubException("Không có quyền truy cập lớp.");
+                _logger.LogWarning(
+                    "Chat send denied for user {userId} in class {classId}: {reason}",
+                    userId.Value,
+                    classId,
+                    sendCheck.ErrorMessage);
+                throw new HubException(sendCheck.ErrorMessage ?? "Không thể gửi tin nhắn.");
             }
 
             string? fullName;
             var createdAt = DateTime.UtcNow;
+            int messageId;
             await using (var scope = _scopeFactory.CreateAsyncScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
@@ -177,6 +184,7 @@ namespace TCTEnglish.Hubs
 
                 db.ClassMessages.Add(message);
                 await db.SaveChangesAsync();
+                messageId = message.MessageId;
 
                 _logger.LogInformation(
                     "Message created in class {classId} by user {userId}, messageId {messageId}",
@@ -188,6 +196,7 @@ namespace TCTEnglish.Hubs
             await Clients.Group($"class-{classId}")
                 .SendAsync("ReceiveMessage", new
                 {
+                    messageId,
                     userId = userId.Value,
                     fullName,
                     content,
@@ -210,13 +219,21 @@ namespace TCTEnglish.Hubs
                 return;
             }
 
-            if (!await _classService.CanAccessClassAsync(classId, userId.Value, Context.User?.IsInRole(Roles.Admin) == true))
+            var isAdmin = Context.User?.IsInRole(Roles.Admin) == true;
+            var sendCheck = await _classService.EnsureCanSendClassChatAsync(classId, userId.Value, isAdmin);
+            if (!sendCheck.IsSuccess)
             {
-                _logger.LogWarning("Access denied when user {userId} tried to send image to class {classId}", userId.Value, classId);
-                throw new HubException("Không có quyền truy cập lớp.");
+                _logger.LogWarning(
+                    "Chat image denied for user {userId} in class {classId}: {reason}",
+                    userId.Value,
+                    classId,
+                    sendCheck.ErrorMessage);
+                throw new HubException(sendCheck.ErrorMessage ?? "Không thể gửi ảnh.");
             }
 
             string? fullName;
+            int messageId;
+            var createdAt = DateTime.UtcNow;
             await using (var scope = _scopeFactory.CreateAsyncScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
@@ -233,11 +250,12 @@ namespace TCTEnglish.Hubs
                     ClassId = classId,
                     UserId = userId.Value,
                     Content = imageUrl,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = createdAt
                 };
 
                 db.ClassMessages.Add(message);
                 await db.SaveChangesAsync();
+                messageId = message.MessageId;
 
                 _logger.LogInformation(
                     "Image message created in class {classId} by user {userId}, messageId {messageId}",
@@ -249,9 +267,11 @@ namespace TCTEnglish.Hubs
             await Clients.Group($"class-{classId}")
                 .SendAsync("ReceiveImage", new
                 {
+                    messageId,
                     userId = userId.Value,
                     fullName,
-                    imageUrl
+                    imageUrl,
+                    createdAt
                 });
         }
 

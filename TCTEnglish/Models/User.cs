@@ -15,9 +15,31 @@ public enum UserStatus
 public static class Roles
 {
     public const string Admin = "Admin";
+    public const string Teacher = "Teacher";
     public const string Premium = "Premium";
     public const string Standard = "Standard";
     public const string LegacyStudent = "Student";
+
+    /// <summary>Teacher or Admin may create and own virtual classes.</summary>
+    public static bool CanCreateClass(string? role)
+    {
+        var normalized = Normalize(role);
+        return normalized is Teacher or Admin;
+    }
+
+    /// <summary>Standard/Premium (and legacy Student) are learners for class nav.</summary>
+    public static bool IsLearner(string? role)
+    {
+        var normalized = Normalize(role);
+        return normalized is Standard or Premium;
+    }
+
+    /// <summary>Billing must not overwrite Admin or Teacher when syncing Premium.</summary>
+    public static bool IsProtectedFromBillingRoleSync(string? role)
+    {
+        var normalized = Normalize(role);
+        return normalized is Admin or Teacher;
+    }
 
     public static string Normalize(string? role)
     {
@@ -31,6 +53,11 @@ public static class Roles
         if (trimmedRole.Equals(Admin, StringComparison.OrdinalIgnoreCase))
         {
             return Admin;
+        }
+
+        if (trimmedRole.Equals(Teacher, StringComparison.OrdinalIgnoreCase))
+        {
+            return Teacher;
         }
 
         if (trimmedRole.Equals(Premium, StringComparison.OrdinalIgnoreCase))

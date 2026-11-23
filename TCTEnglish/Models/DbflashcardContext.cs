@@ -175,6 +175,17 @@ public partial class DbflashcardContext : DbContext
                   .HasDefaultValueSql("(CURRENT_TIMESTAMP)")
                   .HasColumnType("datetime");
 
+            entity.Property(e => e.IsPublic)
+                  .HasDefaultValue(true);
+
+            entity.Property(e => e.JoinCode)
+                  .HasMaxLength(16)
+                  .IsRequired();
+
+            entity.HasIndex(e => e.JoinCode)
+                  .IsUnique()
+                  .HasDatabaseName("IX_Classes_JoinCode");
+
             // ===== OWNER =====
             entity.HasOne(d => d.Owner)
                   .WithMany(p => p.Classes)

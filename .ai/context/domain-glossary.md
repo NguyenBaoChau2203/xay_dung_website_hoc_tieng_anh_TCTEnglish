@@ -69,8 +69,9 @@ AI assistants should use these exact terms consistently.
 | Role | Access Level | Description |
 |------|-------------|-------------|
 | `Admin` | Full access | Can manage all users, videos, system settings. Access `/Areas/Admin/` |
-| `Teacher` | Extended access | Can create and manage classes; may have elevated permissions |
-| `Student` | Standard access | Can create sets, study, join classes, use speaking features |
+| `Teacher` | Extended access | Admin-assigned; can create/manage virtual classes (`Roles.CanCreateClass`); billing must not overwrite Teacher |
+| `Student` | Legacy alias | Normalized to `Standard`; learners join Public classes / join-by-code, cannot create classes |
+| `Standard` / `Premium` | Learner | Study features; class nav = Khám phá lớp + Lớp học của tôi only |
 
 ---
 
