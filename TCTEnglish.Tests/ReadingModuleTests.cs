@@ -609,6 +609,36 @@ public sealed class ReadingModuleTests
     }
 
     [Fact]
+    public async Task ImportConfirm_SkipsAnIdenticalWorkbookAndKeepsChangedContent()
+    {
+        await using var db = CreateContext(nameof(ImportConfirm_SkipsAnIdenticalWorkbookAndKeepsChangedContent));
+        db.Users.Add(new User { UserId = 29, Email = "reading-import@test.local", PasswordHash = "x", Role = Roles.Admin });
+        await db.SaveChangesAsync();
+
+        var excel = new ReadingExcelService(db, CreateAdmin(db));
+        var workbook = excel.BuildTemplate();
+        using var firstStream = new MemoryStream(workbook);
+        var firstPreview = await excel.ParseAndValidateAsync(firstStream);
+        var first = Assert.Single((await excel.ConfirmImportAsync(firstPreview.ValidReadings, 29)).Items);
+        Assert.Equal("Success", first.Status);
+
+        using var retryStream = new MemoryStream(workbook);
+        var retryPreview = await excel.ParseAndValidateAsync(retryStream);
+        var repeated = Assert.Single((await excel.ConfirmImportAsync(retryPreview.ValidReadings, 29)).Items);
+        Assert.Equal("Skipped", repeated.Status);
+        Assert.Equal(first.ReadingCode, repeated.ReadingCode);
+        Assert.Equal(first.PassageId, repeated.PassageId);
+
+        var changed = Assert.Single(retryPreview.ValidReadings);
+        changed.ExternalReadingKey = first.ReadingCode; // A concurrent preview can have an older proposed code.
+        changed.Questions[0].Explanation = "A materially different explanation.";
+        var added = Assert.Single((await excel.ConfirmImportAsync([changed], 29)).Items);
+        Assert.Equal("Success", added.Status);
+        Assert.NotEqual(first.ReadingCode, added.ReadingCode);
+        Assert.Equal(2, await db.ReadingPassages.CountAsync());
+    }
+
+    [Fact]
     public async Task ImportConfirm_SkipsExistingReadingCode_DoesNotOverwrite()
     {
         await using var db = CreateContext(nameof(ImportConfirm_SkipsExistingReadingCode_DoesNotOverwrite));

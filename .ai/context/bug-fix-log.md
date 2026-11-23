@@ -6155,3 +6155,9 @@ The shared feedback component still serves Reading. The draft edit also deleted
 persisted learner answers before replacing questions. Refuse question replacement
 when an attempt exists, before an edit saves any metadata, and verify that the
 attempt, answer, question and original title are retained.
+
+A new preview of the same workbook allocated a different code, so confirmation
+could not detect the first import. Compare lesson content independent of the
+proposed code, reuse the catalog database lock for confirmation, and allocate
+a final code only for a distinct draft. Verified sequential and parallel
+confirmation using MariaDB 10.5.23 without changing the schema.

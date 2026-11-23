@@ -19,7 +19,6 @@
 
 | Priority | Finding | Repair and acceptance |
 | --- | --- | --- |
-| P1 | Reimporting the same workbook in a fresh preview allocates new official codes, so confirmation's final-code check cannot detect the previous import. The PR ledger documents local duplicate Published readings and manual archival. | Decide import identity and intended reimport behavior. Compare stable content identity without overwriting existing lessons. Cover repeated preview/confirm, legacy codes, partial failures and parallel confirmations on MariaDB 10.5.23. |
 | P1 | The Reading ledger documents Published local content for 12 titles, while the PR adds no package under data/shared. | Confirm the intended staging catalog. If the lessons are intended for staging, export reviewed allowlisted readings and referenced media using the shared-data workflow. Verify immutable versions and a second import; retain learner history and separate production selection. |
 | P2 | The always-applied Cursor rule and Spec Kit 1.4.3 add an active workflow without a corresponding upstream commit and installed file hashes in the team lock file. | Obtain the owner's decision on activation. If approved, review the source, license and host compatibility and pin the installed files. Otherwise move the tooling changes to their own review. |
 | Release | master run 45182318680 passed application/MariaDB checks, but authenticated staging retained commit 93959ab4 after the webhook was accepted. The deployment artifact is 207,437,656 bytes. | Verify current private Plesk deployment state and sufficient disk headroom before a retry. Preserve backups, logs and data. A successful release must match commit, run and SHA-256 as well as readiness. |
@@ -30,3 +29,10 @@
 - [x] Release build and 79 focused .NET tests, including both Reading edit entry points.
 - [x] Node regressions (595 passed).
 - [x] Test the three-way merge without conflicts. Preserve the original dirty checkout.
+
+## Reading workbook reimport
+
+- [x] A second preview and confirmation of the original workbook returns the existing passage code and ID.
+- [x] A change to a question explanation creates a distinct draft with the next available code, even from a stale preview.
+- [x] Two simultaneous Admin confirmations on disposable MariaDB 10.5.23 create one draft and return the same code. The rerun also matched a row created before the repair.
+- [x] Compare existing passage text, metadata, questions, options and vocabulary. A cover-only update belongs in the Admin editor. The schema and existing rows are preserved.

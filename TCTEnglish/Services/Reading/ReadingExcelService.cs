@@ -3,6 +3,7 @@ using System.IO.Compression;
 using System.Xml;
 using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Areas.Admin.ViewModels;
+using TCTEnglish.Infrastructure.SharedData;
 using TCTEnglish.Models.Reading;
 using TCTVocabulary.Models;
 
@@ -118,7 +119,7 @@ public sealed class ReadingExcelService : IReadingExcelService
             ("ReadingCode", "Excel ReadingCode is a temporary join key only (e.g. L1, L2). Unique per reading in the file. Import always assigns RD-{CEFR}-NNN."),
             ("Word count", "Count Passage body words only (not Title/Questions/Answers/Vocabulary). Soft targets: A1 80–120; A2 120–180; B1 200–300; B2 300–450; C1 450–600; C2 550–750. See docs/content/reading-content-authoring-guidelines.md."),
             ("Duration", "Suggested Duration (minutes, midpoint): A1=6; A2=8; B1=12; B2=18; C1=22; C2=28. Difficulty is not length alone."),
-            ("Partial import", "Valid readings are saved as Draft; failed rows are skipped. System codes never overwrite existing ExternalReadingKey values."),
+            ("Partial import", "Valid readings are saved as Draft. Identical readings and failed rows are skipped. The final code is assigned on confirmation."),
             ("Vocabulary", "Optional. Meaning = Vietnamese meaning (required when a vocab row exists)."),
             ("ImageUrl", "Optional: /images/..., /uploads/..., or https://..."),
             ("Media ZIP", "Optional ZIP at Import: root files {file ReadingCode}.jpg|png|webp|gif (ZIP wins over ImageUrl)."),
@@ -594,6 +595,24 @@ public sealed class ReadingExcelService : IReadingExcelService
         CancellationToken ct = default)
     {
         var result = new ReadingExcelImportConfirmResult();
+        var hasWorkbookReadings = models.Any(model => !string.IsNullOrWhiteSpace(model.ImportFileReadingCode));
+
+        // Keep content checks, code allocation and inserts under the same connection-scoped
+        // MariaDB lock used by catalog imports.
+        await using var catalogLock = hasWorkbookReadings && _db.Database.IsMySql()
+            ? await SharedDataDatabaseLock.AcquireAsync(_db, ct)
+            : null;
+
+        var occupiedCodes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        if (hasWorkbookReadings)
+        {
+            var storedCodes = await _db.ReadingPassages.AsNoTracking()
+                .Where(p => p.ExternalReadingKey != null)
+                .Select(p => p.ExternalReadingKey!)
+                .ToListAsync(ct);
+            occupiedCodes.UnionWith(storedCodes);
+        }
+
         foreach (var model in models)
         {
             var code = model.ExternalReadingKey?.Trim() ?? "";
@@ -611,9 +630,26 @@ public sealed class ReadingExcelService : IReadingExcelService
                 continue;
             }
 
-            var exists = await _db.ReadingPassages.AsNoTracking()
-                .AnyAsync(p => p.ExternalReadingKey != null && p.ExternalReadingKey == code, ct);
-            if (exists)
+            if (!string.IsNullOrWhiteSpace(model.ImportFileReadingCode))
+            {
+                var existing = await FindMatchingReadingAsync(model, ct);
+                if (existing != null)
+                {
+                    item.ReadingCode = existing.ExternalReadingKey ?? $"RD-{existing.Id}";
+                    item.PassageId = existing.Id;
+                    item.Status = "Skipped";
+                    item.Message = "An identical reading already exists; no draft was created.";
+                    result.Items.Add(item);
+                    continue;
+                }
+
+                // Preview codes are provisional. Another import can take the code before confirmation.
+                code = AllocateNextOfficialReadingCode(CefrLevels.Normalize(model.Level), occupiedCodes);
+                item.ReadingCode = code;
+                model.ExternalReadingKey = code;
+            }
+            else if (await _db.ReadingPassages.AsNoTracking()
+                .AnyAsync(p => p.ExternalReadingKey != null && p.ExternalReadingKey == code, ct))
             {
                 item.Status = "Skipped";
                 item.Message = "ReadingCode already exists; not overwritten.";
@@ -627,6 +663,7 @@ public sealed class ReadingExcelService : IReadingExcelService
             {
                 var created = await _admin.CreateDraftAsync(model, actorUserId, ct);
                 if (tx != null) await tx.CommitAsync(ct);
+                occupiedCodes.Add(code);
                 item.Status = "Success";
                 item.PassageId = created.Id;
                 item.Message = "Imported as Draft.";
@@ -643,6 +680,24 @@ public sealed class ReadingExcelService : IReadingExcelService
         }
 
         return result;
+    }
+
+    private async Task<ReadingPassage?> FindMatchingReadingAsync(ReadingEditorViewModel model, CancellationToken ct)
+    {
+        var title = model.Title.Trim();
+        var level = CefrLevels.Normalize(model.Level);
+        var shape = ReadingImportContent.Serialize(model);
+        var candidates = await _db.ReadingPassages.AsNoTracking()
+            .Where(p => p.Title == title && p.Level == level)
+            .Include(p => p.Paragraphs)
+            .Include(p => p.Questions).ThenInclude(q => q.Options)
+            .Include(p => p.VocabularyItems).ThenInclude(v => v.Paragraph)
+            .AsSplitQuery()
+            .OrderBy(p => p.Id)
+            .ToListAsync(ct);
+
+        return candidates.FirstOrDefault(p =>
+            ReadingImportContent.Serialize(ReadingEditorMapper.FromPassage(p)) == shape);
     }
 
     private static void ParsePassageRows(

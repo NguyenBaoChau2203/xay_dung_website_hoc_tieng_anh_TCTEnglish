@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TCTEnglish.Areas.Admin.ViewModels;
@@ -65,7 +65,7 @@ namespace TCTEnglish.Areas.Admin.Controllers
             var passage = await _admin.GetForEditAsync(id);
             if (passage == null) return NotFound();
             ViewData["Title"] = "Chỉnh sửa bài đọc";
-            return View(MapEditor(passage));
+            return View(ReadingEditorMapper.FromPassage(passage));
         }
 
         [HttpPost]
@@ -295,7 +295,7 @@ namespace TCTEnglish.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Import));
             }
 
-            var confirm = await _excel.ConfirmImportAsync(models, GetCurrentUserId());
+            var confirm = await _excel.ConfirmImportAsync(models, GetCurrentUserId(), HttpContext.RequestAborted);
             TempData["ImportResultJson"] = JsonSerializer.Serialize(confirm);
             TempData["Success"] =
                 $"Import xong: {confirm.SuccessCount} thành công (Draft), {confirm.FailedCount} lỗi, {confirm.SkippedCount} bỏ qua. Chưa xuất bản — cần kiểm duyệt.";
@@ -335,64 +335,5 @@ namespace TCTEnglish.Areas.Admin.Controllers
         // Legacy ManageQuestions kept as redirect
         [HttpGet]
         public IActionResult ManageQuestions(int passageId) => RedirectToAction(nameof(Edit), new { id = passageId });
-
-        private static ReadingEditorViewModel MapEditor(ReadingPassage passage) => new()
-        {
-            Id = passage.Id,
-            Title = passage.Title,
-            Description = passage.Description,
-            Topic = passage.Topic,
-            Level = passage.Level,
-            EstimatedTimeMinutes = passage.EstimatedTimeMinutes,
-            Content = passage.Content,
-            ImageUrl = passage.ImageUrl,
-            ExternalReadingKey = passage.ExternalReadingKey,
-            Status = passage.Status,
-            Paragraphs = passage.Paragraphs.OrderBy(p => p.ParagraphOrder).Select(p => new ReadingParagraphEditorViewModel
-            {
-                Id = p.Id,
-                ExternalParagraphKey = p.ExternalParagraphKey,
-                ParagraphOrder = p.ParagraphOrder,
-                ParagraphContent = p.ParagraphContent
-            }).ToList(),
-            Questions = passage.Questions.OrderBy(q => q.OrderIndex).Select(q => new ReadingQuestionEditorViewModel
-            {
-                Id = q.Id,
-                ExternalQuestionKey = q.ExternalQuestionKey,
-                OrderIndex = q.OrderIndex,
-                QuestionType = q.QuestionType,
-                QuestionText = q.QuestionText,
-                ParagraphReference = q.ParagraphReference,
-                Points = q.Points,
-                CorrectAnswerText = q.CorrectAnswerText,
-                Explanation = q.Explanation,
-                EvidenceText = q.EvidenceText,
-                EvidenceParagraphId = q.EvidenceParagraphId,
-                Paraphrase = q.Paraphrase,
-                Options = q.Options.OrderBy(o => o.OptionOrder).Select(o => new ReadingOptionEditorViewModel
-                {
-                    Id = o.Id,
-                    ExternalOptionKey = o.ExternalOptionKey,
-                    OptionText = o.OptionText,
-                    IsCorrect = o.IsCorrect,
-                    MatchKey = o.MatchKey,
-                    MatchSide = o.MatchSide,
-                    OptionOrder = o.OptionOrder
-                }).ToList()
-            }).ToList(),
-            Vocabulary = passage.VocabularyItems.Select(v => new ReadingVocabularyEditorViewModel
-            {
-                Id = v.Id,
-                ExternalVocabularyKey = v.ExternalVocabularyKey,
-                Word = v.Word,
-                Ipa = v.Ipa,
-                PartOfSpeech = v.PartOfSpeech,
-                EnglishDefinition = v.EnglishDefinition,
-                VietnameseMeaning = v.VietnameseMeaning,
-                Example = v.Example,
-                ParagraphId = v.ParagraphId,
-                ParagraphOrder = v.Paragraph?.ParagraphOrder
-            }).ToList()
-        };
     }
 }
