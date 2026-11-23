@@ -151,7 +151,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 return NotFound(new { message = "Không tìm thấy người dùng." });
             }
 
-            var allowedRoles = new[] { Roles.Admin, Roles.Premium, Roles.Standard };
+            var allowedRoles = new[] { Roles.Admin, Roles.Teacher, Roles.Premium, Roles.Standard };
             if (!allowedRoles.Contains(model.Role))
             {
                 return BadRequest(new { message = "Vai trò không hợp lệ." });

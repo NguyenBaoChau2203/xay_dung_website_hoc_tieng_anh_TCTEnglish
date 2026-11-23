@@ -297,7 +297,7 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
             return string.Join(Environment.NewLine, [
                 "Mình chưa thấy lớp học nào bạn đang tham gia 🌱",
                 string.Empty,
-                "Bạn có thể vào trang **Lớp học** để tạo lớp mới hoặc tham gia lớp học bằng mã mời."
+                "Bạn có thể vào **Khám phá lớp** để tìm lớp Public, hoặc **Lớp học của tôi** để tham gia bằng mã. Chỉ giảng viên/admin mới tạo lớp mới."
             ]);
         }
 

@@ -25,5 +25,30 @@ namespace TCTVocabulary.Controllers
         {
             return User.IsInRole(Roles.Admin);
         }
+
+        protected bool CanCreateClass()
+        {
+            return User.IsInRole(Roles.Teacher) || User.IsInRole(Roles.Admin);
+        }
+
+        protected string GetNormalizedRole()
+        {
+            if (User.IsInRole(Roles.Admin))
+            {
+                return Roles.Admin;
+            }
+
+            if (User.IsInRole(Roles.Teacher))
+            {
+                return Roles.Teacher;
+            }
+
+            if (User.IsInRole(Roles.Premium))
+            {
+                return Roles.Premium;
+            }
+
+            return Roles.Standard;
+        }
     }
 }

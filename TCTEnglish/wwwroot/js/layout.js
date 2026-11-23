@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const useCompactPlaceholder = window.matchMedia("(max-width: 576px)").matches;
-        const defaultPlaceholder = searchInput.dataset.placeholderDefault || "Search";
-        const compactPlaceholder = searchInput.dataset.placeholderCompact || "Search";
+        const defaultPlaceholder = searchInput.dataset.placeholderDefault || "Tìm menu, thư mục, người dùng";
+        const compactPlaceholder = searchInput.dataset.placeholderCompact || "Tìm menu";
 
         searchInput.placeholder = useCompactPlaceholder
             ? compactPlaceholder

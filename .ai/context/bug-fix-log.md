@@ -58,6 +58,120 @@ This is a historical record of actual fixes — not a list of pending issues (se
 - `py -3 -m unittest scripts/tests/test_deploy_tools.py scripts/tests/test_staging_release.py`: 39/39 passed.
 - Verified absence of reparse point / security violations.
 
+### Staging release verification times out on large content-expanded artifact — 2026-11-23
+
+**Symptom**: Staging job `Deploy tested master to staging` timed out after 20 minutes with "Staging did not verify the expected release (accepted)", blocking automated deployments of master features merged after 2026-11-19 (including Personal Starter Decks onboarding, PayOS and Vocabulary course covers).
+
+**Root Cause**: Addition of complete vocabulary sets A01-A20 and B01-B16 with webp media expanded `data/shared` and increased `tctenglish-release.zip` to ~207 MB (previously ~140 MB). The hosting download from AWS S3 to the Plesk host and subsequent unzipping, DB backup and shared-data import exceeded the 15-minute download timeout (`-TimeoutSec 900`) and the 20-minute CI verification budget (`timeout_seconds=1200`).
+
+**Solution**:
+1. Increased download timeout `-TimeoutSec 900` to `1500` (25 minutes) in `scripts/deploy-staging.ps1`.
+2. Increased monotonic verification budget `timeout_seconds=1200` to `1800` (30 minutes) in `scripts/publish-staging-release.py`.
+3. Increased GitHub Actions staging job `timeout-minutes: 25` to `35` in `.github/workflows/deploy.yml`.
+4. Updated documentation in `docs/operations/staging-automation.md`.
+
+**Files Changed**: `scripts/publish-staging-release.py`, `scripts/deploy-staging.ps1`, `.github/workflows/deploy.yml`, `docs/operations/staging-automation.md`, `.ai/context/bug-fix-log.md`.
+
+**Verification**: `test_staging_release.py` (21/21 pass), `test_deploy_tools.py` (18/18 pass).
+
+### PR 144 integration — 2026-11-23
+
+The Class Razor build failed because BrowseClasses was checked in without its
+ViewModel or routes. Preserve the established Class list/detail and navigation.
+The shared feedback component still serves Reading. The draft edit also deleted
+persisted learner answers before replacing questions. Refuse question replacement
+when an attempt exists, before an edit saves any metadata, and verify that the
+attempt, answer, question and original title are retained.
+
+A new preview of the same workbook allocated a different code, so confirmation
+could not detect the first import. Compare lesson content independent of the
+proposed code, reuse the catalog database lock for confirmation, and allocate
+a final code only for a distinct draft. Verified sequential and parallel
+confirmation using MariaDB 10.5.23 without changing the schema.
+
+
+
+### Class Public/Private discovery and join-by-code — 2026-11-23
+
+**Symptom**: Learners could not find other teachers' classes; empty My Classes looked like discovery was broken; Private classrooms had no shareable join path.
+
+**Root Cause**: Discovery required knowing exact class names with no on-load suggestions; no visibility flag; no join codes (prior redesign forbade invite codes).
+
+**Solution**: Added `IsPublic` + unique `JoinCode`; Public suggest/search; join-by-code respecting password/approval; create success card + Detail copy/regenerate.
+
+**Files Changed**:
+- `TCTEnglish/Models/Class.cs`, `DbflashcardContext.cs`, migration `AddClassVisibilityAndJoinCode`
+- `ClassService` / `IClassService`, `ClassJoinCode`, `JoinClassResult`
+- `ClassController`, Class/CreateClass/ClassDetail views, `class.css`, `Class-Detail.js`
+- `ClassServiceTests` (14 cases)
+
+**Verification**: Migration applied local MariaDB; `dotnet test --filter FullyQualifiedName~ClassServiceTests` 14/14.
+
+**Commit**: not committed (owner authorization required)
+
+**Notes**: Spec redesign updated to allow JoinCode. Restart local web for DLL.
+
+### Class page search bar vs header nav search split — 2026-11-23
+
+**Symptom**: On My Classes, “Tìm lớp để tham gia” was a button that opened a modal; users expected an inline class search field. Header search also returned class entities, overlapping discovery.
+
+**Root Cause**: Product UX mixed class discovery into the global `/Home/Search` path and used a modal opener instead of a dedicated class search control on `/Home/Class`.
+
+**Solution**: Replaced the Class page control with an inline pill search input that debounces `/Home/SearchClass` and shows cover-card results on-page. Header `/Home/Search` now matches sidebar nav destinations (+ folders/users) and no longer queries `Classes`.
+
+**Files Changed**:
+- `TCTEnglish/Views/Class/Class.cshtml` — inline class search bar + results panel
+- `TCTEnglish/wwwroot/css/class.css` — `.class-search-bar` / panel layout (mobile stack)
+- `TCTEnglish/Controllers/HomeController.cs` — `MatchNavMenus`, dropped class entity query
+- `TCTEnglish/ViewModels/SearchViewModel.cs` — `NavMenus`
+- `TCTEnglish/Views/Home/Search.cshtml` — Menu tab; link to Class page for class search
+- `TCTEnglish/Views/Shared/_Layout.cshtml`, `wwwroot/js/layout.js` — placeholder copy
+
+**Verification**: Build OK (alternate OutputPath). Browser: `/Home/Search?q=lớp` → Menu (2) links to Class/CreateClass, no class entity hits. Header placeholder “Tìm menu…”. Class page UAT needs logged-in session (SearchClass is `[Authorize]`).
+
+**Commit**: not committed (owner authorization required)
+
+**Notes**: Restarted local web on :5100 to load controller/ViewModel DLL.
+
+### Header search icon did not submit class search — 2026-11-23
+
+**Symptom**: On My Classes and other learner pages, the header search bar looked searchable but typing a class name and clicking the magnifying glass did nothing; users thought class search was broken.
+
+**Root Cause**: `_Layout.cshtml` search form had a decorative `<i class="fas fa-search">` with no submit control. Only pressing Enter submitted GET `/Home/Search`. Backend class search already worked.
+
+**Solution**: Replaced the icon with a `type="submit"` button, Vietnamese placeholder/aria labels, and matching `.search-submit` styles in `layout.css`.
+
+**Files Changed**:
+- `TCTEnglish/Views/Shared/_Layout.cshtml` — submit button + VI placeholder
+- `TCTEnglish/wwwroot/css/layout.css` — `.search-submit` positioning/focus
+- `TCTEnglish/wwwroot/js/layout.js` — default/compact placeholder fallbacks
+
+**Verification**: Chrome DevTools — fill `test`, click submit → `/Home/Search?q=test` with Lớp học (1) `Test Local Admin`. Razor runtime compilation picked up the view without restart.
+
+**Commit**: not committed (owner authorization required)
+
+**Notes**: Dedicated join discovery remains **Tìm lớp để tham gia** (`/Home/SearchClass`). Header search is global folders/classes/users.
+
+### Class chat mute/lock and folder AllowMemberToPost were UI-only — 2026-11-23
+
+**Symptom**: Muted members and members under chat-lock could still send via SignalR; members could POST AddFolder when AllowMemberToPost was false; join-with-approval looked like an error.
+
+**Root Cause**: ClassChatHub only checked CanAccessClassAsync; AddFolderToClassAsync ignored AllowMemberToPost; JoinClassAsync returned Invalid after saving a pending request.
+
+**Solution**: EnsureCanSendClassChatAsync enforces mute and lock in the hub; AddFolder checks AllowMemberToPost; Join returns Success(Pending) with JSON status; detail VM exposes CanSendChat; ClassServiceTests cover the cases.
+
+**Files Changed**:
+- `TCTEnglish/Hubs/ClassChatHub.cs` — send/image gated by EnsureCanSendClassChatAsync
+- `TCTEnglish/Services/ClassService.cs` — join pending, folder flag, CanSendChat, message paging
+- `TCTEnglish/Controllers/ClassController.cs` — join JSON + ClassMessages + UpdateClassCover
+- `TCTEnglish.Tests/ClassServiceTests.cs` — 9 regressions
+
+**Verification**: `dotnet test --filter FullyQualifiedName~ClassServiceTests` (9/9) via alternate OutputPath while local TCTEnglish.exe held bin lock.
+
+**Commit**: not committed (owner authorization required)
+
+**Notes**: Restart local web to load new DLL before browser UAT of Clay cover grid.
+
 ### Voice companion standalone visibility and reduced-motion return — 2026-11-19
 
 **Symptom/Root Cause**: Pre-merge review reproduced two new companion defects: the standalone workspace scrolled with the window, so comparing hero/window coordinates against a negative workspace top never revealed the companion; the return button always requested smooth scrolling even under reduced motion.
@@ -6128,36 +6242,3 @@ blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 **Commit**: `fix(account)` on `feature/billing-verify-payos`.
 
 **Notes**: `billing-order.js` still handles a really ended session (kept as a safety net). The login page still ignores `returnUrl` (separate item `LANDING-READING-LOGIN-RETURN`). Claim-based Premium checks in a few modules (`BILLING-ROLE-CLAIM-PREMIUM-CHECKS`) now see the new role on the next request after the cookie renews.
-
-
-### Staging release verification times out on large content-expanded artifact — 2026-11-23
-
-**Symptom**: Staging job `Deploy tested master to staging` timed out after 20 minutes with "Staging did not verify the expected release (accepted)", blocking automated deployments of master features merged after 2026-11-19 (including Personal Starter Decks onboarding, PayOS and Vocabulary course covers).
-
-**Root Cause**: Addition of complete vocabulary sets A01-A20 and B01-B16 with webp media expanded `data/shared` and increased `tctenglish-release.zip` to ~207 MB (previously ~140 MB). The hosting download from AWS S3 to the Plesk host and subsequent unzipping, DB backup and shared-data import exceeded the 15-minute download timeout (`-TimeoutSec 900`) and the 20-minute CI verification budget (`timeout_seconds=1200`).
-
-**Solution**:
-1. Increased download timeout `-TimeoutSec 900` to `1500` (25 minutes) in `scripts/deploy-staging.ps1`.
-2. Increased monotonic verification budget `timeout_seconds=1200` to `1800` (30 minutes) in `scripts/publish-staging-release.py`.
-3. Increased GitHub Actions staging job `timeout-minutes: 25` to `35` in `.github/workflows/deploy.yml`.
-4. Updated documentation in `docs/operations/staging-automation.md`.
-
-**Files Changed**: `scripts/publish-staging-release.py`, `scripts/deploy-staging.ps1`, `.github/workflows/deploy.yml`, `docs/operations/staging-automation.md`, `.ai/context/bug-fix-log.md`.
-
-**Verification**: `test_staging_release.py` (21/21 pass), `test_deploy_tools.py` (18/18 pass).
-
-
-### PR 144 integration — 2026-11-23
-
-The Class Razor build failed because BrowseClasses was checked in without its
-ViewModel or routes. Preserve the established Class list/detail and navigation.
-The shared feedback component still serves Reading. The draft edit also deleted
-persisted learner answers before replacing questions. Refuse question replacement
-when an attempt exists, before an edit saves any metadata, and verify that the
-attempt, answer, question and original title are retained.
-
-A new preview of the same workbook allocated a different code, so confirmation
-could not detect the first import. Compare lesson content independent of the
-proposed code, reuse the catalog database lock for confirmation, and allocate
-a final code only for a distinct draft. Verified sequential and parallel
-confirmation using MariaDB 10.5.23 without changing the schema.

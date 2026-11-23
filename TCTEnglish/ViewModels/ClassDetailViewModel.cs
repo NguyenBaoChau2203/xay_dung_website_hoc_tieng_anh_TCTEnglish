@@ -20,7 +20,10 @@ namespace TCTVocabulary.ViewModels
         public bool CanManageClass { get; set; }
         public bool CanJoinClass { get; set; }
         public List<ClassJoinRequestItemViewModel> JoinRequests { get; set; } = new();
-        public bool CanChatWhenLocked { get; set; } // thêm dòng này
+        public bool CanChatWhenLocked { get; set; }
+        public bool IsMutedForCurrentUser { get; set; }
+        public bool CanSendChat { get; set; }
+        public bool HasMoreMessages { get; set; }
     }
 
     public class ClassSummaryViewModel
@@ -34,6 +37,9 @@ namespace TCTVocabulary.ViewModels
         public bool RequiresApproval { get; set; }
         public bool IsChatLocked { get; set; }
         public bool AllowMemberToPost { get; set; }
+        public bool IsPublic { get; set; } = true;
+        /// <summary>Only populated for managers (owner/assistant/admin).</summary>
+        public string? JoinCode { get; set; }
     }
 
     public class ClassMemberItemViewModel

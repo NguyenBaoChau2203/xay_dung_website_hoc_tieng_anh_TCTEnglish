@@ -21,8 +21,11 @@ namespace TCTVocabulary.Services
             _logger = logger;
         }
         
-        public async Task<ClassPageViewModel> GetClassPageAsync(int userId)
+        public async Task<ClassPageViewModel> GetClassPageAsync(int userId, string? role = null)
         {
+            var normalizedRole = Roles.Normalize(role);
+            var canCreate = Roles.CanCreateClass(normalizedRole);
+
             var classes = await _context.Classes
                 .AsNoTracking()
                 .Where(c => c.OwnerId == userId || c.ClassMembers.Any(cm => cm.UserId == userId))
@@ -33,91 +36,158 @@ namespace TCTVocabulary.Services
                     ClassName = c.ClassName,
                     ImageUrl = c.ImageUrl,
                     OwnerName = c.Owner.FullName ?? "Không xác định",
-                    IsOwner = c.OwnerId == userId
+                    IsOwner = c.OwnerId == userId,
+                    IsAssistant = c.ClassMembers.Any(cm =>
+                        cm.UserId == userId && cm.Role == ClassRole.Assistant),
+                    HasPassword = c.HasPassword,
+                    RequiresApproval = c.RequiresApproval,
+                    IsPublic = c.IsPublic,
+                    MemberCount = c.ClassMembers.Count,
+                    PendingRequestCount = c.JoinRequests.Count(r => r.Status == JoinRequestStatus.Pending)
                 })
                 .ToListAsync();
 
+            List<ClassCardViewModel> managed;
+            List<ClassCardViewModel> joined;
+
+            if (canCreate)
+            {
+                // Teacher/Admin "Lớp tôi tạo": owned first; joined others as secondary.
+                managed = classes.Where(c => c.IsOwner).ToList();
+                joined = classes.Where(c => !c.IsOwner).ToList();
+            }
+            else
+            {
+                managed = classes
+                    .Where(c => c.IsOwner || c.IsAssistant)
+                    .ToList();
+                joined = classes
+                    .Where(c => !c.IsOwner && !c.IsAssistant)
+                    .ToList();
+            }
+
             return new ClassPageViewModel
             {
-                Classes = classes
+                Classes = classes,
+                ManagedClasses = managed,
+                JoinedClasses = joined,
+                CanCreateClass = canCreate,
+                IsCreatorRole = canCreate,
+                PageTitle = canCreate ? "Lớp tôi tạo" : "Lớp học của tôi",
+                PageDescription = canCreate
+                    ? "Lớp bạn đã tạo và lớp bạn đang tham gia"
+                    : "Các lớp bạn đang tham gia"
             };
         }
 
-        public async Task<int> CreateClassAsync(CreateClassViewModel model, int userId)
+        public async Task<int> CreateClassAsync(CreateClassViewModel model, int userId, string? role = null)
         {
+            if (!Roles.CanCreateClass(role))
+            {
+                throw new InvalidOperationException("Chỉ giảng viên hoặc quản trị viên được tạo lớp học.");
+            }
+
             _logger.LogInformation("Creating class for user {userId}", userId);
 
-            // 1. Ánh xạ các thông tin cơ bản và các Flag mới vào Model
+            var joinCode = await ResolveUniqueJoinCodeAsync(model.JoinCode);
+
             var newClass = new Class
             {
                 ClassName = model.ClassName,
                 Description = model.Description,
                 OwnerId = userId,
-
-                // Gán các thuộc tính mới[cite: 1]
                 RequiresApproval = model.RequiresApproval,
                 IsChatLocked = model.IsChatLocked,
                 AllowMemberToPost = model.AllowMemberToPost,
-
+                IsPublic = model.IsPublic,
+                JoinCode = joinCode,
                 CreatedAt = DateTime.UtcNow
             };
 
-            // 2. Xử lý mật khẩu và ảnh[cite: 10]
             ApplyClassPassword(newClass, model.Password);
             newClass.ImageUrl = await SaveClassAvatarAsync(model.Avatar);
 
             _context.Classes.Add(newClass);
-
-            // Lưu lần 1 để lấy ClassId
             await _context.SaveChangesAsync();
 
-            // 3. Tự động thêm người tạo vào danh sách thành viên với quyền Owner[cite: 3]
             var ownerMember = new ClassMember
             {
                 ClassId = newClass.ClassId,
                 UserId = userId,
-                Role = ClassRole.Owner, // Đảm bảo Role là Owner[cite: 3]
+                Role = ClassRole.Owner,
                 JoinedAt = DateTime.UtcNow
             };
 
             _context.ClassMembers.Add(ownerMember);
             await _context.SaveChangesAsync();
 
-            _logger.LogInformation("Class created with classId {classId} and owner member added by user {userId}", newClass.ClassId, userId);
+            _logger.LogInformation(
+                "Class created with classId {classId} joinCode assigned by user {userId}",
+                newClass.ClassId,
+                userId);
 
             return newClass.ClassId;
         }
 
         public async Task<OperationResult> UpdateClassAsync(
-    int classId,
-    string className,
-    string? description,
-    bool requiresApproval, // Thêm mới
-    bool isChatLocked,     // Thêm mới
-    bool allowMemberToPost, // Thêm mới
-    int userId,
-    bool isAdmin)
+            int classId,
+            string className,
+            string? description,
+            bool requiresApproval,
+            bool isChatLocked,
+            bool allowMemberToPost,
+            bool isPublic,
+            int userId,
+            bool isAdmin)
         {
             var cls = await _context.Classes
                 .FirstOrDefaultAsync(c => c.ClassId == classId);
 
             if (cls == null) return OperationResult.NotFound();
 
-            // Kiểm tra quyền: Chỉ chủ sở hữu hoặc Admin mới được sửa[cite: 11, 13]
             if (!isAdmin && cls.OwnerId != userId) return OperationResult.NotFound();
 
-            // Cập nhật các thông tin cơ bản
             cls.ClassName = className;
             cls.Description = description;
-
-            // Cập nhật 3 tính năng mới[cite: 1]
             cls.RequiresApproval = requiresApproval;
             cls.IsChatLocked = isChatLocked;
             cls.AllowMemberToPost = allowMemberToPost;
+            cls.IsPublic = isPublic;
 
             await _context.SaveChangesAsync();
             _logger.LogInformation("Class {classId} updated by user {userId}", classId, userId);
 
+            return OperationResult.Success();
+        }
+
+        public async Task<OperationResult> UpdateClassCoverAsync(int classId, IFormFile cover, int userId, bool isAdmin)
+        {
+            var cls = await _context.Classes.FirstOrDefaultAsync(c => c.ClassId == classId);
+            if (cls == null)
+            {
+                return OperationResult.NotFound();
+            }
+
+            if (!isAdmin && cls.OwnerId != userId)
+            {
+                return OperationResult.NotFound();
+            }
+
+            if (cover == null || cover.Length == 0)
+            {
+                return OperationResult.Invalid("Ảnh bìa không hợp lệ.");
+            }
+
+            try
+            {
+                cls.ImageUrl = await SaveClassAvatarAsync(cover);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return OperationResult.Invalid(ex.Message);
+            }
+
+            await _context.SaveChangesAsync();
             return OperationResult.Success();
         }
 
@@ -159,7 +229,9 @@ namespace TCTVocabulary.Services
                     ImageUrl = c.ImageUrl,
                     RequiresApproval = c.RequiresApproval,
                     IsChatLocked = c.IsChatLocked,
-                    AllowMemberToPost = c.AllowMemberToPost
+                    AllowMemberToPost = c.AllowMemberToPost,
+                    IsPublic = c.IsPublic,
+                    JoinCode = c.JoinCode
                 })
                 .FirstOrDefaultAsync();
 
@@ -181,10 +253,24 @@ namespace TCTVocabulary.Services
                 isMember ||
                 isAdmin;
 
+            var canManageClass = isOwner || isAssistant || isAdmin;
+
             var canChatWhenLocked =
                 isOwner ||
                 isAssistant ||
                 isAdmin;
+
+            var isMutedForCurrentUser = memberInfo?.IsMuted == true;
+            var canSendChat =
+                canViewPrivateContent &&
+                !isMutedForCurrentUser &&
+                (!classSummary.IsChatLocked || canChatWhenLocked);
+
+            // Join code is manager-only; strip for everyone else.
+            if (!canManageClass)
+            {
+                classSummary.JoinCode = null;
+            }
 
             var viewModel = new ClassDetailViewModel
             {
@@ -198,12 +284,13 @@ namespace TCTVocabulary.Services
 
                 CanViewPrivateContent = canViewPrivateContent,
 
-                // SỬA CHỖ NÀY: phó nhóm cũng được quản lý
-                CanManageClass = isOwner || isAssistant || isAdmin,
+                CanManageClass = canManageClass,
 
                 CanJoinClass = !isOwner && !isMember && !isAdmin,
 
-                CanChatWhenLocked = canChatWhenLocked
+                CanChatWhenLocked = canChatWhenLocked,
+                IsMutedForCurrentUser = isMutedForCurrentUser,
+                CanSendChat = canSendChat
             };
 
             if (!canViewPrivateContent)
@@ -224,10 +311,12 @@ namespace TCTVocabulary.Services
                 })
                 .ToListAsync();
 
-            viewModel.Messages = await _context.ClassMessages
+            const int initialMessageTake = 50;
+            var latestMessages = await _context.ClassMessages
                 .AsNoTracking()
                 .Where(m => m.ClassId == classId)
-                .OrderBy(m => m.CreatedAt)
+                .OrderByDescending(m => m.MessageId)
+                .Take(initialMessageTake + 1)
                 .Select(m => new ClassMessageViewModel
                 {
                     MessageId = m.MessageId,
@@ -238,6 +327,12 @@ namespace TCTVocabulary.Services
                     IsMine = m.UserId == userId
                 })
                 .ToListAsync();
+
+            viewModel.HasMoreMessages = latestMessages.Count > initialMessageTake;
+            viewModel.Messages = latestMessages
+                .Take(initialMessageTake)
+                .Reverse()
+                .ToList();
 
             viewModel.ClassFolders = await _context.ClassFolders
                 .AsNoTracking()
@@ -275,8 +370,7 @@ namespace TCTVocabulary.Services
                 })
                 .ToListAsync();
 
-            // NEW: lấy danh sách yêu cầu tham gia nếu lớp yêu cầu phê duyệt
-            if (classSummary.RequiresApproval && (isOwner || isAssistant || isAdmin))
+            if (isOwner || isAssistant || isAdmin)
             {
                 viewModel.JoinRequests = await _context.ClassJoinRequests
                     .AsNoTracking()
@@ -306,7 +400,8 @@ namespace TCTVocabulary.Services
                 .Where(c => c.ClassId == classId)
                 .Select(c => new
                 {
-                    c.OwnerId
+                    c.OwnerId,
+                    c.AllowMemberToPost
                 })
                 .FirstOrDefaultAsync();
 
@@ -316,14 +411,26 @@ namespace TCTVocabulary.Services
             }
 
             var isOwner = classData.OwnerId == userId;
-            var isMember = isOwner || await _context.ClassMembers
+            var membership = await _context.ClassMembers
                 .AsNoTracking()
-                .AnyAsync(cm => cm.ClassId == classId && cm.UserId == userId);
+                .FirstOrDefaultAsync(cm => cm.ClassId == classId && cm.UserId == userId);
+            var isMember = isOwner || membership != null;
+            var isAssistant = membership?.Role == ClassRole.Assistant;
 
             if (!isOwner && !isMember && !isAdmin)
             {
                 _logger.LogWarning(
                     "Access denied when user {userId} tried to add folder {folderId} to class {classId}",
+                    userId,
+                    folderId,
+                    classId);
+                return OperationResult.NotFound();
+            }
+
+            if (!isAdmin && !isOwner && !isAssistant && !classData.AllowMemberToPost)
+            {
+                _logger.LogWarning(
+                    "Member post denied when user {userId} tried to add folder {folderId} to class {classId}",
                     userId,
                     folderId,
                     classId);
@@ -496,35 +603,133 @@ namespace TCTVocabulary.Services
             return OperationResult.Success();
         }
 
-        public async Task<IReadOnlyList<ClassSearchResultViewModel>> SearchClassesAsync(string? keyword, int userId)
+        public Task<IReadOnlyList<ClassSearchResultViewModel>> SearchClassesAsync(
+            string? keyword,
+            int userId,
+            string? role = null)
         {
+            return BrowseClassesAsync(keyword, userId, role);
+        }
+
+        public async Task<IReadOnlyList<ClassSearchResultViewModel>> BrowseClassesAsync(
+            string? keyword,
+            int userId,
+            string? role)
+        {
+            const int suggestTake = 12;
             keyword = keyword?.Trim();
-            if (string.IsNullOrWhiteSpace(keyword))
+            var normalizedRole = Roles.Normalize(role);
+            var isAdmin = normalizedRole == Roles.Admin;
+            var isTeacher = normalizedRole == Roles.Teacher;
+
+            var query = _context.Classes.AsNoTracking();
+
+            if (isAdmin)
             {
-                return Array.Empty<ClassSearchResultViewModel>();
+                // Admin sees every public and private class.
+            }
+            else if (isTeacher)
+            {
+                // Teacher: public of others (not yet joined) + own private only.
+                query = query.Where(c =>
+                    (c.OwnerId == userId && !c.IsPublic) ||
+                    (c.IsPublic &&
+                     c.OwnerId != userId &&
+                     !c.ClassMembers.Any(cm => cm.UserId == userId)));
+            }
+            else
+            {
+                // Learners: public only, not already joined.
+                query = query.Where(c =>
+                    c.IsPublic &&
+                    c.OwnerId != userId &&
+                    !c.ClassMembers.Any(cm => cm.UserId == userId));
             }
 
-            return await _context.Classes
-                .AsNoTracking()
-                .Where(c =>
-                    c.ClassName.Contains(keyword) &&
-                    c.OwnerId != userId &&
-                    !c.ClassMembers.Any(cm => cm.UserId == userId))
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                query = query.Where(c => c.ClassName.Contains(keyword));
+            }
+
+            return await query
+                .OrderByDescending(c => c.ClassId)
+                .Take(string.IsNullOrWhiteSpace(keyword) ? suggestTake : 50)
                 .Select(c => new ClassSearchResultViewModel
                 {
                     ClassId = c.ClassId,
                     ClassName = c.ClassName,
                     OwnerName = c.Owner.FullName ?? string.Empty,
                     HasPassword = c.HasPassword,
+                    RequiresApproval = c.RequiresApproval,
+                    IsPublic = c.IsPublic,
                     ImageUrl = c.ImageUrl
                 })
                 .ToListAsync();
         }
 
-        public async Task<OperationResult> JoinClassAsync(
-       int classId,
-       string? password,
-       int userId)
+        public Task<OperationResult<JoinClassResult>> JoinClassAsync(
+            int classId,
+            string? password,
+            int userId)
+        {
+            return CompleteJoinAsync(classId, password, userId);
+        }
+
+        public async Task<OperationResult<JoinClassResult>> JoinClassByCodeAsync(
+            string? joinCode,
+            string? password,
+            int userId)
+        {
+            var normalized = ClassJoinCode.Normalize(joinCode);
+            if (string.IsNullOrEmpty(normalized))
+            {
+                return OperationResult<JoinClassResult>.Invalid("Vui lòng nhập mã lớp.");
+            }
+
+            var classId = await _context.Classes
+                .AsNoTracking()
+                .Where(c => c.JoinCode == normalized)
+                .Select(c => (int?)c.ClassId)
+                .FirstOrDefaultAsync();
+
+            if (!classId.HasValue)
+            {
+                return OperationResult<JoinClassResult>.Invalid("Mã lớp không đúng hoặc không tồn tại.");
+            }
+
+            return await CompleteJoinAsync(classId.Value, password, userId);
+        }
+
+        public async Task<OperationResult<string>> RegenerateJoinCodeAsync(int classId, int userId, bool isAdmin)
+        {
+            var cls = await _context.Classes.FirstOrDefaultAsync(c => c.ClassId == classId);
+            if (cls == null)
+            {
+                return OperationResult<string>.NotFound();
+            }
+
+            var isAssistant = await _context.ClassMembers
+                .AsNoTracking()
+                .AnyAsync(cm =>
+                    cm.ClassId == classId &&
+                    cm.UserId == userId &&
+                    cm.Role == ClassRole.Assistant);
+
+            if (!isAdmin && cls.OwnerId != userId && !isAssistant)
+            {
+                return OperationResult<string>.NotFound();
+            }
+
+            cls.JoinCode = await ResolveUniqueJoinCodeAsync(null);
+            await _context.SaveChangesAsync();
+
+            return OperationResult<string>.Success(cls.JoinCode);
+        }
+
+        private async Task<OperationResult<JoinClassResult>> CompleteJoinAsync(
+            int classId,
+            string? password,
+            int userId)
         {
             var cls = await _context.Classes
                 .AsNoTracking()
@@ -532,6 +737,7 @@ namespace TCTVocabulary.Services
                 .Select(c => new
                 {
                     c.ClassId,
+                    c.OwnerId,
                     c.HasPassword,
                     c.PasswordHash,
                     c.RequiresApproval
@@ -539,7 +745,18 @@ namespace TCTVocabulary.Services
                 .FirstOrDefaultAsync();
 
             if (cls == null)
-                return OperationResult.NotFound();
+                return OperationResult<JoinClassResult>.NotFound();
+
+            JoinClassResult Pack(JoinClassOutcome outcome) => new()
+            {
+                Outcome = outcome,
+                ClassId = classId
+            };
+
+            if (cls.OwnerId == userId)
+            {
+                return OperationResult<JoinClassResult>.Invalid("Bạn đã là chủ lớp này.");
+            }
 
             var isBlacklisted = await _context.ClassBlacklists
                 .AsNoTracking()
@@ -548,26 +765,7 @@ namespace TCTVocabulary.Services
                     x.UserId == userId);
 
             if (isBlacklisted)
-                return OperationResult.Invalid("Ban da bi chan khoi lop nay.");
-
-            // =========================
-            // CHECK PASSWORD
-            // =========================
-
-            if (cls.HasPassword)
-            {
-                var isPasswordValid =
-                    !string.IsNullOrWhiteSpace(cls.PasswordHash) &&
-                    !string.IsNullOrWhiteSpace(password) &&
-                    BCrypt.Net.BCrypt.Verify(password, cls.PasswordHash);
-
-                if (!isPasswordValid)
-                    return OperationResult.Invalid("Mật khẩu lớp không đúng.");
-            }
-
-            // =========================
-            // ALREADY MEMBER
-            // =========================
+                return OperationResult<JoinClassResult>.Invalid("Bạn đã bị chặn khỏi lớp này.");
 
             var alreadyMember = await _context.ClassMembers
                 .AsNoTracking()
@@ -576,11 +774,22 @@ namespace TCTVocabulary.Services
                     cm.UserId == userId);
 
             if (alreadyMember)
-                return OperationResult.Invalid("Bạn đã là thành viên của lớp.");
+                return OperationResult<JoinClassResult>.Invalid("Bạn đã là thành viên của lớp.");
 
-            // =========================
-            // NEED APPROVAL
-            // =========================
+            if (cls.HasPassword)
+            {
+                if (string.IsNullOrWhiteSpace(password))
+                {
+                    return OperationResult<JoinClassResult>.Success(Pack(JoinClassOutcome.NeedsPassword));
+                }
+
+                var isPasswordValid =
+                    !string.IsNullOrWhiteSpace(cls.PasswordHash) &&
+                    BCrypt.Net.BCrypt.Verify(password, cls.PasswordHash);
+
+                if (!isPasswordValid)
+                    return OperationResult<JoinClassResult>.Invalid("Mật khẩu lớp không đúng.");
+            }
 
             if (cls.RequiresApproval)
             {
@@ -592,7 +801,7 @@ namespace TCTVocabulary.Services
                         r.Status == JoinRequestStatus.Pending);
 
                 if (alreadyRequested)
-                    return OperationResult.Invalid(
+                    return OperationResult<JoinClassResult>.Invalid(
                         "Bạn đã gửi yêu cầu tham gia trước đó.");
 
                 _context.ClassJoinRequests.Add(new ClassJoinRequest
@@ -605,13 +814,8 @@ namespace TCTVocabulary.Services
 
                 await _context.SaveChangesAsync();
 
-                return OperationResult.Invalid(
-                    "Yêu cầu tham gia đã được gửi. Vui lòng chờ trưởng nhóm phê duyệt.");
+                return OperationResult<JoinClassResult>.Success(Pack(JoinClassOutcome.Pending));
             }
-
-            // =========================
-            // JOIN DIRECTLY
-            // =========================
 
             _context.ClassMembers.Add(new ClassMember
             {
@@ -624,7 +828,31 @@ namespace TCTVocabulary.Services
 
             await _context.SaveChangesAsync();
 
-            return OperationResult.Success();
+            return OperationResult<JoinClassResult>.Success(Pack(JoinClassOutcome.Joined));
+        }
+
+        private async Task<string> ResolveUniqueJoinCodeAsync(string? preferred)
+        {
+            var candidate = ClassJoinCode.Normalize(preferred);
+            if (!ClassJoinCode.IsValidFormat(candidate))
+            {
+                candidate = ClassJoinCode.Generate();
+            }
+
+            for (var attempt = 0; attempt < 16; attempt++)
+            {
+                var exists = await _context.Classes
+                    .AsNoTracking()
+                    .AnyAsync(c => c.JoinCode == candidate);
+                if (!exists)
+                {
+                    return candidate;
+                }
+
+                candidate = ClassJoinCode.Generate();
+            }
+
+            throw new InvalidOperationException("Không tạo được mã lớp duy nhất. Vui lòng thử lại.");
         }
 
         public async Task LeaveClassAsync(int classId, int userId)
@@ -662,6 +890,103 @@ namespace TCTVocabulary.Services
             return await _context.ClassMembers
                 .AsNoTracking()
                 .AnyAsync(cm => cm.ClassId == classId && cm.UserId == userId);
+        }
+
+        public async Task<OperationResult> EnsureCanSendClassChatAsync(int classId, int userId, bool isAdmin)
+        {
+            if (!await CanAccessClassAsync(classId, userId, isAdmin))
+            {
+                return OperationResult.NotFound("Không có quyền truy cập lớp.");
+            }
+
+            var classFlags = await _context.Classes
+                .AsNoTracking()
+                .Where(c => c.ClassId == classId)
+                .Select(c => new
+                {
+                    c.OwnerId,
+                    c.IsChatLocked
+                })
+                .FirstOrDefaultAsync();
+
+            if (classFlags == null)
+            {
+                return OperationResult.NotFound("Không tìm thấy lớp.");
+            }
+
+            var membership = await _context.ClassMembers
+                .AsNoTracking()
+                .FirstOrDefaultAsync(cm => cm.ClassId == classId && cm.UserId == userId);
+
+            if (membership?.IsMuted == true)
+            {
+                return OperationResult.Invalid("Bạn đang bị mute và không thể gửi tin nhắn.");
+            }
+
+            var canChatWhenLocked =
+                isAdmin ||
+                classFlags.OwnerId == userId ||
+                membership?.Role == ClassRole.Owner ||
+                membership?.Role == ClassRole.Assistant;
+
+            if (classFlags.IsChatLocked && !canChatWhenLocked)
+            {
+                return OperationResult.Invalid("Chat đang bị khóa. Chỉ người quản lý lớp mới có thể nhắn tin.");
+            }
+
+            return OperationResult.Success();
+        }
+
+        public async Task<ClassMessagesPageViewModel> GetClassMessagesAsync(
+            int classId,
+            int userId,
+            bool isAdmin,
+            int? beforeMessageId,
+            int take)
+        {
+            if (take <= 0)
+            {
+                take = 50;
+            }
+
+            take = Math.Min(take, 100);
+
+            if (!await CanAccessClassAsync(classId, userId, isAdmin))
+            {
+                return new ClassMessagesPageViewModel();
+            }
+
+            var query = _context.ClassMessages
+                .AsNoTracking()
+                .Where(m => m.ClassId == classId);
+
+            if (beforeMessageId.HasValue)
+            {
+                query = query.Where(m => m.MessageId < beforeMessageId.Value);
+            }
+
+            var page = await query
+                .OrderByDescending(m => m.MessageId)
+                .Take(take + 1)
+                .Select(m => new ClassMessageViewModel
+                {
+                    MessageId = m.MessageId,
+                    UserId = m.UserId,
+                    Content = m.Content,
+                    CreatedAt = m.CreatedAt,
+                    FullName = m.User.FullName ?? string.Empty,
+                    IsMine = m.UserId == userId
+                })
+                .ToListAsync();
+
+            var hasMore = page.Count > take;
+            var messages = page.Take(take).Reverse().ToList();
+
+            return new ClassMessagesPageViewModel
+            {
+                Messages = messages,
+                HasMore = hasMore
+            };
         }
 
         private static void ApplyClassPassword(Class newClass, string? password)

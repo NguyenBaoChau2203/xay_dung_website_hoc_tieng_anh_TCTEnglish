@@ -86,6 +86,7 @@ TCTEnglish/wwwroot/images/classes/*
 # ===============================
 # Ignored artifacts
 # ===============================
+.worktrees/
 .nuget/
 publish/
 release/

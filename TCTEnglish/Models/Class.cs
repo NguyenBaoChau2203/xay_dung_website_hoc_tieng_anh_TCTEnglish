@@ -40,6 +40,12 @@
         // Tùy chọn: Phải được duyệt mới được vào lớp
         public bool RequiresApproval { get; set; } = false;
 
+        /// <summary>Public classes appear in discovery; private classes do not.</summary>
+        public bool IsPublic { get; set; } = true;
+
+        /// <summary>Unique join code for every class (public and private).</summary>
+        public string JoinCode { get; set; } = string.Empty;
+
         // Navigation tới các yêu cầu đang chờ
         public virtual ICollection<ClassJoinRequest> JoinRequests { get; set; }
             = new List<ClassJoinRequest>();

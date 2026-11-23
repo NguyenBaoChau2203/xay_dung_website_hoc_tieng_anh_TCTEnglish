@@ -788,6 +788,10 @@ namespace TCTVocabulary.Controllers
             {
                 var query = vm.Query;
 
+                // Header search: menu điều hướng + thư mục + người dùng.
+                // Tìm lớp chỉ nằm trên Khám phá lớp / Lớp học của tôi.
+                vm.NavMenus = MatchNavMenus(query);
+
                 vm.Folders = await _context.Folders
                     .AsNoTracking()
                     .Where(f => f.FolderName.Contains(query))
@@ -797,18 +801,6 @@ namespace TCTVocabulary.Controllers
                         FolderId = f.FolderId,
                         FolderName = f.FolderName,
                         CreatorName = f.User.FullName ?? "Người dùng"
-                    })
-                    .ToListAsync();
-
-                vm.Classes = await _context.Classes
-                    .AsNoTracking()
-                    .Where(c => c.ClassName.Contains(query))
-                    .OrderBy(c => c.ClassName)
-                    .Select(c => new SearchClassResultViewModel
-                    {
-                        ClassId = c.ClassId,
-                        ClassName = c.ClassName,
-                        OwnerName = c.Owner.FullName ?? "Người dùng"
                     })
                     .ToListAsync();
 
@@ -829,6 +821,74 @@ namespace TCTVocabulary.Controllers
             }
 
             return View(vm);
+        }
+
+        private List<NavMenuSearchResultViewModel> MatchNavMenus(string query)
+        {
+            var needle = query.Trim();
+            if (needle.Length == 0)
+            {
+                return new List<NavMenuSearchResultViewModel>();
+            }
+
+            static bool Matches(string needle, params string[] terms) =>
+                terms.Any(term => term.Contains(needle, StringComparison.OrdinalIgnoreCase)
+                    || needle.Contains(term, StringComparison.OrdinalIgnoreCase));
+
+            var canCreateClass = User.IsInRole(Roles.Teacher) || User.IsInRole(Roles.Admin);
+            var myClassesTitle = canCreateClass ? "Lớp tôi tạo" : "Lớp học của tôi";
+            var myClassesDescription = canCreateClass
+                ? "Lớp bạn đã tạo và lớp đang tham gia"
+                : "Danh sách lớp bạn đang tham gia";
+
+            var catalog = new List<(string Title, string Description, string Url, string Icon, string[] Terms)>
+            {
+                ("Trang chủ", "Bảng điều khiển học tập", "/Home/Index", "fas fa-home",
+                    new[] { "trang chủ", "home", "dashboard" }),
+                ("Từ vựng", "Khóa học và bài từ vựng", "/Vocabulary/Index", "fas fa-language",
+                    new[] { "từ vựng", "vocabulary", "vocab", "flashcard" }),
+                ("Nghe", "Bài nghe và luyện nghe", "/Home/Listening", "fas fa-headphones",
+                    new[] { "nghe", "listening", "audio" }),
+                ("Đọc", "Bài đọc hiểu", "/Home/Reading", "fas fa-book-open",
+                    new[] { "đọc", "reading", "read" }),
+                ("Viết", "Luyện viết tiếng Anh", "/Home/Writing", "fas fa-pen-nib",
+                    new[] { "viết", "writing", "write" }),
+                ("Nói", "Luyện nói và phát âm", "/Speaking/Index", "fas fa-microphone",
+                    new[] { "nói", "speaking", "speak", "phát âm" }),
+                ("Mục tiêu", "Mục tiêu học tập hàng ngày", "/Goals/Index", "fas fa-bullseye",
+                    new[] { "mục tiêu", "goals", "goal" }),
+                ("Thông báo", "Hộp thông báo của bạn", "/Notification/Index", "fas fa-bell",
+                    new[] { "thông báo", "notifications", "notification" }),
+                ("Bộ thẻ của tôi", "Thư viện bộ thẻ flashcard", "/Sets", "fas fa-clone",
+                    new[] { "bộ thẻ", "sets", "set", "thẻ" }),
+                ("Thư mục", "Quản lý thư mục học tập", "/Sets", "fas fa-folder",
+                    new[] { "thư mục", "folder", "folders" }),
+                ("Khám phá lớp", "Tìm lớp Public để tham gia", "/Home/BrowseClasses", "fas fa-compass",
+                    new[] { "khám phá lớp", "lớp public", "browse class", "tìm lớp" }),
+                (myClassesTitle, myClassesDescription, "/Home/Class", "fas fa-chalkboard-teacher",
+                    new[] { "lớp học", "lớp", "class", "classroom", "virtual classroom", "lớp tôi tạo" }),
+                ("Liên hệ", "Gửi liên hệ hỗ trợ", "/Home/Contact", "fas fa-envelope",
+                    new[] { "liên hệ", "contact", "hỗ trợ", "support" }),
+                ("Gói Premium", "Xem và nâng cấp Premium", "/Premium", "fas fa-crown",
+                    new[] { "premium", "nâng cấp", "pricing", "gói" }),
+            };
+
+            if (canCreateClass)
+            {
+                catalog.Add(("Tạo lớp học", "Tạo lớp học ảo mới", "/Home/CreateClass", "fas fa-plus",
+                    new[] { "tạo lớp", "create class", "new class" }));
+            }
+
+            return catalog
+                .Where(item => Matches(needle, item.Terms) || Matches(needle, item.Title, item.Description))
+                .Select(item => new NavMenuSearchResultViewModel
+                {
+                    Title = item.Title,
+                    Description = item.Description,
+                    Url = item.Url,
+                    IconClass = item.Icon
+                })
+                .ToList();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

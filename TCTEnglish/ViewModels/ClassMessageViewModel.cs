@@ -11,4 +11,10 @@ namespace TCTVocabulary.ViewModels
         public string FullName { get; set; } = "";
         public bool IsMine { get; set; }
     }
+
+    public class ClassMessagesPageViewModel
+    {
+        public IReadOnlyList<ClassMessageViewModel> Messages { get; set; } = Array.Empty<ClassMessageViewModel>();
+        public bool HasMore { get; set; }
+    }
 }

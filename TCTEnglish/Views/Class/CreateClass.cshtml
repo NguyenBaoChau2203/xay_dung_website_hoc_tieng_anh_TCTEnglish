@@ -1,398 +1,153 @@
 @model TCTVocabulary.ViewModels.CreateClassViewModel
-
+@using TCTEnglish.ViewModels
 @{
     ViewData["Title"] = "Tạo lớp học mới";
+    var header = new PageHeaderViewModel
+    {
+        Title = "Tạo lớp học",
+        Description = "Đặt ảnh bìa, quyền lớp và mã tham gia trước khi mời học viên"
+    };
+    var form = Model ?? new CreateClassViewModel { IsPublic = true, JoinCode = TCTVocabulary.Services.ClassJoinCode.Generate() };
 }
 
-<div class="create-class-container">
-    <div class="page-header">
-        <h1>Tạo lớp học</h1>
-        <p>Thiết lập lớp học để mời mọi người cùng học tập</p>
-    </div>
+<link rel="stylesheet" href="~/css/class.css" asp-append-version="true" />
 
-    <form class="create-class-form" method="post" enctype="multipart/form-data">
-        <!-- Class Name -->
+<div class="tct-theme create-class-page">
+    <partial name="_PageHeader" model="header" />
+
+    <form class="create-class-form" method="post" enctype="multipart/form-data" asp-antiforgery="true">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
         <div class="form-group">
-            <label>Tên lớp <span class="required">*</span></label>
-            <input type="text" name="ClassName" placeholder="Ví dụ: TOEIC 600+, JLPT N3..." required />
+            <label for="className">Tên lớp <span class="text-danger">*</span></label>
+            <input id="className" type="text" name="ClassName" placeholder="Ví dụ: TOEIC 600+" required value="@form.ClassName" />
         </div>
 
-        <!-- Avatar (Giữ nguyên logic của bạn) -->
-        <div class="form-group">
-            <label>Ảnh đại diện lớp</label>
-            <div class="avatar-upload">
-                <div class="avatar-preview">
-                    <img id="avatarPreview" src="/images/ClassDefault/class-default.png" alt="Avatar" />
-                </div>
-                <input type="file" id="avatarInput" name="Avatar" accept="image/*" hidden onchange="previewAvatar(event)" />
-                <div class="avatar-actions">
-                    <button type="button" class="btn-avatar" onclick="document.getElementById('avatarInput').click()">Chọn ảnh</button>
-                    <span class="avatar-hint">JPG, PNG • tối đa 2MB</span>
-                </div>
+        <div class="form-group cover-upload">
+            <label for="avatarInput">Ảnh bìa lớp</label>
+            <div class="cover-preview">
+                <img id="avatarPreview" src="/images/ClassDefault/class-default.png" alt="Xem trước ảnh bìa" />
+            </div>
+            <input type="file" id="avatarInput" name="Avatar" accept="image/*" hidden />
+            <div>
+                <button type="button" class="btn btn-outline-primary" id="pickCoverBtn">Chọn ảnh bìa</button>
+                <span class="text-muted small ms-2">JPG, PNG, WebP • tối đa 5MB • tỉ lệ ngang</span>
             </div>
         </div>
 
-        <!-- Password -->
         <div class="form-group">
-            <label class="checkbox-container">
-                <input type="checkbox" id="enablePassword" onchange="togglePassword()" />
-                <span class="checkmark"></span>
-                Đặt mật khẩu cho lớp
-            </label>
-            <input type="password" id="classPassword" name="Password" placeholder="Nhập mật khẩu lớp" disabled />
+            <span class="d-block fw-semibold mb-2">Hiển thị lớp</span>
+            <div class="visibility-toggle" role="radiogroup" aria-label="Hiển thị lớp">
+                <label class="visibility-option">
+                    <input type="radio" name="IsPublic" value="true" @(form.IsPublic ? "checked" : null) />
+                    <span>
+                        <span class="setting-title">Công khai (Public)</span>
+                        <span class="setting-desc">Hiện trong gợi ý và tìm lớp trên trang Lớp học</span>
+                    </span>
+                </label>
+                <label class="visibility-option">
+                    <input type="radio" name="IsPublic" value="false" @(!form.IsPublic ? "checked" : null) />
+                    <span>
+                        <span class="setting-title">Riêng tư (Private)</span>
+                        <span class="setting-desc">Không hiện khi tìm; học viên vào bằng mã lớp</span>
+                    </span>
+                </label>
+            </div>
         </div>
 
-        <!-- Cài đặt quyền hạn (PHẦN THÊM MỚI) -->
-        <div class="form-group settings-section">
-            <label>Quyền hạn & Riêng tư</label>
-            
+        <div class="form-group">
+            <label for="joinCodeInput">Mã lớp</label>
+            <div class="join-code-field">
+                <input id="joinCodeInput"
+                       type="text"
+                       name="JoinCode"
+                       maxlength="16"
+                       value="@form.JoinCode"
+                       autocomplete="off"
+                       spellcheck="false"
+                       class="join-code-input" />
+                <button type="button" class="btn btn-outline-secondary" id="regenJoinCodeBtn">Tạo lại</button>
+            </div>
+            <p class="text-muted small mb-0 mt-1">Hệ thống đã tạo mã bảo mật. Bạn có thể đổi trước khi lưu.</p>
+        </div>
+
+        <div class="form-group">
+            <label class="d-flex align-items-center gap-2 fw-normal">
+                <input type="checkbox" id="enablePassword" />
+                Đặt mật khẩu cho lớp
+            </label>
+            <input type="password" id="classPassword" name="Password" placeholder="Nhập mật khẩu lớp" disabled class="mt-2" />
+        </div>
+
+        <div class="form-group">
+            <label>Quyền lớp</label>
             <div class="settings-grid">
                 <label class="setting-item">
                     <input type="checkbox" name="RequiresApproval" value="true" />
-                    <div class="setting-info">
-                        <span class="setting-title">Phê duyệt thành viên</span>
-                        <span class="setting-desc">Người dùng cần được bạn chấp nhận mới có thể vào lớp</span>
+                    <div>
+                        <span class="setting-title">Phải duyệt mới vào lớp</span>
+                        <span class="setting-desc">Học viên gửi yêu cầu; bạn hoặc phó nhóm chấp nhận</span>
                     </div>
                 </label>
-
                 <label class="setting-item">
                     <input type="checkbox" name="IsChatLocked" value="true" />
-                    <div class="setting-info">
-                        <span class="setting-title">Khóa chat lớp</span>
-                        <span class="setting-desc">Chỉ trưởng nhóm và phó nhóm mới được gửi tin nhắn</span>
+                    <div>
+                        <span class="setting-title">Chỉ quản lý được nhắn tin</span>
+                        <span class="setting-desc">Khóa chat cho thành viên thường</span>
                     </div>
                 </label>
-
                 <label class="setting-item">
                     <input type="checkbox" name="AllowMemberToPost" value="true" />
-                    <div class="setting-info">
-                        <span class="setting-title">Cho phép thành viên đăng bài</span>
-                        <span class="setting-desc">Thành viên thường có thể thêm Folder vào lớp học</span>
+                    <div>
+                        <span class="setting-title">Thành viên được thêm folder</span>
+                        <span class="setting-desc">Tắt thì chỉ trưởng/phó thêm folder vào lớp</span>
                     </div>
                 </label>
             </div>
         </div>
 
-        <!-- Description -->
         <div class="form-group">
-            <label>Mô tả lớp</label>
-            <textarea name="Description" rows="4" placeholder="Mô tả mục đích, nội dung học của lớp..."></textarea>
+            <label for="classDescription">Mô tả lớp</label>
+            <textarea id="classDescription" name="Description" rows="4" placeholder="Mục tiêu và nội dung lớp...">@form.Description</textarea>
         </div>
 
         <div class="form-actions">
-            <a href="@Url.Action("Index", "Home")" class="btn-cancel">Hủy</a>
-            <button type="submit" class="btn-submit">Tạo lớp</button>
+            <a href="@Url.Action("Class", "Class")" class="btn btn-outline-secondary">Hủy</a>
+            <button type="submit" class="btn btn-primary">Tạo lớp</button>
         </div>
     </form>
 </div>
 
-<style>
-    * {
-        box-sizing: border-box;
-    }
-
-    .create-class-container {
-        max-width: 900px;
-        margin: 30px auto;
-        padding: 32px;
-        background: #ffffff;
-        border-radius: 20px;
-        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
-    }
-
-    .page-header {
-        margin-bottom: 30px;
-        border-bottom: 1px solid #eef1f5;
-        padding-bottom: 20px;
-    }
-
-        .page-header h1 {
-            font-size: 30px;
-            font-weight: 800;
-            color: #111827;
-            margin-bottom: 8px;
-        }
-
-        .page-header p {
-            font-size: 15px;
-            color: #6b7280;
-            margin: 0;
-        }
-
-    .create-class-form {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-        .form-group label {
-            font-size: 15px;
-            font-weight: 700;
-            color: #1f2937;
-        }
-
-    .required {
-        color: #ef4444;
-    }
-
-    input[type="text"],
-    input[type="password"],
-    textarea {
-        width: 100%;
-        padding: 14px 16px;
-        border: 1.5px solid #dbe2ea;
-        border-radius: 12px;
-        font-size: 15px;
-        background: #fff;
-        transition: 0.25s ease;
-        outline: none;
-    }
-
-        input[type="text"]:focus,
-        input[type="password"]:focus,
-        textarea:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
-        }
-
-    textarea {
-        resize: vertical;
-        min-height: 120px;
-    }
-
-    /* Avatar Upload */
-    .avatar-upload {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-        padding: 20px;
-        border: 1.5px dashed #dbe2ea;
-        border-radius: 16px;
-        background: #fafbfc;
-    }
-
-    .avatar-preview {
-        width: 110px;
-        height: 110px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 3px solid #e5e7eb;
-        flex-shrink: 0;
-        background: white;
-    }
-
-        .avatar-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-    .avatar-actions {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .btn-avatar {
-        padding: 12px 20px;
-        border: none;
-        border-radius: 10px;
-        background: #2563eb;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.25s;
-    }
-
-        .btn-avatar:hover {
-            background: #1d4ed8;
-        }
-
-    .avatar-hint {
-        font-size: 13px;
-        color: #6b7280;
-    }
-
-    /* Password checkbox */
-    .checkbox-container {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        cursor: pointer;
-        font-weight: 600;
-    }
-
-        .checkbox-container input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
-    #classPassword {
-        margin-top: 10px;
-    }
-
-    /* Settings section */
-    .settings-section {
-        background: #f8fafc;
-        padding: 24px;
-        border-radius: 18px;
-        border: 1px solid #e5e7eb;
-    }
-
-    .settings-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-        margin-top: 12px;
-    }
-
-    .setting-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 14px;
-        padding: 16px;
-        border: 1px solid #e5e7eb;
-        border-radius: 14px;
-        background: white;
-        transition: 0.25s ease;
-        cursor: pointer;
-    }
-
-        .setting-item:hover {
-            border-color: #2563eb;
-            background: #f8fbff;
-        }
-
-        .setting-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            margin-top: 3px;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-    .setting-info {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
-
-    .setting-title {
-        font-size: 15px;
-        font-weight: 700;
-        color: #111827;
-    }
-
-    .setting-desc {
-        font-size: 13px;
-        color: #6b7280;
-        line-height: 1.5;
-    }
-
-    /* Buttons */
-    .form-actions {
-        display: flex;
-        justify-content: flex-end;
-        gap: 14px;
-        margin-top: 10px;
-        padding-top: 24px;
-        border-top: 1px solid #eef1f5;
-    }
-
-    .btn-cancel,
-    .btn-submit {
-        padding: 13px 26px;
-        border-radius: 12px;
-        font-weight: 700;
-        font-size: 14px;
-        text-decoration: none;
-        cursor: pointer;
-        transition: 0.25s;
-    }
-
-    .btn-cancel {
-        background: #f3f4f6;
-        color: #374151;
-        border: 1px solid #d1d5db;
-    }
-
-        .btn-cancel:hover {
-            background: #e5e7eb;
-        }
-
-    .btn-submit {
-        border: none;
-        background: #2563eb;
-        color: white;
-    }
-
-        .btn-submit:hover {
-            background: #1d4ed8;
-        }
-
-    /* Responsive */
-    @@media (max-width: 768px) {
-        .create-class-container {
-            padding: 20px;
-            margin: 20px 12px;
-        }
-
-        .avatar-upload {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .form-actions {
-            flex-direction: column;
-        }
-
-        .btn-cancel,
-        .btn-submit {
-            width: 100%;
-            text-align: center;
-        }
-    }
-</style>
+@section Scripts {
 <script>
-        function previewAvatar(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-
-        if (!file.type.startsWith('image/')) {
-            alert('Vui lòng chọn file ảnh');
-            event.target.value = '';
-            return;
-        }
-
-        if (file.size > 2 * 1024 * 1024) {
-            alert('Ảnh tối đa 2MB');
-            event.target.value = '';
-            return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = e => {
-            document.getElementById('avatarPreview').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
+(function () {
+    const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    function generateCode() {
+        const bytes = new Uint8Array(8);
+        crypto.getRandomValues(bytes);
+        let out = '';
+        for (let i = 0; i < 8; i++) out += alphabet[bytes[i] % alphabet.length];
+        return out;
     }
-    function togglePassword() {
-        const checkbox = document.getElementById("enablePassword");
-        const passwordInput = document.getElementById("classPassword");
 
-        if (checkbox.checked) {
-            passwordInput.disabled = false;
-            passwordInput.focus();
-        } else {
-            passwordInput.value = "";
-            passwordInput.disabled = true;
-        }
-    }
+    const input = document.getElementById('avatarInput');
+    const preview = document.getElementById('avatarPreview');
+    const password = document.getElementById('classPassword');
+    const joinCode = document.getElementById('joinCodeInput');
+    document.getElementById('pickCoverBtn')?.addEventListener('click', function () { input?.click(); });
+    input?.addEventListener('change', function () {
+        const file = this.files && this.files[0];
+        if (!file || !preview) return;
+        preview.src = URL.createObjectURL(file);
+    });
+    document.getElementById('enablePassword')?.addEventListener('change', function () {
+        if (!password) return;
+        password.disabled = !this.checked;
+        if (!this.checked) password.value = '';
+    });
+    document.getElementById('regenJoinCodeBtn')?.addEventListener('click', function () {
+        if (joinCode) joinCode.value = generateCode();
+    });
+})();
 </script>
+}

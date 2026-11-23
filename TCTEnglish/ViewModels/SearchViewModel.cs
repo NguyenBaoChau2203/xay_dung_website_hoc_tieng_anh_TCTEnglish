@@ -4,11 +4,20 @@ namespace TCTVocabulary.ViewModels
     {
         public string Query { get; set; } = string.Empty;
 
+        public List<NavMenuSearchResultViewModel> NavMenus { get; set; } = new();
         public List<FolderSearchResultViewModel> Folders { get; set; } = new();
         public List<SearchClassResultViewModel> Classes { get; set; } = new();
         public List<UserSearchResultViewModel> Users { get; set; } = new();
 
-        public int TotalResults => Folders.Count + Classes.Count + Users.Count;
+        public int TotalResults => NavMenus.Count + Folders.Count + Users.Count;
+    }
+
+    public class NavMenuSearchResultViewModel
+    {
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string Url { get; set; } = string.Empty;
+        public string IconClass { get; set; } = "fas fa-link";
     }
 
     public class FolderSearchResultViewModel
@@ -23,6 +32,8 @@ namespace TCTVocabulary.ViewModels
         public int ClassId { get; set; }
         public string ClassName { get; set; } = string.Empty;
         public string OwnerName { get; set; } = string.Empty;
+        public string? ImageUrl { get; set; }
+        public string MembershipLabel { get; set; } = "Chưa tham gia";
     }
 
     public class UserSearchResultViewModel

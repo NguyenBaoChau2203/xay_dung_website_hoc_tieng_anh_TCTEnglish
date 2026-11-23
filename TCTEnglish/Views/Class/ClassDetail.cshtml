@@ -7,53 +7,112 @@
         : Model.Class.Description;
 }
 
-<div class="class-detail-container">
+<div class="tct-theme class-detail-container">
     @Html.AntiForgeryToken()
 
-    <section class="class-hero">
-        <div class="class-header">
-            <img class="class-avatar"
-                 src="@(string.IsNullOrEmpty(Model.Class.ImageUrl)
-                     ? "/images/ClassDefault/class-default.png"
-                     : Model.Class.ImageUrl)"
-                 alt="@Model.Class.ClassName"
-                 onerror="this.src='/images/ClassDefault/class-default.png'" />
+    @{
+        var coverUrl = string.IsNullOrEmpty(Model.Class.ImageUrl)
+            ? "/images/ClassDefault/class-default.png"
+            : Model.Class.ImageUrl;
+        var defaultTab = !canViewContent
+            ? "about"
+            : Model.CanManageClass && Model.JoinRequests.Count > 0
+                ? "requests"
+                : Model.CanManageClass
+                    ? "folders"
+                    : "chat";
+    }
 
+    <section class="class-hero class-hero--cover">
+        <div class="class-cover-banner">
+            <img src="@coverUrl"
+                 alt=""
+                 onerror="this.src='/images/ClassDefault/class-default.png'" />
+        </div>
+        <div class="class-header">
             <div class="class-info">
                 <div class="class-title-row">
                     <h1>@Model.Class.ClassName</h1>
                 </div>
+                <p class="class-desc">@classDescription</p>
+                <div class="class-cover-card__badges">
+                    @if (Model.Class.IsPublic)
+                    {
+                        <span class="class-badge">Public</span>
+                    }
+                    else
+                    {
+                        <span class="class-badge class-badge--muted">Private</span>
+                    }
+                    @if (Model.Class.HasPassword)
+                    {
+                        <span class="class-badge class-badge--muted">Có mật khẩu</span>
+                    }
+                    @if (Model.Class.RequiresApproval)
+                    {
+                        <span class="class-badge class-badge--warn">Cần duyệt</span>
+                    }
+                    @if (Model.Class.IsChatLocked)
+                    {
+                        <span class="class-badge class-badge--muted">Chat khóa</span>
+                    }
+                    @if (canViewContent)
+                    {
+                        <span class="class-badge class-badge--muted">@Model.Members.Count thành viên</span>
+                    }
+                </div>
 
-                <p class="class-desc">@Model.Members.Count thành viên</p>
-
+                @if (Model.CanManageClass && !string.IsNullOrEmpty(Model.Class.JoinCode))
+                {
+                    <div class="class-join-code-bar" data-join-code="@Model.Class.JoinCode">
+                        <span class="class-join-code-bar__label">Mã lớp</span>
+                        <code id="classJoinCodeValue" class="class-join-code-bar__code">@Model.Class.JoinCode</code>
+                        <button type="button"
+                                class="btn btn-outline-secondary btn-sm"
+                                id="copyClassJoinCodeBtn"
+                                title="Sao chép mã lớp">
+                            <i class="fas fa-copy" aria-hidden="true"></i>
+                            <span class="visually-hidden">Sao chép mã lớp</span>
+                        </button>
+                        <button type="button"
+                                class="btn btn-outline-primary btn-sm"
+                                id="regenClassJoinCodeBtn">
+                            Tạo lại mã
+                        </button>
+                    </div>
+                }
             </div>
 
-            <div class="class-actions">
-                <button type="button"
-                        class="more-btn"
-                        onclick="openClassActionModal()"
-                        aria-label="Quản lý lớp">
-                    <i class="fas fa-ellipsis-h"></i>
-                </button>
-            </div>
+            @if (canViewContent)
+            {
+                <div class="class-actions">
+                    <button type="button"
+                            class="more-btn"
+                            onclick="openClassActionModal()"
+                            aria-label="Quản lý lớp">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                </div>
+            }
         </div>
     </section>
 
     @if (!canViewContent)
     {
         <section class="join-required-panel">
-            <div class="join-required-card">
-                <h2>Hãy tham gia nhóm</h2>
-
+            <div class="join-required-card tct-clay-surface">
+                <h2>Tham gia lớp để xem nội dung</h2>
                 <p>
-                    Bạn cần tham gia lớp học này để xem nội dung chat, thư mục và thành viên.
+                    Chat, folder và danh sách thành viên chỉ hiện sau khi bạn vào lớp.
                 </p>
-
-                <button class="btn-primary"
-                        type="button"
-                        onclick="handleJoinClick(@Model.Class.ClassId, @(Model.Class.HasPassword.ToString().ToLower()))">
-                    Tham gia nhóm
-                </button>
+                @if (Model.CanJoinClass)
+                {
+                    <button class="btn btn-primary"
+                            type="button"
+                            onclick="handleJoinClick(@Model.Class.ClassId, @(Model.Class.HasPassword.ToString().ToLower()))">
+                        Tham gia nhóm
+                    </button>
+                }
             </div>
         </section>
     }
@@ -61,12 +120,15 @@
     {
         <section class="class-main-panel">
             <div class="class-tabs" role="tablist" aria-label="Class detail tabs">
-                <button class="tab-btn active" type="button" data-tab="chat" onclick="showTab('chat')">
-                    <i class="fas fa-comments"></i>
-                    <span>Chat</span>
-                </button>
+                @if (Model.CanManageClass)
+                {
+                    <button class="tab-btn @(defaultTab == "requests" ? "active" : "")" type="button" data-tab="requests" onclick="showTab('requests')">
+                        <i class="fas fa-user-check"></i>
+                        <span>Yêu cầu@(Model.JoinRequests.Count > 0 ? $" ({Model.JoinRequests.Count})" : "")</span>
+                    </button>
+                }
 
-                <button class="tab-btn" type="button" data-tab="folders" onclick="showTab('folders')">
+                <button class="tab-btn @(defaultTab == "folders" ? "active" : "")" type="button" data-tab="folders" onclick="showTab('folders')">
                     <i class="fas fa-folder"></i>
                     <span>Folder</span>
                 </button>
@@ -76,18 +138,33 @@
                     <span>Thành viên</span>
                 </button>
 
+                <button class="tab-btn @(defaultTab == "chat" ? "active" : "")" type="button" data-tab="chat" onclick="showTab('chat')">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat</span>
+                </button>
+
                 <button class="tab-btn" type="button" data-tab="about" onclick="showTab('about')">
                     <i class="fas fa-circle-info"></i>
                     <span>Giới thiệu</span>
                 </button>
             </div>
 
-            <div id="tab-chat" class="tab-content active">
+            <div id="tab-chat" class="tab-content @(defaultTab == "chat" ? "active" : "")">
                 <div class="content-shell chat-shell">
-                    <div id="chatMessages" class="chat-box">
+                    @if (Model.HasMoreMessages)
+                    {
+                        <div class="chat-load-more">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" id="loadMoreMessagesBtn">
+                                Tải thêm tin cũ
+                            </button>
+                        </div>
+                    }
+                    <div id="chatMessages" class="chat-box"
+                         data-oldest-id="@(Model.Messages.FirstOrDefault()?.MessageId)"
+                         data-has-more="@Model.HasMoreMessages.ToString().ToLowerInvariant()">
                         @foreach (var msg in Model.Messages)
                         {
-                            <div class="chat-message @(msg.IsMine ? "mine" : "other")">
+                            <div class="chat-message @(msg.IsMine ? "mine" : "other")" data-message-id="@msg.MessageId">
                                 <div class="chat-bubble">
                                     @if (!msg.IsMine)
                                     {
@@ -112,10 +189,21 @@
                         }
                     </div>
 
-                    @if (Model.Class.IsChatLocked && !Model.CanChatWhenLocked)
+                    @if (!Model.CanSendChat)
                     {
                         <div class="chat-locked-notice">
-                            Chat đang bị khóa. Chỉ người quản lý lớp mới có thể nhắn tin.
+                            @if (Model.IsMutedForCurrentUser)
+                            {
+                                <text>Bạn đang bị mute và không thể gửi tin nhắn.</text>
+                            }
+                            else if (Model.Class.IsChatLocked && !Model.CanChatWhenLocked)
+                            {
+                                <text>Chat đang bị khóa. Chỉ người quản lý lớp mới có thể nhắn tin.</text>
+                            }
+                            else
+                            {
+                                <text>Bạn không thể gửi tin nhắn trong lớp này.</text>
+                            }
                         </div>
                     }
                     else
@@ -162,7 +250,45 @@
                 </div>
             </div>
 
-            <div id="tab-folders" class="tab-content">
+            @if (Model.CanManageClass)
+            {
+                <div id="tab-requests" class="tab-content @(defaultTab == "requests" ? "active" : "")">
+                    <div class="content-shell">
+                        <div class="section-header">
+                            <div>
+                                <h3>Yêu cầu tham gia</h3>
+                                <p>Duyệt học viên đang chờ vào lớp.</p>
+                            </div>
+                        </div>
+                        @if (Model.JoinRequests == null || !Model.JoinRequests.Any())
+                        {
+                            <div class="empty-box">
+                                <p>Không có yêu cầu đang chờ.</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="request-list">
+                                @foreach (var request in Model.JoinRequests)
+                                {
+                                    <div class="request-row" data-request-id="@request.RequestId">
+                                        <div>
+                                            <strong>@request.FullName</strong>
+                                            <div class="text-muted small">@request.CreatedAt.ToLocalTime().ToString("g")</div>
+                                        </div>
+                                        <div class="request-actions">
+                                            <button type="button" class="btn btn-primary btn-sm" onclick="approveJoinRequest(@request.RequestId)">Chấp nhận</button>
+                                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="declineJoinRequest(@request.RequestId)">Từ chối</button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+            <div id="tab-folders" class="tab-content @(defaultTab == "folders" ? "active" : "")">
                 <div class="content-shell">
                     <div class="section-header">
                         <div>
@@ -496,12 +622,24 @@
                 </div>
 
                 <div class="modal-section">
+                    <label for="editClassCover">Ảnh bìa lớp</label>
+                    <input type="file" id="editClassCover" accept="image/*" />
+                </div>
+
+                <div class="modal-section">
                     <label for="editClassDescription">Mô tả</label>
                     <textarea id="editClassDescription"
                               rows="4">@Model.Class.Description</textarea>
                 </div>
 
                 <div class="modal-section checkbox-list">
+                    <label>
+                        <input type="checkbox"
+                               id="editIsPublic"
+                        @(Model.Class.IsPublic ? "checked" : "") />
+                        Lớp công khai (Public) — hiện trong tìm lớp
+                    </label>
+
                     <label>
                         <input type="checkbox"
                                id="editRequiresApproval"
@@ -636,9 +774,82 @@
     </div>
 }
 
-@section Styles {
-    <link rel="stylesheet" href="~/css/Class-Detail.css" />
+@{
+    var showCreatedCard = string.Equals(TempData["ClassCreated"] as string, "1", StringComparison.Ordinal);
+    var createdName = TempData["CreatedClassName"] as string ?? Model.Class.ClassName;
+    var createdCode = TempData["CreatedJoinCode"] as string ?? Model.Class.JoinCode;
+    var createdPublic = string.Equals(TempData["CreatedIsPublic"] as string, "1", StringComparison.Ordinal);
+    var createdPassword = string.Equals(TempData["CreatedHasPassword"] as string, "1", StringComparison.Ordinal);
+    var createdApproval = string.Equals(TempData["CreatedRequiresApproval"] as string, "1", StringComparison.Ordinal);
 }
+
+@if (showCreatedCard)
+{
+    <div id="classCreatedModal"
+         class="modal-overlay active tct-theme"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="classCreatedTitle"
+         aria-describedby="classCreatedDesc">
+        <div class="class-created-card">
+            <div class="class-created-card__hero" aria-hidden="true">
+                <span class="class-created-card__icon">
+                    <i class="fas fa-check"></i>
+                </span>
+            </div>
+
+            <h2 id="classCreatedTitle" class="class-created-card__title">Đã tạo lớp thành công</h2>
+            <p id="classCreatedDesc" class="class-created-card__lead">
+                Gửi mã lớp cho học viên để họ tham gia.
+            </p>
+
+            <div class="class-created-card__summary">
+                <h3 class="class-created-card__name">@createdName</h3>
+                <div class="class-cover-card__badges class-created-card__badges">
+                    <span class="class-badge">@(createdPublic ? "Public" : "Private")</span>
+                    @if (createdPassword)
+                    {
+                        <span class="class-badge class-badge--muted">Có mật khẩu</span>
+                    }
+                    @if (createdApproval)
+                    {
+                        <span class="class-badge class-badge--warn">Cần duyệt</span>
+                    }
+                </div>
+            </div>
+
+            <div class="class-created-card__code-block">
+                <span class="class-created-card__code-label" id="createdJoinCodeLabel">Mã lớp</span>
+                <div class="class-created-card__code-row"
+                     role="group"
+                     aria-labelledby="createdJoinCodeLabel">
+                    <code id="createdJoinCodeValue" class="class-created-card__code">@createdCode</code>
+                    <button type="button"
+                            class="btn btn-primary class-created-card__copy"
+                            id="copyCreatedJoinCodeBtn"
+                            data-label-default="Sao chép"
+                            data-label-done="Đã sao chép">
+                        <i class="fas fa-copy" aria-hidden="true"></i>
+                        <span class="class-created-card__copy-text">Sao chép</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="class-created-card__actions">
+                <button type="button" class="btn btn-primary class-created-card__action-primary" id="dismissCreatedCardBtn">
+                    Tiếp tục vào lớp
+                </button>
+                <a class="btn btn-outline-secondary class-created-card__action-secondary"
+                   href="@Url.Action("Class", "Class")">
+                    Về danh sách lớp
+                </a>
+            </div>
+        </div>
+    </div>
+}
+
+<link rel="stylesheet" href="~/css/class.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Class-Detail.css" asp-append-version="true" />
 
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
@@ -646,10 +857,12 @@
     <script>
         const classId = @Model.Class.ClassId;
         const currentUserId = @Model.CurrentUserId;
+        const canSendChat = @(Model.CanSendChat ? "true" : "false");
         const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
         const approveJoinRequestUrl = '@Url.Action("ApproveJoinRequest", "Class")';
         const declineJoinRequestUrl = '@Url.Action("DeclineJoinRequest", "Class")';
+        const classMessagesUrl = '@Url.Action("ClassMessages", "Class")';
     </script>
 
-    <script src="~/js/Class-Detail.js"></script>
+    <script src="~/js/Class-Detail.js" asp-append-version="true"></script>
 }

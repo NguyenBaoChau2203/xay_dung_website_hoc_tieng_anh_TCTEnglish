@@ -78,12 +78,11 @@ namespace TCTEnglish.Services.Billing
             _context.UserSubscriptions.Add(subscription);
 
             // ── Sync User.Role for legacy compatibility ──
-            // Never downgrade Admin. Only promote Standard → Premium.
+            // Never overwrite Admin or Teacher. Only promote Standard → Premium.
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == order.UserId, ct);
             if (user != null)
             {
-                var normalizedRole = Roles.Normalize(user.Role);
-                if (!normalizedRole.Equals(Roles.Admin, StringComparison.OrdinalIgnoreCase))
+                if (!Roles.IsProtectedFromBillingRoleSync(user.Role))
                 {
                     user.Role = Roles.Premium;
                 }
@@ -143,10 +142,8 @@ namespace TCTEnglish.Services.Billing
                 if (user == null)
                     continue;
 
-                var normalizedRole = Roles.Normalize(user.Role);
-
-                // Never touch Admin
-                if (normalizedRole.Equals(Roles.Admin, StringComparison.OrdinalIgnoreCase))
+                // Never touch Admin or Teacher
+                if (Roles.IsProtectedFromBillingRoleSync(user.Role))
                     continue;
 
                 // NOTE: Legacy risk — A user whose role was manually set to "Premium"
@@ -184,15 +181,11 @@ namespace TCTEnglish.Services.Billing
                 activeSub.CancelReason = reason;
             }
 
-            // Downgrade role unless Admin
+            // Downgrade role unless Admin or Teacher
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId, ct);
-            if (user != null)
+            if (user != null && !Roles.IsProtectedFromBillingRoleSync(user.Role))
             {
-                var normalizedRole = Roles.Normalize(user.Role);
-                if (!normalizedRole.Equals(Roles.Admin, StringComparison.OrdinalIgnoreCase))
-                {
-                    user.Role = Roles.Standard;
-                }
+                user.Role = Roles.Standard;
             }
 
             await _context.SaveChangesAsync(ct);
@@ -240,8 +233,7 @@ namespace TCTEnglish.Services.Billing
 
             _context.UserSubscriptions.Add(subscription);
 
-            var normalizedRole = Roles.Normalize(user.Role);
-            if (!normalizedRole.Equals(Roles.Admin, StringComparison.OrdinalIgnoreCase))
+            if (!Roles.IsProtectedFromBillingRoleSync(user.Role))
             {
                 user.Role = Roles.Premium;
             }

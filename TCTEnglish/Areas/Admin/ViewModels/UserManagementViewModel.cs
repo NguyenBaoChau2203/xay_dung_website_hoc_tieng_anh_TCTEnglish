@@ -38,12 +38,14 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
         public string RoleBadgeClass => NormalizedRole switch
         {
             Roles.Admin => "badge bg-danger",
+            Roles.Teacher => "badge bg-success",
             Roles.Premium => "badge bg-primary",
             _ => "badge bg-secondary"
         };
         public string RoleIconClass => NormalizedRole switch
         {
             Roles.Admin => "bi-shield-lock-fill",
+            Roles.Teacher => "bi-mortarboard-fill",
             Roles.Premium => "bi-gem",
             _ => "bi-person-fill"
         };
@@ -122,12 +124,14 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
         public string RoleBadgeClass => NormalizedRole switch
         {
             Roles.Admin => "badge bg-danger",
+            Roles.Teacher => "badge bg-success",
             Roles.Premium => "badge bg-primary",
             _ => "badge bg-secondary"
         };
         public string RoleIconClass => NormalizedRole switch
         {
             Roles.Admin => "bi-shield-lock-fill",
+            Roles.Teacher => "bi-mortarboard-fill",
             Roles.Premium => "bi-gem",
             _ => "bi-person-fill"
         };

@@ -2387,6 +2387,16 @@ namespace TCTEnglish.Migrations
                     b.Property<bool>("IsChatLocked")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<bool>("IsPublic")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("JoinCode")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("varchar(16)");
+
                     b.Property<int>("OwnerId")
                         .HasColumnType("int")
                         .HasColumnName("OwnerID");
@@ -2401,6 +2411,10 @@ namespace TCTEnglish.Migrations
 
                     b.HasKey("ClassId")
                         .HasName("PK__Classes__CB1927A0B52422EC");
+
+                    b.HasIndex("JoinCode")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Classes_JoinCode");
 
                     b.HasIndex("OwnerId");
 
