@@ -43,7 +43,9 @@ def wait_for_deployed_release(sha, run_id, digest, timeout_seconds=1800, delay_s
     # Bound verification monotonically (30 minutes), allowing for large artifacts (>200 MB),
     # slow hosting download, backup, migration and startup.
     deadline = time.monotonic() + timeout_seconds
+    last_log = 0.0
     while time.monotonic() < deadline:
+        diagnostic = None
         try:
             status, marker = portal_json('/tct-release.json', timeout=min(10, deadline - time.monotonic()))
             if time.monotonic() >= deadline:
@@ -52,9 +54,18 @@ def wait_for_deployed_release(sha, run_id, digest, timeout_seconds=1800, delay_s
             if time.monotonic() <= deadline and status == ready_status == 200 and ready.get('status') == 'ready' and marker_matches(marker, sha, run_id, digest):
                 print('Staging expected commit/run/digest and readiness verified.')
                 return True
-        except Exception:
-            pass  # Never print exception URLs, response bodies or credentials.
-        remaining = deadline - time.monotonic()
+            diagnostic = 'release ' + str(status) + ' (commit=' + str(marker.get('commit', ''))[:8] + ' run=' + str(marker.get('runNumber')) + '), ready ' + str(ready_status) + ' (' + str(ready.get('status')) + ')'
+        except urllib.error.HTTPError as err:
+            diagnostic = 'HTTP ' + str(err.code)
+        except Exception as exc:
+            diagnostic = 'error ' + type(exc).__name__
+
+        now = time.monotonic()
+        if now - last_log >= 30:
+            print('Waiting for staging deployment (elapsed ' + str(int(timeout_seconds - (deadline - now))) + 's)... Host state: ' + str(diagnostic))
+            last_log = now
+
+        remaining = deadline - now
         if remaining > 0:
             time.sleep(min(delay_seconds, remaining))
     return False
