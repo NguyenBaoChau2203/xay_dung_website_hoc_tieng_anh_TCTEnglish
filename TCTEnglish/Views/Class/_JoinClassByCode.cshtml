@@ -1,0 +1,25 @@
+<div class="modal" id="joinByCodeModal" tabindex="-1" aria-labelledby="joinByCodeTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <form class="modal-content tct-clay-surface" asp-controller="Class" asp-action="JoinClassByCode" method="post" novalidate>
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="joinByCodeTitle">Tham gia bằng mã lớp</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">Nhập mã giảng viên gửi cho bạn. Nếu lớp có mật khẩu, hệ thống sẽ hỏi thêm.</p>
+                <label class="form-label" for="joinCodeInput">Mã lớp</label>
+                <input class="form-control" type="text" id="joinCodeInput" name="joinCode" maxlength="16"
+                       placeholder="Ví dụ: ABCD2345" autocomplete="off" spellcheck="false" required />
+                <div id="joinCodePasswordWrap" class="mt-3" hidden>
+                    <label class="form-label" for="joinCodePassword">Mật khẩu lớp</label>
+                    <input class="form-control" type="password" id="joinCodePassword" name="password" autocomplete="off" disabled />
+                </div>
+                <p id="joinCodeError" class="text-danger small mt-2 mb-0" role="status" hidden></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary" id="confirmJoinByCodeBtn">Tham gia</button>
+            </div>
+        </form>
+    </div>
+</div>

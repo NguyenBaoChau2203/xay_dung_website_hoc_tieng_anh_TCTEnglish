@@ -38,7 +38,8 @@
                    inputmode="search"
                    spellcheck="false" />
         </form>
-        <button type="button" class="btn btn-outline-primary class-page__code-btn" id="openJoinByCodeBtn">
+        <button type="button" class="btn btn-outline-primary class-page__code-btn" id="openJoinByCodeBtn"
+                data-bs-toggle="modal" data-bs-target="#joinByCodeModal">
             <i class="fas fa-key" aria-hidden="true"></i>
             Tham gia bằng mã
         </button>
@@ -72,40 +73,7 @@
         </div>
     </section>
 
-    <div id="joinByCodeModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="joinByCodeTitle" hidden>
-        <div class="password-modal join-code-modal">
-            <h3 id="joinByCodeTitle">Tham gia bằng mã lớp</h3>
-            <p class="text-muted small">Nhập mã giảng viên gửi cho bạn. Dùng được cho lớp Public và Private. Nếu lớp có mật khẩu, hệ thống sẽ hỏi thêm.</p>
-            <label class="visually-hidden" for="joinCodeInput">Mã lớp</label>
-            <input type="text"
-                   id="joinCodeInput"
-                   name="classJoinCode"
-                   maxlength="16"
-                   autocomplete="off"
-                   data-1p-ignore="true"
-                   data-lpignore="true"
-                   data-form-type="other"
-                   placeholder="Ví dụ: ABCD2345"
-                   class="join-code-input"
-                   spellcheck="false" />
-            <div id="joinCodePasswordWrap" hidden>
-                <label class="visually-hidden" for="joinCodePassword">Mật khẩu lớp</label>
-                <input type="password"
-                       id="joinCodePassword"
-                       name="classJoinPassword"
-                       placeholder="Mật khẩu lớp"
-                       autocomplete="off"
-                       data-1p-ignore="true"
-                       data-lpignore="true"
-                       data-form-type="other" />
-            </div>
-            <p id="joinCodeError" class="text-danger small mb-0" hidden></p>
-            <div class="modal-actions">
-                <button type="button" class="btn btn-outline-secondary" id="closeJoinByCodeBtn">Hủy</button>
-                <button type="button" class="btn btn-primary" id="confirmJoinByCodeBtn">Tham gia</button>
-            </div>
-        </div>
-    </div>
+    <partial name="_JoinClassByCode" />
 </div>
 
 @section Scripts {
@@ -224,110 +192,7 @@
 
     runSearch();
 
-    const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value || '';
-    const modal = document.getElementById('joinByCodeModal');
-    const codeInput = document.getElementById('joinCodeInput');
-    const passwordWrap = document.getElementById('joinCodePasswordWrap');
-    const passwordInput = document.getElementById('joinCodePassword');
-    const errorEl = document.getElementById('joinCodeError');
-
-    function openJoinModal() {
-        if (!modal) return;
-        modal.hidden = false;
-        modal.classList.add('active');
-        if (errorEl) { errorEl.hidden = true; errorEl.textContent = ''; }
-        if (passwordWrap) passwordWrap.hidden = true;
-        if (passwordInput) passwordInput.value = '';
-        if (codeInput) codeInput.value = '';
-        codeInput?.focus();
-    }
-
-    function closeJoinModal() {
-        if (!modal) return;
-        modal.classList.remove('active');
-        modal.hidden = true;
-    }
-
-    function showJoinError(message) {
-        if (!errorEl) return;
-        errorEl.textContent = message || 'Không tham gia được.';
-        errorEl.hidden = false;
-    }
-
-    async function submitJoinByCode() {
-        const joinCode = (codeInput?.value || '').trim();
-        if (!joinCode) {
-            showJoinError('Vui lòng nhập mã lớp.');
-            return;
-        }
-
-        const body = new URLSearchParams();
-        body.set('joinCode', joinCode);
-        const password = (passwordInput?.value || '').trim();
-        if (password) body.set('password', password);
-
-        try {
-            const response = await fetch('/Home/JoinClassByCode', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'RequestVerificationToken': token
-                },
-                body: body.toString()
-            });
-
-            const text = await response.text();
-            let data = null;
-            try { data = text ? JSON.parse(text) : null; } catch { /* plain error */ }
-
-            if (!response.ok) {
-                showJoinError((data && data.message) || text || 'Không tham gia được.');
-                return;
-            }
-
-            if (data?.status === 'needsPassword') {
-                if (passwordWrap) passwordWrap.hidden = false;
-                passwordInput?.focus();
-                showJoinError(data.message || 'Lớp này yêu cầu mật khẩu.');
-                return;
-            }
-
-            if (data?.status === 'pending') {
-                if (window.TctFeedback) {
-                    window.TctFeedback.toast({
-                        type: 'success',
-                        title: 'Đã gửi yêu cầu tham gia',
-                        message: data.message || 'Vui lòng chờ quản trị lớp phê duyệt.'
-                    });
-                }
-                closeJoinModal();
-                return;
-            }
-
-            if (data?.redirectUrl) {
-                window.location.href = data.redirectUrl;
-                return;
-            }
-
-            closeJoinModal();
-            window.location.reload();
-        } catch {
-            showJoinError('Không kết nối được máy chủ.');
-        }
-    }
-
-    document.getElementById('openJoinByCodeBtn')?.addEventListener('click', openJoinModal);
-    document.getElementById('closeJoinByCodeBtn')?.addEventListener('click', closeJoinModal);
-    document.getElementById('confirmJoinByCodeBtn')?.addEventListener('click', submitJoinByCode);
-    modal?.addEventListener('click', function (e) {
-        if (e.target === modal) closeJoinModal();
-    });
-    codeInput?.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            submitJoinByCode();
-        }
-    });
 })();
 </script>
+    <script src="~/js/class-join-code.js" asp-append-version="true"></script>
 }
