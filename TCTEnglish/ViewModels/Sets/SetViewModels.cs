@@ -248,6 +248,7 @@ public sealed class VocabEnrichResultDto
     public string? Emoji { get; set; }
     public string? ImageQuery { get; set; }
     public string? MemoryTipVi { get; set; }
+    public List<TCTVocabulary.Services.ImageSearchHit> Images { get; set; } = new();
 }
 
 public sealed class VocabEnrichSense

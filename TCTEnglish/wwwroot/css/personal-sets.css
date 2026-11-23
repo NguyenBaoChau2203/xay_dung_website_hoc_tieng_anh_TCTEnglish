@@ -956,6 +956,58 @@
 .ts-page .ts-sense { display: inline-flex; align-items: center; gap: var(--tct-space-xs); padding: 5px 12px; border: 1.5px dashed var(--tct-border-control); border-radius: var(--tct-radius-pill); font-size: var(--tct-text-sm); }
 .ts-page .ts-did-you-mean { margin: var(--tct-space-sm) 0 0; font-size: var(--tct-text-sm); color: var(--tct-text-secondary); }
 
+.ts-page .ts-image-suggestions {
+    margin-top: var(--tct-space-xs);
+    padding: var(--tct-space-xs) var(--tct-space-sm);
+    background: var(--tct-surface-muted);
+    border: 1px dashed var(--tct-border-control);
+    border-radius: var(--tct-radius-md);
+    box-shadow: var(--tct-clay-shadow-field);
+}
+.ts-page .ts-image-suggestions[hidden] { display: none; }
+.ts-page .ts-image-suggestions-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--tct-space-xs);
+    font-size: var(--tct-text-xs);
+    color: var(--tct-text-secondary);
+}
+.ts-page .ts-image-suggestions-list {
+    display: flex;
+    gap: var(--tct-space-xs);
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+}
+.ts-page .ts-image-thumb-btn {
+    flex: 0 0 auto;
+    width: 64px;
+    height: 64px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: var(--tct-radius-md);
+    overflow: hidden;
+    background: var(--tct-surface);
+    box-shadow: var(--tct-clay-shadow-sm);
+    cursor: pointer;
+    transition: transform var(--tct-duration-fast) ease, border-color var(--tct-duration-fast) ease, box-shadow var(--tct-duration-fast) ease;
+}
+.ts-page .ts-image-thumb-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--tct-primary);
+}
+.ts-page .ts-image-thumb-btn.is-selected {
+    border-color: var(--tct-primary);
+    box-shadow: 0 0 0 2px var(--tct-primary);
+    transform: translateY(-2px);
+}
+.ts-page .ts-image-thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .ts-page .ts-compose-image { display: none; }
 @media (min-width: 576px) { .ts-page .ts-compose-image { display: block; } }
 .ts-page .ts-image-tile { display: flex; align-items: center; justify-content: center; width: 96px; height: 96px; padding: 0; overflow: hidden; border: 1px dashed var(--tct-border-control); border-radius: var(--tct-radius-md); background: var(--tct-surface-muted); box-shadow: var(--tct-clay-shadow-field); color: var(--tct-text-secondary); font-size: var(--tct-text-xs); }
