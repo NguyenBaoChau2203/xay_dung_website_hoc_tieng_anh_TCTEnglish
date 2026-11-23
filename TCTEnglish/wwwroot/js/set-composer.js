@@ -94,6 +94,7 @@
         if (result.topicVi) { next.d.topic = result.topicVi; }
         if (result.emoji) { next.d.emoji = result.emoji; }
         if (result.imageQuery) { next.imageQuery = result.imageQuery; }
+        if (result.images && result.images.length) { next.suggestedImages = result.images; }
         next.d.aiGenerated = true;
         next.aiGenerated = true;
         return next;
@@ -230,7 +231,7 @@
             uid: ++uid, term: '', definition: '', d: T.cardForm.emptyData(), meaningTyped: false, readingTyped: false,
             aiMeaning: false, aiGenerated: false, senses: null, selected: [0], didYouMean: null, enrichState: 'idle',
             enrichError: null, dupOther: [], saveError: null, touchedMeaning: false, lastEnrichedTerm: '', lastDupTerm: '',
-            imageQuery: null, fromBatch: false, enrichTimer: null
+            imageQuery: null, suggestedImages: null, fromBatch: false, enrichTimer: null
         };
         return Object.assign(card, partial || {});
     }
@@ -277,13 +278,20 @@
         refs.term.addEventListener('input', function () {
             card.term = refs.term.value;
             card.saveError = null;
+            card.suggestedImages = null;
             scheduleAutoEnrich(card);
             refreshAll();
             scheduleDraft();
         });
         refs.term.addEventListener('blur', function () { checkServerDuplicates(card); });
         refs.term.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' && !event.ctrlKey && !event.metaKey) { event.preventDefault(); refs.meaning.focus(); }
+            if (event.key === 'Enter' && !event.ctrlKey && !event.metaKey) {
+                event.preventDefault();
+                if (card.term.trim().length >= 2 && card.enrichState !== 'loading') {
+                    enrichCard(card);
+                }
+                refs.meaning.focus();
+            }
         });
         refs.term.addEventListener('paste', function (event) {
             var text = (event.clipboardData || window.clipboardData).getData('text');
@@ -370,7 +378,15 @@
 
         r.spinner.hidden = card.enrichState !== 'loading';
         r.suggestBtn.disabled = card.enrichState === 'loading';
-        r.suggestBtn.querySelector('i').className = (config.isPremium ? 'fa-solid fa-lightbulb' : 'fa-solid fa-crown') + ' me-1';
+        if (card.enrichState === 'loading') {
+            r.suggestBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>Đang dịch…';
+            if (!card.definition) { r.meaning.placeholder = 'Đang dịch nghĩa bằng AI…'; }
+            if (!card.d.phonetic) { r.ipa.placeholder = 'Đang lấy phiên âm…'; }
+        } else {
+            r.suggestBtn.innerHTML = '<i class="' + (config.isPremium ? 'fa-solid fa-lightbulb' : 'fa-solid fa-crown') + ' me-1" aria-hidden="true"></i>Gợi ý';
+            r.meaning.placeholder = 'Ví dụ: kiên cường, mau phục hồi';
+            r.ipa.placeholder = '/rɪˈzɪliənt/';
+        }
 
         var showMeaningError = card.touchedMeaning && card.term.trim() && !card.definition.trim();
         r.meaningError.hidden = !showMeaningError;
@@ -446,6 +462,42 @@
             tile.appendChild(T.el('span', null, 'Thêm ảnh'));
         }
         tile.setAttribute('aria-label', 'Ảnh cho thẻ ' + (state.cards.indexOf(card) + 1));
+
+        // Suggested images row from Pixabay
+        if (r.imageSuggestions && r.imageSuggestionsList) {
+            var hits = card.suggestedImages || [];
+            if (hits.length > 0) {
+                r.imageSuggestions.hidden = false;
+                r.imageSuggestionsList.textContent = '';
+                hits.forEach(function (hit) {
+                    var thumbBtn = document.createElement('button');
+                    thumbBtn.type = 'button';
+                    thumbBtn.className = 'ts-image-thumb-btn' + (card.d.imageUrl === hit.webformatUrl ? ' is-selected' : '');
+                    thumbBtn.setAttribute('aria-label', 'Chọn ảnh' + (hit.author ? ' bởi ' + hit.author : ''));
+                    thumbBtn.setAttribute('aria-pressed', String(card.d.imageUrl === hit.webformatUrl));
+                    var thumbImg = document.createElement('img');
+                    thumbImg.src = hit.previewUrl || hit.webformatUrl;
+                    thumbImg.alt = '';
+                    thumbImg.loading = 'lazy';
+                    thumbBtn.appendChild(thumbImg);
+
+                    thumbBtn.addEventListener('click', function () {
+                        if (card.d.imageUrl === hit.webformatUrl) {
+                            card.d.imageUrl = '';
+                            card.d.imageSource = null;
+                        } else {
+                            card.d.imageUrl = hit.webformatUrl;
+                            card.d.imageSource = { provider: 'pixabay', pageUrl: hit.pageUrl || '', author: hit.author || '' };
+                        }
+                        refreshCard(card);
+                        scheduleDraft();
+                    });
+                    r.imageSuggestionsList.appendChild(thumbBtn);
+                });
+            } else {
+                r.imageSuggestions.hidden = true;
+            }
+        }
     }
 
     function refreshAll() {
@@ -485,7 +537,7 @@
         if (!config.isPremium || card.fromBatch) { return; }
         var term = card.term.trim();
         if (term.length < 2 || core.norm(term) === core.norm(card.lastEnrichedTerm)) { return; }
-        card.enrichTimer = setTimeout(function () { enrichCard(card); }, 900);
+        card.enrichTimer = setTimeout(function () { enrichCard(card); }, 450);
     }
 
     function enrichCard(card) {
@@ -496,6 +548,17 @@
         card.enrichError = null;
         card.lastEnrichedTerm = term;
         refreshCard(card);
+
+        // Instant image prefetch: load Pixabay images immediately in ~200ms
+        if (config.urls.images && config.isPremium && (!card.suggestedImages || card.suggestedImages.length === 0)) {
+            T.fetchJson(config.urls.images + '?q=' + encodeURIComponent(term)).then(function (hits) {
+                if (core.norm(card.term) !== core.norm(term)) { return; }
+                if (hits && hits.length > 0) {
+                    card.suggestedImages = hits;
+                    refreshCard(card);
+                }
+            }).catch(function () { /* best effort */ });
+        }
 
         var body = { term: term };
         if (card.meaningTyped && card.definition.trim()) { body.meaningHint = card.definition.trim(); }
@@ -510,6 +573,9 @@
                 card.senses = result.senses || [];
                 card.selected = [0];
                 card.lastResult = result;
+                if (!card.suggestedImages || card.suggestedImages.length === 0) {
+                    card.suggestedImages = result.images || [];
+                }
                 Object.assign(card, core.applyEnrich(card, result, card.selected), { enrichTimer: null });
             }
             refreshAll();
@@ -645,6 +711,7 @@
                                 card.senses = item.result.senses || [];
                                 card.selected = [0];
                                 card.lastResult = item.result;
+                                card.suggestedImages = item.result.images || [];
                                 card.lastEnrichedTerm = card.term.trim();
                                 Object.assign(card, core.applyEnrich(card, item.result, [0]), { enrichTimer: null });
                             } else if (item.ok && item.result) {
@@ -860,7 +927,8 @@
     function openDrawer(card, tab) {
         state.drawerCard = card;
         document.getElementById('tsCardDetailsTitle').textContent = card.term.trim() || 'Thẻ ' + (state.cards.indexOf(card) + 1);
-        drawerForm.setData(card.d);
+        var formData = Object.assign({}, card.d, { term: card.term, imageQuery: card.imageQuery });
+        drawerForm.setData(formData);
         drawerForm.showTab(tab || 'examples');
         allowDrawerClose = false;
         if (offcanvas) { offcanvas.show(); }

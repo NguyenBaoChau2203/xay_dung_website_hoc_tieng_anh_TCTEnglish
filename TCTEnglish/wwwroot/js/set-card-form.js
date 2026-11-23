@@ -463,8 +463,13 @@
             renderExamples(); renderCollocations(); renderWordFamily(); synonymTags.render(); antonymTags.render(); renderPos(); renderImage();
             imageError('');
             // The image search block is only rendered for Premium accounts.
-            if (refs.imageResults) { refs.imageResults.textContent = ''; }
-            if (refs.imageQuery) { refs.imageQuery.value = ''; }
+            if (refs.imageQuery) { refs.imageQuery.value = d.imageQuery || d.term || ''; }
+            if (refs.imageResults) {
+                refs.imageResults.textContent = '';
+                if (refs.imageQuery && refs.imageQuery.value.trim() && isPremium) {
+                    searchImages(refs.imageQuery.value.trim());
+                }
+            }
             updateTabLabels();
             baseline = JSON.stringify(data);
         }
@@ -480,6 +485,9 @@
         function showTab(name) {
             var trigger = root.querySelector('[data-ts-tab="' + name + '"]');
             if (trigger && window.bootstrap) { window.bootstrap.Tab.getOrCreateInstance(trigger).show(); }
+            if (name === 'image' && refs.imageQuery && refs.imageQuery.value.trim() && refs.imageResults && refs.imageResults.children.length === 0 && isPremium) {
+                searchImages(refs.imageQuery.value.trim());
+            }
         }
 
         return {

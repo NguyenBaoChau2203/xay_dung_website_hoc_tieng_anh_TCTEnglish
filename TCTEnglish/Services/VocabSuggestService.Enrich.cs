@@ -31,11 +31,32 @@ namespace TCTVocabulary.Services
             var cacheKey = $"vocab-enrich:v1:{clean.ToLowerInvariant()}:{hint?.ToLowerInvariant()}:{sentence?.ToLowerInvariant()}";
             if (_cache != null && _cache.TryGetValue(cacheKey, out VocabEnrichResultDto? cached) && cached != null)
             {
+                if ((cached.Images == null || cached.Images.Count == 0) && !string.IsNullOrWhiteSpace(_configuration["Pixabay:ApiKey"]))
+                {
+                    try
+                    {
+                        var imageQuery = !string.IsNullOrWhiteSpace(cached.ImageQuery) ? cached.ImageQuery : clean;
+                        var hits = await SearchImagesAsync(imageQuery, 6, ct);
+                        if (hits != null && hits.Count > 0)
+                        {
+                            cached.Images = hits.ToList();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, "Failed to auto-fetch Pixabay images for cached enrich term: {Term}", clean);
+                    }
+                }
                 return new VocabEnrichResponse { Success = true, Result = cached };
             }
 
             var messages = new List<AiContextMessage> { new("user", BuildEnrichPrompt(clean, hint, sentence)) };
-            var options = new AiProviderRequestOptions { MaxOutputTokens = 1536, Temperature = 0.2, RequestTimeoutSeconds = 15 };
+            var options = new AiProviderRequestOptions { MaxOutputTokens = 512, Temperature = 0.2, RequestTimeoutSeconds = 15 };
+
+            // Start Pixabay image search in parallel with AI text generation so they run concurrently
+            var imageTask = !string.IsNullOrWhiteSpace(_configuration["Pixabay:ApiKey"])
+                ? SearchImagesAsync(clean, 6, ct)
+                : Task.FromResult<IReadOnlyList<ImageSearchHit>>(Array.Empty<ImageSearchHit>());
 
             string? lastProblem = null;
             for (var attempt = 0; attempt < 2; attempt++)
@@ -46,6 +67,19 @@ namespace TCTVocabulary.Services
                     var parsed = VocabEnrichParser.TryParse(reply.Text, out var result);
                     if (parsed && result != null)
                     {
+                        try
+                        {
+                            var hits = await imageTask;
+                            if (hits != null && hits.Count > 0)
+                            {
+                                result.Images = hits.ToList();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.LogWarning(ex, "Failed to auto-fetch Pixabay images during enrich for term: {Term}", clean);
+                        }
+
                         if (_cache != null)
                         {
                             _cache.Set(cacheKey, result, TimeSpan.FromHours(24));
@@ -131,6 +165,12 @@ namespace TCTVocabulary.Services
             }
 
             var perPage = Math.Clamp(max, 3, 8);
+            var cacheKey = $"pixabay-search:v1:{q.ToLowerInvariant()}:{perPage}";
+            if (_cache != null && _cache.TryGetValue(cacheKey, out IReadOnlyList<ImageSearchHit>? cached) && cached != null)
+            {
+                return cached;
+            }
+
             var url = $"https://pixabay.com/api/?key={apiKey}&q={Uri.EscapeDataString(q)}&image_type=photo&per_page={perPage}&safesearch=true&lang=en";
             var client = _httpClientFactory.CreateClient();
             using var response = await client.GetAsync(url, ct);
@@ -172,6 +212,11 @@ namespace TCTVocabulary.Services
                 }
             }
 
+            if (_cache != null && list.Count > 0)
+            {
+                _cache.Set(cacheKey, (IReadOnlyList<ImageSearchHit>)list, TimeSpan.FromHours(24));
+            }
+
             return list;
         }
 
@@ -207,7 +252,7 @@ namespace TCTVocabulary.Services
             sb.AppendLine("- If it is not a real English word or phrase, set is_valid_word to false and put the likeliest spelling in did_you_mean.");
             sb.AppendLine("- topic_vi must be exactly one of: " + string.Join(", ", SetTopics.All) + ".");
             sb.AppendLine("- image_query: 1-3 concrete English words that would find a helpful photo.");
-            sb.AppendLine("- Limits: senses 1-3 with 2-3 examples each; synonyms at most 6; antonyms at most 4; collocations at most 5; word_family at most 6.");
+            sb.AppendLine("- Limits: senses 1-2 with 1 short example each; synonyms at most 2; antonyms at most 1; collocations at most 2; word_family at most 2. Be extremely concise.");
             sb.AppendLine("Return ONLY raw JSON (no markdown, no code fences) in exactly this shape; use null or [] for unknown values:");
             sb.AppendLine("{\"is_valid_word\":true,\"did_you_mean\":null,\"lemma\":\"run\",\"ipa_us\":\"/rʌn/\",\"ipa_uk\":null,\"cefr\":\"A1\",");
             sb.AppendLine("\"senses\":[{\"pos\":[\"verb\"],\"meaning_vi\":\"chạy\",\"meaning_en\":\"move fast on foot\",\"examples\":[{\"text\":\"I run every morning.\",\"vi\":\"Tôi chạy mỗi sáng.\"}]}],");
