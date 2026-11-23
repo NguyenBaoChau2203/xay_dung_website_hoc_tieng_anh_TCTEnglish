@@ -290,6 +290,35 @@ public sealed class ClassServiceTests : IAsyncLifetime
     }
 
     [Fact]
+    public async Task PrivateClass_RequiresAnInviteForOutsiders()
+    {
+        var cls = await SeedClassAsync(isPublic: false, joinCode: "PRIVATE2");
+
+        Assert.Null(await _service.GetClassDetailAsync(cls.ClassId, OutsiderId, isAdmin: false));
+        Assert.Equal(OperationStatus.NotFound, (await _service.JoinClassAsync(cls.ClassId, null, OutsiderId)).Status);
+        Assert.Equal(JoinClassOutcome.Joined, (await _service.JoinClassByCodeAsync(cls.JoinCode, null, OutsiderId)).Value!.Outcome);
+        Assert.NotNull(await _service.GetClassDetailAsync(cls.ClassId, OutsiderId, isAdmin: false));
+    }
+
+    [Fact]
+    public async Task UpdateClass_RotatesTheCodeWhenMadePrivateAndPreservesOmittedVisibility()
+    {
+        var cls = await SeedClassAsync(isPublic: true, joinCode: "PUBLIC22");
+        var oldCode = cls.JoinCode;
+
+        Assert.Equal(OperationStatus.Success, (await _service.UpdateClassAsync(
+            cls.ClassId, cls.ClassName, null, false, false, true, false, OwnerId, false)).Status);
+        var privateCode = cls.JoinCode;
+        Assert.NotEqual(oldCode, privateCode);
+        Assert.False(cls.IsPublic);
+
+        Assert.Equal(OperationStatus.Success, (await _service.UpdateClassAsync(
+            cls.ClassId, cls.ClassName, null, false, false, true, null, OwnerId, false)).Status);
+        Assert.False(cls.IsPublic);
+        Assert.Equal(privateCode, cls.JoinCode);
+    }
+
+    [Fact]
     public async Task GetClassDetail_HidesJoinCodeFromNonManagers()
     {
         var cls = await SeedClassAsync(joinCode: "HIDECODE");

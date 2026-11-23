@@ -275,7 +275,7 @@ public sealed class Sprint2SmokeTests
         var joinBody = await joinResponse.Content.ReadAsStringAsync();
 
         Assert.Equal(HttpStatusCode.BadRequest, joinResponse.StatusCode);
-        Assert.Contains("chan", joinBody, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("bị chặn", joinBody, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -608,9 +608,9 @@ public sealed class Sprint2SmokeTests
         Assert.Contains("tab-folders", body, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("PRIVATE-CHAT-501", body, StringComparison.Ordinal);
         Assert.Contains("Sprint One Folder", body, StringComparison.Ordinal);
-        Assert.DoesNotContain("<h2>Hãy tham gia nhóm</h2>", body, StringComparison.Ordinal);
+        Assert.DoesNotContain("<h2>Tham gia lớp để xem nội dung</h2>", body, StringComparison.Ordinal);
         Assert.DoesNotContain(
-            "Bạn cần tham gia lớp học này để xem nội dung chat, thư mục và thành viên.",
+            "Chat, folder và danh sách thành viên chỉ hiện sau khi bạn vào lớp.",
             body,
             StringComparison.Ordinal);
     }
@@ -618,9 +618,9 @@ public sealed class Sprint2SmokeTests
     private static void AssertSanitizedOutsiderClassDetail(HttpStatusCode statusCode, string body)
     {
         Assert.Equal(HttpStatusCode.OK, statusCode);
-        Assert.Contains("<h2>Hãy tham gia nhóm</h2>", body, StringComparison.Ordinal);
+        Assert.Contains("<h2>Tham gia lớp để xem nội dung</h2>", body, StringComparison.Ordinal);
         Assert.Contains(
-            "Bạn cần tham gia lớp học này để xem nội dung chat, thư mục và thành viên.",
+            "Chat, folder và danh sách thành viên chỉ hiện sau khi bạn vào lớp.",
             body,
             StringComparison.Ordinal);
         Assert.DoesNotContain("id=\"chatMessages\"", body, StringComparison.OrdinalIgnoreCase);

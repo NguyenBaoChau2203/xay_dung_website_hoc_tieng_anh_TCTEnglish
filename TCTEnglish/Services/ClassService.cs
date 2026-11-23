@@ -136,7 +136,7 @@ namespace TCTVocabulary.Services
             bool requiresApproval,
             bool isChatLocked,
             bool allowMemberToPost,
-            bool isPublic,
+            bool? isPublic,
             int userId,
             bool isAdmin)
         {
@@ -152,7 +152,10 @@ namespace TCTVocabulary.Services
             cls.RequiresApproval = requiresApproval;
             cls.IsChatLocked = isChatLocked;
             cls.AllowMemberToPost = allowMemberToPost;
-            cls.IsPublic = isPublic;
+            if (cls.IsPublic && isPublic == false)
+                cls.JoinCode = await ResolveUniqueJoinCodeAsync(null);
+
+            cls.IsPublic = isPublic ?? cls.IsPublic;
 
             await _context.SaveChangesAsync();
             _logger.LogInformation("Class {classId} updated by user {userId}", classId, userId);
@@ -252,6 +255,9 @@ namespace TCTVocabulary.Services
                 isOwner ||
                 isMember ||
                 isAdmin;
+
+            if (!classSummary.IsPublic && !canViewPrivateContent)
+                return null;
 
             var canManageClass = isOwner || isAssistant || isAdmin;
 
@@ -697,7 +703,7 @@ namespace TCTVocabulary.Services
                 return OperationResult<JoinClassResult>.Invalid("Mã lớp không đúng hoặc không tồn tại.");
             }
 
-            return await CompleteJoinAsync(classId.Value, password, userId);
+            return await CompleteJoinAsync(classId.Value, password, userId, normalized);
         }
 
         public async Task<OperationResult<string>> RegenerateJoinCodeAsync(int classId, int userId, bool isAdmin)
@@ -729,11 +735,12 @@ namespace TCTVocabulary.Services
         private async Task<OperationResult<JoinClassResult>> CompleteJoinAsync(
             int classId,
             string? password,
-            int userId)
+            int userId,
+            string? joinCode = null)
         {
             var cls = await _context.Classes
                 .AsNoTracking()
-                .Where(c => c.ClassId == classId)
+                .Where(c => c.ClassId == classId && (joinCode == null ? c.IsPublic : c.JoinCode == joinCode))
                 .Select(c => new
                 {
                     c.ClassId,

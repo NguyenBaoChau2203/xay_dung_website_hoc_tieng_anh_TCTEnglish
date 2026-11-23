@@ -132,7 +132,7 @@ public sealed class CriticalFlowSqliteIntegrationTests
         var memberBody = await memberResponse.Content.ReadAsStringAsync();
 
         Assert.Equal(HttpStatusCode.OK, outsiderResponse.StatusCode);
-        Assert.Contains("Hãy tham gia nhóm", outsiderBody, StringComparison.Ordinal);
+        Assert.Contains("Tham gia lớp để xem nội dung", outsiderBody, StringComparison.Ordinal);
         Assert.DoesNotContain("PRIVATE-CHAT-501", outsiderBody, StringComparison.Ordinal);
 
         Assert.Equal(HttpStatusCode.OK, memberResponse.StatusCode);

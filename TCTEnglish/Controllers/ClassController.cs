@@ -118,7 +118,7 @@ namespace TCTVocabulary.Controllers
             bool requiresApproval,
             bool isChatLocked,
             bool allowMemberToPost,
-            bool isPublic)
+            bool? isPublic)
         {
             if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
 

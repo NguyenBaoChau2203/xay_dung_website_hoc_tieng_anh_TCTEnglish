@@ -1,0 +1,333 @@
+@model TCTVocabulary.ViewModels.BrowseClassesPageViewModel
+@using TCTEnglish.ViewModels
+@{
+    ViewData["Title"] = "Khám phá lớp";
+    var header = new PageHeaderViewModel
+    {
+        Title = "Khám phá lớp",
+        Description = Model.IsAdmin
+            ? "Toàn bộ lớp Public và Private trên hệ thống"
+            : Model.IsCreatorRole
+                ? "Lớp Public của giảng viên khác và lớp Private của bạn"
+                : "Gợi ý lớp Public bạn chưa tham gia"
+    };
+    var myClassesLabel = Model.IsCreatorRole ? "Lớp tôi tạo" : "Lớp học của tôi";
+}
+
+<link rel="stylesheet" href="~/css/class.css" asp-append-version="true" />
+
+@Html.AntiForgeryToken()
+<div class="tct-theme class-page class-page--browse">
+    <partial name="_PageHeader" model="header" />
+
+    <div class="class-page__actions">
+        <form class="class-search-bar" role="search" autocomplete="off" onsubmit="return false;">
+            <label class="visually-hidden" for="classSearchInput">Tìm lớp theo tên</label>
+            <i class="fas fa-search class-search-bar__icon" aria-hidden="true"></i>
+            <input type="search"
+                   id="classSearchInput"
+                   name="classNameQuery"
+                   class="class-search-bar__input"
+                   placeholder="Tìm theo tên lớp"
+                   autocomplete="off"
+                   data-1p-ignore="true"
+                   data-lpignore="true"
+                   data-form-type="other"
+                   enterkeyhint="search"
+                   maxlength="100"
+                   inputmode="search"
+                   spellcheck="false" />
+        </form>
+        <button type="button" class="btn btn-outline-primary class-page__code-btn" id="openJoinByCodeBtn">
+            <i class="fas fa-key" aria-hidden="true"></i>
+            Tham gia bằng mã
+        </button>
+        <a href="@Url.Action("Class", "Class")" class="btn btn-outline-secondary class-page__mine">
+            <i class="fas fa-users" aria-hidden="true"></i>
+            @myClassesLabel
+        </a>
+        @if (Model.CanCreateClass)
+        {
+            <a href="@Url.Action("CreateClass", "Class")" class="btn btn-primary class-page__create">
+                <i class="fas fa-plus" aria-hidden="true"></i>
+                Tạo lớp
+            </a>
+        }
+    </div>
+    <p class="class-page__hint">
+        @(Model.IsAdmin
+            ? "Admin xem được mọi lớp. Tham gia bằng mã cũng dùng được cho Public và Private."
+            : Model.IsCreatorRole
+                ? "Gõ tên lớp để tìm. Lớp Private của giảng viên khác: dùng Tham gia bằng mã."
+                : "Gõ tên lớp Public để tìm. Lớp Private (và Public có mã): dùng Tham gia bằng mã.")
+    </p>
+
+    <section id="classDiscoverPanel" class="class-search-panel" aria-labelledby="classDiscoverHeading">
+        <div class="class-search-panel__header">
+            <h2 class="class-section__title" id="classDiscoverHeading">Lớp có thể xem</h2>
+            <p class="class-search-panel__hint mb-0" id="classDiscoverHint">@header.Description</p>
+        </div>
+        <div id="searchResult" class="class-search-panel__body">
+            <p class="text-muted mb-0">Đang tải gợi ý…</p>
+        </div>
+    </section>
+
+    <div id="joinByCodeModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="joinByCodeTitle" hidden>
+        <div class="password-modal join-code-modal">
+            <h3 id="joinByCodeTitle">Tham gia bằng mã lớp</h3>
+            <p class="text-muted small">Nhập mã giảng viên gửi cho bạn. Dùng được cho lớp Public và Private. Nếu lớp có mật khẩu, hệ thống sẽ hỏi thêm.</p>
+            <label class="visually-hidden" for="joinCodeInput">Mã lớp</label>
+            <input type="text"
+                   id="joinCodeInput"
+                   name="classJoinCode"
+                   maxlength="16"
+                   autocomplete="off"
+                   data-1p-ignore="true"
+                   data-lpignore="true"
+                   data-form-type="other"
+                   placeholder="Ví dụ: ABCD2345"
+                   class="join-code-input"
+                   spellcheck="false" />
+            <div id="joinCodePasswordWrap" hidden>
+                <label class="visually-hidden" for="joinCodePassword">Mật khẩu lớp</label>
+                <input type="password"
+                       id="joinCodePassword"
+                       name="classJoinPassword"
+                       placeholder="Mật khẩu lớp"
+                       autocomplete="off"
+                       data-1p-ignore="true"
+                       data-lpignore="true"
+                       data-form-type="other" />
+            </div>
+            <p id="joinCodeError" class="text-danger small mb-0" hidden></p>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-outline-secondary" id="closeJoinByCodeBtn">Hủy</button>
+                <button type="button" class="btn btn-primary" id="confirmJoinByCodeBtn">Tham gia</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+(function () {
+    const input = document.getElementById('classSearchInput');
+    const result = document.getElementById('searchResult');
+    const hint = document.getElementById('classDiscoverHint');
+    const heading = document.getElementById('classDiscoverHeading');
+    const isAdmin = @(Model.IsAdmin ? "true" : "false");
+    const isCreator = @(Model.IsCreatorRole ? "true" : "false");
+    let debounceTimer = null;
+    let suggestMode = true;
+
+    function escapeHtml(value) {
+        return String(value ?? '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function renderCards(data, emptyMessage) {
+        if (!result) return;
+        if (!Array.isArray(data) || data.length === 0) {
+            result.innerHTML = '<p class="text-muted mb-0">' + escapeHtml(emptyMessage) + '</p>';
+            return;
+        }
+
+        result.innerHTML = '<div class="search-result-grid">' + data.map(function (c) {
+            const cover = escapeHtml(c.imageUrl || '/images/ClassDefault/class-default.png');
+            const name = escapeHtml(c.className);
+            const owner = escapeHtml(c.ownerName);
+            const id = Number(c.classId);
+            let badges = '';
+            if (c.isPublic === false) badges += '<span class="class-badge class-badge--muted">Private</span>';
+            else badges += '<span class="class-badge">Public</span>';
+            if (c.hasPassword) badges += '<span class="class-badge class-badge--muted">Có mật khẩu</span>';
+            if (c.requiresApproval) badges += '<span class="class-badge class-badge--warn">Cần duyệt</span>';
+            return (
+                '<a class="class-cover-card" href="/Home/ClassDetail/' + id + '">' +
+                '<div class="class-cover-card__media"><img src="' + cover + '" alt="" class="class-cover-card__img" /></div>' +
+                '<div class="class-cover-card__body">' +
+                '<h3 class="class-cover-card__title">' + name + '</h3>' +
+                '<p class="class-cover-card__meta">' + owner + '</p>' +
+                '<div class="class-cover-card__badges">' + badges + '</div>' +
+                '</div></a>'
+            );
+        }).join('') + '</div>';
+
+        result.querySelectorAll('img.class-cover-card__img').forEach(function (img) {
+            img.addEventListener('error', function onImgError() {
+                img.removeEventListener('error', onImgError);
+                img.src = '/images/ClassDefault/class-default.png';
+            });
+        });
+    }
+
+    function runSearch() {
+        const keyword = (input?.value || '').trim();
+        suggestMode = !keyword;
+        if (heading) {
+            heading.textContent = suggestMode ? 'Lớp có thể xem' : 'Kết quả tìm lớp';
+        }
+        if (hint) {
+            if (suggestMode) {
+                hint.textContent = isAdmin
+                    ? 'Gợi ý toàn bộ lớp trên hệ thống.'
+                    : isCreator
+                        ? 'Gợi ý lớp Public chưa tham gia và lớp Private của bạn.'
+                        : 'Gợi ý lớp Public bạn chưa tham gia.';
+            } else {
+                hint.textContent = 'Khớp theo tên lớp trong phạm vi bạn được xem.';
+            }
+        }
+        if (result) {
+            result.innerHTML = '<p class="text-muted mb-0">Đang tìm…</p>';
+        }
+
+        const url = keyword
+            ? '/Home/SearchClass?keyword=' + encodeURIComponent(keyword)
+            : '/Home/SearchClass';
+
+        fetch(url, { credentials: 'same-origin', headers: { 'Accept': 'application/json' } })
+            .then(function (r) {
+                if (!r.ok) throw new Error('search failed');
+                return r.json();
+            })
+            .then(function (data) {
+                renderCards(
+                    data,
+                    suggestMode
+                        ? 'Chưa có lớp phù hợp. Thử tìm theo tên hoặc dùng mã lớp.'
+                        : 'Không có lớp khớp tên. Thử từ khóa khác hoặc tham gia bằng mã.'
+                );
+            })
+            .catch(function () {
+                if (result) {
+                    result.innerHTML = '<p class="text-danger mb-0">Không tải được kết quả tìm kiếm.</p>';
+                }
+            });
+    }
+
+    input?.addEventListener('input', function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(runSearch, 300);
+    });
+
+    input?.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            input.value = '';
+            runSearch();
+        }
+    });
+
+    runSearch();
+
+    const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value || '';
+    const modal = document.getElementById('joinByCodeModal');
+    const codeInput = document.getElementById('joinCodeInput');
+    const passwordWrap = document.getElementById('joinCodePasswordWrap');
+    const passwordInput = document.getElementById('joinCodePassword');
+    const errorEl = document.getElementById('joinCodeError');
+
+    function openJoinModal() {
+        if (!modal) return;
+        modal.hidden = false;
+        modal.classList.add('active');
+        if (errorEl) { errorEl.hidden = true; errorEl.textContent = ''; }
+        if (passwordWrap) passwordWrap.hidden = true;
+        if (passwordInput) passwordInput.value = '';
+        if (codeInput) codeInput.value = '';
+        codeInput?.focus();
+    }
+
+    function closeJoinModal() {
+        if (!modal) return;
+        modal.classList.remove('active');
+        modal.hidden = true;
+    }
+
+    function showJoinError(message) {
+        if (!errorEl) return;
+        errorEl.textContent = message || 'Không tham gia được.';
+        errorEl.hidden = false;
+    }
+
+    async function submitJoinByCode() {
+        const joinCode = (codeInput?.value || '').trim();
+        if (!joinCode) {
+            showJoinError('Vui lòng nhập mã lớp.');
+            return;
+        }
+
+        const body = new URLSearchParams();
+        body.set('joinCode', joinCode);
+        const password = (passwordInput?.value || '').trim();
+        if (password) body.set('password', password);
+
+        try {
+            const response = await fetch('/Home/JoinClassByCode', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'RequestVerificationToken': token
+                },
+                body: body.toString()
+            });
+
+            const text = await response.text();
+            let data = null;
+            try { data = text ? JSON.parse(text) : null; } catch { /* plain error */ }
+
+            if (!response.ok) {
+                showJoinError((data && data.message) || text || 'Không tham gia được.');
+                return;
+            }
+
+            if (data?.status === 'needsPassword') {
+                if (passwordWrap) passwordWrap.hidden = false;
+                passwordInput?.focus();
+                showJoinError(data.message || 'Lớp này yêu cầu mật khẩu.');
+                return;
+            }
+
+            if (data?.status === 'pending') {
+                if (window.TctFeedback) {
+                    window.TctFeedback.toast({
+                        type: 'success',
+                        title: 'Đã gửi yêu cầu tham gia',
+                        message: data.message || 'Vui lòng chờ quản trị lớp phê duyệt.'
+                    });
+                }
+                closeJoinModal();
+                return;
+            }
+
+            if (data?.redirectUrl) {
+                window.location.href = data.redirectUrl;
+                return;
+            }
+
+            closeJoinModal();
+            window.location.reload();
+        } catch {
+            showJoinError('Không kết nối được máy chủ.');
+        }
+    }
+
+    document.getElementById('openJoinByCodeBtn')?.addEventListener('click', openJoinModal);
+    document.getElementById('closeJoinByCodeBtn')?.addEventListener('click', closeJoinModal);
+    document.getElementById('confirmJoinByCodeBtn')?.addEventListener('click', submitJoinByCode);
+    modal?.addEventListener('click', function (e) {
+        if (e.target === modal) closeJoinModal();
+    });
+    codeInput?.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            submitJoinByCode();
+        }
+    });
+})();
+</script>
+}

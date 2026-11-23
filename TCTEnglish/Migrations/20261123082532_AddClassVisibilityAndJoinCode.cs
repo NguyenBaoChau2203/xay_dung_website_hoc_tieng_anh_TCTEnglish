@@ -28,7 +28,7 @@ namespace TCTEnglish.Migrations
             // Unique, stable backfill for existing rows (CL + zero-padded ClassID).
             migrationBuilder.Sql("""
                 UPDATE `Classes`
-                SET `JoinCode` = CONCAT('CL', LPAD(CAST(`ClassID` AS CHAR), 6, '0'))
+                SET `JoinCode` = CONCAT('CL', LPAD(CAST(`ClassID` AS CHAR), GREATEST(6, CHAR_LENGTH(CAST(`ClassID` AS CHAR))), '0'))
                 WHERE `JoinCode` IS NULL OR `JoinCode` = '';
                 """);
 

@@ -247,6 +247,15 @@ public sealed class AiDeterministicBaselineIntegrationTests
         {
             using var response = await client.GetAsync(route);
 
+            if (string.Equals(route, "/Home/CreateClass", StringComparison.OrdinalIgnoreCase))
+            {
+                Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+                using var teacher = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Teacher);
+                using var teacherResponse = await teacher.GetAsync(route);
+                Assert.Equal(HttpStatusCode.OK, teacherResponse.StatusCode);
+                continue;
+            }
+
             Assert.True(IsAcceptableRouteStatus(response.StatusCode), $"Route {route} returned {response.StatusCode}.");
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace TCTVocabulary.Models
+﻿using TCTVocabulary.Services;
+
+namespace TCTVocabulary.Models
 {
     public partial class Class
     {
@@ -44,7 +46,7 @@
         public bool IsPublic { get; set; } = true;
 
         /// <summary>Unique join code for every class (public and private).</summary>
-        public string JoinCode { get; set; } = string.Empty;
+        public string JoinCode { get; set; } = ClassJoinCode.Generate();
 
         // Navigation tới các yêu cầu đang chờ
         public virtual ICollection<ClassJoinRequest> JoinRequests { get; set; }

@@ -6242,3 +6242,12 @@ blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 **Commit**: `fix(account)` on `feature/billing-verify-payos`.
 
 **Notes**: `billing-order.js` still handles a really ended session (kept as a safety net). The login page still ignores `returnUrl` (separate item `LANDING-READING-LOGIN-RETURN`). Claim-based Premium checks in a few modules (`BILLING-ROLE-CLAIM-PREMIUM-CHECKS`) now see the new role on the next request after the cookie renews.
+
+### PR 145 Class integration — 2026-11-23
+
+Restored the Classroom views and browser handlers after the routes landed in the
+Class PR. Private detail and numeric enrollment now require the appropriate
+access, and switching to private rotates the public code. The unpublished
+migration backfill preserves long legacy IDs. Class instances created by shared
+data get unique generated codes; the export format contains no invite codes.
+Updated the smoke assertions for the current copy and Teacher-only create route.

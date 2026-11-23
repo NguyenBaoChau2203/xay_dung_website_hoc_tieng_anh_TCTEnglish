@@ -18,7 +18,7 @@ namespace TCTVocabulary.Services
             bool requiresApproval,
             bool isChatLocked,
             bool allowMemberToPost,
-            bool isPublic,
+            bool? isPublic,
             int userId,
             bool isAdmin);
         Task<OperationResult> UpdateClassCoverAsync(int classId, IFormFile cover, int userId, bool isAdmin);

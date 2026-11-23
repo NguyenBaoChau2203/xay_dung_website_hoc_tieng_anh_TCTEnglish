@@ -9,6 +9,21 @@ let pendingClassId = null;
 let connection = null;
 const classDetailTabStorageKey = `class-detail-tab-${classId}`;
 
+function classToast(options) {
+    if (window.TctFeedback && typeof window.TctFeedback.toast === "function") {
+        window.TctFeedback.toast(options);
+        return;
+    }
+    window.alert([options.title, options.message].filter(Boolean).join("\n"));
+}
+
+async function classConfirm(options) {
+    if (window.TctFeedback && typeof window.TctFeedback.confirm === "function") {
+        return window.TctFeedback.confirm(options);
+    }
+    return window.confirm([options.title, options.message].filter(Boolean).join("\n"));
+}
+
 function getActiveTab() {
     const activeButton = document.querySelector(".tab-btn.active");
     return activeButton?.dataset.tab || "chat";
@@ -195,10 +210,36 @@ function joinClass(id, password) {
                 throw new Error(errorText || "Không thể tham gia lớp học.");
             }
 
-            reloadCurrentTab();
+            const data = await response.json();
+            if (data.status === "needsPassword") {
+                pendingClassId = id;
+                openModal("joinClassModal");
+                return;
+            }
+
+            if (data.status === "pending") {
+                closeModal("joinClassModal");
+                classToast({
+                    type: "success",
+                    title: "Đã gửi yêu cầu tham gia",
+                    message: data.message || "Vui lòng chờ quản trị lớp phê duyệt."
+                });
+                return;
+            }
+
+            if (data.redirectUrl) {
+                window.location.href = data.redirectUrl;
+                return;
+            }
+
+            window.location.reload();
         })
         .catch(error => {
-            alert(error.message);
+            classToast({
+                type: "danger",
+                title: "Không tham gia được lớp",
+                message: error.message || "Thử lại sau hoặc kiểm tra mã/mật khẩu lớp."
+            });
         });
 }
 
@@ -215,12 +256,22 @@ function saveClassInfo() {
     const allowMemberToPost =
         document.getElementById("editAllowMemberToPost")?.checked || false;
 
+    const isPublic =
+        document.getElementById("editIsPublic")?.checked || false;
+
     if (!name) {
-        alert("Tên lớp không được để trống");
+        classToast({
+            type: "warning",
+            title: "Thiếu tên lớp",
+            message: "Nhập tên lớp trước khi lưu."
+        });
         return;
     }
 
-    fetch("/Home/EditClass", {
+    const coverInput = document.getElementById("editClassCover");
+    const coverFile = coverInput?.files?.[0];
+
+    const saveInfo = fetch("/Home/EditClass", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -232,23 +283,50 @@ function saveClassInfo() {
             `&description=${encodeURIComponent(desc)}` +
             `&requiresApproval=${requiresApproval}` +
             `&isChatLocked=${isChatLocked}` +
-            `&allowMemberToPost=${allowMemberToPost}`
-    })
-        .then(async response => {
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(errorText || "Không thể cập nhật lớp.");
-            }
+            `&allowMemberToPost=${allowMemberToPost}` +
+            `&isPublic=${isPublic}`
+    }).then(async response => {
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText || "Không thể cập nhật lớp.");
+        }
+    });
 
-            reloadCurrentTab();
-        })
-        .catch(error => {
-            alert(error.message);
-        });
+    const saveCover = coverFile
+        ? (() => {
+            const formData = new FormData();
+            formData.append("classId", classId);
+            formData.append("cover", coverFile);
+            formData.append("__RequestVerificationToken", token);
+            return fetch("/Home/UpdateClassCover", {
+                method: "POST",
+                body: formData
+            }).then(async response => {
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(errorText || "Không thể cập nhật ảnh bìa.");
+                }
+            });
+        })()
+        : Promise.resolve();
+
+    Promise.all([saveInfo, saveCover])
+        .then(() => reloadCurrentTab())
+        .catch(error => classToast({
+            type: "danger",
+            title: "Không lưu được thông tin lớp",
+            message: error.message || "Kiểm tra mạng rồi thử lại."
+        }));
 }
 
-function leaveClass() {
-    if (!confirm("Bạn chắc chắn muốn rời lớp?")) return;
+async function leaveClass() {
+    const ok = await classConfirm({
+        title: "Rời lớp?",
+        message: "Bạn sẽ mất quyền truy cập nội dung và chat của lớp này.",
+        confirmLabel: "Rời lớp",
+        danger: true
+    });
+    if (!ok) return;
 
     fetch("/Home/LeaveClass", {
         method: "POST",
@@ -267,12 +345,22 @@ function leaveClass() {
             window.location.href = "/Home/Class";
         })
         .catch(error => {
-            alert(error.message);
+            classToast({
+                type: "danger",
+                title: "Không rời được lớp",
+                message: error.message || "Thử lại sau."
+            });
         });
 }
 
-function deleteClass() {
-    if (!confirm("Bạn có chắc muốn GIẢI TÁN lớp này?")) return;
+async function deleteClass() {
+    const ok = await classConfirm({
+        title: "Giải tán lớp?",
+        message: "Thành viên mất quyền truy cập lớp này. Thao tác không hoàn tác từ đây.",
+        confirmLabel: "Giải tán lớp",
+        danger: true
+    });
+    if (!ok) return;
 
     fetch("/Home/DeleteClass", {
         method: "POST",
@@ -290,7 +378,11 @@ function deleteClass() {
             window.location.href = "/Home/Class";
         })
         .catch(error => {
-            alert(error.message);
+            classToast({
+                type: "danger",
+                title: "Không giải tán được lớp",
+                message: error.message || "Thử lại sau."
+            });
         });
 }
 
@@ -312,16 +404,26 @@ function addFolder(folderId) {
                 reloadWithTab("folders");
             } else {
                 const errorText = await response.text();
-                alert(errorText || "Không thể thêm folder.");
+                classToast({
+                    type: "danger",
+                    title: "Không thêm được folder",
+                    message: errorText || "Folder có thể đã có trong lớp hoặc bạn không đủ quyền."
+                });
             }
         });
 }
 
-function removeFolder(event, folderId) {
+async function removeFolder(event, folderId) {
     event.preventDefault();
     event.stopPropagation();
 
-    if (!confirm("Bạn có chắc muốn xoá folder khỏi lớp?")) return;
+    const ok = await classConfirm({
+        title: "Xóa folder khỏi lớp?",
+        message: "Folder chỉ bị gỡ khỏi lớp; nội dung folder của bạn vẫn giữ nguyên.",
+        confirmLabel: "Xóa khỏi lớp",
+        danger: true
+    });
+    if (!ok) return;
 
     fetch("/Home/RemoveFolderFromClass", {
         method: "POST",
@@ -336,13 +438,23 @@ function removeFolder(event, folderId) {
                 reloadWithTab("folders");
             } else {
                 const errorText = await response.text();
-                alert(errorText || "Lỗi khi xoá folder.");
+                classToast({
+                    type: "danger",
+                    title: "Không xóa được folder khỏi lớp",
+                    message: errorText || "Thử lại sau."
+                });
             }
         });
 }
 
-function kickMember(userId) {
-    if (!confirm("Bạn có chắc muốn xoá thành viên này?")) return;
+async function kickMember(userId) {
+    const ok = await classConfirm({
+        title: "Xóa thành viên?",
+        message: "Người này sẽ bị gỡ khỏi lớp và mất quyền truy cập.",
+        confirmLabel: "Xóa thành viên",
+        danger: true
+    });
+    if (!ok) return;
 
     fetch("/Home/KickMember", {
         method: "POST",
@@ -357,13 +469,23 @@ function kickMember(userId) {
                 reloadWithTab("members");
             } else {
                 const errorText = await response.text();
-                alert(errorText || "Lỗi khi xoá thành viên.");
+                classToast({
+                    type: "danger",
+                    title: "Không xóa được thành viên",
+                    message: errorText || "Thử lại sau."
+                });
             }
         });
 }
 
-function blockMember(userId) {
-    if (!confirm("Bạn có chắc muốn xoá và chặn thành viên này?")) return;
+async function blockMember(userId) {
+    const ok = await classConfirm({
+        title: "Xóa và chặn thành viên?",
+        message: "Người này bị gỡ khỏi lớp và không thể gửi yêu cầu tham gia lại.",
+        confirmLabel: "Xóa và chặn",
+        danger: true
+    });
+    if (!ok) return;
 
     fetch("/Home/BlockMember", {
         method: "POST",
@@ -378,7 +500,11 @@ function blockMember(userId) {
                 reloadWithTab("members");
             } else {
                 const errorText = await response.text();
-                alert(errorText || "Lỗi khi chặn thành viên.");
+                classToast({
+                    type: "danger",
+                    title: "Không chặn được thành viên",
+                    message: errorText || "Thử lại sau."
+                });
             }
         });
 }
@@ -429,31 +555,40 @@ function initSignalR() {
         });
 }
 
-function appendMessage(msg, type = "text") {
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function appendMessage(msg, type = "text", prepend = false) {
     const box = document.getElementById("chatMessages");
     if (!box) return;
 
-    const isMine = msg.userId === currentUserId;
+    const isMine = msg.userId === currentUserId || msg.UserId === currentUserId;
+    const userId = msg.userId ?? msg.UserId;
+    const fullName = escapeHtml(msg.fullName ?? msg.FullName ?? "");
+    const messageId = msg.messageId ?? msg.MessageId ?? "";
+    const imageUrl = msg.imageUrl ?? msg.ImageUrl ?? msg.content ?? msg.Content ?? "";
+    const textContent = msg.content ?? msg.Content ?? "";
 
     let contentHtml = "";
 
-    if (type === "image") {
+    if (type === "image" || (typeof textContent === "string" && textContent.startsWith("/uploads/"))) {
         contentHtml =
-            `<img 
-                src="${msg.imageUrl}" 
-                class="chat-image"
-                onclick="window.open(this.src)"
-                onload="scrollToBottom()"
-            />`;
+            `<img src="${escapeHtml(imageUrl || textContent)}" class="chat-image" alt="" onclick="window.open(this.src)" onload="scrollToBottom()" />`;
     } else {
-        contentHtml = msg.content;
+        contentHtml = escapeHtml(textContent);
     }
 
-    box.insertAdjacentHTML("beforeend", `
-        <div class="chat-message ${isMine ? "mine" : "other"}">
+    const html = `
+        <div class="chat-message ${isMine ? "mine" : "other"}" data-message-id="${escapeHtml(messageId)}">
             <div class="chat-bubble">
                 ${(!isMine && type === "text")
-            ? `<div class="chat-name">${msg.fullName}</div>`
+            ? `<div class="chat-name">${fullName}</div>`
             : ""
         }
                 <div class="chat-content">
@@ -461,12 +596,21 @@ function appendMessage(msg, type = "text") {
                 </div>
             </div>
         </div>
-    `);
+    `;
 
-    scrollToBottom();
+    if (prepend) {
+        box.insertAdjacentHTML("afterbegin", html);
+    } else {
+        box.insertAdjacentHTML("beforeend", html);
+        scrollToBottom();
+    }
 }
 
 function sendMessage() {
+    if (typeof canSendChat !== "undefined" && !canSendChat) {
+        return;
+    }
+
     const input = document.getElementById("chatInput");
     if (!input || !connection) return;
 
@@ -474,13 +618,88 @@ function sendMessage() {
 
     if (!text) return;
 
-    connection.invoke("SendMessage", classId, text);
+    connection.invoke("SendMessage", classId, text).catch(function (err) {
+        classToast({
+            type: "danger",
+            title: "Không gửi được tin nhắn",
+            message: err?.message || "Kiểm tra kết nối hoặc quyền chat trong lớp."
+        });
+    });
     input.value = "";
+}
+
+async function loadOlderMessages() {
+    const box = document.getElementById("chatMessages");
+    const btn = document.getElementById("loadMoreMessagesBtn");
+    if (!box || typeof classMessagesUrl === "undefined") return;
+
+    const oldest = box.querySelector(".chat-message[data-message-id]");
+    const beforeId = oldest?.getAttribute("data-message-id");
+    if (!beforeId) return;
+
+    const previousHeight = box.scrollHeight;
+    if (btn) btn.disabled = true;
+
+    try {
+        const response = await fetch(
+            `${classMessagesUrl}?classId=${classId}&beforeMessageId=${encodeURIComponent(beforeId)}&take=50`
+        );
+        if (!response.ok) {
+            throw new Error("Không tải thêm được tin nhắn.");
+        }
+
+        const data = await response.json();
+        const messages = data.messages || [];
+        messages.forEach(function (msg) {
+            const isImage = typeof (msg.content || msg.Content) === "string" &&
+                (msg.content || msg.Content).startsWith("/uploads/");
+            appendMessage(msg, isImage ? "image" : "text", true);
+        });
+
+        box.scrollTop = box.scrollHeight - previousHeight;
+
+        if (!data.hasMore && btn) {
+            btn.hidden = true;
+        }
+    } catch (error) {
+        classToast({
+            type: "danger",
+            title: "Không tải thêm tin nhắn",
+            message: error.message || "Thử lại sau."
+        });
+    } finally {
+        if (btn) btn.disabled = false;
+    }
 }
 
 // ==========================================
 // 6. EVENT LISTENERS
 // ==========================================
+
+function copyTextToClipboard(text) {
+    if (!text) return Promise.reject(new Error("empty"));
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+    }
+
+    return new Promise(function (resolve, reject) {
+        const area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "absolute";
+        area.style.left = "-9999px";
+        document.body.appendChild(area);
+        area.select();
+        try {
+            document.execCommand("copy");
+            resolve();
+        } catch (err) {
+            reject(err);
+        } finally {
+            document.body.removeChild(area);
+        }
+    });
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     restoreInitialTab();
@@ -490,6 +709,113 @@ document.addEventListener("DOMContentLoaded", function () {
         initSignalR();
         scrollToBottom();
     }
+
+    document.getElementById("loadMoreMessagesBtn")?.addEventListener("click", loadOlderMessages);
+
+    document.getElementById("copyClassJoinCodeBtn")?.addEventListener("click", function () {
+        const code = document.getElementById("classJoinCodeValue")?.textContent?.trim();
+        copyTextToClipboard(code).then(function () {
+            classToast({
+                type: "success",
+                title: "Đã sao chép mã lớp",
+                message: "Mã nằm trong bộ nhớ tạm để gửi cho thành viên."
+            });
+        }).catch(function () {
+            classToast({
+                type: "warning",
+                title: "Không sao chép được",
+                message: "Hãy chọn mã và copy thủ công."
+            });
+        });
+    });
+
+    document.getElementById("regenClassJoinCodeBtn")?.addEventListener("click", async function () {
+        const ok = await classConfirm({
+            title: "Tạo mã lớp mới?",
+            message: "Mã cũ sẽ không còn dùng được để tham gia lớp.",
+            confirmLabel: "Tạo mã mới",
+            danger: true
+        });
+        if (!ok) return;
+        fetch("/Home/RegenerateJoinCode", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "RequestVerificationToken": token
+            },
+            body: `classId=${classId}`
+        })
+            .then(async function (response) {
+                const text = await response.text();
+                let data = null;
+                try { data = text ? JSON.parse(text) : null; } catch { /* ignore */ }
+                if (!response.ok) {
+                    throw new Error((data && data.message) || text || "Không tạo lại được mã.");
+                }
+                const codeEl = document.getElementById("classJoinCodeValue");
+                if (codeEl && data?.joinCode) {
+                    codeEl.textContent = data.joinCode;
+                }
+                classToast({
+                    type: "success",
+                    title: "Đã tạo mã lớp mới",
+                    message: "Mã cũ không còn dùng được."
+                });
+            })
+            .catch(function (err) {
+                classToast({
+                    type: "danger",
+                    title: "Không tạo lại được mã lớp",
+                    message: err.message || "Thử lại sau."
+                });
+            });
+    });
+
+    document.getElementById("copyCreatedJoinCodeBtn")?.addEventListener("click", function () {
+        const btn = this;
+        const label = btn.querySelector(".class-created-card__copy-text");
+        const code = document.getElementById("createdJoinCodeValue")?.textContent?.trim();
+        const done = btn.getAttribute("data-label-done") || "Đã sao chép";
+        const def = btn.getAttribute("data-label-default") || "Sao chép";
+
+        copyTextToClipboard(code).then(function () {
+            btn.classList.add("is-copied");
+            if (label) label.textContent = done;
+            btn.setAttribute("aria-label", done);
+            classToast({
+                type: "success",
+                title: "Đã sao chép mã lớp",
+                message: "Mã nằm trong bộ nhớ tạm để gửi cho thành viên."
+            });
+            window.setTimeout(function () {
+                btn.classList.remove("is-copied");
+                if (label) label.textContent = def;
+                btn.setAttribute("aria-label", def);
+            }, 1800);
+        }).catch(function () {
+            classToast({
+                type: "warning",
+                title: "Không sao chép được",
+                message: "Hãy chọn mã và copy thủ công."
+            });
+        });
+    });
+
+    document.getElementById("dismissCreatedCardBtn")?.addEventListener("click", function () {
+        const modal = document.getElementById("classCreatedModal");
+        if (modal) {
+            modal.classList.remove("active");
+            modal.hidden = true;
+        }
+        document.getElementById("dismissCreatedCardBtn")?.blur();
+    });
+
+    document.getElementById("classCreatedModal")?.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+            this.classList.remove("active");
+            this.hidden = true;
+        }
+    });
 
     // Emoji click
     document.querySelectorAll(".emoji-item").forEach(item => {
@@ -567,12 +893,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-function changeMemberRole(targetUserId, role) {
-    let roleText = role == 1
-        ? "thăng thành Phó nhóm"
-        : "hạ xuống Thành viên";
-
-    if (!confirm(`Bạn có chắc muốn ${roleText}?`)) return;
+async function changeMemberRole(targetUserId, role) {
+    const promote = role == 1;
+    const ok = await classConfirm({
+        title: promote ? "Thăng Phó nhóm?" : "Hạ xuống Thành viên?",
+        message: promote
+            ? "Người này sẽ được quyền quản lý một phần lớp."
+            : "Người này sẽ mất quyền Phó nhóm và trở lại thành viên thường.",
+        confirmLabel: promote ? "Thăng Phó nhóm" : "Hạ thành viên",
+        danger: !promote
+    });
+    if (!ok) return;
 
     fetch("/Home/ChangeMemberRole", {
         method: "POST",
@@ -588,7 +919,13 @@ function changeMemberRole(targetUserId, role) {
     })
         .then(res => {
             if (res.ok) {
-                alert("Cập nhật quyền thành công");
+                classToast({
+                    type: "success",
+                    title: "Đã cập nhật quyền thành viên",
+                    message: promote
+                        ? "Thành viên đã thành Phó nhóm."
+                        : "Phó nhóm đã trở lại Thành viên."
+                });
                 reloadWithTab("members");
                 return;
             }
@@ -598,16 +935,26 @@ function changeMemberRole(targetUserId, role) {
             });
         })
         .catch(err => {
-            alert(err.message);
+            classToast({
+                type: "danger",
+                title: "Không cập nhật được quyền",
+                message: err.message || "Thử lại sau."
+            });
             console.error(err);
         });
 }
 
 
-function toggleMuteMember(targetUserId, shouldMute) {
-    let actionText = shouldMute ? "mute" : "bỏ mute";
-
-    if (!confirm(`Bạn có chắc muốn ${actionText} thành viên này?`)) return;
+async function toggleMuteMember(targetUserId, shouldMute) {
+    const ok = await classConfirm({
+        title: shouldMute ? "Tắt chat của thành viên?" : "Bật lại chat cho thành viên?",
+        message: shouldMute
+            ? "Thành viên sẽ không gửi được tin nhắn trong lớp."
+            : "Thành viên có thể gửi tin nhắn trở lại.",
+        confirmLabel: shouldMute ? "Tắt chat" : "Bật chat",
+        danger: shouldMute
+    });
+    if (!ok) return;
 
     let url = shouldMute
         ? "/Home/MuteMember"
@@ -626,7 +973,13 @@ function toggleMuteMember(targetUserId, shouldMute) {
     })
         .then(res => {
             if (res.ok) {
-                alert(`Đã ${actionText} thành công`);
+                classToast({
+                    type: "success",
+                    title: shouldMute ? "Đã tắt chat thành viên" : "Đã bật lại chat",
+                    message: shouldMute
+                        ? "Thành viên không gửi được tin trong lớp."
+                        : "Thành viên có thể chat trở lại."
+                });
                 reloadWithTab("members");
                 return;
             }
@@ -636,7 +989,11 @@ function toggleMuteMember(targetUserId, shouldMute) {
             });
         })
         .catch(err => {
-            alert(err.message);
+            classToast({
+                type: "danger",
+                title: shouldMute ? "Không tắt được chat" : "Không bật lại được chat",
+                message: err.message || "Thử lại sau."
+            });
             console.error(err);
         });
 }
@@ -662,7 +1019,13 @@ function closeJoinRequestsModal() {
 async function approveJoinRequest(requestId) {
     console.log("approve requestId =", requestId);
 
-    if (!confirm("Chấp nhận yêu cầu này?")) return;
+    const ok = await classConfirm({
+        title: "Chấp nhận yêu cầu tham gia?",
+        message: "Người gửi sẽ trở thành thành viên của lớp.",
+        confirmLabel: "Chấp nhận",
+        danger: false
+    });
+    if (!ok) return;
 
     const formData = new FormData();
     formData.append("requestId", requestId);
@@ -675,25 +1038,43 @@ async function approveJoinRequest(requestId) {
         });
 
         if (response.ok) {
-            alert("Đã chấp nhận yêu cầu.");
-            reloadWithTab("members");
+            classToast({
+                type: "success",
+                title: "Đã chấp nhận yêu cầu",
+                message: "Thành viên mới đã được thêm vào lớp."
+            });
+            reloadWithTab("requests");
             return;
         }
 
         const error = await response.text();
         console.error(error);
-        alert(error || "Có lỗi xảy ra.");
+        classToast({
+            type: "danger",
+            title: "Không chấp nhận được yêu cầu tham gia",
+            message: error || "Thử lại sau."
+        });
     }
     catch (err) {
         console.error(err);
-        alert("Không thể xử lý yêu cầu.");
+        classToast({
+            type: "danger",
+            title: "Không chấp nhận được yêu cầu tham gia",
+            message: "Kiểm tra mạng rồi thử lại."
+        });
     }
 }
 
 async function declineJoinRequest(requestId) {
     console.log("decline requestId =", requestId);
 
-    if (!confirm("Từ chối yêu cầu này?")) return;
+    const ok = await classConfirm({
+        title: "Từ chối yêu cầu tham gia?",
+        message: "Người gửi sẽ không được thêm vào lớp.",
+        confirmLabel: "Từ chối",
+        danger: true
+    });
+    if (!ok) return;
 
     const formData = new FormData();
     formData.append("requestId", requestId);
@@ -706,18 +1087,30 @@ async function declineJoinRequest(requestId) {
         });
 
         if (response.ok) {
-            alert("Đã từ chối yêu cầu.");
-            reloadWithTab("members");
+            classToast({
+                type: "success",
+                title: "Đã từ chối yêu cầu",
+                message: "Người gửi không được thêm vào lớp."
+            });
+            reloadWithTab("requests");
             return;
         }
 
         const error = await response.text();
         console.error(error);
-        alert(error || "Có lỗi xảy ra.");
+        classToast({
+            type: "danger",
+            title: "Không từ chối được yêu cầu tham gia",
+            message: error || "Thử lại sau."
+        });
     }
     catch (err) {
         console.error(err);
-        alert("Không thể xử lý yêu cầu.");
+        classToast({
+            type: "danger",
+            title: "Không từ chối được yêu cầu tham gia",
+            message: "Kiểm tra mạng rồi thử lại."
+        });
     }
 }
 
