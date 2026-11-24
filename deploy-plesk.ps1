@@ -4,7 +4,9 @@ param(
     [Parameter(Mandatory=$true)][string]$ManifestPath,
     [Parameter(Mandatory=$true)][string]$SiteRoot,
     [Parameter(Mandatory=$true)][string]$StateRoot,
-    [switch]$ValidateOnly
+    [switch]$ValidateOnly,
+    # Local preflight only; never changes the enabled production release client.
+    [string]$BackupClientPath = ''
 )
 $ErrorActionPreference = 'Stop'
 $utf8 = New-Object Text.UTF8Encoding($false)
@@ -51,16 +53,56 @@ function Db-Value($Builder, [string[]]$Keys) {
     foreach ($key in $Keys) { if ($Builder.ContainsKey($key)) { return [string]$Builder[$key] } }
     return ''
 }
+function Assert-NoReparsePath([string]$Path) {
+    $cursor = [IO.Path]::GetFullPath($Path)
+    while ($cursor) {
+        if ((Test-Path -LiteralPath $cursor) -and ((Get-Item -LiteralPath $cursor -Force).Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+            throw 'Local preflight paths must not traverse reparse points.'
+        }
+        $parent = Split-Path -Parent $cursor
+        if ($parent -eq $cursor) { break }
+        $cursor = $parent
+    }
+}
 
 if ((Split-Path -Leaf $SiteRoot) -ne 'httpdocs' -or -not (Test-Path -LiteralPath $SiteRoot -PathType Container)) { throw 'Expected the existing Plesk httpdocs directory.' }
 Assert-ChildPath $privateRoot $StateRoot | Out-Null
+$defaultBackupClient = 'C:\Program Files (x86)\Plesk\MySQL\bin\mariadb-dump.exe'
+$backupClient = $defaultBackupClient
+if (-not [string]::IsNullOrWhiteSpace($BackupClientPath)) {
+    if (-not $ValidateOnly) {
+        throw 'BackupClientPath override is only allowed for owned local preflight with -ValidateOnly.'
+    }
+    $resolvedClient = [IO.Path]::GetFullPath($BackupClientPath)
+    $workspaceTmp = Join-Path (Split-Path -Parent $PSScriptRoot) '.tmp'
+    foreach ($path in @($SiteRoot, $StateRoot, $resolvedClient)) {
+        Assert-ChildPath $workspaceTmp $path | Out-Null
+        Assert-NoReparsePath $path
+    }
+    $ownershipPath = Join-Path $subscriptionRoot '.tct-staging.json'
+    if (-not (Test-Path -LiteralPath $ownershipPath -PathType Leaf)) {
+        throw 'Local preflight requires an owned .tct-staging.json marker.'
+    }
+    Assert-NoReparsePath $ownershipPath
+    $ownership = Get-Content -Raw -LiteralPath $ownershipPath | ConvertFrom-Json
+    if ($ownership.schemaVersion -ne 1 -or $ownership.purpose -ne 'tct-plesk-preflight' -or [string]$ownership.runId -cnotmatch '^[a-z0-9_]{4,64}$') {
+        throw 'Invalid local preflight ownership marker.'
+    }
+    if ((Split-Path -Leaf $resolvedClient) -ne 'mariadb-dump.exe') {
+        throw 'BackupClientPath must point to mariadb-dump.exe.'
+    }
+    if (-not (Test-Path -LiteralPath $resolvedClient -PathType Leaf)) {
+        throw 'BackupClientPath does not exist.'
+    }
+    $backupClient = $resolvedClient
+}
 [IO.Directory]::CreateDirectory($StateRoot) | Out-Null
-$backupClient = 'C:\Program Files (x86)\Plesk\MySQL\bin\mariadb-dump.exe'
 $manifest = Get-Content -Raw -LiteralPath $ManifestPath | ConvertFrom-Json
 if ($ValidateOnly -or -not $manifest.enabled) {
     Write-Json (Join-Path $StateRoot 'preflight.json') @{
         CheckedAtUtc = [DateTime]::UtcNow.ToString('O'); PowerShellVersion = $PSVersionTable.PSVersion.ToString()
         SiteExists = $true; BackupClientExists = (Test-Path -LiteralPath $backupClient)
+        BackupClientPath = $backupClient
         HasProductionConfig = (Test-Path -LiteralPath (Join-Path $SiteRoot 'appsettings.Production.json'))
         DeploymentEnabled = $false; DatabaseOrWebsiteChanged = $false
     }
@@ -77,6 +119,10 @@ if (-not (Test-Path -LiteralPath $backupClient)) { throw 'A database backup clie
 $lock = $null
 $offlinePath = Join-Path $SiteRoot 'app_offline.htm'
 $migrationAttempted = $false
+$previousEnvironment = @{}
+foreach ($key in @('DOTNET_ENVIRONMENT','ASPNETCORE_ENVIRONMENT','ConnectionStrings__DefaultConnection','Database__ServerVersion','TCT_SHARED_PRODUCTION_APPROVED')) {
+    $previousEnvironment[$key] = [Environment]::GetEnvironmentVariable($key, 'Process')
+}
 $offlineCreated = $false
 $filesChanged = $false
 $appBackup = $null
@@ -93,7 +139,13 @@ try {
     [IO.Directory]::CreateDirectory($runRoot) | Out-Null
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $zipPath = Join-Path $runRoot 'release.zip'
-    Invoke-WebRequest -UseBasicParsing -Uri $artifactUri.AbsoluteUri -OutFile $zipPath
+    $previousProgress = $ProgressPreference
+    $ProgressPreference = 'SilentlyContinue'
+    try {
+        Invoke-WebRequest -UseBasicParsing -Uri $artifactUri.AbsoluteUri -OutFile $zipPath
+    } finally {
+        $ProgressPreference = $previousProgress
+    }
     if ((Get-FileHash -LiteralPath $zipPath -Algorithm SHA256).Hash -ne $manifest.sha256) { throw 'Release checksum did not match.' }
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     $stageRoot = Join-Path $runRoot 'stage'
@@ -113,6 +165,7 @@ try {
         if (-not (Test-Path -LiteralPath (Join-Path $application $required))) { throw 'The application artifact is incomplete.' }
     }
     if (-not (Test-Path -LiteralPath (Join-Path $migrationRoot 'efbundle.exe'))) { throw 'The migration bundle is missing.' }
+    if ($manifest.sharedDataSchema -eq 1 -and (-not (Test-Path -LiteralPath (Join-Path $application 'App_Data\shared-data\catalog.json')) -or -not (Test-Path -LiteralPath (Join-Path $application 'App_Data\shared-data\production.json')))) { throw 'Shared-data artifact is incomplete; stopped before backup/migration.' }
     if (Test-Path -LiteralPath (Join-Path $application 'appsettings.Production.json')) { throw 'Production credentials must never come from an artifact.' }
 
     $effective = Get-Content -Raw -LiteralPath (Join-Path $application 'appsettings.json') | ConvertFrom-Json
@@ -155,9 +208,30 @@ try {
     try { & (Join-Path $migrationRoot 'efbundle.exe') *> (Join-Path $runRoot 'migration.log'); if ($LASTEXITCODE -ne 0) { throw 'Database migration failed; maintenance and backup have been retained.' } }
     finally { Pop-Location }
 
+    $sharedRoot = Join-Path $application 'App_Data\shared-data'
+    if (Test-Path -LiteralPath (Join-Path $sharedRoot 'catalog.json')) {
+        $env:ConnectionStrings__DefaultConnection = $builder.get_ConnectionString()
+        $env:Database__ServerVersion = '10.5.23-mariadb'
+        $env:TCT_SHARED_PRODUCTION_APPROVED = 'true'
+        Push-Location $application
+        try {
+            & (Join-Path $application 'TCTEnglish.exe') '--shared-data=sync' '--shared-target=production' "--shared-root=$sharedRoot" "--shared-webroot=$(Join-Path $SiteRoot 'wwwroot')" "--shared-owners=$(Join-Path $StateRoot 'shared-data-owners.json')" *> (Join-Path $runRoot 'shared-data.log')
+            if ($LASTEXITCODE -ne 0) { throw 'Approved shared-data import failed; maintenance and backup retained.' }
+        } finally { Pop-Location; $env:TCT_SHARED_PRODUCTION_APPROVED = $null }
+    } elseif ($manifest.sharedDataSchema -eq 1) { throw 'This release requires the reviewed shared-data artifact.' }
+
     $filesChanged = $true
     Copy-Tree $application $SiteRoot
-    Write-Json (Join-Path $SiteRoot 'tct-release.json') @{ commit=$manifest.commit; runNumber=$manifest.runNumber }
+    $wwwRoot = Assert-ChildPath $SiteRoot (Join-Path $SiteRoot 'wwwroot')
+    [IO.Directory]::CreateDirectory($wwwRoot) | Out-Null
+    $pendingMarkerPath = Assert-ChildPath $wwwRoot (Join-Path $wwwRoot 'tct-release.pending.json')
+    $markerPath = Assert-ChildPath $wwwRoot (Join-Path $wwwRoot 'tct-release.json')
+    # Pending marker is not the public success document; promote only after readiness.
+    $markerPayload = @{ commit=$manifest.commit; runNumber=$manifest.runNumber }
+    if ($null -ne $manifest.sha256 -and "$($manifest.sha256)".Length -gt 0) {
+        $markerPayload.sha256 = [string]$manifest.sha256
+    }
+    Write-Json $pendingMarkerPath $markerPayload
     Remove-Item -LiteralPath $offlinePath
     $ready = $false
     for ($attempt=0; $attempt -lt 24; $attempt++) {
@@ -168,6 +242,8 @@ try {
         Start-Sleep -Seconds 5
     }
     if (-not $ready) { throw 'Application readiness failed after release.' }
+    [IO.File]::Copy($pendingMarkerPath, $markerPath, $true)
+    [IO.File]::Delete($pendingMarkerPath)
     Write-Json $statePath @{ commit=$manifest.commit; runNumber=$manifest.runNumber; completedAtUtc=[DateTime]::UtcNow.ToString('O'); backupDirectory=$runRoot }
     [IO.File]::Delete($optionsPath)
     Write-Output ('Release completed: ' + $manifest.commit)
@@ -182,4 +258,7 @@ try {
     }
     Write-Json (Join-Path $StateRoot 'last-failure.json') @{ failedAtUtc=[DateTime]::UtcNow.ToString('O'); migrationAttempted=$migrationAttempted; maintenanceRetained=$migrationAttempted; release=$manifest.commit; recoveryDirectory=$runRoot }
     throw 'Release failed. Inspect the private release logs and backup; no database rollback was attempted.'
-} finally { if ($lock) { $lock.Dispose() } }
+} finally {
+    if ($lock) { $lock.Dispose() }
+    foreach ($key in $previousEnvironment.Keys) { [Environment]::SetEnvironmentVariable($key, $previousEnvironment[$key], 'Process') }
+}
