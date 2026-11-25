@@ -34,9 +34,45 @@ public sealed class CriticalFlowSqliteIntegrationTests
 
         using var anonymousResponse = await anonymousClient.GetAsync("/Home/Index");
         using var authenticatedResponse = await authenticatedClient.GetAsync("/Home/Index");
+        var html = await authenticatedResponse.Content.ReadAsStringAsync();
 
         Assert.Equal(HttpStatusCode.Redirect, anonymousResponse.StatusCode);
         Assert.Equal(HttpStatusCode.OK, authenticatedResponse.StatusCode);
+        Assert.Contains("Thử thách hôm nay", html, StringComparison.Ordinal);
+        Assert.Contains("db-command", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("XP tổng", html, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Dashboard_StudyNext_RanksOwnFoldersByLastReviewedDate()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+
+        using (var scope = factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            db.LearningProgresses.Add(new LearningProgress
+            {
+                UserId = TestDataIds.UserId,
+                CardId = TestDataIds.UserCardId,
+                Status = "Learning",
+                LastReviewedDate = DateTime.UtcNow
+            });
+            await db.SaveChangesAsync();
+        }
+
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        using var response = await client.GetAsync("/Home/Index");
+        var html = await response.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        var commandStart = html.IndexOf("db-command", StringComparison.Ordinal);
+        Assert.True(commandStart >= 0);
+        var commandSlice = html.Substring(commandStart, Math.Min(1200, html.Length - commandStart));
+        Assert.Contains("Sprint One Folder", commandSlice, StringComparison.Ordinal);
+        Assert.Contains($"href=\"/Home/FolderDetail/{TestDataIds.UserFolderId}\"", commandSlice, StringComparison.Ordinal);
+        Assert.Contains("db-folder-chip", html, StringComparison.Ordinal);
     }
 
     [Fact]

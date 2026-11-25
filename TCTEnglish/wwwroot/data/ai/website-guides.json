@@ -663,16 +663,17 @@
     },
     {
       "id": "daily-challenge",
-      "title": "Daily Challenge trên Dashboard",
+      "title": "Thử thách hôm nay trên Dashboard",
       "keywords": [
         "daily challenge",
+        "thử thách hôm nay",
         "thử thách hằng ngày",
         "thử thách ngày",
         "daily quiz",
         "câu hỏi mỗi ngày",
         "ôn nhanh trên dashboard"
       ],
-      "body": "Daily Challenge nằm trên Dashboard sau khi đăng nhập. Mở thử thách và chọn đáp án theo hướng dẫn. Hoạt động và phần thưởng được backend kiểm tra; việc chỉ mở Dashboard không được coi là đã hoàn thành thử thách.",
+      "body": "Thử thách hôm nay nằm trên Dashboard sau khi đăng nhập. Mở thử thách và chọn đáp án theo hướng dẫn. Hoạt động và phần thưởng được backend kiểm tra; việc chỉ mở Dashboard không được coi là đã hoàn thành thử thách.",
       "route": "/Home/Index",
       "topic": "goals",
       "questions": [
@@ -681,7 +682,7 @@
         "Where is the daily challenge?",
         "Mở câu hỏi thử thách mỗi ngày như thế nào?"
       ],
-      "reviewedAt": "2026-11-17"
+      "reviewedAt": "2026-11-24"
     },
     {
       "id": "class-chat",

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
 using TCTVocabulary.Security;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using TCTEnglish.Hubs;
@@ -402,8 +403,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+var staticContentTypes = new FileExtensionContentTypeProvider();
+staticContentTypes.Mappings[".glb"] = "model/gltf-binary";
+staticContentTypes.Mappings[".gltf"] = "model/gltf+json";
 app.UseStaticFiles(new StaticFileOptions
 {
+    ContentTypeProvider = staticContentTypes,
     OnPrepareResponse = static context =>
     {
         if (!string.Equals(context.File.Name, "tct-release.json", StringComparison.OrdinalIgnoreCase))

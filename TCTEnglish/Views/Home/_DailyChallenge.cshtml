@@ -2,16 +2,34 @@
 
 @if (Model.IsCompletedToday)
 {
-    <p class="db-challenge-done">
-        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
-        Bạn đã hoàn thành Daily Challenge hôm nay.
-    </p>
+    <div class="db-challenge-state db-challenge-state--done">
+        <div class="db-tico db-tico--challenge" aria-hidden="true">
+            <img src="~/brand/mascot/poses/tico-mascot-success-color.png"
+                 alt=""
+                 width="72"
+                 height="72"
+                 decoding="async" />
+        </div>
+        <p class="db-challenge-done">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            Bạn đã hoàn thành thử thách hôm nay.
+        </p>
+    </div>
 }
 else if (!string.IsNullOrWhiteSpace(Model.Term) && Model.Options.Any())
 {
-    <h2 id="challenge-term">
-        @Model.Term
-    </h2>
+    <div class="db-challenge-state db-challenge-state--pending">
+        <div class="db-tico db-tico--challenge" aria-hidden="true">
+            <img src="~/brand/mascot/poses/tico-mascot-thinking-color.png"
+                 alt=""
+                 width="72"
+                 height="72"
+                 decoding="async" />
+        </div>
+        <h2 id="challenge-term">
+            @Model.Term
+        </h2>
+    </div>
 
     <div class="answers">
         @foreach (var opt in Model.Options)
@@ -30,6 +48,6 @@ else
 {
     <p class="empty-text">
         <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
-        Daily challenge hiện chưa khả dụng
+        Thử thách hôm nay hiện chưa khả dụng
     </p>
 }
