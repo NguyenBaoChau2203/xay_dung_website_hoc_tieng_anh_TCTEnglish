@@ -6251,3 +6251,73 @@ access, and switching to private rotates the public code. The unpublished
 migration backfill preserves long legacy IDs. Class instances created by shared
 data get unique generated codes; the export format contains no invite codes.
 Updated the smoke assertions for the current copy and Teacher-only create route.
+### Staging release verification times out on large content-expanded artifact — 2026-11-23
+
+**Symptom**: Staging job `Deploy tested master to staging` timed out after 20 minutes with "Staging did not verify the expected release (accepted)", blocking automated deployments of master features merged after 2026-11-19 (including Personal Starter Decks onboarding, PayOS and Vocabulary course covers).
+
+**Root Cause**: Addition of complete vocabulary sets A01-A20 and B01-B16 with webp media expanded `data/shared` and increased `tctenglish-release.zip` to ~207 MB (previously ~140 MB). The hosting download from AWS S3 to the Plesk host and subsequent unzipping, DB backup and shared-data import exceeded the 15-minute download timeout (`-TimeoutSec 900`) and the 20-minute CI verification budget (`timeout_seconds=1200`).
+
+**Solution**:
+1. Increased download timeout `-TimeoutSec 900` to `1500` (25 minutes) in `scripts/deploy-staging.ps1`.
+2. Increased monotonic verification budget `timeout_seconds=1200` to `1800` (30 minutes) in `scripts/publish-staging-release.py`.
+3. Increased GitHub Actions staging job `timeout-minutes: 25` to `35` in `.github/workflows/deploy.yml`.
+4. Updated documentation in `docs/operations/staging-automation.md`.
+
+**Files Changed**: `scripts/publish-staging-release.py`, `scripts/deploy-staging.ps1`, `.github/workflows/deploy.yml`, `docs/operations/staging-automation.md`, `.ai/context/bug-fix-log.md`.
+
+**Verification**: `test_staging_release.py` (21/21 pass), `test_deploy_tools.py` (18/18 pass).
+
+
+### PR 144 integration — 2026-11-23
+
+The Class Razor build failed because BrowseClasses was checked in without its
+ViewModel or routes. Preserve the established Class list/detail and navigation.
+The shared feedback component still serves Reading. The draft edit also deleted
+persisted learner answers before replacing questions. Refuse question replacement
+when an attempt exists, before an edit saves any metadata, and verify that the
+attempt, answer, question and original title are retained.
+
+A new preview of the same workbook allocated a different code, so confirmation
+could not detect the first import. Compare lesson content independent of the
+proposed code, reuse the catalog database lock for confirmation, and allocate
+a final code only for a distinct draft. Verified sequential and parallel
+confirmation using MariaDB 10.5.23 without changing the schema.
+### Staging HTTP 503 from hosting disk quota — 2026-11-21
+
+Nhân Hòa confirmed subscription suspension for disk overuse. Plesk measured 2,946.2 MB against a 2 GB quota. File Manager attributed 2.13 GB to staging deployment history. Five failed November 19–20 runs retained their download ZIP and a partial extraction. An older failed import also retained its ZIP and recovery files.
+
+Nhân Hòa temporarily reactivated the subscription. With owner approval, removed only the six failed runs’ `release.zip` files after confirming their GitHub releases and SHA-256 metadata. Plesk measured 1.03 GB in the staging state directory after cleanup and 1,820.4 MB (89%) for the active subscription after refreshing statistics. Authenticated homepage and readiness returned 200, anonymous homepage 401. The release marker matched commit `93959ab4e5d5`, run `44507271887` and its artifact digest. [Incident record and remaining capacity](../../docs/superpowers/plans/2026-11-21-staging-503-recovery.md).
+
+### Realtime voice unavailable after a normal local restart — 2026-11-24
+
+The authenticated chat and standalone voice views rendered `data-available="false"` and the topics API returned `available=false`. Realtime requires `AI:Voice:Enabled` in addition to the configured speech credential. The normal launcher had no local voice flag. PR #145 did not change the voice workspace, provider, or launcher.
+
+Enabled the flag in the project’s local User Secrets using the atomic store updater. Verified existing values and the file ACL, then restarted the owned Release launcher on port 5100. Premium smoke checks found `data-available="true"` in both views, six published topics, and `/health/ready` HTTP 200. No audio or live provider call was sent.
+
+### Production release extraction and verification timeout — 2026-11-25
+
+Production release 122 stopped before backup or migration. The verified ZIP's first full path above the legacy Windows limit was 262 characters, and File Manager showed an empty directory exactly at that entry. The later archive entries and migration bundle had not been extracted. Local Windows had long-path support, so the cutoff was verified directly on the hosting attempt.
+
+Removed the generated ZIP and partial extraction, retained the attempt record, and shortened the Plesk Git action's state path to `private/tct-prod`. The same source commit then deployed in run 123. The publisher's first verification attempt timed out before the host finished. After the public marker and readiness matched, GitHub retried the failed verification on the same immutable release and reported success. Public homepage, matching commit/run/SHA-256, readiness and a database-backed synthetic login were verified. [Operational checklist](../../docs/superpowers/plans/2026-11-24-retire-staging-production-release.md).
+
+### Production Google OAuth callback timeout — 2026-11-25
+
+IIS measured valid-code Google callbacks at about 81.5 seconds, then a redirect to the login screen. Direct hosting probes showed default and no-proxy requests to the Google token and user-info endpoints timed out. Direct IPv6 could not connect, while IPv4 returned the expected unauthenticated HTTP responses in 333 ms and 152 ms.
+
+Set `DOTNET_SYSTEM_NET_DISABLEIPV6=1` only in the production site's ASP.NET Core process environment. Verified the saved IIS configuration and HTTP 200 readiness. The owner signed in through Google successfully, with a 418 ms IIS callback followed by the dashboard at HTTP 200. The current publisher can replace `web.config`; the runbook records how to verify the setting after a release. [Investigation and acceptance checklist](../../docs/superpowers/plans/2026-11-25-production-google-oauth-timeout.md).
+
+### Production API configuration missing or in sandbox mode — 2026-11-25
+
+The production text provider required OpenAI but had a Gemini endpoint and a Google-style key. Transcription had no separate OpenAI key, Realtime voice was disabled, and Web Push had no VAPID pair. Updated the private hosting configuration to use the owner-authorized OpenAI key and enabled voice and Web Push. All three model metadata probes accepted the key. The production contact form reported that the SMTP relay accepted an internal test message.
+
+The existing VNPay checkout and query URLs used `sandbox.vnpayment.vn`, so disabled the sandbox checkout on the public site. IIS acknowledged the recycle. Production readiness returned HTTP 200 and the live marker still matched release 123. The subsequent payOS setup is recorded separately. [Remediation and acceptance checklist](../../docs/superpowers/plans/2026-11-25-production-api-parity-remediation.md) · [payOS setup](../../docs/superpowers/plans/2026-11-25-no-key-demo-and-production-payos.md).
+
+Direct IPv4 TLS from hosting verified OpenAI model access and one text response. Added `NO_PROXY=api.openai.com` to the production IIS application environment. A fresh Google login reached the dashboard, AI Chat returned HTTP 200, the Voice API returned `available=true`, and Web Push returned `configured=true` with a valid VAPID public key. The test conversation was deleted.
+
+### Facebook callback lacks email — 2026-11-25
+
+The live OAuth challenge requested `email` and used the expected HTTPS callback. Meta Graph returned the account ID without an email field even though `email=granted`. A directly attached and verified Facebook email is needed before retrying the affected account. Saved the live privacy policy URL in Meta. Publication remains blocked on a public data deletion instructions URL and business verification.
+
+### Google OAuth redirect mismatch on the www production host — 2026-11-25
+
+The www host generated `https://www.tctenglish.site/signin-google`, which Google rejected with `redirect_uri_mismatch`. The apex host generated the registered `https://tctenglish.site/signin-google`. Set the production site's Plesk Preferred domain to `tctenglish.site` and verified the saved setting after reload. The www OAuth start now returns HTTP 301 with the path and provider query preserved. Following it reaches Google sign-in over the registered callback. Production readiness returned HTTP 200 and the release marker remained 123. The intentionally credential-free demo still uses local email/password sign-in.

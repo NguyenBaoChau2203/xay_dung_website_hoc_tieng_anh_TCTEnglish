@@ -30,10 +30,10 @@ SDK hosting chỉ tới .NET 8 nên luôn build app/bundle tại CI.
 3. Post deployment action:
 
 ```text
-powershell.exe -NoLogo -NoProfile -NonInteractive -File .\deploy-plesk.ps1 -ManifestPath .\release.json -SiteRoot ..\..\httpdocs -StateRoot ..\tctenglish-release-state
+powershell.exe -NoLogo -NoProfile -NonInteractive -File .\deploy-plesk.ps1 -ManifestPath .\release.json -SiteRoot ..\..\httpdocs -StateRoot ..\tct-prod
 ```
 
-4. Kiểm tra `private/tctenglish-release-state/preflight.json`, cấu hình Production
+4. Kiểm tra `private/tct-prod/preflight.json`, cấu hình Production
    hiện có và quyền backup/DDL. Không đưa credentials vào branch hoặc action command.
 5. Lưu HTTPS webhook do Plesk cấp vào GitHub Secret `PLESK_WEBHOOK_URL`, giữ URL
    ngoài log. Dùng hostname đúng chứng chỉ Plesk, không dùng IP sai tên chứng chỉ.
@@ -63,8 +63,10 @@ hosting và file private, không đi qua artifact hoặc GitHub release.
 
 ## Phục hồi
 
-Xem `private/tctenglish-release-state/last-failure.json` và thư mục run được ghi
+Xem `private/tct-prod/last-failure.json` và thư mục run được ghi
 ở đó: `database-before.sql`, `previous-app`, `migration.log`, `backup-errors.log`.
+Với lần chạy 122, manifest lỗi còn chứa đường dẫn trước khi đổi tên thư mục
+state. Bản ghi của lần đó nằm trong `private/tct-prod`.
 Đối chiếu history/schema và migration lỗi trước khi quyết định tiếp tục hoặc
 khôi phục. Chỉ mở app sau khi bộ file/schema đã được xác minh tương thích.
 
@@ -72,6 +74,30 @@ Không xóa `app_offline.htm` một cách vô điều kiện. Script không gỡ
 do operator tạo trước đó. Không ép chạy lại run đã có thư mục attempt; cần
 review trạng thái và tạo run mới. Dọn các release/backup cũ theo quota sau khi
 xác nhận có bản backup độc lập có thể restore; script không tự xóa backup.
+
+Đường dẫn đầy đủ khi giải nén gồm thư mục hosting, state, mã lần chạy, `stage`
+và đường dẫn trong ZIP. Lần chạy 122 dừng khi gặp tệp học liệu đầu tiên có đường
+dẫn đầy đủ 262 ký tự. Thư mục `private/tct-prod` giảm đường dẫn dài nhất của gói
+này xuống 246 ký tự. Khi gói học liệu có đường dẫn dài hơn, kiểm lại độ dài đường
+dẫn tính từ thư mục hosting trước khi phát hành.
+
+## Kết nối Google OAuth trên hosting Windows
+
+Probe ngày 25/11/2026 cho thấy đường mặc định, đường không proxy và IPv6 đều
+hết thời gian chờ tới Google. Kết nối trực tiếp IPv4 nhận phản hồi trong 152–333 ms.
+Production hiện đặt `DOTNET_SYSTEM_NET_DISABLEIPV6=1` trong
+`aspNetCore/environmentVariables` của `httpdocs/web.config`. Thiết lập chỉ áp dụng
+cho tiến trình ứng dụng của website. Bản publish hiện ghi đè `web.config` khi
+deploy, vì vậy cần kiểm mục này và thử lại luồng đăng nhập Google trên bản mới
+nếu đường IPv6 của hosting chưa được sửa.
+
+Plesk **Preferred domain** của site production là `tctenglish.site`. Đường
+`www.tctenglish.site` trả HTTP 301 về tên miền chính và giữ path/query. Google
+dùng callback đã đăng ký `https://tctenglish.site/signin-google`.
+
+Production cũng đặt `NO_PROXY=api.openai.com` trong cùng phần cấu hình. Probe
+IPv4 TLS từ hosting nhận HTTP 200 cho thông tin model và tạo câu trả lời. Sau
+lần publish tiếp theo, kiểm tra cả hai biến và thử một yêu cầu AI Chat từ web.
 
 ## Kiểm chứng trước khi bật production
 

@@ -314,6 +314,12 @@ Tap-a-word lookups outside the lesson vocabulary call `IVocabSuggestService` (th
   diện/chức năng Admin riêng để quyết định triển khai hai màn hình hay chỉnh menu;
   không đổi quyền truy cập hoặc sửa feature trong task sao chép database.
 
+### Staging release disk headroom — 21/11/2026
+
+After six failed-release ZIPs were removed, Plesk measured 1,820.4 MB of 2 GB in use and staging was ready. Approximately 228 MB remains. The latest release ZIP and its extracted files together require around 620 MiB before the application and SQL backups. A subsequent deployment can exceed the subscription quota again. [Measured sizes and recovery record](../../docs/superpowers/plans/2026-11-21-staging-503-recovery.md).
+
+On 25/11/2026 the owner retired staging. Plesk marks the staging website Disabled and the staging GitHub gate is false. Staging archives and extracted attempts were removed. After production release 123 and cleanup of its generated files, the refreshed Plesk Statistics screen showed 902.8 MB used of 2 GB. Production backup and logs were retained in `private/tct-prod`. The production publisher's readiness timeout still needs separate tuning if future releases take longer than its verification budget. [Production release and recovery record](../../docs/superpowers/plans/2026-11-24-retire-staging-production-release.md).
+
 ### STAGING-HTTPS-RENEWAL — owner deferred05/11/2026
 
 - Staging N518 đã chạy https://staging.tctenglish.site với DB/site/pool riêng;
@@ -918,7 +924,7 @@ words have emoji pictures. See TD-016 and the SRS polish plan section 12.
 
 ### BILLING-PAYOS-NOT-VERIFIED-LIVE — payOS chưa thử với khóa thật, 20/11/2026
 
-- payOS được tích hợp và kiểm thử đầy đủ bằng test tự động + chế độ mock Development (trình duyệt thật, tài khoản `qa.billing.*`). **Chưa có cuộc gọi nào tới `api-merchant.payos.vn` bằng khóa thật**: tạo link, hủy link, `GetPayment` và webhook thật chưa được xác minh. Các giả định chưa kiểm chứng: mã lỗi "đơn đã tồn tại" (231 hay dựa vào chữ "tồn tại"), trạng thái `EXPIRED`/`UNDERPAID` (docs chỉ nêu PAID/PENDING/PROCESSING/CANCELLED), định dạng `transactions[]`, các trường bắt buộc của `items`.
+- Ngày 25/11, chủ dự án đăng nhập được kênh payOS TCT English đang hoạt động. Production đã bật payOS bằng cấu hình riêng trên hosting, thay webhook từ đường hầm local sang `https://tctenglish.site/api/billing/payos/webhook`. payOS phản hồi mã `00`, trang quản trị hiển thị URL mới, IIS đã nạp lại và readiness trả 200. Local đã thử mở được trang mock với tài khoản Standard. Tạo và hủy link production, nhận tiền, xử lý webhook giao dịch thật và cấp Premium vẫn chưa được kiểm chứng.
 - Mã đơn payOS (15 chữ số) nằm trong `PaymentOrder.ProviderRequestId`; cột này không có chỉ mục riêng. Với bảng lớn nên thêm chỉ mục (cần migration, bàn với Châu).
 - Webhook luôn trả 200 khi đọc được body (quyết định D3): nếu DB lỗi tạm thời payOS sẽ không gửi lại; đối soát (`ReconciliationWorker:Enabled=true`) là đường khôi phục.
 - Chữ ký mẫu trên trang webhook của payOS (`8d86…`) khác chữ ký trong mã mẫu của trang "Kiểm tra dữ liệu với signature" (`412e91…`); bản sau khớp cách ký đã cài (kiểm bằng openssl).

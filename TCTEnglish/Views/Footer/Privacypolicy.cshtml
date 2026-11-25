@@ -153,10 +153,23 @@
                         <h5 class="fw-bold"><i class="bi bi-hand-index-thumb me-2"></i>7. Quyền của bạn</h5>
                         <div class="d-flex flex-wrap gap-2 mt-2">
                             <span class="badge rounded-pill bg-white text-dark border p-2 px-3">Xem & Cập nhật dữ liệu</span>
-                            <span class="badge rounded-pill bg-white text-dark border p-2 px-3">Yêu cầu xóa tài khoản</span>
+                            <a class="badge rounded-pill bg-white text-dark border p-2 px-3" href="#xoa-du-lieu">Yêu cầu xóa tài khoản</a>
                             <span class="badge rounded-pill bg-white text-dark border p-2 px-3">Từ chối thông báo</span>
                         </div>
                     </div>
+
+                    <section class="policy-section mt-3" id="xoa-du-lieu" aria-labelledby="xoa-du-lieu-heading">
+                        <h2 class="h5 fw-bold" id="xoa-du-lieu-heading">Cách xóa tài khoản và dữ liệu TCT English</h2>
+                        <ol class="mb-2 ps-4 small">
+                            <li>Mở <a asp-controller="Account" asp-action="Profile">Hồ sơ TCT English</a> và đăng nhập vào tài khoản cần xóa.</li>
+                            <li>Trong <strong>Cài đặt</strong>, tìm <strong>Vùng nguy hiểm</strong> và chọn <strong>Xóa tài khoản</strong>.</li>
+                            <li>Nhập <strong>CONFIRM</strong> cùng mật khẩu hiện tại hoặc mã xác nhận qua email, rồi chọn <strong>Xóa vĩnh viễn</strong>.</li>
+                        </ol>
+                        <p class="small mb-0">
+                            Nếu bạn đăng nhập bằng Facebook và không vào được tài khoản, hãy gửi yêu cầu qua
+                            <a asp-controller="Home" asp-action="Contact">form Liên hệ</a>. Ghi rõ bạn muốn xóa dữ liệu TCT English và dùng địa chỉ email liên kết với tài khoản để chúng tôi có thể xác minh yêu cầu.
+                        </p>
+                    </section>
 
                     <div class="policy-section">
                         <h5 class="fw-bold text-warning">8. Quyền riêng tư của trẻ em</h5>

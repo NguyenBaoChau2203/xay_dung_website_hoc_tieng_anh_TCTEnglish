@@ -1,0 +1,7 @@
+# Diagnose the production Google sign-in timeout
+
+- [x] Verify the production site is ready and measure the initial OAuth redirect. Three browser-independent requests redirected to Google in 0.11–0.14 seconds with the expected HTTPS callback.
+- [x] Locate the failing boundary in the IIS W3C log. At 01:04:47 ICT on November 25, `/signin-google` received a Google authorization code and took 81,505 ms before returning 302. The following `/Account/Login` response took 30 ms. Capture only redacted timing and status fields.
+- [x] Probe both public Google OAuth endpoints from the hosting subscription without credentials. Default and explicit no-proxy requests timed out at about 6 seconds, and direct IPv6 timed out connecting at 5 seconds. Direct IPv4 reached the token endpoint in 333 ms (expected HTTP 400 for the unauthenticated request) and user-info in 152 ms (expected HTTP 401). The production Git action was restored and its saved value verified after the one-time private diagnostic.
+- [x] Set `DOTNET_SYSTEM_NET_DISABLEIPV6=1` under the production site's ASP.NET Core process environment in `httpdocs/web.config` and verify the saved file. Confirm `/health/ready` and the release marker return HTTP 200 after IIS reloads.
+- [x] Verify the owner's Google sign-in. IIS recorded `/signin-google` at 418 ms, followed by `/Account/ExternalLoginCallback` at 41 ms and `/Home/Index` HTTP 200. The owner confirmed access.
