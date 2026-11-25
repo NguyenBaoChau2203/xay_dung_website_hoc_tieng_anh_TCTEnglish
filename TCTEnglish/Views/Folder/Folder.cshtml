@@ -142,7 +142,13 @@
             confirmBtn.addEventListener("click", () => {
                 const name = input.value.trim();
                 if (!name) {
-                    alert("Folder name is required");
+                    if (window.TctFeedback && typeof window.TctFeedback.toast === "function") {
+                        window.TctFeedback.toast({
+                            type: "warning",
+                            title: "Thiếu tên thư mục",
+                            message: "Nhập tên thư mục trước khi tạo."
+                        });
+                    }
                     return;
                 }
 

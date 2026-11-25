@@ -312,7 +312,13 @@
                     confirmButtonText: 'Đã hiểu'
                 });
             } else {
-                alert('Vui lòng đồng ý với điều khoản dịch vụ để tiếp tục.');
+                if (window.TctFeedback && typeof window.TctFeedback.toast === 'function') {
+                    window.TctFeedback.toast({
+                        type: 'warning',
+                        title: 'Chưa đồng ý điều khoản',
+                        message: 'Vui lòng đồng ý với điều khoản dịch vụ để tiếp tục.'
+                    });
+                }
             }
             return;
         }

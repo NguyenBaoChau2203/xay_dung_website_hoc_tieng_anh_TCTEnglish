@@ -54,7 +54,7 @@ public sealed class WebsiteGuideRetrieverTests
 
     [Theory]
     [InlineData("Cách đặt mục tiêu học hằng ngày?", "/Goals", "Trang Goals")]
-    [InlineData("Daily challenge ở đâu?", "/Home/Index", "Daily Challenge")]
+    [InlineData("Daily challenge ở đâu?", "/Home/Index", "Thử thách hôm nay")]
     [InlineData("Cách gửi ảnh trong chat lớp học?", "/Home/Class", "tab Chat")]
     [InlineData("Làm sao đưa set vào folder?", "/Home/Folder", "Thư mục")]
     [InlineData("Tôi muốn đổi mật khẩu ở đâu?", "/Account/Settings", "Bảo mật")]

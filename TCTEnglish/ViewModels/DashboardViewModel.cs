@@ -54,6 +54,8 @@ namespace TCTVocabulary.ViewModels
     {
         public string WeekLabel { get; set; } = string.Empty;
         public string DayLabel { get; set; } = string.Empty;
+        /// <summary>Display date for float card / a11y (dd/MM/yyyy). Not used in intensity math.</summary>
+        public string FullDate { get; set; } = string.Empty;
         public int ReviewedCards { get; set; }
     }
 
@@ -71,6 +73,7 @@ namespace TCTVocabulary.ViewModels
         public string Title { get; set; }
         public string? Level { get; set; }
         public string? Topic { get; set; }
+        public string? ImageUrl { get; set; }
         public DateTime LastViewed { get; set; }
     }
 }

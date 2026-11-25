@@ -135,6 +135,7 @@ namespace TCTVocabulary.Controllers
                     Title = h.ReadingPassage.Title,
                     Level = h.ReadingPassage.Level,
                     Topic = h.ReadingPassage.Topic,
+                    ImageUrl = h.ReadingPassage.ImageUrl,
                     LastViewed = h.ViewedAt
                 })
                 .FirstOrDefaultAsync();
@@ -216,6 +217,7 @@ namespace TCTVocabulary.Controllers
                 {
                     WeekLabel = $"Tuần {weekIndex}",
                     DayLabel = dayLabel,
+                    FullDate = date.ToString("dd/MM/yyyy"),
                     ReviewedCards = activityByDateLookup.TryGetValue(date, out var value) ? value : 0
                 });
             }
@@ -492,8 +494,6 @@ namespace TCTVocabulary.Controllers
             var ownFolders = await _context.Folders
                 .AsNoTracking()
                 .Where(f => f.UserId == userId)
-                .OrderByDescending(f => f.FolderId)
-                .Take(3)
                 .Select(f => new TodayFolderViewModel
                 {
                     FolderId = f.FolderId,
@@ -506,7 +506,31 @@ namespace TCTVocabulary.Controllers
 
             if (ownFolders.Count > 0)
             {
-                return ownFolders;
+                var ownFolderIds = ownFolders.Select(f => f.FolderId).ToList();
+                var lastReviewedByFolder = await _context.LearningProgresses
+                    .AsNoTracking()
+                    .Where(lp => lp.UserId == userId
+                        && lp.LastReviewedDate != null
+                        && lp.Card.Set.FolderId != null
+                        && ownFolderIds.Contains(lp.Card.Set.FolderId.Value))
+                    .GroupBy(lp => lp.Card.Set.FolderId!.Value)
+                    .Select(g => new
+                    {
+                        FolderId = g.Key,
+                        LastReviewed = g.Max(lp => lp.LastReviewedDate)
+                    })
+                    .ToListAsync();
+
+                var lastReviewedMap = lastReviewedByFolder
+                    .ToDictionary(x => x.FolderId, x => x.LastReviewed ?? DateTime.MinValue);
+
+                return ownFolders
+                    .OrderByDescending(f => lastReviewedMap.TryGetValue(f.FolderId, out var last)
+                        ? last
+                        : DateTime.MinValue)
+                    .ThenByDescending(f => f.FolderId)
+                    .Take(3)
+                    .ToList();
             }
 
             var eligibleFolders = _context.Folders

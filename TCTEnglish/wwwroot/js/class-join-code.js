@@ -56,8 +56,33 @@
                 password.focus();
                 showMessage(result.message);
             } else if (result.status === 'pending') {
-                window.TctFeedback.toast({type: 'success', title: 'Đã gửi yêu cầu tham gia', message: result.message});
-                window.bootstrap.Modal.getInstance(modal).hide();
+                const pendingToast = {
+                    type: 'success',
+                    title: 'Đã gửi yêu cầu tham gia',
+                    message: result.message || 'Vui lòng chờ trưởng nhóm phê duyệt.'
+                };
+                if (window.TctFeedback && typeof window.TctFeedback.toast === 'function') {
+                    window.TctFeedback.toast(pendingToast);
+                } else {
+                    // Clay toast host without window.alert
+                    let host = document.getElementById('tctFeedbackToastHost');
+                    if (!host) {
+                        host = document.createElement('div');
+                        host.id = 'tctFeedbackToastHost';
+                        host.className = 'tct-feedback-toast-host toast-container';
+                        host.setAttribute('aria-live', 'polite');
+                        document.body.appendChild(host);
+                    }
+                    const el = document.createElement('div');
+                    el.className = 'tct-feedback-toast tct-feedback-toast--success is-visible';
+                    el.setAttribute('role', 'status');
+                    el.innerHTML = '<div class="tct-feedback-toast__body"><p class="tct-feedback-toast__title"></p><p class="tct-feedback-toast__message"></p></div>';
+                    el.querySelector('.tct-feedback-toast__title').textContent = pendingToast.title;
+                    el.querySelector('.tct-feedback-toast__message').textContent = pendingToast.message;
+                    host.appendChild(el);
+                    window.setTimeout(() => el.remove(), 3500);
+                }
+                window.bootstrap.Modal.getInstance(modal)?.hide();
             } else if (result.redirectUrl) {
                 window.location.assign(result.redirectUrl);
             }

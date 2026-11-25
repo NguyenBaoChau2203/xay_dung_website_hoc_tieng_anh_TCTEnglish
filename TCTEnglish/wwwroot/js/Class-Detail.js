@@ -10,18 +10,61 @@ let connection = null;
 const classDetailTabStorageKey = `class-detail-tab-${classId}`;
 
 function classToast(options) {
+    const opts = options || {};
     if (window.TctFeedback && typeof window.TctFeedback.toast === "function") {
-        window.TctFeedback.toast(options);
+        window.TctFeedback.toast(opts);
         return;
     }
-    window.alert([options.title, options.message].filter(Boolean).join("\n"));
+
+    // Never use window.alert for success/copy feedback — render a minimal Clay card.
+    const hostId = "tctFeedbackToastHost";
+    let host = document.getElementById(hostId);
+    if (!host) {
+        host = document.createElement("div");
+        host.id = hostId;
+        host.className = "tct-feedback-toast-host toast-container";
+        host.setAttribute("aria-live", "polite");
+        document.body.appendChild(host);
+    }
+
+    const type = opts.type === "warning" || opts.type === "danger" || opts.type === "info"
+        ? opts.type
+        : "success";
+    const el = document.createElement("div");
+    el.className = "tct-feedback-toast tct-feedback-toast--" + type + " is-visible";
+    el.setAttribute("role", type === "danger" || type === "warning" ? "alert" : "status");
+    const title = document.createElement("p");
+    title.className = "tct-feedback-toast__title";
+    title.textContent = (opts.title || "").trim() || "Thông báo";
+    const body = document.createElement("div");
+    body.className = "tct-feedback-toast__body";
+    body.appendChild(title);
+    if (opts.message) {
+        const msg = document.createElement("p");
+        msg.className = "tct-feedback-toast__message";
+        msg.textContent = String(opts.message);
+        body.appendChild(msg);
+    }
+    el.appendChild(body);
+    const close = document.createElement("button");
+    close.type = "button";
+    close.className = "tct-feedback-toast__close";
+    close.setAttribute("aria-label", "Đóng");
+    close.innerHTML = '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
+    close.addEventListener("click", function () { el.remove(); });
+    el.appendChild(close);
+    host.appendChild(el);
+    window.setTimeout(function () {
+        if (el.parentNode) el.remove();
+    }, type === "danger" ? 6000 : 3500);
 }
 
 async function classConfirm(options) {
     if (window.TctFeedback && typeof window.TctFeedback.confirm === "function") {
         return window.TctFeedback.confirm(options);
     }
-    return window.confirm([options.title, options.message].filter(Boolean).join("\n"));
+    // Last resort when Clay confirm modal / Bootstrap is unavailable.
+    return window.confirm([options?.title, options?.message].filter(Boolean).join("\n"));
 }
 
 function getActiveTab() {
